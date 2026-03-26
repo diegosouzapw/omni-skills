@@ -5,7 +5,14 @@
   "display_name": "Find Skills",
   "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
   "version": "1.0.0",
-  "category": "workflow",
+  "category": "cli-automation",
+  "raw_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
   "tags": [
     "discovery",
     "catalog",
@@ -25,7 +32,8 @@
   "entrypoint": "skills/find-skills/SKILL.md",
   "paths": {
     "root": "skills/find-skills",
-    "manifest": "dist/manifests/find-skills.json"
+    "manifest": "dist/manifests/find-skills.json",
+    "metadata": "skills/find-skills/metadata.json"
   },
   "compatibility": {
     "tools": [
@@ -91,7 +99,10 @@
     "sub_resources": [
       "agents"
     ],
-    "artifacts_count": 2
+    "artifacts_count": 3,
+    "references_count": 0,
+    "agents_count": 1,
+    "assets_count": 0
   },
   "dependencies": {
     "skills": [],
@@ -145,12 +156,58 @@
       }
     ]
   },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 65,
+      "tier": "good"
+    },
+    "quality": {
+      "score": 88,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 25,
+        "description": 15,
+        "metadata": 20,
+        "recency": 10,
+        "resources": 5,
+        "best_practices": 13
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 2924,
+    "content_length": 3421,
+    "body_lines": 93,
+    "word_count": 459,
+    "has_code_blocks": true,
+    "has_examples_section": false,
+    "has_workflow_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false
+  },
   "artifacts": [
     {
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3415,
-      "sha256": "dc4cde234ef1bdbfa50fe0faa01f341dcfb5a05448ca332235e9da7ade6865c8"
+      "size_bytes": 3421,
+      "sha256": "617a72eaaca3e90254c3a4582505bfccdb1c0fd1da14286c1b71a1011007bd44"
+    },
+    {
+      "path": "skills/find-skills/metadata.json",
+      "kind": "support",
+      "size_bytes": 2279,
+      "sha256": "4bb35b5b7e539b6197045c3a8487135a1bf72cb858503c7cd33537abb4f90c91"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -160,7 +217,7 @@
     }
   ],
   "checksums": {
-    "entrypoint_sha256": "dc4cde234ef1bdbfa50fe0faa01f341dcfb5a05448ca332235e9da7ade6865c8",
-    "package_sha256": "ed12cc042d5635819ac5a571d42dd1212f1017cac255396a951bb528af7ff0e5"
+    "entrypoint_sha256": "617a72eaaca3e90254c3a4582505bfccdb1c0fd1da14286c1b71a1011007bd44",
+    "package_sha256": "7f283ce88148ba073715973f6c9994a542ce7dc3c420c61432a2ff0df442082d"
   }
 }

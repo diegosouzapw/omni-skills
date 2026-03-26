@@ -23,24 +23,32 @@ function main() {
   const index = JSON.parse(fs.readFileSync(INDEX_PATH, "utf-8"));
   const skills = index.skills || [];
 
-  // Group by category
+  // Group by canonical category
   const byCategory = {};
   for (const skill of skills) {
-    const cat = skill.category || "uncategorized";
+    const cat = skill.canonical_category || skill.category || "uncategorized";
     if (!byCategory[cat]) byCategory[cat] = [];
     byCategory[cat].push(skill);
   }
 
   const CATEGORY_ICONS = {
-    architecture: "🏗️",
+    "ai-agents": "🧠",
+    backend: "🗄️",
     business: "💼",
+    communication: "💬",
+    "content-media": "🎬",
     "data-ai": "🤖",
     development: "💻",
-    general: "📋",
-    infrastructure: "☁️",
-    security: "🛡️",
-    testing: "🧪",
-    workflow: "⚙️",
+    design: "🎨",
+    devops: "☁️",
+    documentation: "📝",
+    frontend: "🖼️",
+    "fullstack-web": "🌐",
+    "cli-automation": "⚙️",
+    "machine-learning": "📈",
+    product: "🧭",
+    "testing-security": "🛡️",
+    tools: "🧰",
     uncategorized: "📦",
   };
 
@@ -63,14 +71,15 @@ function main() {
     const catSkills = byCategory[cat].sort((a, b) => a.name.localeCompare(b.name));
 
     md += `## ${icon} ${capitalize(cat)}\n\n`;
-    md += `| Skill | Description | Complexity | Risk |\n`;
-    md += `| :---- | :---------- | :--------- | :--- |\n`;
+    md += `| Skill | Description | Level | Best Practices | Quality |\n`;
+    md += `| :---- | :---------- | :---- | :------------- | :------ |\n`;
 
     for (const s of catSkills) {
-      const complexity = s.complexity || "—";
-      const risk = s.risk || "—";
       const desc = (s.description || "").replace(/\|/g, "\\|").substring(0, 120);
-      md += `| [\`${s.name}\`](../${s.path}/SKILL.md) | ${desc} | ${complexity} | ${risk} |\n`;
+      const level = s.skill_level ? `L${s.skill_level} ${s.skill_level_label || ""}`.trim() : "—";
+      const bestPractices = Number.isFinite(s.best_practices_score) ? `${s.best_practices_score}/100` : "—";
+      const quality = Number.isFinite(s.quality_score) ? `${s.quality_score}/100` : "—";
+      md += `| [\`${s.name}\`](../${s.path}/SKILL.md) | ${desc} | ${level} | ${bestPractices} | ${quality} |\n`;
     }
 
     md += `\n`;

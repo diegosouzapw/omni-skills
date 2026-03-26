@@ -18,6 +18,7 @@ Current repository state:
 - the API is implemented and read-only
 - the MCP server supports `stdio`, `stream`, and `sse`
 - local MCP sidecar mode is implemented with allowlisted writes, dry-run defaults, and client-aware config generation
+- skills are now classified locally with canonical taxonomy, maturity level, best practices score, and quality score
 - the A2A surface exists as a scaffold, not as a full task system
 - smoke and publish checks validate the package before release
 
@@ -43,6 +44,7 @@ Current gaps:
 - [ADR-0001: Agent-Native Workspace Foundation](architecture/adr-0001-agent-native-workspace.md)
 - [Catalog API Surface](specs/catalog-api.md)
 - [Local MCP Sidecar](specs/local-mcp-sidecar.md)
+- [Skill Classification and Metadata](specs/skill-classification.md)
 - [Skill Manifest Specification](specs/skill-manifest.md)
 
 ### If You Want to Contribute

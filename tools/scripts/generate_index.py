@@ -11,14 +11,23 @@ Outputs:
 
 import json
 import os
-import re
 import sys
 import hashlib
 from datetime import datetime, timezone
 
+from skill_metadata import (
+    SCHEMA_VERSION,
+    get_sub_resources,
+    load_skill_metadata,
+    parse_frontmatter,
+    strip_frontmatter,
+    extract_title,
+    validate_skill,
+    to_posix_path,
+)
 
-SCHEMA_VERSION = "2026-03-26"
-INDEX_VERSION = "1.1.0"
+
+INDEX_VERSION = "1.2.0"
 
 KNOWN_TOOL_TARGETS = {
     "claude-code": {
@@ -83,62 +92,24 @@ def load_bundle_definitions(repo_root):
     if not os.path.isfile(bundles_path):
         return []
 
-    with open(bundles_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-
-def parse_frontmatter(content):
-    match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
-    if not match:
-        return {}
-
-    fm = {}
-    for line in match.group(1).strip().split('\n'):
-        line = line.strip()
-        if ':' in line:
-            key, _, value = line.partition(':')
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if value.startswith('[') and value.endswith(']'):
-                value = [v.strip().strip('"').strip("'") for v in value[1:-1].split(',') if v.strip()]
-            fm[key] = value
-    return fm
-
-
-def get_sub_resources(skill_path):
-    """List sub-directories in a skill (references, agents, assets, etc.)."""
-    resources = []
-    for entry in sorted(os.listdir(skill_path)):
-        full = os.path.join(skill_path, entry)
-        if os.path.isdir(full) and not entry.startswith('.'):
-            resources.append(entry)
-    return resources
-
-
-def to_posix_path(path):
-    return path.replace(os.sep, '/')
+    with open(bundles_path, "r", encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def sha256_file(file_path):
     digest = hashlib.sha256()
-    with open(file_path, 'rb') as f:
+    with open(file_path, "rb") as handle:
         while True:
-            chunk = f.read(65536)
+            chunk = handle.read(65536)
             if not chunk:
                 break
             digest.update(chunk)
     return digest.hexdigest()
 
 
-def extract_title(content):
-    body = re.sub(r'^---\s*\n.*?\n---\s*\n', '', content, count=1, flags=re.DOTALL)
-    match = re.search(r'^#\s+(.+)$', body, re.MULTILINE)
-    return match.group(1).strip() if match else None
-
-
 def artifact_kind_from_relpath(relative_path):
-    rel_parts = relative_path.split('/')
-    if relative_path.endswith('/SKILL.md'):
+    rel_parts = relative_path.split("/")
+    if relative_path.endswith("/SKILL.md"):
         return "entrypoint"
     if rel_parts[-1] == "LICENSE.txt":
         return "license"
@@ -150,18 +121,20 @@ def artifact_kind_from_relpath(relative_path):
 def collect_artifacts(skill_path, repo_root):
     artifacts = []
     for root, dirs, files in os.walk(skill_path):
-        dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
+        dirs[:] = sorted(directory for directory in dirs if not directory.startswith("."))
         for file_name in sorted(files):
-            if file_name.startswith('.'):
+            if file_name.startswith("."):
                 continue
             full_path = os.path.join(root, file_name)
             rel_path = to_posix_path(os.path.relpath(full_path, repo_root))
-            artifacts.append({
-                "path": rel_path,
-                "kind": artifact_kind_from_relpath(rel_path),
-                "size_bytes": os.path.getsize(full_path),
-                "sha256": sha256_file(full_path),
-            })
+            artifacts.append(
+                {
+                    "path": rel_path,
+                    "kind": artifact_kind_from_relpath(rel_path),
+                    "size_bytes": os.path.getsize(full_path),
+                    "sha256": sha256_file(full_path),
+                }
+            )
     return artifacts
 
 
@@ -181,14 +154,16 @@ def build_install_targets(tool_names):
         target = KNOWN_TOOL_TARGETS.get(tool_name)
         if not target:
             continue
-        targets.append({
-            "tool": tool_name,
-            "scope": target["scope"],
-            "default_path": target["default_path"],
-            "installer_flag": target["installer_flag"],
-            "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
-            "invocation": target["invocation"],
-        })
+        targets.append(
+            {
+                "tool": tool_name,
+                "scope": target["scope"],
+                "default_path": target["default_path"],
+                "installer_flag": target["installer_flag"],
+                "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+                "invocation": target["invocation"],
+            }
+        )
     return targets
 
 
@@ -198,43 +173,48 @@ def build_install_recipes(tool_names):
         target = KNOWN_TOOL_TARGETS.get(tool_name)
         if not target:
             continue
-        recipes.append({
-            "tool": tool_name,
-            "command": f"npx omni-skills {target['installer_flag']}",
-            "scope": target["scope"],
-            "default_path": target["default_path"],
-            "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
-        })
+        recipes.append(
+            {
+                "tool": tool_name,
+                "command": f"npx omni-skills {target['installer_flag']}",
+                "scope": target["scope"],
+                "default_path": target["default_path"],
+                "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+            }
+        )
     return recipes
 
 
-def build_manifest(entry, fm, content, sub_resources, artifacts):
-    tools = fm.get("tools", [])
+def build_manifest(entry, frontmatter, content, sub_resources, artifacts, metadata):
     entrypoint = f"skills/{entry}/SKILL.md"
     manifest_path = f"dist/manifests/{entry}.json"
-    title = extract_title(content) or fm.get("name", entry)
+    title = extract_title(strip_frontmatter(content)) or metadata["display_name"]
+    tools = metadata["tools"]
 
     return {
         "schema_version": SCHEMA_VERSION,
-        "id": fm.get("name", entry),
+        "id": metadata["id"],
         "slug": entry,
         "display_name": title,
-        "description": fm.get("description", ""),
-        "version": fm.get("version", ""),
-        "category": fm.get("category", "uncategorized"),
-        "tags": fm.get("tags", []),
-        "complexity": fm.get("complexity", ""),
-        "risk": fm.get("risk", "unknown"),
-        "source": fm.get("source", ""),
-        "author": fm.get("author", ""),
+        "description": metadata["description"],
+        "version": metadata["version"],
+        "category": metadata["canonical_category"],
+        "raw_category": metadata["raw_category"],
+        "taxonomy": metadata["taxonomy"],
+        "tags": metadata["tags"],
+        "complexity": metadata["complexity"],
+        "risk": metadata["risk"],
+        "source": metadata["source"],
+        "author": metadata["author"],
         "dates": {
-            "added": fm.get("date_added", ""),
-            "updated": fm.get("date_updated", ""),
+            "added": metadata["dates"]["added"],
+            "updated": metadata["dates"]["updated"],
         },
         "entrypoint": entrypoint,
         "paths": {
             "root": f"skills/{entry}",
             "manifest": manifest_path,
+            "metadata": metadata["paths"]["metadata"],
         },
         "compatibility": {
             "tools": tools,
@@ -243,6 +223,9 @@ def build_manifest(entry, fm, content, sub_resources, artifacts):
         "resources": {
             "sub_resources": sub_resources,
             "artifacts_count": len(artifacts),
+            "references_count": metadata["resources"]["references_count"],
+            "agents_count": metadata["resources"]["agents_count"],
+            "assets_count": metadata["resources"]["assets_count"],
         },
         "dependencies": {
             "skills": [],
@@ -253,12 +236,30 @@ def build_manifest(entry, fm, content, sub_resources, artifacts):
             "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
             "recipes": build_install_recipes(tools),
         },
+        "classification": {
+            "maturity": metadata["maturity"],
+            "best_practices": metadata["best_practices"],
+            "quality": metadata["quality"],
+            "validation": metadata["validation"],
+        },
+        "content": metadata["content"],
         "artifacts": artifacts,
         "checksums": {
             "entrypoint_sha256": next((item["sha256"] for item in artifacts if item["path"] == entrypoint), ""),
             "package_sha256": compute_package_sha256(artifacts),
         },
     }
+
+
+def load_or_build_metadata(skill_path, entry, repo_root):
+    metadata = load_skill_metadata(skill_path)
+    if metadata:
+        return metadata
+
+    issues, metadata = validate_skill(skill_path, entry, repo_root, strict=False)
+    if metadata and any(level == "ERROR" for level, _ in issues):
+        return metadata
+    return metadata
 
 
 def main():
@@ -275,73 +276,91 @@ def main():
 
     os.makedirs(manifests_dir, exist_ok=True)
 
+    generated_at = datetime.now(timezone.utc).isoformat()
     index = {
         "schema_version": SCHEMA_VERSION,
         "version": INDEX_VERSION,
-        "generated_at": None,
+        "generated_at": generated_at,
         "total_skills": 0,
         "categories": {},
         "skills": [],
     }
-    index["generated_at"] = datetime.now(timezone.utc).isoformat()
 
     category_counts = {}
     manifests = []
 
     for entry in sorted(os.listdir(skills_dir)):
         skill_path = os.path.join(skills_dir, entry)
-        if not os.path.isdir(skill_path) or entry.startswith('.'):
+        if not os.path.isdir(skill_path) or entry.startswith("."):
             continue
 
         skill_md = os.path.join(skill_path, "SKILL.md")
         if not os.path.isfile(skill_md):
             continue
 
-        with open(skill_md, 'r', encoding='utf-8') as f:
-            content = f.read()
+        with open(skill_md, "r", encoding="utf-8") as handle:
+            content = handle.read()
 
-        fm = parse_frontmatter(content)
-        if not fm:
+        frontmatter = parse_frontmatter(content)
+        if not frontmatter:
+            continue
+
+        metadata = load_or_build_metadata(skill_path, entry, repo_root)
+        if not metadata:
             continue
 
         sub_resources = get_sub_resources(skill_path)
         artifacts = collect_artifacts(skill_path, repo_root)
-        manifest = build_manifest(entry, fm, content, sub_resources, artifacts)
+        manifest = build_manifest(entry, frontmatter, content, sub_resources, artifacts, metadata)
 
         skill_entry = {
-            "id": fm.get("name", entry),
-            "name": fm.get("name", entry),
-            "display_name": manifest["display_name"],
-            "description": fm.get("description", ""),
-            "version": fm.get("version", ""),
-            "category": fm.get("category", "uncategorized"),
-            "tags": fm.get("tags", []),
-            "complexity": fm.get("complexity", ""),
-            "risk": fm.get("risk", "unknown"),
-            "tools": fm.get("tools", []),
-            "source": fm.get("source", ""),
-            "author": fm.get("author", ""),
-            "date_added": fm.get("date_added", ""),
-            "date_updated": fm.get("date_updated", ""),
+            "id": metadata["id"],
+            "name": metadata["id"],
+            "display_name": metadata["display_name"],
+            "description": metadata["description"],
+            "version": metadata["version"],
+            "category": metadata["canonical_category"],
+            "raw_category": metadata["raw_category"],
+            "taxonomy": metadata["taxonomy"],
+            "tags": metadata["tags"],
+            "complexity": metadata["complexity"],
+            "risk": metadata["risk"],
+            "tools": metadata["tools"],
+            "source": metadata["source"],
+            "author": metadata["author"],
+            "date_added": metadata["dates"]["added"],
+            "date_updated": metadata["dates"]["updated"],
             "path": f"skills/{entry}",
             "entrypoint_path": manifest["entrypoint"],
             "manifest_path": manifest["paths"]["manifest"],
-            "content_length": len(content),
+            "metadata_path": metadata["paths"]["metadata"],
+            "content_length": metadata["content"]["content_length"],
+            "body_length": metadata["content"]["body_length"],
             "sub_resources": sub_resources,
             "artifacts_count": len(artifacts),
             "install_targets": manifest["compatibility"]["install_targets"],
             "checksums": manifest["checksums"],
+            "skill_level": metadata["maturity"]["skill_level"],
+            "skill_level_label": metadata["maturity"]["skill_level_label"],
+            "has_scripts": metadata["maturity"]["has_scripts"],
+            "has_extra_files": metadata["maturity"]["has_extra_files"],
+            "best_practices_score": metadata["best_practices"]["score"],
+            "best_practices_tier": metadata["best_practices"]["tier"],
+            "quality_score": metadata["quality"]["score"],
+            "quality_tier": metadata["quality"]["tier"],
+            "validation_status": metadata["validation"]["status"],
         }
 
         index["skills"].append(skill_entry)
         manifests.append(manifest)
 
-        cat = skill_entry["category"]
-        category_counts[cat] = category_counts.get(cat, 0) + 1
+        category = skill_entry["category"]
+        category_counts[category] = category_counts.get(category, 0) + 1
 
         manifest_output_path = os.path.join(manifests_dir, f"{entry}.json")
-        with open(manifest_output_path, 'w', encoding='utf-8') as f:
-            json.dump(manifest, f, indent=2, ensure_ascii=False)
+        with open(manifest_output_path, "w", encoding="utf-8") as handle:
+            json.dump(manifest, handle, indent=2, ensure_ascii=False)
+            handle.write("\n")
 
     index["total_skills"] = len(index["skills"])
     index["categories"] = dict(sorted(category_counts.items()))
@@ -352,19 +371,21 @@ def main():
         bundle_skill_ids = bundle.get("skill_ids", [])
         available_bundle_skills = [skill_id for skill_id in bundle_skill_ids if skill_id in available_skill_ids]
         missing_bundle_skills = [skill_id for skill_id in bundle_skill_ids if skill_id not in available_skill_ids]
-        bundles.append({
-            **bundle,
-            "available_skill_ids": available_bundle_skills,
-            "missing_skill_ids": missing_bundle_skills,
-            "availability": {
-                "available": len(available_bundle_skills),
-                "total": len(bundle_skill_ids),
-            },
-        })
+        bundles.append(
+            {
+                **bundle,
+                "available_skill_ids": available_bundle_skills,
+                "missing_skill_ids": missing_bundle_skills,
+                "availability": {
+                    "available": len(available_bundle_skills),
+                    "total": len(bundle_skill_ids),
+                },
+            }
+        )
 
     catalog = {
         "schema_version": SCHEMA_VERSION,
-        "generated_at": index["generated_at"],
+        "generated_at": generated_at,
         "total_skills": index["total_skills"],
         "categories": index["categories"],
         "skills": [
@@ -375,32 +396,47 @@ def main():
                 "description": manifest["description"],
                 "version": manifest["version"],
                 "category": manifest["category"],
+                "raw_category": manifest["raw_category"],
+                "taxonomy": manifest["taxonomy"],
                 "tags": manifest["tags"],
                 "complexity": manifest["complexity"],
                 "risk": manifest["risk"],
                 "tools": manifest["compatibility"]["tools"],
                 "entrypoint": manifest["entrypoint"],
                 "manifest_path": manifest["paths"]["manifest"],
+                "metadata_path": manifest["paths"]["metadata"],
+                "skill_level": manifest["classification"]["maturity"]["skill_level"],
+                "skill_level_label": manifest["classification"]["maturity"]["skill_level_label"],
+                "has_scripts": manifest["classification"]["maturity"]["has_scripts"],
+                "has_extra_files": manifest["classification"]["maturity"]["has_extra_files"],
+                "best_practices_score": manifest["classification"]["best_practices"]["score"],
+                "best_practices_tier": manifest["classification"]["best_practices"]["tier"],
+                "quality_score": manifest["classification"]["quality"]["score"],
+                "quality_tier": manifest["classification"]["quality"]["tier"],
+                "validation_status": manifest["classification"]["validation"]["status"],
             }
             for manifest in manifests
         ],
     }
 
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(index, f, indent=2, ensure_ascii=False)
+    with open(output_path, "w", encoding="utf-8") as handle:
+        json.dump(index, handle, indent=2, ensure_ascii=False)
+        handle.write("\n")
 
-    with open(catalog_path, 'w', encoding='utf-8') as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
+    with open(catalog_path, "w", encoding="utf-8") as handle:
+        json.dump(catalog, handle, indent=2, ensure_ascii=False)
+        handle.write("\n")
 
-    with open(bundles_path, 'w', encoding='utf-8') as f:
-        json.dump({"generated_at": index["generated_at"], "bundles": bundles}, f, indent=2, ensure_ascii=False)
+    with open(bundles_path, "w", encoding="utf-8") as handle:
+        json.dump({"generated_at": generated_at, "bundles": bundles}, handle, indent=2, ensure_ascii=False)
+        handle.write("\n")
 
     print(f"✅ Generated {output_path}")
     print(f"✅ Generated {catalog_path}")
     print(f"✅ Generated {bundles_path}")
     print(f"✅ Generated {len(manifests)} manifest(s) in {manifests_dir}")
     print(f"   Total skills: {index['total_skills']}")
-    print(f"   Categories: {', '.join(f'{k}({v})' for k, v in sorted(category_counts.items()))}")
+    print(f"   Categories: {', '.join(f'{key}({value})' for key, value in sorted(category_counts.items()))}")
 
 
 if __name__ == "__main__":

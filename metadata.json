@@ -1,0 +1,93 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-26T20:41:45.192126+00:00",
+  "repository": {
+    "name": "omni-skills",
+    "version": "1.0.0",
+    "metadata_path": "metadata.json"
+  },
+  "summary": {
+    "total_skills": 2,
+    "passed": 2,
+    "warnings": 0,
+    "errors": 0,
+    "average_quality_score": 85.5,
+    "average_best_practices_score": 52.5
+  },
+  "taxonomy": {
+    "canonical_categories": [
+      "development",
+      "frontend",
+      "backend",
+      "fullstack-web",
+      "tools",
+      "cli-automation",
+      "business",
+      "product",
+      "design",
+      "data-ai",
+      "ai-agents",
+      "machine-learning",
+      "devops",
+      "testing-security",
+      "documentation",
+      "content-media",
+      "communication",
+      "uncategorized"
+    ],
+    "counts": {
+      "cli-automation": 1,
+      "development": 1
+    }
+  },
+  "distribution": {
+    "skill_levels": {
+      "l1": 0,
+      "l2": 2,
+      "l3": 0
+    },
+    "quality_tiers": {
+      "gold": 1,
+      "platinum": 1
+    },
+    "validation_status": {
+      "passed": 2,
+      "warn": 0,
+      "failed": 0
+    }
+  },
+  "skills": [
+    {
+      "id": "find-skills",
+      "display_name": "Find Skills",
+      "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
+      "raw_category": "cli-automation",
+      "canonical_category": "cli-automation",
+      "quality_score": 88,
+      "quality_tier": "platinum",
+      "best_practices_score": 65,
+      "best_practices_tier": "good",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "passed",
+      "metadata_path": "skills/find-skills/metadata.json",
+      "entrypoint": "skills/find-skills/SKILL.md"
+    },
+    {
+      "id": "omni-figma",
+      "display_name": "Omni Figma",
+      "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+      "raw_category": "development",
+      "canonical_category": "development",
+      "quality_score": 83,
+      "quality_tier": "gold",
+      "best_practices_score": 40,
+      "best_practices_tier": "fair",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "passed",
+      "metadata_path": "skills/omni-figma/metadata.json",
+      "entrypoint": "skills/omni-figma/SKILL.md"
+    }
+  ]
+}

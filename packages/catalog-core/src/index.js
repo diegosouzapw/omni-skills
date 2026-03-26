@@ -92,6 +92,8 @@ function scoreTextMatch(skill, tokens, goalTokens = []) {
     skill.description,
     ...(skill.tags || []),
     skill.category,
+    skill.raw_category,
+    skill.canonical_category,
   ].map(normalizeText);
 
   for (const token of tokens) {
@@ -125,7 +127,12 @@ function scoreSkill(skill, tokens, goalTokens = [], tool = "", category = "") {
     score += 4;
   }
 
-  if (category && skill.category === category) {
+  if (
+    category &&
+    (skill.category === category ||
+      skill.raw_category === category ||
+      skill.canonical_category === category)
+  ) {
     score += 3;
   }
 
@@ -264,7 +271,12 @@ export function listSkills(options = {}) {
   let skills = [...catalog.skills];
 
   if (options.category) {
-    skills = skills.filter((skill) => skill.category === options.category);
+    skills = skills.filter(
+      (skill) =>
+        skill.category === options.category ||
+        skill.raw_category === options.category ||
+        skill.canonical_category === options.category,
+    );
   }
 
   if (options.tool) {
@@ -397,9 +409,15 @@ export function recommendSkills(options = {}) {
       display_name: manifest.display_name,
       description: manifest.description,
       category: manifest.category,
+      raw_category: manifest.raw_category,
+      canonical_category: manifest.taxonomy?.canonical_category || manifest.category,
       tags: manifest.tags || [],
       tools: manifest.compatibility.tools || [],
       manifest_path: manifest.paths.manifest,
+      skill_level: manifest.classification?.maturity?.skill_level,
+      skill_level_label: manifest.classification?.maturity?.skill_level_label,
+      best_practices_score: manifest.classification?.best_practices?.score,
+      quality_score: manifest.classification?.quality?.score,
       score: scoreSkill(
         manifest,
         queryTokens.length > 0 ? queryTokens : goalTokens,
@@ -413,7 +431,12 @@ export function recommendSkills(options = {}) {
         return false;
       }
 
-      if (options.category && skill.category !== options.category) {
+      if (
+        options.category &&
+        skill.category !== options.category &&
+        skill.raw_category !== options.category &&
+        skill.canonical_category !== options.category
+      ) {
         return false;
       }
 

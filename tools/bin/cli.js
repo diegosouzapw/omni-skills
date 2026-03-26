@@ -611,6 +611,13 @@ async function runFind(args) {
       console.log(
         `  category: ${skill.category || "uncategorized"} | risk: ${skill.risk || "unknown"}`,
       );
+      if (skill.skill_level || skill.best_practices_score || skill.quality_score) {
+        console.log(
+          `  level: ${skill.skill_level ? `L${skill.skill_level} ${skill.skill_level_label || ""}`.trim() : "—"} | ` +
+            `best practices: ${Number.isFinite(skill.best_practices_score) ? `${skill.best_practices_score}/100` : "—"} | ` +
+            `quality: ${Number.isFinite(skill.quality_score) ? `${skill.quality_score}/100` : "—"}`,
+        );
+      }
       console.log(`  tools: ${formatList(skill.tools || [])}`);
       console.log(`  tags: ${formatList((skill.tags || []).slice(0, 8))}`);
       console.log(`  install: ${buildInstallHint(skill.id, tool)}`);

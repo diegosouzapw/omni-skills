@@ -16,6 +16,7 @@ The manifest exists so that API, MCP, A2A, and installer workflows can all consu
 
 Build artifacts are generated to:
 
+- `metadata.json`
 - `skills_index.json`
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
@@ -31,6 +32,8 @@ Each per-skill manifest should contain:
 - `description`
 - `version`
 - `category`
+- `raw_category`
+- `taxonomy`
 - `tags`
 - `complexity`
 - `risk`
@@ -43,6 +46,8 @@ Each per-skill manifest should contain:
 - `resources`
 - `dependencies`
 - `install`
+- `classification`
+- `content`
 - `artifacts`
 - `checksums`
 
@@ -59,7 +64,9 @@ Each per-skill manifest should contain:
 
 - `description`: Short summary from frontmatter.
 - `version`: Skill version from frontmatter.
-- `category`: One of the repository categories.
+- `category`: Canonical category emitted by the local taxonomy normalizer.
+- `raw_category`: Original category label from frontmatter.
+- `taxonomy`: Canonical taxonomy metadata including inferred fallback.
 - `tags`: Searchable tags.
 - `complexity`: Skill difficulty.
 - `risk`: Safety level for execution and review.
@@ -106,6 +113,9 @@ The `resources` object contains:
 
 - `sub_resources`: Top-level skill subdirectories such as `references`, `agents`, and `assets`
 - `artifacts_count`: Total file count in the skill package
+- `references_count`
+- `agents_count`
+- `assets_count`
 
 ### Dependencies
 
@@ -127,6 +137,27 @@ The `install` object contains:
 - `recipes`
 
 Each recipe should be derived from current supported install flows.
+
+### Classification
+
+The `classification` object contains generated skill signals:
+
+- `maturity`
+- `best_practices`
+- `quality`
+- `validation`
+
+These values come from the local validator and are emitted into the manifest so API, MCP, CLI, and docs can all consume the same classification layer.
+
+### Content
+
+The `content` object contains derived signals such as:
+
+- `body_length`
+- `content_length`
+- `body_lines`
+- `word_count`
+- structural flags such as examples or troubleshooting sections
 
 ### Artifacts
 
@@ -168,6 +199,13 @@ The `checksums` object contains:
   "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
   "version": "1.0.0",
   "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
   "tags": ["figma", "design-to-code", "mcp"],
   "complexity": "advanced",
   "risk": "safe",
@@ -198,6 +236,24 @@ The `checksums` object contains:
     "strategy": "copy-skill-directory",
     "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
     "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions"
+    },
+    "best_practices": {
+      "score": 40
+    },
+    "quality": {
+      "score": 83
+    },
+    "validation": {
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5267
   },
   "artifacts": [],
   "checksums": {

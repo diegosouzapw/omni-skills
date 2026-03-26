@@ -22,11 +22,14 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Validate skills
-        run: python3 tools/scripts/validate_skills.py
+      - name: Install dependencies
+        run: npm install
 
-      - name: Generate index
-        run: python3 tools/scripts/generate_index.py
+      - name: Build generated artifacts
+        run: npm run build
 
-      - name: Build catalog
-        run: node tools/scripts/build_catalog.js
+      - name: Run tests
+        run: npm test
+
+      - name: Check generated artifacts are committed
+        run: git diff --exit-code -- metadata.json skills skills_index.json dist docs/CATALOG.md

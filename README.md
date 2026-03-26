@@ -22,6 +22,7 @@ Omni Skills is no longer only an installer.
 - 🖥️ **Operator-friendly CLI**: the package exposes `doctor`, `ui`, `smoke`, and `publish-check` in the same binary.
 - 🔎 **Catalog discovery**: `npx omni-skills find <query>` now searches the published catalog and suggests install commands.
 - 🧭 **Shared catalog contract**: `skills_index.json`, `dist/catalog.json`, `dist/bundles.json`, and `dist/manifests/*.json` drive the runtime.
+- 🧪 **Skill classification**: validation now parses frontmatter, normalizes categories to a canonical taxonomy, and computes maturity level, best practices, and quality scores.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A scaffold.
 - 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist.
@@ -116,12 +117,21 @@ npx omni-skills mcp sse
 
 The build pipeline emits:
 
+- `metadata.json`
 - `skills_index.json`
 - `dist/catalog.json`
 - `dist/bundles.json`
 - `dist/manifests/<skill>.json`
 
 These generated artifacts are the shared source of truth for CLI, API, MCP, and A2A behavior.
+
+Each skill also gets a generated `skills/<skill>/metadata.json` with:
+
+- canonical taxonomy classification
+- maturity level (`L1`/`L2`/`L3`)
+- best practices score (`0-100`)
+- quality score (`0-100`)
+- validation status and supporting metadata
 
 ---
 
@@ -164,6 +174,7 @@ This is why `--bundle` is already useful for planning and selective install, but
 - [ADR-0001: Agent-Native Workspace Foundation](docs/architecture/adr-0001-agent-native-workspace.md)
 - [Catalog API Surface](docs/specs/catalog-api.md)
 - [Local MCP Sidecar](docs/specs/local-mcp-sidecar.md)
+- [Skill Classification and Metadata](docs/specs/skill-classification.md)
 - [Skill Manifest Specification](docs/specs/skill-manifest.md)
 
 ### Community and Contribution

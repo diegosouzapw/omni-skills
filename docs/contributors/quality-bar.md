@@ -12,14 +12,16 @@ Minimum requirements for a skill to be accepted into the Omni Skills repository.
 4. **Overview section** — a brief explanation of purpose
 5. **When to Use section** — at least 2 usage scenarios
 6. **Actionable instructions** — step-by-step content an AI agent can execute
+7. **Generated metadata** — the validator must be able to emit `skills/<skill>/metadata.json`
 
 ## Recommended
 
-7. **Examples** — at least one concrete example with expected output
-8. **Best practices** — do/don't guidance
-9. **Tested with a tool** — verified with at least one AI coding assistant
-10. **Tags** — relevant searchable tags
-11. **Category** — assigned to one of the 9 categories
+8. **Examples** — at least one concrete example with expected output
+9. **Best practices** — do/don't guidance
+10. **Tested with a tool** — verified with at least one AI coding assistant
+11. **Tags** — relevant searchable tags
+12. **Category** — assigned to one canonical category
+13. **Healthy classification** — reasonable maturity, best practices, and quality scores
 
 ## Reasons for Rejection
 

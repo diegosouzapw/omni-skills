@@ -14,6 +14,7 @@ The frontmatter is machine-readable metadata between `---` delimiters. It powers
 - The skills index and catalog
 - CLI search and filtering
 - Validation and quality checks
+- Generated `metadata.json` classification artifacts
 
 ### 2. Body (Markdown instructions)
 
@@ -28,7 +29,7 @@ The body contains human-readable (and agent-readable) instructions. It should be
 | `name`        | ✅       | string     | Must match directory name, lowercase-hyphenated |
 | `description` | ✅       | string     | One-line description (10-200 chars) |
 | `version`     | ⚡       | string     | Semantic version (e.g., "1.0.0") |
-| `category`    | ⚡       | string     | One of the 9 allowed categories |
+| `category`    | ⚡       | string     | One canonical category from the repo taxonomy |
 | `tags`        | ⚡       | string[]   | Searchable tags |
 | `complexity`  | ⚡       | string     | beginner/intermediate/advanced/expert |
 | `risk`        | ⚡       | string     | safe/caution/offensive/critical |
@@ -39,6 +40,27 @@ The body contains human-readable (and agent-readable) instructions. It should be
 | `date_updated`| ⚡       | string     | ISO date |
 
 ✅ = always required | ⚡ = required in strict mode
+
+Canonical categories:
+
+- `development`
+- `frontend`
+- `backend`
+- `fullstack-web`
+- `tools`
+- `cli-automation`
+- `business`
+- `product`
+- `design`
+- `data-ai`
+- `ai-agents`
+- `machine-learning`
+- `devops`
+- `testing-security`
+- `documentation`
+- `content-media`
+- `communication`
+- `uncategorized`
 
 ---
 
@@ -76,6 +98,7 @@ Cross-references to complementary skills.
 - Instructions are clear enough for an AI to follow without human interpretation
 - Includes concrete examples
 - Has proper error handling guidance
+- Produces healthy generated metadata: canonical category, maturity level, best practices score, and quality score
 
 **Bad skill:**
 - Generic advice that could apply to anything

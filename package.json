@@ -9,6 +9,7 @@
   "scripts": {
     "validate": "python3 tools/scripts/validate_skills.py",
     "validate:strict": "python3 tools/scripts/validate_skills.py --strict",
+    "metadata": "python3 tools/scripts/validate_skills.py",
     "index": "python3 tools/scripts/generate_index.py",
     "catalog": "node tools/scripts/build_catalog.js",
     "build": "npm run validate && npm run index && npm run catalog",
@@ -25,8 +26,9 @@
     "cli": "node tools/bin/cli.js",
     "smoke": "node tools/bin/cli.js smoke",
     "publish-check": "node tools/bin/cli.js publish-check",
+    "hooks:install": "node tools/scripts/install_githooks.js",
     "test": "node tools/scripts/tests/run_tests.js",
-    "pr:preflight": "npm run validate && npm run index"
+    "pr:preflight": "npm run build && npm test"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,7 @@
     "docs",
     "dist",
     "data",
+    "metadata.json",
     "README.md",
     "CONTRIBUTING.md",
     "SECURITY.md",

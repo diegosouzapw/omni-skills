@@ -13,6 +13,16 @@ date_added: "2026-01-01"
 date_updated: "2026-01-01"
 ---
 
+<!--
+Use a canonical category such as:
+development, frontend, backend, fullstack-web, tools, cli-automation,
+business, product, design, data-ai, ai-agents, machine-learning, devops,
+testing-security, documentation, content-media, communication, uncategorized.
+
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, and quality score.
+-->
+
 # Skill Title
 
 ## Overview

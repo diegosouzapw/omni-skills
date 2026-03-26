@@ -6,6 +6,13 @@
   "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
   "version": "1.0.0",
   "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
   "tags": [
     "figma",
     "design-to-code",
@@ -25,7 +32,8 @@
   "entrypoint": "skills/omni-figma/SKILL.md",
   "paths": {
     "root": "skills/omni-figma",
-    "manifest": "dist/manifests/omni-figma.json"
+    "manifest": "dist/manifests/omni-figma.json",
+    "metadata": "skills/omni-figma/metadata.json"
   },
   "compatibility": {
     "tools": [
@@ -75,7 +83,10 @@
       "assets",
       "references"
     ],
-    "artifacts_count": 9
+    "artifacts_count": 10,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 3
   },
   "dependencies": {
     "skills": [],
@@ -115,6 +126,46 @@
       }
     ]
   },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 40,
+      "tier": "fair"
+    },
+    "quality": {
+      "score": 83,
+      "tier": "gold",
+      "breakdown": {
+        "body": 25,
+        "description": 15,
+        "metadata": 20,
+        "recency": 10,
+        "resources": 5,
+        "best_practices": 8
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5267,
+    "content_length": 5799,
+    "body_lines": 82,
+    "word_count": 781,
+    "has_code_blocks": false,
+    "has_examples_section": false,
+    "has_workflow_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false
+  },
   "artifacts": [
     {
       "path": "skills/omni-figma/LICENSE.txt",
@@ -127,6 +178,12 @@
       "kind": "entrypoint",
       "size_bytes": 5799,
       "sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab"
+    },
+    {
+      "path": "skills/omni-figma/metadata.json",
+      "kind": "support",
+      "size_bytes": 2518,
+      "sha256": "c054225233bebf78800a00d9694f015d790bcb63b63739d1fcd093c4d50c70e7"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -173,6 +230,6 @@
   ],
   "checksums": {
     "entrypoint_sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab",
-    "package_sha256": "d9ebbf46078e62f08fb9777a6b0366442c89864c38f03db20d573b9666c1e9a5"
+    "package_sha256": "9257b16dbe7b4fc360e0ccc76241113d6b9d5ae15703a99b72766d07c262c62a"
   }
 }

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+cd "$ROOT"
+
+echo "[pre-commit] validating skills and regenerating metadata/catalog artifacts"
+npm run validate
+npm run index
+npm run catalog
+
+git add metadata.json skills/*/metadata.json skills_index.json dist docs/CATALOG.md
+
+echo "[pre-commit] done"

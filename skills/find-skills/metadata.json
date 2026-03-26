@@ -1,0 +1,99 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-26T20:41:45.188437+00:00",
+  "id": "find-skills",
+  "slug": "find-skills",
+  "display_name": "Find Skills",
+  "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
+  "version": "1.0.0",
+  "raw_category": "cli-automation",
+  "canonical_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "discovery",
+    "catalog",
+    "install",
+    "cli",
+    "mcp",
+    "api"
+  ],
+  "tools": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "codex-cli",
+    "antigravity",
+    "opencode"
+  ],
+  "complexity": "intermediate",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-26",
+    "updated": "2026-03-26",
+    "file_mtime": "2026-03-26T20:36:59.577984+00:00"
+  },
+  "paths": {
+    "root": "skills/find-skills",
+    "entrypoint": "skills/find-skills/SKILL.md",
+    "metadata": "skills/find-skills/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents"
+    ],
+    "files": [
+      "SKILL.md",
+      "metadata.json",
+      "openai.yaml"
+    ],
+    "files_count": 3,
+    "references_count": 0,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "content": {
+    "body_length": 2924,
+    "content_length": 3421,
+    "body_lines": 93,
+    "word_count": 459,
+    "has_code_blocks": true,
+    "has_examples_section": false,
+    "has_workflow_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false
+  },
+  "maturity": {
+    "skill_level": 2,
+    "skill_level_label": "instructions",
+    "has_scripts": false,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 65,
+    "tier": "good"
+  },
+  "quality": {
+    "score": 88,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 25,
+      "description": 15,
+      "metadata": 20,
+      "recency": 10,
+      "resources": 5,
+      "best_practices": 13
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

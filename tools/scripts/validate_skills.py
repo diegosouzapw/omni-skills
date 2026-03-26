@@ -1,173 +1,126 @@
 #!/usr/bin/env python3
 """
-omni-skills SKILL.md validator.
+omni-skills validator and metadata generator.
 
 Checks every skill directory for:
 - SKILL.md existence
-- Valid YAML frontmatter with required fields
-- name matches directory name
-- category is in the allowed list
-- risk is in the allowed list
-- description is non-empty
+- valid YAML frontmatter with required fields
+- canonical taxonomy mapping
+- maturity, best practices, and quality classification
+- generated metadata.json files for each skill and for the repo root
 """
 
-import sys
-import os
-import re
 import argparse
+import os
+import sys
 
-REQUIRED_FIELDS = ["name", "description"]
-STRICT_REQUIRED = ["name", "description", "version", "category", "risk", "source", "date_added"]
-
-ALLOWED_CATEGORIES = [
-    "architecture", "business", "data-ai", "development", "general",
-    "infrastructure", "security", "testing", "workflow",
-]
-
-ALLOWED_RISKS = ["safe", "caution", "offensive", "critical", "unknown"]
-
-ALLOWED_SOURCES = ["omni-team", "community", "official"]
-
-ALLOWED_COMPLEXITIES = ["beginner", "intermediate", "advanced", "expert"]
+from skill_metadata import (
+    build_repo_metadata,
+    validate_skill,
+    write_repo_metadata,
+    write_skill_metadata,
+)
 
 
-def find_skills_dir():
-    """Find the skills/ directory relative to the script."""
+def find_paths():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(script_dir))
-    return os.path.join(repo_root, "skills")
-
-
-def parse_frontmatter(content):
-    """Parse YAML frontmatter from SKILL.md content."""
-    match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
-    if not match:
-        return None
-
-    fm = {}
-    for line in match.group(1).strip().split('\n'):
-        line = line.strip()
-        if ':' in line:
-            key, _, value = line.partition(':')
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            # Handle arrays like [tag1, tag2]
-            if value.startswith('[') and value.endswith(']'):
-                value = [v.strip().strip('"').strip("'") for v in value[1:-1].split(',') if v.strip()]
-            fm[key] = value
-    return fm
-
-
-def validate_skill(skill_dir, skill_name, strict=False):
-    """Validate a single skill directory. Returns list of (level, message) tuples."""
-    issues = []
-    skill_md = os.path.join(skill_dir, "SKILL.md")
-
-    if not os.path.isfile(skill_md):
-        issues.append(("ERROR", "Missing SKILL.md"))
-        return issues
-
-    with open(skill_md, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    fm = parse_frontmatter(content)
-    if fm is None:
-        issues.append(("ERROR", "Missing or invalid YAML frontmatter (---...---)"))
-        return issues
-
-    # Check required fields
-    required = STRICT_REQUIRED if strict else REQUIRED_FIELDS
-    for field in required:
-        if field not in fm or not fm[field]:
-            issues.append(("ERROR" if field in REQUIRED_FIELDS else "WARN", f"Missing field: {field}"))
-
-    # Name must match directory
-    if "name" in fm and fm["name"] != skill_name:
-        issues.append(("ERROR", f"name '{fm['name']}' does not match directory '{skill_name}'"))
-
-    # Validate category
-    if "category" in fm:
-        if fm["category"] not in ALLOWED_CATEGORIES:
-            issues.append(("WARN", f"category '{fm['category']}' not in allowed list: {ALLOWED_CATEGORIES}"))
-
-    # Validate risk
-    if "risk" in fm:
-        if fm["risk"] not in ALLOWED_RISKS:
-            issues.append(("WARN", f"risk '{fm['risk']}' not in allowed list: {ALLOWED_RISKS}"))
-
-    # Validate source
-    if "source" in fm:
-        if fm["source"] not in ALLOWED_SOURCES:
-            issues.append(("WARN", f"source '{fm['source']}' not in allowed list: {ALLOWED_SOURCES}"))
-
-    # Validate complexity
-    if "complexity" in fm:
-        if fm["complexity"] not in ALLOWED_COMPLEXITIES:
-            issues.append(("WARN", f"complexity '{fm['complexity']}' not in allowed list: {ALLOWED_COMPLEXITIES}"))
-
-    # Description length
-    if "description" in fm and len(fm["description"]) < 10:
-        issues.append(("WARN", "description is very short (< 10 chars)"))
-
-    return issues
+    return os.path.join(repo_root, "skills"), repo_root
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validate omni-skills SKILL.md files")
+    parser = argparse.ArgumentParser(description="Validate omni-skills SKILL.md files and generate metadata")
     parser.add_argument("--strict", action="store_true", help="Require all extended frontmatter fields")
     parser.add_argument("--path", default=None, help="Skills directory path (default: auto-detect)")
+    parser.add_argument("--no-write-metadata", action="store_true", help="Validate without rewriting metadata files")
     args = parser.parse_args()
 
-    skills_dir = args.path or find_skills_dir()
+    default_skills_dir, repo_root = find_paths()
+    skills_dir = args.path or default_skills_dir
 
     if not os.path.isdir(skills_dir):
         print(f"✗ Skills directory not found: {skills_dir}")
         sys.exit(1)
 
     print(f"🔍 Validating skills in: {skills_dir}")
-    print(f"   Mode: {'strict' if args.strict else 'standard'}\n")
+    print(f"   Mode: {'strict' if args.strict else 'standard'}")
+    print(f"   Metadata: {'disabled' if args.no_write_metadata else 'enabled'}\n")
 
-    errors = 0
-    warnings = 0
-    passed = 0
-    total = 0
+    counts = {
+        "passed": 0,
+        "warnings": 0,
+        "errors": 0,
+        "total": 0,
+    }
+    skill_records = []
 
     for entry in sorted(os.listdir(skills_dir)):
         skill_path = os.path.join(skills_dir, entry)
-        if not os.path.isdir(skill_path):
-            continue
-        if entry.startswith('.'):
+        if not os.path.isdir(skill_path) or entry.startswith("."):
             continue
 
-        total += 1
-        issues = validate_skill(skill_path, entry, strict=args.strict)
-
+        counts["total"] += 1
+        issues, metadata = validate_skill(skill_path, entry, repo_root, strict=args.strict)
         has_errors = any(level == "ERROR" for level, _ in issues)
         has_warnings = any(level == "WARN" for level, _ in issues)
 
         if has_errors:
-            errors += 1
+            counts["errors"] += 1
             print(f"  ✗ {entry}")
         elif has_warnings:
-            warnings += 1
+            counts["warnings"] += 1
             print(f"  ⚠ {entry}")
         else:
-            passed += 1
+            counts["passed"] += 1
             print(f"  ✓ {entry}")
 
-        for level, msg in issues:
+        if metadata:
+            skill_records.append(metadata)
+            maturity = metadata["maturity"]
+            quality = metadata["quality"]
+            best_practices = metadata["best_practices"]
+            print(
+                "    "
+                f"L{maturity['skill_level']} {maturity['skill_level_label']} | "
+                f"BP {best_practices['score']}/100 | "
+                f"Q {quality['score']}/100 | "
+                f"{metadata['canonical_category']}"
+            )
+            if not args.no_write_metadata:
+                write_skill_metadata(skill_path, metadata)
+
+        for level, message in issues:
             prefix = "    ✗" if level == "ERROR" else "    ⚠"
-            print(f"{prefix} {msg}")
+            print(f"{prefix} {message}")
 
-    print(f"\n{'━' * 50}")
-    print(f"Results: {total} skills | ✓ {passed} passed | ⚠ {warnings} warnings | ✗ {errors} errors")
+    repo_metadata = build_repo_metadata(repo_root, skill_records, counts)
+    if not args.no_write_metadata:
+        write_repo_metadata(repo_root, repo_metadata)
 
-    if errors > 0:
+    print(f"\n{'━' * 58}")
+    print(
+        "Results: "
+        f"{counts['total']} skills | "
+        f"✓ {counts['passed']} passed | "
+        f"⚠ {counts['warnings']} warnings | "
+        f"✗ {counts['errors']} errors"
+    )
+
+    if skill_records:
+        summary = repo_metadata["summary"]
+        print(
+            "Scores: "
+            f"quality avg {summary['average_quality_score']} | "
+            f"best practices avg {summary['average_best_practices_score']}"
+        )
+        print("Metadata: metadata.json + skills/*/metadata.json")
+
+    if counts["errors"] > 0:
         print("\n❌ Validation FAILED — fix errors above before committing.")
         sys.exit(1)
-    else:
-        print("\n✅ Validation PASSED")
-        sys.exit(0)
+
+    print("\n✅ Validation PASSED")
+    sys.exit(0)
 
 
 if __name__ == "__main__":

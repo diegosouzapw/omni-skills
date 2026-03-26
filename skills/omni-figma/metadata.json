@@ -1,0 +1,106 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-26T20:41:45.191063+00:00",
+  "id": "omni-figma",
+  "slug": "omni-figma",
+  "display_name": "Omni Figma",
+  "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+  "version": "1.0.0",
+  "raw_category": "development",
+  "canonical_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma",
+    "design-to-code",
+    "mcp",
+    "ui-implementation",
+    "code-connect",
+    "figjam"
+  ],
+  "tools": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "antigravity"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-26",
+    "updated": "2026-03-26",
+    "file_mtime": "2026-03-26T12:01:53.966214+00:00"
+  },
+  "paths": {
+    "root": "skills/omni-figma",
+    "entrypoint": "skills/omni-figma/SKILL.md",
+    "metadata": "skills/omni-figma/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "references"
+    ],
+    "files": [
+      "LICENSE.txt",
+      "SKILL.md",
+      "metadata.json",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "figma-best-practices-2026.md",
+      "mcp-setup-and-troubleshooting.md",
+      "tool-routing-and-prompts.md"
+    ],
+    "files_count": 10,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 3
+  },
+  "content": {
+    "body_length": 5267,
+    "content_length": 5799,
+    "body_lines": 82,
+    "word_count": 781,
+    "has_code_blocks": false,
+    "has_examples_section": false,
+    "has_workflow_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false
+  },
+  "maturity": {
+    "skill_level": 2,
+    "skill_level_label": "instructions",
+    "has_scripts": false,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 40,
+    "tier": "fair"
+  },
+  "quality": {
+    "score": 83,
+    "tier": "gold",
+    "breakdown": {
+      "body": 25,
+      "description": 15,
+      "metadata": 20,
+      "recency": 10,
+      "resources": 5,
+      "best_practices": 8
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

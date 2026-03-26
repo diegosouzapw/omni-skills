@@ -12,6 +12,30 @@ const path = require("node:path");
   const core = await import("../../../packages/catalog-core/src/index.js");
   const localSidecar = await import("../../../packages/server-mcp/src/local-sidecar.js");
 
+  const repoMetadata = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, "../../../metadata.json"), "utf-8"),
+  );
+  assert.ok(repoMetadata.summary.total_skills >= 2, "repo metadata should summarize the published skills");
+  assert.equal(
+    repoMetadata.taxonomy.counts["cli-automation"],
+    1,
+    "repo metadata should track canonical taxonomy counts",
+  );
+
+  const findMetadata = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, "../../../skills/find-skills/metadata.json"), "utf-8"),
+  );
+  assert.equal(
+    findMetadata.canonical_category,
+    "cli-automation",
+    "per-skill metadata should normalize categories to canonical taxonomy",
+  );
+  assert.ok(findMetadata.quality.score > 0, "per-skill metadata should include a quality score");
+  assert.ok(
+    findMetadata.maturity.skill_level >= 2,
+    "per-skill metadata should classify skill maturity",
+  );
+
   const catalog = core.loadCatalog();
   assert.ok(catalog.total_skills >= 2, "catalog should expose the published skills");
 
@@ -27,6 +51,15 @@ const path = require("node:path");
   const manifest = core.getSkill("omni-figma");
   assert.equal(manifest.id, "omni-figma", "manifest id should match");
   assert.ok(Array.isArray(manifest.artifacts) && manifest.artifacts.length > 0, "manifest should list artifacts");
+  assert.equal(
+    manifest.classification.maturity.skill_level,
+    2,
+    "manifest should expose generated maturity classification",
+  );
+  assert.ok(
+    manifest.classification.quality.score > 0,
+    "manifest should expose generated quality classification",
+  );
 
   const plan = core.buildInstallPlan({
     skill_ids: ["omni-figma"],
@@ -109,6 +142,10 @@ const path = require("node:path");
   assert.ok(
     cliFind.includes("Results (1/1)"),
     "repo CLI find should require a real text match instead of only matching on filters",
+  );
+  assert.ok(
+    cliFind.includes("quality:"),
+    "repo CLI find should surface classification details from generated metadata",
   );
 
   const cliFindInstallPreview = childProcess.execFileSync(

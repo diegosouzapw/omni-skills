@@ -26,6 +26,7 @@ cd omni-skills
 
 # 2. Install dependencies
 npm install
+npm run hooks:install   # optional, enables the repo pre-commit hook
 
 # 3. Create or update your change
 # Example: create a new skill
@@ -51,6 +52,7 @@ A good skill should:
 - include instructions an agent can actually follow
 - avoid vague or redundant content
 - declare accurate frontmatter and compatibility metadata
+- land with generated `metadata.json` classification artifacts
 
 Minimal structure:
 
@@ -79,6 +81,11 @@ npm run validate
 npm run build
 npm test
 ```
+
+`npm run validate` now also regenerates:
+
+- `metadata.json`
+- `skills/<skill>/metadata.json`
 
 For a release-grade preflight, also run:
 
@@ -117,6 +124,27 @@ date_added: "2026-03-26"
 date_updated: "2026-03-26"
 ---
 ```
+
+Use canonical categories in new skills. Current taxonomy:
+
+- `development`
+- `frontend`
+- `backend`
+- `fullstack-web`
+- `tools`
+- `cli-automation`
+- `business`
+- `product`
+- `design`
+- `data-ai`
+- `ai-agents`
+- `machine-learning`
+- `devops`
+- `testing-security`
+- `documentation`
+- `content-media`
+- `communication`
+- `uncategorized`
 
 ## Runtime Contributions
 
