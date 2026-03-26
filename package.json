@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "description": "Curated, validated AI coding skills for Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity & more. Install with npx omni-skills.",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "validate": "python3 tools/scripts/validate_skills.py",
     "validate:strict": "python3 tools/scripts/validate_skills.py --strict",
     "index": "python3 tools/scripts/generate_index.py",
     "catalog": "node tools/scripts/build_catalog.js",
     "build": "npm run validate && npm run index && npm run catalog",
+    "api": "npm run start --workspace @omni-skills/server-api",
+    "mcp": "npm run start --workspace @omni-skills/server-mcp",
+    "mcp:stream": "npm run start:stream --workspace @omni-skills/server-mcp",
+    "mcp:http": "npm run start:http --workspace @omni-skills/server-mcp",
+    "mcp:sse": "npm run start:sse --workspace @omni-skills/server-mcp",
+    "mcp:local": "npm run start:local --workspace @omni-skills/server-mcp",
+    "mcp:stream:local": "npm run start:stream:local --workspace @omni-skills/server-mcp",
+    "mcp:http:local": "npm run start:http:local --workspace @omni-skills/server-mcp",
+    "mcp:sse:local": "npm run start:sse:local --workspace @omni-skills/server-mcp",
+    "a2a": "npm run start --workspace @omni-skills/server-a2a",
+    "cli": "node tools/bin/cli.js",
+    "smoke": "node tools/bin/cli.js smoke",
+    "publish-check": "node tools/bin/cli.js publish-check",
     "test": "node tools/scripts/tests/run_tests.js",
     "pr:preflight": "npm run validate && npm run index"
   },
@@ -17,11 +33,22 @@
     "url": "git+https://github.com/diegosouzapw/omni-skills.git"
   },
   "bin": {
-    "omni-skills": "tools/bin/install.js"
+    "omni-skills": "tools/bin/cli.js",
+    "omni-skills-install": "tools/bin/install.js"
   },
   "files": [
     "tools/bin",
-    "tools/lib"
+    "tools/lib",
+    "packages/catalog-core/src",
+    "packages/server-api/src",
+    "packages/server-mcp/src",
+    "packages/server-a2a/src",
+    "skills",
+    "docs",
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "skills",
@@ -46,10 +73,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.28.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.3.1",
-    "duckduckgo-images-api": "^1.0.5",
+    "cors": "^2.8.5",
     "express": "^5.2.1",
-    "node-fetch": "^3.3.2"
+    "zod": "^3.25.76"
   }
 }

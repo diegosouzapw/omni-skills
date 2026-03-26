@@ -1,12 +1,8 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
-
 # Generated artifacts (rebuild with npm run build)
 skills_index.json
-CATALOG.md
 
 # Environment
 .env
@@ -15,6 +11,10 @@ CATALOG.md
 # Logs
 *.log
 npm-debug.log*
+
+# Python cache
+__pycache__/
+*.pyc
 
 # OS files
 .DS_Store

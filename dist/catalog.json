@@ -1,0 +1,36 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-26T19:18:00.803422+00:00",
+  "total_skills": 1,
+  "categories": {
+    "development": 1
+  },
+  "skills": [
+    {
+      "id": "omni-figma",
+      "slug": "omni-figma",
+      "display_name": "Omni Figma",
+      "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": [
+        "figma",
+        "design-to-code",
+        "mcp",
+        "ui-implementation",
+        "code-connect",
+        "figjam"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "antigravity"
+      ],
+      "entrypoint": "skills/omni-figma/SKILL.md",
+      "manifest_path": "dist/manifests/omni-figma.json"
+    }
+  ]
+}

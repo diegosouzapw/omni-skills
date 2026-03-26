@@ -2,16 +2,22 @@
 
 Bundles are recommended skill groups organized by role. They help you pick the right skills without browsing the entire catalog.
 
-> **Important:** Bundles are NOT separate installations. When you install omni-skills, you get ALL skills. Bundles are just curated recommendations.
+> **Important:** Bundles are not separate package types. `--bundle` simply installs the bundle's member skills for the target you choose.
 
 ---
 
 ## How to Use Bundles
 
-1. **Install omni-skills once** — you already have all skills
-2. **Find your role below** — pick the bundle that matches
+1. **Find your role below** — pick the bundle that matches
+2. **Install that bundle or the full library** — use `npx omni-skills --bundle <id>` or a full install
 3. **Start with 3-5 skills** — don't overwhelm your context window
 4. **Reference them in prompts** — e.g., `Use @brainstorming to...`
+
+Example:
+
+```bash
+npx omni-skills --cursor --bundle full-stack
+```
 
 ---
 

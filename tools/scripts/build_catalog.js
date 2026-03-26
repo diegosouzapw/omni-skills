@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Build CATALOG.md from skills_index.json.
+ * Build docs/CATALOG.md from skills_index.json.
  * Groups skills by category and generates a browsable markdown catalog.
  */
 
@@ -12,7 +12,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const INDEX_PATH = path.join(ROOT, "skills_index.json");
-const CATALOG_PATH = path.join(ROOT, "CATALOG.md");
+const CATALOG_PATH = path.join(ROOT, "docs", "CATALOG.md");
 
 function main() {
   if (!fs.existsSync(INDEX_PATH)) {
@@ -70,7 +70,7 @@ function main() {
       const complexity = s.complexity || "—";
       const risk = s.risk || "—";
       const desc = (s.description || "").replace(/\|/g, "\\|").substring(0, 120);
-      md += `| [\`${s.name}\`](${s.path}/SKILL.md) | ${desc} | ${complexity} | ${risk} |\n`;
+      md += `| [\`${s.name}\`](../${s.path}/SKILL.md) | ${desc} | ${complexity} | ${risk} |\n`;
     }
 
     md += `\n`;

@@ -1,0 +1,23 @@
+{
+  "name": "@omni-skills/server-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Omni Skills discovery, planning, and optional local sidecar workflows.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "start:stream": "node src/server.js --transport stream",
+    "start:http": "node src/server.js --transport stream",
+    "start:sse": "node src/server.js --transport sse",
+    "start:local": "OMNI_SKILLS_MCP_MODE=local node src/server.js",
+    "start:stream:local": "OMNI_SKILLS_MCP_MODE=local node src/server.js --transport stream",
+    "start:http:local": "OMNI_SKILLS_MCP_MODE=local node src/server.js --transport stream",
+    "start:sse:local": "OMNI_SKILLS_MCP_MODE=local node src/server.js --transport sse"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@omni-skills/catalog-core": "0.1.0",
+    "express": "^5.2.1",
+    "zod": "^3.25.76"
+  }
+}

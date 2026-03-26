@@ -1,0 +1,178 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "omni-figma",
+  "slug": "omni-figma",
+  "display_name": "Omni Figma",
+  "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+  "version": "1.0.0",
+  "category": "development",
+  "tags": [
+    "figma",
+    "design-to-code",
+    "mcp",
+    "ui-implementation",
+    "code-connect",
+    "figjam"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-26",
+    "updated": "2026-03-26"
+  },
+  "entrypoint": "skills/omni-figma/SKILL.md",
+  "paths": {
+    "root": "skills/omni-figma",
+    "manifest": "dist/manifests/omni-figma.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "antigravity"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "references"
+    ],
+    "artifacts_count": 9
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "skills/omni-figma/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 440,
+      "sha256": "36bdad8e8a43a282ba3a5af4ac022d8b117c5826b8b473fe6a32622e83856ae3"
+    },
+    {
+      "path": "skills/omni-figma/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 5799,
+      "sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab"
+    },
+    {
+      "path": "skills/omni-figma/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 409,
+      "sha256": "175137bc355494320332af2c69c54c1172a55333388d7ecef5807c1a929c9ecf"
+    },
+    {
+      "path": "skills/omni-figma/assets/figma-small.svg",
+      "kind": "asset",
+      "size_bytes": 818,
+      "sha256": "6a38267efbd872bbc215d0227a395eb0b0093bc6441c44a39a43f3210549e5e9"
+    },
+    {
+      "path": "skills/omni-figma/assets/figma.png",
+      "kind": "asset",
+      "size_bytes": 2809,
+      "sha256": "579c5a8bd69384f100fbc811b39d0dccaf4ba46fb02aa905dce24bd485a194a6"
+    },
+    {
+      "path": "skills/omni-figma/assets/icon.svg",
+      "kind": "asset",
+      "size_bytes": 964,
+      "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/omni-figma/references/figma-best-practices-2026.md",
+      "kind": "reference",
+      "size_bytes": 3295,
+      "sha256": "2b84351531a91bdecd81e56f26a253699b99efa0514d0cf9f745f842f4f54c9c"
+    },
+    {
+      "path": "skills/omni-figma/references/mcp-setup-and-troubleshooting.md",
+      "kind": "reference",
+      "size_bytes": 3291,
+      "sha256": "865ecf34afab460198da413d51b18eb57b46281e532ba2b3086d435a1f1821b7"
+    },
+    {
+      "path": "skills/omni-figma/references/tool-routing-and-prompts.md",
+      "kind": "reference",
+      "size_bytes": 4017,
+      "sha256": "3840aa10fa38415cb24761678c6529b060375ea5bb00d9e08565acd989ea10ab"
+    }
+  ],
+  "checksums": {
+    "entrypoint_sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab",
+    "package_sha256": "d9ebbf46078e62f08fb9777a6b0366442c89864c38f03db20d573b9666c1e9a5"
+  }
+}

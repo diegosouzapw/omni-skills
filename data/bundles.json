@@ -1,0 +1,44 @@
+[
+  {
+    "id": "essentials",
+    "name": "Essentials",
+    "description": "Recommended starting point for general developer workflows.",
+    "intended_for": "Every developer",
+    "skill_ids": ["brainstorming", "architecture", "debugging"]
+  },
+  {
+    "id": "full-stack",
+    "name": "Full-Stack",
+    "description": "Application design and implementation workflows.",
+    "intended_for": "Web and app developers",
+    "skill_ids": ["frontend-design", "api-design", "database-design", "omni-figma"]
+  },
+  {
+    "id": "security",
+    "name": "Security",
+    "description": "Security review and vulnerability-oriented workflows.",
+    "intended_for": "Security engineers",
+    "skill_ids": ["security-auditor", "vulnerability-scanner"]
+  },
+  {
+    "id": "devops",
+    "name": "DevOps",
+    "description": "Infrastructure and deployment workflows.",
+    "intended_for": "Infrastructure and platform teams",
+    "skill_ids": ["docker-expert", "kubernetes", "terraform"]
+  },
+  {
+    "id": "ai-engineer",
+    "name": "AI Engineer",
+    "description": "RAG, prompting, and AI application workflows.",
+    "intended_for": "LLM and ML developers",
+    "skill_ids": ["rag-engineer", "prompt-engineer", "llm-patterns"]
+  },
+  {
+    "id": "oss-maintainer",
+    "name": "OSS Maintainer",
+    "description": "Open source maintenance workflows.",
+    "intended_for": "Open source maintainers",
+    "skill_ids": ["create-pr", "changelog", "documentation"]
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "name": "@omni-skills/catalog-core",
+  "version": "0.1.0",
+  "description": "Shared catalog core for Omni Skills API, MCP, and A2A surfaces.",
+  "type": "module",
+  "exports": "./src/index.js",
+  "license": "MIT"
+}

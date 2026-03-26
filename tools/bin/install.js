@@ -17,6 +17,8 @@
  *   --kiro          Install to ~/.kiro/skills
  *   --antigravity   Install to ~/.gemini/antigravity/skills
  *   --opencode      Install to .agents/skills
+ *   --skill <id>    Install only the selected skill (repeatable)
+ *   --bundle <id>   Install only the available skills from a bundle (repeatable)
  *   --path <dir>    Install to a custom directory
  *   --version <ver> Checkout a specific version (e.g. 1.0.0 -> v1.0.0)
  *   --tag <tag>     Checkout a specific git tag
@@ -30,9 +32,17 @@ const path = require("path");
 const fs = require("fs");
 const os = require("os");
 const { resolveSafeRealPath } = require("../lib/symlink-safety");
+const { DEFAULT_REF, fetchBundles, fetchManifest, writeRelativeFile } = require("../lib/catalog-client");
 
 const REPO = "https://github.com/diegosouzapw/omni-skills.git";
 const HOME = process.env.HOME || process.env.USERPROFILE || "";
+const SELECTIVE_DOC_PATHS = [
+  "docs/README.md",
+  "docs/CATALOG.md",
+  "docs/users/getting-started.md",
+  "docs/users/usage.md",
+  "docs/users/bundles.md",
+];
 
 const TOOL_TARGETS = {
   claude:       { name: "Claude Code",  path: () => path.join(HOME, ".claude", "skills") },
@@ -59,13 +69,15 @@ function resolveDir(p) {
 
 function parseArgs() {
   const a = process.argv.slice(2);
-  const opts = { pathArg: null, versionArg: null, tagArg: null, tools: [] };
+  const opts = { pathArg: null, versionArg: null, tagArg: null, tools: [], skills: [], bundles: [] };
 
   for (let i = 0; i < a.length; i++) {
     if (a[i] === "--help" || a[i] === "-h") return { help: true };
     if (a[i] === "--path" && a[i + 1]) { opts.pathArg = a[++i]; continue; }
     if (a[i] === "--version" && a[i + 1]) { opts.versionArg = a[++i]; continue; }
     if (a[i] === "--tag" && a[i + 1]) { opts.tagArg = a[++i]; continue; }
+    if (a[i] === "--skill" && a[i + 1]) { opts.skills.push(a[++i]); continue; }
+    if (a[i] === "--bundle" && a[i + 1]) { opts.bundles.push(a[++i]); continue; }
     if (a[i] === "install") continue;
 
     const tool = a[i].replace(/^--/, "");
@@ -115,6 +127,8 @@ ${toolFlags}
   --path <dir>    Install to a custom directory
 
 Options:
+  --skill <id>    Install only the selected skill (repeatable)
+  --bundle <id>   Install only the available skills from a bundle
   --version <ver> After clone, checkout tag v<ver>
   --tag <tag>     After clone, checkout this exact tag
   -h, --help      Show this help
@@ -122,6 +136,8 @@ Options:
 Examples:
   npx omni-skills                        # Default: Antigravity
   npx omni-skills --claude               # Claude Code
+  npx omni-skills --skill omni-figma     # Selective install
+  npx omni-skills --bundle full-stack    # Bundle install
   npx omni-skills --cursor --gemini      # Multiple targets
   npx omni-skills --path ./my-skills     # Custom path
   npx omni-skills --version 1.0.0        # Specific version
@@ -193,6 +209,12 @@ function run(cmd, args, opts = {}) {
 // ─── Install Logic ───────────────────────────────────────────────────
 
 function installForTarget(tempDir, target) {
+  prepareTarget(target);
+  installSkillsIntoTarget(tempDir, target.path);
+  console.log(`  ✓ Installed to ${target.path}`);
+}
+
+function prepareTarget(target) {
   if (fs.existsSync(target.path)) {
     const gitDir = path.join(target.path, ".git");
     if (fs.existsSync(gitDir)) {
@@ -221,14 +243,72 @@ function installForTarget(tempDir, target) {
     }
     fs.mkdirSync(target.path, { recursive: true });
   }
+}
 
-  installSkillsIntoTarget(tempDir, target.path);
-  console.log(`  ✓ Installed to ${target.path}`);
+function getRef(opts) {
+  return (
+    opts.tagArg ||
+    (opts.versionArg
+      ? opts.versionArg.startsWith("v")
+        ? opts.versionArg
+        : `v${opts.versionArg}`
+      : DEFAULT_REF)
+  );
+}
+
+async function resolveSelectedSkillIds(opts, ref) {
+  const selected = new Set(opts.skills);
+
+  if (opts.bundles.length > 0) {
+    const bundlePayload = await fetchBundles(ref);
+    const bundles = bundlePayload.bundles || [];
+
+    for (const bundleId of opts.bundles) {
+      const bundle = bundles.find((item) => item.id === bundleId);
+      if (!bundle) {
+        throw new Error(`Unknown bundle '${bundleId}'.`);
+      }
+
+      bundle.available_skill_ids.forEach((skillId) => selected.add(skillId));
+
+      if (bundle.missing_skill_ids.length > 0) {
+        console.warn(
+          `  ⚠ Bundle '${bundleId}' references unavailable skills: ${bundle.missing_skill_ids.join(", ")}`
+        );
+      }
+    }
+  }
+
+  return [...selected];
+}
+
+async function downloadDocsIntoTarget(ref, targetPath) {
+  for (const relativePath of SELECTIVE_DOC_PATHS) {
+    const destination = path.join(targetPath, relativePath.replace(/^docs\//, "docs/"));
+    await writeRelativeFile(relativePath, destination, ref);
+  }
+}
+
+async function installSelectedSkillsIntoTarget(skillIds, ref, target) {
+  prepareTarget(target);
+
+  for (const skillId of skillIds) {
+    const manifest = await fetchManifest(skillId, ref);
+    for (const artifact of manifest.artifacts || []) {
+      const installRelativePath = artifact.path.replace(/^skills\//, "");
+      const destination = path.join(target.path, installRelativePath);
+      await writeRelativeFile(artifact.path, destination, ref);
+    }
+  }
+
+  await downloadDocsIntoTarget(ref, target.path);
+
+  console.log(`  ✓ Installed ${skillIds.length} selected skill(s) to ${target.path}`);
 }
 
 // ─── Main ────────────────────────────────────────────────────────────
 
-function main() {
+async function main() {
   const opts = parseArgs();
 
   if (opts.help) {
@@ -242,6 +322,29 @@ function main() {
     process.exit(1);
   }
 
+  const ref = getRef(opts);
+  const selectedSkillIds = await resolveSelectedSkillIds(opts, ref);
+
+  if (selectedSkillIds.length > 0) {
+    console.log("\n🚀 omni-skills selective installer\n");
+    console.log(`Source ref: ${ref}`);
+    console.log(`Selected skills: ${selectedSkillIds.join(", ")}\n`);
+
+    console.log(`Installing for ${targets.length} target(s):\n`);
+    for (const target of targets) {
+      console.log(`📦 ${target.name}:`);
+      await installSelectedSkillsIntoTarget(selectedSkillIds, ref, target);
+      console.log();
+    }
+
+    console.log("━".repeat(55));
+    console.log("✅ Selective installation complete!");
+    console.log(`\n💡 Installed skills: ${selectedSkillIds.join(", ")}`);
+    console.log(`📚 Browse bundles: docs/users/bundles.md`);
+    console.log(`📖 Usage guide:   docs/users/usage.md\n`);
+    return;
+  }
+
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-"));
   const originalCwd = process.cwd();
 
@@ -250,15 +353,7 @@ function main() {
     console.log("Cloning repository…");
     run("git", ["clone", "--depth", "1", REPO, tempDir]);
 
-    const ref =
-      opts.tagArg ||
-      (opts.versionArg
-        ? opts.versionArg.startsWith("v")
-          ? opts.versionArg
-          : `v${opts.versionArg}`
-        : null);
-
-    if (ref) {
+    if (ref && ref !== DEFAULT_REF) {
       console.log(`Checking out ${ref}…`);
       process.chdir(tempDir);
       run("git", ["fetch", "--depth", "1", "origin", `refs/tags/${ref}:refs/tags/${ref}`]);
@@ -294,7 +389,10 @@ function main() {
 }
 
 if (require.main === module) {
-  main();
+  main().catch((error) => {
+    console.error(`\n✗ ${error.message}`);
+    process.exit(1);
+  });
 }
 
 module.exports = {

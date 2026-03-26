@@ -42,6 +42,23 @@ Here's the code: [paste code]
 
 ---
 
+## Installation Modes
+
+```bash
+# Full library
+npx omni-skills --cursor
+
+# One skill
+npx omni-skills --cursor --skill omni-figma
+
+# One curated bundle
+npx omni-skills --cursor --bundle full-stack
+```
+
+Use `--skill` and `--bundle` to keep the installed footprint focused when you do not want the full catalog.
+
+---
+
 ## Tips for Best Results
 
 1. **Be specific** — tell the agent exactly what outcome you want

@@ -10,7 +10,14 @@ Welcome! This guide gets you from zero to using skills in under 2 minutes.
 npx omni-skills
 ```
 
-This installs all skills to your default AI tool's directory. For a specific tool:
+This installs the full library to your default AI tool's directory. For a smaller install, you can target a specific skill or bundle:
+
+```bash
+npx omni-skills --cursor --skill omni-figma
+npx omni-skills --codex --bundle full-stack
+```
+
+For a specific tool:
 
 ```bash
 npx omni-skills --claude       # Claude Code
