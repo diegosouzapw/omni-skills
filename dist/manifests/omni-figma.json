@@ -27,7 +27,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/omni-figma/SKILL.md",
   "paths": {
@@ -81,10 +81,11 @@
     "sub_resources": [
       "agents",
       "assets",
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 11,
+    "artifacts_count": 14,
     "references_count": 3,
     "agents_count": 1,
     "assets_count": 3
@@ -135,37 +136,38 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 93,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
-        "when_to_use_section_length": 0,
-        "best_practices_items_count": 4,
-        "best_practices_section_length": 298,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 717,
+        "when_to_use_section_length": 457,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 645,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 527,
-        "resources_items_count": 3,
-        "resources_section_length": 438,
-        "examples_section_length": 357,
-        "examples_code_blocks_count": 4,
-        "related_skills_section_length": 0,
-        "decision_assets_count": 2,
-        "table_count": 0,
-        "linked_resource_families_count": 4,
+        "troubleshooting_section_length": 859,
+        "resources_items_count": 7,
+        "resources_section_length": 501,
+        "examples_section_length": 573,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 351,
+        "decision_assets_count": 8,
+        "table_count": 7,
+        "linked_resource_families_count": 5,
         "linked_resource_families": [
           "agents",
           "assets",
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 4,
         "tags_count": 6,
-        "body_density": 7.97
+        "body_density": 8.57
       }
     },
     "quality": {
-      "score": 89,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -173,9 +175,9 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 8,
-        "semantic_depth": 11,
-        "operational_depth": 6,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
         "support_pack": 8
       }
     },
@@ -186,7 +188,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 7,
+        "scanned_files": 10,
         "script_files": 1,
         "binary_like_files": 3
       },
@@ -216,52 +218,53 @@
     }
   },
   "content": {
-    "body_length": 6824,
-    "content_length": 7334,
-    "body_lines": 124,
-    "word_count": 988,
+    "body_length": 10033,
+    "content_length": 10543,
+    "body_lines": 166,
+    "word_count": 1423,
     "has_code_blocks": true,
     "typed_code_blocks_count": 1,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
-    "has_when_to_use_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
-    "has_related_skills_section": false,
-    "related_skills_count": 0,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
     "has_local_support_links": true,
     "local_support_links_count": 4,
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
-      "when_to_use_section_length": 0,
-      "best_practices_items_count": 4,
-      "best_practices_section_length": 298,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 717,
+      "when_to_use_section_length": 457,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 645,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 527,
-      "resources_items_count": 3,
-      "resources_section_length": 438,
-      "examples_section_length": 357,
-      "examples_code_blocks_count": 4,
-      "related_skills_section_length": 0,
-      "decision_assets_count": 2,
-      "table_count": 0,
-      "linked_resource_families_count": 4,
+      "troubleshooting_section_length": 859,
+      "resources_items_count": 7,
+      "resources_section_length": 501,
+      "examples_section_length": 573,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 351,
+      "decision_assets_count": 8,
+      "table_count": 7,
+      "linked_resource_families_count": 5,
       "linked_resource_families": [
         "agents",
         "assets",
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 4,
       "tags_count": 6,
-      "body_density": 7.97
+      "body_density": 8.57
     }
   },
   "artifacts": [
@@ -274,14 +277,14 @@
     {
       "path": "skills/omni-figma/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 7334,
-      "sha256": "4fc515f4d91db3067eb46c48d5a9f1893045c9b12dba5cc83cd7cda6a5f1e8f4"
+      "size_bytes": 10557,
+      "sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76"
     },
     {
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
-      "size_bytes": 5371,
-      "sha256": "436c931af2b3df0672a676f7193b39383f8b35881320752f33e3f5df40abcc55"
+      "size_bytes": 5562,
+      "sha256": "e480e80e0dbac5d5eb1fa8a64899ce59846b58dc2ba5a7af6b9a446d0d2c5f9a"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -306,6 +309,24 @@
       "kind": "asset",
       "size_bytes": 964,
       "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/omni-figma/examples/component-mapping-review.md",
+      "kind": "support",
+      "size_bytes": 291,
+      "sha256": "79986e0c09ec9a35b7b37ab40ae9e008354a67b7504a3492823d207b61188644"
+    },
+    {
+      "path": "skills/omni-figma/examples/implementation-handoff-packet.md",
+      "kind": "support",
+      "size_bytes": 249,
+      "sha256": "56d37486167e9ab9e384cef369059058a58399040a4d93c7754d29e2b22dcd3e"
+    },
+    {
+      "path": "skills/omni-figma/examples/node-splitting-worksheet.md",
+      "kind": "support",
+      "size_bytes": 195,
+      "sha256": "40b377ac3c63db0f1f4e75a7482cbf8119be91e51d0c0eb8efd3f5e5037eaa60"
     },
     {
       "path": "skills/omni-figma/references/figma-best-practices-2026.md",
@@ -337,8 +358,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 14005,
-      "sha256": "fa178039678a53b0134eaeaa7f6ea2acebab19c2a17c52f15cf50e8b576e744a",
+      "size_bytes": 16076,
+      "sha256": "e4e475f751e0c06cb1c588853456c76b206a0cbb3eb200596b5049941d742346",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -351,8 +372,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 11836,
-      "sha256": "30602b2e4bfacc52e9c7efb3684db6f62c6bd30185aa83c804835ebaac7363f6",
+      "size_bytes": 13424,
+      "sha256": "397641f66c085ddc0937b9b2764d6cafaa6ed8705350e2346be93ad36b81828f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -365,7 +386,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "addf7ab6b36ef1ba94dfa802f0404f50ab8bb4a5ba6b7bfbd4bd41c471318b53",
+    "sha256": "65f11a32b260b5b95367f676454d49fe666c34e916d001bdc2b09dba017701d3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -375,7 +396,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "4fc515f4d91db3067eb46c48d5a9f1893045c9b12dba5cc83cd7cda6a5f1e8f4",
-    "package_sha256": "a19bfa6c3b4043c367f8895b7b2217b8f6c51317b7040d791d445f52f9b788a2"
+    "entrypoint_sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76",
+    "package_sha256": "bf754142c49adc8f50ca9150773f3bf4340a8c3bc0b40f307f923da59affb94b"
   }
 }

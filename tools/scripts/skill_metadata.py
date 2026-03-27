@@ -1477,7 +1477,57 @@ def score_best_practices(
     elif semantic_signals.get("body_density", 0) >= 7:
         score += 1
 
-    return min(score, 100)
+    # Separate truly exceptional workflow kits from skills that are simply
+    # very well formatted. Mature skills should still score high, but the top
+    # band now depends on support-pack breadth and operational depth.
+    decision_assets_count = semantic_signals.get("decision_assets_count", 0)
+    if decision_assets_count < 10:
+        score -= 3
+    elif decision_assets_count < 14:
+        score -= 2
+    elif decision_assets_count < 18:
+        score -= 1
+
+    body_density = semantic_signals.get("body_density", 0)
+    if body_density < 5.5:
+        score -= 3
+    elif body_density < 6.25:
+        score -= 2
+    elif body_density < 7:
+        score -= 1
+
+    if local_support_links_count < 2:
+        score -= 3
+    elif local_support_links_count < 3:
+        score -= 2
+    elif local_support_links_count < 4:
+        score -= 1
+
+    linked_resource_families_count = semantic_signals.get("linked_resource_families_count", 0)
+    if linked_resource_families_count < 2:
+        score -= 3
+    elif linked_resource_families_count < 3:
+        score -= 2
+    elif linked_resource_families_count < 4:
+        score -= 1
+
+    max_score = 100
+    if workflow_steps_count < 5:
+        max_score = min(max_score, 98)
+    if problem_count < 3:
+        max_score = min(max_score, 98)
+    if semantic_signals.get("resources_items_count", 0) < 5:
+        max_score = min(max_score, 99)
+    if semantic_signals.get("table_count", 0) < 1:
+        max_score = min(max_score, 99)
+    if related_skills_count < 3:
+        max_score = min(max_score, 99)
+    if local_support_links_count < 4:
+        max_score = min(max_score, 98)
+    if linked_resource_families_count < 4:
+        max_score = min(max_score, 99)
+
+    return max(0, min(score, max_score, 100))
 
 
 def best_practices_tier(score: int) -> str:
@@ -1647,23 +1697,29 @@ def compute_quality_score(
 
     semantic_depth = 0
     if semantic_signals.get("workflow_steps_count", 0) >= 7:
-        semantic_depth += 4
+        semantic_depth += 5
     elif semantic_signals.get("workflow_steps_count", 0) >= 5:
-        semantic_depth += 3
+        semantic_depth += 4
     elif semantic_signals.get("workflow_steps_count", 0) >= 3:
         semantic_depth += 2
     if semantic_signals.get("linked_resource_families_count", 0) >= 4:
+        semantic_depth += 4
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 3:
         semantic_depth += 3
     elif semantic_signals.get("linked_resource_families_count", 0) >= 2:
-        semantic_depth += 2
+        semantic_depth += 1
     if semantic_signals.get("troubleshooting_items_count", 0) >= 3:
         semantic_depth += 3
     elif semantic_signals.get("troubleshooting_section_length", 0) >= 450:
         semantic_depth += 3
     elif semantic_signals.get("troubleshooting_section_length", 0) >= 220:
         semantic_depth += 2
-    if semantic_signals.get("decision_assets_count", 0) >= 3:
+    if semantic_signals.get("decision_assets_count", 0) >= 6:
+        semantic_depth += 4
+    elif semantic_signals.get("decision_assets_count", 0) >= 4:
         semantic_depth += 3
+    elif semantic_signals.get("decision_assets_count", 0) >= 3:
+        semantic_depth += 2
     elif semantic_signals.get("decision_assets_count", 0) >= 2:
         semantic_depth += 2
     elif semantic_signals.get("decision_assets_count", 0) >= 1:
@@ -1703,31 +1759,77 @@ def compute_quality_score(
         operational_depth += 2
     elif semantic_signals.get("body_density", 0) >= 8:
         operational_depth += 1
+    elif semantic_signals.get("body_density", 0) >= 5.5:
+        operational_depth += 1
     if semantic_signals.get("tools_count", 0) >= 5 or semantic_signals.get("tags_count", 0) >= 6:
         operational_depth += 1
     details["operational_depth"] = min(operational_depth, 10)
 
     support_pack = 0
     if semantic_signals.get("linked_resource_families_count", 0) >= 4:
-        support_pack += 4
+        support_pack += 5
     elif semantic_signals.get("linked_resource_families_count", 0) >= 3:
-        support_pack += 3
+        support_pack += 4
     elif semantic_signals.get("linked_resource_families_count", 0) >= 2:
-        support_pack += 2
+        support_pack += 1
     elif semantic_signals.get("linked_resource_families_count", 0) >= 1:
         support_pack += 1
-    if semantic_signals.get("decision_assets_count", 0) >= 3:
+    if semantic_signals.get("decision_assets_count", 0) >= 6:
+        support_pack += 4
+    elif semantic_signals.get("decision_assets_count", 0) >= 4:
         support_pack += 3
-    elif semantic_signals.get("decision_assets_count", 0) >= 1:
+    elif semantic_signals.get("decision_assets_count", 0) >= 2:
         support_pack += 2
-    if semantic_signals.get("examples_section_length", 0) >= 500:
+    elif semantic_signals.get("decision_assets_count", 0) >= 1:
+        support_pack += 1
+    if semantic_signals.get("examples_section_length", 0) >= 650:
+        support_pack += 2
+    elif semantic_signals.get("examples_section_length", 0) >= 500:
         support_pack += 1
     if semantic_signals.get("resources_section_length", 0) >= 300:
+        support_pack += 1
+    if semantic_signals.get("body_density", 0) >= 7:
         support_pack += 1
     details["support_pack"] = min(support_pack, 8)
 
     total = sum(details.values())
-    return min(total, 100), details
+    max_score = 100
+    body_density = semantic_signals.get("body_density", 0)
+    if body_density < 5.2:
+        max_score = min(max_score, 94)
+    elif body_density < 5.6:
+        max_score = min(max_score, 95)
+    elif body_density < 6.0:
+        max_score = min(max_score, 96)
+    elif body_density < 6.4:
+        max_score = min(max_score, 97)
+    elif body_density < 7.0:
+        max_score = min(max_score, 98)
+    elif body_density < 8.0:
+        max_score = min(max_score, 99)
+
+    linked_resource_families_count = semantic_signals.get("linked_resource_families_count", 0)
+    if linked_resource_families_count < 3:
+        max_score = min(max_score, 95)
+    elif linked_resource_families_count < 4:
+        max_score = min(max_score, 97)
+    elif linked_resource_families_count < 5:
+        max_score = min(max_score, 99)
+
+    resources_items_count = semantic_signals.get("resources_items_count", 0)
+    if resources_items_count < 3:
+        max_score = min(max_score, 95)
+    elif resources_items_count < 5:
+        max_score = min(max_score, 97)
+    elif resources_items_count < 7:
+        max_score = min(max_score, 99)
+
+    if best_practices_score < 95:
+        max_score = min(max_score, 96)
+    elif best_practices_score < 98:
+        max_score = min(max_score, 98)
+
+    return min(total, max_score, 100), details
 
 
 def validate_skill(

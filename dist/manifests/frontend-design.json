@@ -166,7 +166,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -303,8 +303,8 @@
     {
       "path": "skills/frontend-design/metadata.json",
       "kind": "support",
-      "size_bytes": 5239,
-      "sha256": "043d0f852a33c55e89ca37453d290b27bc1722577306e0ec7d0aae6ca645d4e1"
+      "size_bytes": 5238,
+      "sha256": "a571f3576ccfcc0d2f0aec47168c746a844e7c2986946d9ba1f0f9d9621bb312"
     },
     {
       "path": "skills/frontend-design/examples/component-handoff-worksheet.md",
@@ -342,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/frontend-design.zip",
       "file_name": "frontend-design.zip",
-      "size_bytes": 6422,
-      "sha256": "794a6fe7343a43bcc414b07f8a0ef209e101023c7df7f4d34009cae87752aa24",
+      "size_bytes": 6423,
+      "sha256": "b22ee8f5424ad75ca8f00ebbba27f6b1a860731c1b7223e033b83d6a76f4383f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -356,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/frontend-design.tar.gz",
       "file_name": "frontend-design.tar.gz",
-      "size_bytes": 5137,
-      "sha256": "4a77109c7259217877ef375e96849c5a27aa9898fd314f2ae7ed5a7d517bed6c",
+      "size_bytes": 5147,
+      "sha256": "970ed36a6682748b3fb49b5c8de9966b49108cf3ab3065b2fea9624b4fce147a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -370,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-design.checksums.txt",
     "file_name": "frontend-design.checksums.txt",
-    "sha256": "e4a6f6ebd55c9853c36d9ba62543cf4ac01ae06851315b4ba8a5e3c1c9e13f60",
+    "sha256": "6a7bbc979c54b715513af79fee86b93f2b688ec46c5b317c602b10c2f564fcf3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -381,6 +381,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d",
-    "package_sha256": "1d0b464768e1a096dd697b9341e9cb2b4df7debfa722143ab95fc447c62b4fdd"
+    "package_sha256": "7fad53df34caacc734766bdd6060dc2f5fba05403f1e65d57d5ea66a5a598040"
   }
 }

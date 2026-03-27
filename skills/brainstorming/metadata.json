@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T18:14:21.764872+00:00",
+  "generated_at": "2026-03-27T18:38:22.985125+00:00",
   "id": "brainstorming",
   "slug": "brainstorming",
   "display_name": "Brainstorming",
@@ -117,7 +117,7 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 100,
+    "score": 98,
     "tier": "excellent",
     "signals": {
       "workflow_steps_count": 5,
@@ -146,7 +146,7 @@
     }
   },
   "quality": {
-    "score": 99,
+    "score": 96,
     "tier": "platinum",
     "breakdown": {
       "body": 16,

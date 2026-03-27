@@ -26,6 +26,7 @@ const {
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const CLI_SCRIPT = path.join(ROOT, "tools", "bin", "cli.js");
 const CATALOG_CORE = path.join(ROOT, "packages", "catalog-core", "src", "index.js");
+const LOCAL_SIDECAR = path.join(ROOT, "packages", "server-mcp", "src", "local-sidecar.js");
 
 const BRAND_LOGO = [
   "  ____                 _   _____ _    _ _ _     ",
@@ -132,6 +133,48 @@ function buildInstallerArgs({ tool, targetPath, skillId, bundleId }) {
 
 function renderInstallerCommand(args) {
   return `npx omni-skills ${args.join(" ")}`.trim();
+}
+
+function normalizeTransportMode(value) {
+  const normalized = String(value || "stream").trim().toLowerCase();
+  if (normalized === "http") {
+    return "stream";
+  }
+  return normalized || "stream";
+}
+
+function defaultMcpConfigUrl(transport) {
+  return normalizeTransportMode(transport) === "sse"
+    ? "http://127.0.0.1:3334/sse"
+    : "http://127.0.0.1:3334/mcp";
+}
+
+function buildConfigMcpArgs({
+  configTarget = "",
+  filePath = "",
+  transport = "stream",
+  url = "",
+  serverName = "omni-skills",
+  write = false,
+}) {
+  const args = ["config-mcp"];
+  if (configTarget) {
+    args.push("--target", configTarget);
+  }
+  if (filePath) {
+    args.push("--file", filePath);
+  }
+  args.push("--transport", normalizeTransportMode(transport));
+  if (normalizeTransportMode(transport) !== "stdio" && url) {
+    args.push("--url", url);
+  }
+  if (serverName && serverName !== "omni-skills") {
+    args.push("--server-name", serverName);
+  }
+  if (write) {
+    args.push("--write");
+  }
+  return args;
 }
 
 function normalizeText(value) {
@@ -337,6 +380,44 @@ function buildA2aLaunch(draft) {
   };
 }
 
+function buildConfigMcpLaunch(draft, sidecar) {
+  const preview = sidecar.configureClientMcp({
+    config_target: draft.configTarget || undefined,
+    file_path: draft.configFilePath || undefined,
+    server_name: draft.serverName || "omni-skills",
+    transport: draft.transport || "stream",
+    url: draft.transport === "stdio" ? "" : draft.url || defaultMcpConfigUrl(draft.transport),
+    dry_run: true,
+  });
+  const args = buildConfigMcpArgs({
+    configTarget: draft.configTarget,
+    filePath: draft.configFilePath,
+    transport: draft.transport,
+    url: draft.transport === "stdio" ? "" : draft.url || defaultMcpConfigUrl(draft.transport),
+    serverName: draft.serverName || "omni-skills",
+    write: true,
+  });
+  const command = renderInstallerCommand(args);
+  return {
+    preview,
+    label: "Write MCP client config",
+    script: CLI_SCRIPT,
+    args,
+    env: {},
+    command,
+    record: {
+      service: "mcp-config",
+      mode: preview.config_profile,
+      transport: draft.transport,
+      targetId: draft.configTarget || "",
+      targetPath: preview.config_path,
+      serverName: preview.server_name,
+      url: draft.transport === "stdio" ? "" : draft.url || defaultMcpConfigUrl(draft.transport),
+      command,
+    },
+  };
+}
+
 function emptyInstallDraft() {
   return {
     tool: "",
@@ -356,6 +437,10 @@ function emptyServiceDraft() {
     localMode: true,
     host: "127.0.0.1",
     port: "",
+    url: "",
+    configTarget: "",
+    configFilePath: "",
+    serverName: "omni-skills",
     authMode: "none",
     hardened: false,
     bearerToken: "",
@@ -400,6 +485,9 @@ function formatRecentInstall(entry) {
 }
 
 function formatRecentService(entry) {
+  if (entry.service === "mcp-config") {
+    return `MCP config • ${entry.targetId || "custom"} • ${entry.transport || "stream"}`;
+  }
   if (entry.service === "mcp") {
     return `MCP ${entry.transport || "stdio"} • ${entry.mode || "read-only"} • ${entry.port || "stdio"}`;
   }
@@ -588,6 +676,20 @@ function SummaryLines({ lines }) {
   );
 }
 
+function TextPreviewPanel({ title, text, color = "white", maxLines = 18 }) {
+  const lines = String(text || "")
+    .split("\n")
+    .filter(Boolean)
+    .slice(0, maxLines);
+  return h(
+    Panel,
+    { title },
+    ...(lines.length > 0
+      ? lines.map((line, index) => h(Text, { key: `${title}-${index}`, color }, line))
+      : [h(Text, { key: `${title}-empty`, color: "gray" }, "No preview available.")]),
+  );
+}
+
 function launchActionPreview(action, persistState, exitWithAction) {
   if (action.kind === "install") {
     persistState((current) => recordRecentInstall(current, action.record));
@@ -597,7 +699,7 @@ function launchActionPreview(action, persistState, exitWithAction) {
   exitWithAction(action.launch);
 }
 
-function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHandoff }) {
+function OmniSkillsUi({ catalog, bundles, core, sidecar, initialState, persistState, onHandoff }) {
   const { exit } = useApp();
   const [cliState, setCliState] = useState(initialState);
   const [stack, setStack] = useState([{ id: "home" }]);
@@ -616,6 +718,10 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
     () => new Map(skillList.map((skill) => [skill.id, skill])),
     [skillList],
   );
+  const configTargetList = useMemo(() => {
+    const detection = sidecar.detectClients();
+    return [...(detection.config_targets || [])].sort((left, right) => left.id.localeCompare(right.id));
+  }, [sidecar]);
 
   function saveState(update) {
     setCliState((current) => {
@@ -708,6 +814,56 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
   }
 
   function buildServicePreviewAction() {
+    if (serviceDraft.service === "mcp-config") {
+      try {
+        const launch = buildConfigMcpLaunch(serviceDraft, sidecar);
+        return {
+          kind: "service",
+          record: launch.record,
+          launch: {
+            script: CLI_SCRIPT,
+            args: launch.args,
+            env: launch.env,
+          },
+          previewLines: [
+            { label: "Service", value: "MCP client config" },
+            { label: "Target", value: launch.preview.target_name || serviceDraft.configTarget || "custom file" },
+            { label: "Path", value: launch.preview.config_path },
+            { label: "Profile", value: `${launch.preview.config_profile} (${launch.preview.config_format})` },
+            { label: "Transport", value: serviceDraft.transport },
+            { label: "Command", value: launch.command, color: "greenBright" },
+          ],
+          previewText: launch.preview.next_config_text,
+          previewNotes: [
+            ...(launch.preview.instructions || []).map((line) => `Instruction: ${line}`),
+            ...(launch.preview.recipes || []).map((recipe) => `Recipe (${recipe.client}): ${recipe.command}`),
+          ],
+          invalid: false,
+        };
+      } catch (error) {
+        return {
+          kind: "service",
+          record: {
+            service: "mcp-config",
+            mode: "invalid",
+            transport: serviceDraft.transport,
+            targetId: serviceDraft.configTarget || "",
+            targetPath: serviceDraft.configFilePath || "",
+            serverName: serviceDraft.serverName || "omni-skills",
+            url: serviceDraft.url || "",
+            command: "",
+          },
+          launch: null,
+          previewLines: [
+            { label: "Service", value: "MCP client config" },
+            { label: "Status", value: "invalid draft", color: "redBright" },
+          ],
+          previewText: "",
+          previewNotes: [String(error.message || error)],
+          invalid: true,
+        };
+      }
+    }
     if (serviceDraft.service === "mcp") {
       const launch = buildMcpLaunch(serviceDraft);
       return {
@@ -996,8 +1152,12 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
           localMode: selected.mode === "local",
           host: selected.host || "127.0.0.1",
           port: selected.port || "",
+          url: selected.url || "",
           storeType: selected.storeType || "json",
           executorMode: selected.executorMode || "inline",
+          configTarget: selected.targetId || "",
+          configFilePath: selected.targetPath || "",
+          serverName: selected.serverName || "omni-skills",
         });
         push({ id: "service-preview" });
       },
@@ -1023,8 +1183,12 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
           localMode: selected.mode === "local",
           host: selected.host || "127.0.0.1",
           port: selected.port || "",
+          url: selected.url || "",
           storeType: selected.storeType || "json",
           executorMode: selected.executorMode || "inline",
+          configTarget: selected.targetId || "",
+          configFilePath: selected.targetPath || "",
+          serverName: selected.serverName || "omni-skills",
         });
         push({ id: "service-preview" });
       },
@@ -1373,9 +1537,10 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
   if (currentScreen.id === "service-kind") {
     return h(MenuScreen, {
       title: "Choose a service",
-      subtitle: "The same visual shell can launch MCP, API, and A2A.",
+      subtitle: "The same visual shell can launch services or write MCP client configs.",
       items: [
         { id: "mcp", label: "MCP", description: "Start stdio, stream, or SSE in read-only or local mode." },
+        { id: "mcp-config", label: "Configure MCP client", description: "Generate and optionally write client-specific MCP config files." },
         { id: "api", label: "Catalog API", description: "Start the read-only HTTP API with optional hardening." },
         { id: "a2a", label: "A2A", description: "Start the task runtime with store and executor options." },
       ],
@@ -1390,12 +1555,111 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
           push({ id: "mcp-transport" });
           return;
         }
+        if (item.id === "mcp-config") {
+          push({ id: "config-target" });
+          return;
+        }
         if (item.id === "api") {
           push({ id: "api-host" });
           return;
         }
         push({ id: "a2a-host" });
       },
+    });
+  }
+
+  if (currentScreen.id === "config-target") {
+    return h(MenuScreen, {
+      title: "Choose an MCP client target",
+      subtitle: "Pick a supported config target or point at an explicit file path.",
+      items: [
+        ...configTargetList.map((target) => ({
+          id: target.id,
+          label: `${target.name} • ${target.config_profile}`,
+          description: target.path,
+        })),
+        {
+          id: "custom-file",
+          label: "Custom file path",
+          description: "Write the generated config into a file path inside the local allowlist.",
+        },
+      ],
+      onBack: pop,
+      onSelect: (item) => {
+        if (item.id === "custom-file") {
+          push({ id: "config-file-path" });
+          return;
+        }
+        setServiceDraft((current) => ({
+          ...current,
+          configTarget: item.id,
+          configFilePath: "",
+          serverName: current.serverName || "omni-skills",
+        }));
+        push({ id: "config-transport" });
+      },
+    });
+  }
+
+  if (currentScreen.id === "config-file-path") {
+    return h(TextPromptScreen, {
+      title: "Choose a custom MCP config file",
+      subtitle: "Use an allowlisted path such as a workspace config file or a user-scoped settings file.",
+      label: "Config file path",
+      initialValue: serviceDraft.configFilePath || "",
+      onBack: pop,
+      validate: (value) => (!resolveCustomPath(value) ? "Please enter a non-empty config file path." : ""),
+      onSubmit: (value) => {
+        setServiceDraft((current) => ({
+          ...current,
+          configTarget: "",
+          configFilePath: resolveCustomPath(value),
+          serverName: current.serverName || "omni-skills",
+        }));
+        push({ id: "config-transport" });
+      },
+      placeholder: "~/.config/example/mcp.json",
+    });
+  }
+
+  if (currentScreen.id === "config-transport") {
+    return h(MenuScreen, {
+      title: "Choose MCP transport",
+      subtitle: "Use stdio for local process launch or network transports for hosted endpoints.",
+      items: [
+        { id: "stdio", label: "stdio", description: "Launch the Omni Skills MCP server as a local process." },
+        { id: "stream", label: "stream", description: "Use a streamable HTTP endpoint at /mcp." },
+        { id: "sse", label: "sse", description: "Use an SSE endpoint at /sse." },
+      ],
+      onBack: pop,
+      onSelect: (item) => {
+        setServiceDraft((current) => ({
+          ...current,
+          transport: item.id,
+          url: item.id === "stdio" ? "" : current.url || defaultMcpConfigUrl(item.id),
+        }));
+        if (item.id === "stdio") {
+          push({ id: "service-preview" });
+          return;
+        }
+        push({ id: "config-url" });
+      },
+    });
+  }
+
+  if (currentScreen.id === "config-url") {
+    return h(TextPromptScreen, {
+      title: "Choose MCP endpoint URL",
+      subtitle: "Preview uses this URL exactly, so paste the final local or hosted endpoint.",
+      label: "MCP URL",
+      initialValue: serviceDraft.url || defaultMcpConfigUrl(serviceDraft.transport || "stream"),
+      onBack: pop,
+      validate: (value) => (!String(value || "").trim() ? "Please enter an MCP endpoint URL." : ""),
+      onSubmit: (value) => {
+        setServiceDraft((current) => ({ ...current, url: String(value).trim() }));
+        push({ id: "service-preview" });
+      },
+      placeholder: defaultMcpConfigUrl(serviceDraft.transport || "stream"),
     });
   }
 
@@ -1730,41 +1994,77 @@ function OmniSkillsUi({ catalog, bundles, core, initialState, persistState, onHa
 
   if (currentScreen.id === "service-preview") {
     const preview = buildServicePreviewAction();
+    const runLabel = serviceDraft.service === "mcp-config" ? "Write config now" : "Run service now";
+    const runDescription =
+      serviceDraft.service === "mcp-config"
+        ? "Exit the visual shell and write the generated MCP client config."
+        : "Exit the visual shell and start the selected service.";
     return h(
       Screen,
       {
-        title: "Service preview",
-        subtitle: "The visual hub renders the exact command and environment-derived behavior before handoff.",
+        title: serviceDraft.service === "mcp-config" ? "Config preview" : "Service preview",
+        subtitle:
+          serviceDraft.service === "mcp-config"
+            ? "The visual hub renders the exact config text and write command before touching the client file."
+            : "The visual hub renders the exact command and environment-derived behavior before handoff.",
         status: flash,
         footer: screenFooter("↑/↓ move", "Enter select • Esc back • Ctrl+C exit"),
       },
       h(SummaryLines, { lines: preview.previewLines }),
+      preview.previewText
+        ? h(TextPreviewPanel, {
+            title: serviceDraft.service === "mcp-config" ? "Config Text" : "Generated Preview",
+            text: preview.previewText,
+            color: "greenBright",
+          })
+        : null,
+      Array.isArray(preview.previewNotes) && preview.previewNotes.length > 0
+        ? h(TextPreviewPanel, {
+            title: "Notes",
+            text: preview.previewNotes.join("\n"),
+            color: "gray",
+            maxLines: 14,
+          })
+        : null,
       h(
         Panel,
         { title: "Actions" },
         h(MenuList, {
-          items: [
-            {
-              id: "run",
-              label: "Run service now",
-              description: "Exit the visual shell and start the selected service.",
-            },
-            {
-              id: "save-preset",
-              label: "Save service preset",
-              description: "Store this launch configuration for future runs.",
-            },
-            {
-              id: "back",
-              label: "Back",
-              description: "Return to the previous step.",
-            },
-            {
-              id: "cancel",
-              label: "Cancel",
-              description: "Return to the home screen.",
-            },
-          ],
+          items: preview.invalid
+            ? [
+                {
+                  id: "back",
+                  label: "Back",
+                  description: "Fix the invalid target or transport settings.",
+                },
+                {
+                  id: "cancel",
+                  label: "Cancel",
+                  description: "Return to the home screen.",
+                },
+              ]
+            : [
+                {
+                  id: "run",
+                  label: runLabel,
+                  description: runDescription,
+                },
+                {
+                  id: "save-preset",
+                  label: "Save service preset",
+                  description: "Store this launch configuration for future runs.",
+                },
+                {
+                  id: "back",
+                  label: "Back",
+                  description: "Return to the previous step.",
+                },
+                {
+                  id: "cancel",
+                  label: "Cancel",
+                  description: "Return to the home screen.",
+                },
+              ],
           onBack: pop,
           onSelect: (item) => {
             if (item.id === "run") {
@@ -1842,9 +2142,10 @@ async function runCommand(script, args = [], env = {}) {
 
 async function loadRuntime() {
   const core = await import(pathToFileURL(CATALOG_CORE).href);
+  const sidecar = await import(pathToFileURL(LOCAL_SIDECAR).href);
   const catalog = core.loadCatalog();
   const bundles = core.listBundles();
-  return { core, catalog, bundles };
+  return { core, sidecar, catalog, bundles };
 }
 
 async function main() {
@@ -1861,6 +2162,7 @@ async function main() {
       catalog: runtime.catalog,
       bundles: runtime.bundles,
       core: runtime.core,
+      sidecar: runtime.sidecar,
       initialState: persistedState,
       persistState: (nextState) => {
         persistedState = saveCliState(nextState);

@@ -166,7 +166,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 95,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -303,8 +303,8 @@
     {
       "path": "skills/api-design/metadata.json",
       "kind": "support",
-      "size_bytes": 5169,
-      "sha256": "c5931157700dc716a3ffab7c2472efdcffb11956df17392e70bc81a86ae4784a"
+      "size_bytes": 5168,
+      "sha256": "cc4b8beb3d2f202af87ad834c2c8fcf6b8d43db3c6d8931d0122cb3c73d441bf"
     },
     {
       "path": "skills/api-design/examples/error-contract-rubric.md",
@@ -342,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 6437,
-      "sha256": "e66fb20d17f85a71f5f00067c9a8092b7dbb2582dd6bb1b1c17f60653d85fc5c",
+      "size_bytes": 6433,
+      "sha256": "e90bfef9a9ef6fcd2fcccfe54af9edb402c334e0360eb5d320a797475e492cba",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -356,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 5208,
-      "sha256": "94b8d45572470eb0482a3529acb303482e2775d8e8781d44e6d38943720c347b",
+      "size_bytes": 5201,
+      "sha256": "d92a36af3dbb2a36df19edb89c82ddd4974d1c0ed81a481854ee8f3875b99cdb",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -370,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "f33f30983437f3584cb4cc4fde876ca620b655b2a3a990aa5d3815a338359917",
+    "sha256": "1fa7a0f34a21981b31dd75982b9a09340199d1f6ec4d5be2254198b8c81d5b6e",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -381,6 +381,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "0534ac90886c8979c4a6c7fe6e12ec23d9ba48be22fdbe651c8791edd7575037",
-    "package_sha256": "4124addc85c415e7cd92b21dad6c30cad5a1ee0cc2a495116f8936f637a3d087"
+    "package_sha256": "13c048046cdc310215e140c8f650378d1d33f3a9b45f28b4fd15052faa659087"
   }
 }

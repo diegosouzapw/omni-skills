@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T18:14:21.731278+00:00",
+  "generated_at": "2026-03-27T18:38:22.964965+00:00",
   "id": "api-design",
   "slug": "api-design",
   "display_name": "API Design",
@@ -118,7 +118,7 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 100,
+    "score": 98,
     "tier": "excellent",
     "signals": {
       "workflow_steps_count": 5,
@@ -147,7 +147,7 @@
     }
   },
   "quality": {
-    "score": 99,
+    "score": 95,
     "tier": "platinum",
     "breakdown": {
       "body": 16,

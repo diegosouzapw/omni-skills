@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 96,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/changelog/metadata.json",
       "kind": "support",
-      "size_bytes": 5175,
-      "sha256": "93635bf3c96783bfe1eb62579770acbdae2334d1f068b61f933573b99aa4ff79"
+      "size_bytes": 5174,
+      "sha256": "7f7df2ab65764d1e41b08c5ef3332eeb3b72dfe54801fc46c30816eb931c4290"
     },
     {
       "path": "skills/changelog/examples/release-note-skeleton.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 5848,
-      "sha256": "ca9e9901884fda512387179d2c043bd2b284fd930e65510aa2091e8c78ef8f6c",
+      "size_bytes": 5846,
+      "sha256": "17baac3a474c9a34c334fe74e93854cafc153c546f97848066ccb063f6b804ae",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 4885,
-      "sha256": "d5f89118efe0b039187e6649da2b70ce03a49bdf94c33cfecf1fbecf4b8aaf2f",
+      "size_bytes": 4879,
+      "sha256": "c22c3fa127166a1d204c9022dd3577b450b3c3f10dd138cfbbd3998c2c68e926",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "ec6b4c63e30313ffac3e10f69f550d41f6b290c67b1778b70cdde96a199ef000",
+    "sha256": "0a8c93bf1e069f4df2e05889b4e04fb7b0b4144a2623c2dff146dd87a9853426",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "49bc957b1e3c82aaef1cb0b5f17cfc110c46bcd1c64c5844d529f540f719fab2",
-    "package_sha256": "6b39155a1831afb868aeb7a61706744537a6721394b844bbc2c5f19fe87b4d82"
+    "package_sha256": "ca6487f6cb286afdd24cd75ca16f30511a94db01971e4d67562cb651302a0574"
   }
 }

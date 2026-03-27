@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T18:14:21.844887+00:00",
+  "generated_at": "2026-03-27T18:38:23.053243+00:00",
   "id": "find-skills",
   "slug": "find-skills",
   "display_name": "Find Skills",
@@ -122,7 +122,7 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 100,
+    "score": 98,
     "tier": "excellent",
     "signals": {
       "workflow_steps_count": 5,
@@ -152,7 +152,7 @@
     }
   },
   "quality": {
-    "score": 99,
+    "score": 97,
     "tier": "platinum",
     "breakdown": {
       "body": 16,

@@ -10,25 +10,51 @@ tools: [claude-code, cursor, gemini-cli, antigravity]
 source: omni-team
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-26"
+date_updated: "2026-03-27"
 ---
 
 # Omni Figma
 
 ## Overview
 
-Use this skill as the single router for Figma work. Treat `figma-implement-design` as the baseline source of truth for any repo-code deliverable, then expand into inspection, mapping, canvas writes, capture, or troubleshooting only when the task requires it.
+Use this skill as the single router for Figma work. Treat design context as a structured source of truth that must be translated into the repository's components, tokens, and delivery rules instead of copied verbatim.
 
-Figma MCP provides structured design context, not final code. The agent must choose the right tool, adapt the output to the repo, and validate the result.
+Figma MCP gives the agent high-signal design context, but the agent still has to choose the right tool, scope the node correctly, reuse existing repo patterns, and validate the result against the visual source.
+
+## When to Use This Skill
+
+- Use when the deliverable is repo code derived from a Figma frame, component, or screen.
+- Use when the user needs token lookup, variable inspection, or structural metadata instead of raw code.
+- Use when Code Connect mappings should be created, checked, or repaired.
+- Use when an existing Figma or FigJam file must be edited through the MCP toolchain.
+- Use when a Figma workflow is failing because of auth, routing, permissions, or oversized selections.
+
+## Operating Table
+
+| Situation | Primary tool path | What good output looks like |
+| :-------- | :---------------- | :-------------------------- |
+| Implement code from a node | `get_design_context` → `get_screenshot` → repo adaptation | Components, tokens, layout, states, and accessibility match the design and the repo conventions |
+| Inspect structure or tokens | `get_design_context` / `get_metadata` / `get_variable_defs` | Clear layout, naming, token, and state understanding without over-fetching code |
+| Reuse or repair mappings | `get_code_connect_map` → suggestions → save mapping | Existing code components are linked deliberately to the right Figma nodes |
+| Edit canvas content | `use_figma` or `generate_diagram` / `get_figjam` | The file changes cleanly inside Figma or FigJam with the right node scope |
+| Troubleshoot setup | setup reference + smallest diagnostic call | The failure mode is isolated and the next fix is explicit |
 
 ## Core Rules
 
-- Prefer the remote Figma MCP server when available. Use the desktop server only when selection-based local access is necessary or the org requires it.
-- Start from the smallest exact node or frame that answers the task. Break large screens into logical sections before asking for code.
-- Be explicit about tool intent when the task is about tokens, metadata, Code Connect, or setup. Do not assume `get_design_context` is always the right call.
+- Prefer the remote Figma MCP server when available. Use the desktop server only when selection-based local access is required or the org policy demands it.
+- Start from the smallest exact node or frame that answers the task. Large pages should be split into logical children before code generation.
+- Be explicit about tool intent when the task is about tokens, metadata, Code Connect, or setup. Do not default every request to `get_design_context`.
 - Use Code Connect, variables, semantic layer names, Auto Layout, and annotations as strong signals. Without them, the model is guessing.
 - Never ship raw Figma-generated web code unchanged. Translate it to the repo's components, tokens, data flow, and accessibility rules.
-- If the user wants to edit an existing Figma file, prefer `use_figma`. If the user wants the first capture of a webpage or HTML into Figma, use `generate_figma_design` first, then `use_figma` for follow-up edits.
+- If the user wants to edit an existing Figma file, prefer `use_figma`. If they want the first capture of a webpage or HTML into Figma, use `generate_figma_design` first, then `use_figma` for follow-up edits.
+
+## Workflow
+
+1. Resolve the exact node or selection and restate the expected outcome: implementation, inspection, mapping, or canvas edit.
+2. Pull the smallest high-signal context first, usually `get_design_context` plus `get_screenshot`, and only expand to metadata or variables when the first pass leaves ambiguity.
+3. Route through the correct sub-flow: code implementation, design inspection, Code Connect, design-system rules, or canvas editing.
+4. Convert the result into repo-native output by reusing components, tokens, states, and data flow instead of mirroring raw Figma structure blindly.
+5. Finish with validation: screenshot parity, token parity, mapping accuracy, and any intentional deviation called out explicitly.
 
 ## Task Router
 
@@ -90,12 +116,6 @@ Follow these steps in order whenever the task ends in application code.
 - Normalize `node-id=1-2` to `1:2` when a tool expects colon-separated IDs, especially in Code Connect flows.
 - If the output becomes generic, reduce selection size, restate project rules, and call the more specific tool.
 
-## References
-
-- `references/mcp-setup-and-troubleshooting.md` for remote vs desktop setup, verification, auth, and common failures.
-- `references/tool-routing-and-prompts.md` for tool-by-tool routing, prompt patterns, and capture or write workflows.
-- `references/figma-best-practices-2026.md` for the official Figma guidance that improves agent output: file structure, Code Connect, variables, Auto Layout, explicit tool selection, and smaller frames.
-
 ## Examples
 
 ### Example 1: Implement a node into repo code
@@ -112,12 +132,20 @@ python3 skills/omni-figma/scripts/render_implementation_packet.py \
   "react,tailwind,design tokens"
 ```
 
+### Example 3: Scope the handoff before coding
+
+```text
+Use @omni-figma to split this dashboard screen into implementation slices, identify the riskiest component mappings, and tell me which node to code first.
+```
+
 ## Best Practices
 
-- Start from the smallest node that answers the request.
+- Start from the smallest node that answers the request and split wide screens into implementation slices before asking for code.
 - Prefer Code Connect mappings and variables over recreating components from scratch.
-- Treat screenshots and metadata as validation artifacts, not optional extras.
-- Document any intentional deviation from the Figma source before finishing.
+- Treat screenshots, mapping notes, and metadata as validation artifacts, not optional extras.
+- Keep the repo's component system and accessibility rules above raw Figma HTML-like output.
+- State when a design ambiguity is being resolved by inference instead of by a direct Figma signal.
+- Capture token names, state variants, and implementation boundaries in a reusable handoff packet when the task is larger than one component.
 
 ## Troubleshooting
 
@@ -131,9 +159,23 @@ python3 skills/omni-figma/scripts/render_implementation_packet.py \
 **Symptoms:** The agent reaches for the wrong MCP tool or asks for too much at once.
 **Solution:** Route through the specific reference guide, restate the concrete intent, and split the task by node or operation.
 
+### Problem: The design context is still too broad after one pass
+
+**Symptoms:** Large frames produce vague implementation guidance, weak mappings, or too many assumptions.
+**Solution:** Use the node-splitting worksheet, break the screen into logical slices, and validate each slice with a screenshot-backed handoff before coding.
+
+## Related Skills
+
+- `@frontend-design` — Use when the design needs stronger UI structure, state articulation, or implementation framing before code.
+- `@api-design` — Use when the screen depends on explicit contracts, mutation semantics, or pagination rules.
+- `@documentation` — Use when the final implementation needs guidance, rollout notes, or operator-facing docs.
+
 ## Additional Resources
 
 - [MCP setup and troubleshooting](references/mcp-setup-and-troubleshooting.md)
 - [Tool routing and prompts](references/tool-routing-and-prompts.md)
 - [Figma best practices](references/figma-best-practices-2026.md)
 - [Render an implementation packet](scripts/render_implementation_packet.py)
+- [Node splitting worksheet](examples/node-splitting-worksheet.md)
+- [Component mapping review](examples/component-mapping-review.md)
+- [Implementation handoff packet](examples/implementation-handoff-packet.md)

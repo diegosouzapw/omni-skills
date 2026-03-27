@@ -98,10 +98,11 @@
   "resources": {
     "sub_resources": [
       "agents",
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 5,
+    "artifacts_count": 8,
     "references_count": 1,
     "agents_count": 1,
     "assets_count": 0
@@ -166,36 +167,37 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 99,
+      "score": 98,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
-        "when_to_use_section_length": 254,
-        "best_practices_items_count": 5,
-        "best_practices_section_length": 399,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 638,
+        "when_to_use_section_length": 446,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 464,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 532,
-        "resources_items_count": 2,
-        "resources_section_length": 118,
-        "examples_section_length": 539,
-        "examples_code_blocks_count": 4,
+        "troubleshooting_section_length": 862,
+        "resources_items_count": 5,
+        "resources_section_length": 307,
+        "examples_section_length": 547,
+        "examples_code_blocks_count": 6,
         "related_skills_section_length": 303,
-        "decision_assets_count": 5,
-        "table_count": 0,
-        "linked_resource_families_count": 3,
+        "decision_assets_count": 12,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
         "linked_resource_families": [
           "agents",
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 6,
-        "body_density": 5.53
+        "body_density": 6.7
       }
     },
     "quality": {
-      "score": 92,
+      "score": 98,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,8 +206,8 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 14,
-        "operational_depth": 5,
+        "semantic_depth": 16,
+        "operational_depth": 10,
         "support_pack": 8
       }
     },
@@ -216,7 +218,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 4,
+        "scanned_files": 7,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -246,20 +248,20 @@
     }
   },
   "content": {
-    "body_length": 4030,
-    "content_length": 4512,
-    "body_lines": 97,
-    "word_count": 536,
+    "body_length": 5342,
+    "content_length": 5824,
+    "body_lines": 106,
+    "word_count": 710,
     "has_code_blocks": true,
     "typed_code_blocks_count": 1,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -268,49 +270,68 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
-      "when_to_use_section_length": 254,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 399,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 638,
+      "when_to_use_section_length": 446,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 464,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 532,
-      "resources_items_count": 2,
-      "resources_section_length": 118,
-      "examples_section_length": 539,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 862,
+      "resources_items_count": 5,
+      "resources_section_length": 307,
+      "examples_section_length": 547,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 303,
-      "decision_assets_count": 5,
-      "table_count": 0,
-      "linked_resource_families_count": 3,
+      "decision_assets_count": 12,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
       "linked_resource_families": [
         "agents",
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 6,
-      "body_density": 5.53
+      "body_density": 6.7
     }
   },
   "artifacts": [
     {
       "path": "skills/terraform/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4528,
-      "sha256": "ff49134c2aa85a0d38b42cd9176e60bfe6a5fc6c591639bf76f4dccb17193341"
+      "size_bytes": 5830,
+      "sha256": "78dd03a54b2a35bdd7b678353e88407167813c79dc0574f01df3e9069d5f903d"
     },
     {
       "path": "skills/terraform/metadata.json",
       "kind": "support",
-      "size_bytes": 5096,
-      "sha256": "9a3fa861e7cf47b3089cdae9474f33eb7f9da63717a9b2dcae6e3d94548717af"
+      "size_bytes": 5264,
+      "sha256": "ba7e56272fcd9c644ef2226c75622bcd8cae199ee10920716f91da0fdfe8c692"
     },
     {
       "path": "skills/terraform/agents/openai.yaml",
       "kind": "agent",
       "size_bytes": 227,
       "sha256": "36425a5ae0b472192ef99e5208fcaf4ea9f8489905f3ee99424a2fcd85a3fc33"
+    },
+    {
+      "path": "skills/terraform/examples/module-contract-template.md",
+      "kind": "support",
+      "size_bytes": 134,
+      "sha256": "c3fa7c16695aaad63bad70c7cc806912d67301bfdd2cc6fbb8a366b7d498a8c5"
+    },
+    {
+      "path": "skills/terraform/examples/plan-review-rubric.md",
+      "kind": "support",
+      "size_bytes": 390,
+      "sha256": "c582cd89fe5bb635468e5e3c141c657bbff3ab082c1665cdcae409ddabccdcf6"
+    },
+    {
+      "path": "skills/terraform/examples/state-boundary-worksheet.md",
+      "kind": "support",
+      "size_bytes": 160,
+      "sha256": "e9004b3c4404f652079d2d3fec97c5556fc55a4c1d44a3ec27c070315c1a6cec"
     },
     {
       "path": "skills/terraform/references/checklist.md",
@@ -330,8 +351,8 @@
       "format": "zip",
       "path": "dist/archives/terraform.zip",
       "file_name": "terraform.zip",
-      "size_bytes": 5407,
-      "sha256": "d0a82d9724b9eca489e06e046941ecc3b7cf8ba2cec22eca524069f35a0710f7",
+      "size_bytes": 6829,
+      "sha256": "7dd172412d1bfa6e4246f8915720c15d3f1c2f8791f025be204039656326798a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +365,8 @@
       "format": "tar.gz",
       "path": "dist/archives/terraform.tar.gz",
       "file_name": "terraform.tar.gz",
-      "size_bytes": 4635,
-      "sha256": "d5b0bc431b701281156796d8ed82b41187a885a06a3132ce16233db433d1161e",
+      "size_bytes": 5478,
+      "sha256": "e4ea3abe8d353e1dc9b8732d95306a7bb15d1bff5b39ad6e29deb60f84ad28c4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +379,7 @@
   "archive_checksums": {
     "path": "dist/archives/terraform.checksums.txt",
     "file_name": "terraform.checksums.txt",
-    "sha256": "981bc1b1bfccd69f525e954611a19f52b2108de4d7ef4a8f84df7eb2421a01d2",
+    "sha256": "c83c035be12794c88d898073aa7b6ab40f8d25cc5f0185e80ff47fdd77cee305",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -368,7 +389,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "ff49134c2aa85a0d38b42cd9176e60bfe6a5fc6c591639bf76f4dccb17193341",
-    "package_sha256": "eef6936831aa3ec98a76b52f0d12d0a8afc161e6360672267aff972797270d77"
+    "entrypoint_sha256": "78dd03a54b2a35bdd7b678353e88407167813c79dc0574f01df3e9069d5f903d",
+    "package_sha256": "3e4d841d74b885ceb15ba872d18e04172f786d32e00a15dc2b5998bbfabb9a8f"
   }
 }

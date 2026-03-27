@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 96,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/database-design/metadata.json",
       "kind": "support",
-      "size_bytes": 5180,
-      "sha256": "1a47224a61b4bc61e1a71380526e7146d3c0ff835f90ee132ec1e3e791a96815"
+      "size_bytes": 5179,
+      "sha256": "102ceb46cbdadd26cf19de31bcd013f1b7c8dfcea4392a897c5782c7e4c74d26"
     },
     {
       "path": "skills/database-design/examples/schema-review-example.md",
@@ -336,7 +336,7 @@
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
       "size_bytes": 5970,
-      "sha256": "a3339dc3a5b5aecaefe9c62698566aea5fc6884a4dd2af11a708c55dbf8970e8",
+      "sha256": "85c5ad75f4e75a56ee95020c235296beb6b937b39a77de1286a7951ff33d0682",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 4906,
-      "sha256": "14a25eec557e5a56b0674bad6e1a3f208d1e413941a12a70fce83fd268618f25",
+      "size_bytes": 4896,
+      "sha256": "6e61d8c9ae545ef74bd21cdf15d33649ecec477a13a7bb715eeca5a8ae5b034b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "d139acda5807f7c3408f3ef52236c6d07350c9a7ea88f06debd989262c50f1cc",
+    "sha256": "4d89886b06f156adddf19055063596dad2ecda6076120a5fb6cd67545c979490",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f6ee87f1df350f9c0752ce33f9b72eb66f283c9115d2125013d05a87710bb9bf",
-    "package_sha256": "f4e663944f72384b17cb5b50fe411145b51f888933f112187ceaeb94de910fa2"
+    "package_sha256": "8fc6b835f77097f3ad534878fcc3dd34a3b1ddb60023d810e5f9755978a28316"
   }
 }

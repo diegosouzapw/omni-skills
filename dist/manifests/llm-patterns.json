@@ -166,7 +166,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 92,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 0,
@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 94,
+      "score": 92,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -203,7 +203,7 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 10,
+        "best_practices": 8,
         "semantic_depth": 15,
         "operational_depth": 5,
         "support_pack": 8
@@ -303,8 +303,8 @@
     {
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
-      "size_bytes": 5156,
-      "sha256": "a7623decb7266860ef27a9f0a65e3b4ecae3b5eb781960711ac4eedc3e3a29ba"
+      "size_bytes": 5154,
+      "sha256": "a49b1e927a34f8cd3d1b908edaf0d682fa7934673435af7810f43ca26d0e3680"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5481,
-      "sha256": "1937775d0a87cb3cc98398662c07ae0ab6527468a275fd832c24c9f04b6320a4",
+      "size_bytes": 5476,
+      "sha256": "ee99b69948e1af8b229e8c104d566543327aae07b911fe3e20db52534aa5748e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4601,
-      "sha256": "c3167e72fd21b4965be65c7d000a659e30314d6ffb49869612f5a7ff353f0980",
+      "size_bytes": 4594,
+      "sha256": "ef3103d3c2b0753d7275887c7cd3685542c15c85782d67bb345afef0e648a710",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "366295e5c7fe44a6f60c770223ed594a55657b898fba07836304c480d1b296a5",
+    "sha256": "8c4e0b022757cc6fa6642e712b8238394a72736e444a724d431bdbcdb0ec3113",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "6523aae88d42cde6631dd0f2f68fc420a2e52bac7cf3321da05ef31ea574ef70"
+    "package_sha256": "abac4b197eee15cc397912990021ceaeae1d0bbfb7486f7500ee85754bc668dc"
   }
 }

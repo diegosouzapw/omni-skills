@@ -16,6 +16,7 @@ const RECATEGORIZE_SCRIPT = path.join(ROOT, "tools", "scripts", "recategorize_sk
 const VERIFY_SCANNERS_SCRIPT = path.join(ROOT, "tools", "scripts", "verify_security_scanners.py");
 const VERIFY_ARCHIVES_SCRIPT = path.join(ROOT, "tools", "scripts", "verify_archives.py");
 const MCP_SERVER = path.join(ROOT, "packages", "server-mcp", "src", "server.js");
+const MCP_LOCAL_SIDECAR = path.join(ROOT, "packages", "server-mcp", "src", "local-sidecar.js");
 const API_SERVER = path.join(ROOT, "packages", "server-api", "src", "server.js");
 const A2A_SERVER = path.join(ROOT, "packages", "server-a2a", "src", "server.js");
 const VISUAL_UI = path.join(ROOT, "tools", "bin", "ui.mjs");
@@ -184,6 +185,7 @@ function printHelp() {
       `  find [query]               Search the published skill catalog\n` +
       `  recategorize               Suggest or apply canonical skill categories\n` +
       `  install [flags]            Run the installer backend with the existing install flags\n` +
+      `  config-mcp                 Preview or write MCP client config for a supported target\n` +
       `  mcp <stdio|stream|sse>     Start the MCP server in the selected transport\n` +
       `  api                        Start the catalog HTTP API\n` +
       `  a2a                        Start the A2A server\n` +
@@ -200,6 +202,9 @@ function printHelp() {
       `  npx omni-skills find foundation --bundle essentials --install --yes\n` +
       `  npx omni-skills install --guided\n` +
       `  npx omni-skills install --guided --path ./my-skills --skill architecture\n` +
+      `  npx omni-skills config-mcp --list-targets\n` +
+      `  npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp\n` +
+      `  npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write\n` +
       `  npx omni-skills --cursor --skill omni-figma\n` +
       `  npx omni-skills mcp stream --local\n` +
       `  npx omni-skills api --port 3333\n` +
@@ -208,6 +213,7 @@ function printHelp() {
       `  npm run cli -- find figma --tool cursor\n` +
       `  npm run cli -- install --cursor --skill omni-figma\n` +
       `  npm run cli -- install --bundle full-stack --codex\n` +
+      `  npm run cli -- config-mcp --target continue-workspace --transport stream\n` +
       `  npm run cli -- mcp stream --local --port 3334\n` +
       `  npm run cli -- mcp sse --port 3335\n` +
       `  npm run cli -- api --port 3333\n` +
@@ -307,6 +313,10 @@ async function loadCatalogCore() {
     path.join(ROOT, "packages", "catalog-core", "src", "index.js"),
   ).href;
   return import(moduleUrl);
+}
+
+async function loadMcpLocalSidecar() {
+  return import(pathToFileURL(MCP_LOCAL_SIDECAR).href);
 }
 
 function getFreePort() {
@@ -538,6 +548,52 @@ function renderInstallerCommand(args) {
   return `npx omni-skills ${args.join(" ")}`.trim();
 }
 
+function normalizeTransportMode(value) {
+  const normalized = String(value || "stream").trim().toLowerCase();
+  if (normalized === "http") {
+    return "stream";
+  }
+  return normalized || "stream";
+}
+
+function defaultMcpConfigUrl(transport) {
+  return normalizeTransportMode(transport) === "sse"
+    ? "http://127.0.0.1:3334/sse"
+    : "http://127.0.0.1:3334/mcp";
+}
+
+function buildConfigMcpArgs({
+  client = "",
+  configTarget = "",
+  filePath = "",
+  transport = "stream",
+  url = "",
+  serverName = "omni-skills",
+  write = false,
+}) {
+  const args = ["config-mcp"];
+  if (client) {
+    args.push("--client", client);
+  }
+  if (configTarget) {
+    args.push("--target", configTarget);
+  }
+  if (filePath) {
+    args.push("--file", filePath);
+  }
+  args.push("--transport", normalizeTransportMode(transport));
+  if (normalizeTransportMode(transport) !== "stdio" && url) {
+    args.push("--url", url);
+  }
+  if (serverName && serverName !== "omni-skills") {
+    args.push("--server-name", serverName);
+  }
+  if (write) {
+    args.push("--write");
+  }
+  return args;
+}
+
 async function promptYesNo(rl, prompt, defaultYes = true) {
   const suffix = defaultYes ? " [Y/n] " : " [y/N] ";
   const answer = (await rl.question(`${prompt}${suffix}`)).trim().toLowerCase();
@@ -582,6 +638,8 @@ function runDoctor() {
   console.log("  - Use `npm run build` to regenerate catalog artifacts if catalog.json is missing.");
   console.log("  - Run `npx omni-skills` in a TTY for the guided install flow.");
   console.log("  - Use `npm run cli -- mcp stream --local` to start the local sidecar mode.");
+  console.log("  - Use `npm run cli -- config-mcp --list-targets` to inspect supported MCP config targets.");
+  console.log("  - Use `npm run cli -- config-mcp --target continue-workspace --transport stream` to preview a client config.");
   console.log("  - Use `npm run cli -- install --cursor --skill omni-figma` for a focused install.");
   console.log("  - Use `npm run cli -- api --port 3333` to expose the catalog over HTTP.");
   console.log("  - Use `npm run cli -- a2a --port 3335` to expose the A2A scaffold.");
@@ -751,6 +809,126 @@ async function choosePublishedBundle(rl, bundles, preselectedBundleId = null) {
     (bundle) =>
       `${bundle.name} (${bundle.id}) | ${bundle.availability.available}/${bundle.availability.total} published`,
   );
+}
+
+async function chooseConfigTarget(rl, detection) {
+  const targets = [
+    ...(detection.config_targets || []).map((target) => ({
+      kind: "target",
+      id: target.id,
+      name: target.name,
+      path: target.path,
+      profile: target.config_profile,
+      description: target.config_profile_description,
+    })),
+    {
+      kind: "file",
+      id: "custom-file",
+      name: "Custom file path",
+      path: "",
+      profile: "auto",
+      description: "Write into an explicit config file inside the local allowlist.",
+    },
+  ];
+
+  const selected = await chooseFromList(
+    rl,
+    "Choose an MCP config target:",
+    targets,
+    (target) =>
+      target.kind === "file"
+        ? "Custom file path (pick the exact config file)"
+        : `${target.name} (${target.path})`,
+  );
+
+  if (selected.kind === "file") {
+    const filePath = await promptForCustomPath(rl);
+    return {
+      configTarget: "",
+      filePath,
+    };
+  }
+
+  return {
+    configTarget: selected.id,
+    filePath: "",
+  };
+}
+
+async function chooseConfigTransport(rl, initialTransport = "stream") {
+  const transports = [
+    { id: "stdio", label: "stdio", description: "Launch the local MCP server process directly." },
+    { id: "stream", label: "stream", description: "Point the client at a streamable HTTP endpoint." },
+    { id: "sse", label: "sse", description: "Point the client at an SSE endpoint." },
+  ];
+  const preferred = transports.find((transport) => transport.id === normalizeTransportMode(initialTransport));
+  const ordered = preferred
+    ? [preferred, ...transports.filter((transport) => transport.id !== preferred.id)]
+    : transports;
+
+  const selected = await chooseFromList(
+    rl,
+    "Choose the MCP transport:",
+    ordered,
+    (transport) => `${transport.label} (${transport.description})`,
+  );
+  return selected.id;
+}
+
+async function promptForConfigUrl(rl, transport, currentUrl = "") {
+  const fallback = currentUrl || defaultMcpConfigUrl(transport);
+  while (true) {
+    const answer = (await rl.question(style(COLOR.bold, `MCP URL [${fallback}] > `))).trim();
+    const value = answer || fallback;
+    if (value) {
+      return value;
+    }
+    console.log(style(COLOR.yellow, "Please enter a URL."));
+  }
+}
+
+function printConfigTargetList(detection) {
+  console.log(heading("Supported MCP config targets.", "local sidecar"));
+  console.log("");
+  for (const target of detection.config_targets || []) {
+    console.log(`${style(COLOR.green, target.id)} ${style(COLOR.dim, `(${target.config_profile})`)}`);
+    console.log(`  ${target.name}`);
+    console.log(`  path: ${target.path}`);
+    console.log(`  format: ${target.config_profile_description}`);
+    console.log("");
+  }
+}
+
+function renderConfigPreview(result, command) {
+  console.log(heading("MCP client configuration preview.", result.applied ? "write mode" : "preview mode"));
+  console.log("");
+  console.log(`${style(COLOR.bold, "Target")}: ${result.target_name || result.target_id || "custom file"}`);
+  console.log(`${style(COLOR.bold, "Path")}: ${result.config_path}`);
+  console.log(`${style(COLOR.bold, "Profile")}: ${result.config_profile} (${result.config_format})`);
+  console.log(`${style(COLOR.bold, "Transport")}: ${result.transport}`);
+  console.log(`${style(COLOR.bold, "Server")}: ${result.server_name}`);
+  console.log(`${style(COLOR.bold, "Command")}: ${command}`);
+  console.log("");
+
+  if (Array.isArray(result.instructions) && result.instructions.length > 0) {
+    console.log(style(COLOR.bold, "Instructions"));
+    for (const line of result.instructions) {
+      console.log(`  - ${line}`);
+    }
+    console.log("");
+  }
+
+  if (Array.isArray(result.recipes) && result.recipes.length > 0) {
+    console.log(style(COLOR.bold, "Recipes"));
+    for (const recipe of result.recipes) {
+      console.log(`  - ${recipe.client}: ${recipe.command}`);
+    }
+    console.log("");
+  }
+
+  console.log(style(COLOR.bold, result.applied ? "Written Config" : "Preview Config"));
+  console.log(result.next_config_text.trimEnd());
+  console.log("");
 }
 
 async function chooseSearchInstallTarget(rl, core, bundles) {
@@ -1252,6 +1430,132 @@ async function runMcp(args) {
   await spawnNode(MCP_SERVER, ["--transport", transport, ...filteredArgs], env);
 }
 
+async function runConfigMcp(args) {
+  const jsonOutput = args.includes("--json");
+  const write = args.includes("--write");
+  const listTargets = args.includes("--list-targets");
+  const noPrompt = args.includes("--no-prompt");
+  const client = normalizeToolId(parseFlagValue(args, "--client") || "");
+  const configTarget = parseFlagValue(args, "--target") || parseFlagValue(args, "--config-target") || "";
+  const filePath = parseFlagValue(args, "--file")
+    ? resolveCustomPath(parseFlagValue(args, "--file")) || expandUserPath(parseFlagValue(args, "--file"))
+    : "";
+  const transport = normalizeTransportMode(
+    parseFlagValue(args, "--transport") ||
+      (args.includes("--stdio") ? "stdio" : args.includes("--sse") ? "sse" : args.includes("--stream") ? "stream" : "stream"),
+  );
+  const url = parseFlagValue(args, "--url") || "";
+  const serverName = parseFlagValue(args, "--server-name") || "omni-skills";
+  const localSidecar = await loadMcpLocalSidecar();
+  const detection = localSidecar.detectClients();
+
+  if (listTargets) {
+    printConfigTargetList(detection);
+    return;
+  }
+
+  let input = {
+    client,
+    config_target: configTarget,
+    file_path: filePath,
+    transport,
+    url,
+    server_name: serverName,
+  };
+
+  if (!input.client && !input.config_target && !input.file_path && isInteractiveTerminal()) {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    try {
+      console.log(renderBrandLogo());
+      console.log("");
+      const targetSelection = await chooseConfigTarget(rl, detection);
+      const chosenTransport = await chooseConfigTransport(rl, transport);
+      const chosenUrl =
+        chosenTransport === "stdio" ? "" : await promptForConfigUrl(rl, chosenTransport, url);
+      const chosenServerName = (
+        await rl.question(style(COLOR.bold, `Server name [${serverName}] > `))
+      ).trim();
+
+      input = {
+        client: "",
+        config_target: targetSelection.configTarget,
+        file_path: targetSelection.filePath,
+        transport: chosenTransport,
+        url: chosenUrl,
+        server_name: chosenServerName || serverName,
+      };
+    } finally {
+      rl.close();
+    }
+  }
+
+  if (!input.client && !input.config_target && !input.file_path) {
+    throw new Error("Provide --client, --target, or --file. Use --list-targets to inspect supported config targets.");
+  }
+
+  const previewResult = localSidecar.configureClientMcp({
+    ...input,
+    dry_run: true,
+  });
+  const previewCommand = renderInstallerCommand(
+    buildConfigMcpArgs({
+      client: input.client,
+      configTarget: input.config_target,
+      filePath: input.file_path,
+      transport: input.transport,
+      url: input.url,
+      serverName: input.server_name,
+      write,
+    }),
+  );
+
+  if (jsonOutput) {
+    console.log(JSON.stringify(previewResult, null, 2));
+    return;
+  }
+
+  renderConfigPreview(previewResult, previewCommand);
+
+  if (write) {
+    const appliedResult = localSidecar.configureClientMcp({
+      ...input,
+      dry_run: false,
+    });
+    console.log(style(COLOR.green, `Wrote ${appliedResult.config_path}`));
+    return;
+  }
+
+  if (!isInteractiveTerminal() || noPrompt) {
+    console.log(style(COLOR.dim, "Pass --write to apply this config."));
+    return;
+  }
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  try {
+    const shouldWrite = await promptYesNo(rl, "Write this config now?", true);
+    if (!shouldWrite) {
+      console.log(style(COLOR.yellow, "Config write canceled."));
+      return;
+    }
+  } finally {
+    rl.close();
+  }
+
+  const appliedResult = localSidecar.configureClientMcp({
+    ...input,
+    dry_run: false,
+  });
+  console.log(style(COLOR.green, `Wrote ${appliedResult.config_path}`));
+}
+
 async function runApi(args) {
   const host = parseFlagValue(args, "--host");
   const port = parseFlagValue(args, "--port");
@@ -1472,13 +1776,14 @@ async function interactiveMenu() {
         `  1. Find skills\n` +
         `  2. Guided install\n` +
         `  3. Recategorize skills\n` +
-        `  4. Start MCP over stdio\n` +
-        `  5. Start MCP over stream\n` +
-        `  6. Start MCP over SSE\n` +
-        `  7. Start the catalog API\n` +
-        `  8. Start the A2A server\n` +
-        `  9. Run smoke checks\n` +
-        `  10. Run doctor\n` +
+        `  4. Configure an MCP client\n` +
+        `  5. Start MCP over stdio\n` +
+        `  6. Start MCP over stream\n` +
+        `  7. Start MCP over SSE\n` +
+        `  8. Start the catalog API\n` +
+        `  9. Start the A2A server\n` +
+        `  10. Run smoke checks\n` +
+        `  11. Run doctor\n` +
         `  q. Quit\n`,
     );
 
@@ -1499,30 +1804,34 @@ async function interactiveMenu() {
       return;
     }
     if (action === "4") {
-      await runMcp(["stdio", "--local"]);
+      await runConfigMcp([]);
       return;
     }
     if (action === "5") {
-      await runMcp(["stream", "--local"]);
+      await runMcp(["stdio", "--local"]);
       return;
     }
     if (action === "6") {
-      await runMcp(["sse", "--local"]);
+      await runMcp(["stream", "--local"]);
       return;
     }
     if (action === "7") {
-      await runApi([]);
+      await runMcp(["sse", "--local"]);
       return;
     }
     if (action === "8") {
-      await runA2a([]);
+      await runApi([]);
       return;
     }
     if (action === "9") {
-      await runSmoke([]);
+      await runA2a([]);
       return;
     }
     if (action === "10") {
+      await runSmoke([]);
+      return;
+    }
+    if (action === "11") {
       runDoctor();
       return;
     }
@@ -1575,6 +1884,11 @@ async function main() {
 
   if (command === "mcp") {
     await runMcp(args.slice(1));
+    return;
+  }
+
+  if (command === "config-mcp" || command === "mcp-config") {
+    await runConfigMcp(args.slice(1));
     return;
   }
 

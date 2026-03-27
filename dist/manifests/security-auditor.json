@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
-      "size_bytes": 5279,
-      "sha256": "06dea83708dee30d61fabac1fa424d6bbda10fb729454b09079c4ecd18cc7e74"
+      "size_bytes": 5278,
+      "sha256": "8c13c68e92252c20b9e8dbd40feb4bf873de075e068f2542b957eedc1dc9e78e"
     },
     {
       "path": "skills/security-auditor/examples/finding-severity-rubric.md",
@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 6598,
-      "sha256": "54803510592f95d598370d52eab4f41af57083b660f3783229005c3d90d7299c",
+      "size_bytes": 6596,
+      "sha256": "e9ddfbf7af234facef11e4e63feb722e1f1a3fc4e90ead0bb0d9995ae7d5a71f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 5338,
-      "sha256": "998719d563cbd733053825ec4b60b3db604a9767887eec8777911559849d4500",
+      "size_bytes": 5342,
+      "sha256": "6c20cdbaa92064fe24e4ecb85776d3f6f17a683b5dc66de6bab5705a7cf392c8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "dfabb14efc19bc1eacd94bfb681871ba195cc30518b92c024ff63496493b9426",
+    "sha256": "3e5a45edff10baf6c8a7f4126d193ec3d2697c13c84f5c4c19be1dd7528d3025",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
-    "package_sha256": "a125f74f288eba0227f1ae4168e52e693618facddf275bea21870f63a4cb7b7a"
+    "package_sha256": "4ec567f38641576165292e8a932633a81328dd285f7bf359855eb28e911f9dc3"
   }
 }

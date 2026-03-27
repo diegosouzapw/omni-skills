@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 96,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
-      "size_bytes": 5155,
-      "sha256": "6d4cc223275a0b274382e2d8d0b0384a30962156c882de3bcd47d5016cf60d6e"
+      "size_bytes": 5154,
+      "sha256": "4b355fd5d48087c78ad2bc323babffc504b4d92f7379533d5554b596fe4c670e"
     },
     {
       "path": "skills/create-pr/examples/pr-body-example.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 5873,
-      "sha256": "bf61c8ba27856dc6867e5d06a2f2579d70c74f051f92c98b3d210d3b7eefde8d",
+      "size_bytes": 5871,
+      "sha256": "50a681d9338af1b3a9cf1737c555a140e5a4af78e89b55035a2cd7ae3dda3fd3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 4949,
-      "sha256": "00139d6938cbbb794f36a1c3aa3db12859ab73d97e669d834f71709f2551faef",
+      "size_bytes": 4948,
+      "sha256": "a69ba4cd983c271868332db68ede4592eff649e0199a2f80f730a61895ee27c5",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "f6083b07a726d871d72f7e59f4756834f3f0c86e696d0ee5ce3e4e56ef6db6ba",
+    "sha256": "baf69c145c2ec711e15b9bba4a6ef64e91c41493552f379ba4db0c2852fd8f16",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2d224b8b10dec33147882b135753c86b213325db894f4d75d95916bdc7af8b09",
-    "package_sha256": "e1629c706cd1bf05d1ac794dbdbe51194f6b605d5a38d2862c7eb3e9dd0895de"
+    "package_sha256": "02640d401d2d2375a6983f3da274eb819de150a62a0e46134e8687969d8669f5"
   }
 }

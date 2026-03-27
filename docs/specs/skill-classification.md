@@ -110,6 +110,8 @@ The scorer is intentionally **semantic enough to create spread** across mature s
 - support-pack depth that goes beyond one `references/` file and one linked script
 - enough operational density to separate a polished outline from a reusable workflow kit
 
+That means a structurally complete skill can still land in the high 90s instead of `100` if its support pack is narrower, its decision assets are thinner, or its operational density is lower than the strongest skills in the catalog.
+
 ---
 
 ### ⭐ Quality Score (0-100)

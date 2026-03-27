@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 96,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
-      "size_bytes": 5214,
-      "sha256": "782c13b929a5ecc187335711219a2ed614ee7858fd12a5389b591197a6f7d94e"
+      "size_bytes": 5213,
+      "sha256": "d9d390733abf994069bf4923107ca8ec682491579a4b89c0d0246d421435e0f7"
     },
     {
       "path": "skills/brainstorming/examples/constraint-capture-worksheet.md",
@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 6045,
-      "sha256": "89172fdcc61c3793c950c6069a91ea9f47dcb1ded228dcca62e9fccb50067977",
+      "size_bytes": 6043,
+      "sha256": "d69aa18018e67b8dc5581780cb48fa403208188e6d03a03e0800332c7b1f4d1c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 4949,
-      "sha256": "58e5b0944b045bfce6274094b6d9ce6b38e3b54ffc1b722c32e1c88044659a4f",
+      "size_bytes": 4946,
+      "sha256": "bca00d2b62496d30134fc0da588bda90c0640213d671078d0e8e16c106757c84",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "1e8d8ec063aa39c560a93d6d9b2be016bab72109619f64fcf0d5072972c7f715",
+    "sha256": "ef5c47464e93c3b49adae61789957214e4407ee002f85316d3c60c55e7e01f09",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
-    "package_sha256": "fdda30d10136e9e833ad66e090d266e232af1a8ad9c928e962e002f558e883f1"
+    "package_sha256": "01f585c09a9cc0c921e99e391e753a716ae29f434a38725afe1e44c01ccf5b4e"
   }
 }

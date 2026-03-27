@@ -166,7 +166,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 92,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 0,
@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 94,
+      "score": 92,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -203,7 +203,7 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 10,
+        "best_practices": 8,
         "semantic_depth": 15,
         "operational_depth": 5,
         "support_pack": 8
@@ -303,8 +303,8 @@
     {
       "path": "skills/prompt-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 5168,
-      "sha256": "3cc89a442f8370c486ec479742c59258403dfe471e66f7b4198d38f5d256626e"
+      "size_bytes": 5166,
+      "sha256": "099459be2d8b3cd333deb049ec1e87a8f78e030d517b0a53ef31f324502d9e7d"
     },
     {
       "path": "skills/prompt-engineer/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 5255,
-      "sha256": "fa924db9519df4f23a2b1a790e0296be016b58338010c0735cad02584a553b1e",
+      "size_bytes": 5251,
+      "sha256": "f5767d76bf9abc394bc0bff0c403b8e7542a264cf87dc9eb3e947cba5469e9ed",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
-      "size_bytes": 4441,
-      "sha256": "3bb194f49781eff9aa8e22f8bf71445b2d6a1e1402288d83e6e1c3aac3dbeb2a",
+      "size_bytes": 4436,
+      "sha256": "7721dcade0052cbf9c946fe48c3578549d4f84be1e3199aac9950eaa222862a2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "1432829d7b17918f40c18283c3b7a50593e11e7f9c159ab209d4db03fc86632f",
+    "sha256": "89272c7046ced88366c496e3672a162bf2f33d01cb06d53a3d216ef7d55449e8",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7",
-    "package_sha256": "d90976f7336ddec6eeddb48730a4d7d61ad7a84d0dbd20ddff6875c6a77de9e2"
+    "package_sha256": "ac5c3180b5032c670bbf6115daaef34a85581b0c600539a7868658d1b5b1ab09"
   }
 }

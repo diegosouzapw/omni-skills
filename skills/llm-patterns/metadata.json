@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.841180+00:00",
+  "generated_at": "2026-03-27T18:38:23.087304+00:00",
   "id": "llm-patterns",
   "slug": "llm-patterns",
   "display_name": "LLM Patterns",
@@ -116,7 +116,7 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 100,
+    "score": 92,
     "tier": "excellent",
     "signals": {
       "workflow_steps_count": 0,
@@ -145,7 +145,7 @@
     }
   },
   "quality": {
-    "score": 91,
+    "score": 92,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -153,10 +153,10 @@
       "metadata": 12,
       "recency": 8,
       "resources": 10,
-      "best_practices": 10,
-      "semantic_depth": 14,
-      "operational_depth": 4,
-      "support_pack": 7
+      "best_practices": 8,
+      "semantic_depth": 15,
+      "operational_depth": 5,
+      "support_pack": 8
     }
   },
   "security": {

@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.885016+00:00",
+  "generated_at": "2026-03-27T18:38:23.145881+00:00",
   "id": "security-auditor",
   "slug": "security-auditor",
   "display_name": "Security Auditor",
@@ -35,8 +35,8 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T03:50:01.723361+00:00"
+    "updated": "2026-03-27",
+    "file_mtime": "2026-03-27T18:13:37.284391+00:00"
   },
   "paths": {
     "root": "skills/security-auditor",
@@ -45,34 +45,38 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
     "files": [
       "SKILL.md",
+      "finding-severity-rubric.md",
+      "release-pipeline-audit-packet.md",
+      "threat-model-worksheet.md",
       "checklist.md",
       "render_audit_plan.py"
     ],
-    "files_count": 3,
+    "files_count": 6,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
   "content": {
-    "body_length": 4109,
-    "content_length": 4602,
-    "body_lines": 109,
-    "word_count": 559,
+    "body_length": 5292,
+    "content_length": 5785,
+    "body_lines": 114,
+    "word_count": 715,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -81,28 +85,29 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 611,
       "when_to_use_section_length": 287,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 414,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 496,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 436,
-      "resources_items_count": 2,
-      "resources_section_length": 256,
-      "examples_section_length": 483,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 740,
+      "resources_items_count": 5,
+      "resources_section_length": 461,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 319,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 17,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 5.13
+      "body_density": 6.27
     }
   },
   "maturity": {
@@ -112,35 +117,36 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 94,
+    "score": 98,
     "tier": "excellent",
     "signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 611,
       "when_to_use_section_length": 287,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 414,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 496,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 436,
-      "resources_items_count": 2,
-      "resources_section_length": 256,
-      "examples_section_length": 483,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 740,
+      "resources_items_count": 5,
+      "resources_section_length": 461,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 319,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 17,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 5.13
+      "body_density": 6.27
     }
   },
   "quality": {
-    "score": 85,
+    "score": 97,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -148,10 +154,10 @@
       "metadata": 12,
       "recency": 8,
       "resources": 10,
-      "best_practices": 8,
-      "semantic_depth": 13,
-      "operational_depth": 4,
-      "support_pack": 5
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 8
     }
   },
   "security": {
@@ -161,7 +167,7 @@
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 3,
+      "scanned_files": 6,
       "script_files": 1,
       "binary_like_files": 0
     },

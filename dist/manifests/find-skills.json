@@ -168,7 +168,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -198,7 +198,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -307,8 +307,8 @@
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
-      "size_bytes": 5378,
-      "sha256": "1167be400015a67d223d30694372ed5591498dfe1b98162ecc33bad4781c1376"
+      "size_bytes": 5377,
+      "sha256": "48f4664a7b9b0a4e6c2cb297872abdbadf3bf29d99c62efe88cb03d72c19a286"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -352,8 +352,8 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 6906,
-      "sha256": "cad06e5eaab5385299bff04156e418303f137b55d3e834003610a743c29313d7",
+      "size_bytes": 6905,
+      "sha256": "32e7b92c63e21f5f121db482ae4a0b32b3699bf29eb6d54f799d7573ef26cb06",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -367,7 +367,7 @@
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
       "size_bytes": 5442,
-      "sha256": "c7c67201a78d5a80fa176a4f07ba06f1289d1c21a48c56b38d62e03b85c4848c",
+      "sha256": "739d1c21ba0d92954b34e7173a858da2eb8e1298129b147b21ddbe2040840039",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -380,7 +380,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "a35849d6de9e131db266fcc952e8e90e3c44ba66fe099d332e23b46d2d65ae99",
+    "sha256": "0a4b44ecba02fcf23047b3fa47bd643ac34715ffef66f9a12e892b96c83ba561",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -391,6 +391,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f0d1cb396c26558834fbd0048a2e059e11515d82704e160db8902786a3ba0640",
-    "package_sha256": "a39b3a8e9e63cc6d957a0a91f4c9cac1c8b6ad87ee07914bf8bdd76ef46510cd"
+    "package_sha256": "94fb74a4b5c471ba9ce1c641d796c790aeed3cd3a7f4b162eb9bf1ae1ffd6fa5"
   }
 }

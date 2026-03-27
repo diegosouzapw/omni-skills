@@ -10,7 +10,7 @@ tools: [claude-code, cursor, gemini-cli, codex-cli, antigravity, opencode]
 source: omni-team
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-26"
+date_updated: "2026-03-27"
 ---
 
 # Security Auditor
@@ -37,36 +37,22 @@ Start by naming the trust boundaries, inputs, outputs, storage locations, and pr
 
 Do not rank issues by intuition alone. Consider exploitability, required access, blast radius, recoverability, and whether the weakness is reachable in the real workflow.
 
-## Step-by-Step Guide
+## Operating Table
 
-### 1. Map the Entry Points
+| Phase | Deliverable | Checks |
+| --- | --- | --- |
+| Surface map | Inputs, trust boundaries, secrets, and privileged actions | Every attacker-controlled edge is named |
+| Review pass | Findings grouped by auth, filesystem, network, supply chain, and automation | The risky classes are concrete, not generic |
+| Severity pass | Exploitability, blast radius, and recoverability notes | Ranking can be defended and repeated |
+| Remediation plan | Ordered fix list plus evidence gaps | The owner knows what to fix first |
 
-List user-controlled inputs, network boundaries, filesystem writes, webhook receivers, dependency resolution paths, and any place configuration changes behavior.
+## Workflow
 
-### 2. Review High-Risk Classes
-
-Check for auth bypass, broken authorization, unsafe file writes, command execution, archive extraction, weak webhook validation, secrets exposure, and dependency trust issues.
-
-### 3. Separate Findings by Certainty
-
-Label each item as:
-
-- confirmed vulnerability
-- likely weakness that needs follow-up evidence
-- hardening recommendation
-
-### 4. Explain Impact and Fix Path
-
-For every confirmed finding, state:
-
-- what can go wrong
-- what access is required
-- how serious the result is
-- what code or config change would reduce the risk
-
-### 5. End With a Prioritized Remediation Plan
-
-Put urgent fixes first, then medium-term hardening, then optional improvements.
+1. Map entry points: user-controlled inputs, webhooks, archive handling, filesystem writes, secrets, and config-driven behavior.
+2. Review the high-risk classes first: auth, authorization, command execution, file writes, dependency trust, and artifact distribution.
+3. Separate output into confirmed findings, plausible risks that need evidence, and hardening recommendations.
+4. Assign severity with a short rubric that covers exploitability, blast radius, recoverability, and operational urgency.
+5. End with a remediation packet that lists the fix order, missing tests, and the smallest validating follow-up.
 
 ## Examples
 
@@ -86,11 +72,22 @@ Review this patch like a security auditor and call out real vulnerabilities, ris
 
 **Explanation:** The answer should distinguish exploit paths from style issues.
 
+### Example 3: Audit Planning Packet
+
+```bash
+python3 skills/security-auditor/scripts/render_audit_plan.py \
+  "Hosted MCP server" \
+  "auth,rate-limit,webhooks,artifact downloads,supply chain"
+```
+
+**Explanation:** Use the audit plan when you need a review worksheet, severity rubric, and remediation packet before reading code in depth.
+
 ## Best Practices
 
 - ✅ **Do:** Tie every finding to an explicit attack path or misuse case.
 - ✅ **Do:** Prefer the smallest defensible fix over a vague rewrite request.
 - ✅ **Do:** Note what evidence would close uncertainty when a risk is plausible but not yet proven.
+- ✅ **Do:** Use a severity rubric and a worksheet so the ranking is reproducible.
 - ❌ **Don't:** Inflate severity without explaining exploitability.
 - ❌ **Don't:** mix speculative hardening ideas into the same bucket as confirmed vulnerabilities.
 
@@ -106,6 +103,11 @@ Review this patch like a security auditor and call out real vulnerabilities, ris
 **Symptoms:** The output sounds like a checklist copied from a standard guide.  
 **Solution:** Anchor every finding in the specific code, config, or workflow being reviewed.
 
+### Problem: The recommended fix is too large to ship
+
+**Symptoms:** The mitigation suggests a broad rewrite instead of a tractable reduction in risk.
+**Solution:** Split the response into immediate remediation, short follow-up validation, and medium-term hardening so the smallest safe fix is visible.
+
 ## Related Skills
 
 - `@vulnerability-scanner` — Use when the user needs a structured scanning pass before or alongside manual review.
@@ -116,6 +118,9 @@ Review this patch like a security auditor and call out real vulnerabilities, ris
 
 - [Security audit checklist](references/checklist.md)
 - [Render an audit plan](scripts/render_audit_plan.py)
+- [Threat-model worksheet](examples/threat-model-worksheet.md)
+- [Finding severity rubric](examples/finding-severity-rubric.md)
+- [Release pipeline audit packet](examples/release-pipeline-audit-packet.md)
 
 ```bash
 python3 skills/security-auditor/scripts/render_audit_plan.py \

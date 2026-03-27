@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 96,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/architecture/metadata.json",
       "kind": "support",
-      "size_bytes": 5171,
-      "sha256": "53efcac95e1ec13cc436ce5c0d7392a07dd4a1131f497e7d75f5681d4baa2d8e"
+      "size_bytes": 5170,
+      "sha256": "10b3ba04a98fe1bf8bbc7e9eddfbfd434189c581850850cf9d6bdd0b8b3edb78"
     },
     {
       "path": "skills/architecture/examples/rollout-plan-example.md",
@@ -336,7 +336,7 @@
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
       "size_bytes": 5984,
-      "sha256": "b603dadef716698096c5090dad927dacc3f1c10725523e714e0bf7ae21f9c222",
+      "sha256": "0242664b915ada74652bf4f3dd531ff1c03fe95d03fa3892a76d84524b1ba618",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 5054,
-      "sha256": "a8afb9722eb92f543085e4ec50e0a865deed5216ee707ddd14baf9d74bb440d8",
+      "size_bytes": 5053,
+      "sha256": "a160b08e65aab6fd6b08dccb6ed4d678d01b44b95233c260ede57f4da179da5c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "c02c9f5df141bc0619b65e44ec7387633deca71ea6f7f60ee95de4b0e3d297fa",
+    "sha256": "146a15d613272e94dbc77c95c41fde6f0bb35bcf54de21047a8550ee08e15ee1",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "8595ebad16223453ded6c973e8815cd2f0c8d5d532e5f8e8af2843b34b677067",
-    "package_sha256": "8d3891e599e8e685ea3877636ab48efce34837c50c8532f931b75968a8b7c21e"
+    "package_sha256": "64178eee97b99db367814aaa38ced7469a749ca15443339f5845c8f538200380"
   }
 }

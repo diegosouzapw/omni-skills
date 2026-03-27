@@ -179,6 +179,7 @@ Signals that help:
 - stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
 - more than a single helper file when the workflow is complex enough to justify a support pack
 - enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
 Signals that do **not** help much:
 

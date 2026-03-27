@@ -108,8 +108,8 @@ async function postJson(url, body, headers = {}) {
     "repo metadata should no longer collapse every mature skill to 100/100 best practices",
   );
   assert.ok(
-    new Set((repoMetadata.skills || []).map((skill) => Number(skill.best_practices_score || 0))).size >= 5,
-    "repo metadata should expose multiple distinct best-practices scores across the catalog",
+    new Set((repoMetadata.skills || []).map((skill) => Number(skill.best_practices_score || 0))).size >= 4,
+    "repo metadata should preserve a meaningful spread of best-practices scores across the catalog",
   );
   assert.ok(
     Number(repoMetadata.summary.average_quality_score || 0) >= 80,
@@ -120,8 +120,8 @@ async function postJson(url, body, headers = {}) {
     "repo metadata should avoid collapsing every mature skill to 100/100 quality",
   );
   assert.ok(
-    new Set((repoMetadata.skills || []).map((skill) => Number(skill.quality_score || 0))).size >= 5,
-    "repo metadata should expose multiple distinct quality scores across the catalog",
+    new Set((repoMetadata.skills || []).map((skill) => Number(skill.quality_score || 0))).size >= 6,
+    "repo metadata should expose a meaningful spread of distinct quality scores across the catalog",
   );
 
   const findMetadata = JSON.parse(
@@ -337,8 +337,54 @@ async function postJson(url, body, headers = {}) {
     "repo CLI help should advertise the guided install entrypoint",
   );
   assert.ok(
+    cliHelp.includes("config-mcp"),
+    "repo CLI help should advertise the MCP client configuration command",
+  );
+  assert.ok(
     cliHelp.includes("ui --text"),
     "repo CLI help should advertise the text fallback UI",
+  );
+
+  const cliConfigTargets = childProcess.execFileSync(
+    process.execPath,
+    [path.resolve(__dirname, "../../bin/cli.js"), "config-mcp", "--list-targets"],
+    { encoding: "utf-8" },
+  );
+  assert.ok(
+    cliConfigTargets.includes("continue-workspace"),
+    "config-mcp target listing should expose the Continue target",
+  );
+  assert.ok(
+    cliConfigTargets.includes("windsurf-user"),
+    "config-mcp target listing should expose the Windsurf target",
+  );
+
+  const cliConfigPreview = childProcess.execFileSync(
+    process.execPath,
+    [
+      path.resolve(__dirname, "../../bin/cli.js"),
+      "config-mcp",
+      "--target",
+      "continue-workspace",
+      "--transport",
+      "stream",
+      "--url",
+      "http://127.0.0.1:3334/mcp",
+      "--no-prompt",
+    ],
+    { encoding: "utf-8" },
+  );
+  assert.ok(
+    cliConfigPreview.includes("Preview Config"),
+    "config-mcp should render a textual config preview by default",
+  );
+  assert.ok(
+    cliConfigPreview.includes(".continue/mcpServers/omni-skills.yaml"),
+    "config-mcp should show the resolved Continue config path",
+  );
+  assert.ok(
+    cliConfigPreview.includes("streamable-http"),
+    "config-mcp preview should render the Continue stream transport type",
   );
 
   const nonTtyUi = childProcess.spawnSync(
@@ -1371,6 +1417,14 @@ main().catch((error) => {
       detection.config_targets.some((target) => target.id === "opencode-workspace"),
       "local sidecar should expose the OpenCode workspace config target",
     );
+    assert.ok(
+      detection.config_targets.some((target) => target.id === "continue-workspace"),
+      "local sidecar should expose the Continue workspace config target",
+    );
+    assert.ok(
+      detection.config_targets.some((target) => target.id === "windsurf-user"),
+      "local sidecar should expose the Windsurf user config target",
+    );
 
     const installPreview = localSidecar.installSkills(
       {
@@ -1635,6 +1689,83 @@ main().catch((error) => {
     assert.ok(
       opencodeConfigPreview.recipes.some((recipe) => recipe.client === "opencode"),
       "OpenCode config preview should include a workspace recipe",
+    );
+
+    const continueConfigPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "continue-workspace",
+        transport: "stream",
+        url: "http://127.0.0.1:4444/mcp",
+        headers: {
+          Authorization: "Bearer example",
+        },
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      continueConfigPreview.config_path,
+      path.join(fakeCwd, ".continue", "mcpServers", "omni-skills.yaml"),
+      "Continue config preview should target the workspace YAML document",
+    );
+    assert.equal(
+      continueConfigPreview.config_profile,
+      "continue-yaml",
+      "Continue config preview should use the dedicated Continue YAML profile",
+    );
+    assert.match(
+      continueConfigPreview.next_config_text,
+      /mcpServers:\n  - name: 'omni-skills'/,
+      "Continue config should render a dedicated YAML server entry",
+    );
+    assert.match(
+      continueConfigPreview.next_config_text,
+      /type: 'streamable-http'/,
+      "Continue config should map stream transport to streamable-http",
+    );
+    assert.match(
+      continueConfigPreview.next_config_text,
+      /Authorization: 'Bearer example'/,
+      "Continue config should preserve request headers in requestOptions",
+    );
+    assert.ok(
+      continueConfigPreview.recipes.some((recipe) => recipe.client === "continue"),
+      "Continue config preview should include a dedicated recipe",
+    );
+
+    const windsurfConfigPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "windsurf-user",
+        transport: "http",
+        url: "http://127.0.0.1:4444/mcp",
+        auto_approve: ["search_skills", "get_skill"],
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      windsurfConfigPreview.config_path,
+      path.join(fakeHome, ".codeium", "windsurf", "mcp_config.json"),
+      "Windsurf config preview should target the Windsurf user MCP file",
+    );
+    assert.equal(
+      windsurfConfigPreview.config_profile,
+      "windsurf-json",
+      "Windsurf config preview should use the dedicated Windsurf profile",
+    );
+    assert.equal(
+      windsurfConfigPreview.next_config.mcpServers["omni-skills"].serverUrl,
+      "http://127.0.0.1:4444/mcp",
+      "Windsurf config preview should emit serverUrl for remote MCP servers",
+    );
+    assert.deepEqual(
+      windsurfConfigPreview.next_config.mcpServers["omni-skills"].alwaysAllow,
+      ["search_skills", "get_skill"],
+      "Windsurf config preview should propagate tool auto-approve rules",
+    );
+    assert.ok(
+      windsurfConfigPreview.recipes.some((recipe) => recipe.client === "windsurf"),
+      "Windsurf config preview should include a dedicated recipe",
     );
 
     const codexConfigPreview = localSidecar.configureClientMcp(

@@ -165,7 +165,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 98,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 5,
@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 99,
+      "score": 96,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -302,8 +302,8 @@
     {
       "path": "skills/documentation/metadata.json",
       "kind": "support",
-      "size_bytes": 5235,
-      "sha256": "e3c8c7af4d055936de754ef13cc1eec119099de87ae6f54b3819cb0e33b5533a"
+      "size_bytes": 5234,
+      "sha256": "5344e75546e1c4ee87054740555772de0c44bf8bc3a77892070911b7785dd526"
     },
     {
       "path": "skills/documentation/examples/quickstart-outline-packet.md",
@@ -342,7 +342,7 @@
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
       "size_bytes": 5986,
-      "sha256": "665507dbe5d62e6566270349e524c74e38de42e6b0b3f3e452afdb0957874e95",
+      "sha256": "eb30e3120ae6174c0f697f2857049d947021a4c37f13d5c7be5709a66693ee48",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 4873,
-      "sha256": "a8439b6a05512733ff7b22ea46d98451ed638312cf096793482ca00abd1f5cfc",
+      "size_bytes": 4874,
+      "sha256": "edd7532fc01e86d8a2d7930b4851226810cafc3ea64882e15cc98a6ad748226d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "5a2a076024ef636bb4b2624b5d3cd51abf3bd9349576fd58d44c88254706ebc4",
+    "sha256": "df656f3cb9809fad617d79b9aef936551c1861dfb44ce88975ffd32124541533",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "14769fd32f19480795d3ad81015aa0d8fac6eb70ce28db4db868b1d2cb4b3272",
-    "package_sha256": "806fdaf914a5edbca87ab958e9b9dfe7e8d61d0bbd64711b7d05258c400d9323"
+    "package_sha256": "adf180fb02bccae309cbd1f5544f928e63902def9b758dbcae89e872b024f626"
   }
 }

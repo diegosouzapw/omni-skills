@@ -166,7 +166,7 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 100,
+      "score": 93,
       "tier": "excellent",
       "signals": {
         "workflow_steps_count": 0,
@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 94,
+      "score": 92,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -203,7 +203,7 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 10,
+        "best_practices": 8,
         "semantic_depth": 15,
         "operational_depth": 5,
         "support_pack": 8
@@ -303,8 +303,8 @@
     {
       "path": "skills/docker-expert/metadata.json",
       "kind": "support",
-      "size_bytes": 5129,
-      "sha256": "758b8a4879c92b336f5b187e87208b279cda81a9502327fbae64abf8339033b3"
+      "size_bytes": 5127,
+      "sha256": "1ecab48db69ec6c736f031aebf9d1c4bd2969c21793afd3f7c25e5ab3795f5b8"
     },
     {
       "path": "skills/docker-expert/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/docker-expert.zip",
       "file_name": "docker-expert.zip",
-      "size_bytes": 5772,
-      "sha256": "3787387693ee7c33a006f0e66a51decf689bcd56f6b2adfdb6e1a0bafeae7b65",
+      "size_bytes": 5771,
+      "sha256": "acabde4c59b1ef46ce0462f5572cff58d1d36abb526db9858debd21d1a671058",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -345,7 +345,7 @@
       "path": "dist/archives/docker-expert.tar.gz",
       "file_name": "docker-expert.tar.gz",
       "size_bytes": 4952,
-      "sha256": "8c5d2f1a4fe588a434d0dec55aa9b0aa437bc8a880e4ae6fb2e8e72c883cff8a",
+      "sha256": "68507d3346e7e840dd4833ae154c1f4392f9942a8ead59bd8c92ec7a7ef43f20",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/docker-expert.checksums.txt",
     "file_name": "docker-expert.checksums.txt",
-    "sha256": "d977e8e7c944718655726b0a50e4eaf475795ae33b434be9d8b186506b4288c6",
+    "sha256": "3c390e1596d1c2f6a6a7bf36f26de4363b6220bc65b4a115f53ec387d44c4c7f",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "08587fe96be3a34afb7b86c5e2f26be81c86cb009250cc7aa5835d4140ef8870",
-    "package_sha256": "5e42d801393cf56ce024871130634976260fc4cb89fe3e6db9b785225ebcc100"
+    "package_sha256": "881edc06a3904efdea8409a63ad69bb8fb7436fb45d7bd79918e3ed77bad0ccd"
   }
 }

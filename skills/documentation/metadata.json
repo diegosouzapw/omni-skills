@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T18:14:21.832593+00:00",
+  "generated_at": "2026-03-27T18:38:23.040484+00:00",
   "id": "documentation",
   "slug": "documentation",
   "display_name": "Documentation",
@@ -117,7 +117,7 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 100,
+    "score": 98,
     "tier": "excellent",
     "signals": {
       "workflow_steps_count": 5,
@@ -146,7 +146,7 @@
     }
   },
   "quality": {
-    "score": 99,
+    "score": 96,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
