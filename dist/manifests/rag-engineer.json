@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/rag-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 3073,
-      "sha256": "683fcb768388c3783da6706f93edb8fcdfb394b1ce2f7886b011105226be44b7"
+      "size_bytes": 3233,
+      "sha256": "f8254467c6dafbbafb2d38a9554baf90af8d5dfc7f876ec4de26d5fd892cf9e1"
     },
     {
       "path": "skills/rag-engineer/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/rag-engineer.zip",
       "file_name": "rag-engineer.zip",
-      "size_bytes": 5214,
-      "sha256": "5143bbbf52c1245cd870574237965d84a7875a60ec25b90b5a688e26971c8351",
+      "size_bytes": 5256,
+      "sha256": "17c25bd0966122932d128660dc39288ce7bbc9d3f162ee1c9f9bdb14024b939b",
       "signature": {
         "status": "signed",
         "path": "dist/archives/rag-engineer.zip.sig",
-        "sha256": "a97ffbe4369bdf4193804876ba2027deba0e80aa5403ab78b8394ab20ecfeefb",
+        "sha256": "d2228920c09447d5fef798e7cd47265c87011baa2f3463148e7ea4351c6ed17b",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.zip.sig dist/archives/rag-engineer.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/rag-engineer.tar.gz",
       "file_name": "rag-engineer.tar.gz",
-      "size_bytes": 4361,
-      "sha256": "88b5e2dec5802b3e7a41bc89de05da9f29b26702b4bdf402e430453a04ce9324",
+      "size_bytes": 4400,
+      "sha256": "76d78673410a4bc875526e1d6d9b1f534b21f68d8001e414e93de67578cf3901",
       "signature": {
         "status": "signed",
         "path": "dist/archives/rag-engineer.tar.gz.sig",
-        "sha256": "6dc10b0535488100e2f425adf90624ab881c51f36eb1013c32cd1a35e7ad0fa7",
+        "sha256": "f01f4cf6d2126d496f1fad6bee270bc5c1b9cd0652a1658f819b1be3f2fcec98",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.tar.gz.sig dist/archives/rag-engineer.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/rag-engineer.checksums.txt",
     "file_name": "rag-engineer.checksums.txt",
-    "sha256": "20687ebc3961e5c34bc29cf85b25dcbf296984234bee7da038817ca9e5f95d39",
+    "sha256": "14d4a4c8e16c47cd6c566ddab0c76bb55202580d0247d4c978e1449e08e3ea70",
     "signature": {
       "status": "signed",
       "path": "dist/archives/rag-engineer.checksums.txt.sig",
-      "sha256": "a1542d353584afa84fb9d3638d08132a3a566492418d3eb49e92bdd6bde4e355",
+      "sha256": "7b193ccfa3f005ad04017c1e503c0928d4261f9867c7b06e75bd8eb8a0690a59",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.checksums.txt.sig dist/archives/rag-engineer.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c6dc800d0e4df5b6126c0636e50d232f19290eed1c2127c0303428883e84b0d5",
-    "package_sha256": "f8ab6ffce75cfa9facad857a12b8fc0d1b8d9c4f1b1ac4d4fd97d5a2d60deb16"
+    "package_sha256": "078a7f7426ce78e01b0953aec7e69edf8bb667e0a963fad149c3baf579844813"
   }
 }

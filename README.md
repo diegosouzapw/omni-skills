@@ -269,7 +269,7 @@ Tag-based release automation now also validates:
 - stronger governance for hosted API or remote MCP deployments beyond the current auth, rate limit, and audit-log baseline
 - broader client coverage and export recipes beyond the current JSON, TOML, VS Code user, and Dev Container targets
 - multi-node orchestration and lease-aware task execution beyond the current single-process runtime
-- richer ranking signals and deeper per-skill reference packs to push more skills beyond the current `85/100` best-practices plateau
+- deeper semantic scoring for best practices, so the next quality step is differentiating truly exceptional skills instead of just raising the floor
 
 ---
 

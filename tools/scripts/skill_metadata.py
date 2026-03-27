@@ -1169,6 +1169,37 @@ def score_best_practices(skill_name: str, description: str, content: str) -> int
     )
     has_what = bool(re.search(r"\b(skill|tool|workflow|assistant|automation|helps|enables|provides)\b", desc, re.IGNORECASE))
     has_when = bool(re.search(r"\b(when|if|trigger|use when|should be used)\b", desc, re.IGNORECASE))
+    has_examples_section = bool(re.search(r"##\s*(example|quick\s*start|usage|examples)", content, re.IGNORECASE))
+    has_workflow_section = bool(re.search(r"##\s*(workflow|steps|instructions|guide|how\s*to)", content, re.IGNORECASE))
+    has_when_to_use_section = bool(re.search(r"##\s*(when to use|when to use this skill|use this skill when)", content, re.IGNORECASE))
+    has_best_practices_section = bool(re.search(r"##\s*(best practices|guidelines)", content, re.IGNORECASE))
+    has_troubleshooting_section = bool(re.search(r"##\s*troubleshooting", content, re.IGNORECASE))
+    has_additional_resources_section = bool(
+        re.search(r"##\s*(additional resources|references|further reading)", content, re.IGNORECASE)
+    )
+    has_local_support_links = bool(re.search(r"\]\((references|scripts)/", content, re.IGNORECASE))
+    has_local_script_example = bool(
+        re.search(
+            r"```(?:python|bash|sh)[\s\S]*?(?:python3?\s+scripts/|bash\s+scripts/|sh\s+scripts/|scripts/)",
+            content,
+            re.IGNORECASE,
+        )
+    )
+    has_troubleshooting_pairs = bool(
+        re.search(r"\*\*Symptoms:\*\*[\s\S]{0,400}\*\*Solution:\*\*", content, re.IGNORECASE)
+    )
+    section_inventory = sum(
+        1
+        for present in (
+            has_examples_section,
+            has_workflow_section,
+            has_when_to_use_section,
+            has_best_practices_section,
+            has_troubleshooting_section,
+            has_additional_resources_section,
+        )
+        if present
+    )
 
     if len(name) <= 64 and re.match(r"^[a-z0-9][a-z0-9-]*$", name) and not reserved_words.search(name):
         score += 10
@@ -1178,14 +1209,30 @@ def score_best_practices(skill_name: str, description: str, content: str) -> int
         score += 5
     if len(body_lines) < 500:
         score += 10
-    if re.search(r"##\s*(example|quick\s*start|usage|examples)", content, re.IGNORECASE):
+    if has_examples_section:
         score += 10
-    if re.search(r"##\s*(workflow|steps|instructions|guide|how\s*to)", content, re.IGNORECASE):
+    if has_workflow_section:
         score += 10
     if re.search(r"\[.*\]\(.*\.(md|py|sh|ts|js)\)", content, re.IGNORECASE):
         score += 10
     if re.search(r"```(python|bash|sh|typescript|javascript|ruby|go|json|yaml|toml)", content, re.IGNORECASE):
         score += 15
+    if section_inventory >= 5:
+        score += 10
+    elif section_inventory >= 3:
+        score += 5
+    if has_best_practices_section:
+        score += 5
+    if has_troubleshooting_section:
+        score += 5
+    if has_additional_resources_section:
+        score += 5
+    if has_local_support_links:
+        score += 5
+    if has_local_script_example:
+        score += 5
+    if has_troubleshooting_pairs:
+        score += 5
     pt_headers = len(re.findall(r"##\s*(como|quando|exemplo|passo)", content, re.IGNORECASE))
     en_headers = len(re.findall(r"##\s*(how|when|example|step|usage)", content, re.IGNORECASE))
     if pt_headers == 0 or en_headers == 0:
@@ -1199,11 +1246,11 @@ def score_best_practices(skill_name: str, description: str, content: str) -> int
 
 
 def best_practices_tier(score: int) -> str:
-    if score >= 80:
+    if score >= 90:
         return "excellent"
-    if score >= 60:
+    if score >= 70:
         return "good"
-    if score >= 40:
+    if score >= 50:
         return "fair"
     return "needs-work"
 
@@ -1495,8 +1542,22 @@ def validate_skill(
             "has_code_blocks": "```" in content,
             "has_examples_section": bool(re.search(r"##\s*(example|examples|quick\s*start|usage)", content, re.IGNORECASE)),
             "has_workflow_section": bool(re.search(r"##\s*(workflow|steps|instructions|guide|how\s*to)", content, re.IGNORECASE)),
+            "has_when_to_use_section": bool(
+                re.search(r"##\s*(when to use|when to use this skill|use this skill when)", content, re.IGNORECASE)
+            ),
             "has_best_practices_section": bool(re.search(r"##\s*(best practices|guidelines)", content, re.IGNORECASE)),
             "has_troubleshooting_section": bool(re.search(r"##\s*troubleshooting", content, re.IGNORECASE)),
+            "has_additional_resources_section": bool(
+                re.search(r"##\s*(additional resources|references|further reading)", content, re.IGNORECASE)
+            ),
+            "has_local_support_links": bool(re.search(r"\]\((references|scripts)/", content, re.IGNORECASE)),
+            "has_local_script_example": bool(
+                re.search(
+                    r"```(?:python|bash|sh)[\s\S]*?(?:python3?\s+scripts/|bash\s+scripts/|sh\s+scripts/|scripts/)",
+                    content,
+                    re.IGNORECASE,
+                )
+            ),
         },
         "maturity": {
             "skill_level": level["level"],

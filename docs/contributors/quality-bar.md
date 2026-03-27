@@ -27,8 +27,10 @@
 | 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
 | 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
 | 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Healthy classification** — maturity L2+, quality 70+, best practices 60+ | 📈 Overall tier |
-| 1️⃣4️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/` and `scripts/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 90+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
 
 ---
 
@@ -67,6 +69,19 @@ npm run smoke
 | Dimension | Excellent | Good | Needs Work |
 |:----------|:----------|:-----|:-----------|
 | ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 70+ (excellent) | 50-69 (good) | <50 (fair) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
 | 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
 | 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
+
+## 🧭 What High Scores Require
+
+To reach the top band consistently, a skill should include:
+
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/` and `scripts/`, linked directly from `SKILL.md`
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose

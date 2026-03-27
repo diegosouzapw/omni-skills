@@ -164,11 +164,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +176,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -223,8 +223,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -236,8 +240,8 @@
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
-      "size_bytes": 3077,
-      "sha256": "fb4fbf4bcbe4f422452eeb1b1b114d5e893b7483c9089085b831b3bb0ba5f421"
+      "size_bytes": 3237,
+      "sha256": "fa88021b179ec93534d3e8066adb2aad33b64c632a6624cd77a56f99945c318a"
     },
     {
       "path": "skills/security-auditor/references/checklist.md",
@@ -257,12 +261,12 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 4695,
-      "sha256": "783fef8035868a1e75a2a953c607aeab94d60ea75172c43a605e6bb0d48ad92e",
+      "size_bytes": 4735,
+      "sha256": "ca397cc9b50c8a3b879cc92270bef8c311ca5e36b1d98824a7c287d96754b171",
       "signature": {
         "status": "signed",
         "path": "dist/archives/security-auditor.zip.sig",
-        "sha256": "e0ad425f2ef3648e0bce956fbc3f0955c453c00d22ac6591dc5315974065ff89",
+        "sha256": "99cf2e337be0d2a50fc77bca2fe399bced049a74f1e8ef99a736d0fc4eba250a",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.zip.sig dist/archives/security-auditor.zip"
@@ -272,12 +276,12 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 4078,
-      "sha256": "5b2c0068210c91362d1b21d35517eca4fd7f796d4c860caea459eb7adc9f6659",
+      "size_bytes": 4104,
+      "sha256": "3d4b0d21e61fe2897ad71f141ad0e510d62d006160534255c65f2a33cf271169",
       "signature": {
         "status": "signed",
         "path": "dist/archives/security-auditor.tar.gz.sig",
-        "sha256": "8e9d9f94c4c2d2b1ee6e1fc40d25c441dc4768094f3379e88e5f7b442b232e8f",
+        "sha256": "0d53419598a90aa7272fb5ce54fe74ef2a954e8f147202ce31fa255a6d47aeee",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.tar.gz.sig dist/archives/security-auditor.tar.gz"
@@ -287,11 +291,11 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "b1f7098e842aa2110428d0fab3f91f0f146f62751e418ecdd7abff6c7d48deca",
+    "sha256": "e1b7acbdebf80724a0c8e81d4fcf723e857d50b0284f4ab1dbc8db8430b66af6",
     "signature": {
       "status": "signed",
       "path": "dist/archives/security-auditor.checksums.txt.sig",
-      "sha256": "181526a1605e0c7b255f685bf4275ac4c5c97d69e4d83bd24f4002bc2d66a93e",
+      "sha256": "e652fda9f0b16a6db9f324583a34a531b5b79e0c0832dbf28d14f2d36655c8ff",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.checksums.txt.sig dist/archives/security-auditor.checksums.txt"
@@ -299,6 +303,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c7e8c15c29604ae2289de38d661001a3c3cabb231112f1f97f4736ce535f7371",
-    "package_sha256": "cc32a087b3199ad5a8565e2f51431000e151bfb92fead41aea15429b1fc0db05"
+    "package_sha256": "b78006555888d0bd9f30123cd08b4552499e758d28132a332751b621585391f9"
   }
 }

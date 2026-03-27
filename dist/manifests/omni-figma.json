@@ -135,11 +135,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -147,7 +147,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -194,8 +194,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": false,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -213,8 +217,8 @@
     {
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
-      "size_bytes": 3281,
-      "sha256": "a055a67e27df694af8ab87379307a10022c3b857104becdc36c50a9a1b6f797c"
+      "size_bytes": 3442,
+      "sha256": "5983c56c9e201cf9ca0cd851278214aa985f73094e8203af495ab73987ee9ac8"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -270,12 +274,12 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 13694,
-      "sha256": "e9374b5048e4e046e6ce1d08b1143772d092bfd689010e7668375e680434fa9d",
+      "size_bytes": 13732,
+      "sha256": "a3bfdf1ec95941ec9661fafa30d74e426e70c86f8f8b8fa539b7cc02cd1c6170",
       "signature": {
         "status": "signed",
         "path": "dist/archives/omni-figma.zip.sig",
-        "sha256": "ad8357c3a72ec2a12faba274406ee9d4994ea3230e94d58f1ff55b58487c9e76",
+        "sha256": "b2035024617a0d44c1aaea683fee49827783bfe72d6e879f0d18bb5821c401c4",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.zip.sig dist/archives/omni-figma.zip"
@@ -285,12 +289,12 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 11493,
-      "sha256": "bd027e4fbb6ff6fbe98a5eea1b1fee28c686b94e7aedb28426240df43118f043",
+      "size_bytes": 11533,
+      "sha256": "38949592b52a0de8a3b8e5c2553ed4fa52e10f4f17e7a0fdad33373d0dfb377e",
       "signature": {
         "status": "signed",
         "path": "dist/archives/omni-figma.tar.gz.sig",
-        "sha256": "7214a61a37436b9d16d47c3d4d3e05af4d4872ba9cdf8e93e8644f381ea1790a",
+        "sha256": "7ceade93bea4480a30cd5366180d88695d6af787d7f66bbd137aa18e57b17dc0",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.tar.gz.sig dist/archives/omni-figma.tar.gz"
@@ -300,11 +304,11 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "eea5a9f01e9a4ca00a6baf958b36268077360b70b554d19e694d2e303baca0eb",
+    "sha256": "64901598627c803c1b6944c00847e6c6e9520b1f37bbcc50dbc1f1730053b2bc",
     "signature": {
       "status": "signed",
       "path": "dist/archives/omni-figma.checksums.txt.sig",
-      "sha256": "0cabc19428bbbdecea3f4f587658bc62a45f4cab05b3b89c5ba639ccf1c85f81",
+      "sha256": "02fa0d4353a9f06065937779b5066921cd1e0572268274a89c098ef456ada8ee",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.checksums.txt.sig dist/archives/omni-figma.checksums.txt"
@@ -312,6 +316,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "4fc515f4d91db3067eb46c48d5a9f1893045c9b12dba5cc83cd7cda6a5f1e8f4",
-    "package_sha256": "e7bc2ab714706fa1eeaa68bfaa86d5fbf3ab32f5cd711129ec855b935acd8ce4"
+    "package_sha256": "4895f85d3c5ccf877dbfd660c4133a5e63bb59b9072c29e5e3fea81f948ff69d"
   }
 }

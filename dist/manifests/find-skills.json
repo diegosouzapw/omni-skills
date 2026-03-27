@@ -167,11 +167,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -179,7 +179,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -226,8 +226,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -239,8 +243,8 @@
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
-      "size_bytes": 3128,
-      "sha256": "de4d6c41915759c0331c14db855fd46d37261d70ea79f2dbe84a9ef47479c3ec"
+      "size_bytes": 3288,
+      "sha256": "18d5ca386f10f456a8788a10eb1fdfbe0ece54dbf8eaa9e249a75c1c93dbd3d3"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -266,12 +270,12 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 4970,
-      "sha256": "545c60383dfb6c7e4f81f488ceba021884beb1be5605d4fffdf99d3558aae33c",
+      "size_bytes": 5012,
+      "sha256": "404b53a16a939cd925bde8500cc46fcf6a2f695d527b6bc3ae27b5c676ca9a86",
       "signature": {
         "status": "signed",
         "path": "dist/archives/find-skills.zip.sig",
-        "sha256": "ecc82f980248c7b883dc6f36869629e2a57e2e7188d988cd72315d0c1110fa1e",
+        "sha256": "1db71a34dc252294ec7e33262d76d4457b1cd2b4cb90f120a0d31985fde480be",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.zip.sig dist/archives/find-skills.zip"
@@ -281,12 +285,12 @@
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 4137,
-      "sha256": "9a8bd31312290d1dc2be4a347eada29d821b999f6e525730ed1df4010b4bb5c6",
+      "size_bytes": 4174,
+      "sha256": "a5d073adc5ed7906e1041aa729d6ae0327995758b876596bf689eb90f1eb475c",
       "signature": {
         "status": "signed",
         "path": "dist/archives/find-skills.tar.gz.sig",
-        "sha256": "9b2d446e04934501ab671cf0b16f4ce131e84928bad908e1e17b92780faaefa3",
+        "sha256": "f0c0bc8bafc462bc7883ca706257bd31c13eec38ef1b13de53cbcb52d325f7ac",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.tar.gz.sig dist/archives/find-skills.tar.gz"
@@ -296,11 +300,11 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "9849911cafe4bce0812f4c9264477c4b2291c29459922f8444887a5d6c756218",
+    "sha256": "240fdb0a7f0eca3bb73650ef8421f2d1b8c728f43d95607f72e77431a66e3e8f",
     "signature": {
       "status": "signed",
       "path": "dist/archives/find-skills.checksums.txt.sig",
-      "sha256": "200e42efab1e0f18277e5e23450f6a77c542dda565b6845e404c8cf3d5f426c3",
+      "sha256": "4d28a81af27c781e3cf393901b098f89e064ee4ec4ff1662d5d2f515638ce75e",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.checksums.txt.sig dist/archives/find-skills.checksums.txt"
@@ -308,6 +312,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c",
-    "package_sha256": "c5ca5b5186729acf7995a6245b0ec7a522a1454390661413e5b1324cde876fb0"
+    "package_sha256": "480c844c1608cd78dbb635e87363e7bc47930d61917d0ef4163a5028d9a198c9"
   }
 }

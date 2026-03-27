@@ -273,7 +273,7 @@ A catalog discovery skill that teaches the agent to:
 ## 🔮 Opportunities
 
 1. **Catalog breadth** — 19 published skills now fully back all 6 bundles, but the next step is deeper coverage inside each bundle with more specialized skills
-2. **Best practices scores** — The floor is now much higher, but the catalog still plateaus at `85/100` and needs deeper reference packs and richer examples to push further
+2. **Best practices scorer depth** — The new ceiling is higher, but the next improvement is more semantic evaluation so the classifier can distinguish exceptional operational guidance from strong structure alone
 3. **A2A durability** — SQLite persistence and process executors now exist, but execution is still single-node and not lease-aware
 4. **Client config breadth** — Sidecar support is stronger, but client-specific config export coverage can still grow
 5. **`skill_metadata.py` size** — 51KB single-file module could benefit from decomposition

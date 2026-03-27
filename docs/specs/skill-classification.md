@@ -81,9 +81,21 @@ The heuristic evaluates:
 | 📝 Description | Clarity, length, informativeness |
 | 📐 Structure | Document sections and hierarchy |
 | 💡 Examples | Code fences and example blocks |
-| 🔗 References | Linked external references |
+| 🔗 References | Linked local `references/` and `scripts/` helpers |
+| 🧰 Operability | Runnable local script examples and concrete workflow snippets |
+| 🩺 Troubleshooting | Explicit `Symptoms` and `Solution` pairs |
+| 📚 Coverage | `When to Use`, `Best Practices`, `Troubleshooting`, and `Additional Resources` sections |
 | 🌐 Portability | Tool-agnostic wording |
 | 📅 Freshness | Avoidance of hardcoded dates |
+
+**Current tiering**
+
+| Tier | Score Range |
+|:-----|:-----------|
+| `excellent` | 90-100 |
+| `good` | 70-89 |
+| `fair` | 50-69 |
+| `needs-work` | 0-49 |
 
 ---
 

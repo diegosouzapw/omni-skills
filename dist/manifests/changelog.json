@@ -164,11 +164,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +176,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -223,8 +223,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -236,8 +240,8 @@
     {
       "path": "skills/changelog/metadata.json",
       "kind": "support",
-      "size_bytes": 3023,
-      "sha256": "6763d2e391be9030450f05f388affc1a83c4d5bbf1ee69ec3def85c299b8b319"
+      "size_bytes": 3183,
+      "sha256": "223a17c9184db79283dbe833a9e4822eeed124487db65b1e40d22b7626b9ef90"
     },
     {
       "path": "skills/changelog/references/checklist.md",
@@ -257,12 +261,12 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 4117,
-      "sha256": "e7862f3d6a1d5f9b32e1a3c9b4a96c1766a7b59afcf0cd6fa1bc3e826906f94d",
+      "size_bytes": 4160,
+      "sha256": "e059dc07c6bdeddad9afe96bdffa6ef5ea8d83662e1b519ac4d6765042d811c9",
       "signature": {
         "status": "signed",
         "path": "dist/archives/changelog.zip.sig",
-        "sha256": "cdfda695293cf185ef558149f4fc5d5eb6236be7a07560810c77a7c4a879f77b",
+        "sha256": "041eb4c067131440bf481139a9141edf7a2b91a96222eec21e28acf464bc70e0",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.zip.sig dist/archives/changelog.zip"
@@ -272,12 +276,12 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 3592,
-      "sha256": "da28bcd0e19e0ff2df0ce131407dfef2ef9b6092376ec5e82d7d8a1894cccac1",
+      "size_bytes": 3628,
+      "sha256": "0fec0423c56e87bb0c6c12fb6bf93136b21d29882e3d2cfcabc23e2cb2de3c3c",
       "signature": {
         "status": "signed",
         "path": "dist/archives/changelog.tar.gz.sig",
-        "sha256": "bd91a6cefbdd95d01eb8577005e18e5357f07fbc89b5df72393d13d161cea8bd",
+        "sha256": "3c01c7dd75bcd4fd7415b1d7dfcb05cc599e96ce62dfee1b8cb46872af862389",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.tar.gz.sig dist/archives/changelog.tar.gz"
@@ -287,11 +291,11 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "577587e87582d3fc58baab5c9d82a0256b74e250e8db26a267431b0cb9ba3440",
+    "sha256": "e1e822edc427b7b6f409042878ac35b2279fb1d0c0de2e00dbc0c538a3d68a81",
     "signature": {
       "status": "signed",
       "path": "dist/archives/changelog.checksums.txt.sig",
-      "sha256": "1eccf9d51f1788a366a7ee8078090035781b82da7ebd29809aa36921d74714bd",
+      "sha256": "c94390385c8a2762243a3942df9079f2d03c769e912f2675371c9e0b49315590",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.checksums.txt.sig dist/archives/changelog.checksums.txt"
@@ -299,6 +303,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "93cf7b79a0bb27570e1f38214e57bdcf75f6e5ab595900e7b38ce2cc17a955f5",
-    "package_sha256": "efeae18a6659f386e3f05baf5c92faa56d68088d7e5acf56fdbcea4c90f82233"
+    "package_sha256": "b80c9c77fde35dd8c919e2cdcb61ad5b8a2810744138bdf9fa95accf7ed24e50"
   }
 }

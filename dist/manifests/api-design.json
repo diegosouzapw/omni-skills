@@ -165,11 +165,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 94,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -177,7 +177,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -224,8 +224,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -237,8 +241,8 @@
     {
       "path": "skills/api-design/metadata.json",
       "kind": "support",
-      "size_bytes": 2968,
-      "sha256": "be4c7a3ae7f54138e5163a422d615e31f5d6dd07d7d3fd84548503a60f556e67"
+      "size_bytes": 3127,
+      "sha256": "cf8fb1d4b60dd099adc615ce4376aec0da003415a2dbc922aea95191f5cabad3"
     },
     {
       "path": "skills/api-design/references/checklist.md",
@@ -258,12 +262,12 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 4559,
-      "sha256": "1afd3fe0feafe1df74f4e58b7728d56dabbe4f7b4511380d12d8ff9e41d483e4",
+      "size_bytes": 4602,
+      "sha256": "aec748826f6b9e70fbd92700001756aa413b60a26a4a2d826c76c5c4248e0e5f",
       "signature": {
         "status": "signed",
         "path": "dist/archives/api-design.zip.sig",
-        "sha256": "e0af10c543a02a8f430ce3b476b8b0e1b2d1bed24f9d0a8df2f6e751c02db307",
+        "sha256": "c4603410e77ddb7bf40ac4345bbfd1efcf1d1ae556039c1d805fff91614f31bc",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.zip.sig dist/archives/api-design.zip"
@@ -273,12 +277,12 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 3949,
-      "sha256": "083dd6824089de50e07960606318efd129ae7a13e15eeedd48a93081cdbbfa09",
+      "size_bytes": 3992,
+      "sha256": "d67dcdb5f53caf272dd11098ff50b898b6fd3839e3bbe7b8bc5f59b7d9acb1ac",
       "signature": {
         "status": "signed",
         "path": "dist/archives/api-design.tar.gz.sig",
-        "sha256": "c3b527142c39bee1ae0c3eb21c8fdb1ffd60ffbfa4ab70dd67095af06976ecb4",
+        "sha256": "5eb6b551ed2a4321a9a06b303ee3bdfa0cd9e80fcff51eaacb089fccca1a6628",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.tar.gz.sig dist/archives/api-design.tar.gz"
@@ -288,11 +292,11 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "a75aabfa832e14437d0fc213b960f208b6f1f141dd0bd8179944b9c49110aa1c",
+    "sha256": "5e1853378b0221c5fb5f98d761efa42c5dcd84acbc744b1c34fc2f97b33c8a43",
     "signature": {
       "status": "signed",
       "path": "dist/archives/api-design.checksums.txt.sig",
-      "sha256": "2dcf5dea450883d28bba1b716d8b2d9458212b82d826fca57af51e8b2f8830c4",
+      "sha256": "a8b82dd64191aca2c4f12d555c52769858b5652aeaf0333c55a4451c9e7f1726",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.checksums.txt.sig dist/archives/api-design.checksums.txt"
@@ -300,6 +304,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1",
-    "package_sha256": "77b909d484af13183bd4681219d2000f40e040936feea9e1f339e9812602ee29"
+    "package_sha256": "6ae1ba73fe8f940a45ddfcd5632c010d3dbcbf79b42797ccf1b5ed0c6277759d"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T03:58:02.216997+00:00",
+  "generated_at": "2026-03-27T04:13:29.086018+00:00",
   "id": "debugging",
   "slug": "debugging",
   "display_name": "Debugging",
@@ -66,8 +66,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "maturity": {
     "skill_level": 3,
@@ -76,11 +80,11 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 85,
+    "score": 100,
     "tier": "excellent"
   },
   "quality": {
-    "score": 97,
+    "score": 100,
     "tier": "platinum",
     "breakdown": {
       "body": 25,
@@ -88,7 +92,7 @@
       "metadata": 20,
       "recency": 10,
       "resources": 10,
-      "best_practices": 17
+      "best_practices": 20
     }
   },
   "security": {

@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/docker-expert/metadata.json",
       "kind": "support",
-      "size_bytes": 3067,
-      "sha256": "431607dc8190d32745ed0407be8aa19c35c721c3bc56f5ca2c2107ca6d6aca11"
+      "size_bytes": 3227,
+      "sha256": "0fcaa3b34989b5a749e821062d0d69b15e677bcf83a25f23277e4d33031c0607"
     },
     {
       "path": "skills/docker-expert/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/docker-expert.zip",
       "file_name": "docker-expert.zip",
-      "size_bytes": 5455,
-      "sha256": "a5e915255fb3cc8c40ac94c4cee68188d59a41fe8b0a78b3d5d582e9d99dfd11",
+      "size_bytes": 5496,
+      "sha256": "f464fab96f7c5943493e9b96ffc158a35f534f9d0203a20f124f72f4ac9d73b1",
       "signature": {
         "status": "signed",
         "path": "dist/archives/docker-expert.zip.sig",
-        "sha256": "25395af8fc6f075a0aa5d1095429ffdf0c17e7fd25a020878aed4f53fa963e7f",
+        "sha256": "00c44d6dcab8ef6561f748d228b1d0dab2665161886f187925c8fc3d3d255731",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.zip.sig dist/archives/docker-expert.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/docker-expert.tar.gz",
       "file_name": "docker-expert.tar.gz",
-      "size_bytes": 4581,
-      "sha256": "849f84ddc4f9fbc8efd28bcfa3053f0da7ccb0d09da167e8438b3293c33073a4",
+      "size_bytes": 4685,
+      "sha256": "feb92ea45ded4e3bafc20e3f89162303655b8ace7727f54002b385969442d87b",
       "signature": {
         "status": "signed",
         "path": "dist/archives/docker-expert.tar.gz.sig",
-        "sha256": "0b1939d6a0df7a15d995dbdbf2d065b00c872540145574968b6359e024ee10a3",
+        "sha256": "6e9f8e3d2306cd1a7abbf0521bd12f9b3bd7c1e929d2cfffc72942d5caf60416",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.tar.gz.sig dist/archives/docker-expert.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/docker-expert.checksums.txt",
     "file_name": "docker-expert.checksums.txt",
-    "sha256": "4144f86359b6c9a5f53d4cc55ef5cd72e03afe81ea823f8d59f5540df2cbbc79",
+    "sha256": "c428cae8f6a4d29b197c7347ca2e44c79c317c97c15ef1c4b3fd71e6ae5122c6",
     "signature": {
       "status": "signed",
       "path": "dist/archives/docker-expert.checksums.txt.sig",
-      "sha256": "7b6f5a92bfc33ed3d42905d52a23ab36d5b96880655191951e36c3ae3b8bd086",
+      "sha256": "51c42aba14415a4dc5e189aeda97b5121b1f7a339e344ce88b78c968a6143eb7",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.checksums.txt.sig dist/archives/docker-expert.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "08587fe96be3a34afb7b86c5e2f26be81c86cb009250cc7aa5835d4140ef8870",
-    "package_sha256": "b8a7a13c2891be57f8662a4b9ce35ea7e978fa5d09944d28390fc2935757a21b"
+    "package_sha256": "335723d67e3881bf38ccf748c222d45f42b98975c62fda1730a49f86ba59d4aa"
   }
 }

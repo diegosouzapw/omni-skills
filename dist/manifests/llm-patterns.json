@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
-      "size_bytes": 3094,
-      "sha256": "c707a5dcd74635405efb890e58cbb91ce1c10cbb3684105953fb6bdeb4758a97"
+      "size_bytes": 3254,
+      "sha256": "2305f29e3504268ad1e92ac1f1082a301c400339561e0717583f564f223b13f6"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5160,
-      "sha256": "f9413ea42ccff70256b57ad9c845807fbe4e1ba33605db3c41afa1cb74d92cb0",
+      "size_bytes": 5203,
+      "sha256": "94bd6d62fe772021fa27895ea53d07f978c20ea37f550e5533d26357195f3b20",
       "signature": {
         "status": "signed",
         "path": "dist/archives/llm-patterns.zip.sig",
-        "sha256": "e5d6ff664491440d3fa698384cf3ec531efd6bb042e7f58eba8d133658d00e82",
+        "sha256": "5ddff0af796a745435adb90b72039745ae6cc8eac9c245b775002fb0f9e6b725",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.zip.sig dist/archives/llm-patterns.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4305,
-      "sha256": "036befd45cf99bf1f059d995ee68f2511b7b9a61d0a7fc61a3f8887e22ca4c55",
+      "size_bytes": 4338,
+      "sha256": "b94dfd84eb37eaed69b34d624a63175f4442fcf0b73dd6dc1a80aca5eb4b7094",
       "signature": {
         "status": "signed",
         "path": "dist/archives/llm-patterns.tar.gz.sig",
-        "sha256": "ec61f089953e3838d8c769eb797a65f6a007b7825927401036a48d421da206b1",
+        "sha256": "c886cafb6e2380d98d4eac7d2beff9ea9be9fd6b6f57f4154a1fc02a29e15c9a",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.tar.gz.sig dist/archives/llm-patterns.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "90127fc239f42f1aefc996de7b9fa4ef30cb274f7d40da952a37765bf6582c37",
+    "sha256": "b8121cb09760bf7dba555fdcde025968874b7431349fa0c54335a2a0fb833f1f",
     "signature": {
       "status": "signed",
       "path": "dist/archives/llm-patterns.checksums.txt.sig",
-      "sha256": "e2978e27d9ab7cf2b481a1d4c9f02b0c3a41c4ea41e7fb2dcb4bd99d9550c412",
+      "sha256": "c9049184e285eac93973c0b4694fb5d8b1b5830948afe228d6ab1f1ec1c5ca27",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.checksums.txt.sig dist/archives/llm-patterns.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "663c281a29f497fd166e8a99e70a28176ac52c24233de427f7079dfbe786ef35"
+    "package_sha256": "44ec1caa486238fce0d61472013b8c6a9b581dd6bb2fe846e0eace285e4e7908"
   }
 }

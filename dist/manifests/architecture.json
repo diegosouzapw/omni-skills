@@ -164,11 +164,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +176,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -223,8 +223,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -236,8 +240,8 @@
     {
       "path": "skills/architecture/metadata.json",
       "kind": "support",
-      "size_bytes": 3022,
-      "sha256": "bfac4eb033ad588cd3f67c747d56a5b765bf23b646bad92dcf50ceb260e4f319"
+      "size_bytes": 3182,
+      "sha256": "b6f6b9d8b13126deb979566c2121412937601f81834418e855d8ac48e5719eb7"
     },
     {
       "path": "skills/architecture/references/checklist.md",
@@ -257,12 +261,12 @@
       "format": "zip",
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
-      "size_bytes": 4459,
-      "sha256": "27ed9a7c9822058f5a7f2d8ba22efb6875a7a7f740c36a896ca5310fc0cc46d4",
+      "size_bytes": 4499,
+      "sha256": "fa3b3023fe5a837a67d30c596b427e1bb8a03a641ad7637f54fae46ccc66b7ec",
       "signature": {
         "status": "signed",
         "path": "dist/archives/architecture.zip.sig",
-        "sha256": "fc70f3b855a6d33e621793dfca88793561e97fc058f3609e6f286c8c54f3b503",
+        "sha256": "a484c8c20ca8e79aef40bc7dbcd5267dda1b4079e42a1b88805f496d237f900d",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.zip.sig dist/archives/architecture.zip"
@@ -272,12 +276,12 @@
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 3903,
-      "sha256": "b19f6a66e9bcfb6e4f5e9b2ae54d0847e39d1cb98f7b08b1c64303a001a4a037",
+      "size_bytes": 3940,
+      "sha256": "f1bb7ac8aa3399284a2c0afb1fff50c1241ade0ec811b5a03e24a6bdb1d70108",
       "signature": {
         "status": "signed",
         "path": "dist/archives/architecture.tar.gz.sig",
-        "sha256": "5623586e87e8370fd9eee4793b5f09fc67aec2827c971c42f045dbe1c927cd96",
+        "sha256": "041219989788cae454acf159d9a99e19b5c11ce537ac5c74154550b1fc769e62",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.tar.gz.sig dist/archives/architecture.tar.gz"
@@ -287,11 +291,11 @@
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "76bc746bf89d61a4c7d730efaace17cde69121cf91251dd336558e38708e34c0",
+    "sha256": "0387f61b2c7d953a4e4e40855b36ba2035f05ccc235ce71d28853ad169ef6e50",
     "signature": {
       "status": "signed",
       "path": "dist/archives/architecture.checksums.txt.sig",
-      "sha256": "13103c5d19064ea53bf6100295cb4ffdc43103d054d47ac9f532296612c050b4",
+      "sha256": "8ef9c6b0ac5b3a373a9c5ee659eeee397f609b7544bfe8ca1f6b1367d0e85fd4",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.checksums.txt.sig dist/archives/architecture.checksums.txt"
@@ -299,6 +303,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "9c20a4801ae69a315c2329e05eb9fd987990976b4f4909bd29ea82ddfbf7df0a",
-    "package_sha256": "6f519860acbbf8d01d45c41d48d13aea3597c48d1b522253bf39719a7b1ad51d"
+    "package_sha256": "13d99c6f1b9d1a728bbfc153931d62acb7d8955c66afb0af2460f1d1cbd51e7e"
   }
 }

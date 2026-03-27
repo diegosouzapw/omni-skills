@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/prompt-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 3106,
-      "sha256": "96bbce6b65e25655699311f7b10594a229cd7f56d9cab9bd2c0c77b3a35076a2"
+      "size_bytes": 3266,
+      "sha256": "dd9ccf3485d73edba23c2db8b141b3b8190d9531b557d65be789887564365e5d"
     },
     {
       "path": "skills/prompt-engineer/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 4940,
-      "sha256": "7ae93f3d7e23b3d0ff9e7b615055afe65c17bd62217cc9e6dafd5d81bcf4a0e7",
+      "size_bytes": 4982,
+      "sha256": "2c352f65d2375dd9f97c396803b2f98b350bd0a1146f3ba2341eba308277f1ed",
       "signature": {
         "status": "signed",
         "path": "dist/archives/prompt-engineer.zip.sig",
-        "sha256": "5685aaf683b73051da2c8e0d31675bbc2c0854f2078e62485a21ef34a5e38bb4",
+        "sha256": "deacb60720042f2de4dbc174ef1885dc77617b6b29ff50f4a20af69cbb039d52",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.zip.sig dist/archives/prompt-engineer.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
-      "size_bytes": 4081,
-      "sha256": "5bc19e1b578d394c959098cecd991a4e7edbcbc0b54b99e5938f152819962718",
+      "size_bytes": 4119,
+      "sha256": "19e405d2b9c56e55e9fb54f0ff3535919fcc8916e4203b7003abafcb25c3b06b",
       "signature": {
         "status": "signed",
         "path": "dist/archives/prompt-engineer.tar.gz.sig",
-        "sha256": "e924aed845e73529a634a1103fd313834001c34def020f6ab67898f93e02d9d7",
+        "sha256": "fd134eefb2a83879b3423a4945b24ebd4bfbb84640e6173139c0dd8be3185315",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.tar.gz.sig dist/archives/prompt-engineer.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "92c864ddd2426343bdd7abdecb32c3932355336cf06786f58a40afe380059f8e",
+    "sha256": "ab119bae15715baf53d5720beac611caaaa72c16c7b2f044a43a79b70a57c948",
     "signature": {
       "status": "signed",
       "path": "dist/archives/prompt-engineer.checksums.txt.sig",
-      "sha256": "9145fbb51c7893905f8a74622cdd9ca467e5144e3870d156fd762253ac897773",
+      "sha256": "1201a0c31c442b64f5d9cabfe37738523a2785a4b651b6ebcbc98e50f653fd59",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.checksums.txt.sig dist/archives/prompt-engineer.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7",
-    "package_sha256": "8ce511becaa475051a7ff48d04a3b11fe79ef105cdc2cbd144ee443c80ed735a"
+    "package_sha256": "3a5e24a5a65826856b4bf4c26fb221bd2d33692dd96b61e6eb9d78f617086493"
   }
 }

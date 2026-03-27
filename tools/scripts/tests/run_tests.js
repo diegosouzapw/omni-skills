@@ -95,6 +95,10 @@ async function postJson(url, body, headers = {}) {
     2,
     "repo metadata should track the published security helpers",
   );
+  assert.ok(
+    Number(repoMetadata.summary.average_best_practices_score || 0) >= 95,
+    "repo metadata should reflect the higher best-practices ceiling",
+  );
 
   const findMetadata = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "../../../skills/find-skills/metadata.json"), "utf-8"),
@@ -169,6 +173,10 @@ async function postJson(url, body, headers = {}) {
   assert.ok(
     manifest.classification.quality.score > 0,
     "manifest should expose generated quality classification",
+  );
+  assert.ok(
+    manifest.classification.best_practices.score >= 95,
+    "manifest should expose the higher best-practices score for mature skills",
   );
   assert.ok(
     manifest.classification.security.score > 0,

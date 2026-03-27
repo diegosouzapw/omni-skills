@@ -164,11 +164,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +176,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -223,8 +223,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -236,8 +240,8 @@
     {
       "path": "skills/database-design/metadata.json",
       "kind": "support",
-      "size_bytes": 3027,
-      "sha256": "25437d237f1501dcd93761f9b65dedb2f36f282ea1e4fd278605745e5b62384f"
+      "size_bytes": 3187,
+      "sha256": "295331c74807bd0aec3a7f0b9453d81fc416908bd38106e0905267b94d47d57e"
     },
     {
       "path": "skills/database-design/references/checklist.md",
@@ -257,12 +261,12 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 4401,
-      "sha256": "9f8a03cc308541547b12bf5d1cc8eb58b2eae8b5ea22763f7933d7b6a732d944",
+      "size_bytes": 4439,
+      "sha256": "06ae562812bc8a41d8317b37fb3e1e64fa49b2a0f3b8189afb52498347bdd072",
       "signature": {
         "status": "signed",
         "path": "dist/archives/database-design.zip.sig",
-        "sha256": "9e75017b93bf20fa2fecc0e1302c957f696e532e91f4feebd8653f9fd8b60f57",
+        "sha256": "ea03a1e06d096898610f2620376cfc57adcda75072ed51f17f73a3b4ccb6d4c3",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.zip.sig dist/archives/database-design.zip"
@@ -272,12 +276,12 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 3769,
-      "sha256": "346b591b885e93b5920f9a09a212e47635fa50c455cb9f46d3ba81cd2f675f41",
+      "size_bytes": 3804,
+      "sha256": "b823469136d2bcc33a7f3788bc4cc69b59eac03e419cbbd3de5db177e486a1eb",
       "signature": {
         "status": "signed",
         "path": "dist/archives/database-design.tar.gz.sig",
-        "sha256": "1587f109c01cd940bdccf3aee7af365a4d68f56167b7737642aea78e1c0b2266",
+        "sha256": "60645c26cf817f0f286dc2d8d0862e9c67c066d01e219335eec651c1ba2bc621",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.tar.gz.sig dist/archives/database-design.tar.gz"
@@ -287,11 +291,11 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "436e389acf4520695c54f95248b0404d2eed8437d6fadbe63c74a04d148e9de4",
+    "sha256": "0ecc877428c1811fc1754524f20bed7d95e7cd65c2c1bd3e55d2a08683e28da2",
     "signature": {
       "status": "signed",
       "path": "dist/archives/database-design.checksums.txt.sig",
-      "sha256": "96194954f60cb1b3e69002cc874f9b18ad8ec75c36dd08148ed16f640db3a2b0",
+      "sha256": "1c4013f61a3fa55fe79239de79a3d9de948f4da3c3c90668bbed3904797f3e0f",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.checksums.txt.sig dist/archives/database-design.checksums.txt"
@@ -299,6 +303,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5244e8238268455ce2463c417b8868c062f23aafd744943829c5b5020552db96",
-    "package_sha256": "43e03f28e7870102cc635e1be2f26c7928ad1c778f45ef9500dc84c56e20bf53"
+    "package_sha256": "1f37236228b5cba0890ec7ede50b75cd2a9b111b543f8ef87ddd9dabc856f505"
   }
 }

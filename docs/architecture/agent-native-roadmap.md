@@ -29,7 +29,7 @@
 
 - Multi-node coordination and lease-aware task execution
 - Even broader client-specific config coverage
-- More published skills and deeper reference packs to push best-practices scores beyond the current plateau
+- More semantic scoring and deeper reference packs so the classifier can separate excellent skills from merely well-structured ones
 
 ---
 

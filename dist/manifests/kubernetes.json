@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/kubernetes/metadata.json",
       "kind": "support",
-      "size_bytes": 3057,
-      "sha256": "8a4a1261de9425434025024315b462fb60131b3dfa76081b30983008078cdcbd"
+      "size_bytes": 3217,
+      "sha256": "090e2828ddf29dd0c070ac35d821ac0b994d35713992d36a4f5684b6d2d4287d"
     },
     {
       "path": "skills/kubernetes/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 5246,
-      "sha256": "570993a4b6eb00a488e1f382f1296ae90a7de0e732cbb5b5bfa40f0fd6501869",
+      "size_bytes": 5287,
+      "sha256": "fa45af468cfb06b28ed7ad199fecef484d68d74bb7ed1821846415744fc9be1b",
       "signature": {
         "status": "signed",
         "path": "dist/archives/kubernetes.zip.sig",
-        "sha256": "ad0b7b64baf3a00d805922689510b850230804344d6e3627dbff5854cc5baf2c",
+        "sha256": "0ddbf10e495c909792ab208971fdb9677650b9548ab1b40003829d647af73ac2",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.zip.sig dist/archives/kubernetes.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
-      "size_bytes": 4408,
-      "sha256": "722d8480c44b6c5454e299c6c683611820f9419701ce3d94051405a0ae0e173e",
+      "size_bytes": 4504,
+      "sha256": "87c10a1c015693bedaceb0465f2b376d7e888a4a73bf3a94a99545c2dbe67be1",
       "signature": {
         "status": "signed",
         "path": "dist/archives/kubernetes.tar.gz.sig",
-        "sha256": "b712d3bdc37e767e930fcb891ad861e919708c1a076713403ad8d9d95be6c12e",
+        "sha256": "7efbed84bcfaf4d3f9899eacd4424c480914bbfb445a9dd308c3221851ae25b2",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.tar.gz.sig dist/archives/kubernetes.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "bb374b2b453a62a1477f19452d253c7950759b75746f2cfbc46febf1c19ac57d",
+    "sha256": "52646393172a6d216ae12595a08469c95dbb22e5b83739a6106dee07d7f35e28",
     "signature": {
       "status": "signed",
       "path": "dist/archives/kubernetes.checksums.txt.sig",
-      "sha256": "984804d799aaab4904006939313cdd0b52746cac74d731bb206dd404f5153cfd",
+      "sha256": "392982219d7d52151c4ecf2b702ba6631e768d6b8eeb35610d20c34e6e6e96ca",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.checksums.txt.sig dist/archives/kubernetes.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "17c9ab5f381ad08340287288749e566551e14c7f2685b064e9cb64a1ce7f8c8f",
-    "package_sha256": "7fbb24cc5a6b05639d8fc88a9708dd7acfa7fac7b1416b2125b5d0b8afd3bf66"
+    "package_sha256": "5fbfaa71c645c2f0d54ad10fe18599019d1d3c092adfb27aa53950a537597978"
   }
 }

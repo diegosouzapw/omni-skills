@@ -164,11 +164,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +176,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -223,8 +223,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -236,8 +240,8 @@
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
-      "size_bytes": 3018,
-      "sha256": "df6ef9dbb9d75e8172658a47839b0c3c1797a51a39b3ebfff9e1743982ca0a77"
+      "size_bytes": 3178,
+      "sha256": "d54a1a1dd0af02301390ab81b18911e0d09f2ffdf1f873c85181d1c560c3229c"
     },
     {
       "path": "skills/brainstorming/references/checklist.md",
@@ -257,12 +261,12 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 4555,
-      "sha256": "318862f5cb38d81d0a12bc3a9128cd901740f95bc1c080480817fd7560270ead",
+      "size_bytes": 4593,
+      "sha256": "f31f6366cc0e561711d6f644a02b3511945920fc01604f03b0620f4a2015a3c8",
       "signature": {
         "status": "signed",
         "path": "dist/archives/brainstorming.zip.sig",
-        "sha256": "649ac06a5783d66e97ad3c126c5edeed87547f2ab33cdfb8da551811469f085a",
+        "sha256": "573d8a5d0a783d16052de75a5048e714d7538af6acda69beaa3b471fcfa2356a",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.zip.sig dist/archives/brainstorming.zip"
@@ -272,12 +276,12 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 3994,
-      "sha256": "ddfef75d94e102532f34bf48bf2d93acbb4970d2f8d7758a4e281c9ec12f3eb8",
+      "size_bytes": 4027,
+      "sha256": "00fb4d9824baa48d8247fef96f8e811d7492625e0408c7cd42d0ed9f934e892d",
       "signature": {
         "status": "signed",
         "path": "dist/archives/brainstorming.tar.gz.sig",
-        "sha256": "7ca5399fb02341af94b9d04982478a83d2685a418b9f11df57d529d7e7c48d7e",
+        "sha256": "e89bb8110dc7e7357eae941e7bba3766e42df0e56e2bd1a25b9a4c216fbf1ec0",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.tar.gz.sig dist/archives/brainstorming.tar.gz"
@@ -287,11 +291,11 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "bd0994ebfe47fac37d540634a035d942e978193df2611034313a510f4fcde8e6",
+    "sha256": "def9053ed83fbb7187df9e47704c67ae8d98b2e982d6692858aeb648dbd10e35",
     "signature": {
       "status": "signed",
       "path": "dist/archives/brainstorming.checksums.txt.sig",
-      "sha256": "194a4112b6c7b9bb3367d9102830492d578f2c22bb11cd423645ea46b2a64aa0",
+      "sha256": "25cc3f0a43b1ec4a65e00e47d06562a13bc0e65953bb57938fa09c60c3df484e",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.checksums.txt.sig dist/archives/brainstorming.checksums.txt"
@@ -299,6 +303,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "aadbba33143786fb76277745ca1f9e89f192aa9359ab3e9787bea687043869a4",
-    "package_sha256": "993332b3ed0e082655aabab8987186f983d47c7ccd4790f92ce8a8fc1a207168"
+    "package_sha256": "e275e3d7133916533963d74b8e2040ca588a6e2d66559d066b22704895bcc45f"
   }
 }

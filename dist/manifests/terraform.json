@@ -166,11 +166,11 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 85,
+      "score": 100,
       "tier": "excellent"
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +178,7 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 20
       }
     },
     "security": {
@@ -225,8 +225,12 @@
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
+    "has_when_to_use_section": true,
     "has_best_practices_section": true,
-    "has_troubleshooting_section": true
+    "has_troubleshooting_section": true,
+    "has_additional_resources_section": true,
+    "has_local_support_links": true,
+    "has_local_script_example": true
   },
   "artifacts": [
     {
@@ -238,8 +242,8 @@
     {
       "path": "skills/terraform/metadata.json",
       "kind": "support",
-      "size_bytes": 3036,
-      "sha256": "94c306a8e5bcde16384f041b9afdca84a0a12df1fa034a583fbbd9b8d582b672"
+      "size_bytes": 3196,
+      "sha256": "a29074aed4cf849fbbf772ed57274df14d1e5db3b9f5600e6fbf0b78455d0c88"
     },
     {
       "path": "skills/terraform/agents/openai.yaml",
@@ -265,12 +269,12 @@
       "format": "zip",
       "path": "dist/archives/terraform.zip",
       "file_name": "terraform.zip",
-      "size_bytes": 5090,
-      "sha256": "2d3a123423fc8879f7c39cb1fb0e9c37f28cc8ffd63808d04fcb6cae84414e5a",
+      "size_bytes": 5131,
+      "sha256": "8cae2c2e0dc42bc9d949643ad2f5303c9336223abcf728eabc800dbd7474351b",
       "signature": {
         "status": "signed",
         "path": "dist/archives/terraform.zip.sig",
-        "sha256": "0c67de4468a3d9652cb25ddf99c7158355d17b151105375f97060c1fb0efb728",
+        "sha256": "47c060d6fec7df61191b6cfc9987dd7a82791d269364a04e99f82e97fc2136fe",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/terraform.zip.sig dist/archives/terraform.zip"
@@ -280,12 +284,12 @@
       "format": "tar.gz",
       "path": "dist/archives/terraform.tar.gz",
       "file_name": "terraform.tar.gz",
-      "size_bytes": 4288,
-      "sha256": "574f7f81d2c1513a6e3ace28b14b02832c51a88f5ca0fbf84ef132a0f6ba9457",
+      "size_bytes": 4314,
+      "sha256": "a65cb17b5fea4564c0c2cd4ef04fe652c18fd35c5e857aa248fceb9b62046300",
       "signature": {
         "status": "signed",
         "path": "dist/archives/terraform.tar.gz.sig",
-        "sha256": "80bc3df5b7d4432c3fcfba37c2a1a6bb46edc4d5ad8fb4e0d9a2859f73fdddb4",
+        "sha256": "b56b6f6d72b62554de26ea6811fa485f1ecf1fa030e7d583c29a19433e5757a9",
         "public_key_path": "dist/signing/omni-skills-public.pem",
         "algorithm": "sha256",
         "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/terraform.tar.gz.sig dist/archives/terraform.tar.gz"
@@ -295,11 +299,11 @@
   "archive_checksums": {
     "path": "dist/archives/terraform.checksums.txt",
     "file_name": "terraform.checksums.txt",
-    "sha256": "b91016390963d113985f9ae8a4b5254c2972ab32ff0d08725bb20f314a2235fb",
+    "sha256": "e5e9919b82f6906512485817c79fbabc7012eae01ccd8e6bcf12e4961eb38cd8",
     "signature": {
       "status": "signed",
       "path": "dist/archives/terraform.checksums.txt.sig",
-      "sha256": "df7084898ecb0ad196db34cb83a12bc170fab16851c1b229f19ec214169a4c40",
+      "sha256": "fb386904e9019ef974af734729d8bec9a1d6ae0c4c21b45dfcad063ad6972a17",
       "public_key_path": "dist/signing/omni-skills-public.pem",
       "algorithm": "sha256",
       "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/terraform.checksums.txt.sig dist/archives/terraform.checksums.txt"
@@ -307,6 +311,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ff49134c2aa85a0d38b42cd9176e60bfe6a5fc6c591639bf76f4dccb17193341",
-    "package_sha256": "be3ec21be98b3e7113b2186fe8b8520e22a86dd24a2149ff5e721b851b5a696d"
+    "package_sha256": "5464d6c771087b0df2b3bd1e7c34ae9988468eef4f53f92cb494d890b3be1aac"
   }
 }
