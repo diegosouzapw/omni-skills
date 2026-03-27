@@ -164,11 +164,35 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 79,
-      "tier": "good"
+      "score": 90,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 213,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 327,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 377,
+        "resources_items_count": 2,
+        "resources_section_length": 278,
+        "examples_section_length": 423,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 244,
+        "decision_assets_count": 2,
+        "table_count": 0,
+        "linked_resource_families_count": 2,
+        "linked_resource_families": [
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 5,
+        "body_density": 4.66
+      }
     },
     "quality": {
-      "score": 96,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +200,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 16
+        "best_practices": 14,
+        "semantic_depth": 9
       }
     },
     "security": {
@@ -236,7 +261,31 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 213,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 327,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 377,
+      "resources_items_count": 2,
+      "resources_section_length": 278,
+      "examples_section_length": 423,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 244,
+      "decision_assets_count": 2,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 5,
+      "body_density": 4.66
+    }
   },
   "artifacts": [
     {
@@ -248,8 +297,8 @@
     {
       "path": "skills/changelog/metadata.json",
       "kind": "support",
-      "size_bytes": 3440,
-      "sha256": "9f81278e65e172a7cdc0be78447566273f21dc996249dd241b68f899ced16c0a"
+      "size_bytes": 4994,
+      "sha256": "403e323eb1825d5d30150f579d3902552f063368dd2465d52ce57081210dace5"
     },
     {
       "path": "skills/changelog/references/checklist.md",
@@ -269,8 +318,8 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 4220,
-      "sha256": "b6832b60a4d2b464a72fc56e387774319108139d199efd1f37cff866c8de60b6",
+      "size_bytes": 4410,
+      "sha256": "ee1723a54ab14b8a44519232a779ad05e8aa3d37b6bb0f5fbb6d80f29571437e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -283,8 +332,8 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 3685,
-      "sha256": "c3c4e1979fca202c601ed3d837108f4bd96a0b4340cc8e08d5b3ebcde144c7c4",
+      "size_bytes": 3869,
+      "sha256": "9c18e562853d24c641649da094b3fa31a0fb713db0940a35af933ccff9f6ef98",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -297,7 +346,7 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "56ecefa1a903e84a9ed4abc694327e5ff444c1c356b32df7593e55b06e7f5247",
+    "sha256": "c568f252e423c0330e6d186232b674a03fb6eb058f7e49a6e9b5ea20c6b06951",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -308,6 +357,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "93cf7b79a0bb27570e1f38214e57bdcf75f6e5ab595900e7b38ce2cc17a955f5",
-    "package_sha256": "9d7d24413f064d3d15ff34ca12f76f567ee04ea767dc58ddaca9d87ff8cbe268"
+    "package_sha256": "902faa42d4619b7ea612e5d1aabf7164ea916112b24d5368becb5ecb1a03ab2d"
   }
 }

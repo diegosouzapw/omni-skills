@@ -164,11 +164,35 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 80,
-      "tier": "good"
+      "score": 93,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 232,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 361,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 465,
+        "resources_items_count": 2,
+        "resources_section_length": 259,
+        "examples_section_length": 515,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 240,
+        "decision_assets_count": 2,
+        "table_count": 0,
+        "linked_resource_families_count": 2,
+        "linked_resource_families": [
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 5,
+        "body_density": 4.68
+      }
     },
     "quality": {
-      "score": 96,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +200,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 16
+        "best_practices": 15,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -236,7 +261,31 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 232,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 361,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 465,
+      "resources_items_count": 2,
+      "resources_section_length": 259,
+      "examples_section_length": 515,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 240,
+      "decision_assets_count": 2,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 5,
+      "body_density": 4.68
+    }
   },
   "artifacts": [
     {
@@ -248,8 +297,8 @@
     {
       "path": "skills/database-design/metadata.json",
       "kind": "support",
-      "size_bytes": 3444,
-      "sha256": "db6f601bccac6893eacb56b70e577c87479553e2f9c627beb7cd64a1d28aaa4f"
+      "size_bytes": 4999,
+      "sha256": "9268e4c9b904058aa936340ce27ca2a75617e68b4be62e96b9022736598800b3"
     },
     {
       "path": "skills/database-design/references/checklist.md",
@@ -269,8 +318,8 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 4504,
-      "sha256": "d645174d579c263c7d6d39769d4a0f0b26ede1395b1f9825c44a5ca4d5a2d28e",
+      "size_bytes": 4693,
+      "sha256": "348840e13ea160e5edef594848df5fa1fc4af4239d7ebc00a5846010dbdf9d47",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -283,8 +332,8 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 3867,
-      "sha256": "e13462ba14e1d0a970cbc84fa22c020bee8b4fa317de5f6eb76fab505e9d054c",
+      "size_bytes": 4047,
+      "sha256": "4c3a7a21f86a7e0b1e1ef5b11cf26cba9e061d5fcc5de1621455818e04b11d97",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -297,7 +346,7 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "3bf03e33dd771e71533ec9efc08513f0156e1fc66378a85147f63de2ea6afc37",
+    "sha256": "0ee0f29eed07127d208337f6f6ec7f77b8c56202d3834f081cc4d68f5cbdaab5",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -308,6 +357,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5244e8238268455ce2463c417b8868c062f23aafd744943829c5b5020552db96",
-    "package_sha256": "a03f220e043653fe98e058423e92f9768169ec928d9b0884978608e4b738fe3e"
+    "package_sha256": "5f0e58b85b8be5e9b55920f656f7d0652f003cc7227d44e721a33565f4579c20"
   }
 }

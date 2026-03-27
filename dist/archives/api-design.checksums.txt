@@ -1,2 +1,2 @@
-fcd9822e19edd9acc610b33b7d390f4aae7e5e8da9f84af269830c469d9048b9  api-design.zip
-6c26175b27d774e2b12cc5fb109e7a567abf6aeef5e97d5e164accd4ee8a7673  api-design.tar.gz
+f1dc8644ff0a01275a6e46f3b4b0cfd37c47fcfc1874bb2fa65d6e11522d7945  api-design.zip
+44d7e43842faa30ed7e592735abf9c2dd245a79a43f3b013f2b84dc437db014b  api-design.tar.gz

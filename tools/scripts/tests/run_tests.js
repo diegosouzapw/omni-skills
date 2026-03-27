@@ -75,6 +75,9 @@ async function postJson(url, body, headers = {}) {
 (async () => {
   const core = await import("../../../packages/catalog-core/src/index.js");
   const localSidecar = await import("../../../packages/server-mcp/src/local-sidecar.js");
+  const { RedisTaskCoordinator } = await import("../../../packages/server-a2a/src/task-coordinator.js");
+  const cliState = require("../../lib/cli-state.js");
+  const RedisMock = (await import("ioredis-mock")).default;
 
   const repoMetadata = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "../../../metadata.json"), "utf-8"),
@@ -312,6 +315,52 @@ async function postJson(url, body, headers = {}) {
     cliHelp.includes("publish-check"),
     "repo CLI help should advertise the publish-check alias",
   );
+  assert.ok(
+    cliHelp.includes("install --guided"),
+    "repo CLI help should advertise the guided install entrypoint",
+  );
+  assert.ok(
+    cliHelp.includes("ui --text"),
+    "repo CLI help should advertise the text fallback UI",
+  );
+
+  const nonTtyUi = childProcess.spawnSync(
+    process.execPath,
+    [path.resolve(__dirname, "../../bin/cli.js"), "ui"],
+    { encoding: "utf-8" },
+  );
+  assert.notEqual(nonTtyUi.status, 0, "visual UI should refuse to start without an interactive TTY");
+  assert.ok(
+    String(nonTtyUi.stderr || nonTtyUi.stdout).includes("requires an interactive TTY"),
+    "visual UI should explain the non-TTY fallback requirement clearly",
+  );
+
+  const cliStatePath = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "omni-cli-state-")), "ui-state.json");
+  const recentState = cliState.recordRecentInstall(cliState.defaultState(), {
+    tool: "cursor",
+    targetLabel: "Cursor",
+    targetPath: "/tmp/cursor-skills",
+    scope: "skill",
+    skillId: "architecture",
+    command: "npx omni-skills --cursor --skill architecture",
+  });
+  const presetState = cliState.saveServicePreset(recentState, "local-mcp", {
+    service: "mcp",
+    transport: "stream",
+    mode: "local",
+    host: "127.0.0.1",
+    port: "3334",
+    command: "npx omni-skills mcp stream --local",
+  });
+  cliState.saveCliState(presetState, cliStatePath);
+  const reloadedState = cliState.loadCliState(cliStatePath);
+  assert.equal(reloadedState.recentInstalls.length, 1, "CLI UI state should persist recent installs");
+  assert.equal(reloadedState.servicePresets.length, 1, "CLI UI state should persist saved service presets");
+  const toggledFavoriteState = cliState.toggleFavoriteBundle(reloadedState, "devops");
+  assert.ok(
+    toggledFavoriteState.favorites.bundles.includes("devops"),
+    "CLI UI state should support favorite bundle toggles",
+  );
 
   const cliFind = childProcess.execFileSync(
     process.execPath,
@@ -453,6 +502,90 @@ async function postJson(url, body, headers = {}) {
     await new Promise((resolve) => securedApiServer.once("exit", resolve));
   }
 
+  const governedApiPort = await getFreePort();
+  const governedApiDir = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-api-governed-"));
+  const governedAuditLog = path.join(governedApiDir, "audit.log");
+  const governedApiServer = childProcess.spawn(
+    process.execPath,
+    [path.resolve(__dirname, "../../../packages/server-api/src/server.js")],
+    {
+      cwd: path.resolve(__dirname, "../../.."),
+      env: {
+        ...process.env,
+        PORT: String(governedApiPort),
+        OMNI_SKILLS_HTTP_ADMIN_TOKEN: "admin-token",
+        OMNI_SKILLS_HTTP_ALLOWED_IPS: "127.0.0.1/32",
+        OMNI_SKILLS_HTTP_ALLOWED_ORIGINS: "http://example.test",
+        OMNI_SKILLS_HTTP_AUDIT_LOG: "1",
+        OMNI_SKILLS_HTTP_AUDIT_LOG_PATH: governedAuditLog,
+        OMNI_SKILLS_HTTP_MAINTENANCE_MODE: "1",
+      },
+      stdio: ["ignore", "pipe", "pipe"],
+    },
+  );
+  try {
+    const governedHealth = await waitFor(() => fetchJson(`http://127.0.0.1:${governedApiPort}/healthz`));
+    assert.equal(governedHealth.http.admin.enabled, true, "healthz should expose admin auth when configured");
+    assert.equal(
+      governedHealth.http.ip_allowlist.enabled,
+      true,
+      "healthz should expose IP allowlist status when configured",
+    );
+    assert.equal(
+      governedHealth.http.maintenance.enabled,
+      true,
+      "healthz should expose maintenance mode when configured",
+    );
+
+    const maintenanceSkills = await fetch(`http://127.0.0.1:${governedApiPort}/v1/skills`);
+    assert.equal(maintenanceSkills.status, 503, "maintenance mode should block public catalog routes");
+
+    const unauthorizedAdmin = await fetch(`http://127.0.0.1:${governedApiPort}/admin/runtime`);
+    assert.equal(unauthorizedAdmin.status, 401, "admin runtime route should require the admin token");
+
+    const authorizedAdmin = await fetch(`http://127.0.0.1:${governedApiPort}/admin/runtime`, {
+      headers: {
+        "x-admin-token": "admin-token",
+        "x-request-id": "governed-admin-request",
+        Origin: "http://example.test",
+      },
+    });
+    assert.equal(authorizedAdmin.status, 200, "admin runtime route should accept the admin token");
+    assert.equal(
+      authorizedAdmin.headers.get("x-request-id"),
+      "governed-admin-request",
+      "admin runtime route should preserve the provided request id",
+    );
+    assert.equal(
+      authorizedAdmin.headers.get("access-control-allow-origin"),
+      "http://example.test",
+      "governed API should allow configured CORS origins",
+    );
+    const authorizedAdminPayload = await authorizedAdmin.json();
+    assert.equal(
+      authorizedAdminPayload.request_id,
+      "governed-admin-request",
+      "admin runtime payload should include the active request id",
+    );
+    assert.equal(
+      authorizedAdminPayload.http.cors.allowed_origins[0],
+      "http://example.test",
+      "admin runtime payload should expose detailed governance settings",
+    );
+
+    await waitFor(() => {
+      const contents = fs.readFileSync(governedAuditLog, "utf-8");
+      if (!contents.includes("governed-admin-request")) {
+        throw new Error("waiting for audit log flush");
+      }
+      return contents;
+    });
+  } finally {
+    governedApiServer.kill("SIGINT");
+    await new Promise((resolve) => governedApiServer.once("exit", resolve));
+    fs.rmSync(governedApiDir, { recursive: true, force: true });
+  }
+
   const securedMcpPort = await getFreePort();
   const securedMcpServer = childProcess.spawn(
     process.execPath,
@@ -490,6 +623,49 @@ async function postJson(url, body, headers = {}) {
   } finally {
     securedMcpServer.kill("SIGINT");
     await new Promise((resolve) => securedMcpServer.once("exit", resolve));
+  }
+
+  const governedMcpPort = await getFreePort();
+  const governedMcpServer = childProcess.spawn(
+    process.execPath,
+    [path.resolve(__dirname, "../../../packages/server-mcp/src/server.js"), "--transport", "stream"],
+    {
+      cwd: path.resolve(__dirname, "../../.."),
+      env: {
+        ...process.env,
+        PORT: String(governedMcpPort),
+        OMNI_SKILLS_HTTP_ADMIN_TOKEN: "mcp-admin-token",
+        OMNI_SKILLS_HTTP_ALLOWED_IPS: "127.0.0.1/32",
+      },
+      stdio: ["ignore", "pipe", "pipe"],
+    },
+  );
+  try {
+    await waitFor(() => fetchJson(`http://127.0.0.1:${governedMcpPort}/healthz`));
+
+    const unauthorizedRuntime = await fetch(`http://127.0.0.1:${governedMcpPort}/admin/runtime`);
+    assert.equal(unauthorizedRuntime.status, 401, "MCP admin runtime route should require admin auth");
+
+    const authorizedRuntime = await fetch(`http://127.0.0.1:${governedMcpPort}/admin/runtime`, {
+      headers: {
+        "x-admin-token": "mcp-admin-token",
+      },
+    });
+    assert.equal(authorizedRuntime.status, 200, "MCP admin runtime route should accept admin auth");
+    const authorizedRuntimePayload = await authorizedRuntime.json();
+    assert.equal(
+      authorizedRuntimePayload.mcp.transport,
+      "stream",
+      "MCP admin runtime route should expose the active transport",
+    );
+    assert.equal(
+      authorizedRuntimePayload.http.ip_allowlist.enabled,
+      true,
+      "MCP admin runtime route should expose hosted governance settings",
+    );
+  } finally {
+    governedMcpServer.kill("SIGINT");
+    await new Promise((resolve) => governedMcpServer.once("exit", resolve));
   }
 
   const a2aPort = await getFreePort();
@@ -988,18 +1164,22 @@ main().catch((error) => {
         },
       });
       const task = response.payload.result;
-      if (task.status.state !== "working" || task.metadata?.lease?.owner !== "worker-a") {
-        throw new Error("task has not been claimed by worker-a yet");
+      const leaseOwner = task.metadata?.lease?.owner;
+      if (task.status.state !== "working" || !["worker-a", "worker-b"].includes(leaseOwner)) {
+        throw new Error("task has not been claimed by a lease worker yet");
       }
       return task;
     }, 8000, 100);
-    assert.equal(inFlightTask.status.state, "working", "queue worker A should claim the submitted task");
+    assert.equal(inFlightTask.status.state, "working", "a lease worker should claim the submitted task");
 
-    distributedA.kill("SIGKILL");
-    await new Promise((resolve) => distributedA.once("exit", resolve));
+    const claimedByWorkerA = inFlightTask.metadata?.lease?.owner === "worker-a";
+    const failedWorker = claimedByWorkerA ? distributedA : distributedB;
+    const survivingPort = claimedByWorkerA ? distributedPortB : distributedPortA;
+    failedWorker.kill("SIGKILL");
+    await new Promise((resolve) => failedWorker.once("exit", resolve));
 
     const recoveredLeaseTask = await waitFor(async () => {
-      const response = await postJson(`http://127.0.0.1:${distributedPortB}/a2a`, {
+      const response = await postJson(`http://127.0.0.1:${survivingPort}/a2a`, {
         jsonrpc: "2.0",
         id: "lease-3",
         method: "tasks/get",
@@ -1043,6 +1223,84 @@ main().catch((error) => {
     fs.rmSync(distributedA2aDir, { recursive: true, force: true });
   }
 
+  {
+    const sharedRedis = new RedisMock();
+    const taskRecord = {
+      id: "redis-task-1",
+      status: { state: "submitted" },
+      metadata: {
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        available_at: new Date().toISOString(),
+      },
+    };
+    const fakeStore = {
+      getTask(id) {
+        return id === taskRecord.id ? JSON.parse(JSON.stringify(taskRecord)) : null;
+      },
+    };
+    const coordinatorA = new RedisTaskCoordinator({
+      taskStore: fakeStore,
+      redisClient: sharedRedis,
+      keyPrefix: `omni-skills:test:${Date.now()}`,
+    });
+    const coordinatorB = new RedisTaskCoordinator({
+      taskStore: fakeStore,
+      redisClient: sharedRedis,
+      keyPrefix: coordinatorA.keyPrefix,
+    });
+    try {
+      await coordinatorA.syncTask(taskRecord);
+      const claimedByA = await coordinatorA.claimPendingTask({
+        owner: "worker-a",
+        leaseMs: 2000,
+        eligibleStates: ["submitted"],
+      });
+      assert.equal(claimedByA.id, taskRecord.id, "redis coordination should allow the first worker to claim a task");
+
+      const claimedByBWhileLocked = await coordinatorB.claimPendingTask({
+        owner: "worker-b",
+        leaseMs: 2000,
+        eligibleStates: ["submitted"],
+      });
+      assert.equal(
+        claimedByBWhileLocked,
+        null,
+        "redis coordination should not allow a second worker to claim an active lease",
+      );
+
+      assert.equal(
+        await coordinatorA.renewTaskLease(taskRecord.id, "worker-a", 2000),
+        true,
+        "redis coordination should renew the active lease for the owner",
+      );
+      assert.equal(
+        await coordinatorB.clearTaskLease(taskRecord.id, "worker-b"),
+        false,
+        "redis coordination should reject lease release from a different worker",
+      );
+      assert.equal(
+        await coordinatorA.clearTaskLease(taskRecord.id, "worker-a"),
+        true,
+        "redis coordination should allow the owner to release the lease",
+      );
+
+      const claimedByBAfterRelease = await coordinatorB.claimPendingTask({
+        owner: "worker-b",
+        leaseMs: 2000,
+        eligibleStates: ["submitted"],
+      });
+      assert.equal(
+        claimedByBAfterRelease.id,
+        taskRecord.id,
+        "redis coordination should hand the task to another worker after release",
+      );
+    } finally {
+      await coordinatorA.close();
+      await coordinatorB.close();
+    }
+  }
+
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-sidecar-"));
   try {
     const fakeHome = path.join(tempRoot, "home");
@@ -1065,6 +1323,14 @@ main().catch((error) => {
           client.skills_path === path.join(fakeCwd, ".agents", "skills"),
       ),
       "local sidecar should detect the OpenCode workspace target",
+    );
+    assert.ok(
+      detection.config_targets.some((target) => target.id === "gemini-user"),
+      "local sidecar should expose Gemini settings targets",
+    );
+    assert.ok(
+      detection.config_targets.some((target) => target.id === "kiro-user"),
+      "local sidecar should expose Kiro settings targets",
     );
 
     const installPreview = localSidecar.installSkills(
@@ -1158,6 +1424,128 @@ main().catch((error) => {
       "VS Code stdio config should launch the local Node runtime",
     );
 
+    const geminiConfigPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "gemini-user",
+        transport: "http",
+        url: "http://127.0.0.1:4444/mcp",
+        headers: {
+          Authorization: "Bearer gemini-token",
+        },
+        mcp_allowed_servers: ["omni-skills"],
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      geminiConfigPreview.config_path,
+      path.join(fakeHome, ".gemini", "settings.json"),
+      "Gemini config preview should target settings.json",
+    );
+    assert.equal(
+      geminiConfigPreview.config_profile,
+      "gemini-settings-json",
+      "Gemini config preview should use the settings profile",
+    );
+    assert.equal(
+      geminiConfigPreview.next_config.mcpServers["omni-skills"].headers.Authorization,
+      "Bearer gemini-token",
+      "Gemini config preview should include configured remote headers",
+    );
+    assert.deepEqual(
+      geminiConfigPreview.next_config.mcp.allowed,
+      ["omni-skills"],
+      "Gemini config preview should include global MCP allow rules",
+    );
+    assert.ok(
+      geminiConfigPreview.recipes.some((recipe) => recipe.client === "gemini-cli"),
+      "Gemini config preview should include a client recipe",
+    );
+
+    const kiroConfigPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "kiro-user",
+        transport: "stdio",
+        disabled_tools: ["shell", "filesystem"],
+        auto_approve: ["search"],
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      kiroConfigPreview.config_path,
+      path.join(fakeHome, ".kiro", "settings", "mcp.json"),
+      "Kiro config preview should target settings/mcp.json",
+    );
+    assert.equal(
+      kiroConfigPreview.config_profile,
+      "kiro-json",
+      "Kiro config preview should use the Kiro profile",
+    );
+    assert.deepEqual(
+      kiroConfigPreview.next_config.mcpServers["omni-skills"].disabledTools,
+      ["shell", "filesystem"],
+      "Kiro config preview should include disabled tool rules",
+    );
+    assert.deepEqual(
+      kiroConfigPreview.next_config.mcpServers["omni-skills"].autoApprove,
+      ["search"],
+      "Kiro config preview should include auto-approve rules",
+    );
+
+    const claudeSettingsPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "claude-user-settings",
+        transport: "sse",
+        url: "http://127.0.0.1:4444/sse",
+        enable_all_project_mcp_servers: true,
+        permissions_deny: ["Bash(rm:*)"],
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      claudeSettingsPreview.config_profile,
+      "claude-settings-json",
+      "Claude settings preview should use the settings profile",
+    );
+    assert.equal(
+      claudeSettingsPreview.next_config.enableAllProjectMcpServers,
+      true,
+      "Claude settings preview should enable project MCP auto-approval when requested",
+    );
+    assert.deepEqual(
+      claudeSettingsPreview.next_config.permissions.deny,
+      ["Bash(rm:*)"],
+      "Claude settings preview should include deny permission rules",
+    );
+
+    const cursorWorkspacePreview = localSidecar.configureClientMcp(
+      {
+        config_target: "cursor-workspace",
+        transport: "http",
+        url: "http://127.0.0.1:4444/mcp",
+        env_file: ".env.mcp",
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      cursorWorkspacePreview.config_path,
+      path.join(fakeCwd, ".cursor", "mcp.json"),
+      "Cursor workspace preview should target .cursor/mcp.json",
+    );
+    assert.equal(
+      cursorWorkspacePreview.next_config.mcpServers["omni-skills"].type,
+      "http",
+      "Cursor config preview should keep an explicit transport type",
+    );
+    assert.equal(
+      cursorWorkspacePreview.next_config.mcpServers["omni-skills"].envFile,
+      ".env.mcp",
+      "Cursor config preview should carry envFile when requested",
+    );
+
     const codexConfigPreview = localSidecar.configureClientMcp(
       {
         client: "codex",
@@ -1228,6 +1616,40 @@ main().catch((error) => {
     assert.ok(
       fs.existsSync(path.join(guidedInstallPath, "find-skills", "SKILL.md")),
       "guided find install should install the selected skill when --yes is used",
+    );
+
+    const guidedWizardPath = path.join(tempRoot, "guided-wizard");
+    const guidedWizardOutput = childProcess.execFileSync(
+      process.execPath,
+      [
+        path.resolve(__dirname, "../../bin/cli.js"),
+        "install",
+        "--guided",
+        "--path",
+        guidedWizardPath,
+        "--skill",
+        "architecture",
+      ],
+      {
+        encoding: "utf-8",
+        input: "y\n",
+        env: {
+          ...process.env,
+          OMNI_SKILLS_SOURCE_ROOT: path.resolve(__dirname, "../../.."),
+        },
+      },
+    );
+    assert.ok(
+      guidedWizardOutput.includes("Install Preview"),
+      "guided install should show an install preview before writing files",
+    );
+    assert.ok(
+      guidedWizardOutput.includes("--path"),
+      "guided install should render the equivalent installer command",
+    );
+    assert.ok(
+      fs.existsSync(path.join(guidedWizardPath, "architecture", "SKILL.md")),
+      "guided install should write the selected skill into the chosen custom path",
     );
 
     const removed = localSidecar.removeSkills(

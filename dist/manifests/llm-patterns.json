@@ -166,11 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 83,
-      "tier": "good"
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 274,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 380,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 531,
+        "resources_items_count": 2,
+        "resources_section_length": 120,
+        "examples_section_length": 609,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 271,
+        "decision_assets_count": 5,
+        "table_count": 0,
+        "linked_resource_families_count": 3,
+        "linked_resource_families": [
+          "agents",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 5.84
+      }
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +203,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 16,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -238,7 +264,32 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 274,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 380,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 531,
+      "resources_items_count": 2,
+      "resources_section_length": 120,
+      "examples_section_length": 609,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 271,
+      "decision_assets_count": 5,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 5.84
+    }
   },
   "artifacts": [
     {
@@ -250,8 +301,8 @@
     {
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
-      "size_bytes": 3511,
-      "sha256": "24a84c0e97a5ce5ec33c873690bea61bb7894761b2af387297cd839c779faca1"
+      "size_bytes": 5103,
+      "sha256": "c35b54d3a14f8a2ab15583939a31de47f0ab7962a1be46c67b99ecccc9be2608"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -277,8 +328,8 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5261,
-      "sha256": "c64a15b872fd4284bc3c3956bfe9ffef9150f890ab1c72592f0f9e5cf9118312",
+      "size_bytes": 5457,
+      "sha256": "96c8480298c74f882c4d4d31a1c590d8a956e225ec023e0adde75842a789e6dc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -291,8 +342,8 @@
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4393,
-      "sha256": "42cf27c5221b5ff2dddf66d9c337215aea25b382581e01e874ef8996990ab2cb",
+      "size_bytes": 4574,
+      "sha256": "ffcc1277ee2197c5fcc7a40e4a6af52276d16e5934ac95d4d5de3c9cbbbcc2c4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -305,7 +356,7 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "268d66f4efb2efc95e71b558c22a62a92bc064e1b0e4ed1a5f7b94e2ec0ee0db",
+    "sha256": "c40da4d0cfffe4ae4bf38f07ee3d8e3e61d5cebe99f2bd3ef7f68be3134958a1",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -316,6 +367,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "9d0ad260a37ed7ff02eadf389b9dfcdc9ad37355f20015b70e63160c8b75de9a"
+    "package_sha256": "8af54f352ad89473ecaf64a28be6a9103771c829bae9b6e3ac3f09e31f9e002d"
   }
 }

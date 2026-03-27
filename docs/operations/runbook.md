@@ -19,6 +19,7 @@ npm run validate        # Validate skills + regenerate metadata
 npm run taxonomy:report # Show category drift (read-only)
 npm run build           # Generate catalog, manifests, archives, CATALOG.md
 npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
+npx omni-skills ui      # Visual shell for install and service launch
 ```
 
 | Command | What It Does |
@@ -29,6 +30,38 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 | `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
 | `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
 | `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
+
+---
+
+## 🖥️ Visual Shell
+
+The published CLI now includes an Ink-based operator shell:
+
+```bash
+npx omni-skills ui
+```
+
+Current capabilities:
+
+- guided install for known clients and custom paths
+- search-then-install flow
+- MCP launch wizard
+- API launch wizard
+- A2A launch wizard
+- recent installs and service relaunches
+- named install and service presets
+
+Local state path:
+
+```text
+~/.omni-skills/state/ui-state.json
+```
+
+Fallback:
+
+```bash
+npx omni-skills ui --text
+```
 
 ---
 

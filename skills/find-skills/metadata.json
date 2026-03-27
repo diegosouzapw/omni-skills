@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T04:41:54.895492+00:00",
+  "generated_at": "2026-03-27T11:17:10.483994+00:00",
   "id": "find-skills",
   "slug": "find-skills",
   "display_name": "Find Skills",
@@ -83,7 +83,32 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 251,
+      "best_practices_items_count": 4,
+      "best_practices_section_length": 355,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 492,
+      "resources_items_count": 2,
+      "resources_section_length": 122,
+      "examples_section_length": 248,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 7,
+      "body_density": 4.88
+    }
   },
   "maturity": {
     "skill_level": 3,
@@ -92,19 +117,47 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 77,
-    "tier": "good"
+    "score": 95,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 251,
+      "best_practices_items_count": 4,
+      "best_practices_section_length": 355,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 492,
+      "resources_items_count": 2,
+      "resources_section_length": 122,
+      "examples_section_length": 248,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 7,
+      "body_density": 4.88
+    }
   },
   "quality": {
-    "score": 95,
+    "score": 86,
     "tier": "platinum",
     "breakdown": {
-      "body": 25,
-      "description": 15,
-      "metadata": 20,
-      "recency": 10,
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
       "resources": 10,
-      "best_practices": 15
+      "best_practices": 9,
+      "semantic_depth": 11,
+      "operational_depth": 4,
+      "support_pack": 6
     }
   },
   "security": {

@@ -164,11 +164,35 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 80,
-      "tier": "good"
+      "score": 93,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 235,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 321,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 443,
+        "resources_items_count": 2,
+        "resources_section_length": 250,
+        "examples_section_length": 474,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 232,
+        "decision_assets_count": 3,
+        "table_count": 0,
+        "linked_resource_families_count": 2,
+        "linked_resource_families": [
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 5,
+        "body_density": 4.94
+      }
     },
     "quality": {
-      "score": 96,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +200,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 16
+        "best_practices": 15,
+        "semantic_depth": 9
       }
     },
     "security": {
@@ -236,7 +261,31 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 235,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 321,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 443,
+      "resources_items_count": 2,
+      "resources_section_length": 250,
+      "examples_section_length": 474,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 232,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 5,
+      "body_density": 4.94
+    }
   },
   "artifacts": [
     {
@@ -248,8 +297,8 @@
     {
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
-      "size_bytes": 3419,
-      "sha256": "d2bb75a77d0a9f97f043f0cd8f6bfb8d55b754e224abd0f7757cd1aea97348ca"
+      "size_bytes": 4973,
+      "sha256": "8271d3f114d5d26b86810d4e56c938be69d26facc18f30c350637ec353fe1f40"
     },
     {
       "path": "skills/create-pr/references/checklist.md",
@@ -269,8 +318,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 4307,
-      "sha256": "6104e17a210e2c30fdb28be11798126b1ce1cd2e840f5c133d13a946e6add426",
+      "size_bytes": 4497,
+      "sha256": "adea7b03ed3810beaed06954497202c7328f3149f59f8e0ad79db38edc2ed8de",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -283,8 +332,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 3789,
-      "sha256": "3fffb1a101138e99df043840a49432e7041a7eab351a063d4cade59d40dbfe6e",
+      "size_bytes": 3982,
+      "sha256": "7d7f454d8681eca8d7130ac87da7a3940398733083c3884e731ec9e4b40e3291",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -297,7 +346,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "3139e80557943df665c93ec16793a88b450ddb0eb64c988062a94ea302c0b143",
+    "sha256": "d24faff7bab871b64e12f6e25d5e63b40e8d2a997067d7071a56af32b8e8e1bc",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -308,6 +357,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "102cbe661c4d49d8346c3e9506c8b73002336e9544cafc1bfb2c68e01d2f4c9d",
-    "package_sha256": "1ac7196cac6151fdf5029a2f9e6332d712b5a16e61e0179ae31d740fde7c3a0b"
+    "package_sha256": "775150e7fa01054d5e679854a8244f3f7604bea6cef5d0288341957f59ffec8c"
   }
 }

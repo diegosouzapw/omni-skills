@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import {
   buildInstallPlan,
   compareSkills,
@@ -19,15 +18,24 @@ import {
   resolveSkillEntrypointFile,
   searchSkills,
 } from "../../catalog-core/src/index.js";
-import { createHttpRuntimeMiddleware, getHttpRuntimeSnapshot } from "./http-runtime.js";
+import {
+  applyExpressHttpRuntime,
+  createHttpCorsMiddleware,
+  createHttpRuntimeMiddleware,
+  getHttpRuntimeSnapshot,
+} from "./http-runtime.js";
 
 const app = express();
 const PORT = Number.parseInt(process.env.PORT || "3333", 10);
 const HOST = process.env.HOST || "127.0.0.1";
 
-app.use(cors());
+applyExpressHttpRuntime(app);
+app.use(createHttpCorsMiddleware());
 app.use(express.json({ limit: "1mb" }));
-app.use(createHttpRuntimeMiddleware({ allowAnonymousPaths: ["/healthz"] }));
+app.use(createHttpRuntimeMiddleware({
+  allowAnonymousPaths: ["/healthz"],
+  adminPaths: ["/admin/runtime"],
+}));
 
 function requestBaseUrl(req) {
   return `${req.protocol}://${req.get("host")}`;
@@ -37,6 +45,22 @@ app.get("/healthz", (_req, res) => {
   res.json({
     ...getHealthSnapshot(),
     http: getHttpRuntimeSnapshot(),
+  });
+});
+
+app.get("/admin/runtime", (req, res) => {
+  res.json({
+    request_id: req.omniRequestId || null,
+    http: getHttpRuntimeSnapshot({ detailed: true }),
+    runtime: {
+      host: HOST,
+      port: PORT,
+      base_url: requestBaseUrl(req),
+    },
+    catalog: {
+      total_skills: listSkills({ limit: 1 }).total,
+      bundles: listBundles().length,
+    },
   });
 });
 
@@ -65,6 +89,7 @@ app.get("/openapi.json", (req, res) => {
     },
     paths: {
       "/healthz": { get: { summary: "Health check" } },
+      "/admin/runtime": { get: { summary: "Admin-only runtime and governance snapshot" } },
       "/v1/catalog/download": { get: { summary: "Download the generated catalog JSON" } },
       "/v1/skills": { get: { summary: "List skills" } },
       "/v1/skills/{id}": { get: { summary: "Get a skill manifest" } },

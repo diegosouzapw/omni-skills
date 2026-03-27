@@ -166,11 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 83,
-      "tier": "good"
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 327,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 378,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 532,
+        "resources_items_count": 2,
+        "resources_section_length": 120,
+        "examples_section_length": 566,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 278,
+        "decision_assets_count": 5,
+        "table_count": 0,
+        "linked_resource_families_count": 3,
+        "linked_resource_families": [
+          "agents",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 5.79
+      }
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +203,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 16,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -238,7 +264,32 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 327,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 378,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 532,
+      "resources_items_count": 2,
+      "resources_section_length": 120,
+      "examples_section_length": 566,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 278,
+      "decision_assets_count": 5,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 5.79
+    }
   },
   "artifacts": [
     {
@@ -250,8 +301,8 @@
     {
       "path": "skills/kubernetes/metadata.json",
       "kind": "support",
-      "size_bytes": 3474,
-      "sha256": "e5f43d74debbfd73fcace132d15e8e39e44404f2240f1cfd60f53bfa4767df1c"
+      "size_bytes": 5066,
+      "sha256": "bdffe10c26e8892387df0c298b6021d52c453f83d399e99749f744e7db302ac3"
     },
     {
       "path": "skills/kubernetes/agents/openai.yaml",
@@ -277,8 +328,8 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 5345,
-      "sha256": "b1da5394163fe29e019f6251c3d2edb2387de57f6753c2ad84cfbf29d1f889f5",
+      "size_bytes": 5536,
+      "sha256": "f89144a31013a55f7ed01bd6b039c3364ecbd54e4e5abc5ebd84857b0e435393",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -291,8 +342,8 @@
       "format": "tar.gz",
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
-      "size_bytes": 4558,
-      "sha256": "6b9c1481a41603e71de55d5ec27ab7b5d31a1b06454293fb6793b8f08e6a0426",
+      "size_bytes": 4746,
+      "sha256": "dcf2a608b645a833815cde06fb74af2484a6e0c2fa5fd7dd3d512de81c0221ae",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -305,7 +356,7 @@
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "f8a67b35e6aa2e2c9a2f9da5911d51309c5f7748a0e9eb2dfa25bfae9ecfb5ee",
+    "sha256": "927b5880b7980c34ab5e4a9d0d3de5e558c78e78de61540b079e87e0746142e8",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -316,6 +367,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "17c9ab5f381ad08340287288749e566551e14c7f2685b064e9cb64a1ce7f8c8f",
-    "package_sha256": "ad867a0ce69db161f9a5b1f4fc9b999a44ff7bf013e2ce0cfc1972a10e1f6ef2"
+    "package_sha256": "87cef636e5ea9b480ec7bc93e93ec6314ab17804a98ef0d14a0966ba3d4d94ee"
   }
 }

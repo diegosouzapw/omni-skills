@@ -16,7 +16,7 @@
 | ✅ Client-aware MCP config writing | Implemented |
 | ✅ HTTP auth + rate limiting | Implemented |
 | ⏳ Signed artifact enforcement | Pending |
-| 🟡 Full client config coverage | Expanded, still growing |
+| 🟡 Full client config coverage | Claude, Cursor, Codex, Gemini, Kiro, VS Code, Dev Containers, and generic targets implemented; broader ecosystem still growing |
 
 ---
 
@@ -106,8 +106,16 @@ When local mode is enabled, these extra tools become available:
 
 | Target | Format |
 |:-------|:-------|
-| `~/.claude.json` | JSON (`mcpServers`) |
+| `~/.claude/settings.json` | Claude Code settings JSON |
+| `<workspace>/.claude/settings.json` | Claude project settings JSON |
+| `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
+| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
 | `~/.cursor/mcp.json` | JSON (`mcpServers`) |
+| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
+| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
+| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
+| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
+| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
 | `<workspace>/.mcp.json` | JSON (`mcpServers`) |
 | `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
@@ -140,7 +148,7 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 
 ## ⚙️ Config Writing Examples
 
-### 🔵 Claude Code / Workspace JSON
+### 🔵 Claude Code / Project Settings
 
 ```json
 {
@@ -153,13 +161,48 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 }
 ```
 
-### 🔵 Cursor / Generic JSON
+### 🔵 Cursor / Workspace JSON
 
 ```json
 {
   "mcpServers": {
     "omni-skills": {
+      "type": "http",
       "url": "http://127.0.0.1:3334/sse"
+    }
+  }
+}
+```
+
+### 🟡 Gemini CLI / User Settings
+
+```json
+{
+  "mcpServers": {
+    "omni-skills": {
+      "type": "http",
+      "url": "http://127.0.0.1:3334/mcp",
+      "headers": {
+        "Authorization": "Bearer example"
+      }
+    }
+  },
+  "mcp": {
+    "allowed": ["omni-skills"]
+  }
+}
+```
+
+### 🟢 Kiro / User Settings
+
+```json
+{
+  "mcpServers": {
+    "omni-skills": {
+      "type": "http",
+      "url": "http://127.0.0.1:3334/mcp",
+      "disabledTools": ["install_skills"],
+      "autoApprove": ["search_skills", "get_skill"]
     }
   }
 }
@@ -230,7 +273,12 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-The `configure_client_mcp` tool can also write Claude-specific `allowedMcpServers` and `deniedMcpServers` arrays when you pass `allowed_mcp_servers` or `denied_mcp_servers`.
+The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
+
+- `allowed_mcp_servers`
+- `denied_mcp_servers`
+- `permissions_deny`
+- `enable_all_project_mcp_servers`
 
 ### 💜 VS Code sandboxing
 
@@ -239,8 +287,43 @@ For VS Code and Dev Container targets, `configure_client_mcp` can also write:
 - `sandboxEnabled`
 - `sandbox.filesystem.allowWrite`
 - `sandbox.network.allowHosts`
+- `dev.watch`
+- `dev.debug.type`
 
 This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
+
+### 🧰 Cross-Client Entry Options
+
+`configure_client_mcp` now supports richer entry metadata across supported profiles:
+
+- `headers`
+- `env`
+- `env_file`
+- `cwd`
+- `timeout_ms`
+- `description`
+- `include_tools`
+- `exclude_tools`
+- `disabled`
+- `trust`
+
+Profile-specific options:
+
+- Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
+- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- Kiro: `disabled_tools`, `auto_approve`
+- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
+
+### 📋 Generated Recipes
+
+`configure_client_mcp` returns `recipes` alongside the preview or applied config.
+
+These recipes are client-aware guidance blocks, for example:
+
+- `claude mcp add ... --scope user|project`
+- `gemini mcp add ... --scope user|project`
+- `codex mcp add ...`
+- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
 
 ---
 
@@ -252,8 +335,13 @@ The HTTP transports support the same env-driven controls as the catalog API:
 |:---------|:--------|
 | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
 | `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
 | `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
 | `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
 | `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
 
-> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled.
+> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.

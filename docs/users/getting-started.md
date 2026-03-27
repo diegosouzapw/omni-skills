@@ -16,11 +16,25 @@
 
 ## 📦 Step 1 — Install
 
-### 🎯 Default Install (Antigravity)
+### 🧭 Guided Install
 
 ```bash
 npx omni-skills
 ```
+
+In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
+
+### 🖥️ Visual Shell
+
+```bash
+npx omni-skills ui
+```
+
+This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+
+### 🎯 Default Install (Antigravity Outside TTY)
+
+Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
 
 ### 🖱️ Focused Install — One Skill, One Client
 

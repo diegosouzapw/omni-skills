@@ -1153,17 +1153,107 @@ def detect_skill_level(body: str, sibling_entries: List[str]) -> Dict[str, Any]:
     }
 
 
+def extract_markdown_section(content: str, headings: List[str]) -> str:
+    heading_pattern = "|".join(re.escape(heading) for heading in headings if heading)
+    if not heading_pattern:
+        return ""
+
+    match = re.search(
+        rf"^##\s*(?:{heading_pattern})\s*$",
+        content,
+        re.IGNORECASE | re.MULTILINE,
+    )
+    if not match:
+        return ""
+
+    start = match.end()
+    remainder = content[start:]
+    next_heading = re.search(r"^##\s+", remainder, re.MULTILINE)
+    section = remainder[: next_heading.start()] if next_heading else remainder
+    return section.strip()
+
+
+def count_list_items(section: str) -> int:
+    return len(re.findall(r"^\s*(?:-|\*|\d+\.)\s+", section, re.MULTILINE))
+
+
+def count_code_blocks(section: str) -> int:
+    return len(re.findall(r"```(?:python|bash|sh|typescript|javascript|json|yaml|toml)?", section, re.IGNORECASE))
+
+
+def compute_semantic_signals(
+    content: str,
+    sub_resources: List[str],
+    metadata_fields: Dict[str, Any],
+) -> Dict[str, Any]:
+    body = strip_frontmatter(content).strip()
+    workflow_section = extract_markdown_section(content, ["workflow", "steps", "instructions", "guide", "how to"])
+    when_to_use_section = extract_markdown_section(
+        content,
+        ["when to use", "when to use this skill", "use this skill when"],
+    )
+    best_practices_section = extract_markdown_section(content, ["best practices", "guidelines"])
+    troubleshooting_section = extract_markdown_section(content, ["troubleshooting"])
+    resources_section = extract_markdown_section(content, ["additional resources", "references", "further reading"])
+    examples_section = extract_markdown_section(content, ["example", "examples", "quick start", "usage"])
+    related_skills_section = extract_markdown_section(content, ["related skills"])
+
+    workflow_steps_count = count_list_items(workflow_section)
+    best_practices_items_count = count_list_items(best_practices_section)
+    troubleshooting_items_count = count_list_items(troubleshooting_section)
+    resources_items_count = count_list_items(resources_section)
+    examples_code_blocks_count = count_code_blocks(examples_section)
+    decision_assets_count = len(
+        re.findall(
+            r"\b(checklist|template|rubric|matrix|decision tree|playbook|packet|worksheet)\b",
+            content,
+            re.IGNORECASE,
+        )
+    )
+    table_count = len(re.findall(r"^\|.+\|\s*$", content, re.MULTILINE))
+    linked_resource_families = {
+        family
+        for family in ("references", "scripts", "assets", "agents", "examples")
+        if re.search(rf"\]\(({family})/", content, re.IGNORECASE)
+        or family in [entry.lower() for entry in sub_resources]
+    }
+    tools = parse_string_list(metadata_fields.get("tools"))
+    tags = parse_string_list(metadata_fields.get("tags"))
+
+    return {
+        "workflow_steps_count": workflow_steps_count,
+        "workflow_section_length": len(workflow_section),
+        "when_to_use_section_length": len(when_to_use_section),
+        "best_practices_items_count": best_practices_items_count,
+        "best_practices_section_length": len(best_practices_section),
+        "troubleshooting_items_count": troubleshooting_items_count,
+        "troubleshooting_section_length": len(troubleshooting_section),
+        "resources_items_count": resources_items_count,
+        "resources_section_length": len(resources_section),
+        "examples_section_length": len(examples_section),
+        "examples_code_blocks_count": examples_code_blocks_count,
+        "related_skills_section_length": len(related_skills_section),
+        "decision_assets_count": decision_assets_count,
+        "table_count": table_count,
+        "linked_resource_families_count": len(linked_resource_families),
+        "linked_resource_families": sorted(linked_resource_families),
+        "tools_count": len(tools),
+        "tags_count": len(tags),
+        "body_density": round(len(re.findall(r"\b\w+\b", body)) / max(1, len(body.splitlines())), 2),
+    }
+
+
 def score_best_practices(
     skill_name: str,
     description: str,
     content: str,
     metadata_fields: Dict[str, Any],
     sub_resources: List[str],
+    semantic_signals: Dict[str, Any],
 ) -> int:
     score = 0
     name = normalize_text(skill_name)
     desc = normalize_text(description)
-    body_lines = content.splitlines()
     body = strip_frontmatter(content).strip()
     body_word_count = len(re.findall(r"\b\w+\b", body))
     reserved_words = re.compile(r"\b(anthropic|claude)\b", re.IGNORECASE)
@@ -1246,19 +1336,19 @@ def score_best_practices(
         score += 3
 
     if has_when_to_use_section:
-        score += 5
-    if has_workflow_section:
-        score += 5
-    if has_examples_section:
-        score += 5
-    if has_best_practices_section:
-        score += 5
-    if has_troubleshooting_section:
         score += 4
+    if has_workflow_section:
+        score += 4
+    if has_examples_section:
+        score += 4
+    if has_best_practices_section:
+        score += 4
+    if has_troubleshooting_section:
+        score += 3
     if has_additional_resources_section:
         score += 2
     if has_related_skills_section:
-        score += 3
+        score += 2
     if section_inventory >= 7:
         score += 5
     elif section_inventory >= 5:
@@ -1329,6 +1419,64 @@ def score_best_practices(
     elif len(tools) >= 4:
         score += 1
 
+    workflow_steps_count = semantic_signals.get("workflow_steps_count", 0)
+    if workflow_steps_count >= 7:
+        score += 6
+    elif workflow_steps_count >= 5:
+        score += 5
+    elif workflow_steps_count >= 3:
+        score += 3
+
+    if semantic_signals.get("best_practices_items_count", 0) >= 6:
+        score += 5
+    elif semantic_signals.get("best_practices_items_count", 0) >= 4:
+        score += 4
+    elif semantic_signals.get("best_practices_items_count", 0) >= 2:
+        score += 2
+
+    if semantic_signals.get("troubleshooting_section_length", 0) >= 700:
+        score += 5
+    elif semantic_signals.get("troubleshooting_section_length", 0) >= 450:
+        score += 4
+    elif semantic_signals.get("troubleshooting_section_length", 0) >= 220:
+        score += 2
+
+    if semantic_signals.get("resources_items_count", 0) >= 5:
+        score += 4
+    elif semantic_signals.get("resources_items_count", 0) >= 3:
+        score += 3
+    elif semantic_signals.get("resources_items_count", 0) >= 1:
+        score += 1
+
+    if semantic_signals.get("examples_code_blocks_count", 0) >= 4:
+        score += 4
+    elif semantic_signals.get("examples_code_blocks_count", 0) >= 2:
+        score += 3
+    elif semantic_signals.get("examples_code_blocks_count", 0) >= 1:
+        score += 1
+
+    if semantic_signals.get("linked_resource_families_count", 0) >= 4:
+        score += 5
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 3:
+        score += 4
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 2:
+        score += 2
+
+    if semantic_signals.get("decision_assets_count", 0) >= 3:
+        score += 5
+    elif semantic_signals.get("decision_assets_count", 0) >= 1:
+        score += 3
+
+    if semantic_signals.get("table_count", 0) >= 2:
+        score += 2
+    elif semantic_signals.get("table_count", 0) >= 1:
+        score += 1
+
+    if semantic_signals.get("body_density", 0) >= 10:
+        score += 2
+    elif semantic_signals.get("body_density", 0) >= 7:
+        score += 1
+
     return min(score, 100)
 
 
@@ -1374,6 +1522,7 @@ def compute_quality_score(
     best_practices_score: int,
     level: Dict[str, Any],
     file_mtime: datetime,
+    semantic_signals: Dict[str, Any],
 ) -> Tuple[int, Dict[str, int]]:
     details = {
         "body": 0,
@@ -1382,66 +1531,87 @@ def compute_quality_score(
         "recency": 0,
         "resources": 0,
         "best_practices": 0,
+        "semantic_depth": 0,
+        "operational_depth": 0,
+        "support_pack": 0,
     }
 
-    if body_length >= 2500:
-        details["body"] = 25
-    elif body_length >= 1500:
-        details["body"] = 20
-    elif body_length >= 800:
+    if body_length >= 3200:
+        details["body"] = 16
+    elif body_length >= 2500:
         details["body"] = 14
+    elif body_length >= 1800:
+        details["body"] = 12
+    elif body_length >= 1200:
+        details["body"] = 10
+    elif body_length >= 800:
+        details["body"] = 7
     elif body_length >= 400:
-        details["body"] = 8
+        details["body"] = 5
     elif body_length > 0:
         details["body"] = 3
 
     description_length = len(description)
-    if description_length >= 120:
-        details["description"] = 15
-    elif description_length >= 80:
-        details["description"] = 12
-    elif description_length >= 40:
+    description_lower = description.lower()
+    description_precision = 0
+    if re.search(r"\b(use this skill|when|should be used|best for|ideal for)\b", description_lower):
+        description_precision += 2
+    if re.search(r"\b(workflow|playbook|review|design|install|audit|debug|diagnos)\b", description_lower):
+        description_precision += 1
+
+    if description_length >= 140:
         details["description"] = 8
-    elif description_length >= 20:
+    elif description_length >= 100:
+        details["description"] = 6
+    elif description_length >= 70:
         details["description"] = 5
-    elif description_length > 0:
+    elif description_length >= 40:
+        details["description"] = 3
+    elif description_length >= 20:
         details["description"] = 2
+    elif description_length > 0:
+        details["description"] = 1
+    details["description"] = min(details["description"] + description_precision, 10)
 
     metadata_score = 0
     if metadata_fields.get("version"):
-        metadata_score += 2
+        metadata_score += 1
     if metadata_fields.get("category"):
-        metadata_score += 2
+        metadata_score += 1
     if metadata_fields.get("risk"):
         metadata_score += 1
     if metadata_fields.get("source"):
         metadata_score += 1
     if metadata_fields.get("author"):
-        metadata_score += 2
+        metadata_score += 1
     if metadata_fields.get("complexity"):
         metadata_score += 1
     if parse_string_list(metadata_fields.get("tags")):
-        metadata_score += 3
+        metadata_score += 2
     if parse_string_list(metadata_fields.get("tools")):
-        metadata_score += 4
+        metadata_score += 2
     if metadata_fields.get("date_added"):
-        metadata_score += 2
+        metadata_score += 1
     if metadata_fields.get("date_updated"):
-        metadata_score += 2
-    details["metadata"] = min(metadata_score, 20)
+        metadata_score += 1
+    if parse_string_list(metadata_fields.get("tags")) and len(parse_string_list(metadata_fields.get("tags"))) >= 6:
+        metadata_score += 1
+    if parse_string_list(metadata_fields.get("tools")) and len(parse_string_list(metadata_fields.get("tools"))) >= 5:
+        metadata_score += 1
+    details["metadata"] = min(metadata_score, 12)
 
     updated_at = parse_iso_date(normalize_text(metadata_fields.get("date_updated"))) or file_mtime
     age_days = max(0, (datetime.now(timezone.utc) - updated_at).days)
     if age_days <= 30:
-        details["recency"] = 10
-    elif age_days <= 90:
         details["recency"] = 8
+    elif age_days <= 90:
+        details["recency"] = 7
     elif age_days <= 180:
-        details["recency"] = 6
+        details["recency"] = 5
     elif age_days <= 365:
-        details["recency"] = 4
+        details["recency"] = 3
     elif age_days <= 730:
-        details["recency"] = 2
+        details["recency"] = 1
 
     resources_score = 0
     if level["level"] == 3:
@@ -1456,7 +1626,105 @@ def compute_quality_score(
         resources_score += 3
     details["resources"] = min(resources_score, 10)
 
-    details["best_practices"] = round(best_practices_score * 0.20)
+    if best_practices_score >= 98:
+        details["best_practices"] = 10
+    elif best_practices_score >= 95:
+        details["best_practices"] = 9
+    elif best_practices_score >= 92:
+        details["best_practices"] = 8
+    elif best_practices_score >= 88:
+        details["best_practices"] = 7
+    elif best_practices_score >= 84:
+        details["best_practices"] = 6
+    elif best_practices_score >= 78:
+        details["best_practices"] = 5
+    elif best_practices_score >= 72:
+        details["best_practices"] = 4
+    elif best_practices_score >= 66:
+        details["best_practices"] = 3
+    elif best_practices_score >= 60:
+        details["best_practices"] = 2
+
+    semantic_depth = 0
+    if semantic_signals.get("workflow_steps_count", 0) >= 7:
+        semantic_depth += 4
+    elif semantic_signals.get("workflow_steps_count", 0) >= 5:
+        semantic_depth += 3
+    elif semantic_signals.get("workflow_steps_count", 0) >= 3:
+        semantic_depth += 2
+    if semantic_signals.get("linked_resource_families_count", 0) >= 4:
+        semantic_depth += 3
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 2:
+        semantic_depth += 2
+    if semantic_signals.get("troubleshooting_items_count", 0) >= 3:
+        semantic_depth += 3
+    elif semantic_signals.get("troubleshooting_section_length", 0) >= 450:
+        semantic_depth += 3
+    elif semantic_signals.get("troubleshooting_section_length", 0) >= 220:
+        semantic_depth += 2
+    if semantic_signals.get("decision_assets_count", 0) >= 3:
+        semantic_depth += 3
+    elif semantic_signals.get("decision_assets_count", 0) >= 2:
+        semantic_depth += 2
+    elif semantic_signals.get("decision_assets_count", 0) >= 1:
+        semantic_depth += 1
+    if semantic_signals.get("examples_code_blocks_count", 0) >= 4:
+        semantic_depth += 2
+    elif semantic_signals.get("examples_code_blocks_count", 0) >= 2:
+        semantic_depth += 1
+    if semantic_signals.get("related_skills_section_length", 0) >= 120:
+        semantic_depth += 2
+    elif semantic_signals.get("related_skills_section_length", 0) >= 40:
+        semantic_depth += 1
+    if semantic_signals.get("when_to_use_section_length", 0) >= 260:
+        semantic_depth += 2
+    elif semantic_signals.get("when_to_use_section_length", 0) >= 120:
+        semantic_depth += 1
+    details["semantic_depth"] = min(semantic_depth, 16)
+
+    operational_depth = 0
+    if semantic_signals.get("best_practices_items_count", 0) >= 6:
+        operational_depth += 3
+    elif semantic_signals.get("best_practices_items_count", 0) >= 4:
+        operational_depth += 2
+    elif semantic_signals.get("best_practices_items_count", 0) >= 2:
+        operational_depth += 1
+    if semantic_signals.get("resources_items_count", 0) >= 5:
+        operational_depth += 3
+    elif semantic_signals.get("resources_items_count", 0) >= 3:
+        operational_depth += 2
+    elif semantic_signals.get("resources_items_count", 0) >= 1:
+        operational_depth += 1
+    if semantic_signals.get("table_count", 0) >= 2:
+        operational_depth += 2
+    elif semantic_signals.get("table_count", 0) >= 1:
+        operational_depth += 1
+    if semantic_signals.get("body_density", 0) >= 11:
+        operational_depth += 2
+    elif semantic_signals.get("body_density", 0) >= 8:
+        operational_depth += 1
+    if semantic_signals.get("tools_count", 0) >= 5 or semantic_signals.get("tags_count", 0) >= 6:
+        operational_depth += 1
+    details["operational_depth"] = min(operational_depth, 10)
+
+    support_pack = 0
+    if semantic_signals.get("linked_resource_families_count", 0) >= 4:
+        support_pack += 4
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 3:
+        support_pack += 3
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 2:
+        support_pack += 2
+    elif semantic_signals.get("linked_resource_families_count", 0) >= 1:
+        support_pack += 1
+    if semantic_signals.get("decision_assets_count", 0) >= 3:
+        support_pack += 3
+    elif semantic_signals.get("decision_assets_count", 0) >= 1:
+        support_pack += 2
+    if semantic_signals.get("examples_section_length", 0) >= 500:
+        support_pack += 1
+    if semantic_signals.get("resources_section_length", 0) >= 300:
+        support_pack += 1
+    details["support_pack"] = min(support_pack, 8)
 
     total = sum(details.values())
     return min(total, 100), details
@@ -1502,6 +1770,7 @@ def validate_skill(
     level = detect_skill_level(body, sibling_entries)
     tags = parse_string_list(frontmatter.get("tags"))
     tools = parse_string_list(frontmatter.get("tools"))
+    semantic_signals = compute_semantic_signals(content, sub_resources, frontmatter)
     file_mtime = datetime.fromtimestamp(os.path.getmtime(skill_md), tz=timezone.utc)
     best_practices_score = score_best_practices(
         normalize_text(frontmatter.get("name")) or skill_name,
@@ -1509,6 +1778,7 @@ def validate_skill(
         content,
         frontmatter,
         sub_resources,
+        semantic_signals,
     )
     quality_score, quality_details = compute_quality_score(
         description,
@@ -1517,6 +1787,7 @@ def validate_skill(
         best_practices_score,
         level,
         file_mtime,
+        semantic_signals,
     )
 
     required_fields = ["name", "description"]
@@ -1661,6 +1932,7 @@ def validate_skill(
             "local_script_example_count": len(
                 re.findall(r"(?:python3?\s+scripts/|bash\s+scripts/|sh\s+scripts/)", content, re.IGNORECASE)
             ),
+            "semantic_signals": semantic_signals,
         },
         "maturity": {
             "skill_level": level["level"],
@@ -1671,6 +1943,7 @@ def validate_skill(
         "best_practices": {
             "score": best_practices_score,
             "tier": best_practices_tier(best_practices_score),
+            "signals": semantic_signals,
         },
         "quality": {
             "score": quality_score,

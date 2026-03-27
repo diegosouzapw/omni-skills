@@ -17,7 +17,12 @@ import {
   searchSkills,
   loadCatalog,
 } from "../../catalog-core/src/index.js";
-import { createHttpRuntimeMiddleware, getHttpRuntimeSnapshot } from "../../server-api/src/http-runtime.js";
+import {
+  applyExpressHttpRuntime,
+  createHttpCorsMiddleware,
+  createHttpRuntimeMiddleware,
+  getHttpRuntimeSnapshot,
+} from "../../server-api/src/http-runtime.js";
 import {
   configureClientMcp,
   detectClients,
@@ -195,11 +200,29 @@ function registerLocalTools(server) {
         transport: z.enum(["stream", "http", "sse", "stdio"]).optional().describe("MCP transport to configure."),
         url: z.string().optional().describe("HTTP or SSE MCP endpoint to use when transport is network-based."),
         server_name: z.string().optional().describe("Name of the MCP server entry to write."),
+        headers: z.record(z.string(), z.string()).optional().describe("Optional HTTP headers for remote MCP entries."),
+        env: z.record(z.string(), z.string()).optional().describe("Optional environment variables for stdio MCP entries."),
+        env_file: z.string().optional().describe("Optional env file path for clients that support it."),
+        cwd: z.string().optional().describe("Optional working directory for stdio MCP entries."),
+        timeout_ms: z.number().int().positive().optional().describe("Optional transport timeout in milliseconds."),
+        description: z.string().optional().describe("Optional human-readable description stored with the MCP entry."),
+        include_tools: z.array(z.string()).optional().describe("Optional tool allowlist for clients that support it."),
+        exclude_tools: z.array(z.string()).optional().describe("Optional tool denylist for clients that support it."),
+        disabled: z.boolean().optional().describe("Marks the entry as disabled for clients that support it."),
+        trust: z.boolean().optional().describe("Marks the entry as trusted for clients that support it."),
         sandbox_enabled: z.boolean().optional().describe("VS Code only. Enables sandboxing for stdio MCP servers."),
         sandbox_allow_write: z.array(z.string()).optional().describe("VS Code only. Writable filesystem allowlist entries for the sandbox."),
         sandbox_allow_network: z.array(z.string()).optional().describe("VS Code only. Network host allowlist entries for the sandbox."),
         allowed_mcp_servers: z.array(z.string()).optional().describe("Claude Code only. Allowlist of server names or commands."),
         denied_mcp_servers: z.array(z.string()).optional().describe("Claude Code only. Denylist of server names or commands."),
+        permissions_deny: z.array(z.string()).optional().describe("Claude Code only. Permission deny rules for settings.json."),
+        enable_all_project_mcp_servers: z.boolean().optional().describe("Claude Code only. Auto-approve project MCP servers in settings.json."),
+        mcp_allowed_servers: z.array(z.string()).optional().describe("Gemini CLI only. Global MCP allowlist written under mcp.allowed."),
+        mcp_excluded_servers: z.array(z.string()).optional().describe("Gemini CLI only. Global MCP denylist written under mcp.excluded."),
+        disabled_tools: z.array(z.string()).optional().describe("Kiro only. Tool IDs to disable for this MCP server."),
+        auto_approve: z.array(z.string()).optional().describe("Kiro only. Tool IDs to auto-approve for this MCP server."),
+        dev_watch: z.string().optional().describe("VS Code only. Dev watch command or path for MCP debugging."),
+        dev_debug_type: z.string().optional().describe("VS Code only. Debug profile type for MCP development."),
         dry_run: z.boolean().optional().describe("When true, return the config preview without writing."),
       },
       annotations: {
@@ -213,11 +236,29 @@ function registerLocalTools(server) {
       transport,
       url,
       server_name,
+      headers,
+      env,
+      env_file,
+      cwd,
+      timeout_ms,
+      description,
+      include_tools,
+      exclude_tools,
+      disabled,
+      trust,
       sandbox_enabled,
       sandbox_allow_write,
       sandbox_allow_network,
       allowed_mcp_servers,
       denied_mcp_servers,
+      permissions_deny,
+      enable_all_project_mcp_servers,
+      mcp_allowed_servers,
+      mcp_excluded_servers,
+      disabled_tools,
+      auto_approve,
+      dev_watch,
+      dev_debug_type,
       dry_run,
     }) => {
       const result = configureClientMcp({
@@ -227,11 +268,29 @@ function registerLocalTools(server) {
         transport,
         url,
         server_name,
+        headers,
+        env,
+        env_file,
+        cwd,
+        timeout_ms,
+        description,
+        include_tools,
+        exclude_tools,
+        disabled,
+        trust,
         sandbox_enabled,
         sandbox_allow_write,
         sandbox_allow_network,
         allowed_mcp_servers,
         denied_mcp_servers,
+        permissions_deny,
+        enable_all_project_mcp_servers,
+        mcp_allowed_servers,
+        mcp_excluded_servers,
+        disabled_tools,
+        auto_approve,
+        dev_watch,
+        dev_debug_type,
         dry_run,
       });
       return {
@@ -576,11 +635,34 @@ async function startStreamableHttp() {
   const host = getHost();
   const sessions = new Map();
 
+  applyExpressHttpRuntime(app);
+  app.use(createHttpCorsMiddleware());
   app.use(express.json({ limit: "1mb" }));
-  app.use(createHttpRuntimeMiddleware({ allowAnonymousPaths: ["/healthz"] }));
+  app.use(createHttpRuntimeMiddleware({
+    allowAnonymousPaths: ["/healthz"],
+    adminPaths: ["/admin/runtime"],
+  }));
 
   app.get("/healthz", (_req, res) => {
     sendHealthResponse(res, "stream");
+  });
+
+  app.get("/admin/runtime", (req, res) => {
+    res.json({
+      request_id: req.omniRequestId || null,
+      http: getHttpRuntimeSnapshot({ detailed: true }),
+      mcp: {
+        mode: getRuntimeMode(),
+        transport: "stream",
+        host,
+        port,
+        api_base_url: getApiBaseUrl(),
+        local_mode: isLocalModeEnabled(),
+      },
+      sessions: {
+        active: sessions.size,
+      },
+    });
   });
 
   app.all("/mcp", async (req, res) => {
@@ -633,11 +715,34 @@ async function startSse() {
   const host = getHost();
   const sessions = new Map();
 
+  applyExpressHttpRuntime(app);
+  app.use(createHttpCorsMiddleware());
   app.use(express.json({ limit: "1mb" }));
-  app.use(createHttpRuntimeMiddleware({ allowAnonymousPaths: ["/healthz"] }));
+  app.use(createHttpRuntimeMiddleware({
+    allowAnonymousPaths: ["/healthz"],
+    adminPaths: ["/admin/runtime"],
+  }));
 
   app.get("/healthz", (_req, res) => {
     sendHealthResponse(res, "sse");
+  });
+
+  app.get("/admin/runtime", (req, res) => {
+    res.json({
+      request_id: req.omniRequestId || null,
+      http: getHttpRuntimeSnapshot({ detailed: true }),
+      mcp: {
+        mode: getRuntimeMode(),
+        transport: "sse",
+        host,
+        port,
+        api_base_url: getApiBaseUrl(),
+        local_mode: isLocalModeEnabled(),
+      },
+      sessions: {
+        active: sessions.size,
+      },
+    });
   });
 
   app.get("/sse", async (_req, res) => {

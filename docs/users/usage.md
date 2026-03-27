@@ -59,6 +59,10 @@ Keep the existing design system and map the node to code when possible.
 ### 🔎 Search Before Installing
 
 ```bash
+npx omni-skills                       # Guided install in TTY
+npx omni-skills install --guided      # Forced guided install
+npx omni-skills ui                    # Ink visual hub
+npx omni-skills ui --text             # Text fallback UI
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 npx omni-skills find figma --tool cursor --install --yes
@@ -73,6 +77,7 @@ npx omni-skills --cursor
 ### 🎯 One Specific Skill
 
 ```bash
+npx omni-skills install --guided --path ./my-skills --skill architecture
 npx omni-skills --cursor --skill omni-figma
 ```
 
@@ -94,7 +99,10 @@ npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
 > **📌 Notes:**
-> - Full install is the default when no selector is provided
+> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
+> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
+> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
+> - Outside a TTY, full install is still the default when no selector is provided
 > - `--skill` installs only the selected published skills
 > - `--bundle` expands the bundle and installs the published members declared in the curated bundle
 > - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
@@ -104,6 +112,21 @@ npx omni-skills recategorize --write  # Apply canonical categories
 ## 🔌 Runtime Commands
 
 The CLI is a unified operations tool, not just an installer.
+
+### 🖥️ Visual Shell
+
+```bash
+npx omni-skills ui
+```
+
+The visual shell supports:
+
+- guided install with known client or custom path selection
+- search-then-install without memorizing flags
+- MCP, API, and A2A guided startup
+- recent installs and service relaunches
+- saved install and service presets
+- favorite skills and bundles
 
 ### 🩺 Diagnostics
 

@@ -10,11 +10,14 @@
 |:--------|:------|
 | ✅ Catalog endpoints | Implemented |
 | ✅ Auth (bearer + API key) | Implemented |
+| ✅ Admin runtime auth | Implemented |
 | ✅ Rate limiting | Implemented |
 | ✅ Audit logging | Implemented |
+| ✅ CORS and IP allowlists | Implemented |
+| ✅ Maintenance mode | Implemented |
 | ✅ Archive downloads | Implemented |
 | ✅ OpenAPI spec | Implemented |
-| ⚠️ Auth backend | In-memory, env-driven |
+| ⚠️ Governance backend | Env-driven, in-process |
 
 ---
 
@@ -63,22 +66,38 @@ All security controls are env-driven and optional:
 |:--------|:---------|:--------|
 | 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
 | 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
+| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
 | 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
 | 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
+| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
 **Behavior:**
 - 🟢 `/healthz` remains **always unauthenticated**
 - 🔒 All other routes require auth when auth is enabled
+- 🛂 `/admin/runtime` requires the admin token when enabled
 - 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
+- 🧾 Every response carries `X-Request-Id`
+- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
 
 ### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b \
+OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret \
 OMNI_SKILLS_RATE_LIMIT_MAX=60 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
 OMNI_SKILLS_HTTP_AUDIT_LOG=1 \
+OMNI_SKILLS_HTTP_AUDIT_LOG_PATH=/var/log/omni-skills/audit.log \
+OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
+OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 \
+OMNI_SKILLS_HTTP_TRUST_PROXY=loopback \
 npx omni-skills api --port 3333
 ```
 
@@ -92,6 +111,7 @@ npx omni-skills api --port 3333
 |:-------|:-----|:------------|
 | `GET` | `/healthz` | Health check (unauthenticated) |
 | `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
+| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
 
 ### 📚 Catalog & Skills
 
@@ -176,3 +196,19 @@ OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
 This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
+
+---
+
+## 🧭 Admin Runtime Snapshot
+
+`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+
+- active auth methods
+- admin-auth status
+- rate-limit window and max
+- CORS allowlist
+- IP allowlist
+- maintenance mode state
+- audit destination and format
+- current catalog totals
+- request ID echoing for traceability

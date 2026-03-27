@@ -10,6 +10,7 @@ import {
 import { evaluateTaskOperation } from "./task-operations.js";
 import { createTaskExecutor } from "./task-executor.js";
 import { createTaskStore } from "./task-store.js";
+import { createTaskCoordinator } from "./task-coordinator.js";
 
 const TERMINAL_STATES = new Set(["completed", "canceled", "failed", "rejected", "unknown"]);
 const INTERRUPTED_STATES = new Set(["input-required", "auth-required"]);
@@ -316,6 +317,7 @@ export class OmniSkillsA2ARuntime {
       options.resumeInterruptedTasks ?? process.env.OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS !== "0";
     this.instanceId = options.instanceId || process.env.OMNI_SKILLS_A2A_INSTANCE_ID || createRuntimeInstanceId();
     this.persistenceError = null;
+    this.coordinationError = null;
     this.queueEnabled =
       options.queueEnabled ??
       (process.env.OMNI_SKILLS_A2A_QUEUE_ENABLED
@@ -330,11 +332,21 @@ export class OmniSkillsA2ARuntime {
       storeType: this.storeType,
       persistencePath: this.persistencePath,
     });
+    this.coordinator = createTaskCoordinator({
+      queueEnabled: this.queueEnabled,
+      taskStore: this.taskStore,
+      coordinationType: options.coordinationType || process.env.OMNI_SKILLS_A2A_COORDINATION_TYPE || "store",
+      redisUrl: options.redisUrl || process.env.OMNI_SKILLS_A2A_REDIS_URL || "",
+      redisKeyPrefix:
+        options.redisKeyPrefix || process.env.OMNI_SKILLS_A2A_COORDINATION_PREFIX || "omni-skills:a2a",
+      redisClient: options.redisClient || null,
+    });
     this.executor = createTaskExecutor({
       mode: options.executorMode || process.env.OMNI_SKILLS_A2A_EXECUTOR || "inline",
     });
     this.loadPersistedTasks();
-    if (this.queueEnabled && typeof this.taskStore.claimPendingTask === "function") {
+    void this.syncCoordinatorTasks([...this.tasks.values()]);
+    if (this.queueEnabled && typeof this.coordinator.claimPendingTask === "function") {
       this.startQueueWorker();
     } else {
       this.resumeRecoveredTasks();
@@ -378,6 +390,10 @@ export class OmniSkillsA2ARuntime {
         lease_ms: this.leaseMs,
         instance_id: this.instanceId,
         active_leases: this.activeLeases.size,
+      },
+      coordination: {
+        ...(typeof this.coordinator.getSnapshot === "function" ? this.coordinator.getSnapshot() : {}),
+        ...(this.coordinationError ? { last_error: this.coordinationError } : {}),
       },
       tasks: {
         total: this.tasks.size,
@@ -592,24 +608,29 @@ export class OmniSkillsA2ARuntime {
   }
 
   persistTask(task) {
-    if (!this.persistenceEnabled || !task) {
+    if (!task) {
       return;
     }
 
-    try {
-      if (typeof this.taskStore.upsertTask === "function") {
-        this.taskStore.upsertTask(serializeTask(task));
-      } else {
-        this.taskStore.saveTasks([...this.tasks.values()].map((item) => serializeTask(item)));
+    if (this.persistenceEnabled) {
+      try {
+        if (typeof this.taskStore.upsertTask === "function") {
+          this.taskStore.upsertTask(serializeTask(task));
+        } else {
+          this.taskStore.saveTasks([...this.tasks.values()].map((item) => serializeTask(item)));
+        }
+        this.persistenceError = null;
+      } catch (error) {
+        this.persistenceError = error instanceof Error ? error.message : String(error);
       }
-      this.persistenceError = null;
-    } catch (error) {
-      this.persistenceError = error instanceof Error ? error.message : String(error);
     }
+
+    void this.syncCoordinatorTask(task);
   }
 
   persistTasks() {
     if (!this.persistenceEnabled) {
+      void this.syncCoordinatorTasks([...this.tasks.values()]);
       return;
     }
 
@@ -618,6 +639,33 @@ export class OmniSkillsA2ARuntime {
       this.persistenceError = null;
     } catch (error) {
       this.persistenceError = error instanceof Error ? error.message : String(error);
+    }
+    void this.syncCoordinatorTasks([...this.tasks.values()]);
+  }
+
+  async syncCoordinatorTask(task) {
+    if (!this.queueEnabled || !task || typeof this.coordinator.syncTask !== "function") {
+      return;
+    }
+
+    try {
+      await this.coordinator.syncTask(serializeTask(task));
+      this.coordinationError = null;
+    } catch (error) {
+      this.coordinationError = error instanceof Error ? error.message : String(error);
+    }
+  }
+
+  async syncCoordinatorTasks(tasks = []) {
+    if (!this.queueEnabled || typeof this.coordinator.syncTasks !== "function") {
+      return;
+    }
+
+    try {
+      await this.coordinator.syncTasks(tasks.map((task) => serializeTask(task)));
+      this.coordinationError = null;
+    } catch (error) {
+      this.coordinationError = error instanceof Error ? error.message : String(error);
     }
   }
 
@@ -719,13 +767,13 @@ export class OmniSkillsA2ARuntime {
   }
 
   async pollQueue() {
-    if (!this.queueEnabled || this.queuePolling || typeof this.taskStore.claimPendingTask !== "function") {
+    if (!this.queueEnabled || this.queuePolling || typeof this.coordinator.claimPendingTask !== "function") {
       return;
     }
     this.queuePolling = true;
     try {
       while (true) {
-        const claimedRecord = this.taskStore.claimPendingTask({
+        const claimedRecord = await this.coordinator.claimPendingTask({
           owner: this.instanceId,
           leaseMs: this.leaseMs,
           eligibleStates: ["submitted", "working"],
@@ -800,32 +848,38 @@ export class OmniSkillsA2ARuntime {
   }
 
   beginLeaseHeartbeat(task) {
-    if (!this.queueEnabled || typeof this.taskStore.renewTaskLease !== "function") {
+    if (!this.queueEnabled || typeof this.coordinator.renewTaskLease !== "function") {
       return;
     }
 
     this.endLeaseHeartbeat(task, { clearRemoteLease: false });
     const heartbeat = setInterval(() => {
-      const nextExpiry = new Date(Date.now() + this.leaseMs).toISOString();
-      const renewed = this.taskStore.renewTaskLease(task.id, this.instanceId, this.leaseMs);
       const state = this.activeLeases.get(task.id);
       if (!state) {
         return;
       }
-      if (!renewed) {
+      void (async () => {
+        const nextExpiry = new Date(Date.now() + this.leaseMs).toISOString();
+        const renewed = await this.coordinator.renewTaskLease(task.id, this.instanceId, this.leaseMs);
+        if (!renewed) {
+          state.revoked = true;
+          clearInterval(state.timer);
+          return;
+        }
+        task.metadata = {
+          ...task.metadata,
+          lease: {
+            ...(task.metadata.lease || {}),
+            owner: this.instanceId,
+            expires_at: nextExpiry,
+          },
+          updated_at: nowIso(),
+        };
+      })().catch((error) => {
+        this.coordinationError = error instanceof Error ? error.message : String(error);
         state.revoked = true;
         clearInterval(state.timer);
-        return;
-      }
-      task.metadata = {
-        ...task.metadata,
-        lease: {
-          ...(task.metadata.lease || {}),
-          owner: this.instanceId,
-          expires_at: nextExpiry,
-        },
-        updated_at: nowIso(),
-      };
+      });
     }, Math.max(250, Math.floor(this.leaseMs / 3)));
 
     this.activeLeases.set(task.id, {
@@ -843,9 +897,11 @@ export class OmniSkillsA2ARuntime {
     if (
       clearRemoteLease &&
       this.queueEnabled &&
-      typeof this.taskStore.clearTaskLease === "function"
+      typeof this.coordinator.clearTaskLease === "function"
     ) {
-      this.taskStore.clearTaskLease(task.id, this.instanceId);
+      void this.coordinator.clearTaskLease(task.id, this.instanceId).catch((error) => {
+        this.coordinationError = error instanceof Error ? error.message : String(error);
+      });
     }
   }
 
@@ -1037,7 +1093,7 @@ export class OmniSkillsA2ARuntime {
       `Accepted ${task.metadata.operation} request.`,
       { operation: task.metadata.operation },
     );
-    if (this.queueEnabled && typeof this.taskStore.claimPendingTask === "function") {
+    if (this.queueEnabled && typeof this.coordinator.claimPendingTask === "function") {
       void this.pollQueue();
       return compactTask(task);
     }
@@ -1137,8 +1193,10 @@ export class OmniSkillsA2ARuntime {
     if (leaseState) {
       leaseState.revoked = true;
     }
-    if (this.queueEnabled && typeof this.taskStore.clearTaskLease === "function") {
-      this.taskStore.clearTaskLease(task.id);
+    if (this.queueEnabled && typeof this.coordinator.clearTaskLease === "function") {
+      void this.coordinator.clearTaskLease(task.id).catch((error) => {
+        this.coordinationError = error instanceof Error ? error.message : String(error);
+      });
     }
     this.setTaskStatus(task, "canceled", `Canceled ${task.metadata.operation} at client request.`, {
       operation: task.metadata.operation,

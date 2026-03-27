@@ -37,7 +37,7 @@
     "hooks:install": "node tools/scripts/install_githooks.js",
     "test": "node tools/scripts/tests/run_tests.js",
     "pr:preflight": "npm run build && npm test",
-    "prepack": "find tools/scripts -type d -name __pycache__ -prune -exec rm -rf {} +"
+    "prepack": "find tools/scripts \\( -type d -name __pycache__ -o -type f -name '*.pyc' \\) -exec rm -rf {} +"
   },
   "repository": {
     "type": "git",
@@ -96,6 +96,12 @@
     "@modelcontextprotocol/sdk": "^1.28.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
+    "ioredis": "^5.8.2",
+    "ink": "^6.8.0",
+    "react": "^19.2.4",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "ioredis-mock": "^8.13.1"
   }
 }

@@ -166,11 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 82,
-      "tier": "good"
+      "score": 99,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 254,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 399,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 532,
+        "resources_items_count": 2,
+        "resources_section_length": 118,
+        "examples_section_length": 539,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 303,
+        "decision_assets_count": 5,
+        "table_count": 0,
+        "linked_resource_families_count": 3,
+        "linked_resource_families": [
+          "agents",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 5.53
+      }
     },
     "quality": {
-      "score": 96,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +203,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 16
+        "best_practices": 16,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -238,7 +264,32 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 254,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 399,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 532,
+      "resources_items_count": 2,
+      "resources_section_length": 118,
+      "examples_section_length": 539,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 303,
+      "decision_assets_count": 5,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 5.53
+    }
   },
   "artifacts": [
     {
@@ -250,8 +301,8 @@
     {
       "path": "skills/terraform/metadata.json",
       "kind": "support",
-      "size_bytes": 3453,
-      "sha256": "c6e3af3ef2241aa413396bd362b747ff195fcac78ca7bc53fb674a9235f1a154"
+      "size_bytes": 5044,
+      "sha256": "941005682e1282fa71569a6bb5aadf365bf5a523e195968b4e6d778f7d931630"
     },
     {
       "path": "skills/terraform/agents/openai.yaml",
@@ -277,8 +328,8 @@
       "format": "zip",
       "path": "dist/archives/terraform.zip",
       "file_name": "terraform.zip",
-      "size_bytes": 5189,
-      "sha256": "eb2d7d33b8264bca735a919414adbf0a4542735c758e8b1457d9458c2fc54d15",
+      "size_bytes": 5388,
+      "sha256": "984d789af1a2aa51c4c01d2ed94eb5f5109beb4e3e1db2f864a387b12b7729aa",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -291,8 +342,8 @@
       "format": "tar.gz",
       "path": "dist/archives/terraform.tar.gz",
       "file_name": "terraform.tar.gz",
-      "size_bytes": 4372,
-      "sha256": "6a3f351b25d8ca0ab70262ff94740bd854033ee17f5b83100fdd1d77ef791415",
+      "size_bytes": 4630,
+      "sha256": "87592c40a46ae84d0b146a6bbc292310219aa07c25655c6b072956510d082289",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -305,7 +356,7 @@
   "archive_checksums": {
     "path": "dist/archives/terraform.checksums.txt",
     "file_name": "terraform.checksums.txt",
-    "sha256": "205ba62b083d09759b47fef098a7a9f3ae60ce304900f202d53adc6eba1c6eb1",
+    "sha256": "fe0fcea6d8f848c277cd2cab780851d16238cc9cbad32cdb3d00be440b8081e0",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -316,6 +367,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ff49134c2aa85a0d38b42cd9176e60bfe6a5fc6c591639bf76f4dccb17193341",
-    "package_sha256": "ae87f956d1f529679bed3dfa06eaafbe87a1f9b55e5c92d8435abad8fa99b59e"
+    "package_sha256": "ecdc33b9584052857bbe8c34d4df25a559b6ee518d64a3669840e42d8b5d1790"
   }
 }

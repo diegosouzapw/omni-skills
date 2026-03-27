@@ -166,11 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 83,
-      "tier": "good"
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 248,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 370,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 509,
+        "resources_items_count": 2,
+        "resources_section_length": 117,
+        "examples_section_length": 519,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 322,
+        "decision_assets_count": 6,
+        "table_count": 0,
+        "linked_resource_families_count": 3,
+        "linked_resource_families": [
+          "agents",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 5.77
+      }
     },
     "quality": {
-      "score": 97,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -178,7 +203,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 17
+        "best_practices": 16,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -238,7 +264,32 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 248,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 370,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 509,
+      "resources_items_count": 2,
+      "resources_section_length": 117,
+      "examples_section_length": 519,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 322,
+      "decision_assets_count": 6,
+      "table_count": 0,
+      "linked_resource_families_count": 3,
+      "linked_resource_families": [
+        "agents",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 5.77
+    }
   },
   "artifacts": [
     {
@@ -250,8 +301,8 @@
     {
       "path": "skills/prompt-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 3523,
-      "sha256": "2909d9b004e7e289710723a66082fc25352f836a50820cf6394418ab96623df1"
+      "size_bytes": 5115,
+      "sha256": "ba8d148c59cc06b3416b6ce35c210aac4de1165c1d781dd0bffea5d50792fd88"
     },
     {
       "path": "skills/prompt-engineer/agents/openai.yaml",
@@ -277,8 +328,8 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 5042,
-      "sha256": "17979455c87215d4b64811ecc61ec30e3eb0937aeae479c7cfa1f5e819cdb40e",
+      "size_bytes": 5233,
+      "sha256": "e640b2eff44a35cb70f1b0265d7c416e617c41f399c1ecc9e6fdb5d2c410500e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -291,8 +342,8 @@
       "format": "tar.gz",
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
-      "size_bytes": 4174,
-      "sha256": "a87bec004ba2c353c7928f09f8bb7a5867a84f3f982c9ca3eb64802a1adbfdef",
+      "size_bytes": 4425,
+      "sha256": "c6c613660c2f194b627e726f169234d13149794a929b88dd86835d8506eb5a0b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -305,7 +356,7 @@
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "9c492278da97078e531ce618ff9d8dea7154c85ef1a73e05e328ccf526907822",
+    "sha256": "8d002e3331eb7d2478ba75863b20537e61e7511aec915eb0bf0b09dae04b39b9",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -316,6 +367,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7",
-    "package_sha256": "d99ffd8d9e3d144973717d30066b756f080bcf2f261cf979e7dadadf84c17b84"
+    "package_sha256": "de45e239f4468c6e2b958b9c57daec20932569fd111dac4bb997d4a34a935aae"
   }
 }

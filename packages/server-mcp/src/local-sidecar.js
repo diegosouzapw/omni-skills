@@ -17,13 +17,42 @@ const SELECTIVE_DOC_PATHS = [
   "docs/users/bundles.md",
 ];
 
+function getClaudeSettingsPath(env) {
+  return path.join(env.homeDir, ".claude", "settings.json");
+}
+
+function getGeminiSettingsPath(env, scope = "user") {
+  if (scope === "workspace") {
+    return path.join(env.cwd, ".gemini", "settings.json");
+  }
+  return path.join(env.homeDir, ".gemini", "settings.json");
+}
+
+function getKiroSettingsPath(env, scope = "user") {
+  if (scope === "workspace") {
+    return path.join(env.cwd, ".kiro", "settings", "mcp.json");
+  }
+  return path.join(env.homeDir, ".kiro", "settings", "mcp.json");
+}
+
+function getClaudeDesktopConfigPath(env) {
+  if (process.platform === "darwin") {
+    return path.join(env.homeDir, "Library", "Application Support", "Claude", "claude_desktop_config.json");
+  }
+  if (process.platform === "win32") {
+    const appData = process.env.APPDATA || path.join(env.homeDir, "AppData", "Roaming");
+    return path.join(appData, "Claude", "claude_desktop_config.json");
+  }
+  return path.join(env.homeDir, ".config", "Claude", "claude_desktop_config.json");
+}
+
 const CLIENT_DEFINITIONS = {
   "claude-code": {
     name: "Claude Code",
     aliases: ["claude-code", "claude"],
     skillsPath: (env) => path.join(env.homeDir, ".claude", "skills"),
-    configPath: (env) => path.join(env.homeDir, ".claude.json"),
-    configProfile: "claude-json",
+    configPath: (env) => getClaudeSettingsPath(env),
+    configProfile: "claude-settings-json",
   },
   cursor: {
     name: "Cursor",
@@ -36,8 +65,8 @@ const CLIENT_DEFINITIONS = {
     name: "Gemini CLI",
     aliases: ["gemini-cli", "gemini"],
     skillsPath: (env) => path.join(env.homeDir, ".gemini", "skills"),
-    configPath: (env) => path.join(env.homeDir, ".gemini", "mcp.json"),
-    configProfile: "generic-json",
+    configPath: (env) => getGeminiSettingsPath(env, "user"),
+    configProfile: "gemini-settings-json",
   },
   "codex-cli": {
     name: "Codex CLI",
@@ -50,8 +79,8 @@ const CLIENT_DEFINITIONS = {
     name: "Kiro",
     aliases: ["kiro"],
     skillsPath: (env) => path.join(env.homeDir, ".kiro", "skills"),
-    configPath: (env) => path.join(env.homeDir, ".kiro", "mcp.json"),
-    configProfile: "generic-json",
+    configPath: (env) => getKiroSettingsPath(env, "user"),
+    configProfile: "kiro-json",
   },
   antigravity: {
     name: "Antigravity",
@@ -90,6 +119,31 @@ const CONFIG_TARGETS = {
     path: (env) => path.join(env.cwd, ".mcp.json"),
     configProfile: "claude-json",
   },
+  "claude-project": {
+    name: "Claude Code project settings",
+    path: (env) => path.join(env.cwd, ".claude", "settings.json"),
+    configProfile: "claude-settings-json",
+  },
+  "claude-user-settings": {
+    name: "Claude Code user settings",
+    path: (env) => getClaudeSettingsPath(env),
+    configProfile: "claude-settings-json",
+  },
+  "claude-user-legacy": {
+    name: "Claude legacy JSON config",
+    path: (env) => path.join(env.homeDir, ".claude.json"),
+    configProfile: "claude-json",
+  },
+  "claude-desktop": {
+    name: "Claude Desktop config",
+    path: (env) => getClaudeDesktopConfigPath(env),
+    configProfile: "claude-json",
+  },
+  "cursor-workspace": {
+    name: "Cursor workspace MCP config",
+    path: (env) => path.join(env.cwd, ".cursor", "mcp.json"),
+    configProfile: "cursor-json",
+  },
   vscode: {
     name: "VS Code workspace MCP config",
     path: (env) => path.join(env.cwd, ".vscode", "mcp.json"),
@@ -120,6 +174,31 @@ const CONFIG_TARGETS = {
     path: (env) => path.join(env.homeDir, ".cursor", "mcp.json"),
     configProfile: "cursor-json",
   },
+  "gemini-user": {
+    name: "Gemini CLI user settings",
+    path: (env) => getGeminiSettingsPath(env, "user"),
+    configProfile: "gemini-settings-json",
+  },
+  "gemini-workspace": {
+    name: "Gemini CLI workspace settings",
+    path: (env) => getGeminiSettingsPath(env, "workspace"),
+    configProfile: "gemini-settings-json",
+  },
+  "kiro-user": {
+    name: "Kiro user MCP config",
+    path: (env) => getKiroSettingsPath(env, "user"),
+    configProfile: "kiro-json",
+  },
+  "kiro-workspace": {
+    name: "Kiro workspace MCP config",
+    path: (env) => getKiroSettingsPath(env, "workspace"),
+    configProfile: "kiro-json",
+  },
+  "kiro-user-legacy": {
+    name: "Kiro legacy MCP config",
+    path: (env) => path.join(env.homeDir, ".kiro", "mcp.json"),
+    configProfile: "generic-json",
+  },
   "codex-user": {
     name: "Codex user MCP config",
     path: (env) => path.join(env.codexHome, "config.toml"),
@@ -141,7 +220,7 @@ const CONFIG_PROFILES = {
     format: "json",
     rootKey: "mcpServers",
     rootPath: ["mcpServers"],
-    includeType: false,
+    includeType: true,
     description: "Cursor style JSON config using mcpServers.",
   },
   "generic-json": {
@@ -174,6 +253,30 @@ const CONFIG_PROFILES = {
     rootKey: "mcp_servers",
     includeType: false,
     description: "Codex config.toml using mcp_servers tables.",
+  },
+  "claude-settings-json": {
+    id: "claude-settings-json",
+    format: "json",
+    rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
+    includeType: true,
+    description: "Claude Code settings.json using a top-level mcpServers object.",
+  },
+  "gemini-settings-json": {
+    id: "gemini-settings-json",
+    format: "json",
+    rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
+    includeType: false,
+    description: "Gemini CLI settings.json using JSON settings with mcpServers.",
+  },
+  "kiro-json": {
+    id: "kiro-json",
+    format: "json",
+    rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
+    includeType: false,
+    description: "Kiro MCP JSON config using mcpServers.",
   },
 };
 
@@ -240,9 +343,15 @@ export function getLocalAllowlistRoots(options = {}) {
     path.join(env.homeDir, ".cursor"),
     path.join(env.homeDir, ".gemini"),
     path.join(env.homeDir, ".kiro"),
+    getClaudeDesktopConfigPath(env),
     env.codexHome,
     path.join(env.cwd, ".agents"),
     path.join(env.cwd, ".vscode"),
+    path.join(env.cwd, ".claude"),
+    path.join(env.cwd, ".cursor"),
+    path.join(env.cwd, ".gemini"),
+    path.join(env.cwd, ".kiro"),
+    path.join(env.cwd, ".devcontainer"),
     env.cwd,
     ...env.extraAllowedRoots,
   ]).map((value) => path.resolve(value));
@@ -323,10 +432,22 @@ function inferConfigProfileFromPath(filePath) {
   if (normalizedPath.endsWith(path.join(".vscode", "mcp.json"))) {
     return CONFIG_PROFILES["vscode-json"];
   }
+  if (normalizedPath.endsWith(path.join(".claude", "settings.json"))) {
+    return CONFIG_PROFILES["claude-settings-json"];
+  }
+  if (normalizedPath.endsWith(path.join(".gemini", "settings.json"))) {
+    return CONFIG_PROFILES["gemini-settings-json"];
+  }
+  if (normalizedPath.endsWith(path.join(".kiro", "settings", "mcp.json"))) {
+    return CONFIG_PROFILES["kiro-json"];
+  }
   if (baseName === ".mcp.json" || baseName === ".claude.json") {
     return CONFIG_PROFILES["claude-json"];
   }
   if (baseName === "mcp.json") {
+    if (normalizedPath.includes(`${path.sep}.cursor${path.sep}`)) {
+      return CONFIG_PROFILES["cursor-json"];
+    }
     return CONFIG_PROFILES["generic-json"];
   }
   return CONFIG_PROFILES["generic-json"];
@@ -596,11 +717,79 @@ function normalizeStringArray(values) {
   return values.map((value) => String(value || "").trim()).filter(Boolean);
 }
 
+function normalizeStringRecord(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value)
+      .map(([key, entryValue]) => [String(key || "").trim(), String(entryValue || "").trim()])
+      .filter(([key, entryValue]) => key && entryValue),
+  );
+}
+
 function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
   let nextConfig = cloneJsonRecord(config);
   let nextEntry = cloneJsonRecord(entry);
+  const headers = normalizeStringRecord(input.headers);
+  const env = normalizeStringRecord(input.env);
+  const cwd = String(input.cwd || "").trim();
+  const envFile = String(input.env_file || "").trim();
+  const description = String(input.description || "").trim();
+  const timeoutMs = Number.parseInt(String(input.timeout_ms ?? ""), 10);
+  const includeTools = normalizeStringArray(input.include_tools);
+  const excludeTools = normalizeStringArray(input.exclude_tools);
+  const disabledTools = normalizeStringArray(input.disabled_tools);
+  const autoApprove = normalizeStringArray(input.auto_approve);
 
-  if (profile.id === "claude-json") {
+  if (Object.keys(headers).length > 0) {
+    nextEntry.headers = {
+      ...(nextEntry.headers || {}),
+      ...headers,
+    };
+  }
+
+  if (Object.keys(env).length > 0) {
+    nextEntry.env = {
+      ...(nextEntry.env || {}),
+      ...env,
+    };
+  }
+
+  if (cwd) {
+    nextEntry.cwd = cwd;
+  }
+
+  if (envFile) {
+    nextEntry.envFile = envFile;
+  }
+
+  if (description) {
+    nextEntry.description = description;
+  }
+
+  if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+    nextEntry.timeout = timeoutMs;
+  }
+
+  if (includeTools.length > 0) {
+    nextEntry.includeTools = includeTools;
+  }
+
+  if (excludeTools.length > 0) {
+    nextEntry.excludeTools = excludeTools;
+  }
+
+  if (input.disabled === true) {
+    nextEntry.disabled = true;
+  }
+
+  if (input.trust === true) {
+    nextEntry.trust = true;
+  }
+
+  if (profile.id === "claude-json" || profile.id === "claude-settings-json") {
     const allowed = normalizeStringArray(input.allowed_mcp_servers);
     const denied = normalizeStringArray(input.denied_mcp_servers);
     if (allowed.length > 0) {
@@ -608,6 +797,16 @@ function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
     }
     if (denied.length > 0) {
       nextConfig.deniedMcpServers = denied;
+    }
+    const permissionsDeny = normalizeStringArray(input.permissions_deny);
+    if (permissionsDeny.length > 0) {
+      nextConfig.permissions = {
+        ...(nextConfig.permissions || {}),
+        deny: permissionsDeny,
+      };
+    }
+    if (input.enable_all_project_mcp_servers === true) {
+      nextConfig.enableAllProjectMcpServers = true;
     }
   }
 
@@ -638,6 +837,43 @@ function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
             }
           : {}),
       };
+    }
+
+    if (String(input.dev_watch || "").trim()) {
+      nextEntry.dev = {
+        ...(nextEntry.dev || {}),
+        watch: String(input.dev_watch || "").trim(),
+      };
+    }
+    if (String(input.dev_debug_type || "").trim()) {
+      nextEntry.dev = {
+        ...(nextEntry.dev || {}),
+        debug: {
+          ...((nextEntry.dev && nextEntry.dev.debug) || {}),
+          type: String(input.dev_debug_type || "").trim(),
+        },
+      };
+    }
+  }
+
+  if (profile.id === "gemini-settings-json") {
+    const allowed = normalizeStringArray(input.mcp_allowed_servers);
+    const excluded = normalizeStringArray(input.mcp_excluded_servers);
+    if (allowed.length > 0 || excluded.length > 0) {
+      nextConfig.mcp = {
+        ...(nextConfig.mcp || {}),
+        ...(allowed.length > 0 ? { allowed } : {}),
+        ...(excluded.length > 0 ? { excluded } : {}),
+      };
+    }
+  }
+
+  if (profile.id === "kiro-json") {
+    if (disabledTools.length > 0) {
+      nextEntry.disabledTools = disabledTools;
+    }
+    if (autoApprove.length > 0) {
+      nextEntry.autoApprove = autoApprove;
     }
   }
 
@@ -738,11 +974,17 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("Dev Containers nest MCP config under customizations.vscode.mcp.servers in devcontainer.json.");
   } else if (profile.id === "codex-toml") {
     base.push("Codex expects ~/.codex/config.toml with [mcp_servers.<name>] tables.");
+  } else if (profile.id === "claude-settings-json") {
+    base.push("Claude Code settings.json stores MCP entries in a top-level 'mcpServers' object.");
   } else if (profile.id === "claude-json") {
     base.push("Claude Code project and JSON configs use a top-level 'mcpServers' object and typed entries.");
     base.push("Claude-specific allow and deny lists can be written through allowedMcpServers and deniedMcpServers.");
   } else if (profile.id === "cursor-json") {
     base.push("Cursor reads mcp.json files with a top-level 'mcpServers' object.");
+  } else if (profile.id === "gemini-settings-json") {
+    base.push("Gemini CLI uses settings.json with top-level 'mcpServers' plus optional global mcp.allowed/excluded controls.");
+  } else if (profile.id === "kiro-json") {
+    base.push("Kiro uses settings/mcp.json with top-level 'mcpServers' entries.");
   }
 
   if (normalizeTransportMode(transport) === "stdio") {
@@ -755,7 +997,78 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("VS Code can optionally sandbox stdio servers with filesystem and network allowlists.");
   }
 
+  if (profile.id === "cursor-json" || profile.id === "gemini-settings-json" || profile.id === "kiro-json") {
+    base.push("These clients can carry extra entry metadata such as headers, cwd, env, or timeout depending on the transport.");
+  }
+
   return base;
+}
+
+function buildConfigRecipes({ targetId, configPath, serverName, transport, url }) {
+  const mode = normalizeTransportMode(transport);
+  const effectiveUrl = url || defaultTransportUrl(mode);
+  const recipes = [];
+
+  if (targetId === "workspace" || targetId === "claude-project" || targetId === "claude-user-settings") {
+    const scope = targetId === "claude-user-settings" ? "user" : "project";
+    recipes.push({
+      client: "claude-code",
+      kind: "cli",
+      command:
+        mode === "stdio"
+          ? `claude mcp add ${serverName} --scope ${scope} -- node ${shellQuote(SERVER_ENTRY_PATH)}`
+          : `claude mcp add --transport ${mode === "sse" ? "sse" : "http"} ${serverName} --scope ${scope} ${shellQuote(effectiveUrl)}`,
+    });
+  }
+
+  if (targetId === "gemini-user" || targetId === "gemini-workspace") {
+    const scope = targetId === "gemini-workspace" ? "project" : "user";
+    recipes.push({
+      client: "gemini-cli",
+      kind: "cli",
+      command:
+        mode === "stdio"
+          ? `gemini mcp add --scope ${scope} ${serverName} node ${shellQuote(SERVER_ENTRY_PATH)}`
+          : `gemini mcp add --scope ${scope} --transport ${mode === "sse" ? "sse" : "http"} ${serverName} ${shellQuote(effectiveUrl)}`,
+    });
+  }
+
+  if (targetId === "codex-user") {
+    recipes.push({
+      client: "codex-cli",
+      kind: "cli",
+      command:
+        mode === "stdio"
+          ? `codex mcp add ${serverName} --command ${shellQuote(process.execPath)} --arg ${shellQuote(SERVER_ENTRY_PATH)}`
+          : `codex mcp add ${serverName} --url ${shellQuote(effectiveUrl)}`,
+    });
+  }
+
+  if (targetId === "vscode" || targetId === "vscode-user" || targetId === "vscode-insiders-user" || targetId === "devcontainer") {
+    recipes.push({
+      client: "vscode",
+      kind: "manual",
+      command: "Use the Command Palette and run 'MCP: Open User Configuration' or 'MCP: Open Workspace Configuration' to apply the generated entry through VS Code.",
+    });
+  }
+
+  if (targetId === "cursor-user" || targetId === "cursor-workspace") {
+    recipes.push({
+      client: "cursor",
+      kind: "manual",
+      command: `Edit ${configPath} directly or import the generated entry from Cursor MCP settings.`,
+    });
+  }
+
+  if (targetId === "kiro-user" || targetId === "kiro-workspace") {
+    recipes.push({
+      client: "kiro",
+      kind: "manual",
+      command: `Edit ${configPath} and paste the generated mcpServers entry into Kiro's MCP settings.`,
+    });
+  }
+
+  return recipes;
 }
 
 export function isLocalModeEnabled() {
@@ -787,6 +1100,8 @@ export function detectClients(options = {}) {
         skills_path_allowed: allowlistRoots.some((rootPath) => isPathInside(skillsPath, rootPath)),
         config_path: configPath,
         config_profile: definition.configProfile,
+        config_profile_description:
+          (CONFIG_PROFILES[definition.configProfile] || CONFIG_PROFILES["generic-json"]).description,
         config_format: (CONFIG_PROFILES[definition.configProfile] || CONFIG_PROFILES["generic-json"]).format,
         config_path_exists: fs.existsSync(configPath),
         config_path_writable: canWritePath(configPath),
@@ -799,6 +1114,8 @@ export function detectClients(options = {}) {
       name: definition.name,
       path: definition.path(env),
       config_profile: definition.configProfile,
+      config_profile_description:
+        (CONFIG_PROFILES[definition.configProfile] || CONFIG_PROFILES["generic-json"]).description,
     })),
   };
 }
@@ -929,6 +1246,13 @@ export function configureClientMcp(input = {}, options = {}) {
   );
   const { configPath, profile, source, targetId, targetName } = resolvedTarget;
   const initialEntry = buildMcpServerEntry({ transport, url: input.url }, profile);
+  const recipes = buildConfigRecipes({
+    targetId,
+    configPath,
+    serverName,
+    transport,
+    url: input.url,
+  });
   const currentConfigText = fs.existsSync(configPath) ? fs.readFileSync(configPath, "utf-8") : "";
   let currentConfig = null;
   let nextConfig = null;
@@ -971,6 +1295,7 @@ export function configureClientMcp(input = {}, options = {}) {
     transport,
     applied: !dryRun,
     instructions: buildConfigInstructions(targetName, configPath, profile, transport),
+    recipes,
     current_config: currentConfig,
     current_config_text: currentConfigText,
     next_config: nextConfig,

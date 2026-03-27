@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T04:41:54.834149+00:00",
+  "generated_at": "2026-03-27T11:17:10.412909+00:00",
   "id": "api-design",
   "slug": "api-design",
   "display_name": "API Design",
@@ -80,7 +80,31 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 199,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 356,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 462,
+      "resources_items_count": 2,
+      "resources_section_length": 273,
+      "examples_section_length": 466,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 250,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 4.7
+    }
   },
   "maturity": {
     "skill_level": 3,
@@ -89,19 +113,46 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 80,
-    "tier": "good"
+    "score": 95,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 199,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 356,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 462,
+      "resources_items_count": 2,
+      "resources_section_length": 273,
+      "examples_section_length": 466,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 250,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 4.7
+    }
   },
   "quality": {
-    "score": 93,
+    "score": 86,
     "tier": "platinum",
     "breakdown": {
-      "body": 25,
-      "description": 12,
-      "metadata": 20,
-      "recency": 10,
+      "body": 16,
+      "description": 9,
+      "metadata": 12,
+      "recency": 8,
       "resources": 10,
-      "best_practices": 16
+      "best_practices": 9,
+      "semantic_depth": 13,
+      "operational_depth": 4,
+      "support_pack": 5
     }
   },
   "security": {

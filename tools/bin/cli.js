@@ -18,6 +18,7 @@ const VERIFY_ARCHIVES_SCRIPT = path.join(ROOT, "tools", "scripts", "verify_archi
 const MCP_SERVER = path.join(ROOT, "packages", "server-mcp", "src", "server.js");
 const API_SERVER = path.join(ROOT, "packages", "server-api", "src", "server.js");
 const A2A_SERVER = path.join(ROOT, "packages", "server-a2a", "src", "server.js");
+const VISUAL_UI = path.join(ROOT, "tools", "bin", "ui.mjs");
 const CATALOG = path.join(ROOT, "dist", "catalog.json");
 
 const COLOR = {
@@ -32,13 +33,57 @@ const COLOR = {
   gray: "\x1b[90m",
 };
 
-const TOOL_TARGETS = [
-  ["Claude Code", path.join(os.homedir(), ".claude", "skills")],
-  ["Cursor", path.join(os.homedir(), ".cursor", "skills")],
-  ["Gemini CLI", path.join(os.homedir(), ".gemini", "skills")],
-  ["Codex CLI", path.join(process.env.CODEX_HOME || path.join(os.homedir(), ".codex"), "skills")],
-  ["Antigravity", path.join(os.homedir(), ".gemini", "antigravity", "skills")],
-  ["OpenCode", path.join(process.cwd(), ".agents", "skills")],
+const BRAND_LOGO = [
+  "  ____                 _   _____ _    _ _ _     ",
+  " / __ \\___ ___  ____  (_) / ___/| | _(_) | |___ ",
+  "/ / / / _ `__ \\/ __ \\/ /  \\__ \\ | |/ / | | / __|",
+  "/ /_/ / / / / / / / / /  ___/ / |   <| | | \\__ \\",
+  "\\____/_/ /_/ /_/_/ /_/  /____/  |_|\\_\\_|_|_|___/",
+];
+
+const KNOWN_INSTALL_TARGETS = [
+  {
+    id: "claude-code",
+    name: "Claude Code",
+    flag: "--claude",
+    path: () => path.join(os.homedir(), ".claude", "skills"),
+  },
+  {
+    id: "cursor",
+    name: "Cursor",
+    flag: "--cursor",
+    path: () => path.join(os.homedir(), ".cursor", "skills"),
+  },
+  {
+    id: "gemini-cli",
+    name: "Gemini CLI",
+    flag: "--gemini",
+    path: () => path.join(os.homedir(), ".gemini", "skills"),
+  },
+  {
+    id: "codex-cli",
+    name: "Codex CLI",
+    flag: "--codex",
+    path: () => path.join(process.env.CODEX_HOME || path.join(os.homedir(), ".codex"), "skills"),
+  },
+  {
+    id: "kiro",
+    name: "Kiro",
+    flag: "--kiro",
+    path: () => path.join(os.homedir(), ".kiro", "skills"),
+  },
+  {
+    id: "antigravity",
+    name: "Antigravity",
+    flag: "--antigravity",
+    path: () => path.join(os.homedir(), ".gemini", "antigravity", "skills"),
+  },
+  {
+    id: "opencode",
+    name: "OpenCode",
+    flag: "--opencode",
+    path: () => path.join(process.cwd(), ".agents", "skills"),
+  },
 ];
 
 const TOOL_INSTALL_FLAGS = {
@@ -81,6 +126,10 @@ function style(color, value) {
   return `${color}${value}${COLOR.reset}`;
 }
 
+function renderBrandLogo() {
+  return style(COLOR.cyan, BRAND_LOGO.join("\n"));
+}
+
 function heading(title, subtitle = "") {
   const line = "─".repeat(66);
   return [
@@ -93,14 +142,45 @@ function heading(title, subtitle = "") {
     .join("\n");
 }
 
+function isInteractiveTerminal() {
+  return Boolean(process.stdin.isTTY && process.stdout.isTTY);
+}
+
+function expandUserPath(value) {
+  const home = os.homedir();
+  return String(value || "").replace(/^~(?=$|\/)/, home);
+}
+
+function resolveCustomPath(value) {
+  const expanded = expandUserPath(value).trim();
+  return expanded ? path.resolve(expanded) : "";
+}
+
+function listKnownInstallTargets() {
+  return KNOWN_INSTALL_TARGETS.map((target) => ({
+    ...target,
+    resolvedPath: target.path(),
+  }));
+}
+
+function getKnownTargetById(id) {
+  return listKnownInstallTargets().find((target) => target.id === normalizeToolId(id)) || null;
+}
+
 function printHelp() {
   console.log(
-    `${heading("Install skills, run services, and inspect your local setup.", "unified mode")}\n\n` +
+    `${renderBrandLogo()}\n\n` +
+      `${heading("Install skills, run services, and inspect your local setup.", "unified mode")}\n\n` +
       `${style(COLOR.bold, "Usage")}\n` +
       `  node tools/bin/cli.js <command> [options]\n` +
       `  npm run cli -- <command> [options]\n\n` +
+      `${style(COLOR.bold, "Entry Behavior")}\n` +
+      `  no args in TTY             Opens the guided install flow\n` +
+      `  no args outside TTY        Preserves the current default Antigravity install\n` +
+      `  install --guided           Forces the guided install flow\n\n` +
       `${style(COLOR.bold, "Commands")}\n` +
-      `  ui                         Open the interactive terminal UI\n` +
+      `  ui                         Open the visual terminal UI\n` +
+      `  ui --text                  Open the text fallback UI\n` +
       `  find [query]               Search the published skill catalog\n` +
       `  recategorize               Suggest or apply canonical skill categories\n` +
       `  install [flags]            Run the installer backend with the existing install flags\n` +
@@ -118,6 +198,8 @@ function printHelp() {
       `  npx omni-skills recategorize --write\n` +
       `  npx omni-skills find figma --tool cursor --install --yes\n` +
       `  npx omni-skills find foundation --bundle essentials --install --yes\n` +
+      `  npx omni-skills install --guided\n` +
+      `  npx omni-skills install --guided --path ./my-skills --skill architecture\n` +
       `  npx omni-skills --cursor --skill omni-figma\n` +
       `  npx omni-skills mcp stream --local\n` +
       `  npx omni-skills api --port 3333\n` +
@@ -183,6 +265,17 @@ function parseFlagValue(args, flag) {
     return null;
   }
   return args[index + 1];
+}
+
+function parseFlagValues(args, flag) {
+  const values = [];
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index] === flag && args[index + 1]) {
+      values.push(args[index + 1]);
+      index += 1;
+    }
+  }
+  return values;
 }
 
 function stripFlag(args, flag, takesValue = false) {
@@ -480,17 +573,323 @@ function runDoctor() {
   console.log(`  catalog:  ${describePath(CATALOG)}`);
   console.log("");
   console.log(`${style(COLOR.bold, "Default Skill Targets")}`);
-  for (const [name, targetPath] of TOOL_TARGETS) {
-    console.log(`  ${name.padEnd(12)} ${describePath(targetPath)}`);
+  for (const target of listKnownInstallTargets()) {
+    console.log(`  ${target.name.padEnd(12)} ${describePath(target.resolvedPath)}`);
   }
   console.log("");
   console.log(`${style(COLOR.bold, "Tips")}`);
   console.log("  - Use `npm run cli -- find figma` to inspect the published catalog.");
   console.log("  - Use `npm run build` to regenerate catalog artifacts if catalog.json is missing.");
+  console.log("  - Run `npx omni-skills` in a TTY for the guided install flow.");
   console.log("  - Use `npm run cli -- mcp stream --local` to start the local sidecar mode.");
   console.log("  - Use `npm run cli -- install --cursor --skill omni-figma` for a focused install.");
   console.log("  - Use `npm run cli -- api --port 3333` to expose the catalog over HTTP.");
   console.log("  - Use `npm run cli -- a2a --port 3335` to expose the A2A scaffold.");
+}
+
+function parseGuidedInstallSeed(args = []) {
+  const normalizedArgs = stripFlag(args, "--guided");
+  const targetFlags = listKnownInstallTargets().filter((target) => normalizedArgs.includes(target.flag));
+  const skillIds = parseFlagValues(normalizedArgs, "--skill");
+  const bundleIds = parseFlagValues(normalizedArgs, "--bundle");
+  const targetPath = parseFlagValue(normalizedArgs, "--path");
+
+  if (targetFlags.length > 1) {
+    throw new Error("Guided install accepts at most one target client flag.");
+  }
+  if (targetFlags.length > 0 && targetPath) {
+    throw new Error("Use either a client flag or --path in guided install, not both.");
+  }
+  if (skillIds.length > 0 && bundleIds.length > 0) {
+    throw new Error("Use either --skill or --bundle in guided install, not both.");
+  }
+  if (skillIds.length > 1 || bundleIds.length > 1) {
+    throw new Error("Guided install currently supports one selected skill or one selected bundle at a time.");
+  }
+
+  return {
+    assumeYes: normalizedArgs.includes("--yes"),
+    target: targetFlags[0] || null,
+    targetPath: targetPath ? resolveCustomPath(targetPath) : "",
+    skillId: skillIds[0] || null,
+    bundleId: bundleIds[0] || null,
+  };
+}
+
+async function promptForCustomPath(rl) {
+  while (true) {
+    const answer = await rl.question(style(COLOR.bold, "Custom path > "));
+    const resolved = resolveCustomPath(answer);
+    if (resolved) {
+      return resolved;
+    }
+    console.log(style(COLOR.yellow, "Please enter a non-empty path."));
+  }
+}
+
+function describeInstallTarget(target) {
+  if (target.kind === "path") {
+    return `Custom path (${target.targetPath})`;
+  }
+  return `${target.name} (${target.targetPath})`;
+}
+
+async function chooseInstallTarget(rl, seed = {}) {
+  if (seed.targetPath) {
+    return {
+      kind: "path",
+      name: "Custom path",
+      targetPath: seed.targetPath,
+      tool: "",
+    };
+  }
+
+  if (seed.target) {
+    return {
+      kind: "tool",
+      name: seed.target.name,
+      targetPath: seed.target.resolvedPath,
+      tool: seed.target.id,
+    };
+  }
+
+  const targets = [
+    ...listKnownInstallTargets().map((target) => ({
+      kind: "tool",
+      name: target.name,
+      targetPath: target.resolvedPath,
+      tool: target.id,
+    })),
+    {
+      kind: "path",
+      name: "Custom path",
+      targetPath: "",
+      tool: "",
+    },
+  ];
+
+  const selected = await chooseFromList(
+    rl,
+    "Choose where Omni Skills should install:",
+    targets,
+    (target) =>
+      target.kind === "path"
+        ? "Custom path (choose any directory)"
+        : `${target.name} (${target.targetPath})`,
+  );
+
+  if (selected.kind === "path") {
+    const targetPath = await promptForCustomPath(rl);
+    return {
+      ...selected,
+      targetPath,
+    };
+  }
+
+  return selected;
+}
+
+async function chooseInstallScope(rl, seed = {}) {
+  if (seed.skillId) {
+    return "skill";
+  }
+  if (seed.bundleId) {
+    return "bundle";
+  }
+
+  const options = [
+    { id: "full", label: "Full library install" },
+    { id: "skill", label: "One published skill" },
+    { id: "bundle", label: "One curated bundle" },
+    { id: "search", label: "Search then install" },
+  ];
+
+  const selected = await chooseFromList(
+    rl,
+    "Choose the install type:",
+    options,
+    (option) => option.label,
+  );
+  return selected.id;
+}
+
+async function choosePublishedSkill(rl, catalog, preselectedSkillId = null) {
+  const skills = [...(catalog.skills || [])].sort((left, right) =>
+    String(left.display_name || left.id).localeCompare(String(right.display_name || right.id)),
+  );
+  if (preselectedSkillId) {
+    const selected = skills.find((skill) => skill.id === preselectedSkillId);
+    if (!selected) {
+      throw new Error(`Skill '${preselectedSkillId}' was not found in the published catalog.`);
+    }
+    return selected;
+  }
+
+  return chooseFromList(
+    rl,
+    "Choose a published skill:",
+    skills,
+    (skill) =>
+      `${skill.display_name || skill.id} (${skill.id}) | quality ${skill.quality_score}/100 | security ${skill.security_score}/100`,
+  );
+}
+
+async function choosePublishedBundle(rl, bundles, preselectedBundleId = null) {
+  const sortedBundles = [...bundles].sort((left, right) => left.id.localeCompare(right.id));
+  if (preselectedBundleId) {
+    const selected = sortedBundles.find((bundle) => bundle.id === preselectedBundleId);
+    if (!selected) {
+      throw new Error(`Bundle '${preselectedBundleId}' was not found in the published bundle list.`);
+    }
+    return selected;
+  }
+
+  return chooseFromList(
+    rl,
+    "Choose a curated bundle:",
+    sortedBundles,
+    (bundle) =>
+      `${bundle.name} (${bundle.id}) | ${bundle.availability.available}/${bundle.availability.total} published`,
+  );
+}
+
+async function chooseSearchInstallTarget(rl, core, bundles) {
+  while (true) {
+    const query = (await rl.question(style(COLOR.bold, "Search query > "))).trim();
+    if (!query) {
+      console.log(style(COLOR.yellow, "Please enter a query to search the catalog."));
+      continue;
+    }
+
+    const result = core.searchSkills({ query, limit: 10 });
+    const bundleMatches = searchBundleMatches(bundles, query).slice(0, 5);
+    const items = [
+      ...result.results.map((skill) => ({
+        kind: "skill",
+        value: skill,
+      })),
+      ...bundleMatches.map((bundle) => ({
+        kind: "bundle",
+        value: bundle,
+      })),
+    ];
+
+    if (items.length === 0) {
+      console.log(style(COLOR.yellow, `No published skills or bundles matched '${query}'.`));
+      const retry = await promptYesNo(rl, "Try another search?", true);
+      if (!retry) {
+        throw new Error("Search-based install was canceled because no match was selected.");
+      }
+      continue;
+    }
+
+    return chooseFromList(
+      rl,
+      `Choose a result for '${query}':`,
+      items,
+      (item) =>
+        item.kind === "skill"
+          ? `Skill: ${item.value.display_name || item.value.id} (${item.value.id})`
+          : `Bundle: ${item.value.name} (${item.value.id})`,
+    );
+  }
+}
+
+function renderGuidedInstallPreview({ target, scope, skill, bundle, command }) {
+  const scopeLabel =
+    scope === "full"
+      ? "Full library"
+      : scope === "skill"
+        ? `Single skill (${skill.id})`
+        : scope === "bundle"
+          ? `Bundle (${bundle.id})`
+          : bundle
+            ? `Search → bundle (${bundle.id})`
+            : `Search → skill (${skill.id})`;
+
+  console.log("");
+  console.log(style(COLOR.bold, "Install Preview"));
+  console.log(`  target: ${target.name}`);
+  console.log(`  path:   ${target.targetPath}`);
+  console.log(`  scope:  ${scopeLabel}`);
+  if (skill) {
+    console.log(`  skill:  ${skill.display_name || skill.id} (${skill.id})`);
+  }
+  if (bundle) {
+    console.log(
+      `  bundle: ${bundle.name} (${bundle.id}) | ${bundle.availability.available}/${bundle.availability.total} published`,
+    );
+  }
+  console.log(`  command:${command.startsWith("npx") ? ` ${command}` : command}`);
+}
+
+async function runGuidedInstall(args = []) {
+  const seed = parseGuidedInstallSeed(args);
+  const core = await loadCatalogCore();
+  const catalog = core.loadCatalog();
+  const bundles = core.listBundles();
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  try {
+    console.log(renderBrandLogo());
+    console.log("");
+    console.log(heading("Guided install flow.", "choose a destination, resolve a scope, preview, and apply"));
+    console.log("");
+
+    const target = await chooseInstallTarget(rl, seed);
+    const scope = await chooseInstallScope(rl, seed);
+
+    let selectedSkill = null;
+    let selectedBundle = null;
+
+    if (scope === "skill") {
+      selectedSkill = await choosePublishedSkill(rl, catalog, seed.skillId);
+    } else if (scope === "bundle") {
+      selectedBundle = await choosePublishedBundle(rl, bundles, seed.bundleId);
+    } else if (scope === "search") {
+      const selected = await chooseSearchInstallTarget(rl, core, bundles);
+      if (selected.kind === "skill") {
+        selectedSkill = selected.value;
+      } else {
+        selectedBundle = selected.value;
+      }
+    }
+
+    const installerArgs = buildInstallerArgs({
+      tool: target.tool,
+      targetPath: target.kind === "path" ? target.targetPath : null,
+      skillId: selectedSkill?.id || null,
+      bundleId: selectedBundle?.id || null,
+    });
+    const installCommand = renderInstallerCommand(installerArgs);
+
+    renderGuidedInstallPreview({
+      target,
+      scope,
+      skill: selectedSkill,
+      bundle: selectedBundle,
+      command: installCommand,
+    });
+
+    let shouldInstall = seed.assumeYes;
+    if (!shouldInstall) {
+      shouldInstall = await promptYesNo(rl, "Run this install now?", true);
+    }
+
+    if (!shouldInstall) {
+      console.log("");
+      console.log(style(COLOR.yellow, "Install canceled before execution."));
+      return;
+    }
+
+    console.log("");
+    await runInstaller(installerArgs);
+  } finally {
+    rl.close();
+  }
 }
 
 async function runFind(args) {
@@ -1050,6 +1449,16 @@ async function runSmoke(args) {
   console.log(style(COLOR.green, "Smoke checks completed."));
 }
 
+async function runVisualUi(args = []) {
+  if (!isInteractiveTerminal()) {
+    throw new Error(
+      "The visual UI requires an interactive TTY. Use 'ui --text' or direct CLI commands in non-interactive environments.",
+    );
+  }
+  console.log(`${heading("Starting the visual terminal UI.", "ink shell")}\n`);
+  await spawnNode(VISUAL_UI, args);
+}
+
 async function interactiveMenu() {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -1058,9 +1467,10 @@ async function interactiveMenu() {
 
   try {
     console.log(
-      `${heading("Choose a quick action.", "interactive")}\n\n` +
+      `${renderBrandLogo()}\n\n` +
+        `${heading("Choose a quick action.", "interactive")}\n\n` +
         `  1. Find skills\n` +
-        `  2. Install skills\n` +
+        `  2. Guided install\n` +
         `  3. Recategorize skills\n` +
         `  4. Start MCP over stdio\n` +
         `  5. Start MCP over stream\n` +
@@ -1079,8 +1489,8 @@ async function interactiveMenu() {
       return;
     }
     if (action === "2") {
-      const installArgs = await rl.question(style(COLOR.bold, "Installer flags > "));
-      await runInstaller(installArgs.trim() ? installArgs.trim().split(/\s+/) : []);
+      rl.close();
+      await runGuidedInstall(["--guided"]);
       return;
     }
     if (action === "3") {
@@ -1126,6 +1536,10 @@ async function main() {
   const command = args[0];
 
   if (!command) {
+    if (isInteractiveTerminal()) {
+      await runGuidedInstall(["--guided"]);
+      return;
+    }
     await runInstaller([]);
     return;
   }
@@ -1136,7 +1550,11 @@ async function main() {
   }
 
   if (command === "ui") {
-    await interactiveMenu();
+    if (args.includes("--text") || process.env.OMNI_SKILLS_UI_TEXT === "1") {
+      await interactiveMenu();
+      return;
+    }
+    await runVisualUi(args.slice(1));
     return;
   }
 
@@ -1176,7 +1594,25 @@ async function main() {
   }
 
   if (command === "install" || command.startsWith("--")) {
-    await runInstaller(command === "install" ? args.slice(1) : args);
+    const installerArgs = command === "install" ? args.slice(1) : args;
+    const forcedGuided = installerArgs.includes("--guided");
+    const hasExplicitSelector =
+      parseFlagValues(installerArgs, "--skill").length > 0 ||
+      parseFlagValues(installerArgs, "--bundle").length > 0 ||
+      parseFlagValue(installerArgs, "--path") ||
+      listKnownInstallTargets().some((target) => installerArgs.includes(target.flag));
+
+    if (forcedGuided || (command === "install" && installerArgs.length === 0 && isInteractiveTerminal())) {
+      await runGuidedInstall(installerArgs);
+      return;
+    }
+
+    if (command === "install" && !hasExplicitSelector && isInteractiveTerminal()) {
+      await runGuidedInstall(["--guided", ...installerArgs]);
+      return;
+    }
+
+    await runInstaller(installerArgs);
     return;
   }
 

@@ -164,11 +164,35 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 80,
-      "tier": "good"
+      "score": 95,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 243,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 342,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 463,
+        "resources_items_count": 2,
+        "resources_section_length": 249,
+        "examples_section_length": 459,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 257,
+        "decision_assets_count": 3,
+        "table_count": 0,
+        "linked_resource_families_count": 2,
+        "linked_resource_families": [
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 5,
+        "body_density": 4.87
+      }
     },
     "quality": {
-      "score": 96,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -176,7 +200,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 16
+        "best_practices": 15,
+        "semantic_depth": 10
       }
     },
     "security": {
@@ -236,7 +261,31 @@
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 243,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 342,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 463,
+      "resources_items_count": 2,
+      "resources_section_length": 249,
+      "examples_section_length": 459,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 257,
+      "decision_assets_count": 3,
+      "table_count": 0,
+      "linked_resource_families_count": 2,
+      "linked_resource_families": [
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 5,
+      "body_density": 4.87
+    }
   },
   "artifacts": [
     {
@@ -248,8 +297,8 @@
     {
       "path": "skills/documentation/metadata.json",
       "kind": "support",
-      "size_bytes": 3457,
-      "sha256": "757e38e007173b67b6b5aad07b66d667de02cc5547ad9622754d2729efdb563c"
+      "size_bytes": 5012,
+      "sha256": "6a4ee65e40ffccbf0ba97d4aa1fb643a8eb775d02de1a61c5501a51b53d84bd0"
     },
     {
       "path": "skills/documentation/references/checklist.md",
@@ -269,8 +318,8 @@
       "format": "zip",
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
-      "size_bytes": 4430,
-      "sha256": "00de9d4cc2972c4c72d2d3c1cf23fb5aecf11653478369b6cf90a0ea7f865fdb",
+      "size_bytes": 4616,
+      "sha256": "daa208d9066eba7450195c78a3a2ee8e5d62e56873c8cdbfb433e66b7f9ffd30",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -283,8 +332,8 @@
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 3856,
-      "sha256": "23edbaeb08c16ad3c5761d9aa175d57628b5c4c2e7f56824d9a10f2d2c973de0",
+      "size_bytes": 4029,
+      "sha256": "dd68f2a3c20642fa6fb13c1b24c6d255a7b131b02971e541da9069a3e5924133",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -297,7 +346,7 @@
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "bb1ef59932dcc8e1c2ae21635ddcf2069c4d875b946ff13b318ad1d9b6425163",
+    "sha256": "562e89cd2cb487cddc0ea3eb2b74457e8192727e573f63c61c0504369a876a7b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -308,6 +357,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "8d590a626659a0d460954c6705ed34b9ab83dd0dd9fa76e6f81c86f38271bbc8",
-    "package_sha256": "b496e5ed166be72c7acb26261123371ea5f4ab9e02936aaeb80861573cc07658"
+    "package_sha256": "ff040b3d4ae630a3bf2d31153528fe53c7937bc16d15426827992cea603a8dc4"
   }
 }

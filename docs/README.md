@@ -14,12 +14,12 @@ Standard community files live in the repository root:
 |:-----|:------|:--------|
 | 🏗️ **Runtime** | ✅ Complete | CLI, API, MCP (3 transports), A2A task runtime |
 | 📦 **Catalog** | 📌 19 skills | Core dev, design, OSS, security, DevOps, and AI-engineering skills published |
-| 🎯 **Install** | ✅ Complete | Selective install by `--skill` and `--bundle` |
-| 🌐 **API** | ✅ Complete | Read-only with auth, rate limiting, audit log |
-| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode |
-| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode, and SQLite lease failover across workers |
+| 🎯 **Install** | ✅ Complete | Guided TTY install, Ink visual shell, and selective install by `--skill` and `--bundle` |
+| 🌐 **API** | ✅ Complete | Read-only with auth, admin runtime, rate limiting, audit log, CORS/IP allowlists, and maintenance mode |
+| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode + client-aware recipes for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode, and SQLite or Redis-backed lease coordination |
 | 🛡️ **Security** | ✅ Complete | Static scanner + optional local ClamAV/VirusTotal, enforced on release tags |
-| 📋 **Classification** | ✅ Complete | Taxonomy · maturity · quality · best practices · security |
+| 📋 **Classification** | ✅ Complete | Taxonomy · maturity · semantic quality spread · best-practices spread · security |
 | 📁 **Archives** | ✅ Complete | Per-skill zip/tar.gz with SHA-256 checksums |
 | 🔐 **Signing** | ✅ Complete | Local signing plus CI-enforced detached signatures on release tags |
 
@@ -42,13 +42,17 @@ Standard community files live in the repository root:
 | Doc | What You'll Learn |
 |:----|:------------------|
 | 🗺️ [Agent-Native Roadmap](architecture/agent-native-roadmap.md) | Target architecture and phase plan |
+| 🧭 [CLI UX Roadmap](architecture/cli-ux-roadmap.md) | Product roadmap for the guided and visual CLI experience |
 | 📐 [ADR-0001: Workspace Foundation](architecture/adr-0001-agent-native-workspace.md) | Key architectural decision and consequences |
 | 🔬 [Codebase Analysis](architecture/codebase-analysis.md) | Deep technical analysis of all components |
 | 🌐 [Catalog API Surface](specs/catalog-api.md) | HTTP endpoints, filtering, auth, and downloads |
+| 🧩 [CLI Guided Installer](specs/cli-guided-installer.md) | Behavioral contract for the guided install flow |
+| 🖥️ [CLI Visual Shell](specs/cli-visual-shell.md) | Ink visual hub, local state, presets, and guided service launch |
 | 🔌 [Local MCP Sidecar](specs/local-mcp-sidecar.md) | Filesystem tools, allowlist, and config writing |
 | 📊 [Skill Classification](specs/skill-classification.md) | Taxonomy, scoring heuristics, and metadata shape |
 | 🛡️ [Security Validation](specs/security-validation.md) | Scanners, archives, signing, and distribution |
 | 📋 [Skill Manifest Spec](specs/skill-manifest.md) | Machine-readable manifest format and fields |
+| ✅ [CLI UX Task Backlog](tasks/cli-ux/README.md) | Physical execution tasks and tracking checklist for the CLI UX work |
 
 ### 🤝 If You Want to **Contribute**
 
@@ -66,6 +70,13 @@ Standard community files live in the repository root:
 
 ### 🖥️ CLI
 
+```bash
+npx omni-skills                       # Guided install in TTY
+npx omni-skills install --guided      # Forced guided install
+npx omni-skills ui                    # Ink visual hub
+npx omni-skills ui --text             # Text fallback UI
+```
+
 The published `omni-skills` binary is the unified operational entry point.
 
 ```bash
@@ -75,8 +86,10 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 npx omni-skills find figma --tool cursor --install --yes
 
 # 📦 Installation
+npx omni-skills install --guided --path ./my-skills --skill architecture
 npx omni-skills --cursor --skill omni-figma
 npx omni-skills --codex --bundle full-stack
+npx omni-skills ui
 
 # 🏷️ Taxonomy
 npx omni-skills recategorize
@@ -166,6 +179,7 @@ npx omni-skills a2a --port 3335
 | 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
 | 🔧 `docs/operations/` | Operational runbooks |
 | 📋 `docs/specs/` | Protocol and artifact contracts |
+| ✅ `docs/tasks/` | Delivery backlogs and execution tracking |
 | 📚 `docs/CATALOG.md` | Generated skill catalog |
 | 📦 `dist/` | Generated machine-readable artifacts |
 | 🧠 `packages/catalog-core/` | Shared catalog runtime |

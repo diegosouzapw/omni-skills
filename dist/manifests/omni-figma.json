@@ -135,11 +135,37 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 72,
-      "tier": "good"
+      "score": 93,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 4,
+        "best_practices_section_length": 298,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 527,
+        "resources_items_count": 3,
+        "resources_section_length": 438,
+        "examples_section_length": 357,
+        "examples_code_blocks_count": 4,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 2,
+        "table_count": 0,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 4,
+        "tags_count": 6,
+        "body_density": 7.97
+      }
     },
     "quality": {
-      "score": 94,
+      "score": 100,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
@@ -147,7 +173,8 @@
         "metadata": 20,
         "recency": 10,
         "resources": 10,
-        "best_practices": 14
+        "best_practices": 15,
+        "semantic_depth": 11
       }
     },
     "security": {
@@ -207,7 +234,33 @@
     "has_local_support_links": true,
     "local_support_links_count": 4,
     "has_local_script_example": true,
-    "local_script_example_count": 0
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 4,
+      "best_practices_section_length": 298,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 527,
+      "resources_items_count": 3,
+      "resources_section_length": 438,
+      "examples_section_length": 357,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 2,
+      "table_count": 0,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 4,
+      "tags_count": 6,
+      "body_density": 7.97
+    }
   },
   "artifacts": [
     {
@@ -225,8 +278,8 @@
     {
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
-      "size_bytes": 3700,
-      "sha256": "cdaab3695a4fe554e704403b49fb6a724fe597b36dfd59eb41f8298e04fe8b05"
+      "size_bytes": 5319,
+      "sha256": "308fd88e476dab544b0f1d823c86d8173f5899a11a04597ae973c7d3d94602f7"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -282,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 13793,
-      "sha256": "48f3038f01344c559e9f0ecf597a0eb61834ceeb1d59c094165c454bf72e0616",
+      "size_bytes": 13987,
+      "sha256": "c00d62926ce29039bad5989157f2e2450896bdbee25b3ae4c36e8eb5e30aaa49",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -296,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 11602,
-      "sha256": "14beb12517a5591c9fa66b14a2f9e144e7fcc9c376124c50e72107a957967144",
+      "size_bytes": 11813,
+      "sha256": "78c1942af56bcb6ff6b09d3749eb6fd1a66946f84903256c27cb98b2b5503500",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -310,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "1dd23a345a4a750fa6ca0eb71fd9caddf9b43683dafb7fd1cec62ca0bdc16c7e",
+    "sha256": "fa9a95cf4a315163ad7acf9b66778a5342e04d5832d9de17929aea626b8c758f",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -321,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "4fc515f4d91db3067eb46c48d5a9f1893045c9b12dba5cc83cd7cda6a5f1e8f4",
-    "package_sha256": "8fff196503f623a542ff1cc73052f7f81da2562c63e95947b2e30de79b4f7624"
+    "package_sha256": "a837bc366055e0d8a800dd533f338aa075abbb5c43e5e64ec2fc22ad8339d3dd"
   }
 }

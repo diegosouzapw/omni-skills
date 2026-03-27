@@ -20,15 +20,16 @@ Omni Skills is no longer only an installer.
 
 - 📦 **Unified package**: the published `omni-skills` binary now handles install, diagnostics, MCP, API, A2A, and release smoke checks.
 - 🖥️ **Operator-friendly CLI**: the package exposes `doctor`, `ui`, `smoke`, and `publish-check` in the same binary.
+- 🪄 **Visual terminal shell**: `npx omni-skills ui` now opens a branded Ink shell with guided install, service launch, recents, presets, and favorites.
 - 🔎 **Catalog discovery**: `npx omni-skills find <query>` now searches the published catalog and suggests install commands.
 - 🧭 **Shared catalog contract**: `skills_index.json`, `dist/catalog.json`, `dist/bundles.json`, and `dist/manifests/*.json` drive the runtime.
-- 🧪 **Skill classification**: validation now parses frontmatter, normalizes categories to a canonical taxonomy, and computes maturity level, best practices, and quality scores.
+- 🧪 **Skill classification**: validation now parses frontmatter, normalizes categories to a canonical taxonomy, and computes maturity level, best-practices spread, semantic quality spread, and security scores.
 - 🛡️ **Security validation**: the validator now runs a static content and script scanner, emits security scores, and can optionally enrich results with ClamAV and VirusTotal hash lookups.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 📦 **Per-skill archives**: the build now emits `zip`, `tar.gz`, and checksum manifests per skill, with detached signatures when signing keys are configured.
-- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, optional external process execution, and shared-lease queue recovery across multiple nodes.
-- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including VS Code user/workspace and Dev Container targets.
-- 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, in-memory rate limiting, and audit logging.
+- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, optional external process execution, and external Redis-backed coordination in addition to shared SQLite lease recovery.
+- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Kiro user/workspace, Codex TOML, VS Code user/workspace, and Dev Container targets with generated recipes.
+- 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, admin tokens, request IDs, in-memory rate limiting, audit logging, CORS allowlists, IP allowlists, maintenance mode, and admin runtime introspection.
 - 🚢 **Release automation**: GitHub Actions now verifies version tags, runs ClamAV and VirusTotal-gated release builds, requires detached archive signing in CI, publishes the exact tarball to npm, and creates a GitHub Release with custom notes.
 - ✅ **Release preflight**: `smoke` and `publish-check` validate build output, tests, package contents, service boots, and scanner coverage.
 
@@ -42,6 +43,8 @@ The runtime foundation is in place and the public catalog now fully backs every 
 - Current published skills span architecture, frontend, backend, documentation, security, DevOps, and AI application workflows
 - Fully backed bundles: **`essentials`**, **`full-stack`**, **`security`**, **`devops`**, **`ai-engineer`**, and **`oss-maintainer`**
 - Newly published domain skills: `docker-expert`, `kubernetes`, `terraform`, `rag-engineer`, `prompt-engineer`, and `llm-patterns`
+- The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
+- Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
 
 The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the six curated starter bundles.
 
@@ -49,10 +52,44 @@ The docs below reflect that shift directly: bundle installs no longer depend on 
 
 ## 🚀 Quick Start
 
-### Install the default target
+### Start with the guided installer
+
+In an interactive terminal, `npx omni-skills` now opens the guided install flow.
 
 ```bash
 npx omni-skills
+```
+
+You can also force the guided flow explicitly:
+
+```bash
+npx omni-skills install --guided
+```
+
+### Open the visual terminal shell
+
+```bash
+npx omni-skills ui
+```
+
+### Default target in non-interactive mode
+
+Outside a TTY, the no-arg installer still defaults to **Antigravity** and writes into:
+
+```bash
+~/.gemini/antigravity/skills
+```
+
+### Install a single skill into Antigravity
+
+```bash
+npx omni-skills --skill api-design
+```
+
+### Install a bundle into Antigravity
+
+```bash
+npx omni-skills --bundle devops
 ```
 
 ### Install the published skill into a specific client
@@ -73,6 +110,13 @@ npx omni-skills find foundation --bundle essentials --install --yes
 # Audit taxonomy drift and optionally rewrite SKILL.md categories
 npx omni-skills recategorize
 npx omni-skills recategorize --write
+```
+
+### Install into a custom directory
+
+```bash
+npx omni-skills --path ./my-skills --skill architecture
+npx omni-skills install --guided --path ./my-skills --skill architecture
 ```
 
 ### Start the local MCP sidecar
@@ -106,6 +150,47 @@ The `v*` tag workflow rebuilds the release with required antivirus gates, signs 
 
 ---
 
+## 📥 How Installation Works Today
+
+The package is already usable as a normal npm-distributed CLI. You do not need to boot API, MCP, or A2A to install a skill.
+
+- `npx omni-skills` is the main entry point and opens guided install in interactive terminals
+- `npx omni-skills ui` opens the visual Ink shell with install, discovery, recent actions, and service launch
+- non-interactive no-arg installs still default to **Antigravity**
+- `npx omni-skills install --guided` forces the guided flow
+- `npx omni-skills --skill <id>` performs a selective install of just that skill
+- `npx omni-skills --bundle <id>` installs the currently published skills inside that bundle
+- `npx omni-skills find <query> --install` turns discovery into an install flow
+- `npx omni-skills --cursor`, `--claude`, `--codex`, `--gemini`, `--kiro`, `--opencode`, and `--antigravity` switch the target client
+- `npx omni-skills --path <dir>` bypasses client detection and installs into any directory you choose
+- `npx omni-skills ui --text` keeps a readline fallback for terminals where the richer shell is not desired
+
+For Antigravity specifically, the common flows are:
+
+```bash
+# Install everything published to the default Antigravity target
+npx omni-skills
+
+# Install one skill
+npx omni-skills --skill api-design
+
+# Install one bundle
+npx omni-skills --bundle ai-engineer
+
+# Discover first, then install
+npx omni-skills find api --tool antigravity --install --yes
+```
+
+The install path is:
+
+```bash
+~/.gemini/antigravity/skills
+```
+
+Selective installs use the generated manifests and published artifacts from `dist/`. They do not need to clone the whole repository just to install one skill or one bundle.
+
+---
+
 ## 🔌 Runtime Surfaces
 
 | Surface | Status | What it does | Example |
@@ -113,7 +198,7 @@ The `v*` tag workflow rebuilds the release with required antivirus gates, signs 
 | **CLI** | Implemented | Find and install skills, run diagnostics, open the terminal UI, boot services, run smoke checks | `npx omni-skills doctor` |
 | **Catalog API** | Implemented | Read-only catalog, search, bundles, install plans, artifact downloads | `npx omni-skills api --port 3333` |
 | **MCP** | Implemented | Discovery, recommendation, install preview, optional local sidecar mode | `npx omni-skills mcp stream --local` |
-| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, and SQLite-backed lease recovery | `npx omni-skills a2a --port 3335` |
+| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, and lease-aware recovery via SQLite or Redis-backed coordination | `npx omni-skills a2a --port 3335` |
 
 ### MCP Transports
 
@@ -198,6 +283,8 @@ This means `--bundle` is now a real install surface for all six curated starter 
 - [Agent-Native Roadmap](docs/architecture/agent-native-roadmap.md)
 - [ADR-0001: Agent-Native Workspace Foundation](docs/architecture/adr-0001-agent-native-workspace.md)
 - [Catalog API Surface](docs/specs/catalog-api.md)
+- [CLI Guided Installer](docs/specs/cli-guided-installer.md)
+- [CLI Visual Shell](docs/specs/cli-visual-shell.md)
 - [Local MCP Sidecar](docs/specs/local-mcp-sidecar.md)
 - [Skill Classification and Metadata](docs/specs/skill-classification.md)
 - [Security Validation and Distribution](docs/specs/security-validation.md)
@@ -265,12 +352,13 @@ Tag-based release automation now also validates:
 
 ---
 
-## 🛣️ What Is Still Pending
+## 🛣️ What Is Still Pending At Platform Level
 
-- stronger governance for hosted API or remote MCP deployments beyond the current auth, rate limit, and audit-log baseline
-- broader client coverage and export recipes beyond the current JSON, TOML, VS Code user, and Dev Container targets
-- moving beyond shared-SQLite lease coordination into external queue or distributed lock backends for larger hosted A2A deployments
-- deeper semantic scoring for best practices, so the next quality step is differentiating truly exceptional skills instead of just raising the floor
+- installation through npm/CLI is already in place; the items below are platform-expansion work
+- broader client coverage and export recipes beyond the current Claude, Cursor, Codex, Gemini, Kiro, VS Code, Dev Container, and generic targets
+- enterprise-grade hosted governance above the built-in controls, such as external identity, gateway policy, and WAF integration
+- coordinator adapters beyond store-backed and Redis-backed A2A execution for larger managed queue backends
+- further semantic scorer refinement and richer reference packs now that both best-practices and quality scores have real spread
 
 ---
 
