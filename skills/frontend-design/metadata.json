@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.717802+00:00",
+  "generated_at": "2026-03-27T02:37:44.910032+00:00",
   "id": "frontend-design",
   "slug": "frontend-design",
   "display_name": "Frontend Design",
   "description": "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "frontend",
   "canonical_category": "frontend",
   "taxonomy": {
@@ -37,7 +37,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.102252+00:00"
+    "file_mtime": "2026-03-27T02:37:23.347092+00:00"
   },
   "paths": {
     "root": "skills/frontend-design",

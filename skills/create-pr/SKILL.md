@@ -1,7 +1,7 @@
 ---
 name: create-pr
 description: "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance."
-version: "1.0.0"
+version: "0.0.1"
 category: communication
 tags: [pr, review, collaboration, summary, handoff]
 complexity: intermediate

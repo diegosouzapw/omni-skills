@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.733568+00:00",
+  "generated_at": "2026-03-27T02:37:44.929214+00:00",
   "id": "security-auditor",
   "slug": "security-auditor",
   "display_name": "Security Auditor",
   "description": "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "testing-security",
   "canonical_category": "testing-security",
   "taxonomy": {
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T01:09:19.400918+00:00"
+    "file_mtime": "2026-03-27T02:37:23.347669+00:00"
   },
   "paths": {
     "root": "skills/security-auditor",

@@ -4,7 +4,7 @@
   "slug": "frontend-design",
   "display_name": "Frontend Design",
   "description": "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "frontend",
   "raw_category": "frontend",
   "taxonomy": {
@@ -229,13 +229,13 @@
       "path": "skills/frontend-design/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3790,
-      "sha256": "cbef3e0216c959685f694a8557eb528ece9f9e507dd2efda020ab15abcc49616"
+      "sha256": "a0c057c6929086e83b2f04bacd9687c0a0bce3e9775a9e27c06702d51476b380"
     },
     {
       "path": "skills/frontend-design/metadata.json",
       "kind": "support",
       "size_bytes": 2949,
-      "sha256": "d5c253b93e7551e83e00721d6831150316103706e409160e7f90d86c7043d661"
+      "sha256": "8a9aaa3325b9bf5e5a3efb18e205b7e222ed4f84c8117d46928043c84505fd4c"
     }
   ],
   "archives": [
@@ -243,8 +243,8 @@
       "format": "zip",
       "path": "dist/archives/frontend-design.zip",
       "file_name": "frontend-design.zip",
-      "size_bytes": 3103,
-      "sha256": "d3d98970931789a86abc2601823e6f00f57ea46108b8d63dad9fbf80e0d196cc",
+      "size_bytes": 3100,
+      "sha256": "1728c275ee7448aacaf60e6357b0f22d974d37a92b38f9fd6f156d29c622d2a1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -257,8 +257,8 @@
       "format": "tar.gz",
       "path": "dist/archives/frontend-design.tar.gz",
       "file_name": "frontend-design.tar.gz",
-      "size_bytes": 2951,
-      "sha256": "06eb75445f66209ef849c058804571e60708d2b7b217ea4d396ff0aa3add16d5",
+      "size_bytes": 2942,
+      "sha256": "2fc5d338a5fe9ec4615ddbf679ddd0c83d7b7b2dbe38873da55df8d44ae3cf1b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -271,7 +271,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-design.checksums.txt",
     "file_name": "frontend-design.checksums.txt",
-    "sha256": "5763bb7fa62c9bd62f90a9b03b3f6ecb43c4909f4523fbc2663b9b00967fe63a",
+    "sha256": "a101ccddb9aef2997adb582ca4ff04af0bc731366ddfc291a335f8b97dec055b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -281,7 +281,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "cbef3e0216c959685f694a8557eb528ece9f9e507dd2efda020ab15abcc49616",
-    "package_sha256": "9a8924069e5567f6502e67487c31e6a3179299bd68a0c09d8d3b2e7f2fa26f78"
+    "entrypoint_sha256": "a0c057c6929086e83b2f04bacd9687c0a0bce3e9775a9e27c06702d51476b380",
+    "package_sha256": "073682b2d8788fef91aec59ff5172c7dc8231619b99eb13c3b9799f5367abd60"
   }
 }

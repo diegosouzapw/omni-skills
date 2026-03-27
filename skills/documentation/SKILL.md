@@ -1,7 +1,7 @@
 ---
 name: documentation
 description: "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations."
-version: "1.0.0"
+version: "0.0.1"
 category: documentation
 tags: [docs, readme, onboarding, guides, runbooks]
 complexity: intermediate

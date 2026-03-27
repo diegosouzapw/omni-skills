@@ -120,7 +120,7 @@ Every skill must include YAML frontmatter. Use [docs/contributors/skill-template
 ---
 name: my-skill-name
 description: "What it does"
-version: "1.0.0"
+version: "0.0.1"
 category: development
 tags: [react, typescript]
 complexity: intermediate

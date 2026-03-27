@@ -4,7 +4,7 @@
   "slug": "database-design",
   "display_name": "Database Design",
   "description": "Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "backend",
   "raw_category": "backend",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/database-design/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3760,
-      "sha256": "5df6778a622c2a12907e27c61c1b73418c8093ef38a1b88516011de49ee0cc33"
+      "sha256": "f1882889b6667f8ab0eb2a063879a83c890f0c9ebd53012e225bac410ce3105c"
     },
     {
       "path": "skills/database-design/metadata.json",
       "kind": "support",
       "size_bytes": 2922,
-      "sha256": "8405436d4545204c7f156591c7c015cde9c909da5244501b0b258a383b2c0730"
+      "sha256": "2423536df1e788a93e8bdd0099114bcd7e6daf5cf92cef844bf0d4872547d9e8"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 3137,
-      "sha256": "7a3d36655067bb780095290631080a5f07c8411bb616d5a688010a6966d5ce68",
+      "size_bytes": 3133,
+      "sha256": "e667c427cf2f0aaba938d4f90fa541ea97e6c698bb8122ed3f34392c7c60d276",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 2987,
-      "sha256": "341a1abfe04572a8b4179bfe77c9c92a99102a0a1f44573e1555b6e9f4e08f33",
+      "size_bytes": 2984,
+      "sha256": "c847e235632849f10219a8aaa65fd2b4232baae0c22ceb96d52417ecaa646ea3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "f1b0109e68d160309b931c9983d8a3ef2032f6ed9abbe389bcc2e634fb56c4bd",
+    "sha256": "4a200fcd4eb8989a5b9ce15a99d34363520e5173b9a275b63cce7fd272cf31ed",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "5df6778a622c2a12907e27c61c1b73418c8093ef38a1b88516011de49ee0cc33",
-    "package_sha256": "f68d7f3145950fd5ef009fd92207a9ad1980b44def2f328616e8dca8bcf8eb72"
+    "entrypoint_sha256": "f1882889b6667f8ab0eb2a063879a83c890f0c9ebd53012e225bac410ce3105c",
+    "package_sha256": "5f8eea0cbebce695dd53ecd40b8fd1ab4817c6d7f775bdbd980a2becc1cc6902"
   }
 }

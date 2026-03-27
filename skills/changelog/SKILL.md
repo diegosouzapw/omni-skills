@@ -1,7 +1,7 @@
 ---
 name: changelog
 description: "Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change narrative."
-version: "1.0.0"
+version: "0.0.1"
 category: documentation
 tags: [changelog, release-notes, upgrades, summary, maintenance]
 complexity: intermediate

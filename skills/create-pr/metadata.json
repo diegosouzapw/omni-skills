@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.697564+00:00",
+  "generated_at": "2026-03-27T02:37:44.883668+00:00",
   "id": "create-pr",
   "slug": "create-pr",
   "display_name": "Create PR",
   "description": "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "communication",
   "canonical_category": "communication",
   "taxonomy": {
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.104253+00:00"
+    "file_mtime": "2026-03-27T02:37:23.345824+00:00"
   },
   "paths": {
     "root": "skills/create-pr",

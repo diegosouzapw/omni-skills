@@ -4,7 +4,7 @@
   "slug": "changelog",
   "display_name": "Changelog",
   "description": "Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change narrative.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "documentation",
   "raw_category": "documentation",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/changelog/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3489,
-      "sha256": "3a489037a201c28619f4b1375fd0b5b314900026ab46b0187de7a66acb3f0781"
+      "sha256": "b2ee41b874f34ef2d6a2db1bddc79423ae3c62a78ed74bc3713a93aa021ffede"
     },
     {
       "path": "skills/changelog/metadata.json",
       "kind": "support",
       "size_bytes": 2928,
-      "sha256": "6a1e6e147c6dfc448121c793df61b2aff7a4504e90c821db6129a4cbec98ea5d"
+      "sha256": "5d4ee8e6fe37078aa3cb1e6761983982f32e828a67e93564428ac93c82d703ff"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 2945,
-      "sha256": "b9109600b5e1b5a825f7e83b99409a507b38c2721979e5ec8aff57f80f698802",
+      "size_bytes": 2941,
+      "sha256": "8b892ed2f927c558771861f6447861fb3791af1b7a8c9a3cdb2afc3c764609f2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 2818,
-      "sha256": "5deaf178d5b7a16e80f06236c6511a0995cbe9b61f60177df13bf0a5f7aa5819",
+      "size_bytes": 2814,
+      "sha256": "dc3c24364d7da0b8884ab7feff0ff3620a16265a22735ab2e7848b27ff0351b7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "b204c7e9eafa048ba741988b3d9a2b1228c3c9c1ba197b2aeaa14509040b559b",
+    "sha256": "6dd6141da5de072b1bbe2ebbbb615d91aaa577aeea25d51efebf8aae7f8f1c02",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "3a489037a201c28619f4b1375fd0b5b314900026ab46b0187de7a66acb3f0781",
-    "package_sha256": "3ffdedf4f07b4ccbb54e72b59c3a3e47acec5caf4424212bb462f1e5c679751c"
+    "entrypoint_sha256": "b2ee41b874f34ef2d6a2db1bddc79423ae3c62a78ed74bc3713a93aa021ffede",
+    "package_sha256": "b6787fa9e0aa7f118dc4803e9494a26200e50f6eb42bcbf7676f30d579f4e540"
   }
 }

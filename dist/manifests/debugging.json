@@ -4,7 +4,7 @@
   "slug": "debugging",
   "display_name": "Debugging",
   "description": "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "development",
   "raw_category": "development",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/debugging/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3790,
-      "sha256": "783b9e81ca62cb012fe13bc572f805588f7ea08fdda2dd1dd03a5398331ab019"
+      "sha256": "ed176dbafaf61f1040aa2922bbe1405dfd83d01284ef3a9095c204c68244c9eb"
     },
     {
       "path": "skills/debugging/metadata.json",
       "kind": "support",
       "size_bytes": 2908,
-      "sha256": "053e99d1737a3c9545f8eb6b30ef08d3c7cfc8ce813c09a4783959a73b08da39"
+      "sha256": "da44577316a83a3050538a8d0d3e4b404308a06d6f4022525c519d3ef0e04e15"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/debugging.zip",
       "file_name": "debugging.zip",
-      "size_bytes": 3164,
-      "sha256": "205c92cec6a8a0d8aad8b3b68ec45ab0f220f1e4b0dce363139e0be5d9ff128f",
+      "size_bytes": 3161,
+      "sha256": "940869c784323c424cdbc1c2d38180482750236ae3f665f5aa15dcea9c532672",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/debugging.tar.gz",
       "file_name": "debugging.tar.gz",
-      "size_bytes": 3032,
-      "sha256": "9d6fcf73a2640628a8d1625d04e588870556af6d7c61ebcd48e5807528f43a03",
+      "size_bytes": 3034,
+      "sha256": "f83db1e863889130ceeddf0a711a15f8c69a5b79623a382f20df7b1bc44ea291",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/debugging.checksums.txt",
     "file_name": "debugging.checksums.txt",
-    "sha256": "2b0f55e2ac3f7092a7c398a6b908c4c2b1601cd71aaac638fd40801bd3d121e7",
+    "sha256": "a1cf4e91c2ba3a2bfd6f98a510708a5eaeca80d84e242687d6cf2e4ad4752adb",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "783b9e81ca62cb012fe13bc572f805588f7ea08fdda2dd1dd03a5398331ab019",
-    "package_sha256": "de21f1bdcc3937dad1fef2f2bd67141e3c43171b3f52549c7cac358510dfdc37"
+    "entrypoint_sha256": "ed176dbafaf61f1040aa2922bbe1405dfd83d01284ef3a9095c204c68244c9eb",
+    "package_sha256": "83eba5dcc8a9f166fc0c9d8c26a72fed88f954e8555aa527d4f7780ada58e8e3"
   }
 }

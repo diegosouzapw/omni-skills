@@ -1,4 +1,4 @@
-<!-- omni-skills: version=1.0.0; skills=13; updated_at=2026-03-26 -->
+<!-- omni-skills: version=0.0.1; skills=13; updated_at=2026-03-26 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**

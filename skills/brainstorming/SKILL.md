@@ -1,7 +1,7 @@
 ---
 name: brainstorming
 description: "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation."
-version: "1.0.0"
+version: "0.0.1"
 category: product
 tags: [ideation, planning, options, discovery, decision-making]
 complexity: intermediate

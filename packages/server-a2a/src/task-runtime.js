@@ -379,7 +379,7 @@ export class OmniSkillsA2ARuntime {
       description:
         "A2A agent for discovering skills, recommending stacks, preparing install plans, and handling long-running task lifecycles over polling, SSE, and optional push notifications.",
       url: `${effectiveBaseUrl}/a2a`,
-      version: "1.0.0",
+      version: "0.0.1",
       defaultInputModes: ["text"],
       defaultOutputModes: ["text", "application/json"],
       capabilities: {

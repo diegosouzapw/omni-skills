@@ -4,7 +4,7 @@
   "slug": "brainstorming",
   "display_name": "Brainstorming",
   "description": "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "product",
   "raw_category": "product",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/brainstorming/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 4113,
-      "sha256": "75659b4cf1dd24a00b5bac75df5375a40d8f485f456a71d02a38eb2e1c22553a"
+      "sha256": "adc7ad27d1c28992e48287bb631e6dc6db5c284d9fa9e703620bfd51ee6b7d91"
     },
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
       "size_bytes": 2934,
-      "sha256": "fa4e77d28ea0bb4083df08d18fe18961ca49e5f792f2532db949887cd0c493eb"
+      "sha256": "77ce0efc988d170ad472ff9f42f3cc84402a7bce812090e4cdd2975e9537fa20"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 3309,
-      "sha256": "b8dd34a94fc88910fd51568b5338ba36e01934ba62dddc6c0e98a511e1e16287",
+      "size_bytes": 3307,
+      "sha256": "9c8b52ccf8562edf283cd31803d254de092f1f7b0a96f78a75b4a593d8605ec7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 3148,
-      "sha256": "6b95b3f7133a202506b7b662827c14404aeafc6be1190e99b9053c12201a234d",
+      "size_bytes": 3156,
+      "sha256": "20ebe2ee4ccd9c51ab74393b25b0899d7085cf5f26e4260400c896e451dcbb16",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "30f1a11a9778c50f0ef23986fd0f2d0dbbd361f35e091e2541160ceb5408e3d5",
+    "sha256": "c48cd628f1721903a72e35b07e6390708550b6893d12e1607d8c5c7c39de6183",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "75659b4cf1dd24a00b5bac75df5375a40d8f485f456a71d02a38eb2e1c22553a",
-    "package_sha256": "8fb53afaf88120d238cf864f8be328cdb0b1dcf2c51736c5d88a4173d419f52f"
+    "entrypoint_sha256": "adc7ad27d1c28992e48287bb631e6dc6db5c284d9fa9e703620bfd51ee6b7d91",
+    "package_sha256": "4a74440a5e1665d494014937f7ced2cbe9b66d649517f0b21ee93935c5c6082e"
   }
 }

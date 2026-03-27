@@ -1,7 +1,7 @@
 ---
 name: omni-figma
 description: "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting."
-version: "1.0.0"
+version: "0.0.1"
 category: development
 tags: [figma, design-to-code, mcp, ui-implementation, code-connect, figjam]
 complexity: advanced

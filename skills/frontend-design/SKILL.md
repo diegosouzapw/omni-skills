@@ -1,7 +1,7 @@
 ---
 name: frontend-design
 description: "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation."
-version: "1.0.0"
+version: "0.0.1"
 category: frontend
 tags: [frontend, ui, ux, layout, interaction, accessibility]
 complexity: intermediate

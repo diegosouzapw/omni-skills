@@ -1,7 +1,7 @@
 ---
 name: security-auditor
 description: "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review."
-version: "1.0.0"
+version: "0.0.1"
 category: testing-security
 tags: [security, audit, review, threat-modeling, hardening]
 complexity: advanced

@@ -4,7 +4,7 @@
   "slug": "documentation",
   "display_name": "Documentation",
   "description": "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "documentation",
   "raw_category": "documentation",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/documentation/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3772,
-      "sha256": "de1e2e1e444e3c50d404275b0d48579e3c44947b1e78e1a392181f934a7f3411"
+      "sha256": "4c9aa22c7b292a3a5f569247b22870f4b3b8c8c20ed08095d6a7be78de781aea"
     },
     {
       "path": "skills/documentation/metadata.json",
       "kind": "support",
       "size_bytes": 2941,
-      "sha256": "413f4e4ddcb6a290c3f334998ebfa59d91e07a8e63a6503ec8cc1df0c3bd4c84"
+      "sha256": "1f9e4ceed0bdc19fe87ef5908fac0dfaf6631526fb88c05f55c9121f1495de7f"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
-      "size_bytes": 3124,
-      "sha256": "ffcb037e83ff0dd56430aa5a9f902bcd2fc5b44ea88d51a966ce5054590e738e",
+      "size_bytes": 3120,
+      "sha256": "d172f7c688c93cfcf7c3b271c70093ca08482dfcd982d5088baf3c1d55dd40b6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 2981,
-      "sha256": "19be35ade792a69417cb195068feb5a33e97e9b80654777dca2dcec4eb3e7b22",
+      "size_bytes": 2985,
+      "sha256": "a23578624dc7271763693eda618949db26d491d1ee7e0063d165bb3260e43b5a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "91a0f65850cfea60c250e99d36dbc8b53437a196a2aaf1ac96eb2be869da67de",
+    "sha256": "e705275578480ce640d07c0618d7e56e6b8b5cb691c8eb6fdfbb639acbe953bf",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "de1e2e1e444e3c50d404275b0d48579e3c44947b1e78e1a392181f934a7f3411",
-    "package_sha256": "ffda4ee7f3aece84f3a0356a3f2a9bdb7c4c7bd5d505a6afd4263bd2b171acaa"
+    "entrypoint_sha256": "4c9aa22c7b292a3a5f569247b22870f4b3b8c8c20ed08095d6a7be78de781aea",
+    "package_sha256": "495a2b380c627b8a735df099da9b4f70294ecbb24a072d5bafec7bea39bb4798"
   }
 }

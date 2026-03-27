@@ -10,7 +10,7 @@
 | Attribute | Value |
 |:----------|:------|
 | **Name** | `omni-skills` |
-| **Version** | `1.0.0` |
+| **Version** | `0.0.1` |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
 | **Published Skills** | 13 |

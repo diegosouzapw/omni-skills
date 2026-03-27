@@ -1,7 +1,7 @@
 ---
 name: architecture
 description: "Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy, or technical decision record."
-version: "1.0.0"
+version: "0.0.1"
 category: development
 tags: [architecture, system-design, planning, refactor, adr]
 complexity: advanced

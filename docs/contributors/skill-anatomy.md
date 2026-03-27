@@ -30,7 +30,7 @@ Human-readable (and agent-readable) instructions. Write it as if you're **briefi
 |:------|:---------|:-----|:------------|
 | `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
 | `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version (e.g., `"1.0.0"`) |
+| `version` | ⚡ | string | Semantic version (e.g., `"0.0.1"`) |
 | `category` | ⚡ | string | One canonical category from the repo taxonomy |
 | `tags` | ⚡ | string[] | Searchable tags for discovery |
 | `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |

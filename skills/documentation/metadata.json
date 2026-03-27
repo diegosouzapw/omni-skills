@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.709605+00:00",
+  "generated_at": "2026-03-27T02:37:44.899014+00:00",
   "id": "documentation",
   "slug": "documentation",
   "display_name": "Documentation",
   "description": "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "documentation",
   "canonical_category": "documentation",
   "taxonomy": {
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.103252+00:00"
+    "file_mtime": "2026-03-27T02:37:23.346552+00:00"
   },
   "paths": {
     "root": "skills/documentation",

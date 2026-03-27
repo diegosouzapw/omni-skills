@@ -25,7 +25,7 @@ function fetchBuffer(url, redirects = 4) {
       url,
       {
         headers: {
-          "User-Agent": "omni-skills-installer/1.0.0",
+          "User-Agent": "omni-skills-installer/0.0.1",
           "Accept": "*/*",
         },
       },

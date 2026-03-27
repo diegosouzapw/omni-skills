@@ -178,7 +178,7 @@ Array of every file shipped inside the skill directory:
   "slug": "omni-figma",
   "display_name": "Omni Figma",
   "description": "Unified Figma MCP workflow for design-to-code...",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "development",
   "taxonomy": {
     "raw_category": "development",

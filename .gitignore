@@ -3,6 +3,9 @@ node_modules/
 
 # Generated artifacts (rebuild with npm run build)
 skills_index.json
+dist/release-notes.md
+dist/signing/
+dist/archives/*.sig
 
 # Environment
 .env

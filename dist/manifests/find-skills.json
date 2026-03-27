@@ -4,7 +4,7 @@
   "slug": "find-skills",
   "display_name": "Find Skills",
   "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "cli-automation",
   "raw_category": "cli-automation",
   "taxonomy": {
@@ -232,13 +232,13 @@
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3431,
-      "sha256": "d0831f520a66aa020d07adfedaa5cfcfbba80c4d3c973a66a368032743a7f6f4"
+      "sha256": "d45d9b91188507976cf7ea2ed878f955cdc134b3d3b3796a5b4c00518100a708"
     },
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
       "size_bytes": 3021,
-      "sha256": "ba10ef08e82a4123ac5e435cce3e3a5b923b63fbc0ec9751b11235564e6642c0"
+      "sha256": "9a4e68c404477cd21bf4f5fcf93e1b099ad82b78c452854e92dd152004123194"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -252,8 +252,8 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 3274,
-      "sha256": "db31e10d3640bf8a0f65b10e9816063d1202098dd55d4fbd1a0b835dbdc96617",
+      "size_bytes": 3271,
+      "sha256": "01433a88c71ee1972364f308328bf91d120fe2d5ff3fc94a5cbaf3a0da91b6bc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -266,8 +266,8 @@
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 2953,
-      "sha256": "0bf44321aaf7e6ed160e53c0214ba2e3a1a802afc4cbf23f520328964259428a",
+      "size_bytes": 2947,
+      "sha256": "bfe0ea1d119b5bfbf74bffef7da62fbe834072b54578e7bd5dad8e91dd805a73",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -280,7 +280,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "c8eac7d79bede95d56de2db48f5de6e2c9f9df6e482f020a76134d4c3e4f2f5c",
+    "sha256": "1bfc085a2792fbe805f2d8e6734686fe9f997b1a897039fd75eecafab53a79c0",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -290,7 +290,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "d0831f520a66aa020d07adfedaa5cfcfbba80c4d3c973a66a368032743a7f6f4",
-    "package_sha256": "dbc60a91c612138f71ac6f4cfea5b481dbb2830ad7a7b943af5592bd50b2d166"
+    "entrypoint_sha256": "d45d9b91188507976cf7ea2ed878f955cdc134b3d3b3796a5b4c00518100a708",
+    "package_sha256": "dbbd971694f69f991a95709742561310a4e9f5fe56218519c4baa5d123dbc32d"
   }
 }

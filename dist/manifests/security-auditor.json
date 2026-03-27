@@ -4,7 +4,7 @@
   "slug": "security-auditor",
   "display_name": "Security Auditor",
   "description": "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "testing-security",
   "raw_category": "testing-security",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/security-auditor/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 4402,
-      "sha256": "a8a39bc3b55de278d78f163d5ddac836beb014164c87e7137f05de9ca33ded8e"
+      "sha256": "a01b08d873a1b10a36425fb5f7ce495cde1aada85fd61d32a3f7191dc3ef71da"
     },
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
       "size_bytes": 2982,
-      "sha256": "e10a59d09751e6f71a3d7535df42e512e95d716f8e2c890407c75b10e1d988ff"
+      "sha256": "6005ae29b10be1d04cfd69c9889750f6493573b580a43739963586629865c9c1"
     }
   ],
   "archives": [
@@ -243,7 +243,7 @@
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
       "size_bytes": 3450,
-      "sha256": "6b772560895eeaeb3173c704539c45733fee03613b35f50b84172419c2e43eeb",
+      "sha256": "b4d52e4bc2171a40ef593f472d1ccedcc0ff46d4e63b1dd53c9220d627ff1ec1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 3292,
-      "sha256": "b4f5a9b752352705d586df8074c4ef8fdbe4e0ffbaffd2a345a6efe51acd4a52",
+      "size_bytes": 3288,
+      "sha256": "ea8dcef53187ad743d90c3451aa75d1975b713d118bebafffd52ab403ca1c15d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "5dcf30a35903f1e1e95bcf73083b0de6df2cbbf6b842c1eee26438ff0b142be9",
+    "sha256": "7c667cf168a2016d0625913a7443effe6b5726c3b92417b7eda56b6899af1582",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "a8a39bc3b55de278d78f163d5ddac836beb014164c87e7137f05de9ca33ded8e",
-    "package_sha256": "98ae471b4d1855e02ddb6ee769695a871a3efa6981be21876ae4502f91bdae9e"
+    "entrypoint_sha256": "a01b08d873a1b10a36425fb5f7ce495cde1aada85fd61d32a3f7191dc3ef71da",
+    "package_sha256": "9a75ea7c9c685b8d296a6c458a1f3599b07f6afa0269d0ef33b055b2c9cdd878"
   }
 }

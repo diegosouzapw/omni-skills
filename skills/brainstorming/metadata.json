@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.690027+00:00",
+  "generated_at": "2026-03-27T02:37:44.875179+00:00",
   "id": "brainstorming",
   "slug": "brainstorming",
   "display_name": "Brainstorming",
   "description": "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "product",
   "canonical_category": "product",
   "taxonomy": {
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.101253+00:00"
+    "file_mtime": "2026-03-27T02:37:23.345296+00:00"
   },
   "paths": {
     "root": "skills/brainstorming",

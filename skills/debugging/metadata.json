@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.705536+00:00",
+  "generated_at": "2026-03-27T02:37:44.893855+00:00",
   "id": "debugging",
   "slug": "debugging",
   "display_name": "Debugging",
   "description": "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "development",
   "canonical_category": "development",
   "taxonomy": {
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.102252+00:00"
+    "file_mtime": "2026-03-27T02:37:23.346309+00:00"
   },
   "paths": {
     "root": "skills/debugging",

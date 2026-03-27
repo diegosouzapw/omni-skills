@@ -1,4 +1,4 @@
-<!-- omni-skills: version=1.0.0; skills=13; updated_at=2026-03-26 -->
+<!-- omni-skills: version=0.0.1; skills=13; updated_at=2026-03-26 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the Omni Skills platform.**

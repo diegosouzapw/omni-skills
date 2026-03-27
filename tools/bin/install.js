@@ -20,7 +20,7 @@
  *   --skill <id>    Install only the selected skill (repeatable)
  *   --bundle <id>   Install only the available skills from a bundle (repeatable)
  *   --path <dir>    Install to a custom directory
- *   --version <ver> Checkout a specific version (e.g. 1.0.0 -> v1.0.0)
+ *   --version <ver> Checkout a specific version (e.g. 0.0.1 -> v0.0.1)
  *   --tag <tag>     Checkout a specific git tag
  *   -h, --help      Show this help message
  */
@@ -140,7 +140,7 @@ Examples:
   npx omni-skills --bundle full-stack    # Bundle install
   npx omni-skills --cursor --gemini      # Multiple targets
   npx omni-skills --path ./my-skills     # Custom path
-  npx omni-skills --version 1.0.0        # Specific version
+  npx omni-skills --version 0.0.1        # Specific version
 `);
 }
 

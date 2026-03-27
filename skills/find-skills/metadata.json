@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.713643+00:00",
+  "generated_at": "2026-03-27T02:37:44.904600+00:00",
   "id": "find-skills",
   "slug": "find-skills",
   "display_name": "Find Skills",
   "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "cli-automation",
   "canonical_category": "cli-automation",
   "taxonomy": {
@@ -38,7 +38,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:57:48.461258+00:00"
+    "file_mtime": "2026-03-27T02:37:23.346846+00:00"
   },
   "paths": {
     "root": "skills/find-skills",

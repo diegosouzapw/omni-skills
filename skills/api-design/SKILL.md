@@ -1,7 +1,7 @@
 ---
 name: api-design
 description: "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation."
-version: "1.0.0"
+version: "0.0.1"
 category: backend
 tags: [api, backend, contracts, http, json, errors]
 complexity: advanced

@@ -4,7 +4,7 @@
   "slug": "create-pr",
   "display_name": "Create PR",
   "description": "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "communication",
   "raw_category": "communication",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/create-pr/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3527,
-      "sha256": "fd859c1805699ce62fb1250b7d9d3827e7128dccb5bcf30fa0f16400ba06c450"
+      "sha256": "bef18f2d9e3f982fb8f570d469f4243830a6f39932d5a3db17caec62275b38d4"
     },
     {
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
       "size_bytes": 2921,
-      "sha256": "b796379ce912e91153abe0515299f16d114be99bfb29c7556f6a76185a9c2258"
+      "sha256": "ef9b25e1ee6e602d10c78d79ae23ce3c3b4c3a42195d71c8657a04e4b70e689c"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 3056,
-      "sha256": "8df53c59fae75b16522cad34d48a215bdda1574b6661256186f983fcb92d8109",
+      "size_bytes": 3053,
+      "sha256": "29858f81aa94cee7b7714e96d7ef50a4ef89059c8dd8d18a56405f589efb95b6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 2920,
-      "sha256": "5800ce9826a7cec0c2b218d4709f50ccd87d9bbf7d86f699adb8cdb74ae27c4a",
+      "size_bytes": 2918,
+      "sha256": "1f603152adf40f00e0f060124e89d6cd8f7ab8f123ba817ac25bf6c6965b344a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "904c6a00e0834e90a11538ad6bd98c573062e9b9ae9842caa09d40f627e16f34",
+    "sha256": "d784824d4a5572dabb02028dbc90ef312dbef1535449d1ffe55fd45fdef11a7e",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "fd859c1805699ce62fb1250b7d9d3827e7128dccb5bcf30fa0f16400ba06c450",
-    "package_sha256": "f43002a48439c72ea071cbcd6179838a4684d8a8b6117180f9c1e5513247eae5"
+    "entrypoint_sha256": "bef18f2d9e3f982fb8f570d469f4243830a6f39932d5a3db17caec62275b38d4",
+    "package_sha256": "59b577e6e661f37dfc088a7a929ae45ff502dce16bacb23b49857e2e640c386f"
   }
 }

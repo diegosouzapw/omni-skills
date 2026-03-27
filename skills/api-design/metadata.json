@@ -1,11 +1,11 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.681065+00:00",
+  "generated_at": "2026-03-27T02:37:44.862222+00:00",
   "id": "api-design",
   "slug": "api-design",
   "display_name": "API Design",
   "description": "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "raw_category": "backend",
   "canonical_category": "backend",
   "taxonomy": {
@@ -37,7 +37,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T00:52:48.102252+00:00"
+    "file_mtime": "2026-03-27T02:37:23.344804+00:00"
   },
   "paths": {
     "root": "skills/api-design",

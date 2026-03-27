@@ -1,9 +1,9 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:38.738978+00:00",
+  "generated_at": "2026-03-27T02:37:44.936783+00:00",
   "repository": {
     "name": "omni-skills",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "metadata_path": "metadata.json"
   },
   "summary": {

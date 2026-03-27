@@ -1,7 +1,7 @@
 ---
 name: find-skills
 description: "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper."
-version: "1.0.0"
+version: "0.0.1"
 category: cli-automation
 tags: [discover, discovery, catalog, install, cli, mcp, api]
 complexity: intermediate

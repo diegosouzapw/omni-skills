@@ -1,7 +1,7 @@
 ---
 name: debugging
 description: "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork."
-version: "1.0.0"
+version: "0.0.1"
 category: development
 tags: [debugging, reproduction, diagnosis, regression, testing]
 complexity: advanced

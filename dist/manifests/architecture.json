@@ -4,7 +4,7 @@
   "slug": "architecture",
   "display_name": "Architecture",
   "description": "Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy, or technical decision record.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "development",
   "raw_category": "development",
   "taxonomy": {
@@ -228,13 +228,13 @@
       "path": "skills/architecture/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3950,
-      "sha256": "c58203d8084b05bc4795c685a6937442af516e562df8c88f2a74bede4d0d1ff5"
+      "sha256": "821c72619a60597779327badd7cff6a103472d001e91f1d03e49ca9e98474c66"
     },
     {
       "path": "skills/architecture/metadata.json",
       "kind": "support",
       "size_bytes": 2951,
-      "sha256": "4704d5337da7942dedffef789ed698d6f1896797b3b1062d685bd7db36ce076f"
+      "sha256": "96d1c54dbdeb33c019e0e729dc1d85aa48d6e5b4403c46656cece6d9164fda3e"
     }
   ],
   "archives": [
@@ -242,8 +242,8 @@
       "format": "zip",
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
-      "size_bytes": 3235,
-      "sha256": "59e39fbb3cbe68d9675604b32f1f881b0513ba1255c4bffd092fc9b4dceae3ea",
+      "size_bytes": 3231,
+      "sha256": "291121753a00b57e3111fa41d477bc52d63cc6f9a83799b1acd16aef3efadf2a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -256,8 +256,8 @@
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 3075,
-      "sha256": "df798846b2c74f384634b064c89235317077c01819898ab3719a4af9604cdba7",
+      "size_bytes": 3078,
+      "sha256": "66797a69039478647d831f339ac1fbfe033a5e9cc073ad5dd1387cdfed642d62",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -270,7 +270,7 @@
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "d9321971c7f38151a3afa6dcbe9c14091a4fb4d8e3f55e1e5f62afbffe831d70",
+    "sha256": "1b54992e8286731a733d972c761e64d0453ad40c020759d4e08b1d58f52c6c24",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -280,7 +280,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "c58203d8084b05bc4795c685a6937442af516e562df8c88f2a74bede4d0d1ff5",
-    "package_sha256": "febc5aedfd52ab098ead9754f0bce40e06820142d7784dc8e0f3415f30f8e011"
+    "entrypoint_sha256": "821c72619a60597779327badd7cff6a103472d001e91f1d03e49ca9e98474c66",
+    "package_sha256": "5c1a352612a32cea699d07de78439216f99202e7a8b190151127c3f8044bcdb2"
   }
 }

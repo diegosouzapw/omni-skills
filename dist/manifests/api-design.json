@@ -4,7 +4,7 @@
   "slug": "api-design",
   "display_name": "API Design",
   "description": "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "backend",
   "raw_category": "backend",
   "taxonomy": {
@@ -229,13 +229,13 @@
       "path": "skills/api-design/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 3744,
-      "sha256": "2decb69128c7c46331fcbfa1290b9a57ffa07503910b0655d3607ab050882224"
+      "sha256": "4381ef911079e457adc883169642a6888a2932d6939b50ae547eaa9be76e4f7f"
     },
     {
       "path": "skills/api-design/metadata.json",
       "kind": "support",
       "size_bytes": 2886,
-      "sha256": "0071bebac292dd8bac3e6daacc2a3bf22563e40ed234de809c5a5b74bab3b135"
+      "sha256": "56d90347c02ef110634c206931128523bc61c2c27dd00e47d8f2b67055e672b6"
     }
   ],
   "archives": [
@@ -243,8 +243,8 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 3096,
-      "sha256": "f3fc788ccdc137f4301257fd48aaae17602ce44df4a339b0679c936f2a2bff55",
+      "size_bytes": 3093,
+      "sha256": "f39873ceeb89e2e35d9f56f7d12505785b615b95f36cec3e668997171b79788a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -257,8 +257,8 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 2969,
-      "sha256": "7024a17b5d734a39522af54920712216519833d7451163d0e099e5b717c6d4c5",
+      "size_bytes": 2962,
+      "sha256": "68ce255e9245a04369449f4937e94776e7b99ad607cc94481a10dae5a9fe09dc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -271,7 +271,7 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "3f3e636a80044094d56e06344ee5bcc6b892e2e2d717c762c8f382b970c514d1",
+    "sha256": "2c83b8954257390d91b2deda773017aa978c6e86f64005b69bdaae7154243e11",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -281,7 +281,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "2decb69128c7c46331fcbfa1290b9a57ffa07503910b0655d3607ab050882224",
-    "package_sha256": "28a4b6bb030eb43b711d8d83464f3b683d07a2d24862b33af4d162b94c6effaa"
+    "entrypoint_sha256": "4381ef911079e457adc883169642a6888a2932d6939b50ae547eaa9be76e4f7f",
+    "package_sha256": "411dc8037a384081e2cc7244d418fae16c586b4c51cc11cc622e4ecbb986efe4"
   }
 }

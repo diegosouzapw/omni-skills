@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T01:23:39.419752+00:00",
+  "generated_at": "2026-03-27T02:37:45.762427+00:00",
   "total_skills": 13,
   "categories": {
     "backend": 2,
@@ -18,7 +18,7 @@
       "slug": "api-design",
       "display_name": "API Design",
       "description": "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "backend",
       "raw_category": "backend",
       "taxonomy": {
@@ -67,7 +67,7 @@
       "slug": "architecture",
       "display_name": "Architecture",
       "description": "Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy, or technical decision record.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "development",
       "raw_category": "development",
       "taxonomy": {
@@ -115,7 +115,7 @@
       "slug": "brainstorming",
       "display_name": "Brainstorming",
       "description": "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "product",
       "raw_category": "product",
       "taxonomy": {
@@ -163,7 +163,7 @@
       "slug": "changelog",
       "display_name": "Changelog",
       "description": "Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change narrative.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "documentation",
       "raw_category": "documentation",
       "taxonomy": {
@@ -211,7 +211,7 @@
       "slug": "create-pr",
       "display_name": "Create PR",
       "description": "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "communication",
       "raw_category": "communication",
       "taxonomy": {
@@ -259,7 +259,7 @@
       "slug": "database-design",
       "display_name": "Database Design",
       "description": "Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementation.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "backend",
       "raw_category": "backend",
       "taxonomy": {
@@ -307,7 +307,7 @@
       "slug": "debugging",
       "display_name": "Debugging",
       "description": "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "development",
       "raw_category": "development",
       "taxonomy": {
@@ -355,7 +355,7 @@
       "slug": "documentation",
       "display_name": "Documentation",
       "description": "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "documentation",
       "raw_category": "documentation",
       "taxonomy": {
@@ -403,7 +403,7 @@
       "slug": "find-skills",
       "display_name": "Find Skills",
       "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "cli-automation",
       "raw_category": "cli-automation",
       "taxonomy": {
@@ -453,7 +453,7 @@
       "slug": "frontend-design",
       "display_name": "Frontend Design",
       "description": "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "frontend",
       "raw_category": "frontend",
       "taxonomy": {
@@ -502,7 +502,7 @@
       "slug": "omni-figma",
       "display_name": "Omni Figma",
       "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "development",
       "raw_category": "development",
       "taxonomy": {
@@ -549,7 +549,7 @@
       "slug": "security-auditor",
       "display_name": "Security Auditor",
       "description": "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "testing-security",
       "raw_category": "testing-security",
       "taxonomy": {
@@ -597,7 +597,7 @@
       "slug": "vulnerability-scanner",
       "display_name": "Vulnerability Scanner",
       "description": "Run a disciplined dependency and code scanning workflow when a user needs repeatable coverage for known vulnerabilities, unsafe patterns, or release hygiene.",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "category": "testing-security",
       "raw_category": "testing-security",
       "taxonomy": {

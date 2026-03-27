@@ -1,7 +1,7 @@
 ---
 name: database-design
 description: "Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementation."
-version: "1.0.0"
+version: "0.0.1"
 category: backend
 tags: [database, schema, migrations, indexing, persistence]
 complexity: advanced

@@ -4,7 +4,7 @@
   "slug": "omni-figma",
   "display_name": "Omni Figma",
   "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "category": "development",
   "raw_category": "development",
   "taxonomy": {
@@ -207,13 +207,13 @@
       "path": "skills/omni-figma/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 5799,
-      "sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab"
+      "sha256": "0cd0c0e5645a063a45633eb14b9be21243ac4ad42542125f4003af6268e8f4f0"
     },
     {
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
       "size_bytes": 3242,
-      "sha256": "e7a4eb2ae0ad812a6a86834e3235528915d90b9878489f608b540b00d99ab56b"
+      "sha256": "581d0c58415410f6b95c72b0e5c2fa190b5fff54163edd98e7b0449c8904f8fd"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -263,8 +263,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 12544,
-      "sha256": "34ec1a00da1c4475ef70838a0791ddba6a944a7c4faece4e17603c43e67c8f19",
+      "size_bytes": 12539,
+      "sha256": "bc21f60e51ab73656550b12f667d49462c2b0ce864c60fb5459dba9129920685",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -277,8 +277,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 10521,
-      "sha256": "d1083cd93b11adc701e32119a44e954c7c1d6212c99bb5027b6bdb70a09b7959",
+      "size_bytes": 10513,
+      "sha256": "e7a293f03029700a199e6d8211e829907b94823993214f5855a5ba40ef6dc5ce",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -291,7 +291,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "287c5d4e7eae91478badfab9f70d8424911de20211afdc20177f692ea049faaf",
+    "sha256": "30b3a373ed42b8fbf6a51216f46b7f4dd8feaf519806fdeaebd1e27efa2c707c",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -301,7 +301,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "764d7b0b93175d7b0f2ccc5e92375a1a5f408e987cb298e1390f17b281b96dab",
-    "package_sha256": "0cc5d0becdad872a3d8dcca1ffebae03342b1ffcd91aca244324a9dd6ec94a16"
+    "entrypoint_sha256": "0cd0c0e5645a063a45633eb14b9be21243ac4ad42542125f4003af6268e8f4f0",
+    "package_sha256": "8e5f0b1d2215ad97c711897a2f38c5b2170726b876ecea39cbde4f874d06790b"
   }
 }
