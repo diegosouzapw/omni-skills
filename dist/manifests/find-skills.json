@@ -352,8 +352,8 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 6882,
-      "sha256": "7dd7d85588b8cf8da156c9fad18ece7dae09c7e387664827c4145919f74fb669",
+      "size_bytes": 15490,
+      "sha256": "2d704cce70ec58363f547192ad2f725022aba9c009b4935a4dd27ac48f5db903",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -366,8 +366,8 @@
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 5158,
-      "sha256": "c0fb72c88713e230dbc7c608cbd182b78332687f2f6fd375ba6bb3ec139b54ec",
+      "size_bytes": 30743,
+      "sha256": "d150c85f877342c4fd67992218a598451fecdb69810023ac02ef789df3b4c111",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -380,7 +380,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "1388654268cff0eee35495bacd788bb23fa4489811508fc4ef2916b8a0682345",
+    "sha256": "8056d5e5d8af34627b84e3356e5a0df1046bbac09f92b82c43f7ac6d81483e97",
     "signature": {
       "status": "unsigned",
       "path": null,

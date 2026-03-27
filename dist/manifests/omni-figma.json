@@ -358,8 +358,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 16055,
-      "sha256": "97a062cdd472d863c72836dea3b216c1632a4ee517be8259985b01a570aee9b7",
+      "size_bytes": 35877,
+      "sha256": "105bbc7cab08b05d774c8bec39c2a3d7974affe58f61a49167ffc78af381b630",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -372,8 +372,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 12672,
-      "sha256": "e334a41849579d4309ff993d763dfb7792459863d64f963d8ecc44d6ea774df6",
+      "size_bytes": 51228,
+      "sha256": "19ca99f2726debd28aff381b38438db8ed2a6ef1fb234b5c4848a9e305e2308b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -386,7 +386,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "8b487af5c150128dd00dbe70fe3b68e16f9103087a74386b6921ea8b813686bb",
+    "sha256": "a63e99338d8d90ab364bb1ccccaebcf40a76d3a954324808cf42c6893e828169",
     "signature": {
       "status": "unsigned",
       "path": null,

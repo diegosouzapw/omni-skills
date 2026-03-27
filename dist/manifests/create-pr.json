@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 5842,
-      "sha256": "9c8ecf80c06ec07ed028a23ceb52431edd0355f0890cb6279193f430edfd6f15",
+      "size_bytes": 13008,
+      "sha256": "34aa518348c887671734b770b8a118c7487836119232a6e7f3527fbe2153abea",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 4634,
-      "sha256": "67610713d7b594fb505529c4661dc77a078b846f6e21455dba2746258ef8c380",
+      "size_bytes": 20503,
+      "sha256": "580eb1466693262cdd59bdfdc8207f8621741f381265b3e2905f6654e48c5bf9",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "c39f1dead10942f191600ac59ed13b592970415932de3f740a1012cc4a63dba7",
+    "sha256": "19e49337b82d8c3926cd6cc8bbcd2e7f7dcc28bae74aa7a5915f833055e428e5",
     "signature": {
       "status": "unsigned",
       "path": null,

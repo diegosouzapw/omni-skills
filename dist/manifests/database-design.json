@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 5944,
-      "sha256": "153d3f3c0c9eae9a038296cb42e61cb1764041c146d263db455461d68bf5520f",
+      "size_bytes": 13426,
+      "sha256": "5d936a476adaa85c30e962ea24b8f8edc54d1ce2b849ec0dc6c51b25705833c8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 4591,
-      "sha256": "72ed313f587f1b130a832a8ff26a32be8c01a1241af02e750e37c4c800d2a77d",
+      "size_bytes": 20503,
+      "sha256": "88037299ffe8d11283f4c96f7c006c453c89a11c980f19b992eb767f9196b5fe",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "38439c08e760fb15ada12a91bfad233f8bca24a48515917d95a81e4cb13d51d3",
+    "sha256": "00be9e7593fd5d7a5de8a8a7d41d6fe1a59b9436730dd09ed8a84c73df357b33",
     "signature": {
       "status": "unsigned",
       "path": null,

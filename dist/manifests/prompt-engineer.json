@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 5224,
-      "sha256": "6fa665af6cc9f01ee6fb6aa93f7c533e9db4296ac17feac7c8e6635d6ebfedea",
+      "size_bytes": 12353,
+      "sha256": "8e8566c17aad3f2ba2e30ea2e3f7e959a0ea23bf80ca816edf62e65b34d30643",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
-      "size_bytes": 4155,
-      "sha256": "561557a902057449a3c0be46e13ad4ee66a8f879676196b2c6848067b8bdd271",
+      "size_bytes": 20503,
+      "sha256": "7a965f6d202f2c47198fccf2d8999e2422079efca7936c3f2262a326806ae83d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "03ff400f0de4b691100b6a3b29ea22a525cf25fa9a6874b85b007188846ce70a",
+    "sha256": "375f6999add4ea9a15a413c2ba9f3f9424b3f99c0e3677b67c53fdc15bd36763",
     "signature": {
       "status": "unsigned",
       "path": null,

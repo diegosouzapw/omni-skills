@@ -287,14 +287,14 @@ def create_skill_archives(skill_path, entry, repo_root, artifacts, dist_dir, sig
 
     for archive_format, archive_path in formats:
         if archive_format == "zip":
-            with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED) as handle:
+            with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_STORED) as handle:
                 for artifact in sorted(artifacts, key=lambda item: item["path"]):
                     absolute_path = os.path.join(repo_root, artifact["path"])
                     archive_member_path = to_posix_path(
                         os.path.join(entry, os.path.relpath(absolute_path, skill_path))
                     )
                     zip_info = zipfile.ZipInfo(archive_member_path, date_time=ZIP_EPOCH)
-                    zip_info.compress_type = zipfile.ZIP_DEFLATED
+                    zip_info.compress_type = zipfile.ZIP_STORED
                     zip_info.create_system = 3
                     mode = stat.S_IMODE(os.stat(absolute_path).st_mode)
                     zip_info.external_attr = ((stat.S_IFREG | mode) & 0xFFFF) << 16
@@ -302,7 +302,7 @@ def create_skill_archives(skill_path, entry, repo_root, artifacts, dist_dir, sig
                         handle.writestr(zip_info, source_handle.read())
         else:
             with open(archive_path, "wb") as raw_handle:
-                with gzip.GzipFile(filename="", mode="wb", fileobj=raw_handle, mtime=0) as gzip_handle:
+                with gzip.GzipFile(filename="", mode="wb", fileobj=raw_handle, mtime=0, compresslevel=0) as gzip_handle:
                     with tarfile.open(fileobj=gzip_handle, mode="w") as handle:
                         for artifact in sorted(artifacts, key=lambda item: item["path"]):
                             absolute_path = os.path.join(repo_root, artifact["path"])

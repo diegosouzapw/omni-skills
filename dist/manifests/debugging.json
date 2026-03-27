@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/debugging.zip",
       "file_name": "debugging.zip",
-      "size_bytes": 5807,
-      "sha256": "bc7983685a3066f0c1a141627b808e15b2ad3e644d5681eb01e30296e0f1fe5d",
+      "size_bytes": 13232,
+      "sha256": "1eeb8c2cc2d4189e51e799784dea2fafd7f4edbe0cf090aa52b4c225f33e2a9f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/debugging.tar.gz",
       "file_name": "debugging.tar.gz",
-      "size_bytes": 4631,
-      "sha256": "318e1ee1aaa72e13ce679fb786aadf7aae25a2cd7b8c002547c9a3346208f78c",
+      "size_bytes": 20503,
+      "sha256": "0770d57a8f72da265748c23e164a9ec935e780512a984c1778e13082cdfb0e8e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/debugging.checksums.txt",
     "file_name": "debugging.checksums.txt",
-    "sha256": "031bd5e5213f55734169536706fcda76681d15e4b35fccc735aac592afbd4db6",
+    "sha256": "8a8e9d8f9dc55ee62ab32189ec4bd4bc31e2837590326d942e04b1e8f5a66860",
     "signature": {
       "status": "unsigned",
       "path": null,

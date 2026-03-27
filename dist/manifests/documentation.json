@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
-      "size_bytes": 5964,
-      "sha256": "60f90baef285987b83e0736c2c23a5f7e90ae22305d141c99e752b8adcc7a92b",
+      "size_bytes": 13586,
+      "sha256": "ce5689e2547cdd270bdb9d7ea2c3f66b24449c5b4c2fb03eb9fadfb18e580c0d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 4561,
-      "sha256": "569c68880228a77bbc497ef6e96e031d09f5e8bb8a467e15eef60e9b1c72d5f1",
+      "size_bytes": 20503,
+      "sha256": "407f30a2420bdd8af71a73e191611ae9ad446c14cc7d747e4a915e05279f51c4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "700adc6dba6b7a34dccd13c46693663e11e22c4daa85730de83e37aaf45a18eb",
+    "sha256": "1c3db33131dd20f9685dbbfe8c17bd8e354e9cea4e42aa249734a776ba8c00f6",
     "signature": {
       "status": "unsigned",
       "path": null,

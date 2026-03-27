@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 6020,
-      "sha256": "02eda2002516d359cc17a53667dcb257b90a367837213451b9119d2266d354f4",
+      "size_bytes": 13680,
+      "sha256": "fef7df2f7f41679ab0a0bf6f7fc5e2588a134f8d72e8bddd2d7195701fea4a4b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 4632,
-      "sha256": "1e19155510a1237fc54774699d52225ce6ff4b7749aba62e52b38aba1b0ef759",
+      "size_bytes": 20503,
+      "sha256": "de514e0d12be4885c239646d9b9dad7a1a8f3114ed0b4741014e5107634ae174",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "eca4620091a2907fa9a0a118f1e5af5440d4881914b9a0ccbb8774f280573381",
+    "sha256": "260f6057bbe7b3c34fb3daf2f9436a3ae285639ae68f506f4f638e131b4c6844",
     "signature": {
       "status": "unsigned",
       "path": null,

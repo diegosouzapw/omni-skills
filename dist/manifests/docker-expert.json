@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/docker-expert.zip",
       "file_name": "docker-expert.zip",
-      "size_bytes": 5746,
-      "sha256": "8d02f4c407c143257708424d3f147e29edabcf38df96a604e19fc9436478b4ae",
+      "size_bytes": 13327,
+      "sha256": "cdd938c0a8f1946a0dd0db7228843659fd3d3535431cd7a6bffa210b917394b0",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/docker-expert.tar.gz",
       "file_name": "docker-expert.tar.gz",
-      "size_bytes": 4654,
-      "sha256": "247e7528be7b7861c20da27e3d67178ca4beea7eb550a97fa39089b63509130b",
+      "size_bytes": 20503,
+      "sha256": "127b2eda26c9026ae789adfd4580e1d58150fd618f0b964c2c99273e5bbbffcd",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/docker-expert.checksums.txt",
     "file_name": "docker-expert.checksums.txt",
-    "sha256": "cb060616d9f416fe336b65539588719080da6311e0c43c8c159a52d135a303ed",
+    "sha256": "4c1d241a85910c6553f52cf22b2256b9e3de6c0d5bee806b7e6bde80c93d9ba5",
     "signature": {
       "status": "unsigned",
       "path": null,

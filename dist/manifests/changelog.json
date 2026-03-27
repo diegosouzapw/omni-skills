@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 5821,
-      "sha256": "dba616ecff9961904df187f7c2ff8d7502549fb45b5edcb488701dd8a31af72e",
+      "size_bytes": 13327,
+      "sha256": "668008ada4133de6b09b362f9abffa02d1ba0a2013c3bbfc0aa3a2a656ae8fa2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 4571,
-      "sha256": "17565c2025746ad4578e469916cdabc8ea62764cd13e647a8700cba47645154e",
+      "size_bytes": 20503,
+      "sha256": "22d9fbd39cbbe32bbb458e195b996237f43f36aec22ea547d9990c7bca9a6a5c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "aeb657a606388074600b639a2275ecb11eef7fc817ffe7ce3a7c3cd19e406607",
+    "sha256": "dd3a06aa8aa642e5a916fb70103fa5e46e27830da54e5712321a627d8b4472c7",
     "signature": {
       "status": "unsigned",
       "path": null,

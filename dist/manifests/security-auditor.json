@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 6573,
-      "sha256": "6f1e77e9c936b320a585578580b149876e7872b879ace1eb613553dd4fded2da",
+      "size_bytes": 14744,
+      "sha256": "f3eaec2c0da2aa637fe3f360ec143f321c91827f5c7d413d978dba2d11e391c1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 5016,
-      "sha256": "ea5282d7e846368fae385f6de4ae3ed158e0511060167c431cfcac7407ae30e4",
+      "size_bytes": 20503,
+      "sha256": "95c3bef4799863b2200861474ec002ecca1ebe96950bfa1b8d6157ff5d46c87b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "02876f156023fad41812b215677dca363f9c63a8e5a9474f3c94defcef386e34",
+    "sha256": "aa809bc358564900949d6b7649d194c57909d784e0b5930c4d452ef5e52dcbab",
     "signature": {
       "status": "unsigned",
       "path": null,

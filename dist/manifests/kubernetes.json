@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 5528,
-      "sha256": "62dcae10e9e821a3a442cdfa3c2016c29b772972707cd31fdb67d8646ac81961",
+      "size_bytes": 13057,
+      "sha256": "bbccafa1f45187154018b8cbbac45dc5a693dcc01f434b9ea4602efc5ecd3c06",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
-      "size_bytes": 4485,
-      "sha256": "4ebb4809e1f7060228c719ce4a702f65b839ec1ba11a5058f75d1cf749762d14",
+      "size_bytes": 20503,
+      "sha256": "5da034f4600252cc1df65530a6fe31d2e459ae0556106228c66f723815b16d64",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "62d6c4a1515419e783991d4363dafe72218bad01b7d982e74eab7a7fd310d307",
+    "sha256": "d545cdd517aa6d08728a66e2bbe5e2c39ba25043247f8e6f4475b39b5728ccc4",
     "signature": {
       "status": "unsigned",
       "path": null,

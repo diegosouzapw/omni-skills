@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/rag-engineer.zip",
       "file_name": "rag-engineer.zip",
-      "size_bytes": 5501,
-      "sha256": "fbda88c4a5d8a58c5747bf577f3593ff5148c436da9ffb2e203e1c1cce67b7e5",
+      "size_bytes": 12956,
+      "sha256": "29055a83446c86f1e9b7fe6358d2534c809c5cd5c499c7610d30da6e4216e9e0",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/rag-engineer.tar.gz",
       "file_name": "rag-engineer.tar.gz",
-      "size_bytes": 4391,
-      "sha256": "b7b9ce6387b52d911bec9f5a539d7b0180259893db4a2c2df98c6cd2d7d2f904",
+      "size_bytes": 20503,
+      "sha256": "217b6a3be2616c1f3560b8e956e4889ffb670acd8fcfb91bb06532c7f6b3288d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/rag-engineer.checksums.txt",
     "file_name": "rag-engineer.checksums.txt",
-    "sha256": "6f0f5409fd9834930dafbaaa8529477d134ba0df103810172f4272505f584900",
+    "sha256": "9a815e6df23d6082fd612b1ab7d89049d870f9944040848dee10d45fd4a11ddc",
     "signature": {
       "status": "unsigned",
       "path": null,

@@ -351,8 +351,8 @@
       "format": "zip",
       "path": "dist/archives/terraform.zip",
       "file_name": "terraform.zip",
-      "size_bytes": 6806,
-      "sha256": "f77242d9b359cc51046c82c601b09990da3ec05b9a3c336561af38d33c24b942",
+      "size_bytes": 15386,
+      "sha256": "4269bcf06b378b8acec2d302a4b8bd96fbc9c7bb6c4a7390a615a1a649c3eb7d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -365,8 +365,8 @@
       "format": "tar.gz",
       "path": "dist/archives/terraform.tar.gz",
       "file_name": "terraform.tar.gz",
-      "size_bytes": 5208,
-      "sha256": "7c3c0fab454ce4074afd8877fda29c15448b59ef14f941cb2fce34708cfcb3f4",
+      "size_bytes": 30743,
+      "sha256": "dd667704a6b191238c93e07ef81ded5bf7097528e2d2f12e716e7043c0b6458f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -379,7 +379,7 @@
   "archive_checksums": {
     "path": "dist/archives/terraform.checksums.txt",
     "file_name": "terraform.checksums.txt",
-    "sha256": "80f4f87a4f487174da4cb1df3dc35b660a8c9e0d0b6c57a2bc92ee63549da798",
+    "sha256": "d52dc5c4ab3a965e36b1e1bc1fc6639efcf6cee4e5d29f61ade770c208e6aafc",
     "signature": {
       "status": "unsigned",
       "path": null,

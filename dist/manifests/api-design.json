@@ -342,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 6411,
-      "sha256": "b9c676993cfabce530e69c8286c768add0026bf840a2fc34d706527b7e62955a",
+      "size_bytes": 14545,
+      "sha256": "3495203fe16cace4f8ce56718dc5d0e6a4b406cfdc6dc171cd8bca38318a551b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -356,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 4881,
-      "sha256": "6bdf3cfbb7ddd751371482c8506f99f49a2c66a40049312eeaab1927105ec8a1",
+      "size_bytes": 20503,
+      "sha256": "bcbb29042ec06f529eb7705a71d05ace7be9cbe02508bc0361af35e376e5eb51",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -370,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "e5c84b1c3cb707e9e19b628886737d2769bc82610dad9b56bbf72c5f9eed0f49",
+    "sha256": "8038812325425537d302f1dbf644cd2065089d7b5d20aa30e7b322c5fad23337",
     "signature": {
       "status": "unsigned",
       "path": null,

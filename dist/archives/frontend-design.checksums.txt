@@ -1,2 +1,2 @@
-a59ac24562e2ea775b50ccc742e0036b79f57c9efb2ce2df5f16dcc39a59a7a6  frontend-design.zip
-5cc1d8668b642175eb3b79165e0983e48f5458f517f079667ebee4204da83c79  frontend-design.tar.gz
+3dabf6b8dd9e748a837855de6a35351804ebb335b149cab0c16e7b753a4ee2bb  frontend-design.zip
+d9407ca4028686bbac7deeec84be589403ddef4b288e85171be0863502f8816b  frontend-design.tar.gz

@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5450,
-      "sha256": "01926173dff420f3c322f0b7a041dd06e856d7c3ac490a10ddc69d5dbf149bac",
+      "size_bytes": 12849,
+      "sha256": "d6e7f02c7a2fb0a5a3b53574a3644143dd360f5437e5d177e72ef7d8d5db2ea9",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4334,
-      "sha256": "bdab59ce8bd8a8bc59e220c8afb7bcf4506d81ed3647a74853d03d674cd934ed",
+      "size_bytes": 20503,
+      "sha256": "bd81f33eca047c06e991263c245bbf43cc5dc83fc4707104043723edc54f8ab8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "0dae8ef444eb1e2a93d717ec630d6375f2b6732ff54f59bb67d2d8a1aa4308a2",
+    "sha256": "3adb9bfb2e13cc9051a4cf56359d2d1ce43d81deeb174ace2b845d2027f69f5a",
     "signature": {
       "status": "unsigned",
       "path": null,
