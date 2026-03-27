@@ -1,0 +1,312 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "prompt-engineer",
+  "slug": "prompt-engineer",
+  "display_name": "Prompt Engineer",
+  "description": "Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition, or evaluation for LLM behavior.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "prompting",
+    "llm",
+    "instructions",
+    "examples",
+    "evaluation",
+    "reasoning"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-27",
+    "updated": "2026-03-27"
+  },
+  "entrypoint": "skills/prompt-engineer/SKILL.md",
+  "paths": {
+    "root": "skills/prompt-engineer",
+    "manifest": "dist/manifests/prompt-engineer.json",
+    "metadata": "skills/prompt-engineer/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".agents/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 5,
+    "references_count": 1,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".agents/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 85,
+      "tier": "excellent"
+    },
+    "quality": {
+      "score": 97,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 25,
+        "description": 15,
+        "metadata": 20,
+        "recency": 10,
+        "resources": 10,
+        "best_practices": 17
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 4,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 3934,
+    "content_length": 4444,
+    "body_lines": 96,
+    "word_count": 554,
+    "has_code_blocks": true,
+    "has_examples_section": true,
+    "has_workflow_section": false,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true
+  },
+  "artifacts": [
+    {
+      "path": "skills/prompt-engineer/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 4460,
+      "sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7"
+    },
+    {
+      "path": "skills/prompt-engineer/metadata.json",
+      "kind": "support",
+      "size_bytes": 3106,
+      "sha256": "96bbce6b65e25655699311f7b10594a229cd7f56d9cab9bd2c0c77b3a35076a2"
+    },
+    {
+      "path": "skills/prompt-engineer/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 247,
+      "sha256": "d2b7f32b8f1591d65a9ebacc73df56efc7b6bc38cd5723aac0654fe00b06956a"
+    },
+    {
+      "path": "skills/prompt-engineer/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 732,
+      "sha256": "95f4d8259fecb55312f478f95e3a902f3b44387f4df0d5169599e165f77134b0"
+    },
+    {
+      "path": "skills/prompt-engineer/scripts/render_prompt_packet.py",
+      "kind": "support",
+      "size_bytes": 1014,
+      "sha256": "442fac32bca1633e1b2d4560560b1091a7cff52cfa10528f5e1df3af38da8cf1"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/prompt-engineer.zip",
+      "file_name": "prompt-engineer.zip",
+      "size_bytes": 4940,
+      "sha256": "7ae93f3d7e23b3d0ff9e7b615055afe65c17bd62217cc9e6dafd5d81bcf4a0e7",
+      "signature": {
+        "status": "signed",
+        "path": "dist/archives/prompt-engineer.zip.sig",
+        "sha256": "5685aaf683b73051da2c8e0d31675bbc2c0854f2078e62485a21ef34a5e38bb4",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.zip.sig dist/archives/prompt-engineer.zip"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/prompt-engineer.tar.gz",
+      "file_name": "prompt-engineer.tar.gz",
+      "size_bytes": 4081,
+      "sha256": "5bc19e1b578d394c959098cecd991a4e7edbcbc0b54b99e5938f152819962718",
+      "signature": {
+        "status": "signed",
+        "path": "dist/archives/prompt-engineer.tar.gz.sig",
+        "sha256": "e924aed845e73529a634a1103fd313834001c34def020f6ab67898f93e02d9d7",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.tar.gz.sig dist/archives/prompt-engineer.tar.gz"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/prompt-engineer.checksums.txt",
+    "file_name": "prompt-engineer.checksums.txt",
+    "sha256": "92c864ddd2426343bdd7abdecb32c3932355336cf06786f58a40afe380059f8e",
+    "signature": {
+      "status": "signed",
+      "path": "dist/archives/prompt-engineer.checksums.txt.sig",
+      "sha256": "9145fbb51c7893905f8a74622cdd9ca467e5144e3870d156fd762253ac897773",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.checksums.txt.sig dist/archives/prompt-engineer.checksums.txt"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7",
+    "package_sha256": "8ce511becaa475051a7ff48d04a3b11fe79ef105cdc2cbd144ee443c80ed735a"
+  }
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T02:37:44.923236+00:00",
+  "generated_at": "2026-03-27T03:58:02.262985+00:00",
   "id": "omni-figma",
   "slug": "omni-figma",
   "display_name": "Omni Figma",
-  "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+  "description": "Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Code Connect mapping, or Figma MCP troubleshooting.",
   "version": "0.0.1",
   "raw_category": "development",
   "canonical_category": "development",
@@ -35,7 +35,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T02:37:23.347380+00:00"
+    "file_mtime": "2026-03-27T03:57:46.716232+00:00"
   },
   "paths": {
     "root": "skills/omni-figma",
@@ -46,7 +46,8 @@
     "sub_resources": [
       "agents",
       "assets",
-      "references"
+      "references",
+      "scripts"
     ],
     "files": [
       "LICENSE.txt",
@@ -57,55 +58,56 @@
       "icon.svg",
       "figma-best-practices-2026.md",
       "mcp-setup-and-troubleshooting.md",
-      "tool-routing-and-prompts.md"
+      "tool-routing-and-prompts.md",
+      "render_implementation_packet.py"
     ],
-    "files_count": 9,
+    "files_count": 10,
     "references_count": 3,
     "agents_count": 1,
     "assets_count": 3
   },
   "content": {
-    "body_length": 5267,
-    "content_length": 5799,
-    "body_lines": 82,
-    "word_count": 781,
-    "has_code_blocks": false,
-    "has_examples_section": false,
+    "body_length": 6824,
+    "content_length": 7334,
+    "body_lines": 124,
+    "word_count": 988,
+    "has_code_blocks": true,
+    "has_examples_section": true,
     "has_workflow_section": false,
-    "has_best_practices_section": false,
-    "has_troubleshooting_section": false
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true
   },
   "maturity": {
-    "skill_level": 2,
-    "skill_level_label": "instructions",
-    "has_scripts": false,
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 40,
-    "tier": "fair"
+    "score": 85,
+    "tier": "excellent"
   },
   "quality": {
-    "score": 83,
-    "tier": "gold",
+    "score": 97,
+    "tier": "platinum",
     "breakdown": {
       "body": 25,
       "description": 15,
       "metadata": 20,
       "recency": 10,
-      "resources": 5,
-      "best_practices": 8
+      "resources": 10,
+      "best_practices": 17
     }
   },
   "security": {
-    "score": 98,
-    "tier": "hardened",
+    "score": 95,
+    "tier": "review",
     "status": "passed",
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 6,
-      "script_files": 0,
+      "scanned_files": 7,
+      "script_files": 1,
       "binary_like_files": 3
     },
     "scanners": {

@@ -3,7 +3,7 @@
   "id": "changelog",
   "slug": "changelog",
   "display_name": "Changelog",
-  "description": "Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change narrative.",
+  "description": "Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release narrative.",
   "version": "0.0.1",
   "category": "documentation",
   "raw_category": "documentation",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 2989,
-    "content_length": 3473,
-    "body_lines": 90,
-    "word_count": 419,
+    "body_length": 3237,
+    "content_length": 3721,
+    "body_lines": 96,
+    "word_count": 447,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/changelog/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3489,
-      "sha256": "b2ee41b874f34ef2d6a2db1bddc79423ae3c62a78ed74bc3713a93aa021ffede"
+      "size_bytes": 3737,
+      "sha256": "93cf7b79a0bb27570e1f38214e57bdcf75f6e5ab595900e7b38ce2cc17a955f5"
     },
     {
       "path": "skills/changelog/metadata.json",
       "kind": "support",
-      "size_bytes": 2928,
-      "sha256": "5d4ee8e6fe37078aa3cb1e6761983982f32e828a67e93564428ac93c82d703ff"
+      "size_bytes": 3023,
+      "sha256": "6763d2e391be9030450f05f388affc1a83c4d5bbf1ee69ec3def85c299b8b319"
+    },
+    {
+      "path": "skills/changelog/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 627,
+      "sha256": "3ff3e2d5a44023250226fbfe286d408336c23f94b61b531c644e45d0af4f763b"
+    },
+    {
+      "path": "skills/changelog/scripts/render_release_notes.py",
+      "kind": "support",
+      "size_bytes": 744,
+      "sha256": "751dadf8e3b7e5ed0592d5e762cc3c0f6004a97858097caeb2c48d9d3108f589"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 2941,
-      "sha256": "8b892ed2f927c558771861f6447861fb3791af1b7a8c9a3cdb2afc3c764609f2",
+      "size_bytes": 4117,
+      "sha256": "e7862f3d6a1d5f9b32e1a3c9b4a96c1766a7b59afcf0cd6fa1bc3e826906f94d",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/changelog.zip.sig",
+        "sha256": "cdfda695293cf185ef558149f4fc5d5eb6236be7a07560810c77a7c4a879f77b",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.zip.sig dist/archives/changelog.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 2814,
-      "sha256": "dc3c24364d7da0b8884ab7feff0ff3620a16265a22735ab2e7848b27ff0351b7",
+      "size_bytes": 3592,
+      "sha256": "da28bcd0e19e0ff2df0ce131407dfef2ef9b6092376ec5e82d7d8a1894cccac1",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/changelog.tar.gz.sig",
+        "sha256": "bd91a6cefbdd95d01eb8577005e18e5357f07fbc89b5df72393d13d161cea8bd",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.tar.gz.sig dist/archives/changelog.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "6dd6141da5de072b1bbe2ebbbb615d91aaa577aeea25d51efebf8aae7f8f1c02",
+    "sha256": "577587e87582d3fc58baab5c9d82a0256b74e250e8db26a267431b0cb9ba3440",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/changelog.checksums.txt.sig",
+      "sha256": "1eccf9d51f1788a366a7ee8078090035781b82da7ebd29809aa36921d74714bd",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.checksums.txt.sig dist/archives/changelog.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "b2ee41b874f34ef2d6a2db1bddc79423ae3c62a78ed74bc3713a93aa021ffede",
-    "package_sha256": "b6787fa9e0aa7f118dc4803e9494a26200e50f6eb42bcbf7676f30d579f4e540"
+    "entrypoint_sha256": "93cf7b79a0bb27570e1f38214e57bdcf75f6e5ab595900e7b38ce2cc17a955f5",
+    "package_sha256": "efeae18a6659f386e3f05baf5c92faa56d68088d7e5acf56fdbcea4c90f82233"
   }
 }

@@ -3,7 +3,7 @@
   "id": "security-auditor",
   "slug": "security-auditor",
   "display_name": "Security Auditor",
-  "description": "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review.",
+  "description": "Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a generic review.",
   "version": "0.0.1",
   "category": "testing-security",
   "raw_category": "testing-security",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 60,
-      "tier": "good"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 87,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 12
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3896,
-    "content_length": 4386,
-    "body_lines": 103,
-    "word_count": 534,
+    "body_length": 4109,
+    "content_length": 4602,
+    "body_lines": 109,
+    "word_count": 559,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/security-auditor/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4402,
-      "sha256": "a01b08d873a1b10a36425fb5f7ce495cde1aada85fd61d32a3f7191dc3ef71da"
+      "size_bytes": 4618,
+      "sha256": "c7e8c15c29604ae2289de38d661001a3c3cabb231112f1f97f4736ce535f7371"
     },
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
-      "size_bytes": 2982,
-      "sha256": "6005ae29b10be1d04cfd69c9889750f6493573b580a43739963586629865c9c1"
+      "size_bytes": 3077,
+      "sha256": "fb4fbf4bcbe4f422452eeb1b1b114d5e893b7483c9089085b831b3bb0ba5f421"
+    },
+    {
+      "path": "skills/security-auditor/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 663,
+      "sha256": "33d16b43af96b1a7009a3708efcb8a839747e19e399c59efa2ecb866675ac490"
+    },
+    {
+      "path": "skills/security-auditor/scripts/render_audit_plan.py",
+      "kind": "support",
+      "size_bytes": 798,
+      "sha256": "c95080367c1035c914e254ebe038150f75b59f09b03b72b451a6a83d7fab1a1a"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 3450,
-      "sha256": "b4d52e4bc2171a40ef593f472d1ccedcc0ff46d4e63b1dd53c9220d627ff1ec1",
+      "size_bytes": 4695,
+      "sha256": "783fef8035868a1e75a2a953c607aeab94d60ea75172c43a605e6bb0d48ad92e",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/security-auditor.zip.sig",
+        "sha256": "e0ad425f2ef3648e0bce956fbc3f0955c453c00d22ac6591dc5315974065ff89",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.zip.sig dist/archives/security-auditor.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 3288,
-      "sha256": "ea8dcef53187ad743d90c3451aa75d1975b713d118bebafffd52ab403ca1c15d",
+      "size_bytes": 4078,
+      "sha256": "5b2c0068210c91362d1b21d35517eca4fd7f796d4c860caea459eb7adc9f6659",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/security-auditor.tar.gz.sig",
+        "sha256": "8e9d9f94c4c2d2b1ee6e1fc40d25c441dc4768094f3379e88e5f7b442b232e8f",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.tar.gz.sig dist/archives/security-auditor.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "7c667cf168a2016d0625913a7443effe6b5726c3b92417b7eda56b6899af1582",
+    "sha256": "b1f7098e842aa2110428d0fab3f91f0f146f62751e418ecdd7abff6c7d48deca",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/security-auditor.checksums.txt.sig",
+      "sha256": "181526a1605e0c7b255f685bf4275ac4c5c97d69e4d83bd24f4002bc2d66a93e",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.checksums.txt.sig dist/archives/security-auditor.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "a01b08d873a1b10a36425fb5f7ce495cde1aada85fd61d32a3f7191dc3ef71da",
-    "package_sha256": "9a75ea7c9c685b8d296a6c458a1f3599b07f6afa0269d0ef33b055b2c9cdd878"
+    "entrypoint_sha256": "c7e8c15c29604ae2289de38d661001a3c3cabb231112f1f97f4736ce535f7371",
+    "package_sha256": "cc32a087b3199ad5a8565e2f51431000e151bfb92fead41aea15429b1fc0db05"
   }
 }

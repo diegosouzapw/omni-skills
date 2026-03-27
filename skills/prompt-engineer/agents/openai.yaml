@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Engineer"
+  short_description: "Tighten prompts, examples, and evaluation loops for reliable LLM behavior"
+  default_prompt: "Use $prompt-engineer to improve prompt clarity, structure, examples, and evaluation."

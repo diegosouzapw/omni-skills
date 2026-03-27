@@ -3,7 +3,7 @@
   "id": "brainstorming",
   "slug": "brainstorming",
   "display_name": "Brainstorming",
-  "description": "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation.",
+  "description": "Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a recommendation.",
   "version": "0.0.1",
   "category": "product",
   "raw_category": "product",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3603,
-    "content_length": 4097,
-    "body_lines": 94,
-    "word_count": 527,
+    "body_length": 3824,
+    "content_length": 4308,
+    "body_lines": 100,
+    "word_count": 552,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/brainstorming/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4113,
-      "sha256": "adc7ad27d1c28992e48287bb631e6dc6db5c284d9fa9e703620bfd51ee6b7d91"
+      "size_bytes": 4324,
+      "sha256": "aadbba33143786fb76277745ca1f9e89f192aa9359ab3e9787bea687043869a4"
     },
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
-      "size_bytes": 2934,
-      "sha256": "77ce0efc988d170ad472ff9f42f3cc84402a7bce812090e4cdd2975e9537fa20"
+      "size_bytes": 3018,
+      "sha256": "df6ef9dbb9d75e8172658a47839b0c3c1797a51a39b3ebfff9e1743982ca0a77"
+    },
+    {
+      "path": "skills/brainstorming/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 633,
+      "sha256": "d40422276c281c822de231306e53b57fa657953bbc71f7de67f95e0e27b43b48"
+    },
+    {
+      "path": "skills/brainstorming/scripts/render_idea_matrix.py",
+      "kind": "support",
+      "size_bytes": 851,
+      "sha256": "67268848333e546aab179a5cdd9f48c9297f2b59953328c48f505710173584e4"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 3307,
-      "sha256": "9c8b52ccf8562edf283cd31803d254de092f1f7b0a96f78a75b4a593d8605ec7",
+      "size_bytes": 4555,
+      "sha256": "318862f5cb38d81d0a12bc3a9128cd901740f95bc1c080480817fd7560270ead",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/brainstorming.zip.sig",
+        "sha256": "649ac06a5783d66e97ad3c126c5edeed87547f2ab33cdfb8da551811469f085a",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.zip.sig dist/archives/brainstorming.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 3156,
-      "sha256": "20ebe2ee4ccd9c51ab74393b25b0899d7085cf5f26e4260400c896e451dcbb16",
+      "size_bytes": 3994,
+      "sha256": "ddfef75d94e102532f34bf48bf2d93acbb4970d2f8d7758a4e281c9ec12f3eb8",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/brainstorming.tar.gz.sig",
+        "sha256": "7ca5399fb02341af94b9d04982478a83d2685a418b9f11df57d529d7e7c48d7e",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.tar.gz.sig dist/archives/brainstorming.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "c48cd628f1721903a72e35b07e6390708550b6893d12e1607d8c5c7c39de6183",
+    "sha256": "bd0994ebfe47fac37d540634a035d942e978193df2611034313a510f4fcde8e6",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/brainstorming.checksums.txt.sig",
+      "sha256": "194a4112b6c7b9bb3367d9102830492d578f2c22bb11cd423645ea46b2a64aa0",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.checksums.txt.sig dist/archives/brainstorming.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "adc7ad27d1c28992e48287bb631e6dc6db5c284d9fa9e703620bfd51ee6b7d91",
-    "package_sha256": "4a74440a5e1665d494014937f7ced2cbe9b66d649517f0b21ee93935c5c6082e"
+    "entrypoint_sha256": "aadbba33143786fb76277745ca1f9e89f192aa9359ab3e9787bea687043869a4",
+    "package_sha256": "993332b3ed0e082655aabab8987186f983d47c7ccd4790f92ce8a8fc1a207168"
   }
 }

@@ -8,8 +8,8 @@
 
 | Metric | Value |
 |:-------|:------|
-| Published skills | **13** (`api-design`, `architecture`, `brainstorming`, `changelog`, `create-pr`, `database-design`, `debugging`, `documentation`, `find-skills`, `frontend-design`, `omni-figma`, `security-auditor`, `vulnerability-scanner`) |
-| Defined bundles | **6** (4 fully backed, 2 still roadmap-heavy) |
+| Published skills | **19** across architecture, delivery, security, DevOps, and AI-engineering workflows |
+| Defined bundles | **6** (all fully backed by published skills) |
 | Supported clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
 
 ---
@@ -42,9 +42,10 @@ npx omni-skills find figma --tool cursor --install --yes
 
 ```bash
 npx omni-skills --codex --bundle full-stack
+npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The `full-stack` bundle is now fully backed by published skills: `frontend-design`, `api-design`, `database-design`, and `omni-figma`.
+> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
 
 ### 🎛️ Multiple Targets at Once
 

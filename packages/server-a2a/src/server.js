@@ -64,12 +64,12 @@ app.post("/a2a", async (req, res) => {
   try {
     switch (rpc.method) {
       case "message/send": {
-        const payload = runtime.handleMessageSend(rpc.params || {});
+        const payload = await runtime.handleMessageSend(rpc.params || {});
         res.json(jsonRpcSuccess(rpc.id, payload.result));
         return;
       }
       case "message/stream": {
-        const payload = runtime.handleMessageSend({
+        const payload = await runtime.handleMessageSend({
           ...(rpc.params || {}),
           configuration: {
             ...(rpc.params?.configuration || {}),

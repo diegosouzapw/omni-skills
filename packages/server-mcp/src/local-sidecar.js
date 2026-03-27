@@ -69,16 +69,61 @@ const CLIENT_DEFINITIONS = {
   },
 };
 
+function getVscodeUserConfigPath(env, edition = "stable") {
+  const platform = process.platform;
+  if (platform === "darwin") {
+    const appName = edition === "insiders" ? "Code - Insiders" : "Code";
+    return path.join(env.homeDir, "Library", "Application Support", appName, "User", "mcp.json");
+  }
+  if (platform === "win32") {
+    const appData = process.env.APPDATA || path.join(env.homeDir, "AppData", "Roaming");
+    const appName = edition === "insiders" ? "Code - Insiders" : "Code";
+    return path.join(appData, appName, "User", "mcp.json");
+  }
+  const appName = edition === "insiders" ? "Code - Insiders" : "Code";
+  return path.join(env.homeDir, ".config", appName, "User", "mcp.json");
+}
+
 const CONFIG_TARGETS = {
   workspace: {
-    name: "Workspace MCP config",
+    name: "Claude workspace MCP config",
     path: (env) => path.join(env.cwd, ".mcp.json"),
     configProfile: "claude-json",
   },
   vscode: {
-    name: "VS Code MCP config",
+    name: "VS Code workspace MCP config",
     path: (env) => path.join(env.cwd, ".vscode", "mcp.json"),
     configProfile: "vscode-json",
+  },
+  "vscode-user": {
+    name: "VS Code user MCP config",
+    path: (env) => getVscodeUserConfigPath(env, "stable"),
+    configProfile: "vscode-json",
+  },
+  "vscode-insiders-user": {
+    name: "VS Code Insiders user MCP config",
+    path: (env) => getVscodeUserConfigPath(env, "insiders"),
+    configProfile: "vscode-json",
+  },
+  devcontainer: {
+    name: "Dev Container VS Code MCP config",
+    path: (env) => path.join(env.cwd, ".devcontainer", "devcontainer.json"),
+    configProfile: "devcontainer-json",
+  },
+  "claude-user": {
+    name: "Claude Code user MCP config",
+    path: (env) => path.join(env.homeDir, ".claude.json"),
+    configProfile: "claude-json",
+  },
+  "cursor-user": {
+    name: "Cursor user MCP config",
+    path: (env) => path.join(env.homeDir, ".cursor", "mcp.json"),
+    configProfile: "cursor-json",
+  },
+  "codex-user": {
+    name: "Codex user MCP config",
+    path: (env) => path.join(env.codexHome, "config.toml"),
+    configProfile: "codex-toml",
   },
 };
 
@@ -87,6 +132,7 @@ const CONFIG_PROFILES = {
     id: "claude-json",
     format: "json",
     rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
     includeType: true,
     description: "Claude Code style JSON config with typed MCP entries.",
   },
@@ -94,6 +140,7 @@ const CONFIG_PROFILES = {
     id: "cursor-json",
     format: "json",
     rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
     includeType: false,
     description: "Cursor style JSON config using mcpServers.",
   },
@@ -101,6 +148,7 @@ const CONFIG_PROFILES = {
     id: "generic-json",
     format: "json",
     rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
     includeType: false,
     description: "Generic JSON config using mcpServers.",
   },
@@ -108,8 +156,17 @@ const CONFIG_PROFILES = {
     id: "vscode-json",
     format: "json",
     rootKey: "servers",
+    rootPath: ["servers"],
     includeType: true,
     description: "VS Code MCP config using the servers root key.",
+  },
+  "devcontainer-json": {
+    id: "devcontainer-json",
+    format: "json",
+    rootKey: "servers",
+    rootPath: ["customizations", "vscode", "mcp", "servers"],
+    includeType: true,
+    description: "Dev Container configuration nested under customizations.vscode.mcp.servers.",
   },
   "codex-toml": {
     id: "codex-toml",
@@ -259,6 +316,9 @@ function inferConfigProfileFromPath(filePath) {
   const baseName = path.basename(normalizedPath);
   if (baseName === "config.toml") {
     return CONFIG_PROFILES["codex-toml"];
+  }
+  if (normalizedPath.endsWith(path.join(".devcontainer", "devcontainer.json"))) {
+    return CONFIG_PROFILES["devcontainer-json"];
   }
   if (normalizedPath.endsWith(path.join(".vscode", "mcp.json"))) {
     return CONFIG_PROFILES["vscode-json"];
@@ -500,6 +560,90 @@ function buildMcpServerEntry({ transport = "stream", url }, profile = CONFIG_PRO
   return profile.includeType ? { type: getTransportType(mode), ...entry } : entry;
 }
 
+function cloneJsonRecord(value) {
+  return JSON.parse(JSON.stringify(value || {}));
+}
+
+function setNestedValue(target, pathSegments, value) {
+  const record = cloneJsonRecord(target);
+  let cursor = record;
+  for (let index = 0; index < pathSegments.length - 1; index += 1) {
+    const segment = pathSegments[index];
+    if (!cursor[segment] || typeof cursor[segment] !== "object" || Array.isArray(cursor[segment])) {
+      cursor[segment] = {};
+    }
+    cursor = cursor[segment];
+  }
+  cursor[pathSegments[pathSegments.length - 1]] = value;
+  return record;
+}
+
+function getNestedValue(target, pathSegments) {
+  let cursor = target;
+  for (const segment of pathSegments) {
+    if (!cursor || typeof cursor !== "object") {
+      return undefined;
+    }
+    cursor = cursor[segment];
+  }
+  return cursor;
+}
+
+function normalizeStringArray(values) {
+  if (!Array.isArray(values)) {
+    return [];
+  }
+  return values.map((value) => String(value || "").trim()).filter(Boolean);
+}
+
+function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
+  let nextConfig = cloneJsonRecord(config);
+  let nextEntry = cloneJsonRecord(entry);
+
+  if (profile.id === "claude-json") {
+    const allowed = normalizeStringArray(input.allowed_mcp_servers);
+    const denied = normalizeStringArray(input.denied_mcp_servers);
+    if (allowed.length > 0) {
+      nextConfig.allowedMcpServers = allowed;
+    }
+    if (denied.length > 0) {
+      nextConfig.deniedMcpServers = denied;
+    }
+  }
+
+  if (profile.id === "vscode-json" || profile.id === "devcontainer-json") {
+    if (input.sandbox_enabled === true) {
+      nextEntry.sandboxEnabled = true;
+    }
+
+    const allowWrite = normalizeStringArray(input.sandbox_allow_write);
+    const allowNetwork = normalizeStringArray(input.sandbox_allow_network);
+    if (allowWrite.length > 0 || allowNetwork.length > 0) {
+      nextEntry.sandbox = {
+        ...(nextEntry.sandbox || {}),
+        ...(allowWrite.length > 0
+          ? {
+              filesystem: {
+                ...((nextEntry.sandbox && nextEntry.sandbox.filesystem) || {}),
+                allowWrite,
+              },
+            }
+          : {}),
+        ...(allowNetwork.length > 0
+          ? {
+              network: {
+                ...((nextEntry.sandbox && nextEntry.sandbox.network) || {}),
+                allowHosts: allowNetwork,
+              },
+            }
+          : {}),
+      };
+    }
+  }
+
+  return { config: nextConfig, entry: nextEntry };
+}
+
 function escapeTomlString(value) {
   return String(value || "")
     .replace(/\\/g, "\\\\")
@@ -590,10 +734,13 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
 
   if (profile.id === "vscode-json") {
     base.push("VS Code expects a .vscode/mcp.json file with a top-level 'servers' object.");
+  } else if (profile.id === "devcontainer-json") {
+    base.push("Dev Containers nest MCP config under customizations.vscode.mcp.servers in devcontainer.json.");
   } else if (profile.id === "codex-toml") {
     base.push("Codex expects ~/.codex/config.toml with [mcp_servers.<name>] tables.");
   } else if (profile.id === "claude-json") {
     base.push("Claude Code project and JSON configs use a top-level 'mcpServers' object and typed entries.");
+    base.push("Claude-specific allow and deny lists can be written through allowedMcpServers and deniedMcpServers.");
   } else if (profile.id === "cursor-json") {
     base.push("Cursor reads mcp.json files with a top-level 'mcpServers' object.");
   }
@@ -602,6 +749,10 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("Stdio mode launches the local server process directly on this machine.");
   } else {
     base.push("Network transports point the client at the selected MCP endpoint URL.");
+  }
+
+  if (profile.id === "vscode-json" || profile.id === "devcontainer-json") {
+    base.push("VS Code can optionally sandbox stdio servers with filesystem and network allowlists.");
   }
 
   return base;
@@ -647,6 +798,7 @@ export function detectClients(options = {}) {
       id: targetId,
       name: definition.name,
       path: definition.path(env),
+      config_profile: definition.configProfile,
     })),
   };
 }
@@ -776,23 +928,27 @@ export function configureClientMcp(input = {}, options = {}) {
     options,
   );
   const { configPath, profile, source, targetId, targetName } = resolvedTarget;
-  const entry = buildMcpServerEntry({ transport, url: input.url }, profile);
+  const initialEntry = buildMcpServerEntry({ transport, url: input.url }, profile);
   const currentConfigText = fs.existsSync(configPath) ? fs.readFileSync(configPath, "utf-8") : "";
   let currentConfig = null;
   let nextConfig = null;
   let nextConfigText = "";
 
   if (profile.format === "toml") {
-    nextConfigText = upsertCodexConfigToml(currentConfigText, serverName, entry);
+    nextConfigText = upsertCodexConfigToml(currentConfigText, serverName, initialEntry);
   } else {
     currentConfig = currentConfigText ? JSON.parse(currentConfigText) : {};
-    nextConfig = {
-      ...currentConfig,
-      [profile.rootKey]: {
-        ...(currentConfig[profile.rootKey] || {}),
+    const rootPath = profile.rootPath || [profile.rootKey];
+    const currentServers = getNestedValue(currentConfig, rootPath) || {};
+    const { config: mutatedConfig, entry } = applyClientSpecificProfileOptions(currentConfig, profile, initialEntry, input);
+    nextConfig = setNestedValue(
+      mutatedConfig,
+      rootPath,
+      {
+        ...currentServers,
         [serverName]: entry,
       },
-    };
+    );
     nextConfigText = `${JSON.stringify(nextConfig, null, 2)}\n`;
   }
 
@@ -807,6 +963,7 @@ export function configureClientMcp(input = {}, options = {}) {
     config_profile: profile.id,
     config_format: profile.format,
     config_root_key: profile.rootKey,
+    config_root_path: profile.rootPath || [profile.rootKey],
     target_source: source,
     target_id: targetId,
     target_name: targetName,

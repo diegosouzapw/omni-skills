@@ -1,6 +1,6 @@
 ---
 name: api-design
-description: "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation."
+description: "API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation."
 version: "0.0.1"
 category: backend
 tags: [api, backend, contracts, http, json, errors]
@@ -105,5 +105,12 @@ Design an API for long-running agent tasks with get, cancel, and streaming updat
 
 ## Additional Resources
 
-- Catalog API Surface
-- Skill Manifest Spec
+- [API design checklist](references/checklist.md)
+- [Render an API brief packet](scripts/render_brief.py)
+
+```bash
+python3 skills/api-design/scripts/render_brief.py \
+  "Skill discovery API" \
+  "Search, compare, and download per-skill artifacts" \
+  "cursor,codex-cli"
+```

@@ -3,7 +3,7 @@
   "id": "documentation",
   "slug": "documentation",
   "display_name": "Documentation",
-  "description": "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations.",
+  "description": "Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-ready explanations.",
   "version": "0.0.1",
   "category": "documentation",
   "raw_category": "documentation",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3279,
-    "content_length": 3756,
-    "body_lines": 94,
-    "word_count": 465,
+    "body_length": 3492,
+    "content_length": 3974,
+    "body_lines": 100,
+    "word_count": 487,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/documentation/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3772,
-      "sha256": "4c9aa22c7b292a3a5f569247b22870f4b3b8c8c20ed08095d6a7be78de781aea"
+      "size_bytes": 3990,
+      "sha256": "8d590a626659a0d460954c6705ed34b9ab83dd0dd9fa76e6f81c86f38271bbc8"
     },
     {
       "path": "skills/documentation/metadata.json",
       "kind": "support",
-      "size_bytes": 2941,
-      "sha256": "1f9e4ceed0bdc19fe87ef5908fac0dfaf6631526fb88c05f55c9121f1495de7f"
+      "size_bytes": 3040,
+      "sha256": "b8b323f41455285544e4d779d98ff8ba388663e227105a513f3c0aacefb705ea"
+    },
+    {
+      "path": "skills/documentation/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 669,
+      "sha256": "a13984f6ef02b6016b024efedd27da11392af54828a14588e5e2d74dae056b35"
+    },
+    {
+      "path": "skills/documentation/scripts/render_doc_outline.py",
+      "kind": "support",
+      "size_bytes": 774,
+      "sha256": "125118b4fec94f3ad570993f1519d05a8da3c806ae85c74c8a07110c57b8d12b"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
-      "size_bytes": 3120,
-      "sha256": "d172f7c688c93cfcf7c3b271c70093ca08482dfcd982d5088baf3c1d55dd40b6",
+      "size_bytes": 4331,
+      "sha256": "8cdf907b202e5e57483733acbe7ed52c48dd3c2c58797937817b0d661035b31c",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/documentation.zip.sig",
+        "sha256": "14cab39a5103ce78d8613f11b26d291da8960d9d03e8159712c948ff60a3a28f",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/documentation.zip.sig dist/archives/documentation.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 2985,
-      "sha256": "a23578624dc7271763693eda618949db26d491d1ee7e0063d165bb3260e43b5a",
+      "size_bytes": 3772,
+      "sha256": "35958c33b09ef8704accfddcad73fe1d68a895caee95a2e5cbcc0527a213fa54",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/documentation.tar.gz.sig",
+        "sha256": "888b1e3d96ca91d4bce06cd0db1eaa79afd9ee880fbf9071e9cfea27d6b823c6",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/documentation.tar.gz.sig dist/archives/documentation.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "e705275578480ce640d07c0618d7e56e6b8b5cb691c8eb6fdfbb639acbe953bf",
+    "sha256": "b9eceb0fd0f6b648efaaed60527efa69210314117863f2c58406785524758e69",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/documentation.checksums.txt.sig",
+      "sha256": "19e10f85f0e87a74983e94d5432c110edca027b58188a2f10e1ac82686a77d18",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/documentation.checksums.txt.sig dist/archives/documentation.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "4c9aa22c7b292a3a5f569247b22870f4b3b8c8c20ed08095d6a7be78de781aea",
-    "package_sha256": "495a2b380c627b8a735df099da9b4f70294ecbb24a072d5bafec7bea39bb4798"
+    "entrypoint_sha256": "8d590a626659a0d460954c6705ed34b9ab83dd0dd9fa76e6f81c86f38271bbc8",
+    "package_sha256": "2258176e42a433dcb5c2c2c294daf6369ae46c26357d3cd21fc25e3f90165244"
   }
 }

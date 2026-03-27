@@ -1,0 +1,132 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-27T03:58:02.250889+00:00",
+  "id": "llm-patterns",
+  "slug": "llm-patterns",
+  "display_name": "LLM Patterns",
+  "description": "LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallback paths, or agent behavior.",
+  "version": "0.0.1",
+  "raw_category": "ai-agents",
+  "canonical_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "llm",
+    "agents",
+    "tool-use",
+    "structured-output",
+    "reliability",
+    "orchestration"
+  ],
+  "tools": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "codex-cli",
+    "antigravity",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-27",
+    "updated": "2026-03-27",
+    "file_mtime": "2026-03-27T03:50:01.726362+00:00"
+  },
+  "paths": {
+    "root": "skills/llm-patterns",
+    "entrypoint": "skills/llm-patterns/SKILL.md",
+    "metadata": "skills/llm-patterns/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "SKILL.md",
+      "openai.yaml",
+      "checklist.md",
+      "render_pattern_review.py"
+    ],
+    "files_count": 4,
+    "references_count": 1,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "content": {
+    "body_length": 4093,
+    "content_length": 4605,
+    "body_lines": 96,
+    "word_count": 561,
+    "has_code_blocks": true,
+    "has_examples_section": true,
+    "has_workflow_section": false,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 85,
+    "tier": "excellent"
+  },
+  "quality": {
+    "score": 97,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 25,
+      "description": 15,
+      "metadata": 20,
+      "recency": 10,
+      "resources": 10,
+      "best_practices": 17
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 4,
+      "script_files": 1,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

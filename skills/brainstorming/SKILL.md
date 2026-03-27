@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation."
+description: "Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a recommendation."
 version: "0.0.1"
 category: product
 tags: [ideation, planning, options, discovery, decision-making]
@@ -105,5 +105,11 @@ Help me compare a local-only installer sidecar versus a hosted install planner p
 
 ## Additional Resources
 
-- Documentation Hub
-- Contributor Quality Bar
+- [Brainstorming checklist](references/checklist.md)
+- [Render an idea matrix](scripts/render_idea_matrix.py)
+
+```bash
+python3 skills/brainstorming/scripts/render_idea_matrix.py \
+  "Expand the AI engineer bundle" \
+  "catalog depth,score quality,shipping speed"
+```

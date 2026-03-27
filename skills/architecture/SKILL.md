@@ -1,6 +1,6 @@
 ---
 name: architecture
-description: "Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy, or technical decision record."
+description: "Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation plan."
 version: "0.0.1"
 category: development
 tags: [architecture, system-design, planning, refactor, adr]
@@ -105,5 +105,12 @@ Create a phased architecture plan to move from a scaffolded A2A server to a real
 
 ## Additional Resources
 
-- ADR-0001: Workspace Foundation
-- Agent-Native Roadmap
+- [Architecture checklist](references/checklist.md)
+- [Render an ADR starter](scripts/render_decision_record.py)
+
+```bash
+python3 skills/architecture/scripts/render_decision_record.py \
+  "Task runtime persistence" \
+  "Adopt a pluggable executor and store" \
+  "durability,resume,retries"
+```

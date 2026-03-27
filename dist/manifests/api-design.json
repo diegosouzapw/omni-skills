@@ -3,7 +3,7 @@
   "id": "api-design",
   "slug": "api-design",
   "display_name": "API Design",
-  "description": "Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation.",
+  "description": "API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation.",
   "version": "0.0.1",
   "category": "backend",
   "raw_category": "backend",
@@ -96,9 +96,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -156,36 +159,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
-        "description": 15,
+        "description": 12,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -214,10 +217,10 @@
     }
   },
   "content": {
-    "body_length": 3273,
-    "content_length": 3728,
-    "body_lines": 94,
-    "word_count": 446,
+    "body_length": 3503,
+    "content_length": 3952,
+    "body_lines": 101,
+    "word_count": 475,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -228,14 +231,26 @@
     {
       "path": "skills/api-design/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3744,
-      "sha256": "4381ef911079e457adc883169642a6888a2932d6939b50ae547eaa9be76e4f7f"
+      "size_bytes": 3968,
+      "sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1"
     },
     {
       "path": "skills/api-design/metadata.json",
       "kind": "support",
-      "size_bytes": 2886,
-      "sha256": "56d90347c02ef110634c206931128523bc61c2c27dd00e47d8f2b67055e672b6"
+      "size_bytes": 2968,
+      "sha256": "be4c7a3ae7f54138e5163a422d615e31f5d6dd07d7d3fd84548503a60f556e67"
+    },
+    {
+      "path": "skills/api-design/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 928,
+      "sha256": "7ef10ec5290e5f1562391b933ac476052249410101582c7ba2881eb2c5863b96"
+    },
+    {
+      "path": "skills/api-design/scripts/render_brief.py",
+      "kind": "support",
+      "size_bytes": 1075,
+      "sha256": "95f6df80f9fa925d1e86d70ed4b8952a88cc30d244d3e2ce6398a6c83820d6f9"
     }
   ],
   "archives": [
@@ -243,45 +258,48 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 3093,
-      "sha256": "f39873ceeb89e2e35d9f56f7d12505785b615b95f36cec3e668997171b79788a",
+      "size_bytes": 4559,
+      "sha256": "1afd3fe0feafe1df74f4e58b7728d56dabbe4f7b4511380d12d8ff9e41d483e4",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/api-design.zip.sig",
+        "sha256": "e0af10c543a02a8f430ce3b476b8b0e1b2d1bed24f9d0a8df2f6e751c02db307",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.zip.sig dist/archives/api-design.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 2962,
-      "sha256": "68ce255e9245a04369449f4937e94776e7b99ad607cc94481a10dae5a9fe09dc",
+      "size_bytes": 3949,
+      "sha256": "083dd6824089de50e07960606318efd129ae7a13e15eeedd48a93081cdbbfa09",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/api-design.tar.gz.sig",
+        "sha256": "c3b527142c39bee1ae0c3eb21c8fdb1ffd60ffbfa4ab70dd67095af06976ecb4",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.tar.gz.sig dist/archives/api-design.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "2c83b8954257390d91b2deda773017aa978c6e86f64005b69bdaae7154243e11",
+    "sha256": "a75aabfa832e14437d0fc213b960f208b6f1f141dd0bd8179944b9c49110aa1c",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/api-design.checksums.txt.sig",
+      "sha256": "2dcf5dea450883d28bba1b716d8b2d9458212b82d826fca57af51e8b2f8830c4",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.checksums.txt.sig dist/archives/api-design.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "4381ef911079e457adc883169642a6888a2932d6939b50ae547eaa9be76e4f7f",
-    "package_sha256": "411dc8037a384081e2cc7244d418fae16c586b4c51cc11cc622e4ecbb986efe4"
+    "entrypoint_sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1",
+    "package_sha256": "77b909d484af13183bd4681219d2000f40e040936feea9e1f339e9812602ee29"
   }
 }

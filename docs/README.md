@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.0.1; skills=13; updated_at=2026-03-26 -->
+<!-- omni-skills: version=0.0.1; skills=19; updated_at=2026-03-27 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the Omni Skills platform.**
@@ -13,11 +13,11 @@ Standard community files live in the repository root:
 | Area | State | Details |
 |:-----|:------|:--------|
 | 🏗️ **Runtime** | ✅ Complete | CLI, API, MCP (3 transports), A2A task runtime |
-| 📦 **Catalog** | 📌 13 skills | Core dev, design, OSS, discovery, and security skills published |
+| 📦 **Catalog** | 📌 19 skills | Core dev, design, OSS, security, DevOps, and AI-engineering skills published |
 | 🎯 **Install** | ✅ Complete | Selective install by `--skill` and `--bundle` |
 | 🌐 **API** | ✅ Complete | Read-only with auth, rate limiting, audit log |
 | 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode |
-| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, file-backed restart recovery |
+| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode |
 | 🛡️ **Security** | ✅ Complete | Static scanner + optional local ClamAV/VirusTotal, enforced on release tags |
 | 📋 **Classification** | ✅ Complete | Taxonomy · maturity · quality · best practices · security |
 | 📁 **Archives** | ✅ Complete | Per-skill zip/tar.gz with SHA-256 checksums |
@@ -167,10 +167,10 @@ npx omni-skills a2a --port 3335
 | 📋 `docs/specs/` | Protocol and artifact contracts |
 | 📚 `docs/CATALOG.md` | Generated skill catalog |
 | 📦 `dist/` | Generated machine-readable artifacts |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime (~829 LOC) |
-| 🌐 `packages/server-api/` | Read-only HTTP API (~247 LOC) |
-| 🔌 `packages/server-mcp/` | MCP server + local sidecar (~1,508 LOC) |
-| 🤖 `packages/server-a2a/` | A2A server + task runtime (~1,272 LOC combined) |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime |
+| 🌐 `packages/server-api/` | Read-only HTTP API |
+| 🔌 `packages/server-mcp/` | MCP server + local sidecar |
+| 🤖 `packages/server-a2a/` | A2A server + task runtime |
 | 🖥️ `tools/bin/` | CLI entry points |
 | 📚 `tools/lib/` | Installer helpers |
 | ⚙️ `tools/scripts/` | Validation, generation, and test scripts |

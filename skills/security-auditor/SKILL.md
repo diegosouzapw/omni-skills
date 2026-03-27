@@ -1,6 +1,6 @@
 ---
 name: security-auditor
-description: "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review."
+description: "Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a generic review."
 version: "0.0.1"
 category: testing-security
 tags: [security, audit, review, threat-modeling, hardening]
@@ -114,5 +114,11 @@ Review this patch like a security auditor and call out real vulnerabilities, ris
 
 ## Additional Resources
 
-- Security Validation Spec
-- System Runbook
+- [Security audit checklist](references/checklist.md)
+- [Render an audit plan](scripts/render_audit_plan.py)
+
+```bash
+python3 skills/security-auditor/scripts/render_audit_plan.py \
+  "Hosted MCP server" \
+  "auth,rate-limit,webhooks,artifact downloads"
+```

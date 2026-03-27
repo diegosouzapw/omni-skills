@@ -1,6 +1,6 @@
 ---
 name: documentation
-description: "Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready explanations."
+description: "Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-ready explanations."
 version: "0.0.1"
 category: documentation
 tags: [docs, readme, onboarding, guides, runbooks]
@@ -105,5 +105,11 @@ Write a guide for adding a new skill and passing validation on the first try.
 
 ## Additional Resources
 
-- Documentation Hub
-- System Runbook
+- [Documentation checklist](references/checklist.md)
+- [Render a doc outline](scripts/render_doc_outline.py)
+
+```bash
+python3 skills/documentation/scripts/render_doc_outline.py \
+  "Publishing and release flow" \
+  "users,contributors,operators"
+```

@@ -195,13 +195,31 @@ function registerLocalTools(server) {
         transport: z.enum(["stream", "http", "sse", "stdio"]).optional().describe("MCP transport to configure."),
         url: z.string().optional().describe("HTTP or SSE MCP endpoint to use when transport is network-based."),
         server_name: z.string().optional().describe("Name of the MCP server entry to write."),
+        sandbox_enabled: z.boolean().optional().describe("VS Code only. Enables sandboxing for stdio MCP servers."),
+        sandbox_allow_write: z.array(z.string()).optional().describe("VS Code only. Writable filesystem allowlist entries for the sandbox."),
+        sandbox_allow_network: z.array(z.string()).optional().describe("VS Code only. Network host allowlist entries for the sandbox."),
+        allowed_mcp_servers: z.array(z.string()).optional().describe("Claude Code only. Allowlist of server names or commands."),
+        denied_mcp_servers: z.array(z.string()).optional().describe("Claude Code only. Denylist of server names or commands."),
         dry_run: z.boolean().optional().describe("When true, return the config preview without writing."),
       },
       annotations: {
         destructiveHint: true,
       },
     },
-    async ({ client, config_target, file_path, transport, url, server_name, dry_run }) => {
+    async ({
+      client,
+      config_target,
+      file_path,
+      transport,
+      url,
+      server_name,
+      sandbox_enabled,
+      sandbox_allow_write,
+      sandbox_allow_network,
+      allowed_mcp_servers,
+      denied_mcp_servers,
+      dry_run,
+    }) => {
       const result = configureClientMcp({
         client,
         config_target,
@@ -209,6 +227,11 @@ function registerLocalTools(server) {
         transport,
         url,
         server_name,
+        sandbox_enabled,
+        sandbox_allow_write,
+        sandbox_allow_network,
+        allowed_mcp_servers,
+        denied_mcp_servers,
         dry_run,
       });
       return {

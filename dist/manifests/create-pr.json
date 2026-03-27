@@ -3,7 +3,7 @@
   "id": "create-pr",
   "slug": "create-pr",
   "display_name": "Create PR",
-  "description": "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance.",
+  "description": "Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guidance.",
   "version": "0.0.1",
   "category": "communication",
   "raw_category": "communication",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3034,
-    "content_length": 3511,
-    "body_lines": 90,
-    "word_count": 448,
+    "body_length": 3238,
+    "content_length": 3705,
+    "body_lines": 96,
+    "word_count": 474,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/create-pr/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3527,
-      "sha256": "bef18f2d9e3f982fb8f570d469f4243830a6f39932d5a3db17caec62275b38d4"
+      "size_bytes": 3721,
+      "sha256": "102cbe661c4d49d8346c3e9506c8b73002336e9544cafc1bfb2c68e01d2f4c9d"
     },
     {
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
-      "size_bytes": 2921,
-      "sha256": "ef9b25e1ee6e602d10c78d79ae23ce3c3b4c3a42195d71c8657a04e4b70e689c"
+      "size_bytes": 3002,
+      "sha256": "c420bd9dff59a85704d67246898cee10af47e0f72e1b65941d7a6416e8701d6f"
+    },
+    {
+      "path": "skills/create-pr/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 580,
+      "sha256": "6f5d6ffcf2790ead3a0162d2fa9d401f2cec4dca2873a4c13b40678395c85f72"
+    },
+    {
+      "path": "skills/create-pr/scripts/render_pr_packet.py",
+      "kind": "support",
+      "size_bytes": 722,
+      "sha256": "953e6269ef849d190f4580fa4da0dec4f12fe77c87dc8d7e55b4377bc3690706"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 3053,
-      "sha256": "29858f81aa94cee7b7714e96d7ef50a4ef89059c8dd8d18a56405f589efb95b6",
+      "size_bytes": 4205,
+      "sha256": "4ad4bf8f7ddff9a7ee8c909da3cd09ca7cf2642af850b9aab30aca2c465043f6",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/create-pr.zip.sig",
+        "sha256": "a956693fffff1dd2983211c38f32649b6c0b73db648823e495dcab402c04ae86",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.zip.sig dist/archives/create-pr.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 2918,
-      "sha256": "1f603152adf40f00e0f060124e89d6cd8f7ab8f123ba817ac25bf6c6965b344a",
+      "size_bytes": 3699,
+      "sha256": "e11b0f758edef9e0218736dcd0e1e51d46e7faef7f82ad7f9f505539f15c7394",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/create-pr.tar.gz.sig",
+        "sha256": "6018c660803abcbf9c915f197833fbf9822a7e54dc264317c7dbf809b1cbdc1a",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.tar.gz.sig dist/archives/create-pr.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "d784824d4a5572dabb02028dbc90ef312dbef1535449d1ffe55fd45fdef11a7e",
+    "sha256": "c232e98bba4f0675eb48656f75ec0579c8aa628c53f70f60e30eae27ef939dec",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/create-pr.checksums.txt.sig",
+      "sha256": "dc48f634c6fbd578532f0495871aeb4e40d1f1c283a14ceff87148328dcde6bc",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.checksums.txt.sig dist/archives/create-pr.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "bef18f2d9e3f982fb8f570d469f4243830a6f39932d5a3db17caec62275b38d4",
-    "package_sha256": "59b577e6e661f37dfc088a7a929ae45ff502dce16bacb23b49857e2e640c386f"
+    "entrypoint_sha256": "102cbe661c4d49d8346c3e9506c8b73002336e9544cafc1bfb2c68e01d2f4c9d",
+    "package_sha256": "428221207ef3405ac820d8043b0032122ebc8c3288680820d8b3b5ad62497e2c"
   }
 }

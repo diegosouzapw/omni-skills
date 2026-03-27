@@ -1,0 +1,312 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "llm-patterns",
+  "slug": "llm-patterns",
+  "display_name": "LLM Patterns",
+  "description": "LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallback paths, or agent behavior.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "llm",
+    "agents",
+    "tool-use",
+    "structured-output",
+    "reliability",
+    "orchestration"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-27",
+    "updated": "2026-03-27"
+  },
+  "entrypoint": "skills/llm-patterns/SKILL.md",
+  "paths": {
+    "root": "skills/llm-patterns",
+    "manifest": "dist/manifests/llm-patterns.json",
+    "metadata": "skills/llm-patterns/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".agents/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 5,
+    "references_count": 1,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".agents/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 85,
+      "tier": "excellent"
+    },
+    "quality": {
+      "score": 97,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 25,
+        "description": 15,
+        "metadata": 20,
+        "recency": 10,
+        "resources": 10,
+        "best_practices": 17
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 4,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 4093,
+    "content_length": 4605,
+    "body_lines": 96,
+    "word_count": 561,
+    "has_code_blocks": true,
+    "has_examples_section": true,
+    "has_workflow_section": false,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true
+  },
+  "artifacts": [
+    {
+      "path": "skills/llm-patterns/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 4621,
+      "sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4"
+    },
+    {
+      "path": "skills/llm-patterns/metadata.json",
+      "kind": "support",
+      "size_bytes": 3094,
+      "sha256": "c707a5dcd74635405efb890e58cbb91ce1c10cbb3684105953fb6bdeb4758a97"
+    },
+    {
+      "path": "skills/llm-patterns/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 256,
+      "sha256": "f46475c971da53bc5bafb9b84be37490d85ca3ae68b6cc097a5c8ca80bc09998"
+    },
+    {
+      "path": "skills/llm-patterns/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 1048,
+      "sha256": "ac44bfb810c89b097f7e071e71fc0b8483d67261026a2e86b46d9894abc43ec8"
+    },
+    {
+      "path": "skills/llm-patterns/scripts/render_pattern_review.py",
+      "kind": "support",
+      "size_bytes": 1064,
+      "sha256": "7408271f1c8cc353646bbcddaa487cf0e8d690de48f74fc81e52a150663ce35d"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/llm-patterns.zip",
+      "file_name": "llm-patterns.zip",
+      "size_bytes": 5160,
+      "sha256": "f9413ea42ccff70256b57ad9c845807fbe4e1ba33605db3c41afa1cb74d92cb0",
+      "signature": {
+        "status": "signed",
+        "path": "dist/archives/llm-patterns.zip.sig",
+        "sha256": "e5d6ff664491440d3fa698384cf3ec531efd6bb042e7f58eba8d133658d00e82",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.zip.sig dist/archives/llm-patterns.zip"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/llm-patterns.tar.gz",
+      "file_name": "llm-patterns.tar.gz",
+      "size_bytes": 4305,
+      "sha256": "036befd45cf99bf1f059d995ee68f2511b7b9a61d0a7fc61a3f8887e22ca4c55",
+      "signature": {
+        "status": "signed",
+        "path": "dist/archives/llm-patterns.tar.gz.sig",
+        "sha256": "ec61f089953e3838d8c769eb797a65f6a007b7825927401036a48d421da206b1",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.tar.gz.sig dist/archives/llm-patterns.tar.gz"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/llm-patterns.checksums.txt",
+    "file_name": "llm-patterns.checksums.txt",
+    "sha256": "90127fc239f42f1aefc996de7b9fa4ef30cb274f7d40da952a37765bf6582c37",
+    "signature": {
+      "status": "signed",
+      "path": "dist/archives/llm-patterns.checksums.txt.sig",
+      "sha256": "e2978e27d9ab7cf2b481a1d4c9f02b0c3a41c4ea41e7fb2dcb4bd99d9550c412",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.checksums.txt.sig dist/archives/llm-patterns.checksums.txt"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
+    "package_sha256": "663c281a29f497fd166e8a99e70a28176ac52c24233de427f7079dfbe786ef35"
+  }
+}

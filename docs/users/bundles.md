@@ -1,6 +1,6 @@
 # 📦 Curated Bundles
 
-> **Bundles are curated skill selectors layered on top of the catalog.** Four bundles are fully backed by published skills today, and two still include roadmap-only members.
+> **Bundles are curated skill selectors layered on top of the catalog.** All six starter bundles are now fully backed by published skills.
 
 ---
 
@@ -10,7 +10,7 @@
 
 1. 📋 Expands the selected bundle definition
 2. ✅ Installs only the members currently available in the catalog
-3. ⚠️ Surfaces missing members as warnings only when the bundle still contains roadmap entries
+3. ✅ Builds a concrete install plan from published bundle members
 
 ```bash
 npx omni-skills --cursor --bundle full-stack
@@ -27,11 +27,11 @@ Based on the current generated catalog (`dist/bundles.json`):
 | 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
 | 🌐 **full-stack** | Web & app devs | **4/4** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ |
 | 🛡️ **security** | Security engineers | **2/2** | `security-auditor` ✅ · `vulnerability-scanner` ✅ |
-| ⚙️ **devops** | Platform & infra | **0/3** | `docker-expert` ⏳ · `kubernetes` ⏳ · `terraform` ⏳ |
-| 🤖 **ai-engineer** | LLM & ML devs | **0/3** | `rag-engineer` ⏳ · `prompt-engineer` ⏳ · `llm-patterns` ⏳ |
+| ⚙️ **devops** | Platform & infra | **3/3** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **3/3** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ |
 | 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = Published and installable · ⏳ = Roadmap metadata only
+> ✅ = Published and installable
 
 ---
 
@@ -40,8 +40,8 @@ Based on the current generated catalog (`dist/bundles.json`):
 ### ✅ Use a bundle when:
 
 - You want a **curated starting point** for a domain
-- You want install plans that **grow as the catalog expands**
-- You're comfortable using roadmap-heavy bundles only where warnings are expected
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
 ### 🎯 Use `--skill` instead when:
 
@@ -59,7 +59,8 @@ Based on the current generated catalog (`dist/bundles.json`):
 | 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
 | 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
 | 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚠️ Bundle with current availability + warnings | `npx omni-skills --cursor --bundle devops` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
 | 🔎 Search before deciding | `npx omni-skills find figma` |
 | 📋 See all bundle availability | `cat dist/bundles.json` |
 
@@ -90,4 +91,6 @@ Use the `search_skills` or `preview_install` tools with bundle parameters.
 npx omni-skills find foundation --bundle essentials --install
 npx omni-skills find audit --bundle security --install
 npx omni-skills find docs --bundle oss-maintainer --install
+npx omni-skills find deploy --bundle devops --install
+npx omni-skills find rag --bundle ai-engineer --install
 ```

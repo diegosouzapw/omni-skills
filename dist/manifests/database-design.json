@@ -3,7 +3,7 @@
   "id": "database-design",
   "slug": "database-design",
   "display_name": "Database Design",
-  "description": "Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementation.",
+  "description": "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation.",
   "version": "0.0.1",
   "category": "backend",
   "raw_category": "backend",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3272,
-    "content_length": 3744,
-    "body_lines": 94,
-    "word_count": 446,
+    "body_length": 3492,
+    "content_length": 3973,
+    "body_lines": 100,
+    "word_count": 468,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/database-design/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3760,
-      "sha256": "f1882889b6667f8ab0eb2a063879a83c890f0c9ebd53012e225bac410ce3105c"
+      "size_bytes": 3989,
+      "sha256": "5244e8238268455ce2463c417b8868c062f23aafd744943829c5b5020552db96"
     },
     {
       "path": "skills/database-design/metadata.json",
       "kind": "support",
-      "size_bytes": 2922,
-      "sha256": "2423536df1e788a93e8bdd0099114bcd7e6daf5cf92cef844bf0d4872547d9e8"
+      "size_bytes": 3027,
+      "sha256": "25437d237f1501dcd93761f9b65dedb2f36f282ea1e4fd278605745e5b62384f"
+    },
+    {
+      "path": "skills/database-design/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 706,
+      "sha256": "b96616887cc6cbb031e12a3a30231c4586ccfdb785bc7174913f6b7d72054db2"
+    },
+    {
+      "path": "skills/database-design/scripts/render_schema_review.py",
+      "kind": "support",
+      "size_bytes": 810,
+      "sha256": "ed31f5305cc8b388d3dee4f23d0c7f05b0e5953954b06e6b1bb7aacf337eb563"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 3133,
-      "sha256": "e667c427cf2f0aaba938d4f90fa541ea97e6c698bb8122ed3f34392c7c60d276",
+      "size_bytes": 4401,
+      "sha256": "9f8a03cc308541547b12bf5d1cc8eb58b2eae8b5ea22763f7933d7b6a732d944",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/database-design.zip.sig",
+        "sha256": "9e75017b93bf20fa2fecc0e1302c957f696e532e91f4feebd8653f9fd8b60f57",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.zip.sig dist/archives/database-design.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 2984,
-      "sha256": "c847e235632849f10219a8aaa65fd2b4232baae0c22ceb96d52417ecaa646ea3",
+      "size_bytes": 3769,
+      "sha256": "346b591b885e93b5920f9a09a212e47635fa50c455cb9f46d3ba81cd2f675f41",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/database-design.tar.gz.sig",
+        "sha256": "1587f109c01cd940bdccf3aee7af365a4d68f56167b7737642aea78e1c0b2266",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.tar.gz.sig dist/archives/database-design.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "4a200fcd4eb8989a5b9ce15a99d34363520e5173b9a275b63cce7fd272cf31ed",
+    "sha256": "436e389acf4520695c54f95248b0404d2eed8437d6fadbe63c74a04d148e9de4",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/database-design.checksums.txt.sig",
+      "sha256": "96194954f60cb1b3e69002cc874f9b18ad8ec75c36dd08148ed16f640db3a2b0",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.checksums.txt.sig dist/archives/database-design.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "f1882889b6667f8ab0eb2a063879a83c890f0c9ebd53012e225bac410ce3105c",
-    "package_sha256": "5f8eea0cbebce695dd53ecd40b8fd1ab4817c6d7f775bdbd980a2becc1cc6902"
+    "entrypoint_sha256": "5244e8238268455ce2463c417b8868c062f23aafd744943829c5b5020552db96",
+    "package_sha256": "43e03f28e7870102cc635e1be2f26c7928ad1c778f45ef9500dc84c56e20bf53"
   }
 }

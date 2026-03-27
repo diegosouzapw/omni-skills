@@ -249,8 +249,10 @@ npx omni-skills mcp stream
 ```bash
 npx omni-skills a2a --port 3335
 
-# Optional: persist tasks to a custom file
-OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.json \
+# Optional: persist tasks to SQLite and run them via the external worker process
+OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
+OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
+OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
@@ -287,7 +289,7 @@ The current runtime supports these task states:
 - `canceled`
 - `failed`
 
-Tasks are persisted to a local JSON store and reloaded on restart. Completed or input-required tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered as failed with an explicit restart-interruption message.
+Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
 
 ### 🧪 Example: Start a Task
 
@@ -416,7 +418,12 @@ That means every tag-based release must:
 | `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
 | `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
 | `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
 | `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
 | `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
 | `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
 | `VT_API_KEY` | VirusTotal API key | — |

@@ -1,10 +1,10 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T02:37:44.929214+00:00",
+  "generated_at": "2026-03-27T03:58:02.280012+00:00",
   "id": "security-auditor",
   "slug": "security-auditor",
   "display_name": "Security Auditor",
-  "description": "Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a generic review.",
+  "description": "Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a generic review.",
   "version": "0.0.1",
   "raw_category": "testing-security",
   "canonical_category": "testing-security",
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T02:37:23.347669+00:00"
+    "file_mtime": "2026-03-27T03:50:01.723361+00:00"
   },
   "paths": {
     "root": "skills/security-auditor",
@@ -44,20 +44,25 @@
     "metadata": "skills/security-auditor/metadata.json"
   },
   "resources": {
-    "sub_resources": [],
-    "files": [
-      "SKILL.md"
+    "sub_resources": [
+      "references",
+      "scripts"
     ],
-    "files_count": 1,
-    "references_count": 0,
+    "files": [
+      "SKILL.md",
+      "checklist.md",
+      "render_audit_plan.py"
+    ],
+    "files_count": 3,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
   "content": {
-    "body_length": 3896,
-    "content_length": 4386,
-    "body_lines": 103,
-    "word_count": 534,
+    "body_length": 4109,
+    "content_length": 4602,
+    "body_lines": 109,
+    "word_count": 559,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -65,36 +70,36 @@
     "has_troubleshooting_section": true
   },
   "maturity": {
-    "skill_level": 2,
-    "skill_level_label": "instructions",
-    "has_scripts": false,
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 60,
-    "tier": "good"
+    "score": 85,
+    "tier": "excellent"
   },
   "quality": {
-    "score": 87,
+    "score": 97,
     "tier": "platinum",
     "breakdown": {
       "body": 25,
       "description": 15,
       "metadata": 20,
       "recency": 10,
-      "resources": 5,
-      "best_practices": 12
+      "resources": 10,
+      "best_practices": 17
     }
   },
   "security": {
-    "score": 100,
-    "tier": "hardened",
+    "score": 95,
+    "tier": "review",
     "status": "passed",
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 1,
-      "script_files": 0,
+      "scanned_files": 3,
+      "script_files": 1,
       "binary_like_files": 0
     },
     "scanners": {

@@ -11,7 +11,7 @@
 | 1️⃣ | Contracts and Artifacts | ✅ Completed |
 | 2️⃣ | Read-Only Catalog API | ✅ Completed |
 | 3️⃣ | MCP Discovery Surface | ✅ Completed |
-| 4️⃣ | Local Install Surface | 🟡 Partially Completed |
+| 4️⃣ | Local Install Surface | ✅ Completed |
 | 5️⃣ | A2A Orchestration | 🟡 Partially Completed (task runtime in place) |
 
 ### ✅ What's Done
@@ -23,14 +23,13 @@
 - Per-skill archives (zip/tar.gz) with SHA-256 checksums
 - Auth (bearer + API key), rate limiting, and audit logging
 - Client-aware MCP config writing (JSON + TOML)
-- A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, and push-notification config
+- A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, push-notification config, JSON/SQLite durability, restart resume, and optional process executor
 
 ### ⏳ What's Still Open
 
-- Broader published skill catalog (13 published skills, 2 bundles still roadmap-heavy)
-- CI-enforced release signing
-- External executor integration and multi-node durability beyond the current file-backed A2A store
-- Expanded client-specific config coverage
+- Multi-node coordination and lease-aware task execution
+- Even broader client-specific config coverage
+- More published skills and deeper reference packs to push best-practices scores beyond the current plateau
 
 ---
 
@@ -173,7 +172,8 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 - ✅ Local sidecar with allowlisted writes
 - ✅ Client detection for 7 AI assistants
 - ✅ MCP config writing for JSON + TOML
-- ⏳ Broader per-client config coverage needed
+- ✅ VS Code user/workspace and Dev Container config targets
+- ✅ Claude allow/deny list and VS Code sandbox config generation
 
 ### Phase 5: A2A Orchestration 🟡
 
@@ -182,8 +182,9 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 - ✅ `tasks/get`, `tasks/cancel`, and `tasks/resubscribe`
 - ✅ `message/stream` with SSE task updates
 - ✅ `tasks/pushNotificationConfig/*`
-- ✅ File-backed task persistence with restart recovery
-- ⏳ Background executor adapters and multi-node coordination
+- ✅ JSON and SQLite task persistence with restart recovery
+- ✅ Optional external process executor
+- ⏳ Multi-node coordination and leased execution
 
 ---
 

@@ -1,10 +1,10 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T02:37:44.875179+00:00",
+  "generated_at": "2026-03-27T03:58:02.197590+00:00",
   "id": "brainstorming",
   "slug": "brainstorming",
   "display_name": "Brainstorming",
-  "description": "Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem before implementation.",
+  "description": "Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a recommendation.",
   "version": "0.0.1",
   "raw_category": "product",
   "canonical_category": "product",
@@ -36,7 +36,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T02:37:23.345296+00:00"
+    "file_mtime": "2026-03-27T03:50:01.721361+00:00"
   },
   "paths": {
     "root": "skills/brainstorming",
@@ -44,20 +44,25 @@
     "metadata": "skills/brainstorming/metadata.json"
   },
   "resources": {
-    "sub_resources": [],
-    "files": [
-      "SKILL.md"
+    "sub_resources": [
+      "references",
+      "scripts"
     ],
-    "files_count": 1,
-    "references_count": 0,
+    "files": [
+      "SKILL.md",
+      "checklist.md",
+      "render_idea_matrix.py"
+    ],
+    "files_count": 3,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
   "content": {
-    "body_length": 3603,
-    "content_length": 4097,
-    "body_lines": 94,
-    "word_count": 527,
+    "body_length": 3824,
+    "content_length": 4308,
+    "body_lines": 100,
+    "word_count": 552,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -65,36 +70,36 @@
     "has_troubleshooting_section": true
   },
   "maturity": {
-    "skill_level": 2,
-    "skill_level_label": "instructions",
-    "has_scripts": false,
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 50,
-    "tier": "fair"
+    "score": 85,
+    "tier": "excellent"
   },
   "quality": {
-    "score": 85,
+    "score": 97,
     "tier": "platinum",
     "breakdown": {
       "body": 25,
       "description": 15,
       "metadata": 20,
       "recency": 10,
-      "resources": 5,
-      "best_practices": 10
+      "resources": 10,
+      "best_practices": 17
     }
   },
   "security": {
-    "score": 100,
-    "tier": "hardened",
+    "score": 95,
+    "tier": "review",
     "status": "passed",
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 1,
-      "script_files": 0,
+      "scanned_files": 3,
+      "script_files": 1,
       "binary_like_files": 0
     },
     "scanners": {

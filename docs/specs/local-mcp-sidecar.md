@@ -16,7 +16,7 @@
 | ✅ Client-aware MCP config writing | Implemented |
 | ✅ HTTP auth + rate limiting | Implemented |
 | ⏳ Signed artifact enforcement | Pending |
-| ⏳ Full client config coverage | Partial |
+| 🟡 Full client config coverage | Expanded, still growing |
 
 ---
 
@@ -111,6 +111,9 @@ When local mode is enabled, these extra tools become available:
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
 | `<workspace>/.mcp.json` | JSON (`mcpServers`) |
 | `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
+| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
+| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
+| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
 | Client root `mcp.json` | JSON (per-client format) |
 
 ---
@@ -179,6 +182,29 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 }
 ```
 
+### 📦 Dev Container
+
+```json
+{
+  "customizations": {
+    "vscode": {
+      "mcp": {
+        "servers": {
+          "omni-skills": {
+            "type": "stdio",
+            "command": "/path/to/node",
+            "args": ["/path/to/packages/server-mcp/src/server.js"],
+            "env": {
+              "OMNI_SKILLS_MCP_MODE": "local"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### 🔴 Codex TOML
 
 ```toml
@@ -201,6 +227,20 @@ url = "http://127.0.0.1:3334/mcp"
   }
 }
 ```
+
+### 🔵 Claude allow/deny lists
+
+The `configure_client_mcp` tool can also write Claude-specific `allowedMcpServers` and `deniedMcpServers` arrays when you pass `allowed_mcp_servers` or `denied_mcp_servers`.
+
+### 💜 VS Code sandboxing
+
+For VS Code and Dev Container targets, `configure_client_mcp` can also write:
+
+- `sandboxEnabled`
+- `sandbox.filesystem.allowWrite`
+- `sandbox.network.allowHosts`
+
+This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
 
 ---
 

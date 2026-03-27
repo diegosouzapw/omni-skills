@@ -1,6 +1,6 @@
 ---
 name: create-pr
-description: "Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and reviewer guidance."
+description: "Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guidance."
 version: "0.0.1"
 category: communication
 tags: [pr, review, collaboration, summary, handoff]
@@ -101,5 +101,11 @@ Prepare a reviewer guide for a refactor that moved shared logic into a core pack
 
 ## Additional Resources
 
-- Contributing Guide
-- Contributor Quality Bar
+- [PR handoff checklist](references/checklist.md)
+- [Render a PR packet](scripts/render_pr_packet.py)
+
+```bash
+python3 skills/create-pr/scripts/render_pr_packet.py \
+  "Add devops skills and improve bundle coverage" \
+  "catalog,bundles,metadata"
+```

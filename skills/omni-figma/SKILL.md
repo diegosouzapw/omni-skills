@@ -1,6 +1,6 @@
 ---
 name: omni-figma
-description: "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting."
+description: "Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Code Connect mapping, or Figma MCP troubleshooting."
 version: "0.0.1"
 category: development
 tags: [figma, design-to-code, mcp, ui-implementation, code-connect, figjam]
@@ -95,3 +95,45 @@ Follow these steps in order whenever the task ends in application code.
 - `references/mcp-setup-and-troubleshooting.md` for remote vs desktop setup, verification, auth, and common failures.
 - `references/tool-routing-and-prompts.md` for tool-by-tool routing, prompt patterns, and capture or write workflows.
 - `references/figma-best-practices-2026.md` for the official Figma guidance that improves agent output: file structure, Code Connect, variables, Auto Layout, explicit tool selection, and smaller frames.
+
+## Examples
+
+### Example 1: Implement a node into repo code
+
+```text
+Implement this Figma frame in the current React app and reuse the existing design-system components where possible.
+```
+
+### Example 2: Prepare an implementation packet
+
+```bash
+python3 skills/omni-figma/scripts/render_implementation_packet.py \
+  "landing hero" \
+  "react,tailwind,design tokens"
+```
+
+## Best Practices
+
+- Start from the smallest node that answers the request.
+- Prefer Code Connect mappings and variables over recreating components from scratch.
+- Treat screenshots and metadata as validation artifacts, not optional extras.
+- Document any intentional deviation from the Figma source before finishing.
+
+## Troubleshooting
+
+### Problem: The generated code looks generic
+
+**Symptoms:** Output ignores the repository's components, tokens, or accessibility patterns.
+**Solution:** Re-run the flow with a smaller node, fetch variables explicitly, and anchor the request to the repo conventions.
+
+### Problem: Tool selection keeps going wrong
+
+**Symptoms:** The agent reaches for the wrong MCP tool or asks for too much at once.
+**Solution:** Route through the specific reference guide, restate the concrete intent, and split the task by node or operation.
+
+## Additional Resources
+
+- [MCP setup and troubleshooting](references/mcp-setup-and-troubleshooting.md)
+- [Tool routing and prompts](references/tool-routing-and-prompts.md)
+- [Figma best practices](references/figma-best-practices-2026.md)
+- [Render an implementation packet](scripts/render_implementation_packet.py)

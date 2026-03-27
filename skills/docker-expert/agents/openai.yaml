@@ -1,0 +1,4 @@
+interface:
+  display_name: "Docker Expert"
+  short_description: "Plan builds, images, and safer container runtimes"
+  default_prompt: "Use $docker-expert to design or review Dockerfiles, build stages, and runtime hardening."

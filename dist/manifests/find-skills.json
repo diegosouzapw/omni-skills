@@ -3,7 +3,7 @@
   "id": "find-skills",
   "slug": "find-skills",
   "display_name": "Find Skills",
-  "description": "Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, workflow, or domain-specific helper.",
+  "description": "Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper and needs the best published Omni Skills match.",
   "version": "0.0.1",
   "category": "cli-automation",
   "raw_category": "cli-automation",
@@ -98,10 +98,12 @@
   },
   "resources": {
     "sub_resources": [
-      "agents"
+      "agents",
+      "references",
+      "scripts"
     ],
-    "artifacts_count": 3,
-    "references_count": 0,
+    "artifacts_count": 5,
+    "references_count": 1,
     "agents_count": 1,
     "assets_count": 0
   },
@@ -159,36 +161,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 65,
-      "tier": "good"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 88,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 13
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 2,
-        "script_files": 0,
+        "scanned_files": 4,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -217,34 +219,46 @@
     }
   },
   "content": {
-    "body_length": 2924,
-    "content_length": 3431,
-    "body_lines": 93,
-    "word_count": 459,
+    "body_length": 4237,
+    "content_length": 4759,
+    "body_lines": 131,
+    "word_count": 639,
     "has_code_blocks": true,
-    "has_examples_section": false,
+    "has_examples_section": true,
     "has_workflow_section": false,
-    "has_best_practices_section": false,
-    "has_troubleshooting_section": false
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true
   },
   "artifacts": [
     {
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3431,
-      "sha256": "d45d9b91188507976cf7ea2ed878f955cdc134b3d3b3796a5b4c00518100a708"
+      "size_bytes": 4759,
+      "sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c"
     },
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
-      "size_bytes": 3021,
-      "sha256": "9a4e68c404477cd21bf4f5fcf93e1b099ad82b78c452854e92dd152004123194"
+      "size_bytes": 3128,
+      "sha256": "de4d6c41915759c0331c14db855fd46d37261d70ea79f2dbe84a9ef47479c3ec"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
       "kind": "agent",
       "size_bytes": 232,
       "sha256": "5c79785bb07a0271b0c89bfaf5961a637b7df3a072ddb2669c4526be2abaa98f"
+    },
+    {
+      "path": "skills/find-skills/references/catalog-audit.md",
+      "kind": "reference",
+      "size_bytes": 762,
+      "sha256": "20b4a6c6cc7b2a2c71b125a408a21ce3c17819732f7c0582b6fd51ff11e1a8a5"
+    },
+    {
+      "path": "skills/find-skills/scripts/render_query_packet.py",
+      "kind": "support",
+      "size_bytes": 827,
+      "sha256": "ca780ef1585c9f48dbaec146c7bc3423529d3c327b0c19d3f96dc5c788c4d545"
     }
   ],
   "archives": [
@@ -252,45 +266,48 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 3271,
-      "sha256": "01433a88c71ee1972364f308328bf91d120fe2d5ff3fc94a5cbaf3a0da91b6bc",
+      "size_bytes": 4970,
+      "sha256": "545c60383dfb6c7e4f81f488ceba021884beb1be5605d4fffdf99d3558aae33c",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/find-skills.zip.sig",
+        "sha256": "ecc82f980248c7b883dc6f36869629e2a57e2e7188d988cd72315d0c1110fa1e",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.zip.sig dist/archives/find-skills.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 2947,
-      "sha256": "bfe0ea1d119b5bfbf74bffef7da62fbe834072b54578e7bd5dad8e91dd805a73",
+      "size_bytes": 4137,
+      "sha256": "9a8bd31312290d1dc2be4a347eada29d821b999f6e525730ed1df4010b4bb5c6",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/find-skills.tar.gz.sig",
+        "sha256": "9b2d446e04934501ab671cf0b16f4ce131e84928bad908e1e17b92780faaefa3",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.tar.gz.sig dist/archives/find-skills.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "1bfc085a2792fbe805f2d8e6734686fe9f997b1a897039fd75eecafab53a79c0",
+    "sha256": "9849911cafe4bce0812f4c9264477c4b2291c29459922f8444887a5d6c756218",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/find-skills.checksums.txt.sig",
+      "sha256": "200e42efab1e0f18277e5e23450f6a77c542dda565b6845e404c8cf3d5f426c3",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.checksums.txt.sig dist/archives/find-skills.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "d45d9b91188507976cf7ea2ed878f955cdc134b3d3b3796a5b4c00518100a708",
-    "package_sha256": "dbbd971694f69f991a95709742561310a4e9f5fe56218519c4baa5d123dbc32d"
+    "entrypoint_sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c",
+    "package_sha256": "c5ca5b5186729acf7995a6245b0ec7a522a1454390661413e5b1324cde876fb0"
   }
 }

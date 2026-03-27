@@ -4,13 +4,13 @@ import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import {
-  buildInstallPlan,
   getHealthSnapshot,
   listBundles,
   loadCatalog,
-  recommendSkills,
-  searchSkills,
 } from "../../catalog-core/src/index.js";
+import { evaluateTaskOperation } from "./task-operations.js";
+import { createTaskExecutor } from "./task-executor.js";
+import { createTaskStore } from "./task-store.js";
 
 const TERMINAL_STATES = new Set(["completed", "canceled", "failed", "rejected", "unknown"]);
 const INTERRUPTED_STATES = new Set(["input-required", "auth-required"]);
@@ -134,34 +134,6 @@ function buildArtifact(task, title, summary, data) {
       generated_at: nowIso(),
     },
   };
-}
-
-function summarizeSearchResult(result, query) {
-  const total = Number(result?.total || 0);
-  if (total === 0) {
-    return `No published skills matched '${query}'.`;
-  }
-  if (total === 1) {
-    return `Found 1 published skill for '${query}'.`;
-  }
-  return `Found ${total} published skills for '${query}'.`;
-}
-
-function summarizeRecommendation(result, goal) {
-  const total = Array.isArray(result?.recommendations) ? result.recommendations.length : 0;
-  if (total === 0) {
-    return `No recommendations were produced for '${goal}'.`;
-  }
-  if (total === 1) {
-    return `Recommended 1 skill stack candidate for '${goal}'.`;
-  }
-  return `Recommended ${total} skill stack candidates for '${goal}'.`;
-}
-
-function summarizeInstallPlan(result) {
-  const skills = Array.isArray(result?.selected_skills) ? result.selected_skills.length : 0;
-  const bundles = Array.isArray(result?.selected_bundles) ? result.selected_bundles.length : 0;
-  return `Prepared a dry-run install plan with ${skills} skill(s) across ${bundles} bundle(s).`;
 }
 
 function isLocalWebhookHostname(hostname) {
@@ -332,9 +304,21 @@ export class OmniSkillsA2ARuntime {
       options.persistenceEnabled ?? process.env.OMNI_SKILLS_A2A_DISABLE_PERSISTENCE !== "1";
     this.persistencePath =
       options.persistencePath || process.env.OMNI_SKILLS_A2A_STORE_PATH || DEFAULT_PERSISTENCE_PATH;
+    this.storeType = options.storeType || process.env.OMNI_SKILLS_A2A_STORE_TYPE || "json";
+    this.resumeInterruptedTasks =
+      options.resumeInterruptedTasks ?? process.env.OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS !== "0";
     this.persistenceError = null;
     this.tasks = new Map();
+    this.taskStore = createTaskStore({
+      enabled: this.persistenceEnabled,
+      storeType: this.storeType,
+      persistencePath: this.persistencePath,
+    });
+    this.executor = createTaskExecutor({
+      mode: options.executorMode || process.env.OMNI_SKILLS_A2A_EXECUTOR || "inline",
+    });
     this.loadPersistedTasks();
+    this.resumeRecoveredTasks();
   }
 
   getCatalogContext() {
@@ -361,8 +345,12 @@ export class OmniSkillsA2ARuntime {
       persistence: {
         enabled: this.persistenceEnabled,
         path: this.persistenceEnabled ? this.persistencePath : null,
+        kind: this.taskStore.kind,
         loaded_tasks: this.tasks.size,
         ...(this.persistenceError ? { last_error: this.persistenceError } : {}),
+      },
+      executor: {
+        mode: this.executor.mode,
       },
       tasks: {
         total: this.tasks.size,
@@ -521,20 +509,12 @@ export class OmniSkillsA2ARuntime {
   }
 
   persistTasks() {
-    if (!this.persistenceEnabled || !this.persistencePath) {
+    if (!this.persistenceEnabled) {
       return;
     }
 
     try {
-      ensureParentDirectory(this.persistencePath);
-      const payload = {
-        schema_version: "2026-03-26",
-        generated_at: nowIso(),
-        tasks: [...this.tasks.values()].map((task) => serializeTask(task)),
-      };
-      const temporaryPath = `${this.persistencePath}.tmp`;
-      fs.writeFileSync(temporaryPath, JSON.stringify(payload, null, 2), "utf-8");
-      fs.renameSync(temporaryPath, this.persistencePath);
+      this.taskStore.saveTasks([...this.tasks.values()].map((task) => serializeTask(task)));
       this.persistenceError = null;
     } catch (error) {
       this.persistenceError = error instanceof Error ? error.message : String(error);
@@ -551,60 +531,38 @@ export class OmniSkillsA2ARuntime {
     if (task.status?.state !== "submitted" && task.status?.state !== "working") {
       return task;
     }
-
-    const recoveryMessage = createAgentTextMessage(
-      "Recovered after a runtime restart. The previous in-memory execution was interrupted, so this task was marked as failed. Resubmit the request to continue.",
-      {
-        taskId: task.id,
-        contextId: task.contextId,
-        metadata: {
-          operation: task.metadata.operation,
-          recovery: "restart-interrupted",
-        },
-      },
-    );
-
-    task.history.push(recoveryMessage);
     task.status = {
-      state: "failed",
-      message: recoveryMessage,
+      state: "submitted",
+      message: createAgentTextMessage(
+        "Recovered after a runtime restart. The task will be re-evaluated and resumed.",
+        {
+          taskId: task.id,
+          contextId: task.contextId,
+          metadata: {
+            operation: task.metadata.operation,
+            recovery: "restart-resume",
+          },
+        },
+      ),
       timestamp: nowIso(),
     };
+    task.history.push(task.status.message);
     task.metadata = {
       ...task.metadata,
       updated_at: nowIso(),
-      last_state: "failed",
-      recovery: "restart-interrupted",
+      last_state: "submitted",
+      recovery: "restart-resume",
     };
-    task._sequence = Math.max(
-      task._sequence,
-      ...task._events.map((event) => Number(event?.id || 0)).filter((value) => Number.isFinite(value)),
-    );
-    task._sequence += 1;
-    task._events.push(
-      createStatusEvent(
-        task,
-        task.status,
-        task._sequence,
-        {
-          operation: task.metadata.operation,
-          recovery: "restart-interrupted",
-        },
-        true,
-      ),
-    );
-
     return task;
   }
 
   loadPersistedTasks() {
-    if (!this.persistenceEnabled || !this.persistencePath || !fs.existsSync(this.persistencePath)) {
+    if (!this.persistenceEnabled) {
       return;
     }
 
     try {
-      const payload = JSON.parse(fs.readFileSync(this.persistencePath, "utf-8"));
-      const records = Array.isArray(payload?.tasks) ? payload.tasks : [];
+      const records = this.taskStore.loadTasks();
       for (const record of records) {
         if (!record?.id) {
           continue;
@@ -618,6 +576,23 @@ export class OmniSkillsA2ARuntime {
       }
     } catch (error) {
       this.persistenceError = error instanceof Error ? error.message : String(error);
+    }
+  }
+
+  resumeRecoveredTasks() {
+    if (!this.resumeInterruptedTasks) {
+      return;
+    }
+
+    for (const task of this.tasks.values()) {
+      if (!task.metadata?.recovered_from_persistence) {
+        continue;
+      }
+      if (task.status?.state !== "submitted" && task.status?.state !== "working") {
+        continue;
+      }
+      const evaluation = evaluateTaskOperation(task.metadata.operation, task.metadata.input || {});
+      void this.startProcessing(task, evaluation, { blocking: false, resumed: true });
     }
   }
 
@@ -699,99 +674,64 @@ export class OmniSkillsA2ARuntime {
     );
   }
 
-  evaluateOperation(task, operation, input) {
-    switch (operation) {
-      case "discover-skills": {
-        const query = (input.query || input.text || "").trim();
-        if (!query) {
-          return {
-            type: "input-required",
-            prompt:
-              "Tell me what capability, workflow, or domain you want. For example: 'figma for cursor' or 'security review'.",
-          };
-        }
+  async finalizeTaskExecution(task, evaluation) {
+    if (isTerminalState(task.status.state)) {
+      return;
+    }
 
-        const result = searchSkills({
-          query,
-          category: input.category,
-          tool: input.tools[0],
-          risk: input.risk,
-          limit: input.limit || 10,
-        });
+    this.setTaskStatus(
+      task,
+      "working",
+      `Processing ${task.metadata.operation}...`,
+      { operation: task.metadata.operation },
+    );
 
-        return {
-          type: "result",
-          title: "Skill Discovery Result",
-          summary: summarizeSearchResult(result, query),
-          payload: result,
-        };
+    try {
+      const result = await this.executor.execute({
+        task,
+        operation: task.metadata.operation,
+        input: task.metadata.input || {},
+        evaluation,
+      });
+
+      if (!result || result.type !== "result") {
+        const prompt = result?.prompt || `Operation '${task.metadata.operation}' did not produce a result.`;
+        this.setTaskStatus(task, "failed", prompt, {
+          operation: task.metadata.operation,
+          executor: this.executor.mode,
+        }, { final: true });
+        return;
       }
-      case "recommend-stack": {
-        const goal = (input.goal || input.text || "").trim();
-        if (!goal) {
-          return {
-            type: "input-required",
-            prompt:
-              "Describe the goal you want the stack to solve. For example: 'frontend design workflow for Cursor'.",
-          };
-        }
 
-        const result = recommendSkills({
-          goal,
-          tool: input.tools[0],
-          category: input.category,
-          limit: input.limit || 5,
-        });
-
-        return {
-          type: "result",
-          title: "Recommended Skill Stack",
-          summary: summarizeRecommendation(result, goal),
-          payload: result,
-        };
-      }
-      case "prepare-install-plan": {
-        const hasSelection = input.skill_ids.length > 0 || input.bundle_ids.length > 0;
-        if (!hasSelection) {
-          return {
-            type: "input-required",
-            prompt:
-              "Name at least one published skill or bundle before I can build the install plan. Example: 'omni-figma on cursor' or 'bundle full-stack'.",
-          };
-        }
-
-        if (!input.target_path && input.tools.length === 0) {
-          return {
-            type: "input-required",
-            prompt:
-              "Which client should receive the install plan? Example: Cursor, Codex CLI, Claude Code, Gemini CLI, Antigravity, OpenCode, or provide a custom path.",
-          };
-        }
-
-        const result = buildInstallPlan({
-          skill_ids: input.skill_ids,
-          bundle_ids: input.bundle_ids,
-          tools: input.tools,
-          target_path: input.target_path,
-          dry_run: true,
-        });
-
-        return {
-          type: "result",
-          title: "Install Plan",
-          summary: summarizeInstallPlan(result),
-          payload: result,
-        };
-      }
-      default:
-        return {
-          type: "rejected",
-          prompt: `Operation '${operation}' is not supported by the Omni Skills A2A agent.`,
-        };
+      const artifact = buildArtifact(task, result.title, result.summary, result.payload);
+      this.addArtifact(task, artifact, {
+        operation: task.metadata.operation,
+        executor: this.executor.mode,
+      });
+      task.metadata = {
+        ...task.metadata,
+        latest_result: result.payload,
+        executor_mode: this.executor.mode,
+      };
+      this.setTaskStatus(task, "completed", result.summary, {
+        operation: task.metadata.operation,
+        executor: this.executor.mode,
+      }, { final: true });
+    } catch (error) {
+      this.setTaskStatus(
+        task,
+        "failed",
+        `Task execution failed: ${error instanceof Error ? error.message : String(error)}`,
+        {
+          operation: task.metadata.operation,
+          executor: this.executor.mode,
+        },
+        { final: true },
+      );
     }
   }
 
-  startProcessing(task, evaluation, { blocking = false } = {}) {
+  async startProcessing(task, evaluation, { blocking = false } = {}) {
     if (evaluation.type === "input-required") {
       this.setTaskStatus(task, "input-required", evaluation.prompt, {
         operation: task.metadata.operation,
@@ -806,33 +746,8 @@ export class OmniSkillsA2ARuntime {
       return compactTask(task);
     }
 
-    const finishTask = () => {
-      if (isTerminalState(task.status.state)) {
-        return;
-      }
-
-      this.setTaskStatus(
-        task,
-        "working",
-        `Processing ${task.metadata.operation}...`,
-        { operation: task.metadata.operation },
-      );
-
-      const artifact = buildArtifact(task, evaluation.title, evaluation.summary, evaluation.payload);
-      this.addArtifact(task, artifact, {
-        operation: task.metadata.operation,
-      });
-      task.metadata = {
-        ...task.metadata,
-        latest_result: evaluation.payload,
-      };
-      this.setTaskStatus(task, "completed", evaluation.summary, {
-        operation: task.metadata.operation,
-      }, { final: true });
-    };
-
     if (blocking) {
-      finishTask();
+      await this.finalizeTaskExecution(task, evaluation);
       return compactTask(task);
     }
 
@@ -842,11 +757,13 @@ export class OmniSkillsA2ARuntime {
       `Accepted ${task.metadata.operation} request.`,
       { operation: task.metadata.operation },
     );
-    this.schedule(task, finishTask);
+    this.schedule(task, () => {
+      void this.finalizeTaskExecution(task, evaluation);
+    });
     return compactTask(task);
   }
 
-  handleMessageSend(params = {}) {
+  async handleMessageSend(params = {}) {
     const message = params.message;
     if (!message || message.kind !== "message") {
       const error = new Error("MessageSendParams.message must be a valid A2A message.");
@@ -894,8 +811,8 @@ export class OmniSkillsA2ARuntime {
       });
     }
 
-    const evaluation = this.evaluateOperation(targetTask, operation, mergedInput);
-    const result = this.startProcessing(targetTask, evaluation, {
+    const evaluation = evaluateTaskOperation(operation, mergedInput);
+    const result = await this.startProcessing(targetTask, evaluation, {
       blocking: params.configuration?.blocking === true,
     });
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kubernetes"
+  short_description: "Design manifests, rollouts, probes, and cluster-safe operations"
+  default_prompt: "Use $kubernetes to review manifests, selectors, probes, and deployment safety."

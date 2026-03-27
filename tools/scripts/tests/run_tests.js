@@ -163,7 +163,7 @@ async function postJson(url, body, headers = {}) {
   assert.ok(Array.isArray(manifest.artifacts) && manifest.artifacts.length > 0, "manifest should list artifacts");
   assert.equal(
     manifest.classification.maturity.skill_level,
-    2,
+    3,
     "manifest should expose generated maturity classification",
   );
   assert.ok(
@@ -815,19 +815,25 @@ async function postJson(url, body, headers = {}) {
       "completed tasks should remain available after restart",
     );
 
-    const recoveredInterrupted = await postJson(`http://127.0.0.1:${a2aPort}/a2a`, {
-      jsonrpc: "2.0",
-      id: "persist-3",
-      method: "tasks/get",
-      params: {
-        id: interruptedTask.payload.result.id,
-        historyLength: 10,
-      },
+    const recoveredInterrupted = await waitFor(async () => {
+      const response = await postJson(`http://127.0.0.1:${a2aPort}/a2a`, {
+        jsonrpc: "2.0",
+        id: "persist-3",
+        method: "tasks/get",
+        params: {
+          id: interruptedTask.payload.result.id,
+          historyLength: 10,
+        },
+      });
+      if (response.payload.result.status.state !== "completed") {
+        throw new Error("task has not resumed to completion yet");
+      }
+      return response;
     });
     assert.equal(
       recoveredInterrupted.payload.result.status.state,
-      "failed",
-      "in-flight tasks should be marked failed after runtime restart",
+      "completed",
+      "in-flight tasks should resume to completion after runtime restart",
     );
     assert.equal(
       recoveredInterrupted.payload.result.metadata.recovered_from_persistence,
@@ -838,7 +844,7 @@ async function postJson(url, body, headers = {}) {
       recoveredInterrupted.payload.result.history.some((message) =>
         JSON.stringify(message).includes("Recovered after a runtime restart"),
       ),
-      "recovered tasks should explain the restart interruption in history",
+      "recovered tasks should explain the restart recovery in history",
     );
   } finally {
     a2aServer.kill("SIGINT");

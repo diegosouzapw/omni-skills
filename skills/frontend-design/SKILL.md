@@ -1,6 +1,6 @@
 ---
 name: frontend-design
-description: "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation."
+description: "Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before implementation."
 version: "0.0.1"
 category: frontend
 tags: [frontend, ui, ux, layout, interaction, accessibility]
@@ -105,5 +105,11 @@ Improve the install flow UI so it guides skill discovery, preview, and confirmat
 
 ## Additional Resources
 
-- Catalog API Surface
-- Skill Anatomy
+- [Frontend design checklist](references/checklist.md)
+- [Render a UI packet](scripts/render_ui_packet.py)
+
+```bash
+python3 skills/frontend-design/scripts/render_ui_packet.py \
+  "Install flow" \
+  "discovery,preview,confirmation,errors"
+```

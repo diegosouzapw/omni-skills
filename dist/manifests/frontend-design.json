@@ -3,7 +3,7 @@
   "id": "frontend-design",
   "slug": "frontend-design",
   "display_name": "Frontend Design",
-  "description": "Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before implementation.",
+  "description": "Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before implementation.",
   "version": "0.0.1",
   "category": "frontend",
   "raw_category": "frontend",
@@ -96,9 +96,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -156,36 +159,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -214,10 +217,10 @@
     }
   },
   "content": {
-    "body_length": 3285,
-    "content_length": 3774,
-    "body_lines": 94,
-    "word_count": 470,
+    "body_length": 3489,
+    "content_length": 3976,
+    "body_lines": 100,
+    "word_count": 492,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -228,14 +231,26 @@
     {
       "path": "skills/frontend-design/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3790,
-      "sha256": "a0c057c6929086e83b2f04bacd9687c0a0bce3e9775a9e27c06702d51476b380"
+      "size_bytes": 3992,
+      "sha256": "349df2efaa14568772f436d856c296501c9f53fb5743d41a86934defb1ea9361"
     },
     {
       "path": "skills/frontend-design/metadata.json",
       "kind": "support",
-      "size_bytes": 2949,
-      "sha256": "8a9aaa3325b9bf5e5a3efb18e205b7e222ed4f84c8117d46928043c84505fd4c"
+      "size_bytes": 3039,
+      "sha256": "2a88a6997a44139f336941659f8b73ecc07d1225cc23613868ddfcf5d88be929"
+    },
+    {
+      "path": "skills/frontend-design/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 705,
+      "sha256": "74ae00d927ee30e3c380609322127a6633fc8fb081df76174c06b410f4761a97"
+    },
+    {
+      "path": "skills/frontend-design/scripts/render_ui_packet.py",
+      "kind": "support",
+      "size_bytes": 782,
+      "sha256": "7483005253eb71e001ffb8255048f0a8acde081418f0377a6e940527f308c6a5"
     }
   ],
   "archives": [
@@ -243,45 +258,48 @@
       "format": "zip",
       "path": "dist/archives/frontend-design.zip",
       "file_name": "frontend-design.zip",
-      "size_bytes": 3100,
-      "sha256": "1728c275ee7448aacaf60e6357b0f22d974d37a92b38f9fd6f156d29c622d2a1",
+      "size_bytes": 4361,
+      "sha256": "da6bec16b510653f01627537ba7324dfda7705ee1d00656194ec9b79e747e080",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/frontend-design.zip.sig",
+        "sha256": "d0fce2cb960f81a70b7d987c29c023a00fe8363dd92217c2d96a16a263aa2b45",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/frontend-design.zip.sig dist/archives/frontend-design.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/frontend-design.tar.gz",
       "file_name": "frontend-design.tar.gz",
-      "size_bytes": 2942,
-      "sha256": "2fc5d338a5fe9ec4615ddbf679ddd0c83d7b7b2dbe38873da55df8d44ae3cf1b",
+      "size_bytes": 3727,
+      "sha256": "a16998e770393d2022e9b0121eda8fc94491f361bbd489f8c66539a4c93b0314",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/frontend-design.tar.gz.sig",
+        "sha256": "bdc409fe5b933e15a9a7884a61632ca4f91f112f1718f9839735dc02a37b7a66",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/frontend-design.tar.gz.sig dist/archives/frontend-design.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/frontend-design.checksums.txt",
     "file_name": "frontend-design.checksums.txt",
-    "sha256": "a101ccddb9aef2997adb582ca4ff04af0bc731366ddfc291a335f8b97dec055b",
+    "sha256": "dd83d120dc643c3c6119671fbd90d62cad2bad29b91e3ec964dc388cbae8feeb",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/frontend-design.checksums.txt.sig",
+      "sha256": "9b47d608f9c38f4cceb8951767379a1dbbba9baf6e7047df8c820062263c9c3d",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/frontend-design.checksums.txt.sig dist/archives/frontend-design.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "a0c057c6929086e83b2f04bacd9687c0a0bce3e9775a9e27c06702d51476b380",
-    "package_sha256": "073682b2d8788fef91aec59ff5172c7dc8231619b99eb13c3b9799f5367abd60"
+    "entrypoint_sha256": "349df2efaa14568772f436d856c296501c9f53fb5743d41a86934defb1ea9361",
+    "package_sha256": "ff4b3e08c46a398dbbe33d48ecdb485d56a5b261352d202839024001915f2069"
   }
 }

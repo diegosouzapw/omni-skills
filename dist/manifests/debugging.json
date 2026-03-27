@@ -3,7 +3,7 @@
   "id": "debugging",
   "slug": "debugging",
   "display_name": "Debugging",
-  "description": "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork.",
+  "description": "Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification instead of guesswork.",
   "version": "0.0.1",
   "category": "development",
   "raw_category": "development",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 60,
-      "tier": "good"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 87,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 12
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3302,
-    "content_length": 3774,
-    "body_lines": 94,
-    "word_count": 459,
+    "body_length": 3525,
+    "content_length": 4012,
+    "body_lines": 100,
+    "word_count": 483,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/debugging/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3790,
-      "sha256": "ed176dbafaf61f1040aa2922bbe1405dfd83d01284ef3a9095c204c68244c9eb"
+      "size_bytes": 4028,
+      "sha256": "d0e26cdc43bbd6f097a6d48b04d3f4f38602d8ee7a2fa3d2372b286bf44a2a6f"
     },
     {
       "path": "skills/debugging/metadata.json",
       "kind": "support",
-      "size_bytes": 2908,
-      "sha256": "da44577316a83a3050538a8d0d3e4b404308a06d6f4022525c519d3ef0e04e15"
+      "size_bytes": 3018,
+      "sha256": "9393561a977d8bdca5d67c99373e18bb7be8951788dde0ac52ee2879d5bc8f1e"
+    },
+    {
+      "path": "skills/debugging/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 623,
+      "sha256": "805718ae1ed08fe3a49a5317aca104327400579a09c582ebf3661a511f4858de"
+    },
+    {
+      "path": "skills/debugging/scripts/render_debug_packet.py",
+      "kind": "support",
+      "size_bytes": 788,
+      "sha256": "db3bd0b7ab09357cd21114bdbdbc2533119a3136c8ef7a30ea1c1c24025b9c7b"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/debugging.zip",
       "file_name": "debugging.zip",
-      "size_bytes": 3161,
-      "sha256": "940869c784323c424cdbc1c2d38180482750236ae3f665f5aa15dcea9c532672",
+      "size_bytes": 4363,
+      "sha256": "0741b5163759843283bb5d8a409f67eaad6b0c27a35ca20339aedbc150b02682",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/debugging.zip.sig",
+        "sha256": "cd3528da431ffb9da2306a4f660c55d8230c65825e996766bd2d03e7337ae502",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.zip.sig dist/archives/debugging.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/debugging.tar.gz",
       "file_name": "debugging.tar.gz",
-      "size_bytes": 3034,
-      "sha256": "f83db1e863889130ceeddf0a711a15f8c69a5b79623a382f20df7b1bc44ea291",
+      "size_bytes": 3811,
+      "sha256": "ec5d927584a0cfd0acc61b8cfa8c371a0aee4b1aff1c5158a365909485bf4f95",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/debugging.tar.gz.sig",
+        "sha256": "bea5bf6af6d7b7fa416b8a36bc9ee7f633ac7958be6f0be3c5017919e9ea6512",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.tar.gz.sig dist/archives/debugging.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/debugging.checksums.txt",
     "file_name": "debugging.checksums.txt",
-    "sha256": "a1cf4e91c2ba3a2bfd6f98a510708a5eaeca80d84e242687d6cf2e4ad4752adb",
+    "sha256": "eff0715ebb8eb752d4f271d450a5953cab717e9b0c767c5c5bb07716c2713c77",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/debugging.checksums.txt.sig",
+      "sha256": "1a7317b8bb2d999a06ed12f18b9df29d6ae33a40a2a6a9a928c8f007974aede2",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.checksums.txt.sig dist/archives/debugging.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "ed176dbafaf61f1040aa2922bbe1405dfd83d01284ef3a9095c204c68244c9eb",
-    "package_sha256": "83eba5dcc8a9f166fc0c9d8c26a72fed88f954e8555aa527d4f7780ada58e8e3"
+    "entrypoint_sha256": "d0e26cdc43bbd6f097a6d48b04d3f4f38602d8ee7a2fa3d2372b286bf44a2a6f",
+    "package_sha256": "040d7459d2abe26107e18ac878e8515672307d38ac44a293e622016d778bc086"
   }
 }

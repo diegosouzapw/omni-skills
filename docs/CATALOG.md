@@ -1,17 +1,19 @@
 # 📚 Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 13 skills across 8 categories.
+> Auto-generated from `skills_index.json` — 19 skills across 10 categories.
 
-Generated: 2026-03-27T02:37:45.762427+00:00
+Generated: 2026-03-27T04:00:05.058202+00:00
 
 ---
 
 ## Table of Contents
 
+- [🧠 Ai Agents (3)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
 - [💬 Communication (1)](#communication)
 - [💻 Development (3)](#development)
+- [☁️ Devops (3)](#devops)
 - [📝 Documentation (2)](#documentation)
 - [🖼️ Frontend (1)](#frontend)
 - [🧭 Product (1)](#product)
@@ -19,56 +21,72 @@ Generated: 2026-03-27T02:37:45.762427+00:00
 
 ---
 
+## 🧠 Ai Agents
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 85/100 | 97/100 | 95/100 passed |
+
 ## 🗄️ Backend
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | Design HTTP or service contracts, payloads, and error behavior when a user needs a clear API shape before implementation | L2 instructions | 50/100 | 85/100 | 100/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementa | L2 instructions | 50/100 | 85/100 | 100/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 85/100 | 94/100 | 95/100 passed |
+| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## ⚙️ Cli Automation
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Discover the right Omni Skills package, verify fit, and produce install commands when a user asks for a capability, work | L2 instructions | 65/100 | 88/100 | 100/100 passed |
+| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 💬 Communication
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Package a code change into a reviewable pull request narrative when a user needs a clean summary, risk framing, and revi | L2 instructions | 50/100 | 85/100 | 100/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 💻 Development
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy | L2 instructions | 50/100 | 85/100 | 100/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswo | L2 instructions | 60/100 | 87/100 | 100/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect | L2 instructions | 40/100 | 83/100 | 98/100 passed |
+| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 85/100 | 97/100 | 95/100 passed |
+
+## ☁️ Devops
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 📝 Documentation
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change na | L2 instructions | 50/100 | 85/100 | 100/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Write or restructure developer-facing docs when a user needs clear onboarding, operational guidance, or release-ready ex | L2 instructions | 50/100 | 85/100 | 100/100 passed |
+| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 🖼️ Frontend
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Plan or refine UI structure, states, and interaction patterns when a user needs an intentional frontend direction before | L2 instructions | 50/100 | 85/100 | 100/100 passed |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 🧭 Product
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Generate options, compare directions, and turn fuzzy ideas into concrete next steps when a user is exploring a problem b | L2 instructions | 50/100 | 85/100 | 100/100 passed |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 85/100 | 97/100 | 95/100 passed |
 
 ## 🛡️ Testing Security
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Review code, configs, and workflow changes for concrete security risks when a user needs a focused audit instead of a ge | L2 instructions | 60/100 | 87/100 | 100/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Run a disciplined dependency and code scanning workflow when a user needs repeatable coverage for known vulnerabilities, | L2 instructions | 75/100 | 90/100 | 100/100 passed |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 85/100 | 97/100 | 95/100 passed |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 85/100 | 97/100 | 95/100 passed |
 

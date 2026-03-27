@@ -1,0 +1,4 @@
+interface:
+  display_name: "Terraform"
+  short_description: "Design modules, state boundaries, and safer plan/apply workflows"
+  default_prompt: "Use $terraform to review modules, state strategy, plan risk, and CI validation."

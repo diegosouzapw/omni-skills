@@ -1,6 +1,6 @@
 ---
 name: changelog
-description: "Summarize user-visible changes, breaking risks, and upgrade notes when a user needs release notes or a concise change narrative."
+description: "Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release narrative."
 version: "0.0.1"
 category: documentation
 tags: [changelog, release-notes, upgrades, summary, maintenance]
@@ -101,5 +101,11 @@ Summarize the last refactor into a concise changelog for maintainers.
 
 ## Additional Resources
 
-- Usage Guide
-- System Runbook
+- [Release note checklist](references/checklist.md)
+- [Render release notes scaffolding](scripts/render_release_notes.py)
+
+```bash
+python3 skills/changelog/scripts/render_release_notes.py \
+  "0.0.2" \
+  "Expanded skills, stronger MCP config generation, durable A2A runtime"
+```

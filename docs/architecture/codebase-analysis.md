@@ -1,7 +1,7 @@
 # 🔬 Codebase Deep Analysis
 
 > **Comprehensive technical analysis of the Omni Skills architecture, components, and build pipeline.**
-> Last analyzed: 2026-03-26
+> Last analyzed: 2026-03-27
 
 ---
 
@@ -13,8 +13,8 @@
 | **Version** | `0.0.1` |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
-| **Published Skills** | 13 |
-| **Defined Bundles** | 6 (4 fully backed, 2 roadmap-heavy) |
+| **Published Skills** | 19 |
+| **Defined Bundles** | 6 (all fully backed) |
 | **Core Code** | ~6,200+ lines including Python validation/build tooling |
 | **Production Dependencies** | 4 (`@modelcontextprotocol/sdk`, `cors`, `express`, `zod`) |
 
@@ -183,7 +183,8 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 - lifecycle states: `submitted`, `working`, `input-required`, `completed`, `canceled`, `failed`
 - SSE `status-update` and `artifact-update` events
 - webhook push notifications with localhost/insecure guardrails
-- file-backed persistence with restart recovery for interrupted tasks
+- JSON or SQLite persistence with restart resume for interrupted tasks
+- optional external worker executor via `OMNI_SKILLS_A2A_EXECUTOR=process`
 
 Exposes `/.well-known/agent.json` for A2A discovery and `POST /a2a` for all JSON-RPC traffic.
 
@@ -204,12 +205,14 @@ Exposes `/.well-known/agent.json` for A2A discovery and `POST /a2a` for all JSON
 
 ## 📦 Published Skills
 
-The current public catalog spans 13 skills across 8 categories:
+The current public catalog spans 19 skills across architecture, backend, frontend, documentation, security, DevOps, and AI-agent categories:
 
 - 🧭 **Discovery & Planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
 - 🌐 **Product & Full-Stack Delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`
 - 🛡️ **Security Review & Scanning**: `security-auditor`, `vulnerability-scanner`
 - 🔧 **OSS Maintainer Workflows**: `documentation`, `changelog`, `create-pr`
+- ⚙️ **DevOps Delivery**: `docker-expert`, `kubernetes`, `terraform`
+- 🤖 **AI Application Engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`
 
 That bundle coverage changes the install story materially:
 
@@ -217,7 +220,8 @@ That bundle coverage changes the install story materially:
 - ✅ `full-stack` is fully backed (`4/4`)
 - ✅ `security` is fully backed (`2/2`)
 - ✅ `oss-maintainer` is fully backed (`4/4`)
-- ⏳ `devops` and `ai-engineer` remain roadmap-heavy
+- ✅ `devops` is fully backed (`3/3`)
+- ✅ `ai-engineer` is fully backed (`3/3`)
 
 ### 🎨 omni-figma — Quality: 83/100 · Security: 98/100
 
@@ -268,8 +272,8 @@ A catalog discovery skill that teaches the agent to:
 
 ## 🔮 Opportunities
 
-1. **Catalog breadth** — 13 published skills is a major step up, but 2 bundles still have 0 available members
-2. **Best practices scores** — Average remains around the low-50s, so contributor quality still needs work
-3. **A2A durability** — File-backed restart recovery exists, but execution is still single-process with no external worker model
-4. **CI-enforced signing** — Optional/local today, not enforced in pipelines
+1. **Catalog breadth** — 19 published skills now fully back all 6 bundles, but the next step is deeper coverage inside each bundle with more specialized skills
+2. **Best practices scores** — The floor is now much higher, but the catalog still plateaus at `85/100` and needs deeper reference packs and richer examples to push further
+3. **A2A durability** — SQLite persistence and process executors now exist, but execution is still single-node and not lease-aware
+4. **Client config breadth** — Sidecar support is stronger, but client-specific config export coverage can still grow
 5. **`skill_metadata.py` size** — 51KB single-file module could benefit from decomposition

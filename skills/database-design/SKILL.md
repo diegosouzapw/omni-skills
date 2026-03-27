@@ -1,6 +1,6 @@
 ---
 name: database-design
-description: "Model entities, relationships, indexes, and migration strategy when a user needs a durable data design before implementation."
+description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 version: "0.0.1"
 category: backend
 tags: [database, schema, migrations, indexing, persistence]
@@ -105,5 +105,11 @@ Model a catalog that stores skills, bundles, archives, checksums, and release me
 
 ## Additional Resources
 
-- Agent-Native Roadmap
-- System Runbook
+- [Database design checklist](references/checklist.md)
+- [Render a schema review starter](scripts/render_schema_review.py)
+
+```bash
+python3 skills/database-design/scripts/render_schema_review.py \
+  "task_store" \
+  "states,artifacts,notifications,leases"
+```

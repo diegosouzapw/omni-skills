@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Patterns"
+  short_description: "Design reliable tool use, structured outputs, and recovery paths"
+  default_prompt: "Use $llm-patterns to design reliable AI workflows with explicit state, validation, and fallback behavior."

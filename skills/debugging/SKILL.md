@@ -1,6 +1,6 @@
 ---
 name: debugging
-description: "Reproduce issues, isolate causes, and verify fixes when a user needs a disciplined debugging workflow instead of guesswork."
+description: "Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification instead of guesswork."
 version: "0.0.1"
 category: development
 tags: [debugging, reproduction, diagnosis, regression, testing]
@@ -105,5 +105,11 @@ Debug why bundle installs now warn about missing skills after the latest catalog
 
 ## Additional Resources
 
-- Usage Guide
-- System Runbook
+- [Debugging checklist](references/checklist.md)
+- [Render a debug packet](scripts/render_debug_packet.py)
+
+```bash
+python3 skills/debugging/scripts/render_debug_packet.py \
+  "A2A task resumes incorrectly after restart" \
+  "runtime,store,executor"
+```

@@ -3,7 +3,7 @@
   "id": "architecture",
   "slug": "architecture",
   "display_name": "Architecture",
-  "description": "Structure system boundaries, responsibilities, and tradeoffs when a user needs an implementation plan, refactor strategy, or technical decision record.",
+  "description": "Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation plan.",
   "version": "0.0.1",
   "category": "development",
   "raw_category": "development",
@@ -95,9 +95,12 @@
     ]
   },
   "resources": {
-    "sub_resources": [],
-    "artifacts_count": 2,
-    "references_count": 0,
+    "sub_resources": [
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 4,
+    "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
@@ -155,36 +158,36 @@
   },
   "classification": {
     "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions",
-      "has_scripts": false,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 50,
-      "tier": "fair"
+      "score": 85,
+      "tier": "excellent"
     },
     "quality": {
-      "score": 85,
+      "score": 97,
       "tier": "platinum",
       "breakdown": {
         "body": 25,
         "description": 15,
         "metadata": 20,
         "recency": 10,
-        "resources": 5,
-        "best_practices": 10
+        "resources": 10,
+        "best_practices": 17
       }
     },
     "security": {
-      "score": 100,
-      "tier": "hardened",
+      "score": 95,
+      "tier": "review",
       "status": "passed",
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 1,
-        "script_files": 0,
+        "scanned_files": 3,
+        "script_files": 1,
         "binary_like_files": 0
       },
       "scanners": {
@@ -213,10 +216,10 @@
     }
   },
   "content": {
-    "body_length": 3434,
-    "content_length": 3934,
-    "body_lines": 94,
-    "word_count": 475,
+    "body_length": 3672,
+    "content_length": 4145,
+    "body_lines": 101,
+    "word_count": 499,
     "has_code_blocks": true,
     "has_examples_section": true,
     "has_workflow_section": false,
@@ -227,14 +230,26 @@
     {
       "path": "skills/architecture/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3950,
-      "sha256": "821c72619a60597779327badd7cff6a103472d001e91f1d03e49ca9e98474c66"
+      "size_bytes": 4161,
+      "sha256": "9c20a4801ae69a315c2329e05eb9fd987990976b4f4909bd29ea82ddfbf7df0a"
     },
     {
       "path": "skills/architecture/metadata.json",
       "kind": "support",
-      "size_bytes": 2951,
-      "sha256": "96d1c54dbdeb33c019e0e729dc1d85aa48d6e5b4403c46656cece6d9164fda3e"
+      "size_bytes": 3022,
+      "sha256": "bfac4eb033ad588cd3f67c747d56a5b765bf23b646bad92dcf50ceb260e4f319"
+    },
+    {
+      "path": "skills/architecture/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 667,
+      "sha256": "19782d8fef269e444e90608c98788d2a524d10ef6237264495f4b47a64639dfa"
+    },
+    {
+      "path": "skills/architecture/scripts/render_decision_record.py",
+      "kind": "support",
+      "size_bytes": 817,
+      "sha256": "bdbb8b985a46f98036b611d2a23241cf3c5c2e87aa6d8b1b253f489e3f60586e"
     }
   ],
   "archives": [
@@ -242,45 +257,48 @@
       "format": "zip",
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
-      "size_bytes": 3231,
-      "sha256": "291121753a00b57e3111fa41d477bc52d63cc6f9a83799b1acd16aef3efadf2a",
+      "size_bytes": 4459,
+      "sha256": "27ed9a7c9822058f5a7f2d8ba22efb6875a7a7f740c36a896ca5310fc0cc46d4",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/architecture.zip.sig",
+        "sha256": "fc70f3b855a6d33e621793dfca88793561e97fc058f3609e6f286c8c54f3b503",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.zip.sig dist/archives/architecture.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 3078,
-      "sha256": "66797a69039478647d831f339ac1fbfe033a5e9cc073ad5dd1387cdfed642d62",
+      "size_bytes": 3903,
+      "sha256": "b19f6a66e9bcfb6e4f5e9b2ae54d0847e39d1cb98f7b08b1c64303a001a4a037",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/architecture.tar.gz.sig",
+        "sha256": "5623586e87e8370fd9eee4793b5f09fc67aec2827c971c42f045dbe1c927cd96",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.tar.gz.sig dist/archives/architecture.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "1b54992e8286731a733d972c761e64d0453ad40c020759d4e08b1d58f52c6c24",
+    "sha256": "76bc746bf89d61a4c7d730efaace17cde69121cf91251dd336558e38708e34c0",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/architecture.checksums.txt.sig",
+      "sha256": "13103c5d19064ea53bf6100295cb4ffdc43103d054d47ac9f532296612c050b4",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.checksums.txt.sig dist/archives/architecture.checksums.txt"
     }
   },
   "checksums": {
-    "entrypoint_sha256": "821c72619a60597779327badd7cff6a103472d001e91f1d03e49ca9e98474c66",
-    "package_sha256": "5c1a352612a32cea699d07de78439216f99202e7a8b190151127c3f8044bcdb2"
+    "entrypoint_sha256": "9c20a4801ae69a315c2329e05eb9fd987990976b4f4909bd29ea82ddfbf7df0a",
+    "package_sha256": "6f519860acbbf8d01d45c41d48d13aea3597c48d1b522253bf39719a7b1ad51d"
   }
 }

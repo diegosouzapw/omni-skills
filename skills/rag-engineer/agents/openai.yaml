@@ -1,0 +1,4 @@
+interface:
+  display_name: "RAG Engineer"
+  short_description: "Design retrieval, citations, and eval loops for grounded AI systems"
+  default_prompt: "Use $rag-engineer to review chunking, retrieval, citations, and evaluation for an AI assistant."

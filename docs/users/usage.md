@@ -10,9 +10,9 @@ For full operational workflows, see the [🔧 System Runbook](../operations/runb
 
 | Status | Details |
 |:-------|:--------|
-| ✅ **Available now** | 13 published skills across design, architecture, debugging, docs, OSS, discovery, and security workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `security`, and `oss-maintainer` are fully backed today |
-| ⏳ **Still roadmap-heavy** | `devops` and `ai-engineer` still surface unpublished-member warnings |
+| ✅ **Available now** | 19 published skills across design, architecture, debugging, docs, OSS, security, DevOps, and AI-engineering workflows |
+| 📦 **Bundles** | `essentials`, `full-stack`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
+| 🤖 **A2A durability** | JSON or SQLite task store, restart resume, and optional external process executor |
 
 ---
 
@@ -81,6 +81,8 @@ npx omni-skills --cursor --skill omni-figma
 ```bash
 npx omni-skills --cursor --bundle full-stack
 npx omni-skills --cursor --bundle security
+npx omni-skills --cursor --bundle devops
+npx omni-skills --codex --bundle ai-engineer
 npx omni-skills --codex --bundle oss-maintainer
 ```
 
@@ -94,8 +96,7 @@ npx omni-skills recategorize --write  # Apply canonical categories
 > **📌 Notes:**
 > - Full install is the default when no selector is provided
 > - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs only available members
-> - Missing bundle members are surfaced as warnings only for roadmap-heavy bundles such as `devops` and `ai-engineer`
+> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
 > - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
 
 ---
@@ -147,6 +148,14 @@ npx omni-skills a2a --port 3335
 ```
 
 ```bash
+# Optional: use SQLite persistence plus the external worker executor
+OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
+OMNI_SKILLS_A2A_STORE_PATH=/tmp/omni-skills-a2a.sqlite \
+OMNI_SKILLS_A2A_EXECUTOR=process \
+npx omni-skills a2a --port 3335
+```
+
+```bash
 # JSON-RPC task flow
 curl -X POST http://127.0.0.1:3335/a2a \
   -H 'content-type: application/json' \
@@ -182,6 +191,6 @@ npx omni-skills publish-check         # Alias for smoke
 | 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
 | 3️⃣ | Prefer `--skill` for a minimal install footprint |
 | 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Treat bundles as curated selectors, not guarantees of availability |
+| 5️⃣ | Use bundles as curated domain installs now that all six starter bundles are fully backed |
 | 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
 | 7️⃣ | See the [runbook](../operations/runbook.md) for auth, rate limits, signing, and verification env vars |
