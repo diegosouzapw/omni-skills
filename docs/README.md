@@ -17,7 +17,7 @@ Standard community files live in the repository root:
 | 🎯 **Install** | ✅ Complete | Selective install by `--skill` and `--bundle` |
 | 🌐 **API** | ✅ Complete | Read-only with auth, rate limiting, audit log |
 | 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode |
-| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode |
+| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode, and SQLite lease failover across workers |
 | 🛡️ **Security** | ✅ Complete | Static scanner + optional local ClamAV/VirusTotal, enforced on release tags |
 | 📋 **Classification** | ✅ Complete | Taxonomy · maturity · quality · best practices · security |
 | 📁 **Archives** | ✅ Complete | Per-skill zip/tar.gz with SHA-256 checksums |

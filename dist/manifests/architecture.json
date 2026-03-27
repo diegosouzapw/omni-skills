@@ -249,7 +249,7 @@
       "path": "skills/architecture/metadata.json",
       "kind": "support",
       "size_bytes": 3439,
-      "sha256": "c7fac3c2d3f7a467bbd5958155f37d85daa9b9de223b5e81c651eb4c785cc5d7"
+      "sha256": "1c40d5f8559c817fcf98560adb8f993b78dd0fe3a8078f85c6e521314ce00e98"
     },
     {
       "path": "skills/architecture/references/checklist.md",
@@ -269,48 +269,45 @@
       "format": "zip",
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
-      "size_bytes": 4561,
-      "sha256": "ff1713a04c8e4c745f2605e41ca9c7a68a4febe55549ad5227f5e740bfd6e081",
+      "size_bytes": 4560,
+      "sha256": "ee3251c87b7563dd3ce884155de1d9f1a841e3c51420e7c1b4e8549a372102e2",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/architecture.zip.sig",
-        "sha256": "ad2f73ea3fa6fe9d9191a45dbabfc1e79e678042385ad8fb62ce831fdd46432d",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.zip.sig dist/archives/architecture.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 4002,
-      "sha256": "be59167803e7bd2ff993d9353bf3ae7f57faef614891535905874b7a1a81d68b",
+      "size_bytes": 4001,
+      "sha256": "49bfdf058a5de81ff1eb3321d8c99ebe3a5ece4b21decdc3a60e6f2db5094d1b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/architecture.tar.gz.sig",
-        "sha256": "2c8f64861dd78b58fa4ce91fde35989ec176b6ce4c88b370300434c9a93dcf83",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.tar.gz.sig dist/archives/architecture.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "ae5b21ac163f346e16259596703b70e254eb7185edccd960fa37fed64fe88870",
+    "sha256": "793500d84d8135179d6471eac34ba288fc9989b075b5993ee342825ed26a3959",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/architecture.checksums.txt.sig",
-      "sha256": "88c39abd5812fdb7daa3291c6c96780c4c945f9a1fa0f2312f005eca168b0987",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/architecture.checksums.txt.sig dist/archives/architecture.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "9c20a4801ae69a315c2329e05eb9fd987990976b4f4909bd29ea82ddfbf7df0a",
-    "package_sha256": "2143a3a68ed89dc96b762ff2bace503090c5e38f580e3723758f19ce07ae1f1e"
+    "package_sha256": "23102498e9064f8bc01ef81565f21ae8fe2279851aff97c79f19740b21833ad4"
   }
 }

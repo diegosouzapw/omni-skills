@@ -251,7 +251,7 @@
       "path": "skills/docker-expert/metadata.json",
       "kind": "support",
       "size_bytes": 3484,
-      "sha256": "69e72e8a78c8aad015efa4cde88caecce33bf21747ed4fa984018d416c2bdadc"
+      "sha256": "d0755c6b97d96211af8eee1fd4f5fc6957c7a07bba5bbe9430dd027cc55578cb"
     },
     {
       "path": "skills/docker-expert/agents/openai.yaml",
@@ -277,48 +277,45 @@
       "format": "zip",
       "path": "dist/archives/docker-expert.zip",
       "file_name": "docker-expert.zip",
-      "size_bytes": 5556,
-      "sha256": "b4928633d75ccac03a668d9e0a877ae72e294bd83582a96054db5c20f64d1609",
+      "size_bytes": 5555,
+      "sha256": "097e742ecf7d7bf1390ad50775af0846bf4668e47a09c807b164e8942ec1efe9",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/docker-expert.zip.sig",
-        "sha256": "8ea60e3d3500c3a7c9a187e7be94ab4c61b5950c897f2502d3644b1b3106ec74",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.zip.sig dist/archives/docker-expert.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/docker-expert.tar.gz",
       "file_name": "docker-expert.tar.gz",
-      "size_bytes": 4738,
-      "sha256": "2154c56d0c14cbc0ec6e58276dd12ac7649204fa7b66e49416c5fffe72f6288f",
+      "size_bytes": 4740,
+      "sha256": "1efd665b2c4cb7313599dd71e6952849ed5b621c12b39af23f5bbb1eb50ef4d3",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/docker-expert.tar.gz.sig",
-        "sha256": "215e12678d721c77e1096351f99ebb1dd6de753d2e4bc5179dc60137fa658374",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.tar.gz.sig dist/archives/docker-expert.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/docker-expert.checksums.txt",
     "file_name": "docker-expert.checksums.txt",
-    "sha256": "beb81756aaa732f2c9eaa671999cc35a3bfc56b48e692b16c67a112a71266b27",
+    "sha256": "a73c9f3d74b877323d712d19fec8de94e3a2b5c69f558dec07d99319244a5e42",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/docker-expert.checksums.txt.sig",
-      "sha256": "0d7d2232589f82782f745201a920c440d569689bec6da8ed0740e631ec51b96d",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/docker-expert.checksums.txt.sig dist/archives/docker-expert.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "08587fe96be3a34afb7b86c5e2f26be81c86cb009250cc7aa5835d4140ef8870",
-    "package_sha256": "b8c1c48b2f264aebe45ae03f91d1f07695ab6342dd497879a36db1bdf1dcaf33"
+    "package_sha256": "57ab3c0019a7c80ab2e6e48ae595d415841bec26d493b9b7ed33b784eea453eb"
   }
 }

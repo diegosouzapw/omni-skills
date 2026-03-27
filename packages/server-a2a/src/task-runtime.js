@@ -1,5 +1,4 @@
 import { EventEmitter } from "node:events";
-import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
@@ -16,6 +15,8 @@ const TERMINAL_STATES = new Set(["completed", "canceled", "failed", "rejected", 
 const INTERRUPTED_STATES = new Set(["input-required", "auth-required"]);
 const NOTIFIABLE_STATES = new Set(["completed", "canceled", "failed", "rejected", "input-required", "auth-required"]);
 const DEFAULT_DELAY_MS = Number.parseInt(process.env.OMNI_SKILLS_A2A_PROCESSING_DELAY_MS || "80", 10);
+const DEFAULT_QUEUE_POLL_MS = Number.parseInt(process.env.OMNI_SKILLS_A2A_WORKER_POLL_MS || "250", 10);
+const DEFAULT_LEASE_MS = Number.parseInt(process.env.OMNI_SKILLS_A2A_LEASE_MS || "4000", 10);
 const DEFAULT_PERSISTENCE_PATH = path.join(
   os.homedir() || process.cwd(),
   ".omni-skills",
@@ -37,6 +38,10 @@ const TOOL_ALIASES = new Map([
 
 function nowIso() {
   return new Date().toISOString();
+}
+
+function createRuntimeInstanceId() {
+  return `${os.hostname() || "host"}:${process.pid}:${randomUUID().slice(0, 8)}`;
 }
 
 function normalizeText(value) {
@@ -254,10 +259,6 @@ function compactTask(task, historyLength = 0) {
   return snapshot;
 }
 
-function ensureParentDirectory(filePath) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-}
-
 function cloneSerializable(value) {
   return JSON.parse(JSON.stringify(value));
 }
@@ -298,6 +299,12 @@ export class OmniSkillsA2ARuntime {
     this.processingDelayMs = Number.isFinite(options.processingDelayMs)
       ? options.processingDelayMs
       : DEFAULT_DELAY_MS;
+    this.workerPollMs = Number.isFinite(options.workerPollMs)
+      ? options.workerPollMs
+      : DEFAULT_QUEUE_POLL_MS;
+    this.leaseMs = Number.isFinite(options.leaseMs)
+      ? options.leaseMs
+      : DEFAULT_LEASE_MS;
     this.allowInsecureWebhooks =
       options.allowInsecureWebhooks ?? process.env.OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS === "1";
     this.persistenceEnabled =
@@ -307,8 +314,17 @@ export class OmniSkillsA2ARuntime {
     this.storeType = options.storeType || process.env.OMNI_SKILLS_A2A_STORE_TYPE || "json";
     this.resumeInterruptedTasks =
       options.resumeInterruptedTasks ?? process.env.OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS !== "0";
+    this.instanceId = options.instanceId || process.env.OMNI_SKILLS_A2A_INSTANCE_ID || createRuntimeInstanceId();
     this.persistenceError = null;
+    this.queueEnabled =
+      options.queueEnabled ??
+      (process.env.OMNI_SKILLS_A2A_QUEUE_ENABLED
+        ? process.env.OMNI_SKILLS_A2A_QUEUE_ENABLED === "1"
+        : this.storeType === "sqlite");
     this.tasks = new Map();
+    this.activeLeases = new Map();
+    this.queueLoop = null;
+    this.queuePolling = false;
     this.taskStore = createTaskStore({
       enabled: this.persistenceEnabled,
       storeType: this.storeType,
@@ -318,7 +334,11 @@ export class OmniSkillsA2ARuntime {
       mode: options.executorMode || process.env.OMNI_SKILLS_A2A_EXECUTOR || "inline",
     });
     this.loadPersistedTasks();
-    this.resumeRecoveredTasks();
+    if (this.queueEnabled && typeof this.taskStore.claimPendingTask === "function") {
+      this.startQueueWorker();
+    } else {
+      this.resumeRecoveredTasks();
+    }
   }
 
   getCatalogContext() {
@@ -351,6 +371,13 @@ export class OmniSkillsA2ARuntime {
       },
       executor: {
         mode: this.executor.mode,
+      },
+      queue: {
+        enabled: this.queueEnabled,
+        poll_ms: this.workerPollMs,
+        lease_ms: this.leaseMs,
+        instance_id: this.instanceId,
+        active_leases: this.activeLeases.size,
       },
       tasks: {
         total: this.tasks.size,
@@ -407,13 +434,51 @@ export class OmniSkillsA2ARuntime {
     };
   }
 
-  getTask(id) {
+  syncTask(record) {
+    if (!record?.id) {
+      return null;
+    }
+    const existing = this.tasks.get(record.id);
+    const next = hydrateTask(record);
+    if (existing?._emitter) {
+      next._emitter = existing._emitter;
+    }
+    if (existing?._timers) {
+      next._timers = existing._timers;
+    }
+    this.tasks.set(next.id, next);
+    return next;
+  }
+
+  refreshTask(id) {
+    if (!this.persistenceEnabled || typeof this.taskStore.getTask !== "function" || !id) {
+      return this.tasks.get(id) || null;
+    }
+
+    try {
+      const record = this.taskStore.getTask(id);
+      if (!record) {
+        return this.tasks.get(id) || null;
+      }
+      this.persistenceError = null;
+      return this.syncTask(record);
+    } catch (error) {
+      this.persistenceError = error instanceof Error ? error.message : String(error);
+      return this.tasks.get(id) || null;
+    }
+  }
+
+  getTask(id, { refresh = true } = {}) {
+    if (refresh) {
+      return this.refreshTask(id);
+    }
     return this.tasks.get(id) || null;
   }
 
   createTask(operation, input, message) {
     const taskId = randomUUID();
     const contextId = message?.contextId || randomUUID();
+    const createdAt = nowIso();
     const task = {
       id: taskId,
       contextId,
@@ -431,10 +496,16 @@ export class OmniSkillsA2ARuntime {
       metadata: {
         operation,
         input,
-        created_at: nowIso(),
-        updated_at: nowIso(),
+        created_at: createdAt,
+        updated_at: createdAt,
+        available_at: createdAt,
         source: "omni-skills-a2a",
         push_notification_count: 0,
+        queue: {
+          enabled: this.queueEnabled,
+          submitted_by: this.instanceId,
+          available_at: createdAt,
+        },
       },
       pushConfigs: [],
       _sequence: 0,
@@ -444,19 +515,19 @@ export class OmniSkillsA2ARuntime {
     };
 
     this.tasks.set(taskId, task);
-    this.persistTasks();
+    this.persistTask(task);
     return task;
   }
 
   appendHistory(task, message) {
     task.history.push(message);
-    this.persistTasks();
+    this.persistTask(task);
   }
 
   queueTaskEvent(task, event) {
     task._events.push(event);
     task._emitter.emit("event", event);
-    this.persistTasks();
+    this.persistTask(task);
   }
 
   nextSequence(task) {
@@ -483,6 +554,18 @@ export class OmniSkillsA2ARuntime {
       updated_at: nowIso(),
       last_state: state,
     };
+    if (state === "submitted") {
+      task.metadata.available_at = task.metadata.available_at || nowIso();
+    }
+    if (state === "working") {
+      task.metadata.available_at = null;
+    }
+    if (isTerminalState(state) || isInterruptedState(state)) {
+      task.metadata.available_at = null;
+      if (task.metadata.lease) {
+        delete task.metadata.lease;
+      }
+    }
 
     if (message) {
       this.appendHistory(task, message);
@@ -506,6 +589,23 @@ export class OmniSkillsA2ARuntime {
 
     const sequence = this.nextSequence(task);
     this.queueTaskEvent(task, createArtifactEvent(task, artifact, sequence, metadata, false, true));
+  }
+
+  persistTask(task) {
+    if (!this.persistenceEnabled || !task) {
+      return;
+    }
+
+    try {
+      if (typeof this.taskStore.upsertTask === "function") {
+        this.taskStore.upsertTask(serializeTask(task));
+      } else {
+        this.taskStore.saveTasks([...this.tasks.values()].map((item) => serializeTask(item)));
+      }
+      this.persistenceError = null;
+    } catch (error) {
+      this.persistenceError = error instanceof Error ? error.message : String(error);
+    }
   }
 
   persistTasks() {
@@ -552,7 +652,11 @@ export class OmniSkillsA2ARuntime {
       updated_at: nowIso(),
       last_state: "submitted",
       recovery: "restart-resume",
+      available_at: nowIso(),
     };
+    if (task.metadata.lease) {
+      delete task.metadata.lease;
+    }
     return task;
   }
 
@@ -567,11 +671,13 @@ export class OmniSkillsA2ARuntime {
         if (!record?.id) {
           continue;
         }
-        const task = this.recoverTaskAfterRestart(hydrateTask(record));
+        const task = this.queueEnabled
+          ? hydrateTask(record)
+          : this.recoverTaskAfterRestart(hydrateTask(record));
         this.tasks.set(task.id, task);
       }
       this.persistenceError = null;
-      if (records.length > 0) {
+      if (!this.queueEnabled && records.length > 0) {
         this.persistTasks();
       }
     } catch (error) {
@@ -580,6 +686,9 @@ export class OmniSkillsA2ARuntime {
   }
 
   resumeRecoveredTasks() {
+    if (this.queueEnabled) {
+      return;
+    }
     if (!this.resumeInterruptedTasks) {
       return;
     }
@@ -593,6 +702,84 @@ export class OmniSkillsA2ARuntime {
       }
       const evaluation = evaluateTaskOperation(task.metadata.operation, task.metadata.input || {});
       void this.startProcessing(task, evaluation, { blocking: false, resumed: true });
+    }
+  }
+
+  startQueueWorker() {
+    if (this.queueLoop) {
+      return;
+    }
+    const tick = async () => {
+      this.queueLoop = setTimeout(() => {
+        void tick();
+      }, this.workerPollMs);
+      await this.pollQueue();
+    };
+    void tick();
+  }
+
+  async pollQueue() {
+    if (!this.queueEnabled || this.queuePolling || typeof this.taskStore.claimPendingTask !== "function") {
+      return;
+    }
+    this.queuePolling = true;
+    try {
+      while (true) {
+        const claimedRecord = this.taskStore.claimPendingTask({
+          owner: this.instanceId,
+          leaseMs: this.leaseMs,
+          eligibleStates: ["submitted", "working"],
+        });
+        if (!claimedRecord) {
+          break;
+        }
+
+        const task = this.syncTask(claimedRecord);
+        if (!task || this.activeLeases.has(task.id)) {
+          continue;
+        }
+
+        const recoveredWorkingTask = task.status?.state === "working";
+        task.metadata = {
+          ...task.metadata,
+          lease: {
+            owner: this.instanceId,
+            expires_at: new Date(Date.now() + this.leaseMs).toISOString(),
+            claimed_at: nowIso(),
+          },
+          updated_at: nowIso(),
+        };
+
+        if (recoveredWorkingTask) {
+          task.metadata = {
+            ...task.metadata,
+            recovered_from_persistence: true,
+            recovery: "lease-timeout-resume",
+            last_state: "submitted",
+            available_at: null,
+          };
+          this.appendHistory(
+            task,
+            createAgentTextMessage(
+              "Recovered an in-flight leased task after the previous lease expired. The task will be resumed on this worker.",
+              {
+                taskId: task.id,
+                contextId: task.contextId,
+                metadata: {
+                  operation: task.metadata.operation,
+                  recovery: "lease-timeout-resume",
+                },
+              },
+            ),
+          );
+        }
+
+        this.persistTask(task);
+        const evaluation = evaluateTaskOperation(task.metadata.operation, task.metadata.input || {});
+        void this.finalizeLeasedTaskExecution(task, evaluation);
+      }
+    } finally {
+      this.queuePolling = false;
     }
   }
 
@@ -610,6 +797,86 @@ export class OmniSkillsA2ARuntime {
       clearTimeout(timer);
     }
     task._timers.clear();
+  }
+
+  beginLeaseHeartbeat(task) {
+    if (!this.queueEnabled || typeof this.taskStore.renewTaskLease !== "function") {
+      return;
+    }
+
+    this.endLeaseHeartbeat(task, { clearRemoteLease: false });
+    const heartbeat = setInterval(() => {
+      const nextExpiry = new Date(Date.now() + this.leaseMs).toISOString();
+      const renewed = this.taskStore.renewTaskLease(task.id, this.instanceId, this.leaseMs);
+      const state = this.activeLeases.get(task.id);
+      if (!state) {
+        return;
+      }
+      if (!renewed) {
+        state.revoked = true;
+        clearInterval(state.timer);
+        return;
+      }
+      task.metadata = {
+        ...task.metadata,
+        lease: {
+          ...(task.metadata.lease || {}),
+          owner: this.instanceId,
+          expires_at: nextExpiry,
+        },
+        updated_at: nowIso(),
+      };
+    }, Math.max(250, Math.floor(this.leaseMs / 3)));
+
+    this.activeLeases.set(task.id, {
+      timer: heartbeat,
+      revoked: false,
+    });
+  }
+
+  endLeaseHeartbeat(task, { clearRemoteLease = true } = {}) {
+    const state = this.activeLeases.get(task.id);
+    if (state?.timer) {
+      clearInterval(state.timer);
+    }
+    this.activeLeases.delete(task.id);
+    if (
+      clearRemoteLease &&
+      this.queueEnabled &&
+      typeof this.taskStore.clearTaskLease === "function"
+    ) {
+      this.taskStore.clearTaskLease(task.id, this.instanceId);
+    }
+  }
+
+  isLeaseRevoked(task) {
+    return Boolean(this.activeLeases.get(task.id)?.revoked);
+  }
+
+  getAuthoritativeTask(id) {
+    return this.getTask(id, { refresh: true });
+  }
+
+  shouldAbortTaskWrite(task) {
+    const authoritative = this.getAuthoritativeTask(task.id);
+    if (!authoritative) {
+      return false;
+    }
+    return (
+      this.isLeaseRevoked(task) ||
+      (isTerminalState(authoritative.status?.state) && authoritative.status?.state !== task.status?.state)
+    );
+  }
+
+  async finalizeLeasedTaskExecution(task, evaluation) {
+    this.beginLeaseHeartbeat(task);
+    try {
+      await this.finalizeTaskExecution(task, evaluation);
+    } finally {
+      this.endLeaseHeartbeat(task, {
+        clearRemoteLease: !isTerminalState(task.status?.state) && !isInterruptedState(task.status?.state),
+      });
+    }
   }
 
   parseMessageInput(task, message, requestMetadata = {}) {
@@ -694,6 +961,11 @@ export class OmniSkillsA2ARuntime {
         evaluation,
       });
 
+      if (this.shouldAbortTaskWrite(task)) {
+        this.refreshTask(task.id);
+        return;
+      }
+
       if (!result || result.type !== "result") {
         const prompt = result?.prompt || `Operation '${task.metadata.operation}' did not produce a result.`;
         this.setTaskStatus(task, "failed", prompt, {
@@ -713,11 +985,19 @@ export class OmniSkillsA2ARuntime {
         latest_result: result.payload,
         executor_mode: this.executor.mode,
       };
+      if (this.shouldAbortTaskWrite(task)) {
+        this.refreshTask(task.id);
+        return;
+      }
       this.setTaskStatus(task, "completed", result.summary, {
         operation: task.metadata.operation,
         executor: this.executor.mode,
       }, { final: true });
     } catch (error) {
+      if (this.shouldAbortTaskWrite(task)) {
+        this.refreshTask(task.id);
+        return;
+      }
       this.setTaskStatus(
         task,
         "failed",
@@ -757,6 +1037,10 @@ export class OmniSkillsA2ARuntime {
       `Accepted ${task.metadata.operation} request.`,
       { operation: task.metadata.operation },
     );
+    if (this.queueEnabled && typeof this.taskStore.claimPendingTask === "function") {
+      void this.pollQueue();
+      return compactTask(task);
+    }
     this.schedule(task, () => {
       void this.finalizeTaskExecution(task, evaluation);
     });
@@ -786,7 +1070,7 @@ export class OmniSkillsA2ARuntime {
     }
 
     const operation = this.resolveOperation(message, params.metadata, task);
-    const targetTask = task || this.createTask(operation, {}, message);
+    let targetTask = task || this.createTask(operation, {}, message);
     const mergedInput = this.parseMessageInput(targetTask, message, params.metadata);
 
     targetTask.metadata = {
@@ -795,7 +1079,7 @@ export class OmniSkillsA2ARuntime {
       input: mergedInput,
       updated_at: nowIso(),
     };
-    this.persistTasks();
+    this.persistTask(targetTask);
     this.appendHistory(targetTask, {
       ...message,
       taskId: targetTask.id,
@@ -809,6 +1093,7 @@ export class OmniSkillsA2ARuntime {
         taskId: targetTask.id,
         ...pushConfig,
       });
+      targetTask = this.getTask(targetTask.id, { refresh: false }) || targetTask;
     }
 
     const evaluation = evaluateTaskOperation(operation, mergedInput);
@@ -824,7 +1109,7 @@ export class OmniSkillsA2ARuntime {
   }
 
   handleTasksGet(params = {}) {
-    const task = this.getTask(params.id);
+    const task = this.getTask(params.id, { refresh: true });
     if (!task) {
       const error = new Error(`Task '${params.id}' was not found.`);
       error.code = -32001;
@@ -834,7 +1119,7 @@ export class OmniSkillsA2ARuntime {
   }
 
   handleTasksCancel(params = {}) {
-    const task = this.getTask(params.id);
+    const task = this.getTask(params.id, { refresh: true });
     if (!task) {
       const error = new Error(`Task '${params.id}' was not found.`);
       error.code = -32001;
@@ -848,11 +1133,18 @@ export class OmniSkillsA2ARuntime {
     }
 
     this.clearTaskTimers(task);
+    const leaseState = this.activeLeases.get(task.id);
+    if (leaseState) {
+      leaseState.revoked = true;
+    }
+    if (this.queueEnabled && typeof this.taskStore.clearTaskLease === "function") {
+      this.taskStore.clearTaskLease(task.id);
+    }
     this.setTaskStatus(task, "canceled", `Canceled ${task.metadata.operation} at client request.`, {
       operation: task.metadata.operation,
     }, { final: true });
 
-    return compactTask(task);
+    return compactTask(this.getTask(task.id, { refresh: true }) || task);
   }
 
   setPushNotificationConfig(params = {}) {

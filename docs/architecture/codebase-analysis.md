@@ -185,6 +185,7 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 - webhook push notifications with localhost/insecure guardrails
 - JSON or SQLite persistence with restart resume for interrupted tasks
 - optional external worker executor via `OMNI_SKILLS_A2A_EXECUTOR=process`
+- shared SQLite queue polling with lease renewal and failover between workers
 
 Exposes `/.well-known/agent.json` for A2A discovery and `POST /a2a` for all JSON-RPC traffic.
 
@@ -274,6 +275,6 @@ A catalog discovery skill that teaches the agent to:
 
 1. **Catalog breadth** — 19 published skills now fully back all 6 bundles, but the next step is deeper coverage inside each bundle with more specialized skills
 2. **Best practices scorer depth** — The new ceiling is higher, but the next improvement is more semantic evaluation so the classifier can distinguish exceptional operational guidance from strong structure alone
-3. **A2A durability** — SQLite persistence and process executors now exist, but execution is still single-node and not lease-aware
+3. **A2A scale ceiling** — Shared SQLite lease coordination now exists, but the next step is external queue or lock backends for larger hosted deployments
 4. **Client config breadth** — Sidecar support is stronger, but client-specific config export coverage can still grow
 5. **`skill_metadata.py` size** — 51KB single-file module could benefit from decomposition

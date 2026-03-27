@@ -249,7 +249,7 @@
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
       "size_bytes": 3419,
-      "sha256": "8b50afbee77abf0670774f26971f56befc4a5045e5503089845e6cf81df7b527"
+      "sha256": "d2bb75a77d0a9f97f043f0cd8f6bfb8d55b754e224abd0f7757cd1aea97348ca"
     },
     {
       "path": "skills/create-pr/references/checklist.md",
@@ -269,15 +269,14 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 4306,
-      "sha256": "060d1880e8e8fe800a25427aee663fd1b8530c1d3130b8306c252942d1fa9fc5",
+      "size_bytes": 4307,
+      "sha256": "6104e17a210e2c30fdb28be11798126b1ce1cd2e840f5c133d13a946e6add426",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/create-pr.zip.sig",
-        "sha256": "b88e9d9d3c36e18c1c4a4570f704ae1ce243ed4c0318fe00d3c60408b1eed18f",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.zip.sig dist/archives/create-pr.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -285,32 +284,30 @@
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
       "size_bytes": 3789,
-      "sha256": "1b6bcaf1d2729559760cac20b9a163322645ba054f973fe54add743e57bb67ad",
+      "sha256": "3fffb1a101138e99df043840a49432e7041a7eab351a063d4cade59d40dbfe6e",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/create-pr.tar.gz.sig",
-        "sha256": "c21b09db5c9b40dec4a65407c9e38ff562444dd0336af3e7fe4a1ee4e3cef286",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.tar.gz.sig dist/archives/create-pr.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "ecafaa32272152770080269a2e776eac1129971c4debbbdce41afbb243ea8c82",
+    "sha256": "3139e80557943df665c93ec16793a88b450ddb0eb64c988062a94ea302c0b143",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/create-pr.checksums.txt.sig",
-      "sha256": "3880a04296efbc0b0b4adf1a1924135abb2fa178551ff9946061e422d107f992",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/create-pr.checksums.txt.sig dist/archives/create-pr.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "102cbe661c4d49d8346c3e9506c8b73002336e9544cafc1bfb2c68e01d2f4c9d",
-    "package_sha256": "eb86f71454e725185391781c3f0c1455d44654e1f30cc8b55df222f37699a4dd"
+    "package_sha256": "1ac7196cac6151fdf5029a2f9e6332d712b5a16e61e0179ae31d740fde7c3a0b"
   }
 }

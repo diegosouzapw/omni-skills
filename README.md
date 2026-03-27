@@ -26,7 +26,7 @@ Omni Skills is no longer only an installer.
 - 🛡️ **Security validation**: the validator now runs a static content and script scanner, emits security scores, and can optionally enrich results with ClamAV and VirusTotal hash lookups.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 📦 **Per-skill archives**: the build now emits `zip`, `tar.gz`, and checksum manifests per skill, with detached signatures when signing keys are configured.
-- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, and an optional external process executor.
+- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, optional external process execution, and shared-lease queue recovery across multiple nodes.
 - 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including VS Code user/workspace and Dev Container targets.
 - 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, in-memory rate limiting, and audit logging.
 - 🚢 **Release automation**: GitHub Actions now verifies version tags, runs ClamAV and VirusTotal-gated release builds, requires detached archive signing in CI, publishes the exact tarball to npm, and creates a GitHub Release with custom notes.
@@ -113,7 +113,7 @@ The `v*` tag workflow rebuilds the release with required antivirus gates, signs 
 | **CLI** | Implemented | Find and install skills, run diagnostics, open the terminal UI, boot services, run smoke checks | `npx omni-skills doctor` |
 | **Catalog API** | Implemented | Read-only catalog, search, bundles, install plans, artifact downloads | `npx omni-skills api --port 3333` |
 | **MCP** | Implemented | Discovery, recommendation, install preview, optional local sidecar mode | `npx omni-skills mcp stream --local` |
-| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, and push notifications | `npx omni-skills a2a --port 3335` |
+| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, and SQLite-backed lease recovery | `npx omni-skills a2a --port 3335` |
 
 ### MCP Transports
 
@@ -252,7 +252,7 @@ The smoke run currently validates:
 - `npm pack --dry-run`
 - API boot
 - MCP boot in `stdio`, `stream`, and `sse`
-- A2A boot, polling, streaming, cancelation, and push-config lifecycle
+- A2A boot, polling, streaming, cancelation, push-config lifecycle, and distributed SQLite lease failover
 
 Tag-based release automation now also validates:
 
@@ -269,7 +269,7 @@ Tag-based release automation now also validates:
 
 - stronger governance for hosted API or remote MCP deployments beyond the current auth, rate limit, and audit-log baseline
 - broader client coverage and export recipes beyond the current JSON, TOML, VS Code user, and Dev Container targets
-- multi-node orchestration and lease-aware task execution beyond the current single-process runtime
+- moving beyond shared-SQLite lease coordination into external queue or distributed lock backends for larger hosted A2A deployments
 - deeper semantic scoring for best practices, so the next quality step is differentiating truly exceptional skills instead of just raising the floor
 
 ---

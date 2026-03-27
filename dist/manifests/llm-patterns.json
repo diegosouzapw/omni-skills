@@ -251,7 +251,7 @@
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
       "size_bytes": 3511,
-      "sha256": "737143774f54c54642c242c3f4f43edbf33f6a1efce6a26c6fc973f26824a143"
+      "sha256": "24a84c0e97a5ce5ec33c873690bea61bb7894761b2af387297cd839c779faca1"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -278,47 +278,44 @@
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
       "size_bytes": 5261,
-      "sha256": "5c0d5c33507a51414dcf518737e5ceb8e94c4fe151b262a758c31d92c18ee917",
+      "sha256": "c64a15b872fd4284bc3c3956bfe9ffef9150f890ab1c72592f0f9e5cf9118312",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/llm-patterns.zip.sig",
-        "sha256": "92e7b8388f51a15025e7a7aac3ac445339b3ee14f222c3ca746d196e0b7efea0",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.zip.sig dist/archives/llm-patterns.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4395,
-      "sha256": "a9d78e529de8519e414bc83d9074135b3a088ca62282f475b4348056a9a17d83",
+      "size_bytes": 4393,
+      "sha256": "42cf27c5221b5ff2dddf66d9c337215aea25b382581e01e874ef8996990ab2cb",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/llm-patterns.tar.gz.sig",
-        "sha256": "15f1625f557331d30eca758ba1f445d6f1654c83bf5b220bc2e2982c38f3f4cc",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.tar.gz.sig dist/archives/llm-patterns.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "6584c49df3b4ac098bf1b17b37d0996c4ae09fad48bf940d979bde589243f7a9",
+    "sha256": "268d66f4efb2efc95e71b558c22a62a92bc064e1b0e4ed1a5f7b94e2ec0ee0db",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/llm-patterns.checksums.txt.sig",
-      "sha256": "d33b9e4e2d636e91ea1c6c05912eeaf53dc99a14aab384f39b5f7f4ee5a25839",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.checksums.txt.sig dist/archives/llm-patterns.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "70d27c0c6192d2da218d8306bbba8222bc6368dbd8663a5a98a6f80a196b8856"
+    "package_sha256": "9d0ad260a37ed7ff02eadf389b9dfcdc9ad37355f20015b70e63160c8b75de9a"
   }
 }

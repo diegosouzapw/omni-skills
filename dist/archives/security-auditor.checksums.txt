@@ -1,2 +1,2 @@
-a466bcb7b7b850dcf5c31713fedf194906ef47269e3a1c4b861ca37fd5194ed2  security-auditor.zip
-4459dcb6102465a74ef6128f090ba87ab5d6b364232cc83eeedd9a8060beb831  security-auditor.tar.gz
+bd7a65d82a2ca8b6646c3ab54654314d701d3a5946d857f7d6bd40dff46f0d4d  security-auditor.zip
+519751bf9d65a59cfcd03decfbc7f02a36e2036b2b6451d41ae40a460d6bd332  security-auditor.tar.gz

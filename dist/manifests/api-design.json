@@ -250,7 +250,7 @@
       "path": "skills/api-design/metadata.json",
       "kind": "support",
       "size_bytes": 3385,
-      "sha256": "0679db1ab1a24e19e9cc83858e913b1adaa5d97880a4d0d9499640bdff2776f2"
+      "sha256": "59bbaddb3f1fe09be7588a3a780ccf243ba93e4ceda09b21e0defd34f74eaddc"
     },
     {
       "path": "skills/api-design/references/checklist.md",
@@ -270,15 +270,14 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 4659,
-      "sha256": "3ae362854d782e1178fdc0d2e32b331426111e0c7de78c4b0338d7f9f25d3733",
+      "size_bytes": 4660,
+      "sha256": "fcd9822e19edd9acc610b33b7d390f4aae7e5e8da9f84af269830c469d9048b9",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/api-design.zip.sig",
-        "sha256": "cefa6039d8b6317b6e8c51e3959cc86cc5b2062cc02e631b87d8e97cb18adb08",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.zip.sig dist/archives/api-design.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -286,32 +285,30 @@
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
       "size_bytes": 4047,
-      "sha256": "29cde3f49309e1e292b94611d17626705040afb319f74c817981b44d35270579",
+      "sha256": "6c26175b27d774e2b12cc5fb109e7a567abf6aeef5e97d5e164accd4ee8a7673",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/api-design.tar.gz.sig",
-        "sha256": "edbb728dfc5cdb4574aac6aeddc7fad524886f62a8136f1b97977fcac08a33f6",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.tar.gz.sig dist/archives/api-design.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "a5c6149457bf44bd62a9a24cdab42aff328f7066ac1b13f0507c0587d54e8112",
+    "sha256": "1203370733baacfb71138418b2087e0c0ae2dfd617f845629fb62f688ff4eac7",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/api-design.checksums.txt.sig",
-      "sha256": "fdb7025c1c12724304df78084cea118ea4e9dbda4bd106a774815c84f80c5d94",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/api-design.checksums.txt.sig dist/archives/api-design.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1",
-    "package_sha256": "c7bbc2a02a9b6b1da92050f3afe769242babf211fd85bf61055c3ca213d5e05c"
+    "package_sha256": "d1287e8b83329b2db42d1c72148673272b7d9e0d4c5036f61b2ce3a1c8a8d855"
   }
 }

@@ -249,12 +249,41 @@ npx omni-skills mcp stream
 ```bash
 npx omni-skills a2a --port 3335
 
-# Optional: persist tasks to SQLite and run them via the external worker process
+# Optional: persist tasks to SQLite, enable shared lease polling, and run them via the external worker process
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
+OMNI_SKILLS_A2A_QUEUE_ENABLED=1 \
+OMNI_SKILLS_A2A_WORKER_POLL_MS=250 \
+OMNI_SKILLS_A2A_LEASE_MS=4000 \
 OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
+
+### 🧱 Multi-Worker Lease Setup
+
+Run more than one A2A node against the same SQLite store to get lease-based failover:
+
+```bash
+# Worker A
+PORT=3335 \
+OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
+OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
+OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
+OMNI_SKILLS_A2A_QUEUE_ENABLED=1 \
+OMNI_SKILLS_A2A_EXECUTOR=process \
+npx omni-skills a2a
+
+# Worker B
+PORT=3336 \
+OMNI_SKILLS_A2A_INSTANCE_ID=worker-b \
+OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
+OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
+OMNI_SKILLS_A2A_QUEUE_ENABLED=1 \
+OMNI_SKILLS_A2A_EXECUTOR=process \
+npx omni-skills a2a
+```
+
+If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
 
 ### 📡 Endpoints
 
@@ -420,6 +449,10 @@ That means every tag-based release must:
 | `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
 | `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
 | `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `1` for `sqlite`, otherwise `0` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
 | `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
 | `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
 | `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |

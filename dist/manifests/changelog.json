@@ -249,7 +249,7 @@
       "path": "skills/changelog/metadata.json",
       "kind": "support",
       "size_bytes": 3440,
-      "sha256": "4b82684c56e10a71927256e11f9ed9ed96d40b817258d49df7a755b4f3357e40"
+      "sha256": "9f81278e65e172a7cdc0be78447566273f21dc996249dd241b68f899ced16c0a"
     },
     {
       "path": "skills/changelog/references/checklist.md",
@@ -269,48 +269,45 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 4219,
-      "sha256": "e9278ad7d177431fb3b0961b8a7ed2f919cce94a23b3610f5a5437bf58e57464",
+      "size_bytes": 4220,
+      "sha256": "b6832b60a4d2b464a72fc56e387774319108139d199efd1f37cff866c8de60b6",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/changelog.zip.sig",
-        "sha256": "850469ae351113b9ebe4818f701d038be8e3030840bbdd95fd139f62c29e1998",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.zip.sig dist/archives/changelog.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 3683,
-      "sha256": "d4ff015f251c5da4bdea0a4db5a58569d8a46b5ac6adf52adb0fe2743bea2b42",
+      "size_bytes": 3685,
+      "sha256": "c3c4e1979fca202c601ed3d837108f4bd96a0b4340cc8e08d5b3ebcde144c7c4",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/changelog.tar.gz.sig",
-        "sha256": "122bf628b155c7765c4e537183729b9ae3632ab506a12c9b6b7a83d1208eca92",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.tar.gz.sig dist/archives/changelog.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "19ebc38473ee9008343fd970e2867a6490b2cc199928cbb7b27878601ff2e066",
+    "sha256": "56ecefa1a903e84a9ed4abc694327e5ff444c1c356b32df7593e55b06e7f5247",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/changelog.checksums.txt.sig",
-      "sha256": "a4c6adb97cff5dfe92e1537e66505234ba9750af22195715aeab2ebaad364d34",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/changelog.checksums.txt.sig dist/archives/changelog.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "93cf7b79a0bb27570e1f38214e57bdcf75f6e5ab595900e7b38ce2cc17a955f5",
-    "package_sha256": "311164ccd7cf800cc46476c5db208d15a6b6f92bb5bfe6f24746fedfa75d18c9"
+    "package_sha256": "9d7d24413f064d3d15ff34ca12f76f567ee04ea767dc58ddaca9d87ff8cbe268"
   }
 }

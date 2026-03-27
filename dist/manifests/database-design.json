@@ -249,7 +249,7 @@
       "path": "skills/database-design/metadata.json",
       "kind": "support",
       "size_bytes": 3444,
-      "sha256": "fc1df862f7393e02473ac060d821efacc6cb3d7964a3ab7e73a8b8da6833f4e4"
+      "sha256": "db6f601bccac6893eacb56b70e577c87479553e2f9c627beb7cd64a1d28aaa4f"
     },
     {
       "path": "skills/database-design/references/checklist.md",
@@ -270,47 +270,44 @@
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
       "size_bytes": 4504,
-      "sha256": "1b2529e35818e5d0886af29e8af2129eb69d3bcdbe032635b612ddcf919ee472",
+      "sha256": "d645174d579c263c7d6d39769d4a0f0b26ede1395b1f9825c44a5ca4d5a2d28e",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/database-design.zip.sig",
-        "sha256": "6e12db9299e1201b4c56ca6785e0d90ac8be6d665b84c22b0737c7bab469cd98",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.zip.sig dist/archives/database-design.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 3869,
-      "sha256": "bb9d8dbc1a1d40a36c62ee8aee35d3bd6b105d028680c2370e3f2fe148c32869",
+      "size_bytes": 3867,
+      "sha256": "e13462ba14e1d0a970cbc84fa22c020bee8b4fa317de5f6eb76fab505e9d054c",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/database-design.tar.gz.sig",
-        "sha256": "347c0533b0f8ee9ecc9e0047b5173c03ca236c5b32fb2ec7e8d18780ded89f03",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.tar.gz.sig dist/archives/database-design.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "d1e19b9971f7eb13bc8e153343b9dc0e80da76832fe12324fb95ccae3358d37d",
+    "sha256": "3bf03e33dd771e71533ec9efc08513f0156e1fc66378a85147f63de2ea6afc37",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/database-design.checksums.txt.sig",
-      "sha256": "77c7cc01759f2bab2f19c9971e689dc6bccf4844dc15766a065b639dd841c7a3",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/database-design.checksums.txt.sig dist/archives/database-design.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "5244e8238268455ce2463c417b8868c062f23aafd744943829c5b5020552db96",
-    "package_sha256": "e13562f043c97602f1680514f8f7f08b009790a07b79cbea8568afcb7559ec55"
+    "package_sha256": "a03f220e043653fe98e058423e92f9768169ec928d9b0884978608e4b738fe3e"
   }
 }

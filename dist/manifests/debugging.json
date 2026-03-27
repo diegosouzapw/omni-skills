@@ -249,7 +249,7 @@
       "path": "skills/debugging/metadata.json",
       "kind": "support",
       "size_bytes": 3435,
-      "sha256": "929473e694e818b159cd76b45e860a9b83111a9b28cd1252d4e13be942e7c7b5"
+      "sha256": "95bc609e819e37e700dc2cefc50cd26210cbb113ea45bfb5d155136a6db130c4"
     },
     {
       "path": "skills/debugging/references/checklist.md",
@@ -270,47 +270,44 @@
       "path": "dist/archives/debugging.zip",
       "file_name": "debugging.zip",
       "size_bytes": 4465,
-      "sha256": "d92e290ddb79127e6c121a11c34f6134eb9e6089a4978899645d52c99ef95693",
+      "sha256": "2ecb2d5a0b9c5cceabe6cc3f0702e507273288f94bac3a1a8d6ca226a9a53428",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/debugging.zip.sig",
-        "sha256": "b0727a26f2268c495edba11e51a0d0ae2cec69824a3dbf444f3564e40964e046",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.zip.sig dist/archives/debugging.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/debugging.tar.gz",
       "file_name": "debugging.tar.gz",
-      "size_bytes": 3907,
-      "sha256": "342170fbaa73d028f5a73fe233db3e60519be92b5173c7073eaf74c1be96bd95",
+      "size_bytes": 3908,
+      "sha256": "92a4081260b8849f09a909065d476158192f7983d17b667556eb8a0f8494abfc",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/debugging.tar.gz.sig",
-        "sha256": "8b08cbd95701e602e9041249bbfa1abf86d01ae7a6030d602f7332b4f4bde337",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.tar.gz.sig dist/archives/debugging.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/debugging.checksums.txt",
     "file_name": "debugging.checksums.txt",
-    "sha256": "63c6e75f5d6ad551950415fd7b1c4957d27381dd484cb1ab20f64c0a975cb583",
+    "sha256": "5c711750995e3b1878304a34861b2b04748e083dcac244557226f78d9728979c",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/debugging.checksums.txt.sig",
-      "sha256": "6406a52217bf138e28a3e577bf59f41863a735d70823608e3b287f4ac98b25bd",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/debugging.checksums.txt.sig dist/archives/debugging.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "d0e26cdc43bbd6f097a6d48b04d3f4f38602d8ee7a2fa3d2372b286bf44a2a6f",
-    "package_sha256": "f5cf0ca309ab462a09e7eec91248c51b11935c0c995ed7618f36d6e147bcd5aa"
+    "package_sha256": "74f191815f85eca9069a327da4c7dc2402378f37615f0f1cd4230d5647721fb7"
   }
 }

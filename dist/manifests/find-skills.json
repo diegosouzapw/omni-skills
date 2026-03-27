@@ -252,7 +252,7 @@
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
       "size_bytes": 3546,
-      "sha256": "d8851f7c5bc85ad3b4eef1c0cb64f3bbdf90d20a1d433a21c080d06c2359c2e9"
+      "sha256": "3b4b735a93082fc6ac0f383f5698f72b6c0bdea1d2ecf73d32b4bd770c6beba2"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -279,47 +279,44 @@
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
       "size_bytes": 5068,
-      "sha256": "19e368b4408c4a2adc6ece44746be9ab20785436a48bb83a7ae216403ea64a67",
+      "sha256": "4fc7893d39b0723cb827bec149a33602b326f92b1afef498305f91b7d3a228cb",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/find-skills.zip.sig",
-        "sha256": "116648b2c818d4bbe38bd2433306dd81ce1d1d0f79893a9336140fbbd6cea0a0",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.zip.sig dist/archives/find-skills.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 4232,
-      "sha256": "7032e29acbd7b55147ac031f6d8973db986a6034e3e7d585474e50c1926d2ad7",
+      "size_bytes": 4237,
+      "sha256": "d95dfee611eccba515c7ef39023fdba79e1cb564096d5c6ae517f64acb7d7049",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/find-skills.tar.gz.sig",
-        "sha256": "7e18dbb2fb4c4eddeffc7b967e092ffdcfe1badafd182130fc01b0e07b825314",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.tar.gz.sig dist/archives/find-skills.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "0459955adf1ef4b0f1805b099344764ac88348369ae112ac073534dcffa8dda5",
+    "sha256": "cfe2d7e8464c334704333d927a3b559d0b81a2c2152ebdb07e151a6df06c2a7a",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/find-skills.checksums.txt.sig",
-      "sha256": "ee16c0c991682feadbece5a310d6fffa90b3b6244dcf17cf0b236c4d37a214d3",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.checksums.txt.sig dist/archives/find-skills.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c",
-    "package_sha256": "70dff882f3fea44dce4dcef1a5f2cd5fb4e701cf0f3d4891db3f9d176ac79854"
+    "package_sha256": "6026d1769be52ba3a479cfaa8ae750c1fb9fd8fab21b732f8f8f6027a5f2dc68"
   }
 }

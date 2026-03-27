@@ -873,6 +873,176 @@ async function postJson(url, body, headers = {}) {
     fs.rmSync(a2aPersistenceDir, { recursive: true, force: true });
   }
 
+  const distributedA2aDir = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-a2a-queue-"));
+  const delayedWorkerPath = path.join(distributedA2aDir, "delayed-worker.mjs");
+  fs.writeFileSync(
+    delayedWorkerPath,
+    `import { stdin, stdout, stderr } from "node:process";
+import { setTimeout as delay } from "node:timers/promises";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
+
+async function readStdin() {
+  let buffer = "";
+  for await (const chunk of stdin) {
+    buffer += chunk.toString();
+  }
+  return buffer;
+}
+
+const operationsPath = path.resolve(process.cwd(), "packages/server-a2a/src/task-operations.js");
+const { evaluateTaskOperation } = await import(pathToFileURL(operationsPath).href);
+
+async function main() {
+  const raw = await readStdin();
+  const payload = JSON.parse(raw || "{}");
+  await delay(1200);
+  const result = evaluateTaskOperation(payload.operation, payload.input || {});
+  stdout.write(\`\${JSON.stringify(result)}\\n\`);
+}
+
+main().catch((error) => {
+  stderr.write(\`\${error instanceof Error ? error.stack || error.message : String(error)}\\n\`);
+  process.exitCode = 1;
+});
+`,
+    "utf-8",
+  );
+
+  const distributedStorePath = path.join(distributedA2aDir, "tasks.sqlite");
+  const distributedPortA = await getFreePort();
+  const distributedPortB = await getFreePort();
+  const distributedBaseEnv = {
+    ...process.env,
+    OMNI_SKILLS_A2A_STORE_TYPE: "sqlite",
+    OMNI_SKILLS_A2A_STORE_PATH: distributedStorePath,
+    OMNI_SKILLS_A2A_QUEUE_ENABLED: "1",
+    OMNI_SKILLS_A2A_EXECUTOR: "process",
+    OMNI_SKILLS_A2A_WORKER_COMMAND: process.execPath,
+    OMNI_SKILLS_A2A_WORKER_ARGS: JSON.stringify([delayedWorkerPath]),
+    OMNI_SKILLS_A2A_WORKER_POLL_MS: "100",
+    OMNI_SKILLS_A2A_LEASE_MS: "600",
+  };
+  const distributedEnvA = {
+    ...distributedBaseEnv,
+    PORT: String(distributedPortA),
+    OMNI_SKILLS_A2A_INSTANCE_ID: "worker-a",
+  };
+  const distributedEnvB = {
+    ...distributedBaseEnv,
+    PORT: String(distributedPortB),
+    OMNI_SKILLS_A2A_INSTANCE_ID: "worker-b",
+  };
+
+  let distributedA = childProcess.spawn(
+    process.execPath,
+    [path.resolve(__dirname, "../../../packages/server-a2a/src/server.js")],
+    {
+      cwd: path.resolve(__dirname, "../../.."),
+      env: distributedEnvA,
+      stdio: ["ignore", "pipe", "pipe"],
+    },
+  );
+  let distributedB = childProcess.spawn(
+    process.execPath,
+    [path.resolve(__dirname, "../../../packages/server-a2a/src/server.js")],
+    {
+      cwd: path.resolve(__dirname, "../../.."),
+      env: distributedEnvB,
+      stdio: ["ignore", "pipe", "pipe"],
+    },
+  );
+  try {
+    const healthA = await waitFor(() => fetchJson(`http://127.0.0.1:${distributedPortA}/healthz`));
+    const healthB = await waitFor(() => fetchJson(`http://127.0.0.1:${distributedPortB}/healthz`));
+    assert.equal(healthA.queue.enabled, true, "distributed A2A worker A should run with queue mode enabled");
+    assert.equal(healthB.queue.enabled, true, "distributed A2A worker B should run with queue mode enabled");
+    assert.equal(healthA.persistence.kind, "sqlite", "distributed A2A worker A should use sqlite persistence");
+    assert.equal(healthB.persistence.kind, "sqlite", "distributed A2A worker B should use sqlite persistence");
+
+    const queuedTask = await postJson(`http://127.0.0.1:${distributedPortA}/a2a`, {
+      jsonrpc: "2.0",
+      id: "lease-1",
+      method: "message/send",
+      params: {
+        message: {
+          role: "user",
+          parts: [{ kind: "text", text: "find figma skills for cursor" }],
+          messageId: "lease-msg-1",
+          kind: "message",
+        },
+        metadata: {
+          operation: "discover-skills",
+          tool: "cursor",
+        },
+      },
+    });
+
+    const inFlightTask = await waitFor(async () => {
+      const response = await postJson(`http://127.0.0.1:${distributedPortA}/a2a`, {
+        jsonrpc: "2.0",
+        id: "lease-2",
+        method: "tasks/get",
+        params: {
+          id: queuedTask.payload.result.id,
+        },
+      });
+      const task = response.payload.result;
+      if (task.status.state !== "working" || task.metadata?.lease?.owner !== "worker-a") {
+        throw new Error("task has not been claimed by worker-a yet");
+      }
+      return task;
+    }, 8000, 100);
+    assert.equal(inFlightTask.status.state, "working", "queue worker A should claim the submitted task");
+
+    distributedA.kill("SIGKILL");
+    await new Promise((resolve) => distributedA.once("exit", resolve));
+
+    const recoveredLeaseTask = await waitFor(async () => {
+      const response = await postJson(`http://127.0.0.1:${distributedPortB}/a2a`, {
+        jsonrpc: "2.0",
+        id: "lease-3",
+        method: "tasks/get",
+        params: {
+          id: queuedTask.payload.result.id,
+          historyLength: 10,
+        },
+      });
+      const task = response.payload.result;
+      if (task.status.state !== "completed") {
+        throw new Error("waiting for worker-b to recover the expired lease");
+      }
+      return task;
+    }, 10000, 100);
+
+    assert.equal(
+      recoveredLeaseTask.metadata.recovered_from_persistence,
+      true,
+      "distributed recovery should mark the resumed task as persistence-backed",
+    );
+    assert.equal(
+      recoveredLeaseTask.metadata.recovery,
+      "lease-timeout-resume",
+      "distributed recovery should record lease-timeout resume metadata",
+    );
+    assert.ok(
+      recoveredLeaseTask.history.some((message) =>
+        JSON.stringify(message).includes("previous lease expired"),
+      ),
+      "distributed recovery should explain the lease-expiry handoff in task history",
+    );
+  } finally {
+    if (distributedA.exitCode === null && distributedA.signalCode === null) {
+      distributedA.kill("SIGINT");
+      await new Promise((resolve) => distributedA.once("exit", resolve));
+    }
+    if (distributedB.exitCode === null && distributedB.signalCode === null) {
+      distributedB.kill("SIGINT");
+      await new Promise((resolve) => distributedB.once("exit", resolve));
+    }
+    fs.rmSync(distributedA2aDir, { recursive: true, force: true });
+  }
+
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-sidecar-"));
   try {
     const fakeHome = path.join(tempRoot, "home");

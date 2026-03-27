@@ -12,7 +12,7 @@
 | 2️⃣ | Read-Only Catalog API | ✅ Completed |
 | 3️⃣ | MCP Discovery Surface | ✅ Completed |
 | 4️⃣ | Local Install Surface | ✅ Completed |
-| 5️⃣ | A2A Orchestration | 🟡 Partially Completed (task runtime in place) |
+| 5️⃣ | A2A Orchestration | ✅ Completed |
 
 ### ✅ What's Done
 
@@ -23,11 +23,10 @@
 - Per-skill archives (zip/tar.gz) with SHA-256 checksums
 - Auth (bearer + API key), rate limiting, and audit logging
 - Client-aware MCP config writing (JSON + TOML)
-- A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, push-notification config, JSON/SQLite durability, restart resume, and optional process executor
+- A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, push-notification config, JSON/SQLite durability, restart resume, optional process executor, and SQLite-backed leased execution across workers
 
 ### ⏳ What's Still Open
 
-- Multi-node coordination and lease-aware task execution
 - Even broader client-specific config coverage
 - More semantic scoring and deeper reference packs so the classifier can separate excellent skills from merely well-structured ones
 
@@ -175,7 +174,7 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 - ✅ VS Code user/workspace and Dev Container config targets
 - ✅ Claude allow/deny list and VS Code sandbox config generation
 
-### Phase 5: A2A Orchestration 🟡
+### Phase 5: A2A Orchestration ✅
 
 - ✅ Agent Card at `/.well-known/agent.json`
 - ✅ `message/send` with task creation and continuation
@@ -184,7 +183,7 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 - ✅ `tasks/pushNotificationConfig/*`
 - ✅ JSON and SQLite task persistence with restart recovery
 - ✅ Optional external process executor
-- ⏳ Multi-node coordination and leased execution
+- ✅ Shared SQLite queue polling and lease-aware failover across workers
 
 ---
 
