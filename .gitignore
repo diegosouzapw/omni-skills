@@ -6,6 +6,7 @@ skills_index.json
 dist/release-notes.md
 dist/signing/
 dist/archives/*.sig
+omni-skills-private/
 
 # Environment
 .env
