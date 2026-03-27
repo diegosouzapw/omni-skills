@@ -10,7 +10,7 @@ tools: [claude-code, cursor, gemini-cli, codex-cli, antigravity, opencode]
 source: omni-team
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-26"
+date_updated: "2026-03-27"
 ---
 
 # Brainstorming
@@ -37,27 +37,22 @@ Do not brainstorm in the abstract. Start by naming the goal, constraints, succes
 
 Generate a few distinct approaches, not ten shallow variants of the same idea. After that, collapse to the best one or two options with explicit reasoning.
 
-## Step-by-Step Guide
+## Operating Table
 
-### 1. Clarify the Decision
+| Phase | Deliverable | Checks |
+| --- | --- | --- |
+| Frame | One-sentence decision and explicit scope | The brainstorm solves the real question |
+| Constraint capture | Limits, success criteria, and risk tolerance | Weak assumptions are visible |
+| Option design | 3-5 materially different paths | Options are not cosmetic variants |
+| Recommendation | Ranked options plus next experiment | The output leads to action |
 
-Summarize the real question in one sentence. Separate "what are we trying to achieve?" from "what options do we have?".
+## Workflow
 
-### 2. Name Constraints
-
-List the limits that should shape the answer: time, maintenance cost, risk tolerance, existing stack, user expectations, and team skill level.
-
-### 3. Generate Distinct Options
-
-Produce 3-5 materially different approaches. Each option should have a clear label, a one-line summary, and an explanation of when it wins.
-
-### 4. Compare Tradeoffs
-
-Evaluate each option on complexity, speed, flexibility, cost of change, and operational risk. Call out hidden assumptions.
-
-### 5. Recommend the Next Move
-
-End with a recommendation, not just a menu. If uncertainty remains high, recommend the smallest experiment that would reduce it.
+1. Clarify the decision in one sentence and separate the goal from the candidate solutions.
+2. Capture constraints, success criteria, time horizon, ownership, maintenance appetite, and explicit non-goals.
+3. Generate 3-5 genuinely different options, each with a label, a summary, and the condition under which it wins.
+4. Compare the options in a decision matrix that covers complexity, speed, flexibility, risk, and reversibility.
+5. End with a recommendation and the smallest experiment or next step that would validate it.
 
 ## Examples
 
@@ -77,11 +72,22 @@ Help me compare a local-only installer sidecar versus a hosted install planner p
 
 **Explanation:** This should surface control-plane versus execution-plane tradeoffs and recommend one.
 
+### Example 3: Decision Matrix Packet
+
+```bash
+python3 skills/brainstorming/scripts/render_idea_matrix.py \
+  "Expand the AI engineer bundle" \
+  "catalog depth,score quality,shipping speed,maintenance cost"
+```
+
+**Explanation:** Use the matrix generator when the brainstorm needs a worksheet, a decision matrix, and an experiment brief rather than freeform ideation.
+
 ## Best Practices
 
 - ✅ **Do:** Keep the option set small and meaningfully different.
 - ✅ **Do:** Finish with a recommendation and rationale.
 - ✅ **Do:** Convert uncertainty into experiments when a final choice is premature.
+- ✅ **Do:** Use a decision matrix or worksheet when tradeoffs are easy to blur together.
 - ❌ **Don't:** List generic ideas without constraints or evaluation criteria.
 - ❌ **Don't:** Hide weak assumptions behind neutral wording.
 
@@ -97,6 +103,11 @@ Help me compare a local-only installer sidecar versus a hosted install planner p
 **Symptoms:** The brainstorm reads like inspiration, not a decision aid.  
 **Solution:** Add explicit decision criteria and force a recommendation with next steps.
 
+### Problem: The recommendation ignores the real constraint
+
+**Symptoms:** The final suggestion sounds strong, but it breaks budget, timeline, or staffing limits named earlier.
+**Solution:** Revisit the constraint worksheet and score the options again before recommending one path.
+
 ## Related Skills
 
 - `@architecture` — Use when the brainstorm needs to turn into a structural plan.
@@ -107,6 +118,9 @@ Help me compare a local-only installer sidecar versus a hosted install planner p
 
 - [Brainstorming checklist](references/checklist.md)
 - [Render an idea matrix](scripts/render_idea_matrix.py)
+- [Decision matrix template](examples/decision-matrix.md)
+- [Experiment brief template](examples/experiment-brief-template.md)
+- [Constraint capture worksheet](examples/constraint-capture-worksheet.md)
 
 ```bash
 python3 skills/brainstorming/scripts/render_idea_matrix.py \

@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.821509+00:00",
+  "generated_at": "2026-03-27T18:14:21.856235+00:00",
   "id": "frontend-design",
   "slug": "frontend-design",
   "display_name": "Frontend Design",
@@ -36,8 +36,8 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T03:50:01.723361+00:00"
+    "updated": "2026-03-27",
+    "file_mtime": "2026-03-27T18:13:37.282835+00:00"
   },
   "paths": {
     "root": "skills/frontend-design",
@@ -46,34 +46,38 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
     "files": [
       "SKILL.md",
+      "component-handoff-worksheet.md",
+      "dashboard-brief-template.md",
+      "state-coverage-rubric.md",
       "checklist.md",
       "render_ui_packet.py"
     ],
-    "files_count": 3,
+    "files_count": 6,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
   "content": {
-    "body_length": 3489,
-    "content_length": 3976,
-    "body_lines": 100,
-    "word_count": 492,
+    "body_length": 4997,
+    "content_length": 5484,
+    "body_lines": 115,
+    "word_count": 695,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -82,28 +86,29 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 557,
       "when_to_use_section_length": 216,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 367,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 562,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 434,
-      "resources_items_count": 2,
-      "resources_section_length": 241,
-      "examples_section_length": 506,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 733,
+      "resources_items_count": 5,
+      "resources_section_length": 442,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 234,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 20,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 6,
-      "body_density": 4.92
+      "body_density": 6.04
     }
   },
   "maturity": {
@@ -113,35 +118,36 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 94,
+    "score": 100,
     "tier": "excellent",
     "signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 557,
       "when_to_use_section_length": 216,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 367,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 562,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 434,
-      "resources_items_count": 2,
-      "resources_section_length": 241,
-      "examples_section_length": 506,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 733,
+      "resources_items_count": 5,
+      "resources_section_length": 442,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 234,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 20,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 6,
-      "body_density": 4.92
+      "body_density": 6.04
     }
   },
   "quality": {
-    "score": 85,
+    "score": 99,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -149,10 +155,10 @@
       "metadata": 12,
       "recency": 8,
       "resources": 10,
-      "best_practices": 8,
-      "semantic_depth": 12,
-      "operational_depth": 4,
-      "support_pack": 6
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 8
     }
   },
   "security": {
@@ -162,7 +168,7 @@
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 3,
+      "scanned_files": 6,
       "script_files": 1,
       "binary_like_files": 0
     },

@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 91,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,9 +204,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 14,
-        "operational_depth": 4,
-        "support_pack": 7
+        "semantic_depth": 15,
+        "operational_depth": 5,
+        "support_pack": 8
       }
     },
     "security": {
@@ -304,7 +304,7 @@
       "path": "skills/kubernetes/metadata.json",
       "kind": "support",
       "size_bytes": 5119,
-      "sha256": "317ce241bea2356de1d1826e4af2b99b0e44b37598997267ef0f59013011c972"
+      "sha256": "2813361fcb877002777d32d20293031331797064c7fdfd11730d9685a483ec1d"
     },
     {
       "path": "skills/kubernetes/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 5558,
-      "sha256": "569efc9ba9d52e0480e18ca6561846dbd15115a8caf7f9cbc2b795c9c066231a",
+      "size_bytes": 5559,
+      "sha256": "643cc5164c62c1b78659396cb7295d6183b6d51356f052966fab005e77d37790",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
-      "size_bytes": 4762,
-      "sha256": "bfc81dbea906c343327bb11b245a94672edd9136551e4ad55529609fda428995",
+      "size_bytes": 4764,
+      "sha256": "3280465ad5733558d07863cae226bebe623d6451b1be3cc8994d2889146c5575",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "0231472d03abe7ff437f5e43f40f55c9689d98818afa5fedf9f62aa8dd6459f6",
+    "sha256": "d90fcce177200e812bca4d1fabde07dd3a232dd9c8256e1dee9c0a294a19e3a7",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "17c9ab5f381ad08340287288749e566551e14c7f2685b064e9cb64a1ce7f8c8f",
-    "package_sha256": "87d65cdd768599f2dffacc9fce413952254485519ca12134447e1057fd49a22f"
+    "package_sha256": "19dbbe9083f886f33b7f71e17494723633282ac8f8cf7079799e3a6c9e711212"
   }
 }

@@ -194,7 +194,7 @@
       }
     },
     "quality": {
-      "score": 94,
+      "score": 96,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -203,9 +203,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 15,
+        "semantic_depth": 16,
         "operational_depth": 7,
-        "support_pack": 7
+        "support_pack": 8
       }
     },
     "security": {
@@ -303,7 +303,7 @@
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
       "size_bytes": 5155,
-      "sha256": "312e07d1ee605a66ed681cad3378dd2bfe2d49d67499f2c981220552d87ae329"
+      "sha256": "6d4cc223275a0b274382e2d8d0b0384a30962156c882de3bcd47d5016cf60d6e"
     },
     {
       "path": "skills/create-pr/examples/pr-body-example.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 5866,
-      "sha256": "ba08ccb2c6a07c3c7040e5e3bdfac82b9a4a93e1ffc6beac5c82559efc1af2f2",
+      "size_bytes": 5873,
+      "sha256": "bf61c8ba27856dc6867e5d06a2f2579d70c74f051f92c98b3d210d3b7eefde8d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 4938,
-      "sha256": "88693f75d2f7f7656028b3dfe1495fa8732be65e90d2ec58f188fac93f3641f2",
+      "size_bytes": 4949,
+      "sha256": "00139d6938cbbb794f36a1c3aa3db12859ab73d97e669d834f71709f2551faef",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "fbddae9526b943ea3e1591e468f6460f2fe37754fc0f82a1411b90284b49326f",
+    "sha256": "f6083b07a726d871d72f7e59f4756834f3f0c86e696d0ee5ce3e4e56ef6db6ba",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2d224b8b10dec33147882b135753c86b213325db894f4d75d95916bdc7af8b09",
-    "package_sha256": "fec78722a771322c6a1dcf0a4f17e4226d74368d7a6e6382262db72d5232229d"
+    "package_sha256": "e1629c706cd1bf05d1ac794dbdbe51194f6b605d5a38d2862c7eb3e9dd0895de"
   }
 }

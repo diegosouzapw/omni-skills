@@ -26,7 +26,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/brainstorming/SKILL.md",
   "paths": {
@@ -96,10 +96,11 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 4,
+    "artifacts_count": 7,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
@@ -164,35 +165,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 96,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 525,
         "when_to_use_section_length": 249,
-        "best_practices_items_count": 5,
-        "best_practices_section_length": 343,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 432,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 458,
-        "resources_items_count": 2,
-        "resources_section_length": 266,
-        "examples_section_length": 497,
-        "examples_code_blocks_count": 4,
+        "troubleshooting_section_length": 741,
+        "resources_items_count": 5,
+        "resources_section_length": 468,
+        "examples_section_length": 866,
+        "examples_code_blocks_count": 6,
         "related_skills_section_length": 258,
-        "decision_assets_count": 3,
-        "table_count": 0,
-        "linked_resource_families_count": 2,
+        "decision_assets_count": 19,
+        "table_count": 6,
+        "linked_resource_families_count": 3,
         "linked_resource_families": [
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 5,
-        "body_density": 5.52
+        "body_density": 5.99
       }
     },
     "quality": {
-      "score": 86,
+      "score": 99,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -200,10 +202,10 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 9,
-        "semantic_depth": 13,
-        "operational_depth": 4,
-        "support_pack": 5
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
       }
     },
     "security": {
@@ -213,7 +215,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 3,
+        "scanned_files": 6,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -243,20 +245,20 @@
     }
   },
   "content": {
-    "body_length": 3824,
-    "content_length": 4308,
-    "body_lines": 100,
-    "word_count": 552,
+    "body_length": 4921,
+    "content_length": 5405,
+    "body_lines": 114,
+    "word_count": 683,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -265,42 +267,61 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 525,
       "when_to_use_section_length": 249,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 343,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 432,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 458,
-      "resources_items_count": 2,
-      "resources_section_length": 266,
-      "examples_section_length": 497,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 741,
+      "resources_items_count": 5,
+      "resources_section_length": 468,
+      "examples_section_length": 866,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 258,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 19,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 5.52
+      "body_density": 5.99
     }
   },
   "artifacts": [
     {
       "path": "skills/brainstorming/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4324,
-      "sha256": "aadbba33143786fb76277745ca1f9e89f192aa9359ab3e9787bea687043869a4"
+      "size_bytes": 5423,
+      "sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899"
     },
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
-      "size_bytes": 5041,
-      "sha256": "ca4611ed7c7b92f2fa694593a4a4e9cecbf475d0d2182f1c9f6a2a049d0140e5"
+      "size_bytes": 5214,
+      "sha256": "782c13b929a5ecc187335711219a2ed614ee7858fd12a5389b591197a6f7d94e"
+    },
+    {
+      "path": "skills/brainstorming/examples/constraint-capture-worksheet.md",
+      "kind": "support",
+      "size_bytes": 133,
+      "sha256": "fc055ffc7650331daa5a9c9f1f66e078b98a09e85f8b15e6edd9f79dd28fc9b5"
+    },
+    {
+      "path": "skills/brainstorming/examples/decision-matrix.md",
+      "kind": "support",
+      "size_bytes": 183,
+      "sha256": "b42371a0415f0e17afcd32888797b96f4399a0599cb93286e8f7c8b577af7ee7"
+    },
+    {
+      "path": "skills/brainstorming/examples/experiment-brief-template.md",
+      "kind": "support",
+      "size_bytes": 154,
+      "sha256": "74091807530f68777f3afcdb21509e26dc979b34ee85ac49f0ce7cb948b093fc"
     },
     {
       "path": "skills/brainstorming/references/checklist.md",
@@ -320,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 4863,
-      "sha256": "535f59d6853ba10cecf38215e1cd334cbedbf4a355047eec60cbaa6fd676babc",
+      "size_bytes": 6045,
+      "sha256": "89172fdcc61c3793c950c6069a91ea9f47dcb1ded228dcca62e9fccb50067977",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -334,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 4297,
-      "sha256": "7e1de513828a526c81e86c67edc79fa016f144fbc2094fc8cc779efdae65c4a7",
+      "size_bytes": 4949,
+      "sha256": "58e5b0944b045bfce6274094b6d9ce6b38e3b54ffc1b722c32e1c88044659a4f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -348,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "17cf189260ddd406b50085f0f3d669d1a7197727924eac608259b9ad052e4ecf",
+    "sha256": "1e8d8ec063aa39c560a93d6d9b2be016bab72109619f64fcf0d5072972c7f715",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -358,7 +379,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "aadbba33143786fb76277745ca1f9e89f192aa9359ab3e9787bea687043869a4",
-    "package_sha256": "2efa07176b9ea3635750044060a269ceff8b877993ffa26b4a9f58bad5fc34f8"
+    "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
+    "package_sha256": "fdda30d10136e9e833ad66e090d266e232af1a8ad9c928e962e002f558e883f1"
   }
 }

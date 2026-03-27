@@ -10,7 +10,7 @@ tools: [claude-code, cursor, gemini-cli, codex-cli, antigravity, opencode]
 source: omni-team
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-26"
+date_updated: "2026-03-27"
 ---
 
 # Find Skills
@@ -37,17 +37,24 @@ Use this skill when the user:
 - wants a recommended bundle or install path
 - is unsure whether to use a skill, the API, MCP, or A2A surface
 
-## Discovery Workflow
+## Operating Table
 
-### 1. Understand the need
+| Phase | Deliverable | Checks |
+| --- | --- | --- |
+| Need framing | Domain, workflow noun, and target client | Search terms are specific enough to rank well |
+| Catalog pass | Search hits, direct matches, and bundle candidates | Roadmap metadata is not treated as published |
+| Install pass | Tool-aware command or config recipe | The recommendation is executable |
+| Gap handling | Honest no-match response plus next move | The user is not misled about availability |
 
-Extract:
+## Workflow
 
-- domain: design, testing, docs, deployment, workflow, security, etc.
-- specific task: implement a Figma node, review a PR, generate a changelog, detect MCP clients
-- environment: Claude Code, Cursor, Codex CLI, Gemini CLI, OpenCode, or a custom path
+1. Understand the need by extracting the domain, the concrete workflow noun, and the target client or install path.
+2. Search the Omni Skills catalog first through local catalog artifacts, CLI, API, or MCP tools before claiming a skill exists.
+3. Verify that the match is actually published, installable, and compatible with the user's tool or path.
+4. Recommend the smallest usable outcome: direct skill, bundle subset, MCP config path, API endpoint, or honest no-match.
+5. End with an executable install or configuration packet and explain any catalog gaps directly.
 
-### 2. Search the Omni Skills catalog first
+## Search Entry Points
 
 Prefer the local catalog and repo-native tooling before claiming a skill exists.
 
@@ -60,18 +67,6 @@ Useful entrypoints:
 - MCP `recommend_skills`
 - `docs/CATALOG.md`
 - `dist/catalog.json`
-
-### 3. Verify that the match is really usable
-
-Do not recommend a roadmap entry as if it were already installable.
-
-Check:
-
-- published skill id
-- description and tags
-- supported tools
-- risk level
-- whether a bundle member is actually available or still missing
 
 ## Recommendation Rules
 
@@ -105,12 +100,19 @@ Find the best published skill for reviewing security issues in a release pipelin
 npx omni-skills find security --tool codex-cli --install --yes
 ```
 
+### Example 3: Config-aware recommendation
+
+```text
+Find the right skill or runtime path for configuring MCP in Continue or Windsurf, and give me the command or config recipe.
+```
+
 ## Best Practices
 
 - Prefer published direct matches over speculative roadmap answers.
 - Prefer tool-aware install commands when the user names Claude Code, Cursor, Codex CLI, or VS Code.
 - Be explicit when a bundle is only partially populated or when a skill is not yet published.
 - Check the catalog and manifest artifacts before claiming that a capability is installable.
+- Use a worksheet or install template when the recommendation depends on the user's client choice.
 
 ## Troubleshooting
 
@@ -123,6 +125,11 @@ npx omni-skills find security --tool codex-cli --install --yes
 
 **Symptoms:** The bundle intent matches, but one or more members are still missing.
 **Solution:** Recommend the published subset, explain the gap, and avoid implying full availability.
+
+### Problem: The user does not know which client or path they need
+
+**Symptoms:** They want the capability, but they cannot name Claude, Cursor, Antigravity, Continue, or a custom path yet.
+**Solution:** Ask for the destination tool or filesystem target first, then return the smallest executable install or config recipe for that environment.
 
 ## If Nothing Matches
 
@@ -140,7 +147,16 @@ The runtime surface is ahead of the catalog breadth. The repo currently ships a 
 - bundles that contain partial availability
 - roadmap metadata for future catalog expansion
 
+## Related Skills
+
+- `@documentation` — Use when the chosen capability or runtime path needs clearer onboarding material.
+- `@brainstorming` — Use when multiple adjacent skills or surfaces might solve the problem and the tradeoffs need ranking.
+- `@frontend-design` — Use when the right answer is a UI-oriented workflow rather than a backend or platform skill.
+
 ## Additional Resources
 
 - [Catalog discovery checklist](references/catalog-audit.md)
 - [Render a discovery packet](scripts/render_query_packet.py)
+- [Tool-aware install template](examples/tool-aware-install-template.md)
+- [Catalog gap review worksheet](examples/catalog-gap-review-worksheet.md)
+- [Discovery recommendation packet](examples/discovery-recommendation-packet.md)

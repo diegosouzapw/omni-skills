@@ -165,7 +165,7 @@
       }
     },
     "quality": {
-      "score": 86,
+      "score": 89,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -174,9 +174,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 8,
-        "semantic_depth": 10,
-        "operational_depth": 5,
-        "support_pack": 7
+        "semantic_depth": 11,
+        "operational_depth": 6,
+        "support_pack": 8
       }
     },
     "security": {
@@ -281,7 +281,7 @@
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
       "size_bytes": 5371,
-      "sha256": "0822b593bcc58457dbf5e80fb9f0f6b60d3387202e2047e8bdc0a0fff650120a"
+      "sha256": "436c931af2b3df0672a676f7193b39383f8b35881320752f33e3f5df40abcc55"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -337,8 +337,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 14003,
-      "sha256": "97be3b6fac07a52ed72711d8375a544e22d7dad8508ebd6990f43d1681ad9bd3",
+      "size_bytes": 14005,
+      "sha256": "fa178039678a53b0134eaeaa7f6ea2acebab19c2a17c52f15cf50e8b576e744a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -351,8 +351,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 11832,
-      "sha256": "3af48fb0154d9ac0e0180af0c7005b5d905679d062470ce94fb95afc2653d5ac",
+      "size_bytes": 11836,
+      "sha256": "30602b2e4bfacc52e9c7efb3684db6f62c6bd30185aa83c804835ebaac7363f6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -365,7 +365,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "f432488aad33fa7a780d0a1bed14a8e878422867cffe948f2e5eacaf3ffa7869",
+    "sha256": "addf7ab6b36ef1ba94dfa802f0404f50ab8bb4a5ba6b7bfbd4bd41c471318b53",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -376,6 +376,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "4fc515f4d91db3067eb46c48d5a9f1893045c9b12dba5cc83cd7cda6a5f1e8f4",
-    "package_sha256": "be30d7054e39a3412b6d22ea613314bcda90bc61b54f74d2ab87e143418503c2"
+    "package_sha256": "a19bfa6c3b4043c367f8895b7b2217b8f6c51317b7040d791d445f52f9b788a2"
   }
 }

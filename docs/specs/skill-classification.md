@@ -107,6 +107,8 @@ The scorer is intentionally **semantic enough to create spread** across mature s
 - at least one small operational table or decision map when it improves execution clarity
 - more operational specificity than a plain template
 - clearer workflow depth and decision support assets
+- support-pack depth that goes beyond one `references/` file and one linked script
+- enough operational density to separate a polished outline from a reusable workflow kit
 
 ---
 

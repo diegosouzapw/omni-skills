@@ -1,2 +1,2 @@
-97be3b6fac07a52ed72711d8375a544e22d7dad8508ebd6990f43d1681ad9bd3  omni-figma.zip
-3af48fb0154d9ac0e0180af0c7005b5d905679d062470ce94fb95afc2653d5ac  omni-figma.tar.gz
+fa178039678a53b0134eaeaa7f6ea2acebab19c2a17c52f15cf50e8b576e744a  omni-figma.zip
+30602b2e4bfacc52e9c7efb3684db6f62c6bd30185aa83c804835ebaac7363f6  omni-figma.tar.gz

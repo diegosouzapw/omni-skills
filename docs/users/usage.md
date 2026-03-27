@@ -123,6 +123,7 @@ The visual shell supports:
 
 - guided install with known client or custom path selection
 - search-then-install without memorizing flags
+- guided MCP client config preview and write flows
 - MCP, API, and A2A guided startup
 - recent installs and service relaunches
 - saved install and service presets
@@ -141,6 +142,9 @@ npx omni-skills mcp stdio             # Pipe transport
 npx omni-skills mcp stream            # Streamable HTTP
 npx omni-skills mcp sse               # Server-Sent Events
 npx omni-skills mcp stream --local    # Local sidecar mode with filesystem tools
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
 ### 🌐 HTTP API

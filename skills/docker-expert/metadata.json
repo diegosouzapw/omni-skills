@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.796811+00:00",
+  "generated_at": "2026-03-27T18:14:21.822143+00:00",
   "id": "docker-expert",
   "slug": "docker-expert",
   "display_name": "Docker Expert",
@@ -145,7 +145,7 @@
     }
   },
   "quality": {
-    "score": 91,
+    "score": 94,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -154,9 +154,9 @@
       "recency": 8,
       "resources": 10,
       "best_practices": 10,
-      "semantic_depth": 14,
-      "operational_depth": 4,
-      "support_pack": 7
+      "semantic_depth": 15,
+      "operational_depth": 5,
+      "support_pack": 8
     }
   },
   "security": {

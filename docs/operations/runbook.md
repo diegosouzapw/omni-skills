@@ -148,6 +148,8 @@ Archives are produced automatically by `npm run build`:
 | 📦 Tarball | `dist/archives/<skill>.tar.gz` |
 | 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
+`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
+
 ### ✅ Verify Archives
 
 ```bash
@@ -273,11 +275,31 @@ The sidecar can now preview or write MCP config for:
 - Codex TOML config
 - Gemini user and project settings
 - Kiro user and project settings
+- Continue workspace YAML config
+- Windsurf user config
 - workspace `.mcp.json`
 - VS Code workspace and user config
 - Dev Container config
 
 `configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
+
+### 🧾 MCP Config Preview and Write Flow
+
+Use the unified CLI when you want config generation without calling the MCP tool directly:
+
+```bash
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+```
+
+The visual shell exposes the same workflow through:
+
+- `npx omni-skills ui`
+- `Services`
+- `Configure MCP client`
+
+The command stays in preview mode unless `--write` is passed.
 
 ### 🔐 Hosted MCP Hardening
 

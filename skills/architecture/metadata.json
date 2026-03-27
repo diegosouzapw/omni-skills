@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.742151+00:00",
+  "generated_at": "2026-03-27T18:14:21.749149+00:00",
   "id": "architecture",
   "slug": "architecture",
   "display_name": "Architecture",
@@ -145,7 +145,7 @@
     }
   },
   "quality": {
-    "score": 95,
+    "score": 96,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -156,7 +156,7 @@
       "best_practices": 10,
       "semantic_depth": 16,
       "operational_depth": 7,
-      "support_pack": 7
+      "support_pack": 8
     }
   },
   "security": {

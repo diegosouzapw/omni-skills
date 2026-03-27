@@ -28,7 +28,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/find-skills/SKILL.md",
   "paths": {
@@ -99,10 +99,11 @@
   "resources": {
     "sub_resources": [
       "agents",
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 5,
+    "artifacts_count": 8,
     "references_count": 1,
     "agents_count": 1,
     "assets_count": 0
@@ -167,36 +168,37 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 95,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 568,
         "when_to_use_section_length": 251,
-        "best_practices_items_count": 4,
-        "best_practices_section_length": 355,
+        "best_practices_items_count": 5,
+        "best_practices_section_length": 454,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 492,
-        "resources_items_count": 2,
-        "resources_section_length": 122,
-        "examples_section_length": 248,
-        "examples_code_blocks_count": 4,
-        "related_skills_section_length": 0,
-        "decision_assets_count": 3,
-        "table_count": 0,
-        "linked_resource_families_count": 3,
+        "troubleshooting_section_length": 837,
+        "resources_items_count": 5,
+        "resources_section_length": 351,
+        "examples_section_length": 429,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 341,
+        "decision_assets_count": 12,
+        "table_count": 6,
+        "linked_resource_families_count": 4,
         "linked_resource_families": [
           "agents",
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 7,
-        "body_density": 4.88
+        "body_density": 6.01
       }
     },
     "quality": {
-      "score": 86,
+      "score": 99,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,10 +206,10 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 9,
-        "semantic_depth": 11,
-        "operational_depth": 4,
-        "support_pack": 6
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 9,
+        "support_pack": 8
       }
     },
     "security": {
@@ -217,7 +219,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 4,
+        "scanned_files": 7,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -247,71 +249,90 @@
     }
   },
   "content": {
-    "body_length": 4237,
-    "content_length": 4759,
-    "body_lines": 131,
-    "word_count": 639,
+    "body_length": 5929,
+    "content_length": 6451,
+    "body_lines": 147,
+    "word_count": 884,
     "has_code_blocks": true,
     "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
-    "has_related_skills_section": false,
-    "related_skills_count": 0,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
     "has_local_support_links": true,
     "local_support_links_count": 2,
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 568,
       "when_to_use_section_length": 251,
-      "best_practices_items_count": 4,
-      "best_practices_section_length": 355,
+      "best_practices_items_count": 5,
+      "best_practices_section_length": 454,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 492,
-      "resources_items_count": 2,
-      "resources_section_length": 122,
-      "examples_section_length": 248,
-      "examples_code_blocks_count": 4,
-      "related_skills_section_length": 0,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 3,
+      "troubleshooting_section_length": 837,
+      "resources_items_count": 5,
+      "resources_section_length": 351,
+      "examples_section_length": 429,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 341,
+      "decision_assets_count": 12,
+      "table_count": 6,
+      "linked_resource_families_count": 4,
       "linked_resource_families": [
         "agents",
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 7,
-      "body_density": 4.88
+      "body_density": 6.01
     }
   },
   "artifacts": [
     {
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4759,
-      "sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c"
+      "size_bytes": 6457,
+      "sha256": "f0d1cb396c26558834fbd0048a2e059e11515d82704e160db8902786a3ba0640"
     },
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
-      "size_bytes": 5185,
-      "sha256": "79d5a2ff75f81d22e17218a97ce98b90863cecd3c9b87b52a9ca9b2d63730f6a"
+      "size_bytes": 5378,
+      "sha256": "1167be400015a67d223d30694372ed5591498dfe1b98162ecc33bad4781c1376"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
       "kind": "agent",
       "size_bytes": 232,
       "sha256": "5c79785bb07a0271b0c89bfaf5961a637b7df3a072ddb2669c4526be2abaa98f"
+    },
+    {
+      "path": "skills/find-skills/examples/catalog-gap-review-worksheet.md",
+      "kind": "support",
+      "size_bytes": 155,
+      "sha256": "9d030ae56c303325138257f68f40a8faaad513f7f7b94ef771571b3584f93534"
+    },
+    {
+      "path": "skills/find-skills/examples/discovery-recommendation-packet.md",
+      "kind": "support",
+      "size_bytes": 238,
+      "sha256": "5ece24e17e627d5075b2aedb09b6722ab2cc3d4f0eceb6c6f6a3108001cbf732"
+    },
+    {
+      "path": "skills/find-skills/examples/tool-aware-install-template.md",
+      "kind": "support",
+      "size_bytes": 198,
+      "sha256": "ee1bf9c9bf8a13d346de5080de3fc7290c75539bf25a74bceced81f5a1ccbfe7"
     },
     {
       "path": "skills/find-skills/references/catalog-audit.md",
@@ -331,8 +352,8 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 5281,
-      "sha256": "5704cd80e09246faa5929fc484c5eff91048d5e1c85714a11ee51518f67c4a00",
+      "size_bytes": 6906,
+      "sha256": "cad06e5eaab5385299bff04156e418303f137b55d3e834003610a743c29313d7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -345,8 +366,8 @@
       "format": "tar.gz",
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
-      "size_bytes": 4488,
-      "sha256": "b6ca8b7584946c927d781904b6eb3167b047053bbcfd7399001fc56e29859beb",
+      "size_bytes": 5442,
+      "sha256": "c7c67201a78d5a80fa176a4f07ba06f1289d1c21a48c56b38d62e03b85c4848c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -359,7 +380,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "50c35c3729eb86b88990b3160815927ac1b193ccced44acc808dd00c02712ef9",
+    "sha256": "a35849d6de9e131db266fcc952e8e90e3c44ba66fe099d332e23b46d2d65ae99",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,7 +390,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "bb2ba6a2abbf245cec5078f20586b445117776b541ded57ac12bae1e3d33d32c",
-    "package_sha256": "b42a9f1575144f2da957670c7b751001e8452ac3b3d79ddee41a51c3703b7e02"
+    "entrypoint_sha256": "f0d1cb396c26558834fbd0048a2e059e11515d82704e160db8902786a3ba0640",
+    "package_sha256": "a39b3a8e9e63cc6d957a0a91f4c9cac1c8b6ad87ee07914bf8bdd76ef46510cd"
   }
 }

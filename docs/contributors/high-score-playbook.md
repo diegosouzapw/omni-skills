@@ -177,6 +177,7 @@ Signals that help:
 - workflow sections with enough steps to guide execution
 - decision assets such as checklists, rubrics, matrices, packets, or playbooks
 - stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- more than a single helper file when the workflow is complex enough to justify a support pack
 - enough body depth to cover tradeoffs and failure modes
 
 Signals that do **not** help much:

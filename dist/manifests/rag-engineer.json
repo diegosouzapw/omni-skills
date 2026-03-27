@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 91,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,9 +204,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 14,
-        "operational_depth": 4,
-        "support_pack": 7
+        "semantic_depth": 15,
+        "operational_depth": 5,
+        "support_pack": 8
       }
     },
     "security": {
@@ -304,7 +304,7 @@
       "path": "skills/rag-engineer/metadata.json",
       "kind": "support",
       "size_bytes": 5135,
-      "sha256": "d084d2f05d970de017f2f9e225b8a2222f9b353b3d2d4fd47fd50fb61e46ccce"
+      "sha256": "021a4cfd240ec107bf1384af65f659f0f21cd3f2e63aab44b9cd59133d729f04"
     },
     {
       "path": "skills/rag-engineer/agents/openai.yaml",
@@ -331,7 +331,7 @@
       "path": "dist/archives/rag-engineer.zip",
       "file_name": "rag-engineer.zip",
       "size_bytes": 5530,
-      "sha256": "528c8924f5f483b0a3ca46e281242d76024fca4b81a1d8e92622c840d8ff03b5",
+      "sha256": "caa4c45eb1b70fbbb5d8454a0ece0ac2da06ee9bc2b9b27263b688b1eb01b2b8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/rag-engineer.tar.gz",
       "file_name": "rag-engineer.tar.gz",
-      "size_bytes": 4659,
-      "sha256": "d2a24835c8443fa4adfe37d01cd51d84b56ea712a3580b091931d7ed84bcd32f",
+      "size_bytes": 4658,
+      "sha256": "ad39c16c47a52c4cc6b4d39cfb4c0809bd53cc80e051a794789cda7155e5d64d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/rag-engineer.checksums.txt",
     "file_name": "rag-engineer.checksums.txt",
-    "sha256": "d4f0e50e4e121714d937951ce67aa69b2f95952d0d6b0f4f5dafb8b67505fb4c",
+    "sha256": "02cb607cd05a7fbf321a4de283465d3b626b215b68e80d786e8624a50c2dd0a5",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c6dc800d0e4df5b6126c0636e50d232f19290eed1c2127c0303428883e84b0d5",
-    "package_sha256": "26ceb56e1a62b18db3ebb64e2526e751049276450eb1a457f74cac5916b2bc69"
+    "package_sha256": "c1b7ca876ea65d7071356f2c1d57290c481e9a843a3059cbfcec97ceac4f5121"
   }
 }

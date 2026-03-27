@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 91,
+      "score": 94,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,9 +204,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 14,
-        "operational_depth": 4,
-        "support_pack": 7
+        "semantic_depth": 15,
+        "operational_depth": 5,
+        "support_pack": 8
       }
     },
     "security": {
@@ -304,7 +304,7 @@
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
       "size_bytes": 5156,
-      "sha256": "1787101dd299480dbad32e9634694669229bf475eb964fa924286f9b931cae08"
+      "sha256": "a7623decb7266860ef27a9f0a65e3b4ecae3b5eb781960711ac4eedc3e3a29ba"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5478,
-      "sha256": "76580e011cac6dd76eb4d23725a298b1d195a15eafc23ef4e22ac391414aee66",
+      "size_bytes": 5481,
+      "sha256": "1937775d0a87cb3cc98398662c07ae0ab6527468a275fd832c24c9f04b6320a4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -345,7 +345,7 @@
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
       "size_bytes": 4601,
-      "sha256": "119ba90d0a5b81b5eb1f937222e83cee2666c3f51e7b2cc0c58f12cc87dc525f",
+      "sha256": "c3167e72fd21b4965be65c7d000a659e30314d6ffb49869612f5a7ff353f0980",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "df375ccef6464d8d4eca2c6ca095a96944658e4c5986e7c66d6506992754445a",
+    "sha256": "366295e5c7fe44a6f60c770223ed594a55657b898fba07836304c480d1b296a5",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "867cae87a98c3d442828c3673d9596532126cecc5180b0df8d6166b6b3f0d703"
+    "package_sha256": "6523aae88d42cde6631dd0f2f68fc420a2e52bac7cf3321da05ef31ea574ef70"
   }
 }

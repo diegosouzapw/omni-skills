@@ -27,7 +27,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/frontend-design/SKILL.md",
   "paths": {
@@ -97,10 +97,11 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 4,
+    "artifacts_count": 7,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
@@ -165,35 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 94,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 557,
         "when_to_use_section_length": 216,
-        "best_practices_items_count": 5,
-        "best_practices_section_length": 367,
+        "best_practices_items_count": 7,
+        "best_practices_section_length": 562,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 434,
-        "resources_items_count": 2,
-        "resources_section_length": 241,
-        "examples_section_length": 506,
-        "examples_code_blocks_count": 4,
+        "troubleshooting_section_length": 733,
+        "resources_items_count": 5,
+        "resources_section_length": 442,
+        "examples_section_length": 823,
+        "examples_code_blocks_count": 6,
         "related_skills_section_length": 234,
-        "decision_assets_count": 3,
-        "table_count": 0,
-        "linked_resource_families_count": 2,
+        "decision_assets_count": 20,
+        "table_count": 6,
+        "linked_resource_families_count": 3,
         "linked_resource_families": [
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 6,
-        "body_density": 4.92
+        "body_density": 6.04
       }
     },
     "quality": {
-      "score": 85,
+      "score": 99,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -201,10 +203,10 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 8,
-        "semantic_depth": 12,
-        "operational_depth": 4,
-        "support_pack": 6
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
       }
     },
     "security": {
@@ -214,7 +216,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 3,
+        "scanned_files": 6,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -244,20 +246,20 @@
     }
   },
   "content": {
-    "body_length": 3489,
-    "content_length": 3976,
-    "body_lines": 100,
-    "word_count": 492,
+    "body_length": 4997,
+    "content_length": 5484,
+    "body_lines": 115,
+    "word_count": 695,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -266,42 +268,61 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 557,
       "when_to_use_section_length": 216,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 367,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 562,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 434,
-      "resources_items_count": 2,
-      "resources_section_length": 241,
-      "examples_section_length": 506,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 733,
+      "resources_items_count": 5,
+      "resources_section_length": 442,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 234,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 20,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 6,
-      "body_density": 4.92
+      "body_density": 6.04
     }
   },
   "artifacts": [
     {
       "path": "skills/frontend-design/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3992,
-      "sha256": "349df2efaa14568772f436d856c296501c9f53fb5743d41a86934defb1ea9361"
+      "size_bytes": 5504,
+      "sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d"
     },
     {
       "path": "skills/frontend-design/metadata.json",
       "kind": "support",
-      "size_bytes": 5062,
-      "sha256": "e79ef28d3e02694edb8e5b261a65d47d36cff083d16339ccf3d086aa5a86037c"
+      "size_bytes": 5239,
+      "sha256": "043d0f852a33c55e89ca37453d290b27bc1722577306e0ec7d0aae6ca645d4e1"
+    },
+    {
+      "path": "skills/frontend-design/examples/component-handoff-worksheet.md",
+      "kind": "support",
+      "size_bytes": 301,
+      "sha256": "dfff6ddf0ee79aed51638a1d6b1d61179d17b9a2463ba8d17f3179076ca5f1b9"
+    },
+    {
+      "path": "skills/frontend-design/examples/dashboard-brief-template.md",
+      "kind": "support",
+      "size_bytes": 411,
+      "sha256": "da779851f3fce49fc902f3d5b19da2e55885249d091ddc55ced8998f7de51047"
+    },
+    {
+      "path": "skills/frontend-design/examples/state-coverage-rubric.md",
+      "kind": "support",
+      "size_bytes": 419,
+      "sha256": "86dadf84a68df703fd621281bee97f9526215540222316f7bb2b9bd6bf5de9f3"
     },
     {
       "path": "skills/frontend-design/references/checklist.md",
@@ -321,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/frontend-design.zip",
       "file_name": "frontend-design.zip",
-      "size_bytes": 4674,
-      "sha256": "6f5114681806cb5b42765a9e12a7595ebc4e84cbeaa6fcbfde11c8f57bc0e07e",
+      "size_bytes": 6422,
+      "sha256": "794a6fe7343a43bcc414b07f8a0ef209e101023c7df7f4d34009cae87752aa24",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -335,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/frontend-design.tar.gz",
       "file_name": "frontend-design.tar.gz",
-      "size_bytes": 4035,
-      "sha256": "53c1fcf9577f5e08db7491a6a24c4b079dec27fcccfc3bd36bad0861c6bb7e0d",
+      "size_bytes": 5137,
+      "sha256": "4a77109c7259217877ef375e96849c5a27aa9898fd314f2ae7ed5a7d517bed6c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-design.checksums.txt",
     "file_name": "frontend-design.checksums.txt",
-    "sha256": "fb6dfdffbd5061be038c6cd8f7cc9fbff695e746ab514b2033f887e60471841e",
+    "sha256": "e4a6f6ebd55c9853c36d9ba62543cf4ac01ae06851315b4ba8a5e3c1c9e13f60",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -359,7 +380,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "349df2efaa14568772f436d856c296501c9f53fb5743d41a86934defb1ea9361",
-    "package_sha256": "9bea03075a67b2df4c65eaa7ebf9565030b3f8ff413f51cee0bc95822f3af30c"
+    "entrypoint_sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d",
+    "package_sha256": "1d0b464768e1a096dd697b9341e9cb2b4df7debfa722143ab95fc447c62b4fdd"
   }
 }

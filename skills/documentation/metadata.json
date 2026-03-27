@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.804808+00:00",
+  "generated_at": "2026-03-27T18:14:21.832593+00:00",
   "id": "documentation",
   "slug": "documentation",
   "display_name": "Documentation",
@@ -35,8 +35,8 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26",
-    "file_mtime": "2026-03-27T03:50:01.723361+00:00"
+    "updated": "2026-03-27",
+    "file_mtime": "2026-03-27T18:13:37.281835+00:00"
   },
   "paths": {
     "root": "skills/documentation",
@@ -45,34 +45,38 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
     "files": [
       "SKILL.md",
+      "quickstart-outline-packet.md",
+      "reader-map-template.md",
+      "runbook-delta-worksheet.md",
       "checklist.md",
       "render_doc_outline.py"
     ],
-    "files_count": 3,
+    "files_count": 6,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
   },
   "content": {
-    "body_length": 3492,
-    "content_length": 3974,
-    "body_lines": 100,
-    "word_count": 487,
+    "body_length": 4800,
+    "content_length": 5282,
+    "body_lines": 114,
+    "word_count": 669,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -81,28 +85,29 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 555,
       "when_to_use_section_length": 243,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 342,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 434,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 463,
-      "resources_items_count": 2,
-      "resources_section_length": 249,
-      "examples_section_length": 459,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 764,
+      "resources_items_count": 5,
+      "resources_section_length": 440,
+      "examples_section_length": 783,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 257,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 15,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 4.87
+      "body_density": 5.87
     }
   },
   "maturity": {
@@ -112,35 +117,36 @@
     "has_extra_files": true
   },
   "best_practices": {
-    "score": 95,
+    "score": 100,
     "tier": "excellent",
     "signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 555,
       "when_to_use_section_length": 243,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 342,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 434,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 463,
-      "resources_items_count": 2,
-      "resources_section_length": 249,
-      "examples_section_length": 459,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 764,
+      "resources_items_count": 5,
+      "resources_section_length": 440,
+      "examples_section_length": 783,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 257,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 15,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 4.87
+      "body_density": 5.87
     }
   },
   "quality": {
-    "score": 86,
+    "score": 99,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -148,10 +154,10 @@
       "metadata": 12,
       "recency": 8,
       "resources": 10,
-      "best_practices": 9,
-      "semantic_depth": 13,
-      "operational_depth": 4,
-      "support_pack": 5
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 8
     }
   },
   "security": {
@@ -161,7 +167,7 @@
     "findings_count": 0,
     "findings": [],
     "signals": {
-      "scanned_files": 3,
+      "scanned_files": 6,
       "script_files": 1,
       "binary_like_files": 0
     },

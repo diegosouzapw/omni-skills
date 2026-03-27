@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/v1/resources",
+    "query": {},
+    "headers": {}
+  },
+  "response": {
+    "data": [],
+    "meta": {
+      "cursor": null,
+      "sort": "created_at:desc"
+    },
+    "error": null
+  }
+}

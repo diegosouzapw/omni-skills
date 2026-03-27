@@ -89,3 +89,4 @@ To reach the top band consistently, a skill should include:
 - troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
 - enough depth to qualify as `L3`, not just well-formatted prose
 - stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage

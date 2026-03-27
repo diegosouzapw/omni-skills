@@ -16,7 +16,7 @@ Standard community files live in the repository root:
 | 📦 **Catalog** | 📌 19 skills | Core dev, design, OSS, security, DevOps, and AI-engineering skills published |
 | 🎯 **Install** | ✅ Complete | Guided TTY install, Ink visual shell, and selective install by `--skill` and `--bundle` |
 | 🌐 **API** | ✅ Complete | Read-only with auth, admin runtime, rate limiting, audit log, CORS/IP allowlists, and maintenance mode |
-| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode + client-aware recipes for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, VS Code, and Dev Containers |
+| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode + client-aware recipes and `config-mcp` flows for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, Continue, Windsurf, VS Code, and Dev Containers |
 | 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode, opt-in lease queues, and optional advanced Redis coordination |
 | 🛡️ **Security** | ✅ Complete | Static scanner + optional local ClamAV/VirusTotal, enforced on release tags |
 | 📋 **Classification** | ✅ Complete | Taxonomy · maturity · semantic quality spread · best-practices spread · security |
@@ -89,6 +89,8 @@ npx omni-skills find figma --tool cursor --install --yes
 npx omni-skills install --guided --path ./my-skills --skill architecture
 npx omni-skills --cursor --skill omni-figma
 npx omni-skills --codex --bundle full-stack
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 npx omni-skills ui
 
 # 🏷️ Taxonomy
@@ -121,6 +123,8 @@ The build pipeline emits these machine-readable files that drive **all** runtime
 | `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
 | `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
 
+`dist/` stays committed on purpose in this repository. Those generated artifacts are part of the runtime contract for CLI install planning, API downloads, MCP previews, A2A task handoff, smoke checks, and release verification.
+
 ---
 
 ### 🌐 API
@@ -145,6 +149,8 @@ npx omni-skills mcp stdio               # Direct pipe
 npx omni-skills mcp stream              # Streamable HTTP
 npx omni-skills mcp sse                 # Server-Sent Events
 npx omni-skills mcp stream --local      # Local sidecar mode
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 ```
 
 > 📖 Full reference: [Local MCP Sidecar](specs/local-mcp-sidecar.md)

@@ -9,6 +9,19 @@ import {
   loadManifest,
 } from "../../catalog-core/src/index.js";
 
+const PACKAGE_JSON_PATH = fileURLToPath(new URL("../../../package.json", import.meta.url));
+
+function loadOmniSkillsVersion() {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(PACKAGE_JSON_PATH, "utf-8"));
+    return String(packageJson.version || "").trim() || "0.0.1";
+  } catch {
+    return process.env.npm_package_version || "0.0.1";
+  }
+}
+
+const OMNI_SKILLS_VERSION = loadOmniSkillsVersion();
+
 const SELECTIVE_DOC_PATHS = [
   "docs/README.md",
   "docs/CATALOG.md",
@@ -41,6 +54,14 @@ function getKiroSettingsPath(env, scope = "user") {
     return path.join(env.cwd, ".kiro", "settings", "mcp.json");
   }
   return path.join(env.homeDir, ".kiro", "settings", "mcp.json");
+}
+
+function getContinueWorkspaceConfigPath(env) {
+  return path.join(env.cwd, ".continue", "mcpServers", "omni-skills.yaml");
+}
+
+function getWindsurfConfigPath(env) {
+  return path.join(env.homeDir, ".codeium", "windsurf", "mcp_config.json");
 }
 
 function getClaudeDesktopConfigPath(env) {
@@ -222,6 +243,16 @@ const CONFIG_TARGETS = {
     path: (env) => path.join(env.cwd, ".agents", "mcp.json"),
     configProfile: "opencode-json",
   },
+  "continue-workspace": {
+    name: "Continue workspace MCP config",
+    path: (env) => getContinueWorkspaceConfigPath(env),
+    configProfile: "continue-yaml",
+  },
+  "windsurf-user": {
+    name: "Windsurf user MCP config",
+    path: (env) => getWindsurfConfigPath(env),
+    configProfile: "windsurf-json",
+  },
 };
 
 const CONFIG_PROFILES = {
@@ -264,6 +295,21 @@ const CONFIG_PROFILES = {
     rootPath: ["mcpServers"],
     includeType: false,
     description: "OpenCode workspace JSON config using .agents/mcp.json with mcpServers.",
+  },
+  "continue-yaml": {
+    id: "continue-yaml",
+    format: "yaml",
+    rootKey: "mcpServers",
+    includeType: false,
+    description: "Continue workspace YAML config stored under .continue/mcpServers/*.yaml and loaded from Agent mode.",
+  },
+  "windsurf-json": {
+    id: "windsurf-json",
+    format: "json",
+    rootKey: "mcpServers",
+    rootPath: ["mcpServers"],
+    includeType: false,
+    description: "Windsurf MCP config using ~/.codeium/windsurf/mcp_config.json with mcpServers entries.",
   },
   "vscode-json": {
     id: "vscode-json",
@@ -374,12 +420,14 @@ export function getLocalAllowlistRoots(options = {}) {
   return uniq([
     path.join(env.homeDir, ".claude"),
     path.join(env.homeDir, ".claude.json"),
+    path.join(env.homeDir, ".codeium"),
     path.join(env.homeDir, ".cursor"),
     path.join(env.homeDir, ".gemini"),
     path.join(env.homeDir, ".kiro"),
     getClaudeDesktopConfigPath(env),
     env.codexHome,
     path.join(env.cwd, ".agents"),
+    path.join(env.cwd, ".continue"),
     path.join(env.cwd, ".vscode"),
     path.join(env.cwd, ".claude"),
     path.join(env.cwd, ".cursor"),
@@ -480,6 +528,12 @@ function inferConfigProfileFromPath(filePath) {
   }
   if (normalizedPath.endsWith(path.join(".agents", "mcp.json"))) {
     return CONFIG_PROFILES["opencode-json"];
+  }
+  if (normalizedPath.endsWith(path.join(".continue", "mcpServers", "omni-skills.yaml"))) {
+    return CONFIG_PROFILES["continue-yaml"];
+  }
+  if (normalizedPath.endsWith(path.join(".codeium", "windsurf", "mcp_config.json"))) {
+    return CONFIG_PROFILES["windsurf-json"];
   }
   if (baseName === ".mcp.json" || baseName === ".claude.json") {
     return CONFIG_PROFILES["claude-json"];
@@ -715,6 +769,21 @@ function buildMcpServerEntry({ transport = "stream", url }, profile = CONFIG_PRO
     return profile.includeType ? { type: "stdio", ...entry } : entry;
   }
 
+  if (profile.id === "continue-yaml") {
+    return {
+      transport: {
+        type: mode === "sse" ? "sse" : "streamable-http",
+        url: url || defaultTransportUrl(mode),
+      },
+    };
+  }
+
+  if (profile.id === "windsurf-json") {
+    return {
+      serverUrl: url || defaultTransportUrl(mode),
+    };
+  }
+
   const entry = {
     url: url || defaultTransportUrl(mode),
   };
@@ -917,6 +986,37 @@ function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
     }
   }
 
+  if (profile.id === "windsurf-json") {
+    if (autoApprove.length > 0) {
+      nextEntry.alwaysAllow = autoApprove;
+    }
+  }
+
+  if (profile.id === "continue-yaml" && nextEntry.transport) {
+    if (Object.keys(headers).length > 0) {
+      nextEntry.transport.requestOptions = {
+        ...(nextEntry.transport.requestOptions || {}),
+        headers: {
+          ...((nextEntry.transport.requestOptions && nextEntry.transport.requestOptions.headers) || {}),
+          ...headers,
+        },
+      };
+    }
+
+    if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+      nextEntry.transport.requestOptions = {
+        ...(nextEntry.transport.requestOptions || {}),
+        timeout: timeoutMs,
+      };
+    }
+
+    delete nextEntry.headers;
+    delete nextEntry.timeout;
+    delete nextEntry.cwd;
+    delete nextEntry.envFile;
+    delete nextEntry.description;
+  }
+
   return { config: nextConfig, entry: nextEntry };
 }
 
@@ -939,6 +1039,94 @@ function formatTomlInlineTable(record) {
     ([key, value]) => `${formatTomlKeySegment(key)} = ${formatTomlString(value)}`,
   );
   return `{ ${entries.join(", ")} }`;
+}
+
+function escapeYamlString(value) {
+  return String(value || "").replace(/'/g, "''");
+}
+
+function formatYamlScalar(value) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(value);
+  }
+  if (typeof value === "boolean") {
+    return value ? "true" : "false";
+  }
+  return `'${escapeYamlString(value)}'`;
+}
+
+function renderYamlBlock(value, indentLevel = 0) {
+  const indent = "  ".repeat(indentLevel);
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      return `${indent}[]`;
+    }
+
+    return value
+      .map((item) => {
+        if (item && typeof item === "object" && !Array.isArray(item)) {
+          const entries = Object.entries(item);
+          if (entries.length === 0) {
+            return `${indent}- {}`;
+          }
+
+          const [firstKey, firstValue] = entries[0];
+          const lines = [];
+          if (firstValue && typeof firstValue === "object") {
+            lines.push(`${indent}- ${firstKey}:`);
+            lines.push(renderYamlBlock(firstValue, indentLevel + 2));
+          } else {
+            lines.push(`${indent}- ${firstKey}: ${formatYamlScalar(firstValue)}`);
+          }
+
+          for (const [key, nestedValue] of entries.slice(1)) {
+            if (nestedValue && typeof nestedValue === "object") {
+              lines.push(`${"  ".repeat(indentLevel + 1)}${key}:`);
+              lines.push(renderYamlBlock(nestedValue, indentLevel + 2));
+            } else {
+              lines.push(`${"  ".repeat(indentLevel + 1)}${key}: ${formatYamlScalar(nestedValue)}`);
+            }
+          }
+
+          return lines.join("\n");
+        }
+
+        return `${indent}- ${formatYamlScalar(item)}`;
+      })
+      .join("\n");
+  }
+
+  if (value && typeof value === "object") {
+    const lines = [];
+    for (const [key, nestedValue] of Object.entries(value)) {
+      if (Array.isArray(nestedValue) || (nestedValue && typeof nestedValue === "object")) {
+        lines.push(`${indent}${key}:`);
+        lines.push(renderYamlBlock(nestedValue, indentLevel + 1));
+      } else {
+        lines.push(`${indent}${key}: ${formatYamlScalar(nestedValue)}`);
+      }
+    }
+    return lines.join("\n");
+  }
+
+  return `${indent}${formatYamlScalar(value)}`;
+}
+
+function renderContinueYamlConfig(serverName, entry) {
+  const document = {
+    name: "Omni Skills",
+    version: OMNI_SKILLS_VERSION,
+    schema: "v1",
+    mcpServers: [
+      {
+        name: serverName,
+        ...entry,
+      },
+    ],
+  };
+
+  return `${renderYamlBlock(document)}\n`;
 }
 
 function renderCodexConfigBlock(serverName, entry) {
@@ -1029,6 +1217,11 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("Kiro uses settings/mcp.json with top-level 'mcpServers' entries.");
   } else if (profile.id === "opencode-json") {
     base.push("OpenCode reads workspace-scoped MCP config from .agents/mcp.json using a top-level 'mcpServers' object.");
+  } else if (profile.id === "continue-yaml") {
+    base.push("Continue can load standalone MCP server YAML files from .continue/mcpServers/*.yaml.");
+    base.push("Continue MCP tools are exposed from Agent mode, and the generated file is a dedicated per-server YAML document.");
+  } else if (profile.id === "windsurf-json") {
+    base.push("Windsurf stores MCP entries in ~/.codeium/windsurf/mcp_config.json under a top-level 'mcpServers' object.");
   }
 
   if (normalizeTransportMode(transport) === "stdio") {
@@ -1041,7 +1234,12 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("VS Code can optionally sandbox stdio servers with filesystem and network allowlists.");
   }
 
-  if (profile.id === "cursor-json" || profile.id === "gemini-settings-json" || profile.id === "kiro-json") {
+  if (
+    profile.id === "cursor-json" ||
+    profile.id === "gemini-settings-json" ||
+    profile.id === "kiro-json" ||
+    profile.id === "continue-yaml"
+  ) {
     base.push("These clients can carry extra entry metadata such as headers, cwd, env, or timeout depending on the transport.");
   }
 
@@ -1125,6 +1323,22 @@ function buildConfigRecipes({ targetId, configPath, serverName, transport, url }
       client: "opencode",
       kind: "manual",
       command: `Edit ${configPath} and add the generated mcpServers entry for the OpenCode workspace.`,
+    });
+  }
+
+  if (targetId === "continue-workspace") {
+    recipes.push({
+      client: "continue",
+      kind: "manual",
+      command: `Create or update ${configPath} with the generated YAML server document, then use Continue in Agent mode to load the MCP tools.`,
+    });
+  }
+
+  if (targetId === "windsurf-user") {
+    recipes.push({
+      client: "windsurf",
+      kind: "manual",
+      command: `Edit ${configPath} directly or open Windsurf MCP settings and paste the generated mcpServers entry.`,
     });
   }
 
@@ -1320,6 +1534,9 @@ export function configureClientMcp(input = {}, options = {}) {
 
   if (profile.format === "toml") {
     nextConfigText = upsertCodexConfigToml(currentConfigText, serverName, initialEntry);
+  } else if (profile.format === "yaml") {
+    const { entry } = applyClientSpecificProfileOptions({}, profile, initialEntry, input);
+    nextConfigText = renderContinueYamlConfig(serverName, entry);
   } else {
     currentConfig = currentConfigText ? JSON.parse(currentConfigText) : {};
     const rootPath = profile.rootPath || [profile.rootKey];

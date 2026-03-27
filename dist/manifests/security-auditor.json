@@ -26,7 +26,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/security-auditor/SKILL.md",
   "paths": {
@@ -96,10 +96,11 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 4,
+    "artifacts_count": 7,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
@@ -164,35 +165,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 94,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 611,
         "when_to_use_section_length": 287,
-        "best_practices_items_count": 5,
-        "best_practices_section_length": 414,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 496,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 436,
-        "resources_items_count": 2,
-        "resources_section_length": 256,
-        "examples_section_length": 483,
-        "examples_code_blocks_count": 4,
+        "troubleshooting_section_length": 740,
+        "resources_items_count": 5,
+        "resources_section_length": 461,
+        "examples_section_length": 823,
+        "examples_code_blocks_count": 6,
         "related_skills_section_length": 319,
-        "decision_assets_count": 3,
-        "table_count": 0,
-        "linked_resource_families_count": 2,
+        "decision_assets_count": 17,
+        "table_count": 6,
+        "linked_resource_families_count": 3,
         "linked_resource_families": [
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 5,
-        "body_density": 5.13
+        "body_density": 6.27
       }
     },
     "quality": {
-      "score": 85,
+      "score": 99,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -200,10 +202,10 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 8,
-        "semantic_depth": 13,
-        "operational_depth": 4,
-        "support_pack": 5
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
       }
     },
     "security": {
@@ -213,7 +215,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 3,
+        "scanned_files": 6,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -243,20 +245,20 @@
     }
   },
   "content": {
-    "body_length": 4109,
-    "content_length": 4602,
-    "body_lines": 109,
-    "word_count": 559,
+    "body_length": 5292,
+    "content_length": 5785,
+    "body_lines": 114,
+    "word_count": 715,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -265,42 +267,61 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 611,
       "when_to_use_section_length": 287,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 414,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 496,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 436,
-      "resources_items_count": 2,
-      "resources_section_length": 256,
-      "examples_section_length": 483,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 740,
+      "resources_items_count": 5,
+      "resources_section_length": 461,
+      "examples_section_length": 823,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 319,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 17,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 5,
-      "body_density": 5.13
+      "body_density": 6.27
     }
   },
   "artifacts": [
     {
       "path": "skills/security-auditor/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 4618,
-      "sha256": "c7e8c15c29604ae2289de38d661001a3c3cabb231112f1f97f4736ce535f7371"
+      "size_bytes": 5803,
+      "sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4"
     },
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
-      "size_bytes": 5100,
-      "sha256": "fb050559318d38eabb5a046a6172792b0858a44ada3a886023427819f53e96b3"
+      "size_bytes": 5279,
+      "sha256": "06dea83708dee30d61fabac1fa424d6bbda10fb729454b09079c4ecd18cc7e74"
+    },
+    {
+      "path": "skills/security-auditor/examples/finding-severity-rubric.md",
+      "kind": "support",
+      "size_bytes": 517,
+      "sha256": "51b05c8cd2982c2898b6ae29426ccd7a800b861c11e74d904686001ffe41dccc"
+    },
+    {
+      "path": "skills/security-auditor/examples/release-pipeline-audit-packet.md",
+      "kind": "support",
+      "size_bytes": 292,
+      "sha256": "af24630a0f7d4c18e92b8570e216d1104e72557973402648cdaf35feb15c8583"
+    },
+    {
+      "path": "skills/security-auditor/examples/threat-model-worksheet.md",
+      "kind": "support",
+      "size_bytes": 251,
+      "sha256": "29cad6ed79cc885665992227c818a53815be7b274e2b87f78dc04f06d76c45b6"
     },
     {
       "path": "skills/security-auditor/references/checklist.md",
@@ -320,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 5011,
-      "sha256": "4022da174618602e23697aa3881fd4f21db53a7f41155b403e2955e6ff6da3bd",
+      "size_bytes": 6598,
+      "sha256": "54803510592f95d598370d52eab4f41af57083b660f3783229005c3d90d7299c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -334,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 4376,
-      "sha256": "2c4bc46f3d73caf34ee4553b97ccd0b10842b821f5ad6dd308ec68e0ce2f8430",
+      "size_bytes": 5338,
+      "sha256": "998719d563cbd733053825ec4b60b3db604a9767887eec8777911559849d4500",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -348,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "357ad4caf12adf3239cad9eedb3e073efcfc250103055870710172a75a88ae0e",
+    "sha256": "dfabb14efc19bc1eacd94bfb681871ba195cc30518b92c024ff63496493b9426",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -358,7 +379,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "c7e8c15c29604ae2289de38d661001a3c3cabb231112f1f97f4736ce535f7371",
-    "package_sha256": "d68942eefb8e4d39be8d465ebc170e0372fd060ca67e338c01bee6cbf70d73e4"
+    "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
+    "package_sha256": "a125f74f288eba0227f1ae4168e52e693618facddf275bea21870f63a4cb7b7a"
   }
 }

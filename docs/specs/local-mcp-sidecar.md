@@ -16,7 +16,7 @@
 | ✅ Client-aware MCP config writing | Implemented |
 | ✅ HTTP auth + rate limiting | Implemented |
 | ⏳ Signed artifact enforcement | Pending |
-| 🟡 Full client config coverage | Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, VS Code, and Dev Containers implemented; broader ecosystem still growing |
+| 🟡 Full client config coverage | Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, Continue, Windsurf, VS Code, and Dev Containers implemented; broader ecosystem still growing |
 
 ---
 
@@ -58,6 +58,8 @@ npm run mcp:sse:local
 npm run cli -- mcp stdio --local
 npm run cli -- mcp stream --local
 npm run cli -- mcp sse --local
+npm run cli -- config-mcp --list-targets
+npm run cli -- config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 ```
 
 ### 📦 From published package:
@@ -66,6 +68,8 @@ npm run cli -- mcp sse --local
 npx omni-skills mcp stdio --local
 npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
 > All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
@@ -120,6 +124,8 @@ When local mode is enabled, these extra tools become available:
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
 | `<workspace>/.mcp.json` | JSON (`mcpServers`) |
 | `<workspace>/.agents/mcp.json` | OpenCode workspace JSON (`mcpServers`) |
+| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
+| `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
 | `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
 | `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
 | `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
@@ -135,9 +141,11 @@ The local sidecar only writes under an **explicit allowlist**.
 ### 🟢 Default allowlist:
 
 - Known client roots under `$HOME`
+- `~/.codeium` for Windsurf user config
 - `$CODEX_HOME` (or `~/.codex` if unset)
 - Current workspace root
 - `<workspace>/.agents`
+- `<workspace>/.continue`
 - `<workspace>/.vscode`
 
 ### ➕ Extend the allowlist:
@@ -233,6 +241,43 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
       "env": {
         "OMNI_SKILLS_MCP_MODE": "local"
       }
+    }
+  }
+}
+```
+
+### 🟢 Continue
+
+```yaml
+name: 'Omni Skills'
+version: '0.0.1'
+schema: 'v1'
+mcpServers:
+  - name: 'omni-skills'
+    transport:
+      type: 'streamable-http'
+      url: 'http://127.0.0.1:3334/mcp'
+```
+
+### 🧭 CLI Contract
+
+The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
+
+```bash
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+```
+
+Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
+
+### 🌊 Windsurf
+
+```json
+{
+  "mcpServers": {
+    "omni-skills": {
+      "serverUrl": "http://127.0.0.1:3334/mcp"
     }
   }
 }

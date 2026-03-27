@@ -10,7 +10,7 @@ tools: [claude-code, cursor, gemini-cli, codex-cli, antigravity, opencode]
 source: omni-team
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-26"
+date_updated: "2026-03-27"
 ---
 
 # API Design
@@ -37,27 +37,22 @@ The route name is the least important part. Focus first on resources, responsibi
 
 Error codes, validation messages, and retry expectations are part of the API design, not afterthoughts.
 
-## Step-by-Step Guide
+## Operating Table
 
-### 1. Name the Resource Model
+| Phase | Deliverable | Checks |
+| --- | --- | --- |
+| Resource modeling | Stable nouns, identifiers, and ownership boundaries | The surface is not action sprawl |
+| Contract drafting | Methods, paths, request fields, and response envelopes | Reads and writes are predictable |
+| Failure design | Validation, auth, conflict, limit, and retry semantics | Error behavior is explicit |
+| Compatibility pass | Versioning, additive change rules, and examples | The contract can evolve safely |
 
-Define the main resources, identifiers, and whether the surface is document-oriented, action-oriented, or event-driven.
+## Workflow
 
-### 2. Specify Reads and Writes
-
-For each operation, define method, path, inputs, outputs, and idempotency expectations.
-
-### 3. Model Failure Modes
-
-Describe validation failures, auth failures, missing resources, conflicts, rate limits, and server errors.
-
-### 4. Add Compatibility Rules
-
-State what fields are stable, what may evolve, and how clients should tolerate additions.
-
-### 5. Produce Build-Ready Examples
-
-End with example requests and responses that future docs and tests can reuse.
+1. Name the resource model, the identifiers, and whether the API is resource-driven, action-driven, or event-shaped.
+2. Specify reads and writes with method, path, request fields, response envelope, idempotency, and pagination semantics.
+3. Model failure modes explicitly: validation, auth, missing resources, conflicts, rate limits, and retryable server failures.
+4. Define compatibility rules: stable fields, additive changes, deprecation handling, and client tolerance expectations.
+5. End with a build-ready packet that includes request examples, response examples, an error rubric, and migration notes.
 
 ## Examples
 
@@ -77,11 +72,23 @@ Design an API for long-running agent tasks with get, cancel, and streaming updat
 
 **Explanation:** The result should make task states and polling behavior explicit.
 
+### Example 3: Contract Packet
+
+```bash
+python3 skills/api-design/scripts/render_brief.py \
+  "Skill discovery API" \
+  "Search, compare, and download per-skill artifacts" \
+  "cursor,codex-cli"
+```
+
+**Explanation:** Use the brief generator when you need a contract worksheet, an error rubric, and request-response examples that docs and tests can share.
+
 ## Best Practices
 
 - ✅ **Do:** Keep envelopes and error shapes consistent across endpoints.
 - ✅ **Do:** Prefer explicit pagination, filtering, and sorting semantics.
 - ✅ **Do:** Separate transport details from resource meaning.
+- ✅ **Do:** Include a compatibility worksheet so additive changes stay intentional.
 - ❌ **Don't:** Hide breaking changes behind the same field names.
 - ❌ **Don't:** mix one-off actions and stable resources without clear boundaries.
 
@@ -97,6 +104,11 @@ Design an API for long-running agent tasks with get, cancel, and streaming updat
 **Symptoms:** The surface is turning into action sprawl.  
 **Solution:** Re-check the resource model and collapse related operations under stable nouns and query parameters.
 
+### Problem: Idempotency and pagination are still vague
+
+**Symptoms:** Writes have unclear retry semantics or large collections have ad hoc paging behavior.
+**Solution:** Add an explicit mutation worksheet that states idempotency keys, retry expectations, sort order, cursors, and backfill rules.
+
 ## Related Skills
 
 - `@architecture` — Use when the API shape depends on ownership and boundary decisions.
@@ -107,6 +119,9 @@ Design an API for long-running agent tasks with get, cancel, and streaming updat
 
 - [API design checklist](references/checklist.md)
 - [Render an API brief packet](scripts/render_brief.py)
+- [Request envelope template](examples/request-envelope-template.json)
+- [Error contract rubric](examples/error-contract-rubric.md)
+- [Mutation review worksheet](examples/mutation-review-worksheet.md)
 
 ```bash
 python3 skills/api-design/scripts/render_brief.py \

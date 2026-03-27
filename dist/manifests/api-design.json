@@ -27,7 +27,7 @@
   "author": "Omni Skills Team",
   "dates": {
     "added": "2026-03-26",
-    "updated": "2026-03-26"
+    "updated": "2026-03-27"
   },
   "entrypoint": "skills/api-design/SKILL.md",
   "paths": {
@@ -97,10 +97,11 @@
   },
   "resources": {
     "sub_resources": [
+      "examples",
       "references",
       "scripts"
     ],
-    "artifacts_count": 4,
+    "artifacts_count": 7,
     "references_count": 1,
     "agents_count": 0,
     "assets_count": 0
@@ -165,35 +166,36 @@
       "has_extra_files": true
     },
     "best_practices": {
-      "score": 95,
+      "score": 100,
       "tier": "excellent",
       "signals": {
-        "workflow_steps_count": 0,
-        "workflow_section_length": 0,
+        "workflow_steps_count": 5,
+        "workflow_section_length": 607,
         "when_to_use_section_length": 199,
-        "best_practices_items_count": 5,
-        "best_practices_section_length": 356,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 440,
         "troubleshooting_items_count": 0,
-        "troubleshooting_section_length": 462,
-        "resources_items_count": 2,
-        "resources_section_length": 273,
-        "examples_section_length": 466,
-        "examples_code_blocks_count": 4,
+        "troubleshooting_section_length": 760,
+        "resources_items_count": 5,
+        "resources_section_length": 474,
+        "examples_section_length": 822,
+        "examples_code_blocks_count": 6,
         "related_skills_section_length": 250,
-        "decision_assets_count": 3,
-        "table_count": 0,
-        "linked_resource_families_count": 2,
+        "decision_assets_count": 16,
+        "table_count": 6,
+        "linked_resource_families_count": 3,
         "linked_resource_families": [
+          "examples",
           "references",
           "scripts"
         ],
         "tools_count": 6,
         "tags_count": 6,
-        "body_density": 4.7
+        "body_density": 5.57
       }
     },
     "quality": {
-      "score": 86,
+      "score": 99,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -201,10 +203,10 @@
         "metadata": 12,
         "recency": 8,
         "resources": 10,
-        "best_practices": 9,
-        "semantic_depth": 13,
-        "operational_depth": 4,
-        "support_pack": 5
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
       }
     },
     "security": {
@@ -214,7 +216,7 @@
       "findings_count": 0,
       "findings": [],
       "signals": {
-        "scanned_files": 3,
+        "scanned_files": 6,
         "script_files": 1,
         "binary_like_files": 0
       },
@@ -244,20 +246,20 @@
     }
   },
   "content": {
-    "body_length": 3503,
-    "content_length": 3952,
-    "body_lines": 101,
-    "word_count": 475,
+    "body_length": 4901,
+    "content_length": 5350,
+    "body_lines": 116,
+    "word_count": 646,
     "has_code_blocks": true,
-    "typed_code_blocks_count": 1,
+    "typed_code_blocks_count": 2,
     "has_examples_section": true,
-    "example_count": 2,
-    "has_workflow_section": false,
+    "example_count": 3,
+    "has_workflow_section": true,
     "has_when_to_use_section": true,
     "has_best_practices_section": true,
     "has_troubleshooting_section": true,
-    "problem_count": 2,
-    "troubleshooting_pairs_count": 1,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
     "has_additional_resources_section": true,
     "has_related_skills_section": true,
     "related_skills_count": 3,
@@ -266,42 +268,61 @@
     "has_local_script_example": true,
     "local_script_example_count": 0,
     "semantic_signals": {
-      "workflow_steps_count": 0,
-      "workflow_section_length": 0,
+      "workflow_steps_count": 5,
+      "workflow_section_length": 607,
       "when_to_use_section_length": 199,
-      "best_practices_items_count": 5,
-      "best_practices_section_length": 356,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 440,
       "troubleshooting_items_count": 0,
-      "troubleshooting_section_length": 462,
-      "resources_items_count": 2,
-      "resources_section_length": 273,
-      "examples_section_length": 466,
-      "examples_code_blocks_count": 4,
+      "troubleshooting_section_length": 760,
+      "resources_items_count": 5,
+      "resources_section_length": 474,
+      "examples_section_length": 822,
+      "examples_code_blocks_count": 6,
       "related_skills_section_length": 250,
-      "decision_assets_count": 3,
-      "table_count": 0,
-      "linked_resource_families_count": 2,
+      "decision_assets_count": 16,
+      "table_count": 6,
+      "linked_resource_families_count": 3,
       "linked_resource_families": [
+        "examples",
         "references",
         "scripts"
       ],
       "tools_count": 6,
       "tags_count": 6,
-      "body_density": 4.7
+      "body_density": 5.57
     }
   },
   "artifacts": [
     {
       "path": "skills/api-design/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 3968,
-      "sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1"
+      "size_bytes": 5368,
+      "sha256": "0534ac90886c8979c4a6c7fe6e12ec23d9ba48be22fdbe651c8791edd7575037"
     },
     {
       "path": "skills/api-design/metadata.json",
       "kind": "support",
-      "size_bytes": 4989,
-      "sha256": "4222cf906fdf15df3a7c8709f4016639e0d75fe11bb7eaed2d6b13e72930902b"
+      "size_bytes": 5169,
+      "sha256": "c5931157700dc716a3ffab7c2472efdcffb11956df17392e70bc81a86ae4784a"
+    },
+    {
+      "path": "skills/api-design/examples/error-contract-rubric.md",
+      "kind": "support",
+      "size_bytes": 523,
+      "sha256": "30b2560f94f4ef5e96f2f2b74326845e84ec11d0adaf8e4eff2f5e4f82f4b72a"
+    },
+    {
+      "path": "skills/api-design/examples/mutation-review-worksheet.md",
+      "kind": "support",
+      "size_bytes": 199,
+      "sha256": "df6eec8e1391407beadbe6454efe1ad5f8e84d2833e3e910bf8331daec0ab016"
+    },
+    {
+      "path": "skills/api-design/examples/request-envelope-template.json",
+      "kind": "support",
+      "size_bytes": 238,
+      "sha256": "eca4bf8f928723c1f6e3cd65a4c96769212e457e985fff28b250fe0e9a38ce01"
     },
     {
       "path": "skills/api-design/references/checklist.md",
@@ -321,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 4871,
-      "sha256": "60143fb223c40940c7c7c83543d90a2947ba1e5221135bf8767779d1a6414826",
+      "size_bytes": 6437,
+      "sha256": "e66fb20d17f85a71f5f00067c9a8092b7dbb2582dd6bb1b1c17f60653d85fc5c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -335,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 4239,
-      "sha256": "ee0002fbaeb1c1b7d283700595dc49fcf43078ae57931b7bd5610ac73aa50cbf",
+      "size_bytes": 5208,
+      "sha256": "94b8d45572470eb0482a3529acb303482e2775d8e8781d44e6d38943720c347b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "a2e963152590c307754302aa69cce15c0d0030d1853f78c9f64768dd89f5081e",
+    "sha256": "f33f30983437f3584cb4cc4fde876ca620b655b2a3a990aa5d3815a338359917",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -359,7 +380,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "941ccf3cc4b69f0ab2f5f77cbfc5c199b7dd6ff70088bff2f48c68ef1fe522b1",
-    "package_sha256": "be199e6ce8eb9e7d037c9531c8e4d6ccd7007c2326940d7c7a667308c9e0eeb0"
+    "entrypoint_sha256": "0534ac90886c8979c4a6c7fe6e12ec23d9ba48be22fdbe651c8791edd7575037",
+    "package_sha256": "4124addc85c415e7cd92b21dad6c30cad5a1ee0cc2a495116f8936f637a3d087"
   }
 }

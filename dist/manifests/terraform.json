@@ -195,7 +195,7 @@
       }
     },
     "quality": {
-      "score": 89,
+      "score": 92,
       "tier": "platinum",
       "breakdown": {
         "body": 16,
@@ -204,9 +204,9 @@
         "recency": 8,
         "resources": 10,
         "best_practices": 10,
-        "semantic_depth": 13,
-        "operational_depth": 4,
-        "support_pack": 7
+        "semantic_depth": 14,
+        "operational_depth": 5,
+        "support_pack": 8
       }
     },
     "security": {
@@ -304,7 +304,7 @@
       "path": "skills/terraform/metadata.json",
       "kind": "support",
       "size_bytes": 5096,
-      "sha256": "6b5cb5092f24c8a924bdba9acc110b02b9a943c704e0f8bfed230df2a294d9a8"
+      "sha256": "9a3fa861e7cf47b3089cdae9474f33eb7f9da63717a9b2dcae6e3d94548717af"
     },
     {
       "path": "skills/terraform/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/terraform.zip",
       "file_name": "terraform.zip",
-      "size_bytes": 5408,
-      "sha256": "d520eb00a8a792ca7c5955f8badd2faeeb4b87a366c5b88b2d2bc4c91ef254e7",
+      "size_bytes": 5407,
+      "sha256": "d0a82d9724b9eca489e06e046941ecc3b7cf8ba2cec22eca524069f35a0710f7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -345,7 +345,7 @@
       "path": "dist/archives/terraform.tar.gz",
       "file_name": "terraform.tar.gz",
       "size_bytes": 4635,
-      "sha256": "674c35bbc7439ef04a78f0b7126e16da3a3ef9003a8e2ad46ca615de2e5828be",
+      "sha256": "d5b0bc431b701281156796d8ed82b41187a885a06a3132ce16233db433d1161e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/terraform.checksums.txt",
     "file_name": "terraform.checksums.txt",
-    "sha256": "d6854ba823d400fb2863b0c862b5cbbbbfa4057cb652949b1b04349d0450e211",
+    "sha256": "981bc1b1bfccd69f525e954611a19f52b2108de4d7ef4a8f84df7eb2421a01d2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ff49134c2aa85a0d38b42cd9176e60bfe6a5fc6c591639bf76f4dccb17193341",
-    "package_sha256": "8268fd285259a90eef1b8fc9d7f96c8aa7f7c8eff500966fe722a40eb7d9bdc7"
+    "package_sha256": "eef6936831aa3ec98a76b52f0d12d0a8afc161e6360672267aff972797270d77"
   }
 }

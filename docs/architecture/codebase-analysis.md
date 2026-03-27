@@ -40,7 +40,7 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
                │
 ┌──────────────▼──────────────────────────────────────┐
 │              Core Engine                             │
-│  catalog-core (828 LOC)  ·  local-sidecar (1304 LOC)│
+│  catalog-core (828 LOC)  ·  local-sidecar (1568 LOC)│
 └──────────────┬──────────────────────────────────────┘
                │
 ┌──────────────▼──────────────────────────────────────┐
@@ -63,6 +63,7 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 |:--------|:---------|
 | 🔎 `find [query]` | Full-text catalog search with 12+ filter flags |
 | 📦 `install` | Delegates to `install.js` with target flags |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config for supported targets |
 | 🔌 `mcp <transport>` | Starts MCP Server (stdio/stream/sse) |
 | 🌐 `api` | Starts HTTP API |
 | 🤖 `a2a` | Starts A2A Server |
@@ -136,11 +137,11 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 
 > **1,364 lines** — Filesystem-aware client management with security controls and client-aware setup recipes.
 
-- 🕵️ **Client Detection** — Maps 7 clients with skills paths, config paths, and config profiles
+- 🕵️ **Client Detection** — Maps 7 install-capable clients plus 22 MCP config targets with dedicated profiles and recipes
 - 🔒 **Allowlist Security** — Write paths limited to explicit whitelist (extensible via `OMNI_SKILLS_LOCAL_ALLOWLIST`)
 - 📦 **Install/Remove** — File copy operations with dry-run, summary, SHA-256 verification
-- ⚙️ **MCP Config Writer** — Generates configs for Claude settings, Cursor, Gemini, Antigravity, OpenCode, Kiro, Codex TOML, VS Code, Dev Containers, and generic JSON with intelligent upsert
-- 📋 **11 Config Profiles**: `claude-json` · `claude-settings-json` · `cursor-json` · `gemini-settings-json` · `antigravity-json` · `opencode-json` · `kiro-json` · `generic-json` · `vscode-json` · `devcontainer-json` · `codex-toml`
+- ⚙️ **MCP Config Writer** — Generates configs for Claude settings, Cursor, Gemini, Antigravity, OpenCode, Kiro, Continue YAML, Windsurf JSON, Codex TOML, VS Code, Dev Containers, and generic JSON with intelligent upsert, and now powers the public `config-mcp` CLI flow and visual UI wizard
+- 📋 **13 Config Profiles**: `claude-json` · `claude-settings-json` · `cursor-json` · `gemini-settings-json` · `antigravity-json` · `opencode-json` · `kiro-json` · `continue-yaml` · `windsurf-json` · `generic-json` · `vscode-json` · `devcontainer-json` · `codex-toml`
 - 📘 **Setup Recipes** — Returns client-aware guidance such as `claude mcp add`, `gemini mcp add`, `codex mcp add`, or targeted manual config steps
 
 ---

@@ -22,12 +22,12 @@
 - Local sidecar with allowlisted filesystem access
 - Per-skill archives (zip/tar.gz) with SHA-256 checksums
 - Auth (bearer + API key), admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, maintenance mode, and request IDs
-- Client-aware MCP config writing for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, VS Code, and Dev Containers
+- Client-aware MCP config writing for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, Continue, Windsurf, VS Code, and Dev Containers
 - A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, push-notification config, JSON/SQLite durability, restart resume, optional process executor, opt-in SQLite-backed leased execution across workers, and optional advanced Redis coordination
 
 ### ⏳ What's Still Open
 
-- Even broader client-specific config coverage outside the current first-party target set
+- Even broader client-specific config coverage outside the current first-party and adjacent-editor target set
 - More semantic scoring and deeper reference packs so the classifier can keep separating excellent skills from merely well-structured ones
 
 ---
@@ -172,6 +172,7 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 - ✅ Client detection for 7 AI assistants
 - ✅ MCP config writing for JSON + TOML
 - ✅ Claude, Cursor, Gemini, Antigravity, OpenCode, and Kiro user/project targets
+- ✅ Continue workspace YAML export and Windsurf user config export
 - ✅ VS Code user/workspace and Dev Container config targets
 - ✅ Claude allow/deny lists, Gemini allow/exclude lists, Kiro disabled-tools or auto-approve, and VS Code sandbox or dev config generation
 - ✅ Client-aware generated setup recipes

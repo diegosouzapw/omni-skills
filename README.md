@@ -28,7 +28,8 @@ Omni Skills is no longer only an installer.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 📦 **Per-skill archives**: the build now emits `zip`, `tar.gz`, and checksum manifests per skill, with detached signatures when signing keys are configured.
 - 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, optional external process execution, opt-in shared lease queues, and optional advanced Redis coordination.
-- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Kiro user/workspace, Codex TOML, VS Code user/workspace, and Dev Container targets with generated recipes.
+- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Kiro user/workspace, Codex TOML, VS Code user/workspace, Dev Container targets, Continue workspace YAML, and Windsurf user config with generated recipes.
+- 🧾 **Client config UX**: `config-mcp` now previews or writes MCP client config from the CLI, and the visual terminal shell can walk operators through the same flow without hand-editing JSON, YAML, or TOML.
 - 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, admin tokens, request IDs, in-memory rate limiting, audit logging, CORS allowlists, IP allowlists, maintenance mode, and admin runtime introspection.
 - 🚢 **Release automation**: GitHub Actions now verifies version tags, runs ClamAV and VirusTotal-gated release builds, requires detached archive signing in CI, publishes the exact tarball to npm, and creates a GitHub Release with custom notes.
 - ✅ **Release preflight**: `smoke` and `publish-check` validate build output, tests, package contents, service boots, and scanner coverage.
@@ -125,6 +126,14 @@ npx omni-skills install --guided --path ./my-skills --skill architecture
 npx omni-skills mcp stream --local
 ```
 
+### Preview or write MCP client config
+
+```bash
+npx omni-skills config-mcp --list-targets
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+```
+
 ### Start the catalog API and A2A surface
 
 ```bash
@@ -156,6 +165,7 @@ The package is already usable as a normal npm-distributed CLI. You do not need t
 
 - `npx omni-skills` is the main entry point and opens guided install in interactive terminals
 - `npx omni-skills ui` opens the visual Ink shell with install, discovery, recent actions, and service launch
+- `npx omni-skills config-mcp` previews or writes MCP client config for supported targets
 - non-interactive no-arg installs still default to **Antigravity**
 - `npx omni-skills install --guided` forces the guided flow
 - `npx omni-skills --skill <id>` performs a selective install of just that skill
@@ -164,6 +174,8 @@ The package is already usable as a normal npm-distributed CLI. You do not need t
 - `npx omni-skills --cursor`, `--claude`, `--codex`, `--gemini`, `--kiro`, `--opencode`, and `--antigravity` switch the target client
 - `npx omni-skills --path <dir>` bypasses client detection and installs into any directory you choose
 - `npx omni-skills ui --text` keeps a readline fallback for terminals where the richer shell is not desired
+- `npx omni-skills ui` also exposes a guided MCP config flow for supported targets
+- `configure_client_mcp` and sidecar config export now also cover `continue-workspace` and `windsurf-user`
 
 For Antigravity specifically, the common flows are:
 
@@ -231,6 +243,8 @@ The build pipeline emits:
 - `skills/<skill>/metadata.json`
 
 These generated artifacts are the shared source of truth for CLI, API, MCP, and A2A behavior.
+
+Yes, `dist/` is intentionally committed in this repository today. The generated manifests, catalog, bundles, and archives are part of the runtime contract consumed by the installer, API, MCP, A2A, smoke checks, and release verification. If the project later moves to “generate only in CI and publish artifacts externally,” that decision can change, but with the current architecture `dist/` should stay versioned.
 
 Each skill also gets a generated `skills/<skill>/metadata.json` with:
 

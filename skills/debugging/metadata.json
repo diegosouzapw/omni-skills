@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T13:28:43.786956+00:00",
+  "generated_at": "2026-03-27T18:14:21.811720+00:00",
   "id": "debugging",
   "slug": "debugging",
   "display_name": "Debugging",
@@ -145,7 +145,7 @@
     }
   },
   "quality": {
-    "score": 94,
+    "score": 96,
     "tier": "platinum",
     "breakdown": {
       "body": 16,
@@ -154,9 +154,9 @@
       "recency": 8,
       "resources": 10,
       "best_practices": 10,
-      "semantic_depth": 15,
+      "semantic_depth": 16,
       "operational_depth": 7,
-      "support_pack": 7
+      "support_pack": 8
     }
   },
   "security": {
