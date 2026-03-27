@@ -51,6 +51,47 @@ async function fetchJson(url) {
   return response.json();
 }
 
+function createProcessMonitor(childProcessRef, label) {
+  const logs = {
+    label,
+    stdout: [],
+    stderr: [],
+  };
+
+  function appendLog(target, chunk) {
+    const message = String(chunk || "").trim();
+    if (!message) {
+      return;
+    }
+    target.push(message);
+    if (target.length > 25) {
+      target.splice(0, target.length - 25);
+    }
+  }
+
+  childProcessRef.stdout?.on("data", (chunk) => appendLog(logs.stdout, chunk));
+  childProcessRef.stderr?.on("data", (chunk) => appendLog(logs.stderr, chunk));
+
+  return logs;
+}
+
+function formatProcessMonitorLogs(logs) {
+  const stdout = logs.stdout.length > 0 ? logs.stdout.join("\n") : "<empty>";
+  const stderr = logs.stderr.length > 0 ? logs.stderr.join("\n") : "<empty>";
+  return `stdout:\n${stdout}\n\nstderr:\n${stderr}`;
+}
+
+async function waitForProcessHealth({ url, processRef, logs, label, timeoutMs = 20000, intervalMs = 250 }) {
+  return waitFor(async () => {
+    if (processRef.exitCode !== null || processRef.signalCode !== null) {
+      throw new Error(
+        `${label} exited before serving ${url}. exitCode=${processRef.exitCode} signal=${processRef.signalCode}\n${formatProcessMonitorLogs(logs)}`,
+      );
+    }
+    return fetchJson(url);
+  }, timeoutMs, intervalMs);
+}
+
 async function postJson(url, body, headers = {}) {
   const response = await fetch(url, {
     method: "POST",
@@ -1182,6 +1223,7 @@ main().catch((error) => {
       stdio: ["ignore", "pipe", "pipe"],
     },
   );
+  const distributedALogs = createProcessMonitor(distributedA, "distributed-a2a-a");
   let distributedB = childProcess.spawn(
     process.execPath,
     [path.resolve(__dirname, "../../../packages/server-a2a/src/server.js")],
@@ -1191,9 +1233,22 @@ main().catch((error) => {
       stdio: ["ignore", "pipe", "pipe"],
     },
   );
+  const distributedBLogs = createProcessMonitor(distributedB, "distributed-a2a-b");
   try {
-    const healthA = await waitFor(() => fetchJson(`http://127.0.0.1:${distributedPortA}/healthz`));
-    const healthB = await waitFor(() => fetchJson(`http://127.0.0.1:${distributedPortB}/healthz`));
+    const healthA = await waitForProcessHealth({
+      url: `http://127.0.0.1:${distributedPortA}/healthz`,
+      processRef: distributedA,
+      logs: distributedALogs,
+      label: "distributed A2A worker A",
+      timeoutMs: 30000,
+    });
+    const healthB = await waitForProcessHealth({
+      url: `http://127.0.0.1:${distributedPortB}/healthz`,
+      processRef: distributedB,
+      logs: distributedBLogs,
+      label: "distributed A2A worker B",
+      timeoutMs: 30000,
+    });
     assert.equal(healthA.queue.enabled, true, "distributed A2A worker A should run with queue mode enabled");
     assert.equal(healthB.queue.enabled, true, "distributed A2A worker B should run with queue mode enabled");
     assert.equal(healthA.persistence.kind, "sqlite", "distributed A2A worker A should use sqlite persistence");
