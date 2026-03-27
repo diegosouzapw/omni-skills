@@ -304,7 +304,7 @@
       "path": "skills/rag-engineer/metadata.json",
       "kind": "support",
       "size_bytes": 5119,
-      "sha256": "9fb6cb5ed5724ed4f62c53e1177335d3976acae4a22a1a2f446d7be3f9d7a3a9"
+      "sha256": "e3ae97da89ab236ad3036d08a8d707fed02c05c414bfed7089af7a9ed6c80878"
     },
     {
       "path": "skills/rag-engineer/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/rag-engineer.zip",
       "file_name": "rag-engineer.zip",
-      "size_bytes": 5506,
-      "sha256": "39b2efcfa2da0f8e204946d4edd33cc798144cf6c7dd4c21468595f6d23f5765",
+      "size_bytes": 5501,
+      "sha256": "fbda88c4a5d8a58c5747bf577f3593ff5148c436da9ffb2e203e1c1cce67b7e5",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/rag-engineer.tar.gz",
       "file_name": "rag-engineer.tar.gz",
-      "size_bytes": 4396,
-      "sha256": "2979a1b8d494ffe8003b5c89de5dbd1f75fff48591576670ef9c44d183ef1c9f",
+      "size_bytes": 4391,
+      "sha256": "b7b9ce6387b52d911bec9f5a539d7b0180259893db4a2c2df98c6cd2d7d2f904",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/rag-engineer.checksums.txt",
     "file_name": "rag-engineer.checksums.txt",
-    "sha256": "b04999ca86d61be2260e47efce1d347960baa57fc8b49728371de80367090718",
+    "sha256": "6f0f5409fd9834930dafbaaa8529477d134ba0df103810172f4272505f584900",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c6dc800d0e4df5b6126c0636e50d232f19290eed1c2127c0303428883e84b0d5",
-    "package_sha256": "adea33cda520047aed3b2f3492d4e36edef2b1ea773564d48f24bbab0eb8515d"
+    "package_sha256": "0b9a00c65d5485a574a312b929994b702f1e77941d0db0c78c5113508cf3812f"
   }
 }

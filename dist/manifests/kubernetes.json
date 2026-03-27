@@ -304,7 +304,7 @@
       "path": "skills/kubernetes/metadata.json",
       "kind": "support",
       "size_bytes": 5103,
-      "sha256": "082eb94c6047436bda5de15c1514de17769d647c47dc7cc9a25a9797d1903185"
+      "sha256": "46c16fcb65eaaa94a239aee9b05726d5dd5b138b90d92cec6dc53612dbeeb300"
     },
     {
       "path": "skills/kubernetes/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 5532,
-      "sha256": "175eaf6bcde5e6308b03ed309eaa272233c81b53c8a4061d9a628c149d3e7fe1",
+      "size_bytes": 5528,
+      "sha256": "62dcae10e9e821a3a442cdfa3c2016c29b772972707cd31fdb67d8646ac81961",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
-      "size_bytes": 4490,
-      "sha256": "f4bf5e0307131ac3dbb582ed6515952b67377d612a80f2ee8f8cf7387f6671d4",
+      "size_bytes": 4485,
+      "sha256": "4ebb4809e1f7060228c719ce4a702f65b839ec1ba11a5058f75d1cf749762d14",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "49fc1baae85a4022049f4aa4408b126a477bbf131a2ea697d5bba21dd97392aa",
+    "sha256": "62d6c4a1515419e783991d4363dafe72218bad01b7d982e74eab7a7fd310d307",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "17c9ab5f381ad08340287288749e566551e14c7f2685b064e9cb64a1ce7f8c8f",
-    "package_sha256": "774540b96106869b5dde236a13f96af72a99b0900e06b0941ef309eef2a4e6fc"
+    "package_sha256": "bb44d0831a4ff895497e864d7377b8c9c2a2d03d7c692abb3c5ef961b47b0324"
   }
 }

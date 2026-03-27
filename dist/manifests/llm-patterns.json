@@ -304,7 +304,7 @@
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
       "size_bytes": 5140,
-      "sha256": "d4e1a10e927124d8a32929290954c03e803bfa1cca060dd27661efcd592d9d11"
+      "sha256": "32a6f6c2bee7ec248d6db3ac64f7f29eaab42d89a25051eec5b574ceb0d11781"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 5455,
-      "sha256": "4fb310b33bcb581ca617ba72b59be90404301a2a903b1266e758e3ee5574be26",
+      "size_bytes": 5450,
+      "sha256": "01926173dff420f3c322f0b7a041dd06e856d7c3ac490a10ddc69d5dbf149bac",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
-      "size_bytes": 4340,
-      "sha256": "e4252277bf564fc4099d6ae6d62ebebc0fae9ccc74d48d6383dd322b9510e43b",
+      "size_bytes": 4334,
+      "sha256": "bdab59ce8bd8a8bc59e220c8afb7bcf4506d81ed3647a74853d03d674cd934ed",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "c372d032ea9014b03bf83aa4a536247221811e1c970eb23300950ea02238bacf",
+    "sha256": "0dae8ef444eb1e2a93d717ec630d6375f2b6732ff54f59bb67d2d8a1aa4308a2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "54689b383aba8f0c042770576ad3bb92339d30d57af67badc40276a99f16bdb4",
-    "package_sha256": "7244add5e58b50f2878adc5d284905d0ba03e638428d962fccb1c86ebd818457"
+    "package_sha256": "60031f0dd1c5a9cd0d116206cf4bad38da788bc7bd3a66e586c37dfac3baff5c"
   }
 }

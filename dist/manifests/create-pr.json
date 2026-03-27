@@ -303,7 +303,7 @@
       "path": "skills/create-pr/metadata.json",
       "kind": "support",
       "size_bytes": 5140,
-      "sha256": "80f5a6c58d54d94bf15df2ce9b7f3f3fed0d21709c7532d4ee2473633cb59062"
+      "sha256": "0dfe0864e2d7d2db5c15eb56e1517d798ff41077bfbb84e0e1bb7456b46cf42c"
     },
     {
       "path": "skills/create-pr/examples/pr-body-example.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/create-pr.zip",
       "file_name": "create-pr.zip",
-      "size_bytes": 5849,
-      "sha256": "35cabc071b5147472c6f2e5c8eb89e046f3f031f90b27a2afdbf3a724fc7b8b7",
+      "size_bytes": 5842,
+      "sha256": "9c8ecf80c06ec07ed028a23ceb52431edd0355f0890cb6279193f430edfd6f15",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/create-pr.tar.gz",
       "file_name": "create-pr.tar.gz",
-      "size_bytes": 4642,
-      "sha256": "2f9991a70477da3f3064d7c61dbeb302e862f1d83ba5c74a8ab317405ae83591",
+      "size_bytes": 4634,
+      "sha256": "67610713d7b594fb505529c4661dc77a078b846f6e21455dba2746258ef8c380",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-pr.checksums.txt",
     "file_name": "create-pr.checksums.txt",
-    "sha256": "53b1cc0e12057b78a6dd1489e0047b80eff0e79c7418f2f763f7315b6a1c2b9d",
+    "sha256": "c39f1dead10942f191600ac59ed13b592970415932de3f740a1012cc4a63dba7",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2d224b8b10dec33147882b135753c86b213325db894f4d75d95916bdc7af8b09",
-    "package_sha256": "bdfbb3b401876d08bc8356af6f2d477febb69a01641cb1d1b6c226f8117e3ad7"
+    "package_sha256": "ad6d4bbea01e7782c762d6ada9139a16d0cc248e5614e6decb255d6076bcc689"
   }
 }

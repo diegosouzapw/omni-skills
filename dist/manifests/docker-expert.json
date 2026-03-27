@@ -304,7 +304,7 @@
       "path": "skills/docker-expert/metadata.json",
       "kind": "support",
       "size_bytes": 5113,
-      "sha256": "544192159ef66844a885b02c283ffc1fb605bbd3c1bbe7da967ad423784a4e6e"
+      "sha256": "f3cd2127874476f7c5a8fd455e1a0bfd0753089b6298a211cea970ecf5b216a9"
     },
     {
       "path": "skills/docker-expert/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/docker-expert.zip",
       "file_name": "docker-expert.zip",
-      "size_bytes": 5748,
-      "sha256": "09c38206582ec06da5b11e494b6b78ebf572840eecace6c7830f1f1075ebeaf1",
+      "size_bytes": 5746,
+      "sha256": "8d02f4c407c143257708424d3f147e29edabcf38df96a604e19fc9436478b4ae",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/docker-expert.tar.gz",
       "file_name": "docker-expert.tar.gz",
-      "size_bytes": 4661,
-      "sha256": "e79674f612baf4d4f8bd44533b12157a6aa2e7ce1dbad588d8fd0e1c707c3da1",
+      "size_bytes": 4654,
+      "sha256": "247e7528be7b7861c20da27e3d67178ca4beea7eb550a97fa39089b63509130b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/docker-expert.checksums.txt",
     "file_name": "docker-expert.checksums.txt",
-    "sha256": "ae0333fbff4544d71045479c673bb189ecdbe9d6d11e5f82dd152ad695a31544",
+    "sha256": "cb060616d9f416fe336b65539588719080da6311e0c43c8c159a52d135a303ed",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "08587fe96be3a34afb7b86c5e2f26be81c86cb009250cc7aa5835d4140ef8870",
-    "package_sha256": "f409db2db8269fa37dff5907ba65262d16b7f179e7054887f97266d86072c9af"
+    "package_sha256": "d950b6ae2444bb5147e2e66b8f97b1126d5cf99d2318c3bc2f8bf181e1ea3bac"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T18:31:28+00:00",
+  "generated_at": "2026-03-27T00:00:00+00:00",
   "id": "api-design",
   "slug": "api-design",
   "display_name": "API Design",
@@ -37,7 +37,7 @@
   "dates": {
     "added": "2026-03-26",
     "updated": "2026-03-27",
-    "file_mtime": "2026-03-27T18:31:28+00:00"
+    "file_mtime": "2026-03-27T00:00:00+00:00"
   },
   "paths": {
     "root": "skills/api-design",

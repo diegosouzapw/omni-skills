@@ -1,2 +1,2 @@
-4fb310b33bcb581ca617ba72b59be90404301a2a903b1266e758e3ee5574be26  llm-patterns.zip
-e4252277bf564fc4099d6ae6d62ebebc0fae9ccc74d48d6383dd322b9510e43b  llm-patterns.tar.gz
+01926173dff420f3c322f0b7a041dd06e856d7c3ac490a10ddc69d5dbf149bac  llm-patterns.zip
+bdab59ce8bd8a8bc59e220c8afb7bcf4506d81ed3647a74853d03d674cd934ed  llm-patterns.tar.gz

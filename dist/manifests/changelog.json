@@ -303,7 +303,7 @@
       "path": "skills/changelog/metadata.json",
       "kind": "support",
       "size_bytes": 5160,
-      "sha256": "0eb0c0cbb8687e81086bc7fce86fb09b58c54773df1f2179529a31faecc3e304"
+      "sha256": "0d5c7e7c9fce6df65bbc91a2a361b3a8b33b1e683a8b5a680546c967a610bce3"
     },
     {
       "path": "skills/changelog/examples/release-note-skeleton.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/changelog.zip",
       "file_name": "changelog.zip",
-      "size_bytes": 5825,
-      "sha256": "058fb2be23059986362802848a19c24b218f0c0a68c8aa326124b8e8afe0f065",
+      "size_bytes": 5821,
+      "sha256": "dba616ecff9961904df187f7c2ff8d7502549fb45b5edcb488701dd8a31af72e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/changelog.tar.gz",
       "file_name": "changelog.tar.gz",
-      "size_bytes": 4578,
-      "sha256": "403afc641f4b9251222eee4a1d32a46bd226b3188e6e5e2c34c4ab2a9f51cc9a",
+      "size_bytes": 4571,
+      "sha256": "17565c2025746ad4578e469916cdabc8ea62764cd13e647a8700cba47645154e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/changelog.checksums.txt",
     "file_name": "changelog.checksums.txt",
-    "sha256": "dcb142ce540076b31fc0cb21037bbc8a5b7d703de012e63aa19de490a903a55f",
+    "sha256": "aeb657a606388074600b639a2275ecb11eef7fc817ffe7ce3a7c3cd19e406607",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "49bc957b1e3c82aaef1cb0b5f17cfc110c46bcd1c64c5844d529f540f719fab2",
-    "package_sha256": "6b3d6b72a20eba1918d3787c3aee1b957abcf9fcd2e7e3cb5f5afef95cb46590"
+    "package_sha256": "b004fa202c5712612ddd0a7fc1328bb6a9211acdb546e0f4649f3cd916203c35"
   }
 }

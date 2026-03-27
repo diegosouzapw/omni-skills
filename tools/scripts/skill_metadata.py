@@ -525,22 +525,6 @@ def stable_isoformat(value: datetime) -> str:
     return normalized.isoformat()
 
 
-def git_last_modified_at(repo_root: str, relative_path: str) -> datetime | None:
-    if not repo_root or not relative_path:
-        return None
-    try:
-        result = subprocess.run(
-            ["git", "-C", repo_root, "log", "-1", "--format=%cI", "--", relative_path],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    except (OSError, subprocess.CalledProcessError):
-        return None
-
-    return parse_iso_date(normalize_text(result.stdout))
-
-
 def stable_generated_at(*values: Any) -> str:
     candidates: List[datetime] = []
     for value in values:
@@ -1909,8 +1893,7 @@ def validate_skill(
     tools = parse_string_list(frontmatter.get("tools"))
     semantic_signals = compute_semantic_signals(content, sub_resources, frontmatter)
     file_mtime = (
-        git_last_modified_at(repo_root, to_posix_path(os.path.relpath(skill_md, repo_root)))
-        or parse_iso_date(normalize_text(frontmatter.get("date_updated")))
+        parse_iso_date(normalize_text(frontmatter.get("date_updated")))
         or parse_iso_date(normalize_text(frontmatter.get("date_added")))
         or STABLE_FALLBACK_DATETIME
     )

@@ -303,7 +303,7 @@
       "path": "skills/architecture/metadata.json",
       "kind": "support",
       "size_bytes": 5156,
-      "sha256": "28848548c401d7758b339e37d6d7f235b7e3f629502b57ec81a8fdf74f0a3fa6"
+      "sha256": "b3f1e7101ae1dd92d456ffc5c75843cb471e817368931dee7f3499c7fc90756b"
     },
     {
       "path": "skills/architecture/examples/rollout-plan-example.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/architecture.zip",
       "file_name": "architecture.zip",
-      "size_bytes": 5961,
-      "sha256": "975c2c50006775c7995658945fea64c6d6e48ffb05de963e8e354dd490ddba4e",
+      "size_bytes": 5958,
+      "sha256": "5571f1cd6540d58c3adfca58f304866cd566babf92a3c9597febf19191c9209a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/architecture.tar.gz",
       "file_name": "architecture.tar.gz",
-      "size_bytes": 4748,
-      "sha256": "b374c7a3e127396a68bb9afa45ba7e1102b4632d0568cec16bfdcfc814533770",
+      "size_bytes": 4741,
+      "sha256": "b6d08b0ef4a7cf3cdbd6613427c879562cc353cade738cbd4506b796b69bb897",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/architecture.checksums.txt",
     "file_name": "architecture.checksums.txt",
-    "sha256": "014c48892c88cc4b00aeb49bbb82ba1160056c92030927bb7a7c1923c629d4bf",
+    "sha256": "79560929ff4bd528b8476202b2f7cf03538b56c94d18a76e8cf553e9f05da0e4",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "8595ebad16223453ded6c973e8815cd2f0c8d5d532e5f8e8af2843b34b677067",
-    "package_sha256": "a283e5636ad0ed5e18ea456394857938b125d8ffefcdc3bb45d124d790aa5367"
+    "package_sha256": "ca1196ae9699bbf7ff05a5f70cbe21dafff818b912f18d90035f693aaf4faf9a"
   }
 }

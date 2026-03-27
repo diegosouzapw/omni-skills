@@ -304,7 +304,7 @@
       "path": "skills/frontend-design/metadata.json",
       "kind": "support",
       "size_bytes": 5224,
-      "sha256": "cf526bbbd5d44faebf5f2128ccf758d76fcc38910d3d9ad44306dbb4b5334ddf"
+      "sha256": "34495f092adedbfe88c004f62c727864cc3b72ff217cd552f15aa3de32665780"
     },
     {
       "path": "skills/frontend-design/examples/component-handoff-worksheet.md",
@@ -342,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/frontend-design.zip",
       "file_name": "frontend-design.zip",
-      "size_bytes": 6405,
-      "sha256": "989a9556d2df330ea33b6a9c6e82153b97396c716fb82bdf9456e4d5db387c22",
+      "size_bytes": 6402,
+      "sha256": "a59ac24562e2ea775b50ccc742e0036b79f57c9efb2ce2df5f16dcc39a59a7a6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -356,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/frontend-design.tar.gz",
       "file_name": "frontend-design.tar.gz",
-      "size_bytes": 4827,
-      "sha256": "2b3ca9bb74aea39cde0c771663305a288dc670906638ee6bd64d42ae3371ebf2",
+      "size_bytes": 4820,
+      "sha256": "5cc1d8668b642175eb3b79165e0983e48f5458f517f079667ebee4204da83c79",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -370,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-design.checksums.txt",
     "file_name": "frontend-design.checksums.txt",
-    "sha256": "9aaea48b056bd7debde5ffcc153582ca4ae55c04a9bf4dbc74e0b7dc5a8ad452",
+    "sha256": "9263655a9d5a6ffe0d19e25f033d6065be88bc881f3b12db04b7596623d6feb3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -381,6 +381,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d",
-    "package_sha256": "8ee1ff62de3a10cbfacb561a3b0f72a7df229ff011eaa84c4bc619911d0fd1c8"
+    "package_sha256": "e37d4d9f3469edbae8e89f3604ae2ebbce8c3920c0412637f45909a24bc577cd"
   }
 }

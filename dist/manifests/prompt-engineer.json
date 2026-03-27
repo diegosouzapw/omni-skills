@@ -304,7 +304,7 @@
       "path": "skills/prompt-engineer/metadata.json",
       "kind": "support",
       "size_bytes": 5152,
-      "sha256": "d4950ea699e459647a9abe117598bcc0fc6bdf0446f9b1310adb4275877a5898"
+      "sha256": "e9458b7215bcaf4f65f584cc44f4681d0ca6c62df70cb6cfcab78bad8929177b"
     },
     {
       "path": "skills/prompt-engineer/agents/openai.yaml",
@@ -330,8 +330,8 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 5229,
-      "sha256": "130382691dcfb43c484b0c9a6ba5e989e11ca35a7b9259365f6522e5f4ad1d7b",
+      "size_bytes": 5224,
+      "sha256": "6fa665af6cc9f01ee6fb6aa93f7c533e9db4296ac17feac7c8e6635d6ebfedea",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -344,8 +344,8 @@
       "format": "tar.gz",
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
-      "size_bytes": 4160,
-      "sha256": "dc789429aa3e27ea138e2509380c8b504f42c1b9eff8ba19f1bd4f648fa77a30",
+      "size_bytes": 4155,
+      "sha256": "561557a902057449a3c0be46e13ad4ee66a8f879676196b2c6848067b8bdd271",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -358,7 +358,7 @@
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "76a83de1a8b737b3c2891db45a95118f8afaf9e62a0a87aaefb99dd2ab4300b2",
+    "sha256": "03ff400f0de4b691100b6a3b29ea22a525cf25fa9a6874b85b007188846ce70a",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -369,6 +369,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5521e1839847a91211239b3df47e91a2d9012a228d4035abda6e3b93910449f7",
-    "package_sha256": "e5950f1b3f140850b6bc895325ad4b6cfa33efb932161c0c3b53a582350a1a3e"
+    "package_sha256": "a96384e7d243507af8897381e3eb82a2bc916fd03bfd3ba59a8d16d8651598e4"
   }
 }

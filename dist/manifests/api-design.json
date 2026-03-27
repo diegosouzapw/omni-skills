@@ -304,7 +304,7 @@
       "path": "skills/api-design/metadata.json",
       "kind": "support",
       "size_bytes": 5154,
-      "sha256": "1bd1ff0f74084c013cf7b724a21b620dbeedb6c91b9ef8daa50e5818af36754b"
+      "sha256": "ef46a8b7593afb8ae5d7f9404dc42d28b4e9d023e0fed81e6acdcf29eee6efd7"
     },
     {
       "path": "skills/api-design/examples/error-contract-rubric.md",
@@ -342,8 +342,8 @@
       "format": "zip",
       "path": "dist/archives/api-design.zip",
       "file_name": "api-design.zip",
-      "size_bytes": 6414,
-      "sha256": "789f85489b81afdb67d53380a36207fdfff076078c4137144cd09df226d543de",
+      "size_bytes": 6411,
+      "sha256": "b9c676993cfabce530e69c8286c768add0026bf840a2fc34d706527b7e62955a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -356,8 +356,8 @@
       "format": "tar.gz",
       "path": "dist/archives/api-design.tar.gz",
       "file_name": "api-design.tar.gz",
-      "size_bytes": 4887,
-      "sha256": "a7b7e655f9b469795fd9a86e6a9a2a6b5d1cc36b3aff2b919b2a486cecaa67ec",
+      "size_bytes": 4881,
+      "sha256": "6bdf3cfbb7ddd751371482c8506f99f49a2c66a40049312eeaab1927105ec8a1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -370,7 +370,7 @@
   "archive_checksums": {
     "path": "dist/archives/api-design.checksums.txt",
     "file_name": "api-design.checksums.txt",
-    "sha256": "8f51a9641d0f0ab4907f022190b836a4bcfb0706723298f7f7c182de5a449cee",
+    "sha256": "e5c84b1c3cb707e9e19b628886737d2769bc82610dad9b56bbf72c5f9eed0f49",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -381,6 +381,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "0534ac90886c8979c4a6c7fe6e12ec23d9ba48be22fdbe651c8791edd7575037",
-    "package_sha256": "1da46bcb87bff6108e7a3c5c09c74c26373d616774c21cf18a0eaa75370d6927"
+    "package_sha256": "a05f144f0cc33817de270da43e534fe4e8e82fc096fbeb8943c38642fee46086"
   }
 }

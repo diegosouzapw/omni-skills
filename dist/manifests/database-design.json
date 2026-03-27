@@ -303,7 +303,7 @@
       "path": "skills/database-design/metadata.json",
       "kind": "support",
       "size_bytes": 5165,
-      "sha256": "cb9fff3bdffb83a5ad24fd5f1758d834c143f84a2fe10456a03fa0f2fa3bae82"
+      "sha256": "1e69ebc4502560ee5cf7319ab6fd367c90fb755ba2bd2a4c1ef65232bef2dfa1"
     },
     {
       "path": "skills/database-design/examples/schema-review-example.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/database-design.zip",
       "file_name": "database-design.zip",
-      "size_bytes": 5947,
-      "sha256": "6e41e2c831d7bec9b086be230327579a4aeec45bc17ccec622aa232dcfc5716a",
+      "size_bytes": 5944,
+      "sha256": "153d3f3c0c9eae9a038296cb42e61cb1764041c146d263db455461d68bf5520f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/database-design.tar.gz",
       "file_name": "database-design.tar.gz",
-      "size_bytes": 4601,
-      "sha256": "a6db1ffc5841ed69462fae53cbe62be302e09eccfed700c7482bcf7e29ce7a12",
+      "size_bytes": 4591,
+      "sha256": "72ed313f587f1b130a832a8ff26a32be8c01a1241af02e750e37c4c800d2a77d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/database-design.checksums.txt",
     "file_name": "database-design.checksums.txt",
-    "sha256": "797e8fcfcb7ff76afe1a0f37cbd6cad94bb4a4c49ab4bd6da733db8adbe43958",
+    "sha256": "38439c08e760fb15ada12a91bfad233f8bca24a48515917d95a81e4cb13d51d3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f6ee87f1df350f9c0752ce33f9b72eb66f283c9115d2125013d05a87710bb9bf",
-    "package_sha256": "59b460447e7279180666a41c48c405eed93cc61292ee241562f90653917ae494"
+    "package_sha256": "b91a4d8e1be0bf035779810f44e6ac77140e93607faecb119b020b5fea86fc48"
   }
 }

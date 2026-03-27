@@ -303,7 +303,7 @@
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
       "size_bytes": 5264,
-      "sha256": "b1d3e89a0f2ee7a464b0bc568c225b3b7173e5ea3a4a0f2fd3d0c15917ff813a"
+      "sha256": "556b6bc15ba81c4e2dec1a2ec89548935524c80081f4f6cf39e9b02b30a67834"
     },
     {
       "path": "skills/security-auditor/examples/finding-severity-rubric.md",
@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 6578,
-      "sha256": "eb8ec8d13a9c35480725fce9731187f3036b254ebea460ee93329b4f90a45e76",
+      "size_bytes": 6573,
+      "sha256": "6f1e77e9c936b320a585578580b149876e7872b879ace1eb613553dd4fded2da",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
-      "size_bytes": 5021,
-      "sha256": "daf637d5f1e6b0be9e673eec6e49d2f2896d7ceb92ff387aa4a11ebb0400ca8f",
+      "size_bytes": 5016,
+      "sha256": "ea5282d7e846368fae385f6de4ae3ed158e0511060167c431cfcac7407ae30e4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "c4fc5757ecaafa58d8df54ee71943e1b24341be2d9a7ccd0d3516d1053d1c6fe",
+    "sha256": "02876f156023fad41812b215677dca363f9c63a8e5a9474f3c94defcef386e34",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
-    "package_sha256": "c45771eae879cbddf1615c70dd9388caa538e4617d5085bd4059424a743d3c8b"
+    "package_sha256": "ada9bb625f3e3962cb67ea5288ef6d5557ab7503be0f3d605ea3561103474d55"
   }
 }

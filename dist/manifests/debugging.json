@@ -303,7 +303,7 @@
       "path": "skills/debugging/metadata.json",
       "kind": "support",
       "size_bytes": 5151,
-      "sha256": "c65bf66900cd036bb2566d4cf95a11e556ab7c2c57d11028480e8bc9ff22eee6"
+      "sha256": "3881c5dc4a42f81f5f699d02d681d6341c55fa1e80af9ac99779f4b168d87c53"
     },
     {
       "path": "skills/debugging/examples/debug-session-log.md",
@@ -335,8 +335,8 @@
       "format": "zip",
       "path": "dist/archives/debugging.zip",
       "file_name": "debugging.zip",
-      "size_bytes": 5811,
-      "sha256": "17838439cad513de1f38a0c40a3fcbfb781b9fb4f742347df8f5b6786f923071",
+      "size_bytes": 5807,
+      "sha256": "bc7983685a3066f0c1a141627b808e15b2ad3e644d5681eb01e30296e0f1fe5d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -349,8 +349,8 @@
       "format": "tar.gz",
       "path": "dist/archives/debugging.tar.gz",
       "file_name": "debugging.tar.gz",
-      "size_bytes": 4638,
-      "sha256": "62ac84a93cf1c50f76f961bcc322abca6dbfb0ef16faabcff5dcfc84ce4a8fa0",
+      "size_bytes": 4631,
+      "sha256": "318e1ee1aaa72e13ce679fb786aadf7aae25a2cd7b8c002547c9a3346208f78c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -363,7 +363,7 @@
   "archive_checksums": {
     "path": "dist/archives/debugging.checksums.txt",
     "file_name": "debugging.checksums.txt",
-    "sha256": "4f7e113230efcff8dfcf4ba1a9d70685a5def4af585ee4b708d6c24422b501c8",
+    "sha256": "031bd5e5213f55734169536706fcda76681d15e4b35fccc735aac592afbd4db6",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -374,6 +374,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "3f9d1e85a33e3553815b979afffdce7489624687bee0d5b0f5d57fa298b133ac",
-    "package_sha256": "5362ae23a60113a29191e56fe664a0b346e52b29f59037296856e5634989e408"
+    "package_sha256": "99ccc14ba8e8d8d7d6d421a0aef202ce348c6f73dd8bc78e9db4308ffeb2a951"
   }
 }

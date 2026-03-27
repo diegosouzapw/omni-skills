@@ -303,7 +303,7 @@
       "path": "skills/documentation/metadata.json",
       "kind": "support",
       "size_bytes": 5220,
-      "sha256": "19010f3a9bd9d2a11a073c9055616a7fcec62e78d7c475e2cbc509b6097ffee1"
+      "sha256": "86a58c6250156e4c1fe771a0b35f17c5651bfb9ade5a38c43be508f8b3402f76"
     },
     {
       "path": "skills/documentation/examples/quickstart-outline-packet.md",
@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/documentation.zip",
       "file_name": "documentation.zip",
-      "size_bytes": 5968,
-      "sha256": "5d3593f9f8817a5534df11c2a4832245f0d957ed6342848a0ec8120ebe9bd9ba",
+      "size_bytes": 5964,
+      "sha256": "60f90baef285987b83e0736c2c23a5f7e90ae22305d141c99e752b8adcc7a92b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/documentation.tar.gz",
       "file_name": "documentation.tar.gz",
-      "size_bytes": 4567,
-      "sha256": "1c29a9a12e78d97f44fb57c39fab7c7a098150272123323ca165e44f7f14b341",
+      "size_bytes": 4561,
+      "sha256": "569c68880228a77bbc497ef6e96e031d09f5e8bb8a467e15eef60e9b1c72d5f1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/documentation.checksums.txt",
     "file_name": "documentation.checksums.txt",
-    "sha256": "1a9b242e61980addca304eae7dfefb73c847de819371ecefa6aee8b26bda6caf",
+    "sha256": "700adc6dba6b7a34dccd13c46693663e11e22c4daa85730de83e37aaf45a18eb",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "14769fd32f19480795d3ad81015aa0d8fac6eb70ce28db4db868b1d2cb4b3272",
-    "package_sha256": "c842677cec337ba9578d70e08a13ed2d5905ab17c997dd079821701c39cb4547"
+    "package_sha256": "54d434f6fcd06c46180e9bb4708fbfd52eef1a41b2dc18db648eb0857e00df77"
   }
 }

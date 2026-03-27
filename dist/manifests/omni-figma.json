@@ -284,7 +284,7 @@
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
       "size_bytes": 5548,
-      "sha256": "bdae2906f538d0fd3931ddc114ded6d67b998c9a9c0ca6785022b1bc74ea0bfe"
+      "sha256": "50daae5377bdf67d335294b843477b4e81b5455e868dfde2dbbe52241ff6736c"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -358,8 +358,8 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 16060,
-      "sha256": "bd290d19fabbb8ac7f23dfdb16ed4a7422430276f34883a15534e4e58059da3f",
+      "size_bytes": 16055,
+      "sha256": "97a062cdd472d863c72836dea3b216c1632a4ee517be8259985b01a570aee9b7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -372,8 +372,8 @@
       "format": "tar.gz",
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
-      "size_bytes": 12677,
-      "sha256": "c1c33a6b30a5c047e612303d82e7f72486ec61883078ebe18ebe4a63212b6532",
+      "size_bytes": 12672,
+      "sha256": "e334a41849579d4309ff993d763dfb7792459863d64f963d8ecc44d6ea774df6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -386,7 +386,7 @@
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "f18dbbd83d2508e946677bdd2c76effbe0114681805d750ba93218e235fd36d0",
+    "sha256": "8b487af5c150128dd00dbe70fe3b68e16f9103087a74386b6921ea8b813686bb",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -397,6 +397,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76",
-    "package_sha256": "a067e5328b3c7bb81deb931ecfa15359594944907b209aa562289c357b6ccf3a"
+    "package_sha256": "30217022a7b511ff57e7260f7501a2451a9a9f7bfd5d3f02ac0a3338fe90ee39"
   }
 }

@@ -303,7 +303,7 @@
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
       "size_bytes": 5199,
-      "sha256": "960c7b49a00b74d5eec51d957248a5146646d207194f948ba1ffe4376872bbc1"
+      "sha256": "5be3369e24d9b72222d535d0643b95af918ae6c1809d398ee9ab08568f1408fb"
     },
     {
       "path": "skills/brainstorming/examples/constraint-capture-worksheet.md",
@@ -341,8 +341,8 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 6025,
-      "sha256": "24c1fd7e5cbb3ebfcff92acfa162493e2c9f67a906d1cad15cf1925cadb502c2",
+      "size_bytes": 6020,
+      "sha256": "02eda2002516d359cc17a53667dcb257b90a367837213451b9119d2266d354f4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -355,8 +355,8 @@
       "format": "tar.gz",
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
-      "size_bytes": 4638,
-      "sha256": "d14fc0cab435edcf0abeb3f5f7279f42ce7bedb55ef49cf36f956a9ebd646868",
+      "size_bytes": 4632,
+      "sha256": "1e19155510a1237fc54774699d52225ce6ff4b7749aba62e52b38aba1b0ef759",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -369,7 +369,7 @@
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "75dc8f7c064598d3db402550190cd18e933f600b091c430ab4eb0bb2d69756c4",
+    "sha256": "eca4620091a2907fa9a0a118f1e5af5440d4881914b9a0ccbb8774f280573381",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -380,6 +380,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
-    "package_sha256": "f30de6fa43c65f197626745957b9da03d7ec88cfaf951616bdfe3cda36b654e6"
+    "package_sha256": "4852b98ee6284e0085c975621c6174477a851c1512766ad8f8f35ccf131c3f0d"
   }
 }
