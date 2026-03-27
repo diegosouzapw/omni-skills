@@ -1,177 +1,175 @@
-# Catalog API Surface
+# 🌐 Catalog API Surface
 
-This document describes the initial read-only HTTP API exposed by `@omni-skills/server-api`.
+> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
 
-## Status
+---
 
-Implemented and wired into the unified CLI, smoke checks, and generated catalog artifacts.
+## 📊 Status
 
-Current limitations:
+| Feature | State |
+|:--------|:------|
+| ✅ Catalog endpoints | Implemented |
+| ✅ Auth (bearer + API key) | Implemented |
+| ✅ Rate limiting | Implemented |
+| ✅ Audit logging | Implemented |
+| ✅ Archive downloads | Implemented |
+| ✅ OpenAPI spec | Implemented |
+| ⚠️ Auth backend | In-memory, env-driven |
 
-- read-only only
-- catalog size still reflects the small published skill set
-- auth and rate limiting are in-memory and env-driven today, not backed by an external gateway
+---
 
-## Purpose
+## 🎯 Purpose
 
 The API provides a registry-style surface for:
 
-- listing skills
-- fetching manifests
-- searching and comparing skills
-- sorting and filtering by generated classification signals
-- listing bundles
-- generating read-only install plans
-- downloading generated catalog artifacts, skill files, and per-skill archives
+- 📋 Listing and filtering skills by quality, security, category, risk, and more
+- 📌 Fetching individual skill manifests
+- 🔎 Full-text search and multi-skill comparison
+- 📦 Bundle listing with availability
+- 📐 Read-only install plan generation
+- 📥 Downloading generated artifacts, archives, and checksum manifests
 
-## Runtime
+---
 
-Start the server from the repo root:
+## 🚀 Quick Start
+
+### 📦 From repo:
 
 ```bash
 npm run api
 ```
 
-Or through the published package:
+### 📦 From published package:
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Defaults:
-
-- host: `127.0.0.1`
-- port: `3333`
-
-Override with:
+### ⚙️ Custom host and port:
 
 ```bash
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-## Hosted Security Controls
+**Defaults**: `127.0.0.1:3333`
 
-The API now supports optional env-driven hardening.
+---
 
-Bearer auth:
+## 🔐 Security Controls
 
-```bash
-OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npm run api
-```
+All security controls are env-driven and optional:
 
-API keys:
+| Control | Variable | Example |
+|:--------|:---------|:--------|
+| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
+| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
+| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
 
-```bash
-OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npm run api
-```
+**Behavior:**
+- 🟢 `/healthz` remains **always unauthenticated**
+- 🔒 All other routes require auth when auth is enabled
+- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
 
-Rate limiting:
-
-```bash
-OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npm run api
-```
-
-Audit log:
+### 🔐 Full hardened example:
 
 ```bash
-OMNI_SKILLS_HTTP_AUDIT_LOG=1 npm run api
+OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
+OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b \
+OMNI_SKILLS_RATE_LIMIT_MAX=60 \
+OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
+OMNI_SKILLS_HTTP_AUDIT_LOG=1 \
+npx omni-skills api --port 3333
 ```
 
-Behavior:
+---
 
-- `/healthz` remains unauthenticated
-- all other routes require auth when auth is enabled
-- rate limiting is applied in-process
-- responses expose `X-RateLimit-*` headers when rate limiting is enabled
+## 📡 Endpoints
 
-## Endpoints
+### 🏥 Health & Schema
 
-### Health and schema
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/healthz` | Health check (unauthenticated) |
+| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
 
-- `GET /healthz`
-- `GET /openapi.json`
+### 📚 Catalog & Skills
 
-### Catalog and skills
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/skills` | List skills with filters |
+| `GET` | `/v1/skills/:id` | Get individual skill manifest |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
+| `GET` | `/v1/bundles` | List bundles with availability |
+| `POST` | `/v1/install/plan` | Generate an install plan |
 
-- `GET /v1/skills`
-- `GET /v1/skills/:id`
-- `GET /v1/search`
-- `GET /v1/compare?ids=id1,id2`
-- `GET /v1/bundles`
-- `POST /v1/install/plan`
+### 🔎 List/Search Filters
 
-The `POST /v1/install/plan` body may include:
+| Filter | Example |
+|:-------|:--------|
+| `category` | `?category=development` |
+| `tool` | `?tool=cursor` |
+| `risk` | `?risk=safe` |
+| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
+| `order` | `?order=asc\|desc` |
+| `min_quality` | `?min_quality=80` |
+| `min_best_practices` | `?min_best_practices=60` |
+| `min_level` | `?min_level=2` |
+| `min_security` | `?min_security=90` |
+| `validation_status` | `?validation_status=passed` |
+| `security_status` | `?security_status=passed` |
 
-- `skill_ids`
-- `bundle_ids`
-- `tools`
-- `target_path`
-- `dry_run`
+### 📦 Install Plan Body
 
-The install plan reflects current installer behavior honestly:
+```json
+{
+  "skill_ids": ["omni-figma"],
+  "bundle_ids": ["full-stack"],
+  "tools": ["cursor"],
+  "target_path": "~/.cursor/skills",
+  "dry_run": true
+}
+```
 
-- full install is the default when no selectors are provided
-- `skill_ids` and `bundle_ids` generate selective commands
-- bundle warnings surface missing or unpublished members
+### 📥 Artifact Downloads
 
-Common list and search filters:
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/catalog/download` | Full catalog download |
+| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
+| `GET` | `/v1/skills/:id/archives` | List skill archives |
+| `GET` | `/v1/skills/:id/downloads` | All available download links |
+| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
+| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
+| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
 
-- `category`
-- `tool`
-- `risk`
-- `sort=name|quality|best-practices|level|security`
-- `order=asc|desc`
-- `min_quality`
-- `min_best_practices`
-- `min_level`
-- `min_security`
-- `validation_status`
-- `security_status`
+---
 
-### Artifact downloads
+## 🔗 Link Enrichment
 
-- `GET /v1/catalog/download`
-- `GET /v1/skills/:id/artifacts`
-- `GET /v1/skills/:id/archives`
-- `GET /v1/skills/:id/downloads`
-- `GET /v1/skills/:id/download/manifest`
-- `GET /v1/skills/:id/download/entrypoint`
-- `GET /v1/skills/:id/download/artifact?path=<repo-relative-artifact-path>`
-- `GET /v1/skills/:id/download/archive?format=zip|tar.gz`
-- `GET /v1/skills/:id/download/archive/signature?format=zip|tar.gz`
-- `GET /v1/skills/:id/download/archive/checksums`
+When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
 
-## Link Enrichment
+---
 
-When requests are handled through the API, the server enriches manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin.
+## 📋 Install Plan Notes
 
-Examples:
+> ⚠️ **Install plans are previews, not remote writes.**
 
-- manifest URL
-- entrypoint download URL
-- artifact download URLs
-- archive download URLs
-- detached signature download URLs
-- catalog download URL in install plans
+The API never installs onto the caller's machine. It returns:
+- 📌 Selected skill metadata
+- ⚠️ Warnings for missing bundle members
+- 🖥️ Concrete CLI commands to run locally
+- 🔗 Public download URLs when request origin is available
 
-This is runtime enrichment, not a build-time field baked into `dist/manifests/*.json`.
+---
 
-## Install Plan Notes
+## 🔌 Relationship to MCP
 
-Install plans are previews, not remote writes.
-
-The API never installs onto the caller's machine. It only returns:
-
-- selected skill metadata
-- warnings
-- concrete CLI commands
-- public download URLs when request origin data is available
-
-## Relationship to MCP
-
-The MCP read-only server can reuse the same public API URLs when `OMNI_SKILLS_API_BASE_URL` is configured.
-
-Example:
+The MCP server reuses the same public API URLs when configured:
 
 ```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http

@@ -1,58 +1,82 @@
-# ADR-0001: Agent-Native Workspace Foundation
+# 📐 ADR-0001: Agent-Native Workspace Foundation
 
-## Status
+> **The key architectural decision that shaped the monorepo workspace structure.**
 
-Accepted
+---
 
-## Context
+## 📊 Status
 
-Omni Skills started as an installer-first repository. That was enough to distribute `SKILL.md` content, but it was not enough to expose the catalog to agents through protocol-native surfaces.
+✅ **Accepted** — Implemented and proven.
+
+---
+
+## 🔍 Context
+
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
 We needed a foundation that could support:
 
-- a read-only HTTP catalog API
-- a read-only MCP server
-- an A2A-facing agent surface
-- future local install sidecars
+| Requirement | Protocol |
+|:------------|:---------|
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-The critical constraint was to avoid reparsing repo files independently in each new service.
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
 
-## Decision
+---
 
-Adopt a workspace-oriented structure with a shared catalog core and protocol-specific packages:
+## ✅ Decision
 
-- root package `omni-skills`: existing CLI installer and repo scripts
-- `@omni-skills/catalog-core`: shared catalog loading, search, recommendation, comparison, bundles, and install-plan primitives
-- `@omni-skills/server-api`: read-only REST API
-- `@omni-skills/server-mcp`: MCP server with `stdio`, `stream`, and `sse` entry points plus optional local sidecar mode
-- `@omni-skills/server-a2a`: initial A2A scaffold with Agent Card and `message/send`
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+
+| Package | Purpose |
+|:--------|:--------|
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A scaffold with Agent Card + `message/send` |
+
+### 📁 Shared Data Sources
 
 The catalog core reads generated artifacts from:
-
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
 - `skills_index.json`
 
-## Consequences
+---
 
-### Positive
+## ✅ Positive Consequences
 
-- API, MCP, and A2A now share one data contract.
-- The published root CLI now exposes install, API, MCP, A2A, diagnostics, and smoke flows behind one binary.
-- New protocol surfaces can be iterated without coupling to installer internals.
-- The repository now includes a working local write-capable MCP sidecar behind an allowlist.
+| Outcome | Impact |
+|:--------|:-------|
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist |
+| 📦 **Minimal dependencies** | Only 4 production dependencies across the entire workspace |
 
-### Negative
+---
 
-- There is temporary duplication between Python build metadata and JavaScript runtime metadata.
-- A2A support is intentionally partial for now; it is a useful scaffold, not a complete task lifecycle implementation.
-- The installer now supports selective skill and bundle installation, so the catalog contract must keep commands, manifests, and docs aligned.
-- Bundle metadata can currently outpace the published catalog, so the docs and API need to be explicit about missing members.
+## ⚠️ Negative Consequences
 
-## Follow-Up
+| Tradeoff | Mitigation |
+|:---------|:-----------|
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A is partial** | Intentional scaffold, not a complete task lifecycle |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
 
-1. Add remote MCP authentication and rate limiting.
-2. Improve generic local MCP config writing into more client-specific outputs.
-3. Move from raw tagged artifact downloads to signed release artifacts or per-skill archives.
-4. Upgrade the A2A scaffold from message-only responses to task-aware execution.
-5. Expand the published catalog so bundle metadata maps to more real installable skills.
+---
+
+## ➡️ Follow-Up Items
+
+| # | Action | Status |
+|:--|:-------|:-------|
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | 🟡 Partial |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Archives done, ⏳ CI enforcement pending |
+| 4️⃣ | A2A scaffold → task-aware execution | ⏳ Pending |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ⏳ In Progress |

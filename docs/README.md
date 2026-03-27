@@ -1,193 +1,191 @@
 <!-- omni-skills: version=1.0.0; skills=2; updated_at=2026-03-26 -->
-# Omni Skills Documentation
+# 📖 Omni Skills — Documentation Hub
 
-This directory is the technical and user-facing documentation hub for Omni Skills. Repository-standard community files now live in the root again:
+> **The central reference for using, operating, extending, and understanding the Omni Skills platform.**
 
-- [`README.md`](../README.md)
-- [`CONTRIBUTING.md`](../CONTRIBUTING.md)
-- [`SECURITY.md`](../SECURITY.md)
-- [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
+Standard community files live in the repository root:
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
 
-## Status Snapshot
+---
 
-Current repository state:
+## 📊 Status Snapshot
 
-- the runtime foundation is in place
-- the public catalog currently contains 2 published skills: `omni-figma` and `find-skills`
-- selective install by skill and bundle is implemented
-- the API is implemented and read-only
-- the MCP server supports `stdio`, `stream`, and `sse`
-- local MCP sidecar mode is implemented with allowlisted writes, dry-run defaults, and client-aware config generation
-- skills are now classified locally with canonical taxonomy, maturity level, best practices score, quality score, and security score
-- per-skill archives are generated in `dist/archives/` as `zip`, `tar.gz`, and checksum manifests
-- the validator can optionally enrich security metadata with ClamAV and VirusTotal hash lookups
-- hosted API and MCP HTTP modes now support optional auth, rate limiting, and audit logging
-- the A2A surface exists as a scaffold, not as a full task system
-- smoke and publish checks validate the package before release
+| Area | State | Details |
+|:-----|:------|:--------|
+| 🏗️ **Runtime** | ✅ Complete | CLI, API, MCP (3 transports), A2A scaffold |
+| 📦 **Catalog** | 📌 2 skills | `omni-figma` and `find-skills` published |
+| 🎯 **Install** | ✅ Complete | Selective install by `--skill` and `--bundle` |
+| 🌐 **API** | ✅ Complete | Read-only with auth, rate limiting, audit log |
+| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode |
+| 🤖 **A2A** | 🏗️ Scaffold | Discovery + install-plan, no task lifecycle yet |
+| 🛡️ **Security** | ✅ Complete | Static scanner + optional ClamAV/VirusTotal |
+| 📋 **Classification** | ✅ Complete | Taxonomy · maturity · quality · best practices · security |
+| 📁 **Archives** | ✅ Complete | Per-skill zip/tar.gz with SHA-256 checksums |
+| 🔐 **Signing** | ⏳ Optional | Local signing, CI enforcement pending |
 
-Current gaps:
+---
 
-- most bundle members are still roadmap metadata, not published skills
-- stronger hosted governance beyond the current auth, rate limit, and audit-log baseline is still pending
-- CI-managed signing keys and enforced release signatures are still pending
-- A2A task lifecycle is still pending
-- MCP config coverage still needs to expand beyond the current JSON and TOML targets
+## 🚀 Start Here
 
-## Start Here
+### 👤 If You Want to **Use** the Project
 
-### If You Want to Use the Project
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 📘 [Getting Started](users/getting-started.md) | Install, verify, and invoke your first skill |
+| 📗 [Usage Guide](users/usage.md) | All installation modes, prompt patterns, and runtime commands |
+| 📦 [Bundles](users/bundles.md) | Curated skill selectors and their current availability |
+| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
+| 🔧 [System Runbook](operations/runbook.md) | Full operational reference for build, serve, and troubleshoot |
 
-- [Getting Started](users/getting-started.md)
-- [Usage Guide](users/usage.md)
-- [Bundles](users/bundles.md)
-- [Catalog](CATALOG.md)
-- [System Runbook](operations/runbook.md)
+### 🏗️ If You Want to **Understand** the Runtime
 
-### If You Want to Understand the Runtime
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 🗺️ [Agent-Native Roadmap](architecture/agent-native-roadmap.md) | Target architecture and phase plan |
+| 📐 [ADR-0001: Workspace Foundation](architecture/adr-0001-agent-native-workspace.md) | Key architectural decision and consequences |
+| 🔬 [Codebase Analysis](architecture/codebase-analysis.md) | Deep technical analysis of all components |
+| 🌐 [Catalog API Surface](specs/catalog-api.md) | HTTP endpoints, filtering, auth, and downloads |
+| 🔌 [Local MCP Sidecar](specs/local-mcp-sidecar.md) | Filesystem tools, allowlist, and config writing |
+| 📊 [Skill Classification](specs/skill-classification.md) | Taxonomy, scoring heuristics, and metadata shape |
+| 🛡️ [Security Validation](specs/security-validation.md) | Scanners, archives, signing, and distribution |
+| 📋 [Skill Manifest Spec](specs/skill-manifest.md) | Machine-readable manifest format and fields |
 
-- [Agent-Native Roadmap](architecture/agent-native-roadmap.md)
-- [ADR-0001: Agent-Native Workspace Foundation](architecture/adr-0001-agent-native-workspace.md)
-- [Catalog API Surface](specs/catalog-api.md)
-- [Local MCP Sidecar](specs/local-mcp-sidecar.md)
-- [Skill Classification and Metadata](specs/skill-classification.md)
-- [Security Validation and Distribution](specs/security-validation.md)
-- [Skill Manifest Specification](specs/skill-manifest.md)
+### 🤝 If You Want to **Contribute**
 
-### If You Want to Contribute
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repository workflow and PR guidelines |
+| 📄 [Skill Template](contributors/skill-template.md) | Starter SKILL.md with all frontmatter fields |
+| 🔬 [Skill Anatomy](contributors/skill-anatomy.md) | Structure and quality expectations for a skill |
+| ✅ [Quality Bar](contributors/quality-bar.md) | Acceptance criteria for the repository |
 
-- [Contributing Guide](../CONTRIBUTING.md)
-- [Skill Template](contributors/skill-template.md)
-- [Skill Anatomy](contributors/skill-anatomy.md)
-- [Quality Bar](contributors/quality-bar.md)
+---
 
-## Runtime Surfaces
+## 🔌 Runtime Surfaces
 
-### CLI
+### 🖥️ CLI
 
-The published `omni-skills` binary is the main operational entrypoint.
-
-Examples:
+The published `omni-skills` binary is the unified operational entry point.
 
 ```bash
-npx omni-skills --cursor --skill omni-figma
+# 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 npx omni-skills find figma --tool cursor --install --yes
-npx omni-skills find foundation --bundle essentials --install --yes
+
+# 📦 Installation
+npx omni-skills --cursor --skill omni-figma
+npx omni-skills --codex --bundle full-stack
+
+# 🏷️ Taxonomy
 npx omni-skills recategorize
 npx omni-skills recategorize --write
+
+# 🔌 Services
 npx omni-skills mcp stream --local
 npx omni-skills api --port 3333
 npx omni-skills a2a --port 3335
+
+# 🧪 Validation
 npx omni-skills smoke
+npx omni-skills doctor
 ```
 
-### Generated Catalog
+---
 
-The catalog contract is emitted into:
+### 📁 Generated Catalog Artifacts
 
-- `skills_index.json`
-- `dist/catalog.json`
-- `dist/bundles.json`
-- `dist/manifests/<skill>.json`
-- `dist/archives/<skill>.zip`
-- `dist/archives/<skill>.tar.gz`
-- `dist/archives/<skill>.checksums.txt`
+The build pipeline emits these machine-readable files that drive **all** runtime surfaces:
 
-These generated artifacts drive:
+| Artifact | Purpose |
+|:---------|:--------|
+| `skills_index.json` | Repo-local skill index |
+| `dist/catalog.json` | Published skill catalog |
+| `dist/bundles.json` | Bundle definitions with availability |
+| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
+| `dist/archives/<skill>.zip` | Skill archive (zip) |
+| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
 
-- selective installs
-- API responses
-- MCP read-only discovery
-- A2A recommendation and install-plan flows
-- archive downloads and checksum verification
+---
 
-### API
+### 🌐 API
 
-The read-only HTTP API serves skills, bundles, search, comparison, install plans, and artifact downloads.
-
-Repo command:
+Read-only HTTP API for skills, bundles, search, comparison, install plans, and artifact downloads.
 
 ```bash
-npm run api
+npm run api                              # From repo
+npx omni-skills api --port 3333          # From published package
 ```
 
-Package command:
+> 📖 Full reference: [Catalog API Surface](specs/catalog-api.md)
+
+---
+
+### 🔌 MCP
+
+Three transports for agent integration:
 
 ```bash
-npx omni-skills api --port 3333
+npx omni-skills mcp stdio               # Direct pipe
+npx omni-skills mcp stream              # Streamable HTTP
+npx omni-skills mcp sse                 # Server-Sent Events
+npx omni-skills mcp stream --local      # Local sidecar mode
 ```
 
-### MCP
+> 📖 Full reference: [Local MCP Sidecar](specs/local-mcp-sidecar.md)
 
-The MCP runtime supports three transports:
+---
 
-- `stdio`
-- `stream`
-- `sse`
+### 🤖 A2A
 
-Repo commands:
+Agent-to-agent scaffold for discovery and install-plan handoff.
 
 ```bash
-npm run mcp
-npm run mcp:stream
-npm run mcp:sse
+npx omni-skills a2a --port 3335
 ```
 
-Package commands:
+> ⚠️ Currently a scaffold, not a full task lifecycle engine.
 
-```bash
-npx omni-skills mcp stdio
-npx omni-skills mcp stream
-npx omni-skills mcp sse
-```
+---
 
-Local mode:
-
-```bash
-npx omni-skills mcp stream --local
-```
-
-### A2A
-
-The A2A service is present for discovery and install-plan handoff, but it is still a scaffold rather than a full long-running task system.
-
-## Repository Map
+## 🗂️ Repository Map
 
 | Path | Purpose |
-| :--- | :------ |
-| `skills/` | Canonical authored skills |
-| `docs/users/` | End-user docs |
-| `docs/contributors/` | Contributor templates and guidance |
-| `docs/architecture/` | Roadmap and ADRs |
-| `docs/operations/` | Runbooks and operational guides |
-| `docs/specs/` | Protocol and artifact contracts |
-| `docs/CATALOG.md` | Generated skill catalog |
-| `dist/` | Generated machine-readable artifacts |
-| `packages/catalog-core/` | Shared catalog runtime |
-| `packages/server-api/` | Read-only HTTP API |
-| `packages/server-mcp/` | MCP runtime with local sidecar mode |
-| `packages/server-a2a/` | A2A scaffold |
-| `tools/bin/` | CLI entrypoints |
-| `tools/lib/` | Installer helpers |
-| `tools/scripts/` | Validation, generation, and test scripts |
+|:-----|:--------|
+| 📂 `skills/` | Canonical authored skills |
+| 📖 `docs/users/` | End-user documentation |
+| 🤝 `docs/contributors/` | Contributor templates and guidance |
+| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
+| 🔧 `docs/operations/` | Operational runbooks |
+| 📋 `docs/specs/` | Protocol and artifact contracts |
+| 📚 `docs/CATALOG.md` | Generated skill catalog |
+| 📦 `dist/` | Generated machine-readable artifacts |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime (~829 LOC) |
+| 🌐 `packages/server-api/` | Read-only HTTP API (~247 LOC) |
+| 🔌 `packages/server-mcp/` | MCP server + local sidecar (~1,508 LOC) |
+| 🤖 `packages/server-a2a/` | A2A scaffold (~181 LOC) |
+| 🖥️ `tools/bin/` | CLI entry points |
+| 📚 `tools/lib/` | Installer helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, and test scripts |
 
-## Release Validation
+---
 
-Recommended local preflight:
+## 🧪 Release Validation
 
 ```bash
-npm run smoke
+npm run smoke        # Full release preflight
 ```
 
-That smoke run currently checks:
+The smoke run validates:
 
-- validation
-- artifact generation
-- archive verification
-- generated catalog markdown
-- automated tests
-- `npm pack --dry-run`
-- API boot
-- MCP boot in `stdio`, `stream`, and `sse`
-- A2A boot
+- ✅ Skill validation and metadata generation
+- ✅ Taxonomy recategorization tooling
+- ✅ Catalog artifact generation
+- ✅ Generated catalog markdown
+- ✅ Archive generation and verification
+- ✅ Automated test suite
+- ✅ `npm pack --dry-run` packaging check
+- ✅ API boot and health
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot and health

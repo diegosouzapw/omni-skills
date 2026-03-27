@@ -1,107 +1,120 @@
 # 🔬 Anatomy of a Well-Written Skill
 
-This guide explains the structure and quality expectations for an Omni Skills `SKILL.md`.
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
 
 ---
 
-## The Two Parts
+## 📐 The Two Parts
 
-Every `SKILL.md` has two parts:
+Every `SKILL.md` is composed of two distinct sections:
 
-### 1. Frontmatter (YAML metadata)
+### 1️⃣ Frontmatter (YAML Metadata)
 
-The frontmatter is machine-readable metadata between `---` delimiters. It powers:
-- The skills index and catalog
-- CLI search and filtering
-- Validation and quality checks
-- Generated `metadata.json` classification artifacts
+Machine-readable metadata between `---` delimiters. It powers:
 
-### 2. Body (Markdown instructions)
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
 
-The body contains human-readable (and agent-readable) instructions. It should be written as if you're briefing a senior developer on how to perform a task.
+### 2️⃣ Body (Markdown Instructions)
 
----
-
-## Frontmatter Reference
-
-| Field         | Required | Type       | Description |
-| :------------ | :------- | :--------- | :---------- |
-| `name`        | ✅       | string     | Must match directory name, lowercase-hyphenated |
-| `description` | ✅       | string     | One-line description (10-200 chars) |
-| `version`     | ⚡       | string     | Semantic version (e.g., "1.0.0") |
-| `category`    | ⚡       | string     | One canonical category from the repo taxonomy |
-| `tags`        | ⚡       | string[]   | Searchable tags |
-| `complexity`  | ⚡       | string     | beginner/intermediate/advanced/expert |
-| `risk`        | ⚡       | string     | safe/caution/offensive/critical |
-| `tools`       | ⚡       | string[]   | Tested AI tools |
-| `source`      | ⚡       | string     | omni-team/community/official |
-| `author`      | ⚡       | string     | Attribution |
-| `date_added`  | ⚡       | string     | ISO date |
-| `date_updated`| ⚡       | string     | ISO date |
-
-✅ = always required | ⚡ = required in strict mode
-
-Canonical categories:
-
-- `development`
-- `frontend`
-- `backend`
-- `fullstack-web`
-- `tools`
-- `cli-automation`
-- `business`
-- `product`
-- `design`
-- `data-ai`
-- `ai-agents`
-- `machine-learning`
-- `devops`
-- `testing-security`
-- `documentation`
-- `content-media`
-- `communication`
-- `uncategorized`
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
 
 ---
 
-## Body Structure
+## 📋 Frontmatter Reference
 
-A well-written skill body includes:
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------|
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version (e.g., `"1.0.0"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-### Overview (Required)
-2-3 sentences on what and why.
+> ✅ = Always required · ⚡ = Required in strict mode
 
-### When to Use (Required)
-Bullet list of scenarios where this skill applies.
+---
 
-### Core Instructions (Required)
-The step-by-step process the agent should follow. Be explicit, be specific. Agents work best with clear instructions.
+## 🏷️ Canonical Categories
 
-### Examples (Recommended)
-Show concrete prompts, code, or outputs. The more specific, the better.
+The repo taxonomy currently defines **17 canonical categories**:
 
-### Best Practices (Recommended)
-✅ Do / ❌ Don't format.
+| Category | Domain |
+|:---------|:-------|
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-### Troubleshooting (Optional)
-Common issues and solutions.
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
 
-### Related Skills (Optional)
+---
+
+## 📝 Body Structure
+
+A well-written skill body follows this hierarchy:
+
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
+
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
+
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
+
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
+
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
+
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
+
+### 🔗 Related Skills (Optional)
 Cross-references to complementary skills.
 
 ---
 
-## Quality Signals
+## ⭐ Quality Signals
 
-**Good skill:**
-- Focused on one specific workflow or domain
-- Instructions are clear enough for an AI to follow without human interpretation
-- Includes concrete examples
-- Has proper error handling guidance
-- Produces healthy generated metadata: canonical category, maturity level, best practices score, and quality score
+### ✅ Good Skill
 
-**Bad skill:**
-- Generic advice that could apply to anything
-- Vague instructions like "write good code"
-- No examples
-- Missing frontmatter
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

@@ -1,98 +1,111 @@
-# System Runbook
+# 🔧 System Runbook
 
-This runbook is the operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.
+> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
 
-## 1. Local Development Cycle
+---
 
-Install dependencies:
+## 1️⃣ Local Development Cycle
+
+### 📦 Install Dependencies
 
 ```bash
 npm install
 ```
 
-Recommended local loop:
+### 🔄 Recommended Development Loop
 
 ```bash
-npm run validate
-npm run taxonomy:report
-npm run build
-npm test
+npm run validate        # Validate skills + regenerate metadata
+npm run taxonomy:report # Show category drift (read-only)
+npm run build           # Generate catalog, manifests, archives, CATALOG.md
+npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 ```
 
-What each command does:
+| Command | What It Does |
+|:--------|:-------------|
+| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
+| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies archives, rebuilds `docs/CATALOG.md` |
+| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
 
-- `npm run validate` validates `SKILL.md`, regenerates `metadata.json`, and computes taxonomy, maturity, quality, and security metadata
-- `npm run taxonomy:report` shows category drift suggestions without rewriting files
-- `npm run build` regenerates catalog/manifests, archives, checksum manifests, verifies archives, and rebuilds `docs/CATALOG.md`
-- `npm test` runs the smoke suite across CLI, API, MCP, sidecar, and archive flows
+---
 
-## 2. Skill Authoring and Taxonomy
+## 2️⃣ Skill Authoring & Taxonomy
 
-Create a new skill from the template:
+### 📝 Create a New Skill
 
 ```bash
 mkdir -p skills/my-skill
 cp docs/contributors/skill-template.md skills/my-skill/SKILL.md
+# Edit the SKILL.md with your content
 ```
 
-Check category normalization:
+### 🏷️ Check Category Normalization
 
 ```bash
-npx omni-skills recategorize
+npx omni-skills recategorize           # Preview suggestions
+npx omni-skills recategorize --write   # Apply canonical categories
 ```
 
-Apply suggested canonical categories:
+### ✅ Validate Your Skill
 
 ```bash
-npx omni-skills recategorize --write
+npm run validate
+cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 ```
 
-## 3. Security Validation
+---
 
-Default validation always runs the static scanner.
+## 3️⃣ Security Validation
 
-It checks:
+### 🔍 Default Static Scanning (Always Enabled)
 
-- prompt-injection and exfiltration patterns
-- destructive shell commands
-- suspicious paths and secrets
-- risky script primitives
+The static scanner checks all skills automatically:
 
-Enable optional ClamAV scanning:
+| Rule Family | Examples |
+|:------------|:---------|
+| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
+| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
+| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-Enable optional VirusTotal hash lookups:
+> Requires `clamscan` in `PATH`.
+
+### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-Notes:
+> Hash lookup only — unknown files are **not uploaded** by default.
 
-- VirusTotal is hash lookup only during normal validation
-- unknown files are not uploaded by default
-- ClamAV requires `clamscan` in `PATH`
+---
 
-## 4. Archive Generation and Verification
+## 4️⃣ Archive Generation & Verification
 
-Archives are produced automatically by `npm run build`.
+### 📦 Generate Archives
 
-Outputs:
+Archives are produced automatically by `npm run build`:
 
-- `dist/archives/<skill>.zip`
-- `dist/archives/<skill>.tar.gz`
-- `dist/archives/<skill>.checksums.txt`
+| Output | Path |
+|:-------|:-----|
+| 📦 ZIP | `dist/archives/<skill>.zip` |
+| 📦 Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
-Verify generated archives:
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
 ```
 
-Enable detached signing during index generation:
+### ✍️ Enable Detached Signing
 
 ```bash
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
@@ -104,124 +117,101 @@ Optional public key override:
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-If no public key is supplied, the build derives one with `openssl` and places it in `dist/signing/`.
+> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
 
-## 5. Installation Flows
+---
 
-Default install:
+## 5️⃣ Installation Flows
 
-```bash
-npx omni-skills
-```
+| Scenario | Command |
+|:---------|:--------|
+| 📥 Default install (Antigravity) | `npx omni-skills` |
+| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verify install | `npx omni-skills doctor` |
 
-Install a specific skill:
+---
 
-```bash
-npx omni-skills --cursor --skill omni-figma
-```
+## 6️⃣ Catalog & Discovery
 
-Install via discovery:
-
-```bash
-npx omni-skills find figma --tool cursor --install --yes
-```
-
-Bundle install:
-
-```bash
-npx omni-skills --cursor --bundle essentials
-```
-
-## 6. Catalog and Discovery
-
-Search published skills:
+### 🔎 Search
 
 ```bash
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 ```
 
-Useful filters:
+### 🎛️ Available Filters
 
-- `--category`
-- `--tool`
-- `--risk`
-- `--sort quality|best-practices|level|security|name`
-- `--order asc|desc`
-- `--min-quality`
-- `--min-best-practices`
-- `--min-level`
-- `--min-security`
-- `--validation-status`
-- `--security-status`
+| Filter | Flag | Example |
+|:-------|:-----|:--------|
+| 📂 Category | `--category` | `--category development` |
+| 🖥️ Tool | `--tool` | `--tool cursor` |
+| ⚠️ Risk | `--risk` | `--risk safe` |
+| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Order | `--order` | `--order asc\|desc` |
+| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
+| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
+| 🎯 Min level | `--min-level` | `--min-level 2` |
+| 🛡️ Min security | `--min-security` | `--min-security 90` |
+| ✅ Validation | `--validation-status` | `--validation-status passed` |
+| 🛡️ Security | `--security-status` | `--security-status passed` |
 
-## 7. API Operations
+---
 
-Start the API:
+## 7️⃣ API Operations
+
+### 🚀 Start the API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Key routes:
+### 📡 Key Routes
 
-- `GET /healthz`
-- `GET /openapi.json`
-- `GET /v1/skills`
-- `GET /v1/search`
-- `GET /v1/skills/:id/archives`
-- `GET /v1/skills/:id/download/archive?format=zip`
-- `GET /v1/skills/:id/download/archive/checksums`
+| Method | Endpoint | Purpose |
+|:-------|:---------|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
+| `GET` | `/v1/skills` | List with filters |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/skills/:id/archives` | Archive listing |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
 
-### Hosted API hardening
+### 🔐 Hosted API Hardening
 
-Enable bearer auth:
+| Feature | Command |
+|:--------|:--------|
+| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
 
-```bash
-OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api --port 3333
-```
+> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled.
 
-Enable API key auth:
+---
 
-```bash
-OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api --port 3333
-```
+## 8️⃣ MCP Operations
 
-Enable rate limiting:
-
-```bash
-OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api --port 3333
-```
-
-Enable audit logging:
+### 🔌 Start MCP Transports
 
 ```bash
-OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api --port 3333
+npx omni-skills mcp stdio             # Pipe transport
+npx omni-skills mcp stream            # Streamable HTTP
+npx omni-skills mcp sse               # Server-Sent Events
 ```
 
-Health stays open by design; catalog routes require auth when auth is enabled.
-
-## 8. MCP Operations
-
-Start MCP transports:
+### 📂 Local Sidecar Mode
 
 ```bash
-npx omni-skills mcp stdio
-npx omni-skills mcp stream
-npx omni-skills mcp sse
+npx omni-skills mcp stream --local    # All transports support --local
 ```
 
-Local sidecar mode:
+### 🔐 Hosted MCP Hardening
 
-```bash
-npx omni-skills mcp stream --local
-```
-
-### Hosted MCP hardening
-
-The HTTP transports reuse the same auth and rate-limit env vars as the API.
-
-Example:
+Same env vars as the API:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -230,77 +220,111 @@ OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
 npx omni-skills mcp stream
 ```
 
-Protected routes:
+**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages`
 
-- `POST /mcp` for stream transport
-- `GET /sse` and `POST /messages` for SSE transport
+> 🟢 `/healthz` remains open.
 
-`/healthz` remains open.
+---
 
-## 9. A2A Operations
+## 9️⃣ A2A Operations
 
-Start A2A:
+### 🤖 Start A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Current endpoints:
+### 📡 Endpoints
 
-- `GET /healthz`
-- `GET /.well-known/agent.json`
-- `POST /a2a/message/send`
+| Method | Path | Purpose |
+|:-------|:-----|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
+| `POST` | `/a2a/message/send` | JSON-RPC operations |
 
-The current A2A layer is a scaffold, not a task lifecycle engine.
+> ⚠️ Current A2A is a **scaffold**, not a task lifecycle engine.
 
-## 10. Release Checklist
+---
 
-Recommended preflight:
+## 🔟 Release Checklist
+
+### 🏃 Quick Preflight
 
 ```bash
 npm run smoke
 npm pack --dry-run
 ```
 
-Full release-grade local pass:
+### 📋 Full Release-Grade Pass
 
 ```bash
-npm run validate
-npm run taxonomy:report
-npm run build
-npm run verify:archives
-npm test
-npm pack --dry-run
-git diff --check
+npm run validate           # ✅ Skill validation
+npm run taxonomy:report    # 🏷️ Category drift check
+npm run build              # 🏗️ Full artifact generation
+npm run verify:archives    # 📦 Archive integrity
+npm test                   # 🧪 Smoke suite
+npm pack --dry-run         # 📦 Package verification
+git diff --check           # 📋 Whitespace/formatting
 ```
 
-## 11. Troubleshooting
+---
 
-Catalog mismatch or stale metadata:
+## 1️⃣1️⃣ Environment Variables Reference
+
+| Variable | Purpose | Default |
+|:---------|:--------|:--------|
+| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
+| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
+
+---
+
+## 1️⃣2️⃣ Troubleshooting
+
+### 🔄 Catalog Mismatch or Stale Metadata
 
 ```bash
 npm run build
 ```
 
-Skill category looks wrong:
+### 🏷️ Skill Category Looks Wrong
 
 ```bash
 npx omni-skills recategorize
 ```
 
-Archive verification fails:
+### 📦 Archive Verification Fails
 
-- rebuild with `npm run build`
-- rerun `npm run verify:archives`
-- if signing is enabled, confirm the public key and `openssl` availability
+1. Rebuild with `npm run build`
+2. Rerun `npm run verify:archives`
+3. If signing is enabled, confirm the public key and `openssl` availability
 
-API or MCP returns `401`:
+### 🔒 API/MCP Returns `401 Unauthorized`
 
-- verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
-- include `Authorization: Bearer <token>` or `x-api-key`
+- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
+- Include `Authorization: Bearer <token>` or `x-api-key` header
 
-API or MCP returns `429`:
+### 🚦 API/MCP Returns `429 Too Many Requests`
 
-- increase `OMNI_SKILLS_RATE_LIMIT_MAX`
-- widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- reduce burst traffic from clients or probes
+- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduce burst traffic from clients or probes
+
+### 🩺 General Diagnostics
+
+```bash
+npx omni-skills doctor   # Check repo, targets, catalog state
+npx omni-skills smoke    # Full preflight validation
+```

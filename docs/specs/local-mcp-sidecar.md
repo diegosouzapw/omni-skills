@@ -1,79 +1,58 @@
-# Local MCP Sidecar
+# 🔌 Local MCP Sidecar
 
-This document describes the optional local-mode behavior of `@omni-skills/server-mcp`.
+> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
 
-## Status
+---
 
-Implemented.
+## 📊 Status
 
-Current capabilities:
+| Feature | State |
+|:--------|:------|
+| ✅ Read-only catalog tools | Implemented |
+| ✅ Filesystem-aware local tools | Implemented |
+| ✅ 3 transports (stdio/stream/sse) | Implemented |
+| ✅ Allowlisted writes | Implemented |
+| ✅ Preview-before-write defaults | Implemented |
+| ✅ Client-aware MCP config writing | Implemented |
+| ✅ HTTP auth + rate limiting | Implemented |
+| ⏳ Signed artifact enforcement | Pending |
+| ⏳ Full client config coverage | Partial |
 
-- read-only catalog tools plus local filesystem-aware tools
-- `stdio`, `stream`, and `sse` transports
-- allowlisted writes
-- preview-before-write defaults
-- client-aware MCP config writing for JSON and TOML targets
+---
 
-Current limitations:
+## 🎯 Purpose
 
-- config output covers the current known JSON and TOML targets, but not every MCP client yet
-- signed artifacts are optional, not enforced
+Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
 
-## Purpose
+- 🕵️ Detect compatible local AI clients
+- 📋 Inspect installed skills
+- 👁️ Preview skill installation or removal (dry-run)
+- 📦 Apply local skill installation or removal
+- ⚙️ Write a local MCP config file after preview
 
-Local mode adds filesystem-aware tools on top of the existing read-only MCP catalog surface.
+---
 
-Use it when an agent needs to:
+## 🔌 Transports
 
-- detect compatible local clients
-- inspect installed skills
-- preview skill installation or removal
-- apply local skill installation or removal
-- write a local MCP config file after preview
+| Transport | Protocol | Use Case |
+|:----------|:---------|:---------|
+| `stdio` | Pipe | Direct client integration |
+| `stream` | Streamable HTTP | Modern HTTP clients |
+| `sse` | Server-Sent Events | Legacy clients |
 
-## Transports
+---
 
-The MCP server now supports three explicit transports:
+## 🚀 Enable Local Mode
 
-- `stdio`
-- `stream`
-- `sse`
-
-`stream` is the current Streamable HTTP transport.
-`sse` is the legacy SSE transport for older clients that still require it.
-
-## Hosted HTTP Hardening
-
-The HTTP transports now support the same env-driven controls as the catalog API:
-
-- `OMNI_SKILLS_HTTP_BEARER_TOKEN`
-- `OMNI_SKILLS_HTTP_API_KEYS`
-- `OMNI_SKILLS_RATE_LIMIT_MAX`
-- `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- `OMNI_SKILLS_HTTP_AUDIT_LOG`
-
-Behavior:
-
-- `/healthz` remains open
-- `/mcp`, `/sse`, and `/messages` require auth when auth is enabled
-- rate limiting is applied in-process
-
-## Enable Local Mode
-
-From the repo root:
+### 📦 From repo:
 
 ```bash
 npm run mcp:local
-```
-
-For explicit transport modes:
-
-```bash
 npm run mcp:stream:local
 npm run mcp:sse:local
 ```
 
-Or through the repo CLI:
+### 📦 Via CLI:
 
 ```bash
 npm run cli -- mcp stdio --local
@@ -81,7 +60,7 @@ npm run cli -- mcp stream --local
 npm run cli -- mcp sse --local
 ```
 
-Or directly from the published package:
+### 📦 From published package:
 
 ```bash
 npx omni-skills mcp stdio --local
@@ -89,64 +68,76 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
-Both commands enable local mode by setting `OMNI_SKILLS_MCP_MODE=local`.
+> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
 
-## Local Tools
+---
 
-When local mode is enabled, the MCP server exposes these extra tools:
+## 🛠️ Local Tools
 
-- `detect_clients`
-- `list_installed_skills`
-- `install_skills`
-- `remove_skills`
-- `configure_client_mcp`
+When local mode is enabled, these extra tools become available:
 
-`install_skills`, `remove_skills`, and `configure_client_mcp` default to dry-run behavior when `dry_run` is omitted.
+| Tool | Description | Default |
+|:-----|:------------|:--------|
+| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
+| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
+| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
+| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
+| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
 
-## Supported Targets
+> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
 
-The local sidecar currently knows these client roots:
+---
 
-- `~/.claude/skills`
-- `~/.cursor/skills`
-- `~/.gemini/skills`
-- `~/.gemini/antigravity/skills`
-- `~/.kiro/skills`
-- `~/.codex/skills` or `$CODEX_HOME/skills`
-- `<workspace>/.agents/skills`
+## 🎯 Supported Targets
 
-It also knows these MCP config targets:
+### 📂 Skills Directories
 
-- `~/.claude.json`
-- `~/.cursor/mcp.json`
-- `~/.codex/config.toml`
-- `<workspace>/.mcp.json`
-- `<workspace>/.vscode/mcp.json`
-- per-client `mcp.json` files under the known client roots
+| Client | Path |
+|:-------|:-----|
+| 🔵 Claude Code | `~/.claude/skills` |
+| 🔵 Cursor | `~/.cursor/skills` |
+| 🟡 Gemini CLI | `~/.gemini/skills` |
+| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
+| 🟢 Kiro | `~/.kiro/skills` |
+| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
+| ⚪ OpenCode | `<workspace>/.agents/skills` |
 
-## Allowlist Model
+### ⚙️ MCP Config Files
 
-The local sidecar only writes under an explicit allowlist.
+| Target | Format |
+|:-------|:-------|
+| `~/.claude.json` | JSON (`mcpServers`) |
+| `~/.cursor/mcp.json` | JSON (`mcpServers`) |
+| `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
+| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
+| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
+| Client root `mcp.json` | JSON (per-client format) |
 
-By default, the allowlist includes:
+---
 
-- the known client roots under the current user home
-- `$CODEX_HOME` when set, otherwise `~/.codex`
-- the current workspace root
+## 🔒 Allowlist Model
+
+The local sidecar only writes under an **explicit allowlist**.
+
+### 🟢 Default allowlist:
+
+- Known client roots under `$HOME`
+- `$CODEX_HOME` (or `~/.codex` if unset)
+- Current workspace root
 - `<workspace>/.agents`
 - `<workspace>/.vscode`
 
-To allow additional custom roots, set:
+### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 ```
 
-## Config Writing
+---
 
-`configure_client_mcp` now chooses the config format by target.
+## ⚙️ Config Writing Examples
 
-Claude Code and workspace JSON example:
+### 🔵 Claude Code / Workspace JSON
 
 ```json
 {
@@ -159,7 +150,7 @@ Claude Code and workspace JSON example:
 }
 ```
 
-Cursor and generic JSON example:
+### 🔵 Cursor / Generic JSON
 
 ```json
 {
@@ -171,7 +162,7 @@ Cursor and generic JSON example:
 }
 ```
 
-VS Code example:
+### 💜 VS Code
 
 ```json
 {
@@ -188,14 +179,14 @@ VS Code example:
 }
 ```
 
-Codex example:
+### 🔴 Codex TOML
 
 ```toml
 [mcp_servers.omni-skills]
 url = "http://127.0.0.1:3334/mcp"
 ```
 
-Generic stdio example:
+### 📋 Generic stdio
 
 ```json
 {
@@ -211,12 +202,18 @@ Generic stdio example:
 }
 ```
 
-## Current Scope
+---
 
-This is a pragmatic first local sidecar:
+## 🔐 Hosted HTTP Hardening
 
-- it uses the repo-generated manifests and local repo artifacts
-- it supports preview-before-write
-- it enforces an allowlist for writes
-- it supports stdio, stream, and SSE transports
-- it does not yet manage task lifecycle, auth, signed artifacts, or deep client-specific config coverage for every ecosystem tool
+The HTTP transports support the same env-driven controls as the catalog API:
+
+| Variable | Purpose |
+|:---------|:--------|
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
+
+> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled.

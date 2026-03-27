@@ -1,70 +1,75 @@
-# Security Validation and Distribution
+# 🛡️ Security Validation and Distribution
 
-This document describes the security and distribution layer generated around each skill.
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
 
-## Status
+---
 
-Implemented with optional enrichers.
+## 📊 Status
 
-The validator now produces:
+| Feature | State |
+|:--------|:------|
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ⚙️ Detached signing | Optional, local |
+| ⏳ CI-enforced signing | Pending |
 
-- static security findings inside `skills/<skill>/metadata.json`
-- security classification inside `dist/manifests/<skill>.json`
-- per-skill archives in `dist/archives/`
+---
 
-## Security Scanners
+## 🔍 Security Scanners
 
-### Static scanner
+### 1️⃣ Static Scanner (Always Enabled)
 
-Always enabled during validation.
+Scans every skill during validation:
 
-It scans:
+| Target | What Gets Scanned |
+|:-------|:-----------------|
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-- `SKILL.md`
-- packaged markdown and text files
-- packaged scripts
+**Rule families:**
 
-Current rule families:
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
 
-- prompt injection and exfiltration patterns
-- destructive shell commands
-- privilege escalation signals
-- suspicious credential or OS paths
-- risky script primitives such as `shell=True`, `pickle.load`, `eval`, or unsafe `extractall`
+---
 
-### ClamAV
-
-Optional.
-
-Enable with:
+### 2️⃣ ClamAV (Optional)
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-When enabled and `clamscan` is available in `PATH`, the validator scans packaged files and records the result in skill metadata.
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
 
-### VirusTotal
+---
 
-Optional.
-
-Enable with:
+### 3️⃣ VirusTotal (Optional)
 
 ```bash
-VT_API_KEY=... npm run validate
+VT_API_KEY=your-key npm run validate
 ```
 
-Current behavior:
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
 
-- hash lookup only
-- no file upload during normal validation
-- unknown files remain local-only
+---
 
-This keeps the standard build deterministic and avoids making CI depend on remote quota.
+## 📊 Security Output Shape
 
-## Output Shape
-
-Security data is emitted under:
+Security data is emitted in every skill's metadata:
 
 ```json
 {
@@ -88,42 +93,52 @@ Security data is emitted under:
 }
 ```
 
-The same security block is propagated into manifests and catalog views so CLI, API, and MCP can filter or rank by it.
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
 
-## Archive Outputs
+---
 
-Each published skill now generates:
+## 📦 Archive Outputs
 
-- `dist/archives/<skill>.zip`
-- `dist/archives/<skill>.tar.gz`
-- `dist/archives/<skill>.checksums.txt`
+Each published skill generates:
 
-Verify them with:
+| File | Format |
+|:-----|:-------|
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
 ```
 
-When signing keys are configured, detached `.sig` files are emitted beside the archives and checksum manifest.
+---
 
-## Optional Signing
+## ✍️ Optional Signing
 
-Set a private key to enable detached signatures:
+### 🔑 Enable Detached Signatures
 
 ```bash
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Optional public key override:
+### 🔓 Optional Public Key Override
 
 ```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-If a public key is not provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-## Current Limitations
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-- VirusTotal upload submission is intentionally not part of default validation
-- signing is optional and local today, not enforced in CI
-- broader hosted governance beyond the current auth, rate limit, and audit-log baseline is still pending
+---
+
+## ⚠️ Current Limitations
+
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Optional and local, not enforced in CI |
+| Hosted governance | Auth, rate limiting, and audit logging are in place; external gateway pending |

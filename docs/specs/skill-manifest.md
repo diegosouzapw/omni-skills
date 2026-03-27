@@ -1,216 +1,175 @@
-# Skill Manifest Specification
+# 📋 Skill Manifest Specification
 
-This document defines the machine-readable manifest generated from each `SKILL.md`.
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
 
-## Status
+---
 
-Implemented as a generated artifact contract. Contributors still author `SKILL.md`; the repo emits the JSON manifests during the build pipeline.
+## 📊 Status
 
-The manifest is a build artifact. Contributors should continue authoring skills through `SKILL.md` plus supporting files. The build pipeline derives the JSON manifest from repository contents.
+| Feature | State |
+|:--------|:------|
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
-## Purpose
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
 
-The manifest exists so that API, MCP, A2A, and installer workflows can all consume the same normalized shape.
+---
 
-## Output Locations
+## 🎯 Purpose
 
-Build artifacts are generated to:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-- `metadata.json`
-- `skills/<skill>/metadata.json`
-- `skills_index.json`
-- `dist/catalog.json`
-- `dist/manifests/<skill>.json`
-- `dist/archives/<skill>.zip`
-- `dist/archives/<skill>.tar.gz`
-- `dist/archives/<skill>.checksums.txt`
+| Surface | How It Uses Manifests |
+|:--------|:---------------------|
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
 
-## Manifest Shape
+---
 
-Each per-skill manifest should contain:
+## 📁 Output Locations
 
-- `schema_version`
-- `id`
-- `slug`
-- `display_name`
-- `description`
-- `version`
-- `category`
-- `raw_category`
-- `taxonomy`
-- `tags`
-- `complexity`
-- `risk`
-- `source`
-- `author`
-- `dates`
-- `entrypoint`
-- `paths`
-- `compatibility`
-- `resources`
-- `dependencies`
-- `install`
-- `classification`
-- `content`
-- `artifacts`
-- `archives`
-- `archive_checksums`
-- `checksums`
+| Artifact | Path |
+|:---------|:-----|
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
 
-## Field Semantics
+---
 
-### Identity
+## 📐 Manifest Shape
 
-- `schema_version`: Version of the manifest schema emitted by the build.
-- `id`: Stable skill identifier, normally taken from frontmatter `name`.
-- `slug`: Directory slug under `skills/`.
-- `display_name`: Human-readable title derived from the first markdown heading when available.
+### 🆔 Identity
 
-### Metadata
+| Field | Description |
+|:------|:------------|
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-- `description`: Short summary from frontmatter.
-- `version`: Skill version from frontmatter.
-- `category`: Canonical category emitted by the local taxonomy normalizer.
-- `raw_category`: Original category label from frontmatter.
-- `taxonomy`: Canonical taxonomy metadata including inferred fallback.
-- `tags`: Searchable tags.
-- `complexity`: Skill difficulty.
-- `risk`: Safety level for execution and review.
-- `source`: Origin such as `omni-team`, `community`, or `official`.
-- `author`: Attribution string.
+### 📝 Metadata
 
-### Dates
+| Field | Description |
+|:------|:------------|
+| `description` | Short summary from frontmatter |
+| `version` | Skill version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
 
-The `dates` object contains:
+### 📅 Dates
 
-- `added`
-- `updated`
+```json
+{ "added": "2026-03-26", "updated": "2026-03-26" }
+```
 
-### Paths
+### 📂 Paths
 
-The `paths` object contains:
+| Field | Description |
+|:------|:------------|
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-- `root`: Skill directory path inside the repo.
-- `manifest`: Generated manifest path inside `dist/`.
+### 🖥️ Compatibility
 
-The top-level `entrypoint` points to the canonical `SKILL.md`.
+| Field | Description |
+|:------|:------------|
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-### Compatibility
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-The `compatibility` object contains:
+### 📦 Resources
 
-- `tools`: Tool identifiers declared in frontmatter.
-- `install_targets`: Derived install metadata for each known supported tool.
+| Field | Description |
+|:------|:------------|
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
 
-Each `install_target` includes:
+### 🔗 Dependencies (Reserved)
 
-- `tool`
-- `scope`
-- `default_path`
-- `installer_flag`
-- `current_installer_behavior`
-- `invocation`
+```json
+{ "skills": [], "external": [] }
+```
 
-This field reflects current installer behavior honestly. Today, the installer deploys the full skill library by default, and can also deploy a selected subset when `--skill` or `--bundle` is used.
+### 📦 Install
 
-### Resources
+| Field | Description |
+|:------|:------------|
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-The `resources` object contains:
+### 📊 Classification
 
-- `sub_resources`: Top-level skill subdirectories such as `references`, `agents`, and `assets`
-- `artifacts_count`: Total file count in the skill package
-- `references_count`
-- `agents_count`
-- `assets_count`
+| Section | Fields |
+|:--------|:-------|
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-### Dependencies
+### 📝 Content
 
-The `dependencies` object is reserved for future use. For now it is emitted as:
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
 
 ```json
 {
-  "skills": [],
-  "external": []
+  "path": "skills/omni-figma/references/mcp-setup.md",
+  "kind": "reference",
+  "size_bytes": 4521,
+  "sha256": "<hash>"
 }
 ```
 
-### Install
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
 
-The `install` object contains:
+### 📦 Archives
 
-- `strategy`
-- `current_installer`
-- `recipes`
+```json
+{
+  "format": "zip",
+  "path": "dist/archives/omni-figma.zip",
+  "file_name": "omni-figma.zip",
+  "size_bytes": 12345,
+  "sha256": "<hash>",
+  "signature": null
+}
+```
 
-Each recipe should be derived from current supported install flows.
+### 🔒 Checksums
 
-### Classification
+| Field | Description |
+|:------|:------------|
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
 
-The `classification` object contains generated skill signals:
+---
 
-- `maturity`
-- `best_practices`
-- `quality`
-- `security`
-- `validation`
-
-These values come from the local validator and are emitted into the manifest so API, MCP, CLI, and docs can all consume the same classification layer.
-
-### Content
-
-The `content` object contains derived signals such as:
-
-- `body_length`
-- `content_length`
-- `body_lines`
-- `word_count`
-- structural flags such as examples or troubleshooting sections
-
-### Artifacts
-
-The `artifacts` array describes every file shipped inside the skill directory.
-
-Each artifact contains:
-
-- `path`
-- `kind`
-- `size_bytes`
-- `sha256`
-
-Artifact `kind` values currently include:
-
-- `entrypoint`
-- `reference`
-- `agent`
-- `asset`
-- `license`
-- `support`
-
-### Archives
-
-The `archives` array describes generated distribution packages for the skill.
-
-Each archive contains:
-
-- `format`
-- `path`
-- `file_name`
-- `size_bytes`
-- `sha256`
-- `signature`
-
-The `archive_checksums` object points to the generated checksum manifest for those archives.
-
-### Checksums
-
-The `checksums` object contains:
-
-- `entrypoint_sha256`
-- `package_sha256`
-
-`package_sha256` is a deterministic digest over the ordered artifact list and individual file hashes.
-
-## Example
+## 📋 Example Manifest
 
 ```json
 {
@@ -218,10 +177,9 @@ The `checksums` object contains:
   "id": "omni-figma",
   "slug": "omni-figma",
   "display_name": "Omni Figma",
-  "description": "Unified Figma MCP workflow for design-to-code implementation, design inspection, token and variable lookup, Code Connect mapping, Figma or FigJam generation, and MCP setup or troubleshooting.",
+  "description": "Unified Figma MCP workflow for design-to-code...",
   "version": "1.0.0",
   "category": "development",
-  "raw_category": "development",
   "taxonomy": {
     "raw_category": "development",
     "canonical_category": "development",
@@ -231,61 +189,18 @@ The `checksums` object contains:
   "tags": ["figma", "design-to-code", "mcp"],
   "complexity": "advanced",
   "risk": "safe",
-  "source": "omni-team",
-  "author": "Omni Skills Team",
-  "dates": {
-    "added": "2026-03-26",
-    "updated": "2026-03-26"
-  },
   "entrypoint": "skills/omni-figma/SKILL.md",
-  "paths": {
-    "root": "skills/omni-figma",
-    "manifest": "dist/manifests/omni-figma.json"
-  },
-  "compatibility": {
-    "tools": ["claude-code", "cursor", "gemini-cli", "antigravity"],
-    "install_targets": []
-  },
-  "resources": {
-    "sub_resources": ["agents", "assets", "references"],
-    "artifacts_count": 9
-  },
-  "dependencies": {
-    "skills": [],
-    "external": []
-  },
-  "install": {
-    "strategy": "copy-skill-directory",
-    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
-    "recipes": []
-  },
   "classification": {
-    "maturity": {
-      "skill_level": 2,
-      "skill_level_label": "instructions"
-    },
-    "best_practices": {
-      "score": 40
-    },
-    "quality": {
-      "score": 83
-    },
-    "security": {
-      "score": 98,
-      "status": "passed"
-    },
-    "validation": {
-      "status": "passed"
-    }
+    "maturity": { "skill_level": 2, "skill_level_label": "instructions" },
+    "best_practices": { "score": 40 },
+    "quality": { "score": 83 },
+    "security": { "score": 98, "status": "passed" },
+    "validation": { "status": "passed" }
   },
-  "content": {
-    "body_length": 5267
-  },
-  "artifacts": [],
-  "archives": [],
-  "archive_checksums": {
-    "path": "dist/archives/omni-figma.checksums.txt"
-  },
+  "archives": [
+    { "format": "zip", "path": "dist/archives/omni-figma.zip" },
+    { "format": "tar.gz", "path": "dist/archives/omni-figma.tar.gz" }
+  ],
   "checksums": {
     "entrypoint_sha256": "<sha256>",
     "package_sha256": "<sha256>"
@@ -293,8 +208,13 @@ The `checksums` object contains:
 }
 ```
 
-## Compatibility Notes
+---
 
-- The manifest must stay derivable from current repo structure.
-- New optional fields can be added, but existing fields should remain stable.
-- Future handwritten manifest files should only be introduced if build-time derivation proves insufficient.
+## ⚠️ Compatibility Notes
+
+| Rule | Rationale |
+|:-----|:----------|
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

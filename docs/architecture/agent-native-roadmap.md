@@ -1,225 +1,193 @@
-# Agent-Native Roadmap
+# 🗺️ Agent-Native Roadmap
 
-This document defines the next architecture step for Omni Skills: evolve from a skills-only installer into a machine-readable catalog that can power API, MCP, and A2A surfaces without duplicating logic.
+> **The architecture evolution plan: from a skills installer into a machine-readable catalog powering API, MCP, and A2A surfaces without duplicating logic.**
 
-## Current Status
+---
 
-The roadmap is now partially executed.
+## 📊 Phase Status
 
-- Phase 1, contracts and generated artifacts: completed
-- Phase 2, read-only catalog API: completed
-- Phase 3, MCP discovery surface: completed
-- Phase 4, local install surface: partially completed
-- Phase 5, A2A orchestration: partially completed as a scaffold
+| Phase | Name | Status |
+|:------|:-----|:-------|
+| 1️⃣ | Contracts and Artifacts | ✅ Completed |
+| 2️⃣ | Read-Only Catalog API | ✅ Completed |
+| 3️⃣ | MCP Discovery Surface | ✅ Completed |
+| 4️⃣ | Local Install Surface | 🟡 Partially Completed |
+| 5️⃣ | A2A Orchestration | 🟡 Partially Completed (scaffold) |
 
-What is still open:
+### ✅ What's Done
 
-- signed artifacts or per-skill archives
-- auth and rate limits for hosted services
-- richer client-specific config writing
-- full A2A task lifecycle and execution model
-- broader published skill catalog
+- Machine-readable catalog (`dist/catalog.json`, `dist/manifests/`, `dist/bundles.json`)
+- Read-only HTTP API with full endpoint coverage
+- MCP server with 3 transports (stdio/stream/sse) and 10 tools
+- Local sidecar with allowlisted filesystem access
+- Per-skill archives (zip/tar.gz) with SHA-256 checksums
+- Auth (bearer + API key), rate limiting, and audit logging
+- Client-aware MCP config writing (JSON + TOML)
+- A2A scaffold with agent card and `message/send`
 
-## Goals
+### ⏳ What's Still Open
 
-- Keep the current `npx omni-skills` workflow working.
-- Introduce a machine-readable source of truth for skills.
-- Support future discovery, recommendation, and install planning by agents.
-- Separate remote catalog concerns from local filesystem writes.
-- Make the same metadata reusable across CLI, API, MCP, and A2A.
+- Broader published skill catalog (2/20+ planned skills)
+- CI-enforced release signing
+- Full A2A task lifecycle and execution model
+- Expanded client-specific config coverage
 
-## Non-Goals
+---
 
-- Do not implement remote install-on-user-machine from a hosted server.
-- Do not add A2A before the catalog contract is stable.
-- Do not replace `SKILL.md` as the canonical authoring format.
-- Do not require contributors to write manifests by hand yet.
+## 🎯 Goals
 
-## Target Architecture
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Make the same metadata reusable across CLI, API, MCP, and A2A
 
-Omni Skills should converge on one catalog core with three protocol surfaces on top:
+---
 
-1. `REST API`
-   Read-mostly access to skills, bundles, manifests, versions, and search.
+## 🚫 Non-Goals
 
-2. `MCP`
-   Agent-facing discovery, recommendation, and install planning.
-   Local mode already adds write-capable tools for filesystem installation, while hosted mode remains read-only.
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ A2A before the catalog contract is stable
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
 
-3. `A2A`
-   Agent-to-agent orchestration for higher-level workflows after the lower layers are stable.
+---
 
-## Core Principle
+## 🏗️ Target Architecture
 
-All protocols must consume the same generated manifest artifacts.
+One **catalog core** with three protocol surfaces:
 
-The generation pipeline is:
+| Surface | Best For | Mode |
+|:--------|:---------|:-----|
+| 🌐 **REST API** | Registry access, web UI, third-party integrations | Read-only |
+| 🔌 **MCP** | Agent discovery, recommendations, install previews | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and workflow handoff | Scaffold → task lifecycle |
 
-1. Authors maintain `skills/<name>/SKILL.md` and any references, assets, or agents.
-2. Build scripts extract frontmatter and file metadata.
-3. The repo emits:
-   - `skills_index.json` for repo-local workflows
-   - `dist/catalog.json` for service and registry use
-   - `dist/manifests/<skill>.json` for per-skill machine access
-4. Future API, MCP, and A2A layers read those generated artifacts instead of reparsing the repo ad hoc.
+---
 
-## Delivery Modes
+## ⚙️ Core Principle
 
-There are two distinct operating modes and they must stay separate:
+> **All protocols consume the same generated manifest artifacts.**
 
-### 1. Remote Catalog Mode
+```
+📝 Authors → SKILL.md + references/assets
+      ↓
+⚙️ Build Pipeline → validates, classifies, archives
+      ↓
+📁 dist/ → catalog.json + manifests/*.json + archives/*
+      ↓
+🌐 API / 🔌 MCP / 🤖 A2A → read same artifacts
+```
 
-Used by hosted API and remote MCP servers.
+---
 
-Allowed capabilities:
+## 🔀 Delivery Modes
 
-- search skills
-- fetch manifests
-- compare skills
-- recommend bundles
-- build install plans
+### 1️⃣ Remote Catalog Mode
 
-Not allowed:
+> Used by hosted API and remote MCP servers.
 
-- write to the user's filesystem
-- mutate local agent config
-- infer local machine state without an explicit local component
+| ✅ Allowed | ❌ Not Allowed |
+|:-----------|:---------------|
+| Search skills | Write to user's filesystem |
+| Fetch manifests | Mutate local agent config |
+| Compare skills | Infer local machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-### 2. Local Installer Mode
+### 2️⃣ Local Installer Mode
 
-Used by CLI and any future local MCP sidecar.
+> Used by CLI and MCP sidecar.
 
-Allowed capabilities:
+| ✅ Allowed |
+|:-----------|
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations (dry-run) |
+| Install/remove skill directories |
+| Edit local config after confirmation |
 
-- detect supported local clients
-- inspect installed skills
-- preview file operations
-- install or remove skill directories
-- edit local config after explicit confirmation
+> 📌 This is the **only mode** where real OS writes happen.
 
-This local mode is the only place where real OS writes should happen.
+---
 
-## Protocol Split
+## 📐 Protocol Split
 
-### REST API
+### 🌐 REST API
 
-Best for:
+Best for: registry access, web UI, third-party integrations, search, versioned downloads
 
-- registry access
-- web UI
-- third-party integrations
-- search and filtering
-- versioned download endpoints
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-Suggested first endpoints:
+### 🔌 MCP
 
-- `GET /v1/skills`
-- `GET /v1/skills/:id`
-- `GET /v1/search`
-- `GET /v1/bundles`
-- `POST /v1/install/plan`
-- `GET /healthz`
+Best for: agent tool selection, promptable discovery, install previews, context-rich retrieval
 
-### MCP
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-Best for:
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-- agent tool selection
-- promptable discovery workflows
-- install previews
-- context-rich skill retrieval
+### 🤖 A2A
 
-Suggested first tools:
+Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 
-- `search_skills`
-- `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
+**Capabilities**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
 
-Suggested future local tools:
+---
 
-- `detect_clients`
-- `list_installed_skills`
-- `install_skills`
-- `remove_skills`
-- `configure_client_mcp`
+## 🛡️ Security Model
 
-### A2A
+| Principle | Implementation |
+|:----------|:---------------|
+| 🔒 Hosted services are read-only | No filesystem writes from API/MCP remote |
+| 📂 Writes stay local | CLI and sidecar only |
+| 👁️ Preview before write | Dry-run defaults on all mutations |
+| 🔒 Checksum integrity | SHA-256 for all generated artifacts |
+| ✍️ Future signed releases | Layered on top of checksums |
+| ⚠️ Risk visibility | Risk metadata visible in every surface |
 
-Best for:
+---
 
-- orchestrating multiple agents
-- handing off discovery to recommendation to install planning
-- exposing Omni Skills as a specialized agent
+## 📋 Phase Details
 
-Suggested first agent capabilities:
+### Phase 1: Contracts and Artifacts ✅
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+- Documented target architecture
+- Defined manifest schema
+- Generated machine-readable artifacts in `dist/`
 
-A2A now exists as a scaffold on top of the stable catalog contract, but it still needs a fuller execution model.
+### Phase 2: Catalog Service ✅
 
-## Security Model
+- Read-only HTTP API with Express 5
+- Search, filtering, manifest lookup, artifact downloads
+- Auth, rate limiting, audit logging
 
-- Hosted services must be read-only by default.
-- Filesystem writes must stay local.
-- All write operations should support preview or dry-run first.
-- Generated artifacts should include checksums for file integrity.
-- Future signed releases should be layered on top of these checksums.
-- Risk metadata from `SKILL.md` must remain visible in every protocol surface.
+### Phase 3: MCP Discovery ✅
 
-## Phase Plan
+- MCP server with stdio/stream/sse transports
+- 5 read-only tools, 3 resources, 2 prompts
+- Official `@modelcontextprotocol/sdk` integration
 
-### Phase 1: Contracts and Artifacts
+### Phase 4: Local Install Surface 🟡
 
-Status: completed
+- ✅ Local sidecar with allowlisted writes
+- ✅ Client detection for 7 AI assistants
+- ✅ MCP config writing for JSON + TOML
+- ⏳ Broader per-client config coverage needed
 
-- document the target architecture
-- define the manifest schema
-- generate machine-readable artifacts in `dist/`
+### Phase 5: A2A Orchestration 🟡
 
-### Phase 2: Catalog Service
+- ✅ Agent Card at `/.well-known/agent.json`
+- ✅ `message/send` with 3 operations
+- ⏳ Task-aware execution model
+- ⏳ Streaming and push notifications
 
-Status: completed
+---
 
-- add a read-only HTTP API backed by generated artifacts
-- expose search and manifest lookup
+## 🔮 Open Questions
 
-### Phase 3: MCP Discovery
-
-Status: completed
-
-- add a read-only MCP server backed by the same artifacts
-- expose skill search, comparison, and recommendation
-
-### Phase 4: Local Install Surface
-
-Status: partially completed
-
-- add a local sidecar or extend the CLI for manifest-aware install planning
-- support detection, preview, and installation with explicit confirmation
-- extend the current client-aware MCP config generation into broader per-client coverage
-
-### Phase 5: A2A Orchestration
-
-Status: partially completed
-
-- expose Omni Skills as an A2A-capable specialized agent
-- orchestrate discovery and install planning on top of the catalog contract
-- evolve from scaffold responses into task-aware execution
-
-## Immediate Repository Tasks
-
-- expand the published skill catalog so bundle metadata becomes increasingly concrete
-- harden hosted surfaces with auth, rate limits, and auditability
-- move from raw repository downloads to signed release artifacts or per-skill archives
-- expand local MCP config generation coverage for more clients and config targets
-- deepen the A2A implementation beyond message-only scaffolding
-
-## Open Questions
-
-- Selective installation currently downloads tagged raw repository artifacts. Should future releases move to signed per-skill archives instead?
-- Should private or premium catalogs reuse the same manifest format with auth layered outside the schema?
-- Should the local installer keep growing per-client MCP config writers, or converge on a smaller shared export model plus docs?
+| # | Question |
+|:--|:---------|
+| 1️⃣ | Should future releases move entirely to signed per-skill archives? |
+| 2️⃣ | Should private/premium catalogs reuse the manifest format with auth layered externally? |
+| 3️⃣ | Should the installer converge to fewer shared export models plus docs, or keep growing per-client writers? |
