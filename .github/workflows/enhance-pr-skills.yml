@@ -1,0 +1,357 @@
+name: Enhance PR Skills
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - "skills/**"
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Public PR number to process"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: enhance-pr-${{ github.event.pull_request.number || inputs.pr_number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Resolve PR number
+        id: pr
+        run: |
+          if [ -n "${{ github.event.pull_request.number || '' }}" ]; then
+            echo "pr_number=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          elif [ -n "${{ inputs.pr_number || '' }}" ]; then
+            echo "pr_number=${{ inputs.pr_number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "Unable to determine PR number." >&2
+            exit 1
+          fi
+
+      - name: Resolve PR metadata
+        id: metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          pr_number = os.environ["PR_NUMBER"]
+          repo = os.environ["GITHUB_REPOSITORY"]
+          payload = subprocess.check_output(
+              ["gh", "api", f"repos/{repo}/pulls/{pr_number}"],
+              text=True,
+          )
+          pr = json.loads(payload)
+          output = Path(os.environ["GITHUB_OUTPUT"])
+          changed_files = subprocess.check_output(
+              ["gh", "api", "--paginate", "--slurp", f"repos/{repo}/pulls/{pr_number}/files"],
+              text=True,
+          )
+          pages = json.loads(changed_files)
+          files = []
+          for page in pages:
+              files.extend(page)
+          changed_paths = [item["filename"] for item in files]
+          skill_ids = []
+          seen = set()
+          disallowed_paths = []
+          for changed in changed_paths:
+              parts = changed.split("/")
+              if len(parts) >= 2 and parts[0] == "skills":
+                  if parts[1] not in seen:
+                      seen.add(parts[1])
+                      skill_ids.append(parts[1])
+                  continue
+              if changed == "data/bundles.json":
+                  continue
+              disallowed_paths.append(changed)
+          safe_to_enhance = "true" if skill_ids and not disallowed_paths else "false"
+          values = {
+              "base_sha": pr["base"]["sha"],
+              "head_sha": pr["head"]["sha"],
+              "base_ref": pr["base"]["ref"],
+              "head_ref": pr["head"]["ref"],
+              "head_repo": pr["head"]["repo"]["full_name"],
+              "pr_author": pr["user"]["login"],
+              "safe_to_enhance": safe_to_enhance,
+              "skill_ids": ",".join(skill_ids),
+              "skill_count": str(len(skill_ids)),
+              "disallowed_paths": ",".join(disallowed_paths),
+          }
+          with output.open("a", encoding="utf-8") as handle:
+              for key, value in values.items():
+                  handle.write(f"{key}={value}\n")
+          PY
+
+      - name: Checkout private enhancer repository
+        uses: actions/checkout@v4
+        with:
+          repository: diegosouzapw/omni-skills-private
+          token: ${{ secrets.OMNI_SKILLS_PRIVATE_REPO_TOKEN }}
+          path: enhancer-private
+          fetch-depth: 0
+
+      - name: Publish queued PR summary
+        env:
+          SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          SKILL_IDS: ${{ steps.metadata.outputs.skill_ids }}
+          DISALLOWED_PATHS: ${{ steps.metadata.outputs.disallowed_paths }}
+        run: |
+          set -euo pipefail
+          if [ "$SAFE_TO_ENHANCE" = "true" ]; then
+            skill_count="${{ steps.metadata.outputs.skill_count }}"
+            {
+              echo "## Omni Skills Enhancer"
+              echo
+              echo "- Status: queued"
+              echo "- Native skills in queue: \`${skill_count}\`"
+              echo "- Skill IDs: \`${SKILL_IDS}\`"
+              echo "- Processing mode: \`live\`"
+              echo "- Rate limit: \`1 skill per minute\`"
+              echo "- Output target: \`skills_omni/\` companion PR"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo "## Omni Skills Enhancer"
+              echo
+              echo "- Status: skipped"
+              echo "- Reason: this PR changes files outside the native auto-enhance scope."
+              echo "- Allowed scope: \`skills/**\` and optional \`data/bundles.json\`"
+              echo "- Non-skill paths: \`${DISALLOWED_PATHS:-none}\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upsert PR start comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          SKILL_IDS: ${{ steps.metadata.outputs.skill_ids }}
+          SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          DISALLOWED_PATHS: ${{ steps.metadata.outputs.disallowed_paths }}
+        run: |
+          set -euo pipefail
+          if [ "$SAFE_TO_ENHANCE" = "true" ]; then
+            python3 enhancer-private/scripts/upsert_public_pr_comment.py \
+              --repo "$GITHUB_REPOSITORY" \
+              --pr-number "$PR_NUMBER" \
+              --phase started \
+              --skill-ids "$SKILL_IDS"
+          else
+            python3 enhancer-private/scripts/upsert_public_pr_comment.py \
+              --repo "$GITHUB_REPOSITORY" \
+              --pr-number "$PR_NUMBER" \
+              --phase skipped \
+              --disallowed-paths "$DISALLOWED_PATHS"
+          fi
+
+      - name: Skip non-skill PRs
+        if: steps.metadata.outputs.safe_to_enhance != 'true'
+        run: echo "Skipping enhancer because the PR is not a pure native skill intake change."
+
+      - name: Checkout trusted validator repository state
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ steps.metadata.outputs.base_sha }}
+          path: validator-repo
+          fetch-depth: 0
+
+      - name: Checkout PR head content
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: refs/pull/${{ steps.pr.outputs.pr_number }}/head
+          path: target-repo
+          fetch-depth: 0
+
+      - name: Checkout publish worktree
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ steps.metadata.outputs.base_ref }}
+          path: publish-repo
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run live enhancer for PR skill changes
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        env:
+          SKILL_ENHANCER_PRIVATE_ROOT: ${{ github.workspace }}/enhancer-private
+          OMNI_SKILLS_REPO_ROOT: ${{ github.workspace }}/target-repo
+          OMNI_SKILLS_VALIDATION_REPO_ROOT: ${{ github.workspace }}/validator-repo
+          OMNIROUTER_API_KEY: ${{ secrets.OMNIROUTER_API_KEY }}
+          OMNIROUTER_BASE_URL: ${{ vars.OMNIROUTER_BASE_URL }}
+          OMNIROUTER_MODEL: ${{ vars.OMNIROUTER_MODEL }}
+          OMNIROUTER_REQUEST_DEADLINE_SECONDS: "180"
+          BASE_SHA: ${{ steps.metadata.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.metadata.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          python3 enhancer-private/scripts/enhance_repo_changes.py \
+            --repo-root "$OMNI_SKILLS_REPO_ROOT" \
+            --state-file "$GITHUB_WORKSPACE/enhancer-private/state/pr-${{ steps.pr.outputs.pr_number }}.json" \
+            --base-ref "$BASE_SHA" \
+            --head-ref "$HEAD_SHA" \
+            --mode live \
+            --min-skill-interval-seconds 60 \
+            --no-update-state
+
+      - name: Locate latest batch report
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        id: batch
+        run: |
+          set -euo pipefail
+          batch_report="$(ls -1 enhancer-private/workspace/reports/batches/*.json | sort | tail -n 1)"
+          echo "report_path=$batch_report" >> "$GITHUB_OUTPUT"
+
+      - name: Upload enhancer artifacts
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-enhancer-${{ github.run_id }}
+          retention-days: 14
+          path: |
+            enhancer-private/workspace/reports/**
+            enhancer-private/workspace/enhanced-candidates/**
+          if-no-files-found: ignore
+
+      - name: Materialize skills_omni candidates
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        id: materialize
+        run: |
+          set -euo pipefail
+          python3 enhancer-private/scripts/publish_enhanced_to_public.py \
+            --source-repo-root "$GITHUB_WORKSPACE/target-repo" \
+            --publish-repo-root "$GITHUB_WORKSPACE/publish-repo" \
+            --validation-repo-root "$GITHUB_WORKSPACE/validator-repo" \
+            --batch-report "${{ steps.batch.outputs.report_path }}" \
+            --source-pr-number "${{ steps.pr.outputs.pr_number }}" \
+            --source-pr-author "${{ steps.metadata.outputs.pr_author }}" \
+            --source-pr-repo "${{ steps.metadata.outputs.head_repo }}" \
+            --source-pr-head-sha "${{ steps.metadata.outputs.head_sha }}" \
+            | tee "$GITHUB_WORKSPACE/publish-summary.json"
+
+      - name: Create or update skills_omni PR
+        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        id: curated_pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          BASE_REF: ${{ steps.metadata.outputs.base_ref }}
+        run: |
+          set -euo pipefail
+          if [ ! -f publish-repo/skills_omni/README.md ]; then
+            mkdir -p publish-repo/skills_omni
+            printf '%s\n' \
+              '# skills_omni' \
+              '' \
+              'This directory stores Omni-enhanced derivatives of native incoming skills from the public `skills/` catalog.' \
+              '' \
+              'Operating model:' \
+              '' \
+              '- `skills/` remains the native intake surface' \
+              '- contributors can submit minimal or non-standard native skills there' \
+              '- the private enhancer reviews those skills one by one during pull requests' \
+              '- approved enhanced derivatives are proposed back into this directory through an automation-authored PR' \
+              '' \
+              'Important boundaries:' \
+              '' \
+              '- entries under `skills_omni/` are maintained by the Omni Skills Team' \
+              '- every enhanced derivative must keep attribution to the upstream native skill and contributor' \
+              '- `skills_omni/` is not the canonical intake surface for community submissions' \
+              '- the main catalog build still treats `skills/` as the source of truth for the published machine-readable catalog' \
+              > publish-repo/skills_omni/README.md
+          fi
+          branch="skills-omni/pr-${PR_NUMBER}"
+          git -C publish-repo config user.name "github-actions[bot]"
+          git -C publish-repo config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C publish-repo checkout -B "$branch" "origin/${BASE_REF}"
+          git -C publish-repo add skills_omni
+          if git -C publish-repo diff --cached --quiet; then
+            echo "pr_url=" >> "$GITHUB_OUTPUT"
+            echo "published_count=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git -C publish-repo commit -m "feat(skills_omni): enhance native skills from #${PR_NUMBER}"
+          git -C publish-repo push --force-with-lease origin "HEAD:${branch}"
+          pr_url="$(gh pr list --repo "${GITHUB_REPOSITORY}" --head "$branch" --base "$BASE_REF" --state open --json url --jq '.[0].url')"
+          if [ -z "$pr_url" ]; then
+            body=$'## Summary\n\nThis PR was generated automatically from source PR #'${PR_NUMBER}$'.\n\n- source intake surface: `skills/`\n- curated output surface: `skills_omni/`\n- generated by the private enhancer in live mode\n- each directory keeps upstream attribution in `ATTRIBUTION.md`\n'
+            pr_url="$(gh pr create --repo "${GITHUB_REPOSITORY}" --base "$BASE_REF" --head "$branch" --title "enhance: promote curated skills_omni candidates for #${PR_NUMBER}" --body "$body")"
+          fi
+          echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+          published_count="$(python3 -c "import json; from pathlib import Path; path = Path('publish-summary.json'); summary = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}; print(summary.get('published_count', 0))")"
+          echo "published_count=$published_count" >> "$GITHUB_OUTPUT"
+
+      - name: Finalize PR enhancer comment
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          BATCH_REPORT: ${{ steps.batch.outputs.report_path }}
+          CURATED_PR_URL: ${{ steps.curated_pr.outputs.pr_url }}
+          PUBLISHED_COUNT: ${{ steps.curated_pr.outputs.published_count }}
+        run: |
+          set -euo pipefail
+          if [ "${SAFE_TO_ENHANCE}" != "true" ]; then
+            python3 enhancer-private/scripts/upsert_public_pr_comment.py \
+              --repo "$GITHUB_REPOSITORY" \
+              --pr-number "$PR_NUMBER" \
+              --phase skipped
+            exit 0
+          fi
+          python3 enhancer-private/scripts/upsert_public_pr_comment.py \
+            --repo "$GITHUB_REPOSITORY" \
+            --pr-number "$PR_NUMBER" \
+            --phase completed \
+            --batch-report "${BATCH_REPORT}" \
+            --curated-pr-url "${CURATED_PR_URL}" \
+            --published-count "${PUBLISHED_COUNT}"
+
+      - name: Publish final run summary
+        if: always()
+        env:
+          SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          BATCH_REPORT: ${{ steps.batch.outputs.report_path }}
+          CURATED_PR_URL: ${{ steps.curated_pr.outputs.pr_url }}
+          PUBLISHED_COUNT: ${{ steps.curated_pr.outputs.published_count }}
+        run: |
+          set -euo pipefail
+          if [ "${SAFE_TO_ENHANCE}" != "true" ]; then
+            {
+              echo
+              echo "### Final status"
+              echo
+              echo "- Enhancer result: skipped"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          python3 -c "import json, os; from pathlib import Path; batch = json.loads(Path(os.environ['BATCH_REPORT']).read_text(encoding='utf-8')) if os.environ.get('BATCH_REPORT') and Path(os.environ['BATCH_REPORT']).exists() else {}; lines=['', '### Final status', '', f\"- Enhancer result: {batch.get('status', 'unknown')}\", f\"- Processed skills: {batch.get('processed_count', 0)}\", f\"- Successful skills: {batch.get('successful_count', 0)}\", f\"- Failed skills: {batch.get('failed_count', 0)}\", f\"- Curated outputs published: {os.environ.get('PUBLISHED_COUNT') or '0'}\"]; curated=os.environ.get('CURATED_PR_URL','').strip(); lines.append(f'- skills_omni PR: {curated}') if curated else None; Path(os.environ['GITHUB_STEP_SUMMARY']).open('a', encoding='utf-8').write('\\n'.join(lines)+'\\n')"

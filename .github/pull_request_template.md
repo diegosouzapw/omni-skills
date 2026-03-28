@@ -7,6 +7,7 @@
 ## Skill Changes
 
 - [ ] added new skill directories under `skills/`
+- [ ] expected automatic `skills_omni/` derivative follow-up
 - [ ] updated an existing skill support pack
 - [ ] updated `data/bundles.json`
 - [ ] updated runtime, CLI, or MCP behavior
@@ -33,15 +34,9 @@ security avg: before -> after
 
 ## Private Enhancer Review
 
-- [ ] enhancer not needed for this PR
-- [ ] enhancer processed `main..HEAD` in `mock`
-- [ ] enhancer processed `main..HEAD` in `live`
-
-If used, include:
-
-- run id(s)
-- score delta summary
-- whether `enhanced-candidates/` and `review.md` looked sane
+- [ ] this PR is inside the native auto-enhance scope (`skills/**` plus optional `data/bundles.json`)
+- [ ] the automatic enhancer should open or update a `skills_omni/` companion PR
+- [ ] this PR intentionally falls outside the native auto-enhance scope
 
 ## Reviewer Focus
 

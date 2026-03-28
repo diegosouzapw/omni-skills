@@ -14,6 +14,7 @@ Current repository baseline:
 - Skills are authored in `skills/<skill-name>/SKILL.md`.
 - Contributor templates and guidance live in `docs/contributors/`.
 - The canonical PR flow for new skill branches is in `docs/contributors/skill-pr-workflow.md`.
+- Native incoming skills now land under `skills/`, while Omni-maintained enhanced derivatives are proposed automatically under `skills_omni/`.
 - Runtime and architecture docs live in `docs/`.
 - Repository-standard community files live in the root: `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `CODE_OF_CONDUCT.md`.
 
@@ -53,14 +54,14 @@ Open the PR with `Allow edits from maintainers` enabled.
 
 ## Skill Contributions
 
-A good skill should:
+A good native incoming skill should:
 
 - solve a specific problem cleanly
 - be reusable across projects
 - include instructions an agent can actually follow
 - avoid vague or redundant content
-- declare accurate frontmatter and compatibility metadata
-- land with generated `metadata.json` classification artifacts
+- declare accurate frontmatter and compatibility metadata when available
+- land with generated `metadata.json` classification artifacts after automation runs
 
 Minimal structure:
 
@@ -81,13 +82,13 @@ skills/my-skill/
 └── scripts/
 ```
 
-Release-grade skill PRs should usually include `agents/`, `references/`, `examples/`, and `scripts/`, not only `SKILL.md`.
+Release-grade skill packs should usually include `agents/`, `references/`, `examples/`, and `scripts/`, not only `SKILL.md`. But the intake surface is intentionally more permissive now: a native incoming skill is allowed to be minimal, and the enhancer pipeline is responsible for generating the stronger derivative proposal in `skills_omni/`.
 
 For the full branch, validation, and enhancer-review sequence, use [docs/contributors/skill-pr-workflow.md](docs/contributors/skill-pr-workflow.md).
 
 ## Required Validation
 
-Before opening a PR, run:
+Contributors can run this before opening a PR:
 
 ```bash
 npm run validate
@@ -110,6 +111,12 @@ It also computes:
 
 That validation is the contract used by CLI, API, MCP, A2A, generated manifests, archives, and release automation. Treat generated metadata as part of the review surface, not as disposable output.
 
+Important change to the intake policy:
+
+- missing or incomplete frontmatter on a native incoming skill now produces warnings in the normal validation flow instead of blocking intake by itself
+- critical security findings and hard validation errors still block
+- the stricter editorial standard is enforced in the enhanced derivative flow, not at native intake time
+
 For a release-grade preflight, also run:
 
 ```bash
@@ -130,7 +137,7 @@ That smoke pass currently validates:
 
 ## Skill Frontmatter
 
-Every skill must include YAML frontmatter. Use [docs/contributors/skill-template.md](docs/contributors/skill-template.md) as the baseline and keep the `name` aligned with the directory slug.
+Frontmatter is still strongly recommended for every skill. Use [docs/contributors/skill-template.md](docs/contributors/skill-template.md) as the baseline and keep the `name` aligned with the directory slug whenever you provide it.
 
 ```yaml
 ---
@@ -172,6 +179,8 @@ Use canonical categories in new skills. Current taxonomy:
 
 The skill version is independent from the npm package version. Use the semantic version that makes sense for the skill itself.
 
+If a native incoming skill does not have frontmatter yet, the repo now accepts it with warnings and derives temporary metadata from the directory, title, and body text so the enhancer can still process it.
+
 ## Runtime Contributions
 
 If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
@@ -182,6 +191,8 @@ If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 - keep MCP writers disciplined: only add first-class config writers when the target client has a stable public config contract
 - treat security scanner warnings as part of the review bar for new skills and scripts
 - update tests when changing CLI commands, transport modes, or public endpoints
+
+If you are contributing native skills only, the automation now handles the private enhancer run and the `skills_omni/` follow-up PR for you during the public PR lifecycle.
 
 ## Commit Conventions
 

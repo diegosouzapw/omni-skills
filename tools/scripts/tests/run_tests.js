@@ -124,6 +124,52 @@ async function postJson(url, body, headers = {}) {
   const repoMetadata = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "../../../metadata.json"), "utf-8"),
   );
+  const nativeTempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "omni-skills-native-"));
+  const nativeSkillRoot = path.join(nativeTempRoot, "skills", "raw-native-skill");
+  fs.mkdirSync(nativeSkillRoot, { recursive: true });
+  fs.writeFileSync(
+    path.join(nativeSkillRoot, "SKILL.md"),
+    "# Raw Native Skill\n\nThis native intake intentionally omits YAML frontmatter so the repository can accept rough incoming skills and let the enhancer normalize them later.\n",
+    "utf-8",
+  );
+  const nativeValidation = JSON.parse(
+    childProcess.execFileSync(
+      "python3",
+      [
+        "-c",
+        `
+import json
+import pathlib
+import sys
+
+sys.path.insert(0, ${JSON.stringify(path.resolve(__dirname, ".."))})
+import skill_metadata
+
+issues, metadata = skill_metadata.validate_skill(
+    ${JSON.stringify(nativeSkillRoot)},
+    "raw-native-skill",
+    ${JSON.stringify(nativeTempRoot)},
+    strict=False,
+)
+print(json.dumps({"issues": issues, "metadata": metadata}))
+`,
+      ],
+      { encoding: "utf-8" },
+    ),
+  );
+  assert.ok(nativeValidation.metadata, "native intake without frontmatter should still produce derived metadata");
+  assert.ok(
+    nativeValidation.issues.some(
+      ([level, message]) => level === "WARN" && message.includes("Missing or invalid YAML frontmatter"),
+    ),
+    "native intake should warn when frontmatter is missing",
+  );
+  assert.ok(
+    !nativeValidation.issues.some(
+      ([level, message]) => level === "ERROR" && message.includes("frontmatter"),
+    ),
+    "native intake should no longer fail solely because frontmatter is missing",
+  );
   childProcess.execFileSync(
     "python3",
     [path.resolve(__dirname, "../verify_archives.py")],

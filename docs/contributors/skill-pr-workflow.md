@@ -1,6 +1,6 @@
 # Skill PR Workflow
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more skills.
+This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
 
 Use it when:
 
@@ -11,13 +11,13 @@ Use it when:
 
 ## Target Outcome
 
-A strong skill PR lands with:
+A strong native skill PR lands with:
 
-- complete skill structure
-- generated `metadata.json` and per-skill `metadata.json`
-- refreshed `dist/` artifacts
-- passing validation and smoke checks where applicable
-- a branch diff that the private enhancer can process skill by skill
+- a native skill under `skills/`
+- enough content for the public validator to classify and index it
+- passing public validation and tests
+- automatic enhancer processing during the PR
+- a follow-up `skills_omni/` PR when enhanced derivatives are published
 
 ## Recommended Branch Shape
 
@@ -33,9 +33,18 @@ Examples:
 - `feat/devops-skill-pack`
 - `feat/security-skill-pack`
 
-## Minimum Structure Per New Skill
+## Native Intake Rules
 
-New skills in this repository should usually include:
+The public intake surface is intentionally permissive.
+
+Minimum:
+
+```text
+skills/<skill>/
+└── SKILL.md
+```
+
+Recommended but no longer required for intake:
 
 ```text
 skills/<skill>/
@@ -47,29 +56,25 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-A plain `SKILL.md` with no support pack is normally not enough for a release-grade PR.
+The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+
+The stricter editorial bar now applies to:
+
+- the generated metadata and security checks
+- the private enhancer review
+- the follow-up curated derivative under `skills_omni/`
 
 ## Authoring Sequence
 
-1. Create the skill directory and frontmatter.
-2. Write `SKILL.md` with:
-   - `Overview`
-   - `When to Use This Skill`
-   - `Operating Table`
-   - `Core Concepts`
-   - `Workflow`
-   - `Examples`
-   - `Best Practices`
-   - `Troubleshooting`
-   - `Related Skills`
-   - `Additional Resources`
-3. Add `agents/openai.yaml`.
-4. Add local support files under `references/`, `examples/`, and `scripts/`.
-5. Update `data/bundles.json` if the skill deepens an existing bundle.
+1. Create `skills/<skill>/SKILL.md`.
+2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
+3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
+4. Update `data/bundles.json` if the skill deepens an existing bundle.
+5. Open the PR. The repo automation now does the rest.
 
 ## Validation Sequence
 
-Run this exact sequence before opening the PR:
+Contributors can run this exact sequence before opening the PR:
 
 ```bash
 npm run validate
@@ -78,43 +83,64 @@ npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, run:
+If the change also affects runtime or packaging behavior, also run:
 
 ```bash
 npm run smoke
 ```
 
-## Private Enhancer Review
+## What Happens Automatically During the PR
 
-The private enhancer is not part of this repository, but maintainers can run it against the branch diff.
+When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
 
-Recommended operating pattern:
+Current automated flow:
 
-- use **`mock` batch mode** for the full PR diff
-- use **`live` mode** for one skill at a time when a maintainer wants a deeper review
+1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
+2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
+3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
+4. The enhancer posts progress back to the source PR.
+5. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo.
 
-This keeps the batch reliable while the live gateway remains rate-limited and provider-latency-sensitive.
+Rate limit:
 
-Public repo:
+- the PR enhancer currently processes **1 skill per minute**
+- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
+- the PR shows that work as an in-progress CI run plus status comment
 
-```bash
-git checkout feat/<short-skill-theme>
-git rev-parse main
-git rev-parse HEAD
-```
+The contributor does not need to run the enhancer manually.
 
-Private enhancer:
+## Native vs Enhanced
+
+This repo now has two distinct surfaces:
+
+- `skills/`
+  Native intake. This preserves the original contribution as submitted.
+- `skills_omni/`
+  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+
+Attribution rules for `skills_omni/`:
+
+- the enhanced derivative becomes Omni-maintained
+- the original contributor and upstream native skill remain credited
+- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
+
+## Manual Maintainer Commands
+
+The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
+
+Batch against a branch diff:
 
 ```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
   --head-ref HEAD \
-  --mode mock \
+  --mode live \
+  --min-skill-interval-seconds 60 \
   --no-update-state
 ```
 
-Optional maintainer live pass for a single skill:
+Single-skill review:
 
 ```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
@@ -126,9 +152,8 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
 
 Expected enhancer outputs per skill:
 
-- `workspace/incoming/skills/<skill>/`
-- `workspace/enhanced-candidates/skills/<skill>/`
-- `workspace/simplified-candidates/skills/<skill>/`
+- `workspace/incoming/original/<run-id>/<skill>/`
+- `workspace/enhanced-candidates/<run-id>/<skill>/`
 - `workspace/reports/<run-id>/research.json`
 - `workspace/reports/<run-id>/rewrite.json`
 - `workspace/reports/<run-id>/validation.json`
@@ -144,19 +169,18 @@ The PR body should state:
 - what skills were added or upgraded
 - which bundles or workflows they deepen
 - what validation ran
-- whether the private enhancer processed the branch
-- what the enhancer changed or recommended
+- whether the automated enhancer ran
+- whether it opened or updated a `skills_omni/` companion PR
+- any exceptional maintainer notes about attribution or follow-up cleanup
 
 ## Reviewer Checklist
 
-- frontmatter is complete and canonical
-- `Workflow` is explicit and operational
-- support-pack files are linked from `SKILL.md`
-- examples are concrete and runnable
-- troubleshooting uses `Symptoms` and `Solution`
+- native intake is legitimate and non-malicious
 - generated metadata and manifests were refreshed
 - bundle updates are intentional
-- tests and build outputs are green
+- public validation and build outputs are green
+- the enhancer status comment matches the actual changed skills
+- any `skills_omni/` companion PR preserves attribution correctly
 
 ## Example PR Scope
 
@@ -166,4 +190,4 @@ A strong example PR can add a thematic set such as:
 - one incident or security skill
 - one AI evaluation or prompting skill
 
-That is large enough to exercise the scorer, bundles, and enhancer, without turning the PR into a full catalog rewrite.
+That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
