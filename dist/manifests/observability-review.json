@@ -1,0 +1,395 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "observability-review",
+  "slug": "observability-review",
+  "display_name": "Observability Review",
+  "description": "Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipping or debugging a service.",
+  "version": "0.0.1",
+  "category": "devops",
+  "raw_category": "devops",
+  "taxonomy": {
+    "raw_category": "devops",
+    "canonical_category": "devops",
+    "inferred_category": "devops",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "observability",
+    "alerts",
+    "slos",
+    "metrics",
+    "traces",
+    "logging"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28"
+  },
+  "entrypoint": "skills/observability-review/SKILL.md",
+  "paths": {
+    "root": "skills/observability-review",
+    "manifest": "dist/manifests/observability-review.json",
+    "metadata": "skills/observability-review/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 8,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 5,
+        "workflow_section_length": 644,
+        "when_to_use_section_length": 431,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 543,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 973,
+        "resources_items_count": 5,
+        "resources_section_length": 302,
+        "examples_section_length": 907,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 323,
+        "decision_assets_count": 10,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 7.46
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 7,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5854,
+    "content_length": 6354,
+    "body_lines": 112,
+    "word_count": 835,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 4,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 644,
+      "when_to_use_section_length": 431,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 543,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 973,
+      "resources_items_count": 5,
+      "resources_section_length": 302,
+      "examples_section_length": 907,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 323,
+      "decision_assets_count": 10,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 7.46
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/observability-review/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 6360,
+      "sha256": "d9d6b8b29a670b8b3b4ecd9a3d7abca404895197dbac0ce88d82f72b4d4e8181"
+    },
+    {
+      "path": "skills/observability-review/metadata.json",
+      "kind": "support",
+      "size_bytes": 5321,
+      "sha256": "e29cea4827e389ae0ed92be1a2e3efd3a118e4e5f2b575aaf437701f10cc195d"
+    },
+    {
+      "path": "skills/observability-review/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 262,
+      "sha256": "feb35f312401ba7b6c478865247fc9b5bdd6875050e974598c4e8778f648f030"
+    },
+    {
+      "path": "skills/observability-review/examples/observability-readout.md",
+      "kind": "support",
+      "size_bytes": 815,
+      "sha256": "a8c9fb929dbaf37f754fcb8919075d8f6620bbb2cf96070ee7a4b19eb0af2555"
+    },
+    {
+      "path": "skills/observability-review/references/alert-review-rubric.md",
+      "kind": "reference",
+      "size_bytes": 585,
+      "sha256": "86c1c1141f2f9ce8cc1d59a604bbb0dc67bfb9cb8bd42799bc403025f7004bdf"
+    },
+    {
+      "path": "skills/observability-review/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 873,
+      "sha256": "97f57eaee33cfbc633f166e55cfe4a60025462d6258bdf978ca3d47a3433f0c3"
+    },
+    {
+      "path": "skills/observability-review/references/slo-worksheet.md",
+      "kind": "reference",
+      "size_bytes": 422,
+      "sha256": "a39e0ed2a4d25f9b36516140794fc96b1277c7d7bd3a685eb049ba7019f9b0e9"
+    },
+    {
+      "path": "skills/observability-review/scripts/render_observability_packet.py",
+      "kind": "support",
+      "size_bytes": 1181,
+      "sha256": "cb76bc0a3bed20af2b923c20e0d81485686bbeab99f47482794a0f74cfcccd65"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/observability-review.zip",
+      "file_name": "observability-review.zip",
+      "size_bytes": 17171,
+      "sha256": "b4fd8e89c71bc62c483561636c87d8760e59d18e5139a0c3ae0f1a3c43832738",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/observability-review.tar.gz",
+      "file_name": "observability-review.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "387d96ed750638d27092c21ad75cb3575067fcf81f8edb6348865dc69aea78c2",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/observability-review.checksums.txt",
+    "file_name": "observability-review.checksums.txt",
+    "sha256": "b403057d9dcf261f0d4fd6d7ae94d699f82a0405e9e988f9772528e6d776f6df",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "d9d6b8b29a670b8b3b4ecd9a3d7abca404895197dbac0ce88d82f72b4d4e8181",
+    "package_sha256": "ab70047470ef37b04076ac36429b320e26d38ac479aa9a504a542f1e7806c708"
+  }
+}

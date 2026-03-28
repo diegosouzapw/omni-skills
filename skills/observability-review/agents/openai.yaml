@@ -1,0 +1,4 @@
+interface:
+  display_name: "Observability Review"
+  short_description: "Review logs, metrics, traces, alerts, and SLO coverage before release"
+  default_prompt: "Use $observability-review to audit telemetry coverage, alert quality, SLOs, and operator runbooks."

@@ -1,0 +1,395 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "incident-response",
+  "slug": "incident-response",
+  "display_name": "Incident Response",
+  "description": "Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder communication, or post-incident follow-up.",
+  "version": "0.0.1",
+  "category": "testing-security",
+  "raw_category": "testing-security",
+  "taxonomy": {
+    "raw_category": "testing-security",
+    "canonical_category": "testing-security",
+    "inferred_category": "testing-security",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "incident",
+    "outage",
+    "rollback",
+    "mitigation",
+    "escalation",
+    "postmortem"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28"
+  },
+  "entrypoint": "skills/incident-response/SKILL.md",
+  "paths": {
+    "root": "skills/incident-response",
+    "manifest": "dist/manifests/incident-response.json",
+    "metadata": "skills/incident-response/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 8,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 5,
+        "workflow_section_length": 632,
+        "when_to_use_section_length": 475,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 506,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1032,
+        "resources_items_count": 5,
+        "resources_section_length": 311,
+        "examples_section_length": 849,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 326,
+        "decision_assets_count": 11,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 7.07
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 7,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5842,
+    "content_length": 6370,
+    "body_lines": 112,
+    "word_count": 792,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 4,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 632,
+      "when_to_use_section_length": 475,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 506,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1032,
+      "resources_items_count": 5,
+      "resources_section_length": 311,
+      "examples_section_length": 849,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 326,
+      "decision_assets_count": 11,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 7.07
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/incident-response/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 6376,
+      "sha256": "ad9f5320762b014b86979db9f3e546cf03682569d598dacdf47eeaf00fc6bc33"
+    },
+    {
+      "path": "skills/incident-response/metadata.json",
+      "kind": "support",
+      "size_bytes": 5378,
+      "sha256": "ac7c9ccaa3da0516d33ba44ccbf9e9930668971df6236ba20d57b74cb2ad32dd"
+    },
+    {
+      "path": "skills/incident-response/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 263,
+      "sha256": "d422161b023b45e9a0ff88ee46a3973e42729c657b69a59bb2f6f2e4082c8b96"
+    },
+    {
+      "path": "skills/incident-response/examples/incident-timeline-example.md",
+      "kind": "support",
+      "size_bytes": 498,
+      "sha256": "9955e84a4531fef2115a29ab8e6e56a78820225f40f6f5475a7c26e92dfaf08f"
+    },
+    {
+      "path": "skills/incident-response/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 721,
+      "sha256": "0655447c4d0e4d8149eeba77437d584c1c6b5dae99d9c98f2a2887a2d7355eff"
+    },
+    {
+      "path": "skills/incident-response/references/escalation-matrix.md",
+      "kind": "reference",
+      "size_bytes": 636,
+      "sha256": "e979658e233f45efc30ac4135fc9b1ce22d9c9c4e8cd8676703b6f15d533e31a"
+    },
+    {
+      "path": "skills/incident-response/references/postmortem-outline.md",
+      "kind": "reference",
+      "size_bytes": 320,
+      "sha256": "ea77906fee5454780a979f07ef7e375ce37fd2c80476318a1e79dcd6e51d9337"
+    },
+    {
+      "path": "skills/incident-response/scripts/render_incident_packet.py",
+      "kind": "support",
+      "size_bytes": 1126,
+      "sha256": "d10caa25f886c7d182dc21669a73f5fa70fbb7122fe8a47a5888e71605159bf4"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/incident-response.zip",
+      "file_name": "incident-response.zip",
+      "size_bytes": 16626,
+      "sha256": "2e3ccc2db44170f5ecd3230a71e39b3c12eda1f2ff959d2d27907386f75c52c9",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/incident-response.tar.gz",
+      "file_name": "incident-response.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "8baffac6ce3798cbfdc7308239f251433be2994454b2264fd30366a88b4b073f",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/incident-response.checksums.txt",
+    "file_name": "incident-response.checksums.txt",
+    "sha256": "e12be87d14f0022565281b2d14780516caade7fda5ab8aa0ec926c08a4224e86",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "ad9f5320762b014b86979db9f3e546cf03682569d598dacdf47eeaf00fc6bc33",
+    "package_sha256": "db816095cef6d4f90defa9cc486a53b6d23ad15fecd561dc77a07963fa80c5a4"
+  }
+}

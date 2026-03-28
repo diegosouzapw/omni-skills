@@ -137,7 +137,7 @@ async function postJson(url, body, headers = {}) {
   );
   assert.equal(
     repoMetadata.taxonomy.counts["testing-security"],
-    2,
+    3,
     "repo metadata should track the published security helpers",
   );
   assert.ok(
@@ -344,7 +344,7 @@ async function postJson(url, body, headers = {}) {
     "full-stack bundle should be fully backed by published skills",
   );
   assert.ok(
-    securityBundle.available_skill_ids.length === 2,
+    securityBundle.available_skill_ids.length === 3,
     "security bundle should be fully backed by published skills",
   );
   assert.ok(
