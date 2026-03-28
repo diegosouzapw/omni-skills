@@ -302,7 +302,7 @@
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
       "size_bytes": 6457,
-      "sha256": "f0d1cb396c26558834fbd0048a2e059e11515d82704e160db8902786a3ba0640"
+      "sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e"
     },
     {
       "path": "skills/find-skills/metadata.json",
@@ -353,7 +353,7 @@
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
       "size_bytes": 15490,
-      "sha256": "9b1f56eb0871b7fb40289455bc73beef166080fbf4ed534c5eafc507f51c5c35",
+      "sha256": "612c8836fde12c02fc970af7f74076e740ee04ba4ec941fd1cb0eb060af45c49",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -367,7 +367,7 @@
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
       "size_bytes": 30743,
-      "sha256": "e8333fd86dda51d5643f79a416407e76e31d898fd3298adb83b96246cbfc1fd3",
+      "sha256": "9b80a6b51f49c1c9f8d271e251e7a06cb6de63162434f3cc82bc7da9b8790887",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -380,7 +380,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "c3013b9d21630b7f08465c0cf380444f1946ce7dd29c6d90c9777cdc1ee6834e",
+    "sha256": "56064f991608f9582d85a29dd8a56789d255bc36b6e722f22c0e844802b6d23a",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -390,7 +390,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "f0d1cb396c26558834fbd0048a2e059e11515d82704e160db8902786a3ba0640",
-    "package_sha256": "d7e62320f2c79276b80ec096551484d5e76c129a256e4a8787385a8cb8a14b3a"
+    "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
+    "package_sha256": "4c5e9c0615aebe52bfc16ff34ea86c9c3d1ebf52a9339c6e8b1639e346ba517d"
   }
 }

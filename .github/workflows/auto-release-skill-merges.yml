@@ -22,8 +22,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  auto-release:
+  detect-new-skill:
     if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.detect.outputs.should_release }}
+      added_skills: ${{ steps.detect.outputs.added_skills }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect newly added public or Omni-maintained skills
+        id: detect
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_release=true" >> "$GITHUB_OUTPUT"
+            echo "added_skills=manual-dispatch" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BEFORE_SHA="${{ github.event.before }}"
+          AFTER_SHA="${{ github.sha }}"
+          if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            BEFORE_SHA="$(git rev-parse "$AFTER_SHA^" 2>/dev/null || true)"
+          fi
+
+          if [ -z "$BEFORE_SHA" ]; then
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            echo "added_skills=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          ADDED_SKILLS="$(git diff --diff-filter=A --name-only "$BEFORE_SHA" "$AFTER_SHA" -- 'skills/*/SKILL.md' 'skills_omni/*/SKILL.md' | tr '\n' ' ' | xargs)"
+          if [ -n "$ADDED_SKILLS" ]; then
+            echo "should_release=true" >> "$GITHUB_OUTPUT"
+            echo "added_skills=$ADDED_SKILLS" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            echo "added_skills=" >> "$GITHUB_OUTPUT"
+          fi
+
+  auto-release:
+    if: github.actor != 'github-actions[bot]' && needs.detect-new-skill.outputs.should_release == 'true'
+    needs: detect-new-skill
     runs-on: ubuntu-latest
     env:
       OMNI_SKILLS_ENABLE_CLAMAV: "1"
@@ -51,6 +94,7 @@ jobs:
           NEXT_VERSION="$(python3 tools/scripts/next_release_version.py)"
           echo "value=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "Auto-release triggered by added skills: ${{ needs.detect-new-skill.outputs.added_skills }}"
 
       - name: Verify required release secrets
         env:
@@ -103,11 +147,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Bump package version
-        run: npm version "${{ steps.next_version.outputs.value }}" --workspaces --include-workspace-root --no-git-tag-version
-
-      - name: Sync repository version references
-        run: npm run release:sync-version
+      - name: Bump package version and sync repository references
+        run: |
+          python3 tools/scripts/sync_repo_version.py \
+            --version "${{ steps.next_version.outputs.value }}" \
+            --update-package-jsons
 
       - name: Install ClamAV
         run: |
