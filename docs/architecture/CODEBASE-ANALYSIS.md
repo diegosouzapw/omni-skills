@@ -14,18 +14,18 @@
 | **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.1`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
-| **Published skills** | 26 |
-| **Defined bundles** | 6, all fully backed by published skills |
-| **Active catalog categories** | 11 active buckets out of 18 canonical taxonomy categories |
+| **Published skills** | 28 |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 12 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
 | **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
 
 Current repository-level classification snapshot from `metadata.json`:
 
-- average quality score: `96.9`
-- average best-practices score: `98.8`
+- average quality score: `96.5`
+- average best-practices score: `98.9`
 - average security score: `95.0`
-- all 26 published skills validate as `L3`
+- all 28 published skills validate as `L3`
 
 ---
 
@@ -87,6 +87,27 @@ The design is intentionally **artifact-driven**:
 | 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
 The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+
+## 🧭 Next Expansion Direction
+
+The public runtime is no longer blocked on foundational work. The next useful catalog wave is selective expansion across dormant canonical categories.
+
+Recommended activation order:
+
+1. `tools`
+2. `data-ai`
+3. `machine-learning`
+
+Categories to keep intentionally deferred unless strong code-native proposals exist:
+
+- `business`
+- `content-media`
+
+Reasoning:
+
+- `design`, `tools`, `data-ai`, and `machine-learning` can still produce coding- and agent-first workflows
+- `business` and `content-media` would be easy to bloat with non-implementation content
+- the catalog already has strong depth in `devops`, `ai-agents`, and `testing-security`, so the next gain is taxonomy breadth with the same quality floor
 
 ### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
@@ -285,19 +306,21 @@ Two details matter operationally:
 
 ## 📦 Published Catalog
 
-The current public catalog spans 26 skills:
+The current public catalog spans 28 skills:
 
 - **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
+- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
 - **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
 - **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
 - **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
 - **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
 - **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
 
-All six bundles are fully backed:
+All seven bundles are fully backed:
 
 - `essentials` → `4/4`
 - `full-stack` → `5/5`
+- `design` → `4/4`
 - `security` → `4/4`
 - `devops` → `5/5`
 - `ai-engineer` → `5/5`
@@ -312,7 +335,9 @@ Current score spread from the generated catalog:
 Representative high end:
 
 - `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
 - `auth-flows` → `quality 97`, `best_practices 99`
+- `design-systems-ops` → `quality 97`, `best_practices 99`
 - `release-engineering` → `quality 97`, `best_practices 99`
 - `threat-modeling` → `quality 97`, `best_practices 99`
 - `context-engineering` → `quality 97`, `best_practices 99`

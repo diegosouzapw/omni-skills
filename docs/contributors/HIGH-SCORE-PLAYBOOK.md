@@ -22,7 +22,7 @@ This is the contributor-facing companion to:
 
 Current benchmark for the live catalog:
 
-- 26 published skills
+- 28 published skills
 - current quality spread: `94, 95, 96, 97, 100`
 - current best-practices spread: `98, 99, 100`
 - current top end: `omni-figma` at `100/100` quality and `100/100` best practices

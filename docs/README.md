@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.1; skills=26; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.1; skills=28; updated_at=2026-03-28 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
@@ -13,7 +13,7 @@ Standard community files live in the repository root:
 | Area | State | Details |
 |:-----|:------|:--------|
 | 🏗️ **Runtime** | ✅ Complete | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 26 skills | 26 published `L3` skills across 11 active catalog categories and 6 fully backed bundles |
+| 📦 **Catalog** | 📌 28 skills | 28 published `L3` skills across 12 active catalog categories and 7 fully backed bundles |
 | 🎯 **Install** | ✅ Complete | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
 | 🌐 **API** | ✅ Complete | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
 | 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
@@ -23,6 +23,16 @@ Standard community files live in the repository root:
 | 📁 **Archives** | ✅ Complete | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
 | 🔐 **Signing** | ✅ Complete | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
 | 🧬 **Intake Flow** | ✅ Complete | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+
+## 🔭 Next Track
+
+The current foundation backlog is complete, and the first category-expansion wave has now landed with `design` active in the public taxonomy. The next planned public track is:
+
+- deepen the new `design` track without lowering the current quality floor
+- selectively activate the next dormant categories, starting with `tools`, then `data-ai`, then `machine-learning`
+- keep the quality floor and enhancer review path intact while doing so
+
+That plan and the completion status of the first expansion wave are tracked in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md).
 
 ---
 

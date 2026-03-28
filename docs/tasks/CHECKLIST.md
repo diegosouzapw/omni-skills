@@ -12,6 +12,11 @@
 - [x] `TASK-05` Add stronger observability, batch summaries, and operator-facing reports
 - [x] `TASK-06` Harden public/private PR contribution automation and maintainer workflow
 
+## Next Track
+
+- [x] `TASK-07` Expand catalog specialization and activate one or more additional canonical categories without lowering the quality bar
+- [ ] Private `TASK-09` Stabilize hosted OmniRoute cloud `live` enough to be trusted beyond the current preflight-gated mode
+
 ## Validation Gates
 
 - [x] Public `npm run build`

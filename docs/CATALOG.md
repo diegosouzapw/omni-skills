@@ -1,6 +1,6 @@
 # 📚 Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 26 skills across 11 categories.
+> Auto-generated from `skills_index.json` — 28 skills across 12 categories.
 
 Generated: 2026-03-28T00:00:00+00:00
 
@@ -12,6 +12,7 @@ Generated: 2026-03-28T00:00:00+00:00
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
 - [💬 Communication (1)](#communication)
+- [🎨 Design (2)](#design)
 - [💻 Development (3)](#development)
 - [☁️ Devops (5)](#devops)
 - [📝 Documentation (2)](#documentation)
@@ -50,6 +51,13 @@ Generated: 2026-03-28T00:00:00+00:00
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+
+## 🎨 Design
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
 
 ## 💻 Development
 

@@ -7,11 +7,11 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 26,
-    "passed": 26,
+    "total_skills": 28,
+    "passed": 28,
     "warnings": 0,
     "errors": 0,
-    "average_quality_score": 96.4,
+    "average_quality_score": 96.5,
     "average_best_practices_score": 98.9,
     "average_security_score": 95.0
   },
@@ -41,6 +41,7 @@
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
+      "design": 2,
       "development": 3,
       "devops": 5,
       "documentation": 2,
@@ -54,26 +55,45 @@
     "skill_levels": {
       "l1": 0,
       "l2": 0,
-      "l3": 26
+      "l3": 28
     },
     "quality_tiers": {
-      "platinum": 26
+      "platinum": 28
     },
     "security_tiers": {
-      "review": 26
+      "review": 28
     },
     "security_status": {
-      "passed": 26,
+      "passed": 28,
       "warn": 0,
       "failed": 0
     },
     "validation_status": {
-      "passed": 26,
+      "passed": 28,
       "warn": 0,
       "failed": 0
     }
   },
   "skills": [
+    {
+      "id": "accessibility-audit",
+      "display_name": "Accessibility Audit",
+      "description": "Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or assistive-technology review before shipping a UI.",
+      "raw_category": "design",
+      "canonical_category": "design",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/accessibility-audit/metadata.json",
+      "entrypoint": "skills/accessibility-audit/SKILL.md"
+    },
     {
       "id": "api-design",
       "display_name": "API Design",
@@ -244,6 +264,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/debugging/metadata.json",
       "entrypoint": "skills/debugging/SKILL.md"
+    },
+    {
+      "id": "design-systems-ops",
+      "display_name": "Design Systems Ops",
+      "description": "Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, release coordination, or code-design system review before shipping UI changes.",
+      "raw_category": "design",
+      "canonical_category": "design",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/design-systems-ops/metadata.json",
+      "entrypoint": "skills/design-systems-ops/SKILL.md"
     },
     {
       "id": "docker-expert",

@@ -50,6 +50,29 @@
       }
     },
     {
+      "id": "design",
+      "name": "Design",
+      "description": "Design-system, accessibility, and implementation-ready UI workflow reviews.",
+      "intended_for": "Design engineers, frontend engineers, and design-system maintainers",
+      "skill_ids": [
+        "frontend-design",
+        "omni-figma",
+        "design-systems-ops",
+        "accessibility-audit"
+      ],
+      "available_skill_ids": [
+        "frontend-design",
+        "omni-figma",
+        "design-systems-ops",
+        "accessibility-audit"
+      ],
+      "missing_skill_ids": [],
+      "availability": {
+        "available": 4,
+        "total": 4
+      }
+    },
+    {
       "id": "security",
       "name": "Security",
       "description": "Security review and vulnerability-oriented workflows.",

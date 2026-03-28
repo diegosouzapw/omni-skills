@@ -5,8 +5,8 @@ Omni Skills now contains both a skill catalog and the runtime surfaces built on 
 Current repository baseline:
 
 - package version `0.1.1`
-- 26 published skills
-- 6 fully backed bundles
+- 28 published skills
+- 7 fully backed bundles
 - 7 install-capable clients and 16 MCP config-capable clients
 - automatic post-merge skill releases enabled on `main`
 

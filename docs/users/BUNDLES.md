@@ -1,6 +1,6 @@
 # 📦 Curated Bundles
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All six starter bundles are now fully backed by published skills.
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
 
 ---
 
@@ -26,6 +26,7 @@ Based on the current generated catalog (`dist/bundles.json`):
 |:-------|:------------|:----------|:--------|
 | 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
 | 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
 | 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
 | ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
 | 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
@@ -57,6 +58,7 @@ Based on the current generated catalog (`dist/bundles.json`):
 |:-----|:--------|
 | 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
 | 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
 | 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
 | 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
 | ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
@@ -89,6 +91,7 @@ Use the `search_skills` or `preview_install` tools with bundle parameters.
 ```bash
 # See what would be installed
 npx omni-skills find foundation --bundle essentials --install
+npx omni-skills find accessibility --bundle design --install
 npx omni-skills find audit --bundle security --install
 npx omni-skills find docs --bundle oss-maintainer --install
 npx omni-skills find deploy --bundle devops --install

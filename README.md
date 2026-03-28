@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.1; skills=26; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.1; skills=28; updated_at=2026-03-28 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**
@@ -42,10 +42,10 @@ Omni Skills is no longer only an installer.
 
 The runtime foundation is in place and the public catalog now fully backs every starter bundle with published skills.
 
-- Published skills currently available: **26**
-- Current published skills span architecture, frontend, backend, documentation, security, DevOps, and AI application workflows
-- Fully backed bundles: **`essentials`**, **`full-stack`**, **`security`**, **`devops`**, **`ai-engineer`**, and **`oss-maintainer`**
-- Newly published specialization skills: `release-engineering`, `threat-modeling`, `context-engineering`, and `auth-flows`
+- Published skills currently available: **28**
+- Current published skills span architecture, frontend, backend, design, documentation, security, DevOps, and AI application workflows
+- Fully backed bundles: **`essentials`**, **`full-stack`**, **`design`**, **`security`**, **`devops`**, **`ai-engineer`**, and **`oss-maintainer`**
+- Newly published specialization skills now include `release-engineering`, `threat-modeling`, `context-engineering`, `auth-flows`, `design-systems-ops`, and `accessibility-audit`
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
 - MCP config coverage now spans **16 config-capable clients** across **33** first-class targets and **19** config profiles
@@ -56,6 +56,16 @@ Native intake policy now intentionally differs from curated output:
 
 - `skills/` accepts rough native incoming skills, even when they are still incomplete
 - `skills_omni/` is the Omni-maintained enhanced surface proposed back by automation
+
+### What comes next
+
+The current foundation track is complete. The next planned wave is narrower:
+
+- expand catalog depth without dropping the quality floor
+- continue selective category activation from the now-active `design` track into `tools`, `data-ai`, and `machine-learning`
+- keep tightening the private enhancer so hosted `live` becomes less dependent on the LAN-only reliable path
+
+The implementation backlog for that next phase lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md).
 
 ---
 
@@ -291,7 +301,7 @@ Each skill also gets a generated `skills/<skill>/metadata.json` with:
 
 The current generated catalog contains:
 
-- `22` published skills in `dist/catalog.json`
+- `28` published skills in `dist/catalog.json`
 - installable skill bundles for planning, download, MCP, and A2A handoff
 - curated bundle definitions in `dist/bundles.json`
 
@@ -301,12 +311,13 @@ Current bundle availability:
 | :----- | :------------ | :---- |
 | `essentials` | `4/4` | `find-skills`, `brainstorming`, `architecture`, `debugging` |
 | `full-stack` | `5/5` | `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows` |
+| `design` | `4/4` | `frontend-design`, `omni-figma`, `design-systems-ops`, `accessibility-audit` |
 | `security` | `4/4` | `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling` |
 | `devops` | `5/5` | `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering` |
 | `ai-engineer` | `5/5` | `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering` |
 | `oss-maintainer` | `4/4` | `find-skills`, `create-pr`, `changelog`, `documentation` |
 
-This means `--bundle` is now a real install surface for all six curated starter bundles, not only a roadmap-aware planning helper.
+This means `--bundle` is now a real install surface for all seven curated starter bundles, not only a roadmap-aware planning helper.
 
 ---
 

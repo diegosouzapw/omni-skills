@@ -31,6 +31,35 @@
 - only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
 - deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
 - enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- the next catalog-expansion wave should continue from the newly active `design` category into one or more remaining dormant canonical categories without turning the repo into a generic content dump
+- the private enhancer still treats LAN or local service execution as the canonical reliable `live` path; hosted cloud `live` remains intentionally preflight-gated
+
+## Next Catalog Expansion Track
+
+The first public category-expansion wave is now landed: `design` is active through `design-systems-ops` and `accessibility-audit`. The next recommended wave is not “more skills everywhere.” It is a selective continuation into the remaining dormant categories that still fit the project’s coding-first identity.
+
+Recommended activation order:
+
+1. `tools`
+2. `data-ai`
+3. `machine-learning`
+
+Categories intentionally deferred unless strong code-native proposals appear:
+
+- `business`
+- `content-media`
+
+Current newly activated category:
+
+- `design` → `design-systems-ops`, `accessibility-audit`
+
+Next candidate skill slots:
+
+- `tools` → `mcp-server-authoring`, `plugin-authoring`
+- `data-ai` → `data-contracts`, `analytics-instrumentation`
+- `machine-learning` → `model-serving`, `training-pipeline`
+
+That expansion plan is tracked in [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md).
 
 ---
 

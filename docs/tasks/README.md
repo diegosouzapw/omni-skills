@@ -1,10 +1,10 @@
-# 📋 Pending Implementation Plan
+# 📋 Implementation Plan
 
-> Detailed execution backlog for the remaining public-runtime and private-enhancer work needed to consider the current roadmap complete.
+> Detailed execution backlog for the completed 0.1.x foundation work and the next planned expansion track.
 
 ## Scope
 
-This task set covers the remaining fronts that still matter after the 0.1.x foundation:
+The first task set covered the foundational fronts that mattered after the 0.1.x runtime landed:
 
 1. selective MCP client expansion
 2. final scorer and support-pack refinement
@@ -13,7 +13,12 @@ This task set covers the remaining fronts that still matter after the 0.1.x foun
 5. private enhancer observability and consolidated batch reporting
 6. hardening the public contribution flow that now depends on the enhancer pipeline
 
-## Execution Order
+That first set is now complete. The next track is narrower and more product-directed:
+
+7. catalog specialization and category expansion
+8. hosted OmniRoute cloud stabilization for private `live` enhancement
+
+## Completed Track
 
 1. [TASK-01-MCP-CLIENT-EXPANSION.md](TASK-01-MCP-CLIENT-EXPANSION.md)
 2. [TASK-02-SCORER-AND-SUPPORT-PACK-REFINEMENT.md](TASK-02-SCORER-AND-SUPPORT-PACK-REFINEMENT.md)
@@ -22,14 +27,20 @@ This task set covers the remaining fronts that still matter after the 0.1.x foun
 5. [TASK-05-ENHANCER-OBSERVABILITY-AND-BATCH-REPORTS.md](TASK-05-ENHANCER-OBSERVABILITY-AND-BATCH-REPORTS.md)
 6. [TASK-06-CONTRIBUTION-AUTOMATION-HARDENING.md](TASK-06-CONTRIBUTION-AUTOMATION-HARDENING.md)
 
-This order is deliberate:
+That order was deliberate:
 
 - MCP client expansion should close while the support matrix is still small enough to stay coherent.
 - Scorer refinement should happen before one more large catalog growth wave.
 - Bundle specialization depends on the stronger scorer and reference-pack criteria.
 - Private enhancer live stability must precede any attempt to trust hosted live processing for PR-time enhancement.
 - Observability and reporting should land after live stability, so it measures the final operational path.
-- Contribution automation hardening comes last because it depends on the enhancer and the catalog being stable enough to formalize.
+- Contribution automation hardening came last because it depended on the enhancer and the catalog being stable enough to formalize.
+
+## Next Track
+
+1. [TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+
+The private hosted-live stabilization track is intentionally documented in the private enhancer repository, because the implementation, prompts, provider routing, and operator guidance all live there.
 
 ## Status Summary
 
@@ -41,6 +52,7 @@ This order is deliberate:
 | `TASK-04` | Completed | High | Hosted live is now explicitly preflight-gated and downgraded cleanly when public OmniRoute is blocked |
 | `TASK-05` | Completed | Medium | Batch JSON plus markdown summaries and per-skill progress comments now exist |
 | `TASK-06` | Completed | High | Public/private contribution flow now documents intake, outcome states, attribution, and `skills_omni/` publication rules |
+| `TASK-07` | Completed | Medium | Activated `design` with `design-systems-ops` and `accessibility-audit`, and added the fully backed `design` bundle |
 
 ## Primary References
 
@@ -61,7 +73,7 @@ Private references:
 - `omni-skills-private/docs/review-flow.md`
 - `omni-skills-private/scripts/`
 
-## Done Criteria For This Backlog
+## Done Criteria For The Completed Track
 
 This backlog can be considered complete when all of the following are true:
 
@@ -73,3 +85,12 @@ This backlog can be considered complete when all of the following are true:
 - the contribution flow is documented end-to-end for contributors and maintainers, including native intake and `skills_omni` publication rules
 
 Use [CHECKLIST.md](CHECKLIST.md) as the live progress sheet.
+
+## Done Criteria For The Next Track
+
+The next catalog-expansion track can be considered complete when:
+
+- active taxonomy coverage expands beyond the previous 11 active categories without introducing filler skills
+- new skills deepen real coding and agent workflows rather than only inflating bundle counts
+- any newly activated category lands with at least one high-quality, clearly scoped skill and a support pack that meets the current quality bar
+- the public docs explain which canonical categories remain intentionally inactive and why
