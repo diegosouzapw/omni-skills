@@ -304,7 +304,7 @@ function registerLocalTools(server) {
 function createCatalogMcpServer() {
   const server = new McpServer({
     name: "omni-skills-mcp",
-    version: "0.1.0",
+    version: "0.1.1",
   });
 
   server.registerTool(

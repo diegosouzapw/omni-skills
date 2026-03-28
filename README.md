@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.0; skills=22; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.1; skills=22; updated_at=2026-03-28 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**
@@ -179,7 +179,7 @@ the repo now computes the next package version automatically and publishes it.
 Version progression is:
 
 - `0.0.1 -> 0.0.2 -> ... -> 0.0.10`
-- `0.0.10 -> 0.1.0`
+- `0.0.10 -> 0.1.1`
 - `0.1.0 -> 0.1.1 -> ... -> 0.1.10`
 - `0.1.10 -> 0.2.0`
 

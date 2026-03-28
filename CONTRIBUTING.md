@@ -4,7 +4,7 @@ Omni Skills now contains both a skill catalog and the runtime surfaces built on 
 
 Current repository baseline:
 
-- package version `0.1.0`
+- package version `0.1.1`
 - 22 published skills
 - 6 fully backed bundles
 - 7 install-capable clients and 14 MCP config-capable clients
@@ -144,7 +144,7 @@ Frontmatter is still strongly recommended for every skill. Use [docs/contributor
 ---
 name: my-skill-name
 description: "What it does"
-version: "0.1.0"
+version: "0.1.1"
 category: development
 tags: [react, typescript]
 complexity: intermediate

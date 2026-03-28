@@ -1,6 +1,6 @@
 {
   "name": "omni-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Curated, validated AI coding skills for Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity & more. Install with npx omni-skills.",
   "license": "MIT",
   "engines": {
@@ -20,6 +20,7 @@
     "verify:archives": "python3 tools/scripts/verify_archives.py",
     "verify:archives:strict": "python3 tools/scripts/verify_archives.py --require-signatures",
     "release:next-version": "python3 tools/scripts/next_release_version.py",
+    "release:sync-version": "python3 tools/scripts/sync_repo_version.py",
     "index": "python3 tools/scripts/generate_index.py",
     "catalog": "node tools/scripts/build_catalog.js",
     "release:notes": "python3 tools/scripts/generate_release_notes.py --output dist/release-notes.md",

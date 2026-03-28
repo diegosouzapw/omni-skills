@@ -30,7 +30,7 @@ Human-readable (and agent-readable) instructions. Write it as if you're **briefi
 |:------|:---------|:-----|:------------|
 | `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
 | `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.0"`) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
 | `category` | ⚡ | string | One canonical category from the repo taxonomy |
 | `tags` | ⚡ | string[] | Searchable tags for discovery |
 | `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
@@ -43,7 +43,7 @@ Human-readable (and agent-readable) instructions. Write it as if you're **briefi
 
 > ✅ = Always required · ⚡ = Required in strict mode
 
-The skill version is independent from the npm package version. The package is currently `0.1.0`, but existing skills can validly remain on their own semantic version.
+The skill version is independent from the npm package version. The package is currently `0.1.1`, but existing skills can validly remain on their own semantic version.
 
 ---
 
