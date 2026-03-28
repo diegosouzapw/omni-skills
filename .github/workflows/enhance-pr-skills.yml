@@ -200,8 +200,106 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run live enhancer for PR skill changes
+      - name: Preflight live OmniRoute availability
         if: steps.metadata.outputs.safe_to_enhance == 'true'
+        id: preflight
+        env:
+          OMNIROUTER_API_KEY: ${{ secrets.OMNIROUTER_API_KEY }}
+          OMNIROUTER_BASE_URL: ${{ vars.OMNIROUTER_BASE_URL }}
+          OMNIROUTER_MODEL: ${{ vars.OMNIROUTER_MODEL }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.request
+          from pathlib import Path
+
+          base_url = (os.environ.get("OMNIROUTER_BASE_URL") or "").rstrip("/")
+          api_key = os.environ.get("OMNIROUTER_API_KEY") or ""
+          model = os.environ.get("OMNIROUTER_MODEL") or "cx/gpt-5.4"
+          output = Path(os.environ["GITHUB_OUTPUT"])
+
+          payload = {
+              "model": model,
+              "store": False,
+              "instructions": "Return exactly the JSON object {\"ok\":true}.",
+              "input": [
+                  {
+                      "type": "message",
+                      "role": "user",
+                      "content": [
+                          {"type": "input_text", "text": "Say ok"}
+                      ],
+                  }
+              ],
+              "text": {
+                  "format": {
+                      "type": "json_schema",
+                      "name": "enhancer_preflight",
+                      "strict": True,
+                      "schema": {
+                          "type": "object",
+                          "additionalProperties": False,
+                          "properties": {"ok": {"type": "boolean"}},
+                          "required": ["ok"],
+                      },
+                  }
+              },
+          }
+
+          request = urllib.request.Request(
+              f"{base_url}/responses",
+              data=json.dumps(payload).encode("utf-8"),
+              method="POST",
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type": "application/json",
+                  "User-Agent": "omni-skills-enhancer-preflight/0.0.1",
+              },
+          )
+
+          can_run_live = False
+          failure_reason = ""
+          try:
+              with urllib.request.urlopen(request, timeout=25) as response:
+                  content_type = response.headers.get("content-type", "")
+                  body = response.read().decode("utf-8", errors="replace")
+                  if response.status == 200 and ("text/event-stream" in content_type or body.strip()):
+                      can_run_live = True
+                  else:
+                      failure_reason = f"unexpected status/content-type: {response.status} {content_type}"
+          except urllib.error.HTTPError as error:
+              detail = error.read().decode("utf-8", errors="replace").strip()
+              if len(detail) > 500:
+                  detail = detail[:500] + "…"
+              failure_reason = f"http {error.code}: {detail or error.reason}"
+          except Exception as error:
+              failure_reason = str(error)
+
+          failure_reason = " ".join(failure_reason.split())
+
+          with output.open("a", encoding="utf-8") as handle:
+              handle.write(f"can_run_live={'true' if can_run_live else 'false'}\n")
+              handle.write(f"failure_reason={failure_reason}\n")
+          PY
+
+      - name: Explain blocked live preflight
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live != 'true'
+        run: |
+          {
+            echo "## Omni Skills Enhancer"
+            echo
+            echo "- Status: blocked"
+            echo "- Reason: live OmniRoute preflight failed on the hosted runner"
+            echo "- Detail: \`${{ steps.preflight.outputs.failure_reason }}\`"
+            echo "- Impact: native validation still runs, but this job will not generate \`skills_omni/\` output."
+            echo "- Next path: use the LAN/local live enhancer service or fix the public \`cx/*\` gateway."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run live enhancer for PR skill changes
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live == 'true'
         env:
           SKILL_ENHANCER_PRIVATE_ROOT: ${{ github.workspace }}/enhancer-private
           OMNI_SKILLS_REPO_ROOT: ${{ github.workspace }}/target-repo
@@ -224,7 +322,7 @@ jobs:
             --no-update-state
 
       - name: Locate latest batch report
-        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live == 'true'
         id: batch
         run: |
           set -euo pipefail
@@ -232,7 +330,7 @@ jobs:
           echo "report_path=$batch_report" >> "$GITHUB_OUTPUT"
 
       - name: Upload enhancer artifacts
-        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: pr-enhancer-${{ github.run_id }}
@@ -243,7 +341,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Materialize skills_omni candidates
-        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live == 'true'
         id: materialize
         run: |
           set -euo pipefail
@@ -259,7 +357,7 @@ jobs:
             | tee "$GITHUB_WORKSPACE/publish-summary.json"
 
       - name: Create or update skills_omni PR
-        if: steps.metadata.outputs.safe_to_enhance == 'true'
+        if: steps.metadata.outputs.safe_to_enhance == 'true' && steps.preflight.outputs.can_run_live == 'true'
         id: curated_pr
         env:
           GH_TOKEN: ${{ github.token }}
@@ -316,6 +414,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
           SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          CAN_RUN_LIVE: ${{ steps.preflight.outputs.can_run_live }}
+          BLOCKED_REASON: ${{ steps.preflight.outputs.failure_reason }}
           BATCH_REPORT: ${{ steps.batch.outputs.report_path }}
           CURATED_PR_URL: ${{ steps.curated_pr.outputs.pr_url }}
           PUBLISHED_COUNT: ${{ steps.curated_pr.outputs.published_count }}
@@ -326,6 +426,14 @@ jobs:
               --repo "$GITHUB_REPOSITORY" \
               --pr-number "$PR_NUMBER" \
               --phase skipped
+            exit 0
+          fi
+          if [ "${CAN_RUN_LIVE}" != "true" ]; then
+            python3 enhancer-private/scripts/upsert_public_pr_comment.py \
+              --repo "$GITHUB_REPOSITORY" \
+              --pr-number "$PR_NUMBER" \
+              --phase blocked \
+              --blocked-reason "${BLOCKED_REASON}"
             exit 0
           fi
           python3 enhancer-private/scripts/upsert_public_pr_comment.py \
@@ -340,6 +448,8 @@ jobs:
         if: always()
         env:
           SAFE_TO_ENHANCE: ${{ steps.metadata.outputs.safe_to_enhance }}
+          CAN_RUN_LIVE: ${{ steps.preflight.outputs.can_run_live }}
+          BLOCKED_REASON: ${{ steps.preflight.outputs.failure_reason }}
           BATCH_REPORT: ${{ steps.batch.outputs.report_path }}
           CURATED_PR_URL: ${{ steps.curated_pr.outputs.pr_url }}
           PUBLISHED_COUNT: ${{ steps.curated_pr.outputs.published_count }}
@@ -351,6 +461,17 @@ jobs:
               echo "### Final status"
               echo
               echo "- Enhancer result: skipped"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [ "${CAN_RUN_LIVE}" != "true" ]; then
+            {
+              echo
+              echo "### Final status"
+              echo
+              echo "- Enhancer result: blocked"
+              echo "- Detail: \`${BLOCKED_REASON}\`"
+              echo "- Curated outputs published: 0"
             } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
