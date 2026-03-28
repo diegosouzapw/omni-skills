@@ -1,0 +1,403 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "design-token-governance",
+  "slug": "design-token-governance",
+  "display_name": "Design Token Governance",
+  "description": "Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review design tokens without breaking downstream apps, docs, or component libraries.",
+  "version": "0.0.1",
+  "category": "design",
+  "raw_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "design-tokens",
+    "governance",
+    "design-system",
+    "theming",
+    "migration",
+    "frontend"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28"
+  },
+  "entrypoint": "skills/design-token-governance/SKILL.md",
+  "paths": {
+    "root": "skills/design-token-governance",
+    "manifest": "dist/manifests/design-token-governance.json",
+    "metadata": "skills/design-token-governance/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 7,
+    "references_count": 2,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 97,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 5,
+        "workflow_section_length": 492,
+        "when_to_use_section_length": 430,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 419,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 935,
+        "resources_items_count": 4,
+        "resources_section_length": 273,
+        "examples_section_length": 909,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 309,
+        "decision_assets_count": 8,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 4,
+        "support_files_count": 5,
+        "references_files_count": 2,
+        "scripts_files_count": 1,
+        "examples_files_count": 1,
+        "agents_files_count": 1,
+        "assets_files_count": 0,
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 6.67
+      }
+    },
+    "quality": {
+      "score": 95,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 9,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 6,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5679,
+    "content_length": 6245,
+    "body_lines": 115,
+    "word_count": 767,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 3,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 492,
+      "when_to_use_section_length": 430,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 419,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 935,
+      "resources_items_count": 4,
+      "resources_section_length": 273,
+      "examples_section_length": 909,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 309,
+      "decision_assets_count": 8,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 4,
+      "support_files_count": 5,
+      "references_files_count": 2,
+      "scripts_files_count": 1,
+      "examples_files_count": 1,
+      "agents_files_count": 1,
+      "assets_files_count": 0,
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 6.67
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/design-token-governance/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 6255,
+      "sha256": "1a744779b4773327035ae88764d54975782f5429a1f9dd7604fae69deab39022"
+    },
+    {
+      "path": "skills/design-token-governance/metadata.json",
+      "kind": "support",
+      "size_bytes": 5837,
+      "sha256": "5f5a2356ad21bb9df33d514ecdcbde598b4681ed6e9b81443fc1681f36348a13"
+    },
+    {
+      "path": "skills/design-token-governance/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 258,
+      "sha256": "37a843a9ac249763a542450acf2dbdf705cb1785e9332d43a4dfada92102bfe6"
+    },
+    {
+      "path": "skills/design-token-governance/examples/token-release-example.md",
+      "kind": "support",
+      "size_bytes": 638,
+      "sha256": "209c30ac7d2257020a434012fe4a933e4632e6cc6760425cacd470c9f677df84"
+    },
+    {
+      "path": "skills/design-token-governance/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 525,
+      "sha256": "bd28b1fcb0907fbcf188a9aa2d3dbd11e295f8dfcaa380fe98802dea9493b6ee"
+    },
+    {
+      "path": "skills/design-token-governance/references/deprecation-policy-worksheet.md",
+      "kind": "reference",
+      "size_bytes": 423,
+      "sha256": "f2e1525190a865463ef8857235827cb6201e19a51e8b12943f5337bcdd1d4a7e"
+    },
+    {
+      "path": "skills/design-token-governance/scripts/render_token_governance_packet.py",
+      "kind": "support",
+      "size_bytes": 1290,
+      "sha256": "babcf17fa25ce984449b08c68fdc9b57c52771601b143f6ccb33000bffffc4bb"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/design-token-governance.zip",
+      "file_name": "design-token-governance.zip",
+      "size_bytes": 16472,
+      "sha256": "ad6d9ee0c76d370d9626be845b510e3670ff8958c9461c2686e4cff9881df405",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/design-token-governance.tar.gz",
+      "file_name": "design-token-governance.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "ba67e700d864a91cdd907c118af9c70cb0f0aea8193d6db98ba29e2d32c11e3b",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/design-token-governance.checksums.txt",
+    "file_name": "design-token-governance.checksums.txt",
+    "sha256": "b3b38880012c4a3c21d54656cb8f06e19e1d8c3e1df8b70fe1be74e0740ff8fa",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "1a744779b4773327035ae88764d54975782f5429a1f9dd7604fae69deab39022",
+    "package_sha256": "e3287e0cae51637917956f613dc1dc57acfb8e145fc3a44deed4827ad52f0718"
+  }
+}

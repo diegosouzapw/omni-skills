@@ -7,12 +7,12 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 28,
-    "passed": 28,
+    "total_skills": 32,
+    "passed": 32,
     "warnings": 0,
     "errors": 0,
-    "average_quality_score": 96.5,
-    "average_best_practices_score": 98.9,
+    "average_quality_score": 96.3,
+    "average_best_practices_score": 98.7,
     "average_security_score": 95.0
   },
   "taxonomy": {
@@ -41,35 +41,38 @@
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
-      "design": 2,
+      "data-ai": 1,
+      "design": 3,
       "development": 3,
       "devops": 5,
       "documentation": 2,
       "frontend": 1,
       "fullstack-web": 1,
+      "machine-learning": 1,
       "product": 1,
-      "testing-security": 4
+      "testing-security": 4,
+      "tools": 1
     }
   },
   "distribution": {
     "skill_levels": {
       "l1": 0,
       "l2": 0,
-      "l3": 28
+      "l3": 32
     },
     "quality_tiers": {
-      "platinum": 28
+      "platinum": 32
     },
     "security_tiers": {
-      "review": 28
+      "review": 32
     },
     "security_status": {
-      "passed": 28,
+      "passed": 32,
       "warn": 0,
       "failed": 0
     },
     "validation_status": {
-      "passed": 28,
+      "passed": 32,
       "warn": 0,
       "failed": 0
     }
@@ -228,6 +231,25 @@
       "entrypoint": "skills/create-pr/SKILL.md"
     },
     {
+      "id": "data-contracts",
+      "display_name": "Data Contracts",
+      "description": "Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers, pipelines, warehouses, analytics layers, and consumer-facing metrics.",
+      "raw_category": "data-ai",
+      "canonical_category": "data-ai",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/data-contracts/metadata.json",
+      "entrypoint": "skills/data-contracts/SKILL.md"
+    },
+    {
       "id": "database-design",
       "display_name": "Database Design",
       "description": "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation.",
@@ -283,6 +305,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/design-systems-ops/metadata.json",
       "entrypoint": "skills/design-systems-ops/SKILL.md"
+    },
+    {
+      "id": "design-token-governance",
+      "display_name": "Design Token Governance",
+      "description": "Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review design tokens without breaking downstream apps, docs, or component libraries.",
+      "raw_category": "design",
+      "canonical_category": "design",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/design-token-governance/metadata.json",
+      "entrypoint": "skills/design-token-governance/SKILL.md"
     },
     {
       "id": "docker-expert",
@@ -435,6 +476,44 @@
       "validation_status": "passed",
       "metadata_path": "skills/llm-patterns/metadata.json",
       "entrypoint": "skills/llm-patterns/SKILL.md"
+    },
+    {
+      "id": "mcp-server-authoring",
+      "display_name": "MCP Server Authoring",
+      "description": "MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Model Context Protocol server with stable tools, resources, prompts, transports, and client compatibility.",
+      "raw_category": "tools",
+      "canonical_category": "tools",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/mcp-server-authoring/metadata.json",
+      "entrypoint": "skills/mcp-server-authoring/SKILL.md"
+    },
+    {
+      "id": "model-serving",
+      "display_name": "Model Serving",
+      "description": "Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch inference, feature contracts, rollout safety, or operational behavior for ML-powered services.",
+      "raw_category": "machine-learning",
+      "canonical_category": "machine-learning",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/model-serving/metadata.json",
+      "entrypoint": "skills/model-serving/SKILL.md"
     },
     {
       "id": "observability-review",

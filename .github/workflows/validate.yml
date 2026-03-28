@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,6 +34,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Validate contribution scope
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 tools/scripts/validate_contribution_scope.py \
+            --repository "${GITHUB_REPOSITORY}" \
+            --event-path "${GITHUB_EVENT_PATH}" \
+            --base-sha "${{ github.event.pull_request.base.sha }}" \
+            --head-sha "${{ github.event.pull_request.head.sha }}"
 
       - name: Build generated artifacts
         run: npm run build

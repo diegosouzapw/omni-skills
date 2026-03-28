@@ -221,6 +221,10 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
       Number(repoSkillById.get("architecture")?.best_practices_score || 0) + 2,
     "best-practices spread should preserve a visible gap between exceptional and merely strong workflow kits",
   );
+  assert.ok(repoSkillById.has("design-token-governance"), "second category wave should deepen design");
+  assert.ok(repoSkillById.has("mcp-server-authoring"), "second category wave should activate tools");
+  assert.ok(repoSkillById.has("data-contracts"), "second category wave should activate data-ai");
+  assert.ok(repoSkillById.has("model-serving"), "second category wave should activate machine-learning");
 
   const findMetadata = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "../../../skills/find-skills/metadata.json"), "utf-8"),
@@ -247,6 +251,95 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
 
   const catalog = core.loadCatalog();
   assert.ok(catalog.total_skills >= 26, "catalog should expose the published skills");
+
+  const contributionScopeEvent = path.join(nativeTempRoot, "scope-event.json");
+  fs.writeFileSync(
+    contributionScopeEvent,
+    JSON.stringify(
+      {
+        pull_request: {
+          title: "enhance: promote curated skills_omni candidates for #42",
+          user: { login: "github-actions[bot]" },
+          head: {
+            ref: "skills-omni/pr-42",
+            repo: { full_name: "diegosouzapw/omni-skills" },
+          },
+        },
+      },
+      null,
+      2,
+    ),
+    "utf-8",
+  );
+  childProcess.execFileSync(
+    "python3",
+    [
+      path.resolve(__dirname, "../validate_contribution_scope.py"),
+      "--repository",
+      "diegosouzapw/omni-skills",
+      "--event-path",
+      contributionScopeEvent,
+      "--changed-path",
+      "skills_omni/example/SKILL.md",
+    ],
+    { encoding: "utf-8" },
+  );
+  assert.throws(
+    () =>
+      childProcess.execFileSync(
+        "python3",
+        [
+          path.resolve(__dirname, "../validate_contribution_scope.py"),
+          "--repository",
+          "diegosouzapw/omni-skills",
+          "--event-path",
+          contributionScopeEvent,
+          "--changed-path",
+          "skills/example/SKILL.md",
+          "--changed-path",
+          "skills_omni/example/SKILL.md",
+        ],
+        { encoding: "utf-8" },
+      ),
+    /cannot modify both native intake/,
+    "mixed native and curated paths should be rejected",
+  );
+  fs.writeFileSync(
+    contributionScopeEvent,
+    JSON.stringify(
+      {
+        pull_request: {
+          title: "feat: add community skill manually",
+          user: { login: "somebody" },
+          head: {
+            ref: "feat/manual-curated-skill",
+            repo: { full_name: "someone-else/omni-skills" },
+          },
+        },
+      },
+      null,
+      2,
+    ),
+    "utf-8",
+  );
+  assert.throws(
+    () =>
+      childProcess.execFileSync(
+        "python3",
+        [
+          path.resolve(__dirname, "../validate_contribution_scope.py"),
+          "--repository",
+          "diegosouzapw/omni-skills",
+          "--event-path",
+          contributionScopeEvent,
+          "--changed-path",
+          "skills_omni/example/SKILL.md",
+        ],
+        { encoding: "utf-8" },
+      ),
+    /Direct public contribution to skills_omni\/ is not allowed/,
+    "manual public changes to skills_omni should be rejected",
+  );
 
   const rankedSearch = core.searchSkills({
     sort: "quality",

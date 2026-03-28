@@ -18,7 +18,7 @@
     "name": "Design",
     "description": "Design-system, accessibility, and implementation-ready UI workflow reviews.",
     "intended_for": "Design engineers, frontend engineers, and design-system maintainers",
-    "skill_ids": ["frontend-design", "omni-figma", "design-systems-ops", "accessibility-audit"]
+    "skill_ids": ["frontend-design", "omni-figma", "design-systems-ops", "accessibility-audit", "design-token-governance"]
   },
   {
     "id": "security",
@@ -39,7 +39,7 @@
     "name": "AI Engineer",
     "description": "RAG, prompting, and AI application workflows.",
     "intended_for": "LLM and ML developers",
-    "skill_ids": ["rag-engineer", "prompt-engineer", "llm-patterns", "eval-design", "context-engineering"]
+    "skill_ids": ["rag-engineer", "prompt-engineer", "llm-patterns", "eval-design", "context-engineering", "data-contracts", "model-serving"]
   },
   {
     "id": "oss-maintainer",

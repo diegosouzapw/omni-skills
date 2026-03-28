@@ -18,6 +18,7 @@ A strong native skill PR lands with:
 - passing public validation and tests
 - automatic enhancer processing during the PR
 - a follow-up `skills_omni/` PR when enhanced derivatives are published
+- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
 
 ## Enhancer Outcome States
 
@@ -124,6 +125,21 @@ Rate limit:
 
 The contributor does not need to run the enhancer manually.
 
+## No-Loop Rule For `skills_omni/`
+
+The curated surface is intentionally one-way:
+
+- native input enters through `skills/`
+- the private enhancer reviews that native input
+- curated output is proposed into `skills_omni/`
+- `skills_omni/` is never treated as native intake again
+
+The repository now enforces that boundary:
+
+- direct public PRs that modify `skills_omni/` are rejected
+- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+
 ## Automatic Versioning After Merge
 
 Skill-bearing merges to `main` now trigger the repository release workflow automatically.
@@ -172,6 +188,7 @@ Attribution rules for `skills_omni/`:
 - the enhanced derivative becomes Omni-maintained
 - the original contributor and upstream native skill remain credited
 - each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
+- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
 
 ## Manual Maintainer Commands
 

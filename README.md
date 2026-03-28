@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.2; skills=28; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.2; skills=32; updated_at=2026-03-28 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**
@@ -42,10 +42,10 @@ Omni Skills is no longer only an installer.
 
 The runtime foundation is in place and the public catalog now fully backs every starter bundle with published skills.
 
-- Published skills currently available: **28**
-- Current published skills span architecture, frontend, backend, design, documentation, security, DevOps, and AI application workflows
+- Published skills currently available: **32**
+- Current published skills span architecture, frontend, backend, design, documentation, security, DevOps, AI application, data, tools, and machine-learning workflows
 - Fully backed bundles: **`essentials`**, **`full-stack`**, **`design`**, **`security`**, **`devops`**, **`ai-engineer`**, and **`oss-maintainer`**
-- Newly published specialization skills now include `release-engineering`, `threat-modeling`, `context-engineering`, `auth-flows`, `design-systems-ops`, and `accessibility-audit`
+- Newly published specialization skills now include `release-engineering`, `threat-modeling`, `context-engineering`, `auth-flows`, `design-systems-ops`, `accessibility-audit`, `design-token-governance`, `mcp-server-authoring`, `data-contracts`, and `model-serving`
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
 - MCP config coverage now spans **16 config-capable clients** across **33** first-class targets and **19** config profiles
@@ -59,13 +59,20 @@ Native intake policy now intentionally differs from curated output:
 
 ### What comes next
 
-The current foundation track is complete. The next planned wave is narrower:
+The current foundation track is complete. The current release baseline is also closed:
 
-- expand catalog depth without dropping the quality floor
-- continue selective category activation from the now-active `design` track into `tools`, `data-ai`, and `machine-learning`
+- public runtime release `v0.1.2` is published and green in `Validate Skills`, `CodeQL`, and `Release and Publish`
+- private enhancer release `v0.0.1` is published and green in `Private Release`
+- the private scheduled/manual poller is green again after the state-persistence fix
+
+The next planned wave is narrower:
+
+- deepen the newly active `design`, `tools`, `data-ai`, and `machine-learning` tracks without dropping the quality floor
+- keep the current category set selective rather than reopening dormant non-code-native buckets too early
 - keep the private enhancer on its formal operating model: `cx/gpt-5.4`, GitHub hosted in `mock` or degraded preflight mode, and reliable `live` on LAN or self-hosted execution
+- formalize the next public catalog wave as a multi-category implementation track, not ad hoc skill additions
 
-The implementation backlog for that next phase lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md).
+The implementation backlog for that next phase lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md), starting with [TASK-08-SECOND-CATEGORY-WAVE.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
 
 ---
 

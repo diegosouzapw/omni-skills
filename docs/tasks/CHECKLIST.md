@@ -16,6 +16,15 @@
 
 - [x] `TASK-07` Expand catalog specialization and activate one or more additional canonical categories without lowering the quality bar
 - [x] Private `TASK-09` Formalize the enhancer operating model: `cx/gpt-5.4`, hosted `mock/degraded`, reliable `live` on LAN or self-hosted execution
+- [x] `TASK-08` Execute the second category wave: deepen `design`, then activate `tools`, `data-ai`, and `machine-learning`
+
+## Release Baseline
+
+- [x] Public release baseline closed at `v0.1.2`
+- [x] Private enhancer release baseline closed at `v0.0.1`
+- [x] Public release workflow green on the current tag baseline
+- [x] Private release workflow green on the current tag baseline
+- [x] Private poller state persistence is green after the `autostash` fix
 
 ## Validation Gates
 
@@ -33,3 +42,4 @@
 - [x] Bundle depth is materially better in priority tracks
 - [x] Hosted enhancer mode is either reliable enough or explicitly downgraded in docs
 - [x] PR enhancement flow is documented end-to-end and repeatable
+- [x] Second category wave landed without weakening the quality floor or reopening dormant-category drift

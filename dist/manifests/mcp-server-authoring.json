@@ -1,0 +1,404 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "mcp-server-authoring",
+  "slug": "mcp-server-authoring",
+  "display_name": "MCP Server Authoring",
+  "description": "MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Model Context Protocol server with stable tools, resources, prompts, transports, and client compatibility.",
+  "version": "0.0.1",
+  "category": "tools",
+  "raw_category": "tools",
+  "taxonomy": {
+    "raw_category": "tools",
+    "canonical_category": "tools",
+    "inferred_category": "tools",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "mcp",
+    "protocol",
+    "server",
+    "tools",
+    "resources",
+    "prompts",
+    "sdk"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28"
+  },
+  "entrypoint": "skills/mcp-server-authoring/SKILL.md",
+  "paths": {
+    "root": "skills/mcp-server-authoring",
+    "manifest": "dist/manifests/mcp-server-authoring.json",
+    "metadata": "skills/mcp-server-authoring/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 7,
+    "references_count": 2,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 97,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 5,
+        "workflow_section_length": 506,
+        "when_to_use_section_length": 411,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 436,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 944,
+        "resources_items_count": 4,
+        "resources_section_length": 252,
+        "examples_section_length": 925,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 294,
+        "decision_assets_count": 10,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 4,
+        "support_files_count": 5,
+        "references_files_count": 2,
+        "scripts_files_count": 1,
+        "examples_files_count": 1,
+        "agents_files_count": 1,
+        "assets_files_count": 0,
+        "tools_count": 6,
+        "tags_count": 7,
+        "body_density": 6.97
+      }
+    },
+    "quality": {
+      "score": 95,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 9,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 6,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5737,
+    "content_length": 6311,
+    "body_lines": 115,
+    "word_count": 801,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 3,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 506,
+      "when_to_use_section_length": 411,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 436,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 944,
+      "resources_items_count": 4,
+      "resources_section_length": 252,
+      "examples_section_length": 925,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 294,
+      "decision_assets_count": 10,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 4,
+      "support_files_count": 5,
+      "references_files_count": 2,
+      "scripts_files_count": 1,
+      "examples_files_count": 1,
+      "agents_files_count": 1,
+      "assets_files_count": 0,
+      "tools_count": 6,
+      "tags_count": 7,
+      "body_density": 6.97
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/mcp-server-authoring/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 6317,
+      "sha256": "87ce12e4c7652d24662b28344d088f59a929264a1b4227e846196670bc8be7e5"
+    },
+    {
+      "path": "skills/mcp-server-authoring/metadata.json",
+      "kind": "support",
+      "size_bytes": 5821,
+      "sha256": "7e7244c78c2f5e9439d82a87e93d839aa26dbf04a755e5628d2e0db77b359062"
+    },
+    {
+      "path": "skills/mcp-server-authoring/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 267,
+      "sha256": "aac55a7f0630e7d1a6e2eb4882af13f0ad9f1443468e2bf71570fcaa69756cee"
+    },
+    {
+      "path": "skills/mcp-server-authoring/examples/mcp-rollout-example.md",
+      "kind": "support",
+      "size_bytes": 523,
+      "sha256": "66388d0694402c9876c92bd903e64127c7d64842132c146b67a3d1f33c2bd1e9"
+    },
+    {
+      "path": "skills/mcp-server-authoring/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 464,
+      "sha256": "6669f146b3389180022a0a264deacb7efdd114852a139ccc721436bbe09284f4"
+    },
+    {
+      "path": "skills/mcp-server-authoring/references/tool-contract-worksheet.md",
+      "kind": "reference",
+      "size_bytes": 361,
+      "sha256": "040ed61ea35bf1a661a724ba76b6feb6d52725cb308fc520019f12893d822736"
+    },
+    {
+      "path": "skills/mcp-server-authoring/scripts/render_mcp_server_packet.py",
+      "kind": "support",
+      "size_bytes": 1177,
+      "sha256": "fb65c96a7a58cc84a9f661f2e9fbae018aa62b74d5504a21a824c1ec633dd969"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/mcp-server-authoring.zip",
+      "file_name": "mcp-server-authoring.zip",
+      "size_bytes": 16108,
+      "sha256": "67fa55fde8d02f631617d88acbfcf0a145a6caf4da1d3ca1d7f12a9fa13a97ab",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/mcp-server-authoring.tar.gz",
+      "file_name": "mcp-server-authoring.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "3af926a290069a9eca4d88c5e742c9a071023f3cbdd5553f8720b1eaa02c85bf",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/mcp-server-authoring.checksums.txt",
+    "file_name": "mcp-server-authoring.checksums.txt",
+    "sha256": "e34d6a595f0976566a39d82ab1f49c596dfb20e202533c0415812a116bfa0888",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "87ce12e4c7652d24662b28344d088f59a929264a1b4227e846196670bc8be7e5",
+    "package_sha256": "422436466e36cb43f49b8a6fea6ca8a8f5f90a6ca1fa285d9a28b6e0a21ba950"
+  }
+}

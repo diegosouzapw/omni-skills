@@ -16,6 +16,7 @@ Current repository baseline:
 - Contributor templates and guidance live in `docs/contributors/`.
 - The canonical PR flow for new skill branches is in `docs/contributors/SKILL-PR-WORKFLOW.md`.
 - Native incoming skills now land under `skills/`, while Omni-maintained enhanced derivatives are proposed automatically under `skills_omni/`.
+- `skills_omni/` is a protected curated surface and is not open for direct public contribution.
 - Runtime and architecture docs live in `docs/`.
 - Repository-standard community files live in the root: `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `CODE_OF_CONDUCT.md`.
 
@@ -194,6 +195,12 @@ If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 - update tests when changing CLI commands, transport modes, or public endpoints
 
 If you are contributing native skills only, the automation now handles the private enhancer run and the `skills_omni/` follow-up PR for you during the public PR lifecycle.
+
+Important boundary:
+
+- submit native work under `skills/`
+- do not open manual PRs that add or edit `skills_omni/`
+- curated `skills_omni/` changes are reserved for the automation-authored companion PRs generated from native intake
 
 ## Enhancer Outcome States
 

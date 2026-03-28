@@ -11,21 +11,27 @@
 |:----------|:------|
 | **Name** | `omni-skills` |
 | **Package version** | `0.1.2` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.1`. |
+| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
-| **Published skills** | 28 |
+| **Published skills** | 32 |
 | **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 12 active buckets out of 18 canonical taxonomy categories |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
 | **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
 
 Current repository-level classification snapshot from `metadata.json`:
 
-- average quality score: `96.5`
-- average best-practices score: `98.9`
+- average quality score: `96.3`
+- average best-practices score: `98.7`
 - average security score: `95.0`
-- all 28 published skills validate as `L3`
+- all 32 published skills validate as `L3`
+
+Current release baseline:
+
+- public repository release: `v0.1.2`
+- private enhancer release: `v0.0.1`
+- public release automation and private release automation are both active and green
 
 ---
 
@@ -90,24 +96,22 @@ The CLI is no longer just an installer. It is the public operations tool for the
 
 ## 🧭 Next Expansion Direction
 
-The public runtime is no longer blocked on foundational work. The next useful catalog wave is selective expansion across dormant canonical categories.
+The public runtime is no longer blocked on foundational work, and the second category wave is now landed. The next useful catalog work is depth, not more category-count chasing.
 
-Recommended activation order:
+Newly activated code-native tracks now in the catalog:
 
-1. `tools`
-2. `data-ai`
-3. `machine-learning`
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-Categories to keep intentionally deferred unless strong code-native proposals exist:
+Recommended next direction:
 
-- `business`
-- `content-media`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
-Reasoning:
-
-- `design`, `tools`, `data-ai`, and `machine-learning` can still produce coding- and agent-first workflows
-- `business` and `content-media` would be easy to bloat with non-implementation content
-- the catalog already has strong depth in `devops`, `ai-agents`, and `testing-security`, so the next gain is taxonomy breadth with the same quality floor
+That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
 
 ### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
@@ -306,7 +310,7 @@ Two details matter operationally:
 
 ## 📦 Published Catalog
 
-The current public catalog spans 28 skills:
+The current public catalog spans 32 skills:
 
 - **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
 - **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`

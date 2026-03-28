@@ -13,10 +13,18 @@ The first task set covered the foundational fronts that mattered after the 0.1.x
 5. private enhancer observability and consolidated batch reporting
 6. hardening the public contribution flow that now depends on the enhancer pipeline
 
-That first set is now complete. The next track is narrower and more product-directed:
+That first set is now complete. The release/workflow baseline is also closed:
+
+- public release `v0.1.2` published successfully
+- private enhancer release `v0.0.1` published successfully
+- public validation, release, and CodeQL are green on the latest release baseline
+- private poller and private release workflows are green on the latest baseline
+
+The next track is narrower and more product-directed:
 
 7. catalog specialization and category expansion
 8. private enhancer operating-model formalization for hosted vs LAN `live`
+9. second category wave across the remaining code-native dormant categories
 
 ## Completed Track
 
@@ -39,6 +47,7 @@ That order was deliberate:
 ## Next Track
 
 1. [TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+2. [TASK-08-SECOND-CATEGORY-WAVE.md](TASK-08-SECOND-CATEGORY-WAVE.md)
 
 The private hosted-live stabilization track is intentionally documented in the private enhancer repository, because the implementation, prompts, provider routing, and operator guidance all live there.
 
@@ -53,6 +62,7 @@ The private hosted-live stabilization track is intentionally documented in the p
 | `TASK-05` | Completed | Medium | Batch JSON plus markdown summaries and per-skill progress comments now exist |
 | `TASK-06` | Completed | High | Public/private contribution flow now documents intake, outcome states, attribution, and `skills_omni/` publication rules |
 | `TASK-07` | Completed | Medium | Activated `design` with `design-systems-ops` and `accessibility-audit`, and added the fully backed `design` bundle |
+| `TASK-08` | Completed | Medium | Landed `design-token-governance`, `mcp-server-authoring`, `data-contracts`, and `model-serving`, activating `tools`, `data-ai`, and `machine-learning` |
 
 ## Primary References
 
@@ -69,8 +79,8 @@ Public references:
 Private references:
 
 - `omni-skills-private/README.md`
-- `omni-skills-private/docs/github-automation.md`
-- `omni-skills-private/docs/review-flow.md`
+- `omni-skills-private/docs/GITHUB-AUTOMATION.md`
+- `omni-skills-private/docs/REVIEW-FLOW.md`
 - `omni-skills-private/scripts/`
 
 ## Done Criteria For The Completed Track
@@ -94,3 +104,11 @@ The next catalog-expansion track can be considered complete when:
 - new skills deepen real coding and agent workflows rather than only inflating bundle counts
 - any newly activated category lands with at least one high-quality, clearly scoped skill and a support pack that meets the current quality bar
 - the public docs explain which canonical categories remain intentionally inactive and why
+
+The second category wave is now complete. It landed when:
+
+- `tools` became active through `mcp-server-authoring`
+- `data-ai` became active through `data-contracts`
+- `machine-learning` became active through `model-serving`
+- `design` gained additional specialization through `design-token-governance`
+- all newly activated skills landed at the current quality floor without relaxing the scorer

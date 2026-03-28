@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.2; skills=28; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.2; skills=32; updated_at=2026-03-28 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
@@ -13,7 +13,7 @@ Standard community files live in the repository root:
 | Area | State | Details |
 |:-----|:------|:--------|
 | 🏗️ **Runtime** | ✅ Complete | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 28 skills | 28 published `L3` skills across 12 active catalog categories and 7 fully backed bundles |
+| 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
 | 🎯 **Install** | ✅ Complete | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
 | 🌐 **API** | ✅ Complete | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
 | 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
@@ -26,13 +26,17 @@ Standard community files live in the repository root:
 
 ## 🔭 Next Track
 
-The current foundation backlog is complete, and the first category-expansion wave has now landed with `design` active in the public taxonomy. The next planned public track is:
+The current foundation backlog is complete, and the second category-expansion wave has now landed. The next planned public track is:
 
-- deepen the new `design` track without lowering the current quality floor
-- selectively activate the next dormant categories, starting with `tools`, then `data-ai`, then `machine-learning`
+- keep the public `v0.1.2` release baseline and the private `v0.0.1` enhancer baseline as the new stable floor
+- deepen the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks without lowering the current quality floor
+- avoid reopening dormant non-code-native categories until the new code-native tracks have real specialization depth
 - keep the quality floor and enhancer review path intact while doing so
 
-That plan and the completion status of the first expansion wave are tracked in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md).
+That plan is now split into:
+
+- the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+- the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
 
 ---
 

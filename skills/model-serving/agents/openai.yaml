@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model Serving"
+  short_description: "Review inference contracts, rollout safety, latency, and observability for ML services"
+  default_prompt: "Use $model-serving to review an ML deployment before it becomes a production reliability problem."

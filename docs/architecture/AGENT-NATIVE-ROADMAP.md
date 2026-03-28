@@ -31,35 +31,37 @@
 - only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
 - deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
 - enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- the next catalog-expansion wave should continue from the newly active `design` category into one or more remaining dormant canonical categories without turning the repo into a generic content dump
+- the next catalog-expansion wave should deepen the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks before reopening any non-code-native dormant categories
 - the private enhancer now has a formal operating model: OmniRouter runs are pinned to `cx/gpt-5.4`, hosted cloud remains `mock` or degraded preflight, and reliable `live` stays on LAN or self-hosted execution
+- the release/workflow baseline is now closed at public `v0.1.2` and private `v0.0.1`; the next work is expansion and operational polish, not foundational CI bring-up
 
 ## Next Catalog Expansion Track
 
-The first public category-expansion wave is now landed: `design` is active through `design-systems-ops` and `accessibility-audit`. The next recommended wave is not “more skills everywhere.” It is a selective continuation into the remaining dormant categories that still fit the project’s coding-first identity.
+The first two public category-expansion waves are now landed:
 
-Recommended activation order:
+- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
+- `tools` → `mcp-server-authoring`
+- `data-ai` → `data-contracts`
+- `machine-learning` → `model-serving`
 
-1. `tools`
-2. `data-ai`
-3. `machine-learning`
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+
+Recommended direction:
+
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
 Categories intentionally deferred unless strong code-native proposals appear:
 
 - `business`
 - `content-media`
 
-Current newly activated category:
+That expansion history is now tracked in:
 
-- `design` → `design-systems-ops`, `accessibility-audit`
-
-Next candidate skill slots:
-
-- `tools` → `mcp-server-authoring`, `plugin-authoring`
-- `data-ai` → `data-contracts`, `analytics-instrumentation`
-- `machine-learning` → `model-serving`, `training-pipeline`
-
-That expansion plan is tracked in [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md).
+- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
 
 ---
 

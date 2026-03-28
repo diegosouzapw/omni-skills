@@ -58,18 +58,20 @@
         "frontend-design",
         "omni-figma",
         "design-systems-ops",
-        "accessibility-audit"
+        "accessibility-audit",
+        "design-token-governance"
       ],
       "available_skill_ids": [
         "frontend-design",
         "omni-figma",
         "design-systems-ops",
-        "accessibility-audit"
+        "accessibility-audit",
+        "design-token-governance"
       ],
       "missing_skill_ids": [],
       "availability": {
-        "available": 4,
-        "total": 4
+        "available": 5,
+        "total": 5
       }
     },
     {
@@ -130,19 +132,23 @@
         "prompt-engineer",
         "llm-patterns",
         "eval-design",
-        "context-engineering"
+        "context-engineering",
+        "data-contracts",
+        "model-serving"
       ],
       "available_skill_ids": [
         "rag-engineer",
         "prompt-engineer",
         "llm-patterns",
         "eval-design",
-        "context-engineering"
+        "context-engineering",
+        "data-contracts",
+        "model-serving"
       ],
       "missing_skill_ids": [],
       "availability": {
-        "available": 5,
-        "total": 5
+        "available": 7,
+        "total": 7
       }
     },
     {

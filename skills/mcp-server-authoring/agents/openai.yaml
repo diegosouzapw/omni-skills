@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Server Authoring"
+  short_description: "Design MCP server tools, resources, prompts, transports, and client compatibility"
+  default_prompt: "Use $mcp-server-authoring to design or review an MCP server contract before implementation."
