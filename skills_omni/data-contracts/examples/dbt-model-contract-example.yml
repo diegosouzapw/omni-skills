@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Published orders fact model with explicit contract expectations"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_id
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: customer_id
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: order_created_at
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: order_status
+        data_type: string
+      - name: gross_revenue
+        data_type: numeric
+    tests:
+      - unique:
+          column_name: order_id
+      - not_null:
+          column_name: order_id
+      - not_null:
+          column_name: customer_id

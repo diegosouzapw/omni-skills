@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Contracts"
+  short_description: "Review schema, freshness, ownership, and compatibility across data producers and consumers"
+  default_prompt: "Use $data-contracts to review a schema or metric change before it breaks downstream consumers."
