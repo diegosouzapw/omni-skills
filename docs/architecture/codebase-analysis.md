@@ -14,7 +14,7 @@
 | **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
-| **Published skills** | 19 |
+| **Published skills** | 22 |
 | **Defined bundles** | 6, all fully backed by published skills |
 | **Active catalog categories** | 10 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
@@ -22,10 +22,10 @@
 
 Current repository-level classification snapshot from `metadata.json`:
 
-- average quality score: `94.9`
-- average best-practices score: `96.6`
+- average quality score: `96.9`
+- average best-practices score: `98.8`
 - average security score: `95.0`
-- all 19 published skills validate as `L3`
+- all 22 published skills validate as `L3`
 
 ---
 
@@ -284,41 +284,43 @@ Two details matter operationally:
 
 ## 📦 Published Catalog
 
-The current public catalog spans 19 skills:
+The current public catalog spans 22 skills:
 
 - **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
 - **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`
-- **Security**: `security-auditor`, `vulnerability-scanner`
+- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`
 - **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`
+- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`
+- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`
 
 All six bundles are fully backed:
 
 - `essentials` → `4/4`
 - `full-stack` → `4/4`
-- `security` → `2/2`
-- `devops` → `3/3`
-- `ai-engineer` → `3/3`
+- `security` → `3/3`
+- `devops` → `4/4`
+- `ai-engineer` → `4/4`
 - `oss-maintainer` → `4/4`
 
 Current score spread from the generated catalog:
 
-- quality scores: `92, 94, 95, 96, 97, 98, 100`
-- best-practices scores: `92, 93, 98, 100`
+- quality scores: `94, 95, 96, 97, 98, 99, 100`
+- best-practices scores: `98, 100`
 - security score: all published skills currently `95`
 
 Representative high end:
 
 - `omni-figma` → `quality 100`, `best_practices 100`
+- `eval-design` → `quality 99`, `best_practices 100`
+- `incident-response` → `quality 99`, `best_practices 100`
 - `terraform` → `quality 98`, `best_practices 98`
 - `vulnerability-scanner` → `quality 98`, `best_practices 98`
 
 Representative lower end inside the current top band:
 
-- `kubernetes` → `quality 92`, `best_practices 92`
-- `llm-patterns` → `quality 92`, `best_practices 92`
-- `prompt-engineer` → `quality 92`, `best_practices 92`
+- `architecture` → `quality 94`, `best_practices 98`
+- `changelog` → `quality 94`, `best_practices 98`
+- `create-pr` → `quality 94`, `best_practices 98`
 
 This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
 

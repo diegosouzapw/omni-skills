@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.0; skills=19; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.0; skills=22; updated_at=2026-03-28 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**
@@ -30,6 +30,7 @@ Omni Skills is no longer only an installer.
 - 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, simple-first JSON/SQLite persistence, restart resume, optional external process execution, and opt-in leased coordination for shared workers.
 - 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro user/workspace, Codex TOML, Zed workspace settings, VS Code user/workspace, Dev Container targets, Continue workspace YAML, Junie project/user config, and Windsurf user config with generated recipes.
 - 🧾 **Client config UX**: `config-mcp` now previews or writes MCP client config from the CLI, and the visual terminal shell can walk operators through the same flow without hand-editing JSON, YAML, or TOML.
+- 🧬 **Native-to-enhanced intake flow**: community skills can land natively under `skills/`, and PR automation now runs the private enhancer and opens a companion `skills_omni/` PR with the Omni-maintained enhanced derivative plus attribution.
 - 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, admin tokens, request IDs, in-memory rate limiting, audit logging, CORS allowlists, IP allowlists, maintenance mode, and admin runtime introspection.
 - 🚢 **Release automation**: GitHub Actions now verifies version tags, runs ClamAV and VirusTotal-gated release builds, requires detached archive signing in CI, publishes the exact tarball to npm, and creates a GitHub Release with custom notes.
 - ✅ **Release preflight**: `smoke` and `publish-check` validate build output, tests, package contents, service boots, and scanner coverage.
@@ -40,15 +41,20 @@ Omni Skills is no longer only an installer.
 
 The runtime foundation is in place and the public catalog now fully backs every starter bundle with published skills.
 
-- Published skills currently available: **19**
+- Published skills currently available: **22**
 - Current published skills span architecture, frontend, backend, documentation, security, DevOps, and AI application workflows
 - Fully backed bundles: **`essentials`**, **`full-stack`**, **`security`**, **`devops`**, **`ai-engineer`**, and **`oss-maintainer`**
-- Newly published domain skills: `docker-expert`, `kubernetes`, `terraform`, `rag-engineer`, `prompt-engineer`, and `llm-patterns`
+- Newly published domain skills: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `incident-response`, `eval-design`, `rag-engineer`, `prompt-engineer`, and `llm-patterns`
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
 - MCP config coverage now spans **15 config-capable clients** across **32** first-class targets and **19** config profiles
 
 The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the six curated starter bundles.
+
+Native intake policy now intentionally differs from curated output:
+
+- `skills/` accepts rough native incoming skills, even when they are still incomplete
+- `skills_omni/` is the Omni-maintained enhanced surface proposed back by automation
 
 ---
 
@@ -265,7 +271,7 @@ Each skill also gets a generated `skills/<skill>/metadata.json` with:
 
 The current generated catalog contains:
 
-- `19` published skills in `dist/catalog.json`
+- `22` published skills in `dist/catalog.json`
 - installable skill bundles for planning, download, MCP, and A2A handoff
 - curated bundle definitions in `dist/bundles.json`
 
@@ -275,9 +281,9 @@ Current bundle availability:
 | :----- | :------------ | :---- |
 | `essentials` | `4/4` | `find-skills`, `brainstorming`, `architecture`, `debugging` |
 | `full-stack` | `4/4` | `frontend-design`, `api-design`, `database-design`, `omni-figma` |
-| `security` | `2/2` | `security-auditor`, `vulnerability-scanner` |
-| `devops` | `3/3` | `docker-expert`, `kubernetes`, `terraform` |
-| `ai-engineer` | `3/3` | `rag-engineer`, `prompt-engineer`, `llm-patterns` |
+| `security` | `3/3` | `security-auditor`, `vulnerability-scanner`, `incident-response` |
+| `devops` | `4/4` | `docker-expert`, `kubernetes`, `terraform`, `observability-review` |
+| `ai-engineer` | `4/4` | `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design` |
 | `oss-maintainer` | `4/4` | `find-skills`, `create-pr`, `changelog`, `documentation` |
 
 This means `--bundle` is now a real install surface for all six curated starter bundles, not only a roadmap-aware planning helper.

@@ -1,23 +1,23 @@
 # 📚 Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 19 skills across 10 categories.
+> Auto-generated from `skills_index.json` — 22 skills across 10 categories.
 
-Generated: 2026-03-27T00:00:00+00:00
+Generated: 2026-03-28T00:00:00+00:00
 
 ---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (3)](#ai-agents)
+- [🧠 Ai Agents (4)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
 - [💬 Communication (1)](#communication)
 - [💻 Development (3)](#development)
-- [☁️ Devops (3)](#devops)
+- [☁️ Devops (4)](#devops)
 - [📝 Documentation (2)](#documentation)
 - [🖼️ Frontend (1)](#frontend)
 - [🧭 Product (1)](#product)
-- [🛡️ Testing Security (2)](#testing-security)
+- [🛡️ Testing Security (3)](#testing-security)
 
 ---
 
@@ -25,6 +25,7 @@ Generated: 2026-03-27T00:00:00+00:00
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 100/100 | 98/100 | 95/100 passed |
@@ -62,6 +63,7 @@ Generated: 2026-03-27T00:00:00+00:00
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 100/100 | 98/100 | 95/100 passed |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 98/100 | 98/100 | 95/100 passed |
 
 ## 📝 Documentation
@@ -87,6 +89,7 @@ Generated: 2026-03-27T00:00:00+00:00
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 98/100 | 97/100 | 95/100 passed |
 | [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 98/100 | 98/100 | 95/100 passed |
 

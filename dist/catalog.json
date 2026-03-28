@@ -1,18 +1,18 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T00:00:00+00:00",
-  "total_skills": 19,
+  "generated_at": "2026-03-28T00:00:00+00:00",
+  "total_skills": 22,
   "categories": {
-    "ai-agents": 3,
+    "ai-agents": 4,
     "backend": 2,
     "cli-automation": 1,
     "communication": 1,
     "development": 3,
-    "devops": 3,
+    "devops": 4,
     "documentation": 2,
     "frontend": 1,
     "product": 1,
-    "testing-security": 2
+    "testing-security": 3
   },
   "skills": [
     {
@@ -450,6 +450,55 @@
       "validation_status": "passed"
     },
     {
+      "id": "eval-design",
+      "slug": "eval-design",
+      "display_name": "Eval Design",
+      "description": "Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, or acceptance criteria before model or prompt changes ship.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "evals",
+        "evaluation",
+        "regression",
+        "rubric",
+        "benchmark",
+        "llm"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "entrypoint": "skills/eval-design/SKILL.md",
+      "manifest_path": "dist/manifests/eval-design.json",
+      "metadata_path": "skills/eval-design/metadata.json",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "archives_count": 2,
+      "validation_status": "passed"
+    },
+    {
       "id": "find-skills",
       "slug": "find-skills",
       "display_name": "Find Skills",
@@ -549,6 +598,55 @@
       "validation_status": "passed"
     },
     {
+      "id": "incident-response",
+      "slug": "incident-response",
+      "display_name": "Incident Response",
+      "description": "Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder communication, or post-incident follow-up.",
+      "version": "0.0.1",
+      "category": "testing-security",
+      "raw_category": "testing-security",
+      "taxonomy": {
+        "raw_category": "testing-security",
+        "canonical_category": "testing-security",
+        "inferred_category": "testing-security",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "incident",
+        "outage",
+        "rollback",
+        "mitigation",
+        "escalation",
+        "postmortem"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "entrypoint": "skills/incident-response/SKILL.md",
+      "manifest_path": "dist/manifests/incident-response.json",
+      "metadata_path": "skills/incident-response/metadata.json",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "archives_count": 2,
+      "validation_status": "passed"
+    },
+    {
       "id": "kubernetes",
       "slug": "kubernetes",
       "display_name": "Kubernetes",
@@ -639,6 +737,55 @@
       "best_practices_score": 100,
       "best_practices_tier": "excellent",
       "quality_score": 98,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "archives_count": 2,
+      "validation_status": "passed"
+    },
+    {
+      "id": "observability-review",
+      "slug": "observability-review",
+      "display_name": "Observability Review",
+      "description": "Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipping or debugging a service.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "observability",
+        "alerts",
+        "slos",
+        "metrics",
+        "traces",
+        "logging"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "entrypoint": "skills/observability-review/SKILL.md",
+      "manifest_path": "dist/manifests/observability-review.json",
+      "metadata_path": "skills/observability-review/metadata.json",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
       "quality_tier": "platinum",
       "security_score": 95,
       "security_tier": "review",

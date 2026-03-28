@@ -1,18 +1,18 @@
 {
   "schema_version": "2026-03-26",
-  "generated_at": "2026-03-27T00:00:00+00:00",
+  "generated_at": "2026-03-28T00:00:00+00:00",
   "repository": {
     "name": "omni-skills",
     "version": "0.1.0",
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 19,
-    "passed": 19,
+    "total_skills": 22,
+    "passed": 22,
     "warnings": 0,
     "errors": 0,
-    "average_quality_score": 96.5,
-    "average_best_practices_score": 98.6,
+    "average_quality_score": 96.9,
+    "average_best_practices_score": 98.8,
     "average_security_score": 95.0
   },
   "taxonomy": {
@@ -37,37 +37,37 @@
       "uncategorized"
     ],
     "counts": {
-      "ai-agents": 3,
+      "ai-agents": 4,
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
       "development": 3,
-      "devops": 3,
+      "devops": 4,
       "documentation": 2,
       "frontend": 1,
       "product": 1,
-      "testing-security": 2
+      "testing-security": 3
     }
   },
   "distribution": {
     "skill_levels": {
       "l1": 0,
       "l2": 0,
-      "l3": 19
+      "l3": 22
     },
     "quality_tiers": {
-      "platinum": 19
+      "platinum": 22
     },
     "security_tiers": {
-      "review": 19
+      "review": 22
     },
     "security_status": {
-      "passed": 19,
+      "passed": 22,
       "warn": 0,
       "failed": 0
     },
     "validation_status": {
-      "passed": 19,
+      "passed": 22,
       "warn": 0,
       "failed": 0
     }
@@ -245,6 +245,25 @@
       "entrypoint": "skills/documentation/SKILL.md"
     },
     {
+      "id": "eval-design",
+      "display_name": "Eval Design",
+      "description": "Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, or acceptance criteria before model or prompt changes ship.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/eval-design/metadata.json",
+      "entrypoint": "skills/eval-design/SKILL.md"
+    },
+    {
       "id": "find-skills",
       "display_name": "Find Skills",
       "description": "Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper and needs the best published Omni Skills match.",
@@ -283,6 +302,25 @@
       "entrypoint": "skills/frontend-design/SKILL.md"
     },
     {
+      "id": "incident-response",
+      "display_name": "Incident Response",
+      "description": "Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder communication, or post-incident follow-up.",
+      "raw_category": "testing-security",
+      "canonical_category": "testing-security",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/incident-response/metadata.json",
+      "entrypoint": "skills/incident-response/SKILL.md"
+    },
+    {
       "id": "kubernetes",
       "display_name": "Kubernetes",
       "description": "Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or cluster operations guidance.",
@@ -319,6 +357,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/llm-patterns/metadata.json",
       "entrypoint": "skills/llm-patterns/SKILL.md"
+    },
+    {
+      "id": "observability-review",
+      "display_name": "Observability Review",
+      "description": "Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipping or debugging a service.",
+      "raw_category": "devops",
+      "canonical_category": "devops",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/observability-review/metadata.json",
+      "entrypoint": "skills/observability-review/SKILL.md"
     },
     {
       "id": "omni-figma",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T00:00:00+00:00",
+  "generated_at": "2026-03-28T00:00:00+00:00",
   "bundles": [
     {
       "id": "essentials",
@@ -54,16 +54,18 @@
       "intended_for": "Security engineers",
       "skill_ids": [
         "security-auditor",
-        "vulnerability-scanner"
+        "vulnerability-scanner",
+        "incident-response"
       ],
       "available_skill_ids": [
         "security-auditor",
-        "vulnerability-scanner"
+        "vulnerability-scanner",
+        "incident-response"
       ],
       "missing_skill_ids": [],
       "availability": {
-        "available": 2,
-        "total": 2
+        "available": 3,
+        "total": 3
       }
     },
     {
@@ -74,17 +76,19 @@
       "skill_ids": [
         "docker-expert",
         "kubernetes",
-        "terraform"
+        "terraform",
+        "observability-review"
       ],
       "available_skill_ids": [
         "docker-expert",
         "kubernetes",
-        "terraform"
+        "terraform",
+        "observability-review"
       ],
       "missing_skill_ids": [],
       "availability": {
-        "available": 3,
-        "total": 3
+        "available": 4,
+        "total": 4
       }
     },
     {
@@ -95,17 +99,19 @@
       "skill_ids": [
         "rag-engineer",
         "prompt-engineer",
-        "llm-patterns"
+        "llm-patterns",
+        "eval-design"
       ],
       "available_skill_ids": [
         "rag-engineer",
         "prompt-engineer",
-        "llm-patterns"
+        "llm-patterns",
+        "eval-design"
       ],
       "missing_skill_ids": [],
       "availability": {
-        "available": 3,
-        "total": 3
+        "available": 4,
+        "total": 4
       }
     },
     {

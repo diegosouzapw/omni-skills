@@ -8,10 +8,10 @@
 
 | Metric | Value |
 |:-------|:------|
-| Published skills | **19** across architecture, delivery, security, DevOps, and AI-engineering workflows |
+| Published skills | **22** across architecture, delivery, security, DevOps, and AI-engineering workflows |
 | Defined bundles | **6** (all fully backed by published skills) |
 | Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **14** across 30 first-class MCP config targets |
+| MCP config-capable clients | **15** across 32 first-class MCP config targets |
 
 ---
 

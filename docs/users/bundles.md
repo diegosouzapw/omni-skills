@@ -26,9 +26,9 @@ Based on the current generated catalog (`dist/bundles.json`):
 |:-------|:------------|:----------|:--------|
 | 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
 | 🌐 **full-stack** | Web & app devs | **4/4** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ |
-| 🛡️ **security** | Security engineers | **2/2** | `security-auditor` ✅ · `vulnerability-scanner` ✅ |
-| ⚙️ **devops** | Platform & infra | **3/3** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **3/3** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ |
+| 🛡️ **security** | Security engineers | **3/3** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ |
+| ⚙️ **devops** | Platform & infra | **4/4** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **4/4** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ |
 | 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
 > ✅ = Published and installable

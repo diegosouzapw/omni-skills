@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eval Design"
+  short_description: "Design regression suites, rubrics, and release gates for LLM changes"
+  default_prompt: "Use $eval-design to define eval families, rubrics, thresholds, and regression gates."

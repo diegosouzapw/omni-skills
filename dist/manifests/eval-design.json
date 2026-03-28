@@ -1,0 +1,395 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "eval-design",
+  "slug": "eval-design",
+  "display_name": "Eval Design",
+  "description": "Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, or acceptance criteria before model or prompt changes ship.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "evals",
+    "evaluation",
+    "regression",
+    "rubric",
+    "benchmark",
+    "llm"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28"
+  },
+  "entrypoint": "skills/eval-design/SKILL.md",
+  "paths": {
+    "root": "skills/eval-design",
+    "manifest": "dist/manifests/eval-design.json",
+    "metadata": "skills/eval-design/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "codex-cli",
+      "antigravity",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "installer_flag": "--antigravity",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to... (Agent Mode)"
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 8,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "antigravity",
+        "command": "npx omni-skills --antigravity",
+        "scope": "user-global",
+        "default_path": "~/.gemini/antigravity/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 5,
+        "workflow_section_length": 569,
+        "when_to_use_section_length": 481,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 458,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 919,
+        "resources_items_count": 5,
+        "resources_section_length": 288,
+        "examples_section_length": 808,
+        "examples_code_blocks_count": 6,
+        "related_skills_section_length": 319,
+        "decision_assets_count": 23,
+        "table_count": 7,
+        "linked_resource_families_count": 4,
+        "linked_resource_families": [
+          "agents",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "tools_count": 6,
+        "tags_count": 6,
+        "body_density": 7.02
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 8
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 7,
+        "script_files": 1,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 5480,
+    "content_length": 6005,
+    "body_lines": 112,
+    "word_count": 786,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 2,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 4,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 569,
+      "when_to_use_section_length": 481,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 458,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 919,
+      "resources_items_count": 5,
+      "resources_section_length": 288,
+      "examples_section_length": 808,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 319,
+      "decision_assets_count": 23,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 7.02
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/eval-design/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 6011,
+      "sha256": "9993529c849c39fb24b32dd36665eb9c48dac7706d6dd30d90e70b548e628f4f"
+    },
+    {
+      "path": "skills/eval-design/metadata.json",
+      "kind": "support",
+      "size_bytes": 5307,
+      "sha256": "7441a5b1f139454c17b2a976005bb64bc544cf165e036900a82aedfe4fc63a4e"
+    },
+    {
+      "path": "skills/eval-design/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 238,
+      "sha256": "20b49b0399c071a6fe2f680c557ecb973e54dd6813e72981491e12b132a0128a"
+    },
+    {
+      "path": "skills/eval-design/examples/regression-matrix.md",
+      "kind": "support",
+      "size_bytes": 521,
+      "sha256": "f4a2f78b447b53ec497e1a693a3072b8200d331a2ce15cf005454c6a7c974c62"
+    },
+    {
+      "path": "skills/eval-design/references/checklist.md",
+      "kind": "reference",
+      "size_bytes": 625,
+      "sha256": "2352e1bd783c9c2c8cef07169cf662c33eb784d48590e6bbd24ac85785a4eeaf"
+    },
+    {
+      "path": "skills/eval-design/references/dataset-boundary-worksheet.md",
+      "kind": "reference",
+      "size_bytes": 310,
+      "sha256": "f8bf7c27169143e6b1dcd83abd1fdfd96b6b738e907ec942ea55c35878f379d7"
+    },
+    {
+      "path": "skills/eval-design/references/rubric-template.md",
+      "kind": "reference",
+      "size_bytes": 685,
+      "sha256": "53b4451d5619b414e77b4071dbf51e44929b48bb53393f9cc33a792f7dfcf662"
+    },
+    {
+      "path": "skills/eval-design/scripts/render_eval_plan.py",
+      "kind": "support",
+      "size_bytes": 1184,
+      "sha256": "63a4289b7abf431b44bc894c4efdb976e9f3672afb80de936b90c7fe7bf29c90"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/eval-design.zip",
+      "file_name": "eval-design.zip",
+      "size_bytes": 16077,
+      "sha256": "14b0fc39de183d651512ede7bdf85b55453c9c328b394a2eb38c3ef9ac98cc7d",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/eval-design.tar.gz",
+      "file_name": "eval-design.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "57feac90743899cff73f0841b0ed7a86c21311cd3e4628a30f348cd70fe0d73c",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/eval-design.checksums.txt",
+    "file_name": "eval-design.checksums.txt",
+    "sha256": "f9985d0dfff0c45343de062271e7575a5562cf5f3bb155e19569d3c7e919bfd3",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "9993529c849c39fb24b32dd36665eb9c48dac7706d6dd30d90e70b548e628f4f",
+    "package_sha256": "7aeb5552b8b267d263984292a42915a158a8546bc4e955c09f99bf61cbb58548"
+  }
+}

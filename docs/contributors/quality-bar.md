@@ -6,9 +6,9 @@ For authoring guidance aimed specifically at top-band scores, see [High-Score Pl
 
 Current benchmark for the published catalog:
 
-- 19 published skills
-- average quality score `94.9`
-- average best-practices score `96.6`
+- 22 published skills
+- average quality score `96.9`
+- average best-practices score `98.8`
 - average security score `95.0`
 
 ---

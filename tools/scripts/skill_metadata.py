@@ -1868,9 +1868,16 @@ def validate_skill(
 
     frontmatter = parse_frontmatter(content)
     if frontmatter is None:
-        return [("ERROR", "Missing or invalid YAML frontmatter (---...---)")], None
-
-    body = strip_frontmatter(content).strip()
+        issues.append(
+            (
+                "WARN",
+                "Missing or invalid YAML frontmatter (---...---); native intake remains accepted and the enhancer is expected to normalize it.",
+            )
+        )
+        frontmatter = {}
+        body = content.strip()
+    else:
+        body = strip_frontmatter(content).strip()
     title = extract_title(body) or normalize_text(frontmatter.get("name")) or skill_name
     description = normalize_text(frontmatter.get("description")) or extract_first_paragraph(body)
     raw_category = normalize_text(frontmatter.get("category"))
@@ -1919,11 +1926,14 @@ def validate_skill(
     strict_required = required_fields + ["version", "category", "risk", "source", "date_added"]
     for field in (strict_required if strict else required_fields):
         if not normalize_text(frontmatter.get(field)) and not parse_string_list(frontmatter.get(field)):
-            issues.append(("ERROR" if field in required_fields else "WARN", f"Missing field: {field}"))
+            if strict and field in required_fields:
+                issues.append(("ERROR", f"Missing field: {field}"))
+            else:
+                issues.append(("WARN", f"Missing field: {field}"))
 
     name = normalize_text(frontmatter.get("name"))
     if name and name != skill_name:
-        issues.append(("ERROR", f"name '{name}' does not match directory '{skill_name}'"))
+        issues.append(("WARN", f"name '{name}' does not match directory '{skill_name}'"))
     if name and name in GENERIC_NAMES:
         issues.append(("WARN", f"name '{name}' is too generic for reliable discovery"))
     if name and not re.match(r"^[a-z0-9][a-z0-9-]{1,63}$", name):

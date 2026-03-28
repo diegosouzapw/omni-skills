@@ -18,21 +18,21 @@
     "name": "Security",
     "description": "Security review and vulnerability-oriented workflows.",
     "intended_for": "Security engineers",
-    "skill_ids": ["security-auditor", "vulnerability-scanner"]
+    "skill_ids": ["security-auditor", "vulnerability-scanner", "incident-response"]
   },
   {
     "id": "devops",
     "name": "DevOps",
     "description": "Infrastructure and deployment workflows.",
     "intended_for": "Infrastructure and platform teams",
-    "skill_ids": ["docker-expert", "kubernetes", "terraform"]
+    "skill_ids": ["docker-expert", "kubernetes", "terraform", "observability-review"]
   },
   {
     "id": "ai-engineer",
     "name": "AI Engineer",
     "description": "RAG, prompting, and AI application workflows.",
     "intended_for": "LLM and ML developers",
-    "skill_ids": ["rag-engineer", "prompt-engineer", "llm-patterns"]
+    "skill_ids": ["rag-engineer", "prompt-engineer", "llm-patterns", "eval-design"]
   },
   {
     "id": "oss-maintainer",

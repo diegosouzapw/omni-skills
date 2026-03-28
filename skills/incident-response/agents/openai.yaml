@@ -1,0 +1,4 @@
+interface:
+  display_name: "Incident Response"
+  short_description: "Structure outage triage, mitigation, escalation, and follow-up"
+  default_prompt: "Use $incident-response to frame severity, mitigation options, stakeholder updates, and post-incident actions."
