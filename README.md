@@ -63,7 +63,7 @@ The current foundation track is complete. The next planned wave is narrower:
 
 - expand catalog depth without dropping the quality floor
 - continue selective category activation from the now-active `design` track into `tools`, `data-ai`, and `machine-learning`
-- keep tightening the private enhancer so hosted `live` becomes less dependent on the LAN-only reliable path
+- keep the private enhancer on its formal operating model: `cx/gpt-5.4`, GitHub hosted in `mock` or degraded preflight mode, and reliable `live` on LAN or self-hosted execution
 
 The implementation backlog for that next phase lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md).
 

@@ -32,7 +32,7 @@
 - deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
 - enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
 - the next catalog-expansion wave should continue from the newly active `design` category into one or more remaining dormant canonical categories without turning the repo into a generic content dump
-- the private enhancer still treats LAN or local service execution as the canonical reliable `live` path; hosted cloud `live` remains intentionally preflight-gated
+- the private enhancer now has a formal operating model: OmniRouter runs are pinned to `cx/gpt-5.4`, hosted cloud remains `mock` or degraded preflight, and reliable `live` stays on LAN or self-hosted execution
 
 ## Next Catalog Expansion Track
 

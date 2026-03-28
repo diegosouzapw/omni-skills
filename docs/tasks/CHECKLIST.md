@@ -15,7 +15,7 @@
 ## Next Track
 
 - [x] `TASK-07` Expand catalog specialization and activate one or more additional canonical categories without lowering the quality bar
-- [ ] Private `TASK-09` Stabilize hosted OmniRoute cloud `live` enough to be trusted beyond the current preflight-gated mode
+- [x] Private `TASK-09` Formalize the enhancer operating model: `cx/gpt-5.4`, hosted `mock/degraded`, reliable `live` on LAN or self-hosted execution
 
 ## Validation Gates
 

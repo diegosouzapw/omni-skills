@@ -16,7 +16,7 @@ The first task set covered the foundational fronts that mattered after the 0.1.x
 That first set is now complete. The next track is narrower and more product-directed:
 
 7. catalog specialization and category expansion
-8. hosted OmniRoute cloud stabilization for private `live` enhancement
+8. private enhancer operating-model formalization for hosted vs LAN `live`
 
 ## Completed Track
 
@@ -49,7 +49,7 @@ The private hosted-live stabilization track is intentionally documented in the p
 | `TASK-01` | Completed | High | Closed this round with Goose; remaining gaps are intentional and documented |
 | `TASK-02` | Completed | High | Final scoring pass landed with stronger support-pack weighting and last-mile editorial depth |
 | `TASK-03` | Completed | Medium | Added specialization depth with `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering` |
-| `TASK-04` | Completed | High | Hosted live is now explicitly preflight-gated and downgraded cleanly when public OmniRoute is blocked |
+| `TASK-04` | Completed | High | Hosted live is explicitly preflight-gated and downgraded cleanly when public OmniRoute is blocked |
 | `TASK-05` | Completed | Medium | Batch JSON plus markdown summaries and per-skill progress comments now exist |
 | `TASK-06` | Completed | High | Public/private contribution flow now documents intake, outcome states, attribution, and `skills_omni/` publication rules |
 | `TASK-07` | Completed | Medium | Activated `design` with `design-systems-ops` and `accessibility-audit`, and added the fully backed `design` bundle |
@@ -80,7 +80,7 @@ This backlog can be considered complete when all of the following are true:
 - the MCP matrix has only intentional gaps, each gap justified by missing or unstable official client docs
 - the scorer has a believable spread between merely polished skills and genuinely exceptional skills
 - each priority bundle has meaningful depth, not just coverage
-- the private enhancer can run hosted live reliably enough to be trusted for PR-time enhancement, or the hosted limitation is formally downgraded and the LAN/self-hosted path is declared canonical
+- the private enhancer hosted limitation is formally downgraded and the LAN/self-hosted path is declared canonical for reliable `live` execution
 - private runs produce consolidated operational summaries that make batch review easy
 - the contribution flow is documented end-to-end for contributors and maintainers, including native intake and `skills_omni` publication rules
 
