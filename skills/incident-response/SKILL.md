@@ -125,3 +125,4 @@ Use @incident-response to turn this responder timeline into an executive summary
 - [Postmortem outline](references/postmortem-outline.md)
 - [Render an incident packet](scripts/render_incident_packet.py)
 - [Incident timeline example](examples/incident-timeline-example.md)
+- Prefer pairing this skill with a real incident channel or ticket so the generated packet has a stable place to live during the response.
