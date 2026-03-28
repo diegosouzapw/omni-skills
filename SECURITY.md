@@ -31,23 +31,27 @@ This policy covers the repository runtime and content surfaces, including:
 
 ## Current Security Model
 
-The project currently relies on these guardrails:
+The current repository already relies on these controls:
 
 - skill metadata includes a `risk` field
-- validation scripts inspect skill structure and metadata
+- validation computes maturity, best-practices, quality, and security scores
+- the static scanner inspects `SKILL.md`, packaged files, and helper scripts
+- optional ClamAV and VirusTotal hash lookup can be enabled during validation and release workflows
 - install flows use path safety checks
 - local MCP sidecar writes are constrained by an allowlist
 - write-oriented local tools default to dry-run behavior unless explicitly disabled
+- generated archives ship with checksum manifests
+- release tags require detached signature verification in CI before publication
+- API and MCP HTTP transports support bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists, audit logging, maintenance mode, and request IDs
 - smoke checks exercise the shipped runtime surfaces before release
 
-## Current Limitations
+## What Is Still Open
 
-The following hardening steps are still pending:
+The main security work that remains is no longer baseline hardening. The open items are:
 
-- signed release artifacts or per-skill archives
-- auth and rate limiting for hosted API or MCP deployments
-- more specialized client-specific MCP config writers
-- stronger remote governance around hosted catalog usage
+- enterprise-grade hosted governance above the current in-process controls, such as external identity, gateway policy, and WAF integration
+- broader MCP client writers only when public config contracts are stable enough to keep the write path safe
+- continued refinement of the static scanner and skill scoring so exceptional skills stay clearly separated from merely well-structured ones
 
 ## Risk Levels in Skills
 
@@ -57,3 +61,17 @@ Each skill declares one of these `risk` levels:
 - `caution`: may modify files or interact with external systems
 - `offensive`: security-testing or adversarial workflows that require explicit authorization
 - `critical`: high-impact or system-level operations
+
+## Disclosure Notes
+
+Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, vulnerability reports that affect:
+
+- path traversal
+- symlink safety
+- command execution
+- archive verification
+- auth or rate-limiting bypass
+- local sidecar allowlist bypass
+- scanner evasion or false-negative classes
+
+should be treated as high priority even if they appear “local only”.

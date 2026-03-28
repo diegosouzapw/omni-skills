@@ -15,8 +15,9 @@
 | ✅ Preview-before-write defaults | Implemented |
 | ✅ Client-aware MCP config writing | Implemented |
 | ✅ HTTP auth + rate limiting | Implemented |
-| ⏳ Signed artifact enforcement | Pending |
-| 🟡 Full client config coverage | Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro, Continue, Windsurf, Zed, VS Code, and Dev Containers implemented; broader ecosystem still growing |
+| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
+| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
+| 🟢 Current client coverage | 7 install-capable clients, 14 config-capable clients, 30 config targets, 18 config profiles |
 
 ---
 
@@ -29,6 +30,13 @@ Local mode adds **filesystem-aware tools** on top of the existing read-only MCP 
 - 👁️ Preview skill installation or removal (dry-run)
 - 📦 Apply local skill installation or removal
 - ⚙️ Write a local MCP config file after preview
+
+It deliberately separates two concerns:
+
+- **skill installation targets**
+  clients with a stable skills directory that can use `install_skills`
+- **MCP config targets**
+  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
 
 ---
 
@@ -106,6 +114,8 @@ When local mode is enabled, these extra tools become available:
 | 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
 | ⚪ OpenCode | `<workspace>/.opencode/skills` |
 
+These 7 targets are the only first-class install destinations today.
+
 ### ⚙️ MCP Config Files
 
 | Target | Format |
@@ -139,6 +149,44 @@ When local mode is enabled, these extra tools become available:
 | `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
 | `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
 | Client root `mcp.json` | JSON (per-client format) |
+
+That gives the sidecar:
+
+- **14 config-capable clients or IDEs**
+- **30 first-class target paths**
+- **18 format profiles**
+
+Current first-class config coverage spans:
+
+- Claude Code and Claude Desktop
+- Cursor
+- VS Code and Dev Containers
+- Gemini CLI
+- Antigravity
+- Kiro
+- Codex CLI
+- Continue
+- Windsurf
+- OpenCode
+- Cline
+- GitHub Copilot CLI
+- Kilo Code
+- Zed
+
+Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
+
+### 🧭 Expansion Policy
+
+Omni Skills now treats client support as a three-level model:
+
+1. **install-capable**
+   A stable skills directory exists, so the CLI and sidecar can install skills directly.
+2. **config-capable**
+   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
+3. **manual or snippet-only**
+   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
+
+This is why clients such as JetBrains AI Assistant or Roo Code are documented as candidates rather than written automatically today.
 
 ---
 
@@ -307,7 +355,7 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 
 ```yaml
 name: 'Omni Skills'
-version: '0.0.1'
+version: '0.1.0'
 schema: 'v1'
 mcpServers:
   - name: 'omni-skills'
@@ -472,6 +520,12 @@ These recipes are client-aware guidance blocks, for example:
 - `codex mcp add ...`
 - manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
 
+The overall strategy is now intentionally conservative:
+
+- reuse a small set of canonical config families where possible
+- keep bespoke writers only when official docs require a distinct shape
+- avoid inventing automatic writers for undocumented targets
+
 ---
 
 ## 🔐 Hosted HTTP Hardening
@@ -492,3 +546,24 @@ The HTTP transports support the same env-driven controls as the catalog API:
 | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
 
 > 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
+
+---
+
+## 🌍 Official Docs That Shape Support Decisions
+
+The current writer set and manual-only boundaries were checked against official product docs, including:
+
+- Anthropic Claude Code MCP
+- OpenAI Codex CLI and OpenAI Docs MCP
+- Cursor MCP docs
+- Continue MCP docs
+- Kiro MCP docs
+- OpenCode MCP docs
+- Cline MCP docs
+- Kilo Code MCP docs
+- GitHub Copilot CLI docs
+- Zed MCP docs
+- VS Code MCP docs
+- JetBrains AI Assistant MCP docs
+
+Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.

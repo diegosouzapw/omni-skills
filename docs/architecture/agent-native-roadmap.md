@@ -1,6 +1,6 @@
 # 🗺️ Agent-Native Roadmap
 
-> **The architecture evolution plan: from a skills installer into a machine-readable catalog powering API, MCP, and A2A surfaces without duplicating logic.**
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
 
 ---
 
@@ -11,24 +11,25 @@
 | 1️⃣ | Contracts and Artifacts | ✅ Completed |
 | 2️⃣ | Read-Only Catalog API | ✅ Completed |
 | 3️⃣ | MCP Discovery Surface | ✅ Completed |
-| 4️⃣ | Local Install Surface | ✅ Completed |
+| 4️⃣ | Local Install and Config Surface | ✅ Completed |
 | 5️⃣ | A2A Orchestration | ✅ Completed |
 
-### ✅ What's Done
+### ✅ What Is Implemented
 
-- Machine-readable catalog (`dist/catalog.json`, `dist/manifests/`, `dist/bundles.json`)
-- Read-only HTTP API with full endpoint coverage
-- MCP server with 3 transports (stdio/stream/sse) and 10 tools
-- Local sidecar with allowlisted filesystem access
-- Per-skill archives (zip/tar.gz) with SHA-256 checksums
-- Auth (bearer + API key), admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, maintenance mode, and request IDs
-- Client-aware MCP config writing for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Kiro, Continue, Windsurf, VS Code, and Dev Containers
-- A2A runtime with agent card, task lifecycle, polling, SSE streaming, cancelation, push-notification config, JSON/SQLite durability, restart resume, optional process executor, opt-in SQLite-backed leased execution across workers, and optional advanced Redis coordination
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 14 config-capable clients, 30 MCP config targets, and 18 config profiles
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-### ⏳ What's Still Open
+### ⏳ What Remains Open
 
-- Even broader client-specific config coverage outside the current first-party and adjacent-editor target set
-- More semantic scoring and deeper reference packs so the classifier can keep separating excellent skills from merely well-structured ones
+- broader client-specific config coverage only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
 
 ---
 
@@ -38,16 +39,16 @@
 - ✅ Introduce a machine-readable source of truth for skills
 - ✅ Support discovery, recommendation, and install planning by agents
 - ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Make the same metadata reusable across CLI, API, MCP, and A2A
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
 
 ---
 
 ## 🚫 Non-Goals
 
 - ❌ Remote install-on-user-machine from a hosted server
-- ❌ A2A before the catalog contract is stable
 - ❌ Replace `SKILL.md` as the canonical authoring format
 - ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
 
 ---
 
@@ -57,25 +58,25 @@ One **catalog core** with three protocol surfaces:
 
 | Surface | Best For | Mode |
 |:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, web UI, third-party integrations | Read-only |
-| 🔌 **MCP** | Agent discovery, recommendations, install previews, client-specific config recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and workflow handoff | Task lifecycle → durable orchestration with pluggable coordination |
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
----
+### ⚙️ Core Principle
 
-## ⚙️ Core Principle
+> **All protocols consume the same generated artifact family.**
 
-> **All protocols consume the same generated manifest artifacts.**
-
+```text
+SKILL.md + support pack
+        ↓
+validate + classify + archive
+        ↓
+metadata.json + dist/catalog.json + manifests + archives
+        ↓
+CLI / API / MCP / A2A
 ```
-📝 Authors → SKILL.md + references/assets
-      ↓
-⚙️ Build Pipeline → validates, classifies, archives
-      ↓
-📁 dist/ → catalog.json + manifests/*.json + archives/*
-      ↓
-🌐 API / 🔌 MCP / 🤖 A2A → read same artifacts
-```
+
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
 
 ---
 
@@ -83,29 +84,29 @@ One **catalog core** with three protocol surfaces:
 
 ### 1️⃣ Remote Catalog Mode
 
-> Used by hosted API and remote MCP servers.
+Used by hosted API and remote MCP servers.
 
 | ✅ Allowed | ❌ Not Allowed |
 |:-----------|:---------------|
-| Search skills | Write to user's filesystem |
-| Fetch manifests | Mutate local agent config |
-| Compare skills | Infer local machine state |
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
 | Recommend bundles | — |
 | Build install plans | — |
 
 ### 2️⃣ Local Installer Mode
 
-> Used by CLI and MCP sidecar.
+Used by the CLI and the MCP sidecar.
 
 | ✅ Allowed |
 |:-----------|
 | Detect local AI clients |
 | Inspect installed skills |
-| Preview file operations (dry-run) |
-| Install/remove skill directories |
-| Edit local config after confirmation |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
 
-> 📌 This is the **only mode** where real OS writes happen.
+> 📌 This remains the only mode where real OS writes happen.
 
 ---
 
@@ -113,13 +114,13 @@ One **catalog core** with three protocol surfaces:
 
 ### 🌐 REST API
 
-Best for: registry access, web UI, third-party integrations, search, versioned downloads
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
 ### 🔌 MCP
 
-Best for: agent tool selection, promptable discovery, install previews, context-rich retrieval
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
 **Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
@@ -127,9 +128,9 @@ Best for: agent tool selection, promptable discovery, install previews, context-
 
 ### 🤖 A2A
 
-Best for: multi-agent orchestration, discovery handoff, install-plan workflows
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
 
-**Capabilities**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
 
 ---
 
@@ -137,12 +138,12 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 
 | Principle | Implementation |
 |:----------|:---------------|
-| 🔒 Hosted services are read-only | No filesystem writes from API/MCP remote |
-| 📂 Writes stay local | CLI and sidecar only |
-| 👁️ Preview before write | Dry-run defaults on all mutations |
-| 🔒 Checksum integrity | SHA-256 for all generated artifacts |
-| ✍️ Signed releases | Detached signatures enforced on release tags |
-| ⚠️ Risk visibility | Risk metadata visible in every surface |
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
 
 ---
 
@@ -150,51 +151,94 @@ Best for: multi-agent orchestration, discovery handoff, install-plan workflows
 
 ### Phase 1: Contracts and Artifacts ✅
 
-- Documented target architecture
-- Defined manifest schema
-- Generated machine-readable artifacts in `dist/`
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
 ### Phase 2: Catalog Service ✅
 
-- Read-only HTTP API with Express 5
-- Search, filtering, manifest lookup, artifact downloads
-- Auth, admin runtime, rate limiting, audit logging, CORS/IP allowlists, maintenance mode
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
 ### Phase 3: MCP Discovery ✅
 
-- MCP server with stdio/stream/sse transports
-- 5 read-only tools, 3 resources, 2 prompts
-- Official `@modelcontextprotocol/sdk` integration
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-### Phase 4: Local Install Surface 🟡
+### Phase 4: Local Install and Config Surface ✅
 
-- ✅ Local sidecar with allowlisted writes
-- ✅ Client detection for 7 AI assistants
-- ✅ MCP config writing for JSON, YAML, and TOML
-- ✅ Claude, Cursor, Gemini, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, and Kiro user/project targets
-- ✅ Continue workspace YAML export, Windsurf user config export, and Zed workspace settings export
-- ✅ VS Code user/workspace and Dev Container config targets
-- ✅ Claude allow/deny lists, Gemini allow/exclude lists, Kiro disabled-tools or auto-approve, and VS Code sandbox or dev config generation
-- ✅ Client-aware generated setup recipes
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 14 config-capable clients across 30 targets and 18 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, and Dev Containers
 
 ### Phase 5: A2A Orchestration ✅
 
-- ✅ Agent Card at `/.well-known/agent.json`
-- ✅ `message/send` with task creation and continuation
-- ✅ `tasks/get`, `tasks/cancel`, and `tasks/resubscribe`
-- ✅ `message/stream` with SSE task updates
-- ✅ `tasks/pushNotificationConfig/*`
-- ✅ JSON and SQLite task persistence with restart recovery
-- ✅ Optional external process executor
-- ✅ Shared SQLite queue polling and lease-aware failover across workers when explicitly enabled
-- ✅ Redis-backed coordination kept as an advanced hosted option rather than the default local path
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
 
 ---
 
-## 🔮 Open Questions
+## ✅ Decisions Closed in 0.1.x
 
-| # | Question |
-|:--|:---------|
-| 1️⃣ | Should future releases move entirely to signed per-skill archives? |
-| 2️⃣ | Should private/premium catalogs reuse the manifest format with auth layered externally? |
-| 3️⃣ | Should the installer converge to fewer shared export models plus docs, or keep growing per-client writers? |
+### 1. Distribution Strategy
+
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
+
+### 2. Private or Premium Catalogs
+
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+
+### 3. Client Writer Strategy
+
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
+- JSON `mcpServers`
+- JSON `servers`
+- JSON `context_servers`
+- YAML `mcpServers`
+- TOML `[mcp_servers]`
+
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
+
+## 🌍 Research Notes Behind Those Decisions
+
+The current decisions were checked against official ecosystem docs:
+
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
+
+## 🔮 Next Decision Points
+
+Only a few questions remain genuinely open:
+
+1. Which additional MCP clients have public, stable config formats strong enough to justify first-class writers?
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

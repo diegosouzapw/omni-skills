@@ -20,6 +20,13 @@ This is the contributor-facing companion to:
 - [Skill Anatomy](skill-anatomy.md)
 - [Skill Classification](../specs/skill-classification.md)
 
+Current benchmark for the live catalog:
+
+- 19 published skills
+- current quality spread: `92, 94, 95, 96, 97, 98, 100`
+- current best-practices spread: `92, 93, 98, 100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
 ---
 
 ## 🧱 What High Scores Really Mean

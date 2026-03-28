@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.0.1; skills=19; updated_at=2026-03-27 -->
+<!-- omni-skills: version=0.1.0; skills=19; updated_at=2026-03-28 -->
 # 🧠 Omni Skills — Agent-Native Skill Catalog and Runtime
 
 > **Curated AI coding skills plus a unified runtime for CLI install, catalog API, MCP, and A2A.**
@@ -27,7 +27,7 @@ Omni Skills is no longer only an installer.
 - 🛡️ **Security validation**: the validator now runs a static content and script scanner, emits security scores, and can optionally enrich results with ClamAV and VirusTotal hash lookups.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 📦 **Per-skill archives**: the build now emits `zip`, `tar.gz`, and checksum manifests per skill, with detached signatures when signing keys are configured.
-- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, pluggable JSON/SQLite persistence, restart resume, optional external process execution, opt-in shared lease queues, and optional advanced Redis coordination.
+- 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, simple-first JSON/SQLite persistence, restart resume, optional external process execution, and opt-in leased coordination for shared workers.
 - 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro user/workspace, Codex TOML, Zed workspace settings, VS Code user/workspace, Dev Container targets, Continue workspace YAML, and Windsurf user config with generated recipes.
 - 🧾 **Client config UX**: `config-mcp` now previews or writes MCP client config from the CLI, and the visual terminal shell can walk operators through the same flow without hand-editing JSON, YAML, or TOML.
 - 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, admin tokens, request IDs, in-memory rate limiting, audit logging, CORS allowlists, IP allowlists, maintenance mode, and admin runtime introspection.
@@ -46,6 +46,7 @@ The runtime foundation is in place and the public catalog now fully backs every 
 - Newly published domain skills: `docker-expert`, `kubernetes`, `terraform`, `rag-engineer`, `prompt-engineer`, and `llm-patterns`
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
+- MCP config coverage now spans **14 config-capable clients** across **30** first-class targets and **18** config profiles
 
 The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the six curated starter bundles.
 
@@ -176,6 +177,7 @@ The package is already usable as a normal npm-distributed CLI. You do not need t
 - `npx omni-skills ui --text` keeps a readline fallback for terminals where the richer shell is not desired
 - `npx omni-skills ui` also exposes a guided MCP config flow for supported targets
 - `configure_client_mcp` and sidecar config export now also cover `cline-user`, `copilot-user`, `copilot-repo`, `kilo-user`, `kilo-project`, `kilo-workspace`, `continue-workspace`, `windsurf-user`, and `zed-workspace`
+- the broader MCP config surface also includes Claude settings and desktop targets, VS Code user and workspace targets, Dev Containers, Gemini user and workspace settings, and OpenCode user or workspace config
 
 For Antigravity specifically, the common flows are:
 
@@ -210,7 +212,7 @@ Selective installs use the generated manifests and published artifacts from `dis
 | **CLI** | Implemented | Find and install skills, run diagnostics, open the terminal UI, boot services, run smoke checks | `npx omni-skills doctor` |
 | **Catalog API** | Implemented | Read-only catalog, search, bundles, install plans, artifact downloads | `npx omni-skills api --port 3333` |
 | **MCP** | Implemented | Discovery, recommendation, install preview, optional local sidecar mode | `npx omni-skills mcp stream --local` |
-| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, simple-first JSON/SQLite persistence, and opt-in lease-aware recovery with optional advanced Redis coordination | `npx omni-skills a2a --port 3335` |
+| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, simple-first memory/JSON/SQLite persistence, and opt-in lease-aware recovery for shared workers | `npx omni-skills a2a --port 3335` |
 
 ### MCP Transports
 
@@ -369,9 +371,10 @@ Tag-based release automation now also validates:
 ## 🛣️ What Is Still Pending At Platform Level
 
 - installation through npm/CLI is already in place; the items below are platform-expansion work
-- broader client coverage and export recipes beyond the current Claude, Cursor, Codex, Gemini, Kiro, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, VS Code, and Dev Container targets
+- broader MCP client coverage only where public, stable config contracts justify first-class writers
 - enterprise-grade hosted governance above the built-in controls, such as external identity, gateway policy, and WAF integration
 - further semantic scorer refinement and richer reference packs now that both best-practices and quality scores have real spread
+- deeper specialization inside existing bundles, not just broader bundle coverage
 
 ---
 

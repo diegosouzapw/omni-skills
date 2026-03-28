@@ -54,9 +54,16 @@ Local sources:
 
 These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
 
+Current implementation totals:
+
+- **7 install-capable clients**
+- **14 config-capable clients**
+- **30 first-class config targets**
+- **18 config profiles**
+
 | Client | Status | Config Targets | Notes |
 |:-------|:-------|:---------------|:------|
-| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
+| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
 | Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
 | VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
 | Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
@@ -84,18 +91,41 @@ These clients from `9router` are **not** yet first-class writer targets in Omni 
 
 The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
 
+Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
+
+| Client | Current State | Why |
+|:-------|:--------------|:----|
+| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
+| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
+
 ---
 
-## Additional IDEs Worth Supporting
+## Support Policy
 
-These are outside the original `9router` list, but they are realistic expansion targets because they have official MCP-facing documentation.
+Omni Skills now follows this rule set:
+
+1. **Install-capable** if a stable skills directory exists.
+2. **Config-capable** if a stable public MCP config file format exists.
+3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
+
+This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
+
+### Canonical config families already in use
+
+- JSON `mcpServers`
+- JSON `servers`
+- JSON `context_servers`
+- YAML `mcpServers`
+- TOML `[mcp_servers]`
+
+### Additional candidates worth watching
 
 | Client / IDE | Recommendation | Reason |
 |:-------------|:---------------|:-------|
-| JetBrains AI Assistant | 🟡 Manual/snippet next | Official MCP client support exists, but the primary workflow is UI-driven, not a stable public file path |
-| Roo Code | 🟡 Investigate next | Public docs confirm MCP support, but a stable cross-platform config path needs stronger confirmation before we add a writer |
-| VS Code Copilot Chat | 🟢 Already covered indirectly | Omni Skills already covers the underlying MCP file locations used by VS Code |
-| Zed ACP / Agent Servers | 🟡 Separate track | This is adjacent, but it is ACP/agent-server territory, not just MCP config writing |
+| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
+| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
+| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
+| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
 
 ---
 
@@ -115,6 +145,8 @@ The decisions above were checked against current primary sources:
 - [Zed MCP](https://zed.dev/docs/ai/mcp)
 - [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
 - [Roo Code MCP](https://docs.roocode.com/features/mcp)
+- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
 
 ---
 
@@ -132,14 +164,3 @@ The current Omni Skills sidecar intentionally distinguishes three support levels
 That separation keeps the product honest.
 
 Not every MCP-capable product should be treated as a skill-install target.
-
----
-
-## Next Expansion Candidates
-
-If we keep expanding, the highest-signal follow-ups are:
-
-1. JetBrains AI Assistant manual/snippet mode
-2. Roo Code first-class target once the config path is validated well enough
-3. optional ACP support research for Zed agent servers
-4. revisit Factory Droid and OpenClaw only if stable public MCP docs appear

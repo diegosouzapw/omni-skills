@@ -12,7 +12,8 @@ For full operational workflows, see the [🔧 System Runbook](../operations/runb
 |:-------|:--------|
 | ✅ **Available now** | 19 published skills across design, architecture, debugging, docs, OSS, security, DevOps, and AI-engineering workflows |
 | 📦 **Bundles** | `essentials`, `full-stack`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🤖 **A2A durability** | JSON or SQLite task store, restart resume, and optional external process executor |
+| 🔌 **MCP reach** | 7 install-capable clients, 14 config-capable clients, 30 first-class config targets, 18 config profiles |
+| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
 
 ---
 
@@ -28,6 +29,8 @@ For full operational workflows, see the [🔧 System Runbook](../operations/runb
 | 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
 | ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
 | ⬛ **Copilot** | Paste skill content manually | N/A |
+
+Clients such as Continue, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
 
 ---
 
@@ -106,6 +109,7 @@ npx omni-skills recategorize --write  # Apply canonical categories
 > - `--skill` installs only the selected published skills
 > - `--bundle` expands the bundle and installs the published members declared in the curated bundle
 > - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
+> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
 
 ---
 
@@ -145,6 +149,8 @@ npx omni-skills mcp stream --local    # Local sidecar mode with filesystem tools
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
+npx omni-skills config-mcp --target zed-workspace --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
 ### 🌐 HTTP API
@@ -179,6 +185,15 @@ npx omni-skills a2a --port 3335
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/tmp/omni-skills-a2a.sqlite \
 OMNI_SKILLS_A2A_EXECUTOR=process \
+npx omni-skills a2a --port 3335
+```
+
+```bash
+# Optional: shared leased execution across SQLite-backed workers
+OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
+OMNI_SKILLS_A2A_STORE_PATH=/tmp/omni-skills-a2a.sqlite \
+OMNI_SKILLS_A2A_QUEUE_ENABLED=1 \
+OMNI_SKILLS_A2A_LEASE_MS=30000 \
 npx omni-skills a2a --port 3335
 ```
 

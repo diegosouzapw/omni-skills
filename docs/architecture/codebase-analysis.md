@@ -1,7 +1,7 @@
 # 🔬 Codebase Deep Analysis
 
-> **Comprehensive technical analysis of the Omni Skills architecture, components, and build pipeline.**
-> Last analyzed: 2026-03-27
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-28
 
 ---
 
@@ -10,46 +10,60 @@
 | Attribute | Value |
 |:----------|:------|
 | **Name** | `omni-skills` |
-| **Version** | `0.0.1` |
+| **Package version** | `0.1.0` |
+| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
-| **Published Skills** | 19 |
-| **Defined Bundles** | 6 (all fully backed) |
-| **Core Code** | ~9,000+ lines across CLI, UI shell, servers, and build tooling |
-| **Production Dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| **Published skills** | 19 |
+| **Defined bundles** | 6, all fully backed by published skills |
+| **Active catalog categories** | 10 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+
+Current repository-level classification snapshot from `metadata.json`:
+
+- average quality score: `94.9`
+- average best-practices score: `96.6`
+- average security score: `95.0`
+- all 19 published skills validate as `L3`
 
 ---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **monorepo workspace** pattern with a shared catalog core consumed by three protocol surfaces:
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   CLI Layer                          │
-│  cli.js (1625 LOC)  ·  ui.mjs (1888 LOC)            │
-│  install.js (403 LOC)                               │
-└──────────────┬──────────────────┬───────────────────┘
-               │                  │
-┌──────────────▼──────────────────▼───────────────────┐
-│              Runtime Servers                         │
-│  server-mcp (812 LOC)  ·  server-api (271 LOC)      │
-│  http-runtime (444 LOC) · server-a2a (138 LOC)      │
-│  task-runtime (1401 LOC) · task-coordinator (318 LOC)│
-└──────────────┬──────────────────────────────────────┘
+```text
+┌────────────────────────────────────────────────────────────┐
+│                        CLI Layer                           │
+│  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
+└──────────────┬─────────────────────┬───────────────────────┘
+               │                     │
+┌──────────────▼─────────────────────▼───────────────────────┐
+│                    Runtime Servers                         │
+│  server-mcp (812) · local-sidecar (1943)                  │
+│  server-api (271) · http-runtime (444)                    │
+│  server-a2a (138) · task-runtime (1401)                   │
+│  task-coordinator (318)                                   │
+└──────────────┬─────────────────────────────────────────────┘
                │
-┌──────────────▼──────────────────────────────────────┐
-│              Core Engine                             │
-│  catalog-core (828 LOC)  ·  local-sidecar (1568 LOC)│
-└──────────────┬──────────────────────────────────────┘
+┌──────────────▼─────────────────────────────────────────────┐
+│                      Core Engine                           │
+│  catalog-core (828)                                       │
+└──────────────┬─────────────────────────────────────────────┘
                │
-┌──────────────▼──────────────────────────────────────┐
-│              Build Pipeline                          │
-│  skill_metadata.py (51KB)  ·  generate_index.py     │
-│  validate_skills.py  ·  build_catalog.js            │
-│  recategorize_skills.py  ·  verify_archives.py      │
-└─────────────────────────────────────────────────────┘
+┌──────────────▼─────────────────────────────────────────────┐
+│                    Build Pipeline                          │
+│  skill_metadata.py (2223) · generate_index.py (690)       │
+│  validate_skills.py · build_catalog.js · verify_archives.py│
+└────────────────────────────────────────────────────────────┘
 ```
+
+The design is intentionally **artifact-driven**:
+
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
 
 ---
 
@@ -57,28 +71,26 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **3,900+ lines combined** — The public operational interface for expert CLI usage and the guided Ink-based UX.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
 | Command | Function |
 |:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with 12+ filter flags |
-| 📦 `install` | Delegates to `install.js` with target flags |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config for supported targets |
-| 🔌 `mcp <transport>` | Starts MCP Server (stdio/stream/sse) |
-| 🌐 `api` | Starts HTTP API |
-| 🤖 `a2a` | Starts A2A Server |
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
 | 🧪 `smoke` | Release preflight validation |
 | 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with guided install, service hub, recents, and presets |
-| 🏷️ `recategorize` | Taxonomy audit and rewrite |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-**Key feature**: `find --install --yes` enables a discovery → install pipeline in one command.
-
----
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
 ### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-> **403 lines** — Installs skills into 7 AI coding assistants.
+> **403 LOC** — installs skills into 7 install-capable assistants.
 
 | Flag | Target | Default Path |
 |:-----|:-------|:-------------|
@@ -87,113 +99,168 @@ The repository follows a **monorepo workspace** pattern with a shared catalog co
 | `--gemini` | Gemini CLI | `~/.gemini/skills` |
 | `--codex` | Codex CLI | `~/.codex/skills` |
 | `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity (default) | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `.opencode/skills` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
+| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
-**Two modes**:
-- 📥 **Full clone** — `git clone --depth 1` → copy `skills/` + `docs/`
-- 🎯 **Selective** — `--skill` or `--bundle` → fetch by manifest via GitHub raw content
+It supports:
 
-**Security**: `symlink-safety.js` blocks symlinks escaping the repo root.
-
----
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
 ### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-> **828 lines** — The shared data layer powering CLI, API, MCP, and A2A.
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
 | Export | Description |
 |:-------|:------------|
-| 🔎 `searchSkills()` | Full-text search with weighted scoring (ID=10, exact=8, partial=3) |
-| 📋 `listSkills()` | Multi-axis filtering: quality, best-practices, level, security, risk, category |
-| 📌 `getSkill()` | Complete manifest with public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison of N skills |
-| 💡 `recommendSkills()` | Goal-based recommendation with scoring |
-| 📦 `buildInstallPlan()` | Install plan with client recipes, checksums, warnings |
-| 🗂️ `listBundles()` | Bundles with real availability vs. roadmap |
-| 📁 `listSkillArchives()` | Archive resolution with signatures and checksums |
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
----
+This is the real single source of runtime truth after generation.
 
 ### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-> **812 lines** — Full Model Context Protocol implementation with official SDK.
+> **812 LOC** — full MCP implementation using the official SDK.
 
-**🔌 3 Transports**: `stdio` · `stream` (StreamableHTTP) · `sse`
+**Transports**
 
-**🛠️ Read-only Tools (always available)**:
-- `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+- `stdio`
+- streamable HTTP
+- SSE
 
-**🔧 Local-mode Tools** (enabled with `OMNI_SKILLS_MCP_MODE=local`):
-- `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+**Always-on read-only tools**
 
-**📚 Resources**: `omni://catalog/index` · `omni://skills/{id}` · `omni://clients/{client}/install-recipe`
+- `search_skills`
+- `get_skill`
+- `compare_skills`
+- `recommend_skills`
+- `preview_install`
 
-**💬 Prompts**: `recommend_bundle_for_goal` · `install_skill_for_client`
+**Local-mode tools**
 
----
+- `detect_clients`
+- `list_installed_skills`
+- `install_skills`
+- `remove_skills`
+- `configure_client_mcp`
+
+The MCP surface is deliberately split between:
+
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
 ### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-> **1,364 lines** — Filesystem-aware client management with security controls and client-aware setup recipes.
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
-- 🕵️ **Client Detection** — Maps 7 install-capable clients plus 30 MCP config targets with dedicated profiles and recipes
-- 🔒 **Allowlist Security** — Write paths limited to explicit whitelist (extensible via `OMNI_SKILLS_LOCAL_ALLOWLIST`)
-- 📦 **Install/Remove** — File copy operations with dry-run, summary, SHA-256 verification
-- ⚙️ **MCP Config Writer** — Generates configs for Claude settings, Cursor, Gemini, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro, Zed, Continue YAML, Windsurf JSON, Codex TOML, VS Code, Dev Containers, and generic JSON with intelligent upsert, and now powers the public `config-mcp` CLI flow and visual UI wizard
-- 📋 **18 Config Profiles**: `claude-json` · `claude-settings-json` · `cursor-json` · `gemini-settings-json` · `antigravity-json` · `opencode-json` · `opencode-config-json` · `cline-json` · `kilo-json` · `copilot-json` · `zed-json` · `kiro-json` · `continue-yaml` · `windsurf-json` · `generic-json` · `vscode-json` · `devcontainer-json` · `codex-toml`
-- 📘 **Setup Recipes** — Returns client-aware guidance such as `claude mcp add`, `gemini mcp add`, `codex mcp add`, or targeted manual config steps
+Current practical support:
 
----
+- **7 install-capable clients**
+- **14 config-capable clients**
+- **30 config targets**
+- **18 config profiles**
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js`
+Install-capable clients:
 
-> **271 lines** plus **444 lines** of shared runtime middleware — Read-only RESTful API with Express 5.
+- Claude Code
+- Cursor
+- Gemini CLI
+- Codex CLI
+- Kiro
+- Antigravity
+- OpenCode
 
-| Endpoint | Purpose |
-|:---------|:--------|
-| `GET /healthz` | Health check |
-| `GET /openapi.json` | Dynamic OpenAPI 3.1 spec |
-| `GET /admin/runtime` | Governance and runtime snapshot |
-| `GET /v1/skills` | List + filter |
-| `GET /v1/skills/:id` | Individual manifest |
-| `GET /v1/search` | Full-text search |
-| `GET /v1/compare` | Skill comparison |
-| `GET /v1/bundles` | Bundle listing |
-| `POST /v1/install/plan` | Install plan generation |
-| `GET /v1/skills/:id/download/*` | Artifact, archive, signature, checksum downloads |
+Config-capable clients and targets include:
 
-**Security**: `http-runtime.js` middleware with bearer/API-key auth, admin-token auth, request IDs, rate limiting, audit logging, CORS allowlists, IP allowlists, trusted-proxy handling, and maintenance mode.
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
+- Zed workspace config
 
----
+The sidecar is intentionally honest about boundaries:
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + `packages/server-a2a/src/task-runtime.js` + `packages/server-a2a/src/task-coordinator.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
-> **1,857 lines combined** — JSON-RPC 2.0 task runtime for agent-to-agent communication with pluggable coordination.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-**Supported methods**:
-- 🔎 `message/send` → task create or continue
-- 📡 `message/stream` → start task and stream SSE updates
-- 📋 `tasks/get` → poll task snapshot
-- ⛔ `tasks/cancel` → cancel running task
-- 🔄 `tasks/resubscribe` → resume stream for existing task
-- 🔔 `tasks/pushNotificationConfig/*` → manage task webhooks
+> **715 LOC combined** — read-only registry API plus governance middleware.
 
-**Current task operations**:
-- `discover-skills` → catalog search
-- `recommend-stack` → goal-based recommendation
-- `prepare-install-plan` → install plan generation with `input-required` continuation
+Important endpoints:
 
-**Task capabilities**:
-- lifecycle states: `submitted`, `working`, `input-required`, `completed`, `canceled`, `failed`
-- SSE `status-update` and `artifact-update` events
-- webhook push notifications with localhost/insecure guardrails
-- JSON or SQLite persistence with restart resume for interrupted tasks
-- optional external worker executor via `OMNI_SKILLS_A2A_EXECUTOR=process`
-- shared SQLite queue polling with lease renewal and failover between workers
-- optional Redis-backed coordination for external lease ownership and queue claims, with simple-first local operation kept on JSON or SQLite by default
+- `/healthz`
+- `/openapi.json`
+- `/admin/runtime`
+- `/v1/skills`
+- `/v1/skills/:id`
+- `/v1/search`
+- `/v1/compare`
+- `/v1/bundles`
+- `/v1/install/plan`
+- `/v1/skills/:id/download/*`
 
-Exposes `/.well-known/agent.json` for A2A discovery and `POST /a2a` for all JSON-RPC traffic.
+Governance baseline already implemented:
+
+- bearer token auth
+- API-key auth
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
+
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+
+Supported methods:
+
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
+- `tasks/pushNotificationConfig/*`
+
+Current operations:
+
+- `discover-skills`
+- `recommend-stack`
+- `prepare-install-plan`
+
+Durability and coordination model:
+
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
+
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
 
 ---
 
@@ -201,86 +268,86 @@ Exposes `/.well-known/agent.json` for A2A discovery and `POST /a2a` for all JSON
 
 | Script | Language | Purpose |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Core validator (51KB): YAML parsing, canonical taxonomy (18 categories), quality/security scoring, static security scanner |
-| ✅ `validate_skills.py` | Python | Orchestrates validation + generates `metadata.json` per skill and root |
-| 📑 `generate_index.py` | Python | Generates `skills_index.json`, manifests, archives (zip/tar.gz), SHA-256 checksums |
-| 🏗️ `build_catalog.js` | Node.js | Produces final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Category audit and frontmatter rewrite |
-| 🔍 `verify_archives.py` | Python | Archive integrity verification |
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+
+Two details matter operationally:
+
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
 
 ---
 
-## 📦 Published Skills
+## 📦 Published Catalog
 
-The current public catalog spans 19 skills across architecture, backend, frontend, documentation, security, DevOps, and AI-agent categories:
+The current public catalog spans 19 skills:
 
-- 🧭 **Discovery & Planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- 🌐 **Product & Full-Stack Delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`
-- 🛡️ **Security Review & Scanning**: `security-auditor`, `vulnerability-scanner`
-- 🔧 **OSS Maintainer Workflows**: `documentation`, `changelog`, `create-pr`
-- ⚙️ **DevOps Delivery**: `docker-expert`, `kubernetes`, `terraform`
-- 🤖 **AI Application Engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`
+- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
+- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`
+- **Security**: `security-auditor`, `vulnerability-scanner`
+- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
+- **DevOps**: `docker-expert`, `kubernetes`, `terraform`
+- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`
 
-That bundle coverage changes the install story materially:
+All six bundles are fully backed:
 
-- ✅ `essentials` is fully backed (`4/4`)
-- ✅ `full-stack` is fully backed (`4/4`)
-- ✅ `security` is fully backed (`2/2`)
-- ✅ `oss-maintainer` is fully backed (`4/4`)
-- ✅ `devops` is fully backed (`3/3`)
-- ✅ `ai-engineer` is fully backed (`3/3`)
+- `essentials` → `4/4`
+- `full-stack` → `4/4`
+- `security` → `2/2`
+- `devops` → `3/3`
+- `ai-engineer` → `3/3`
+- `oss-maintainer` → `4/4`
 
-### 🎨 omni-figma — Quality: 86/100 · Security: 95/100
+Current score spread from the generated catalog:
 
-A unified Figma MCP router skill with 6 workflows:
+- quality scores: `92, 94, 95, 96, 97, 98, 100`
+- best-practices scores: `92, 93, 98, 100`
+- security score: all published skills currently `95`
 
-1. ✏️ **Implement code from Figma** — complete design-to-code pipeline
-2. 🔍 **Inspect design/tokens** — visual exploration and token lookup
-3. 🔗 **Code Connect mappings** — component ↔ Figma mapping
-4. 📐 **Design system rules** — generate reusable agent instructions
-5. 🖌️ **Edit/Generate Figma/FigJam** — canvas writes and diagrams
-6. 🔧 **Setup/Troubleshooting** — auth, tools, permissions
+Representative high end:
 
-Includes 3 reference docs: `mcp-setup-and-troubleshooting.md`, `tool-routing-and-prompts.md`, `figma-best-practices-2026.md`
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `terraform` → `quality 98`, `best_practices 98`
+- `vulnerability-scanner` → `quality 98`, `best_practices 98`
 
-### 🔎 find-skills — Quality: 86/100 · Security: 95/100
+Representative lower end inside the current top band:
 
-A catalog discovery skill that teaches the agent to:
+- `kubernetes` → `quality 92`, `best_practices 92`
+- `llm-patterns` → `quality 92`, `best_practices 92`
+- `prompt-engineer` → `quality 92`, `best_practices 92`
 
-- 🎯 Extract domain and task from the user's request
-- 📚 Search the Omni Skills catalog before claiming capabilities
-- ✅ Verify the match is actually published (vs. roadmap metadata)
-- 🛠️ Generate the correct install command for the user's client
-
----
-
-## 📏 Quality Classification System
-
-| Dimension | Description | Scoring |
-|:----------|:------------|:--------|
-| 🎯 **Maturity** | Structural complexity | L1 (basic) · L2 (instructions) · L3 (scripts+tests) |
-| ⭐ **Quality** | Overall completeness | 0-100 → bronze · silver · gold · platinum |
-| 🛡️ **Security** | Static analysis + scanners | 0-100 → starter · hardened |
-| 📋 **Best Practices** | Metadata and structure | 0-100 → fair · good · excellent |
+This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
 
 ---
 
 ## 🌟 Strengths
 
-1. **Modular architecture** — Clean separation between core, servers, CLI, and build
-2. **Multi-protocol** — REST API + MCP (3 transports) + A2A in a single package
-3. **Robust security** — Allowlist for local mode, symlink safety, auth middleware, rate limiting
-4. **Sophisticated build pipeline** — Validation, classification, archives with SHA-256 checksums
-5. **7-client support** — Auto-detection, multi-target config generation, and generated setup recipes
-6. **Dry-run everywhere** — All destructive operations support preview mode
-7. **Expanded runtime ergonomics** — Ink visual shell plus Redis-ready A2A coordination broaden deployment options without splitting the package
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
 
 ---
 
 ## 🔮 Opportunities
 
-1. **Catalog breadth** — 19 published skills now fully back all 6 bundles, but the next step is deeper coverage inside each bundle with more specialized skills
-2. **Quality scorer depth** — Best-practices and quality now both have spread, but the next improvement is richer semantic evaluation of reference packs and workflow quality
-3. **A2A scale boundary** — Redis-backed coordination exists as an advanced option, but the product intentionally stays simple-first and does not currently target managed queue backends
-4. **Client config breadth** — Sidecar support is much stronger, but client-specific config export coverage can still grow
-5. **`skill_metadata.py` size** — The validator is still a large single-file module and would benefit from decomposition
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

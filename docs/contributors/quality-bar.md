@@ -4,6 +4,13 @@
 
 For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](high-score-playbook.md).
 
+Current benchmark for the published catalog:
+
+- 19 published skills
+- average quality score `94.9`
+- average best-practices score `96.6`
+- average security score `95.0`
+
 ---
 
 ## 🔒 Required (Must Pass)

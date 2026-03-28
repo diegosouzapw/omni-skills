@@ -61,7 +61,7 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 | Field | Description |
 |:------|:------------|
 | `description` | Short summary from frontmatter |
-| `version` | Skill version |
+| `version` | Skill version, independent from the npm package version |
 | `category` | Canonical category (normalized) |
 | `raw_category` | Original category from frontmatter |
 | `taxonomy` | Full taxonomy metadata with inferred fallback |
@@ -178,7 +178,7 @@ Array of every file shipped inside the skill directory:
   "slug": "omni-figma",
   "display_name": "Omni Figma",
   "description": "Unified Figma MCP workflow for design-to-code...",
-  "version": "0.0.1",
+  "version": "<skill-version>",
   "category": "development",
   "taxonomy": {
     "raw_category": "development",
@@ -207,6 +207,8 @@ Array of every file shipped inside the skill directory:
   }
 }
 ```
+
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.0`, while individual skills carry their own semantic versions.
 
 ---
 

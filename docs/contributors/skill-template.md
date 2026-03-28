@@ -1,7 +1,7 @@
 ---
 name: your-skill-name
 description: "One-line description of what this skill does and when to use it"
-version: "0.0.1"
+version: "0.1.0"
 category: development
 tags: [example-tag-1, example-tag-2]
 complexity: intermediate
@@ -23,6 +23,9 @@ testing-security, documentation, content-media, communication, uncategorized.
 taxonomy, maturity level, best practices score, quality score, and security
 scan results. Prompt-injection patterns, destructive commands, and risky script
 constructs will be flagged automatically.
+
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
 For a top-scoring skill, also read:
 - docs/contributors/high-score-playbook.md

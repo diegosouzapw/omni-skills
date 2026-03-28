@@ -47,7 +47,7 @@ Based on the current generated catalog (`dist/bundles.json`):
 
 - You want a **guaranteed minimal install**
 - You already know the **exact skill** you need
-- You don't want roadmap members in the plan output
+- You want the **smallest possible footprint** instead of a curated working set
 
 ---
 

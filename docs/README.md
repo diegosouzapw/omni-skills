@@ -1,7 +1,7 @@
-<!-- omni-skills: version=0.0.1; skills=19; updated_at=2026-03-27 -->
+<!-- omni-skills: version=0.1.0; skills=19; updated_at=2026-03-28 -->
 # 📖 Omni Skills — Documentation Hub
 
-> **The central reference for using, operating, extending, and understanding the Omni Skills platform.**
+> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
 
 Standard community files live in the repository root:
 [`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
@@ -12,16 +12,36 @@ Standard community files live in the repository root:
 
 | Area | State | Details |
 |:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Complete | CLI, API, MCP (3 transports), A2A task runtime |
-| 📦 **Catalog** | 📌 19 skills | Core dev, design, OSS, security, DevOps, and AI-engineering skills published |
-| 🎯 **Install** | ✅ Complete | Guided TTY install, Ink visual shell, and selective install by `--skill` and `--bundle` |
-| 🌐 **API** | ✅ Complete | Read-only with auth, admin runtime, rate limiting, audit log, CORS/IP allowlists, and maintenance mode |
-| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse` + local sidecar mode + client-aware recipes and `config-mcp` flows for Claude, Cursor, Codex, Gemini, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro, Continue, Windsurf, Zed, VS Code, and Dev Containers |
-| 🤖 **A2A** | ✅ Implemented | Discovery, recommendations, task lifecycle, SSE, cancel, push config, JSON/SQLite persistence, restart resume, external executor mode, opt-in lease queues, and optional advanced Redis coordination |
-| 🛡️ **Security** | ✅ Complete | Static scanner + optional local ClamAV/VirusTotal, enforced on release tags |
-| 📋 **Classification** | ✅ Complete | Taxonomy · maturity · semantic quality spread · best-practices spread · security |
-| 📁 **Archives** | ✅ Complete | Per-skill zip/tar.gz with SHA-256 checksums |
-| 🔐 **Signing** | ✅ Complete | Local signing plus CI-enforced detached signatures on release tags |
+| 🏗️ **Runtime** | ✅ Complete | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
+| 📦 **Catalog** | 📌 19 skills | 19 published `L3` skills across 10 active catalog categories and 6 fully backed bundles |
+| 🎯 **Install** | ✅ Complete | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
+| 🌐 **API** | ✅ Complete | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
+| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 14 config-capable clients, 30 config targets, and 18 config profiles |
+| 🤖 **A2A** | ✅ Implemented | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
+| 🛡️ **Security** | ✅ Complete | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
+| 📋 **Classification** | ✅ Complete | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
+| 📁 **Archives** | ✅ Complete | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
+| 🔐 **Signing** | ✅ Complete | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
+
+---
+
+## 📌 Current Decisions
+
+These architecture questions are no longer “open” in practice and are now treated as project decisions:
+
+1. **Distribution stays manifest-first plus signed archives**
+   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
+2. **Private or premium catalogs should reuse the same manifest schema**
+   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
+3. **MCP config should converge on a few canonical export families**
+   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+
+Those decisions align with current official MCP and client documentation, including:
+
+- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
+- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
+- VS Code MCP extension and product docs at `code.visualstudio.com`
+- client docs for Claude Code, Cursor, Continue, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, and JetBrains AI Assistant
 
 ---
 
@@ -32,38 +52,37 @@ Standard community files live in the repository root:
 | Doc | What You'll Learn |
 |:----|:------------------|
 | 📘 [Getting Started](users/getting-started.md) | Install, verify, and invoke your first skill |
-| 📗 [Usage Guide](users/usage.md) | All installation modes, prompt patterns, and runtime commands |
-| 📦 [Bundles](users/bundles.md) | Curated skill selectors and their current availability |
+| 📗 [Usage Guide](users/usage.md) | CLI commands, install modes, runtime commands, and MCP config flows |
+| 📦 [Bundles](users/bundles.md) | Curated bundles and their current availability |
 | 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](operations/runbook.md) | Full operational reference for build, serve, and troubleshoot |
+| 🔧 [System Runbook](operations/runbook.md) | Build, serve, secure, and troubleshoot the runtime |
 
 ### 🏗️ If You Want to **Understand** the Runtime
 
 | Doc | What You'll Learn |
 |:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/agent-native-roadmap.md) | Target architecture and phase plan |
-| 🧭 [CLI UX Roadmap](architecture/cli-ux-roadmap.md) | Product roadmap for the guided and visual CLI experience |
-| 📐 [ADR-0001: Workspace Foundation](architecture/adr-0001-agent-native-workspace.md) | Key architectural decision and consequences |
-| 🔬 [Codebase Analysis](architecture/codebase-analysis.md) | Deep technical analysis of all components |
-| 🌐 [Catalog API Surface](specs/catalog-api.md) | HTTP endpoints, filtering, auth, and downloads |
-| 🧩 [CLI Guided Installer](specs/cli-guided-installer.md) | Behavioral contract for the guided install flow |
-| 🖥️ [CLI Visual Shell](specs/cli-visual-shell.md) | Ink visual hub, local state, presets, and guided service launch |
-| 🔌 [Local MCP Sidecar](specs/local-mcp-sidecar.md) | Filesystem tools, allowlist, and config writing |
-| 🧭 [Client Support Matrix](specs/client-support-matrix.md) | Crosswalk between 9router, Omni Skills support, and official client docs |
-| 📊 [Skill Classification](specs/skill-classification.md) | Taxonomy, scoring heuristics, and metadata shape |
-| 🛡️ [Security Validation](specs/security-validation.md) | Scanners, archives, signing, and distribution |
-| 📋 [Skill Manifest Spec](specs/skill-manifest.md) | Machine-readable manifest format and fields |
-| ✅ [CLI UX Task Backlog](tasks/cli-ux/README.md) | Physical execution tasks and tracking checklist for the CLI UX work |
+| 🗺️ [Agent-Native Roadmap](architecture/agent-native-roadmap.md) | Architecture evolution, closed decisions, and remaining expansion areas |
+| 🧭 [CLI UX Roadmap](architecture/cli-ux-roadmap.md) | Historical plan and current shape of the guided and visual CLI |
+| 📐 [ADR-0001: Workspace Foundation](architecture/adr-0001-agent-native-workspace.md) | Core monorepo and shared-runtime decision |
+| 🔬 [Codebase Analysis](architecture/codebase-analysis.md) | Current runtime composition, counts, and system boundaries |
+| 🌐 [Catalog API Surface](specs/catalog-api.md) | HTTP endpoints, filtering, governance, and downloads |
+| 🧩 [CLI Guided Installer](specs/cli-guided-installer.md) | Behavioral contract for the guided installer |
+| 🖥️ [CLI Visual Shell](specs/cli-visual-shell.md) | Ink visual shell, state model, and service hub |
+| 🔌 [Local MCP Sidecar](specs/local-mcp-sidecar.md) | Filesystem-aware tools, allowlist model, and config writing |
+| 🧭 [Client Support Matrix](specs/client-support-matrix.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
+| 📊 [Skill Classification](specs/skill-classification.md) | Taxonomy, scoring heuristics, and metadata artifacts |
+| 🛡️ [Security Validation](specs/security-validation.md) | Scanners, archives, signatures, and release verification |
+| 📋 [Skill Manifest Spec](specs/skill-manifest.md) | Machine-readable manifest format and compatibility contract |
 
 ### 🤝 If You Want to **Contribute**
 
 | Doc | What You'll Learn |
 |:----|:------------------|
-| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repository workflow and PR guidelines |
-| 📄 [Skill Template](contributors/skill-template.md) | Starter SKILL.md with all frontmatter fields |
+| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
+| 📄 [Skill Template](contributors/skill-template.md) | Starter `SKILL.md` with current frontmatter and structure |
 | 🔬 [Skill Anatomy](contributors/skill-anatomy.md) | Structure and quality expectations for a skill |
 | ✅ [Quality Bar](contributors/quality-bar.md) | Acceptance criteria for the repository |
-| 🏆 [High-Score Playbook](contributors/high-score-playbook.md) | What it takes to push a skill into the top scoring bands |
+| 🏆 [High-Score Playbook](contributors/high-score-playbook.md) | What drives high maturity, quality, best-practices, and security scores |
 
 ---
 
@@ -74,25 +93,28 @@ Standard community files live in the repository root:
 ```bash
 npx omni-skills                       # Guided install in TTY
 npx omni-skills install --guided      # Forced guided install
-npx omni-skills ui                    # Ink visual hub
+npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-The published `omni-skills` binary is the unified operational entry point.
+The published `omni-skills` binary is the unified public entry point.
 
 ```bash
 # 🔎 Discovery
 npx omni-skills find figma
-npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
+npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
 npx omni-skills find figma --tool cursor --install --yes
 
 # 📦 Installation
 npx omni-skills install --guided --path ./my-skills --skill architecture
 npx omni-skills --cursor --skill omni-figma
 npx omni-skills --codex --bundle full-stack
+
+# ⚙️ MCP config
+npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
-npx omni-skills ui
+npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
 
 # 🏷️ Taxonomy
 npx omni-skills recategorize
@@ -108,71 +130,64 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
----
+### 📁 Generated Artifacts
 
-### 📁 Generated Catalog Artifacts
-
-The build pipeline emits these machine-readable files that drive **all** runtime surfaces:
+The build pipeline emits the machine-readable files that drive every runtime surface:
 
 | Artifact | Purpose |
 |:---------|:--------|
-| `skills_index.json` | Repo-local skill index |
-| `dist/catalog.json` | Published skill catalog |
+| `metadata.json` | Repository-wide validation and score summary |
+| `skills_index.json` | Repo-local normalized skill index |
+| `dist/catalog.json` | Published catalog for search and listing |
 | `dist/bundles.json` | Bundle definitions with availability |
 | `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
 | `dist/archives/<skill>.zip` | Skill archive (zip) |
 | `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
 | `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
 
-`dist/` stays committed on purpose in this repository. Those generated artifacts are part of the runtime contract for CLI install planning, API downloads, MCP previews, A2A task handoff, smoke checks, and release verification.
-
----
+`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
 
 ### 🌐 API
 
-Read-only HTTP API for skills, bundles, search, comparison, install plans, and artifact downloads.
-
 ```bash
-npm run api                              # From repo
-npx omni-skills api --port 3333          # From published package
+npx omni-skills api --port 3333
 ```
 
-> 📖 Full reference: [Catalog API Surface](specs/catalog-api.md)
-
----
+Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
 
 ### 🔌 MCP
 
-Three transports for agent integration:
-
 ```bash
-npx omni-skills mcp stdio               # Direct pipe
-npx omni-skills mcp stream              # Streamable HTTP
-npx omni-skills mcp sse                 # Server-Sent Events
-npx omni-skills mcp stream --local      # Local sidecar mode
-npx omni-skills config-mcp --list-targets
-npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills mcp stdio
+npx omni-skills mcp stream
+npx omni-skills mcp sse
+npx omni-skills mcp stream --local
 ```
 
-> 📖 Full reference: [Local MCP Sidecar](specs/local-mcp-sidecar.md)
+The local sidecar now supports first-class MCP config writing for:
 
----
+- Claude Code
+- Cursor
+- VS Code and Dev Containers
+- Gemini CLI
+- Antigravity
+- Kiro
+- Codex CLI
+- Continue
+- Windsurf
+- OpenCode
+- Cline
+- GitHub Copilot CLI
+- Kilo Code
+- Zed
 
 ### 🤖 A2A
 
-Agent-to-agent runtime for discovery, recommendation, and install-plan handoff with task lifecycle support.
-
 ```bash
 npx omni-skills a2a --port 3335
-
-# JSON-RPC methods
-# message/send
-# message/stream
-# tasks/get
-# tasks/cancel
-# tasks/resubscribe
-# tasks/pushNotificationConfig/*
 ```
+
+Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
 
 ---
 
@@ -185,44 +200,34 @@ npx omni-skills a2a --port 3335
 | 🤝 `docs/contributors/` | Contributor templates and guidance |
 | 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
 | 🔧 `docs/operations/` | Operational runbooks |
-| 📋 `docs/specs/` | Protocol and artifact contracts |
-| ✅ `docs/tasks/` | Delivery backlogs and execution tracking |
+| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
 | 📚 `docs/CATALOG.md` | Generated skill catalog |
 | 📦 `dist/` | Generated machine-readable artifacts |
 | 🧠 `packages/catalog-core/` | Shared catalog runtime |
 | 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server + local sidecar |
-| 🤖 `packages/server-a2a/` | A2A server + task runtime |
+| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
+| 🤖 `packages/server-a2a/` | A2A server and task runtime |
 | 🖥️ `tools/bin/` | CLI entry points |
-| 📚 `tools/lib/` | Installer helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, and test scripts |
+| 📚 `tools/lib/` | Installer and UI helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
 
 ---
 
 ## 🧪 Release Validation
 
 ```bash
-npm run smoke        # Full release preflight
+npm run smoke
 ```
 
 The smoke run validates:
 
-- ✅ Skill validation and metadata generation
-- ✅ Taxonomy recategorization tooling
-- ✅ Catalog artifact generation
-- ✅ Generated catalog markdown
-- ✅ Archive generation and verification
-- ✅ Automated test suite
-- ✅ `npm pack --dry-run` packaging check
+- ✅ skill validation and metadata generation
+- ✅ taxonomy recategorization tooling
+- ✅ catalog artifact generation
+- ✅ generated catalog markdown
+- ✅ archive generation and verification
+- ✅ automated test suite
+- ✅ `npm pack --dry-run`
 - ✅ API boot and health
 - ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot, task polling, SSE streaming, cancelation, and push-config lifecycle
-
-GitHub Actions also ships a tag-based release workflow:
-
-- `validate.yml` runs on pushes and pull requests to `main`
-- `release.yml` runs on `v*` tags and `workflow_dispatch`
-- release tags require ClamAV and VirusTotal scanner coverage before publish
-- release tags require detached archive signatures before publish
-- the verified tarball is uploaded as a workflow artifact and published to npm
-- successful tag releases also create a GitHub Release with custom release notes and attached catalog or checksum assets
+- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle

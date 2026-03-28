@@ -10,7 +10,8 @@
 |:-------|:------|
 | Published skills | **19** across architecture, delivery, security, DevOps, and AI-engineering workflows |
 | Defined bundles | **6** (all fully backed by published skills) |
-| Supported clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP config-capable clients | **14** across 30 first-class MCP config targets |
 
 ---
 
@@ -122,6 +123,13 @@ Gives agents filesystem tools to detect clients, install/remove skills, and writ
 
 ```bash
 npx omni-skills mcp stream --local
+```
+
+You can also configure MCP for clients that are not skill-install targets:
+
+```bash
+npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
 ### 🌐 Catalog API

@@ -2,6 +2,13 @@
 
 Omni Skills now contains both a skill catalog and the runtime surfaces built on top of that catalog. Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
 
+Current repository baseline:
+
+- package version `0.1.0`
+- 19 published skills
+- 6 fully backed bundles
+- 7 install-capable clients and 14 MCP config-capable clients
+
 ## Before You Start
 
 - Skills are authored in `skills/<skill-name>/SKILL.md`.
@@ -95,6 +102,8 @@ It also computes:
 - static security findings
 - optional ClamAV and VirusTotal scanner status when configured
 
+That validation is the contract used by CLI, API, MCP, A2A, generated manifests, archives, and release automation. Treat generated metadata as part of the review surface, not as disposable output.
+
 For a release-grade preflight, also run:
 
 ```bash
@@ -111,6 +120,7 @@ That smoke pass currently validates:
 - API boot
 - MCP boot in `stdio`, `stream`, and `sse`
 - A2A boot
+- archive verification and packaging expectations
 
 ## Skill Frontmatter
 
@@ -120,7 +130,7 @@ Every skill must include YAML frontmatter. Use [docs/contributors/skill-template
 ---
 name: my-skill-name
 description: "What it does"
-version: "0.0.1"
+version: "0.1.0"
 category: development
 tags: [react, typescript]
 complexity: intermediate
@@ -154,6 +164,8 @@ Use canonical categories in new skills. Current taxonomy:
 - `communication`
 - `uncategorized`
 
+The skill version is independent from the npm package version. Use the semantic version that makes sense for the skill itself.
+
 ## Runtime Contributions
 
 If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
@@ -161,6 +173,7 @@ If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 - keep `dist/` and docs aligned with the implementation
 - prefer reusing `packages/catalog-core` instead of duplicating catalog logic
 - keep local-write behavior behind preview or dry-run defaults
+- keep MCP writers disciplined: only add first-class config writers when the target client has a stable public config contract
 - treat security scanner warnings as part of the review bar for new skills and scripts
 - update tests when changing CLI commands, transport modes, or public endpoints
 

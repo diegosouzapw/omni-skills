@@ -17,7 +17,7 @@
 | ✅ Maintenance mode | Implemented |
 | ✅ Archive downloads | Implemented |
 | ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process |
+| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
 
 ---
 
@@ -31,6 +31,13 @@ The API provides a registry-style surface for:
 - 📦 Bundle listing with availability
 - 📐 Read-only install plan generation
 - 📥 Downloading generated artifacts, archives, and checksum manifests
+
+This same catalog and manifest surface is also the basis for:
+
+- local CLI install planning
+- MCP read-only discovery responses
+- A2A discovery and install-plan handoff
+- potential private catalogs with external auth layered on top
 
 ---
 
@@ -84,6 +91,16 @@ All security controls are env-driven and optional:
 - 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
 - 🧾 Every response carries `X-Request-Id`
 - 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+
+### ✅ Current governance decision
+
+The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+
+That means:
+
+- the manifest and API shape stay shared
+- self-hosted and local deployments can stay on the in-process baseline
+- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
 
 ### 🔐 Full hardened example:
 
