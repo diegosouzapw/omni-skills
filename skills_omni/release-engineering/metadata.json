@@ -1,0 +1,217 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-28T00:00:00+00:00",
+  "id": "release-engineering",
+  "slug": "release-engineering",
+  "display_name": "Release Engineering",
+  "description": "Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback path, or deploy gate before shipping.",
+  "version": "0.0.1",
+  "raw_category": "devops",
+  "canonical_category": "devops",
+  "taxonomy": {
+    "raw_category": "devops",
+    "canonical_category": "devops",
+    "inferred_category": "devops",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "release",
+    "deployment",
+    "rollback",
+    "promotion",
+    "change-management",
+    "verification"
+  ],
+  "tools": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "codex-cli",
+    "antigravity",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-28",
+    "updated": "2026-03-28",
+    "file_mtime": "2026-03-28T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/release-engineering",
+    "entrypoint": "skills/release-engineering/SKILL.md",
+    "metadata": "skills/release-engineering/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "SKILL.md",
+      "openai.yaml",
+      "release-readiness-packet.md",
+      "checklist.md",
+      "promotion-policy-template.md",
+      "rollback-decision-matrix.md",
+      "render_release_packet.py"
+    ],
+    "files_count": 7,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 0
+  },
+  "content": {
+    "body_length": 6061,
+    "content_length": 6588,
+    "body_lines": 112,
+    "word_count": 851,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 3,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 3,
+    "has_local_support_links": true,
+    "local_support_links_count": 4,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 591,
+      "when_to_use_section_length": 445,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 593,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1084,
+      "resources_items_count": 5,
+      "resources_section_length": 335,
+      "examples_section_length": 944,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 299,
+      "decision_assets_count": 16,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 5,
+      "support_files_count": 6,
+      "references_files_count": 3,
+      "scripts_files_count": 1,
+      "examples_files_count": 1,
+      "agents_files_count": 1,
+      "assets_files_count": 0,
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 7.6
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 99,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 5,
+      "workflow_section_length": 591,
+      "when_to_use_section_length": 445,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 593,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1084,
+      "resources_items_count": 5,
+      "resources_section_length": 335,
+      "examples_section_length": 944,
+      "examples_code_blocks_count": 6,
+      "related_skills_section_length": 299,
+      "decision_assets_count": 16,
+      "table_count": 7,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 5,
+      "support_files_count": 6,
+      "references_files_count": 3,
+      "scripts_files_count": 1,
+      "examples_files_count": 1,
+      "agents_files_count": 1,
+      "assets_files_count": 0,
+      "tools_count": 6,
+      "tags_count": 6,
+      "body_density": 7.6
+    }
+  },
+  "quality": {
+    "score": 97,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 7,
+      "script_files": 1,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

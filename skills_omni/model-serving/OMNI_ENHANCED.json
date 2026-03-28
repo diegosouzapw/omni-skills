@@ -5,7 +5,7 @@
   "enhanced_origin": "omni-skills-private",
   "loop_prevention_rule": "curated-output-only",
   "source_pr_number": 0,
-  "source_pr_author": "diegosouzapw",
-  "source_pr_repo": "diegosouzapw/omni-skills",
-  "source_pr_head_sha": "7b12c4fc4d000a3c49d1112ab86103594c94953a"
+  "source_pr_author": "omni-skills-private",
+  "source_pr_repo": "diegosouzapw/omni-skills-private",
+  "source_pr_head_sha": "baseline-sync"
 }

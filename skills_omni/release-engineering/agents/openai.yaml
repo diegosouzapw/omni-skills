@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Engineering"
+  short_description: "Design staged rollout, verification, and rollback plans before shipping"
+  default_prompt: "Use $release-engineering to build a release packet with gates, verifiers, and rollback triggers."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Find Skills"
+  short_description: "Discover and install Omni Skills"
+  default_prompt: "Use $find-skills to search the Omni Skills catalog, recommend the best fit, and produce the right install command."

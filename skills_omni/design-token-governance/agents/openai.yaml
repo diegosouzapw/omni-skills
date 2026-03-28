@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Token Governance"
+  short_description: "Review token naming, lifecycle, migration, and theming contracts"
+  default_prompt: "Use $design-token-governance to review token lifecycle, semantic boundaries, and rollout safety."

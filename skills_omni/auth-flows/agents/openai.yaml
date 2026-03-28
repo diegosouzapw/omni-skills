@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auth Flows"
+  short_description: "Review login, session, token, and permission design across the full stack"
+  default_prompt: "Use $auth-flows to review the login, recovery, session, and authorization design end to end."

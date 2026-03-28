@@ -1,0 +1,12 @@
+interface:
+  display_name: "Omni Figma"
+  short_description: "Unified Figma MCP workflows"
+  default_prompt: "Use $omni-figma to inspect this Figma node, choose the right Figma workflow, and implement or update the result correctly."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "figma"
+      description: "Figma MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.figma.com/mcp"

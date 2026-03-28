@@ -1,0 +1,204 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-27T13:58:37.531938+00:00",
+  "id": "omni-figma",
+  "slug": "omni-figma",
+  "display_name": "Omni Figma",
+  "description": "Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Code Connect mapping, or Figma MCP troubleshooting.",
+  "version": "0.0.1",
+  "raw_category": "development",
+  "canonical_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma",
+    "design-to-code",
+    "mcp",
+    "ui-implementation",
+    "code-connect",
+    "figjam"
+  ],
+  "tools": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "antigravity"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "omni-team",
+  "author": "Omni Skills Team",
+  "dates": {
+    "added": "2026-03-26",
+    "updated": "2026-03-26",
+    "file_mtime": "2026-03-27T03:57:46.716232+00:00"
+  },
+  "paths": {
+    "root": "skills/omni-figma",
+    "entrypoint": "skills/omni-figma/SKILL.md",
+    "metadata": "skills/omni-figma/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "LICENSE.txt",
+      "SKILL.md",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "figma-best-practices-2026.md",
+      "mcp-setup-and-troubleshooting.md",
+      "tool-routing-and-prompts.md",
+      "render_implementation_packet.py"
+    ],
+    "files_count": 10,
+    "references_count": 3,
+    "agents_count": 1,
+    "assets_count": 3
+  },
+  "content": {
+    "body_length": 6824,
+    "content_length": 7334,
+    "body_lines": 124,
+    "word_count": 988,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 2,
+    "has_workflow_section": false,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 2,
+    "troubleshooting_pairs_count": 1,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": true,
+    "local_support_links_count": 4,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 4,
+      "best_practices_section_length": 298,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 527,
+      "resources_items_count": 3,
+      "resources_section_length": 438,
+      "examples_section_length": 357,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 2,
+      "table_count": 0,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 4,
+      "tags_count": 6,
+      "body_density": 7.97
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 93,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 4,
+      "best_practices_section_length": 298,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 527,
+      "resources_items_count": 3,
+      "resources_section_length": 438,
+      "examples_section_length": 357,
+      "examples_code_blocks_count": 4,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 2,
+      "table_count": 0,
+      "linked_resource_families_count": 4,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "references",
+        "scripts"
+      ],
+      "tools_count": 4,
+      "tags_count": 6,
+      "body_density": 7.97
+    }
+  },
+  "quality": {
+    "score": 89,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 8,
+      "semantic_depth": 11,
+      "operational_depth": 6,
+      "support_pack": 8
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 7,
+      "script_files": 1,
+      "binary_like_files": 3
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

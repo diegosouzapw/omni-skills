@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threat Modeling"
+  short_description: "Map attacker paths, trust boundaries, and mitigation priorities before release"
+  default_prompt: "Use $threat-modeling to identify attacker goals, abuse cases, and must-fix mitigations."
