@@ -1,6 +1,6 @@
 {
   "name": "@omni-skills/server-a2a",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Initial A2A scaffold for Omni Skills discovery and install planning.",
   "type": "module",
   "private": true,
@@ -8,7 +8,7 @@
     "start": "node src/server.js"
   },
   "dependencies": {
-    "@omni-skills/catalog-core": "0.1.1",
+    "@omni-skills/catalog-core": "0.1.2",
     "express": "^5.2.1"
   }
 }
