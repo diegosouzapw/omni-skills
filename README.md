@@ -28,7 +28,7 @@ Omni Skills is no longer only an installer.
 - 🎯 **Selective install**: `--skill` and `--bundle` now install only the relevant published artifacts.
 - 📦 **Per-skill archives**: the build now emits `zip`, `tar.gz`, and checksum manifests per skill, with detached signatures when signing keys are configured.
 - 🔌 **Protocol-native runtime**: the repo ships a read-only HTTP API, an MCP server with three transports, and an A2A runtime with task lifecycle, SSE streaming, cancelation, push notification hooks, simple-first JSON/SQLite persistence, restart resume, optional external process execution, and opt-in leased coordination for shared workers.
-- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro user/workspace, Codex TOML, Zed workspace settings, VS Code user/workspace, Dev Container targets, Continue workspace YAML, Junie project/user config, and Windsurf user config with generated recipes.
+- 🛠️ **Local sidecar mode**: MCP local mode can detect clients, preview writes, install or remove skills, and write client-aware MCP configs under an allowlist, including Claude settings, Cursor user/workspace, Gemini user/workspace, Antigravity, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Kiro user/workspace, Codex TOML, Zed workspace settings, VS Code user/workspace, Dev Container targets, Continue workspace YAML, Junie project/user config, Windsurf user config, and Goose user config with generated recipes.
 - 🧾 **Client config UX**: `config-mcp` now previews or writes MCP client config from the CLI, and the visual terminal shell can walk operators through the same flow without hand-editing JSON, YAML, or TOML.
 - 🧬 **Native-to-enhanced intake flow**: community skills can land natively under `skills/`, and PR automation now runs the private enhancer and opens a companion `skills_omni/` PR with the Omni-maintained enhanced derivative plus attribution.
 - 🔐 **Hosted hardening**: API and MCP HTTP transports now support optional bearer/API-key auth, admin tokens, request IDs, in-memory rate limiting, audit logging, CORS allowlists, IP allowlists, maintenance mode, and admin runtime introspection.
@@ -48,7 +48,7 @@ The runtime foundation is in place and the public catalog now fully backs every 
 - Newly published domain skills: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `incident-response`, `eval-design`, `rag-engineer`, `prompt-engineer`, and `llm-patterns`
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
-- MCP config coverage now spans **15 config-capable clients** across **32** first-class targets and **19** config profiles
+- MCP config coverage now spans **16 config-capable clients** across **33** first-class targets and **19** config profiles
 
 The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the six curated starter bundles.
 

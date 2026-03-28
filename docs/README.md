@@ -16,7 +16,7 @@ Standard community files live in the repository root:
 | 📦 **Catalog** | 📌 22 skills | 22 published `L3` skills across 10 active catalog categories and 6 fully backed bundles |
 | 🎯 **Install** | ✅ Complete | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
 | 🌐 **API** | ✅ Complete | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 15 config-capable clients, 32 config targets, and 19 config profiles |
+| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
 | 🤖 **A2A** | ✅ Implemented | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
 | 🛡️ **Security** | ✅ Complete | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
 | 📋 **Classification** | ✅ Complete | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
@@ -35,7 +35,7 @@ These architecture questions are no longer “open” in practice and are now tr
 2. **Private or premium catalogs should reuse the same manifest schema**
    Auth and policy should be layered externally, not by forking the manifest or catalog shape.
 3. **MCP config should converge on a few canonical export families**
-   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
 
 Those decisions align with current official MCP and client documentation, including:
 
@@ -86,6 +86,7 @@ Those decisions align with current official MCP and client documentation, includ
 | 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
 | ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
 | 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
+| 📋 [Tasks Backlog](tasks/README.md) | Detailed implementation backlog for the remaining public and private work |
 
 ---
 
@@ -186,6 +187,7 @@ The local sidecar now supports first-class MCP config writing for:
 - GitHub Copilot CLI
 - Kilo Code
 - Zed
+- Goose
 
 ### 🤖 A2A
 

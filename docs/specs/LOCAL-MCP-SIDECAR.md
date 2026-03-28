@@ -17,7 +17,7 @@
 | ✅ HTTP auth + rate limiting | Implemented |
 | ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
 | 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
-| 🟢 Current client coverage | 7 install-capable clients, 15 config-capable clients, 32 config targets, 19 config profiles |
+| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
 
 ---
 
@@ -69,6 +69,7 @@ npm run cli -- mcp sse --local
 npm run cli -- config-mcp --list-targets
 npm run cli -- config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npm run cli -- config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
+npm run cli -- config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp
 ```
 
 ### 📦 From published package:
@@ -80,6 +81,7 @@ npx omni-skills mcp sse --local
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
 > All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
@@ -147,6 +149,7 @@ These 7 targets are the only first-class install destinations today.
 | `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
 | `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
 | `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
+| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
 | `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
 | `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
 | `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
@@ -156,8 +159,8 @@ These 7 targets are the only first-class install destinations today.
 
 That gives the sidecar:
 
-- **15 config-capable clients or IDEs**
-- **32 first-class target paths**
+- **16 config-capable clients or IDEs**
+- **33 first-class target paths**
 - **19 format profiles**
 
 Current first-class config coverage spans:
@@ -172,6 +175,7 @@ Current first-class config coverage spans:
 - Continue
 - Junie
 - Windsurf
+- Goose
 - OpenCode
 - Cline
 - GitHub Copilot CLI
@@ -191,7 +195,7 @@ Omni Skills now treats client support as a three-level model:
 3. **manual or snippet-only**
    The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
 
-This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code, Goose, and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
+This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
 
 ---
 
@@ -205,6 +209,7 @@ The local sidecar only writes under an **explicit allowlist**.
 - `~/.codeium` for Windsurf user config
 - `~/.copilot` for GitHub Copilot CLI
 - `~/.cline` for Cline CLI
+- `~/.config/goose` for Goose config
 - `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
 - `$CODEX_HOME` (or `~/.codex` if unset)
 - Current workspace root

@@ -13,7 +13,7 @@ For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUID
 |:-------|:--------|
 | ✅ **Available now** | 22 published skills across design, architecture, debugging, docs, OSS, security, DevOps, and AI-engineering workflows |
 | 📦 **Bundles** | `essentials`, `full-stack`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 15 config-capable clients, 32 first-class config targets, 19 config profiles |
+| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
 | 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
 
 ---

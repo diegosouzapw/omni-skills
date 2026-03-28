@@ -165,8 +165,8 @@ The MCP surface is deliberately split between:
 Current practical support:
 
 - **7 install-capable clients**
-- **15 config-capable clients**
-- **30 config targets**
+- **16 config-capable clients**
+- **33 config targets**
 - **19 config profiles**
 
 Install-capable clients:
@@ -195,6 +195,7 @@ Config-capable clients and targets include:
 - Continue workspace YAML
 - Windsurf user config
 - Zed workspace config
+- Goose user config
 
 The sidecar is intentionally honest about boundaries:
 

@@ -449,6 +449,10 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
     cliConfigTargets.includes("windsurf-user"),
     "config-mcp target listing should expose the Windsurf target",
   );
+  assert.ok(
+    cliConfigTargets.includes("goose-user"),
+    "config-mcp target listing should expose the Goose target",
+  );
 
   const cliConfigPreview = childProcess.execFileSync(
     process.execPath,
@@ -1628,6 +1632,10 @@ main().catch((error) => {
       detection.config_targets.some((target) => target.id === "windsurf-user"),
       "local sidecar should expose the Windsurf user config target",
     );
+    assert.ok(
+      detection.config_targets.some((target) => target.id === "goose-user"),
+      "local sidecar should expose the Goose user config target",
+    );
 
     const installPreview = localSidecar.installSkills(
       {
@@ -2126,6 +2134,60 @@ main().catch((error) => {
     assert.ok(
       windsurfConfigPreview.recipes.some((recipe) => recipe.client === "windsurf"),
       "Windsurf config preview should include a dedicated recipe",
+    );
+
+    const gooseConfigPreview = localSidecar.configureClientMcp(
+      {
+        config_target: "goose-user",
+        transport: "stream",
+        url: "http://127.0.0.1:4444/mcp",
+        timeout_ms: 42000,
+        dry_run: true,
+      },
+      localOptions,
+    );
+    assert.equal(
+      gooseConfigPreview.config_path,
+      path.join(fakeHome, ".config", "goose", "config.yaml"),
+      "Goose config preview should target the Goose config.yaml file",
+    );
+    assert.equal(
+      gooseConfigPreview.config_profile,
+      "goose-yaml",
+      "Goose config preview should use the dedicated Goose YAML profile",
+    );
+    assert.equal(
+      gooseConfigPreview.next_config.extensions["omni-skills"].type,
+      "streamable_http",
+      "Goose stream config should use the streamable_http extension type",
+    );
+    assert.equal(
+      gooseConfigPreview.next_config.extensions["omni-skills"].url,
+      "http://127.0.0.1:4444/mcp",
+      "Goose stream config should preserve the MCP URL",
+    );
+    assert.equal(
+      gooseConfigPreview.next_config.extensions["omni-skills"].timeout,
+      42,
+      "Goose config should convert timeout_ms to timeout seconds",
+    );
+    assert.ok(
+      gooseConfigPreview.recipes.some((recipe) => recipe.client === "goose"),
+      "Goose config preview should include dedicated Goose recipes",
+    );
+    assert.throws(
+      () =>
+        localSidecar.configureClientMcp(
+          {
+            config_target: "goose-user",
+            transport: "sse",
+            url: "http://127.0.0.1:4444/sse",
+            dry_run: true,
+          },
+          localOptions,
+        ),
+      /Goose first-class config currently supports stdio and stream transport/,
+      "Goose config should reject unsupported SSE transport",
     );
 
     const codexConfigPreview = localSidecar.configureClientMcp(

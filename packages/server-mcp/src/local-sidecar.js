@@ -2,6 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import YAML from "yaml";
 import {
   buildInstallPlan,
   getCatalogPaths,
@@ -69,6 +70,18 @@ function getJunieConfigPath(env, scope = "user") {
 
 function getWindsurfConfigPath(env) {
   return path.join(env.homeDir, ".codeium", "windsurf", "mcp_config.json");
+}
+
+function getGooseConfigDir(env) {
+  if (process.platform === "win32") {
+    const appData = process.env.APPDATA || path.join(env.homeDir, "AppData", "Roaming");
+    return path.join(appData, "Block", "goose", "config");
+  }
+  return path.join(env.homeDir, ".config", "goose");
+}
+
+function getGooseConfigPath(env) {
+  return path.join(getGooseConfigDir(env), "config.yaml");
 }
 
 function getClineConfigRoot(env) {
@@ -382,6 +395,11 @@ const CONFIG_TARGETS = {
     path: (env) => getWindsurfConfigPath(env),
     configProfile: "windsurf-json",
   },
+  "goose-user": {
+    name: "Goose user MCP config",
+    path: (env) => getGooseConfigPath(env),
+    configProfile: "goose-yaml",
+  },
 };
 
 const CONFIG_PROFILES = {
@@ -487,6 +505,14 @@ const CONFIG_PROFILES = {
     rootPath: ["mcpServers"],
     includeType: false,
     description: "Windsurf MCP config using ~/.codeium/windsurf/mcp_config.json with mcpServers entries.",
+  },
+  "goose-yaml": {
+    id: "goose-yaml",
+    format: "yaml",
+    rootKey: "extensions",
+    rootPath: ["extensions"],
+    includeType: false,
+    description: "Goose config.yaml using a top-level extensions object for persistent MCP extensions.",
   },
   "vscode-json": {
     id: "vscode-json",
@@ -599,6 +625,7 @@ export function getLocalAllowlistRoots(options = {}) {
     path.join(env.homeDir, ".claude.json"),
     getClineConfigRoot(env),
     path.join(env.homeDir, ".codeium"),
+    getGooseConfigDir(env),
     getCopilotHome(env),
     path.join(env.homeDir, ".cursor"),
     path.join(env.homeDir, ".gemini"),
@@ -742,6 +769,9 @@ function inferConfigProfileFromPath(filePath) {
   }
   if (normalizedPath.endsWith(path.join(".codeium", "windsurf", "mcp_config.json"))) {
     return CONFIG_PROFILES["windsurf-json"];
+  }
+  if (normalizedPath.endsWith(path.join("goose", "config.yaml"))) {
+    return CONFIG_PROFILES["goose-yaml"];
   }
   if (baseName === ".mcp.json" || baseName === ".claude.json") {
     return CONFIG_PROFILES["claude-json"];
@@ -975,6 +1005,35 @@ function buildMcpServerEntry({ transport = "stream", url }, profile = CONFIG_PRO
   if (profile.id === "windsurf-json") {
     return {
       serverUrl: url || defaultTransportUrl(mode),
+    };
+  }
+
+  if (profile.id === "goose-yaml") {
+    if (mode === "sse") {
+      throw new Error("Goose first-class config currently supports stdio and stream transport. Use --transport stdio or stream.");
+    }
+
+    if (mode === "stdio") {
+      return {
+        name: "Omni Skills",
+        cmd: process.execPath,
+        args: [SERVER_ENTRY_PATH],
+        envs: {
+          OMNI_SKILLS_MCP_MODE: "local",
+          ...(process.env.OMNI_SKILLS_API_BASE_URL
+            ? { OMNI_SKILLS_API_BASE_URL: process.env.OMNI_SKILLS_API_BASE_URL }
+            : {}),
+        },
+        enabled: true,
+        type: "stdio",
+      };
+    }
+
+    return {
+      name: "Omni Skills",
+      url: url || defaultTransportUrl(mode),
+      enabled: true,
+      type: "streamable_http",
     };
   }
 
@@ -1342,6 +1401,30 @@ function applyClientSpecificProfileOptions(config, profile, entry, input = {}) {
     delete nextEntry.description;
   }
 
+  if (profile.id === "goose-yaml") {
+    if (nextEntry.env && Object.keys(nextEntry.env).length > 0) {
+      nextEntry.envs = {
+        ...(nextEntry.envs || {}),
+        ...nextEntry.env,
+      };
+      delete nextEntry.env;
+    }
+
+    if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+      nextEntry.timeout = Math.max(1, Math.ceil(timeoutMs / 1000));
+    }
+
+    nextEntry.enabled = input.enabled === false ? false : true;
+    delete nextEntry.headers;
+    delete nextEntry.cwd;
+    delete nextEntry.envFile;
+    delete nextEntry.description;
+    delete nextEntry.includeTools;
+    delete nextEntry.excludeTools;
+    delete nextEntry.disabled;
+    delete nextEntry.trust;
+  }
+
   return { config: nextConfig, entry: nextEntry };
 }
 
@@ -1563,6 +1646,9 @@ function buildConfigInstructions(targetName, configPath, profile, transport) {
     base.push("Junie uses a top-level 'mcpServers' object and can also import the same JSON from the /mcp installation assistant.");
   } else if (profile.id === "windsurf-json") {
     base.push("Windsurf stores MCP entries in ~/.codeium/windsurf/mcp_config.json under a top-level 'mcpServers' object.");
+  } else if (profile.id === "goose-yaml") {
+    base.push("Goose stores persistent MCP extensions in ~/.config/goose/config.yaml under the top-level 'extensions' object.");
+    base.push("Goose first-class config support is intentionally limited to stdio and Streamable HTTP because those are the stable transport shapes documented publicly.");
   }
 
   if (normalizeTransportMode(transport) === "stdio") {
@@ -1745,6 +1831,27 @@ function buildConfigRecipes({ targetId, configPath, serverName, transport, url }
       kind: "manual",
       command: `Edit ${configPath} directly or open Windsurf MCP settings and paste the generated mcpServers entry.`,
     });
+  }
+
+  if (targetId === "goose-user") {
+    recipes.push({
+      client: "goose",
+      kind: "manual",
+      command: `Edit ${configPath} and add the generated extension under the top-level 'extensions' object, or use 'goose configure' and paste the same values there.`,
+    });
+    if (mode === "stdio") {
+      recipes.push({
+        client: "goose",
+        kind: "cli",
+        command: `goose session --with-extension ${shellQuote(`${process.execPath} ${SERVER_ENTRY_PATH}`)}`,
+      });
+    } else if (mode === "stream") {
+      recipes.push({
+        client: "goose",
+        kind: "cli",
+        command: `goose session --with-streamable-http-extension ${shellQuote(effectiveUrl)}`,
+      });
+    }
   }
 
   return recipes;
@@ -1941,7 +2048,21 @@ export function configureClientMcp(input = {}, options = {}) {
     nextConfigText = upsertCodexConfigToml(currentConfigText, serverName, initialEntry);
   } else if (profile.format === "yaml") {
     const { entry } = applyClientSpecificProfileOptions({}, profile, initialEntry, input);
-    nextConfigText = renderContinueYamlConfig(serverName, entry);
+    if (profile.id === "continue-yaml") {
+      nextConfigText = renderContinueYamlConfig(serverName, entry);
+    } else {
+      currentConfig = currentConfigText ? (YAML.parse(currentConfigText) || {}) : {};
+      const rootPath = profile.rootPath || [profile.rootKey];
+      const currentServers = getNestedValue(currentConfig, rootPath) || {};
+      nextConfig = setNestedValue(currentConfig, rootPath, {
+        ...currentServers,
+        [serverName]: entry,
+      });
+      nextConfigText = YAML.stringify(nextConfig);
+      if (!nextConfigText.endsWith("\n")) {
+        nextConfigText = `${nextConfigText}\n`;
+      }
+    }
   } else {
     currentConfig = currentConfigText ? JSON.parse(currentConfigText) : {};
     const rootPath = profile.rootPath || [profile.rootKey];

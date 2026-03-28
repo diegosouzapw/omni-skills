@@ -20,14 +20,14 @@
 - read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
 - MCP server with `stdio`, streamable HTTP, and SSE transports
 - local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 15 config-capable clients, 32 MCP config targets, and 19 config profiles
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
 - per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
 - API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
 - A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
 ### ⏳ What Remains Open
 
-- broader client-specific config coverage only where official public docs make a safe writer possible
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
 - deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
 - enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
 
@@ -171,9 +171,9 @@ Best for discovery handoff, install-plan workflows, and resumable agent task exe
 
 - local sidecar with allowlisted writes
 - detection for 7 install-capable clients
-- config writing for 15 config-capable clients across 32 targets and 19 config profiles
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
 - guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, and Dev Containers
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
 
 ### Phase 5: A2A Orchestration ✅
 
@@ -239,6 +239,6 @@ The current decisions were checked against official ecosystem docs:
 
 Only a few questions remain genuinely open:
 
-1. Which additional MCP clients have public, stable config formats strong enough to justify first-class writers?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
 2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
 3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
