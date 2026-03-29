@@ -235,6 +235,6 @@ npx omni-skills publish-check         # Alias for smoke
 | 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
 | 3️⃣ | Prefer `--skill` for a minimal install footprint |
 | 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all six starter bundles are fully backed |
+| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
 | 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
 | 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
