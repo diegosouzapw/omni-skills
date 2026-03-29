@@ -1,0 +1,3749 @@
+{
+  "schema_version": "2026-03-26",
+  "version": "1.2.0",
+  "generated_at": "2026-03-28T00:00:00+00:00",
+  "total_skills": 32,
+  "categories": {
+    "ai-agents": 5,
+    "backend": 2,
+    "cli-automation": 1,
+    "communication": 1,
+    "data-ai": 1,
+    "design": 3,
+    "development": 3,
+    "devops": 5,
+    "documentation": 2,
+    "frontend": 1,
+    "fullstack-web": 1,
+    "machine-learning": 1,
+    "product": 1,
+    "testing-security": 4,
+    "tools": 1
+  },
+  "skills": [
+    {
+      "id": "accessibility-audit",
+      "name": "accessibility-audit",
+      "display_name": "Accessibility Audit",
+      "description": "Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or assistive-technology review before shipping a UI.",
+      "version": "0.0.1",
+      "category": "design",
+      "raw_category": "design",
+      "taxonomy": {
+        "raw_category": "design",
+        "canonical_category": "design",
+        "inferred_category": "design",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "accessibility",
+        "a11y",
+        "keyboard",
+        "semantics",
+        "focus",
+        "contrast",
+        "motion",
+        "frontend"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/accessibility-audit",
+      "entrypoint_path": "skills/accessibility-audit/SKILL.md",
+      "manifest_path": "dist/manifests/accessibility-audit.json",
+      "metadata_path": "skills/accessibility-audit/metadata.json",
+      "content_length": 6898,
+      "body_length": 6357,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 9,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "5da7d29762e9ca4799f56adac2e70a1d3e02085ac424fee62dc2882133f107cf",
+        "package_sha256": "7bd53ee91531c1d99655cfca280297b30e90f1b1b12d77c30ed0e2c763c439aa"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "api-design",
+      "name": "api-design",
+      "display_name": "API Design",
+      "description": "API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation.",
+      "version": "0.0.1",
+      "category": "backend",
+      "raw_category": "backend",
+      "taxonomy": {
+        "raw_category": "backend",
+        "canonical_category": "backend",
+        "inferred_category": "backend",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "api",
+        "backend",
+        "contracts",
+        "http",
+        "json",
+        "errors"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/api-design",
+      "entrypoint_path": "skills/api-design/SKILL.md",
+      "manifest_path": "dist/manifests/api-design.json",
+      "metadata_path": "skills/api-design/metadata.json",
+      "content_length": 5431,
+      "body_length": 4982,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 9,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "2f1aed623f8c04eeb981be3c2cc523799d8da8d604e78c41db4128c6752eb6f1",
+        "package_sha256": "312ab8b60d44b330286d1f5cfa4779750b5d928fa9545db7378ffc1da4dbe907"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "architecture",
+      "name": "architecture",
+      "display_name": "Architecture",
+      "description": "Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation plan.",
+      "version": "0.0.1",
+      "category": "development",
+      "raw_category": "development",
+      "taxonomy": {
+        "raw_category": "development",
+        "canonical_category": "development",
+        "inferred_category": "development",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "architecture",
+        "system-design",
+        "planning",
+        "refactor",
+        "adr"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-26",
+      "path": "skills/architecture",
+      "entrypoint_path": "skills/architecture/SKILL.md",
+      "manifest_path": "dist/manifests/architecture.json",
+      "metadata_path": "skills/architecture/metadata.json",
+      "content_length": 5025,
+      "body_length": 4552,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "19945a8743c280602dfb8574fcacd5cea8e08c693c379ddc28a31a13252d7a04",
+        "package_sha256": "90bccfe25652cc870c280d4cb0c4dc9d7679e800003ca125eaa6c00552e3d259"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 98,
+      "best_practices_tier": "excellent",
+      "quality_score": 94,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "auth-flows",
+      "name": "auth-flows",
+      "display_name": "Auth Flows",
+      "description": "Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permission design reviewed across frontend, backend, and supporting services.",
+      "version": "0.0.1",
+      "category": "fullstack-web",
+      "raw_category": "fullstack-web",
+      "taxonomy": {
+        "raw_category": "fullstack-web",
+        "canonical_category": "fullstack-web",
+        "inferred_category": "fullstack-web",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "auth",
+        "authorization",
+        "sessions",
+        "tokens",
+        "permissions",
+        "identity"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/auth-flows",
+      "entrypoint_path": "skills/auth-flows/SKILL.md",
+      "manifest_path": "dist/manifests/auth-flows.json",
+      "metadata_path": "skills/auth-flows/metadata.json",
+      "content_length": 6393,
+      "body_length": 5845,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "e4ab1b345d7fbecbcee5e5bc2221203ca20c729d2cb24affa1ea6466185c6ac4",
+        "package_sha256": "38ca6dbf9a5840613b38b74c7f41259736bcbb0d1d0ce6d59c5d6daaf824e7bc"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "brainstorming",
+      "name": "brainstorming",
+      "display_name": "Brainstorming",
+      "description": "Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a recommendation.",
+      "version": "0.0.1",
+      "category": "product",
+      "raw_category": "product",
+      "taxonomy": {
+        "raw_category": "product",
+        "canonical_category": "product",
+        "inferred_category": "product",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "ideation",
+        "planning",
+        "options",
+        "discovery",
+        "decision-making"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/brainstorming",
+      "entrypoint_path": "skills/brainstorming/SKILL.md",
+      "manifest_path": "dist/manifests/brainstorming.json",
+      "metadata_path": "skills/brainstorming/metadata.json",
+      "content_length": 5405,
+      "body_length": 4921,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
+        "package_sha256": "d1c048497c4f3024c17864ab8c9c141c88c5343e6ee332fc286e2554fb2bc2a7"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 96,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "changelog",
+      "name": "changelog",
+      "display_name": "Changelog",
+      "description": "Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release narrative.",
+      "version": "0.0.1",
+      "category": "documentation",
+      "raw_category": "documentation",
+      "taxonomy": {
+        "raw_category": "documentation",
+        "canonical_category": "documentation",
+        "inferred_category": "documentation",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "changelog",
+        "release-notes",
+        "upgrades",
+        "summary",
+        "maintenance"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-26",
+      "path": "skills/changelog",
+      "entrypoint_path": "skills/changelog/SKILL.md",
+      "manifest_path": "dist/manifests/changelog.json",
+      "metadata_path": "skills/changelog/metadata.json",
+      "content_length": 4838,
+      "body_length": 4354,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "9c79e4b528f2e8fd8eda2c91bae3f795560d35071ca60b04410d23a9e2842d0b",
+        "package_sha256": "8c13b58c72a957e1edbd9f5d37b6a9750e72f17f7dd228fb5e0cdc33bf74ebba"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 98,
+      "best_practices_tier": "excellent",
+      "quality_score": 94,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "context-engineering",
+      "name": "context-engineering",
+      "display_name": "Context Engineering",
+      "description": "Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and tool context into a reliable context packet for an agent or LLM system.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "context",
+        "prompts",
+        "retrieval",
+        "memory",
+        "tools",
+        "agent-design"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/context-engineering",
+      "entrypoint_path": "skills/context-engineering/SKILL.md",
+      "manifest_path": "dist/manifests/context-engineering.json",
+      "metadata_path": "skills/context-engineering/metadata.json",
+      "content_length": 6494,
+      "body_length": 5947,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "2a68ac95e3a9c9b3e2b8fcaba52a5d4d05ac7a03d679ab57dbd19e4606ae23fe",
+        "package_sha256": "b85cbb66a05345f857a96ceab72e21ff2c83429007e4ada4c764f13d4a99188e"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "create-pr",
+      "name": "create-pr",
+      "display_name": "Create PR",
+      "description": "Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guidance.",
+      "version": "0.0.1",
+      "category": "communication",
+      "raw_category": "communication",
+      "taxonomy": {
+        "raw_category": "communication",
+        "canonical_category": "communication",
+        "inferred_category": "communication",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "pr",
+        "review",
+        "collaboration",
+        "summary",
+        "handoff"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-26",
+      "path": "skills/create-pr",
+      "entrypoint_path": "skills/create-pr/SKILL.md",
+      "manifest_path": "dist/manifests/create-pr.json",
+      "metadata_path": "skills/create-pr/metadata.json",
+      "content_length": 4698,
+      "body_length": 4231,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "cae9cbc76a089d72655cabc6cb7649ba7fe8848fcea4de8953db9c61bce98665",
+        "package_sha256": "201dc2e72930811482c6fa4bec80e4498c21cd96093456ac1a0c93507f46cc37"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 98,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "data-contracts",
+      "name": "data-contracts",
+      "display_name": "Data Contracts",
+      "description": "Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers, pipelines, warehouses, analytics layers, and consumer-facing metrics.",
+      "version": "0.0.1",
+      "category": "data-ai",
+      "raw_category": "data-ai",
+      "taxonomy": {
+        "raw_category": "data-ai",
+        "canonical_category": "data-ai",
+        "inferred_category": "data-ai",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "data-contracts",
+        "analytics",
+        "schemas",
+        "pipelines",
+        "warehouse",
+        "metrics"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/data-contracts",
+      "entrypoint_path": "skills/data-contracts/SKILL.md",
+      "manifest_path": "dist/manifests/data-contracts.json",
+      "metadata_path": "skills/data-contracts/metadata.json",
+      "content_length": 6228,
+      "body_length": 5677,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "95effc5876b3200ff67744c36f9b23035bf00b3640e831d3d4db8da03885098a",
+        "package_sha256": "861afbea0624cd256f944143f0d8593a805faa881f79737407c5d6f1fad6321b"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "database-design",
+      "name": "database-design",
+      "display_name": "Database Design",
+      "description": "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation.",
+      "version": "0.0.1",
+      "category": "backend",
+      "raw_category": "backend",
+      "taxonomy": {
+        "raw_category": "backend",
+        "canonical_category": "backend",
+        "inferred_category": "backend",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "database",
+        "schema",
+        "migrations",
+        "indexing",
+        "persistence"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-26",
+      "path": "skills/database-design",
+      "entrypoint_path": "skills/database-design/SKILL.md",
+      "manifest_path": "dist/manifests/database-design.json",
+      "metadata_path": "skills/database-design/metadata.json",
+      "content_length": 4850,
+      "body_length": 4369,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "8de2104765a5b7c3e8f54f577952d79e8a54044afa6a1c313a3fd35d4ba7f158",
+        "package_sha256": "663e55ed850e2b009e69d7627c56c7ac0dfd2ef28b98a36877f03bf7e06a0add"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 98,
+      "best_practices_tier": "excellent",
+      "quality_score": 94,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "debugging",
+      "name": "debugging",
+      "display_name": "Debugging",
+      "description": "Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification instead of guesswork.",
+      "version": "0.0.1",
+      "category": "development",
+      "raw_category": "development",
+      "taxonomy": {
+        "raw_category": "development",
+        "canonical_category": "development",
+        "inferred_category": "development",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "debugging",
+        "reproduction",
+        "diagnosis",
+        "regression",
+        "testing"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-26",
+      "path": "skills/debugging",
+      "entrypoint_path": "skills/debugging/SKILL.md",
+      "manifest_path": "dist/manifests/debugging.json",
+      "metadata_path": "skills/debugging/metadata.json",
+      "content_length": 4859,
+      "body_length": 4372,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "c57264842995d4dc9c46e8d114449456f2a1b48e9713d20c56a4e4bb0558652e",
+        "package_sha256": "1ea0e767395ed3140a03380f6a7c934f17956062ef79467e0795bcce7c1e1c07"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 98,
+      "best_practices_tier": "excellent",
+      "quality_score": 94,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "design-systems-ops",
+      "name": "design-systems-ops",
+      "display_name": "Design Systems Ops",
+      "description": "Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, release coordination, or code-design system review before shipping UI changes.",
+      "version": "0.0.1",
+      "category": "design",
+      "raw_category": "design",
+      "taxonomy": {
+        "raw_category": "design",
+        "canonical_category": "design",
+        "inferred_category": "design",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "design-system",
+        "tokens",
+        "components",
+        "governance",
+        "releases",
+        "frontend",
+        "accessibility"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/design-systems-ops",
+      "entrypoint_path": "skills/design-systems-ops/SKILL.md",
+      "manifest_path": "dist/manifests/design-systems-ops.json",
+      "metadata_path": "skills/design-systems-ops/metadata.json",
+      "content_length": 7059,
+      "body_length": 6485,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "3d241f8ab2f70c73d8d182cfe323f6dafca0372a48d83e737f87736a94f6949e",
+        "package_sha256": "6ce3302f14e70768df30cccc95d41aa5ec8c0292d245605bf0567726192249cb"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "design-token-governance",
+      "name": "design-token-governance",
+      "display_name": "Design Token Governance",
+      "description": "Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review design tokens without breaking downstream apps, docs, or component libraries.",
+      "version": "0.0.1",
+      "category": "design",
+      "raw_category": "design",
+      "taxonomy": {
+        "raw_category": "design",
+        "canonical_category": "design",
+        "inferred_category": "design",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "design-tokens",
+        "governance",
+        "design-system",
+        "theming",
+        "migration",
+        "frontend"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/design-token-governance",
+      "entrypoint_path": "skills/design-token-governance/SKILL.md",
+      "manifest_path": "dist/manifests/design-token-governance.json",
+      "metadata_path": "skills/design-token-governance/metadata.json",
+      "content_length": 6245,
+      "body_length": 5679,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "1a744779b4773327035ae88764d54975782f5429a1f9dd7604fae69deab39022",
+        "package_sha256": "36109c2e31c7c1353c4fcdf75b47864d154ecdf5b5977a5e12bd422e4436ea98"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "docker-expert",
+      "name": "docker-expert",
+      "display_name": "Docker Expert",
+      "description": "Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or container debugging guidance.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "docker",
+        "containers",
+        "images",
+        "dockerfile",
+        "buildkit",
+        "compose"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/docker-expert",
+      "entrypoint_path": "skills/docker-expert/SKILL.md",
+      "manifest_path": "dist/manifests/docker-expert.json",
+      "metadata_path": "skills/docker-expert/metadata.json",
+      "content_length": 6527,
+      "body_length": 6035,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "37ec1fb4800710091a76efb48d4df49071b30f719f40fb218173396d8e07e928",
+        "package_sha256": "8a4715d84e42d51dcdc8389bb021584d6b330a9e1a1eaac5ac89e8018f7d6247"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "documentation",
+      "name": "documentation",
+      "display_name": "Documentation",
+      "description": "Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-ready explanations.",
+      "version": "0.0.1",
+      "category": "documentation",
+      "raw_category": "documentation",
+      "taxonomy": {
+        "raw_category": "documentation",
+        "canonical_category": "documentation",
+        "inferred_category": "documentation",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "docs",
+        "readme",
+        "onboarding",
+        "guides",
+        "runbooks"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/documentation",
+      "entrypoint_path": "skills/documentation/SKILL.md",
+      "manifest_path": "dist/manifests/documentation.json",
+      "metadata_path": "skills/documentation/metadata.json",
+      "content_length": 5282,
+      "body_length": 4800,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "14769fd32f19480795d3ad81015aa0d8fac6eb70ce28db4db868b1d2cb4b3272",
+        "package_sha256": "89a7bda9ceeca7dca2ad0c1e7789cf0e9e122648c0cb8a8ae03ec738760c24c6"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 96,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "eval-design",
+      "name": "eval-design",
+      "display_name": "Eval Design",
+      "description": "Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, or acceptance criteria before model or prompt changes ship.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "evals",
+        "evaluation",
+        "regression",
+        "rubric",
+        "benchmark",
+        "llm"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/eval-design",
+      "entrypoint_path": "skills/eval-design/SKILL.md",
+      "manifest_path": "dist/manifests/eval-design.json",
+      "metadata_path": "skills/eval-design/metadata.json",
+      "content_length": 6005,
+      "body_length": 5480,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "9993529c849c39fb24b32dd36665eb9c48dac7706d6dd30d90e70b548e628f4f",
+        "package_sha256": "cbedcc9911e3de3c56ffde593704a645185813aa005976b3e24ac5ab3c3576f7"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "find-skills",
+      "name": "find-skills",
+      "display_name": "Find Skills",
+      "description": "Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper and needs the best published Omni Skills match.",
+      "version": "0.0.1",
+      "category": "cli-automation",
+      "raw_category": "cli-automation",
+      "taxonomy": {
+        "raw_category": "cli-automation",
+        "canonical_category": "cli-automation",
+        "inferred_category": "cli-automation",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "discover",
+        "discovery",
+        "catalog",
+        "install",
+        "cli",
+        "mcp",
+        "api"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/find-skills",
+      "entrypoint_path": "skills/find-skills/SKILL.md",
+      "manifest_path": "dist/manifests/find-skills.json",
+      "metadata_path": "skills/find-skills/metadata.json",
+      "content_length": 6451,
+      "body_length": 5929,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
+        "package_sha256": "7ec63a680c50b05c7a3cd85f9722346fd465b1e479c85a06d8b2b4cf8ff9d439"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "frontend-design",
+      "name": "frontend-design",
+      "display_name": "Frontend Design",
+      "description": "Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before implementation.",
+      "version": "0.0.1",
+      "category": "frontend",
+      "raw_category": "frontend",
+      "taxonomy": {
+        "raw_category": "frontend",
+        "canonical_category": "frontend",
+        "inferred_category": "frontend",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "frontend",
+        "ui",
+        "ux",
+        "layout",
+        "interaction",
+        "accessibility"
+      ],
+      "complexity": "intermediate",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/frontend-design",
+      "entrypoint_path": "skills/frontend-design/SKILL.md",
+      "manifest_path": "dist/manifests/frontend-design.json",
+      "metadata_path": "skills/frontend-design/metadata.json",
+      "content_length": 5484,
+      "body_length": 4997,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d",
+        "package_sha256": "cbddc526e844b0106bd0dafdbc335615246272fdf846f4a159885052b5d00c09"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "incident-response",
+      "name": "incident-response",
+      "display_name": "Incident Response",
+      "description": "Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder communication, or post-incident follow-up.",
+      "version": "0.0.1",
+      "category": "testing-security",
+      "raw_category": "testing-security",
+      "taxonomy": {
+        "raw_category": "testing-security",
+        "canonical_category": "testing-security",
+        "inferred_category": "testing-security",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "incident",
+        "outage",
+        "rollback",
+        "mitigation",
+        "escalation",
+        "postmortem"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/incident-response",
+      "entrypoint_path": "skills/incident-response/SKILL.md",
+      "manifest_path": "dist/manifests/incident-response.json",
+      "metadata_path": "skills/incident-response/metadata.json",
+      "content_length": 6370,
+      "body_length": 5842,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "ad9f5320762b014b86979db9f3e546cf03682569d598dacdf47eeaf00fc6bc33",
+        "package_sha256": "58af948a91a670c2af1c630136a7ade49d2972912f1b43abbf6e17f1f8baee16"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "kubernetes",
+      "name": "kubernetes",
+      "display_name": "Kubernetes",
+      "description": "Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or cluster operations guidance.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "kubernetes",
+        "k8s",
+        "manifests",
+        "deployments",
+        "services",
+        "rollouts"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/kubernetes",
+      "entrypoint_path": "skills/kubernetes/SKILL.md",
+      "manifest_path": "dist/manifests/kubernetes.json",
+      "metadata_path": "skills/kubernetes/metadata.json",
+      "content_length": 6408,
+      "body_length": 5912,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "83811baa90634eee059fe25428b1611d24301700405db8a77d3637238a8da458",
+        "package_sha256": "ad638826eca98a7fde01c279e59faef2f0fa55cb180ab2fcb3ef96cab31febe4"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "llm-patterns",
+      "name": "llm-patterns",
+      "display_name": "LLM Patterns",
+      "description": "LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallback paths, or agent behavior.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "llm",
+        "agents",
+        "tool-use",
+        "structured-output",
+        "reliability",
+        "orchestration"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/llm-patterns",
+      "entrypoint_path": "skills/llm-patterns/SKILL.md",
+      "manifest_path": "dist/manifests/llm-patterns.json",
+      "metadata_path": "skills/llm-patterns/metadata.json",
+      "content_length": 6261,
+      "body_length": 5749,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "6edeedf6a69d888e04d83a91416675c799ec91de096a64dba85f520aaaa97bbc",
+        "package_sha256": "a5df84ae9c9afce573c8c7bdd9d813b95e9c66d6d9bb73ec3eea2a1d65d6c6dd"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "mcp-server-authoring",
+      "name": "mcp-server-authoring",
+      "display_name": "MCP Server Authoring",
+      "description": "MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Model Context Protocol server with stable tools, resources, prompts, transports, and client compatibility.",
+      "version": "0.0.1",
+      "category": "tools",
+      "raw_category": "tools",
+      "taxonomy": {
+        "raw_category": "tools",
+        "canonical_category": "tools",
+        "inferred_category": "tools",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "mcp",
+        "protocol",
+        "server",
+        "tools",
+        "resources",
+        "prompts",
+        "sdk"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/mcp-server-authoring",
+      "entrypoint_path": "skills/mcp-server-authoring/SKILL.md",
+      "manifest_path": "dist/manifests/mcp-server-authoring.json",
+      "metadata_path": "skills/mcp-server-authoring/metadata.json",
+      "content_length": 6311,
+      "body_length": 5737,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "87ce12e4c7652d24662b28344d088f59a929264a1b4227e846196670bc8be7e5",
+        "package_sha256": "e5f785cc736693c9505b124ccd08faab6c8d3b105c7f91261152dad3961fefc3"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "model-serving",
+      "name": "model-serving",
+      "display_name": "Model Serving",
+      "description": "Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch inference, feature contracts, rollout safety, or operational behavior for ML-powered services.",
+      "version": "0.0.1",
+      "category": "machine-learning",
+      "raw_category": "machine-learning",
+      "taxonomy": {
+        "raw_category": "machine-learning",
+        "canonical_category": "machine-learning",
+        "inferred_category": "machine-learning",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "model-serving",
+        "inference",
+        "mlops",
+        "rollout",
+        "latency",
+        "reliability"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/model-serving",
+      "entrypoint_path": "skills/model-serving/SKILL.md",
+      "manifest_path": "dist/manifests/model-serving.json",
+      "metadata_path": "skills/model-serving/metadata.json",
+      "content_length": 6210,
+      "body_length": 5635,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "046d8aae96e779ebc48e576f8b7e828a66634310320eb6d20654f966230743c1",
+        "package_sha256": "6946c6d351454c59c1ffa81a09b7e81216f16864f727952be9dce33bc4c67722"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 97,
+      "best_practices_tier": "excellent",
+      "quality_score": 95,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "observability-review",
+      "name": "observability-review",
+      "display_name": "Observability Review",
+      "description": "Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipping or debugging a service.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "observability",
+        "alerts",
+        "slos",
+        "metrics",
+        "traces",
+        "logging"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/observability-review",
+      "entrypoint_path": "skills/observability-review/SKILL.md",
+      "manifest_path": "dist/manifests/observability-review.json",
+      "metadata_path": "skills/observability-review/metadata.json",
+      "content_length": 6354,
+      "body_length": 5854,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "d9d6b8b29a670b8b3b4ecd9a3d7abca404895197dbac0ce88d82f72b4d4e8181",
+        "package_sha256": "38369f788ffc81794e8982381b0dcebdd97262930cbc9305c24a6660ff297d86"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "omni-figma",
+      "name": "omni-figma",
+      "display_name": "Omni Figma",
+      "description": "Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Code Connect mapping, or Figma MCP troubleshooting.",
+      "version": "0.0.1",
+      "category": "development",
+      "raw_category": "development",
+      "taxonomy": {
+        "raw_category": "development",
+        "canonical_category": "development",
+        "inferred_category": "development",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "figma",
+        "design-to-code",
+        "mcp",
+        "ui-implementation",
+        "code-connect",
+        "figjam"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "antigravity"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/omni-figma",
+      "entrypoint_path": "skills/omni-figma/SKILL.md",
+      "manifest_path": "dist/manifests/omni-figma.json",
+      "metadata_path": "skills/omni-figma/metadata.json",
+      "content_length": 10543,
+      "body_length": 10033,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 14,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76",
+        "package_sha256": "2ff9a7b7607a8b03cfaef0e2d4c78d3f6929f0a39bb12a91908c67e1f803453e"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 100,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "prompt-engineer",
+      "name": "prompt-engineer",
+      "display_name": "Prompt Engineer",
+      "description": "Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition, or evaluation for LLM behavior.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "prompting",
+        "llm",
+        "instructions",
+        "examples",
+        "evaluation",
+        "reasoning"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/prompt-engineer",
+      "entrypoint_path": "skills/prompt-engineer/SKILL.md",
+      "manifest_path": "dist/manifests/prompt-engineer.json",
+      "metadata_path": "skills/prompt-engineer/metadata.json",
+      "content_length": 6122,
+      "body_length": 5612,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "7ec58f5fae0a4f0d0b0aba2294a7758865bac2303a06c4176cc127530708032c",
+        "package_sha256": "56878b5bf55cc42793bb2c62de8c035cd2cb22c32ea555fbe463f862e269e0b9"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "rag-engineer",
+      "name": "rag-engineer",
+      "display_name": "RAG Engineer",
+      "description": "RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation for an AI application.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "rag",
+        "retrieval",
+        "embeddings",
+        "evaluation",
+        "citations",
+        "indexing"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/rag-engineer",
+      "entrypoint_path": "skills/rag-engineer/SKILL.md",
+      "manifest_path": "dist/manifests/rag-engineer.json",
+      "metadata_path": "skills/rag-engineer/metadata.json",
+      "content_length": 6377,
+      "body_length": 5882,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "552bd8a89603398bea716ed95bfbf0883812e2bd8a33e9722c7527af07f41957",
+        "package_sha256": "7f87f0fd7356281c482322158aa18e9389fdb1ad64abac30398f4c78fd8addd1"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "release-engineering",
+      "name": "release-engineering",
+      "display_name": "Release Engineering",
+      "description": "Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback path, or deploy gate before shipping.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "release",
+        "deployment",
+        "rollback",
+        "promotion",
+        "change-management",
+        "verification"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/release-engineering",
+      "entrypoint_path": "skills/release-engineering/SKILL.md",
+      "manifest_path": "dist/manifests/release-engineering.json",
+      "metadata_path": "skills/release-engineering/metadata.json",
+      "content_length": 6588,
+      "body_length": 6061,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "4d0ffe4d6f1e60898d21cc625a96a5c5dff1e19915ce583d3cda00ade7c4ec4e",
+        "package_sha256": "840fd81a2287074f8aad47a0479b1f8833b0d6642fe09fa6c3c3bf5e1d66170f"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "security-auditor",
+      "name": "security-auditor",
+      "display_name": "Security Auditor",
+      "description": "Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a generic review.",
+      "version": "0.0.1",
+      "category": "testing-security",
+      "raw_category": "testing-security",
+      "taxonomy": {
+        "raw_category": "testing-security",
+        "canonical_category": "testing-security",
+        "inferred_category": "testing-security",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "security",
+        "audit",
+        "review",
+        "threat-modeling",
+        "hardening"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/security-auditor",
+      "entrypoint_path": "skills/security-auditor/SKILL.md",
+      "manifest_path": "dist/manifests/security-auditor.json",
+      "metadata_path": "skills/security-auditor/metadata.json",
+      "content_length": 5785,
+      "body_length": 5292,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
+        "package_sha256": "ac004fd470d53386480373f2d20b94975f70f7f4a0fbc3a37dd5a19dfcb38eae"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "terraform",
+      "name": "terraform",
+      "display_name": "Terraform",
+      "description": "Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or plan/apply review.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "terraform",
+        "modules",
+        "state",
+        "infrastructure",
+        "plan",
+        "apply"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-27",
+      "date_updated": "2026-03-27",
+      "path": "skills/terraform",
+      "entrypoint_path": "skills/terraform/SKILL.md",
+      "manifest_path": "dist/manifests/terraform.json",
+      "metadata_path": "skills/terraform/metadata.json",
+      "content_length": 5824,
+      "body_length": 5342,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "78dd03a54b2a35bdd7b678353e88407167813c79dc0574f01df3e9069d5f903d",
+        "package_sha256": "a11fa44e57c528474af57ec41df43e549ccb464b6d3cfb326af27f5bd1dc702d"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "threat-modeling",
+      "name": "threat-modeling",
+      "display_name": "Threat Modeling",
+      "description": "Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitigation priorities before implementation or release.",
+      "version": "0.0.1",
+      "category": "testing-security",
+      "raw_category": "testing-security",
+      "taxonomy": {
+        "raw_category": "testing-security",
+        "canonical_category": "testing-security",
+        "inferred_category": "testing-security",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "security",
+        "threat-modeling",
+        "abuse-cases",
+        "trust-boundaries",
+        "mitigations",
+        "risk"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-28",
+      "date_updated": "2026-03-28",
+      "path": "skills/threat-modeling",
+      "entrypoint_path": "skills/threat-modeling/SKILL.md",
+      "manifest_path": "dist/manifests/threat-modeling.json",
+      "metadata_path": "skills/threat-modeling/metadata.json",
+      "content_length": 6561,
+      "body_length": 6011,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "f11f6f51f394fd952de61d5bb883360961c8d226ff93bf1be2d6b01ab86150d7",
+        "package_sha256": "1dcc858fa216ad759d84cb64559d923d1998e40c35420e287155873ec939624c"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "vulnerability-scanner",
+      "name": "vulnerability-scanner",
+      "display_name": "Vulnerability Scanner",
+      "description": "Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, unsafe patterns, or release hygiene.",
+      "version": "0.0.1",
+      "category": "testing-security",
+      "raw_category": "testing-security",
+      "taxonomy": {
+        "raw_category": "testing-security",
+        "canonical_category": "testing-security",
+        "inferred_category": "testing-security",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "security",
+        "scanning",
+        "dependencies",
+        "sbom",
+        "hardening",
+        "release"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "codex-cli",
+        "antigravity",
+        "opencode"
+      ],
+      "source": "omni-team",
+      "author": "Omni Skills Team",
+      "date_added": "2026-03-26",
+      "date_updated": "2026-03-27",
+      "path": "skills/vulnerability-scanner",
+      "entrypoint_path": "skills/vulnerability-scanner/SKILL.md",
+      "manifest_path": "dist/manifests/vulnerability-scanner.json",
+      "metadata_path": "skills/vulnerability-scanner/metadata.json",
+      "content_length": 5627,
+      "body_length": 5103,
+      "sub_resources": [
+        "agents",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "antigravity",
+          "scope": "user-global",
+          "default_path": "~/.gemini/antigravity/skills",
+          "installer_flag": "--antigravity",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to... (Agent Mode)"
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "5f10ad123762087117fe82606041d508c1e6fdee802ab6c5fec0463543c96a03",
+        "package_sha256": "c6424b2e79ff3e24546d8cdf073423066a38cfaecb38c8d8433f3534cb30139e"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 99,
+      "best_practices_tier": "excellent",
+      "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    }
+  ]
+}

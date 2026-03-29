@@ -10,7 +10,7 @@
 | Attribute | Value |
 |:----------|:------|
 | **Name** | `omni-skills` |
-| **Package version** | `0.1.2` |
+| **Package version** | `0.1.3` |
 | **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |

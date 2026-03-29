@@ -236,16 +236,26 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 1,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/mcp-server-authoring/scripts/render_mcp_server_packet.py",
+              "sha256": "fb65c96a7a58cc84a9f661f2e9fbae018aa62b74d5504a21a824c1ec633dd969",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -321,8 +331,8 @@
     {
       "path": "skills/mcp-server-authoring/metadata.json",
       "kind": "support",
-      "size_bytes": 5821,
-      "sha256": "7e7244c78c2f5e9439d82a87e93d839aa26dbf04a755e5628d2e0db77b359062"
+      "size_bytes": 6104,
+      "sha256": "5269b2f80fe03839842df8edddcf35c9d073ddca0312187d78fb20fc53834fbe"
     },
     {
       "path": "skills/mcp-server-authoring/agents/openai.yaml",
@@ -360,14 +370,15 @@
       "format": "zip",
       "path": "dist/archives/mcp-server-authoring.zip",
       "file_name": "mcp-server-authoring.zip",
-      "size_bytes": 16108,
-      "sha256": "67fa55fde8d02f631617d88acbfcf0a145a6caf4da1d3ca1d7f12a9fa13a97ab",
+      "size_bytes": 16391,
+      "sha256": "7b66bd8336de82940e10c3b485c9260a8f52c3a3962ff80c5075b65011781f35",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/mcp-server-authoring.zip.sig",
+        "sha256": "59483fba294138b92dcba4e93c94b23d677d1e57e8692af0a4e47ccac57e5f44",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/mcp-server-authoring.zip.sig dist/archives/mcp-server-authoring.zip"
       }
     },
     {
@@ -375,30 +386,32 @@
       "path": "dist/archives/mcp-server-authoring.tar.gz",
       "file_name": "mcp-server-authoring.tar.gz",
       "size_bytes": 30743,
-      "sha256": "3af926a290069a9eca4d88c5e742c9a071023f3cbdd5553f8720b1eaa02c85bf",
+      "sha256": "7c094a864c4944c3f4ebf9f0a4b53689a08e3efa5ada4ea47b8fcca98bbba836",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/mcp-server-authoring.tar.gz.sig",
+        "sha256": "f766c95165ad57daa58f9f5b89ef1db4db37f4b37ce362861fd2702d76d5f76f",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/mcp-server-authoring.tar.gz.sig dist/archives/mcp-server-authoring.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/mcp-server-authoring.checksums.txt",
     "file_name": "mcp-server-authoring.checksums.txt",
-    "sha256": "e34d6a595f0976566a39d82ab1f49c596dfb20e202533c0415812a116bfa0888",
+    "sha256": "71cb0e09639a7032744f4291e9365fe905b5c2f0631d15ce384c7c879f06e75b",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/mcp-server-authoring.checksums.txt.sig",
+      "sha256": "edf6e69b33985b913841fdb5e6fe6af95d2d476feac02b101405120a52c10c8b",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/mcp-server-authoring.checksums.txt.sig dist/archives/mcp-server-authoring.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "87ce12e4c7652d24662b28344d088f59a929264a1b4227e846196670bc8be7e5",
-    "package_sha256": "422436466e36cb43f49b8a6fea6ca8a8f5f90a6ca1fa285d9a28b6e0a21ba950"
+    "package_sha256": "e5f785cc736693c9505b124ccd08faab6c8d3b105c7f91261152dad3961fefc3"
   }
 }

@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.2; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
 # 🧠 Omni Skills: Installable Agentic Skills, Runtime Surfaces, and Curated Enhancement
 
 > **Installable GitHub repository and catalog of curated AI coding skills with a unified CLI, catalog API, MCP, A2A, and a private enhancement workflow that publishes curated English derivatives into `skills_omni/`.**

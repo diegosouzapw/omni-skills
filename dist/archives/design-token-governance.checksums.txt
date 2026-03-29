@@ -1,2 +1,2 @@
-ad6d9ee0c76d370d9626be845b510e3670ff8958c9461c2686e4cff9881df405  design-token-governance.zip
-ba67e700d864a91cdd907c118af9c70cb0f0aea8193d6db98ba29e2d32c11e3b  design-token-governance.tar.gz
+687e851620ea707c628d9df92f3132cfe17ae925145da710a43b04db9ba30f79  design-token-governance.zip
+734e1ff479294924e2640ce7f1ea7f41c4d4279d44b6e9687d97287a2d4481ae  design-token-governance.tar.gz

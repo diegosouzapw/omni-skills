@@ -43,7 +43,7 @@ Human-readable (and agent-readable) instructions. Write it as if you're **briefi
 
 > ✅ = Always required · ⚡ = Required in strict mode
 
-The skill version is independent from the npm package version. The package is currently `0.1.2`, but existing skills can validly remain on their own semantic version.
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
 
 ---
 
