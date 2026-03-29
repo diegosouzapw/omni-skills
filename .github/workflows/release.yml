@@ -136,6 +136,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     steps:
       - name: Set up Node.js
         uses: actions/setup-node@v4
