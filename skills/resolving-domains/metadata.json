@@ -1,0 +1,263 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-01-01T00:00:00+00:00",
+  "id": "resolving-domains",
+  "slug": "resolving-domains",
+  "display_name": "XMTP domain resolver",
+  "description": "ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farcaster profiles. Triggers on ENS resolution, Farcaster lookup, or mention extraction.",
+  "version": "1.0.0",
+  "raw_category": "fullstack-web",
+  "canonical_category": "fullstack-web",
+  "taxonomy": {
+    "raw_category": "fullstack-web",
+    "canonical_category": "fullstack-web",
+    "inferred_category": "fullstack-web",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "tools": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": "",
+    "file_mtime": "2026-01-01T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/resolving-domains",
+    "entrypoint": "skills/resolving-domains/SKILL.md",
+    "metadata": "skills/resolving-domains/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "SKILL.md",
+      "extract-mentions.md",
+      "profiles-farcaster.md",
+      "resolve-address.md"
+    ],
+    "files_count": 6,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "content": {
+    "body_length": 3665,
+    "content_length": 3998,
+    "body_lines": 133,
+    "word_count": 414,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 587,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 5,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 3.11
+    }
+  },
+  "maturity": {
+    "skill_level": 2,
+    "skill_level_label": "instructions",
+    "has_scripts": false,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 20,
+    "tier": "needs-work",
+    "signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 587,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 5,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 3.11
+    }
+  },
+  "quality": {
+    "score": 45,
+    "tier": "bronze",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 3,
+      "recency": 7,
+      "resources": 5,
+      "best_practices": 0,
+      "semantic_depth": 1,
+      "operational_depth": 2,
+      "support_pack": 1
+    }
+  },
+  "security": {
+    "score": 30,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 7,
+    "findings": [
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+        "line": 55
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+        "line": 102
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/rules/extract-mentions.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "import { extractMentions } from \"../../utils/resolver\";",
+        "line": 14
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/rules/extract-mentions.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "import { resolveMentionsInMessage } from \"../../utils/resolver\";",
+        "line": 43
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/rules/profiles-farcaster.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "import { fetchFarcasterProfile } from \"../../utils/resolver\";",
+        "line": 14
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/rules/resolve-address.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+        "line": 16
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/resolving-domains/rules/resolve-address.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "import { resolveIdentifier } from \"../../utils/resolver\";",
+        "line": 32
+      }
+    ],
+    "signals": {
+      "scanned_files": 6,
+      "script_files": 0,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "tags are empty",
+      "tools are empty",
+      "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/extract-mentions.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/extract-mentions.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/profiles-farcaster.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/rules/resolve-address.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/resolve-address.md]"
+    ],
+    "status": "warn"
+  }
+}

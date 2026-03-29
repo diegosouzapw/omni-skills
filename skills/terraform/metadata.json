@@ -196,26 +196,16 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "clamav",
-        "detections": [],
-        "infected_files": 0
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
       },
       "virustotal": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "virustotal",
-        "lookups": 1,
-        "positives": 0,
-        "results": [
-          {
-            "path": "skills/terraform/scripts/render_module_review.py",
-            "sha256": "c424306b847021604c92e16e20e381f159ee083990daae687ec48bfba11bc4bb",
-            "status": "not_found"
-          }
-        ],
-        "details": "Hash lookups only. Unknown files are not uploaded during validation."
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
       }
     }
   },

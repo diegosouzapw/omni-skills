@@ -1,0 +1,25 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/xmtplabs/xmtp-agent-examples.git",
+  "source_repository_owner": "xmtplabs",
+  "source_repository_name": "xmtp-agent-examples",
+  "source_branch": "main",
+  "source_commit": "8116b7fbd4bde327c06a51ec15defe8046be1953",
+  "source_skills_path": "skills",
+  "source_skill_path": "skills/resolving-domains",
+  "source_skill_name": "resolving-domains",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "resolving-domains",
+  "lineage_id": 7,
+  "sync_run_id": "20260329T232606.849162+0000-xmtplabs-xmtp-agent-examples-manual",
+  "imported_at": "2026-03-29T23:26:08.997834+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "resolving-domains",
+    "description": "ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farcaster profiles. Triggers on ENS resolution, Farcaster lookup, or mention extraction.",
+    "license": "MIT",
+    "metadata": [],
+    "author": "xmtp",
+    "version": "1.0.0"
+  }
+}
