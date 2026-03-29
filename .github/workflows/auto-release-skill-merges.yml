@@ -183,7 +183,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package.json package-lock.json packages metadata.json skills skills_index.json dist docs README.md CONTRIBUTING.md
+          git add package.json package-lock.json packages metadata.json skills dist docs README.md CONTRIBUTING.md
+          git add -f skills_index.json
           git reset --quiet -- dist/release-notes.md || true
           git commit -m "chore(release): bump version to ${{ steps.next_version.outputs.tag }}"
 
