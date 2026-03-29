@@ -1,0 +1,358 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "resolving-domains",
+  "slug": "resolving-domains",
+  "display_name": "XMTP domain resolver",
+  "description": "ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farcaster profiles. Triggers on ENS resolution, Farcaster lookup, or mention extraction.",
+  "version": "1.0.0",
+  "category": "fullstack-web",
+  "raw_category": "fullstack-web",
+  "taxonomy": {
+    "raw_category": "fullstack-web",
+    "canonical_category": "fullstack-web",
+    "inferred_category": "fullstack-web",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/resolving-domains/SKILL.md",
+  "paths": {
+    "root": "skills/resolving-domains",
+    "manifest": "dist/manifests/resolving-domains.json",
+    "metadata": "skills/resolving-domains/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 7,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 20,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 587,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 5,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 3.11
+      }
+    },
+    "quality": {
+      "score": 45,
+      "tier": "bronze",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 1
+      }
+    },
+    "security": {
+      "score": 30,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 7,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+          "line": 55
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+          "line": 102
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/rules/extract-mentions.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { extractMentions } from \"../../utils/resolver\";",
+          "line": 14
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/rules/extract-mentions.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { resolveMentionsInMessage } from \"../../utils/resolver\";",
+          "line": 43
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/rules/profiles-farcaster.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { fetchFarcasterProfile } from \"../../utils/resolver\";",
+          "line": 14
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/rules/resolve-address.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const resolver = createNameResolver(process.env.WEB3_BIO_API_KEY || \"\");",
+          "line": 16
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/resolving-domains/rules/resolve-address.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { resolveIdentifier } from \"../../utils/resolver\";",
+          "line": 32
+        }
+      ],
+      "signals": {
+        "scanned_files": 6,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty",
+        "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/SKILL.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/extract-mentions.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/extract-mentions.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/profiles-farcaster.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/resolving-domains/rules/resolve-address.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/resolving-domains/rules/resolve-address.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 3665,
+    "content_length": 3998,
+    "body_lines": 133,
+    "word_count": 414,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 587,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 5,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 3.11
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/resolving-domains/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1092,
+      "sha256": "ccca10ff1173c0bc59bcb13e62630ef06dc153d6dc948c20ed7ebf78d5b83885"
+    },
+    {
+      "path": "skills/resolving-domains/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 682,
+      "sha256": "d156f85e12e81add893a6ce895ec19d4583a23640e449038c808ee5bbf91ba27"
+    },
+    {
+      "path": "skills/resolving-domains/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 3998,
+      "sha256": "77e246a11ae50b1ea2897234879c91684c973b5760498268f7341b662e6b8a33"
+    },
+    {
+      "path": "skills/resolving-domains/metadata.json",
+      "kind": "support",
+      "size_bytes": 8884,
+      "sha256": "4535e7520b8e6a46bbd7734d4fe24914113a422c225f414848a06eec0c9c76c6"
+    },
+    {
+      "path": "skills/resolving-domains/rules/extract-mentions.md",
+      "kind": "support",
+      "size_bytes": 1421,
+      "sha256": "7b015d4ee5a9aadeab4cb5c79cc7df7051e4c62425e26862422a891fa0591f86"
+    },
+    {
+      "path": "skills/resolving-domains/rules/profiles-farcaster.md",
+      "kind": "support",
+      "size_bytes": 1513,
+      "sha256": "18bd4d7140b97fc0268f7aefd7c2aee7e3c5655155ff4c811650038e9bf94894"
+    },
+    {
+      "path": "skills/resolving-domains/rules/resolve-address.md",
+      "kind": "support",
+      "size_bytes": 1293,
+      "sha256": "2662e83a9495a5416bda4c1f1c1f5e50cbdd5d505613928c5a8dfe0b7950e3c5"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/resolving-domains.zip",
+      "file_name": "resolving-domains.zip",
+      "size_bytes": 19941,
+      "sha256": "71c5d48c2383207344c750d846292456724ee53c4501092b73e01fbe3c0f38b1",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/resolving-domains.tar.gz",
+      "file_name": "resolving-domains.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "46157adb7ca60b8b050ae773a43c63b62c689282476d6322e9dc44d8903ebc83",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/resolving-domains.checksums.txt",
+    "file_name": "resolving-domains.checksums.txt",
+    "sha256": "075101d297f92c6f6d9132d94353122a5d5fa0dc4c5691ec2b8522c04e2f1684",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "77e246a11ae50b1ea2897234879c91684c973b5760498268f7341b662e6b8a33",
+    "package_sha256": "c604b1338d266d2234f8ec7b73ed9360bee0308700660344db6488b87be98338"
+  }
+}

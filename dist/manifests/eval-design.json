@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/eval-design/scripts/render_eval_plan.py",
-              "sha256": "63a4289b7abf431b44bc894c4efdb976e9f3672afb80de936b90c7fe7bf29c90",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/eval-design/metadata.json",
       "kind": "support",
-      "size_bytes": 6025,
-      "sha256": "1cc98cfc319d892a39dce5ee0227769182f86faa1d8907bba05b39c478e75208"
+      "size_bytes": 5759,
+      "sha256": "a6e0410cf01b48e8f09843cd70c7d6810f296a0c730acc2b9a2b6ed199f62f4b"
     },
     {
       "path": "skills/eval-design/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/eval-design.zip",
       "file_name": "eval-design.zip",
-      "size_bytes": 16795,
-      "sha256": "01bf1a063d019cf2d5450b2d9439aedb6bb9522112d9f608ca7ed2a2c2144e4e",
+      "size_bytes": 16529,
+      "sha256": "34ba42c023beb80fb87e4fe9df674b2cf11e5a4ba35576168321be3e36f130e2",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/eval-design.zip.sig",
-        "sha256": "141359431460b42aefa835cb71aab890f26944b12b4f88f30b45d971840c1e60",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/eval-design.zip.sig dist/archives/eval-design.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/eval-design.tar.gz",
       "file_name": "eval-design.tar.gz",
       "size_bytes": 30743,
-      "sha256": "8f95e4922fe7cb50513feb54dca0c302d254b13314a8b7382e21e67ea3f1a334",
+      "sha256": "de4b87c0a7eeeae58096389babda15da38e3c7d28aa15ebd679b77167ebf047f",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/eval-design.tar.gz.sig",
-        "sha256": "034937dcf13f164c0553e23a088301f7a944d1106ec9ecdf8d0133aa60723263",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/eval-design.tar.gz.sig dist/archives/eval-design.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/eval-design.checksums.txt",
     "file_name": "eval-design.checksums.txt",
-    "sha256": "a919de467f9d1e65fcb8b6655416f5b28e6b477acee27dd7fbf0c917f457eedd",
+    "sha256": "e4e72b2eba0dbc31a45545cc58efce02ca1892c3b47bcc8aa2d48a3852532189",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/eval-design.checksums.txt.sig",
-      "sha256": "f86def553be85546167617c40c57874276fce4e289bc2389c16771132f19a892",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/eval-design.checksums.txt.sig dist/archives/eval-design.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "9993529c849c39fb24b32dd36665eb9c48dac7706d6dd30d90e70b548e628f4f",
-    "package_sha256": "cbedcc9911e3de3c56ffde593704a645185813aa005976b3e24ac5ab3c3576f7"
+    "package_sha256": "1e70fb762a96052964e88ee8c01eb25c8ec0ddccea36ed6ed734e20a261886f4"
   }
 }

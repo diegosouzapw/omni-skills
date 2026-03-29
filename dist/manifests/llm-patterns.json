@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/llm-patterns/scripts/render_pattern_review.py",
-              "sha256": "7408271f1c8cc353646bbcddaa487cf0e8d690de48f74fc81e52a150663ce35d",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/llm-patterns/metadata.json",
       "kind": "support",
-      "size_bytes": 6035,
-      "sha256": "25a2092b362802aa5f11891d91fa0ff2a3d6496570c5d55811c8e8895286467b"
+      "size_bytes": 5763,
+      "sha256": "3a8c24e59bbfd05c9366bf8bf14235ed37680b4369d393d8fcf871cc9dff8ead"
     },
     {
       "path": "skills/llm-patterns/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/llm-patterns.zip",
       "file_name": "llm-patterns.zip",
-      "size_bytes": 17099,
-      "sha256": "d48b375031536510e89d28d5b3a403357eca9f527e8f4cdb1c425b5f5244b455",
+      "size_bytes": 16827,
+      "sha256": "b020df70de745d2d38712f202ad48893705ff2c5fc50668ac552b7661fdc0fb8",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/llm-patterns.zip.sig",
-        "sha256": "78672b3e3f11db1082655fb00444a23023b7a6efd19e125fce2028b3cbfd06df",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.zip.sig dist/archives/llm-patterns.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/llm-patterns.tar.gz",
       "file_name": "llm-patterns.tar.gz",
       "size_bytes": 30743,
-      "sha256": "f9e8527eeeb942d5799169791499e568028a742b7007243b62dbe4677e8b833e",
+      "sha256": "70f2da1592b1dccb2e353ed612a782ec9922943eaf004ecf82f89f094eaf1490",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/llm-patterns.tar.gz.sig",
-        "sha256": "8bc9ceddf31305beb0230c5c9fc8815373e2a2e5c7bf2e2331714aa9d8b83c34",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.tar.gz.sig dist/archives/llm-patterns.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/llm-patterns.checksums.txt",
     "file_name": "llm-patterns.checksums.txt",
-    "sha256": "18fa1e2e4fc8a2e2bfd32d1878400ebb007d0d9c3a0f02fdd251705199e15c27",
+    "sha256": "261483b338cf819996403e9b4938ffc1181744aed5ee02713d1f23a38c877093",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/llm-patterns.checksums.txt.sig",
-      "sha256": "091c1c5b2291cbf37e1728d5f7d161a87fd19df5f13064fc54804611843b5098",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/llm-patterns.checksums.txt.sig dist/archives/llm-patterns.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "6edeedf6a69d888e04d83a91416675c799ec91de096a64dba85f520aaaa97bbc",
-    "package_sha256": "a5df84ae9c9afce573c8c7bdd9d813b95e9c66d6d9bb73ec3eea2a1d65d6c6dd"
+    "package_sha256": "fbd43ce25a73d805431cc4958c4fa4d0f95924412223e0456b84628a5f68bc00"
   }
 }

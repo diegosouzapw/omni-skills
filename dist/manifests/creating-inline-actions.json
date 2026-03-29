@@ -1,0 +1,364 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "creating-inline-actions",
+  "slug": "creating-inline-actions",
+  "display_name": "XMTP inline actions",
+  "description": "Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection options, or any button-based interaction. Triggers on inline actions, buttons, menus, or ActionBuilder.",
+  "version": "1.0.0",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/creating-inline-actions/SKILL.md",
+  "paths": {
+    "root": "skills/creating-inline-actions",
+    "manifest": "dist/manifests/creating-inline-actions.json",
+    "metadata": "skills/creating-inline-actions/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 8,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 20,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 406,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 6,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 2.95
+      }
+    },
+    "quality": {
+      "score": 44,
+      "tier": "bronze",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 0
+      }
+    },
+    "security": {
+      "score": 30,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 7,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/builder-create.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { ActionBuilder } from \"../../utils/inline-actions\";",
+          "line": 14
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/builder-create.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { ActionBuilder, ActionStyle } from \"../../utils/inline-actions\";",
+          "line": 26
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/builder-create.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { registerAction } from \"../../utils/inline-actions\";",
+          "line": 37
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/config-menus.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { AppConfig, initializeAppFromConfig, showMenu } from \"../../utils/inline-actions\";",
+          "line": 14
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/helpers-confirmation.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { sendConfirmation } from \"../../utils/inline-actions\";",
+          "line": 14
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/helpers-selection.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { sendSelection } from \"../../utils/inline-actions\";",
+          "line": 14
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/creating-inline-actions/rules/helpers-selection.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import { sendSelection, ActionStyle } from \"../../utils/inline-actions\";",
+          "line": 44
+        }
+      ],
+      "signals": {
+        "scanned_files": 7,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/builder-create.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/builder-create.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/builder-create.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/config-menus.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/helpers-confirmation.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/helpers-selection.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/creating-inline-actions/rules/helpers-selection.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 3809,
+    "content_length": 4162,
+    "body_lines": 142,
+    "word_count": 419,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 5,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 406,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 6,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 2.95
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/creating-inline-actions/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1134,
+      "sha256": "e8c2c2d33497708f28a3fd4fee747371049d851069b688477120b15a26f0329e"
+    },
+    {
+      "path": "skills/creating-inline-actions/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 700,
+      "sha256": "6ad11d824fcbeea1174717274c05b7da63716c87f390f94d47ba0e9a8c5624a8"
+    },
+    {
+      "path": "skills/creating-inline-actions/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 4162,
+      "sha256": "c71c271ec3f0d4445587eebff6abe56398858cad30769249b1d3076e197c21d9"
+    },
+    {
+      "path": "skills/creating-inline-actions/metadata.json",
+      "kind": "support",
+      "size_bytes": 9198,
+      "sha256": "6ebf3750a1f28174abbe9441a5148131c3b415ac650997adf6ef716c90cd1d29"
+    },
+    {
+      "path": "skills/creating-inline-actions/rules/builder-create.md",
+      "kind": "support",
+      "size_bytes": 1187,
+      "sha256": "feca9066f8a17a0d5098262e87f525a4713340a2f6615ac7f1e662faee85fc88"
+    },
+    {
+      "path": "skills/creating-inline-actions/rules/config-menus.md",
+      "kind": "support",
+      "size_bytes": 1498,
+      "sha256": "64c8cff5a46d3093a6e75df00d9e3090c5550520091b7ea48ec57b68807cf86e"
+    },
+    {
+      "path": "skills/creating-inline-actions/rules/helpers-confirmation.md",
+      "kind": "support",
+      "size_bytes": 947,
+      "sha256": "7aea0bd3761eaf136dc00c1d0ba69ebbf98b59a308874b05d45a47533ce0517d"
+    },
+    {
+      "path": "skills/creating-inline-actions/rules/helpers-selection.md",
+      "kind": "support",
+      "size_bytes": 1114,
+      "sha256": "e84f76f1ee132f6b4f73853e06ba217461d3a89a41acccee64c5b2d1ed51c334"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/creating-inline-actions.zip",
+      "file_name": "creating-inline-actions.zip",
+      "size_bytes": 21252,
+      "sha256": "7ccfa0eec9ae6d7e397dbaef6bee64aa87b0fd1c61f2141a987422a427ff889c",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/creating-inline-actions.tar.gz",
+      "file_name": "creating-inline-actions.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "00975d8a6a70f3ede8e56cacb59af2bbf8319b2d1e5012d146c4a32279a9bfa4",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/creating-inline-actions.checksums.txt",
+    "file_name": "creating-inline-actions.checksums.txt",
+    "sha256": "a4578cc3d381c321a3c08788b0182676a088be4b15d4af8a611dc799f4308926",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "c71c271ec3f0d4445587eebff6abe56398858cad30769249b1d3076e197c21d9",
+    "package_sha256": "1b9d128ad888b1837d08fa173af8d455122ae5bd18d16dc95e9ba330e9601bdc"
+  }
+}

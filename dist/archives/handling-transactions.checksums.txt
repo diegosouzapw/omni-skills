@@ -1,0 +1,2 @@
+7c6268f2cf710ae7f52485df9a2cd6b30bab53bc4a69bf6f3bfcb77825400cf5  handling-transactions.zip
+06c7a4b5a7652347937446fea4584ec213e51f4efbd298edbd0582d4fe408839  handling-transactions.tar.gz

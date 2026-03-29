@@ -234,26 +234,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/security-auditor/scripts/render_audit_plan.py",
-              "sha256": "c95080367c1035c914e254ebe038150f75b59f09b03b72b451a6a83d7fab1a1a",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -329,8 +319,8 @@
     {
       "path": "skills/security-auditor/metadata.json",
       "kind": "support",
-      "size_bytes": 6062,
-      "sha256": "4965cbde5bf69390814a63e3b584e6d7e86b3978db59cab0a0b8e7183cebaeb5"
+      "size_bytes": 5790,
+      "sha256": "b7c6653bb4f745ac47167cdc387a3b27e6c2141d50be3416e78d4657f376371a"
     },
     {
       "path": "skills/security-auditor/agents/openai.yaml",
@@ -374,15 +364,14 @@
       "format": "zip",
       "path": "dist/archives/security-auditor.zip",
       "file_name": "security-auditor.zip",
-      "size_bytes": 15960,
-      "sha256": "118ad1517b36766b925f16832114fd838de97e51847285ea94d693fbe8bb82cf",
+      "size_bytes": 15688,
+      "sha256": "0243dcb201184236ae5a147388f84a37fbdf88ad3e5045079142621a93cb1c13",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/security-auditor.zip.sig",
-        "sha256": "4f52049f40365bef6d096577931cd70daa665dea27d64d489a1db44c5f53b340",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.zip.sig dist/archives/security-auditor.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -390,32 +379,30 @@
       "path": "dist/archives/security-auditor.tar.gz",
       "file_name": "security-auditor.tar.gz",
       "size_bytes": 30743,
-      "sha256": "cd8941dbb5b904e0f61f5002c4fb31782f1c87b26808466b5469b8ee51dc488b",
+      "sha256": "af27670ca545334cb165a1dfd12dff20f965dabd1f7721d40b3501f775c24ed7",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/security-auditor.tar.gz.sig",
-        "sha256": "a41cacbb240243337daa7497ecbc00921f4b36ac978e5624b4ed15ec79ca1e0a",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.tar.gz.sig dist/archives/security-auditor.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/security-auditor.checksums.txt",
     "file_name": "security-auditor.checksums.txt",
-    "sha256": "55353e13a16fdf269d2acf1b34f7e92f8cc939ed63d93a035383f11066058bdc",
+    "sha256": "f50d802ec5a2601557ca7332daf277a299c0f246b458e514eeecaf22c1ee753c",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/security-auditor.checksums.txt.sig",
-      "sha256": "250b42da442c90dac5831cbe91df275bd2501b95c4616a575f4fda66c43769e5",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/security-auditor.checksums.txt.sig dist/archives/security-auditor.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
-    "package_sha256": "ac004fd470d53386480373f2d20b94975f70f7f4a0fbc3a37dd5a19dfcb38eae"
+    "package_sha256": "adb4a85e54829371a4b2c143431c7f794f6c9bb0ccf8d2c5f53c8b3da160c369"
   }
 }

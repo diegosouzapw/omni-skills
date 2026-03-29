@@ -1,0 +1,304 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "managing-groups",
+  "slug": "managing-groups",
+  "display_name": "XMTP groups",
+  "description": "Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sending welcome messages. Triggers on group creation, member management, or permissions.",
+  "version": "1.0.0",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/managing-groups/SKILL.md",
+  "paths": {
+    "root": "skills/managing-groups",
+    "manifest": "dist/manifests/managing-groups.json",
+    "metadata": "skills/managing-groups/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 8,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 16,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 385,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 6,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 2.87
+      }
+    },
+    "quality": {
+      "score": 38,
+      "tier": "starter",
+      "breakdown": {
+        "body": 10,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 0
+      }
+    },
+    "security": {
+      "score": 90,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/managing-groups/rules/welcome-on-install.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "See the [creating-inline-actions](../../creating-inline-actions/) skill for implementing `ActionBuilder`.",
+          "line": 52
+        }
+      ],
+      "signals": {
+        "scanned_files": 7,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/managing-groups/rules/welcome-on-install.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 1701,
+    "content_length": 2027,
+    "body_lines": 70,
+    "word_count": 201,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 385,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 6,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 2.87
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/managing-groups/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1083,
+      "sha256": "f621c96155de32eec87646a49247ae0e9c15da8327027e19e4df3ba3c3d7b7f4"
+    },
+    {
+      "path": "skills/managing-groups/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 676,
+      "sha256": "7f7f6c968de7ec02082ee63ebef754c3e710683f512971f70399cd753a26ad9b"
+    },
+    {
+      "path": "skills/managing-groups/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 2027,
+      "sha256": "96610452fbc690ce4a74dde526d1ada793758d616d471e24045fb33dfea59639"
+    },
+    {
+      "path": "skills/managing-groups/metadata.json",
+      "kind": "support",
+      "size_bytes": 5918,
+      "sha256": "21d6baad1a51c06426afa0095c67dbd284e2b7d5b8d3e801c750e3aedf5078d0"
+    },
+    {
+      "path": "skills/managing-groups/rules/create-group.md",
+      "kind": "support",
+      "size_bytes": 1307,
+      "sha256": "4f2c25374d919fe05861b02172ca45586546983df01d2f7f85332c68245e598f"
+    },
+    {
+      "path": "skills/managing-groups/rules/members-add.md",
+      "kind": "support",
+      "size_bytes": 1271,
+      "sha256": "c1d3094c4b296ec8cf02b13df9aff8f25c2d0a974c93cfb85b3392cd213eccf4"
+    },
+    {
+      "path": "skills/managing-groups/rules/permissions-roles.md",
+      "kind": "support",
+      "size_bytes": 1412,
+      "sha256": "cdd45f79690453ed72ef56d16d0b06d348b64f1459ed1de349cd652ca11c90e3"
+    },
+    {
+      "path": "skills/managing-groups/rules/welcome-on-install.md",
+      "kind": "support",
+      "size_bytes": 2291,
+      "sha256": "8aee57b06d582ca08bc2f47f3ee6985840f0a21768016f9f188e4a11f1428fd0"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/managing-groups.zip",
+      "file_name": "managing-groups.zip",
+      "size_bytes": 17159,
+      "sha256": "deacbecd39add22dd35b4654343a6e2687c1798287dff858b7a65856871212fb",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/managing-groups.tar.gz",
+      "file_name": "managing-groups.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "10409b8ac21f661679d246de1919a278003c41ef381e4e9cd39c1361984955f1",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/managing-groups.checksums.txt",
+    "file_name": "managing-groups.checksums.txt",
+    "sha256": "4e024c74f17ff7bd4f7c50f3fb419c784eef0ba9dcc61518d39a2ae642a040cd",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "96610452fbc690ce4a74dde526d1ada793758d616d471e24045fb33dfea59639",
+    "package_sha256": "bfd85f78034e3715d570ac0f3ac6a4dfe9294c971bf6527b1efdda8ecfe592af"
+  }
+}

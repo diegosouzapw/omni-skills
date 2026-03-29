@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/observability-review/scripts/render_observability_packet.py",
-              "sha256": "cb76bc0a3bed20af2b923c20e0d81485686bbeab99f47482794a0f74cfcccd65",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/observability-review/metadata.json",
       "kind": "support",
-      "size_bytes": 6059,
-      "sha256": "dcfe94972cfe15ad8b7c496581d224f89d340603078c16fa90fd02a767bdf5eb"
+      "size_bytes": 5773,
+      "sha256": "855001144c09701585bb9d4cf45918c0de209c8bc9e6217eb481b7a6b41fa056"
     },
     {
       "path": "skills/observability-review/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/observability-review.zip",
       "file_name": "observability-review.zip",
-      "size_bytes": 17909,
-      "sha256": "69f3c30a2d70cfc06c301dd2bf2b205e8fc4885b6b553bbbbcd10add5a4f7761",
+      "size_bytes": 17623,
+      "sha256": "8a2112264141f0754a5890c97ab32847a3a1de8762a0696c0de62859d4d33915",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/observability-review.zip.sig",
-        "sha256": "5dcf3c9a957c477ad3cb004624ebeb14822d20383f79d92f574a3ca8e9a57272",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/observability-review.zip.sig dist/archives/observability-review.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/observability-review.tar.gz",
       "file_name": "observability-review.tar.gz",
       "size_bytes": 30743,
-      "sha256": "2bcad364b5f9f50dfe6d666287694a0fd78b0d2e0e37727974ca14da64c289c3",
+      "sha256": "07f2070e90e72139221b5f91e31f25de26572d6460990555d1f45595511b8076",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/observability-review.tar.gz.sig",
-        "sha256": "614f1145e0f833817bca312624026cab07ca7ff4a7cd7ee773c982af2abcd4df",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/observability-review.tar.gz.sig dist/archives/observability-review.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/observability-review.checksums.txt",
     "file_name": "observability-review.checksums.txt",
-    "sha256": "5470a93f2318ff644cbb715c1cef7b08b73110f4c74a1810648f31cb96e8d73e",
+    "sha256": "6ae1f4b5d166105b4ae4fc767da279028259258fc3a610f4bb9517c2610cb381",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/observability-review.checksums.txt.sig",
-      "sha256": "39253e4e97ee1f4d4e5b00972641d4dca4e50953834da58521ddc0088ec75efc",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/observability-review.checksums.txt.sig dist/archives/observability-review.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "d9d6b8b29a670b8b3b4ecd9a3d7abca404895197dbac0ce88d82f72b4d4e8181",
-    "package_sha256": "38369f788ffc81794e8982381b0dcebdd97262930cbc9305c24a6660ff297d86"
+    "package_sha256": "b022cb5c0209fc6bbe075361a9ffad70d4c8256d1d94bccf54c3b949ac6e4cb4"
   }
 }

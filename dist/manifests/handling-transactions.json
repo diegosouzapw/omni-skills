@@ -1,0 +1,287 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "handling-transactions",
+  "slug": "handling-transactions",
+  "display_name": "XMTP transactions",
+  "description": "Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or handling transaction confirmations. Triggers on USDC transfer, wallet calls, or transaction reference.",
+  "version": "1.0.0",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/handling-transactions/SKILL.md",
+  "paths": {
+    "root": "skills/handling-transactions",
+    "manifest": "dist/manifests/handling-transactions.json",
+    "metadata": "skills/handling-transactions/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 7,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 20,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 1164,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 9,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 2.85
+      }
+    },
+    "quality": {
+      "score": 46,
+      "tier": "bronze",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 2
+      }
+    },
+    "security": {
+      "score": 100,
+      "tier": "hardened",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 6,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 3678,
+    "content_length": 4025,
+    "body_lines": 134,
+    "word_count": 382,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 1164,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 9,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 2.85
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/handling-transactions/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1122,
+      "sha256": "0423657bd98b3dab58817c1f9b4a3e75c36a3132799e5d5ac3895e6c38d70686"
+    },
+    {
+      "path": "skills/handling-transactions/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 694,
+      "sha256": "c477b48f7fcd8fd23a6dc4d3b54a2ef62de705a172f461829cfaa1154aaac62e"
+    },
+    {
+      "path": "skills/handling-transactions/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 4025,
+      "sha256": "31599069ee7ce29f78f0051537936e65db7b008efc76bc6c023ef719a781a9c3"
+    },
+    {
+      "path": "skills/handling-transactions/metadata.json",
+      "kind": "support",
+      "size_bytes": 5398,
+      "sha256": "33202d0014775e98e78b24b464cd7a8e1e027c8eea20a853e025621af629f4f8"
+    },
+    {
+      "path": "skills/handling-transactions/rules/balance-check.md",
+      "kind": "support",
+      "size_bytes": 2081,
+      "sha256": "0b0c50ae1ffdcf139098ab7b8d3b878fa4f428e420b376e3ce0c75a84832cb32"
+    },
+    {
+      "path": "skills/handling-transactions/rules/receive-transaction-reference.md",
+      "kind": "support",
+      "size_bytes": 1638,
+      "sha256": "bbcaf7d867cfc9eadefe0330e2755e377fe3745ad78400525f2e22cd5b00314f"
+    },
+    {
+      "path": "skills/handling-transactions/rules/send-usdc-transfer.md",
+      "kind": "support",
+      "size_bytes": 1501,
+      "sha256": "ae7b477ff2dcacc0d3bea1f7d1ac2540d1af87308e39514d846477d82e9168e9"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/handling-transactions.zip",
+      "file_name": "handling-transactions.zip",
+      "size_bytes": 17595,
+      "sha256": "7c6268f2cf710ae7f52485df9a2cd6b30bab53bc4a69bf6f3bfcb77825400cf5",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/handling-transactions.tar.gz",
+      "file_name": "handling-transactions.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "06c7a4b5a7652347937446fea4584ec213e51f4efbd298edbd0582d4fe408839",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/handling-transactions.checksums.txt",
+    "file_name": "handling-transactions.checksums.txt",
+    "sha256": "4c96e66f811defa91b6fdefa8d731a9d7249d4185c09588f0131125895492a9b",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "31599069ee7ce29f78f0051537936e65db7b008efc76bc6c023ef719a781a9c3",
+    "package_sha256": "b14975f20769975c7b3b9e60780e32f711bd53eaf4961918b8134200262b1b62"
+  }
+}

@@ -234,26 +234,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/brainstorming/scripts/render_idea_matrix.py",
-              "sha256": "67268848333e546aab179a5cdd9f48c9297f2b59953328c48f505710173584e4",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -329,8 +319,8 @@
     {
       "path": "skills/brainstorming/metadata.json",
       "kind": "support",
-      "size_bytes": 5995,
-      "sha256": "7231cdd35e4825853333a169059722e97a599c133aa936c58da7e5a9028dc937"
+      "size_bytes": 5725,
+      "sha256": "36e812e4b9336466a6bab449b65daee95fa75cc62a0e9265fac18a1f373d9193"
     },
     {
       "path": "skills/brainstorming/agents/openai.yaml",
@@ -374,15 +364,14 @@
       "format": "zip",
       "path": "dist/archives/brainstorming.zip",
       "file_name": "brainstorming.zip",
-      "size_bytes": 14897,
-      "sha256": "bf678ea65e2e7d2c0da6cbd9a001b214f11494934b66524d25c2bc1ee8c77e6c",
+      "size_bytes": 14627,
+      "sha256": "9143605542ce2ed15db45dc997f7544bfc78a643d749468332203138d04a75b6",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/brainstorming.zip.sig",
-        "sha256": "f30a9220b4f19b9741e428f1a36249595ea02b86cacf1a8375754c4f0f48db55",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.zip.sig dist/archives/brainstorming.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -390,32 +379,30 @@
       "path": "dist/archives/brainstorming.tar.gz",
       "file_name": "brainstorming.tar.gz",
       "size_bytes": 30743,
-      "sha256": "47e163b730fb90b29f16525404197743ce76f31ab6dc0b3db175f045471b0ca4",
+      "sha256": "8bd771c1f3de269f37d09020433b2798a83d857d200f827e243fab31f177eb0f",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/brainstorming.tar.gz.sig",
-        "sha256": "5e1b53a40ef45b5d8317d7d47b0ccb50d345a6ec5fbf506f39815ad1b69091b3",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.tar.gz.sig dist/archives/brainstorming.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/brainstorming.checksums.txt",
     "file_name": "brainstorming.checksums.txt",
-    "sha256": "bff0396b36850e6e37d2afa98d5e3c0e8b66dbecab321bfaf290c690277dfde2",
+    "sha256": "214e9dfb079ccaacff02932d7f5dc94eb7a8f67465d6eaf4d8a87e63f6219907",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/brainstorming.checksums.txt.sig",
-      "sha256": "446f989b8db38a0d174748d248d627798e19e2f74d7fc22fdde0db0acb042fa0",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/brainstorming.checksums.txt.sig dist/archives/brainstorming.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
-    "package_sha256": "d1c048497c4f3024c17864ab8c9c141c88c5343e6ee332fc286e2554fb2bc2a7"
+    "package_sha256": "f65b8517896f98810b33d603e12b2c9b3a2d3afecc855361a4143ecf02e83131"
   }
 }

@@ -1,0 +1,2 @@
+026e0becfa0f426b111d52d7d42116fa28563628bd104ed9e0d70149543166a0  handling-attachments.zip
+8f56877b042febe9003a0002ba2e28b626653ab23346bfb8bc8cf36fb04c5920  handling-attachments.tar.gz

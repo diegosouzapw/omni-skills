@@ -236,26 +236,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/find-skills/scripts/render_query_packet.py",
-              "sha256": "ca780ef1585c9f48dbaec146c7bc3423529d3c327b0c19d3f96dc5c788c4d545",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -331,8 +321,8 @@
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
-      "size_bytes": 6086,
-      "sha256": "40db8889f3bff6e3ada655b2f418cc0a461f7600bf9b1bc22a4dc02b07199b17"
+      "size_bytes": 5817,
+      "sha256": "798dbdd704194bdac2074afd7ea1253d37b483be238c2a7b528458f2e2df6a2e"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -376,15 +366,14 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 16213,
-      "sha256": "2b6b12572fbead9d86536c51dfaa35e0cbcf98d964c5c90f64499ff6e08d95f5",
+      "size_bytes": 15944,
+      "sha256": "1abf4c984ef4c4781e13bf1b28a0a09a91e4baa8db55bd6c8f346cf07d04b973",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/find-skills.zip.sig",
-        "sha256": "3a15e195b91742425a86458d643b9e4e89400f1943a0ef2c5bd5e2ea260dcc74",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.zip.sig dist/archives/find-skills.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -392,32 +381,30 @@
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
       "size_bytes": 30743,
-      "sha256": "b0beebbca3d893b1aa97cb5c6a5e16fb7629a298e200d69be0be2effdbf07060",
+      "sha256": "b0d4396905951a7145e0ace1b3f9294461efba0d30cd4bc655c6d0424c02b3e6",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/find-skills.tar.gz.sig",
-        "sha256": "d047c3ddccd2f96366ee2f742722e196823c733a9ce91bee4b492c6f34bb0e90",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.tar.gz.sig dist/archives/find-skills.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "51628902fed7712206da3600857c890deab08bf8ad4273e06c733e414e3ed27d",
+    "sha256": "c0e89e9d5f1689a7c36939a0692c0369be27a47435fa61d314290116339f6923",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/find-skills.checksums.txt.sig",
-      "sha256": "7826ff931e303d9f6b9d598d4777a427605bc0fe3ad099beee51de1477b0ae16",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/find-skills.checksums.txt.sig dist/archives/find-skills.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
-    "package_sha256": "7ec63a680c50b05c7a3cd85f9722346fd465b1e479c85a06d8b2b4cf8ff9d439"
+    "package_sha256": "17b851fd32c9a25c2129dbb36ab6b57b12e726f2d26647376f5c6898b0194cb1"
   }
 }

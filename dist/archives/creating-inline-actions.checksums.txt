@@ -1,0 +1,2 @@
+7ccfa0eec9ae6d7e397dbaef6bee64aa87b0fd1c61f2141a987422a427ff889c  creating-inline-actions.zip
+00975d8a6a70f3ede8e56cacb59af2bbf8319b2d1e5012d146c4a32279a9bfa4  creating-inline-actions.tar.gz

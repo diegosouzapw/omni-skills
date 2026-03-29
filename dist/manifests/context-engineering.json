@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/context-engineering/scripts/render_context_packet.py",
-              "sha256": "aed8ed7c043aec4d95198d4d6718ab6bf991bcee3a47a5cc0a41f80f3bb495cd",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/context-engineering/metadata.json",
       "kind": "support",
-      "size_bytes": 6114,
-      "sha256": "2b083ec5d8a69c7d844f363a376df974d6da913da5202d3a275271934f9b555e"
+      "size_bytes": 5835,
+      "sha256": "5f47da52db1c1843d9bd221a9fc00822ace7d1ded4e4247c3d07efee09a81b31"
     },
     {
       "path": "skills/context-engineering/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/context-engineering.zip",
       "file_name": "context-engineering.zip",
-      "size_bytes": 17361,
-      "sha256": "4b18dc4419ac397c3365d50a5bf1d53fc78f4c5841faa4560c5aa10ff5481906",
+      "size_bytes": 17082,
+      "sha256": "7c2260c515d11ad1152b524e67d03cac7b3e327b327e151b5a63738b1717cd53",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/context-engineering.zip.sig",
-        "sha256": "47c631fb265b6cf202e3b449765a1059c3922e260b5e7fdc040749320ad1ed77",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/context-engineering.zip.sig dist/archives/context-engineering.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/context-engineering.tar.gz",
       "file_name": "context-engineering.tar.gz",
       "size_bytes": 30743,
-      "sha256": "20a46fcfdb780f094aee4df109c3838777e4cbc0f9042c25b28b6a3a21edfcb9",
+      "sha256": "3c5626bc30902bf0de1aa9549d36bd5eae74d135cf88b58be4c6f4db977841d3",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/context-engineering.tar.gz.sig",
-        "sha256": "e7647bb3b8ed439d9272ae2ef997b0266a7311d6e0da4565bbbd0bafdd680ef2",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/context-engineering.tar.gz.sig dist/archives/context-engineering.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/context-engineering.checksums.txt",
     "file_name": "context-engineering.checksums.txt",
-    "sha256": "0a5e67c3b44a8a8233927cd1c799685fb2dc9f7052fdcd1b3bc43d427293ccec",
+    "sha256": "cc7612524e5235778263c23cc6d4b4e18b5216a9b67a22f510d147bdd91091df",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/context-engineering.checksums.txt.sig",
-      "sha256": "be01ac064df422804cfdcaf0e1131e82f95fe467f3b103a76e27a8498f0a0655",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/context-engineering.checksums.txt.sig dist/archives/context-engineering.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "2a68ac95e3a9c9b3e2b8fcaba52a5d4d05ac7a03d679ab57dbd19e4606ae23fe",
-    "package_sha256": "b85cbb66a05345f857a96ceab72e21ff2c83429007e4ada4c764f13d4a99188e"
+    "package_sha256": "87c51b862738538331d0d72da0a7320e81e9281a1fbf0c6f72bc65e893bb89ac"
   }
 }

@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/incident-response/scripts/render_incident_packet.py",
-              "sha256": "d10caa25f886c7d182dc21669a73f5fa70fbb7122fe8a47a5888e71605159bf4",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/incident-response/metadata.json",
       "kind": "support",
-      "size_bytes": 6108,
-      "sha256": "6413220c71a96df5e247be260f0bf6341cf65f82808424d6068479bf658f5b52"
+      "size_bytes": 5830,
+      "sha256": "45e5ad1d2d64fcdb46bb98f2c3b641a07084d1c48222e403a613b44b40b98352"
     },
     {
       "path": "skills/incident-response/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/incident-response.zip",
       "file_name": "incident-response.zip",
-      "size_bytes": 17356,
-      "sha256": "33aa2e794f552ee42472c36a8fc99e314bbc096e8582463a38e55731f6c5caaf",
+      "size_bytes": 17078,
+      "sha256": "1cfaf4d2d67fa28ef6bcc9065b9621f35fe69dab35613ca281a52f391749ae87",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/incident-response.zip.sig",
-        "sha256": "c2d563119d3bbaab05aaa58d05701e9aa7406a76c4512cabc55910d24b5c21d7",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/incident-response.zip.sig dist/archives/incident-response.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/incident-response.tar.gz",
       "file_name": "incident-response.tar.gz",
       "size_bytes": 30743,
-      "sha256": "c79a148483780711ded68d6d5d7274783005ccb6c4b116e50f4c014b0b65de57",
+      "sha256": "6a2cb778ade0565df872dc0debfd2ba45f5175607f6d22848658cd1a67158270",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/incident-response.tar.gz.sig",
-        "sha256": "de0e286148bb1d3a8dd473ed43dde4878359c60d012905358ee9bab6da85b5fc",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/incident-response.tar.gz.sig dist/archives/incident-response.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/incident-response.checksums.txt",
     "file_name": "incident-response.checksums.txt",
-    "sha256": "b7200847f784b0aa76336197fd7c6db8945c58b69836b6f3ae4ef8c3dec55b97",
+    "sha256": "1ec0ebd249bdd4fef34969d3f372bfd92dab3567b00eb7761cc4632244575167",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/incident-response.checksums.txt.sig",
-      "sha256": "332f9e5f99dae2b386dffcc9b58d10aa5f09e0eb3a16f634b0cce5936957e9a4",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/incident-response.checksums.txt.sig dist/archives/incident-response.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "ad9f5320762b014b86979db9f3e546cf03682569d598dacdf47eeaf00fc6bc33",
-    "package_sha256": "58af948a91a670c2af1c630136a7ade49d2972912f1b43abbf6e17f1f8baee16"
+    "package_sha256": "b6e7aa9984846681ee6c93937688ad6904c952e941afaa7c32a460db54a95a41"
   }
 }
