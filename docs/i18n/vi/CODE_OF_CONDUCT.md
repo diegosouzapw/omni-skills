@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Chúng tôi với tư cách là thành viên, người đóng góp và người duy trì cam kết biến việc tham gia vào dự án và cộng đồng này thành một**trải nghiệm không bị quấy rối cho mọi người**, bất kể tuổi tác, kích thước cơ thể, khuyết tật hữu hình hay vô hình, dân tộc, đặc điểm giới tính, nhận dạng và biểu hiện giới tính, trình độ kinh nghiệm, trình độ học vấn, tình trạng kinh tế xã hội, quốc tịch, ngoại hình cá nhân, chủng tộc, đẳng cấp, màu da, tôn giáo hoặc bản dạng và khuynh hướng tình dục.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
-|:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| Hành vi | Ví dụ |
+|:----------|:--------|
+| 💬 Ngôn ngữ chào mừng | Hòa nhập và tôn trọng trong giao tiếp |
+| 🤝 Tôn trọng sự khác biệt | Đánh giá các quan điểm và kinh nghiệm khác nhau |
+| 📝 Phê bình mang tính xây dựng | Chấp nhận và đưa ra phản hồi một cách duyên dáng |
+| 🎯 Tập trung vào cộng đồng | Ưu tiên những gì tốt nhất cho dự án và cộng đồng |
+| ❤️ Đồng cảm | Thể hiện sự đồng cảm với các thành viên khác trong cộng đồng |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
-|:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| Hành vi |
+|:----------|
+| 🚫 Ngôn ngữ hoặc hình ảnh khiêu dâm, sự chú ý hoặc tán tỉnh về tình dục |
+| 🚫 Bình luận mang tính chất troll, xúc phạm hoặc xúc phạm |
+| 🚫 Công kích cá nhân hoặc chính trị |
+| 🚫 Quấy rối công khai hoặc riêng tư |
+| 🚫 Xuất bản thông tin cá nhân của người khác mà không có sự cho phép rõ ràng |
+| 🚫 Hành vi khác được coi là không phù hợp trong môi trường chuyên nghiệp |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+Các trường hợp lạm dụng, quấy rối hoặc hành vi không thể chấp nhận được có thể được báo cáo cho người bảo trì thông qua:
 
-| Channel | How |
+| Kênh | Như thế nào |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 Kênh riêng của GitHub | Liên hệ qua Bảo mật hoặc Thảo luận GitHub |
+| 📧 Liên hệ trực tiếp | Liên hệ trực tiếp với người bảo trì |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Tất cả các báo cáo sẽ được xem xét và điều tra nhanh chóng và công bằng.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Quy tắc ứng xử này được điều chỉnh từ [Giao ước cộng tác viên](https://www.contributor-covenant.org), phiên bản 2.1.

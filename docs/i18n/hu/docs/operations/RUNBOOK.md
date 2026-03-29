@@ -5,9 +5,7 @@
 ---
 
 
-> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
-
----
+>**A teljes használati útmutató az Omni Skills felépítéséhez, érvényesítéséhez, kiszolgálásához, biztosításához és hibaelhárításához.**---
 
 ## 1️⃣ Local Development Cycle
 
@@ -27,44 +25,36 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-| Command | What It Does |
-|:--------|:-------------|
-| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
-| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
-| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
-| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
-| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
-| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
-
----
+| Parancs | Mit csinál |
+|:--------|:--------------|
+| `npm run validate` | Ellenőrzi a „SKILL.md” fájlt, újragenerálja a „metadata.json” fájlt, kiszámítja a taxonómiát/marity/quality/security |
+| `npm run taxonomy:report` | Kategória-eltolódási javaslatokat jelenít meg fájlok átírása nélkül |
+| `npm run verify:scanners` | Megerősíti a szkenner lefedettségét a generált készségek metaadatai között |
+| `npm run release:notes` | Egyéni kiadási megjegyzéseket hoz létre metaadatokból, csomagokból és Git előzményekből |
+| `npm run build` | Újragenerálja a katalógust/manifesteket/archívumokat/ellenőrző összegeket, ellenőrzi a szkenner lefedettségét és archívumát, újraépíti a `docs/CATALOG.md' fájlt |
+| "npm teszt" | Teljes füstcsomag a CLI, API, MCP, oldalkocsi és archív folyamokon keresztül |---
 
 ## 🖥️ Visual Shell
 
-The published CLI now includes an Ink-based operator shell:
-
-```bash
+A közzétett parancssori felület immár tartalmaz egy tinta alapú operátorhéjat:```bash
 npx omni-skills ui
 ```
 
-Current capabilities:
+Jelenlegi képességek:
 
-- guided install for known clients and custom paths
-- search-then-install flow
-- MCP launch wizard
-- API launch wizard
-- A2A launch wizard
-- recent installs and service relaunches
-- named install and service presets
+- Irányított telepítés ismert kliensekhez és egyéni elérési utakhoz
+- keresés, majd telepítés folyamat
+- MCP indító varázsló
+- API indító varázsló
+- A2A indító varázsló
+- legutóbbi telepítések és szolgáltatás újraindítások
+- megnevezett telepítési és szervizbeállítások
 
-Local state path:
-
-```text
+Helyi állam elérési útja:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Fallback:
-
-```bash
+Tartalék:```bash
 npx omni-skills ui --text
 ```
 
@@ -100,40 +90,32 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-The static scanner checks all skills automatically:
+A statikus szkenner automatikusan ellenőrzi az összes készséget:
 
-| Rule Family | Examples |
+| Szabálycsalád | Példák |
 |:------------|:---------|
-| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
-| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
-| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
-### 🦠 Optional ClamAV
+| 🎭 Azonnali injekció | Kiszűrési minták, utasítások felülbírálása |
+| 💣 Pusztító parancsok | "rm -rf", "formátum", "mkfs" |
+| 🔑 Gyanús utak | `/etc/shadow`, `~/.ssh`, hitelesítő adatok |
+| ⚠️ Kockázatos primitívek | `shell=True`, `pickle.load`, `eval`, `extractall` |### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> Requires `clamscan` in `PATH`.
-
-### 🔒 Optional VirusTotal
+> Szükséges a „camscan” a „PATH”-ban.### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> Hash lookup only — unknown files are **not uploaded** by default.
-
-### ✅ Verify Scanner Coverage
+> Csak hash keresés – az ismeretlen fájlok alapértelmezés szerint**nincs feltöltve**.### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Szigorú kioldási kapu:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -145,17 +127,15 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-Archives are produced automatically by `npm run build`:
+Az archívumokat az "npm run build" automatikusan hozza létre:
 
-| Output | Path |
+| Kimenet | Útvonal |
 |:-------|:-----|
 | 📦 ZIP | `dist/archives/<skill>.zip` |
 | 📦 Tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
+| 🔒 Ellenőrző összegek | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
-
-### ✅ Verify Archives
+A `dist/` szándékosan elkövetett ebben a tárolóban. Az előállított katalógus, jegyzékek, csomagok és archívumok futásidejű bemenetek a CLI-telepítési folyamatokhoz, az API-letöltési felületekhez, az MCP-előzetekhez, az A2A-feladat-átadáshoz, a füsttesztekhez és a kiadás-ellenőrzéshez.### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -167,43 +147,35 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Optional public key override:
-
-```bash
+Opcionális nyilvános kulcs felülírása:```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
-
-### 🔁 Compute the Next Package Version
+> Ha nincs megadva nyilvános kulcs, a build az `openssl`-en keresztül származtat egyet a `dist/signing/` fájlba.### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-Version policy:
+Verziószabályzat:
 
-- patch increments until `.10`
-- after `.10`, the next release rolls minor and resets patch to `.0`
+- a javítás 0,10-ig növeli
+- a „.10” után a következő kiadás kisebb értékű lesz, és visszaállítja a javítást „.0”-ra
 
-Examples:
+Példák:
 
-- `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`
-
----
+- "0.1.0 -> 0.1.1".
+- "0.1.10 -> 0.2.0".---
 
 ## 5️⃣ Installation Flows
 
-| Scenario | Command |
+| Forgatókönyv | Parancs |
 |:---------|:--------|
-| 📥 Default install (Antigravity) | `npx omni-skills` |
-| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
-| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
-| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
-| 🩺 Verify install | `npx omni-skills doctor` |
-
----
+| 📥 Alapértelmezett telepítés (Antigravitáció) | "npx omni-skills" |
+| 🎯 Specifikus készség + ügyfél | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Felfedezés → telepítés | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Csomag telepítés | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Ellenőrizze a telepítést | `npx omni-skills doctor` |---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -216,21 +188,19 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-| Filter | Flag | Example |
+| Szűrő | zászló | Példa |
 |:-------|:-----|:--------|
-| 📂 Category | `--category` | `--category development` |
-| 🖥️ Tool | `--tool` | `--tool cursor` |
-| ⚠️ Risk | `--risk` | `--risk safe` |
-| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
-| 🔄 Order | `--order` | `--order asc\|desc` |
-| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
-| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
-| 🎯 Min level | `--min-level` | `--min-level 2` |
-| 🛡️ Min security | `--min-security` | `--min-security 90` |
-| ✅ Validation | `--validation-status` | `--validation-status passed` |
-| 🛡️ Security | `--security-status` | `--security-status passed` |
-
----
+| 📂 Kategória | "--kategória" | "--kategória fejlesztés" |
+| 🖥️ Eszköz | "--eszköz" | `--eszköz kurzor` |
+| ⚠️ Kockázat | "--kockázat" | "--kockázatbiztos" |
+| 📊 Rendezés | "--rendezés" | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Rendelés | "--rend" | `--order asc\|desc` |
+| ⭐ Minimális minőség | "--min-minőség" | "--min-minőség 80" |
+| 📋 Min BP | "--min-best Practices" | `--min-best-practices 60` |
+| 🎯 Minimális szint | `--min-szint` | `--min-2. szint` |
+| 🛡️ Minimális biztonság | "--min-security" | "--min-security 90" |
+| ✅ Érvényesítés | "--validation-status" | `--ellenőrzési állapot sikeres` |
+| 🛡️ Biztonság | "--biztonsági állapot" | "--biztonsági állapot sikeres" |---
 
 ## 7️⃣ API Operations
 
@@ -242,33 +212,29 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-| Method | Endpoint | Purpose |
-|:-------|:---------|:--------|
-| `GET` | `/healthz` | Health check |
-| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
-| `GET` | `/v1/skills` | List with filters |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/skills/:id/archives` | Archive listing |
-| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
+| Módszer | Végpont | Cél |
+|:-------|:----------|:--------|
+| "GET" | "/healthz" | állapotfelmérés |
+| "GET" | `/openapi.json` | OpenAPI 3.1 specifikáció |
+| "GET" | "/v1/készségek" | Lista szűrőkkel |
+| "GET" | "/v1/search" | Teljes szöveges keresés |
+| "GET" | `/v1/skills/:id/archives` | Archív lista |
+| "GET" | `/v1/skills/:id/download/archive?format=zip` | Archívum letöltése |
+| "GET" | `/v1/skills/:id/download/archive/checksums` | Ellenőrzőösszeg jegyzék |### 🔐 Hosted API Hardening
 
-### 🔐 Hosted API Hardening
-
-| Feature | Command |
+| Funkció | Parancs |
 |:--------|:--------|
-| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
-| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
-| 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
-| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
-| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
-| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
-| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
-| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
-| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
+| 🔑 Bemutató hitelesítés | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API kulcs hitelesítés | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api' |
+| 🛂 Admin futásidejű hitelesítés | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
+| 🚦 Díjkorlátozás | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx minden készséges API' |
+| 📝 Audit naplózás | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx minden készség api` |
+| 🌍 CORS engedélyezési lista | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 IP engedélyezési lista | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills API' |
+| 🚧 Karbantartási mód | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx minden készséges API' |
+| 🔁 Megbízható proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
-
----
+> 🟢 `/healthz` tervezés szerint nyitva marad; a katalógusútvonalak engedélyezése esetén hitelesítést igényelnek. A „GET /admin/runtime” konfiguráláskor megköveteli az adminisztrátori tokent, és visszaadja az élő irányítási pillanatképet.---
 
 ## 8️⃣ MCP Operations
 
@@ -288,33 +254,29 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-The sidecar can now preview or write MCP config for:
+Az oldalkocsi most megtekintheti vagy írhatja az MCP-konfigurációt a következőkhöz:
 
-- Claude user and project settings
-- Claude Desktop config
-- Cline user config
-- GitHub Copilot CLI user and repository config
-- Cursor user and workspace config
-- Codex TOML config
-- Gemini user and project settings
-- Kilo CLI user and project config
-- Kilo workspace config
-- Kiro user and project settings
-- OpenCode user and workspace config
-- Continue workspace YAML config
-- Windsurf user config
-- Zed workspace config
-- workspace `.mcp.json`
-- VS Code workspace and user config
-- Dev Container config
+- Claude felhasználói és projektbeállítások
+- Claude Desktop konfiguráció
+- Cline felhasználói konfiguráció
+- GitHub Copilot CLI felhasználói és tárház konfigurációja
+- Kurzor felhasználó és munkaterület konfigurációja
+- Codex TOML konfig
+- Gemini felhasználói és projektbeállítások
+- Kilo CLI felhasználó és projekt konfigurációja
+- Kilo munkaterület konfiguráció
+- Kiro felhasználói és projektbeállítások
+- OpenCode felhasználói és munkaterület-konfiguráció
+- Folytassa a munkaterület YAML konfigurációját
+- Windsurf felhasználói konfiguráció
+- Zed munkaterület konfigurációja
+- ".mcp.json" munkaterület
+- VS Code munkaterület és felhasználói konfiguráció
+- Dev Container konfigurációja
 
-`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
+A "configure_client_mcp" kliensenkénti "recepteket" is visszaad, így az operátorok megkapják a megfelelő CLI-t vagy a kézi beállítási lépéseket az előnézettel együtt.### 🧾 MCP Config Preview and Write Flow
 
-### 🧾 MCP Config Preview and Write Flow
-
-Use the unified CLI when you want config generation without calling the MCP tool directly:
-
-```bash
+Használja az egyesített parancssori felületet, ha az MCP eszköz közvetlen meghívása nélkül szeretne konfigurációt generálni:```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -323,19 +285,15 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-The visual shell exposes the same workflow through:
+A vizuális shell ugyanazt a munkafolyamatot jeleníti meg:
 
-- `npx omni-skills ui`
-- `Services`
-- `Configure MCP client`
+- "npx omni-skills ui".
+- "Szolgáltatások".
+- `MCP kliens konfigurálása`
 
-The command stays in preview mode unless `--write` is passed.
+A parancs előnézeti módban marad, hacsak nem adjuk át a `--write` parancsot.### 🔐 Hosted MCP Hardening
 
-### 🔐 Hosted MCP Hardening
-
-Same env vars as the API:
-
-```bash
+Ugyanazok az env vars, mint az API:```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -345,11 +303,9 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Védett útvonalak**: "POST /mcp" · "GET /sse" · "POST /üzenetek" · "GET /admin/runtime"
 
-> 🟢 `/healthz` remains open.
-
----
+> 🟢 `/healthz` nyitva marad.---
 
 ## 9️⃣ A2A Operations
 
@@ -368,17 +324,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-The default local path stays simple-first:
+Az alapértelmezett helyi elérési út mindenekelőtt egyszerű marad:
 
-- `json` or `sqlite` persistence can run with queue polling disabled
-- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
-- keep Redis coordination as an advanced hosted option, not the baseline
+- A "json" vagy "sqlite" perzisztencia futhat a sorlekérdezés letiltásával
+- csak akkor állítsa be az "OMNI_SKILLS_A2A_QUEUE_ENABLED=1" értéket, ha több munkás követelést és bérleti feladatátvételt szeretne
+- tartsa meg a Redis-koordinációt fejlett hosztolt opcióként, nem pedig alapként### 🧱 Multi-Worker Lease Setup
 
-### 🧱 Multi-Worker Lease Setup
-
-Run more than one A2A node against the same SQLite store to get lease-based failover:
-
-```bash
+Futtasson egynél több A2A-csomópontot ugyanabban az SQLite-tárolóban a bérlet alapú feladatátvételhez:```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -398,13 +350,9 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
+Ha egy dolgozó meghal, miközben egy feladat "dolgozik", egy másik dolgozó visszaigényelheti azt a bérleti szerződés lejárta után, és folytathatja a végrehajtást.### 🟥 Redis Coordination
 
-### 🟥 Redis Coordination
-
-For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
-
-```bash
+Azoknál a hosztolt vagy több csomópontból álló központi telepítéseknél, amelyek nem akarják, hogy a sorkoordináció a megosztott SQLite-tárhoz legyen kötve, állítsa át a koordinátort Redis-re:```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -416,48 +364,40 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-In this mode:
+Ebben a módban:
 
-- persistence still lives in JSON or SQLite
-- task claiming and lease ownership move to Redis
-- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
+- a perzisztencia továbbra is él JSON-ban vagy SQLite-ban
+- a feladatigénylés és a lízingtulajdon átkerül a Redishez
+- több A2A csomópont megoszthat egy sort anélkül, hogy az SQLite sorszintű koordinációra támaszkodna### 📡 Endpoints
 
-### 📡 Endpoints
-
-| Method | Path | Purpose |
+| Módszer | Útvonal | Cél |
 |:-------|:-----|:--------|
-| `GET` | `/healthz` | Health check |
-| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
-| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
+| "GET" | "/healthz" | állapotfelmérés |
+| "GET" | `/.well-known/agent.json` | Ügynökkártya (A2A felfedezés) |
+| "POST" | "/a2a" | JSON-RPC végpont feladatokhoz és adatfolyamokhoz |### 🧭 Supported JSON-RPC Methods
 
-### 🧭 Supported JSON-RPC Methods
+| Módszer | Cél |
+|:-------|:---------|
+| `üzenet/küldés` | Feladat indítása vagy folytatása |
+| `üzenet/folyam` | Indítson el egy feladatot és streamelje az SSE frissítéseit |
+| `feladatok/get` | Feladat pillanatképének lekérdezése |
+| `feladatok/mégse` | Egy aktív feladat megszakítása |
+| `feladatok/újrafeliratkozás` | SSE frissítések folytatása egy meglévő feladathoz |
+| `tasks/pushNotificationConfig/set` | Push webhook regisztrálása |
+| `tasks/pushNotificationConfig/get` | Push konfiguráció olvasása |
+| `tasks/pushNotificationConfig/list` | Egy feladat push konfigurációinak listája |
+| `tasks/pushNotificationConfig/delete` | Távolítsa el a push konfigurációt |### 📡 Task Lifecycle
 
-| Method | Purpose |
-|:-------|:--------|
-| `message/send` | Start or continue a task |
-| `message/stream` | Start a task and stream SSE updates |
-| `tasks/get` | Poll a task snapshot |
-| `tasks/cancel` | Cancel an active task |
-| `tasks/resubscribe` | Resume SSE updates for an existing task |
-| `tasks/pushNotificationConfig/set` | Register a push webhook |
-| `tasks/pushNotificationConfig/get` | Read a push config |
-| `tasks/pushNotificationConfig/list` | List push configs for a task |
-| `tasks/pushNotificationConfig/delete` | Remove a push config |
+A jelenlegi futási környezet támogatja a következő feladatállapotokat:
 
-### 📡 Task Lifecycle
+- `benyújtva`
+- "dolgozik".
+- "bemenet szükséges".
+- "befejezve".
+- `törölve`
+- `nem sikerült`
 
-The current runtime supports these task states:
-
-- `submitted`
-- `working`
-- `input-required`
-- `completed`
-- `canceled`
-- `failed`
-
-Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
-
-### 🧪 Example: Start a Task
+A feladatok egy JSON-fájlban vagy egy SQLite-tárolóban maradnak meg, és újraindításkor újra betöltődnek. A befejezett és megszakított feladatok elérhetőek maradnak. Azokat a feladatokat, amelyeket a leállítás során még "elküldtek" vagy "működtek", a rendszer explicit újraindítási metaadatokkal állítja helyre, és alapértelmezés szerint automatikusan folytatódik.### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -523,14 +463,12 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-The repository now has two workflows:
+Az adattárnak most két munkafolyamata van:
 
-| Workflow | Trigger | Purpose |
-|:---------|:--------|:--------|
-| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
-| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
-
-### 🔖 Tag a Release
+| Munkafolyamat | Trigger | Cél |
+|:---------|:--------|:---------|
+| `validate.yml` | Nyomja meg/PR a "fő" | Építsd meg, teszteld és ellenőrizd, hogy a generált műtermékek véglegesek-e |
+| `release.yml` | Címke push `v*` vagy kézi küldés | Futtasson kiadási szintű szkennereket, ellenőrizze a verziócímkét, írja alá a melléktermékeket, csomagolja be a tarballt, tegye közzé npm-en, és hozza létre a GitHub Release |### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -539,79 +477,73 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-| Secret | Used By | Purpose |
-|:-------|:--------|:--------|
-| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
-| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
+| Titok | Használta | Cél |
+|:-------|:---------|:--------|
+| "VT_API_KEY" vagy "VIRUSTOTAL" | `release.yml` | VirusTotal hash-keresések megkövetelése a kiadás buildjeiben |
+| "OMNI_SKILLS_SIGN_PRIVATE_KEY_B64" vagy "OMNI_SKILLS_SIGN_PRIVATE_KEY" | `release.yml` | Szükséges privát kulcs a leválasztott archívum aláírásához CI |
+| "OMNI_SKILLS_SIGN_PUBLIC_KEY_B64" vagy "OMNI_SKILLS_SIGN_PUBLIC_KEY" | `release.yml` | Opcionális nyilvános kulcs felülírása; egyébként a privát kulcsból származtatva |
+| "NPM_TOKEN" | `publish-npm` job | Az `npm publish` hitelesítése a címkekiadásokhoz |### 🦠 Release Scanner Policy
 
-### 🦠 Release Scanner Policy
-
-`release.yml` sets or prepares:
+`release.yml` beállítja vagy előkészíti:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
-- `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
+- `VT_API_KEY=${{ titkok.VT_API_KEY || titkok.VIRUSTOTAL }}`
+- "OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH" a futó ideiglenes tárhelyéről
 
-That means every tag-based release must:
+Ez azt jelenti, hogy minden címkealapú kiadásnak:
 
-- install and refresh ClamAV on the runner
-- regenerate metadata with ClamAV enabled
-- regenerate metadata with VirusTotal enabled
-- decode CI signing key material into runner temp storage
-- pass `npm run verify:scanners:strict`
-- pass `npm run verify:archives:strict`
-- pass tests and package verification before npm publish
-- generate custom release notes from catalog metadata and git history
-- create a GitHub Release with attached release assets after publish
-
----
+- telepítse és frissítse a ClamAV-ot a futón
+- újra generálja a metaadatokat a ClamAV engedélyezésével
+- újra generálja a metaadatokat a VirusTotal engedélyezésével
+- dekódolja a CI aláíró kulcs anyagát a futó temp tárolóba
+- adja meg az `npm run verify:scanners:strict`
+- adja meg az `npm run verify:archives:strict`
+- át kell menni a teszteken és a csomagellenőrzésen az npm közzététel előtt
+- egyéni kiadási megjegyzések létrehozása a katalógus metaadataiból és a git előzményeiből
+- közzététel után hozzon létre egy GitHub-kiadást csatolt kiadási eszközökkel---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-| Variable | Purpose | Default |
-|:---------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
-| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
-| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
-| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
-| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
-| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
-| `VT_API_KEY` | VirusTotal API key | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
-
----
+| Változó | Cél | Alapértelmezett |
+|:---------|:--------|:---------|
+| `OMNI_SKILLS_ROOT` | Katalógus gyökérútvonalának felülbírálása | Automatikusan észlelt |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra engedélyezett írási útvonalak | Ismert ügyfélgyökerek |
+| `OMNI_SKILLS_MCP_MODE` | Állítsa `helyi` értékre az oldalkocsihoz | Távoli |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt jelző a helyi módhoz | "0" |
+| `OMNI_SKILLS_API_BASE_URL` | Nyilvános API URL az MCP-hez | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Nyilvános alap URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bemutató hitelesítési token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Vesszővel elválasztott API kulcsok | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin futásidejű hitelesítési token | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Maximális kérések ablakonként | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit ablak (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Ellenőrzési naplózás engedélyezése | "0" |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | "json" vagy "szöveg" ellenőrzési kimenet | "json" |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Opcionális naplófájl elérési útja | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Vesszővel elválasztott CORS eredetű engedélyezési lista | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Vesszővel elválasztott IP vagy CIDR engedélyezési lista | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Expressz megbízható proxy beállítása | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Karbantartási válaszok engedélyezése | "0" |
+| "OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS" | Karbantartás `Újrapróbálkozás után` másodperc | "300" |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Szimulált aszinkron feladat késleltetés | "80" |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | "json", "sqlite" vagy "memória" feladattároló | "json" |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Egyéni A2A feladattároló fájl | `~/.omni-skills/state/a2a-tasks.json` |
+| "OMNI_SKILLS_A2A_QUEUE_ENABLED" | Megosztott várólista lekérdezés engedélyezése a bérelt munkavállalók számára | "0" |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | "store", "sqlite", "local" vagy "redis" koordinátor | "üzlet" |
+| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL külső koordinációhoz | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis kulcs előtag a várólista metaadataihoz | "minden készségek:a2a" |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Sorlekérdezési intervallum bérelt munkavállalók számára | "250" |
+| `OMNI_SKILLS_A2A_LEASE_MS` | A bérlet időtartama, mielőtt egy másik munkavállaló visszakövetelhetne egy feladatot | "4000" |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stabil munkavállaló azonosító a bérleti tulajdonjoghoz és a diagnosztikához | Gazdanév + PID + véletlenszerű utótag |
+| "OMNI_SKILLS_A2A_EXECUTOR" | "inline" vagy "process" feladat végrehajtó | "inline" |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Külső dolgozói parancs felülbírálása | Bináris csomópont |
+| "OMNI_SKILLS_A2A_WORKER_ARGS" | JSON-tömb külső dolgozói args | `["packages/server-a2a/src/worker.js"]` |
+| "OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS" | A helyreállított elküldött/munkafeladatok folytatása rendszerindításkor | "1" |
+| "OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS" | Nem HTTPS webhoook engedélyezése a localhost | "0" |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | ClamAV szkennelés engedélyezése | "0" |
+| "VT_API_KEY" | VirusTotal API kulcs | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Privát kulcs az aláíráshoz | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Nyilvános kulcs felülbírálása | Automatikusan származtatott |---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -629,66 +561,46 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. Rebuild with `npm run build`
-2. Rerun `npm run verify:archives`
-3. If signing is enabled, confirm the public key and `openssl` availability
+1. Építse újra az "npm run build" paranccsal
+2. Futtassa újra az `npm run verify:archives` parancsot
+3. Ha az aláírás engedélyezve van, erősítse meg a nyilvános kulcsot és az "openssl" elérhetőségét### 🦠 Release Workflow Fails on Scanner Coverage
 
-### 🦠 Release Workflow Fails on Scanner Coverage
+- Győződjön meg arról, hogy a `VT_API_KEY` létezik a lerakattitkok között
+- Erősítse meg, hogy a "freshclam" sikeres volt a futón
+- Helyi újraépítés a következővel: `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Futtassa újra az `npm run verify:scanners:strict` parancsot### 📦 npm Publish Fails in CI
 
-- Confirm `VT_API_KEY` exists in repository secrets
-- Confirm `freshclam` succeeded on the runner
-- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
-- Rerun `npm run verify:scanners:strict`
+- Erősítse meg, hogy az `NPM_TOKEN` létezik a lerakattitkok között
+- Győződjön meg arról, hogy a Git címke pontosan megegyezik a "package.json" verzióval
+- Ellenőrizze, hogy a "release-verify" által feltöltött tarball létezik-e a munkafolyamat melléktermékeiben### ✍️ Release Signing Fails in CI
 
-### 📦 npm Publish Fails in CI
+- Erősítse meg, hogy az OMNI_SKILLS_SIGN_PRIVATE_KEY_B64 vagy az OMNI_SKILLS_SIGN_PRIVATE_KEY létezik-e a lerakattitkok között
+- Ha nyilvános kulcsot ad meg, ellenőrizze, hogy az megegyezik-e a privát kulccsal
+- Győződjön meg arról, hogy az "openssl" elérhető, és a privát kulcs PEM-formátumú
+- Helyi újraépítés a következővel: `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Futtassa újra az `npm run verify:archives:strict` parancsot### 🔒 API/MCP Returns `401 Unauthorized`
 
-- Confirm `NPM_TOKEN` exists in repository secrets
-- Confirm the Git tag matches `package.json` version exactly
-- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
+- Az `OMNI_SKILLS_HTTP_BEARER_TOKEN` vagy az `OMNI_SKILLS_HTTP_API_KEYS` ellenőrzése
+- Tartalmazza az "Authorization: Bearer <token>" vagy az "x-api-key" fejlécet### 🚦 API/MCP Returns `429 Too Many Requests`
 
-### ✍️ Release Signing Fails in CI
+- `OMNI_SKILLS_RATE_LIMIT_MAX' növelése
+- `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` szélesítése
+- Csökkentse az ügyfelektől vagy a szondáktól származó sorozatos forgalmat### 🛂 API/MCP Admin Runtime Returns `401`
 
-- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
-- If you provide a public key secret, confirm it matches the private key
-- Confirm `openssl` is available and the private key is PEM-formatted
-- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
-- Rerun `npm run verify:archives:strict`
+- Az `OMNI_SKILLS_HTTP_ADMIN_TOKEN' ellenőrzése
+- "x-admin-token: <token>" vagy "Jogosultság: <admin-token>" hordozó küldése### 🚧 API/MCP Returns `503 Maintenance mode enabled`
 
-### 🔒 API/MCP Returns `401 Unauthorized`
+- Az `OMNI_SKILLS_HTTP_MAINTENANCE_MODE' letiltása
+- Használja a `/healthz'-et az élénkség-szondákhoz a karbantartás során
+- Használja az `/admin/runtime' paramétert az admin tokennel a kezelői diagnosztikához### 🌍 Browser Requests Fail CORS Validation
 
-- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
-- Include `Authorization: Bearer <token>` or `x-api-key` header
+- Az `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS' ellenőrzése
+- Adja meg a pontos sémát és a gazdagépet, például "https://app.example.com".### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
 
-### 🚦 API/MCP Returns `429 Too Many Requests`
-
-- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
-- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- Reduce burst traffic from clients or probes
-
-### 🛂 API/MCP Admin Runtime Returns `401`
-
-- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
-- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
-
-### 🚧 API/MCP Returns `503 Maintenance mode enabled`
-
-- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- Use `/healthz` for liveness probes during maintenance
-- Use `/admin/runtime` with the admin token for operator diagnostics
-
-### 🌍 Browser Requests Fail CORS Validation
-
-- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
-- Include the exact scheme and host, for example `https://app.example.com`
-
-### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
-
-- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
-- Verify `OMNI_SKILLS_A2A_REDIS_URL`
-- Check Redis connectivity from every node
-- Inspect `/healthz` for the `coordination` snapshot
-
-### 🩺 General Diagnostics
+- Ellenőrizze: `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis'
+- Ellenőrizze az `OMNI_SKILLS_A2A_REDIS_URL-címet
+- Ellenőrizze a Redis-kapcsolatot minden csomópontról
+- Vizsgálja meg a `/healthz'-ben a `koordinációs' pillanatképet### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

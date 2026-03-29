@@ -5,34 +5,30 @@
 ---
 
 
-This document tracks the practical client surface for Omni Skills across three inputs:
+Acest document urmărește suprafața practică a clientului pentru Omni Skills prin trei intrări:
 
-1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
-2. the current Omni Skills MCP sidecar implementation
-3. current official documentation for each client or IDE
+1. inventarul tabloului de bord `9router` în `/home/diegosouzapw/dev/proxys/9router`
+2. implementarea actuală a Omni Skills MCP sidecar
+3. documentație oficială curentă pentru fiecare client sau IDE
 
-It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
-
----
+Este sursa de lucru a adevărului pentru a decide care clienți primesc suport de primă clasă `config-mcp`, care rămân doar manual și care sunt doar candidați.---
 
 ## Scope
 
-This matrix is about **client configuration for MCP**.
+Această matrice este despre**configurarea clientului pentru MCP**.
 
-It is not the same as:
+Nu este la fel ca:
 
-- skill installation support
-- API compatibility
-- A2A support
-- ACP or other non-MCP protocols
+- suport pentru instalarea abilităților
+- Compatibilitate API
+- Suport A2A
+- ACP sau alte protocoale non-MCP
 
-Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
-
----
+Unele produse din matrice consumă MCP, dar**nu**au un „director de competențe” semnificativ, așa că primesc doar suport pentru config-target.---
 
 ## 9router Inventory
 
-The `9router` dashboard currently groups these CLI tools or IDE clients:
+Tabloul de bord `9router` grupează în prezent aceste instrumente CLI sau clienți IDE:
 
 - Claude Code
 - OpenAI Codex
@@ -40,112 +36,100 @@ The `9router` dashboard currently groups these CLI tools or IDE clients:
 - OpenClaw
 - Cursor
 - Cline
-- Kilo Code
-- Continue
-- Antigravity
+- Cod Kilo
+- Continuă
+- Antigravitație
 - GitHub Copilot
 - OpenCode
 - Kiro AI
 
-Local sources:
+Surse locale:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
 - [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
-
----
+- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)---
 
 ## First-Class Support
 
-These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
+Acești clienți au acum o poveste stabilă și explicită în Omni Skills prin `config-mcp --target ...`.
 
-Current implementation totals:
+Totalurile actuale de implementare:
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 first-class config targets**
-- **19 config profiles**
+-**7 clienți capabili de instalare**
+-**16 clienți capabili de configurare**
+-**33 de obiective de configurare de primă clasă**
+-**19 profiluri de configurare**
 
-| Client | Status | Config Targets | Notes |
-|:-------|:-------|:---------------|:------|
-| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
-| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
-| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
-| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
-| Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
-| Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
-| Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
-| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
-| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
-| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
-| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
-| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
-| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
-| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
-| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
-| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
-
----
+| Client | Stare | Configurare ținte | Note |
+|:-------|:-------|:----------------|:------|
+| Claude Cod | ✅ Clasa I | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Configurația scrisă `mcpServers` cu controale de autorizare/refuzare specifice lui Claude |
+| Cursor | ✅ Clasa I | `cursor-spațiu de lucru`, `cursor-utilizator` | Țintele JSON `mcpServers` |
+| Cod VS | ✅ Clasa I | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Utilizează rădăcina „server” |
+| Gemeni CLI | ✅ Clasa I | `gemini-user`, `gemini-workspace` | Setări JSON + controale MCP globale de permite/exclude |
+| Antigravitație | ✅ Clasa I | `antigravity-user` | Țintă JSON `mcpServers` |
+| Kiro | ✅ Clasa I | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Câmpuri dezactivate/aprobate automat specifice Kiro |
+| Codex CLI | ✅ Clasa I | `codex-user` | Tabele TOML `mcp_servers` |
+| Continuare | ✅ Clasa I | `continuare-spațiu de lucru` | Document dedicat serverului YAML |
+| Windsurf | ✅ Clasa I | `utilizator de windsurf` | Țintă JSON `mcpServers` cu intrări `serverUrl` |
+| OpenCode | ✅ Clasa I | `opencode-workspace`, `opencode-user` | `opencode.json` / configurația utilizatorului oficial folosind `mcp` de nivel superior |
+| Cline | ✅ Clasa I | `cline-user` | `cline_mcp_settings.json` cu `mcpServers` |
+| GitHub Copilot CLI | ✅ Clasa I | `copilot-user`, `copilot-repo` | `mcp-config.json` sau `.github/mcp.json` în domeniul repo |
+| Cod Kilo | ✅ Clasa I | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI folosește `kilo.json`; integrarea spațiului de lucru folosește `.kilocode/mcp.json` |
+| Zed | ✅ Clasa I | `zed-workspace` | `.zed/settings.json` cu `context_servers` |
+| Junie | ✅ Clasa I | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` sau `~/.junie/mcp/mcp.json` folosind `mcpServers` |
+| Gâscă | ✅ Clasa I | `gâscă-utilizator` | `~/.config/goose/config.yaml` folosind un obiect `extensions` de nivel superior pentru extensiile MCP persistente |---
 
 ## Current Gaps
 
-These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
+Acești clienți de la `9router`**nu**sunt încă ținte de scriitor de primă clasă în Omni Skills:
 
-| Client | Current State | Why |
+| Client | Starea curentă | De ce |
 |:-------|:--------------|:----|
-| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
-| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
+| Factory Droid | ⚠️ Doar manual/personalizat | Nu s-a găsit nicio formă publică stabilă de configurare MCP în documentele principale în timpul acestei treceri |
+| OpenClaw | ⚠️ Doar manual/personalizat | Aceeași problemă ca Factory Droid |
 
-The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
+Sidecar-ul poate fi folosit în continuare cu „--file” sau căi personalizate pentru utilizatorii avansați, dar Omni Skills nu ar trebui să inventeze scriitori de primă clasă fără documente de configurare publice stabile.
 
-Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
+Două produse adiacente sunt acum mai bine înțelese, dar totuși se opresc în mod intenționat înaintea scriitorilor automati de primă clasă:
 
-| Client | Current State | Why |
+| Client | Starea curentă | De ce |
 |:-------|:--------------|:----|
-| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
-| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
-| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
-
----
+| JetBrains AI Assistant | 🟡 Manual/fragment | Există suport oficial pentru MCP, dar fluxul de lucru documentat este mai degrabă bazat pe interfață de utilizare/condus pe import decât pe un fișier public țintă stabil |
+| Poștaș | 🟡 Manual/fragment | Există suport oficial pentru MCP, dar configurația este gestionată în interiorul UX al produsului, mai degrabă decât într-un fișier public țintă stabil |
+| Cod Roo | 🟡 Candidat | Există documente MCP publice, dar un contract puternic de cale de fișiere multiplatformă are nevoie de confirmare înainte de a adăuga un redactor |---
 
 ## Support Policy
 
-Omni Skills now follows this rule set:
+Omni Skills urmează acum acest set de reguli:
 
-1. **Install-capable** if a stable skills directory exists.
-2. **Config-capable** if a stable public MCP config file format exists.
-3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
+1.**Capabil pentru instalare**dacă există un director de competențe stabil.
+2.**Config-capable**dacă există un format public stabil de fișier de configurare MCP.
+3.**Numai manual/fragment de informații**dacă produsul acceptă MCP, dar contractul public este pe primul loc pentru UI, pe import mai întâi sau încă prea instabil.
 
-This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
-
-### Canonical config families already in use
+Acesta este, de asemenea, răspunsul practic la una dintre întrebările anterioare de arhitectură: proiectul ar trebui să continue să crească scriitori de primă clasă numai acolo unde există un format public stabil și, altfel, să se bazeze pe un set mai mic de familii de export canonice plus rețete și fragmente.### Canonical config families already in use
 
 - JSON `mcpServers`
-- JSON `servers`
+- `servere` JSON
 - JSON `context_servers`
 - YAML `mcpServers`
-- TOML `[mcp_servers]`
+- TOML `[mcp_servers]`### Additional candidates worth watching
 
-### Additional candidates worth watching
-
-| Client / IDE | Recommendation | Reason |
-|:-------------|:---------------|:-------|
-| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
-| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
-| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
-| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
-| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
-
----
+| Client / IDE | Recomandare | Motivul |
+|:--------------|:----------------|:-------|
+| JetBrains AI Assistant | 🟡 Păstrează manualul/fragmentul pentru moment | Suportul oficial este real, dar UX este încă gestionat de produs, mai degrabă decât de fișier-contract-în primul rând |
+| Poștaș | 🟡 Păstrează manualul/fragmentul pentru moment | Configurarea oficială este în primul rând UI și este gestionată mai degrabă de spațiul de lucru decât de fișier-contract |
+| Cod Roo | 🟡 Investigați în continuare | Suport MCP promițător, dar siguranța scriitorului depinde de o confirmare mai puternică a căii de configurare |
+| VS Code Copilot Chat | 🟢 Deja acoperit indirect | Locațiile de bază ale fișierelor VS Code MCP sunt deja acceptate |
+| Zed ACP / Servere de agent | 🟡 Piesă separată | Acesta este teritoriul ACP/agent-server, nu doar scrierea configurației MCP |---
 
 ## Official Sources Used
 
-The decisions above were checked against current primary sources:
+Deciziile de mai sus au fost verificate cu sursele primare actuale:
 
 - [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
 - [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
 - [Cursor MCP](https://docs.cursor.com/tools)
-- [Continue MCP](https://docs.continue.dev/customize/tools)
+- [Continuați MCP](https://docs.continue.dev/customize/tools)
 - [Kiro MCP](https://kiro.dev/docs/mcp)
 - [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
 - [Cline MCP](https://docs.cline.bot/mcp)
@@ -154,27 +138,25 @@ The decisions above were checked against current primary sources:
 - [Zed MCP](https://zed.dev/docs/ai/mcp)
 - [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
 - [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
-- [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
-- [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
-- [Roo Code MCP](https://docs.roocode.com/features/mcp)
-- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
-
----
+- [Fișiere de configurare Goose](https://block.github.io/goose/docs/guides/config-files/)
+- [Extensii de sesiune Goose](https://block.github.io/goose/docs/guides/session-extensions/)
+- [Configurare Postman MCP](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [Cod Roo MCP](https://docs.roocode.com/features/mcp)
+- [Ghid de extensii VS Code MCP](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [Registrul MCP oficial](https://prod.registry.modelcontextprotocol.io/)---
 
 ## Implementation Notes
 
-The current Omni Skills sidecar intentionally distinguishes three support levels:
+Actualul sidecar Omni Skills distinge în mod intenționat trei niveluri de suport:
 
-- **install-capable clients**
-  - have a known skills directory and can use `install_skills`
-- **config-capable clients**
-  - have a stable config target and can use `configure_client_mcp`
-- **manual/snippet clients**
-  - documented, but without a safe first-class file writer yet
+-**clienți capabili de instalare**
+  - au un director de competențe cunoscut și pot folosi `install_skills`
+-**clienți capabili de configurare**
+  - au o țintă de configurare stabilă și pot folosi `configure_client_mcp`
+-**clienți manual/fragment**
+  - documentat, dar fără încă un redactor de fișiere sigur de primă clasă
 
-That separation keeps the product honest.
+Această separare menține produsul cinstit.
 
-Not every MCP-capable product should be treated as a skill-install target.
-The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.
+Nu orice produs compatibil MCP trebuie tratat ca o țintă de instalare a competențelor.
+Faza de extindere este considerată finalizată deocamdată: adăugările viitoare ar trebui să aterizeze numai dacă eliberează aceeași bară de contract public pe care o șterg acum Goose, Junie, Continue și Windsurf.

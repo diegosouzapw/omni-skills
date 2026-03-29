@@ -5,69 +5,55 @@
 ---
 
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
+Đây là luồng kho lưu trữ chuẩn dành cho các yêu cầu kéo bổ sung hoặc nâng cấp đáng kể một hoặc nhiều kỹ năng gốc.
 
-Use it when:
+Sử dụng nó khi:
 
-- adding a new skill under `skills/`
-- deepening a bundle with new domain skills
-- shipping a larger support-pack expansion
-- validating a branch with the private enhancer before maintainers merge it
+- thêm một kỹ năng mới dưới `skills/`
+- đào sâu thêm một gói với các kỹ năng miền mới
+- vận chuyển bản mở rộng gói hỗ trợ lớn hơn
+- xác thực một nhánh bằng bộ tăng cường riêng trước khi người bảo trì hợp nhất nó## Target Outcome
 
-## Target Outcome
+Kỹ năng PR bản địa mạnh mẽ sẽ có được:
 
-A strong native skill PR lands with:
+- một kỹ năng bản địa dưới `skills/`
+- đủ nội dung để người xác thực công khai phân loại và lập chỉ mục cho nó
+- vượt qua xác nhận và kiểm tra công khai
+- xử lý chất tăng cường tự động trong quá trình PR
+- `skills_omni/` PR tiếp theo khi các dẫn xuất nâng cao được xuất bản
+- lượng bản địa được bảo tồn bằng ngôn ngữ gốc khi cần thiết
+- đầu ra nâng cao được quản lý viết lại sang tiếng Anh
+- luồng một chiều từ gốc đến được quản lý không đưa `skills_omni/` trở lại lượng chất tăng cường gốc## Enhancer Outcome States
 
-- a native skill under `skills/`
-- enough content for the public validator to classify and index it
-- passing public validation and tests
-- automatic enhancer processing during the PR
-- a follow-up `skills_omni/` PR when enhanced derivatives are published
-- native intake preserved in its original language when needed
-- curated enhanced output rewritten into English
-- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
+Công cụ tăng cường PR công khai hiện báo cáo bốn trạng thái mà người bảo trì có thể nhìn thấy:
 
-## Enhancer Outcome States
+- `hoàn thành`
+  Sản phẩm phái sinh nâng cao được tạo rõ ràng và đủ điều kiện để xuất bản đồng hành `skills_omni/`.
+- `suy thoái`
+  Trình cải tiến đã hoàn tất nhưng nó sử dụng đường dẫn dự phòng hoặc tạo ra cảnh báo. Việc xem xét của người bảo trì vẫn cần được thực hiện trước khi coi dẫn xuất là lành mạnh.
+- `bị chặn`
+  Quá trình chạy đã bị dừng do các vấn đề về cơ sở hạ tầng hoặc xác thực, chẳng hạn như lỗi kiểm tra trước OmniRoute được lưu trữ hoặc lỗi xác thực ứng viên sẽ ngăn cản việc xuất bản.
+- `thất bại`
+  Bộ tăng cường đã gặp phải lỗi thời gian chạy không mong muốn và cần người bảo trì điều tra.## Recommended Branch Shape
 
-The public PR enhancer now reports four maintainer-visible states:
-
-- `completed`
-  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
-- `degraded`
-  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
-- `blocked`
-  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
-- `failed`
-  The enhancer hit an unexpected runtime error and needs maintainer investigation.
-
-## Recommended Branch Shape
-
-Create a focused branch:
-
-```bash
+Tạo một nhánh tập trung:```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Examples:
+Ví dụ:
 
-- `feat/incident-observability-evals`
+- `đánh giá khả năng quan sát/sự cố`
 - `feat/devops-skill-pack`
-- `feat/security-skill-pack`
+- `feat/security-skill-pack`## Native Intake Rules
 
-## Native Intake Rules
+Bề mặt tiếp nhận công cộng được cho phép một cách có chủ ý.
 
-The public intake surface is intentionally permissive.
-
-Minimum:
-
-```text
+tối thiểu:```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Recommended but no longer required for intake:
-
-```text
+Được đề xuất nhưng không còn cần thiết cho lượng ăn vào:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -77,143 +63,125 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+Đóng góp gốc có thể thô sơ, không đầy đủ hoặc nằm ngoài tiêu chuẩn gói hỗ trợ thông thường. Đó là cố ý. `skills/` là bề mặt tiếp nhận gốc, không phải bề mặt phái sinh được quản lý.
 
-Language policy:
+Chính sách ngôn ngữ:
 
-- native intake under `skills/` may be written in any language
-- the enhancer keeps the native snapshot as submitted for provenance
-- the curated derivative under `skills_omni/` must always be written in English
+- nội dung bản địa dưới `skills/` có thể được viết bằng bất kỳ ngôn ngữ nào
+- trình cải tiến giữ ảnh chụp nhanh gốc như được gửi để xuất xứ
+- đạo hàm được tuyển chọn trong `skills_omni/` phải luôn được viết bằng tiếng Anh
 
-The stricter editorial bar now applies to:
+Thanh biên tập chặt chẽ hơn hiện áp dụng cho:
 
-- the generated metadata and security checks
-- the private enhancer review
-- the follow-up curated derivative under `skills_omni/`
+- siêu dữ liệu được tạo và kiểm tra bảo mật
+- đánh giá nâng cao tư nhân
+- đạo hàm được quản lý tiếp theo trong `skills_omni/`## Authoring Sequence
 
-## Authoring Sequence
+1. Tạo `skills/<skill>/SKILL.md`.
+2. Thêm vật chất đầu vào nếu bạn có thể, nhưng vật chất đầu bị thiếu hoặc không đầy đủ sẽ không còn tự chặn lượng tiếp nhận tự nhiên nữa.
+3. Thêm `agent/`, `references/`, `examples/`, và `scripts/` khi bạn đã có chúng.
+4. Cập nhật `data/bundles.json` nếu kỹ năng này nâng cao gói hiện có.
+5. Mở PR. Việc tự động hóa kho lưu trữ hiện thực hiện phần còn lại.## Validation Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
-2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
-3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
-4. Update `data/bundles.json` if the skill deepens an existing bundle.
-5. Open the PR. The repo automation now does the rest.
-
-## Validation Sequence
-
-Contributors can run this exact sequence before opening the PR:
-
-```bash
+Người đóng góp có thể chạy trình tự chính xác này trước khi mở PR:```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, also run:
-
-```bash
+Nếu thay đổi cũng ảnh hưởng đến hành vi thời gian chạy hoặc đóng gói, hãy chạy:```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+Khi một PR mở hoặc đồng bộ hóa và nó chỉ chạm vào các tệp tiếp nhận kỹ năng gốc trong `skills/` cộng với `data/bundles.json` tùy chọn, kho lưu trữ công khai giờ đây sẽ tự động kích hoạt trình tăng cường riêng tư.
 
-Current automated flow:
+Luồng tự động hiện tại:
 
-1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
-2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
-3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
-4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
-5. The enhancer posts progress back to the source PR.
-6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
-7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
-8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
-9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
+1. Quy trình làm việc `Xác thực Kỹ năng` công khai chạy trên PR và kiểm tra xác thực, xây dựng, tạo phẩm và kiểm tra.
+2. Quy trình làm việc `Nâng cao Kỹ năng PR` công khai bắt đầu song song và xử lý từng kỹ năng bản địa đã thay đổi ở chế độ `trực tiếp`.
+3. Trình nâng cao đọc kỹ năng gốc từ `skills/`, nghiên cứu các phương pháp thực hành tốt nhất hiện tại và viết một ứng viên nâng cao đã được đánh giá trong không gian làm việc riêng tư.
+4. Trình cải tiến giữ lại ảnh chụp nhanh đầu vào ngược dòng bằng ngôn ngữ gốc khi cần, nhưng viết lại đầu ra được tuyển chọn bằng tiếng Anh.
+5. Bài đăng của trình tăng cường sẽ quay trở lại nguồn PR.
+6. Trình cải tiến cập nhật nhận xét trạng thái PR sau mỗi kỹ năng được xử lý với tổng số lô và trạng thái mới nhất.
+7. Khi hoàn tất, nó cụ thể hóa đạo hàm nâng cao thành `skills_omni/` và mở hoặc cập nhật một PR đi kèm trong kho lưu trữ công khai chỉ cho các đầu ra `đã hoàn thành` và `đã xuống cấp`.
+8. Sau khi PR được hợp nhất thành `main`, trình thăm dò nhận biết kho lưu trữ riêng tư sẽ xử lý lại mọi kỹ năng gốc đã thay đổi, làm mới `không gian làm việc/nâng cao/skills/<skill>/` và giữ cho đường cơ sở nâng cao riêng tư được căn chỉnh với nguồn gốc công khai mới nhất.
+9. Sau khi hợp nhất, quy trình phát hành công khai sẽ xử lý phiên bản gói npm, tạo lại các tạo phẩm danh mục, xuất bản bản phát hành và tự động gắn thẻ phiên bản mới.
 
-Rate limit:
+Giới hạn tỷ lệ:
 
-- the PR enhancer currently processes **1 skill per minute**
-- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
-- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
+- công cụ tăng cường PR hiện đang xử lý**1 kỹ năng mỗi phút**
+- do đó, một PR với 40 kỹ năng mới nguyên bản có thể ở trong hàng đợi nâng cấp trong khoảng 40 phút
+- PR cho thấy hoạt động như một hoạt động CI đang diễn ra cộng với nhận xét về tiến trình nâng cao kỹ năng theo kỹ năng
 
-The contributor does not need to run the enhancer manually.
+Người đóng góp không cần chạy công cụ cải tiến theo cách thủ công.## No-Loop Rule For `skills_omni/`
 
-## No-Loop Rule For `skills_omni/`
+Bề mặt giám tuyển có chủ ý một chiều:
 
-The curated surface is intentionally one-way:
+- đầu vào gốc được nhập thông qua `skills/`
+- trình tăng cường riêng tư đánh giá đầu vào gốc đó
+- đầu ra được quản lý được đề xuất vào `skills_omni/`
+- `skills_omni/` không bao giờ được coi là lượng tiếp nhận tự nhiên nữa
+- các bản cập nhật gốc sau này vẫn nhập lại thông qua `skills/` và thay thế đường cơ sở nâng cao riêng tư sau khi xử lý lại
 
-- native input enters through `skills/`
-- the private enhancer reviews that native input
-- curated output is proposed into `skills_omni/`
-- `skills_omni/` is never treated as native intake again
-- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
+Kho lưu trữ hiện thực thi ranh giới đó:
 
-The repository now enforces that boundary:
+- PR công khai trực tiếp sửa đổi `skills_omni/` đều bị từ chối
+- chỉ các PR đồng hành được tự động hóa từ nhánh `skills-omni/pr-*` mới được chấp nhận ở đó
+- các PR hỗn hợp cố gắng thay đổi cả `skills/` và `skills_omni/` cùng một lúc đều bị từ chối## Automatic Versioning After Merge
 
-- direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
-- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+Việc hợp nhất mang tính kỹ năng với `main` giờ đây sẽ tự động kích hoạt quy trình phát hành kho lưu trữ.
 
-## Automatic Versioning After Merge
+Chính sách phiên bản gói hiện tại:
 
-Skill-bearing merges to `main` now trigger the repository release workflow automatically.
-
-Current package version policy:
-
-- patch increments by `+1` for each qualifying merge
+- tăng dần bản vá theo `+1` cho mỗi lần hợp nhất đủ điều kiện
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- after `.10`, the package rolls to the next minor and resets patch
+- sau `.10`, gói sẽ chuyển sang bản vá phụ tiếp theo và đặt lại
 - `0.0.10` → `0.1.0`
 - `0.1.10` → `0.2.0`
 
-Current release trigger paths:
+Đường dẫn kích hoạt bản phát hành hiện tại:
 
-- `skills/**`
+- `kỹ năng/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-That automatic release job:
+Công việc phát hành tự động đó:
 
-1. computes the next package version from `package.json`
-2. bumps `package.json` and `package-lock.json`
-3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
-4. runs the strict release verification pipeline
-5. commits the version bump back to `main`
-6. creates a Git tag for the new version
-7. publishes npm and GitHub Release artifacts
+1. tính phiên bản gói tiếp theo từ `package.json`
+2. va chạm `package.json` và `package-lock.json`
+3. tạo lại `metadata.json`, `skills_index.json`, `dist/` và `docs/CATALOG.md`
+4. chạy quy trình xác minh bản phát hành nghiêm ngặt
+5. cam kết phiên bản quay trở lại `main`
+6. tạo thẻ Git cho phiên bản mới
+7. xuất bản các tạo phẩm phát hành npm và GitHub
 
-Important rollout note:
+Lưu ý triển khai quan trọng:
 
-- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
-- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
-- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
+- GitHub chỉ đăng ký tệp quy trình làm việc mới dưới dạng quy trình làm việc của kho lưu trữ đang hoạt động sau khi tệp đó đến nhánh mặc định.
+- Cho đến khi `Nâng cao kỹ năng PR` xuất hiện trên `chính`, những người đóng góp có thể đọc quy trình được ghi lại, nhưng GitHub sẽ chưa tự động thực hiện quy trình làm việc đó trên các PR công khai.
+- Sau khi quy trình làm việc được hợp nhất thành `chính`, hành vi được mô tả ở trên sẽ trở thành đường dẫn tiếp nhận mặc định cho các PR kỹ năng bản địa trong tương lai.## Native vs Enhanced
 
-## Native vs Enhanced
+Kho lưu trữ này hiện có hai bề mặt riêng biệt:
 
-This repo now has two distinct surfaces:
-
-- `skills/`
-  Native intake. This preserves the original contribution as submitted.
+- `kỹ năng/`
+  Lượng bản địa. Điều này bảo tồn sự đóng góp ban đầu như đã gửi.
 - `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+  Đầu ra phái sinh được nâng cao Omni được đề xuất bằng phương pháp tự động hóa và được duy trì bởi Nhóm Kỹ năng Omni.
 
-Attribution rules for `skills_omni/`:
+Quy tắc ghi công cho `skills_omni/`:
 
-- the enhanced derivative becomes Omni-maintained
-- the original contributor and upstream native skill remain credited
-- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
-- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
-- each enhanced directory is expected to be English-language output even when the upstream native source was not
+- đạo hàm nâng cao trở thành được duy trì Omni
+- người đóng góp ban đầu và kỹ năng bản địa ngược dòng vẫn được ghi nhận
+- mỗi thư mục nâng cao giữ một tệp `ATTRIBUTION.md` với đường dẫn ngược dòng, PR, tác giả và bối cảnh nguồn
+- mỗi thư mục nâng cao chỉ được quản lý đầu ra và không được gửi lại vào đường dẫn tiếp nhận trình tăng cường gốc
+- mỗi thư mục nâng cao dự kiến sẽ là đầu ra bằng tiếng Anh ngay cả khi nguồn gốc ngược dòng không có## Manual Maintainer Commands
 
-## Manual Maintainer Commands
+Quá trình tự động hóa bao gồm lượng PR thông thường nhưng người bảo trì vẫn có thể chạy công cụ tăng cường riêng theo cách thủ công khi cần.
 
-The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
-
-Batch against a branch diff:
-
-```bash
+Hàng loạt so với một nhánh khác:```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -223,9 +191,7 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Single-skill review:
-
-```bash
+Đánh giá kỹ năng đơn:```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -233,44 +199,38 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Expected enhancer outputs per skill:
+Đầu ra của chất tăng cường dự kiến ​​cho mỗi kỹ năng:
 
-- `workspace/incoming/original/<run-id>/<skill>/`
-- `workspace/enhanced-candidates/<run-id>/<skill>/`
-- `workspace/reports/<run-id>/research.json`
-- `workspace/reports/<run-id>/rewrite.json`
-- `workspace/reports/<run-id>/validation.json`
-- `workspace/reports/<run-id>/score-delta.json`
-- `workspace/reports/<run-id>/review.md`
-- `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`
+- `không gian làm việc/đến/gốc/<run-id>/<skill>/`
+- `không gian làm việc/ứng viên nâng cao/<run-id>/<skill>/`
+- `không gian làm việc/báo cáo/<run-id>/research.json`
+- `không gian làm việc/báo cáo/<run-id>/rewrite.json`
+- `không gian làm việc/báo cáo/<run-id>/validation.json`
+- `không gian làm việc/báo cáo/<run-id>/score-delta.json`
+- `không gian làm việc/báo cáo/<run-id>/review.md`
+- `không gian làm việc/báo cáo/<run-id>/research-prompt.md`
+- `không gian làm việc/báo cáo/<run-id>/rewrite-prompt.md`## PR Body Expectations
 
-## PR Body Expectations
+Cơ quan PR nên nêu rõ:
 
-The PR body should state:
+- những kỹ năng nào đã được thêm hoặc nâng cấp
+- những gói hoặc quy trình công việc nào họ đào sâu hơn
+- xác thực nào đã chạy
+- liệu trình tăng cường tự động có chạy hay không
+- liệu nó đã mở hoặc cập nhật PR đi kèm `skills_omni/` hay chưa
+- bất kỳ ghi chú đặc biệt nào của người bảo trì về phân bổ hoặc dọn dẹp theo dõi## Reviewer Checklist
 
-- what skills were added or upgraded
-- which bundles or workflows they deepen
-- what validation ran
-- whether the automated enhancer ran
-- whether it opened or updated a `skills_omni/` companion PR
-- any exceptional maintainer notes about attribution or follow-up cleanup
+- lượng tiêu thụ gốc là hợp pháp và không độc hại
+- siêu dữ liệu và bảng kê khai đã tạo đã được làm mới
+- cập nhật gói có chủ ý
+- đầu ra xác thực và xây dựng công khai có màu xanh
+- nhận xét trạng thái nâng cao phù hợp với các kỹ năng đã thay đổi thực tế và trạng thái kết quả cuối cùng
+- bất kỳ PR đi kèm `skills_omni/` nào đều duy trì sự phân bổ chính xác## Example PR Scope
 
-## Reviewer Checklist
+Một ví dụ điển hình về PR có thể thêm một bộ chuyên đề như:
 
-- native intake is legitimate and non-malicious
-- generated metadata and manifests were refreshed
-- bundle updates are intentional
-- public validation and build outputs are green
-- the enhancer status comment matches the actual changed skills and final outcome state
-- any `skills_omni/` companion PR preserves attribution correctly
+- một khả năng quan sát hoặc kỹ năng DevOps
+- một sự cố hoặc kỹ năng bảo mật
+- một kỹ năng đánh giá hoặc nhắc nhở AI
 
-## Example PR Scope
-
-A strong example PR can add a thematic set such as:
-
-- one observability or DevOps skill
-- one incident or security skill
-- one AI evaluation or prompting skill
-
-That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
+Nó đủ lớn để thực hiện công cụ ghi điểm, công cụ nâng cao tự động, luồng xuất bản `skills_omni/`, các gói và mô hình phân bổ mà không biến PR thành một bản viết lại danh mục đầy đủ.

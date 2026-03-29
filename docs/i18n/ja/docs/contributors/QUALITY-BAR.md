@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**オムニ スキル リポジトリに受け入れられるスキルの最小要件と推奨事項。**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+特にトップバンドのスコアを対象とした作成ガイダンスについては、[ハイスコア プレイブック](HIGH-SCORE-PLAYBOOK.md) を参照してください。
 
-Current benchmark for the published catalog:
+公開されたカタログの現在のベンチマーク:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 の公開スキル
+- 平均品質スコア「96.3」
+- ベストプラクティスの平均スコア「98.7」
+- 平均セキュリティスコア「95.0」---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
+| # |要件 |確認方法 |
 |:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| 1️⃣ |**有効な前付**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**明確な説明**|スキルの動作をワンライナーで説明する必要があります (10 文字以上) |
+| 3️⃣ |**名前はディレクトリと一致します**| `name:` フィールドはフォルダー名と正確に一致します。
+| 4️⃣ |**概要セクション**|マークダウン本文の目的の簡単な説明 |
+| 5️⃣ |**「いつ使用するか」セクション**|少なくとも 2 つの具体的な使用シナリオ |
+| 6️⃣ |**実行可能な指示**| AI エージェントが実行できるステップバイステップのコンテンツ |
+| 7️⃣ |**生成されたメタデータ**|バリデーターは `skills/<skill>/metadata.json` を正常に発行します。---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # |推薦 |スコアへの影響 |
+|:--|:------|:---------------|
+| 8️⃣ |**例**— 期待される出力を含む少なくとも 1 つの具体的な例 | 📈 品質 +10-15 |
+| 9️⃣ |**ベスト プラクティス**— ✅ 実行する / ❌ 実行しない ガイダンス | 📈 ベストプラクティス +5 |
+| 🔟 |**ツールでテスト済み**— 少なくとも 1 つの AI コーディング アシスタントで検証済み | 📈 品質 +5 |
+| 1️⃣1️⃣ |**タグ**— 発見に関連する検索可能なタグ | 📈 ベストプラクティス +10 |
+| 1️⃣2️⃣ |**カテゴリ**— 1 つの正規カテゴリに割り当てられます。 📈 ベストプラクティス +10 |
+| 1️⃣3️⃣ |**トラブルシューティング**— 具体的な「症状」と「解決策」のガイダンス | 📈 ベストプラクティス +5-10 |
+| 1️⃣4️⃣ |**ローカル サポート アセット**— スキルからリンクされた `references/`、`scripts/`、および理想的には `examples/` 📈 ベストプラクティス +10 |
+| 1️⃣5️⃣ |**健全な分類**— 成熟度 L3、品質 85+、ベスト プラクティス 90+ | 📈 全体的な階層 |
+| 1️⃣6️⃣ |**重大なセキュリティに関する検出結果はありません**— 静的スキャナはクリーンに合格します | 🛡️ セキュリティ 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
-|:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+|問題 |なぜ |
+|:------|:------|
+| ❌ フロントマターが欠落しているか無効です |検証パイプラインを中断する |
+| ❌ 名前がディレクトリと一致しません |カタログ生成を中断します |
+| ❌ 空の、または些細な短い説明 |ユーザーがスキルを発見できない |
+| ❌ 実用的なコンテンツがない (リンクまたはスタブのみ) |エージェントは何も実行できません。
+| ❌ 明確な改善が見られないまま重複する |価値を追加します。クローンではありません |
+| ❌ 「リスク: 攻撃的」タグのない攻撃的なコンテンツ |安全性とコンプライアンス |
+| ❌ セキュリティに関する重大な調査結果 |即時窃盗、破壊的コマンドなど |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
-|:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+|寸法 |素晴らしい |良い |仕事が必要 |
+|:----------|:----------|:-----|:----------|
+| ⭐**品質**| 80+ (プラチナ) | 60-79 (ゴールド/シルバー) | <60 (ブロンズ/スターター) |
+| 📋**ベストプラクティス**| 90+ (優秀) | 70-89 (良好) | <70 (公正/必要な労働) |
+| 🛡️**セキュリティ**| 95+ (強化) | 80-94 (安全) | <80 (要見直し) |
+| 🎯**成熟度**| L3 (スクリプト+テスト) | L2（指示） | L1 (メタデータのみ) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+一貫してトップバンドに到達するには、スキルに次のものが含まれている必要があります。
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- スキルが**何をする**か、**いつ**使用する必要があるかを説明する強力な前付説明
+- 「いつ使用するか」、「ワークフロー」、「例」、「ベスト プラクティス」、「トラブルシューティング」、「追加リソース」の明示的なセクション
+- `references/`、`scripts/`、理想的には `examples/` にあるローカル サポート資料。`SKILL.md` から直接リンクされています。
+- スキルがエージェント クライアントで直接呼び出される場合のエージェント メタデータは「agents/openai.yaml」の下にあります。
+- ワークフローにメリットがある場合の、小さな操作テーブルまたは同等の実行マップ
+- ローカル ヘルパー スクリプトまたは反復可能なコマンドを指す実行可能なサンプルを少なくとも 1 つ
+- 一般的な警告ではなく、「症状」と「解決策」として書かれたトラブルシューティング
+- 単に整形式の散文ではなく、「L3」と称するのに十分な深さ
+- トップバンドの品質が必要な場合は、より強力なワークフローの深さ、意思決定資産、およびサポートパックの多様性
+- チェックボックスをカバーするためだけでなく、再利用できるほど奥深いサポート パック
+- 一貫してトップバンドが必要な場合は、少なくとも 4 つの意味のあるサポート ファミリ、または再利用可能なファイルに同等の深さ

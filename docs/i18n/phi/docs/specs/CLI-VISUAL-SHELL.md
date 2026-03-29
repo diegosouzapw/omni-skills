@@ -5,175 +5,149 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**Kontrata sa pag-uugali para sa Ink-based na terminal UI na inilantad ng `omni-skills ui`.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Ang visual shell ay isang ginabayang ibabaw ng produkto sa ibabaw ng kasalukuyang CLI at installer engine.
 
-It does not replace:
+Hindi nito pinapalitan ang:
 
-- expert flag-based CLI usage
+- ekspertong paggamit ng CLI na nakabatay sa bandila
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- ang may gabay na daloy ng pag-install ng teksto
+- API, MCP, o A2A runtime na gawi
 
-It defines:
+Tinutukoy nito ang:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
+- ang pag-uugali ng `omni-skills ui`
+- ang fallback na kontrata para sa `omni-skills ui --text`
+- lokal na estado at preset na pagtitiyaga
 - guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- repeatability para sa mga kamakailang pag-install at pagpapatakbo ng serbisyo---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+Inilunsad ng `omni-skills ui` ang Ink-based visual shell.
 
-The visual shell is the primary non-expert terminal experience for:
+Ang visual shell ay ang pangunahing hindi ekspertong karanasan sa terminal para sa:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
+- mga daloy ng pag-install
+- catalog-unang pagtuklas at pag-install
+- Pagsisimula ng MCP
+- Pagsisimula ng API
 - A2A startup
-- doctor and smoke handoff
+- doktor at smoke handoff### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+Inilunsad ng `omni-skills ui --text` ang readline-based na fallback na interface.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+Ito ay nananatiling kapaki-pakinabang kapag:
 
-This remains useful when:
+- hindi mai-render ng terminal nang tama ang mas mayamang shell
+- ang pag-uugali ng raw-mode ay pinipigilan
+- Mas gusto ang kaunting text fallback### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Ang visual shell ay hindi muling nagpapatupad ng mga runtime ng serbisyo o direktang nagsusulat ng pag-install.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+Pagkatapos ng preview at kumpirmasyon, malinis itong lumabas at ipapatupad ang kasalukuyang CLI entrypoint na may katumbas na mga argumento at mga variable ng kapaligiran.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+Dapat ilantad ng home screen ang:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- mga kasanayan sa pag-install
+- hanapin at i-install
+- ulitin ang mga kamakailang pag-install kapag naroroon
+- Patakbuhin ang mga naka-save na preset sa pag-install kapag naroroon
+- simulan ang isang serbisyo
+- ulitin ang mga kamakailang serbisyo kapag naroroon
+- magpatakbo ng mga naka-save na preset ng serbisyo kapag naroroon
+- doktor
+- usok
+- lumabas
 
-The home screen should also surface:
+Dapat ding lumabas ang home screen:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- kasalukuyang naka-publish na availability ng bundle
+- bilang ng lokal na estado para sa mga recent, preset, at paborito---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+Ang daloy ng pag-install ng visual na shell ay dapat na sumusuporta sa:
 
-- known client target selection
-- custom path selection
-- full library install
+- kilalang pagpili ng target ng kliyente
+- pasadyang pagpili ng landas
+- buong pag-install ng library
 - one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- pag-install ng isang bundle
+- maghanap-pagkatapos-i-install
+- i-preview bago magsulat
+- preset na pag-save
+- paboritong kasanayan o bundle toggling
 
-Preview must show:
+Dapat ipakita ang preview:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- nalutas ang target na label
+- nalutas na landas
+- I-install ang saklaw
+- napiling kasanayan o bundle kapag naaangkop
+- katumbas na utos ng CLI---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+Dapat gabayan ng visual shell ang pagsisimula para sa:### 5.1 MCP
 
-### 5.1 MCP
-
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
-
-### 5.2 API
+- transportasyon: `stdio`, `stream`, `sse`
+- mode: `read-only` o `local`
+- host/port configuration para sa network transports
+- tahasang preview ng command### 5.2 API
 
 - host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
+- daungan
+- basic o hardened profile
+- hardened bearer o API key auth
+- mga parameter ng hardened rate-limit
+- pagpapagana ng log ng pag-audit
+- tahasang preview ng command### 5.3 A2A
 
 - host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
+- daungan
+- uri ng tindahan: `memory`, `json`, `sqlite`
+- Store path para sa matibay na mga mode
 - executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- SQLite mode na pinagana ang queue
+- pagitan ng poll at tagal ng lease para sa shared-lease mode
+- tahasang preview ng command---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+Ang visual shell ay nagpapatuloy sa lokal na estado lamang sa:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+Kasalukuyang kasama ng estado ang:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- kamakailang pag-install
+- kamakailang paglulunsad ng serbisyo
+- pinangalanang install preset
+- pinangalanang mga preset ng serbisyo
+- paboritong kasanayan
+- mga paboritong bundle
 
-The shell must support:
+Dapat suportahan ng shell ang:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- nire-replay ang mga kamakailang pag-install
+- pag-replay ng mga kamakailang paglulunsad ng serbisyo
+- muling paggamit ng pinangalanang install preset
+- muling paggamit ng pinangalanang mga preset ng serbisyo---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+Ang visual shell ay additive.
 
-These flows must remain valid and stable:
+Ang mga daloy na ito ay dapat manatiling wasto at matatag:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
@@ -183,19 +157,16 @@ These flows must remain valid and stable:
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+Hindi kailanman dapat pilitin ng visual shell ang sarili sa tahasang mga landas ng utos ng eksperto.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+Ang visual shell ay dapat gumawa ng estado at nagsusulat ng tahasan.
 
-It must:
+Dapat itong:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- i-preview ang mga pag-install bago isulat ang handoff
+- i-preview ang mga utos ng paglulunsad ng serbisyo bago isagawa
+- Panatilihin ang lihim na materyal mula sa malinaw na tekstong mga preview ng command kung saan praktikal
+- ipagpatuloy ang estado sa lokal lamang
+- panatilihin ang hindi interactive na pag-uugali ng CLI sa labas ng visual shell

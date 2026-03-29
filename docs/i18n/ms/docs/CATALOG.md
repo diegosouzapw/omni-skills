@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Dijana secara automatik daripada `skills_index.json` — 32 kemahiran merentas 15 kategori.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Dijana: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
+- [🧠 Ejen Ai (5)](#ai-ejen)
+- [🗄️ Bahagian belakang (2)](#belakang)
+- [⚙️ Automasi Cli (1)](#automasi cli)
+- [💬 Komunikasi (1)](#komunikasi)
 - [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
+- [🎨 Reka Bentuk (3)](#reka bentuk)
+- [💻 Pembangunan (3)](#pembangunan)
 - [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
+- [📝 Dokumentasi (2)](#dokumentasi)
+- [🖼️ Bahagian hadapan (1)](#hujung hadapan)
 - [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [📈 Pembelajaran Mesin (1)](#pembelajaran mesin)
+- [🧭 Produk (1)](#produk)
+- [🛡️ Menguji Keselamatan (4)](#testing-security)
+- [🧰 Alat (1)](#alat)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Kemahiran aliran kerja kejuruteraan konteks. Gunakan kemahiran ini apabila pengguna perlu membentuk gesaan, konteks dapatkan semula, ingatan dan untuk | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Kemahiran aliran kerja reka bentuk penilaian. Gunakan kemahiran ini apabila pengguna memerlukan pelan eval LLM, suite regresi, rubrik pemarkahan, o | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Kemahiran aliran kerja aplikasi LLM. Gunakan kemahiran ini apabila pengguna memerlukan corak teguh untuk kegunaan alat, output berstruktur, fallb | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`jurutera-prompt`](../skills/jurutera-prompt/SKILL.md) | Kemahiran aliran kerja kejuruteraan yang cepat. Gunakan kemahiran ini apabila pengguna memerlukan arahan tugas yang lebih jelas, contoh, penguraian, | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`jurutera-ragi`](../skills/jurutera-ragi/SKILL.md) | Kemahiran aliran kerja RAG. Gunakan kemahiran ini apabila pengguna memerlukan saluran paip, chunking, ranking, petikan dan penilaian f | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | Kemahiran aliran kerja reka bentuk API. Gunakan kemahiran ini apabila pengguna memerlukan HTTP atau kontrak perkhidmatan yang jelas sebelum pelaksanaan. | sumber L3 | 100/100 | 95/100 | 95/100 lulus |
+| [`reka bentuk pangkalan data`](../skills/database-design/SKILL.md) | Kemahiran aliran kerja reka bentuk pangkalan data. Gunakan kemahiran ini apabila pengguna memerlukan reka bentuk skema, pengindeksan dan migrasi yang tahan lama sebelum i | sumber L3 | 98/100 | 94/100 | 95/100 lulus |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`mencari-kemahiran`](../kemahiran/mencari-kemahiran/KEMAHIRAN.md) | Kemahiran aliran kerja penemuan katalog. Gunakan kemahiran ini apabila pengguna meminta keupayaan, aliran kerja atau pembantu khusus domain | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Kemahiran aliran kerja permintaan tarik. Gunakan kemahiran ini apabila pengguna memerlukan naratif ulasan yang bersih, pembingkaian risiko dan panduan penyemak | sumber L3 | 98/100 | 95/100 | 95/100 lulus |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Kemahiran aliran kerja kontrak data. Gunakan kemahiran ini apabila pasukan perlu menentukan, menyemak atau menguatkuasakan kontrak merentas pengeluar | sumber L3 | 97/100 | 95/100 | 95/100 lulus |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`audit-accessibility`](../skills/accessibility-audit/SKILL.md) | Kemahiran aliran kerja audit kebolehcapaian. Gunakan kemahiran ini apabila pengguna memerlukan papan kekunci, semantik, fokus, kontras, gerakan atau sebagai | sumber L3 | 100/100 | 99/100 | 95/100 lulus |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Kemahiran aliran kerja operasi sistem reka bentuk. Gunakan kemahiran ini apabila pengguna memerlukan tadbir urus token, kawalan drift komponen, semula | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Reka bentuk kemahiran aliran kerja tadbir urus token. Gunakan kemahiran ini apabila pasukan perlu memperkenalkan, menamakan semula, menghentikan penggunaan atau menyemak desi | sumber L3 | 97/100 | 95/100 | 95/100 lulus |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`architecture`](../skills/architecture/SKILL.md) | Kemahiran aliran kerja seni bina. Gunakan kemahiran ini apabila pengguna memerlukan sempadan sistem, pertukaran atau pelaksanaan berperingkat p | sumber L3 | 98/100 | 94/100 | 95/100 lulus |
+| [`debugging`](../skills/debugging/SKILL.md) | Kemahiran aliran kerja nyahpepijat. Gunakan kemahiran ini apabila pengguna memerlukan pembiakan, pengasingan dan pengesahan yang berdisiplin dalam | sumber L3 | 98/100 | 94/100 | 95/100 lulus |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Kemahiran aliran kerja Figma. Gunakan kemahiran ini apabila pengguna memerlukan pelaksanaan reka bentuk kepada kod, pemeriksaan Figma, carian token, Co | sumber L3 | 100/100 | 100/100 | 95/100 lulus |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`pakar-docker`](../skills/pakar-docker/SKILL.md) | Kemahiran aliran kerja Docker. Gunakan kemahiran ini apabila pengguna memerlukan Dockerfiles, strategi bina imej, pengerasan masa jalan atau mengandungi | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kemahiran aliran kerja Kubernetes. Gunakan kemahiran ini apabila pengguna memerlukan manifes beban kerja, strategi pelancaran, pendedahan perkhidmatan atau c | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Kemahiran aliran kerja boleh diperhatikan. Gunakan kemahiran ini apabila pengguna memerlukan log, metrik, surih, makluman atau semakan SLO sebelum penghantaranp | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Lepaskan kemahiran aliran kerja kejuruteraan. Gunakan kemahiran ini apabila pengguna memerlukan pelan keluaran yang lebih selamat, dasar promosi, rollback pa | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`terraform`](../skills/terraform/SKILL.md) | Kemahiran aliran kerja terraform. Gunakan kemahiran ini apabila pengguna memerlukan infrastruktur sebagai struktur kod, modul, strategi keadaan atau | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## Dokumentasi
 
-## Dokumentasi
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`changelog`](../skills/changelog/SKILL.md) | Kemahiran aliran kerja nota keluaran. Gunakan kemahiran ini apabila pengguna memerlukan entri log perubahan, nota naik taraf atau keluaran ringkas na | sumber L3 | 98/100 | 94/100 | 95/100 lulus |
+| [`dokumentasi`](../skills/documentation/SKILL.md) | Kemahiran aliran kerja dokumentasi. Gunakan kemahiran ini apabila pengguna memerlukan onboarding yang tepat, panduan operasi atau release-rea | sumber L3 | 99/100 | 96/100 | 95/100 lulus |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`depan-rekaan`](../kemahiran/depan-reka-reka/SKILL.md) | Kemahiran aliran kerja reka bentuk bahagian hadapan. Gunakan kemahiran ini apabila pengguna memerlukan struktur UI, keadaan dan corak interaksi sebelum i | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Kemahiran aliran kerja pengesahan dan kebenaran. Gunakan kemahiran ini apabila pengguna memerlukan log masuk, sesi, token, peranan atau kebenaran | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Kemahiran aliran kerja penyajian model. Gunakan kemahiran ini apabila pasukan perlu mereka bentuk, menyemak atau mengeraskan inferens dalam talian, kumpulan infe | sumber L3 | 97/100 | 95/100 | 95/100 lulus |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Kemahiran aliran kerja sumbangsaran. Gunakan kemahiran ini apabila pengguna meneroka masalah dan memerlukan pilihan, tukar ganti dan reco | sumber L3 | 99/100 | 96/100 | 95/100 lulus |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`tindak balas-kejadian`](../kemahiran/tindak balas-kejadian/SKILL.md) | Kemahiran aliran kerja tindak balas insiden. Gunakan kemahiran ini apabila pengguna memerlukan triage gangguan, penjujukan mitigasi, pihak berkepentingan com | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Kemahiran aliran kerja audit keselamatan. Gunakan kemahiran ini apabila pengguna memerlukan semakan fokus risiko keselamatan konkrit dan bukannya | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`pemodelan-ancaman`](../skills/threat-modeling/SKILL.md) | Kemahiran aliran kerja model ancaman. Gunakan kemahiran ini apabila pengguna memerlukan sempadan kepercayaan, matlamat penyerang, kes penyalahgunaan atau mengurangkan | sumber L3 | 99/100 | 97/100 | 95/100 lulus |
+| [`pengimbas-kerentanan`](../skills/vulnerability-scanner/SKILL.md) | Kemahiran aliran kerja mengimbas kerentanan. Gunakan kemahiran ini apabila pengguna memerlukan perlindungan berulang untuk kelemahan yang diketahui, u | sumber L3 | 99/100 | 97/100 | 95/100 lulus |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Kemahiran | Penerangan | Tahap | Amalan Terbaik | Kualiti | Keselamatan |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | Kemahiran aliran kerja mengarang pelayan MCP. Gunakan kemahiran ini apabila pasukan perlu mereka bentuk, melaksanakan, mengesahkan atau mendokumentasikan Mod | sumber L3 | 97/100 | 95/100 | 95/100 lulus |

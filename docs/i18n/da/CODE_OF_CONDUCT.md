@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Vi som medlemmer, bidragydere og vedligeholdere forpligter os til at gøre deltagelse i dette projekt og fællesskab til en**chikanefri oplevelse for alle**, uanset alder, kropsstørrelse, synligt eller usynligt handicap, etnicitet, kønskarakteristika, kønsidentitet og udtryk, erfaringsniveau, uddannelse, socioøkonomisk status, nationalitet, personligt udseende, race, kaste eller seksuel orientering.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
-|:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| Adfærd | Eksempel |
+|:--------|:--------|
+| 💬 Velkomstsprog | At være inkluderende og respektfuld i kommunikationen |
+| 🤝 Respekt for forskelligheder | Værdsættelse af forskellige synspunkter og erfaringer |
+| 📝 Konstruktiv kritik | At acceptere og give feedback med ynde |
+| 🎯 Fællesskabsfokus | Prioritering af, hvad der er bedst for projektet og samfundet |
+| ❤️ Empati | Viser empati over for andre fællesskabsmedlemmer |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
+| Adfærd |
 |:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| 🚫 Seksualiseret sprog eller billedsprog og seksuel opmærksomhed eller tilnærmelser |
+| 🚫 Trolling, fornærmende eller nedsættende kommentarer |
+| 🚫 Personlige eller politiske angreb |
+| 🚫 Offentlig eller privat chikane |
+| 🚫 Udgivelse af andres private oplysninger uden udtrykkelig tilladelse |
+| 🚫 Anden adfærd, der med rimelighed anses for upassende i et professionelt miljø |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+Tilfælde af krænkende, chikanerende eller på anden måde uacceptabel adfærd kan rapporteres til vedligeholderne gennem:
 
-| Channel | How |
+| Kanal | Hvordan |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 GitHub private kanaler | Kontakt via GitHub Security eller diskussion |
+| 📧 Direkte kontakt | Kontakt vedligeholderne direkte |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Alle rapporter vil blive gennemgået og undersøgt hurtigt og retfærdigt.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Denne adfærdskodeks er tilpasset fra [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

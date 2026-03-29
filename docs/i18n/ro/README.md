@@ -13,10 +13,8 @@
 
 <br/>
 
-**The skill catalog that installs itself.**<br/>
-CLI · API · MCP · A2A — all from a single `npx` command.
-
-<br/>
+**Catalogul de aptitudini care se instalează singur.**<br/>
+CLI · API · MCP · A2A — toate dintr-o singură comandă `npx`.<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -30,9 +28,7 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 <br/>
 
-[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
-
-</div>
+[⚡ Instalați în 1 minut](#-instalare) · [🛠️ Alegeți-vă instrumentul](#-alegeți-vă-instrumentul) · [📖 Ghid CLI](docs/users/CLI-USER-GUIDE.md) · [📦 Bund-uri](docs/users/BUNDLES.md) · [](#-runtime) De ce Omni Skills](#-why-omni-skills)</div>
 
 ---
 
@@ -42,40 +38,34 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 </div>
 
-| | Metric | Value |
-|:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
-| 🎯 | **Bundles** | `7` fully backed curated bundles |
-| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
-| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
-| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
-
----
+| | Metric | Valoare |
+|:--|:--------|:------|
+| 📦 |**Abilități publicate**| `32` în 15 categorii active |
+| 🎯 |**Pachete**| `7` pachete curatate complet susținute |
+| 🖥️ |**Instalați clienți**| `7` asistenți de codare AI capabili de instalare |
+| 🔌 |**Clienți MCP**| `16` Clienți capabili de configurare MCP |
+| 🔐 |**Ieșire organizată**| `32` derivate engleze îmbunătățite în `skills_omni/` |
+| 📋 |**Versiunea curentă**| `v0.1.2` |---
 
 ## Pornire rapidă
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+>**Ați căutat abilități de codare AI, abilități Claude Code, abilități cursor, abilități Codex CLI, abilități Gemini CLI, abilități antigravitație sau biblioteci instalabile `SKILL.md`?**
+> Ești în locul potrivit.### 1️⃣ What is this?
 
-### 1️⃣ What is this?
+Omni Skills este un**catalog de abilități instalabile și runtime**pentru asistenții de codare AI. În esență, este un depozit public de manuale reutilizabile `SKILL.md` — dar spre deosebire de colecțiile simple de abilități, depozitul**este**stratul de distribuție și de rulare.
 
-Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
+<detalii>
+<summary>📋 <strong>Ce este inclus</strong></summary>
 
-<details>
-<summary>📋 <strong>What's included</strong></summary>
-
-| Component | Description |
+| Componenta | Descriere |
 |:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
-| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
-| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
-| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
-| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
-| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
-| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
-
-</details>
+| 🧠**Abilități**| Cărți de joc bazate pe `SKILL.md` pentru asistenți AI |
+| 📦**Manifeste**| Manifeste, pachete și arhive JSON generate |
+| 🧭**Instalare ghidată**| Fluxuri de instalare interactive TTY și terminal vizual |
+| 🌐**Catalog API**| API HTTP numai pentru citire pentru căutare, descoperire și descărcări |
+| 🔌**Server MCP**| Instrumente de configurare pentru descoperire, recomandare și client |
+| 🤖**A2A Runtime**| Orchestrarea sarcinilor de la agent la agent |
+| ✨**Conducta de îmbunătățire**| Private enhancer publică derivate engleze selectate în `skills_omni/` |</details>
 
 ### 2️⃣ Quick Start
 
@@ -95,109 +85,95 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
+> 💬 *„Folosiți `@brainstorming` pentru a planifica un MVP SaaS.”*
 >
-> 💬 *"Use `@api-design` to review this endpoint design."*
+> 💬 *„Folosiți `@api-design` pentru a revizui acest design final.”*
 >
-> 💬 *"Use `@debugging` to isolate this regression."*
+> 💬 *„Folosiți `@debugging` pentru a izola această regresie.”*### 5️⃣ Start with a bundle
 
-### 5️⃣ Start with a bundle
-
-| 🎯 Goal | Bundle | Command |
-|:---------|:-------|:--------|
-| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
-| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
-| Design systems | `design` | `npx omni-skills --bundle design` |
-| Security review | `security` | `npx omni-skills --bundle security` |
-| Infra and release | `devops` | `npx omni-skills --bundle devops` |
-| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
-| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
-
----
+| 🎯 Gol | Pachet | Comanda |
+|:----------|:-------|:---------|
+| Inginerie generală | `esențiale` | `npx omni-skills --bundle essentials` |
+| Livrare produs + aplicație | `full-stack` | `npx omni-skills --bundle full-stack` |
+| Sisteme de proiectare | `design` | `npx omni-skills --bundle design` |
+| Analiză de securitate | `securitate` | `npx omni-skills --bundle security` |
+| Infra și eliberare | `devops` | `npx omni-skills --bundle devops` |
+| aplicații LLM | `ai-inginer` | `npx omni-skills --bundle ai-inginer` |
+| Întreținere OSS | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |---
 
 ## 🧩 Core Concepts
 
-Before comparing bundles or picking an install path, understanding these five building blocks helps:
+Înainte de a compara pachetele sau de a alege o cale de instalare, înțelegerea acestor cinci blocuri vă ajută:
 
-| Concept | What it means |
+| Concept | Ce înseamnă |
 |:--------|:-------------|
-| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
-| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
-| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
-| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
-| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
+| 🧠**Abilități**| Manuale reutilizabile `SKILL.md` care învață un asistent cum să execute bine un flux de lucru |
+| 📦**Artefacte de catalog**| Ieșiri JSON și arhivă generate care permit căutarea, compararea, descărcarea și instalarea |
+| 🔌**MCP Config**| Configurare pe partea clientului pentru ca asistenții să descopere abilitățile Omni prin instrumentele MCP |
+| 🤖**A2A Runtime**| Orchestrare de la agent la agent pentru descoperire, recomandare și transfer de plan de instalare |
+| ✨**Ieșire curată**| `skills_omni/` — suprafața îmbunătățită Omni-menținută, separată de priza nativă din amonte |
 
-> **📝 Native/Curated policy:**
-> - `skills/` accepts native upstream intake in any language
-> - `skills_omni/` is always curated and published in English
-> - `skills_omni/` is a one-way surface and does not loop back into native intake
-
----
+>**📝 Politică nativă/curată:**
+> - `skills/` acceptă utilizarea nativă în amonte în orice limbă
+> - `skills_omni/` este întotdeauna organizat și publicat în engleză
+> - `skills_omni/` este o suprafață unidirecțională și nu se întoarce înapoi în aportul nativ---
 
 ## 💡 Why Omni Skills
 
-> **Not just "another repository with skills in folders."**
-> Omni Skills has a stronger contract and a broader runtime surface.
+>**Nu doar „un alt depozit cu abilități în foldere.”**
+> Omni Skills are un contract mai puternic și o suprafață de rulare mai largă.
 
-| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
-|:-------------|:----------------------|:--------------|
-| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
-| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
-| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
-| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
-| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
-| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
-
----
+| Daca vrei... | 📁 Repoziție de aptitudini tipice | ✨ Omni Skills |
+|:--------------|:-----------------------|:---------------|
+| Instalați într-un asistent real | Copiere manuală sau script personalizat | `npx omni-skills`, instalare ghidată, interfață de utilizare vizuală, `--skill` și `--bundle` selective |
+| Căutați și comparați competențe | Răsfoiți manual markdown | Catalog generat, filtrare, planificare de pachete, căutare, comparare și recomandare |
+| Utilizați aceleași date în toate instrumentele | Logica separată pentru fiecare instrument | Manifeste și catalog partajate pentru CLI, API, MCP și A2A |
+| Configurați clienții MCP | Fișiere editate manual | `config-mcp`, previzualizări locale sidecar, rețete generate și scrieri permise |
+| Lansări de încredere | Ambalare cel mai bun efort | Sume de verificare, arhive semnate, verificare scaner, eliberare CI și publicare preflight |
+| Curate aportul comunității | Orice pământ rămâne așa cum este | Aportul nativ în `skills/`, derivate engleze curate în `skills_omni/` cu atribuire |---
 
 ## 🖥️ Compatibility and Invocation
 
-These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
+Aceste abilități urmează modelul `SKILL.md` și pot fi folosite ca un depozit normal, dar pachetul le instalează și le configurează pe o suprafață largă:
 
-> **7** install-capable clients · **16** MCP config-capable clients
+>**7**clienți capabili de instalare ·**16**clienți capabili de configurare MCP### 🎯 Install-Capable Clients
 
-### 🎯 Install-Capable Clients
+| Instrument | Tip | Exemplu de invocare | Calea de instalare |
+|:-----|:-----|:-------------------|:--------------|
+| 🟢**Codul Claude**| CLI | `Folosiți brainstorming pentru a planifica o caracteristică` | `~/.claude/skills` |
+| 🔵**Cursor**| IDE | `@brainstorming ajută-mă să planific o caracteristică` | `~/.cursor/skills` |
+| 🟡**Gemeni CLI**| CLI | `Folosiți brainstorming pentru a planifica o caracteristică` | `~/.gemeni/skills` |
+| 🔴**Codex CLI**| CLI | `Folosiți brainstorming pentru a planifica o caracteristică` | `~/.codex/skills` |
+| 🟠**Kiro**| CLI / IDE | `Folosiți brainstorming pentru a planifica o caracteristică` | `~/.kiro/skills` |
+| 🟣**Antigravitație**| IDE | `Folosiți @brainstorming pentru a planifica o caracteristică` | `~/.gemeni/antigravitație/deprinderi` |
+| ⚪**OpenCode**| CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
 
-| Tool | Type | Invocation Example | Install Path |
-|:-----|:-----|:-------------------|:-------------|
-| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
-| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
-| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
-| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
-| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
-| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
-| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
+<detalii>
+<summary>🔌 <strong>Acoperire mai largă a configurației MCP (16 clienți)</strong></summary>
 
-<details>
-<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
+Aceste ținte fac parte din suprafața de configurare MCP acceptată, chiar și atunci când nu sunt ținte de instalare pentru directoarele de abilități:
 
-These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
-
-| Client or Surface | Support Type | Notes |
-|:------------------|:------------|:------|
-| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
-| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
-| Gemini | MCP config | User and workspace settings |
-| Cline | MCP config | First-class config target |
-| GitHub Copilot CLI | MCP config | User and repo config targets |
-| Continue | MCP config | Workspace YAML generation |
-| Windsurf | MCP config | User config target |
-| Zed | MCP config | Workspace config target |
-| Goose | MCP config | User config target with generated recipe |
-| Kilo Code | MCP config | User, project, and workspace targets |
-| Junie | MCP config | Project and user config targets |
-
-</details>
+| Client sau suprafață | Tip suport | Note |
+|:------------------|:-------------|:------|
+| Setări Claude și desktop | Configurare MCP | Setări, desktop și fluxuri de proiect |
+| Cod VS | Configurare MCP | Ținte pentru utilizatori, spațiu de lucru, persoane din interior și Container Dev |
+| Gemeni | Configurare MCP | Setări utilizator și spațiu de lucru |
+| Cline | Configurare MCP | Țintă de configurare de primă clasă |
+| GitHub Copilot CLI | Configurare MCP | Ținte de configurare utilizator și repo |
+| Continuare | Configurare MCP | Generare YAML pentru spațiu de lucru |
+| Windsurf | Configurare MCP | Țintă de configurare utilizator |
+| Zed | Configurare MCP | Ținta de configurare a spațiului de lucru |
+| Gâscă | Configurare MCP | Țintă de configurare utilizator cu rețeta generată |
+| Cod Kilo | Configurare MCP | Ținte pentru utilizator, proiect și spațiu de lucru |
+| Junie | Configurare MCP | Ținte de configurare a proiectului și a utilizatorului |</details>
 
 ---
 
 ## Instalare
 
-<table>
+<tabel>
 <tr>
-<td width="50%">
-
-### Option A: Install with `npx` *(recommended)*
+<td width="50%">### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -254,39 +230,35 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Tool | Install Command | First Use |
-|:-----|:---------------|:----------|
-| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
-| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
-| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
-| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
+| Instrument | Comanda de instalare | Prima utilizare |
+|:-----|:----------------|:-----------|
+| 🟢 Cod Claude | `npx omni-skills --claude` | `Folosiți brainstorming pentru a planifica o caracteristică` |
+| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming ajută-mă să planific o caracteristică` |
+| 🟡 Gemeni CLI | `npx omni-skills --gemini` | `Folosiți brainstorming pentru a planifica o caracteristică` |
+| 🔴 Codex CLI | `npx omni-skills --codex` | `Folosiți brainstorming pentru a planifica o caracteristică` |
+| 🟣 Antigravitație | `npx omni-skills --antigravity` *(implicit)* | `Folosiți @brainstorming pentru a planifica o caracteristică` |
+| 🟠 Kiro | `npx omni-skills --kiro` | `Folosiți brainstorming pentru a planifica o caracteristică` |
 | ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
-| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
+| 📂 Cale personalizată | `npx omni-skills --path ./my-skills` | Depinde de instrumentul dvs. |
 
-> 📖 **Not sure where to start?**
-> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
-> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
-> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
-
----
+> 📖**Nu sunteți sigur de unde să începeți?**
+> - [🚀 Noțiuni introductive](docs/users/GETTING-STARTED.md) — instalați și verificați în mai puțin de 2 minute
+> - [🧭 Ghidul utilizatorului CLI](docs/users/CLI-USER-GUIDE.md) — referință completă la comandă
+> - [📗 Ghid de utilizare](docs/users/USAGE.md) — solicitări, modele și moduri de rulare---
 
 ## 🔌 Runtime Surfaces
 
-Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
+Omni Skills nu este doar o bibliotecă de abilități. Expune**patru suprafețe de rulare**care consumă același catalog generat:
 
-| Surface | State | What it does | Example |
-|:--------|:------|:-------------|:--------|
-| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
-| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
-| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
-| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
+| Suprafata | Stat | Ce face | Exemplu |
+|:--------|:------|:--------------|:--------|
+| 🖥️**CLI**| ✅ Disponibil | Găsiți, instalați, diagnosticați, interfața de utilizare vizuală, servicii de boot, verificări de fum | `npx omni-skills doctor` |
+| 🌐**Catalog API**| ✅ Disponibil | Catalog numai în citire, căutare, pachete, comparare, planuri de instalare, descărcări | `npx omni-skills api --port 3333` |
+| 🔌**MCP**| ✅ Disponibil | Descoperire, recomandare, previzualizare instalare, sidecar local, fluxuri de configurare | `npx omni-skills mcp stream --local` |
+| 🤖**A2A**| ✅ Disponibil | Ciclul de viață al sarcinii, transferul, sondajul, transmiterea în flux, anularea, persistența | `npx omni-skills a2a --port 3335` |
 
-<details>
-<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
-
-```bash
+<detalii>
+<summary>🖥️ <strong>shell vizual și comenzi pentru operator</strong></summary>```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -296,10 +268,8 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<details>
-<summary>🔌 <strong>MCP transports and config</strong></summary>
-
-```bash
+<detalii>
+<summary>🔌 <strong>Transporturi MCP și configurație</strong></summary>```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -320,41 +290,33 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Metric | Count |
+| Metric | Contele |
 |:-------|:------|
-| 🧠 Published skills | **32** |
-| 📂 Active categories | **15** |
-| 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **32** in `skills_omni/` |
+| 🧠 Abilități publicate |**32**|
+| 📂 Categorii active |**15**|
+| 📦 Pachete susținute complet |**7**|
+| ✨ Derivate curatate |**32**în `skills_omni/` |### 📦 Bundle Availability
 
-### 📦 Bundle Availability
-
-| Bundle | Skills | Members |
+| Pachet | Abilități | Membrii |
 |:-------|:-------|:--------|
-| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
-| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
-| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
-| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
-| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
-| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
-| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
+| 🧰 `esențiale` |**4/4**✅ | `găsește abilități` · `brainstorming` · `arhitectură` · `depanare` |
+| 🌐 `full-stack` |**5/5**✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
+| 🎨 `design` |**5/5**✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `securitate` |**4/4**✅ | `auditor-securitate` · `scaner-vulnerabilitate` · `răspuns la incident` · `modelarea amenințărilor` |
+| ⚙️ `devops` |**5/5**✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-ingineering` |
+| 🤖 `ai-inginer` |**7/7**✅ | `rag-inginer` · `prompt-inginer` · `llm-patterns` · `eval-design` · `context-ingineer` · `contracte de date` · `model-serving` |
+| 🔧 `oss-maintainer` |**4/4**✅ | `găsește-skills` · `create-pr` · `changelog` · `documentație` |### ✨ Native Intake → Curated Output
 
-### ✨ Native Intake → Curated Output
+| Suprafata | Scop | Limba |
+|:--------|:--------|:----------|
+| 📥 `skills/` | Aportul nativ | Orice limbă |
+| ✨ `skills_omni/` | Ieșire Omni-menținută curată | Întotdeauna engleză |
 
-| Surface | Purpose | Language |
-|:--------|:--------|:---------|
-| 📥 `skills/` | Native intake | Any language |
-| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
-
-> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
-
----
+>**ℹ️**Modificările aduse competențelor native sunt reprocesate de amplificatorul privat și reîmprospătate în linia de bază organizată. Acest lucru face ca `skills_omni/` o**suprafață de catalog întreținută**, nu o a doua copie.---
 
 ## 🛡️ Security and Release Posture
 
-> Omni Skills ships a stronger release and verification story than a plain markdown repository.
-
-### 🧪 Validation and Smoke Checks
+> Omni Skills oferă o poveste de lansare și verificare mai puternică decât un depozit simplu de reducere.### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -363,40 +325,36 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<details>
-<summary>📋 <strong>What the pipeline validates</strong></summary>
+<detalii>
+<summary>📋 <strong>Ce validează pipeline</strong></summary>
 
-- ✅ Skill validation and metadata generation
-- ✅ Taxonomy normalization and recategorization tooling
-- ✅ Catalog and archive generation
-- ✅ Automated tests
-- ✅ API, MCP, and A2A boot paths
-- ✅ Archive verification
-- ✅ Package preflight with `npm pack --dry-run`
+- ✅ Validarea competențelor și generarea de metadate
+- ✅ Instrumente de normalizare și recategorizare a taxonomiei
+- ✅ Generare catalog și arhive
+- ✅ Teste automate
+- ✅ Căi de pornire API, MCP și A2A
+- ✅ Verificarea arhivei
+- ✅ Pachetul preflight cu `npm pack --dry-run`</details>
 
-</details>
+<detalii>
+<summary>🔐 <strong>Eliberați postura</strong></summary>
 
-<details>
-<summary>🔐 <strong>Release posture</strong></summary>
+| Control | Descriere |
+|:--------|:------------|
+| 🔒 Sume de control SHA-256 | Manifeste sume de control pentru toate arhivele |
+| ✍️ Artefacte semnate | Semnături detașate pe artefacte de lansare |
+| 🤖 aplicat CI | Verificarea lansării în CI înainte de publicare |
+| 🦠 Porți scanner | Flux de eliberare ClamAV și VirusTotal-gated |
+| 📦 Lansare GitHub | Generare automată de lansări GitHub |
+| 📋 publicație npm | Numai din tarball verificat |
+| 🔄 Eliberare automată | La calificare, abilitatea se îmbină cu `principal` |
 
-| Control | Description |
-|:--------|:-----------|
-| 🔒 SHA-256 checksums | Checksum manifests for all archives |
-| ✍️ Signed artifacts | Detached signatures on release artifacts |
-| 🤖 CI-enforced | Release verification in CI before publication |
-| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
-| 📦 GitHub Release | Automated GitHub Release generation |
-| 📋 npm publication | From verified tarball only |
-| 🔄 Auto release | On qualifying skill merges to `main` |
-
-**Auto-release triggers only when a merge changes:**
+**Eliberarea automată se declanșează numai atunci când o îmbinare se modifică:**
 - `skills/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-Doc-only changes **do not** trigger package publication.
-
-</details>
+Modificările doar pentru documente**nu**declanșează publicarea pachetului.</details>
 
 ---
 
@@ -404,93 +362,79 @@ Doc-only changes **do not** trigger package publication.
 
 ### 👤 For Users
 
-| Doc | What You'll Learn |
+| Doc | Ce vei învăța |
 |:----|:-----------------|
-| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
-| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
-| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
-| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
-| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
+| 🚀 [Noțiuni introductive](docs/users/GETTING-STARTED.md) | Instalați, verificați și invocați în mai puțin de 2 minute |
+| 🧭 [Ghid de utilizare CLI](docs/users/CLI-USER-GUIDE.md) | Referință de comandă completă și modele din lumea reală |
+| 📗 [Ghid de utilizare](docs/users/USAGE.md) | Comenzi CLI, moduri de instalare, timp de execuție și configurare MCP |
+| 📦 [Pachete](docs/users/BUNDLES.md) | Pachetele organizate și disponibilitatea |
+| 📚 [Catalog](docs/CATALOG.md) | Catalog autogenerat de competențe publicate |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Creați, serviți, asigurați și depanați |### 🏗️ For Architects
 
-### 🏗️ For Architects
-
-| Doc | What You'll Learn |
+| Doc | Ce vei învăța |
 |:----|:-----------------|
-| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
-| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
-| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
-| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
-| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
-| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
-| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
-| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Evoluția arhitecturii și zonele rămase |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Decizia de bază monorepo |
+| 🔬 [Analiza bazei de cod](docs/architecture/CODEBASE-ANALYSIS.md) | Compoziția timpului de execuție și limitele sistemului |
+| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | Puncte finale HTTP, filtrare, guvernare și descărcări |
+| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Contract comportamental pentru instalatorul ghidat |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Înveliș vizual cu cerneală și model de stare |
+| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Instrumentele sistemului de fișiere și modelul listei de permise |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Referință completă pentru client și scriitor |
+| 🏷️ [Clasificarea competențelor](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomie, scor și metadate |
+| 🛡️ [Validare de securitate](docs/specs/SECURITY-VALIDATION.md) | Scanere, arhive și semnături |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Format manifest citibil de mașină |### 🤝 For Contributors
 
-### 🤝 For Contributors
-
-| Doc | What You'll Learn |
+| Doc | Ce vei învăța |
 |:----|:-----------------|
-| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
-| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
-| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
-| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
-| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
-| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
-
----
+| 📝 [Ghid de contribuție](CONTRIBUTING.md) | Fluxul de lucru repo și așteptările PR |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Aportul nativ, procesarea amplificatorului, așteptările recenzenților |
+| 📄 [Șablon de aptitudini](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` cu frontmatter și structură |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structura și așteptările de calitate |
+| ✅ [Bara de calitate](docs/contributors/QUALITY-BAR.md) | Criterii de acceptare |
+| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Ceea ce conduce la scoruri mari |---
 
 ## 🗂️ Repository Layout
 
-| Path | Purpose |
+| Calea | Scop |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills and native intake |
-| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
-| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
-| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
-| 📁 `data/` | Bundle definitions and static supporting data |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
-| 🖥️ `tools/bin/` | CLI entrypoints |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
+| 📂 `skills/` | Abilități de autor canonice și aport nativ |
+| ✨ `skills_omni/` | Derivate îmbunătățite curatate Omni-menținute |
+| 📖 `docs/` | Utilizator, colaborator, arhitectură, operațiuni și documentație de specificații |
+| 📦 `dist/` | Manifeste, pachete, catalog și arhive generate |
+| 📁 `data/` | Definiții de pachet și date statice suport |
+| 🧠 `pachete/catalog-core/` | Timp de rulare a catalogului partajat |
+| 🌐 `pachete/server-api/` | API HTTP numai pentru citire |
+| 🔌 `pachete/server-mcp/` | Server MCP și sidecar local |
+| 🤖 `pachete/server-a2a/` | A2A runtime și orchestrare sarcini |
+| 🖥️ `tools/bin/` | Puncte de intrare CLI |
+| 📚 `tools/lib/` | Instalator și asistență UI |
+| ⚙️ `instrumente/scripturi/` | Scripturi de validare, generare, lansare și testare |
 
-> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
----
+>**ℹ️**`dist/` este versiunea intenționată deoarece artefactele generate fac parte din contractul de instalare, API, MCP, A2A, fum și lansare.---
 
 ## 🤝 Contributing
 
-Omni Skills accepts native upstream skill intake under `skills/`.
+Omni Skills acceptă aportul nativ de abilități din amonte sub `skills/`.
 
-| Rule | Details |
+| Regula | Detalii |
 |:-----|:--------|
-| 📥 Native intake | May be rough, authored in any language |
-| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
-| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
-| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
+| 📥 Aport nativ | Poate fi dur, scris în orice limbă |
+| ✨ Ieșire organizată | `skills_omni/` rezervat derivatelor Omni create de automatizare |
+| 🚫 Editări manuale | Modificările manuale publice ale `skills_omni/` sunt respinse |
+| 🔄 Reprocesare | Amplificatorul privat reprocesează modificările native și reîmprospătează linia de bază organizată |
 
-> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
-
----
+> 📖**Începe cu:**[Ghid de contribuție](CONTRIBUTING.md) · [Flux de lucru Skill PR](docs/contributors/SKILL-PR-WORKFLOW.md)---
 
 ## 📄 License
 
-| Type | License |
+| Tip | Licență |
 |:-----|:--------|
-| 💻 Code and tooling | [MIT License](LICENSE) |
-| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
-
----
+| 💻 Cod și scule | [Licență MIT](LICENȚĂ) |
+| 📝 Documentare și conținut de abilități | [CC BY 4.0](CONTINUTUL LICENȚEI) |---
 
 <div align="center">
 
-**Made with 🧠 by the Omni Skills Team**
+**Făcut cu 🧠 de către echipa Omni Skills**
 
-[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
-
-</div>
+[⭐ Marcați acest depozit](https://github.com/diegosouzapw/omni-skills) · [🐛 Raportați o eroare](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discuții](https://github.com/diegosouzapw/omnisouzapw/omni-discussions)</div>

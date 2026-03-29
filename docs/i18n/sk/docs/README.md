@@ -6,115 +6,101 @@
 
 <!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
 
-> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
+>**Ústredný odkaz na používanie, prevádzku, rozširovanie a pochopenie súčasnej platformy Omni Skills.**
 
-Standard community files live in the repository root:
-[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
-
----
+Štandardné komunitné súbory žijú v koreňovom adresári úložiska:
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.m---
 
 ## 📊 Status Snapshot
 
-| Area | State | Details |
+| Oblasť | Štát | Podrobnosti |
 |:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
-| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
-| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
-| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
-| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
-| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
-| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
-| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+| 🏗️**Runtime**| ✅ Aktuálne | Zjednotené rozhranie CLI, vizuálne prostredie atramentu, API, MCP a A2A sa dodávajú z rovnakého balíka |
+| 📦**Katalóg**| 📌 32 zručností | 32 publikovaných zručností „L3“ v 15 aktívnych kategóriách katalógu a 7 plne zabezpečených balíkoch |
+| 🎯**Inštalovať**| ✅ Aktuálne | Riadená inštalácia TTY, selektívne `--skill` a `--bundle`, podpora vlastnej cesty a inštalácia riadená zisťovaním |
+| 🌐**API**| ✅ Aktuálne | Rozhranie API registra len na čítanie s overením, admin runtime, obmedzením rýchlosti, CORS/IP povolenými zoznamami, režimom údržby a sťahovaním |
+| 🔌**MCP**| ✅ Aktuálne | `stdio` · `stream` · `sse`, lokálny režim sidecar, 7 klientov s možnosťou inštalácie, 16 klientov s možnosťou konfigurácie, 33 cieľov konfigurácie a 19 profilov konfigurácie |
+| 🤖**A2A**| ✅ Aktuálne | Prvý jednoduchý lokálny runtime s trvanlivosťou JSON/SQLite, obnovením reštartu, streamovaním SSE, zrušením, režimom externého spúšťača a voliteľnou prenajatou koordináciou, ak je explicitne povolená |
+| 🛡️**Bezpečnosť**| ✅ Aktuálne | Statický skener, voliteľný ClamAV/VirusTotal, podpísané artefakty vydania, archívne kontrolné súčty a overenie času vydania |
+| 📋**Klasifikácia**| ✅ Aktuálne | Kanonická taxonómia, zrelosť, šírenie sémantickej kvality, šírenie osvedčených postupov a hodnotenie bezpečnosti |
+| 📁**Archív**| ✅ Aktuálne | Archívy `.zip` a `.tar.gz` pre jednotlivé zručnosti s manifestmi kontrolného súčtu SHA-256 |
+| 🔐**Podpis**| ✅ Aktuálne | Oddelené podpisy vynútené na uvoľňovacích značkách; lokálne toky inštalácie spotrebúvajú rovnaké metadáta manifestu a kontrolného súčtu |
+| 🧬**Prítok príjmu**| ✅ Aktuálne | Zručnosti domorodcov pristávajú pod `skills/`; PR automatizácia ich posudzuje a navrhuje deriváty vylepšené Omni pod `skills_omni/` |## 🔭 Current Project State
 
-## 🔭 Current Project State
+Základová dráha teraz žije v aktívnom stave projektu a druhá kategória rozšírenia je už v katalógu. Projekt by sa teraz mal chápať ako pracovný základ s voliteľnými budúcimi postupmi rozšírenia:
 
-The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
+- verejné `v0.1.2` a súkromné `v0.0.1` sú aktuálnou stabilnou úrovňou vydania
+- katalóg teraz zahŕňa 32 publikovaných zručností v 15 aktívnych kategóriách a 7 plne zabezpečených balíkoch
+- natívny príjem a kurátorský `skills_omni/` výstup sú funkčné, vrátane viacjazyčného natívneho príjmu a kurátorovaného výstupu iba v angličtine
+- protokolové povrchy, automatizácia vydania a automatizácia súkromných vylepšení sú v prevádzke, nie v bootstrape
 
-- public `v0.1.2` and private `v0.0.1` are the current stable release floor
-- the catalog now covers 32 published skills across 15 active categories and 7 fully backed bundles
-- native intake and curated `skills_omni/` output are both operational, including multilingual native intake and English-only curated output
-- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+Budúca expanzia zostáva zámerná:
 
-Future expansion stays deliberate:
+- prehĺbiť „dizajn“, „nástroje“, „data-ai“ a „strojové učenie“
+- vyhýbajte sa opätovnému otváraniu spiacich nekódových pôvodných kategórií, kým súčasné kódové natívne stopy nebudú mať väčšiu hĺbku
+- ponechajte pritom neporušenú cestu kontroly kvality a zlepšovača
 
-- deepen `design`, `tools`, `data-ai`, and `machine-learning`
-- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
-- keep the quality floor and enhancer review path intact while doing so
+Tento plán je teraz rozdelený na:
 
-That plan is now split into:
-
-- the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-- and the forward-looking backlog in [tasks/README.md](tasks/README.md)
-
----
+- dokončená prvá vlna rozširovania v [úlohy/ÚLOHA-07-KATALÓG-ŠPECIALIZÁCIA-A-EXPANZIA-KATEGÓRIE.md](úlohy/ÚLOHA-07-KATALÓG-ŠPECIALIZÁCIA-A-KATEGÓRIA-EXPANZIA.md)
+- dokončená druhá vlna expanzie v [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
+- a výhľadový backlog v [tasks/README.md](tasks/README.md)---
 
 ## 📌 Current Decisions
 
-These architecture questions are no longer “open” in practice and are now treated as project decisions:
+Tieto otázky architektúry už nie sú v praxi „otvorené“ a teraz sa s nimi zaobchádza ako s projektovými rozhodnutiami:
 
-1. **Distribution stays manifest-first plus signed archives**
-   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
-2. **Private or premium catalogs should reuse the same manifest schema**
-   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
-3. **MCP config should converge on a few canonical export families**
-   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+1.**Distribúcia zostáva manifestovaná ako prvá plus podpísané archívy**
+   Strojovo čitateľný manifest zostáva zmluvou spotrebovanou CLI, API, MCP a A2A. Podpísané archívy pre jednotlivé zručnosti sú povrchom na stiahnutie a uvoľnenie, ktorý je navrstvený na tejto zmluve.
+2.**Súkromné alebo prémiové katalógy by mali znova používať rovnakú schému manifestu**
+   Autorizácia a politika by mali byť vrstvené externe, nie rozvetvením manifestu alebo tvaru katalógu.
+3.**Konfigurácia MCP by mala konvergovať na niekoľkých kanonických exportných rodinách**
+   Omni Skills sa teraz štandardizuje okolo JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions` a TOML `[mcp_servers]`, pričom ponecháva autorov na mieru len tam, kde oficiálne klientske dokumenty vyžadujú inú štruktúru.
 
-Those decisions align with current official MCP and client documentation, including:
+Tieto rozhodnutia sú v súlade s aktuálnou oficiálnou dokumentáciou MCP a klientskou dokumentáciou vrátane:
 
-- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
-- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
-- VS Code MCP extension and product docs at `code.visualstudio.com`
-- client docs for Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman, and JetBrains AI Assistant
-
----
+- oficiálny register MCP a pokyny na podporu rozšírenia na `modelcontextprotocol.io`
+- Dokumenty OpenAI Docs MCP a Codex CLI na stránkach `developers.openai.com` a `platform.openai.com`
+- Rozšírenie VS Code MCP a produktové dokumenty na `code.visualstudio.com`
+- klientske dokumenty pre Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman a JetBrains AI Assistant---
 
 ## 🚀 Start Here
 
 ### 👤 If You Want to **Use** the Project
 
-| Doc | What You'll Learn |
+| Doc | Čo sa naučíte |
 |:----|:------------------|
-| 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
-| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
-| 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
-| 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
-| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot the runtime |
+| 📘 [Začíname](používatelia/GETTING-STARTED.md) | Nainštalujte, overte a vyvolajte svoju prvú zručnosť |
+| 🧭 [Používateľská príručka CLI](používatelia/CLI-USER-GUIDE.md) | Úplná referencia príkazov a vzory používania CLI v reálnom svete |
+| 📗 [Sprievodca používaním](používatelia/USAGE.md) | Príkazy CLI, režimy inštalácie, príkazy runtime a toky konfigurácie MCP |
+| 📦 [Bundles](používatelia/BUNDLES.md) | Vybrané balíky a ich aktuálna dostupnosť |
+| 📚 [Katalóg](CATALOG.md) | Automaticky generovaný katalóg publikovaných zručností |
+| 🔧 [Súbor systému](operácie/RUNBOOK.md) | Zostavte, obsluhujte, zabezpečte a odstraňovajte problémy s runtime |### 🏗️ If You Want to **Understand** the Runtime
 
-### 🏗️ If You Want to **Understand** the Runtime
-
-| Doc | What You'll Learn |
+| Doc | Čo sa naučíte |
 |:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution, closed decisions, and remaining expansion areas |
-| 🧭 [CLI UX Roadmap](architecture/CLI-UX-ROADMAP.md) | Historical plan and current shape of the guided and visual CLI |
-| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo and shared-runtime decision |
-| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Current runtime composition, counts, and system boundaries |
-| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink visual shell, state model, and service hub |
-| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filesystem-aware tools, allowlist model, and config writing |
-| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
-| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring heuristics, and metadata artifacts |
-| 🛡️ [Security Validation](specs/SECURITY-VALIDATION.md) | Scanners, archives, signatures, and release verification |
-| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Machine-readable manifest format and compatibility contract |
+| 🗺️ [Agent-Native Roadmap](architektúra/AGENT-NATIVE-ROADMAP.md) | Vývoj architektúry, uzavreté rozhodnutia a zostávajúce oblasti expanzie |
+| 🧭 [CLI UX Roadmap](architektúra/CLI-UX-ROADMAP.md) | Historický plán a súčasná podoba riadeného a vizuálneho CLI |
+| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Rozhodnutie o základnom monorepo a zdieľanom čase |
+| 🔬 [Analýza kódovej bázy](architektúra/CODEBASE-ANALYSIS.md) | Aktuálne zloženie runtime, počty a hranice systému |
+| 🌐 [Katalógový API povrch](špecifikácie/CATALOG-API.md) | Koncové body HTTP, filtrovanie, riadenie a sťahovanie |
+| 🧩 [CLI Guided Installer](špecifikácie/CLI-GUIDED-INSTALLER.md) | Zmluva o správaní pre inštalatéra so sprievodcom |
+| 🖥️ [CLI Visual Shell](špecifikácie/CLI-VISUAL-SHELL.md) | Atramentové vizuálne puzdro, model stavu a servisné centrum |
+| 🔌 [Miestny MCP Sidecar](špecifikácie/LOCAL-MCP-SIDECAR.md) | Nástroje podporujúce súborový systém, model zoznamu povolených a zapisovanie konfigurácií |
+| 🧭 [Klientska podpora Matica](špecifikácie/CLIENT-SUPPORT-MATRIX.md) | Podporovaní klienti CLI a IDE, zapisovače, manuálne ciele a zdrojové odkazy |
+| 📊 [Klasifikácia schopností](špecifikácie/KLASIFIKÁCIA ZRUČNOSTÍ.md) | Taxonómia, heuristika hodnotenia a artefakty metadát |
+| 🛡️ [Overenie zabezpečenia](špecifikácie/SECURITY-VALIDATION.md) | Skenery, archívy, podpisy a overenie vydania |
+| 📋 [Skill Manifest Spec](špecifikácie/SKILL-MANIFEST.md) | Strojovo čitateľný formát manifestu a zmluva o kompatibilite |### 🤝 If You Want to **Contribute**
 
-### 🤝 If You Want to **Contribute**
-
-| Doc | What You'll Learn |
+| Doc | Čo sa naučíte |
 |:----|:------------------|
-| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
-| 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
-| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
-| 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
-| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
-| 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
-| 📋 [Tasks Backlog](tasks/README.md) | Detailed implementation backlog for the remaining public and private work |
-
----
+| 📝 [Sprievodca prispievaním](../CONTRIBUTING.md) | Repo workflow a očakávané požiadavky na stiahnutie |
+| 🧾 [Skill PR Workflow](prispievatelia/SKILL-PR-WORKFLOW.md) | Natívny príjem, automatické spracovanie zosilňovačov, publikovanie `skills_omni/` a očakávania recenzentov |
+| 📄 [Šablóna zručností](prispievatelia/ŠABLÓNA SKILL-TEMPLATE.md) | Štartér `SKILL.md` s aktuálnym frontmaterom a štruktúrou |
+| 🔬 [Skill Anatomy](prispievatelia/SKILL-ANATOMY.md) | Štruktúra a kvalita predpokladov pre zručnosť |
+| ✅ [Quality Bar](prispievatelia/QUALITY-BAR.md) | Kritériá prijatia pre archív |
+| 🏆 [High-Score Playbook](prispievatelia/HIGH-SCORE-PLAYBOOK.md) | Čo poháňa vysokú vyspelosť, kvalitu, osvedčené postupy a skóre bezpečnosti |
+| 📋 [Neriešené úlohy](úlohy/README.md) | Podrobné implementačné nevybavené zostávajúce verejné a súkromné ​​práce |---
 
 ## 🔌 Runtime Surfaces
 
@@ -127,9 +113,7 @@ npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-The published `omni-skills` binary is the unified public entry point.
-
-```bash
+Publikovaný binárny súbor „omni-skills“ je jednotným verejným vstupným bodom.```bash
 # 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
@@ -161,34 +145,28 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
-For the complete end-user command surface, use [CLI User Guide](users/CLI-USER-GUIDE.md).
+Úplnú plochu príkazov pre koncového používateľa nájdete v [Príručka používateľa CLI](users/CLI-USER-GUIDE.md).### 📁 Generated Artifacts
 
-### 📁 Generated Artifacts
+Zostavovací kanál vydáva strojovo čitateľné súbory, ktoré riadia každý povrch runtime:
 
-The build pipeline emits the machine-readable files that drive every runtime surface:
-
-| Artifact | Purpose |
+| Artefakt | Účel |
 |:---------|:--------|
-| `metadata.json` | Repository-wide validation and score summary |
-| `skills_index.json` | Repo-local normalized skill index |
-| `dist/catalog.json` | Published catalog for search and listing |
-| `dist/bundles.json` | Bundle definitions with availability |
-| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
-| `dist/archives/<skill>.zip` | Skill archive (zip) |
-| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+| `metadata.json` | Overenie v celom úložisku a súhrn skóre |
+| `skills_index.json` | Repo-miestny normalizovaný index zručností |
+| `dist/catalog.json` | Publikovaný katalóg na vyhľadávanie a výpis |
+| `dist/bundles.json` | Definície balíkov s dostupnosťou |
+| `dist/manifests/<skill>.json` | Strojovo čitateľný manifest pre jednotlivé zručnosti |
+| `dist/archives/<skill>.zip` | Archív zručností (zip) |
+| `dist/archives/<skill>.tar.gz` | Archív zručností (tarball) |
+| `dist/archives/<skill>.checksums.txt` | Manifest kontrolného súčtu SHA-256 |
 
-`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
-### 🌐 API
+`dist/` zostáva zadaný zámerne. Tieto vygenerované artefakty sú súčasťou zmluvy o inštalácii, API, MCP, A2A, dyme a vydaní.### 🌐 API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
-
-### 🔌 MCP
+API registra len na čítanie pre zručnosti, balíky, porovnávanie, plánovanie inštalácie a sťahovanie artefaktov.### 🔌 MCP
 
 ```bash
 npx omni-skills mcp stdio
@@ -197,55 +175,49 @@ npx omni-skills mcp sse
 npx omni-skills mcp stream --local
 ```
 
-The local sidecar now supports first-class MCP config writing for:
+Miestny postranný vozík teraz podporuje prvotriedny zápis konfigurácie MCP pre:
 
 - Claude Code
-- Cursor
-- VS Code and Dev Containers
+- Kurzor
+- VS kód a Dev kontajnery
 - Gemini CLI
-- Antigravity
+- Antigravitácia
 - Kiro
 - Codex CLI
-- Continue
-- Windsurf
+- Pokračuj
+- Windsurfing
 - OpenCode
 - Cline
 - GitHub Copilot CLI
-- Kilo Code
+- Kilový kód
 - Zed
-- Goose
-
-### 🤖 A2A
+- Husi### 🤖 A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
-
----
+Životný cyklus úlohy, streamovanie, pretrvávanie, obnovenie reštartu a jednoduchá lokálna orchestrácia. Zdieľané prenajaté vykonávanie je dostupné, keď je explicitne povolené; Redis zostáva pokročilou hostovanou možnosťou, nie predvolenou miestnou cestou.---
 
 ## 🗂️ Repository Map
 
-| Path | Purpose |
+| Cesta | Účel |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills |
-| 📖 `docs/users/` | End-user documentation |
-| 🤝 `docs/contributors/` | Contributor templates and guidance |
-| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
-| 🔧 `docs/operations/` | Operational runbooks |
-| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
-| 📚 `docs/CATALOG.md` | Generated skill catalog |
-| 📦 `dist/` | Generated machine-readable artifacts |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A server and task runtime |
-| 🖥️ `tools/bin/` | CLI entry points |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
-
----
+| 📂 `zručnosti/` | Kanonické autorské zručnosti |
+| 📖 `dokumenty/používatelia/` | Dokumentácia pre koncového používateľa |
+| 🤝 `dokumenty/prispievatelia/` | Šablóny prispievateľov a pokyny |
+| 🏗️ `docs/architecture/` | Plán, ADR a technická analýza |
+| 🔧 `dokumenty/operácie/` | Prevádzkové príručky |
+| 📋 `dokumenty/špecifikácie/` | Runtime, protokoly a kontrakty artefaktov |
+| 📚 `docs/CATALOG.md` | Vygenerovaný katalóg zručností |
+| 📦 `dist/` | Generované strojovo čitateľné artefakty |
+| 🧠 `balíky/katalógové jadro/` | Spustenie zdieľaného katalógu |
+| 🌐 `packages/server-api/` | HTTP API iba na čítanie |
+| 🔌 `packages/server-mcp/` | Server MCP a lokálny postranný vozík |
+| 🤖 `balíčky/server-a2a/` | Spustenie servera a úloh A2A |
+| 🖥️ `náradie/kôš/` | Vstupné body CLI |
+| 📚 `tools/lib/` | Inštalátor a pomocníci používateľského rozhrania |
+| ⚙️ `nástroje/skripty/` | Validácia, generovanie, overovanie a testy |---
 
 ## 🧪 Release Validation
 
@@ -253,15 +225,15 @@ Task lifecycle, streaming, persistence, restart recovery, and simple-first local
 npm run smoke
 ```
 
-The smoke run validates:
+Dymový chod potvrdzuje:
 
-- ✅ skill validation and metadata generation
-- ✅ taxonomy recategorization tooling
-- ✅ catalog artifact generation
-- ✅ generated catalog markdown
-- ✅ archive generation and verification
-- ✅ automated test suite
-- ✅ `npm pack --dry-run`
-- ✅ API boot and health
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle
+- ✅ overenie zručností a generovanie metadát
+- ✅ nástroje na rekategorizáciu taxonómie
+- ✅ generovanie artefaktov z katalógu
+- ✅ vygenerovaná katalógová značka
+- ✅generovanie a overenie archívu
+- ✅ automatizovaný testovací balík
+- ✅ `npm pack --suchý chod`
+- ✅ Spustenie a zdravie API
+- ✅ Zavedenie MCP v `stdio`, `stream` a `sse`
+- ✅ A2A boot, prieskum, streamovanie SSE, zrušenie a životný cyklus push-config

@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Создано автоматически на основе `skills_index.json` — 32 навыка в 15 категориях.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Сгенерировано: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
-- [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
-- [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
+- [🧠 Агенты ИИ (5)](#ai-агенты)
+- [🗄️ Бэкенд (2)](#бэкенд)
+- [⚙️ Автоматизация Cli (1)](#cli-automation)
+- [💬 Общение (1)](#общение)
+- [🤖 Данные Ай (1)](#data-ai)
+- [🎨 Дизайн (3)](#дизайн)
+- [💻 Развитие (3)](#развитие)
+- [☁️ Девопсы (5)](#devops)
+- [📝 Документация (2)](#documentation)
+- [🖼️ Фронтенд (1)](#фронтенд)
 - [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [📈 Машинное обучение (1)](#машинное обучение)
+- [🧭 Товар (1)](#продукт)
+- [🛡️ Тестирование безопасности (4)](#testing-security)
+- [🧰 Инструменты (1)](#инструменты)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Навыки контекстной инженерии рабочего процесса. Используйте этот навык, когда пользователю необходимо сформировать подсказки, контекст поиска, память и | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Навыки рабочего процесса проектирования оценки. Используйте этот навык, когда пользователю нужны планы оценки LLM, наборы регрессии, критерии оценки, o | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Навыки рабочего процесса подачи заявки на LLM. Используйте этот навык, когда пользователю нужны надежные шаблоны использования инструментов, структурированные результаты, Fallb | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Навыки оперативного инженерного документооборота. Используйте этот навык, когда пользователю нужны более четкие инструкции по выполнению задач, примеры, декомпозиция, | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | Навыки рабочего процесса RAG. Используйте этот навык, когда пользователю нужны конвейеры поиска, разбиение на фрагменты, ранжирование, цитирование и оценка f | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | Навыки рабочего процесса проектирования API. Используйте этот навык, когда пользователю перед реализацией требуется четкий контракт HTTP или службы. | Ресурсы L3 | 100/100 | 95/100 | Пройдено 95/100 |
+| [`database-design`](../skills/database-design/SKILL.md) | Навыки проектирования баз данных. Используйте этот навык, когда пользователю нужна надежная схема, индексирование и миграция, прежде чем | Ресурсы L3 | 98/100 | 94/100 | Пройдено 95/100 |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`find-skills`](../skills/find-skills/SKILL.md) | Навыки рабочего процесса поиска каталогов. Используйте этот навык, когда пользователь запрашивает возможности, рабочий процесс или помощника по конкретной предметной области | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Навыки работы с пул-реквестами. Используйте этот навык, когда пользователю нужно четкое описание обзора, определение рисков и руководство для рецензента | Ресурсы L3 | 98/100 | 95/100 | Пройдено 95/100 |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Навыки рабочего процесса с контрактами данных. Используйте этот навык, когда команде необходимо определить, просмотреть или обеспечить соблюдение контрактов между производителями | Ресурсы L3 | 97/100 | 95/100 | Пройдено 95/100 |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Навыки рабочего процесса аудита доступности. Используйте этот навык, когда пользователю нужна клавиатура, семантика, фокус, контраст, движение или как | Ресурсы L3 | 100/100 | 99/100 | Пройдено 95/100 |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Навыки проектирования рабочих процессов в системах. Используйте этот навык, когда пользователю необходимо управление токенами, контроль смещения компонентов, повтор | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Навыки разработки рабочего процесса управления токенами. Используйте этот навык, когда команде необходимо представить, переименовать, исключить или просмотреть проект. Ресурсы L3 | 97/100 | 95/100 | Пройдено 95/100 |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`architecture`](../skills/architecture/SKILL.md) | Навыки архитектурного рабочего процесса. Используйте этот навык, когда пользователю нужны системные границы, компромиссы или поэтапная реализация p | Ресурсы L3 | 98/100 | 94/100 | Пройдено 95/100 |
+| [`отладка`](../skills/debugging/SKILL.md) | Навыки отладки рабочего процесса. Используйте этот навык, когда пользователю требуется дисциплинированное воспроизведение, изоляция и проверка исправлений | Ресурсы L3 | 98/100 | 94/100 | Пройдено 95/100 |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Навыки рабочего процесса Figma. Используйте этот навык, когда пользователю требуется реализация проекта в коде, проверка Figma, поиск токенов, Co | Ресурсы L3 | 100/100 | 100/100 | Пройдено 95/100 |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Навыки работы с Docker. Используйте этот навык, когда пользователю нужны файлы Dockerfile, стратегия построения образа, усиление защиты во время выполнения или содержание | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Навыки рабочего процесса Kubernetes. Используйте этот навык, когда пользователю нужны манифесты рабочей нагрузки, стратегия развертывания, предоставление услуг или c | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Навык наблюдаемости рабочего процесса. Используйте этот навык, когда пользователю нужны журналы, метрики, трассировки, оповещения или проверка SLO перед отправкой | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Освоить навыки инженерного рабочего процесса. Используйте этот навык, когда пользователю нужен более безопасный план выпуска, политика продвижения, откат | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`terraform`](../skills/terraform/SKILL.md) | Навыки рабочего процесса Terraform. Используйте этот навык, когда пользователю нужна инфраструктура, такая как структура кода, модули, стратегия состояния или | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## Документация
 
-## Документация
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`changelog`](../skills/changelog/SKILL.md) | Навыки работы с примечаниями к выпуску. Используйте этот навык, когда пользователю нужны записи журнала изменений, примечания к обновлению или краткий выпуск na | Ресурсы L3 | 98/100 | 94/100 | Пройдено 95/100 |
+| [`документация`](../skills/documentation/SKILL.md) | Навыки документооборота. Используйте этот навык, когда пользователю требуется точная адаптация, оперативное руководство или подготовка к выпуску | Ресурсы L3 | 99/100 | 96/100 | Пройдено 95/100 |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Навыки работы с фронтенд-дизайном. Используйте этот навык, когда пользователю нужна структура пользовательского интерфейса, состояния и шаблоны взаимодействия, прежде чем i | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Навыки аутентификации и авторизации. Используйте этот навык, когда пользователю требуется логин, сеанс, токен, роль или разрешение | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Навыки модельного обслуживания рабочего процесса. Используйте этот навык, когда команде необходимо спроектировать, проверить или усовершенствовать онлайн-выводы, пакетную обработку данных | Ресурсы L3 | 97/100 | 95/100 | Пройдено 95/100 |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`мозговой штурм`](../skills/brainstorming/SKILL.md) | Навыки мозгового штурма. Используйте этот навык, когда пользователь изучает проблему и нуждается в вариантах, компромиссах и повторении | Ресурсы L3 | 99/100 | 96/100 | Пройдено 95/100 |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Навыки реагирования на инциденты. Используйте этот навык, когда пользователю требуется сортировка сбоев, последовательность действий по смягчению последствий, ком | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Навыки рабочего процесса аудита безопасности. Используйте этот навык, когда пользователю требуется целенаправленный обзор конкретных угроз безопасности вместо | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`моделирование угроз`](../skills/threat-modeling/SKILL.md) | Навыки моделирования угроз. Используйте этот навык, когда пользователю нужны границы доверия, цели злоумышленников, случаи злоупотреблений или смягчение | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |
+| [`сканер-уязвимостей`](../skills/сканер-уязвимостей/SKILL.md) | Навыки рабочего процесса сканирования уязвимостей. Используйте этот навык, когда пользователю требуется повторяемое покрытие известных уязвимостей, u | Ресурсы L3 | 99/100 | 97/100 | Пройдено 95/100 |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Навык | Описание | Уровень | Лучшие практики | Качество | Безопасность |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | Навыки создания рабочих процессов на сервере MCP. Используйте этот навык, когда команде необходимо спроектировать, реализовать, проверить или задокументировать режим | Ресурсы L3 | 97/100 | 95/100 | Пройдено 95/100 |

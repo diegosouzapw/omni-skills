@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**HTTP API само за четене за откриване на умения, търсене, сравнение, планиране на инсталиране и изтегляне на артефакти.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Характеристика | състояние |
 |:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| ✅ Каталожни крайни точки | Внедрено |
+| ✅ Удостоверяване (носител + API ключ) | Внедрено |
+| ✅ Удостоверяване по време на изпълнение на администратор | Внедрено |
+| ✅ Ограничаване на скоростта | Внедрено |
+| ✅ Регистриране на одит | Внедрено |
+| ✅ Списъци с разрешения на CORS и IP | Внедрено |
+| ✅ Режим на поддръжка | Внедрено |
+| ✅ Архивни изтегляния | Внедрено |
+| ✅ Спецификация на OpenAPI | Внедрено |
+| ⚠️ Бекенд за управление | Базово ниво, управлявано от Env; външен шлюз или IdP все още не са задължителни |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+API предоставя повърхност в стил регистър за:
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 Изброяване и филтриране на умения по качество, сигурност, категория, риск и др
+- 📌 Извличане на манифести на индивидуални умения
+- 🔎 Търсене в пълен текст и сравнение на множество умения
+- 📦 Списък на пакети с наличност
+- 📐 Генериране на план за инсталиране само за четене
+- 📥 Изтегляне на генерирани артефакти, архиви и манифести на контролна сума
 
-This same catalog and manifest surface is also the basis for:
+Същият този каталог и повърхността на манифеста е и основата за:
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- планиране на локално CLI инсталиране
+- MCP отговори за откриване само за четене
+- Откриване на A2A и предаване на план за инсталиране
+- потенциални частни каталози с външно удостоверяване, насложено отгоре---
 
 ## Бърз старт
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**По подразбиране**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+Всички контроли за сигурност се управляват от env и са незадължителни:
 
-| Control | Variable | Example |
+| Контрол | Променлива | Пример |
 |:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| 🔑**Удостоверяване на носител**| `OMNI_SKILLS_HTTP_NOSITELJ_TOKEN` | `замени ме` |
+| 🗝️**API ключ за удостоверяване**| `OMNI_SKILLS_HTTP_API_KEYS` | `ключ-a,ключ-b` |
+| 🛂**Удостоверяване на администратора**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
+| 🚦**Ограничаване на скоростта**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**Регистриране на одит**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | „1“ |
+| 🗂️**Формат на одита**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` или `текст` |
+| 📄**Одитен файл**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**CORS разрешен списък**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**Списък с разрешени IP адреси**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**Доверен прокси**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧**Режим на поддръжка**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | „1“ |
+| ⏱️**Опитайте отново след**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | „300“ |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**Поведение:**
+- 🟢 `/healthz` остава**винаги неавтентифициран**
+- 🔒 Всички други маршрути изискват удостоверяване, когато удостоверяването е активирано
+- 🛂 `/admin/runtime` изисква администраторския токен, когато е активиран
+- 🚦 Ограничаването на скоростта се извършва със заглавки на отговора `X-RateLimit-*`
+- 🧾 Всеки отговор носи „X-Request-Id“.
+- 🚧 Режимът на поддръжка връща `503` за нездравословни, неадминистративни маршрути### ✅ Current governance decision
 
-### ✅ Current governance decision
+Настоящата посока на проекта е**повторно използване на същия формат на каталог за публични или частни внедрявания**и наслояване на външно удостоверяване, когато е необходимо.
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+Това означава:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- манифестът и формата на API остават споделени
+- самостоятелно хостваните и локалните внедрявания могат да останат на базовата линия в процес
+- по-усъвършенстваното хоствано управление може да се премести към външен шлюз или слой за удостоверяване на предприятието по-късно, без да се разклонява моделът на данни### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
+| Метод | Път | Описание |
 |:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+| `ВЗЕМЕТЕ` | `/healthz` | Здравна проверка (неавтентифицирана) |
+| `ВЗЕМЕТЕ` | `/openapi.json` | Dynamic OpenAPI 3.1 спецификация |
+| `ВЗЕМЕТЕ` | `/admin/runtime` | Моментна снимка на управление и време на изпълнение (администраторско удостоверяване, когато е активирано) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
-
-| Method | Path | Description |
+| Метод | Път | Описание |
 |:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
+| `ВЗЕМЕТЕ` | `/v1/skills` | Избройте умения с филтри |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id` | Вземете индивидуален манифест на умения |
+| `ВЗЕМЕТЕ` | `/v1/търсене` | Търсене в пълен текст |
+| `ВЗЕМЕТЕ` | `/v1/compare?ids=id1,id2` | Сравнете множество умения |
+| `ВЗЕМЕТЕ` | `/v1/пакети` | Избройте пакети с наличност |
+| `ПУБЛИКУВАНЕ` | `/v1/инсталиране/план` | Генериране на план за инсталиране |### 🔎 List/Search Filters
 
-### 🔎 List/Search Filters
-
-| Filter | Example |
+| Филтър | Пример |
 |:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
+| `категория` | `?category=development` |
+| `инструмент` | `?tool=cursor` |
+| `риск` | `?risk=safe` |
+| `сортиране` | `?sort=quality\|най-добри практики\|ниво\|сигурност\|име` |
+| `поръчка` | `?order=asc\|desc` |
+| `минимално_качество` | `?min_quality=80` |
 | `min_best_practices` | `?min_best_practices=60` |
-| `min_level` | `?min_level=2` |
+| `мин_ниво` | `?min_level=2` |
 | `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| `състояние_на_валидация` | `?validation_status=passed` |
+| `състояние_на_сигурност` | `?статус_на_сигурност=преминал` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
+| Метод | Път | Описание |
 |:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+| `ВЗЕМЕТЕ` | `/v1/каталог/изтегляне` | Изтегляне на пълен каталог |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/artifacts` | Избройте артефакти на умения |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/archives` | Списък с архиви на умения |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/downloads` | Всички налични връзки за изтегляне |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/manifest` | Манифест на умения JSON |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/entrypoint` | Умение SKILL.md |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/artifact?path=<path>` | Конкретен артефакт |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Архив на умения |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Отделен подпис |
+| `ВЗЕМЕТЕ` | `/v1/skills/:id/download/archive/checksums` | SHA-256 контролни суми |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+Когато заявките се обработват чрез API, сървърът**автоматично обогатява**манифести, списъци с артефакти и планове за инсталиране с абсолютни URL адреси, извлечени от произхода на входящата заявка. Това е обогатяване по време на изпълнение, а не записано в `dist/manifests/*.json`.---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**Плановете за инсталиране са предварителни прегледи, а не дистанционно писане.**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+API никога не се инсталира на машината на повикващия. Връща:
+- 📌 Избрани метаданни за умения
+- ⚠️ Предупреждения за липсващи членове на пакета
+- 🖥️ Конкретни CLI команди за локално изпълнение
+- 🔗 Публични URL адреси за изтегляне, когато е наличен произходът на заявката---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+MCP сървърът използва повторно същите публични URL адреси на API, когато е конфигуриран:```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+Това позволява визуализациите за инсталиране на MCP да връщат конкретни URL адреси на манифести и артефакти, вместо само локални репо пътища.---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+`GET /admin/runtime` връща моментна снимка на управление, полезна за хоствана диагностика:
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- активни методи за удостоверяване
+- статут на admin-auth
+- скоростно-лимит прозорец и макс
+- CORS разрешен списък
+- Списък с разрешени IP адреси
+- състояние на режим на поддръжка
+- предназначение и формат на одита
+- текущи суми по каталог
+- ехо на искане за ID за проследимост

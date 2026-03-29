@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**العقد السلوكي لواجهة المستخدم الطرفية المستندة إلى الحبر الذي تم الكشف عنه بواسطة `واجهة المستخدم متعددة المهارات`.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+الغلاف المرئي عبارة عن سطح منتج موجه أعلى واجهة سطر الأوامر (CLI) الحالية ومحرك التثبيت.
 
-It does not replace:
+لا يحل محل:
 
-- expert flag-based CLI usage
+- استخدام CLI الخبراء القائم على العلم
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- تدفق تثبيت النص الموجه
+- سلوك وقت التشغيل API أو MCP أو A2A
 
-It defines:
+وهو يحدد:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- سلوك واجهة المستخدم متعددة المهارات
+- العقد الاحتياطي لـ `omni-skills ui --text`
+- الحالة المحلية والمثابرة المحددة مسبقًا
+- معاينات إطلاق الخدمة الموجهة
+- التكرار لعمليات التثبيت الأخيرة وتشغيل الخدمة---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+تُطلق ``omni-skills ui`` الغلاف المرئي القائم على الحبر.
 
-The visual shell is the primary non-expert terminal experience for:
+الغلاف المرئي هو التجربة الطرفية الأساسية غير المتخصصة من أجل:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- تثبيت التدفقات
+- كتالوج أول اكتشاف وتثبيت
+- بدء تشغيل MCP
+- بدء تشغيل API
+- بدء تشغيل A2A
+- الطبيب وتسليم الدخان### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+يقوم `omni-skills ui --text` بتشغيل الواجهة الاحتياطية القائمة على readline.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+ويظل هذا مفيدًا عندما:
 
-This remains useful when:
+- لا يمكن للمحطة عرض الغلاف الأكثر ثراءً بشكل صحيح
+- سلوك الوضع الخام مقيد
+- يفضل الحد الأدنى من النص الاحتياطي### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+لا يقوم الغلاف المرئي بإعادة تنفيذ أوقات تشغيل الخدمة أو كتابة التثبيت مباشرة.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+بعد المعاينة والتأكيد، يتم الخروج بشكل نظيف ويسلم التنفيذ إلى نقطة دخول واجهة سطر الأوامر (CLI) الحالية مع الوسائط المكافئة ومتغيرات البيئة.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+يجب أن تعرض الشاشة الرئيسية ما يلي:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- تثبيت المهارات
+- البحث والتثبيت
+- كرر عمليات التثبيت الأخيرة عند وجودها
+- تشغيل إعدادات التثبيت المسبقة المحفوظة عند وجودها
+- ابدأ الخدمة
+- تكرار الخدمات الأخيرة عند وجودها
+- تشغيل الإعدادات المسبقة للخدمة المحفوظة عند وجودها
+- طبيب
+- دخان
+- خروج
 
-The home screen should also surface:
+يجب أن تظهر الشاشة الرئيسية أيضًا:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- توفر الحزمة المنشورة الحالية
+- تعداد الحالة المحلية للأحدث والإعدادات المسبقة والمفضلة---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+يجب أن يدعم تدفق تثبيت الصدفة المرئية ما يلي:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- اختيار هدف العميل المعروف
+- اختيار المسار المخصص
+- تثبيت المكتبة الكاملة
+- التثبيت بمهارة واحدة
+- تثبيت حزمة واحدة
+- البحث ثم التثبيت
+- المعاينة قبل الكتابة
+- الحفظ مسبقا
+- المهارة المفضلة أو تبديل الحزمة
 
-Preview must show:
+يجب أن تظهر المعاينة:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- تسمية الهدف حلها
+- مسار الحل
+- نطاق التثبيت
+- المهارة أو الحزمة المحددة عند الاقتضاء
+- أمر CLI مكافئ---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+يجب أن يوجه الغلاف المرئي عملية بدء التشغيل من أجل:### 5.1 MCP
 
-### 5.1 MCP
+- النقل: `stdio`، `stream`، `sse`
+- الوضع: "للقراءة فقط" أو "محلي".
+- تكوين المضيف/المنفذ لعمليات النقل عبر الشبكة
+- معاينة الأمر الصريح### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- المضيف
+- ميناء
+- الملف الشخصي الأساسي أو المقوى
+- حامل مقوى أو مصادقة مفتاح API
+- تصلب المعلمات الحد الأقصى للمعدل
+- تمكين سجل التدقيق
+- معاينة الأمر الصريح### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- المضيف
+- ميناء
+- نوع المتجر: `الذاكرة`، `Json`، `Sqlite`
+- مسار تخزين للأوضاع المتينة
+- المنفذ: "مضمن"، "العملية".
+- وضع SQLite تمكين قائمة الانتظار
+- الفاصل الزمني للاستقصاء ومدة الإيجار لوضع الإيجار المشترك
+- معاينة الأمر الصريح---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+يستمر الغلاف المرئي في الحالة المحلية فقط في:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+تشمل الولاية حاليًا:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- التثبيتات الأخيرة
+- إطلاق الخدمة الأخيرة
+- إعدادات التثبيت المسبقة المسماة
+- الإعدادات المسبقة للخدمة المسماة
+- المهارات المفضلة
+- الحزم المفضلة
 
-The shell must support:
+يجب أن تدعم القشرة:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- إعادة تشغيل عمليات التثبيت الأخيرة
+- إعادة تشغيل عمليات إطلاق الخدمة الأخيرة
+- إعادة استخدام إعدادات التثبيت المسبقة المسماة
+- إعادة استخدام الإعدادات المسبقة للخدمة المسماة---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+الغلاف البصري مضاف.
 
-These flows must remain valid and stable:
+ويجب أن تظل هذه التدفقات صالحة ومستقرة:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- تثبيت npx omni-skills --guided
+- ``npx omni-skills find Figma --tool cursor --install --yes`
+- ``npx omni-skills mcp تيار --local`
+- `npx omni-skills api --المنفذ 3333`
+- `npx omni-skills a2a --المنفذ 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+يجب ألا يفرض الغلاف المرئي نفسه أبدًا على مسارات أوامر الخبراء الصريحة.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+يجب أن تجعل القشرة المرئية الحالة وتكتب بشكل واضح.
 
-It must:
+يجب أن:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- معاينة التثبيتات قبل كتابة عملية التسليم
+- معاينة أوامر إطلاق الخدمة قبل التنفيذ
+- احتفظ بالمواد السرية بعيدًا عن معاينات أوامر النص الواضح حيثما كان ذلك عمليًا
+- استمرار الحالة محليًا فقط
+- الحفاظ على سلوك واجهة سطر الأوامر (CLI) غير التفاعلي خارج الغلاف المرئي

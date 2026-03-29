@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
-date_added: "2026-01-01"
-date_updated: "2026-01-01"
----
-
-<!--
+nume: numele-skill-name
+descriere: „Descriere pe un rând a ceea ce face această abilitate și când să o folosească”
+versiunea: "0.1.3"
+categorie: dezvoltare
+etichete: [exemplu-etichetă-1, exemplu-etichetă-2]
+complexitate: intermediar
+risc: sigur
+instrumente: [claude-code, cursor, gemini-cli, antigravitație]
+sursa: comunitate
+autor: „Numele tău”
+data adăugată: „2026-01-01”
+data_actualizată: "2026-01-01"
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` va genera competențe/<skill>/metadata.json cu canonical
+taxonomie, nivel de maturitate, scor pentru cele mai bune practici, scor de calitate și securitate
+rezultatele scanării. Modele de injectare promptă, comenzi distructive și script riscant
+constructele vor fi semnalate automat.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+Versiunea skill este independentă de versiunea pachetului. Folosește semantica
+versiune care are sens pentru abilitate în sine.
 
-For a top-scoring skill, also read:
+Pentru o abilitate de cel mai bun punctaj, citiți și:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
-- docs/contributors/QUALITY-BAR.md
+- docs/contributors/QALITY-BAR.md
 -->
-
-
 ## Prezentare generală
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 propoziții care explică ce face această abilitate, cine beneficiază de ea și de ce există.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Folosiți când aveți nevoie de [scenariu 1]
+- Folosiți când doriți [scenariul 2]
+- Utilizați când lucrați cu [scenariul 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Explicați conceptul cheie pe care agentul trebuie să-l înțeleagă.### Concept 2
 
-### Concept 2
+Explicați un alt concept de bază.## Workflow
 
-Explain another foundational concept.
+| Faza | Ieșire | De ce contează |
+|:-------|:--------|:----------------|
+| Încadrați obiectivul | Obiectiv clar | Previne ghidarea vagă |
+| Executați pașii | Flux de lucru pregătit pentru agent | Face ca abilitatea să fie acționabilă |
+| Validați rezultatul | Semnal de acceptare | Crește încrederea |
 
-## Workflow
+1. Primul pas în fluxul de lucru
+2. Al doilea pas în fluxul de lucru
+3. Al treilea pas în fluxul de lucru### 1. First Step
 
-| Phase | Output | Why it matters |
-|:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+Instrucțiuni detaliate pentru primul pas.### 2. Second Step
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+Instrucțiuni detaliate pentru a doua etapă.### 3. Third Step
 
-### 1. First Step
-
-Detailed instructions for the first step.
-
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Instrucțiuni detaliate pentru al treilea pas.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Explicație:**Ce demonstrează acest exemplu.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Explicație:**Ce demonstrează acest exemplu.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Fă:**Urmați această bună practică
+- ✅**Fă:**Urmați și această practică
+- ❌**Nu:**Evitați acest antimodel
+- ❌**Nu:**Nu face niciodată asta## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Simptome:**Cum știți că aceasta este problema.
+**Soluție:**Cum se remediază.## Related Skills
 
-## Related Skills
-
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
+- `@related-skill-1` — Când să folosiți acest lucru în schimb
+- `@related-skill-2` — Cum vă completează acest lucru abilitățile## Additional Resources
 
 - [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Exemplu lucrat](examples/example.md)
+- [Script de ajutor](scripts/render_example.py)

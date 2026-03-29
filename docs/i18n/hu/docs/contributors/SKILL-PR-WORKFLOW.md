@@ -5,69 +5,55 @@
 ---
 
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
+Ez a kanonikus adattárfolyamat olyan lekérési kérésekhez, amelyek egy vagy több natív készségeket adnak hozzá vagy jelentősen frissítenek.
 
-Use it when:
+Akkor használja, ha:
 
-- adding a new skill under `skills/`
-- deepening a bundle with new domain skills
-- shipping a larger support-pack expansion
-- validating a branch with the private enhancer before maintainers merge it
+- új készség hozzáadása a `készségek/` alatt
+- egy csomag elmélyítése új domain készségekkel
+- nagyobb támasztócsomag-bővítés szállítása
+- egy ág érvényesítése a privát bővítővel, mielőtt a karbantartók összevonják## Target Outcome
 
-## Target Outcome
+Az erős natív PR-készség a következőket jelenti:
 
-A strong native skill PR lands with:
+- natív készség a `készségek/` alatt
+- elegendő tartalom ahhoz, hogy a nyilvános érvényesítő osztályozza és indexelje
+- nyilvános hitelesítés és tesztek teljesítése
+- automatikus fokozó feldolgozás a PR során
+- egy követő `skills_omni/` PR, ha továbbfejlesztett származékokat tesznek közzé
+- az anyanyelvi bevitelt szükség esetén eredeti nyelven megőrizzük
+- kurátora továbbfejlesztett kimenet angolra átírva
+- egyirányú, natív-válogatott áramlás, amely nem táplálja vissza a `skills_omni/` natív javítóanyag-bevitelt## Enhancer Outcome States
 
-- a native skill under `skills/`
-- enough content for the public validator to classify and index it
-- passing public validation and tests
-- automatic enhancer processing during the PR
-- a follow-up `skills_omni/` PR when enhanced derivatives are published
-- native intake preserved in its original language when needed
-- curated enhanced output rewritten into English
-- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
+A nyilvános PR-javító most négy karbantartó által látható állapotról számol be:
 
-## Enhancer Outcome States
+- "befejezve".
+  A továbbfejlesztett származékot tisztán generáltuk, és alkalmas a „skills_omni/” kísérő közzétételre.
+- `leépült`
+  A javító befejeződött, de tartalék útvonalat használt, vagy figyelmeztetéseket produkált. A származék egészségesként való kezelése előtt továbbra is a fenntartó felülvizsgálata várható.
+- `blokkolva`
+  A futtatást infrastrukturális vagy érvényesítési problémák leállították, például a hostolt OmniRoute előzetes ellenőrzési hibája vagy egy jelölt ellenőrzési hiba, amely megakadályozhatja a közzétételt.
+- `nem sikerült`
+  A javító váratlan futásidejű hibát észlelt, és karbantartói vizsgálatra van szükség.## Recommended Branch Shape
 
-The public PR enhancer now reports four maintainer-visible states:
-
-- `completed`
-  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
-- `degraded`
-  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
-- `blocked`
-  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
-- `failed`
-  The enhancer hit an unexpected runtime error and needs maintainer investigation.
-
-## Recommended Branch Shape
-
-Create a focused branch:
-
-```bash
+Hozzon létre egy fókuszált ágat:```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Examples:
+Példák:
 
-- `feat/incident-observability-evals`
+- "feat/incidens-observability-evals".
 - `feat/devops-skill-pack`
-- `feat/security-skill-pack`
+- "feat/security-skill-pack".## Native Intake Rules
 
-## Native Intake Rules
+A közbefogadó felület szándékosan megengedő.
 
-The public intake surface is intentionally permissive.
-
-Minimum:
-
-```text
+Minimális:```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Recommended but no longer required for intake:
-
-```text
+Fogyasztásához ajánlott, de már nem szükséges:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -77,143 +63,125 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+A natív hozzájárulás lehet durva, hiányos vagy kívül esik a normál támogatási csomag szabványán. Ez szándékos. A `skills/` a natív beviteli felület, nem a kurált származékos felület.
 
-Language policy:
+Nyelvi politika:
 
-- native intake under `skills/` may be written in any language
-- the enhancer keeps the native snapshot as submitted for provenance
-- the curated derivative under `skills_omni/` must always be written in English
+- az anyanyelvi bevitel a `skills/` alatt bármilyen nyelven írható
+- az erősítő megőrzi a natív pillanatképet a származás céljából benyújtott állapotban
+- a „skills_omni/” alatti kurált származékot mindig angolul kell írni
 
-The stricter editorial bar now applies to:
+A szigorúbb szerkesztői korlát a következőkre vonatkozik:
 
-- the generated metadata and security checks
-- the private enhancer review
-- the follow-up curated derivative under `skills_omni/`
+- a generált metaadatok és biztonsági ellenőrzések
+- a privát fokozó áttekintése
+- a „skills_omni/” alatti utólagos kurált származék## Authoring Sequence
 
-## Authoring Sequence
+1. Hozzon létre `skills/<skill>/SKILL.md`.
+2. Adjon hozzá frontmattert, ha tudja, de a hiányzó vagy hiányos frontanyag már nem akadályozza meg önmagában a natív felvételt.
+3. Adja hozzá az "agents/", "references/", "examples/" és "scripts/" elemeket, ha már rendelkezik velük.
+4. Frissítse a "data/bundles.json" fájlt, ha a készség elmélyíti egy meglévő csomagot.
+5. Nyissa meg a PR-t. A repo automatizálás most elvégzi a többit.## Validation Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
-2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
-3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
-4. Update `data/bundles.json` if the skill deepens an existing bundle.
-5. Open the PR. The repo automation now does the rest.
-
-## Validation Sequence
-
-Contributors can run this exact sequence before opening the PR:
-
-```bash
+A közreműködők pontosan ezt a sorrendet futtathatják a PR megnyitása előtt:```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, also run:
-
-```bash
+Ha a változás a futásidőt vagy a csomagolási viselkedést is érinti, futtassa a következőket is:```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+Amikor egy PR megnyílik vagy szinkronizálódik, és csak a „skills/” és az opcionális „data/bundles.json” alatti natív készségfelvételi fájlokat érinti, a nyilvános repo mostantól automatikusan elindítja a privát javítót.
 
-Current automated flow:
+Jelenlegi automatizált áramlás:
 
-1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
-2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
-3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
-4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
-5. The enhancer posts progress back to the source PR.
-6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
-7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
-8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
-9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
+1. A nyilvános `Validate Skills` munkafolyamat fut a PR-on, és ellenőrzi az érvényesítést, az összeállítást, a generált melléktermékeket és a teszteket.
+2. Párhuzamosan elindul a nyilvános `Enhance PR Skills` munkafolyamat, és egyenként dolgozza fel a megváltozott natív készségeket "élő" módban.
+3. A javító beolvassa a natív készségeket a „skills/”-ből, felkutatja a jelenlegi legjobb gyakorlatokat, és felülvizsgált továbbfejlesztett jelöltet ír a privát munkaterületen.
+4. A javító megőrzi az upstream bemeneti pillanatképet az eredeti nyelven, ha szükséges, de átírja a kurált kimenetet angolra.
+5. Az erősítő bejegyzések visszahaladnak a forrás PR-hoz.
+6. A javító minden feldolgozott képesség után frissíti a PR állapot megjegyzését a kötegösszegekkel és a legújabb állapottal.
+7. Amikor befejeződik, a továbbfejlesztett származékot a `skills_omni/`-ben materializálja, és megnyit vagy frissít egy társ PR-t a nyilvános repóban csak a "befejezett" és "degraded" kimenetekhez.
+8. Miután a PR-t egyesítették a "main"-ba, a privát repo-tudatos lekérdező újrafeldolgozza a megváltozott natív készségeket, frissíti a "workspace/enhanced/skills/<skill>/" fájlt, és a privát továbbfejlesztett alapvonalat a legújabb nyilvános natív forráshoz igazítja.
+9. Az egyesítés után a nyilvános kiadás munkafolyamata összeomlik az npm csomag verziójával, újragenerálja a katalógus melléktermékeit, közzétesz egy kiadást, és automatikusan megcímkézi az új verziót.
 
-Rate limit:
+Díjkorlát:
 
-- the PR enhancer currently processes **1 skill per minute**
-- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
-- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
+- a PR-fokozó jelenleg**1 képességet dolgoz fel percenként**
+- egy 40 natív új képességgel rendelkező PR ezért körülbelül 40 percig maradhat az erősítő sorban
+- a PR azt mutatja, hogy a munka folyamatban lévő CI-futásként plusz egy előrehaladási megjegyzés, amely készségről készségre fejleszti
 
-The contributor does not need to run the enhancer manually.
+A közreműködőnek nem kell manuálisan futtatnia a javítót.## No-Loop Rule For `skills_omni/`
 
-## No-Loop Rule For `skills_omni/`
+A kurált felület szándékosan egyirányú:
 
-The curated surface is intentionally one-way:
+- a natív bemenet a `skills/`-n keresztül lép be
+- a privát javító értékeli a natív bemenetet
+- a kurált kimenetet a `skills_omni/` paraméterben javasoljuk
+- A „skills_omni/” soha többé nem kezeli natív bevitelként
+- a későbbi natív frissítések továbbra is újra belépnek a `skills/`-en keresztül, és lecserélik a privát, továbbfejlesztett alapvonalat az újrafeldolgozás után
 
-- native input enters through `skills/`
-- the private enhancer reviews that native input
-- curated output is proposed into `skills_omni/`
-- `skills_omni/` is never treated as native intake again
-- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
+Az adattár most ezt a határt érvényesíti:
 
-The repository now enforces that boundary:
+- A „skills_omni/” paramétert módosító közvetlen nyilvános PR-ek elutasításra kerülnek
+- ott csak a `skills-omni/pr-*` ágcsaládból az automatizálás által írt társ PR-ok fogadhatók el
+- a vegyes PR-ek, amelyek egyszerre próbálják megváltoztatni a `skills/` és a `skills_omni/` értéket, elutasításra kerülnek## Automatic Versioning After Merge
 
-- direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
-- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+A szakértelmet hordozó összevonások a "fő"-be most automatikusan elindítják a lerakat kiadási munkafolyamatát.
 
-## Automatic Versioning After Merge
+A csomag jelenlegi verziójára vonatkozó szabályzat:
 
-Skill-bearing merges to `main` now trigger the repository release workflow automatically.
+- a javítások `+1`-gyel növelhetők minden egyes minősített egyesítésnél
+- "0.0.1" → "0.0.2" → ... → "0.0.10"
+- ".10" után a csomag a következő kisebbre gurul, és visszaállítja a javítást
+- "0.0.10" → "0.1.0".
+- "0.1.10" → "0.2.0".
 
-Current package version policy:
+Jelenlegi kiadás aktiválási útvonalai:
 
-- patch increments by `+1` for each qualifying merge
-- `0.0.1` → `0.0.2` → ... → `0.0.10`
-- after `.10`, the package rolls to the next minor and resets patch
-- `0.0.10` → `0.1.0`
-- `0.1.10` → `0.2.0`
-
-Current release trigger paths:
-
-- `skills/**`
+- `készségek/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-That automatic release job:
+Ez az automatikus kiadási feladat:
 
-1. computes the next package version from `package.json`
-2. bumps `package.json` and `package-lock.json`
-3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
-4. runs the strict release verification pipeline
-5. commits the version bump back to `main`
-6. creates a Git tag for the new version
-7. publishes npm and GitHub Release artifacts
+1. kiszámítja a következő csomagverziót a "package.json" fájlból
+2. kiütközik a `package.json` és a `package-lock.json`
+3. újragenerálja a "metadata.json", "skills_index.json", "dist/" és "docs/CATALOG.md" fájlokat
+4. futtatja a szigorú kiadás-ellenőrzési folyamatot
+5. visszaállítja a verziót a `main`-ba
+6. létrehoz egy Git címkét az új verzióhoz
+7. közzéteszi az npm és a GitHub Release műtermékeket
 
-Important rollout note:
+Fontos közzétételi megjegyzés:
 
-- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
-- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
-- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
+- A GitHub csak azután regisztrál egy új munkafolyamat-fájlt aktív lerakat munkafolyamatként, miután a fájl eléri az alapértelmezett ágat.
+- Amíg az "Enhance PR Skills" meg nem jelenik a "főoldalon", a közreműködők elolvashatják a dokumentált folyamatot, de a GitHub még nem hajtja végre automatikusan ezt a munkafolyamatot nyilvános PR-eken.
+- Miután a munkafolyamatot egyesítette a "fő"-vel, a fent leírt viselkedés lesz a jövőbeli natív készség-PR-k alapértelmezett beviteli útvonala.## Native vs Enhanced
 
-## Native vs Enhanced
+Ennek a repónak most két különböző felülete van:
 
-This repo now has two distinct surfaces:
+- `készségek/`
+  Natív bevitel. Ez megőrzi az eredeti hozzájárulást a benyújtott formában.
+- „skills_omni/”.
+  Az automatizálás által javasolt és az Omni Skills Team által karbantartott, sokoldalúan továbbfejlesztett származtatott kimenet.
 
-- `skills/`
-  Native intake. This preserves the original contribution as submitted.
-- `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+A „skills_omni/” hozzárendelési szabályai:
 
-Attribution rules for `skills_omni/`:
+- a továbbfejlesztett származék Omni-karbantartottá válik
+- az eredeti közreműködő és az upstream natív készség továbbra is jóváírásra kerül
+- minden továbbfejlesztett könyvtár tartalmaz egy "ATTRIBUTION.md" fájlt az upstream elérési úttal, PR-vel, szerzővel és forráskontextussal
+- minden továbbfejlesztett könyvtár csak kiválasztott kimenet, és nem küldhető újra a natív javító beviteli útvonalára
+- minden továbbfejlesztett könyvtárnak angol nyelvű kimenetnek kell lennie, még akkor is, ha az upstream natív forrás nem volt az## Manual Maintainer Commands
 
-- the enhanced derivative becomes Omni-maintained
-- the original contributor and upstream native skill remain credited
-- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
-- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
-- each enhanced directory is expected to be English-language output even when the upstream native source was not
+Az automatizálás lefedi a normál PR-felvételt, de a karbantartók továbbra is manuálisan futtathatják a privát javítót, ha szükséges.
 
-## Manual Maintainer Commands
-
-The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
-
-Batch against a branch diff:
-
-```bash
+Köteg egy ágdiff ellen:```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -223,9 +191,7 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Single-skill review:
-
-```bash
+Egykészséges értékelés:```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -233,44 +199,38 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Expected enhancer outputs per skill:
+Várható javító teljesítmények készségenként:
 
-- `workspace/incoming/original/<run-id>/<skill>/`
-- `workspace/enhanced-candidates/<run-id>/<skill>/`
+- `munkaterület/bejövő/eredeti/<futásazonosító>/<készség>/`
+- `munkaterület/enhanced-candidates/<futásazonosító>/<készség>/`
 - `workspace/reports/<run-id>/research.json`
-- `workspace/reports/<run-id>/rewrite.json`
+- `munkaterület/reports/<futásazonosító>/rewrite.json`
 - `workspace/reports/<run-id>/validation.json`
-- `workspace/reports/<run-id>/score-delta.json`
-- `workspace/reports/<run-id>/review.md`
-- `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`
+- `munkaterület/reports/<futásazonosító>/score-delta.json`
+- `munkaterület/reports/<futásazonosító>/review.md`
+- `munkaterület/reports/<futásazonosító>/research-prompt.md`
+- `munkaterület/reports/<futásazonosító>/rewrite-prompt.md`## PR Body Expectations
 
-## PR Body Expectations
+A PR-testületnek közölnie kell:
 
-The PR body should state:
+- milyen készségeket adtak hozzá vagy fejlesztettek
+- mely kötegeket vagy munkafolyamatokat mélyítik el
+- milyen érvényesítés futott
+- futott-e az automatizált fokozó
+- megnyitott-e vagy frissített-e egy `skills_omni/` társ PR-t
+- bármilyen kivételes karbantartói megjegyzés a hozzárendelésről vagy az utólagos tisztításról## Reviewer Checklist
 
-- what skills were added or upgraded
-- which bundles or workflows they deepen
-- what validation ran
-- whether the automated enhancer ran
-- whether it opened or updated a `skills_omni/` companion PR
-- any exceptional maintainer notes about attribution or follow-up cleanup
+- a natív bevitel jogos és nem rosszindulatú
+- a generált metaadatok és jegyzékek frissültek
+- A csomagfrissítések szándékosak
+- a nyilvános érvényesítés és a build kimenetei zöldek
+- a javító státusz megjegyzése megegyezik a tényleges megváltozott képességekkel és a végeredmény állapotával
+- bármely `skills_omni/` társ PR megfelelően megőrzi a hozzárendelést## Example PR Scope
 
-## Reviewer Checklist
+Egy erős példa PR olyan tematikus készletet adhat hozzá, mint például:
 
-- native intake is legitimate and non-malicious
-- generated metadata and manifests were refreshed
-- bundle updates are intentional
-- public validation and build outputs are green
-- the enhancer status comment matches the actual changed skills and final outcome state
-- any `skills_omni/` companion PR preserves attribution correctly
+- egy megfigyelhetőség vagy DevOps készség
+- egy esemény vagy biztonsági készség
+- egy mesterséges intelligencia értékelés vagy felszólítás
 
-## Example PR Scope
-
-A strong example PR can add a thematic set such as:
-
-- one observability or DevOps skill
-- one incident or security skill
-- one AI evaluation or prompting skill
-
-That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
+Ez elég nagy a pontozó, az automatikus javító, a „skills_omni/” közzétételi folyamat, a kötegek és a hozzárendelési modell gyakorlásához anélkül, hogy a PR-t teljes katalógus-újraírássá változtatná.

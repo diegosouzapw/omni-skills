@@ -5,175 +5,149 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**Atferdskontrakt for det blekkbaserte terminalgrensesnittet eksponert av «omni-skills ui».**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Det visuelle skallet er en guidet produktoverflate på toppen av den eksisterende CLI- og installatørmotoren.
 
-It does not replace:
+Den erstatter ikke:
 
-- expert flag-based CLI usage
+- ekspertflaggbasert CLI-bruk
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- den veiledede tekstinstallasjonsflyten
+- API, MCP eller A2A kjøretidsatferd
 
-It defines:
+Den definerer:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- oppførselen til `omni-skills ui`
+- reservekontrakten for `omni-skills ui --text`
+- lokal stat og forhåndsinnstilt utholdenhet
+- guidede forhåndsvisninger av tjenestelansering
+- Repeterbarhet for nylige installasjoner og servicekjøringer---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`omni-skills ui` lanserer det blekkbaserte visuelle skallet.
 
-The visual shell is the primary non-expert terminal experience for:
+Det visuelle skallet er den primære terminalopplevelsen som ikke er ekspert for:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- installere flyter
+- katalog-første oppdagelse og installering
+- MCP oppstart
+- API oppstart
+- A2A oppstart
+- lege og røykoverlevering### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` lanserer det leselinjebaserte reservegrensesnittet.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+Dette er fortsatt nyttig når:
 
-This remains useful when:
+- en terminal kan ikke gjengi det rikere skallet riktig
+- Raw-mode atferd er begrenset
+- en minimal tilbakestilling av tekst er å foretrekke### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Det visuelle skallet implementerer ikke tjenestekjøringer eller installasjonsskriver direkte.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+Etter forhåndsvisning og bekreftelse, avslutter den rent og sender kjøringen til det eksisterende CLI-inngangspunktet med tilsvarende argumenter og miljøvariabler.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+Startskjermen må vise:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- installere ferdigheter
+- finn og installer
+- Gjenta nylige installasjoner når de er tilstede
+- Kjør lagrede installasjonsforhåndsinnstillinger når de er tilstede
+- starte en tjeneste
+- Gjenta nylige tjenester når tilstede
+- Kjør lagrede tjenesteforhåndsinnstillinger når de er tilstede
+- lege
+- røyk
+- gå ut
 
-The home screen should also surface:
+Startskjermen skal også vises:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- gjeldende publisert pakketilgjengelighet
+- lokal stat teller for nylige, forhåndsinnstillinger og favoritter---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+Installasjonsflyten for det visuelle skallet må støtte:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- kjent kundemålvalg
+- tilpasset banevalg
+- komplett bibliotekinstallasjon
+- installering med én ferdighet
+- installering av én pakke
+- søk-og-installer
+- forhåndsvisning før skriving
+- forhåndsinnstilt lagring
+- favorittferdighet eller buntveksling
 
-Preview must show:
+Forhåndsvisningen må vise:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- løst måletikett
+- løst vei
+- installeringsomfang
+- valgt ferdighet eller pakke når det er aktuelt
+- tilsvarende CLI-kommando---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
-
-### 5.1 MCP
+Det visuelle skallet må veilede oppstart for:### 5.1 MCP
 
 - transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- modus: "skrivebeskyttet" eller "lokal".
+- verts-/portkonfigurasjon for nettverkstransport
+- eksplisitt kommando forhåndsvisning### 5.2 API
 
-### 5.2 API
-
-- host
+- vert
 - port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
+- grunnleggende eller herdet profil
+- herdet bærer eller API-nøkkelaut
+- herdede hastighetsgrenseparametere
+- Aktivering av revisjonslogg
+- eksplisitt kommando forhåndsvisning### 5.3 A2A
 
-### 5.3 A2A
-
-- host
+- vert
 - port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- butikktype: "minne", "json", "sqlite".
+- lagre bane for holdbare moduser
+- executor: 'inline', 'prosess'
+- Køaktivert SQLite-modus
+- avstemningsintervall og leieperioden for delt leiemodus
+- eksplisitt kommando forhåndsvisning---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+Det visuelle skallet vedvarer kun lokalt i:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+Staten inkluderer for tiden:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- nylige installasjoner
+- nylige lanseringer av tjenester
+- navngitte installasjonsforhåndsinnstillinger
+- navngitte tjenesteforhåndsinnstillinger
+- favorittferdigheter
+- favorittbunter
 
-The shell must support:
+Skallet må støtte:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- avspilling av nylige installasjoner
+- avspilling av nylige tjenestelanseringer
+- gjenbruk av navngitte installasjonsforhåndsinnstillinger
+- gjenbruk av navngitte forhåndsinnstillinger---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+Det visuelle skallet er additivt.
 
-These flows must remain valid and stable:
+Disse strømmene må forbli gyldige og stabile:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
@@ -183,19 +157,16 @@ These flows must remain valid and stable:
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+Det visuelle skallet må aldri tvinge seg inn i eksplisitte ekspertkommandobaner.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+Det visuelle skallet skal gjøre tilstand og skriver eksplisitt.
 
-It must:
+Det må:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- forhåndsvise installasjoner før skriving
+- forhåndsvis tjenestestartskommandoer før kjøring
+- hold hemmelig materiale borte fra forhåndsvisninger av klartekstkommandoer der det er praktisk
+- vedvarer kun lokalt
+- bevar ikke-interaktiv CLI-adferd utenfor det visuelle skallet

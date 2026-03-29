@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Ako členovia, prispievatelia a správcovia sa zaväzujeme, že účasť na tomto projekte a komunite bude**zážitkom bez obťažovania pre každého**, bez ohľadu na vek, telesnú veľkosť, viditeľné alebo neviditeľné postihnutie, etnickú príslušnosť, pohlavné charakteristiky, rodovú identitu a výraz, úroveň skúseností, vzdelanie, sociálno-ekonomické postavenie, národnosť, osobný vzhľad, rasu, kastu, farbu pleti, náboženstvo alebo sexuálnu identitu a orientáciu.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
+| Správanie | Príklad |
 |:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| 💬 Uvítací jazyk | Byť inkluzívny a rešpektujúci v komunikácii |
+| 🤝 Rešpektovanie odlišností | Oceňovanie rôznych názorov a skúseností |
+| 📝 Konštruktívna kritika | Prijímanie a poskytovanie spätnej väzby elegantne |
+| 🎯 Zameranie na komunitu | Stanovenie priorít, čo je najlepšie pre projekt a komunitu |
+| ❤️ Empatia | Prejav empatie voči ostatným členom komunity |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
+| Správanie |
 |:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| 🚫 Sexualizovaný jazyk alebo obrázky a sexuálna pozornosť alebo pokroky |
+| 🚫 Trolling, urážanie alebo hanlivé komentáre |
+| 🚫 Osobné alebo politické útoky |
+| 🚫 Verejné alebo súkromné ​​obťažovanie |
+| 🚫 Zverejňovanie cudzích súkromných informácií bez výslovného povolenia |
+| 🚫 Iné správanie odôvodnene považované v profesionálnom prostredí za nevhodné |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+Prípady urážlivého, obťažujúceho alebo inak neprijateľného správania môžu byť nahlásené správcom prostredníctvom:
 
-| Channel | How |
+| Kanál | Ako |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 Súkromné ​​kanály GitHub | Kontakt cez GitHub Zabezpečenie alebo Diskusia |
+| 📧 Priamy kontakt | Obráťte sa priamo na správcov |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Všetky hlásenia budú rýchlo a spravodlivo skontrolované a prešetrené.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Tento kódex správania je upravený z [Dohody prispievateľa](https://www.contributor-covenant.org), verzia 2.1.

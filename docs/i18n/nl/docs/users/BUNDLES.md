@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**Bundels zijn samengestelde vaardighedenkiezers die bovenop de catalogus zijn geplaatst.**Alle zeven starterbundels worden nu volledig ondersteund door gepubliceerde vaardigheden.---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+`--bundle` installeert**niet**een speciaal pakket. Het:
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 Vouwt de geselecteerde bundeldefinitie uit
+2. ✅ Installeert alleen de leden die momenteel beschikbaar zijn in de catalogus
+3. ✅ Bouwt een concreet installatieplan op van gepubliceerde bundelleden```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+Gebaseerd op de huidige gegenereerde catalogus (`dist/bundles.json`):
 
-| Bundle | Intended For | Available | Members |
+| Bundel | Bestemd voor | Beschikbaar | Leden |
 |:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| 🧰**essentiële zaken**| Elke ontwikkelaar |**4/4**| `vind-vaardigheden` ​​✅ · `brainstormen` ✅ · `architectuur` ✅ · `debugging` ✅ |
+| 🌐**volledige stapel**| Web- en app-ontwikkelaars |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `database-ontwerp` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨**ontwerp**| Ontwerpsystemen & toegankelijkheid |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `toegankelijkheid-audit` ✅ |
+| 🛡️**beveiliging**| Beveiligingsingenieurs |**4/4**| `security-auditor` ✅ · `kwetsbaarheidsscanner` ✅ · `incident-respons` ✅ · `threat-modeling` ✅ |
+| ⚙️**ontwikkelaars**| Platform & infrastructuur |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖**ai-ingenieur**| LLM- en ML-ontwikkelaars |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**oss-onderhouder**| OSS-onderhouders |**4/4**| `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentatie` ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = Gepubliceerd en installeerbaar---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+- U wilt een**samengesteld startpunt**voor een domein
+- U wilt installatieplannen die**beheerd en domeinspecifiek**blijven
+- U wilt een snelle manier om een complete werkset voor een rol te installeren### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+- U wilt een**gegarandeerde minimale installatie**
+- Je kent al de**exacte vaardigheid**die je nodig hebt
+- U wilt de**kleinst mogelijke footprint**in plaats van een samengestelde werkset---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
+| Doel | Commando |
 |:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
-| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| 🎯 Installeer een specifieke gepubliceerde vaardigheid | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Volledig ondersteunde starterbundel | `npx omni-skills --cursor --bundel full-stack` |
+| 🎨 Ontwerpsystemenbundel | `npx omni-skills --cursor --bundelontwerp` |
+| 🔧 OSS-workflowbundel | `npx omni-skills --codex --bundel oss-maintainer` |
+| 🛡️ Beveiligingsworkflowbundel | `npx omni-skills --cursor --bundelbeveiliging` |
+| ⚙️DevOps-bundel | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI-ingenieursbundel | `npx omni-skills --codex --bundel ai-engineer` |
+| 🔎 Zoek voordat je beslist | `npx omni-vaardigheden vinden figma` |
+| 📋 Bekijk alle bundelbeschikbaarheid | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+Gebruik de tools `search_skills` of `preview_install` met bundelparameters.### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

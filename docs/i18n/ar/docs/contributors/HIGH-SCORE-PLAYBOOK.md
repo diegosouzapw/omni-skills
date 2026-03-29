@@ -5,83 +5,71 @@
 ---
 
 
-> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
-
----
+>**ما يحتاجه برنامج Omni Skills `SKILL.md` عمليًا للوصول إلى مستوى عالٍ من النضج وأفضل الممارسات والجودة ودرجات الأمان.**---
 
 ## 🎯 Purpose
 
-This guide explains how the repository's classifier actually rewards a skill.
+يشرح هذا الدليل كيف يكافئ مُصنف المستودع المهارة فعليًا.
 
-Use it when you want to:
+استخدمه عندما تريد:
 
-- author a new skill that lands in the top scoring bands
-- improve an existing skill that is stuck in `good` or low `excellent`
-- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
+- قم بتأليف مهارة جديدة تصل إلى أعلى الفرق تسجيلًا
+- تحسين مهارة موجودة عالقة في مستوى "جيد" أو منخفض "ممتاز".
+- افهم لماذا لا تزال المهارة ذات التنسيق اللائق لا تسجل نقاطًا مثل الأصول التشغيلية الاستثنائية
 
-This is the contributor-facing companion to:
+هذا هو الرفيق الذي يواجه المساهمين في:
 
-- [Quality Bar](QUALITY-BAR.md)
-- [Skill Anatomy](SKILL-ANATOMY.md)
-- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
+- [شريط الجودة](QUALITY-BAR.md)
+- [تشريح المهارة](SKILL-ANATOMY.md)
+- [تصنيف المهارات](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+المعيار الحالي للكتالوج المباشر:
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
-- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
-
----
+- 32 مهارات منشورة
+- انتشار الجودة الحالية: `94، 95، 96، 97، 100`
+- انتشار أفضل الممارسات الحالية: `98، 99، 100`
+- الحد الأعلى الحالي: `omni-Figma` بجودة `100/100` وأفضل الممارسات `100/100`---
 
 ## 🧱 What High Scores Really Mean
 
-The classifier does **not** reward pretty markdown alone.
+لا يكافئ المُصنف التخفيض الجميل وحده.
 
-High-scoring skills are skills that are:
+المهارات ذات الدرجات العالية هي المهارات التي:
 
-- **discoverable**: the description clearly says what the skill does and when to use it
-- **operational**: the skill includes local scripts, references, and runnable examples
-- **diagnostic**: it helps the agent recover when things go wrong
-- **specific**: it is focused on one workflow, not broad advice
-- **safe**: it avoids risky patterns and ships clean scanner output
+-**قابل للاكتشاف**: يوضح الوصف بوضوح ما تفعله المهارة ومتى يتم استخدامها
+-**التشغيلية**: تتضمن المهارة نصوصًا محلية ومراجع وأمثلة قابلة للتشغيل
+-**التشخيص**: يساعد الوكيل على التعافي عندما تسوء الأمور
+-**محدد**: يركز على سير عمل واحد، وليس نصيحة عامة
+-**آمن**: يتجنب الأنماط المحفوفة بالمخاطر ويشحن مخرجات الماسح الضوئي النظيفة
 
-In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
-
----
+من الناحية العملية، تتصرف أقوى المهارات وكأنها**مجموعة أدوات سير عمل مجمعة صغيرة**أكثر من كونها ملاحظة بسيطة.---
 
 ## 📋 Score Targets
 
-Use these targets when authoring:
+استخدم هذه الأهداف عند التأليف:
 
-| Dimension | Strong Target | Exceptional Target |
-|:----------|:--------------|:-------------------|
-| 🎯 Maturity | `L3` | `L3` with multiple support resources |
-| 📋 Best Practices | `90+` | `96+` |
-| ⭐ Quality | `85+` | `90+` |
-| 🛡️ Security | `95+` | `95+` with zero findings |
-
----
+| البعد | هدف قوي | هدف استثنائي |
+|:----------|:------------|:-------------------|
+| 🎯 النضج | `L3` | `L3` مع موارد دعم متعددة |
+| 📋 أفضل الممارسات | `90+` | `96+` |
+| ⭐ الجودة | `85+` | `90+` |
+| 🛡️ الأمن | `95+` | `95+` بدون نتائج |---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Your frontmatter should make the skill easy to classify and easy to discover:
+يجب أن تجعل مهمتك الأمامية من السهل تصنيف المهارة واكتشافها:
 
-- `name` matches the directory exactly
-- `description` explains both **what** and **when**
-- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
+- `الاسم` يطابق الدليل تمامًا
+- `الوصف` يشرح كلاً من**ماذا**و**متى**
+- "الفئة"، و"العلامات"، و"الأدوات"، و"التعقيد"، و"الخطر"، و"المصدر"، و"المؤلف"، والتواريخ كلها موجودة
 
-Good description shape:
-
-```yaml
+وصف جيد الشكل:```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bad description shape:
-
-```yaml
+شكل الوصف غير صحيح:```yaml
 description: "Helps with databases."
 ```
 
@@ -89,35 +77,31 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-The strongest skills consistently include these sections:
+تتضمن أقوى المهارات باستمرار هذه الأقسام:
 
-- `## Overview`
-- `## When to Use This Skill`
-- `## Workflow`
-- `## Examples`
-- `## Best Practices`
-- `## Troubleshooting`
-- `## Additional Resources`
+- `## نظرة عامة`
+- `## متى تستخدم هذه المهارة`
+- `## سير العمل`
+- `##أمثلة`
+- `## أفضل الممارسات`
+- `## استكشاف الأخطاء وإصلاحها`
+- `## موارد إضافية`
 
-If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
-
----
+إذا كان أحد هذه العناصر مفقودًا، فمن الممكن أن تظل النتيجة جيدة، ولكن يصبح من الصعب أن تبدو استثنائيًا.---
 
 ### 3. Runnable Local Support
 
-Top-scoring skills usually include:
+عادة ما تشمل المهارات ذات أعلى الدرجات ما يلي:
 
 - `references/checklist.md`
-- one or more helper scripts in `scripts/`
-- at least one worked example in `examples/`
-- `agents/openai.yaml` when the skill is intended for direct agent invocation
-- direct links from `SKILL.md` to those local files
+- واحد أو أكثر من النصوص البرمجية المساعدة في "النصوص البرمجية/".
+- مثال عملي واحد على الأقل في "الأمثلة/".
+- `agents/openai.yaml` عندما تكون المهارة مخصصة لاستدعاء الوكيل المباشر
+- روابط مباشرة من `SKILL.md` إلى تلك الملفات المحلية
 
-This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
+وهذا مهم لأن المُصنف يتعامل مع المهارة ذات**مواد الدعم المجمعة**على أنها أكثر قابلية للتنفيذ من تلك التي تشير إلى الخارج فقط.
 
-Recommended minimum:
-
-```text
+الحد الأدنى الموصى به:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -134,22 +118,18 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-High-scoring examples are:
+الأمثلة ذات الدرجات العالية هي:
 
-- concrete
-- typed with a real fence such as `bash` or `python`
-- tied to a local script or repeatable command
-- representative of the workflow
+- الخرسانة
+- كتابتها بسياج حقيقي مثل `bash` أو `python`
+- مرتبط ببرنامج نصي محلي أو أمر قابل للتكرار
+- ممثل سير العمل
 
-Good:
-
-```bash
+جيد:```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Weak:
-
-```text
+ضعيف:```text
 Ask the agent to help with your API.
 ```
 
@@ -157,20 +137,16 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
+يكافئ برنامج الهداف استكشاف الأخطاء وإصلاحها مما يساعد الوكيل على التعافي، وليس مجرد التعرف على المشكلة.
 
-Preferred format:
-
-```md
+التنسيق المفضل:```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-This is stronger than a vague note like:
-
-```md
+وهذا أقوى من ملاحظة غامضة مثل:```md
 If the result is bad, add more detail.
 ```
 
@@ -178,50 +154,46 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
+يميز المصنف الآن بين المهارة الكاملة والعميقة حقًا.
 
-Signals that help:
+الإشارات التي تساعد:
 
-- multiple concrete examples
-- multiple troubleshooting cases
-- related-skill guidance
-- richer reference packs
-- a visible `## Workflow` section with numbered steps the scorer can count directly
-- at least one operational table or execution map where it clarifies the workflow
-- more than one support directory or asset type
-- workflow sections with enough steps to guide execution
-- decision assets such as checklists, rubrics, matrices, packets, or playbooks
-- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
-- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
-- more than a single helper file when the workflow is complex enough to justify a support pack
-- enough body depth to cover tradeoffs and failure modes
-- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
+- أمثلة ملموسة متعددة
+- حالات استكشاف الأخطاء وإصلاحها متعددة
+- التوجيه بالمهارات ذات الصلة
+- حزم مرجعية أكثر ثراء
+- قسم `## سير العمل` مرئي يحتوي على خطوات مرقمة يمكن للمسجل عدها مباشرة
+- جدول تشغيلي أو خريطة تنفيذية واحدة على الأقل توضح سير العمل
+- أكثر من دليل دعم أو نوع أصل واحد
+- أقسام سير العمل مع الخطوات الكافية لتوجيه التنفيذ
+- أصول القرار مثل قوائم المراجعة أو نماذج التقييم أو المصفوفات أو الحزم أو كتب اللعب
+- تنوع أقوى لحزمة الدعم عبر "المراجع/"، أو "النصوص البرمجية/"، أو "الوكلاء/"، أو "الأمثلة/"، أو "الأصول/"
+- ما يكفي من ملفات الدعم القابلة لإعادة الاستخدام لتبدو وكأنها مجموعة أدوات، وليس مساعدًا واحدًا مدسوسًا بجوار تخفيض السعر
+- أكثر من ملف مساعد واحد عندما يكون سير العمل معقدًا بما يكفي لتبرير حزمة الدعم
+- عمق كافٍ للجسم لتغطية المفاضلات وأوضاع الفشل
+- توجيه تشغيلي أكثر كثافة، لأن أداة التسجيل الآن تميز التنسيق المصقول عن عمق سير العمل القابل لإعادة الاستخدام
 
-Signals that do **not** help much:
+الإشارات التي**لا**تساعد كثيرًا:
 
-- repeating the same instruction in different words
-- generic filler text
-- adding headings without adding substance underneath them
-
----
+- تكرار نفس التعليمات بكلمات مختلفة
+- نص حشو عام
+- إضافة العناوين دون إضافة مادة تحتها---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use this checklist before running validation:
+استخدم قائمة التحقق هذه قبل تشغيل التحقق من الصحة:
 
-- description says **what** and **when**
-- the skill is focused on one workflow
-- `## Workflow` exists and contains numbered or bulleted steps
-- at least one runnable example exists
-- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
-- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
-- troubleshooting uses `Symptoms` and `Solution`
-- the skill can reasonably be classified as `L3`
-- no risky commands or suspicious paths are present
+- الوصف يقول**ماذا**و**متى**
+- تركز المهارة على سير عمل واحد
+- `## سير العمل` موجود ويحتوي على خطوات مرقمة أو نقطية
+- يوجد مثال واحد قابل للتشغيل على الأقل
+- يتم ربط `المراجع/`، و`النصوص البرمجية/`، ومن الأفضل أن يتم ربط `الأمثلة/` من `SKILL.md`
+- `agents/openai.yaml` موجود عندما تكون المهارة مخصصة للاستدعاء المباشر للعملاء الوكلاء
+- يستخدم استكشاف الأخطاء وإصلاحها "الأعراض" و"الحل".
+- يمكن تصنيف المهارة بشكل معقول على أنها "L3".
+- لا توجد أوامر محفوفة بالمخاطر أو مسارات مشبوهة
 
-Then run:
-
-```bash
+ثم قم بتشغيل:```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -230,19 +202,17 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- the description is correct but too generic
-- the markdown has sections but no operational depth
-- examples do not point to local helpers
-- troubleshooting exists but is not diagnostic
-- there are too few tags or tool identifiers
-- the skill is safe and clean but still too shallow to count as exceptional
-
----
+- الوصف صحيح ولكنه عام للغاية
+- يحتوي التخفيض على أقسام ولكن لا يوجد عمق تشغيلي
+- الأمثلة لا تشير إلى المساعدين المحليين
+- استكشاف الأخطاء وإصلاحها موجود ولكنه ليس تشخيصيًا
+- يوجد عدد قليل جدًا من العلامات أو معرفات الأدوات
+- المهارة آمنة ونظيفة ولكنها لا تزال سطحية جدًا بحيث لا يمكن اعتبارها استثنائية---
 
 ## 🧭 Practical Rule
 
-If your skill feels like:
+إذا كانت مهارتك تبدو مثل:
 
-- a **template**: it may pass
-- a **guide**: it may score well
-- a **workflow package**: it is much more likely to score at the top
+-**قالب**: قد يمر
+-**الدليل**: قد يسجل نتائج جيدة
+-**حزمة سير العمل**: من المرجح أن تسجل في القمة

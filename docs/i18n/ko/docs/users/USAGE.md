@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**기술을 호출하고, 서비스를 실행하고, Omni Skills 런타임을 운영하는 데 필요한 모든 것입니다.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+전체 운영 워크플로는 [🔧 시스템 런북](../options/RUNBOOK.md)을 참조하세요.
+전체 최종 사용자 명령 맵은 [🧭 CLI 사용 설명서](./CLI-USER-GUIDE.md)를 참조하세요.---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
-|:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| 상태 | 세부정보 |
+|:-------|:---------|
+| ✅**지금 사용 가능**| 디자인, 아키텍처, 디버깅, 문서, OSS, 보안, DevOps, AI 엔지니어링, 데이터, 도구 및 기계 학습 워크플로 전반에 걸쳐 공개된 32가지 기술 |
+| 📦**번들**| 'essentials', 'full-stack', 'design', 'security', 'devops', 'ai-engineer' 및 'oss-maintainer'가 오늘 완전히 지원됩니다 |
+| 🔌**MCP 도달**| 설치 가능 클라이언트 7개, 구성 가능 클라이언트 16개, 일류 구성 대상 33개, 구성 프로필 19개 |
+| 🤖**A2A 내구성**| 메모리, JSON 또는 SQLite 로컬 내구성, 재시작 재개, 선택적 프로세스 실행기 및 공유 작업자를 위한 옵트인 임대 조정 |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
+| 클라이언트 | 호출 방법 | 기술 경로 |
 |:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| 🔵**클로드 코드**| `>> /skill-name 도와주세요...` | `~/.claude/skills/` |
+| 🟡**제미니 CLI**| `@skill-name을 사용하여...` | `~/.gemini/skills/` |
+| 🔴**코덱스 CLI**| `@skill-name을 사용하여...` | `~/.codex/skills/` |
+| 🟢**키로**| 요청 시 스킬 자동 로드 | `~/.kiro/skills/` |
+| 🟣**반중력**| `@skill-name을 사용하여...` | `~/.gemini/antigravity/skills/` |
+| 🔵**커서**| 채팅의 `@skill-name` | `~/.cursor/skills/` |
+| ⚪**오픈코드**| `오픈코드 실행 @skill-name` | `.opencode/skills/` |
+| ⬛**부조종사**| 스킬 내용을 수동으로 붙여넣기 | 해당 없음 |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline 및 Kilo Code와 같은 클라이언트는 주로 기술 디렉터리가 아닌 `config-mcp` 흐름을 사용합니다.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**your 참고:**
+> - 대화형 터미널에서 `npx omni-skills`는 이제 안내식 설치 흐름을 엽니다.
+> - `npx omni-skills ui`는 설치, 검색 및 서비스 시작 작업을 통해 시각적 잉크 셸을 엽니다.
+> - 시각적 셸은 `~/.omni-skills/state/ui-state.json`에 최근 설치, 최근 서비스 시작, 즐겨찾기 및 명명된 사전 설정을 유지합니다.
+> - TTY 외부에서는 선택기가 제공되지 않으면 전체 설치가 여전히 기본값입니다.
+> - `--skill`은 선택한 게시된 스킬만 설치합니다.
+> - `--bundle`은 번들을 확장하고 선별된 번들에 선언된 게시된 멤버를 설치합니다.
+> - `find`는 `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk` 등 12개 이상의 필터 플래그를 지원합니다.
+> - `config-mcp`는 일류 기술 디렉토리가 없는 MCP 지원 제품에 대한 올바른 경로입니다.---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+CLI는 단순한 설치 프로그램이 아닌 통합 운영 도구입니다.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+시각적 셸은 다음을 지원합니다.
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- 알려진 클라이언트 또는 사용자 정의 경로 선택을 통한 설치 안내
+- 플래그를 기억하지 않고 검색 후 설치
+- MCP 클라이언트 구성 미리보기 및 쓰기 흐름 안내
+- MCP, API 및 A2A 안내 시작
+- 최근 설치 및 서비스 재출시
+- 저장된 설치 및 서비스 사전 설정
+- 좋아하는 스킬과 번들### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
-|:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| # | 팁 |
+|:--|:--|
+| 1️⃣ | 프롬프트에서 이름으로 스킬 참조 |
+| 2️⃣ | 에이전트에 필요한 정확한 아티팩트, 코드 또는 디자인 컨텍스트 제공 |
+| 3️⃣ | 최소 설치 공간을 위해 `--skill`을 선호합니다 |
+| 4️⃣ | 패키징 또는 런타임 문제를 디버깅하기 전에 `doctor` 및 `smoke` 사용 |
+| 5️⃣ | 이제 7개의 스타터 번들이 모두 완전히 지원되므로 번들을 엄선된 도메인 설치로 사용 |
+| 6️⃣ | 하나의 흐름으로 검색과 설치를 모두 수행하려면 `find --install --yes`를 사용하세요. |
+| 7️⃣ | 인증, 비율 제한, 서명 및 확인 환경 변수에 대한 내용은 [runbook](../options/RUNBOOK.md)을 참조하세요.

@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Vähimmäisvaatimukset ja suositukset, jotta taito voidaan hyväksyä Omni Skills -tietovarastoon.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Katso [High-score Playbook](HIGH-SCORE-PLAYBOOK.md) erityisesti huippuluokan tuloksiin tähtääviä ohjeita.
 
-Current benchmark for the published catalog:
+Tämänhetkinen vertailuarvo julkaistulle luettelolle:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 julkaistua taitoa
+- keskimääräinen laatupiste 96,3
+- parhaiden käytäntöjen keskimääräinen pistemäärä `98,7`
+- keskimääräinen turvapiste '95,0'---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
-|:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| # | Vaatimus | Kuinka vahvistaa |
+|:--|:------------|:---------------|
+| 1️⃣ |**Voimassa esikuva**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Selkeä kuvaus**| Yhden rivin tulee selittää, mitä taito tekee (10+ merkkiä) |
+| 3️⃣ |**Nimi vastaa hakemistoa**| `nimi:` -kenttä vastaa kansion nimeä täsmälleen |
+| 4️⃣ |**Yleiskatsaus-osio**| Lyhyt selitys tarkoituksesta merkintätekstissä |
+| 5️⃣ |**Milloin käyttää -osio**| Vähintään 2 erityistä käyttöskenaariota |
+| 6️⃣ |**Toimittavat ohjeet**| Vaiheittainen sisältö, jonka tekoälyagentti voi suorittaa |
+| 7️⃣ |**Luotu metatiedot**| Validator lähettää "skills/<skill>/metadata.json" onnistuneesti |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | Suositus | Pisteiden vaikutus |
+|:--|:---------------|:--------------|
+| 8️⃣ |**Esimerkkejä**— vähintään yksi konkreettinen esimerkki odotetuista tuloksista | 📈 Laatu +10-15 |
+| 9️⃣ |**Parhaat käytännöt**— ✅ Tee / ❌ Älä anna ohjeita | 📈 Parhaat käytännöt +5 |
+| 🔟 |**Testattu työkalulla**— vahvistettu vähintään yhdellä AI-koodausavustajalla | 📈 Laatu +5 |
+| 1️⃣1️⃣ |**Tagit**— osuvat haettavat tunnisteet löytöjä varten | 📈 Parhaat käytännöt +10 |
+| 1️⃣2️⃣ |**Luokka**— määritetty yhdelle ensisijaiselle kategorialle | 📈 Parhaat käytännöt +10 |
+| 1️⃣3️⃣ |**Vianetsintä**— konkreettiset ohjeet "Oireet" ja "Ratkaisu" | 📈 Parhaat käytännöt +5-10 |
+| 1️⃣4️⃣ |**Paikalliset tukiresurssit**— `viitteet/`, `skriptit/` ja mieluiten `esimerkit/` linkitetty taidosta | 📈 Parhaat käytännöt +10 |
+| 1️⃣5️⃣ |**Terveellinen luokitus**— kypsyysaste L3, laatu 85+, parhaat käytännöt 90+ | 📈 Kokonaistaso |
+| 1️⃣6️⃣ |**Ei kriittisiä tietoturvahavaintoja**— staattinen skanneri läpäisee puhtaan | 🛡️ Turvallisuus 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Ongelma | Miksi |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Frontmatter puuttuu tai virheellinen | Katkaisee vahvistusputken |
+| ❌ Nimi ei vastaa hakemistoa | Katkeaa luetteloiden sukupolven |
+| ❌ Tyhjä tai vähäpätöisen lyhyt kuvaus | Käyttäjät eivät löydä osaamista |
+| ❌ Ei toiminnallista sisältöä (vain linkit tai tynkä) | Agentit eivät voi suorittaa mitään |
+| ❌ Kopioi ilman selvää parannusta | Lisää arvoa, älä kloonaa |
+| ❌ Loukkaava sisältö ilman "riski: loukkaavaa" -tunnistetta | Turvallisuus ja vaatimustenmukaisuus |
+| ❌ Kriittiset tietoturvahavainnot | Nopea suodatus, tuhoavat komennot jne. |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
-|:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| Mitat | Erinomainen | Hyvä | Tarvitsee työtä |
+|:----------|:----------|:-----|:------------|
+| ⭐**Laatu**| 80+ (platina) | 60-79 (kulta/hopea) | <60 (pronssi/aloitus) |
+| 📋**Parhaat käytännöt**| 90+ (erinomainen) | 70-89 (hyvä) | <70 (kohtuullinen/tarve) |
+| 🛡️**Turvallisuus**| 95+ (karkaistu) | 80-94 (suojattu) | <80 (tarkistus tarvitaan) |
+| 🎯**Maturiteetti**| L3 (skriptit+testit) | L2 (ohjeet) | L1 (vain metatiedot) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Päästäksesi huippubäntiin johdonmukaisesti, sinun tulee sisältää seuraavat taidot:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- vahva frontmatter-kuvaus, joka selittää sekä**mitä**taito tekee ja**milloin**sitä tulisi käyttää
+- selkeät osiot "Milloin käyttää", "Työnkulku", "Esimerkit", "Parhaat käytännöt", "Vianetsintä" ja "Lisäresurssit"
+- paikallinen tukimateriaali kohdissa "references/", "scripts/" ja mieluiten "examples/", linkitetty suoraan osoitteesta "SKILL.md"
+- agentin metatiedot kohdassa "agents/openai.yaml", kun taito on tarkoitettu käytettäväksi suoraan agenttiohjelmissa
+- pieni toimintataulukko tai vastaava suorituskartta, kun työnkulku hyötyy siitä
+- vähintään yksi suoritettava esimerkki, joka osoittaa paikalliseen apuohjelmaan tai toistettavaan komentosarjaan
+- vianetsintä kirjoitettuna "Oireet" ja "Ratkaisu", ei yleisiä varoituksia
+- tarpeeksi syvyyttä 'L3':ksi kelpaamiseksi, ei vain hyvin muotoiltua proosaa
+- vahvempi työnkulun syvyys, päätöksentekoresurssit ja tukipakettien monimuotoisuus, jos haluat huippuluokan laatua
+- Tukipaketti, joka on riittävän syvä, jotta se tuntuu uudelleen käytettävältä, ei vain valintaruudun peittoon
+- vähintään 4 mielekästä tukiperhettä tai vastaava syvyys uudelleenkäytettävissä tiedostoissa, jos haluat yläkaistan johdonmukaisesti

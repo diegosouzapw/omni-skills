@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**スキルの検出、検索、比較、インストール計画、アーティファクトのダウンロードのための読み取り専用 HTTP API。**---
 
 ## 📊 Status
 
-| Feature | State |
+|特集 |状態 |
 |:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| ✅ カタログエンドポイント |実装済み |
+| ✅ 認証 (ベアラー + API キー) |実装済み |
+| ✅ 管理者ランタイム認証 |実装済み |
+| ✅ レート制限 |実装済み |
+| ✅ 監査ログ |実装済み |
+| ✅ CORS および IP 許可リスト |実装済み |
+| ✅ メンテナンスモード |実装済み |
+| ✅ アーカイブのダウンロード |実装済み |
+| ✅ OpenAPI 仕様 |実装済み |
+| ⚠️ ガバナンス バックエンド |環境主導のインプロセスベースライン。外部ゲートウェイまたは IdP は引き続きオプションです。---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+API は、以下のレジストリ スタイルのサーフェスを提供します。
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 品質、セキュリティ、カテゴリ、リスクなどによるスキルのリストとフィルタリング
+- 📌 個別のスキルマニフェストの取得
+- 🔎 全文検索とマルチスキル比較
+- 📦 在庫状況を含むバンドルリスト
+- 📐 読み取り専用のインストール計画の生成
+- 📥 生成されたアーティファクト、アーカイブ、チェックサムマニフェストのダウンロード
 
-This same catalog and manifest surface is also the basis for:
+この同じカタログとマニフェストの表面は、次の基礎にもなります。
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- ローカル CLI インストール計画
+- MCP 読み取り専用検出応答
+- A2A 検出とインストール計画のハンドオフ
+- 外部認証が最上位に階層化されたプライベート カタログの可能性---
 
 ## クイックスタート
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**デフォルト**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+すべてのセキュリティ制御は環境主導型であり、オプションです。
 
-| Control | Variable | Example |
-|:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+|コントロール |変数 |例 |
+|:--------|:-----------|:----------|
+| 🔑**ベアラー認証**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `私を置き換えてください` |
+| 🗝️**API キー認証**| `OMNI_SKILLS_HTTP_API_KEYS` | `キーa、キーb` |
+| 🛂**管理者認証**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `管理者秘密` |
+| 🚦**レート制限**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**監査ログ**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️**監査形式**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` または `text` |
+| 📄**監査ファイル**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**CORS 許可リスト**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com、https://*.example.org` |
+| 🧱**IP 許可リスト**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**信頼できるプロキシ**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `ループバック` |
+| 🚧**メンテナンスモード**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️**その後再試行してください**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**動作:**
+- 🟢 `/healthz` は**常に認証されていない**
+- 🔒 認証が有効な場合、他のすべてのルートには認証が必要です
+- 🛂 `/admin/runtime` を有効にすると管理者トークンが必要です
+- 🚦 レート制限は `X-RateLimit-*` 応答ヘッダーで処理中です
+- 🧾 すべての応答には `X-Request-Id` が含まれます
+- 🚧 メンテナンス モードは、非健全性、非管理ルートに対して「503」を返します。### ✅ Current governance decision
 
-### ✅ Current governance decision
+現在のプロジェクトの方向性は、**パブリック展開またはプライベート展開に同じカタログ形式を再利用**し、必要に応じて外部で認証をレイヤー化することです。
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+つまり:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- マニフェストと API シェイプは共有されたままになります
+- セルフホスト型およびローカル展開は、インプロセスのベースラインを維持できます。
+- より高度なホスト型ガバナンスは、データ モデルをフォークすることなく、後で外部ゲートウェイまたはエンタープライズ認証層に移行できます。### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+|方法 |パス |説明 |
+|:------|:-----|:----------|
+| `GET` | `/healthz` |ヘルスチェック（未認証） |
+| `GET` | `/openapi.json` |動的 OpenAPI 3.1 仕様 |
+| `GET` | `/admin/ランタイム` |ガバナンスとランタイム スナップショット (有効な場合は管理者認証) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
+|方法 |パス |説明 |
+|:------|:-----|:----------|
+| `GET` | `/v1/スキル` |フィルタを使用してスキルをリストする |
+| `GET` | `/v1/skills/:id` |個別のスキルマニフェストを取得する |
+| `GET` | `/v1/検索` |全文検索 |
+| `GET` | `/v1/compare?ids=id1,id2` |複数のスキルを比較する |
+| `GET` | `/v1/バンドル` |バンドルと可用性をリストする |
+| `ポスト` | `/v1/install/plan` |インストール計画を作成する |### 🔎 List/Search Filters
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
-
-### 🔎 List/Search Filters
-
-| Filter | Example |
-|:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
+|フィルター |例 |
+|:------|:------|
+| `カテゴリー` | `?カテゴリー=開発` |
+| `ツール` | `?ツール=カーソル` |
+| 「リスク」 | `?リスク=安全` |
+| `ソート` | `?sort=quality\|best-practices\|level\|security\|name` |
+| `注文` | `?order=asc\|desc` |
 | `min_quality` | `?min_quality=80` |
 | `min_best_practices` | `?min_best_practices=60` |
 | `min_level` | `?min_level=2` |
 | `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| `検証ステータス` | `?validation_status=passed` |
+| `セキュリティステータス` | `?security_status=passed` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+|方法 |パス |説明 |
+|:------|:-----|:----------|
+| `GET` | `/v1/カタログ/ダウンロード` |フルカタログのダウンロード |
+| `GET` | `/v1/skills/:id/artifacts` |スキルアーティファクトのリスト |
+| `GET` | `/v1/skills/:id/archives` |スキルアーカイブのリスト |
+| `GET` | `/v1/skills/:id/downloads` |利用可能なすべてのダウンロード リンク |
+| `GET` | `/v1/skills/:id/download/manifest` |スキルマニフェスト JSON |
+| `GET` | `/v1/skills/:id/download/entrypoint` |スキル SKILL.md |
+| `GET` | `/v1/skills/:id/download/artifact?path=<パス>` |特定のアーティファクト |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` |スキルアーカイブ |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` |切り離された署名 |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 チェックサム |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+API を通じてリクエストが処理されると、サーバーは、受信したリクエストの送信元から派生した絶対 URL を使用して、マニフェスト、アーティファクト リスト、およびインストール プランを**自動的に強化**します。これは実行時の強化であり、`dist/manifests/*.json` に組み込まれるわけではありません。---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**インストール プランはプレビューであり、リモート書き込みではありません。**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+API が呼び出し元のマシンにインストールされることはありません。返される内容は次のとおりです。
+- 📌 選択されたスキルのメタデータ
+- ⚠️ バンドルメンバーが見つからない場合の警告
+- 🖥️ ローカルで実行する具体的な CLI コマンド
+- 🔗 リクエスト元が利用可能な場合のパブリック ダウンロード URL---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+MCP サーバーは、構成時に同じパブリック API URL を再利用します。```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+これにより、MCP インストール プレビューは、ローカル リポジトリ パスだけではなく、具体的なマニフェストとアーティファクトの URL を返すことができます。---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+「GET /admin/runtime」は、ホストされた診断に役立つガバナンス スナップショットを返します。
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- アクティブな認証方法
+- 管理者認証ステータス
+- レート制限ウィンドウと最大値
+- CORS 許可リスト
+- IP許可リスト
+- メンテナンスモード状態
+- 監査の宛先と形式
+- 現在のカタログの合計
+- 追跡可能性のためにリクエスト ID をエコーする

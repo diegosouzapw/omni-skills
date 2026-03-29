@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Minimumskrav og anbefalinger for, at en færdighed kan accepteres i Omni Skills-lageret.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Se [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md) for forfattervejledning, der er specifikt rettet mod top-bands partiturer.
 
-Current benchmark for the published catalog:
+Nuværende benchmark for det offentliggjorte katalog:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 offentliggjorte færdigheder
+- gennemsnitlig kvalitetsscore `96,3`
+- Gennemsnitlig score for bedste praksis "98,7".
+- gennemsnitlig sikkerhedsscore `95,0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
-|:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| # | Krav | Sådan bekræftes |
+|:--|:------------|:-------------|
+| 1️⃣ |**Gyldig frontmateriale**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Klar beskrivelse**| One-liner skal forklare, hvad færdigheden gør (10+ tegn) |
+| 3️⃣ |**Navn matcher bibliotek**| `navn:`-feltet matcher mappenavnet nøjagtigt |
+| 4️⃣ |**Oversigtssektion**| Kort forklaring af formålet i nedskrivningsorganet |
+| 5️⃣ |**Sektionen Hvornår skal bruges**| Mindst 2 specifikke brugsscenarier |
+| 6️⃣ |**Handlingsbare instruktioner**| Trin-for-trin indhold, som en AI-agent kan udføre |
+| 7️⃣ |**Genereret metadata**| Validator udsender `skills/<skill>/metadata.json` med succes |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | Anbefaling | Score Indvirkning |
+|:--|:---------------|:------------|
+| 8️⃣ |**Eksempler**— mindst ét ​​konkret eksempel med forventet output | 📈 Kvalitet +10-15 |
+| 9️⃣ |**Bedste praksis**— ✅ Gør / ❌ Må ikke vejledes | 📈 Bedste praksis +5 |
+| 🔟 |**Testet med et værktøj**— verificeret med mindst én AI-kodningsassistent | 📈 Kvalitet +5 |
+| 1️⃣1️⃣ |**Tags**— relevante søgbare tags til opdagelse | 📈 Bedste praksis +10 |
+| 1️⃣2️⃣ |**Kategori**— tildelt én kanonisk kategori | 📈 Bedste praksis +10 |
+| 1️⃣3️⃣ |**Fejlfinding**— konkret "symptomer" og "løsning" vejledning | 📈 Bedste praksis +5-10 |
+| 1️⃣4️⃣ |**Lokale supportaktiver**— `referencer/`, `scripts/` og ideelt set `eksempler/` forbundet fra færdigheden | 📈 Bedste praksis +10 |
+| 1️⃣5️⃣ |**Sund klassificering**— modenhed L3, kvalitet 85+, bedste praksis 90+ | 📈 Samlet niveau |
+| 1️⃣6️⃣ |**Ingen kritiske sikkerhedsfund**— statisk scanner klarer sig ren | 🛡️ Sikkerhed 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Udgave | Hvorfor |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Manglende eller ugyldig frontmateriale | Bryder valideringspipeline |
+| ❌ Navnet stemmer ikke overens med mappen | Bryder kataloggenerering |
+| ❌ Tom eller trivielt kort beskrivelse | Brugere kan ikke opdage færdigheden |
+| ❌ Intet handlingsvenligt indhold (kun links eller stubs) | Agenter kan ikke udføre noget |
+| ❌ Duplikat uden tydelig forbedring | Tilføj værdi, klon ikke |
+| ❌ Stødende indhold uden "risiko: stødende" tag | Sikkerhed og overholdelse |
+| ❌ Kritiske sikkerhedsresultater | Hurtig eksfiltrering, destruktive kommandoer osv. |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
-|:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| Dimension | Fremragende | Godt | Har brug for arbejde |
+|:----------|:---------|:-----|:-----|
+| ⭐**Kvalitet**| 80+ (platin) | 60-79 (guld/sølv) | <60 (bronze/starter) |
+| 📋**Bedste praksis**| 90+ (fremragende) | 70-89 (god) | <70 (fair/behov-arbejde) |
+| 🛡️**Sikkerhed**| 95+ (hærdet) | 80-94 (sikker) | <80 (gennemgang nødvendig) |
+| 🎯**Modenhed**| L3 (scripts+tests) | L2 (vejledning) | L1 (kun metadata) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+For at nå det øverste bånd konsekvent bør en færdighed omfatte:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- en stærk frontmatter-beskrivelse, der både forklarer**hvad**færdigheden gør og**hvornår**den skal bruges
+- eksplicitte sektioner for "Hvornår skal bruges", "Workflow", "Eksempler", "Bedste praksis", "Fejlfinding" og "Yderligere ressourcer".
+- lokalt supportmateriale under `referencer/`, `scripts/`, og ideelt set `eksempler/`, linket direkte fra `SKILL.md`
+- agentmetadata under `agents/openai.yaml`, når færdigheden er beregnet til at blive påberåbt direkte i agentklienter
+- en lille operationstabel eller tilsvarende udførelseskort, når arbejdsgangen nyder godt af det
+- mindst ét kørselsbart eksempel, der peger på et lokalt hjælpescript eller en gentagelig kommando
+- fejlfinding skrevet som 'Symptomer' plus 'Løsning', ikke generiske advarsler
+- nok dybde til at kvalificere sig som 'L3', ikke kun velformateret prosa
+- stærkere workflowdybde, beslutningsaktiver og supportpakkediversitet, hvis du ønsker top-band kvalitet
+- en supportpakke, der er dyb nok til at føles genbrugelig, ikke kun til stede for at dække afkrydsningsfeltet
+- mindst 4 meningsfulde støttefamilier eller den tilsvarende dybde i genanvendelige filer, hvis du ønsker det øverste bånd konsekvent

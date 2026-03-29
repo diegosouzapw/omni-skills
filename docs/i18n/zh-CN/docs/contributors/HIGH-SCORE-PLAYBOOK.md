@@ -5,83 +5,71 @@
 ---
 
 
-> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
-
----
+>**Omni Skills `SKILL.md` 在实践中需要什么才能达到高度成熟度、最佳实践、质量和安全分数。**---
 
 ## 🎯 Purpose
 
-This guide explains how the repository's classifier actually rewards a skill.
+本指南解释了存储库的分类器实际上如何奖励技能。
 
-Use it when you want to:
+当您想要执行以下操作时使用它：
 
-- author a new skill that lands in the top scoring bands
-- improve an existing skill that is stuck in `good` or low `excellent`
-- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
+- 创造一项新技能，跻身得分榜前列
+- 提高陷入“良好”或低“优秀”水平的现有技能
+- 理解为什么具有良好格式的技能仍然无法像特殊的运营资产一样得分
 
-This is the contributor-facing companion to:
+这是面向贡献者的同伴：
 
-- [Quality Bar](QUALITY-BAR.md)
-- [Skill Anatomy](SKILL-ANATOMY.md)
-- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
+- [质量栏](QUALITY-BAR.md)
+- [技能剖析](SKILL-ANATOMY.md)
+- [技能分类](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+实时目录的当前基准：
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
-- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
-
----
+- 32 项已发表的技能
+- 当前质量分布：`94, 95, 96, 97, 100`
+- 当前最佳实践分布：`98, 99, 100`
+- 当前高端：“omni-figma”，“100/100”质量和“100/100”最佳实践---
 
 ## 🧱 What High Scores Really Mean
 
-The classifier does **not** reward pretty markdown alone.
+分类器**不**单独奖励相当大的降价。
 
-High-scoring skills are skills that are:
+高分技能是指以下技能：
 
-- **discoverable**: the description clearly says what the skill does and when to use it
-- **operational**: the skill includes local scripts, references, and runnable examples
-- **diagnostic**: it helps the agent recover when things go wrong
-- **specific**: it is focused on one workflow, not broad advice
-- **safe**: it avoids risky patterns and ships clean scanner output
+-**可发现**：描述清楚地说明了该技能的作用以及何时使用它
+-**操作**：技能包括本地脚本、参考资料和可运行的示例
+-**诊断**：它可以帮助代理在出现问题时恢复
+-**具体**：它专注于一个工作流程，而不是广泛的建议
+-**安全**：它避免有风险的模式并提供干净的扫描仪输出
 
-In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
-
----
+在实践中，最强大的技能更像是一个**小型打包的工作流程工具包**，而不是简单的降价笔记。---
 
 ## 📋 Score Targets
 
-Use these targets when authoring:
+创作时使用这些目标：
 
-| Dimension | Strong Target | Exceptional Target |
-|:----------|:--------------|:-------------------|
-| 🎯 Maturity | `L3` | `L3` with multiple support resources |
-| 📋 Best Practices | `90+` | `96+` |
-| ⭐ Quality | `85+` | `90+` |
-| 🛡️ Security | `95+` | `95+` with zero findings |
-
----
+|尺寸|强大的目标|卓越的目标|
+|:----------|:--------------|:--------------------|
+| 🎯 成熟 | 'L3' |具有多种支持资源的“L3” |
+| 📋 最佳实践 | `90+` | `96+` |
+| ⭐ 品质 | `85+` | `90+` |
+| 🛡️ 安全 | `95+` | “95+”，零发现|---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Your frontmatter should make the skill easy to classify and easy to discover:
+您的标题应该使该技能易于分类且易于发现：
 
-- `name` matches the directory exactly
-- `description` explains both **what** and **when**
-- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
+- `name` 与目录完全匹配
+- “描述”解释了**什么**和**何时**
+- “类别”、“标签”、“工具”、“复杂性”、“风险”、“来源”、“作者”和日期都存在
 
-Good description shape:
-
-```yaml
+良好的描述形状：```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bad description shape:
-
-```yaml
+不良描述形状：```yaml
 description: "Helps with databases."
 ```
 
@@ -89,35 +77,31 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-The strongest skills consistently include these sections:
+最强大的技能始终包括以下部分：
 
-- `## Overview`
-- `## When to Use This Skill`
-- `## Workflow`
-- `## Examples`
-- `## Best Practices`
-- `## Troubleshooting`
-- `## Additional Resources`
+- `## 概述`
+- `## 何时使用此技能`
+- `## 工作流程`
+- `## 示例`
+- `##最佳实践`
+- `## 故障排除`
+- `## 其他资源`
 
-If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
-
----
+如果缺少其中一项，分数仍然可以不错，但很难看起来很出色。---
 
 ### 3. Runnable Local Support
 
-Top-scoring skills usually include:
+得分最高的技能通常包括：
 
-- `references/checklist.md`
-- one or more helper scripts in `scripts/`
-- at least one worked example in `examples/`
-- `agents/openai.yaml` when the skill is intended for direct agent invocation
-- direct links from `SKILL.md` to those local files
+- `参考文献/checklist.md`
+- `scripts/` 中的一个或多个辅助脚本
+- `examples/` 中至少有一个有效的示例
+- `agents/openai.yaml` 当技能用于直接代理调用时
+- 从“SKILL.md”到这些本地文件的直接链接
 
-This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
+这很重要，因为分类器将带有**捆绑支持材料**的技能视为比仅指向外部的技能更具可操作性。
 
-Recommended minimum:
-
-```text
+推荐最低值：```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -134,22 +118,18 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-High-scoring examples are:
+高分示例有：
 
-- concrete
-- typed with a real fence such as `bash` or `python`
-- tied to a local script or repeatable command
-- representative of the workflow
+- 混凝土
+- 使用真正的栅栏输入，例如“bash”或“python”
+- 绑定到本地脚本或可重复命令
+- 工作流程的代表
 
-Good:
-
-```bash
+好：```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Weak:
-
-```text
+虚弱的：```text
 Ask the agent to help with your API.
 ```
 
@@ -157,20 +137,16 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
+评分者会奖励帮助座席恢复的故障排除，而不仅仅是识别问题。
 
-Preferred format:
-
-```md
+首选格式：```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-This is stronger than a vague note like:
-
-```md
+这比模糊的注释更强有力，例如：```md
 If the result is bad, add more detail.
 ```
 
@@ -178,50 +154,46 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
+分类器现在可以区分仅仅是完整的技能和真正深入的技能。
 
-Signals that help:
+有帮助的信号：
 
-- multiple concrete examples
-- multiple troubleshooting cases
-- related-skill guidance
-- richer reference packs
-- a visible `## Workflow` section with numbered steps the scorer can count directly
-- at least one operational table or execution map where it clarifies the workflow
-- more than one support directory or asset type
-- workflow sections with enough steps to guide execution
-- decision assets such as checklists, rubrics, matrices, packets, or playbooks
-- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
-- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
-- more than a single helper file when the workflow is complex enough to justify a support pack
-- enough body depth to cover tradeoffs and failure modes
-- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
+- 多个具体例子
+- 多个故障排除案例
+- 相关技能指导
+- 更丰富的参考包
+- 可见的“##工作流程”部分，其中包含记分员可以直接计数的编号步骤
+- 至少一张阐明工作流程的操作表或执行图
+- 不止一种支持目录或资产类型
+- 工作流程部分有足够的步骤来指导执行
+- 决策资产，例如清单、细则、矩阵、数据包或行动手册
+- 跨“引用/”、“脚本/”、“代理/”、“示例/”或“资产/”的更强支持包多样性
+- 足够的可重复使用的支持文件看起来像一个工具包，而不是一个隐藏在降价旁边的帮助程序
+- 当工作流程复杂到足以证明支持包合理时，不止一个帮助程序文件
+- 足够的主体深度来涵盖权衡和故障模式
+- 更密集的操作指导，因为评分器现在可以区分精美的格式和真正可重用的工作流程深度
 
-Signals that do **not** help much:
+**没有**帮助的信号：
 
-- repeating the same instruction in different words
-- generic filler text
-- adding headings without adding substance underneath them
-
----
+- 用不同的词重复相同的指令
+- 通用填充文本
+- 添加标题而不在其下方添加实质内容---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use this checklist before running validation:
+在运行验证之前使用此清单：
 
-- description says **what** and **when**
-- the skill is focused on one workflow
-- `## Workflow` exists and contains numbered or bulleted steps
-- at least one runnable example exists
-- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
-- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
-- troubleshooting uses `Symptoms` and `Solution`
-- the skill can reasonably be classified as `L3`
-- no risky commands or suspicious paths are present
+- 描述说明**什么**和**何时**
+- 该技能专注于一个工作流程
+- `## Workflow` 存在并包含编号或项目符号的步骤
+- 至少存在一个可运行的示例
+- `references/`、`scripts/` 和理想情况下的 `examples/` 均从 `SKILL.md` 链接
+- 当技能用于在代理客户端中直接调用时，存在“agents/openai.yaml”
+- 使用“症状”和“解决方案”进行故障排除
+- 该技能可以合理地归类为“L3”
+- 不存在危险命令或可疑路径
 
-Then run:
-
-```bash
+然后运行：```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -230,19 +202,17 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- the description is correct but too generic
-- the markdown has sections but no operational depth
-- examples do not point to local helpers
-- troubleshooting exists but is not diagnostic
-- there are too few tags or tool identifiers
-- the skill is safe and clean but still too shallow to count as exceptional
-
----
+- 描述正确但过于笼统
+- Markdown 有章节但没有操作深度
+- 示例不指向本地帮助者
+- 存在故障排除但不是诊断性的
+- 标签或工具标识符太少
+- 技能安全且干净，但仍然太浅，不足以算作出色---
 
 ## 🧭 Practical Rule
 
-If your skill feels like:
+如果你的技能感觉像：
 
-- a **template**: it may pass
-- a **guide**: it may score well
-- a **workflow package**: it is much more likely to score at the top
+-**模板**：它可能会通过
+-**指南**：它可能得分很高
+-**工作流程包**：更有可能获得最高分

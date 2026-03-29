@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Pemindaian keamanan, pembuatan arsip, penandatanganan opsional, dan pengemasan distribusi untuk setiap keterampilan yang dipublikasikan.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Fitur | Negara |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Pemindai keamanan statis | Selalu diaktifkan |
+| ✅ Klasifikasi metadata per keterampilan | Diimplementasikan |
+| ✅ Arsip per keterampilan (zip/tar.gz) | Diimplementasikan |
+| ✅ Manifes checksum SHA-256 | Diimplementasikan |
+| ✅ Gerbang pemindai CI pada tag rilis | Diimplementasikan |
+| ✅ npm publikasikan alur kerja dari tarball terverifikasi | Diimplementasikan |
+| ⚙️ Pemindaian ClamAV | Pengaya opsional |
+| ⚙️ Pencarian hash Total Virus | Pengaya opsional |
+| ✅ Penandatanganan terpisah | Diimplementasikan |
+| ✅ Penandatanganan yang diberlakukan CI | Diimplementasikan pada tag rilis |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Memindai setiap keterampilan selama validasi:
 
-| Target | What Gets Scanned |
+| Sasaran | Apa yang Dipindai |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| 📝 `SKILL.md` | Konten keterampilan utama |
+| 📄 Penurunan harga/file teks | Referensi dan dokumen yang dikemas |
+| ⚙️ Skrip | Skrip otomatisasi yang dikemas |
 
-**Rule families:**
+**Keluarga aturan:**
 
-| Rule | Examples |
+| Aturan | Contoh |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Injeksi cepat**| Pola eksfiltrasi, penggantian instruksi |
+| 💣**Perintah yang merusak**| `rm -rf`, `format`, `del /s` |
+| 🔑**Peningkatan hak istimewa**| `sudo`, `chmod 777`, pola setuid |
+| 📂**Jalur mencurigakan**| `/etc/shadow`, `~/.ssh`, file kredensial |
+| ⚠️**Primitif berisiko**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Memerlukan `clamscan` di `PATH`
+- Memindai file paket untuk mencari malware yang dikenal
+- Hasil dicatat dalam metadata keterampilan---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Hanya pencarian hash**— tidak ada file yang diunggah selama validasi normal
+- File yang tidak dikenal tetap hanya bersifat lokal
+- Menjaga build**deterministik**dan independen terhadap CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Gerbang pelepasan yang ketat:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Langkah ini membaca `skills/*/metadata.json` yang dihasilkan dan gagal jika pemindai yang diperlukan tidak menjalankan atau melaporkan deteksi.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Data keamanan dikeluarkan di setiap metadata keterampilan:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Blok ini disebarkan ke dalam tampilan manifes dan katalog, memungkinkan CLI, API, dan MCP untuk**memfilter dan memberi peringkat berdasarkan skor keamanan**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Setiap keterampilan yang diterbitkan menghasilkan:
 
-| File | Format |
+| Berkas | Format |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/arsip/<keterampilan>.zip` | Arsip ZIP |
+| `dist/arsip/<keterampilan>.tar.gz` | Arsip tarball |
+| `dist/arsip/<keterampilan>.checksums.txt` | Manifes checksum SHA-256 |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+Tag rilis GitHub Actions (`v*`) sekarang:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. verifikasi tag git cocok dengan `package.json`
+2. instal dan segarkan ClamAV
+3. mendekode kunci penandatanganan rilis dari rahasia GitHub
+4. jalankan `npm jalankan rilis:verifikasi`
+5. kemas tarball dengan `npm pack`
+6. publikasikan tarball yang tepat ke npm dengan asal
+7. buat Rilis GitHub dengan catatan khusus dan aset verifikasi terlampir---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Jika tidak ada kunci publik yang disediakan, build akan mengambil kunci publik dengan `openssl` dan menempatkannya di `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Saat diaktifkan, file `.sig` dikeluarkan di samping arsip dan manifes checksum.
 
-In CI, release tags now require signing through:
+Di CI, tag rilis kini memerlukan proses masuk:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` atau `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- opsional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` atau `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
+| Batasan | Status |
 |:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| Pengiriman unggahan VirusTotal | Sengaja dikecualikan dari validasi default |
+| Penegakan penandatanganan | Diberlakukan pada tag rilis; build lokal mungkin masih berjalan tanpa tanda tangan |
+| Tata kelola yang dihosting | Otentikasi bawaan, waktu proses admin, daftar izin CORS/IP, mode pemeliharaan, dan pencatatan audit sudah tersedia; gateway eksternal tetap opsional |

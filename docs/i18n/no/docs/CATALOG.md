@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Autogenerert fra `skills_index.json` – 32 ferdigheter fordelt på 15 kategorier.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Generert: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
 - [🧠 Ai Agents (5)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
+- [💬 Kommunikasjon (1)](#kommunikasjon)
 - [🤖 Data Ai (1)](#data-ai)
 - [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
+- [💻 Utvikling (3)](#utvikling)
 - [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
+- [📝 Dokumentasjon (2)](#dokumentasjon)
 - [🖼️ Frontend (1)](#frontend)
 - [🌐 Fullstack Web (1)](#fullstack-web)
 - [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [🧭 Produkt (1)](#produkt)
+- [🛡️ Testing av sikkerhet (4)](#testing-security)
+- [🧰 Verktøy (1)](#verktøy)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Kontekstteknisk arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger å forme spørsmål, gjenfinningskontekst, minne og til | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluering design arbeidsflyt ferdighet. Bruk denne ferdigheten når en bruker trenger LLM-evalueringsplaner, regresjonssuiter, scoringsrubrikker, o | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Arbeidsflytferdighet for LLM-applikasjoner. Bruk denne ferdigheten når en bruker trenger robuste mønstre for verktøybruk, strukturerte utdata, fallb | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Rask ingeniørarbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger klarere oppgaveinstruksjoner, eksempler, dekomponering, | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger hentingspipelines, chunking, rangering, siteringer og evaluering f | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | Arbeidsflytferdighet for API-design. Bruk denne ferdigheten når en bruker trenger en tydelig HTTP- eller tjenestekontrakt før implementering. | L3-ressurser | 100/100 | 95/100 | 95/100 bestått |
+| [`database-design`](../skills/database-design/SKILL.md) | Databasedesign arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger holdbart skjema, indeksering og migreringsdesign før i | L3-ressurser | 98/100 | 94/100 | 95/100 bestått |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`finn-ferdigheter`](../skills/find-skills/SKILL.md) | Arbeidsflytferdighet for katalogoppdagelse. Bruk denne ferdigheten når en bruker ber om en evne, arbeidsflyt eller domenespesifikk hjelper | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Trekk-forespørsel arbeidsflyt ferdighet. Bruk denne ferdigheten når en bruker trenger en ren anmeldelsesfortelling, risikoinnramming og anmelderveiledning | L3-ressurser | 98/100 | 95/100 | 95/100 bestått |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Datakontrakter arbeidsflytferdighet. Bruk denne ferdigheten når et team trenger å definere, gjennomgå eller håndheve kontrakter på tvers av produsenter | L3-ressurser | 97/100 | 95/100 | 95/100 bestått |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Arbeidsflytferdighet for tilgjengelighetsrevisjon. Bruk denne ferdigheten når en bruker trenger tastatur, semantikk, fokus, kontrast, bevegelse eller som | L3-ressurser | 100/100 | 99/100 | 95/100 bestått |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Arbeidsflytferdighet til å designe systemdrift. Bruk denne ferdigheten når en bruker trenger token-styring, komponentdriftskontroll, re | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Arbeidsflytferdighet for design av token-styring. Bruk denne ferdigheten når et team trenger å introdusere, gi nytt navn, avskrive eller vurdere desi | L3-ressurser | 97/100 | 95/100 | 95/100 bestått |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`arkitektur`](../skills/architecture/SKILL.md) | Arbeidsflytferdighet i arkitektur. Bruk denne ferdigheten når en bruker trenger systemgrenser, avveininger eller en trinnvis implementering p | L3-ressurser | 98/100 | 94/100 | 95/100 bestått |
+| [`debugging`](../skills/debugging/SKILL.md) | Feilsøking av arbeidsflyt. Bruk denne ferdigheten når en bruker trenger disiplinert reproduksjon, isolasjon og fikse bekreftelsesmoduler | L3-ressurser | 98/100 | 94/100 | 95/100 bestått |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger design-til-kode-implementering, Figma-inspeksjon, token-oppslag, Co | L3-ressurser | 100/100 | 100/100 | 95/100 bestått |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker arbeidsflyt ferdigheter. Bruk denne ferdigheten når en bruker trenger Dockerfiles, image build-strategi, runtime herding, eller contain | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger arbeidsbelastningsmanifester, utrullingsstrategi, tjenesteeksponering eller c | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Observerbarhet arbeidsflyt ferdighet. Bruk denne ferdigheten når en bruker trenger logger, beregninger, spor, varsler eller SLO-gjennomgang før forsendelse | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Frigjør ferdigheter i ingeniørarbeidsflyt. Bruk denne ferdigheten når en bruker trenger en sikrere utgivelsesplan, markedsføringspolicy, tilbakeføring pa | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`terraform`](../skills/terraform/SKILL.md) | Terraform arbeidsflytferdighet. Bruk denne ferdigheten når en bruker trenger infrastruktur som kodestruktur, moduler, tilstandsstrategi eller | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## Dokumentasjon
 
-## Dokumentasjon
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`changelog`](../skills/changelog/SKILL.md) | Arbeidsflytferdigheter med versjonsnotater. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3-ressurser | 98/100 | 94/100 | 95/100 bestått |
+| [`documentation`](../skills/documentation/SKILL.md) | Dokumentasjonsarbeidsflytferdighet. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3-ressurser | 99/100 | 96/100 | 95/100 bestått |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Arbeidsflytferdighet i frontend-design. Bruk denne ferdigheten når en bruker trenger UI-struktur, tilstander og interaksjonsmønstre før i | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Arbeidsflytferdighet for autentisering og autorisasjon. Bruk denne ferdigheten når en bruker trenger pålogging, økt, token, rolle eller tillatelse | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Arbeidsflytferdighet til modellservering. Bruk denne ferdigheten når et team trenger å designe, gjennomgå eller herde online slutninger, batch infe | L3-ressurser | 97/100 | 95/100 | 95/100 bestått |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming arbeidsflyt ferdigheter. Bruk denne ferdigheten når en bruker utforsker et problem og trenger alternativer, avveininger og en reco | L3-ressurser | 99/100 | 96/100 | 95/100 bestått |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Arbeidsflytferdighet i hendelsesrespons. Bruk denne ferdigheten når en bruker trenger triage av utfall, sekvensering av avbøtende tiltak, stakeholder com | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`sikkerhetsrevisor`](../skills/security-auditor/SKILL.md) | Sikkerhetsrevisjon arbeidsflyt ferdighet. Bruk denne ferdigheten når en bruker trenger en fokusert gjennomgang av konkrete sikkerhetsrisikoer i stedet for en | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Arbeidsflytferdighet i trusselmodellering. Bruk denne ferdigheten når en bruker trenger tillitsgrenser, angripermål, misbrukstilfeller eller begrense | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Arbeidsflytferdighet for sårbarhetsskanning. Bruk denne ferdigheten når en bruker trenger repeterbar dekning for kjente sårbarheter, u | L3-ressurser | 99/100 | 97/100 | 95/100 bestått |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Ferdighet | Beskrivelse | Nivå | Beste praksis | Kvalitet | Sikkerhet |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP-server-arbeidsflytferdighet. Bruk denne ferdigheten når et team trenger å designe, implementere, validere eller dokumentere en Modus | L3-ressurser | 97/100 | 95/100 | 95/100 bestått |

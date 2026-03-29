@@ -5,55 +5,47 @@
 ---
 
 
-> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
-
----
+>**클라이언트 감지, 기술 관리 및 MCP 구성 생성을 위한 파일 시스템 인식 도구를 추가하는 `@omni-skills/server-mcp`에 대한 선택적 로컬 모드 확장입니다.**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Read-only catalog tools | Implemented |
-| ✅ Filesystem-aware local tools | Implemented |
-| ✅ 3 transports (stdio/stream/sse) | Implemented |
-| ✅ Allowlisted writes | Implemented |
-| ✅ Preview-before-write defaults | Implemented |
-| ✅ Client-aware MCP config writing | Implemented |
-| ✅ HTTP auth + rate limiting | Implemented |
-| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
-| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
-| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
-
----
+| 기능 | 상태 |
+|:---------|:------|
+| ✅ 읽기 전용 카탈로그 도구 | 구현 |
+| ✅ 파일 시스템 인식 로컬 도구 | 구현 |
+| ✅ 3개의 전송(stdio/stream/sse) | 구현 |
+| ✅ 허용된 쓰기 | 구현 |
+| ✅ 쓰기 전 미리보기 기본값 | 구현 |
+| ✅ 클라이언트 인식 MCP 구성 작성 | 구현 |
+| ✅ HTTP 인증 + 속도 제한 | 구현 |
+| ✅ 릴리스 시 서명 및 체크섬 | 생성된 아카이브에 대해 구현되고 API/MCP에 의해 표시됨 |
+| 🟡 로컬 쓰기 시간 서명 시행 | 아직 시행되지 않았습니다. 로컬 모드 미리보기 및 신뢰할 수 있는 로컬 체크아웃에서 쓰기 |
+| 🟢 현재 고객 범위 | 설치 가능 클라이언트 7개, 구성 가능 클라이언트 16개, 구성 대상 33개, 구성 프로필 19개 |---
 
 ## 🎯 Purpose
 
-Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
+로컬 모드는 기존 읽기 전용 MCP 카탈로그 표면 위에**파일 시스템 인식 도구**를 추가합니다. 상담원이 다음을 수행해야 할 때 사용하세요.
 
-- 🕵️ Detect compatible local AI clients
-- 📋 Inspect installed skills
-- 👁️ Preview skill installation or removal (dry-run)
-- 📦 Apply local skill installation or removal
-- ⚙️ Write a local MCP config file after preview
+- 🕵️ 호환되는 로컬 AI 클라이언트 감지
+- 📋 설치된 스킬 검사
+- 👁️ 스킬 설치 또는 제거 미리보기(시험 실행)
+- 📦 로컬 스킬 설치 또는 제거 적용
+- ⚙️ 미리보기 후 로컬 MCP 구성 파일 작성
 
-It deliberately separates two concerns:
+이는 의도적으로 두 가지 우려 사항을 분리합니다.
 
-- **skill installation targets**
-  clients with a stable skills directory that can use `install_skills`
-- **MCP config targets**
-  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
-
----
+-**스킬 설치 대상**
+  `install_skills`를 사용할 수 있는 안정적인 기술 디렉토리가 있는 클라이언트
+-**MCP 구성 대상**
+  기술 디렉터리가 없더라도 안정적으로 문서화된 MCP 구성 형식을 갖춘 클라이언트 또는 IDE---
 
 ## 🔌 Transports
 
-| Transport | Protocol | Use Case |
+| 교통 | 프로토콜 | 사용 사례 |
 |:----------|:---------|:---------|
-| `stdio` | Pipe | Direct client integration |
-| `stream` | Streamable HTTP | Modern HTTP clients |
-| `sse` | Server-Sent Events | Legacy clients |
-
----
+| `stdio` | 파이프 | 직접 클라이언트 통합 |
+| '스트림' | 스트리밍 가능한 HTTP | 최신 HTTP 클라이언트 |
+| `세` | 서버에서 보낸 이벤트 | 기존 클라이언트 |---
 
 ## 🚀 Enable Local Mode
 
@@ -89,144 +81,130 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
-> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
-
----
+> 모든 명령은 `OMNI_SKILLS_MCP_MODE=local`을 자동으로 설정합니다.---
 
 ## 🛠️ Local Tools
 
-When local mode is enabled, these extra tools become available:
+로컬 모드가 활성화되면 다음과 같은 추가 도구를 사용할 수 있습니다.
 
-| Tool | Description | Default |
-|:-----|:------------|:--------|
-| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
-| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
-| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
-| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
-| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
+| 도구 | 설명 | 기본값 |
+|:------|:------------|:---------|
+| 🕵️ `Detect_clients` | AI 클라이언트 및 해당 스킬/구성 경로 검색 | — |
+| 📋 `list_installed_skills` | 특정 클라이언트에 설치된 기술 검사 | — |
+| 📦 `설치_기술` | 클라이언트의 기술 디렉터리에 기술 설치 | 🔍 드라이런 |
+| 🗑️`remove_skills` | 클라이언트에서 설치된 기술 제거 | 🔍 드라이런 |
+| ⚙️`configure_client_mcp` | 특정 클라이언트에 대한 MCP 구성 작성 | 🔍 드라이런 |
 
-> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
-
----
+> ⚠️ `install_skills`, `remove_skills` 및 `configure_client_mcp`는 `dry_run`이 생략되면**dry-run**으로 기본 설정됩니다.---
 
 ## 🎯 Supported Targets
 
 ### 📂 Skills Directories
 
-| Client | Path |
-|:-------|:-----|
-| 🔵 Claude Code | `~/.claude/skills` |
-| 🔵 Cursor | `~/.cursor/skills` |
-| 🟡 Gemini CLI | `~/.gemini/skills` |
-| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
-| 🟢 Kiro | `~/.kiro/skills` |
-| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
-| ⚪ OpenCode | `<workspace>/.opencode/skills` |
+| 클라이언트 | 경로 |
+|:-------|:------|
+| 🔵 클로드 코드 | `~/.claude/skills` |
+| 🔵 커서 | `~/.cursor/skills` |
+| 🟡 쌍둥이자리 CLI | `~/.gemini/skills` |
+| 🟣 반중력 | `~/.gemini/반중력/기술` |
+| 🟢 키로 | `~/.kiro/skills` |
+| 🔴 코덱스 CLI | `~/.codex/skills` 또는 `$CODEX_HOME/skills` |
+| ⚪ 오픈코드 | `<작업 공간>/.opencode/skills` |
 
-These 7 targets are the only first-class install destinations today.
+이 7개의 대상은 현재 유일하게 일류 설치 대상입니다.### ⚙️ MCP Config Files
 
-### ⚙️ MCP Config Files
-
-| Target | Format |
+| 대상 | 형식 |
 |:-------|:-------|
-| `~/.claude/settings.json` | Claude Code settings JSON |
-| `<workspace>/.claude/settings.json` | Claude project settings JSON |
-| `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
-| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
-| `~/.cursor/mcp.json` | JSON (`mcpServers`) |
-| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
-| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
-| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
-| `~/.gemini/antigravity/mcp.json` | Antigravity JSON (`mcpServers`) |
-| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
-| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
-| `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
-| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
-| `<workspace>/opencode.json` | OpenCode workspace JSON (`mcp`) |
-| `~/.config/opencode/opencode.json` | OpenCode user JSON (`mcp`) |
-| `~/.cline/data/settings/cline_mcp_settings.json` | Cline JSON (`mcpServers`) |
-| `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON (`mcpServers`) |
-| `<workspace>/.github/mcp.json` | GitHub Copilot repository JSON (`mcpServers`) |
-| `~/.config/kilo/kilo.json` | Kilo CLI user JSON (`mcp`) |
-| `<workspace>/kilo.json` | Kilo CLI project JSON (`mcp`) |
-| `<workspace>/.kilocode/mcp.json` | Kilo Code workspace JSON (`mcpServers`) |
-| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
-| `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
-| `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
-| `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
-| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
-| `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
-| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
-| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
-| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
-| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
-| Client root `mcp.json` | JSON (per-client format) |
+| `~/.claude/settings.json` | 클로드 코드 설정 JSON |
+| `<작업공간>/.claude/settings.json` | 클로드 프로젝트 설정 JSON |
+| `~/.claude.json` | 레거시 Claude JSON(`mcpServers`) |
+| `~/라이브러리/응용 프로그램 지원/Claude/claude_desktop_config.json` | Claude Desktop JSON(OS별) |
+| `~/.cursor/mcp.json` | JSON(`mcpServers`) |
+| `<작업 공간>/.cursor/mcp.json` | 커서 작업공간 JSON(`mcpServers`) |
+| `~/.gemini/settings.json` | Gemini 사용자 JSON(`mcpServers`) |
+| `<작업공간>/.gemini/settings.json` | Gemini 프로젝트 JSON(`mcpServers`) |
+| `~/.gemini/antigravity/mcp.json` | 반중력 JSON(`mcpServers`) |
+| `~/.kiro/settings/mcp.json` | Kiro 사용자 JSON(`mcpServers`) |
+| `<작업 공간>/.kiro/settings/mcp.json` | Kiro 프로젝트 JSON(`mcpServers`) |
+| `~/.codex/config.toml` | TOML(`[mcp_servers]`) |
+| `<작업 공간>/.mcp.json` | JSON(`mcpServers`) |
+| `<작업 공간>/opencode.json` | OpenCode 작업 영역 JSON(`mcp`) |
+| `~/.config/opencode/opencode.json` | OpenCode 사용자 JSON(`mcp`) |
+| `~/.cline/data/settings/cline_mcp_settings.json` | 클라인 JSON(`mcpServers`) |
+| `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON(`mcpServers`) |
+| `<작업 공간>/.github/mcp.json` | GitHub Copilot 저장소 JSON(`mcpServers`) |
+| `~/.config/kilo/kilo.json` | Kilo CLI 사용자 JSON(`mcp`) |
+| `<작업 공간>/kilo.json` | Kilo CLI 프로젝트 JSON(`mcp`) |
+| `<작업 공간>/.kilocode/mcp.json` | Kilo 코드 작업공간 JSON(`mcpServers`) |
+| `<작업 공간>/.continue/mcpServers/omni-skills.yaml` | 작업공간 YAML(`mcpServers`) 계속 |
+| `<작업 공간>/.junie/mcp/mcp.json` | Junie 프로젝트 JSON(`mcpServers`) |
+| `~/.junie/mcp/mcp.json` | Junie 사용자 JSON(`mcpServers`) |
+| `~/.codeium/windsurf/mcp_config.json` | 윈드서핑 JSON(`mcpServers`) |
+| `~/.config/goose/config.yaml` | Goose YAML('확장') |
+| `<작업공간>/.zed/settings.json` | Zed 작업공간 JSON(`context_servers`) |
+| `<작업 공간>/.vscode/mcp.json` | JSON(`서버`) |
+| `~/.config/Code/User/mcp.json` | VS Code 사용자 JSON(`서버`) |
+| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders 사용자 JSON(`서버`) |
+| `<작업 공간>/.devcontainer/devcontainer.json` | 중첩된 개발 컨테이너 JSON(`customizations.vscode.mcp.servers`) |
+| 클라이언트 루트 `mcp.json` | JSON(클라이언트별 형식) |
 
-That gives the sidecar:
+그러면 사이드카가 제공됩니다.
 
-- **16 config-capable clients or IDEs**
-- **33 first-class target paths**
-- **19 format profiles**
+-**16개의 구성 가능 클라이언트 또는 IDE**
+-**33개의 최고 수준 대상 경로**
+-**19가지 형식 프로필**
 
-Current first-class config coverage spans:
+현재 최고 수준의 구성 적용 범위:
 
-- Claude Code and Claude Desktop
-- Cursor
-- VS Code and Dev Containers
-- Gemini CLI
-- Antigravity
-- Kiro
-- Codex CLI
-- Continue
-- Junie
-- Windsurf
-- Goose
-- OpenCode
-- Cline
+- 클로드 코드와 클로드 데스크탑
+- 커서
+- VS Code 및 Dev 컨테이너
+- 제미니 CLI
+- 반중력
+- 키로
+- 코덱스 CLI
+- 계속
+- 주니
+- 윈드서핑
+- 거위
+- 오픈코드
+- 클라인
 - GitHub Copilot CLI
-- Kilo Code
-- Zed
+- 킬로코드
+- 제드
 
-Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
+수동 또는 조각 전용 후보자는 공개 구성 계약이 충분히 안정될 때까지 의도적으로 일류 작성자 세트 외부에 있습니다.### 🧭 Expansion Policy
 
-### 🧭 Expansion Policy
+Omni Skills는 이제 클라이언트 지원을 3단계 모델로 처리합니다.
 
-Omni Skills now treats client support as a three-level model:
+1.**설치 가능**
+   안정적인 기술 디렉터리가 존재하므로 CLI와 사이드카에서 직접 기술을 설치할 수 있습니다.
+2.**구성 가능**
+   안정적이고 문서화된 MCP 구성 형식이 존재하므로 `config-mcp`는 최고 수준의 파일을 미리 보고 쓸 수 있습니다.
+3.**수동 또는 스니펫 전용**
+   이 제품은 어떤 형태로든 MCP를 명확하게 지원하지만 공개 문서에서는 아직 안전한 자동 작성기를 정당화하지 않습니다.
 
-1. **install-capable**
-   A stable skills directory exists, so the CLI and sidecar can install skills directly.
-2. **config-capable**
-   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
-3. **manual or snippet-only**
-   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
-
-This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
-
----
+이것이 JetBrains AI Assistant와 같은 클라이언트가 수동/조각 전용으로 유지되는 반면 Roo Code 및 Postman은 안전한 자동 병합 스토리가 이 프로젝트에 충분히 강력할 때까지 일류 작성자 세트 외부에 머무르는 이유입니다.---
 
 ## 🔒 Allowlist Model
 
-The local sidecar only writes under an **explicit allowlist**.
+로컬 사이드카는**명시적 허용 목록**에서만 작성합니다.### 🟢 Default allowlist:
 
-### 🟢 Default allowlist:
-
-- Known client roots under `$HOME`
-- `~/.codeium` for Windsurf user config
-- `~/.copilot` for GitHub Copilot CLI
-- `~/.cline` for Cline CLI
-- `~/.config/goose` for Goose config
-- `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
-- `$CODEX_HOME` (or `~/.codex` if unset)
-- Current workspace root
-- `<workspace>/.agents`
-- `<workspace>/.github`
-- `<workspace>/.kilocode`
-- `<workspace>/.opencode`
-- `<workspace>/.zed`
-- `<workspace>/.continue`
-- `<workspace>/.vscode`
-
-### ➕ Extend the allowlist:
+- `$HOME` 아래에 알려진 클라이언트 루트
+- Windsurf 사용자 구성을 위한 `~/.codeium`
+- GitHub Copilot CLI용 `~/.copilot`
+- Cline CLI용 `~/.cline`
+- Goose 설정을 위한 `~/.config/goose`
+- Kilo/OpenCode CLI 구성을 위한 `~/.config/kilo` 및 `~/.config/opencode`
+- `$CODEX_HOME`(또는 설정되지 않은 경우 `~/.codex`)
+- 현재 작업공간 루트
+- `<작업공간>/.agents`
+- `<작업공간>/.github`
+- `<작업공간>/.kilocode`
+- `<작업공간>/.opencode`
+- `<작업공간>/.zed`
+- `<작업공간>/.continue`
+- `<작업공간>/.vscode`### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
@@ -381,9 +359,7 @@ mcpServers:
 
 ### 🧭 CLI Contract
 
-The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
-
-```bash
+사이드카 지원 CLI 래퍼는 직접 JSON-RPC 호출 없이 MCP 구성 생성에 액세스할 수 있도록 유지합니다.```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -393,9 +369,7 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
-
-### 🌊 Windsurf
+기본 동작은 미리보기 전용입니다. `--write`는 허용 목록 아래의 확인된 대상 경로에 구성을 적용합니다.### 🌊 Windsurf
 
 ```json
 {
@@ -484,102 +458,92 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
+`configure_client_mcp` 도구는 다음을 전달할 때 Claude 관련 설정을 작성할 수도 있습니다.
 
-- `allowed_mcp_servers`
-- `denied_mcp_servers`
-- `permissions_deny`
-- `enable_all_project_mcp_servers`
+-`allowed_mcp_servers`
+-`denied_mcp_servers`
+-`허가_거부`
+-`enable_all_project_mcp_servers`### 💜 VS Code sandboxing
 
-### 💜 VS Code sandboxing
+VS Code 및 Dev Container 대상의 경우 `configure_client_mcp`는 다음을 작성할 수도 있습니다.
 
-For VS Code and Dev Container targets, `configure_client_mcp` can also write:
-
-- `sandboxEnabled`
-- `sandbox.filesystem.allowWrite`
-- `sandbox.network.allowHosts`
+-`샌드박스 활성화됨`
+-`sandbox.filesystem.allowWrite`
+-`sandbox.network.allowHosts`
 - `dev.watch`
 - `dev.debug.type`
 
-This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
+이는 로컬 stdio MCP 서버 샌드박싱에 대한 현재 VS Code 지침에 매핑됩니다.### 🧰 Cross-Client Entry Options
 
-### 🧰 Cross-Client Entry Options
+`configure_client_mcp`는 이제 지원되는 프로필 전체에서 더욱 풍부한 항목 메타데이터를 지원합니다.
 
-`configure_client_mcp` now supports richer entry metadata across supported profiles:
-
-- `headers`
-- `env`
+-`헤더`
+-`환경`
 - `env_file`
-- `cwd`
+-`cwd`
 - `timeout_ms`
-- `description`
-- `include_tools`
-- `exclude_tools`
-- `disabled`
-- `trust`
+-`설명`
+-`include_tools`
+- `제외_도구`
+- `비활성화`
+- '신뢰'
 
-Profile-specific options:
+프로필별 옵션:
 
-- Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
-- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- 클로드: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
+- 쌍둥이자리: `mcp_allowed_servers`, `mcp_excluded_servers`
 - Kiro: `disabled_tools`, `auto_approve`
-- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
+- VS 코드 및 Dev 컨테이너: `dev_watch`, `dev_debug_type`### 📋 Generated Recipes
 
-### 📋 Generated Recipes
+`configure_client_mcp`는 미리보기 또는 적용된 구성과 함께 `레시피`를 반환합니다.
 
-`configure_client_mcp` returns `recipes` alongside the preview or applied config.
-
-These recipes are client-aware guidance blocks, for example:
+이러한 레시피는 클라이언트 인식 지침 블록입니다. 예를 들면 다음과 같습니다.
 
 - `claude mcp add ... --scope user|project`
 - `gemini mcp add ... --scope user|project`
-- `codex mcp add ...`
-- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
+- `codex mcp 추가 ...`
+- Cursor, VS Code, Kiro 및 Claude Desktop에 대한 수동 파일 편집 레시피
 
-The overall strategy is now intentionally conservative:
+이제 전반적인 전략은 의도적으로 보수적입니다.
 
-- reuse a small set of canonical config families where possible
-- keep bespoke writers only when official docs require a distinct shape
-- avoid inventing automatic writers for undocumented targets
-
----
+- 가능한 경우 작은 정식 구성 제품군을 재사용하세요.
+- 공식 문서에 뚜렷한 모양이 필요한 경우에만 맞춤형 작가를 유지하세요.
+- 문서화되지 않은 대상에 대한 자동 작성기를 발명하지 마십시오.---
 
 ## 🔐 Hosted HTTP Hardening
 
-The HTTP transports support the same env-driven controls as the catalog API:
+HTTP 전송은 카탈로그 API와 동일한 환경 기반 제어를 지원합니다.
 
-| Variable | Purpose |
-|:---------|:--------|
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
+| 변수 | 목적 |
+|:---------|:---------|
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | 무기명 토큰 인증 |
+| `OMNI_SKILLS_HTTP_API_KEYS` | 쉼표로 구분된 API 키 |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | 관리자 전용 런타임 자체 검사 |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | 창당 최대 요청 |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | 속도 제한 창(ms) |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | 감사 로깅 활성화 |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | 파일에 감사 로그 쓰기 |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | 브라우저 출처 제한 |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | 허용된 소스 IP 제한 |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | 비관리, 비상태 경로의 경우 '503' 반환 |
 
-> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
-
----
+> 🟢 `/healthz`는 계속 열려있습니다. `/mcp`, `/sse` 및 `/messages`를 활성화하면 인증이 필요합니다. `/admin/runtime`에는 구성 시 관리자 토큰이 필요합니다.---
 
 ## 🌍 Official Docs That Shape Support Decisions
 
-The current writer set and manual-only boundaries were checked against official product docs, including:
+현재 작성기 세트 및 수동 전용 경계는 다음을 포함하여 공식 제품 문서와 비교하여 확인되었습니다.
 
-- Anthropic Claude Code MCP
-- OpenAI Codex CLI and OpenAI Docs MCP
-- Cursor MCP docs
-- Continue MCP docs
-- Kiro MCP docs
-- OpenCode MCP docs
-- Cline MCP docs
-- Kilo Code MCP docs
-- GitHub Copilot CLI docs
-- Zed MCP docs
-- VS Code MCP docs
-- JetBrains AI Assistant MCP docs
+- 인류 클로드 코드 MCP
+- OpenAI Codex CLI 및 OpenAI Docs MCP
+- 커서 MCP 문서
+- MCP 문서 계속
+- Kiro MCP 문서
+- OpenCode MCP 문서
+- Cline MCP 문서
+- Kilo Code MCP 문서
+- GitHub Copilot CLI 문서
+- Zed MCP 문서
+- VS Code MCP 문서
+- JetBrains AI Assistant MCP 문서
 
-Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.
+이러한 문서 덕분에 일부 클라이언트는 일류 자동 작성기를 받는 반면 다른 클라이언트는 현재 스니펫 전용으로 남아 있습니다.

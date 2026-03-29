@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**A géppel olvasható JSON-jegyzék, amely az összeállítási folyamat során minden egyes `SKILL.md-ből generálódik – az összes futásidejű felület által felhasznált egyetlen adatszerződés.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funkció | állam |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Automatikusan generált a SKILL.md | Megvalósítva |
+| ✅ CLI, API, MCP, A2A | Megvalósítva |
+| ✅ Archívumok ellenőrző összegekkel | Megvalósítva |
+| ✅ Biztonsági besorolás | Megvalósítva |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Fontos**: A jegyzék egy**építési műtermék**. A közreműködők szerzője `SKILL.md` – a folyamat automatikusan levezeti a JSON-jegyzékfájlt.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+A jegyzék úgy létezik, hogy**minden futásidejű felület**ugyanazt a normalizált alakot használja:
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| Felület | Hogyan használja Manifests |
+|:--------|:----------------------|
+| 🖥️**CLI**| Keresés, telepítés tervezés, orvosi diagnosztika |
+| 🌐**API**| Végponti válaszok, szűrés, letöltési hivatkozások |
+| 🔌**MCP**| Eszközválaszok, forrástartalom |
+| 🤖**A2A**| Felfedezési és ajánlási rakományok |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| Műtárgy | Útvonal |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 Gyökér metaadatok | `metadata.json` |
+| 📊 Képességenkénti metaadatok | `skills/<skill>/metadata.json` |
+| 📋 Képességmutató | `skills_index.json` |
+| 📚 Megjelent katalógus | `dist/catalog.json` |
+| 📌 Képességenkénti kimutatás | `dist/manifests/<skill>.json` |
+| 📦 Zip archívum | `dist/archives/<skill>.zip` |
+| 📦 Tarball archívum | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| Mező | Leírás |
+|:------|:-------------|
+| `séma_verzió` | A jegyzékséma verziója |
+| "id" | Stabil készségazonosító a „name” mezőből |
+| "csiga" | Címtár a "készségek/" alatt |
+| `megjelenítési_név` | Ember által olvasható cím az első címsorból |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| Mező | Leírás |
+|:------|:-------------|
+| "leírás" | Rövid összefoglaló a frontmatterről |
+| "verzió" | Skill verzió, független az npm csomagverziótól |
+| "kategória" | Kanonikus kategória (normalizált) |
+| "nyers_kategória" | Eredeti kategória a frontmatterből |
+| `taxonómia` | Teljes taxonómiai metaadatok kikövetkeztetett tartalékkal |
+| "címkék" | Kereshető címkék |
+| "bonyolultság" | "kezdő" · "középfok" · "haladó" · "szakértő" |
+| `kockázat` | "biztonságos" · "vigyázat" · "sértő" · "kritikus" |
+| "forrás" | `omni-team` · `közösség` · `hivatalos` |
+| "szerző" | Hozzárendelési karakterlánc |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| Mező | Leírás |
+|:------|:-------------|
+| "belépési pont" | Kanonikus `SKILL.md` útvonal |
+| `paths.root` | Képességkatalógus a repóban |
+| `útvonalak.manifest` | Létrehozott jegyzék elérési útja a `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+| Mező | Leírás |
+|:------|:-------------|
+| "szerszámok" | Eszközazonosítók a frontmattertől |
+| `install_targets` | Eszközönkénti telepítési metaadatok |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+Minden telepítési cél a következőket tartalmazza: "tool", "cope", "default_path", "installer_flag", "current_installer_behavior", "invocation"### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| Mező | Leírás |
+|:------|:-------------|
+| "alforrások" | Képességi aldirek ("hivatkozások", "ügynökök", "eszközök") |
+| `termékek_száma` | Teljes fájlszám a készségcsomagban |
+| `hivatkozások_száma` | Hivatkozási dokumentumok száma |
+| `ügynökök_száma` | Ügynök konfigurációk száma |
+| `eszközök_száma` | Eszközfájlok száma |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| Mező | Leírás |
+|:------|:-------------|
+| "stratégia" | Stratégia telepítése (pl. "másolás-készség-könyvtár") |
+| `current_installer` | Ember által olvasható telepítési viselkedés |
+| `receptek` | Ügyfélenkénti telepítési receptek |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| szakasz | Mezők |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 `érettség` | "készségszint", "készségszint_címke" |
+| 📋 `best_practices` | "pontszám" (0-100) |
+| ⭐ "minőség" | "pontszám" (0-100) |
+| 🛡️ `biztonság` | `pontszám`, `állapot` |
+| ✅ "érvényesítés" | "állapot" |### 📝 Content
 
-### 📝 Content
+Származtatott jelek: "body_length", "content_length", "body_lines", "word_count", plusz szerkezeti jelzők példákhoz, hibaelhárítási szakaszokhoz stb.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+A skill könyvtárban szállított összes fájl tömbje:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Artifact fajták**: "belépési pont" · "referencia" · "ügynök" · "eszköz" · "licenc" · "támogatás"### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| Mező | Leírás |
+|:------|:-------------|
+| `entrypoint_sha256` | A SKILL.md hash-je |
+| `package_sha256` | Determinisztikus kivonat a rendezett műterméklistából |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 A tárolócsomag verziója és a készségekre vonatkozó verziója eltérő probléma. A csomag jelenleg `0.1.3`, míg az egyéni készségek saját szemantikai verziókat hordoznak.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
-|:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| szabály | Indoklás |
+|:-----|:-----------|
+| ✅ A repóból származtathatónak kell maradnia | Nincs szükség manuális jegyzékalkotásra |
+| ✅ Új opcionális mezők hozzáadhatók | Forward kompatibilitás |
+| ⚠️ A meglévő mezőknek stabilnak kell maradniuk | Visszafelé kompatibilitás |
+| 🚫 Nincsenek kézzel írt manifesztek | Az építési idejű levezetés az igazság forrása |

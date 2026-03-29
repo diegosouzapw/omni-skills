@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**Bundter er udvalgte færdighedsvælgere, der ligger oven på kataloget.**Alle syv startpakker er nu fuldt understøttet af offentliggjorte færdigheder.---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+`--bundle` installerer**ikke**en speciel pakke. Det:
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 Udvider den valgte bundtdefinition
+2. ✅ Installerer kun de medlemmer, der i øjeblikket er tilgængelige i kataloget
+3. ✅ Opbygger en konkret installationsplan fra offentliggjorte bundlemedlemmer```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+Baseret på det aktuelle genererede katalog (`dist/bundles.json`):
 
-| Bundle | Intended For | Available | Members |
-|:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| bundt | Beregnet til | Tilgængelig | Medlemmer |
+|:-------|:------------|:---------|:--------|
+| 🧰**essentielle**| Hver udvikler |**4/4**| `find-færdigheder` ✅ · `brainstorming` ✅ · `arkitektur` ✅ · `debugging` ✅ |
+| 🌐**fuld stack**| Web- og app-udviklere |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨**design**| Design systemer & tilgængelighed |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
+| 🛡️**sikkerhed**| Sikkerhedsingeniører |**4/4**| `sikkerhedsrevisor` ✅ · `sårbarhed-scanner` ✅ · `hændelse-respons` ✅ · `trusselsmodellering` ✅ |
+| ⚙️**devops**| Platform & infra |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observation-review` ✅ · `release-engineering` ✅ |
+| 🤖**ai-ingeniør**| LLM & ML udviklere |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**oss-vedligeholder**| OSS-vedligeholdere |**4/4**| `find-færdigheder` ✅ · `create-pr` ✅ · `changelog` ✅ · `dokumentation` ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = Udgivet og kan installeres---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+- Du vil have et**kurateret udgangspunkt**for et domæne
+- Du vil have installationsplaner, der forbliver**kurateret og domænespecifikke**
+- Du vil have en hurtig måde at installere et komplet arbejdssæt til en rolle på### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+- Du vil have en**garanteret minimal installation**
+- Du kender allerede den**præcise færdighed**, du har brug for
+- Du vil have det**mindst mulige fodaftryk**i stedet for et kurateret arbejdssæt---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
+| Mål | Kommando |
 |:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🎯 Installer en specifik offentliggjort færdighed | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fuldt understøttet startpakke | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design system bundle | `npx omni-skills --cursor --bundle design` |
 | 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| 🛡️ Sikkerhedsworkflow-pakke | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps-pakke | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI-ingeniørbundt | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Søg før du beslutter dig | `npx omni-skills find figma` |
+| 📋 Se alle bundter tilgængelighed | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+Brug værktøjerne "search_skills" eller "preview_install" med bundleparametre.### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

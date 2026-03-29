@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Automatikusan generálva a „skills_index.json” fájlból – 32 készség 15 kategóriában.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Létrehozva: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
 - [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
+- [🗄️ Háttér (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
+- [💬 Kommunikáció (1)](#kommunikáció)
 - [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
+- [🎨 Tervezés (3)](#design)
+- [💻 Fejlesztés (3)](#development)
 - [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
+- [📝 Dokumentáció (2)](#documentation)
 - [🖼️ Frontend (1)](#frontend)
 - [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [📈 Gépi tanulás (1)](#gépi tanulás)
+- [🧭 Termék (1)](#termék)
+- [🛡️ Tesztelési biztonság (4)](#testing-security)
+- [🧰 Eszközök (1)](#tools)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Kontextus-mérnöki munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak promptokat, lekérési kontextust, memóriát és | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Értékelési munkafolyamat-tervezési készség. Használja ezt a képességet, ha a felhasználónak LLM eval tervekre, regressziós csomagokra, pontozási rubrikára van szüksége, o | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM alkalmazás munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak robusztus szerszámhasználati mintákra, strukturált kimenetekre, fallb | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Gyors mérnöki munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak világosabb feladatutasításokra, példákra, lebontásra, | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak lekérési folyamatokra, darabolásra, rangsorolásra, hivatkozásokra és értékelésre van szüksége f | L3 források | 99/100 | 97/100 | 95/100 sikeres |## 🗄️ Backend
 
-## 🗄️ Backend
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`api-design`](../skills/api-design/SKILL.md) | API tervezési munkafolyamat-készség. Használja ezt a készséget, ha a felhasználónak egyértelmű HTTP vagy szolgáltatási szerződésre van szüksége a megvalósítás előtt. | L3 források | 100/100 | 95/100 | 95/100 sikeres |
+| [`database-design`](../skills/database-design/SKILL.md) | Adatbázis-tervezési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak tartós sémára, indexelésre és migrációs tervezésre van szüksége az i | előtt L3 források | 98/100 | 94/100 | 95/100 sikeres |## ⚙️ Cli Automation
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`find-skills`](../skills/find-skills/SKILL.md) | Katalógusfelderítési munkafolyamat-készség. Használja ezt a készséget, ha egy felhasználó képességet, munkafolyamatot vagy tartományspecifikus segédet kér | L3 források | 99/100 | 97/100 | 95/100 sikeres |## 💬 Communication
 
-## ⚙️ Cli Automation
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak tiszta értékelési narratívára, kockázati keretezésre és értékelői útmutatóra van szüksége | L3 források | 98/100 | 95/100 | 95/100 sikeres |## 🤖 Data Ai
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Adatszerződések munkafolyamat-készség. Használja ezt a képességet, ha egy csapatnak szerződéseket kell meghatároznia, felülvizsgálnia vagy érvényesítenie kell a gyártók között | L3 források | 97/100 | 95/100 | 95/100 sikeres |## 🎨 Design
 
-## 💬 Communication
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Kisegítő lehetőségek auditálási munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak billentyűzetre, szemantikára, fókuszra, kontrasztra, mozgásra vagy mint | L3 források | 100/100 | 99/100 | 95/100 sikeres |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Rendszerműveletek tervezési munkafolyamat-készsége. Használja ezt a képességet, ha a felhasználónak jogkivonat-kezelésre, komponens-drift-vezérlésre, re | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Token irányítási munkafolyamat-készség tervezése. Használja ezt a képességet, amikor egy csapatnak be kell vezetnie, át kell neveznie, elavulttá kell tennie vagy felül kell vizsgálnia a desi | L3 források | 97/100 | 95/100 | 95/100 sikeres |## 💻 Development
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`architektúra`](../skills/architecture/SKILL.md) | Építészeti munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak rendszerhatárokra, kompromisszumokra vagy szakaszos megvalósításra van szüksége p | L3 források | 98/100 | 94/100 | 95/100 sikeres |
+| [`hibakeresés`](../skills/debugging/SKILL.md) | Hibakeresési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak fegyelmezett reprodukálásra, elkülönítésre és javítási ellenőrzésre van szüksége | L3 források | 98/100 | 94/100 | 95/100 sikeres |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak tervezésről kódra való megvalósításra, Figma ellenőrzésre, jogkivonat-keresésre, Co | L3 források | 100/100 | 100/100 | 95/100 sikeres |## ☁️ Devops
 
-## 🤖 Data Ai
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak Docker-fájlokra, képalkotási stratégiára, futásidejű keményítésre vagy | tartalmaznia kell L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak munkaterhelési jegyzékekre, közzétételi stratégiára, szolgáltatás bemutatására vagy c | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`megfigyelhetőség-review`](../skills/observability-review/SKILL.md) | Megfigyelhetőségi munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak naplókra, mérőszámokra, nyomkövetésre, riasztásokra vagy SLO-vizsgálatra van szüksége a szállítás előtt | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | A mérnöki munkafolyamat-készség felszabadítása. Használja ezt a képességet, ha a felhasználónak biztonságosabb kiadási tervre, promóciós szabályzatra, visszaállításra van szüksége | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`terraform`](../skills/terraform/SKILL.md) | Terraform munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak infrastruktúrára van szüksége, mint kódstruktúra, modulok, állapotstratégia vagy | L3 források | 99/100 | 97/100 | 95/100 sikeres |## Dokumentáció
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`changelog`](../skills/changelog/SKILL.md) | Kiadási megjegyzések munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak változásnapló-bejegyzésekre, frissítési megjegyzésekre vagy tömör kiadásra van szüksége na | L3 források | 98/100 | 94/100 | 95/100 sikeres |
+| [`dokumentáció`](../skills/documentation/SKILL.md) | Dokumentációs munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak pontos beépítésre, működési útmutatásra vagy kiadás-rea | L3 források | 99/100 | 96/100 | 95/100 sikeres |## 🖼️ Frontend
 
-## 🎨 Design
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend tervezési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak szüksége van a felhasználói felület szerkezetére, állapotaira és interakciós mintáira az i | előtt L3 források | 99/100 | 97/100 | 95/100 sikeres |## 🌐 Fullstack Web
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Hitelesítési és engedélyezési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak bejelentkezésre, munkamenetre, tokenre, szerepkörre vagy engedélyre van szüksége | L3 források | 99/100 | 97/100 | 95/100 sikeres |## 📈 Machine Learning
 
-## 💻 Development
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Modellkiszolgáló munkafolyamat-készség. Használja ezt a készséget, ha egy csapatnak online következtetést kell terveznie, felül kell vizsgálnia vagy meg kell erősítenie, kötegelt infe | L3 források | 97/100 | 95/100 | 95/100 sikeres |## 🧭 Product
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Ötletbörze munkafolyamat-készség. Használja ezt a képességet, ha a felhasználó egy problémát vizsgál, és opciókra, kompromisszumokra és helyreállítási | L3 források | 99/100 | 96/100 | 95/100 sikeres |## 🛡️ Testing Security
 
-## ☁️ Devops
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`incidens-válasz`](../skills/incident-response/SKILL.md) | Eseményreagálási munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak kimaradási osztályozásra, csökkentési sorrendre, érdekelt felek com | L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Biztonsági audit munkafolyamat-készség. Használja ezt a készséget, ha a felhasználónak a konkrét biztonsági kockázatok célzott áttekintésére van szüksége a | helyett L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Fenyegetés modellezési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak bizalmi határokra, támadói célokra, visszaélési esetekre vagy mérséklésre van szüksége L3 források | 99/100 | 97/100 | 95/100 sikeres |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Sebezhetőség-ellenőrzési munkafolyamat-készség. Használja ezt a képességet, ha a felhasználónak ismételhető lefedettségre van szüksége az ismert sérülékenységekhez, u | L3 források | 99/100 | 97/100 | 95/100 sikeres |## 🧰 Tools
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## Dokumentáció
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| Ügyesség | Leírás | Szint | Legjobb gyakorlatok | Minőség | Biztonság |
+| :---- | :---------- | :---- | :-------------- | :------ | :------- |
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP szerver szerzői munkafolyamat-készség. Használja ezt a készséget, ha egy csapatnak meg kell terveznie, implementálnia, érvényesítenie vagy dokumentálnia kell egy Mode | L3 források | 97/100 | 95/100 | 95/100 sikeres |

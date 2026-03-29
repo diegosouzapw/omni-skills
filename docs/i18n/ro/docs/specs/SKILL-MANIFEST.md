@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**Manifestul JSON care poate fi citit de mașină generat din fiecare `SKILL.md` în timpul conductei de construire — contractul unic de date consumat de toate suprafețele de rulare.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Caracteristica | Stat |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Generat automat de la SKILL.md | Implementat |
+| ✅ Consumat de CLI, API, MCP, A2A | Implementat |
+| ✅ Arhive cu sume de control | Implementat |
+| ✅Clasificare de securitate | Implementat |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Important**: manifestul este un**artefact de construcție**. Autorul colaboratorilor `SKILL.md` — pipeline derivă automat manifestul JSON.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+Manifestul există astfel încât**toate suprafețele de rulare**consumă aceeași formă normalizată:
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| Suprafata | Cum folosește manifestele |
+|:--------|:----------------------|
+| 🖥️**CLI**| Cautare, planificare instalatii, diagnosticare medic |
+| 🌐**API**| Răspunsuri la punctul final, filtrare, legături de descărcare |
+| 🔌**MCP**| Răspunsurile instrumentului, conținutul resurselor |
+| 🤖**A2A**| Sarcini utile de descoperire și recomandare |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| Artefact | Calea |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 Metadatele rădăcină | `metadata.json` |
+| 📊 Metadate pe abilitate | `skills/<skill>/metadata.json` |
+| 📋 Indexul de aptitudini | `skills_index.json` |
+| 📚 Catalog publicat | `dist/catalog.json` |
+| 📌 Manifest per abilitate | `dist/manifests/<skill>.json` |
+| 📦 Arhivă zip | `dist/archives/<skill>.zip` |
+| 📦 Arhiva Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Manifestul sumei de control | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| Câmp | Descriere |
+|:------|:-------------|
+| `versiune_schemă` | Versiunea schemei manifest |
+| `id` | Identificator stabil de abilitate din câmpul „nume” |
+| `melc` | Director slug sub `skills/` |
+| `nume_afisat` | Titlu care poate fi citit de om din primul titlu |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| Câmp | Descriere |
+|:------|:-------------|
+| `descriere` | Scurt rezumat din frontmatter |
+| `versiune` | Versiunea Skill, independentă de versiunea pachetului npm |
+| `categorie` | Categoria canonică (normalizată) |
+| `categorie_brută` | Categoria originală din frontmatter |
+| `taxonomie` | Metadate taxonomie complete cu rezervă dedusă |
+| `etichete` | Etichete care pot fi căutate |
+| `complexitate` | `începător` · `intermediar` · `avansat` · `expert` |
+| `risc` | `sigur` · `atenție` · `ofensiv` · `critic` |
+| `sursa` | `omni-echipă` · `comunitate` · `oficial` |
+| `autor` | Șir de atribuire |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| Câmp | Descriere |
+|:------|:-------------|
+| `punct de intrare` | Calea canonică `SKILL.md` |
+| `paths.root` | Directorul de aptitudini în interiorul depozitului |
+| `cărări.manifest` | Cale manifest generată în `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+| Câmp | Descriere |
+|:------|:-------------|
+| `instrumente` | Identificatori de instrumente din frontmatter |
+| `install_targets` | Metadate de instalare per instrument |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+Fiecare țintă de instalare include: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| Câmp | Descriere |
+|:------|:-------------|
+| `sub_resurse` | Subdir-uri de aptitudini (`referințe`, `agenți`, `activi`) |
+| `număr_artefacte` | Număr total de fișiere în pachetul de abilități |
+| `număr_referințe` | Număr de documente de referință |
+| `număr_agenți` | Număr de config. agent |
+| `număr_active` | Număr de fișiere de active |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| Câmp | Descriere |
+|:------|:-------------|
+| `strategie` | Strategia de instalare (de exemplu, `copy-skill-directory`) |
+| `current_installer` | Comportament de instalare care poate fi citit de om |
+| `retete` | Rețete de instalare per client |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| Sectiunea | Câmpuri |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 `maturitate` | `skill_level`, `skill_level_label` |
+| 📋 `bune_practices` | `scor` (0-100) |
+| ⭐ `calitate` | `scor` (0-100) |
+| 🛡️ `securitate` | `scor`, `starea` |
+| ✅ `validare` | `starea` |### 📝 Content
 
-### 📝 Content
+Semnale derivate: `body_length`, `content_length`, `body_lines`, `word_count`, plus semnalizatoare structurale pentru exemple, secțiuni de depanare etc.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+Matrice pentru fiecare fișier livrat în directorul de abilități:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Tipuri de artefacte**: `punct de intrare` · `referință` · `agent` · `activ` · `licență` · `suport`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| Câmp | Descriere |
+|:------|:-------------|
+| `entrypoint_sha256` | Hash de SKILL.md |
+| `pachet_sha256` | Rezumat determinist din lista ordonată de artefacte |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 Versiunea pachetului de depozit și versiunea abilităților sunt preocupări diferite. Pachetul este în prezent `0.1.3`, în timp ce abilitățile individuale au propriile versiuni semantice.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| Regula | Motivație |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ Trebuie să rămână derivabil din repo | Nu este necesară crearea manuală a manifestului |
+| ✅ Pot fi adăugate noi câmpuri opționale | Compatibilitate directă |
+| ⚠️ Câmpurile existente trebuie să rămână stabile | Compatibilitate inversă |
+| 🚫 Fără manifeste scrise de mână | Derivarea în timpul construirii este sursa adevărului |

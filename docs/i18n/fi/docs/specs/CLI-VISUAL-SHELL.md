@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**Omni-skills UI:n paljastaman mustepohjaisen päätteen käyttöliittymän käyttäytymissopimus.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Visuaalinen kuori on ohjattu tuotepinta olemassa olevan CLI- ja asennusmoottorin päällä.
 
-It does not replace:
+Se ei korvaa:
 
-- expert flag-based CLI usage
-- `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- asiantuntijalippupohjainen CLI-käyttö
+- "tools/bin/install.js".
+- ohjattu tekstiasennusprosessi
+- API-, MCP- tai A2A-ajonaikainen käyttäytyminen
 
-It defines:
+Se määrittelee:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- "kaikkien taitojen käyttöliittymän" käyttäytyminen
+- "omni-skills ui --text" -varasopimus
+- paikallinen tila ja esiasetettu pysyvyys
+- ohjatut palvelun käynnistämisen esikatselut
+- uusimpien asennusten ja huoltoajojen toistettavuus---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`omni-skills ui` käynnistää mustepohjaisen visuaalisen kuoren.
 
-The visual shell is the primary non-expert terminal experience for:
+Visuaalinen kuori on ensisijainen ei-asiantuntija-päätekokemus:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- asentaa virtauksia
+- Katalogi-ensin löytäminen ja asennus
+- MCP käynnistys
+- API käynnistys
+- A2A käynnistys
+- lääkärin ja savun vaihto### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` käynnistää readline-pohjaisen varakäyttöliittymän.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+Tästä on hyötyä, kun:
 
-This remains useful when:
+- pääte ei pysty renderöimään rikkaampaa kuorta oikein
+- Raaka-tilan käyttäytyminen on rajoitettua
+- Minimaalinen tekstivaraus on suositeltavaa### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Visuaalinen kuori ei toteuta uudelleen palvelun ajoaikoja tai asennuskirjoituksia suoraan.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+Esikatselun ja vahvistuksen jälkeen se poistuu puhtaasti ja siirtää suorituksen olemassa olevaan CLI-alkupisteeseen vastaavien argumenttien ja ympäristömuuttujien kanssa.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+Aloitusnäytön tulee paljastaa:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- asennustaidot
+- Etsi ja asenna
+- toista viimeisimmät asennukset, kun niitä on
+- Suorita tallennetut asennuksen esiasetukset, kun ne ovat olemassa
+- aloittaa palvelun
+- toista viimeisimmät palvelut, kun ne ovat olemassa
+- Suorita tallennetut palvelun esiasetukset, kun ne ovat olemassa
+-lääkäri
+- savua
+- poistu
 
-The home screen should also surface:
+Aloitusnäytön tulee myös tulla näkyviin:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- tämänhetkinen julkaistu paketin saatavuus
+- paikalliset osavaltiot laskevat viimeisimpiä, esiasetuksia ja suosikkeja---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+Visuaalisen kuoren asennusvirran on tuettava:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- tunnettu asiakaskohteen valinta
+- mukautetun polun valinta
+- täydellinen kirjaston asennus
+- yhden taidon asennus
+- yhden paketin asennus
+- etsi-ja sitten-asenna
+- esikatselu ennen kirjoittamista
+- esiasetusten tallennus
+- suosikkitaito tai -nippujen vaihto
 
-Preview must show:
+Esikatselun tulee näyttää:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- ratkaistu kohdetarra
+- ratkaistu polku
+- asenna laajuus
+- valittu taito tai paketti tarvittaessa
+- vastaava CLI-komento---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+Visuaalisen kuoren tulee ohjata käynnistystä:### 5.1 MCP
 
-### 5.1 MCP
+- kuljetus: "stdio", "stream", "sse".
+- tila: "vain luku" tai "paikallinen".
+- isäntä/porttikonfiguraatio verkkosiirtoja varten
+- eksplisiittisen komennon esikatselu### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+-isäntä
+- portti
+- perus- tai karkaistu profiili
+- Harded Bearer tai API-avaimen todennus
+- karkaistut nopeusrajaparametrit
+- tarkastuslokin käyttöönotto
+- eksplisiittisen komennon esikatselu### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+-isäntä
+- portti
+- myymälän tyyppi: "muisti", "json", "sqlite".
+- säilytyspolku kestäville tiloille
+- suorittaja: "inline", "prosessi".
+- jonokäyttöinen SQLite-tila
+- kyselyn väli ja vuokran kesto yhteisvuokraustilassa
+- eksplisiittisen komennon esikatselu---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+Visuaalinen kuori pysyy vain paikallisena tilassa:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+Osavaltio sisältää tällä hetkellä:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- viimeisimmät asennukset
+- äskettäiset palvelun lanseeraukset
+- nimetyt asennuksen esiasetukset
+- nimetyt palvelun esiasetukset
+- suosikkitaidot
+- suosikkinippuja
 
-The shell must support:
+Kuoren tulee tukea:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- uusimpien asennusten toistaminen
+- toistaa viimeisimmät palvelujulkaisut
+- Nimettyjen asennuksen esiasetusten uudelleenkäyttö
+- Nimettyjen palvelun esiasetusten uudelleenkäyttö---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+Visuaalinen kuori on additiivinen.
 
-These flows must remain valid and stable:
+Näiden virtojen on pysyttävä voimassa ja vakaina:
 
-- `npx omni-skills --cursor --skill omni-figma`
+- "npx omni-skills --kursori --taito omni-figma".
 - `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- "npx omni-skills install --guided".
+- "npx omni-skills find figma -- tool cursor -- install --yes"
+- "npx omni-skills mcp stream --local".
+- `npx omni-skills api --portti 3333`
+- "npx omni-skills a2a -- portti 3335".
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+Visuaalinen kuori ei saa koskaan pakottaa itseään eksplisiittisille asiantuntijakomentopoluille.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+Visuaalisen kuoren tulee tehdä tila ja kirjoittaa eksplisiittisiä.
 
-It must:
+Sen tulee:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- esikatsele asennuksia ennen kanavanvaihtoa
+- esikatsella palvelun käynnistyskomentoja ennen suorittamista
+- Pidä salainen materiaali poissa selkeän tekstin komennon esikatseluista mahdollisuuksien mukaan
+- pysyvä tila vain paikallisesti
+- säilyttää ei-interaktiivinen CLI-käyttäytyminen visuaalisen kuoren ulkopuolella

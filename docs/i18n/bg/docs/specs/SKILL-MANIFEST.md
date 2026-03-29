@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**Манифестът за машинно четене на JSON, генериран от всеки `SKILL.md` по време на конвейера за изграждане — единният договор за данни, използван от всички повърхности за изпълнение.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Характеристика | състояние |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Автоматично генерирано от SKILL.md | Внедрено |
+| ✅ Използва се от CLI, API, MCP, A2A | Внедрено |
+| ✅ Архив с контролни суми | Внедрено |
+| ✅ Класификация за сигурност | Внедрено |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Важно**: Манифестът е**артефакт за компилация**. Сътрудник автор `SKILL.md` — тръбопроводът автоматично извлича JSON манифеста.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+Манифестът съществува, така че**всички повърхности по време на изпълнение**консумират една и съща нормализирана форма:
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| Повърхност | Как използва манифестите |
+|:--------|:--------------------|
+| 🖥️**CLI**| Търсене, планиране на инсталиране, лекарска диагностика |
+| 🌐**API**| Отговори на крайни точки, филтриране, връзки за изтегляне |
+| 🔌**MCP**| Отговори на инструмента, съдържание на ресурс |
+| 🤖**A2A**| Полезни товари за откриване и препоръки |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| Артефакт | Път |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 Основни метаданни | `metadata.json` |
+| 📊 Метаданни за всяко умение | `skills/<skill>/metadata.json` |
+| 📋 Индекс на умения | `skills_index.json` |
+| 📚 Публикуван каталог | `dist/catalog.json` |
+| 📌 Манифест за всяко умение | `dist/manifests/<skill>.json` |
+| 📦 Zip архив | `dist/archives/<skill>.zip` |
+| 📦 Архив на тарбол | `dist/archives/<skill>.tar.gz` |
+| 🔒 Манифест на контролна сума | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| `схема_версия` | Версия на схемата на манифеста |
+| `id` | Стабилен идентификатор на умение от полето `име` |
+| `охлюв` | Охлюв на директория под `skills/` |
+| `показвано_име` | Четимо заглавие от първото заглавие |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| `описание` | Кратко резюме от frontmatter |
+| `версия` | Версия на умения, независима от версията на пакета npm |
+| `категория` | Канонична категория (нормализирана) |
+| `сурова_категория` | Оригинална категория от frontmatter |
+| `таксономия` | Пълни метаданни за таксономия с изведен резервен вариант |
+| `тагове` | Етикети за търсене |
+| `сложност` | `начинаещ` · `средно напреднал` · `напреднал` · `експерт` |
+| `риск` | `безопасно` · `внимание` · `офанзивно` · `критично` |
+| `източник` | `омни-отбор` · `общност` · `официален` |
+| `автор` | Низ за приписване |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| `входна точка` | Каноничен път `SKILL.md` |
+| `paths.root` | Директория на умения в репо |
+| `paths.manifest` | Генериран манифестен път в `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
-
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+| `инструменти` | Идентификатори на инструменти от frontmatter |
+| `install_targets` | Метаданни за инсталиране на инструмент |
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
+Всяка цел за инсталиране включва: `инструмент`, `обхват`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
 
-### 📦 Resources
-
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| `под_ресурси` | Поддиректории на умения (`референции`, `агенти`, `активи`) |
+| `брой_артефакти` | Общ брой файлове в пакета с умения |
+| `брой_препратки` | Брой референтни документи |
+| `брой_агенти` | Брой конфигурации на агент |
+| `брой_активи` | Брой файлове с активи |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| `стратегия` | Стратегия за инсталиране (напр. `copy-skill-directory`) |
+| `текущ_инсталатор` | Човешко четимо поведение при инсталиране |
+| `рецепти` | Рецепти за инсталиране на клиент |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| Раздел | Полета |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 `зрялост` | `ниво_на_умение`, `етикет_ниво_на_умение` |
+| 📋 `най-добри_практики` | `резултат` (0-100) |
+| ⭐ `качество` | `резултат` (0-100) |
+| 🛡️ `сигурност` | `резултат`, `статус` |
+| ✅ `валидиране` | `състояние` |### 📝 Content
 
-### 📝 Content
+Изведени сигнали: `body_length`, `content_length`, `body_lines`, `word_count`, плюс структурни флагове за примери, секции за отстраняване на проблеми и др.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+Масив от всеки файл, изпратен в директорията на уменията:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Видове артефакти**: `входна точка` · `референция` · `агент` · `актив` · `лиценз` · `поддръжка`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
+| Поле | Описание |
 |:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| `entrypoint_sha256` | Хеш на SKILL.md |
+| `package_sha256` | Детерминистичен дайджест от подреден списък с артефакти |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 Версията на пакета за хранилище и версията на уменията са различни проблеми. Пакетът в момента е `0.1.3`, докато отделните умения носят свои собствени семантични версии.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| Правило | Обосновка |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ Трябва да остане изведено от репо | Не се изисква ръчно създаване на манифест |
+| ✅ Могат да се добавят нови незадължителни полета | Предна съвместимост |
+| ⚠️ Съществуващите полета трябва да останат стабилни | Обратна съвместимост |
+| 🚫 Без ръкописни манифести | Деривацията по време на изграждане е източникът на истината |

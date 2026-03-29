@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**การวิเคราะห์ทางเทคนิคที่ครอบคลุมของสถาปัตยกรรม Omni Skills ปัจจุบัน พื้นผิวรันไทม์ และไปป์ไลน์การสร้าง**
+> วิเคราะห์ล่าสุด: 28-03-2026---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| คุณสมบัติ | ค่า |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**ชื่อ**| `ทักษะรอบด้าน' |
+|**เวอร์ชันแพ็คเกจ**| `0.1.3` |
+|**เวอร์ชั่นสกิล**| ต่อทักษะและเป็นอิสระจากเวอร์ชันแพ็คเกจ ทักษะที่เผยแพร่จำนวนมากยังคงเป็น `0.0.1` ในขณะที่แพ็คเกจเป็น `0.1.2` |
+|**ใบอนุญาต**| MIT (รหัส) + CC BY 4.0 (เนื้อหา) |
+|**NPM**| `npx ทักษะรอบด้าน` |
+|**เผยแพร่ทักษะ**| 32 |
+|**ชุดรวมที่กำหนด**| 7 ทั้งหมดได้รับการสนับสนุนอย่างเต็มที่จากทักษะที่เผยแพร่ |
+|**หมวดหมู่แคตตาล็อกที่ใช้งานอยู่**| ที่เก็บข้อมูลที่ใช้งานอยู่ 15 รายการจากหมวดหมู่อนุกรมวิธานตามรูปแบบบัญญัติ 18 หมวดหมู่ |
+|**รันไทม์หลัก/บิลด์ LOC สุ่มตัวอย่างด้านล่าง**| 13,600+ |
+|**การพึ่งพาการผลิต**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `หมึก`, `โต้ตอบ`, `zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+สแน็ปช็อตการจำแนกระดับพื้นที่เก็บข้อมูลปัจจุบันจาก `metadata.json`:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- คะแนนคุณภาพเฉลี่ย: `96.3`
+- คะแนนแนวทางปฏิบัติที่ดีที่สุดโดยเฉลี่ย: `98.7`
+- คะแนนความปลอดภัยเฉลี่ย: `95.0`
+- ทักษะที่เผยแพร่ทั้ง 32 ทักษะตรวจสอบว่าเป็น `L3`
 
-Current release baseline:
+พื้นฐานการเปิดตัวปัจจุบัน:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- การเปิดตัวพื้นที่เก็บข้อมูลสาธารณะ: `v0.1.2`
+- รุ่นเพิ่มประสิทธิภาพส่วนตัว: `v0.0.1`
+- ระบบอัตโนมัติในการเผยแพร่สาธารณะและระบบอัตโนมัติในการเผยแพร่ส่วนตัวมีทั้งแบบแอ็คทีฟและเป็นสีเขียว---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+พื้นที่เก็บข้อมูลเป็นไปตามรูปแบบ**monorepo ของพื้นที่ทำงาน**โดยมีแกนแค็ตตาล็อกที่ใช้ร่วมกันหนึ่งแกนและพื้นผิวรันไทม์หลายรายการ```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,321 +64,297 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+การออกแบบมีเจตนา**ขับเคลื่อนด้วยสิ่งประดิษฐ์**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. ทักษะต่างๆ ได้รับการเขียนเป็น `SKILL.md` พร้อมด้วยชุดสนับสนุนในท้องถิ่น
+2. บิวด์ตรวจสอบความถูกต้อง จัดประเภท เก็บถาวร และปรับให้เป็นมาตรฐาน
+3. อาร์ติแฟกต์ที่สร้างขึ้นจะกลายเป็นสัญญาสำหรับ CLI, API, MCP และ A2A---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**รวม LOC มากกว่า 4,500+**— อินเทอร์เฟซสาธารณะหลักสำหรับการใช้งานทั้งแบบผู้เชี่ยวชาญและแบบมีคำแนะนำ
 
-| Command | Function |
+| คำสั่ง | ฟังก์ชัน |
 |:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| 🔎 `ค้นหา [คำค้นหา]` | ค้นหาแค็ตตาล็อกข้อความแบบเต็มพร้อมตัวกรองแบบทราบคะแนน |
+| 📦 `ติดตั้ง` | การติดตั้งที่แนะนำหรืออิงตามแฟล็กในไคลเอนต์ที่รู้จักหรือเส้นทางที่กำหนดเอง |
+| 🧾 `config-mcp` | ดูตัวอย่างหรือเขียนการกำหนดค่า MCP ที่ทราบไคลเอ็นต์ |
+| 🔌 `mcp <การขนส่ง>` | เริ่มต้นเซิร์ฟเวอร์ MCP ใน `stdio`, `stream` หรือ `sse` |
+| 🌐 `api` | เริ่มแค็ตตาล็อก API |
+| 🤖 `a2a` | เริ่มรันไทม์ A2A |
+| 🧪 `ควัน` | เผยแพร่การตรวจสอบ preflight |
+| 🩺 `หมอ` | การวินิจฉัยท้องถิ่น |
+| 🖥️ `ui` | Ink Visual Shell พร้อมการติดตั้ง การค้นหา การกำหนดค่า และฮับบริการ |
+| 🏷️ `จัดหมวดหมู่ใหม่` | อนุกรมวิธานการตรวจสอบดริฟท์และเขียนใหม่ |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI ไม่ได้เป็นเพียงตัวติดตั้งอีกต่อไป เป็นเครื่องมือการดำเนินงานสาธารณะสำหรับทั้งแพลตฟอร์ม## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+รันไทม์สาธารณะไม่ได้ถูกบล็อกในงานพื้นฐานอีกต่อไป และเวฟหมวดหมู่ที่สองก็มาถึงแล้ว งานแคตตาล็อกที่มีประโยชน์ต่อไปคือความลึก ไม่ใช่การไล่ตามหมวดหมู่มากขึ้น
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+แทร็กเนทีฟโค้ดที่เปิดใช้งานใหม่ตอนนี้อยู่ในแค็ตตาล็อก:
 
-Newly activated code-native tracks now in the catalog:
+- `การออกแบบ` ผ่าน `design-systems-ops`, `accessibility-audit` และ `design-token-governance`
+- `เครื่องมือ` ผ่าน `mcp-server-authoring`
+- `data-ai` ผ่าน `data-contracts`
+- `แมชชีนเลิร์นนิง` ผ่าน `การแสดงโมเดล`
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+ทิศทางถัดไปที่แนะนำ:
 
-Recommended next direction:
+1. เจาะลึก `การออกแบบ` `เครื่องมือ` `data-ai` และ `machine-learning`
+2. เลื่อน "ธุรกิจ" และ "สื่อเนื้อหา" ออกไป เว้นแต่จะมีข้อเสนอที่เป็นโค้ดเนทีฟอย่างชัดเจนปรากฏขึ้น
+3. รักษาคุณภาพขั้นต่ำปัจจุบันไว้ แทนที่จะเปิดแรงกดดันในการเปิดใช้งานหมวดหมู่อีกครั้ง
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+ขณะนี้คลื่นส่วนขยายนั้นถูกบันทึกไว้ใน [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— ติดตั้งทักษะให้กับผู้ช่วยที่ติดตั้งได้ 7 คน
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
-
-> **403 LOC** — installs skills into 7 install-capable assistants.
-
-| Flag | Target | Default Path |
+| ตั้งค่าสถานะ | เป้าหมาย | เส้นทางเริ่มต้น |
 |:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+| `--คล็อด` | รหัสคลอด | `~/.claude/ทักษะ` |
+| `--เคอร์เซอร์` | เคอร์เซอร์ | `~/.cursor/ทักษะ` |
+| `--ราศีเมถุน` | ราศีเมถุน CLI | `~/.gemini/ทักษะ` |
+| `--โคเด็กซ์` | Codex CLI | `~/.codex/ทักษะ` |
+| `--คิโระ` | คิโระ | `~/.kiro/ทักษะ` |
+| `--ต้านแรงโน้มถ่วง` | ต้านแรงโน้มถ่วง | `~/.gemini/antigravity/ทักษะ` |
+| `--opencode` | โอเพ่นโค้ด | `<พื้นที่ทำงาน>/.opencode/ทักษะ` |
 
-It supports:
+รองรับ:
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+- การติดตั้งไลบรารีแบบเต็ม
+- การติดตั้งแบบเลือกโดย `--ทักษะ`
+- การติดตั้งที่ดูแลจัดการโดย `--bundle`
+- TTY ที่แนะนำและโฟลว์ UI แบบภาพ
+- เส้นทางเป้าหมายที่กำหนดเอง### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+>**828 LOC**— เลเยอร์รันไทม์ที่ใช้ร่วมกันสำหรับ CLI, API, MCP และ A2A
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
-
-| Export | Description |
+| ส่งออก | คำอธิบาย |
 |:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+| 🔎 `searchSkills()` | ค้นหาด้วยการจับคู่ข้อความแบบถ่วงน้ำหนักและรองรับตัวกรอง |
+| 📋 `listSkills()` | การกรองแบบหลายแกนตามคุณภาพ แนวปฏิบัติที่ดีที่สุด ระดับ ความปลอดภัย ความเสี่ยง เครื่องมือ และหมวดหมู่ |
+| 📌 `getSkill()` | ความละเอียดที่ชัดแจ้งพร้อม URL สาธารณะที่ได้รับการเสริมสมรรถนะ |
+| ⚖️ `เปรียบเทียบทักษะ()` | การเปรียบเทียบแบบเคียงข้างกัน |
+| 💡 `แนะนำทักษะ()` | คำแนะนำที่ขับเคลื่อนด้วยเป้าหมาย |
+| 📦 `buildInstallPlan()` | ติดตั้งการสร้างแผนพร้อมคำเตือนและคำแนะนำที่คำนึงถึงลูกค้า |
+| 🗂️ `listBundles()` | รายการชุดรวมที่คัดสรรพร้อมความพร้อม |
+| 📁 `listSkillArchives()` | ความละเอียดในการเก็บถาวรและลายเซ็น |
 
-This is the real single source of runtime truth after generation.
+นี่คือแหล่งเดียวที่แท้จริงของรันไทม์จริงรุ่นแล้วรุ่นเล่า### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+>**812 LOC**— การใช้งาน MCP เต็มรูปแบบโดยใช้ SDK อย่างเป็นทางการ
 
-> **812 LOC** — full MCP implementation using the official SDK.
-
-**Transports**
+**การขนส่ง**
 
 - `stdio`
-- streamable HTTP
-- SSE
+- HTTP ที่สามารถสตรีมได้
+- สสส
 
-**Always-on read-only tools**
+**เครื่องมือแบบอ่านอย่างเดียวที่ทำงานตลอดเวลา**
 
-- `search_skills`
+- `การค้นหา_ทักษะ`
 - `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
+- `เปรียบเทียบ_ทักษะ`
+- `แนะนำ_ทักษะ`
+- `ดูตัวอย่าง_ติดตั้ง`
 
-**Local-mode tools**
+**เครื่องมือโหมดท้องถิ่น**
 
 - `detect_clients`
 - `list_installed_skills`
-- `install_skills`
-- `remove_skills`
+- `การติดตั้ง_ทักษะ`
+- `ลบ_ทักษะ`
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+พื้นผิว MCP ถูกแบ่งโดยเจตนาระหว่าง:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- การใช้แค็ตตาล็อกระยะไกล/อ่านอย่างเดียว
+- การใช้รถเทียมข้างรถจักรยานยนต์ในท้องถิ่น/แบบเขียนได้### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1,943 LOC**— เลเยอร์ MCP ที่รู้จักระบบไฟล์สำหรับการตรวจจับไคลเอ็นต์ การจัดการทักษะ และการเขียนการกำหนดค่า MCP
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+การสนับสนุนเชิงปฏิบัติในปัจจุบัน:
 
-Current practical support:
+-**ไคลเอนต์ที่สามารถติดตั้งได้ 7 ตัว**
+-**ไคลเอนต์ที่สามารถกำหนดค่าได้ 16 ตัว**
+-**เป้าหมายการกำหนดค่า 33 รายการ**
+-**โปรไฟล์กำหนดค่า 19 รายการ**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
+ไคลเอนต์ที่สามารถติดตั้งได้:
 
-Install-capable clients:
+- คล็อด โค้ด
+- เคอร์เซอร์
+- ราศีเมถุน CLI
+- โคเด็กซ์ CLI
+- คิโระ
+- ต้านแรงโน้มถ่วง
+- โอเพ่นโค้ด
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+ไคลเอนต์และเป้าหมายที่สามารถกำหนดค่าได้ประกอบด้วย:
 
-Config-capable clients and targets include:
+- การตั้งค่า Claude, Claude Desktop และการกำหนดค่าโครงการ Claude
+- ผู้ใช้เคอร์เซอร์และการกำหนดค่าพื้นที่ทำงาน
+- พื้นที่ทำงาน VS Code, ผู้ใช้, คนวงใน และการกำหนดค่า Dev Container
+- การตั้งค่าผู้ใช้และพื้นที่ทำงานของราศีเมถุน
+- การกำหนดค่าผู้ใช้ต้านแรงโน้มถ่วง
+- ผู้ใช้ Kiro พื้นที่ทำงาน และเส้นทางดั้งเดิม
+- การกำหนดค่า Codex CLI TOML
+- ผู้ใช้ OpenCode และการกำหนดค่าพื้นที่ทำงาน
+- การตั้งค่าไคลน์
+- ผู้ใช้ GitHub Copilot CLI และการกำหนดค่า repo
+- การกำหนดค่าผู้ใช้กิโล โครงการ และพื้นที่ทำงาน
+- ดำเนินการต่อพื้นที่ทำงาน YAML
+- การกำหนดค่าผู้ใช้ Windsurf
+- กำหนดค่าพื้นที่ทำงาน Zed
+- การกำหนดค่าผู้ใช้ Goose
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+รถเทียมข้างรถจักรยานยนต์มีความซื่อสัตย์โดยเจตนาเกี่ยวกับขอบเขต:
 
-The sidecar is intentionally honest about boundaries:
+- เขียนเฉพาะในรายการที่อนุญาตเท่านั้น
+- มันแสดงตัวอย่างตามค่าเริ่มต้น
+- ช่วยให้นักเขียนชั้นหนึ่งเฉพาะในกรณีที่เอกสารอย่างเป็นทางการเปิดเผยรูปแบบที่เสถียร
+- ไม่ได้แสร้งทำเป็นว่าผลิตภัณฑ์ที่รองรับ MCP ทุกตัวนั้นเป็นเป้าหมายในการติดตั้งทักษะด้วย### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+>**รวม LOC 715**— API รีจิสทรีแบบอ่านอย่างเดียวพร้อมมิดเดิลแวร์การกำกับดูแล
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+จุดสิ้นสุดที่สำคัญ:
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
-
-Important endpoints:
-
-- `/healthz`
+- `/สุขภาพz`
 - `/openapi.json`
-- `/admin/runtime`
-- `/v1/skills`
-- `/v1/skills/:id`
-- `/v1/search`
-- `/v1/compare`
-- `/v1/bundles`
-- `/v1/install/plan`
-- `/v1/skills/:id/download/*`
+- `/ผู้ดูแลระบบ/รันไทม์`
+- `/v1/ทักษะ`
+- `/v1/ทักษะ/:id`
+- `/v1/ค้นหา`
+- `/v1/เปรียบเทียบ`
+- `/v1/บันเดิล`
+- `/v1/ติดตั้ง/วางแผน`
+- `/v1/ทักษะ/:id/ดาวน์โหลด/*`
 
-Governance baseline already implemented:
+พื้นฐานการกำกับดูแลได้นำไปใช้แล้ว:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- การรับรองความถูกต้องโทเค็นผู้ถือ
+- การตรวจสอบสิทธิ์คีย์ API
+- การรับรองความถูกต้องโทเค็นของผู้ดูแลระบบ
+- การจำกัดอัตราในกระบวนการ
+- ขอรหัส
+- การบันทึกการตรวจสอบ
+- รายการที่อนุญาตของ CORS
+- รายการ IP ที่อนุญาต
+- เชื่อถือการจัดการพร็อกซี
+- โหมดการบำรุงรักษา### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**1,857 LOC รวมอยู่ในเซิร์ฟเวอร์หลัก รันไทม์ และไฟล์ผู้ประสานงาน**— วงจรงาน JSON-RPC 2.0 สำหรับเวิร์กโฟลว์เอเจนต์ถึงเอเจนต์
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+วิธีการที่รองรับ:
 
-Supported methods:
+- `ข้อความ/ส่ง`
+- `ข้อความ/สตรีม`
+- `งาน/รับ`
+- `งาน/ยกเลิก`
+- `งาน/สมัครสมาชิกใหม่'
+- `งาน/pushNotificationConfig/*`
 
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
-- `tasks/pushNotificationConfig/*`
+การดำเนินงานปัจจุบัน:
 
-Current operations:
+- `ค้นพบทักษะ`
+- `แนะนำสแต็ค`
+- `เตรียม-ติดตั้ง-วางแผน`
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+รูปแบบความทนทานและการประสานงาน:
 
-Durability and coordination model:
+- หน่วยความจำ, JSON หรือความคงอยู่ภายในเครื่อง SQLite
+- รีสตาร์ทเรซูเม่
+- ตัวดำเนินการกระบวนการภายนอกที่เป็นตัวเลือก
+- เลือกใช้การประสานงานคิวเช่าสำหรับผู้ปฏิบัติงาน SQLite ที่ใช้ร่วมกัน
+- ตัวเลือกการประสานงานที่ได้รับการสนับสนุนจาก Redis เป็นเส้นทางโฮสต์ขั้นสูง
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
-
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+ตัวเลือกสถาปัตยกรรมที่สำคัญที่นี่คือ**การดำเนินการในท้องถิ่นที่เรียบง่ายก่อน**Redis มีอยู่เป็นตัวเลือกขั้นสูง แต่เส้นทางผลิตภัณฑ์เริ่มต้นยังคงอยู่ในท้องถิ่นและขึ้นอยู่กับแสง---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
+| สคริปต์ | ภาษา | วัตถุประสงค์ |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| 📊 `skill_metadata.py` | หลาม | การตรวจสอบความถูกต้อง อนุกรมวิธาน การให้คะแนน และการสแกนความปลอดภัยแบบคงที่
+| ✅ `validate_skills.py` | หลาม | การสร้างข้อมูลเมตาต่อทักษะและสำหรับสรุปราก |
+| 📑 `generate_index.py` | หลาม | ดัชนีทักษะ รายการ เอกสารสำคัญ ลายเซ็น และเช็คซัม |
+| 🏗️ `build_catalog.js` | โหนด js | สุดท้าย `dist/catalog.json` และ `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | หลาม | การตรวจสอบหมวดหมู่ Canonical และเขียนใหม่ |
+| 🔍 `verify_archives.py` | หลาม | การตรวจสอบเอกสารถาวรและลายเซ็น |
 
-Two details matter operationally:
+รายละเอียดสองประการมีความสำคัญในการปฏิบัติงาน:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. `dist/` เป็นส่วนหนึ่งของสัญญารันไทม์และกระทำโดยเจตนา
+2. โครงสร้างมีการกำหนดไว้เพียงพอที่จะรองรับการตรวจสอบ CI และการลงนามการเปิดตัว---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+แคตตาล็อกสาธารณะปัจจุบันครอบคลุม 32 ทักษะ:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**การค้นพบและการวางแผน**: "ค้นหาทักษะ" "การระดมความคิด" "สถาปัตยกรรม" "การแก้ไขจุดบกพร่อง"
+-**ระบบการออกแบบและการเข้าถึง**: `design-systems-ops`, `accessibility-audit`
+-**การส่งมอบผลิตภัณฑ์และสแต็กเต็มรูปแบบ**: `การออกแบบส่วนหน้า`, `การออกแบบ api`, `การออกแบบฐานข้อมูล`, `omni-figma`, `กระแสการตรวจสอบสิทธิ์`
+-**ความปลอดภัย**: `ผู้ตรวจสอบความปลอดภัย`, `เครื่องสแกนช่องโหว่`, `การตอบสนองต่อเหตุการณ์`, `การสร้างแบบจำลองภัยคุกคาม`
+-**ขั้นตอนการทำงานของผู้ดูแล OSS**: `เอกสาร`, `บันทึกการเปลี่ยนแปลง`, `create-pr`
+-**DevOps**: `นักเทียบท่า-ผู้เชี่ยวชาญ`, `kubernetes`, `terraform`, `การตรวจสอบความสามารถในการสังเกต`, `วิศวกรรมการเปิดตัว`
+-**วิศวกรรม AI**: `วิศวกรเศษผ้า`, `วิศวกรพร้อมท์`, `รูปแบบ llm`, `การออกแบบ eval`, `วิศวกรรมบริบท`
 
-All seven bundles are fully backed:
+บันเดิลทั้งเจ็ดได้รับการสนับสนุนอย่างเต็มที่:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
-- `devops` → `5/5`
-- `ai-engineer` → `5/5`
-- `oss-maintainer` → `4/4`
+- `สิ่งจำเป็น` → `4/4`
+- `เต็มสแต็ค` → `5/5`
+- `การออกแบบ` → `4/4`
+- `ความปลอดภัย` → `4/4`
+- `เดวอปส์` → `5/5`
+- `ไอวิศวกร` → `5/5`
+- `oss-ผู้ดูแล` → `4/4`
 
-Current score spread from the generated catalog:
+คะแนนปัจจุบันกระจายจากแค็ตตาล็อกที่สร้างขึ้น:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- คะแนนคุณภาพ: `94, 95, 96, 97, 100`
+- คะแนนแนวทางปฏิบัติที่ดีที่สุด: `98, 99, 100`
+- คะแนนความปลอดภัย: ทักษะที่เผยแพร่ทั้งหมดในปัจจุบันคือ `95`
 
-Representative high end:
+ตัวแทนระดับไฮเอนด์:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
-- `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+- `omni-figma` → `คุณภาพ 100`, `แนวปฏิบัติที่ดีที่สุด 100`
+- `การตรวจสอบการเข้าถึง` → `คุณภาพ 99`, `แนวปฏิบัติที่ดีที่สุด 100`
+- `การตรวจสอบสิทธิ์` → `คุณภาพ 97`, `best_practices 99`
+- `การออกแบบระบบปฏิบัติการ` → `คุณภาพ 97`, `best_practices 99`
+- `วิศวกรรมการเปิดตัว` → `คุณภาพ 97`, `best_practices 99`
+- `การสร้างแบบจำลองภัยคุกคาม` → `คุณภาพ 97`, `แนวปฏิบัติที่ดีที่สุด 99`
+- `วิศวกรรมบริบท` → `คุณภาพ 97`, `แนวปฏิบัติที่ดีที่สุด 99`
 
-Representative lower end inside the current top band:
+ตัวแทนระดับล่างสุดภายในแถบบนสุดปัจจุบัน:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `สถาปัตยกรรม` → `คุณภาพ 94`, `แนวปฏิบัติที่ดีที่สุด 98`
+- `บันทึกการเปลี่ยนแปลง` → `คุณภาพ 94`, `แนวปฏิบัติที่ดีที่สุด 98`
+- `create-pr` → `คุณภาพ 95`, `best_practices 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+นี่เป็นการจงใจ ตอนนี้ผู้บันทึกคะแนนแยกความแตกต่างระหว่าง "ยอดเยี่ยม" จาก "ยอดเยี่ยม" แทนที่จะแยกแค็ตตาล็อกทั้งหมดที่ด้านบนให้เรียบ---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**การออกแบบที่เน้นสิ่งประดิษฐ์เป็นหลัก**
+   พื้นผิวรันไทม์ทุกรายการใช้แค็ตตาล็อกและไฟล์ Manifest ที่สร้างขึ้นเหมือนกัน
+2.**ครอบคลุมโปรโตคอลแบบกว้าง**
+   CLI, API, MCP และ A2A อยู่ร่วมกันโดยไม่มีการแยกส่วนโมเดลข้อมูล
+3.**การยศาสตร์ของผลิตภัณฑ์ในท้องถิ่นที่แข็งแกร่ง**
+   การติดตั้งที่แนะนำ, Visual Shell, `config-mcp` และค่าเริ่มต้นแบบ dry-run ทำให้โปรเจ็กต์สามารถใช้งานได้นอกเหนือจากผู้ใช้ระดับสูง
+4.**มาตรการรักษาความปลอดภัยที่ซื่อสัตย์**
+   การเขียนในเครื่องที่อนุญาต การสแกนแบบคงที่ การลงนาม เช็คซัม และการยืนยันการเผยแพร่ล้วนมีความชัดเจน
+5.**การเข้าถึง MCP ที่ดี**
+   ขณะนี้โปรเจ็กต์รองรับชุดไคลเอนต์ที่รองรับ MCP จำนวนมากในปัจจุบัน โดยไม่ต้องแสร้งทำเป็นว่าเป้าหมายที่ไม่มีเอกสารนั้นเสถียร---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**การครอบคลุมกลุ่มที่ลึกยิ่งขึ้น**
+   ขั้นตอนต่อไปคือความเชี่ยวชาญเฉพาะด้านในบันเดิลที่มีอยู่ ไม่ใช่แค่ความครอบคลุมในวงกว้างเท่านั้น
+2.**ความหมายผู้ทำประตูที่สมบูรณ์ยิ่งขึ้น**
+   ยังมีพื้นที่เหลือให้ประเมินความลึกของแพ็คอ้างอิงและคุณภาพเวิร์กโฟลว์ในเชิงความหมายมากขึ้น
+3.**นักเขียนลูกค้าเพิ่มเติมเฉพาะในกรณีที่สมเหตุสมผล**
+   การขยายตัวควรรักษาวินัยและเชื่อมโยงกับเอกสารทางการที่มั่นคง
+4.**การสลายตัวของเครื่องมือตรวจสอบ**
+   `skill_metadata.py` ยังคงเป็นโมดูลขนาดใหญ่และจะได้รับประโยชน์จากการสลายตัวภายในเมื่อเวลาผ่านไป
+5.**การยกระดับการกำกับดูแลโฮสต์**
+   พื้นฐานในกระบวนการปัจจุบันเพียงพอสำหรับการโฮสต์ด้วยตนเอง แต่การใช้งานระดับองค์กรในท้ายที่สุดจะต้องการบูรณาการเกตเวย์ภายนอกและข้อมูลระบุตัวตน

@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**कौशलों को लागू करने, सेवाओं को चलाने और ओमनी स्किल्स रनटाइम को संचालित करने के लिए आपको जो कुछ भी चाहिए वह सब कुछ।**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+पूर्ण परिचालन वर्कफ़्लो के लिए, [🔧 सिस्टम रनबुक](../ऑपरेशंस/RUNBOOK.md) देखें।
+संपूर्ण अंतिम-उपयोगकर्ता कमांड मैप के लिए, [🧭 सीएलआई उपयोगकर्ता गाइड](./CLI-USER-GUIDE.md) देखें।---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
-|:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| स्थिति | विवरण |
+|:-------|:-------|
+| ✅**अभी उपलब्ध**| डिज़ाइन, आर्किटेक्चर, डिबगिंग, डॉक्स, ओएसएस, सुरक्षा, डेवऑप्स, एआई-इंजीनियरिंग, डेटा, टूल्स और मशीन-लर्निंग वर्कफ़्लो में 32 प्रकाशित कौशल |
+| 📦**बंडल**| `आवश्यक`, `फुल-स्टैक`, `डिज़ाइन`, `सुरक्षा`, `डेवॉप्स`, `एआई-इंजीनियर`, और `ओएसएस-मेंटेनर` आज पूरी तरह से समर्थित हैं |
+| 🔌**एमसीपी पहुंच**| 7 इंस्टाल-सक्षम क्लाइंट, 16 कॉन्फिग-सक्षम क्लाइंट, 33 प्रथम श्रेणी कॉन्फिग लक्ष्य, 19 कॉन्फिग प्रोफाइल |
+| 🤖**A2A टिकाऊपन**| मेमोरी, JSON, या SQLite स्थानीय स्थायित्व, पुनरारंभ पुनरारंभ, वैकल्पिक प्रक्रिया निष्पादक, और साझा श्रमिकों के लिए ऑप्ट-इन लीज़ समन्वय |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
-|:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| ग्राहक | आह्वान कैसे करें | कौशल पथ |
+|:-------|:---|:---||
+| 🔵**क्लाउड कोड**| `>> /कौशल-नाम मेरी मदद करें...` | `~/.क्लाउड/कौशल/` |
+| 🟡**मिथुन सीएलआई**| `@skill-name का उपयोग करें...` | `~/.gemini/skills/` |
+| 🔴**कोडेक्स सीएलआई**| `@skill-name का उपयोग करें...` | `~/.codex/skills/` |
+| 🟢**किरो**| मांग पर कौशल स्वतः लोड | `~/.kiro/skills/` |
+| 🟣**एंटीग्रेविटी**| `@skill-name का उपयोग करें...` | `~/.gemini/antigravity/skills/` |
+| 🔵**कर्सर**| चैट में `@कौशल-नाम` | `~/.कर्सर/कौशल/` |
+| ⚪**ओपनकोड**| `ओपनकोड रन @कौशल-नाम` | `.opencode/skills/` |
+| ⬛**कोपायलट**| कौशल सामग्री को मैन्युअल रूप से चिपकाएँ | एन/ए |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+कंटिन्यू, जूनी, विंडसर्फ, जेड, वीएस कोड, गिटहब कोपायलट सीएलआई, क्लाइन और किलो कोड जैसे ग्राहक मुख्य रूप से कौशल निर्देशिका के बजाय `कॉन्फिग-एमसीपी` प्रवाह का उपयोग करते हैं।---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 टिप्पणियाँ:**
+> - एक इंटरैक्टिव टर्मिनल में, `npx omni-skills` अब एक निर्देशित इंस्टाल प्रवाह खोलता है
+> - `एनपीएक्स ओमनी-स्किल्स यूआई` इंस्टॉल, डिस्कवरी और सर्विस लॉन्च क्रियाओं के साथ विजुअल इंक शेल खोलता है
+> - विज़ुअल शेल `~/.omni-skills/state/ui-state.json` में हालिया इंस्टॉल, हालिया सेवा लॉन्च, पसंदीदा और नामित प्रीसेट को बरकरार रखता है।
+> - टीटीवाई के बाहर, कोई चयनकर्ता प्रदान नहीं किए जाने पर पूर्ण इंस्टॉल अभी भी डिफ़ॉल्ट है
+> - `--skill` केवल चयनित प्रकाशित कौशल स्थापित करता है
+> - `--बंडल` बंडल का विस्तार करता है और क्यूरेटेड बंडल में घोषित प्रकाशित सदस्यों को स्थापित करता है
+> - `ढूंढें` 12+ फ़िल्टर फ़्लैग का समर्थन करता है: `गुणवत्ता`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, और बहुत कुछ
+> - `कॉन्फिग-एमसीपी` एमसीपी-सक्षम उत्पादों के लिए सही रास्ता है जिनके पास प्रथम श्रेणी कौशल निर्देशिका नहीं है---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+सीएलआई एक एकीकृत संचालन उपकरण है, न कि केवल एक इंस्टॉलर।### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+दृश्य शेल समर्थन करता है:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- ज्ञात क्लाइंट या कस्टम पथ चयन के साथ निर्देशित इंस्टॉल
+- झंडों को याद किए बिना खोजें-फिर-इंस्टॉल करें
+- निर्देशित एमसीपी क्लाइंट कॉन्फ़िगरेशन पूर्वावलोकन और लेखन प्रवाह
+- एमसीपी, एपीआई और ए2ए निर्देशित स्टार्टअप
+- हाल की स्थापनाएँ और सेवा पुन: लॉन्च
+- सहेजे गए इंस्टॉल और सर्विस प्रीसेट
+- पसंदीदा कौशल और बंडल### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| # | युक्ति |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | अपने प्रॉम्प्ट में नाम से कौशल का संदर्भ दें |
+| 2️⃣ | एजेंट को आवश्यक सटीक आर्टिफैक्ट, कोड या डिज़ाइन संदर्भ प्रदान करें |
+| 3️⃣ | न्यूनतम इंस्टाल पदचिह्न के लिए `--skill` को प्राथमिकता दें |
+| 4️⃣ | पैकेजिंग या रनटाइम समस्याओं को डीबग करने से पहले `डॉक्टर` और `स्मोक` का उपयोग करें |
+| 5️⃣ | अब क्यूरेटेड डोमेन इंस्टॉल के रूप में बंडलों का उपयोग करें क्योंकि सभी सात स्टार्टर बंडल पूरी तरह से समर्थित हैं |
+| 6️⃣ | एक प्रवाह में खोज + इंस्टालेशन के लिए `find --install --yes` का उपयोग करें |
+| 7️⃣ | प्रमाणीकरण, दर सीमा, हस्ताक्षर और सत्यापन एनवी संस्करण के लिए [रनबुक](../ऑपरेशंस/RUNBOOK.md) देखें |

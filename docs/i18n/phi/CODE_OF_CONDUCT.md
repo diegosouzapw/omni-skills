@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Kami bilang mga miyembro, kontribyutor, at maintainer ay nangangako na ang pakikilahok sa proyekto at komunidad na ito ay**karanasan na walang panliligalig para sa lahat**, anuman ang edad, laki ng katawan, nakikita o hindi nakikitang kapansanan, etnisidad, katangian ng kasarian, pagkakakilanlan ng kasarian at pagpapahayag, antas ng karanasan, edukasyon, katayuan sa sosyo-ekonomiko, nasyonalidad, personal na hitsura, lahi, kasta, kulay, oryentasyong sekswal, o oryentasyon.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
+| Pag-uugali | Halimbawa |
 |:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| 💬 Malugod na wika | Ang pagiging inklusibo at magalang sa komunikasyon |
+| 🤝 Paggalang sa mga pagkakaiba | Pagpapahalaga sa magkakaibang pananaw at karanasan |
+| 📝 Nakabubuo pintas | Pagtanggap at pagbibigay ng feedback nang maganda |
+| 🎯 Pokus ng komunidad | Pagbibigay-priyoridad kung ano ang pinakamainam para sa proyekto at komunidad |
+| ❤️ Makiramay | Pagpapakita ng empatiya sa ibang miyembro ng komunidad |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
+| Pag-uugali |
 |:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| 🚫 Sekswal na wika o imahe, at sekswal na atensyon o pagsulong |
+| 🚫 Trolling, insulto, o mapanlait na komento |
+| 🚫 Personal o pampulitikang pag-atake |
+| 🚫 Pampubliko o pribadong panliligalig |
+| 🚫 Pag-publish ng pribadong impormasyon ng ibang tao nang walang tahasang pahintulot |
+| 🚫 Iba pang pag-uugali na makatuwirang itinuturing na hindi naaangkop sa isang propesyonal na setting |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+Ang mga pagkakataon ng mapang-abuso, panliligalig, o kung hindi man ay hindi katanggap-tanggap na pag-uugali ay maaaring iulat sa mga maintainer sa pamamagitan ng:
 
-| Channel | How |
+| Channel | Paano |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 Mga pribadong channel ng GitHub | Makipag-ugnayan sa pamamagitan ng GitHub Security o Talakayan |
+| 📧 Direktang contact | Direktang makipag-ugnayan sa mga nagpapanatili |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Lahat ng ulat ay susuriin at iimbestigahan kaagad at patas.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Ang Code of Conduct na ito ay inangkop mula sa [Contributor Covenant](https://www.contributor-covenant.org), bersyon 2.1.

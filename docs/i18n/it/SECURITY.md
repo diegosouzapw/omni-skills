@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Se scopri un problema di sicurezza in Omni Skills, non aprire prima un problema pubblico.**
 
-Please report through one of these private channels:
+Si prega di segnalare tramite uno di questi canali privati:
 
-| Channel | How |
+| Canale | Come |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Avviso sulla sicurezza di GitHub | [Apri un avviso privato](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Contatto diretto | Contatta direttamente i manutentori |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Componente o percorso interessato
+- 🔄 Passaggi di riproduzione
+- ⚠️Valutazione dell'impatto
+- 🧪 Qualsiasi materiale di prova necessario per verificare il problema
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Puntiamo a riconoscere le segnalazioni entro 48 ore**e a dare priorità alle soluzioni in base all'impatto.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Questa policy riguarda il runtime e le superfici dei contenuti del repository:
 
-| Component | Path |
+| Componente | Percorso |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI e programma di installazione | `strumenti/cestino/` |
+| 📚Biblioteche condivise | `strumenti/lib/` |
+| ⚙️ Script di creazione e convalida | `strumenti/script/` |
+| 📦 Artefatti del catalogo generati | `dist/` |
+| 🌐 Pacchetti API, MCP e A2A | `pacchetti/` |
+| 🧠 Contenuti delle competenze | `skills/` — in particolare comandi shell, accesso alla rete, flussi di credenziali o indicazioni sensibili alla sicurezza |---
 
 ## Architettura
 
-The repository relies on the following security controls:
+Il repository si basa sui seguenti controlli di sicurezza:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Controllo | Descrizione |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Campo di rischio | I metadati delle competenze includono un livello di "rischio" dichiarato |
+| 📊 Punteggio | La convalida calcola i punteggi di maturità, best practice, qualità e sicurezza |
+| 🔍Scanner statico | Esamina `SKILL.md`, i file pacchettizzati e gli script di supporto |
+| 🦠 Scanner opzionali | Ricerca hash ClamAV e VirusTotal (se configurata) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Controllo | Descrizione |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Sicurezza del percorso | Installare i flussi utilizzare i controlli di sicurezza del percorso |
+| 🔒La lista consentita scrive | Scritture sidecar MCP locali limitate da una lista consentita |
+| 👁️ Impostazioni predefinite di prova | Per impostazione predefinita, gli strumenti orientati alla scrittura eseguono il dry-run a meno che non siano esplicitamente disabilitati |
+| 🔐 Autenticazione e limiti | Autenticazione portante/chiave API, autenticazione runtime amministratore, limitazione della velocità, liste consentite CORS/IP |
+| 📋Audit | Registrazione di controllo, modalità di manutenzione e ID di richiesta |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Controllo | Descrizione |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Manifesti di checksum | Checksum SHA-256 per gli archivi generati |
+| ✍️ Firme | Verifica della firma distaccata in CI prima della pubblicazione |
+| 🧪 Controlli fumogeni | Esercitare le superfici di runtime fornite prima del rilascio |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Il principale lavoro di sicurezza rimanente**non**è un rafforzamento di base. Gli elementi aperti sono:
 
-| Area | Status |
+| Zona | Stato |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢Governance d'impresa | Identità esterna, policy gateway e integrazione WAF al di sopra degli attuali controlli in-process |
+| 🔌 Scrittori clienti MCP | Scrittori più ampi solo quando i contratti di configurazione pubblica sono sufficientemente stabili |
+| 📊 Perfezionamento dello scanner | Affinamento continuo in modo che le competenze eccezionali rimangano chiaramente separate da quelle semplicemente ben strutturate |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Ogni abilità dichiara uno di questi livelli di "rischio":
 
-| Risk Level | Meaning |
+| Livello di rischio | Significato |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `sicuro` | Non sono previste operazioni distruttive |
+| 🟡 `attenzione` | Può modificare file o interagire con sistemi esterni |
+| 🔴 `offensivo` | Test di sicurezza o flussi di lavoro contraddittori che richiedono un'autorizzazione esplicita |
+| ⛔ `critico` | Operazioni ad alto impatto o a livello di sistema |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Poiché Omni Skills fornisce helper eseguibili, strumenti locali compatibili con i file system e scrittori di configurazione specifici del client, queste classi di vulnerabilità dovrebbero essere trattate con**alta priorità**anche se appaiono "solo locali":
 
-| Category | Examples |
+| Categoria | Esempi |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Traversata del percorso | Escape della directory tramite percorsi di installazione o configurazione delle competenze |
+| 🔗Sicurezza del collegamento simbolico | Collegamento simbolico seguito durante l'installazione o l'estrazione dell'archivio |
+| 🖥️ Esecuzione del comando | Iniezione di comandi arbitrari tramite contenuto di abilità o script |
+| 📦 Verifica archivio | Bypass del checksum o della verifica della firma |
+| 🔓 Bypass autenticazione | Limitazione della velocità o bypass dell'autenticazione su API/MCP |
+| 🔌 Ignora lista consentita | Elusione della lista consentita del sidecar locale |
+| 🦠 Evasione dallo scanner | Classi di falsi negativi in ​​scanner statici o esterni |

@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**สัญญาเชิงพฤติกรรมสำหรับประสบการณ์การติดตั้งพร้อมคำแนะนำใน Omni Skills CLI**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+ข้อมูลจำเพาะนี้กำหนดลักษณะการติดตั้งที่แนะนำซึ่งอยู่ด้านบนของแบ็กเอนด์ตัวติดตั้งที่มีอยู่
 
-It does not replace:
+มันไม่ได้แทนที่:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- กระแสธงผู้เชี่ยวชาญในปัจจุบัน
+- รายการการติดตั้งแบบเลือก
 
-It defines:
+มันกำหนด:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- วิธีเข้าสู่โหมดแนะนำ
+- วิธีการเลือกจุดหมายปลายทาง
+- วิธีเลือกขอบเขตการติดตั้ง
+- ข้อมูลพรีวิวอะไรที่ต้องแสดง
+- การยืนยันและการดำเนินการทำงานอย่างไร---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI ควรเข้าสู่โหมดการติดตั้งที่แนะนำเมื่อ:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- ผู้ใช้รัน `ทักษะรอบด้าน' โดยไม่มี args ใน TTY
+- ผู้ใช้รัน `omni-skills install` โดยไม่มีตัวเลือกใน TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+CLI ควรสนับสนุนโหมดนำทางที่ชัดเจนผ่านตัวเลือกเฉพาะ เช่น:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- `การติดตั้งทักษะรอบด้าน --ชี้แนะ`
 
-- `omni-skills install --guided`
+โหมดนี้ควรใช้งานได้แม้ในขณะที่อินพุตถูกไปป์และไม่ได้ต่อกับ TTY ตราบใดที่อินพุตมาตรฐานยังใช้งานได้### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+เมื่อถูกเรียกใช้โดยไม่มี TTY และไม่มีโหมดแนะนำอย่างชัดเจน:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- คงพฤติกรรมเริ่มต้นในปัจจุบันไว้
+- อย่าปิดกั้นการรอข้อความแจ้ง---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+การติดตั้งที่แนะนำต้องรองรับคลาสปลายทางสองคลาส:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+แต่ละเป้าหมายที่รู้จักแก้ไขเป็น:
 
-Each known target resolves to:
+- ฉลากที่มนุษย์สามารถอ่านได้
+- รหัสเครื่องมือภายใน
+- ติดตั้งแฟล็ก
+- เส้นทางที่ได้รับการแก้ไข
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+เป้าหมายที่ทราบที่จำเป็น:
 
-Required known targets:
+- คล็อด โค้ด
+- เคอร์เซอร์
+- ราศีเมถุน CLI
+- โคเด็กซ์ CLI
+- คิโระ
+- ต้านแรงโน้มถ่วง
+- โอเพ่นโค้ด### 3.2 Custom Path Target
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+โหมดเส้นทางที่กำหนดเองต้อง:
 
-### 3.2 Custom Path Target
-
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- แจ้งเส้นทาง
+- แก้ไข `~`
+- ปรับให้เป็นเส้นทางที่แน่นอน
+- แสดงเส้นทางที่ได้รับการแก้ไขในหน้าตัวอย่าง---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+การติดตั้งที่แนะนำต้องรองรับ:### 4.1 Full Library
 
-### 4.1 Full Library
+เทียบเท่ากับการติดตั้งปัจจุบันที่ไม่มี `--skill` หรือ `--bundle`### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+อนุญาตให้ผู้ใช้เลือกหนึ่งทักษะที่เผยแพร่### 4.3 Single Bundle
 
-### 4.2 Single Skill
+อนุญาตให้ผู้ใช้เลือกบันเดิลที่ได้รับการดูแลจัดการหนึ่งรายการและแก้ไขสมาชิกที่เผยแพร่แล้ว### 4.4 Search Then Install
 
-Lets the user select one published skill.
+ให้ผู้ใช้:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- ป้อนคำค้นหา
+- ตรวจสอบผลลัพธ์
+- เลือกทักษะหรือชุดรวม
+- เข้าสู่หน้าตัวอย่างการติดตั้งต่อไป---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+ก่อนดำเนินการ การติดตั้งที่แนะนำต้องแสดง:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+-ป้ายปลายทาง
+- เส้นทางปลายทาง
+- ติดตั้งขอบเขต
+- ทักษะหรือชุดที่เลือกถ้ามี
+- คำสั่ง CLI ที่เทียบเท่า
 
-Optional but recommended:
+ไม่บังคับแต่แนะนำ:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- สรุปข้อมูลเมตาของทักษะที่เลือก
+- สรุปความพร้อมของชุดรวม---
 
 ## 6. Execution Contract
 
-After confirmation:
+หลังจากการยืนยัน:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- แนะนำผู้ได้รับมอบหมายการติดตั้งไปยังแบ็กเอนด์ตัวติดตั้งที่มีอยู่
+- มันไม่ได้ปรับใช้ไฟล์ที่เขียนเองอีกครั้ง
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+การแสดงตัวอย่างคำสั่งและอาร์กิวเมนต์ตัวติดตั้งที่ได้รับมอบสิทธิ์จริงจะต้องตรงกันทุกประการ---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+หลังจากดำเนินการสำเร็จ ผลลัพธ์การติดตั้งที่แนะนำควรแสดง:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- ตัวบ่งชี้ความสำเร็จ
+- เส้นทางปลายทางสุดท้าย
+- คำสั่งที่ถูกดำเนินการ
+- การดำเนินการที่แนะนำถัดไป
 
-Example next actions:
+ตัวอย่างการดำเนินการถัดไป:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- ใช้ทักษะในไคลเอนต์ที่เลือก
+- เรียกใช้ 'หมอ'
+- เรียกใช้ `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+สิ่งต่อไปนี้ยังคงใช้ได้และไม่เปลี่ยนแปลง:
 
-- `omni-skills --cursor --skill omni-figma`
-- `omni-skills --bundle full-stack`
-- `omni-skills --path ./skills`
-- `omni-skills find figma --tool cursor --install --yes`
+- `ทักษะรอบด้าน --เคอร์เซอร์ --ทักษะ omni-figma`
+- `ทักษะรอบด้าน --รวมกลุ่มเต็มสแต็ค`
+- `ทักษะรอบด้าน --path ./skills`
+- `ทักษะรอบด้าน ค้นหาฟิกม่า --เคอร์เซอร์เครื่องมือ --ติดตั้ง --ใช่`
 
-Guided mode adds behavior. It does not remove existing behavior.
+โหมดแนะนำจะเพิ่มพฤติกรรม มันไม่ได้ลบพฤติกรรมที่มีอยู่

@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**Paket adalah pilihan keterampilan yang dikurasi dan ditempatkan di atas katalog.**Ketujuh paket pemula kini sepenuhnya didukung oleh keterampilan yang diterbitkan.---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+`--bundle`**tidak**menginstal paket khusus. Itu:
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 Memperluas definisi bundel yang dipilih
+2. ✅ Menginstal hanya anggota yang saat ini tersedia di katalog
+3. ✅ Membuat rencana pemasangan konkrit dari anggota bundel yang diterbitkan```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+Berdasarkan katalog yang dihasilkan saat ini (`dist/bundles.json`):
 
-| Bundle | Intended For | Available | Members |
+| Paket | Ditujukan Untuk | Tersedia | Anggota |
 |:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| 🧰**penting**| Setiap pengembang |**4/4**| `temukan-keterampilan` ✅ · `brainstorming` ✅ · `arsitektur` ✅ · `debugging` ✅ |
+| 🌐**tumpukan penuh**| Pengembang web & aplikasi |**5/5**| `desain-frontend` ✅ · `desain-api` ✅ · `desain-database` ✅ · `omni-figma` ✅ · `arus autentikasi` ✅ |
+| 🎨**desain**| Sistem desain & aksesibilitas |**4/4**| `desain-frontend` ✅ · `omni-figma` ✅ · `operasi-sistem-desain` ✅ · `audit aksesibilitas` ✅ |
+| 🛡️**keamanan**| Insinyur keamanan |**4/4**| `auditor-keamanan` ✅ · `pemindai kerentanan` ✅ · `respon-insiden` ✅ · `pemodelan ancaman` ✅ |
+| ⚙️**pengembangan**| Platform & infra |**5/5**| `buruh pelabuhan-ahli` ✅ · `kubernetes` ✅ · `terraform` ✅ · `tinjauan-observabilitas` ✅ · `rekayasa rilis` ✅ |
+| 🤖**insinyur ai**| Pengembang LLM & ML |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**pemelihara oss**| Pengelola OSS |**4/4**| `temukan-keterampilan` ✅ · `buat-pr` ✅ · `log perubahan` ✅ · `dokumentasi` ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = Diterbitkan dan dapat diinstal---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+- Anda menginginkan**titik awal yang dikurasi**untuk sebuah domain
+- Anda ingin menginstal paket yang tetap**terkurasi dan spesifik untuk domain**
+- Anda menginginkan cara cepat untuk menginstal set kerja lengkap untuk suatu peran### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+- Anda ingin**instalasi minimal terjamin**
+- Anda sudah mengetahui**keterampilan sebenarnya**yang Anda perlukan
+- Anda menginginkan**jejak sekecil mungkin**alih-alih kumpulan kerja yang dikurasi---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
+| Sasaran | Perintah |
 |:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
-| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| 🎯 Instal keterampilan khusus yang diterbitkan | `npx keterampilan omni --kursor --keterampilan omni-figma` |
+| 📦 Paket starter yang didukung penuh | `npx omni-skill --cursor --bundle full-stack` |
+| 🎨 Paket sistem desain | `npx omni-skills --kursor --desain bundel` |
+| 🔧 Paket alur kerja OSS | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Paket alur kerja keamanan | `npx omni-skills --cursor --bundle security` |
+| ⚙️ Paket DevOps | `npx omni-skills --cursor --bundle devops` |
+| 🤖 Paket insinyur AI | `npx keterampilan omni --codex --bundle ai-engineer` |
+| 🔎 Cari sebelum memutuskan | `npx keterampilan omni temukan figma` |
+| 📋 Lihat semua ketersediaan bundel | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+Gunakan alat `search_skills` atau `preview_install` dengan parameter bundel.### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

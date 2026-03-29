@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**بيان JSON القابل للقراءة آليًا والذي تم إنشاؤه من كل `SKILL.md` أثناء مسار الإنشاء - عقد البيانات الفردي الذي تستهلكه جميع أسطح وقت التشغيل.**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ميزة | الدولة |
+|:--------|:-----|
+| ✅ تم إنشاؤها تلقائيًا من SKILL.md | تم التنفيذ |
+| ✅ يتم استهلاكها بواسطة CLI وAPI وMCP وA2A | تم التنفيذ |
+| ✅ أرشيفات بالمجاميع الاختبارية | تم التنفيذ |
+| ✅ التصنيف الأمني ​​| تم التنفيذ |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**هام**: البيان عبارة عن**قطعة أثرية**. مؤلف المساهمون `SKILL.md` - يستمد المسار بيان JSON تلقائيًا.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+يوجد البيان بحيث تستهلك**جميع أسطح وقت التشغيل**نفس الشكل المعياري:
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| السطح | كيف يستخدم البيانات |
+|:--------|:--------------------|
+| 🖥️**CLI**| بحث، تثبيت التخطيط، تشخيص الطبيب |
+| 🌐**واجهة برمجة التطبيقات**| استجابات نقطة النهاية، والتصفية، وروابط التنزيل |
+| 🔌**MCP**| استجابات الأداة، محتويات الموارد |
+| 🤖**A2A**| حمولات الاكتشاف والتوصية |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| قطعة أثرية | المسار |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 البيانات الوصفية الجذرية | `metadata.json` |
+| 📊 البيانات الوصفية لكل مهارة | `skills/<skill>/metadata.json` |
+| 📋 فهرس المهارات | `skills_index.json` |
+| 📚 الكتالوج المنشور | `dist/catalog.json` |
+| 📌 بيان لكل مهارة | `dist/manifests/<skill>.json` |
+| 📦 أرشيف مضغوط | `dist/archives/<skill>.zip` |
+| 📦 أرشيف تاربول | `dist/archives/<skill>.tar.gz` |
+| 🔒 بيان المجموع الاختباري | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| المجال | الوصف |
+|:------|:-----------|
+| `إصدار المخطط` | نسخة من مخطط البيان |
+| "معرف" | معرف المهارة الثابتة من حقل "الاسم" |
+| `سبيكة` | سبيكة الدليل ضمن `المهارات/` |
+| `اسم العرض` | عنوان يمكن قراءته من العنوان الأول |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| المجال | الوصف |
+|:------|:-----------|
+| `الوصف` | ملخص قصير من frontmatter |
+| `الإصدار` | إصدار المهارة، مستقل عن إصدار حزمة npm |
+| `الفئة` | الفئة الأساسية (تطبيع) |
+| `الفئة_الخامة` | الفئة الأصلية من frontmatter |
+| `التصنيف` | بيانات تعريف التصنيف الكاملة مع الرجوع المستنتج |
+| `العلامات` | العلامات القابلة للبحث |
+| "التعقيد" | `مبتدئ` · `متوسط` · `متقدم` `خبير` |
+| `خطر` | `آمن` · `تحذير` · `هجومي` · `حرج` |
+| `المصدر` | `الفريق الشامل` · `المجتمع` `الرسمي` |
+| `المؤلف` | سلسلة الإسناد |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| المجال | الوصف |
+|:------|:-----------|
+| "نقطة الدخول" | المسار الأساسي `SKILL.md` |
+| `المسارات.الجذر` | دليل المهارات داخل الريبو |
+| `paths.manifest` | تم إنشاء مسار البيان في `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+| المجال | الوصف |
+|:------|:-----------|
+| `الأدوات` | معرفات الأداة من frontmatter |
+| `تثبيت_الأهداف` | بيانات تعريف التثبيت لكل أداة |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+يتضمن كل هدف تثبيت ما يلي: `الأداة`، و`النطاق`، و`المسار_الافتراضي`، و`علم_التثبيت`، و`سلوك_المثبت_الحالي`، و`الاستدعاء`.### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| المجال | الوصف |
+|:------|:-----------|
+| `الموارد_الفرعية` | الأقسام الفرعية للمهارة ('المراجع'، 'الوكلاء'، 'الأصول') |
+| `عدد_القطع الأثرية` | إجمالي عدد الملفات في حزمة المهارات |
+| `references_count` | عدد المستندات المرجعية |
+| `عدد_الوكلاء` | عدد تكوين الوكيل |
+| `عدد_الأصول` | عدد ملفات الأصول |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| المجال | الوصف |
+|:------|:-----------|
+| "استراتيجية" | تثبيت الإستراتيجية (على سبيل المثال، "نسخ دليل المهارات") |
+| `المثبت_الحالي` | سلوك التثبيت الذي يمكن قراءته بواسطة الإنسان |
+| `وصفات` | وصفات التثبيت لكل عميل |### 📊 Classification
 
-### 📊 Classification
+| القسم | الحقول |
+|:--------|:------|
+| 🎯 `النضج` | `مستوى_المهارة`، `تصنيف_مستوى_المهارة` |
+| 📋 `أفضل_الممارسات` | `النتيجة` (0-100) |
+| ⭐ `الجودة` | `النتيجة` (0-100) |
+| 🛡️ `الأمن` | `النتيجة`، `الحالة` |
+| ✅ `التحقق` | "الحالة" |### 📝 Content
 
-| Section | Fields |
-|:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+الإشارات المشتقة: `body_length`، `content_length`، `body_lines`، `word_count`، بالإضافة إلى العلامات الهيكلية للأمثلة، وأقسام استكشاف الأخطاء وإصلاحها، وما إلى ذلك.### 📁 Artifacts
 
-### 📝 Content
-
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+صفيف كل ملف يتم شحنه داخل دليل المهارات:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**أنواع العناصر**: `نقطة الإدخال` · `المرجع` `الوكيل` `الأصول` `الترخيص` `الدعم`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| المجال | الوصف |
+|:------|:-----------|
+| `entrypoint_sha256` | تجزئة SKILL.md |
+| `package_sha256` | ملخص حتمي من قائمة القطع الأثرية المطلوبة |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 إصدار حزمة المستودع وإصدار المهارة هما اهتمامان مختلفان. الحزمة حاليًا هي "0.1.3"، بينما تحمل المهارات الفردية نسخًا دلالية خاصة بها.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
-|:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| القاعدة | الأساس المنطقي |
+|:-----|:---------|
+| ✅ يجب أن يبقى قابلاً للاشتقاق من الريبو | لا يلزم تأليف البيان اليدوي |
+| ✅ يمكن إضافة حقول اختيارية جديدة | التوافق إلى الأمام |
+| ⚠️ الحقول الموجودة يجب أن تظل مستقرة | التوافق مع الإصدارات السابقة |
+| 🚫 لا توجد بيانات مكتوبة بخط اليد | الاشتقاق الزمني مصدر الحقيقة |

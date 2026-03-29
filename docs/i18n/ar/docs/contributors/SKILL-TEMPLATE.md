@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
-date_added: "2026-01-01"
-date_updated: "2026-01-01"
----
-
-<!--
+الاسم: اسم المهارة الخاص بك
+description: "وصف من سطر واحد لما تفعله هذه المهارة ومتى يتم استخدامها"
+الإصدار: "0.1.3"
+الفئة: التنمية
+العلامات: [علامة المثال-1، علامة المثال-2]
+التعقيد: متوسط
+الخطر: آمن
+الأدوات: [كلود كود، المؤشر، جيميني-كلي، مضاد الجاذبية]
+المصدر: المجتمع
+المؤلف: "اسمك"
+تاريخ_الإضافة: "01-01-2026"
+تاريخ_التحديث: "01-01-2026"
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+سيؤدي التحقق من صحة تشغيل npm إلى إنشاء المهارات/<skill>/metadata.json باستخدام المعيار
+التصنيف ومستوى النضج ونقاط أفضل الممارسات ونقاط الجودة والأمان
+نتائج المسح. أنماط الحقن الفوري، والأوامر المدمرة، والنصوص المحفوفة بالمخاطر
+سيتم وضع علامة على البنيات تلقائيًا.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+إصدار المهارة مستقل عن إصدار الحزمة. استخدم الدلالية
+الإصدار المنطقي للمهارة نفسها.
 
-For a top-scoring skill, also read:
-- docs/contributors/HIGH-SCORE-PLAYBOOK.md
-- docs/contributors/QUALITY-BAR.md
+للحصول على أعلى الدرجات في المهارة، اقرأ أيضًا:
+- المستندات/المساهمين/HIGH-SCORE-PLAYBOOK.md
+- المستندات/المساهمين/QUALITY-BAR.md
 -->
-
-
 ## نظرة عامة
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 جمل تشرح عمل هذه المهارة ومن يستفيد منها وسبب وجودها.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- استخدم عندما تحتاج إلى [السيناريو 1]
+- استخدم عندما تريد [السيناريو 2]
+- استخدم عند العمل مع [السيناريو 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+اشرح المفهوم الأساسي الذي يحتاج الوكيل إلى فهمه.### Concept 2
 
-### Concept 2
+اشرح مفهومًا أساسيًا آخر.## Workflow
 
-Explain another foundational concept.
+| المرحلة | الإخراج | لماذا يهم |
+|:------|:-------|:--------------|
+| تأطير الهدف | هدف واضح | يمنع التوجيه الغامض |
+| نفذ الخطوات | سير عمل جاهز للوكيل | يجعل المهارة قابلة للتنفيذ |
+| التحقق من صحة الإخراج | إشارة القبول | يرفع الثقة |
 
-## Workflow
+1. الخطوة الأولى في سير العمل
+2. الخطوة الثانية في سير العمل
+3. الخطوة الثالثة في سير العمل### 1. First Step
 
-| Phase | Output | Why it matters |
-|:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+تعليمات مفصلة للخطوة الأولى.### 2. Second Step
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+تعليمات مفصلة للخطوة الثانية.### 3. Third Step
 
-### 1. First Step
-
-Detailed instructions for the first step.
-
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+تعليمات مفصلة للخطوة الثالثة.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**شرح:**ما يوضحه هذا المثال.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**شرح:**ما يوضحه هذا المثال.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**افعل:**اتبع هذه الممارسة الجيدة
+- ✅**افعل:**اتبع هذه الممارسة أيضًا
+- ❌**لا تفعل:**تجنب هذا النمط المضاد
+- ❌**لا تفعل:**لا تفعل هذا أبدًا## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**الأعراض:**كيف تعرف أن هذه هي المشكلة.
+**الحل:**كيفية إصلاحه.## Related Skills
 
-## Related Skills
+- `@dependent-skill-1` — متى يجب استخدام هذا بدلاً من ذلك
+- `@dependent-skill-2` — كيف يكمل هذا مهارتك## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [قائمة المراجعة](references/checklist.md)
+- [مثال عملي](examples/example.md)
+- [البرنامج النصي المساعد](scripts/render_example.py)

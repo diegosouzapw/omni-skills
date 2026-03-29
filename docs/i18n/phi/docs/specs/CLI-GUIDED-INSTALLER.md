@@ -5,70 +5,58 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Kontrata sa pag-uugali para sa may gabay na karanasan sa pag-install sa Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Tinutukoy ng spec na ito ang ginabayang pag-uugali sa pag-install na nasa ibabaw ng kasalukuyang installer backend.
 
-It does not replace:
+Hindi nito pinapalitan ang:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- kasalukuyang dalubhasang flag na dumadaloy
+- pumipili na pag-install ng mga manifest
 
-It defines:
+Tinutukoy nito ang:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- kung paano ipinasok ang guided mode
+- kung paano pinipili ang mga destinasyon
+- kung paano napili ang saklaw ng pag-install
+- anong impormasyon ng preview ang dapat ipakita
+- kung paano gumagana ang kumpirmasyon at pagpapatupad---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+Ang CLI ay dapat pumasok sa guided install mode kapag:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- ang gumagamit ay nagpapatakbo ng `omni-skills` nang walang args sa isang TTY
+- nagpapatakbo ang user ng `omni-skills install` nang walang mga tagapili sa isang TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
-
-The CLI should also support explicit guided mode through a dedicated option, such as:
+Dapat ding suportahan ng CLI ang tahasang guided mode sa pamamagitan ng isang nakalaang opsyon, gaya ng:
 
 - `omni-skills install --guided`
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Dapat gumana ang mode na ito kahit na ang input ay naka-pipe at hindi naka-attach sa isang TTY, hangga't available ang standard input.### 2.3 Non-Interactive Safety Rule
 
-### 2.3 Non-Interactive Safety Rule
+Kapag na-invoke nang walang TTY at walang guided mode, tahasang hiniling:
 
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- panatilihin ang kasalukuyang default na gawi
+- huwag harangan ang paghihintay para sa mga senyas---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Dapat na sinusuportahan ng ginabayang pag-install ang dalawang patutunguhang klase:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Ang bawat kilalang target ay nagpapasya sa:
 
-Each known target resolves to:
+- label na nababasa ng tao
+- panloob na tool id
+- i-install ang bandila
+- nalutas na landas
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
-
-Required known targets:
+Mga kinakailangang kilalang target:
 
 - Claude Code
 - Cursor
@@ -76,98 +64,78 @@ Required known targets:
 - Codex CLI
 - Kiro
 - Antigravity
-- OpenCode
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Ang custom na path mode ay dapat na:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- prompt para sa isang landas
+- lutasin ang `~`
+- gawing normal sa ganap na landas
+- ipakita ang nalutas na landas sa preview---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Dapat na sinusuportahan ng ginabayang pag-install:### 4.1 Full Library
 
-### 4.1 Full Library
+Katumbas ng kasalukuyang pag-install na walang `--skill` o `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Hinahayaan ang user na pumili ng isang nai-publish na kasanayan.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Hinahayaan ang user na pumili ng isang na-curate na bundle at lutasin ang mga na-publish na miyembro.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Hinahayaan ang gumagamit na:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- magpasok ng query sa paghahanap
+- suriin ang mga resulta
+- pumili ng kasanayan o bundle
+- magpatuloy sa pag-install ng preview---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Bago isagawa, dapat ipakita ang may gabay na pag-install:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- label ng patutunguhan
+- landas ng patutunguhan
+- I-install ang saklaw
+- napiling kasanayan o bundle kung naaangkop
+- katumbas na utos ng CLI
 
-Optional but recommended:
+Opsyonal ngunit inirerekomenda:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- napiling buod ng metadata ng kasanayan
+- buod ng availability ng bundle---
 
 ## 6. Execution Contract
 
-After confirmation:
+Pagkatapos ng kumpirmasyon:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- may gabay na mga delegado sa pag-install sa kasalukuyang installer backend
+- hindi nito muling ipinapatupad ang pagsusulat mismo ng file
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Ang preview ng command at ang aktwal na itinalagang installer args ay dapat na eksaktong magkatugma.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+Pagkatapos ng matagumpay na pagpapatupad, dapat ipakita ang ginabayang resulta ng pag-install:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- tagapagpahiwatig ng tagumpay
+- huling patutunguhan na landas
+- utos na naisakatuparan
+- susunod na inirerekomendang pagkilos
 
-Example next actions:
+Halimbawa ng mga susunod na aksyon:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- gamitin ang kasanayan sa napiling kliyente
+- tumakbo ng 'doktor'
+- patakbuhin ang `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Ang mga sumusunod ay nananatiling wasto at hindi nagbabago:
 
 - `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
 - `omni-skills --path ./skills`
 - `omni-skills find figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Ang guided mode ay nagdaragdag ng gawi. Hindi nito inaalis ang umiiral na gawi.

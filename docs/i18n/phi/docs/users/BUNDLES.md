@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**Ang mga bundle ay mga na-curate na tagapili ng kasanayan na naka-layer sa itaas ng catalog.**Ang lahat ng pitong starter bundle ay ganap na ngayong sinusuportahan ng mga naka-publish na kasanayan.---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+Ang `--bundle` ay**hindi**nag-i-install ng isang espesyal na package. ito:
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 Pinapalawak ang napiling kahulugan ng bundle
+2. ✅ Ini-install lamang ang mga miyembro na kasalukuyang available sa catalog
+3. ✅ Bumubuo ng konkretong plano sa pag-install mula sa mga na-publish na miyembro ng bundle```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+Batay sa kasalukuyang nabuong catalog (`dist/bundles.json`):
 
-| Bundle | Intended For | Available | Members |
+| Bundle | Inilaan Para sa | Magagamit | Mga miyembro |
 |:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| 🧰**mga mahahalaga**| Bawat developer |**4/4**| `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐**full-stack**| Mga web at app devs |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨**disenyo**| Mga sistema ng disenyo at accessibility |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
+| 🛡️**seguridad**| Mga inhinyero ng seguridad |**4/4**| `security-auditor` ✅ · `vulnerability-scanner` ✅ · `insidente-response` ✅ · `threat-modeling` ✅ |
+| ⚙️**devops**| Platform at infra |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖**ai-engineer**| LLM at ML devs |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**oss-maintainer**| Mga tagapangasiwa ng OSS |**4/4**| `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = Nai-publish at na-install---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+- Gusto mo ng**curate na panimulang punto**para sa isang domain
+- Gusto mong mag-install ng mga plan na mananatiling**curate at domain-specific**
+- Gusto mo ng mabilis na paraan para mag-install ng kumpletong hanay ng trabaho para sa isang tungkulin### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+- Gusto mo ng**garantisadong minimal na pag-install**
+- Alam mo na ang**eksaktong kasanayan**na kailangan mo
+- Gusto mo ang**pinakamaliit na posibleng bakas ng paa**sa halip na isang na-curate na working set---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
+| Layunin | Utos |
 |:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🎯 Mag-install ng partikular na nai-publish na kasanayan | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Ganap na suportadong starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Bundle ng mga sistema ng disenyo | `npx omni-skills --cursor --bundle design` |
 | 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| 🛡️ Bundle ng daloy ng trabaho sa seguridad | `npx omni-skills --cursor --bundle security` |
 | ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
 | 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| 🔎 Maghanap bago magpasya | `npx omni-skills find figma` |
+| 📋 Tingnan ang lahat ng availability ng bundle | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+Gamitin ang mga tool na `search_skills` o `preview_install` na may mga parameter ng bundle.### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

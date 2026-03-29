@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Wszystko, czego potrzebujesz, aby wywoływać umiejętności, uruchamiać usługi i obsługiwać środowisko wykonawcze Omni Skills.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+Aby zapoznać się z pełnymi operacyjnymi przepływami pracy, zobacz [🔧 System Runbook](../ Operations/RUNBOOK.md).
+Aby zapoznać się z pełną mapą poleceń użytkownika końcowego, zobacz [🧭 Podręcznik użytkownika CLI](./CLI-USER-GUIDE.md).---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
-|:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| Stan | Szczegóły |
+|:-------|:------------|
+| ✅**Dostępne teraz**| 32 opublikowane umiejętności z zakresu projektowania, architektury, debugowania, dokumentacji, OSS, bezpieczeństwa, DevOps, inżynierii AI, danych, narzędzi i przepływów pracy związanych z uczeniem maszynowym |
+| 📦**Pakiety**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` i `oss-maintainer` są dziś w pełni wspierane |
+| 🔌**Zasięg MCP**| 7 klientów z możliwością instalacji, 16 klientów z możliwością konfiguracji, 33 pierwszorzędne cele konfiguracyjne, 19 profili konfiguracyjnych |
+| 🤖**Trwałość A2A**| Trwałość lokalna pamięci, JSON lub SQLite, wznawianie ponownego uruchamiania, opcjonalny wykonawca procesu i opcjonalna dzierżawiona koordynacja dla współdzielonych pracowników |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
-|:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| Klient | Jak wywołać | Ścieżka umiejętności |
+|:-------|:------------|:------------|
+| 🔵**Kod Claude**| `>> /nazwa-umiejętności pomóż mi...` | `~/.claude/umiejętności/` |
+| 🟡**Gemini CLI**| `Użyj @nazwa-umiejętności, aby...` | `~/.gemini/umiejętności/` |
+| 🔴**Kodeks CLI**| `Użyj @nazwa-umiejętności, aby...` | `~/.codex/umiejętności/` |
+| 🟢**Kiro**| Umiejętności ładują się automatycznie na żądanie | `~/.kiro/umiejętności/` |
+| 🟣**Antygrawitacja**| `Użyj @nazwa-umiejętności, aby...` | `~/.gemini/antygrawitacja/umiejętności/` |
+| 🔵**Kursor**| `@nazwa-umiejętności` na czacie | `~/.kursor/umiejętności/` |
+| ⚪**OpenCode**| `uruchom kod open @nazwa-umiejętności` | `.opencode/umiejętności/` |
+| ⬛**Drugi pilot**| Wklej ręcznie treść umiejętności | Nie dotyczy |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Klienci tacy jak Continuous, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline i Kilo Code używają przede wszystkim przepływu `config-mcp`, a nie katalogu umiejętności.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Uwagi:**
+> - W interaktywnym terminalu `npx omni-skills` otwiera teraz proces instalacji z przewodnikiem
+> - `npx omni-skills ui` otwiera wizualną powłokę Ink z akcjami instalacji, wykrywania i uruchamiania usług
+> - powłoka wizualna przechowuje ostatnie instalacje, ostatnie uruchomienia usług, ulubione i nazwane ustawienia wstępne w `~/.omni-skills/state/ui-state.json`
+> - Poza TTY, pełna instalacja jest nadal domyślna, jeśli nie podano selektora
+> - `--skill` instaluje tylko wybrane opublikowane umiejętności
+> - `--bundle` rozwija pakiet i instaluje opublikowane elementy zadeklarowane w wybranym pakiecie
+> - `find` obsługuje ponad 12 flag filtrów: `jakość`, `najlepsze_practices`, `poziom_umiejętności`, `bezpieczeństwo`, `kategoria`, `narzędzie`, `ryzyko` i inne
+> - `config-mcp` to właściwa ścieżka dla produktów obsługujących MCP, które nie mają pierwszorzędnego katalogu umiejętności---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+Interfejs CLI to ujednolicone narzędzie operacyjne, a nie tylko instalator.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+Powłoka wizualna obsługuje:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- instalacja z przewodnikiem ze znanym klientem lub wyborem niestandardowej ścieżki
+- wyszukaj, a następnie zainstaluj bez zapamiętywania flag
+- kierowany podgląd konfiguracji klienta MCP i przepływy zapisu
+- Uruchamianie z przewodnikiem MCP, API i A2A
+- ostatnie instalacje i ponowne uruchomienie usług
+- zapisane ustawienia wstępne instalacji i usług
+- ulubione umiejętności i pakiety### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| # | Wskazówka |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | Odwołaj się do nazwy umiejętności w wierszu zachęty |
+| 2️⃣ | Podaj dokładny artefakt, kod lub kontekst projektu, którego potrzebuje agent |
+| 3️⃣ | Preferuj `--skill`, aby instalacja zajmowała minimalną ilość miejsca |
+| 4️⃣ | Użyj „doktora” i „dymu” przed debugowaniem problemów z pakietem lub wykonaniem |
+| 5️⃣ | Używaj pakietów jako wyselekcjonowanych instalacji domeny teraz, gdy wszystkie siedem pakietów startowych ma pełne wsparcie |
+| 6️⃣ | Użyj `find --install --yes` do wykrywania i instalacji w jednym procesie |
+| 7️⃣ | Zobacz [runbook](../ Operations/RUNBOOK.md), aby uzyskać informacje na temat uwierzytelniania, limitów szybkości, podpisywania i weryfikacji środowisk środowiskowych |

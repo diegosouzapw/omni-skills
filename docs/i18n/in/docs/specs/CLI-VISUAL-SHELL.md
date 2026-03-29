@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**इंक-आधारित टर्मिनल यूआई के लिए व्यवहारिक अनुबंध `ओमनी-स्किल्स यूआई` द्वारा उजागर किया गया।**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+विज़ुअल शेल मौजूदा सीएलआई और इंस्टॉलर इंजन के शीर्ष पर एक निर्देशित उत्पाद सतह है।
 
-It does not replace:
+यह प्रतिस्थापित नहीं करता:
 
-- expert flag-based CLI usage
-- `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- विशेषज्ञ ध्वज-आधारित सीएलआई उपयोग
+- `टूल्स/बिन/इंस्टॉल.जेएस`
+- निर्देशित पाठ स्थापित प्रवाह
+- एपीआई, एमसीपी, या ए2ए रनटाइम व्यवहार
 
-It defines:
+यह परिभाषित करता है:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- `ओमनी-स्किल्स यूआई` का व्यवहार
+- `ओमनी-स्किल्स यूआई --टेक्स्ट` के लिए फ़ॉलबैक अनुबंध
+- स्थानीय स्थिति और पूर्व निर्धारित दृढ़ता
+- निर्देशित सेवा लॉन्च पूर्वावलोकन
+- हाल के इंस्टालेशन और सर्विस रन के लिए दोहराव योग्यता---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`ओमनी-स्किल्स यूआई` ने इंक-आधारित विज़ुअल शेल लॉन्च किया।
 
-The visual shell is the primary non-expert terminal experience for:
+विज़ुअल शेल इसके लिए प्राथमिक गैर-विशेषज्ञ टर्मिनल अनुभव है:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- प्रवाह स्थापित करें
+- कैटलॉग-पहली खोज और इंस्टॉल
+- एमसीपी स्टार्टअप
+- एपीआई स्टार्टअप
+- A2A स्टार्टअप
+- डॉक्टर और स्मोक हैंडऑफ़### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` ने रीडलाइन-आधारित फ़ॉलबैक इंटरफ़ेस लॉन्च किया है।
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+यह तब उपयोगी रहता है जब:
 
-This remains useful when:
+- एक टर्मिनल समृद्ध शेल को सही ढंग से प्रस्तुत नहीं कर सकता है
+- रॉ-मोड व्यवहार बाधित है
+- न्यूनतम टेक्स्ट फ़ॉलबैक को प्राथमिकता दी जाती है### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+विज़ुअल शेल सेवा रनटाइम को पुन: कार्यान्वित नहीं करता है या इंस्टॉलेशन सीधे नहीं लिखता है।
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+पूर्वावलोकन और पुष्टि के बाद, यह स्पष्ट रूप से बाहर निकलता है और मौजूदा सीएलआई एंट्रीपॉइंट को समतुल्य तर्कों और पर्यावरण चर के साथ निष्पादन सौंपता है।---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+होम स्क्रीन को प्रदर्शित होना चाहिए:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- कौशल स्थापित करें
+- ढूंढें और इंस्टॉल करें
+- मौजूद होने पर हालिया इंस्टाल दोहराएँ
+- मौजूद होने पर सहेजे गए इंस्टॉल प्रीसेट चलाएं
+- एक सेवा प्रारंभ करें
+- मौजूद होने पर हाल की सेवाओं को दोहराएं
+- मौजूद होने पर सहेजे गए सर्विस प्रीसेट चलाएँ
+- डॉक्टर
+- धुआं
+- बाहर निकलें
 
-The home screen should also surface:
+होम स्क्रीन भी सतह पर आनी चाहिए:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- वर्तमान प्रकाशित बंडल उपलब्धता
+- स्थानीय राज्य हालिया, प्रीसेट और पसंदीदा के लिए गिना जाता है---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+विज़ुअल शेल इंस्टॉल फ़्लो को समर्थन करना चाहिए:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- ज्ञात ग्राहक लक्ष्य चयन
+- कस्टम पथ चयन
+- पूर्ण लाइब्रेरी स्थापित करें
+- एक-कौशल स्थापित करें
+- एक-बंडल इंस्टाल
+- खोजें-फिर-इंस्टॉल करें
+- लिखने से पहले पूर्वावलोकन करें
+- पूर्व निर्धारित बचत
+- पसंदीदा कौशल या बंडल टॉगल
 
-Preview must show:
+पूर्वावलोकन दिखाना होगा:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- समाधान किया गया लक्ष्य लेबल
+- सुलझा हुआ रास्ता
+- दायरा स्थापित करें
+- लागू होने पर चयनित कौशल या बंडल
+- समतुल्य सीएलआई कमांड---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+विज़ुअल शेल को निम्न के लिए स्टार्टअप का मार्गदर्शन करना चाहिए:### 5.1 MCP
 
-### 5.1 MCP
+- परिवहन: `stdio`, `stream`, `sse`
+- मोड: `केवल पढ़ने के लिए` या `स्थानीय`
+- नेटवर्क ट्रांसपोर्ट के लिए होस्ट/पोर्ट कॉन्फ़िगरेशन
+- स्पष्ट कमांड पूर्वावलोकन### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- मेज़बान
+- बंदरगाह
+- मूल या कठोर प्रोफ़ाइल
+- कठोर वाहक या एपीआई कुंजी प्रमाणीकरण
+- कठोर दर-सीमा पैरामीटर
+- ऑडिट लॉग सक्षमीकरण
+- स्पष्ट कमांड पूर्वावलोकन### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- मेज़बान
+- बंदरगाह
+- स्टोर प्रकार: `मेमोरी`, `json`, `sqlite`
+- टिकाऊ मोड के लिए स्टोर पथ
+- निष्पादक: `इनलाइन`, `प्रक्रिया`
+- कतार-सक्षम SQLite मोड
+- साझा-पट्टा मोड के लिए मतदान अंतराल और पट्टा अवधि
+- स्पष्ट कमांड पूर्वावलोकन---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+दृश्य शेल स्थानीय-केवल स्थिति में बना रहता है:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+राज्य में वर्तमान में शामिल हैं:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- हाल की स्थापनाएँ
+- हाल ही में सेवा का शुभारंभ
+- इंस्टॉल प्रीसेट नाम दिया गया
+- नामित सेवा प्रीसेट
+- पसंदीदा कौशल
+- पसंदीदा बंडल
 
-The shell must support:
+शेल को समर्थन करना चाहिए:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- हाल के इंस्टॉल को दोबारा चलाना
+- हाल ही में लॉन्च की गई सेवा को दोबारा चलाना
+- नामित इंस्टॉल प्रीसेट का पुन: उपयोग करना
+- नामित सेवा प्रीसेट का पुन: उपयोग करना---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+दृश्य कोश योगात्मक है।
 
-These flows must remain valid and stable:
+ये प्रवाह वैध और स्थिर रहना चाहिए:
 
-- `npx omni-skills --cursor --skill omni-figma`
-- `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- `एनपीएक्स ओमनी-स्किल्स --कर्सर --स्किल ओमनी-फिग्मा`
+- `एनपीएक्स ओमनी-स्किल्स--बंडल डेवॉप्स`
+- `एनपीएक्स ओमनी-स्किल्स इंस्टाल --गाइडेड`
+- `एनपीएक्स ओम्नी-स्किल्स फाइंड फिग्मा --टूल कर्सर --इंस्टॉल --यस`
+- `एनपीएक्स ओमनी-स्किल्स एमसीपी स्ट्रीम --लोकल`
+- `एनपीएक्स ओमनी-स्किल्स एपीआई --पोर्ट 3333`
+- `एनपीएक्स ओमनी-स्किल्स ए2ए--पोर्ट 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+विज़ुअल शेल को कभी भी स्वयं को स्पष्ट विशेषज्ञ कमांड पथों में बाध्य नहीं करना चाहिए।---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+विज़ुअल शेल को स्थिति बनानी चाहिए और स्पष्ट लिखना चाहिए।
 
-It must:
+यह होना चाहिए:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- हैंडऑफ़ लिखने से पहले पूर्वावलोकन इंस्टॉल होता है
+- निष्पादन से पहले पूर्वावलोकन सेवा लॉन्च आदेश
+- जहां व्यावहारिक हो वहां गुप्त सामग्री को स्पष्ट-पाठ कमांड पूर्वावलोकन से दूर रखें
+- केवल स्थानीय स्तर पर ही स्थिति कायम रखें
+- दृश्य शेल के बाहर गैर-संवादात्मक सीएलआई व्यवहार को संरक्षित करें

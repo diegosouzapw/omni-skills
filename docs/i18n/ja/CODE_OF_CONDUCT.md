@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+メンバー、貢献者、管理者としての私たちは、年齢、身体の大きさ、目に見える障害、目に見えない障害、民族、性的特徴、性自認と性表現、経験のレベル、教育、社会経済的地位、国籍、外見、人種、カースト、肌の色、宗教、性的アイデンティティと性的指向に関係なく、このプロジェクトとコミュニティに**ハラスメントのない体験**を提供することを誓約します。---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
-|:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+|行動 |例 |
+|:---------|:----------|
+| 💬 歓迎の言葉 |コミュニケーションにおいて包括的かつ敬意を払う |
+| 🤝 違いを尊重する |異なる視点や経験を大切にする |
+| 📝 建設的な批判 |フィードバックを適切に受け入れ、提供する |
+| 🎯 コミュニティ重視 |プロジェクトとコミュニティにとって最善のものを優先する |
+| ❤️ 共感 |他のコミュニティメンバーに対して共感を示す |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
-|:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+|行動 |
+|:------|
+| 🚫 性的な言葉や画像、性的な注目や性的誘い |
+| 🚫 荒らし、侮辱、軽蔑的なコメント |
+| 🚫 個人的または政治的攻撃 |
+| 🚫 公的または私的な嫌がらせ |
+| 🚫 明示的な許可なく他人の個人情報を公開する |
+| 🚫 職業的環境において不適切と合理的にみなされるその他の行為 |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+虐待、嫌がらせ、またはその他の容認できない行為の事例は、次の方法でメンテナに報告される場合があります。
 
-| Channel | How |
+|チャンネル |どのように |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 GitHub プライベート チャネル | GitHub セキュリティまたはディスカッション経由で連絡する |
+| 📧 直接連絡 |メンテナに直接連絡してください |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**すべての報告は迅速かつ公正に検討および調査されます。**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+この行動規範は、[寄稿者規約](https://www.contributor-covenant.org)、バージョン 2.1 を基にしています。

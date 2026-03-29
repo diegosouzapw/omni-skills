@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**العقد السلوكي لتجربة التثبيت الموجهة في Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+تحدد هذه المواصفات سلوك التثبيت الموجه الموجود أعلى الواجهة الخلفية للمثبت الحالي.
 
-It does not replace:
+لا يحل محل:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- تدفقات العلم الخبراء الحالي
+- بيانات التثبيت الانتقائية
 
-It defines:
+وهو يحدد:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- كيفية الدخول إلى الوضع الموجه
+- كيفية اختيار الوجهات
+- كيفية اختيار نطاق التثبيت
+- ما هي معلومات المعاينة التي يجب عرضها
+- كيفية عمل التأكيد والتنفيذ---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+يجب أن تدخل واجهة سطر الأوامر (CLI) في وضع التثبيت الموجه عندما:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- يقوم المستخدم بتشغيل "omni-skills" بدون وسائط في جهاز TTY
+- يقوم المستخدم بتشغيل برنامج "omni-skills install" بدون أي محددات في جهاز TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+يجب أن تدعم واجهة سطر الأوامر (CLI) أيضًا الوضع الموجه الصريح من خلال خيار مخصص، مثل:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- "تثبيت المهارات الشاملة - الموجهة".
 
-- `omni-skills install --guided`
+يجب أن يعمل هذا الوضع حتى عندما يتم توصيل الإدخال عبر الأنابيب وعدم توصيله بجهاز TTY، طالما أن الإدخال القياسي متاح.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+عند الاستدعاء بدون TTY وبدون الوضع الموجه يُطلب بشكل صريح:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- الحفاظ على السلوك الافتراضي الحالي
+- لا تمنع انتظار المطالبات---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+يجب أن يدعم التثبيت الموجه فئتين للوجهة:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+كل هدف معروف يقرر ما يلي:
 
-Each known target resolves to:
+- تسمية يمكن قراءتها بواسطة الإنسان
+- معرف الأداة الداخلية
+- تثبيت العلم
+- مسار الحل
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+الأهداف المعروفة المطلوبة:
 
-Required known targets:
+- كلود كود
+- المؤشر
+- الجوزاء CLI
+- كوديكس كلي
+- كيرو
+- مضاد الجاذبية
+- الكود المفتوح### 3.2 Custom Path Target
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+يجب أن يكون وضع المسار المخصص:
 
-### 3.2 Custom Path Target
-
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- المطالبة بالمسار
+- حل `~`
+- التطبيع إلى المسار المطلق
+- إظهار المسار الذي تم حله في المعاينة---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+يجب أن يدعم التثبيت الموجه ما يلي:### 4.1 Full Library
 
-### 4.1 Full Library
+يعادل التثبيت الحالي بدون `--skill` أو `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+يتيح للمستخدم تحديد مهارة واحدة منشورة.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+يتيح للمستخدم تحديد حزمة واحدة منسقة وحل الأعضاء المنشورين.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+يتيح للمستخدم:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- أدخل استعلام البحث
+- فحص النتائج
+- اختر مهارة أو حزمة
+- تابع في معاينة التثبيت---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+قبل التنفيذ، يجب أن يعرض التثبيت الموجه ما يلي:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- تسمية الوجهة
+- مسار الوجهة
+- نطاق التثبيت
+- المهارة أو الحزمة المحددة إن أمكن
+- أمر CLI مكافئ
 
-Optional but recommended:
+اختياري لكن موصى به:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- ملخص البيانات الوصفية للمهارة المختارة
+- ملخص توفر الحزمة---
 
 ## 6. Execution Contract
 
-After confirmation:
+بعد التأكيد:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- مندوبو التثبيت الموجهون إلى الواجهة الخلفية للمثبت الحالي
+- لا إعادة تنفيذ الملف يكتب نفسه
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+يجب أن تتطابق معاينة الأمر ووسائط التثبيت المفوضة الفعلية تمامًا.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+بعد التنفيذ الناجح، يجب أن تظهر نتيجة التثبيت الموجه:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- مؤشر النجاح
+- مسار الوجهة النهائية
+- الأمر الذي تم تنفيذه
+- الإجراء الموصى به التالي
 
-Example next actions:
+مثال على الإجراءات التالية:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- استخدام المهارة الموجودة في العميل المحدد
+- تشغيل "الطبيب".
+- قم بتشغيل تيار mcp --local---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+تبقى الأمور التالية سارية دون تغيير:
 
-- `omni-skills --cursor --skill omni-figma`
-- `omni-skills --bundle full-stack`
-- `omni-skills --path ./skills`
-- `omni-skills find figma --tool cursor --install --yes`
+- `المهارات الشاملة - المؤشر - المهارة الشاملة
+- `` المهارات الشاملة - حزمة كاملة المكدس ''
+- `المهارات الشاملة - المسار ./المهارات`
+- `` Omni-skills find Figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+يضيف الوضع الموجه السلوك. ولا يزيل السلوك الموجود.

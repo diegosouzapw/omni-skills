@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Kung makatuklas ka ng isyu sa seguridad sa Omni Skills, huwag munang magbukas ng pampublikong isyu.**
 
-Please report through one of these private channels:
+Mangyaring mag-ulat sa pamamagitan ng isa sa mga pribadong channel na ito:
 
-| Channel | How |
+| Channel | Paano |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 GitHub Security Advisory | [Magbukas ng pribadong advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Direktang Pakikipag-ugnayan | Direktang makipag-ugnayan sa mga tagapangasiwa |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Apektadong bahagi o landas
+- 🔄 Mga hakbang sa pagpaparami
+- ⚠️ Pagsusuri ng epekto
+- 🧪 Anumang proof-of-concept na materyal na kailangan para ma-verify ang isyu
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Nilalayon naming kilalanin ang mga ulat sa loob ng 48 oras**at unahin ang mga pag-aayos ayon sa epekto.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Sinasaklaw ng patakarang ito ang runtime ng repositoryo at mga surface ng content:
 
-| Component | Path |
+| Bahagi | Landas |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI at installer | `tools/bin/` |
+| 📚 Mga nakabahaging aklatan | `tools/lib/` |
+| ⚙️ Gumawa at mga script ng pagpapatunay | `mga tool/script/` |
+| 📦 Mga nabuong artifact ng catalog | `dist/` |
+| 🌐 API, MCP, at A2A packages | `mga pakete/` |
+| 🧠 Nilalaman ng kasanayan | `skills/` — lalo na ang mga shell command, network access, credential flows, o security-sensitive na gabay |---
 
 ## Arkitektura
 
-The repository relies on the following security controls:
+Ang repository ay umaasa sa mga sumusunod na kontrol sa seguridad:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Kontrolin | Paglalarawan |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Field ng peligro | Kasama sa metadata ng kasanayan ang isang ipinahayag na antas ng `panganib` |
+| 📊 Pagmamarka | Kinakalkula ng pagpapatunay ang maturity, pinakamahusay na kagawian, kalidad, at mga marka ng seguridad |
+| 🔍 Static scanner | Sinusuri ang `SKILL.md`, mga naka-package na file, at mga script ng helper |
+| 🦠 Opsyonal na mga scanner | ClamAV at VirusTotal hash lookup (kapag na-configure) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Kontrolin | Paglalarawan |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Kaligtasan sa daan | Ang mga daloy ng pag-install ay gumagamit ng mga pagsusuri sa kaligtasan ng landas |
+| 🔒 Allowlist writes | Lokal na MCP sidecar ay nagsusulat na pinigilan ng isang allowlist |
+| 👁️ Mga default na dry-run | Ang mga tool na nakatuon sa pagsulat ay default sa dry-run maliban kung tahasang hindi pinagana |
+| 🔐 Pagpapahayag at mga limitasyon | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
+| 📋 Pag-audit | Audit logging, maintenance mode, at request ID |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Kontrolin | Paglalarawan |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Checksum manifests | Mga checksum ng SHA-256 para sa mga nabuong archive |
+| ✍️ Mga Lagda | Detached signature verification sa CI bago ang publikasyon |
+| 🧪 Mga pagsusuri sa usok | Mag-ehersisyo sa mga runtime surface bago ilabas |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Ang pangunahing gawaing panseguridad na natitira ay**hindi**baseline hardening. Ang mga bukas na item ay:
 
-| Area | Status |
+| Lugar | Katayuan |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Pamamahala ng negosyo | Panlabas na pagkakakilanlan, patakaran sa gateway, at pagsasama ng WAF sa itaas ng mga kasalukuyang nasa prosesong kontrol |
+| 🔌 Mga manunulat ng kliyente ng MCP | Ang mga mas malawak na manunulat lamang kapag ang mga kontrata ng pampublikong config ay sapat na matatag |
+| 📊 Pagpino ng scanner | Ang patuloy na pagpipino upang ang mga pambihirang kasanayan ay manatiling malinaw na nakahiwalay sa mga mahusay lamang ang pagkakaayos |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Ang bawat kasanayan ay nagdedeklara ng isa sa mga antas ng `panganib` na ito:
 
-| Risk Level | Meaning |
+| Antas ng Panganib | Ibig sabihin |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `ligtas` | Walang inaasahang mapanirang operasyon |
+| 🟡 `pag-iingat` | Maaaring baguhin ang mga file o makipag-ugnayan sa mga panlabas na system |
+| 🔴 `nakakasakit` | Pagsusuri sa seguridad o adversarial workflow na nangangailangan ng tahasang awtorisasyon |
+| ⛔ `kritikal` | Mga operasyong may mataas na epekto o antas ng system |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Dahil ang Omni Skills ay nagpapadala ng mga executable helper, filesystem-aware local tooling, at client-specific config writers, ang mga vulnerability class na ito ay dapat ituring bilang**high priority**kahit na "lokal lang" ang mga ito:
 
-| Category | Examples |
+| Kategorya | Mga halimbawa |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Path traversal | Directory escape sa pamamagitan ng skill install o config paths |
+| 🔗 Kaligtasan ng Symlink | Symlink na sumusunod sa panahon ng pag-install o pagkuha ng archive |
+| 🖥️ Pagpapatupad ng utos | Arbitrary command injection sa pamamagitan ng nilalaman ng kasanayan o mga script |
+| 📦 Pag-verify ng archive | Bypass ng checksum o signature verification |
+| 🔓 Awth bypass | Rate-limiting o authentication bypass sa API/MCP |
+| 🔌 Allowlist bypass | Lokal na sidecar allowlist circumvention |
+| 🦠 Pag-iwas sa scanner | Maling-negatibong mga klase sa static o panlabas na mga scanner |

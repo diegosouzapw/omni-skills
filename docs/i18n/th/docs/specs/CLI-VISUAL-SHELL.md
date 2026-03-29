@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**สัญญาด้านพฤติกรรมสำหรับ UI เทอร์มินัลที่ใช้หมึกซึ่งเปิดเผยโดย `ui ทักษะรอบด้าน''**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Visual Shell คือพื้นผิวผลิตภัณฑ์ที่แนะนำซึ่งอยู่ด้านบนของ CLI และกลไกการติดตั้งที่มีอยู่
 
-It does not replace:
+มันไม่ได้แทนที่:
 
-- expert flag-based CLI usage
+- การใช้ CLI ตามแฟล็กของผู้เชี่ยวชาญ
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- ขั้นตอนการติดตั้งข้อความแนะนำ
+- พฤติกรรมรันไทม์ API, MCP หรือ A2A
 
-It defines:
+มันกำหนด:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- พฤติกรรมของ `ui ทักษะรอบด้าน'
+- สัญญาทางเลือกสำหรับ `omni-skills ui --text`
+- รัฐท้องถิ่นและความคงอยู่ที่ตั้งไว้ล่วงหน้า
+- ตัวอย่างการเปิดตัวบริการพร้อมคำแนะนำ
+- การทำซ้ำสำหรับการติดตั้งและการบริการล่าสุด---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`omni-skills ui` เปิดตัวเชลล์ภาพที่ใช้หมึก
 
-The visual shell is the primary non-expert terminal experience for:
+Visual Shell เป็นประสบการณ์เทอร์มินัลหลักที่ไม่ใช่ผู้เชี่ยวชาญสำหรับ:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- ติดตั้งโฟลว์
+- การค้นพบและติดตั้งแค็ตตาล็อกครั้งแรก
+- การเริ่มต้น MCP
+- การเริ่มต้น API
+- การเริ่มต้น A2A
+- หมอและแฮนด์ออฟควัน### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` เปิดตัวอินเทอร์เฟซสำรองที่ใช้บรรทัดอ่าน
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+สิ่งนี้ยังคงมีประโยชน์เมื่อ:
 
-This remains useful when:
+- เทอร์มินัลไม่สามารถเรนเดอร์เชลล์ที่สมบูรณ์ยิ่งขึ้นได้อย่างถูกต้อง
+- พฤติกรรมโหมด Raw ถูกจำกัด
+- แนะนำให้ใช้ข้อความสำรองน้อยที่สุด### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Visual Shell ไม่ได้ปรับใช้รันไทม์บริการหรือการเขียนการติดตั้งโดยตรง
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+หลังจากการดูตัวอย่างและการยืนยัน ระบบจะออกจากการทำงานอย่างหมดจดและส่งการดำเนินการไปยังจุดเข้าใช้งาน CLI ที่มีอยู่ด้วยอาร์กิวเมนต์และตัวแปรสภาพแวดล้อมที่เทียบเท่ากัน---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+หน้าจอหลักจะต้องแสดง:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- ติดตั้งทักษะ
+- ค้นหาและติดตั้ง
+- ทำซ้ำการติดตั้งล่าสุดเมื่อมี
+- เรียกใช้การตั้งค่าล่วงหน้าการติดตั้งที่บันทึกไว้เมื่อมี
+- เริ่มบริการ
+- ทำซ้ำบริการล่าสุดเมื่อมี
+- เรียกใช้การตั้งค่าบริการที่บันทึกไว้ล่วงหน้าเมื่อมี
+- หมอ
+- ควัน
+- ออก
 
-The home screen should also surface:
+หน้าจอหลักควรปรากฏขึ้น:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- ความพร้อมใช้งานของชุดรวมที่เผยแพร่ในปัจจุบัน
+- การนับสถานะท้องถิ่นสำหรับรายการล่าสุด ค่าที่ตั้งล่วงหน้า และรายการโปรด---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+ขั้นตอนการติดตั้ง Visual Shell ต้องรองรับ:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- การเลือกเป้าหมายลูกค้าที่รู้จัก
+- การเลือกเส้นทางที่กำหนดเอง
+- การติดตั้งไลบรารีแบบเต็ม
+- การติดตั้งทักษะเดียว
+- การติดตั้งชุดเดียว
+- ค้นหาแล้วติดตั้ง
+- ดูตัวอย่างก่อนที่จะเขียน
+- การบันทึกที่ตั้งไว้ล่วงหน้า
+- ทักษะที่ชื่นชอบหรือการสลับมัด
 
-Preview must show:
+การแสดงตัวอย่างจะต้องแสดง:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- แก้ไขป้ายกำกับเป้าหมายแล้ว
+- เส้นทางที่ได้รับการแก้ไข
+- ติดตั้งขอบเขต
+- ทักษะหรือชุดที่เลือกเมื่อสามารถใช้ได้
+- คำสั่ง CLI ที่เทียบเท่า---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+Visual Shell จะต้องเป็นแนวทางในการเริ่มต้นสำหรับ:### 5.1 MCP
 
-### 5.1 MCP
+- การขนส่ง: `stdio`, `stream`, `sse`
+- โหมด: 'อ่านอย่างเดียว' หรือ 'ท้องถิ่น'
+- การกำหนดค่าโฮสต์/พอร์ตสำหรับการขนส่งผ่านเครือข่าย
+- แสดงตัวอย่างคำสั่งที่ชัดเจน### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- โฮสต์
+- พอร์ต
+- โปรไฟล์พื้นฐานหรือแข็ง
+- ผู้ถือที่แข็งตัวหรือการรับรองความถูกต้องของคีย์ API
+- พารามิเตอร์ขีดจำกัดอัตราที่แข็งตัว
+- การเปิดใช้งานบันทึกการตรวจสอบ
+- แสดงตัวอย่างคำสั่งที่ชัดเจน### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- โฮสต์
+- พอร์ต
+- ประเภทร้านค้า: `หน่วยความจำ`, `json`, `sqlite`
+- เส้นทางร้านค้าสำหรับโหมดทนทาน
+- ผู้ดำเนินการ: 'อินไลน์', 'กระบวนการ'
+- โหมด SQLite ที่เปิดใช้งานคิว
+- ช่วงเวลาการสำรวจและระยะเวลาการเช่าสำหรับโหมดการเช่าร่วม
+- แสดงตัวอย่างคำสั่งที่ชัดเจน---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+วิชวลเชลล์ยังคงมีสถานะเฉพาะในเครื่องใน:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+รัฐในปัจจุบันประกอบด้วย:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- การติดตั้งล่าสุด
+- การเปิดตัวบริการล่าสุด
+- ชื่อการตั้งค่าล่วงหน้าการติดตั้ง
+- ที่ตั้งไว้บริการที่มีชื่อ
+- ทักษะที่ชื่นชอบ
+- บันเดิลสุดโปรด
 
-The shell must support:
+เชลล์จะต้องรองรับ:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- เล่นซ้ำการติดตั้งล่าสุด
+- เล่นซ้ำการเปิดตัวบริการล่าสุด
+- นำค่าที่ตั้งล่วงหน้าการติดตั้งที่มีชื่อมาใช้ซ้ำ
+- นำค่าที่ตั้งล่วงหน้าของบริการที่มีชื่อมาใช้ซ้ำ---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+เปลือกภาพเป็นส่วนเสริม
 
-These flows must remain valid and stable:
+โฟลว์เหล่านี้จะต้องยังคงถูกต้องและมีเสถียรภาพ:
 
-- `npx omni-skills --cursor --skill omni-figma`
-- `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- `npx omni-ทักษะ --เคอร์เซอร์ --ทักษะ omni-figma`
+- `npx ทักษะรอบด้าน --bundle devops`
+- `การติดตั้งทักษะ npx omni --guided`
+- `npx omni-skills ค้นหา figma --tool cursor --install --yes`
+- `npx omni-ทักษะ mcp สตรีม --local`
+- `npx ทักษะ Omni api -- พอร์ต 3333`
+- `npx ทักษะ omni a2a -- พอร์ต 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+วิชวลเชลล์ต้องไม่บังคับตัวเองเข้าสู่พาธคำสั่งผู้เชี่ยวชาญที่ชัดเจน---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+วิชวลเชลล์ควรทำให้สถานะและการเขียนชัดเจน
 
-It must:
+จะต้อง:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- ดูตัวอย่างการติดตั้งก่อนที่จะเขียนแฮนด์ออฟ
+- ดูตัวอย่างคำสั่งเปิดบริการก่อนดำเนินการ
+- เก็บเนื้อหาที่เป็นความลับไม่ให้แสดงตัวอย่างคำสั่งข้อความที่ชัดเจนหากทำได้จริง
+- คงอยู่ในสถานะเฉพาะในพื้นที่เท่านั้น
+- รักษาพฤติกรรม CLI แบบไม่โต้ตอบไว้ภายนอกเปลือกภาพ

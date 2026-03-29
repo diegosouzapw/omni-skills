@@ -5,107 +5,89 @@
 ---
 
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
-
----
+>**ओमनी स्किल्स के लिए आर्किटेक्चर विकास योजना: इंस्टॉलर-फर्स्ट रिपॉजिटरी से लेकर साझा कैटलॉग रनटाइम पॉवरिंग सीएलआई, एपीआई, एमसीपी और ए2ए बिना लॉजिक डुप्लिकेट किए।**---
 
 ## 📊 Current Platform Areas
 
-| Phase | Name | Status |
+| चरण | नाम | स्थिति |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Current |
-| 2️⃣ | Read-Only Catalog API | ✅ Current |
-| 3️⃣ | MCP Discovery Surface | ✅ Current |
-| 4️⃣ | Local Install and Config Surface | ✅ Current |
-| 5️⃣ | A2A Orchestration | ✅ Current |
+| 1️⃣ | अनुबंध और कलाकृतियाँ | ✅ वर्तमान |
+| 2️⃣ | केवल पढ़ने योग्य कैटलॉग एपीआई | ✅ वर्तमान |
+| 3️⃣ | एमसीपी डिस्कवरी सरफेस | ✅ वर्तमान |
+| 4️⃣ | स्थानीय इंस्टाल और कॉन्फिग सतह | ✅ वर्तमान |
+| 5️⃣ | A2A आर्केस्ट्रा | ✅ वर्तमान |### ✅ What Exists Today
 
-### ✅ What Exists Today
+- `dist/` में मशीन-पठनीय कैटलॉग कलाकृतियाँ
+- खोज, बंडल, तुलना, इंस्टॉल योजना और डाउनलोड के लिए एंडपॉइंट कवरेज के साथ केवल पढ़ने योग्य HTTP एपीआई
+- `stdio`, स्ट्रीम करने योग्य HTTP और SSE ट्रांसपोर्ट के साथ MCP सर्वर
+- अनुमत सूची और `config-mcp` प्रवाह के साथ स्थानीय साइडकार
+- 7 इंस्टाल-सक्षम क्लाइंट, 16 कॉन्फिग-सक्षम क्लाइंट, 33 एमसीपी कॉन्फिग लक्ष्य, और 19 कॉन्फिग प्रोफाइल
+- `फुल-स्टैक`, `सुरक्षा`, `डेवॉप्स` और `एआई-इंजीनियर` के अंदर `ऑथ-फ्लो`, `खतरे-मॉडलिंग`, `रिलीज़-इंजीनियरिंग` और `संदर्भ-इंजीनियरिंग` के माध्यम से गहन बंडल विशेषज्ञता
+- SHA-256 चेकसम और रिलीज टैग पर अलग किए गए हस्ताक्षर के साथ प्रति-कौशल अभिलेखागार (`ज़िप`, `tar.gz`)
+- एपीआई गवर्नेंस बेसलाइन: बियरर/एपीआई-कुंजी ऑथ, एडमिन रनटाइम ऑथ, रेट लिमिटिंग, ऑडिट लॉगिंग, सीओआरएस/आईपी अनुमति सूचियां, ट्रस्ट प्रॉक्सी, रखरखाव मोड और अनुरोध आईडी
+- कार्य जीवनचक्र के साथ A2A रनटाइम, JSON/SQLite टिकाऊपन, पुनरारंभ पुनरारंभ, SSE स्ट्रीमिंग, रद्दीकरण, पुश सूचनाएं, वैकल्पिक प्रक्रिया निष्पादक और ऑप्ट-इन लीज़ समन्वय### 🔭 Future Expansion Areas
 
-- machine-readable catalog artifacts in `dist/`
-- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
-- MCP server with `stdio`, streamable HTTP, and SSE transports
-- local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
-- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
-- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
-- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
+मुख्य रोडमैप अब वर्तमान प्लेटफ़ॉर्म दायरे का वर्णन करता है। शेष वस्तुएँ भविष्य के विस्तार क्षेत्र हैं, मूलभूत अंतराल नहीं:
 
-### 🔭 Future Expansion Areas
+- इस बिंदु से आगे केवल अत्यधिक चयनात्मक एमसीपी परिवर्धन, और केवल वहीं जहां आधिकारिक सार्वजनिक दस्तावेज़ एक सुरक्षित लेखक को संभव बनाते हैं
+- गहरे संदर्भ पैक और अधिक सिमेंटिक स्कोरिंग ताकि क्लासिफायर असाधारण कौशल को केवल परिष्कृत कौशल से अलग करता रहे
+- यदि प्रोजेक्ट को बाद में गेटवे या आईडीपी एकीकरण की आवश्यकता है, तो मौजूदा इन-प्रोसेस बेसलाइन से परे एंटरप्राइज़-होस्टेड गवर्नेंस
+- नए सक्रिय `डिज़ाइन`, `टूल्स`, `डेटा-एआई` और `मशीन-लर्निंग` ट्रैक में गहन विशेषज्ञता
+- अपने औपचारिक ऑपरेटिंग मॉडल को बनाए रखते हुए निजी एन्हांसर के आसपास परिचालन पॉलिश जारी रखी: ओम्नीराउटर को `सीएक्स/जीपीटी-5.4` पर पिन किया गया, `मॉक` या डीग्रेडेड प्रीफ़्लाइट में होस्ट किया गया क्लाउड, और लैन या स्व-होस्टेड निष्पादन पर विश्वसनीय `लाइव`
+- जारी रिलीज़ और वर्कफ़्लो को केवल गुणवत्तापूर्ण सेवा कार्य के रूप में सख्त किया जाना चाहिए, न कि गायब प्लेटफ़ॉर्म नींव के रूप में## Future Catalog Expansion Track
 
-The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
+पहली दो सार्वजनिक श्रेणी-विस्तार तरंगें अब उतरी हैं:
 
-- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
-- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
-- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
-- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
-- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
+- `डिज़ाइन` → `डिज़ाइन-सिस्टम-ऑप्स`, `एक्सेसिबिलिटी-ऑडिट`, `डिज़ाइन-टोकन-गवर्नेंस`
+- `टूल्स` → `एमसीपी-सर्वर-ऑथरिंग`
+- `डेटा-एआई` → `डेटा-कॉन्ट्रैक्ट`
+- `मशीन-लर्निंग` → `मॉडल-सर्विंग`
 
-## Future Catalog Expansion Track
+अगला अनुशंसित कदम अब केवल श्रेणी सक्रियण नहीं है। यह इन नए सक्रिय कोड-नेटिव ट्रैक्स को गहरा करना है ताकि वे एकल-कौशल आधार के बजाय टिकाऊ उत्पाद सतहों की तरह महसूस करें।
 
-The first two public category-expansion waves are now landed:
+अनुशंसित दिशा:
 
-- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
-- `tools` → `mcp-server-authoring`
-- `data-ai` → `data-contracts`
-- `machine-learning` → `model-serving`
+1. अधिक परिचालन डिज़ाइन-सिस्टम वर्कफ़्लो के साथ `डिज़ाइन` को गहरा करें
+2. संलेखन और प्लगइन-उन्मुख कौशल के साथ `टूल्स` को गहरा करें
+3. कार्यान्वयन-प्रथम पाइपलाइन और उपकरण कौशल के साथ `डेटा-एआई` को गहरा करें
+4. सेवा, प्रशिक्षण और मूल्यांकन संचालन कौशल के साथ `मशीन-लर्निंग' को गहरा करें
 
-The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+श्रेणियाँ जानबूझकर तब तक स्थगित की जाती हैं जब तक कि मजबूत कोड-मूल प्रस्ताव सामने न आएँ:
 
-Recommended direction:
+- `व्यापार`
+- `सामग्री-मीडिया`
 
-1. deepen `design` with more operational design-system workflows
-2. deepen `tools` with authoring and plugin-oriented skills
-3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
-4. deepen `machine-learning` with serving, training, and evaluation operations skills
+उस विस्तार का इतिहास अब इसमें ट्रैक किया गया है:
 
-Categories intentionally deferred unless strong code-native proposals appear:
-
-- `business`
-- `content-media`
-
-That expansion history is now tracked in:
-
-- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-
----
+- [../tasks/TASK-07-CATALOG-SPECIALZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
-- ✅ Introduce a machine-readable source of truth for skills
-- ✅ Support discovery, recommendation, and install planning by agents
-- ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
-
----
+- ✅ वर्तमान `npx omni-skills` वर्कफ़्लो को चालू रखें
+- ✅ कौशल के लिए सत्य का मशीन-पठनीय स्रोत प्रस्तुत करें
+- ✅ एजेंटों द्वारा खोज, अनुशंसा और इंस्टॉल योजना का समर्थन करें
+- ✅ दूरस्थ कैटलॉग चिंताओं को स्थानीय फ़ाइल सिस्टम राइट्स से अलग करें
+- ✅ CLI, API, MCP और A2A में समान मेटाडेटा का पुन: उपयोग करें---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote install-on-user-machine from a hosted server
-- ❌ Replace `SKILL.md` as the canonical authoring format
-- ❌ Require contributors to write manifests by hand
-- ❌ Turn the project into a heavy hosted queue platform by default
-
----
+- ❌ होस्ट किए गए सर्वर से उपयोगकर्ता-मशीन पर रिमोट इंस्टॉल
+- ❌ `SKILL.md` को विहित संलेखन प्रारूप के रूप में बदलें
+- ❌ योगदानकर्ताओं को मैनिफ़ेस्ट हाथ से लिखने की आवश्यकता है
+- ❌ प्रोजेक्ट को डिफ़ॉल्ट रूप से एक हेवी होस्टेड क्यू प्लेटफॉर्म में बदल दें---
 
 ## 🏗️ Target Architecture
 
-One **catalog core** with three protocol surfaces:
+तीन प्रोटोकॉल सतहों के साथ एक**कैटलॉग कोर**:
 
-| Surface | Best For | Mode |
-|:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
-| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
+| सतह | के लिए सर्वश्रेष्ठ | मोड |
+|:--------|:------|:-----|
+| 🌐**रेस्ट एपीआई**| रजिस्ट्री पहुंच, यूआई एकीकरण, तृतीय-पक्ष उपभोक्ता | केवल पढ़ने के लिए |
+| 🔌**एमसीपी**| एजेंट खोज, इंस्टॉल पूर्वावलोकन, कॉन्फ़िगरेशन लेखन, क्लाइंट रेसिपी | केवल पढ़ने योग्य + स्थानीय लेख |
+| 🤖**A2A**| एजेंट-टू-एजेंट ऑर्केस्ट्रेशन और इंस्टॉल-प्लान हैंडऑफ़ | सरल-प्रथम स्थानीय स्थायित्व के साथ कार्य जीवनचक्र |### ⚙️ Core Principle
 
-### ⚙️ Core Principle
-
-> **All protocols consume the same generated artifact family.**
-
-```text
+>**सभी प्रोटोकॉल समान जेनरेट किए गए आर्टिफैक्ट परिवार का उपभोग करते हैं।**```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -115,178 +97,144 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
-
----
+प्रकट साझा अनुबंध रहता है। पुरालेख उस अनुबंध के शीर्ष पर स्थित वितरण कलाकृतियाँ हैं, न कि उसका प्रतिस्थापन।---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Used by hosted API and remote MCP servers.
+होस्टेड एपीआई और रिमोट एमसीपी सर्वर द्वारा उपयोग किया जाता है।
 
-| ✅ Allowed | ❌ Not Allowed |
-|:-----------|:---------------|
-| Search skills | Write to the caller's filesystem |
-| Fetch manifests | Mutate local client config |
-| Compare skills | Infer arbitrary machine state |
-| Recommend bundles | — |
-| Build install plans | — |
+| ✅ अनुमति है | ❌ अनुमति नहीं है |
+|:--------|:------------|
+| खोज कौशल | कॉल करने वाले के फ़ाइल सिस्टम पर लिखें |
+| मैनिफ़ेस्ट लाएँ | स्थानीय क्लाइंट कॉन्फ़िगरेशन को बदलें |
+| कौशल की तुलना करें | मनमानी मशीन स्थिति का अनुमान लगाएं |
+| बंडलों की अनुशंसा करें | — |
+| इंस्टाल प्लान बनाएं | — |### 2️⃣ Local Installer Mode
 
-### 2️⃣ Local Installer Mode
+सीएलआई और एमसीपी साइडकार द्वारा उपयोग किया जाता है।
 
-Used by the CLI and the MCP sidecar.
+| ✅ अनुमति है |
+|:--------|
+| स्थानीय AI क्लाइंट का पता लगाएं |
+| स्थापित कौशल का निरीक्षण करें |
+| फ़ाइल संचालन का पूर्वावलोकन करें |
+| कौशल निर्देशिकाएँ स्थापित करें या हटाएँ |
+| पूर्वावलोकन के बाद स्थानीय एमसीपी कॉन्फिगरेशन लिखें |
 
-| ✅ Allowed |
-|:-----------|
-| Detect local AI clients |
-| Inspect installed skills |
-| Preview file operations |
-| Install or remove skill directories |
-| Write local MCP config after preview |
-
-> 📌 This remains the only mode where real OS writes happen.
-
----
+> 📌 यह एकमात्र मोड है जहां वास्तविक ओएस लेखन होता है।---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Best for registry access, search, comparison, versioned downloads, and install planning.
+रजिस्ट्री एक्सेस, खोज, तुलना, संस्करण डाउनलोड और इंस्टॉल योजना के लिए सर्वोत्तम।
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**अंतबिंदु**: `प्राप्त करें /v1/कौशल` · `प्राप्त करें /v1/कौशल/:id` · `प्राप्त करें /v1/खोज` · `प्राप्त करें /v1/तुलना करें` · `प्राप्त करें /v1/बंडल` · `पोस्ट /v1/इंस्टॉल/योजना` · `प्राप्त करें /healthz`### 🔌 MCP
 
-### 🔌 MCP
+टूल-आधारित खोज, शीघ्र अनुशंसाएँ, इंस्टॉल पूर्वावलोकन और क्लाइंट-विशिष्ट एमसीपी सेटअप के लिए सर्वोत्तम।
 
-Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
+**केवल पढ़ने योग्य उपकरण**: `खोज_कौशल` · `कौशल प्राप्त करें` · `तुलना_कौशल` · `अनुशंसित_कौशल` · `पूर्वावलोकन_इंस्टॉल`
 
-**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+**स्थानीय उपकरण**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
 
-**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+डिस्कवरी हैंडऑफ़, इंस्टॉल-प्लान वर्कफ़्लोज़ और पुन: प्रारंभ करने योग्य एजेंट कार्य निष्पादन के लिए सर्वोत्तम।
 
-### 🤖 A2A
-
-Best for discovery handoff, install-plan workflows, and resumable agent task execution.
-
-**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
-
----
+**वर्तमान संचालन**: `खोज-कौशल`` `अनुशंसा-स्टैक`` `तैयार-इंस्टॉल-योजना`---
 
 ## 🛡️ Security Model
 
-| Principle | Implementation |
-|:----------|:---------------|
-| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
-| 📂 Writes stay local | CLI and MCP sidecar only |
-| 👁️ Preview before write | Dry-run defaults on local mutations |
-| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
-| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
-| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
-
----
+| सिद्धांत | कार्यान्वयन |
+|:-------|:----------------------|
+| 🔒 होस्ट की गई सेवाएँ केवल पढ़ने के लिए हैं | एपीआई और रिमोट एमसीपी कॉलर फाइल सिस्टम को नहीं लिखते हैं |
+| 📂लेखक स्थानीय रहते हैं | केवल सीएलआई और एमसीपी साइडकार |
+| 👁️ लिखने से पहले पूर्वावलोकन करें | स्थानीय उत्परिवर्तनों पर ड्राई-रन डिफ़ॉल्ट |
+| 🔑 ईमानदारी स्पष्ट है | उत्पन्न कलाकृतियों के लिए SHA-256 चेकसम |
+| ✍️ रिलीज़ ट्रस्ट स्पष्ट है | रिलीज़ टैग पर पृथक हस्ताक्षर लागू |
+| ⚠️ जोखिम सामने आ गया है | जोखिम और सुरक्षा मेटाडेटा प्रत्येक रनटाइम सतह पर प्रसारित होता है |---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- documented target architecture
-- defined manifest schema
-- generated metadata, catalog, manifests, bundles, and archives
+- प्रलेखित लक्ष्य वास्तुकला
+- परिभाषित मेनिफेस्ट स्कीम
+- उत्पन्न मेटाडेटा, कैटलॉग, मैनिफ़ेस्ट, बंडल और पुरालेख### Phase 2: Catalog Service
 
-### Phase 2: Catalog Service
+- एक्सप्रेस 5 के साथ केवल पढ़ने योग्य HTTP एपीआई
+- खोज, फ़िल्टरिंग, मेनिफेस्ट लुकअप, बंडल लिस्टिंग, तुलना और डाउनलोड
+- पर्यावरण-संचालित होस्टेड गवर्नेंस बेसलाइन### Phase 3: MCP Discovery
 
-- read-only HTTP API with Express 5
-- search, filtering, manifest lookup, bundle listing, comparison, and downloads
-- env-driven hosted governance baseline
+- आधिकारिक `@modelcontextprotocol/sdk` एकीकरण
+- `stdio`, स्ट्रीम करने योग्य HTTP, और SSE ट्रांसपोर्ट
+- साझा कैटलॉग द्वारा समर्थित केवल पढ़ने योग्य उपकरण, संसाधन और संकेत### Phase 4: Local Install and Config Surface
 
-### Phase 3: MCP Discovery
+- अनुमत सूची के साथ स्थानीय साइडकार
+- 7 इंस्टॉल-सक्षम ग्राहकों का पता लगाना
+- 33 लक्ष्य और 19 कॉन्फिग प्रोफाइल में 16 कॉन्फिग-सक्षम ग्राहकों के लिए कॉन्फिग लेखन
+- निर्देशित `config-mcp` सीएलआई और विज़ुअल शेल में प्रवाहित होता है
+- क्लाउड, कर्सर, वीएस कोड, जेमिनी, एंटीग्रेविटी, किरो, कोडेक्स, कंटिन्यू, विंडसर्फ, ओपनकोड, क्लाइन, गिटहब कोपायलट सीएलआई, किलो कोड, जेड, गूज और डेव कंटेनर्स के लिए स्थिर समर्थन### Phase 5: A2A Orchestration
 
-- official `@modelcontextprotocol/sdk` integration
-- `stdio`, streamable HTTP, and SSE transports
-- read-only tools, resources, and prompts backed by the shared catalog
+- `/.well-known/agent.json` पर एजेंट कार्ड
+- `संदेश/भेजें`, `संदेश/स्ट्रीम`, `कार्य/प्राप्त करें`, `कार्य/रद्द करें`, `कार्य/पुनः सदस्यता लें`, और पुश-अधिसूचना कॉन्फ़िगरेशन विधियां
+- पुनरारंभ पुनर्प्राप्ति के साथ JSON और SQLite दृढ़ता
+- वैकल्पिक बाहरी प्रक्रिया निष्पादक
+- SQLite और वैकल्पिक उन्नत Redis समन्वय के लिए श्रमिकों के बीच पट्टे पर निष्पादन का विकल्प चुनें
+- बाह्य निर्भरता के बिना मेमोरी, JSON, या SQLite पर सरल-प्रथम डिफॉल्ट रखे जाते हैं### Current Enhancer Operating Decision
 
-### Phase 4: Local Install and Config Surface
+निजी एन्हांसर का समर्थित `लाइव` मॉडल अब स्पष्ट है:
 
-- local sidecar with allowlisted writes
-- detection for 7 install-capable clients
-- config writing for 16 config-capable clients across 33 targets and 19 config profiles
-- guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
-
-### Phase 5: A2A Orchestration
-
-- agent card at `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
-- JSON and SQLite persistence with restart recovery
-- optional external process executor
-- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
-- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
-
-### Current Enhancer Operating Decision
-
-The private enhancer's supported `live` model is now explicit:
-
-- hosted PR automation runs a preflight-gated `live` attempt
-- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
-- the canonical reliable `live` path remains LAN or local service execution
-- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
-
----
+- होस्टेड पीआर ऑटोमेशन एक प्रीफ्लाइट-गेटेड `लाइव' प्रयास चलाता है
+- यदि सार्वजनिक ओमनीरूट गेटवे अवरुद्ध या अस्थिर है, तो पीआर को अपारदर्शी रूप से विफल होने के बजाय ऑपरेटर-सामना वाले कारण से 'अवरुद्ध' के रूप में चिह्नित किया जाता है
+- विहित विश्वसनीय `लाइव` पथ LAN या स्थानीय सेवा निष्पादन बना रहता है
+- शेड्यूल किया गया निजी GitHub डिफ़ॉल्ट रूप से `मॉक` चलता है जब तक कि कोई ऑपरेटर स्पष्ट रूप से `लाइव` का अनुरोध नहीं करता---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+**निर्णय**: मेनिफेस्ट को साझा अनुबंध के रूप में रखें और वितरण सतह के रूप में हस्ताक्षरित प्रति-कौशल अभिलेखागार को रखें।
 
-**Why**:
-- CLI, API, MCP, and A2A already consume the normalized manifest shape
-- archives are ideal for download and verification, but poor as the only discovery contract
-- this keeps authoring simple and distribution verifiable
+**क्यों**:
+- सीएलआई, एपीआई, एमसीपी और ए2ए पहले से ही सामान्यीकृत प्रकट आकार का उपभोग करते हैं
+- अभिलेख डाउनलोड और सत्यापन के लिए आदर्श हैं, लेकिन एकमात्र खोज अनुबंध के रूप में खराब हैं
+- इससे लेखन सरल और वितरण सत्यापन योग्य रहता है### 2. Private or Premium Catalogs
 
-### 2. Private or Premium Catalogs
+**निर्णय**: समान मैनिफ़ेस्ट और कैटलॉग प्रारूप का पुन: उपयोग करें, और बाहरी रूप से लेयर ऑथ या पॉलिसी का उपयोग करें।
 
-**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+**क्यों**:
+- यह डेटा मॉडल को फोर्क करने से बचाता है
+- यह वर्तमान एपीआई/एमसीपी शासन दृष्टिकोण से मेल खाता है
+- यह OAuth क्लाइंट क्रेडेंशियल्स और एंटरप्राइज़-प्रबंधित प्राधिकरण के आसपास MCP पारिस्थितिकी तंत्र दिशा के साथ संगत रहता है### 3. Client Writer Strategy
 
-**Why**:
-- it avoids forking the data model
-- it matches the current API/MCP governance approach
-- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+**निर्णय**: विहित निर्यात परिवारों के एक छोटे समूह पर एकजुट हों और केवल विशेष लेखक रखें जहां आधिकारिक ग्राहक दस्तावेज़ों को इसकी आवश्यकता होती है।
 
-### 3. Client Writer Strategy
-
-**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
-
-**Canonical families now in use**:
+**विहित परिवार अब उपयोग में हैं**:
 - JSON `mcpServers`
-- JSON `servers`
+- JSON `सर्वर`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Why**:
-- it keeps the implementation maintainable
-- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
-- it avoids inventing fragile writers for clients without stable public config docs
-
----
+**क्यों**:
+- यह कार्यान्वयन को बनाए रखने योग्य रखता है
+- यह अभी भी क्लाइंट-विशिष्ट आवश्यकताओं जैसे क्लाउड सेटिंग्स, जारी रखें YAML, Zed `context_servers`, और कोडेक्स TOML का समर्थन करता है
+- यह स्थिर सार्वजनिक कॉन्फ़िगरेशन दस्तावेज़ों के बिना ग्राहकों के लिए नाजुक लेखकों का आविष्कार करने से बचता है---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-The current decisions were checked against official ecosystem docs:
+वर्तमान निर्णयों की जाँच आधिकारिक पारिस्थितिकी तंत्र दस्तावेज़ों के विरुद्ध की गई:
 
-- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
-- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
-- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
-- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
-
----
+- MCP पारिस्थितिकी तंत्र अब OAuth क्लाइंट क्रेडेंशियल्स और एंटरप्राइज़-प्रबंधित प्राधिकरण जैसे वैकल्पिक एक्सटेंशन का दस्तावेजीकरण करता है, जो कैटलॉग प्रारूप को फोर्क करने के बजाय होस्टेड ऑथ को बाहरी बनाने का समर्थन करता है।
+- ओपनएआई एक सार्वजनिक डॉक्स एमसीपी सर्वर और कोडेक्स एमसीपी कॉन्फ़िगरेशन पैटर्न का दस्तावेजीकरण करता है जो साझा मैनिफ़ेस्ट प्लस क्लाइंट-राइटर रणनीति के साथ संरेखित होता है
+- वीएस कोड दस्तावेज़ प्रथम श्रेणी एमसीपी समर्थन और एक एक्सटेंशन गाइड, जो इसके समर्पित `सर्वर`-आधारित लेखक को बनाए रखने को सुदृढ़ करता है
+- JetBrains AI असिस्टेंट एक स्थिर क्रॉस-प्लेटफ़ॉर्म फ़ाइल अनुबंध के बजाय उत्पाद UX के माध्यम से MCP सेटअप दस्तावेज़ करता है, जो इसे अभी मैनुअल/स्निपेट क्षेत्र में रखने का समर्थन करता है---
 
 ## 🔮 Longer-Term Decision Points
 
-Only a few strategic questions remain genuinely open:
+केवल कुछ ही रणनीतिक प्रश्न वास्तव में खुले रहते हैं:
 
-1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
-2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
-3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
+1. क्या वर्तमान मैट्रिक्स से परे कोई भी ग्राहक वास्तव में प्रथम श्रेणी लेखन के लिए बार को साफ़ करता है, या क्या शेष उत्पाद केवल मैनुअल/स्निपेट-ही रहने चाहिए
+2. कब, यदि कभी, होस्टेड गवर्नेंस को वर्तमान इन-प्रोसेस बेसलाइन के बजाय बाहरी गेटवे या एंटरप्राइज़ आईडीपी के पीछे जाना चाहिए?
+3. स्कोरर को संदर्भ-पैक की गहराई और परिचालन गुणवत्ता का मूल्यांकन करने में कितनी दूर तक जाना चाहिए, इससे पहले कि यह योगदानकर्ताओं के लिए बहुत अधिक मनमौजी हो जाए?

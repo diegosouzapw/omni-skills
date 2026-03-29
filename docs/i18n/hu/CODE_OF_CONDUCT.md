@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Tagokként, közreműködőkként és fenntartókként vállaljuk, hogy a projektben és közösségben való részvételt**zaklatásmentes élménnyé tesszük mindenki számára**, életkortól, testmérettől, látható vagy láthatatlan fogyatékosságtól, etnikai hovatartozástól, nemi jellemzőktől, nemi identitástól és kifejezésmódtól, tapasztalati szinttől, végzettségtől, társadalmi-gazdasági státusztól, nemzetiségtől, személyes megjelenéstől, fajtól, kaszttól, bőrszíntől, vallástól és vallástól függetlenül.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
+| Viselkedés | Példa |
 |:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| 💬 Üdvözlő nyelv | Befogadó és tiszteletteljes kommunikáció a kommunikációban |
+| 🤝 A különbségek tisztelete | Az eltérő nézőpontok és tapasztalatok értékelése |
+| 📝 Építő jellegű kritika | Visszajelzés kecses elfogadása és adása |
+| 🎯 Közösségi fókusz | A projekt és a közösség számára legjobb megoldások prioritása |
+| ❤️ Empátia | Empátiát mutat a közösség többi tagjával szemben |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
+| Viselkedés |
 |:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| 🚫 Szexualizált nyelvezet vagy képek, valamint szexuális figyelem vagy előrelépés |
+| 🚫 Trollkodó, sértő vagy becsmérlő megjegyzések |
+| 🚫 Személyes vagy politikai támadások |
+| 🚫 Nyilvános vagy privát zaklatás |
+| 🚫 Valaki más személyes adatainak közzététele kifejezett engedély nélkül |
+| 🚫 Egyéb, ésszerűen nem megfelelő magatartás szakmai környezetben |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+A sértő, zaklató vagy egyéb módon elfogadhatatlan viselkedést a fenntartóknak az alábbi módon lehet jelenteni:
 
-| Channel | How |
+| Csatorna | Hogyan |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 GitHub privát csatornák | Kapcsolatfelvétel a GitHub Security vagy Discussion segítségével |
+| 📧 Közvetlen kapcsolatfelvétel | Forduljon közvetlenül a karbantartókhoz |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Minden jelentést azonnal és tisztességesen felülvizsgálunk és kivizsgálunk.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Ez a magatartási kódex a [Contributor Covenant](https://www.contributor-covenant.org) 2.1-es verziójából származik.

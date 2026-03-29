@@ -5,9 +5,7 @@
 ---
 
 
-> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
-
----
+>**Ghidul operațional complet pentru construirea, validarea, servirea, securizarea și depanarea abilităților Omni.**---
 
 ## 1️⃣ Local Development Cycle
 
@@ -27,44 +25,36 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-| Command | What It Does |
+| Comanda | Ce face |
 |:--------|:-------------|
-| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
-| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
-| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
-| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
-| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
-| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
-
----
+| `npm run validate` | Validează `SKILL.md`, regenerează `metadata.json`, calculează taxonomie/maturitate/calitate/securitate |
+| `npm run taxonomy:report` | Afișează sugestii de deplasare a categoriilor fără a rescrie fișierele |
+| `npm run verify:scanners` | Confirmă acoperirea scanerului înregistrată în metadatele abilităților generate |
+| `npm run release:notes` | Generează note de lansare personalizate din metadate, pachete și istoricul git |
+| `npm run build` | Regenerează catalogul/manifestele/arhivele/suma de verificare, verifică acoperirea scanerului și arhivele, reconstruiește `docs/CATALOG.md` |
+| `npm test` | Suită completă Smoke în fluxurile CLI, API, MCP, sidecar și arhivă |---
 
 ## 🖥️ Visual Shell
 
-The published CLI now includes an Ink-based operator shell:
-
-```bash
+CLI-ul publicat include acum un shell de operator bazat pe cerneală:```bash
 npx omni-skills ui
 ```
 
-Current capabilities:
+Capabilitati curente:
 
-- guided install for known clients and custom paths
-- search-then-install flow
-- MCP launch wizard
-- API launch wizard
-- A2A launch wizard
-- recent installs and service relaunches
-- named install and service presets
+- instalare ghidată pentru clienți cunoscuți și căi personalizate
+- flux de căutare-apoi-instalare
+- Asistent de lansare MCP
+- Asistent de lansare API
+- Asistent de lansare A2A
+- instalări recente și relansări de servicii
+- presetări de instalare și service denumite
 
-Local state path:
-
-```text
+Calea de stat locală:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Fallback:
-
-```bash
+Da înapoi:```bash
 npx omni-skills ui --text
 ```
 
@@ -100,40 +90,32 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-The static scanner checks all skills automatically:
+Scanerul static verifică automat toate abilitățile:
 
-| Rule Family | Examples |
-|:------------|:---------|
-| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
-| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
-| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
-### 🦠 Optional ClamAV
+| Rule Family | Exemple |
+|:-------------|:---------|
+| 🎭 Injectare promptă | Modele de exfiltrare, înlocuiri de instrucțiuni |
+| 💣 Comenzi distructive | `rm -rf`, `format`, `mkfs` |
+| 🔑 Căi suspecte | `/etc/shadow`, `~/.ssh`, fișiere de acreditări |
+| ⚠️ Primitive riscante | `shell=True`, `pickle.load`, `eval`, `extractall` |### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> Requires `clamscan` in `PATH`.
-
-### 🔒 Optional VirusTotal
+> Necesită `clamscan` în `PATH`.### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> Hash lookup only — unknown files are **not uploaded** by default.
-
-### ✅ Verify Scanner Coverage
+> Numai căutare hash — fișierele necunoscute sunt**nu sunt încărcate**în mod implicit.### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Poarta de eliberare stricta:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -145,17 +127,15 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-Archives are produced automatically by `npm run build`:
+Arhivele sunt produse automat de `npm run build`:
 
-| Output | Path |
+| Ieșire | Calea |
 |:-------|:-----|
 | 📦 ZIP | `dist/archives/<skill>.zip` |
 | 📦 Tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
+| 🔒 Sume de control | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
-
-### ✅ Verify Archives
+`dist/` este comis intenționat în acest depozit. Catalogul, manifestele, pachetele și arhivele generate sunt intrări de rulare pentru fluxurile de instalare CLI, suprafețele de descărcare API, previzualizările MCP, transferul sarcinilor A2A, testele de fum și verificarea versiunii.### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -167,43 +147,35 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Optional public key override:
-
-```bash
+Suprascrierea opțională a cheii publice:```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
-
-### 🔁 Compute the Next Package Version
+> Dacă nu este furnizată nicio cheie publică, construcția derivă una prin `openssl` în `dist/signing/`.### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-Version policy:
+Politica de versiune:
 
-- patch increments until `.10`
-- after `.10`, the next release rolls minor and resets patch to `.0`
+- patch-uri crește până la `.10`
+- după `.10`, următoarea lansare rulează minor și resetează patch-ul la `.0`
 
-Examples:
+Exemple:
 
 - `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`
-
----
+- `0.1.10 -> 0.2.0`---
 
 ## 5️⃣ Installation Flows
 
-| Scenario | Command |
+| Scenariu | Comanda |
 |:---------|:--------|
-| 📥 Default install (Antigravity) | `npx omni-skills` |
-| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
-| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
-| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
-| 🩺 Verify install | `npx omni-skills doctor` |
-
----
+| 📥 Instalare implicită (Antigravity) | `npx omni-skills` |
+| 🎯 Abilități specifice + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Descoperire → instalare | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Instalare pachet | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verificați instalarea | `npx omni-skills doctor` |---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -216,21 +188,19 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-| Filter | Flag | Example |
+| Filtru | Steagul | Exemplu |
 |:-------|:-----|:--------|
-| 📂 Category | `--category` | `--category development` |
-| 🖥️ Tool | `--tool` | `--tool cursor` |
-| ⚠️ Risk | `--risk` | `--risk safe` |
-| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
-| 🔄 Order | `--order` | `--order asc\|desc` |
-| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
-| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
-| 🎯 Min level | `--min-level` | `--min-level 2` |
-| 🛡️ Min security | `--min-security` | `--min-security 90` |
-| ✅ Validation | `--validation-status` | `--validation-status passed` |
-| 🛡️ Security | `--security-status` | `--security-status passed` |
-
----
+| 📂 Categoria | `--categorie` | `--dezvoltarea categoriei` |
+| 🖥️ Instrument | `--instrument` | `--cursor instrument` |
+| ⚠️ Risc | `--risc` | `--risc safe` |
+| 📊 Sortează | `--sort` | `--sort quality\|cele mai bune practici\|nivel\|securitate\|nume` |
+| 🔄 Comanda | `--comanda` | `--order asc\|desc` |
+| ⭐ Calitate min | `--min-calitate` | `--min-calitate 80` |
+| 📋 BP min | `--min-bune-practices` | `--min-bune-practici 60` |
+| 🎯 Nivel minim | `--min-level` | `--min-nivel 2` |
+| 🛡️ Securitate minimă | `--min-securitate` | `--min-securitate 90` |
+| ✅ Validare | `--status-validare` | `--status-validare trecut` |
+| 🛡️ Securitate | `--starea-securității` | `--starea-securitate a trecut` |---
 
 ## 7️⃣ API Operations
 
@@ -242,33 +212,29 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-| Method | Endpoint | Purpose |
-|:-------|:---------|:--------|
-| `GET` | `/healthz` | Health check |
-| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
-| `GET` | `/v1/skills` | List with filters |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/skills/:id/archives` | Archive listing |
-| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
+| Metoda | Punct final | Scop |
+|:-------|:---------|:---------|
+| `GET` | `/healthz` | Verificarea sănătății |
+| `GET` | `/openapi.json` | Specificație OpenAPI 3.1 |
+| `GET` | `/v1/skills` | Lista cu filtre |
+| `GET` | `/v1/search` | Căutare integrală |
+| `GET` | `/v1/skills/:id/archives` | Lista arhivă |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Descărcați arhiva |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Manifestul sumei de control |### 🔐 Hosted API Hardening
 
-### 🔐 Hosted API Hardening
-
-| Feature | Command |
+| Caracteristica | Comanda |
 |:--------|:--------|
-| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
-| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🔑 Autentificare purtător | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ Autentificare cheie API | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
 | 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
-| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
-| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
-| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
-| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
-| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
-| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
+| 🚦 Limitarea ratei | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Înregistrare de audit | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
+| 🌍 Lista de permise CORS | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 Lista permisă IP | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
+| 🚧 Mod de întreținere | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
+| 🔁 Proxy de încredere | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
-
----
+> 🟢 `/healthz` rămâne deschis prin design; rutele de catalog necesită autentificare atunci când sunt activate. `GET /admin/runtime` necesită jetonul de administrator atunci când este configurat și returnează instantaneul de guvernare live.---
 
 ## 8️⃣ MCP Operations
 
@@ -288,33 +254,29 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-The sidecar can now preview or write MCP config for:
+Vehiculul secundar poate acum previzualiza sau scrie configurația MCP pentru:
 
-- Claude user and project settings
-- Claude Desktop config
-- Cline user config
-- GitHub Copilot CLI user and repository config
-- Cursor user and workspace config
-- Codex TOML config
-- Gemini user and project settings
-- Kilo CLI user and project config
-- Kilo workspace config
-- Kiro user and project settings
-- OpenCode user and workspace config
-- Continue workspace YAML config
-- Windsurf user config
-- Zed workspace config
-- workspace `.mcp.json`
-- VS Code workspace and user config
-- Dev Container config
+- Setări utilizator și proiect Claude
+- Configurare Claude Desktop
+- Configurare utilizator Cline
+- Configurarea utilizatorului și a depozitului GitHub Copilot CLI
+- Utilizatorul cursorului și configurația spațiului de lucru
+- Configurare Codex TOML
+- Setări utilizator și proiect Gemini
+- Config utilizator și proiect Kilo CLI
+- Configurare spațiu de lucru Kilo
+- Setări utilizator și proiect Kiro
+- Configurare utilizator și spațiu de lucru OpenCode
+- Continuați configurarea YAML a spațiului de lucru
+- Configurare utilizator Windsurf
+- Configurarea spațiului de lucru Zed
+- spațiu de lucru `.mcp.json`
+- Spațiul de lucru VS Code și configurația utilizatorului
+- Configurare Dev Container
 
-`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
+`configure_client_mcp` returnează, de asemenea, `rețete` pentru fiecare client, astfel încât operatorii să primească pașii echivalenti CLI sau de configurare manuală împreună cu previzualizarea.### 🧾 MCP Config Preview and Write Flow
 
-### 🧾 MCP Config Preview and Write Flow
-
-Use the unified CLI when you want config generation without calling the MCP tool directly:
-
-```bash
+Utilizați CLI unificat atunci când doriți să generați configurații fără a apela direct instrumentul MCP:```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -323,19 +285,15 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-The visual shell exposes the same workflow through:
+Învelișul vizual expune același flux de lucru prin:
 
 - `npx omni-skills ui`
-- `Services`
-- `Configure MCP client`
+- `Servicii`
+- `Configurare client MCP`
 
-The command stays in preview mode unless `--write` is passed.
+Comanda rămâne în modul de previzualizare dacă nu trece `--write`.### 🔐 Hosted MCP Hardening
 
-### 🔐 Hosted MCP Hardening
-
-Same env vars as the API:
-
-```bash
+Aceleași variații de mediu ca și API:```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -345,11 +303,9 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Rute protejate**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
 
-> 🟢 `/healthz` remains open.
-
----
+> 🟢 `/healthz` rămâne deschis.---
 
 ## 9️⃣ A2A Operations
 
@@ -368,17 +324,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-The default local path stays simple-first:
+Calea locală implicită rămâne mai întâi simplă:
 
-- `json` or `sqlite` persistence can run with queue polling disabled
-- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
-- keep Redis coordination as an advanced hosted option, not the baseline
+- Persistența `json` sau `sqlite` poate rula cu sondarea în coadă dezactivată
+- setați `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` numai atunci când doriți revendicarea multi-lucrători și failover-ul de închiriere
+- păstrați coordonarea Redis ca opțiune avansată găzduită, nu ca linie de bază### 🧱 Multi-Worker Lease Setup
 
-### 🧱 Multi-Worker Lease Setup
-
-Run more than one A2A node against the same SQLite store to get lease-based failover:
-
-```bash
+Rulați mai mult de un nod A2A pe același magazin SQLite pentru a obține failover bazat pe leasing:```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -398,13 +350,9 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
+Dacă un lucrător moare în timp ce o sarcină „funcționează”, un alt muncitor o poate revendica după expirarea contractului de închiriere și poate continua execuția.### 🟥 Redis Coordination
 
-### 🟥 Redis Coordination
-
-For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
-
-```bash
+Pentru implementările găzduite sau cu mai multe noduri care nu doresc coordonarea cozii legată de magazinul SQLite partajat, comutați coordonatorul la Redis:```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -416,48 +364,40 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-In this mode:
+În acest mod:
 
-- persistence still lives in JSON or SQLite
-- task claiming and lease ownership move to Redis
-- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
+- persistența încă trăiește în JSON sau SQLite
+- revendicarea sarcinilor și transferul dreptului de proprietate la Redis
+- mai multe noduri A2A pot partaja o coadă fără a se baza pe coordonarea la nivel de rând SQLite### 📡 Endpoints
 
-### 📡 Endpoints
-
-| Method | Path | Purpose |
+| Metoda | Calea | Scop |
 |:-------|:-----|:--------|
-| `GET` | `/healthz` | Health check |
-| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
-| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
+| `GET` | `/healthz` | Verificarea sănătății |
+| `GET` | `/.well-cunoscut/agent.json` | Card de agent (descoperire A2A) |
+| `POST` | `/a2a` | Punct final JSON-RPC pentru sarcini și streaming |### 🧭 Supported JSON-RPC Methods
 
-### 🧭 Supported JSON-RPC Methods
-
-| Method | Purpose |
+| Metoda | Scop |
 |:-------|:--------|
-| `message/send` | Start or continue a task |
-| `message/stream` | Start a task and stream SSE updates |
-| `tasks/get` | Poll a task snapshot |
-| `tasks/cancel` | Cancel an active task |
-| `tasks/resubscribe` | Resume SSE updates for an existing task |
-| `tasks/pushNotificationConfig/set` | Register a push webhook |
-| `tasks/pushNotificationConfig/get` | Read a push config |
-| `tasks/pushNotificationConfig/list` | List push configs for a task |
-| `tasks/pushNotificationConfig/delete` | Remove a push config |
+| `mesaj/trimite` | Începeți sau continuați o sarcină |
+| `mesaj/flux` | Porniți o sarcină și transmiteți în flux actualizări SSE |
+| `tasks/get` | Sondaj un instantaneu al unei sarcini |
+| `sarcini/anulează` | Anulează o sarcină activă |
+| `sarcini/reabonare` | Reluați actualizările SSE pentru o sarcină existentă |
+| `tasks/pushNotificationConfig/set` | Înregistrați un webhook push |
+| `tasks/pushNotificationConfig/get` | Citiți o configurare push |
+| `tasks/pushNotificationConfig/list` | Listează configurațiile push pentru o sarcină |
+| `tasks/pushNotificationConfig/delete` | Eliminați o configurare push |### 📡 Task Lifecycle
 
-### 📡 Task Lifecycle
+Runtime-ul curent acceptă aceste stări de activitate:
 
-The current runtime supports these task states:
-
-- `submitted`
-- `working`
+- `depus`
+- `de lucru`
 - `input-required`
-- `completed`
-- `canceled`
-- `failed`
+- `terminat`
+- `anulat`
+- `eșuat`
 
-Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
-
-### 🧪 Example: Start a Task
+Sarcinile sunt păstrate fie într-un fișier JSON, fie într-un magazin SQLite și reîncărcate la repornire. Sarcinile finalizate și întrerupte rămân disponibile. Sarcinile care au fost încă „trimise” sau „funcționează” în timpul opririi sunt recuperate cu metadate explicite de repornire și sunt reluate automat în mod implicit.### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -523,14 +463,12 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-The repository now has two workflows:
+Depozitul are acum două fluxuri de lucru:
 
-| Workflow | Trigger | Purpose |
+| Flux de lucru | Trigger | Scop |
 |:---------|:--------|:--------|
-| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
-| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
-
-### 🔖 Tag a Release
+| `validate.yml` | Apăsați/PR la `principal` | Creați, testați și confirmați că artefactele generate sunt comise |
+| `release.yml` | Tag push `v*` sau expediere manuală | Rulați scanere de calitate, verificați eticheta versiunii, semnați artefacte, împachetați tarball-ul, publicați în npm și creați versiunea GitHub |### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -539,79 +477,73 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-| Secret | Used By | Purpose |
-|:-------|:--------|:--------|
-| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
-| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
+| Secret | Folosit de | Scop |
+|:-------|:--------|:---------|
+| `VT_API_KEY` sau `VIRUSTOTAL` | `release.yml` | Necesită căutări hash VirusTotal în versiunile de versiuni |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` sau `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Cheie privată necesară pentru semnarea arhivei detașate în CI |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` sau `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Suprascriere opțională a cheii publice; altfel derivat din cheia privată |
+| `NPM_TOKEN` | job `public-npm` | Autentificați `npm publish` pentru lansările de etichete |### 🦠 Release Scanner Policy
 
-### 🦠 Release Scanner Policy
-
-`release.yml` sets or prepares:
+`release.yml` setează sau pregătește:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
-- `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
+- `VT_API_KEY=${{ secrete.VT_API_KEY || secrete.VIRUSTOTAL }}`
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` din stocarea temporară a alergătorului
 
-That means every tag-based release must:
+Aceasta înseamnă că fiecare lansare bazată pe etichete trebuie:
 
-- install and refresh ClamAV on the runner
-- regenerate metadata with ClamAV enabled
-- regenerate metadata with VirusTotal enabled
-- decode CI signing key material into runner temp storage
-- pass `npm run verify:scanners:strict`
-- pass `npm run verify:archives:strict`
-- pass tests and package verification before npm publish
-- generate custom release notes from catalog metadata and git history
-- create a GitHub Release with attached release assets after publish
-
----
+- instalați și reîmprospătați ClamAV pe runner
+- regenerați metadatele cu ClamAV activat
+- regenerați metadatele cu VirusTotal activat
+- decodați materialul cheie de semnare CI în stocarea termică a alergătorului
+- trece `npm run verify:scanners:strict`
+- trece `npm run verify:archives:strict`
+- trece testele și verificarea pachetului înainte de publicarea npm
+- generați note de lansare personalizate din metadatele catalogului și istoricul git
+- creați o versiune GitHub cu elemente de lansare atașate după publicare---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-| Variable | Purpose | Default |
+| Variabila | Scop | Implicit |
 |:---------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
-| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
-| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
-| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
-| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
-| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
-| `VT_API_KEY` | VirusTotal API key | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
-
----
+| `OMNI_SKILLS_ROOT` | Ignorați calea rădăcină a catalogului | Detectat automat |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Căi de scriere suplimentare permise | Rădăcini cunoscute ale clientului |
+| `OMNI_SKILLS_MCP_MODE` | Setați la `local` pentru sidecar | Telecomanda |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Flag Alt pentru modul local | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Adresa URL publică API pentru MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Adresă URL de bază publică | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Jeton de autorizare purtător | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Chei API separate prin virgulă | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Jeton de autentificare pentru timpul de execuție admin | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max solicitări pe fereastră | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Fereastra de limitare a ratei (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Activați înregistrarea de audit | `0` |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | Ieșire de audit `json` sau `text` | `json` |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Cale opțională a fișierului jurnal de audit | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Lista permisă pentru origine CORS, separată prin virgulă | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Lista permisă de IP sau CIDR separată prin virgulă | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Setare proxy de încredere expres | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Activați răspunsurile de întreținere | `0` |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Întreținere `Reîncercați-După` secunde | `300` |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Întârziere simulată a sarcinii asincrone | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite` sau magazin de activități `memory` | `json` |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Fișier personalizat de stocare de activități A2A | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Activați interogarea în coadă partajată pentru lucrătorii care cunosc închirierea | `0` |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | Coordonator `store`, `sqlite`, `local` sau `redis` | `magazin` |
+| `OMNI_SKILLS_A2A_REDIS_URL` | URL Redis pentru coordonare externă | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Prefixul cheii Redis pentru metadatele cozii | `omni-skills:a2a` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Interval de interogare la coadă pentru lucrătorii de leasing | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Durata contractului de închiriere înainte ca un alt lucrător să poată revendica o sarcină | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Identificator stabil al lucrătorului pentru proprietatea de leasing și diagnosticare | Nume gazdă + PID + sufix aleatoriu |
+| `OMNI_SKILLS_A2A_EXECUTOR` | executor de sarcini `inline` sau `process` | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Ignorați comanda lucrătorului extern | Nod binar |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | Matrice JSON de argumente de lucru extern | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Reluați sarcinile trimise/de lucru recuperate la boot | `1` |
+| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Permiteți webhook-uri non-HTTPS în afara localhost | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Activați scanarea ClamAV | `0` |
+| `VT_API_KEY` | Cheia API VirusTotal | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Cheie privată pentru semnare | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Anularea cheii publice | Derivat automat |---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -629,66 +561,46 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. Rebuild with `npm run build`
-2. Rerun `npm run verify:archives`
-3. If signing is enabled, confirm the public key and `openssl` availability
+1. Reconstruiți cu `npm run build`
+2. Reluați `npm run verify:archives`
+3. Dacă semnarea este activată, confirmați cheia publică și disponibilitatea „openssl”.### 🦠 Release Workflow Fails on Scanner Coverage
 
-### 🦠 Release Workflow Fails on Scanner Coverage
+- Confirmați că `VT_API_KEY` există în secretele depozitului
+- Confirmați că `freshclam` a reușit pe alergător
+- Reconstruiți local cu `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Reluați `npm run verify:scanners:strict`### 📦 npm Publish Fails in CI
 
-- Confirm `VT_API_KEY` exists in repository secrets
-- Confirm `freshclam` succeeded on the runner
-- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
-- Rerun `npm run verify:scanners:strict`
+- Confirmați că `NPM_TOKEN` există în secretele depozitului
+- Confirmați că eticheta Git se potrivește exact cu versiunea `package.json`
+- Verificați dacă tarball-ul încărcat de „release-verify” există în artefactele fluxului de lucru### ✍️ Release Signing Fails in CI
 
-### 📦 npm Publish Fails in CI
+- Confirmați că `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` sau `OMNI_SKILLS_SIGN_PRIVATE_KEY` există în secretele depozitului
+- Dacă furnizați o cheie publică secretă, confirmați că se potrivește cu cheia privată
+- Confirmați că `openssl` este disponibil și cheia privată este formatată PEM
+- Reconstruiți local cu `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Reluați `npm run verify:archives:strict`### 🔒 API/MCP Returns `401 Unauthorized`
 
-- Confirm `NPM_TOKEN` exists in repository secrets
-- Confirm the Git tag matches `package.json` version exactly
-- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
+- Verificați `OMNI_SKILLS_HTTP_BEARER_TOKEN` sau `OMNI_SKILLS_HTTP_API_KEYS`
+- Includeți antetul „Authorization: Bearer <token>” sau „x-api-key”### 🚦 API/MCP Returns `429 Too Many Requests`
 
-### ✍️ Release Signing Fails in CI
+- Creșteți `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Extindeți `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduceți traficul în rafală de la clienți sau sonde### 🛂 API/MCP Admin Runtime Returns `401`
 
-- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
-- If you provide a public key secret, confirm it matches the private key
-- Confirm `openssl` is available and the private key is PEM-formatted
-- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
-- Rerun `npm run verify:archives:strict`
+- Verificați `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
+- Trimite `x-admin-token: <token>` sau `Authorization: Bearer <admin-token>`### 🚧 API/MCP Returns `503 Maintenance mode enabled`
 
-### 🔒 API/MCP Returns `401 Unauthorized`
+- Dezactivați `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
+- Utilizați `/healthz` pentru sondele de viață în timpul întreținerii
+- Folosiți `/admin/runtime` cu simbolul de administrator pentru diagnosticarea operatorului### 🌍 Browser Requests Fail CORS Validation
 
-- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
-- Include `Authorization: Bearer <token>` or `x-api-key` header
+- Verificați `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
+- Includeți schema exactă și gazda, de exemplu `https://app.example.com`### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
 
-### 🚦 API/MCP Returns `429 Too Many Requests`
-
-- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
-- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- Reduce burst traffic from clients or probes
-
-### 🛂 API/MCP Admin Runtime Returns `401`
-
-- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
-- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
-
-### 🚧 API/MCP Returns `503 Maintenance mode enabled`
-
-- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- Use `/healthz` for liveness probes during maintenance
-- Use `/admin/runtime` with the admin token for operator diagnostics
-
-### 🌍 Browser Requests Fail CORS Validation
-
-- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
-- Include the exact scheme and host, for example `https://app.example.com`
-
-### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
-
-- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
-- Verify `OMNI_SKILLS_A2A_REDIS_URL`
-- Check Redis connectivity from every node
-- Inspect `/healthz` for the `coordination` snapshot
-
-### 🩺 General Diagnostics
+- Verificați `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
+- Verificați `OMNI_SKILLS_A2A_REDIS_URL`
+- Verificați conectivitatea Redis de la fiecare nod
+- Inspectați `/healthz` pentru instantaneul de `coordonare`### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

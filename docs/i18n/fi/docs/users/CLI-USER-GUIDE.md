@@ -5,39 +5,33 @@
 ---
 
 
-> **The full public CLI surface shipped by `omni-skills`.**
+>**Koko julkinen CLI-pinta, jonka toimittaa "omni-skills".**
 
-Use this guide when you want to:
+Käytä tätä opasta, kun haluat:
 
-| Goal | Command Area |
-|:-----|:-------------|
-| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
-| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
-| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
-| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
-
----
+| Tavoite | Komentoalue |
+|:-----|:--------------|
+| 📥 Asenna taidot tai niput | [Asennusvirrat](#3️⃣-install-flows) |
+| 🔎 Hae luettelosta | [Katalogin löytäminen](#4️⃣-catalog-discovery) |
+| 🔌 Määritä MCP-asiakkaat | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Käynnistä MCP-, API- tai A2A-palvelut | [MCP-palvelin](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Käytä visuaalista päätekuorta | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Suorita diagnostiikka tai esilento | [Diagnostiikka](#🔟-diagnostics-and-preflight) |---
 
 ## 1️⃣ Install and Entry Modes
 
-Install with `npx`:
-
-```bash
+Asenna npx:llä:```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Context | What Happens |
-|:--------|:------------|
-| 🖥️ TTY + no arguments | Opens the **guided install** flow |
-| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
-| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
-
----
+| Konteksti | Mitä tapahtuu |
+|:--------|:-------------|
+| 🖥️ TTY + ei argumentteja | Avaa**ohjatun asennuksen**-virran |
+| ⚙️ Ei-TTY + ei argumentteja | Ei-interaktiivinen asennus tiedostoon `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Merkkimerkki**Musteen visuaalinen kuori**|
+| 📝 `npx omni-skills ui --text` | Readline**varausteksti**Käyttöliittymä |---
 
 ## 2️⃣ Core Commands
 
@@ -45,22 +39,20 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Command | Description |
-|:--------|:-----------|
-| `ui` | 🎨 Visual terminal hub |
-| `find [query]` | 🔎 Catalog discovery |
-| `recategorize` | 🏷️ Taxonomy management |
-| `install [flags]` | 📥 Skill/bundle install |
-| `config-mcp` | 🔌 MCP client configuration |
-| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
-| `api` | 🌐 Catalog API |
-| `a2a` | 🤖 A2A runtime |
-| `smoke` | 🧪 Release preflight |
-| `publish-check` | 📦 Package publication check |
-| `doctor` | 🩺 Environment diagnostics |
-| `help` | ❓ Command reference |
-
----
+| Komento | Kuvaus |
+|:--------|:------------|
+| "ui" | 🎨 Visuaalinen päätekeskus |
+| `etsi [kysely]` | 🔎 Luettelon löytö |
+| "luokat uudelleen" | 🏷️ Taksonomian hallinta |
+| `asenna [liput] | 📥 Taito/pakettiasennus |
+| `config-mcp` | 🔌 MCP-asiakasasetukset |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP-palvelintilat |
+| "api" | 🌐 Catalog API |
+| "a2a" | 🤖 A2A-ajoaika |
+| "savu" | 🧪 Julkaise esilento |
+| `julkaisu-tarkistus` | 📦 Paketin julkaisun tarkistus |
+| `lääkäri` | 🩺 Ympäristödiagnostiikka |
+| "apua" | ❓ Komentoviittaus |---
 
 ## 3️⃣ Install Flows
 
@@ -71,9 +63,7 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
-
-### 🎯 Single Skill
+> Ohjatun kulun avulla voit valita:**kohdeasiakas**→**paketti tai taito**→**muokattu polku**→**esikatselu ennen suoritusta**### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -90,19 +80,17 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Flag | Client |
+| Lippu | Asiakas |
 |:-----|:-------|
-| `--antigravity` | 🟣 Antigravity *(default)* |
-| `--claude` | 🟢 Claude Code |
-| `--cursor` | 🔵 Cursor |
-| `--codex` | 🔴 Codex CLI |
-| `--gemini` | 🟡 Gemini CLI |
-| `--kiro` | 🟠 Kiro |
-| `--opencode` | ⚪ OpenCode |
+| "--antigravitaatio" | 🟣 Antigravitaatio *(oletus)* |
+| "--claude" | 🟢 Claude Code |
+| "--kursori" | 🔵 Kursori |
+| "--codex" | 🔴 Codex CLI |
+| "--kaksoset" | 🟡 Gemini CLI |
+| "--kiro" | 🟠 Kiro |
+| `--avokoodi` | ⚪ OpenCode |
 
-> Default install target (non-interactive): `~/.gemini/antigravity/skills`
-
----
+> Oletusasennuskohde (ei-interaktiivinen): `~/.gemini/antigravity/skills`---
 
 ## 4️⃣ Catalog Discovery
 
@@ -123,27 +111,23 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Flag | Purpose |
+| Lippu | Tarkoitus |
 |:-----|:--------|
-| `--category` | Filter by taxonomy category |
-| `--tool` | Filter by supported tool |
-| `--risk` | Filter by risk level |
-| `--sort` | Sort results (e.g., `quality`) |
-| `--order` | Sort order |
-| `--min-quality` | Minimum quality score |
-| `--min-best-practices` | Minimum best-practices score |
-| `--min-level` | Minimum maturity level |
-| `--min-security` | Minimum security score |
-| `--validation-status` | Filter by validation state |
-| `--security-status` | Filter by security state |
-
----
+| "--luokka" | Suodata taksonomialuokan mukaan |
+| "--työkalu" | Suodata tuetun työkalun mukaan |
+| "--riski" | Suodata riskitason mukaan |
+| "--sort" | Lajittele tulokset (esim. "laatu") |
+| "--järjestys" | Lajittelujärjestys |
+| "--min-laatu" | Vähimmäislaatupisteet |
+| "--min-best-käytännöt" | Parhaiden käytäntöjen vähimmäispistemäärä |
+| `--min-taso` | Vähimmäisraja |
+| "--min-security" | Vähimmäisturvapisteet |
+| "--validation-status" | Suodata vahvistustilan mukaan |
+| "--security-status" | Suodata suojaustilan mukaan |---
 
 ## 5️⃣ MCP Client Config
 
-Use `config-mcp` to preview or write client-aware MCP configuration.
-
-### 📋 List Targets
+Käytä "config-mcp" esikatsellaksesi tai kirjoittaaksesi asiakastietoisia MCP-määrityksiä.### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -168,28 +152,26 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<details>
-<summary>🔌 <strong>Config-capable client surface</strong></summary>
+<tiedot>
+<summary>🔌 <strong>Config-yhteensopiva asiakaspinta</strong></summary>
 
-| Client | Targets |
-|:-------|:--------|
-| Claude | Settings and desktop targets |
-| Cursor | User and workspace |
-| Codex | TOML config |
-| Gemini | User and workspace |
-| Antigravity | User config |
-| OpenCode | User and workspace |
-| Cline | First-class target |
-| GitHub Copilot CLI | User and repo |
-| Kilo Code | User, project, and workspace |
-| Kiro | User and workspace |
-| Zed | Workspace |
-| VS Code | User, workspace, and Dev Container |
-| Continue | Workspace YAML |
-| Junie | Project and user |
-| Windsurf | User config |
-
-</details>
+| Asiakas | Tavoitteet |
+|:-------|:---------|
+| Claude | Asetukset ja työpöytäkohteet |
+| Kursori | Käyttäjä ja työtila |
+| Codex | TOML-kokoonpano |
+| Kaksoset | Käyttäjä ja työtila |
+| Antigravitaatio | Käyttäjän konfiguraatio |
+| OpenCode | Käyttäjä ja työtila |
+| Cline | Ensiluokkainen tavoite |
+| GitHub Copilot CLI | Käyttäjä ja repo |
+| Kilo-koodi | Käyttäjä, projekti ja työtila |
+| Kiro | Käyttäjä ja työtila |
+| Zed | Työtila |
+| VS-koodi | Käyttäjä, työtila ja kehittäjäsäilö |
+| Jatka | Työtila YAML |
+| Junie | Projekti ja käyttäjä |
+| Purjelautailu | Käyttäjän konfiguraatio |</details>
 
 ---
 
@@ -210,9 +192,7 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
-> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
-
----
+>**Paikallinen sivuvaunu**lisää: asiakkaan tunnistuksen, asennuksen esikatselun, asennus-/poistovirrat ja MCP-asetusten kirjoittamisen.---
 
 ## 7️⃣ Catalog API
 
@@ -222,17 +202,15 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Route | Purpose |
-|:------|:--------|
-| `GET /healthz` | Health check |
-| `GET /openapi.json` | OpenAPI spec |
-| `GET /v1/skills` | List all skills |
-| `GET /v1/search` | Search the catalog |
-| `GET /v1/skills/:id/archives` | List archives for a skill |
-| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
-| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
-
----
+| Reitti | Tarkoitus |
+|:------|:---------|
+| "HANKI /healthz" | Terveystarkastus |
+| `GET /openapi.json` | OpenAPI-spesifikaatio |
+| "HANKI /v1/taidot" | Listaa kaikki taidot |
+| `GET /v1/search` | Hae luettelosta |
+| `HAE /v1/skills/:id/archives` | Listaa taidon arkistot |
+| `GET /v1/skills/:id/download/archive?format=zip` | Lataa taitoarkisto |
+| `GET /v1/skills/:id/download/archive/checksums` | Lataa tarkistussummat |---
 
 ## 8️⃣ A2A Runtime
 
@@ -242,17 +220,15 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Feature | Status |
+| Ominaisuus | Tila |
 |:--------|:-------|
-| 🔎 Task-aware discovery | ✅ |
-| 📋 Install-plan handoff | ✅ |
-| 🔄 Polling | ✅ |
-| 📡 Streaming | ✅ |
-| ❌ Cancelation | ✅ |
-| 🔔 Push-notification config | ✅ |
-| 💾 Persistence | Memory, JSON, and SQLite |
-
----
+| 🔎 Tehtävätietoinen löytö | ✅ |
+| 📋 Asennussuunnitelman vaihto | ✅ |
+| 🔄 Äänestys | ✅ |
+| 📡 Suoratoisto | ✅ |
+| ❌ Peruutus | ✅ |
+| 🔔 Push-ilmoitusten konfiguraatio | ✅ |
+| 💾 Pysyvyys | Muisti, JSON ja SQLite |---
 
 ## 9️⃣ Visual Shell
 
@@ -262,19 +238,17 @@ npx omni-skills ui
 
 ### Ominaisuudet
 
-| Feature | Description |
-|:--------|:-----------|
-| 🧭 Guided install | Choose client or custom path |
-| 🔎 Search + install | No flag memorization needed |
-| 🔌 MCP config | Preview and write flows |
-| 🖥️ Service launch | MCP, API, and A2A guided startup |
-| 🕐 Recents | Recent installs and service relaunches |
-| ⭐ Favorites | Saved skills and bundles |
-| 💾 Presets | Named install and service presets |
+| Ominaisuus | Kuvaus |
+|:--------|:------------|
+| 🧭 Ohjattu asennus | Valitse asiakas tai mukautettu polku |
+| 🔎 Hae + asenna | Lippujen muistia ei tarvita |
+| 🔌 MCP-asetus | Esikatsele ja kirjoitusvirtoja |
+| 🖥️ Palvelun julkaisu | MCP-, API- ja A2A-opastettu käynnistys |
+| 🕐 Viimeaikaiset | Viimeaikaiset asennukset ja palveluiden uudelleenjulkaisut |
+| ⭐ Suosikit | Tallennetut taidot ja niput |
+| 💾 Esiasetukset | Nimetyt asennuksen ja palvelun esiasetukset |
 
-> **State path:** `~/.omni-skills/state/ui-state.json`
-
----
+>**Osatilan polku:**`~/.omni-skills/state/ui-state.json`---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -284,18 +258,14 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Inspects: repo state, local install state, runtime availability, and environment issues.
-
-### 🧪 Release Preflight
+> Tarkistaa: repo-tilan, paikallisen asennuksen tilan, ajonaikaisen saatavuuden ja ympäristöongelmat.### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
-
----
+> Vahvistaa: koontiversio, testit, paketin tulosteet, palvelun käynnistys, skannerin kattavuus ja julkaisupakkaus.---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -308,22 +278,20 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Command | Purpose |
-|:-----------|:--------|:--------|
-| 🆕 New user | `npx omni-skills` | Guided first-time install |
-| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
-| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
-| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
-| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
-
----
+| 🎯 Persona | Komento | Tarkoitus |
+|:-----------|:--------|:---------|
+| 🆕 Uusi käyttäjä | "npx omni-skills" | Ohjattu ensiasennus |
+| 🔧 Operaattori | `npx omni-skills config-mcp --list-targets` | Määritä paikallinen MCP |
+| 🔧 Operaattori | `npx omni-skills mcp stream --local` | Aloita paikallinen sivuvaunu |
+| 📦 Ylläpitäjä | "npx omni-skills savu" | Vahvista julkaisu |
+| 🔍 Tehokäyttäjä | `npx omni-taidot löytää turvallisuus -- lajittele laatu -- min-laatu 95` | Löydä ensin paras taito |---
 
 ## 📖 Related Documents
 
-| Doc | What It Covers |
-|:----|:--------------|
-| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
-| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
-| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
-| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |
+| Doc | Mitä se kattaa |
+|:----|:---------------|
+| 🚀 [Aloitus](./GETTING-STARTED.md) | Asenna ja vahvista alle 2 minuutissa |
+| 📗 [Käyttöopas](./USAGE.md) | Kaikki CLI-komennot, -mallit ja -tilat |
+| 📦 [Numput](./BUNDLES.md) | Kuroidut taitokokoelmat |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Toimintaviite |
+| 🔌 [Paikallinen MCP-sivuvaunu](../specs/LOCAL-MCP-SIDECAR.md) | Tiedostojärjestelmätyökalut ja asetusten kirjoittaminen |

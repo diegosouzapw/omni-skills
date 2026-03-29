@@ -5,107 +5,89 @@
 ---
 
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
-
----
+>**Az Omni Skills architektúra evolúciós terve: az első telepítőtől a megosztott katalógus futtatókörnyezetig, a CLI-k, API-k, MCP-k és A2A-k megkettőzése nélkül.**---
 
 ## 📊 Current Platform Areas
 
-| Phase | Name | Status |
+| fázis | Név | Állapot |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Current |
-| 2️⃣ | Read-Only Catalog API | ✅ Current |
-| 3️⃣ | MCP Discovery Surface | ✅ Current |
-| 4️⃣ | Local Install and Config Surface | ✅ Current |
-| 5️⃣ | A2A Orchestration | ✅ Current |
+| 1️⃣ | Szerződések és műtárgyak | ✅ Aktuális |
+| 2️⃣ | Csak olvasható katalógus API | ✅ Aktuális |
+| 3️⃣ | MCP Discovery Surface | ✅ Aktuális |
+| 4️⃣ | Helyi telepítési és konfigurációs felület | ✅ Aktuális |
+| 5️⃣ | A2A hangszerelés | ✅ Aktuális |### ✅ What Exists Today
 
-### ✅ What Exists Today
+- géppel olvasható katalógus-műtermékek a `dist/`-ban
+- Csak olvasható HTTP API végpont-lefedettséggel a kereséshez, kötegekhez, összehasonlításhoz, telepítési tervezéshez és letöltésekhez
+- MCP szerver "stdio", streamelhető HTTP és SSE átvitellel
+- helyi oldalkocsi engedélyezett írásokkal és "config-mcp" folyamokkal
+- 7 telepítésre képes kliens, 16 konfigurálható kliens, 33 MCP konfigurációs cél és 19 konfigurációs profil
+- mélyebb csomagspecializáció a "full-stack", "security", "devops" és "ai-engineer" területeken belül "auth-flows", "threat-modeling", "release-engineering" és "context-engineering"
+- készségenkénti archívumok ("zip", "tar.gz") SHA-256 ellenőrző összegekkel és leválasztott aláírásokkal a kiadási címkéken
+- API irányítási alap: hordozó/API-kulcs hitelesítés, rendszergazdai futásidejű hitelesítés, sebességkorlátozás, naplózás, CORS/IP engedélyezési listák, megbízható proxy, karbantartási mód és kérésazonosítók
+- A2A futásidejű feladat életciklussal, JSON/SQLite tartóssággal, újraindítással, SSE streaminggel, törléssel, push értesítésekkel, opcionális folyamatvégrehajtóval és választható bérelt koordinációval### 🔭 Future Expansion Areas
 
-- machine-readable catalog artifacts in `dist/`
-- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
-- MCP server with `stdio`, streamable HTTP, and SSE transports
-- local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
-- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
-- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
-- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
+Az alapvető ütemterv most a jelenlegi platform hatókörét írja le. A fennmaradó tételek a jövőbeni bővítési területek, nem pedig alapvető hiányosságok:
 
-### 🔭 Future Expansion Areas
+- innentől kezdve csak erősen szelektív MCP-kiegészítések, és csak ott, ahol a hivatalos nyilvános dokumentumok biztonságos írót tesznek lehetővé
+- mélyebb referenciacsomagok és több szemantikai pontozás, így az osztályozó folyamatosan elkülöníti a kivételes képességeket a pusztán csiszolt képességektől
+- a jelenlegi folyamat közbeni alapvonalon túlmutató vállalati irányítású irányítás, ha a projekt később átjáró- vagy IdP-integrációt igényel
+- mélyebb specializáció az újonnan aktivált "design", "tools", "data-ai" és "gépi tanulás" pályákon
+- Folyamatos működési finomítás a privát javítókörön, miközben megtartja formális működési modelljét: OmniRouter rögzítve a `cx/gpt-5.4'-hez, hosztolt felhő `álmodellben` vagy degradált preflight-ban, és megbízható 'élő' LAN-on vagy saját hosztolt végrehajtás
+- a folyamatos kiadás és a munkafolyamat keményítése csak a szolgáltatás minőségét javító munkaként, nem pedig a platform alapjainak hiányaként## Future Catalog Expansion Track
 
-The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
+Az első két nyilvános kategória-bővítési hullám megérkezett:
 
-- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
-- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
-- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
-- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
-- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
-
-## Future Catalog Expansion Track
-
-The first two public category-expansion waves are now landed:
-
-- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
+- "design" → "design-systems-ops", "accessibility-audit", "design-token-governance"
 - `tools` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
-- `machine-learning` → `model-serving`
+- `gépi tanulás` → `modell-szolgáltatás`
 
-The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+A következő ajánlott lépés már nem önmagáért a kategóriaaktiválás. Célja, hogy elmélyítsék ezeket az újonnan aktív kód-natív sávokat, hogy tartós termékfelületnek érezzék, nem pedig egyetlen készséghez szükséges támasztéknak.
 
-Recommended direction:
+Ajánlott irány:
 
-1. deepen `design` with more operational design-system workflows
-2. deepen `tools` with authoring and plugin-oriented skills
-3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
-4. deepen `machine-learning` with serving, training, and evaluation operations skills
+1. elmélyítse a "tervezést" működőbb tervezési rendszer munkafolyamatokkal
+2. elmélyítse az "eszközöket" szerzői és bővítmény-orientált készségekkel
+3. elmélyítse az `data-ai'-t a bevezetés előtti csővezeték és műszerezési készségekkel
+4. elmélyítse a "gépi tanulást" kiszolgálási, képzési és értékelési műveleti készségekkel
 
-Categories intentionally deferred unless strong code-native proposals appear:
+Szándékosan elhalasztott kategóriák, hacsak nem jelennek meg erős kód-natív javaslatok:
 
-- `business`
-- `content-media`
+- "üzlet".
+- "tartalom-média".
 
-That expansion history is now tracked in:
+A bővítési előzményeket a következő helyen követi nyomon:
 
 - [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-
----
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
-- ✅ Introduce a machine-readable source of truth for skills
-- ✅ Support discovery, recommendation, and install planning by agents
-- ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
-
----
+- ✅ A jelenlegi „npx omni-skills” munkafolyamat továbbra is működőképes
+- ✅ Vezessen be egy géppel olvasható igazságforrást a készségek számára
+- ✅ Támogassa az ügynökök általi felfedezést, ajánlást és telepítéstervezést
+- ✅ Különítse el a távoli katalógusokkal kapcsolatos problémákat a helyi fájlrendszer írásaitól
+- ✅ Használja újra ugyanazokat a metaadatokat a CLI, API, MCP és A2A között---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote install-on-user-machine from a hosted server
-- ❌ Replace `SKILL.md` as the canonical authoring format
-- ❌ Require contributors to write manifests by hand
-- ❌ Turn the project into a heavy hosted queue platform by default
-
----
+- ❌ Távoli telepítés a felhasználói gépen egy hosztolt szerverről
+- ❌ Cserélje le a `SKILL.md' fájlt kanonikus szerzői formátumként
+- ❌ Kövesse meg a közreműködőktől, hogy kézzel írják meg a manifeszteket
+- ❌ Alapértelmezés szerint alakítsa át a projektet egy nehéz hosztolt várólista platformmá---
 
 ## 🏗️ Target Architecture
 
-One **catalog core** with three protocol surfaces:
+Egy**katalógusmag**három protokollfelülettel:
 
-| Surface | Best For | Mode |
+| Felület | Legjobb a | mód |
 |:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
-| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
+| 🌐**REST API**| Hozzáférés a rendszerleíró adatbázishoz, UI-integrációk, harmadik féltől származó fogyasztók | Csak olvasható |
+| 🔌**MCP**| Ügynökfelderítés, telepítési előnézetek, konfigurációk írása, ügyfélreceptek | Csak olvasható + helyi írások |
+| 🤖**A2A**| Ügynökök közötti hangszerelés és telepítési terv átadása | Feladat életciklusa egyszerű-első helyi tartóssággal |### ⚙️ Core Principle
 
-### ⚙️ Core Principle
-
-> **All protocols consume the same generated artifact family.**
-
-```text
+>**Minden protokoll ugyanazt a generált műtermékcsaládot használja.**```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -115,178 +97,144 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
-
----
+A manifeszt a megosztott szerződés marad. Az archívumok a szerződés tetejére rétegzett terjesztési műtermékek, nem helyettesítik azt.---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Used by hosted API and remote MCP servers.
+Hosztolt API és távoli MCP-kiszolgálók használják.
 
-| ✅ Allowed | ❌ Not Allowed |
-|:-----------|:---------------|
-| Search skills | Write to the caller's filesystem |
-| Fetch manifests | Mutate local client config |
-| Compare skills | Infer arbitrary machine state |
-| Recommend bundles | — |
-| Build install plans | — |
+| ✅ Engedélyezett | ❌ Nem engedélyezett |
+|:-----------|:----------------|
+| Keresési készségek | Írjon a hívó fájlrendszerébe |
+| Manifestek lekérése | Helyi ügyfélkonfiguráció mutációja |
+| Készségek összehasonlítása | Tetszőleges gépállapot megállapítása |
+| Csomagok ajánlása | — |
+| Telepítési tervek készítése | — |### 2️⃣ Local Installer Mode
 
-### 2️⃣ Local Installer Mode
+A CLI és az MCP oldalkocsi használja.
 
-Used by the CLI and the MCP sidecar.
-
-| ✅ Allowed |
+| ✅ Engedélyezett |
 |:-----------|
-| Detect local AI clients |
-| Inspect installed skills |
-| Preview file operations |
-| Install or remove skill directories |
-| Write local MCP config after preview |
+| Helyi AI-kliensek észlelése |
+| A telepített készségek ellenőrzése |
+| Fájlműveletek előnézete |
+| Képességi könyvtárak telepítése vagy eltávolítása |
+| Írja meg a helyi MCP konfigurációt az előnézet után |
 
-> 📌 This remains the only mode where real OS writes happen.
-
----
+> 📌 Ez marad az egyetlen mód, ahol valódi operációs rendszer írás történik.---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Best for registry access, search, comparison, versioned downloads, and install planning.
+A legjobb a rendszerleíró adatbázis eléréséhez, kereséshez, összehasonlításhoz, verziószámú letöltéshez és telepítéstervezéshez.
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**Végpontok**: „GET /v1/skills” · „GET /v1/skills/:id” · „GET /v1/search” · „GET /v1/compare” · „GET /v1/bundles” · „POST /v1/install/plan” · „GET /healthz”### 🔌 MCP
 
-### 🔌 MCP
+A legjobb az eszközalapú felfedezéshez, a felszólító javaslatokhoz, a telepítési előnézetekhez és az ügyfélspecifikus MCP-beállításokhoz.
 
-Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
+**Csak olvasható eszközök**: „search_skills” · „get_skill” · „Compare_skills” · „recommend_skills” · „preview_install”
 
-**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+**Helyi eszközök**: `detect_clients` · `telepített_készségek listája` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
 
-**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+A legjobb a felderítési átadás-átvételhez, a telepítési terv munkafolyamataihoz és a folytatható ügynökfeladatok végrehajtásához.
 
-### 🤖 A2A
-
-Best for discovery handoff, install-plan workflows, and resumable agent task execution.
-
-**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
-
----
+**Jelenlegi műveletek**: `fedez fel-készségeket` · `recommend-stack` · `telepítési terv előkészítése`---
 
 ## 🛡️ Security Model
 
-| Principle | Implementation |
-|:----------|:---------------|
-| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
-| 📂 Writes stay local | CLI and MCP sidecar only |
-| 👁️ Preview before write | Dry-run defaults on local mutations |
-| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
-| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
-| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
-
----
+| alapelv | Végrehajtás |
+|:----------|:----------------|
+| 🔒 A tárolt szolgáltatások csak olvashatók | Az API és a távoli MCP nem ír a hívó fájlrendszerbe |
+| 📂 Ír, maradj helyben | Csak CLI és MCP oldalkocsi |
+| 👁️ Előnézet írás előtt | A szárazonfutás alapértelmezései a helyi mutációknál |
+| 🔑 Az integritás kifejezett | SHA-256 ellenőrző összegek a generált műtermékekhez |
+| ✍️ A bizalom felszabadítása kifejezett | Leválasztott aláírások a kiadási címkéken |
+| ⚠️ Felszínre került a kockázat | A kockázati és biztonsági metaadatok minden futási felületre terjednek |---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- documented target architecture
-- defined manifest schema
-- generated metadata, catalog, manifests, bundles, and archives
+- dokumentált célarchitektúra
+- meghatározott jegyzékséma
+- generált metaadatok, katalógusok, manifestek, csomagok és archívumok### Phase 2: Catalog Service
 
-### Phase 2: Catalog Service
+- Csak olvasható HTTP API Express 5-tel
+- keresés, szűrés, jegyzékkeresés, csomaglista, összehasonlítás és letöltések
+- env-vezérelt hosztolt kormányzás alapállapota### Phase 3: MCP Discovery
 
-- read-only HTTP API with Express 5
-- search, filtering, manifest lookup, bundle listing, comparison, and downloads
-- env-driven hosted governance baseline
+- hivatalos `@modelcontextprotocol/sdk` integráció
+- "stdio", streamelhető HTTP és SSE szállítások
+- A megosztott katalógus által támogatott írásvédett eszközök, erőforrások és promptok### Phase 4: Local Install and Config Surface
 
-### Phase 3: MCP Discovery
+- helyi oldalkocsi engedélyezett listákkal
+- 7 telepítésre képes kliens észlelése
+- Konfigírás 16 konfigurációra képes kliens számára 33 célon és 19 konfigurációs profilon keresztül
+- irányított `config-mcp` folyamatok a CLI-ben és a vizuális shellben
+- Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose és Dev Containers stabil támogatása### Phase 5: A2A Orchestration
 
-- official `@modelcontextprotocol/sdk` integration
-- `stdio`, streamable HTTP, and SSE transports
-- read-only tools, resources, and prompts backed by the shared catalog
+- ügynökkártya a `/.well-known/agent.json' címen
+- "message/send", "message/stream", "tasks/get", "tasks/cancel", "tasks/resubscribe" és push-notification konfigurációs módszerek
+- JSON és SQLite kitartás az újraindítás helyreállításával
+- opcionális külső folyamatvégrehajtó
+- Opt-in bérelt végrehajtás a dolgozók között az SQLite és az opcionális továbbfejlesztett Redis koordinációhoz
+- az egyszerű-első alapértelmezések a memóriában, a JSON-ban vagy az SQLite-ban tárolva külső függőségek nélkül### Current Enhancer Operating Decision
 
-### Phase 4: Local Install and Config Surface
+A privát javító által támogatott "élő" modell most már egyértelmű:
 
-- local sidecar with allowlisted writes
-- detection for 7 install-capable clients
-- config writing for 16 config-capable clients across 33 targets and 19 config profiles
-- guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
-
-### Phase 5: A2A Orchestration
-
-- agent card at `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
-- JSON and SQLite persistence with restart recovery
-- optional external process executor
-- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
-- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
-
-### Current Enhancer Operating Decision
-
-The private enhancer's supported `live` model is now explicit:
-
-- hosted PR automation runs a preflight-gated `live` attempt
-- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
-- the canonical reliable `live` path remains LAN or local service execution
-- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
-
----
+- A hosztolt PR-automatizálás egy repülés előtti "élő" kísérletet futtat
+- ha a nyilvános OmniRoute átjáró blokkolt vagy instabil, a PR 'blokkolva' megjelölésre kerül, ahelyett, hogy átláthatatlanul meghibásodott volna.
+- a kanonikus megbízható "élő" útvonal továbbra is a LAN vagy a helyi szolgáltatás végrehajtása
+- Az ütemezett privát GitHub-futtatások alapértelmezés szerint „mock” maradnak, hacsak egy operátor kifejezetten nem kéri az „élő” beállítást---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+**Döntés**: tartsa a jegyzéket megosztott szerződésként, és az aláírt készségenkénti archívumot terjesztési felületként.
 
-**Why**:
-- CLI, API, MCP, and A2A already consume the normalized manifest shape
-- archives are ideal for download and verification, but poor as the only discovery contract
-- this keeps authoring simple and distribution verifiable
+**Miért**:
+- A CLI, API, MCP és A2A már felhasználja a normalizált jegyzék alakzatot
+- Az archívumok ideálisak letöltésre és ellenőrzésre, de gyenge, mint az egyetlen felfedezési szerződés
+- Ezáltal a szerkesztés egyszerű és a terjesztés ellenőrizhető### 2. Private or Premium Catalogs
 
-### 2. Private or Premium Catalogs
+**Döntés**: használja újra ugyanazt a jegyzék- és katalógusformátumot, és rétegezze a hitelesítést vagy szabályzatot külsőleg.
 
-**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+**Miért**:
+- elkerüli az adatmodell elágazását
+- megfelel a jelenlegi API/MCP irányítási megközelítésnek
+- továbbra is kompatibilis az MCP-ökoszisztéma irányával az OAuth-kliens hitelesítő adatai és a vállalati felhatalmazás körül### 3. Client Writer Strategy
 
-**Why**:
-- it avoids forking the data model
-- it matches the current API/MCP governance approach
-- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+**Döntés**: konvergáljon a kanonikus exportcsaládok kis csoportjához, és csak ott tartson egyedi írókat, ahol a hivatalos ügyféldokumentumok ezt megkövetelik.
 
-### 3. Client Writer Strategy
-
-**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
-
-**Canonical families now in use**:
-- JSON `mcpServers`
-- JSON `servers`
-- JSON `context_servers`
-- YAML `mcpServers`
+**Mostantól használatban lévő kanonikus családok**:
+- JSON "mcpServers".
+- JSON "szerverek".
+- JSON "context_servers".
+- YAML "mcpServers".
 - TOML `[mcp_servers]`
 
-**Why**:
-- it keeps the implementation maintainable
-- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
-- it avoids inventing fragile writers for clients without stable public config docs
-
----
+**Miért**:
+- karbantarthatóvá teszi a megvalósítást
+- továbbra is támogatja az ügyfélspecifikus igényeket, mint például a Claude beállítások, a Continue YAML, a Zed "context_servers" és a Codex TOML
+- elkerüli a törékeny írók feltalálását stabil nyilvános konfigurációs dokumentumokkal nem rendelkező ügyfelek számára---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-The current decisions were checked against official ecosystem docs:
+A jelenlegi döntéseket összevettük a hivatalos ökoszisztéma-dokumentumokkal:
 
-- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
-- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
-- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
-- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
-
----
+- Az MCP-ökoszisztéma mostantól dokumentálja az opcionális bővítményeket, például az OAuth-kliens hitelesítő adatait és a vállalati felügyelt hitelesítést, amely támogatja a hosztolt hitelesítés külsősítését a katalógusformátum elágazása helyett
+- Az OpenAI dokumentálja a nyilvános dokumentumok MCP-kiszolgálóját és a Codex MCP konfigurációs mintáit, amelyek igazodnak a megosztott jegyzék plusz kliens-író stratégiához
+- A VS Code első osztályú MCP-támogatást és egy kiterjesztési útmutatót dokumentál, amely megerősíti a dedikált "szerver-alapú író" karbantartását
+- A JetBrains AI Assistant az MCP beállítását a termék UX-jén keresztül dokumentálja, nem pedig egy stabil platformközi fájlszerződésen keresztül, amely jelenleg támogatja a manuális/részletes területen tartását.---
 
 ## 🔮 Longer-Term Decision Points
 
-Only a few strategic questions remain genuinely open:
+Csak néhány stratégiai kérdés maradt valóban nyitott:
 
-1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
-2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
-3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
+1. A jelenlegi mátrixon túli bármely ügyfél valóban letörli-e a lécet az első osztályú íráshoz, vagy a többi terméknek továbbra is kézi/csak kivonatúnak kell lennie
+2. Mikor kell a hosztolt irányításnak egy külső átjáró vagy vállalati IdP mögé költözni a jelenlegi folyamat közbeni alaphelyzet helyett?
+3. Meddig kell elmennie a pontozónak a referenciacsomag mélységének és működési minőségének értékelésében, mielőtt az túlságosan elgondolkodtatóvá válik a közreműködők számára?

@@ -5,50 +5,42 @@
 ---
 
 
-> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
-> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
-
----
+>**Omni Skills mengandungi katalog kemahiran dan permukaan masa jalan yang dibina di atas katalog itu.**
+> Sumbangan boleh menyasarkan mana-mana kawasan, tetapi kedua-duanya mesti kekal sejajar dengan artifak yang dijana dan gelagat CLI semasa.---
 
 ## 📊 Repository Baseline
 
-| Metric | Value |
+| Metrik | Nilai |
 |:-------|:------|
-| 📦 Package version | `0.1.3` |
-| 🧠 Published skills | `32` |
-| 📦 Fully backed bundles | `7` |
-| 🖥️ Install-capable clients | `7` |
-| 🔌 MCP config-capable clients | `16` |
-| 🔄 Automatic releases | Enabled on `main` |
-
----
+| 📦 Versi pakej | `0.1.3` |
+| 🧠 Kemahiran diterbitkan | `32` |
+| 📦 Himpunan disokong penuh | `7` |
+| 🖥️ Pelanggan berkemampuan memasang | `7` |
+| 🔌 Pelanggan berkebolehan konfigurasi MCP | `16` |
+| 🔄 Keluaran automatik | Didayakan pada `utama` |---
 
 ## Penting
 
-| What | Where |
+| Apa | Di mana |
 |:-----|:------|
-| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
-| 📖 Contributor templates and guidance | `docs/contributors/` |
-| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 Native incoming skills land under | `skills/` (any language) |
-| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
-| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
-| 📖 Runtime and architecture docs | `docs/` |
-| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
-
----
+| 🧠 Kemahiran dikarang dalam | `kemahiran/<nama-kemahiran>/KEMAHIRAN.md` |
+| 📖 Templat dan panduan penyumbang | `docs/contributors/` |
+| 🧾 Aliran PR kanonik untuk kemahiran baharu | [Aliran Kerja PR Kemahiran](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Kemahiran masuk asli mendarat di bawah | `kemahiran/` (sebarang bahasa) |
+| ✨ Derivatif dipertingkat yang dipilih susun | `skills_omni/` (Bahasa Inggeris sahaja, automatik) |
+| 🚫 `kemahiran_omni/` dilindungi | Tidak dibuka untuk sumbangan awam langsung |
+| 📖 Dokumen masa jalan dan seni bina | `dokumen/` |
+| 📄 Fail komuniti | `README.md` · `MENYUMBANG.md` · `KESELAMATAN.md` · `KOD_KELAKUAN.md` |---
 
 ## 🎯 Common Contribution Types
 
-| Type | Area |
+| Taip | Kawasan |
 |:-----|:-----|
-| 🧠 Add or improve a skill | `skills/` |
-| 📖 Update contributor guidance | `docs/contributors/` |
-| 🖥️ Improve CLI, installer, or scripts | `tools/` |
-| 📦 Improve catalog runtime or protocol packages | `packages/` |
-| 🧪 Tighten tests, smoke checks, or release docs | Various |
-
----
+| 🧠 Tambah atau tingkatkan kemahiran | `kemahiran/` |
+| 📖 Kemas kini panduan penyumbang | `docs/contributors/` |
+| 🖥️ Tingkatkan CLI, pemasang atau skrip | `alat/` |
+| 📦 Tingkatkan masa jalan katalog atau pakej protokol | `pakej/` |
+| 🧪 Ketatkan ujian, pemeriksaan asap atau keluarkan dokumen | Pelbagai |---
 
 ## Mula Pantas
 
@@ -73,22 +65,18 @@ npm test
 npm run smoke
 ```
 
-> **📝 Open the PR with `Allow edits from maintainers` enabled.**
-
----
+>**📝 Buka PR dengan `Benarkan suntingan daripada penyelenggara` didayakan.**---
 
 ## Dokumentasi
 
-A good native incoming skill should:
+Kemahiran masuk asli yang baik harus:
 
-- ✅ Solve a specific problem cleanly
-- ✅ Be reusable across projects
-- ✅ Include instructions an agent can actually follow
-- ✅ Avoid vague or redundant content
-- ✅ Declare accurate frontmatter and compatibility metadata when available
-- ✅ Land with generated `metadata.json` classification artifacts after automation runs
-
-### 📁 Minimal Structure
+- ✅ Menyelesaikan masalah tertentu dengan bersih
+- ✅ Boleh diguna semula merentas projek
+- ✅ Sertakan arahan yang boleh diikuti oleh ejen
+- ✅ Elakkan kandungan yang tidak jelas atau berlebihan
+- ✅ Isytiharkan bahagian hadapan yang tepat dan metadata keserasian apabila tersedia
+- ✅ Tanah dengan artifak klasifikasi `metadata.json` yang dihasilkan selepas automasi dijalankan### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -107,83 +95,67 @@ skills/my-skill/
 └── scripts/
 ```
 
-> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
+>**💡 Petua:**Pek kemahiran gred keluaran hendaklah termasuk `ejen/`, `rujukan/`, `contoh/` dan `skrip/`. Tetapi permukaan pengambilan secara sengaja mengizinkan — kemahiran masuk asli yang minimum dibenarkan, dan saluran paip penambah menjana terbitan yang lebih kuat.### 🌐 Language Policy
 
-### 🌐 Language Policy
+| Permukaan | Bahasa yang Diterima |
+|:--------|:--------------------|
+| 📥 `kemahiran/` (pengambilan asli) | Portugis, Inggeris atau mana-mana bahasa |
+| ✨ `kemahiran_omni/` (output dipilih susun) | Bahasa Inggeris sahaja |
 
-| Surface | Accepted Languages |
-|:--------|:-------------------|
-| 📥 `skills/` (native intake) | Portuguese, English, or any language |
-| ✨ `skills_omni/` (curated output) | English only |
+> Penambah persendirian mengekalkan sumber asli seperti yang diserahkan dan menulis semula terbitan yang dipilih susun dalam bahasa Inggeris.
 
-> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
-
-📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
-
----
+📖 Untuk jujukan cawangan penuh, pengesahan dan semakan penambah, gunakan [Aliran Kerja PR Kemahiran](docs/contributors/SKILL-PR-WORKFLOW.md).---
 
 ## ✅ Required Validation
 
-Run this before opening a PR:
-
-```bash
+Jalankan ini sebelum membuka PR:```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<details>
-<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
+<butiran>
+<summary>📋 <strong>Apa yang <code>npm run validate</code> regenerate</strong></summary>
 
 - `metadata.json`
-- `skills/<skill>/metadata.json`
-- Canonical taxonomy mapping
-- Maturity, best practices, quality, and security scores
-- Static security findings
-- Optional ClamAV and VirusTotal scanner status (when configured)
+- `kemahiran/<kemahiran>/metadata.json`
+- Pemetaan taksonomi kanonik
+- Kematangan, amalan terbaik, kualiti dan markah keselamatan
+- Penemuan keselamatan statik
+- Status pengimbas ClamAV dan VirusTotal pilihan (apabila dikonfigurasikan)</details>
 
-</details>
+>**⚠️ Penting:**Pengesahan ialah kontrak yang digunakan oleh CLI, API, MCP, A2A, manifes, arkib dan automasi keluaran. Anggap metadata yang dijana sebagai sebahagian daripada permukaan semakan, bukan keluaran pakai buang.### 📥 Intake Policy
 
-> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
-
-### 📥 Intake Policy
-
-| Condition | Behavior |
+| Keadaan | Tingkah laku |
 |:----------|:---------|
-| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
-| Critical security findings | 🚫 Blocks intake |
-| Hard validation errors | 🚫 Blocks intake |
-| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
-
-### 🧪 Release-Grade Preflight
+| Bahagian hadapan tiada/tidak lengkap | ⚠️ Amaran (tidak menyekat) |
+| Penemuan keselamatan kritikal | 🚫 Sekat pengambilan |
+| Ralat pengesahan keras | 🚫 Sekat pengambilan |
+| Standard editorial yang lebih ketat | Dikuatkuasakan dalam aliran terbitan dipertingkat, bukan pada pengambilan asli |### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<details>
-<summary>📋 <strong>What the smoke pass validates</strong></summary>
+<butiran>
+<ringkasan>📋 <strong>Apa yang disahkan oleh pas asap</strong></ringkasan>
 
-- ✅ Skill validation
-- ✅ Catalog generation
-- ✅ Docs catalog generation
-- ✅ Test suite
-- ✅ `npm pack --dry-run`
-- ✅ API boot
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot
-- ✅ Archive verification and packaging expectations
-
-</details>
+- ✅ Pengesahan kemahiran
+- ✅ Penjanaan katalog
+- ✅ Penjanaan katalog dokumen
+- ✅ Suite ujian
+- ✅ `pek npm --dry-run`
+- ✅ But API
+- ✅ But MCP dalam `stdio`, `strim` dan `sse`
+- ✅ But A2A
+- ✅ Pengesahan arkib dan jangkaan pembungkusan</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
-
-```yaml
+Frontmatter amat disyorkan. Gunakan [Templat Kemahiran](docs/contributors/SKILL-TEMPLATE.md) sebagai garis dasar.```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -200,104 +172,88 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<details>
-<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
+<butiran>
+<ringkasan>🏷️ <strong>Kategori taksonomi kanonik</strong></ringkasan>
 
-| Category | Category |
+| Kategori | Kategori |
 |:---------|:---------|
-| `development` | `frontend` |
-| `backend` | `fullstack-web` |
-| `tools` | `cli-automation` |
-| `business` | `product` |
-| `design` | `data-ai` |
-| `ai-agents` | `machine-learning` |
-| `devops` | `testing-security` |
-| `documentation` | `content-media` |
-| `communication` | `uncategorized` |
+| `pembangunan` | `depan` |
+| `belakang` | `fullstack-web` |
+| `alat` | `cli-automasi` |
+| `perniagaan` | `produk` |
+| `reka bentuk` | `data-ai` |
+| `ai-ejen` | `pembelajaran mesin` |
+| `devops` | `ujian-keselamatan` |
+| `dokumentasi` | `media-kandungan` |
+| `komunikasi` | `tidak dikategorikan` |</details>
 
-</details>
-
-> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
-
----
+>**ℹ️**Versi kemahiran adalah bebas daripada versi pakej npm. Jika kemahiran masuk asli belum mempunyai frontmatter, ia akan diterima dengan amaran dan memperoleh metadata sementara daripada direktori, tajuk dan teks kandungan.---
 
 ## ⚙️ Runtime Contributions
 
-If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
+Jika anda menyentuh `packages/`, `tools/bin/`, `tools/lib/`, atau bina skrip:
 
-- 📦 Keep `dist/` and docs aligned with the implementation
-- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
-- 🔒 Keep local-write behavior behind preview or dry-run defaults
-- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
-- 🛡️ Treat security scanner warnings as part of the review bar
-- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
+- 📦 Pastikan `dist/` dan dokumen sejajar dengan pelaksanaan
+- 🔄 Lebih suka menggunakan semula `pakej/teras katalog` daripada menduplikasi logik katalog
+- 🔒 Kekalkan tingkah laku tulis tempatan di belakang pratonton atau lalai larian kering
+- 🔌 Pastikan penulis MCP berdisiplin — hanya tambahkan penulis konfigurasi kelas pertama apabila pelanggan mempunyai kontrak konfigurasi awam yang stabil
+- 🛡️ Rawat amaran pengimbas keselamatan sebagai sebahagian daripada bar semakan
+- 🧪 Kemas kini ujian apabila menukar arahan CLI, mod pengangkutan atau titik akhir awam### 🚧 Important Boundary
 
-### 🚧 Important Boundary
-
-| Do this ✅ | Don't do this 🚫 |
+| Lakukan ini ✅ | Jangan buat begini 🚫 |
 |:-----------|:-----------------|
-| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
-| Let automation handle the enhancer run | Add curated content directly |
-| Focus on legitimate skill quality | Bypass the automated companion PR flow |
+| Hantar karya asli di bawah `kemahiran/` | Buka PR manual yang mengedit `skills_omni/` |
+| Biarkan automasi mengendalikan kerja penambah | Tambahkan kandungan dipilih susun secara langsung |
+| Fokus pada kualiti kemahiran yang sah | Pintas aliran PR pendamping automatik |
 
-> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
-
----
+>**ℹ️**Apabila kemahiran asli dalam `kemahiran/` dikemas kini, penambah peribadi memprosesnya semula dan menyegarkan garis dasar yang dipertingkatkan.---
 
 ## 🔄 Enhancer Outcome States
 
-During public native-skill PRs, the enhancer reports one of four states:
+Semasa PR kemahiran asli awam, penambah melaporkan satu daripada empat keadaan:
 
-| State | Meaning |
+| Negeri | Maksudnya |
 |:------|:--------|
-| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
-| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
-| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
-| ❌ `failed` | Unexpected error — requires maintainer investigation |
+| ✅ `selesai` | Derivatif dipertingkat yang dijana dengan bersih, layak untuk `skills_omni/` |
+| ⚠️ `terdegradasi` | Dilengkapi dengan sandaran atau pergerakan skor yang lebih lemah — periksa dengan lebih teliti |
+| 🚫 `disekat` | Dihentikan atas sebab infrastruktur atau pengesahan — menghalang penerbitan automatik |
+| ❌ `gagal` | Ralat tidak dijangka — memerlukan penyiasatan penyelenggara |
 
-> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
-
----
+>**📝 Penyumbang**tidak perlu menyelesaikan isu infrastruktur penambah. Tanggungjawabnya adalah untuk menyerahkan kemahiran asli yang sah dan memastikan repo hijau.---
 
 ## 🔄 Automatic Release Policy
 
-When a change lands on `main` and includes:
+Apabila perubahan tiba di `utama` dan termasuk:
 
-- `skills/**`
-- `skills_omni/**`
+- `kemahiran/**`
+- `kemahiran_omni/**`
 - `data/bundles.json`
 
-…the repository issues a **package release automatically**.
+…repositori mengeluarkan**keluaran pakej secara automatik**.### 📋 Version Bump Rule
 
-### 📋 Version Bump Rule
-
-| From | To | Rule |
+| Daripada | Kepada | Peraturan |
 |:-----|:---|:-----|
-| `0.1.0` | `0.1.1` | Patch +1 |
-| `0.1.9` | `0.1.10` | Patch +1 |
-| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
+| `0.1.0` | `0.1.1` | Tampalan +1 |
+| `0.1.9` | `0.1.10` | Tampalan +1 |
+| `0.1.10` | `0.2.0` | Gulung ke bawah umur seterusnya, tetapkan semula tampung |
 
-> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
-
----
+> Aliran keluaran menjana semula katalog/arkib, melakukan bonjolan versi, menandai keluaran, menerbitkan npm dan mencipta keluaran GitHub secara automatik.---
 
 ## 📝 Commit Conventions
 
-| Prefix | Use For |
+| Awalan | Gunakan Untuk |
 |:-------|:--------|
-| `feat:` | New skill or feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation changes |
-| `refactor:` | Code cleanup or structure changes |
-| `test:` | Test changes |
-| `chore:` | Maintenance |
-
----
+| `feat:` | Kemahiran atau ciri baharu |
+| `baiki:` | Pembetulan pepijat |
+| `dokumen:` | Perubahan dokumentasi |
+| `refactor:` | Pembersihan kod atau perubahan struktur |
+| `ujian:` | Perubahan ujian |
+| `tugas:` | Penyelenggaraan |---
 
 ## ❓ Need Help?
 
-| Channel | Link |
+| Saluran | Pautan |
 |:--------|:-----|
-| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Soalan | [Buka Perbincangan](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Pepijat | [Buka Isu](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Maklum balas awal | [Buka Draf PR](https://github.com/diegosouzapw/omni-skills/pulls) |

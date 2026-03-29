@@ -5,126 +5,110 @@
 ---
 
 
-> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
-
----
+>**Jangkaan struktur dan kualiti untuk `SKILL.md` Kemahiran Omni — format pengarangan yang memberi kuasa kepada keseluruhan katalog.**---
 
 ## 📐 The Two Parts
 
-Every `SKILL.md` is composed of two distinct sections:
+Setiap `SKILL.md` terdiri daripada dua bahagian yang berbeza:### 1️⃣ Frontmatter (YAML Metadata)
 
-### 1️⃣ Frontmatter (YAML Metadata)
+Metadata boleh dibaca mesin antara pembatas `---`. Ia berkuasa:
 
-Machine-readable metadata between `---` delimiters. It powers:
+- 📚 Indeks kemahiran dan penjanaan katalog
+- 🔎 Carian dan penapisan CLI
+- ✅ Pengesahan dan pemarkahan kualiti
+- 📊 Menjana artifak klasifikasi `metadata.json`
+- 📋 Per-kemahiran nyata dalam `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
 
-- 📚 The skills index and catalog generation
-- 🔎 CLI search and filtering
-- ✅ Validation and quality scoring
-- 📊 Generated `metadata.json` classification artifacts
-- 📋 Per-skill manifests in `dist/manifests/`
-
-### 2️⃣ Body (Markdown Instructions)
-
-Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
-
----
+Arahan yang boleh dibaca manusia (dan boleh dibaca ejen). Tulisnya seolah-olah anda**memberi taklimat kepada pembangun kanan**tentang cara melaksanakan tugas — cukup khusus sehingga ejen AI boleh mengikutinya tanpa meneka.---
 
 ## 📋 Frontmatter Reference
 
-| Field | Required | Type | Description |
+| Medan | Diperlukan | Taip | Penerangan |
 |:------|:---------|:-----|:------------|
-| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
-| `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
-| `category` | ⚡ | string | One canonical category from the repo taxonomy |
-| `tags` | ⚡ | string[] | Searchable tags for discovery |
-| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
-| `tools` | ⚡ | string[] | Tested AI coding assistants |
-| `source` | ⚡ | string | `omni-team` · `community` · `official` |
-| `author` | ⚡ | string | Attribution |
-| `date_added` | ⚡ | string | ISO date |
-| `date_updated` | ⚡ | string | ISO date |
+| `nama` | ✅ | rentetan | Mesti sepadan dengan nama direktori, huruf kecil bersempang |
+| `penerangan` | ✅ | rentetan | Penerangan satu baris (10-200 aksara) |
+| `versi` | ⚡ | rentetan | Versi semantik untuk kemahiran itu sendiri (cth., `"0.1.1"`) |
+| `kategori` | ⚡ | rentetan | Satu kategori kanonik daripada taksonomi repo |
+| `tag` | ⚡ | rentetan[] | Teg yang boleh dicari untuk penemuan |
+| `kerumitan` | ⚡ | rentetan | `pemula` · `pertengahan` · `maju` · `pakar` |
+| `risiko` | ⚡ | rentetan | `selamat` · `berhati-hati` · `menyinggung` · `kritikal` |
+| `alat` | ⚡ | rentetan[] | Pembantu pengekodan AI yang diuji |
+| `sumber` | ⚡ | rentetan | `omni-team` · `community` · `official` |
+| `pengarang` | ⚡ | rentetan | Atribusi |
+| `tarikh_tambah` | ⚡ | rentetan | tarikh ISO |
+| `tarikh_kemas kini` | ⚡ | rentetan | tarikh ISO |
 
-> ✅ = Always required · ⚡ = Required in strict mode
+> ✅ = Sentiasa diperlukan · ⚡ = Diperlukan dalam mod ketat
 
-The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
-
----
+Versi kemahiran adalah bebas daripada versi pakej npm. Pakej pada masa ini ialah `0.1.3`, tetapi kemahiran sedia ada boleh kekal pada versi semantiknya sendiri secara sah.---
 
 ## 🏷️ Canonical Categories
 
-The repo taxonomy currently defines **18 canonical categories**:
+Taksonomi repo kini mentakrifkan**18 kategori kanonik**:
 
-| Category | Domain |
+| Kategori | Domain |
 |:---------|:-------|
-| 💻 `development` | General software development |
-| 🎨 `frontend` | Frontend frameworks and UI |
-| 🔧 `backend` | Backend services and APIs |
-| 🌐 `fullstack-web` | End-to-end web development |
-| 🛠️ `tools` | Developer tooling and utilities |
-| ⚙️ `cli-automation` | CLI tools and automation scripts |
-| 📊 `business` | Business processes and strategy |
-| 📐 `product` | Product management and design |
-| 🎯 `design` | Visual and UX design |
-| 🤖 `data-ai` | Data engineering and AI applications |
-| 🧠 `ai-agents` | AI agent development and patterns |
-| 📈 `machine-learning` | ML models and training |
-| 🔌 `devops` | Infrastructure and deployment |
-| 🛡️ `testing-security` | Testing and security practices |
-| 📖 `documentation` | Documentation generation and management |
-| 🎬 `content-media` | Content creation and media |
-| 💬 `communication` | Communication tools and workflows |
-| ❓ `uncategorized` | Default when no match is found |
+| 💻 `pembangunan` | Pembangunan perisian am |
+| 🎨 `depan` | Rangka kerja bahagian hadapan dan UI |
+| 🔧 `hujung belakang` | Perkhidmatan hujung belakang dan API |
+| 🌐 `fullstack-web` | Pembangunan web hujung ke hujung |
+| 🛠️ `alat` | Perkakas dan utiliti pembangun |
+| ⚙️ `cli-automation` | Alat CLI dan skrip automasi |
+| 📊 `perniagaan` | Proses dan strategi perniagaan |
+| 📐 `produk` | Pengurusan dan reka bentuk produk |
+| 🎯 `rekaan` | Reka bentuk visual dan UX |
+| 🤖 `data-ai` | Kejuruteraan data dan aplikasi AI |
+| 🧠 `ai-agen` | Pembangunan dan corak ejen AI |
+| 📈 `pembelajaran mesin` | Model dan latihan ML |
+| 🔌 `devops` | Infrastruktur dan penempatan |
+| 🛡️ `ujian-keselamatan` | Ujian dan amalan keselamatan |
+| 📖 `dokumentasi` | Penjanaan dan pengurusan dokumentasi |
+| 🎬 `media-kandungan` | Penciptaan kandungan dan media |
+| 💬 `komunikasi` | Alat komunikasi dan aliran kerja |
+| ❓ `tidak dikategorikan` | Lalai apabila tiada padanan ditemui |
 
-> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
-
----
+> Label warisan seperti `aliran kerja`, `seni bina`, `infrastruktur`, `keselamatan` dan `pengujian` dinormalisasi secara automatik melalui pemetaan alias.---
 
 ## 📝 Body Structure
 
-A well-written skill body follows this hierarchy:
+Badan kemahiran yang ditulis dengan baik mengikut hierarki ini:
 
-### 📌 Overview (Required)
-2-3 sentences on **what** the skill does and **why** it exists.
+### 📌 Gambaran Keseluruhan (Diperlukan)
+2-3 ayat tentang**apa**kemahiran itu dan**mengapa**ia wujud.
 
-### 🎯 When to Use (Required)
-Bullet list of **specific scenarios** where this skill applies.
+### 🎯 Bila Perlu Digunakan (Diperlukan)
+Senarai peluru**senario khusus**di mana kemahiran ini digunakan.
 
-### 📋 Core Instructions (Required)
-The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
+### 📋 Arahan Teras (Diperlukan)
+**proses langkah demi langkah**yang harus diikuti oleh ejen. Bersikap eksplisit. Jadi khusus. Ejen berfungsi paling baik dengan arahan yang jelas dan tidak jelas.
 
-### 💡 Examples (Recommended)
-Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
+### 💡 Contoh (Disyorkan)
+Gesaan konkrit, blok kod atau output yang dijangkakan.**Lebih spesifik, lebih baik.**
 
-### ✅ Best Practices (Recommended)
-Use the ✅ Do / ❌ Don't format for quick scanning.
+### ✅ Amalan Terbaik (Disyorkan)
+Gunakan ✅ Lakukan / ❌ Jangan format untuk pengimbasan pantas.
 
-### 🔧 Troubleshooting (Optional)
-Common issues and their solutions.
+### 🔧 Menyelesaikan masalah (Pilihan)
+Isu biasa dan penyelesaiannya.
 
-### 🔗 Related Skills (Optional)
-Cross-references to complementary skills.
-
----
+### 🔗 Kemahiran Berkaitan (Pilihan)
+Rujukan silang kepada kemahiran pelengkap.---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Focused on **one specific** workflow or domain
-- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
-- 💡 Includes **concrete examples** with expected behavior
-- 🛡️ Has proper **error handling** guidance
-- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
-- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
+- 🎯 Memfokuskan pada**satu aliran kerja atau domain**tertentu
+- 📌 Arahan**cukup jelas untuk dipatuhi oleh AI**tanpa tafsiran manusia
+- 💡 Termasuk**contoh konkrit**dengan tingkah laku yang diharapkan
+- 🛡️ Mempunyai panduan**pengendalian ralat**yang betul
+- 📊 Menghasilkan metadata yang sihat: kategori kanonik, kematangan L2+, kualiti 70+
+- 🧰 Menghantar pek sokongan boleh guna semula, bukan sahaja prosa, idealnya merentas `rujukan/`, `skrip/`, `contoh/` dan `ejen/` jika bersesuaian
 
-For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Untuk corak pemarkahan yang lebih kukuh yang mendorong kemahiran ke dalam kumpulan tertinggi, lihat [Buku Main Skor Tinggi](BUKU MAIN SKOR TINGGI.md).### ❌ Bad Skill
 
-### ❌ Bad Skill
-
-- 🌫️ Generic advice that could apply to anything
-- 🤷 Vague instructions like "write good code"
-- 🚫 No examples or code blocks
-- ⚠️ Missing frontmatter fields
-- 📉 Low quality score (below 50)
+- 🌫️ Nasihat generik yang boleh digunakan untuk apa sahaja
+- 🤷 Arahan yang tidak jelas seperti "tulis kod yang bagus"
+- 🚫 Tiada contoh atau blok kod
+- ⚠️ Tiada medan frontmatter
+- 📉 Skor kualiti rendah (di bawah 50)

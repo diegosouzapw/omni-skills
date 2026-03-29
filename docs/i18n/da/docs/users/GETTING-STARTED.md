@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**Installer færdigheder, bekræft opsætningen, og påkald din første AI-færdighed på under 2 minutter.**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| Metrisk | Værdi |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| Udgivet færdigheder |**32**på tværs af 15 aktive kategorier, herunder arkitektur, design, sikkerhed, DevOps, AI-engineering og mere |
+| Definerede bundter |**7**(alle fuldt understøttet af offentliggjorte færdigheder) |
+| Installationskompatible klienter |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP-konfigurationskompatible klienter |**16**på tværs af 33 førsteklasses MCP-konfigurationsmål |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+I en interaktiv terminal åbner dette nu den guidede installatør i stedet for lydløst at antage en klient.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+Dette åbner den brandede terminalhub til installation, opdagelse, MCP, API og A2A-start.### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+Uden for en TTY har no-arg-installationsprogrammet stadig som standard `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ Startpakkerne er nu fuldt understøttet, inklusive `devops` og `ai-engineer`.### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+Tjek, at færdigheder er landet det rigtige sted:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+Eller brug den indbyggede diagnostik:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+Giver agenter filsystemværktøjer til at opdage klienter, installere/fjerne færdigheder og skrive MCP-konfigurationer:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+Du kan også konfigurere MCP til klienter, der ikke er mål for færdighedsinstallation:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+Viser færdighedskataloget som en skrivebeskyttet HTTP API:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+Agent-til-agent opdagelse, anbefaling, installationsplanlægning, polling og streaming:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+En færdighed er en struktureret afspilningsbog (`SKILL.md`), der giver en AI-agent:
 
-| Component | Purpose |
-|:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| Komponent | Formål |
+|:--------|:--------|
+| 📋**Frontmaterie**| Maskinlæsbare metadata (navn, kategori, tags, værktøjer, risiko) |
+| 📝**Krop**| Opgavespecifikke instruktioner, trin, autoværn og eksempler |
+| 📚**Referencer**| Understøttende dokumenter, agenten kan konsultere under udførelsen |
+| 🎨**Aktiver**| Ikoner, billeder eller andre pakkede ressourcer |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| Doc | Hvad du vil lære |
+|:----|:------------------------|
+| 🧭 [CLI-brugervejledning](CLI-USER-GUIDE.md) | Fuld kommandoreference til installation, runtime, konfiguration og diagnostik |
+| 📗 [Brugsvejledning](USAGE.md) | Alle CLI-kommandoer, promptmønstre og runtime-tilstande |
+| 📦 [Bundler](BUNDLES.md) | Kurerede færdighedssamlinger og deres tilgængelighed |
+| 📚 [Katalog](../CATALOG.md) | Autogenereret katalog over offentliggjorte færdigheder |
+| 📖 [Dokumentationshub](../README.md) | Fuld dokumentation kort |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operationel reference |

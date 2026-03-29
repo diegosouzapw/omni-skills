@@ -5,69 +5,55 @@
 ---
 
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
+นี่คือโฟลว์พื้นที่เก็บข้อมูล Canonical สำหรับคำขอดึงที่เพิ่มหรืออัปเกรดทักษะเนทีฟอย่างน้อยหนึ่งทักษะ
 
-Use it when:
+ใช้เมื่อ:
 
-- adding a new skill under `skills/`
-- deepening a bundle with new domain skills
-- shipping a larger support-pack expansion
-- validating a branch with the private enhancer before maintainers merge it
+- เพิ่มทักษะใหม่ภายใต้ `ทักษะ/`
+- กระชับกลุ่มให้ลึกซึ้งยิ่งขึ้นด้วยทักษะโดเมนใหม่
+- จัดส่งส่วนขยายชุดสนับสนุนที่ใหญ่ขึ้น
+- ตรวจสอบสาขากับเครื่องมือเพิ่มประสิทธิภาพส่วนตัวก่อนที่ผู้ดูแลจะรวมเข้าด้วยกัน## Target Outcome
 
-## Target Outcome
+การประชาสัมพันธ์ทักษะเจ้าของภาษาที่แข็งแกร่งมาพร้อมกับ:
 
-A strong native skill PR lands with:
+- ทักษะพื้นเมืองภายใต้ `ทักษะ/`
+- เนื้อหาเพียงพอให้ผู้ตรวจสอบสาธารณะสามารถจัดประเภทและจัดทำดัชนีได้
+- ผ่านการตรวจสอบและการทดสอบสาธารณะ
+- การประมวลผลตัวเพิ่มประสิทธิภาพอัตโนมัติในระหว่างการประชาสัมพันธ์
+- การติดตามผล `skills_omni/` PR เมื่อมีการเผยแพร่อนุพันธ์ที่ได้รับการปรับปรุง
+- การบริโภคโดยเจ้าของภาษาจะถูกเก็บรักษาไว้ในภาษาต้นฉบับเมื่อจำเป็น
+- เอาต์พุตที่ปรับปรุงแล้วที่ดูแลจัดการเขียนใหม่เป็นภาษาอังกฤษ
+- โฟลว์แบบเนทิฟถึงแบบทางเดียวที่ไม่มีการป้อน `skills_omni/` กลับเข้าไปในปริมาณการเพิ่มประสิทธิภาพของเนทิฟ## Enhancer Outcome States
 
-- a native skill under `skills/`
-- enough content for the public validator to classify and index it
-- passing public validation and tests
-- automatic enhancer processing during the PR
-- a follow-up `skills_omni/` PR when enhanced derivatives are published
-- native intake preserved in its original language when needed
-- curated enhanced output rewritten into English
-- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
+ขณะนี้เครื่องมือเพิ่มประสิทธิภาพการประชาสัมพันธ์สาธารณะรายงานสถานะที่ผู้ดูแลมองเห็นได้สี่สถานะ:
 
-## Enhancer Outcome States
+- 'เสร็จสิ้น'
+  อนุพันธ์ที่ได้รับการปรับปรุงถูกสร้างขึ้นอย่างหมดจดและมีสิทธิ์ได้รับการเผยแพร่ `skills_omni/` ที่แสดงร่วม
+- `เสื่อมโทรม'
+  เครื่องมือเพิ่มประสิทธิภาพเสร็จสิ้นแล้ว แต่ใช้เส้นทางสำรองหรือสร้างคำเตือน ยังคงต้องมีการตรวจสอบโดยผู้ดูแลก่อนที่จะรักษาอนุพันธ์ว่าดีต่อสุขภาพ
+- `ถูกบล็อก'
+  การรันถูกหยุดเนื่องจากปัญหาด้านโครงสร้างพื้นฐานหรือการตรวจสอบความถูกต้อง เช่น ความล้มเหลวในการบินล่วงหน้าของ OmniRoute ที่โฮสต์ไว้ หรือความล้มเหลวในการตรวจสอบความถูกต้องของผู้สมัครที่ควรป้องกันการเผยแพร่
+- `ล้มเหลว`
+  เครื่องมือเพิ่มประสิทธิภาพเกิดข้อผิดพลาดรันไทม์ที่ไม่คาดคิด และจำเป็นต้องได้รับการตรวจสอบจากผู้ดูแล## Recommended Branch Shape
 
-The public PR enhancer now reports four maintainer-visible states:
-
-- `completed`
-  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
-- `degraded`
-  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
-- `blocked`
-  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
-- `failed`
-  The enhancer hit an unexpected runtime error and needs maintainer investigation.
-
-## Recommended Branch Shape
-
-Create a focused branch:
-
-```bash
+สร้างสาขาที่มุ่งเน้น:```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Examples:
+ตัวอย่าง:
 
-- `feat/incident-observability-evals`
+- `ความสำเร็จ/เหตุการณ์-การสังเกต-การประเมิน`
 - `feat/devops-skill-pack`
-- `feat/security-skill-pack`
+- `feat/ชุดทักษะการรักษาความปลอดภัย`## Native Intake Rules
 
-## Native Intake Rules
+พื้นผิวทางเข้าสาธารณะได้รับอนุญาตโดยเจตนา
 
-The public intake surface is intentionally permissive.
-
-Minimum:
-
-```text
+ขั้นต่ำ:```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Recommended but no longer required for intake:
-
-```text
+แนะนำแต่ไม่จำเป็นอีกต่อไปสำหรับการบริโภค:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -77,143 +63,125 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+การสนับสนุนดั้งเดิมอาจหยาบ ไม่สมบูรณ์ หรืออยู่นอกมาตรฐาน Support Pack ปกติ นั่นเป็นการจงใจ `ทักษะ/` คือพื้นผิวทางเข้าดั้งเดิม ไม่ใช่พื้นผิวอนุพันธ์ที่ได้รับการดูแลจัดการ
 
-Language policy:
+นโยบายภาษา:
 
-- native intake under `skills/` may be written in any language
-- the enhancer keeps the native snapshot as submitted for provenance
-- the curated derivative under `skills_omni/` must always be written in English
+- การรับเข้าเรียนโดยเจ้าของภาษาภายใต้ `ทักษะ/` อาจเขียนเป็นภาษาใดก็ได้
+- เครื่องมือเพิ่มประสิทธิภาพจะเก็บสแนปชอตดั้งเดิมตามที่ส่งเพื่อแหล่งที่มา
+- อนุพันธ์ที่ได้รับการดูแลจัดการภายใต้ `skills_omni/` จะต้องเขียนเป็นภาษาอังกฤษเสมอ
 
-The stricter editorial bar now applies to:
+ขณะนี้แถบบรรณาธิการที่เข้มงวดยิ่งขึ้นมีผลกับ:
 
-- the generated metadata and security checks
-- the private enhancer review
-- the follow-up curated derivative under `skills_omni/`
+- ข้อมูลเมตาที่สร้างขึ้นและการตรวจสอบความปลอดภัย
+- การทบทวนตัวเพิ่มประสิทธิภาพส่วนตัว
+- อนุพันธ์ที่รวบรวมตามผลภายใต้ `skills_omni/`## Authoring Sequence
 
-## Authoring Sequence
+1. สร้าง `ทักษะ/<ทักษะ>/SKILL.md`
+2. เพิ่ม frontmatter หากทำได้ แต่ frontmatter ที่ขาดหายไปหรือไม่สมบูรณ์จะไม่บล็อกการรับข้อมูลดั้งเดิมโดยตัวมันเองอีกต่อไป
+3. เพิ่ม `agents/`, `references/`, `examples/` และ `scripts/` เมื่อคุณมีอยู่แล้ว
+4. อัปเดต `data/bundles.json` หากทักษะทำให้บันเดิลที่มีอยู่ลึกซึ้งยิ่งขึ้น
+5. เปิดประชาสัมพันธ์ ระบบอัตโนมัติ repo ทำหน้าที่ส่วนที่เหลือแล้ว## Validation Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
-2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
-3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
-4. Update `data/bundles.json` if the skill deepens an existing bundle.
-5. Open the PR. The repo automation now does the rest.
-
-## Validation Sequence
-
-Contributors can run this exact sequence before opening the PR:
-
-```bash
+ผู้ร่วมให้ข้อมูลสามารถรันลำดับที่แน่นอนนี้ก่อนที่จะเปิด PR:```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, also run:
-
-```bash
+หากการเปลี่ยนแปลงส่งผลต่อรันไทม์หรือลักษณะการทำงานของแพ็กเกจด้วย ให้รันด้วย:```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+เมื่อ PR เปิดหรือซิงค์และแตะเฉพาะไฟล์ทักษะดั้งเดิมที่รับเข้ามาภายใต้ `ทักษะ/` บวกกับ `data/bundles.json` ที่เป็นตัวเลือก ตอนนี้ repo สาธารณะจะทริกเกอร์เครื่องมือเพิ่มประสิทธิภาพส่วนตัวโดยอัตโนมัติ
 
-Current automated flow:
+กระแสอัตโนมัติปัจจุบัน:
 
-1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
-2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
-3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
-4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
-5. The enhancer posts progress back to the source PR.
-6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
-7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
-8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
-9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
+1. เวิร์กโฟลว์ 'ตรวจสอบทักษะ' สาธารณะทำงานบน PR และตรวจสอบการตรวจสอบ การสร้าง อาร์ติแฟกต์ที่สร้างขึ้น และการทดสอบ
+2. ขั้นตอนการทำงาน `เสริมทักษะการประชาสัมพันธ์' สาธารณะเริ่มต้นพร้อมกันและประมวลผลทักษะพื้นเมืองที่เปลี่ยนแปลงไปทีละรายการในโหมด 'สด'
+3. เครื่องมือเพิ่มประสิทธิภาพจะอ่านทักษะดั้งเดิมจาก `ทักษะ/` ค้นคว้าแนวทางปฏิบัติที่ดีที่สุดในปัจจุบัน และเขียนผู้สมัครที่ได้รับการปรับปรุงที่ได้รับการตรวจสอบแล้วในพื้นที่ทำงานส่วนตัว
+4. ตัวเพิ่มประสิทธิภาพจะเก็บสแนปชอตการรับเข้าอัปสตรีมเป็นภาษาต้นฉบับเมื่อจำเป็น แต่จะเขียนเอาต์พุตที่รวบรวมไว้ใหม่เป็นภาษาอังกฤษ
+5. ตัวเพิ่มประสิทธิภาพจะโพสต์ความคืบหน้ากลับไปยัง PR ต้นทาง
+6. ตัวเพิ่มประสิทธิภาพจะอัปเดตความคิดเห็นสถานะ PR หลังจากแต่ละทักษะที่ประมวลผลพร้อมผลรวมของแบทช์และสถานะล่าสุด
+7. เมื่อเสร็จสิ้น มันจะแปลงอนุพันธ์ที่ได้รับการปรับปรุงเป็นรูปธรรมเป็น `skills_omni/` และเปิดหรืออัปเดต PR ที่แสดงร่วมใน repo สาธารณะสำหรับเอาต์พุต 'เสร็จสมบูรณ์' และ 'ลดระดับ' เท่านั้น
+8. หลังจากที่ PR ถูกรวมเข้ากับ `main` แล้ว ตัวสำรวจ repo-aware ส่วนตัวจะประมวลผลทักษะดั้งเดิมที่เปลี่ยนแปลงไปอีกครั้ง รีเฟรช `พื้นที่ทำงาน/ปรับปรุง/ทักษะ/<ทักษะ>/` และรักษาพื้นฐานที่ได้รับการปรับปรุงส่วนตัวให้สอดคล้องกับแหล่งที่มาดั้งเดิมสาธารณะล่าสุด
+9. หลังจากการผสาน เวิร์กโฟลว์การเผยแพร่สู่สาธารณะจะกระแทกเวอร์ชันแพ็คเกจ npm สร้างสิ่งประดิษฐ์แค็ตตาล็อกใหม่ เผยแพร่การเผยแพร่ และแท็กเวอร์ชันใหม่โดยอัตโนมัติ
 
-Rate limit:
+ขีดจำกัดอัตรา:
 
-- the PR enhancer currently processes **1 skill per minute**
-- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
-- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
+- ขณะนี้ตัวเพิ่มประสิทธิภาพ PR ประมวลผล**1 ทักษะต่อนาที**
+- PR ที่มี 40 ทักษะใหม่จะสามารถอยู่ในคิวตัวเพิ่มประสิทธิภาพได้ประมาณ 40 นาที
+- PR แสดงให้เห็นว่าทำงานเป็นการเรียกใช้ CI ที่อยู่ระหว่างดำเนินการ บวกกับความคิดเห็นเกี่ยวกับความคืบหน้าที่พัฒนาทักษะตามทักษะ
 
-The contributor does not need to run the enhancer manually.
+ผู้สนับสนุนไม่จำเป็นต้องเรียกใช้เครื่องมือเพิ่มประสิทธิภาพด้วยตนเอง## No-Loop Rule For `skills_omni/`
 
-## No-Loop Rule For `skills_omni/`
+พื้นผิวที่ดูแลจัดการนั้นมีจุดประสงค์เพียงทางเดียว:
 
-The curated surface is intentionally one-way:
+- อินพุตดั้งเดิมเข้าผ่าน `ทักษะ/`
+- เครื่องมือเพิ่มประสิทธิภาพส่วนตัวจะตรวจสอบอินพุตดั้งเดิมนั้น
+- เอาต์พุตที่รวบรวมไว้จะถูกนำเสนอใน `skills_omni/`
+- `skills_omni/` จะไม่ถือเป็นการบริโภคแบบเนทีฟอีกต่อไป
+- การอัปเดตดั้งเดิมในภายหลังยังคงป้อนอีกครั้งผ่าน `ทักษะ/` และแทนที่พื้นฐานที่ปรับปรุงส่วนตัวหลังจากประมวลผลใหม่
 
-- native input enters through `skills/`
-- the private enhancer reviews that native input
-- curated output is proposed into `skills_omni/`
-- `skills_omni/` is never treated as native intake again
-- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
+ตอนนี้พื้นที่เก็บข้อมูลบังคับใช้ขอบเขตดังกล่าว:
 
-The repository now enforces that boundary:
+- การประชาสัมพันธ์สาธารณะโดยตรงที่แก้ไข `skills_omni/` จะถูกปฏิเสธ
+- เฉพาะ PR ที่แสดงร่วมที่เขียนโดยระบบอัตโนมัติจากตระกูลสาขา `skills-omni/pr-*` เท่านั้นที่ได้รับการยอมรับ
+- การประชาสัมพันธ์แบบผสมที่พยายามเปลี่ยนทั้ง `ทักษะ/` และ `ทักษะ_omni/` ในครั้งเดียวจะถูกปฏิเสธ## Automatic Versioning After Merge
 
-- direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
-- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+การผสานทักษะเข้ากับ 'หลัก' ตอนนี้จะทริกเกอร์เวิร์กโฟลว์การเปิดตัวพื้นที่เก็บข้อมูลโดยอัตโนมัติ
 
-## Automatic Versioning After Merge
+นโยบายเวอร์ชันแพ็คเกจปัจจุบัน:
 
-Skill-bearing merges to `main` now trigger the repository release workflow automatically.
-
-Current package version policy:
-
-- patch increments by `+1` for each qualifying merge
+- เพิ่มแพตช์ทีละ `+1` สำหรับการผสานที่มีคุณสมบัติเหมาะสมแต่ละครั้ง
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- after `.10`, the package rolls to the next minor and resets patch
+- หลังจาก `.10` แพ็คเกจจะเลื่อนไปที่รองถัดไปและรีเซ็ตแพตช์
 - `0.0.10` → `0.1.0`
 - `0.1.10` → `0.2.0`
 
-Current release trigger paths:
+เส้นทางทริกเกอร์รุ่นปัจจุบัน:
 
-- `skills/**`
-- `skills_omni/**`
+- `ทักษะ/**`
+- `ทักษะ_omni/**`
 - `data/bundles.json`
 
-That automatic release job:
+งานปล่อยอัตโนมัตินั้น:
 
-1. computes the next package version from `package.json`
-2. bumps `package.json` and `package-lock.json`
-3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
-4. runs the strict release verification pipeline
-5. commits the version bump back to `main`
-6. creates a Git tag for the new version
-7. publishes npm and GitHub Release artifacts
+1. คำนวณแพ็คเกจเวอร์ชันถัดไปจาก `package.json`
+2. กระแทก `package.json` และ `package-lock.json`
+3. สร้าง `metadata.json`, `skills_index.json`, `dist/` และ `docs/CATALOG.md` ใหม่
+4. ดำเนินการไปป์ไลน์การตรวจสอบการเผยแพร่ที่เข้มงวด
+5. คอมมิตเวอร์ชันกลับไปที่ `main`
+6. สร้างแท็ก Git สำหรับเวอร์ชันใหม่
+7. เผยแพร่สิ่งประดิษฐ์ npm และ GitHub Release
 
-Important rollout note:
+หมายเหตุการเปิดตัวที่สำคัญ:
 
-- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
-- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
-- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
+- GitHub จะลงทะเบียนไฟล์เวิร์กโฟลว์ใหม่เป็นเวิร์กโฟลว์พื้นที่เก็บข้อมูลที่ใช้งานอยู่หลังจากที่ไฟล์นั้นถึงสาขาเริ่มต้นเท่านั้น
+- จนกว่า `ปรับปรุงทักษะการประชาสัมพันธ์` จะเข้าสู่ `หลัก` ผู้ร่วมให้ข้อมูลสามารถอ่านกระบวนการที่ได้รับการบันทึกไว้ แต่ GitHub จะยังไม่ดำเนินการเวิร์กโฟลว์นั้นโดยอัตโนมัติบน PR สาธารณะ
+- หลังจากรวมเวิร์กโฟลว์เข้ากับ 'หลัก' แล้ว พฤติกรรมที่อธิบายไว้ข้างต้นจะกลายเป็นเส้นทางการรับข้อมูลเริ่มต้นสำหรับ PR ทักษะเนทิฟในอนาคต## Native vs Enhanced
 
-## Native vs Enhanced
+ตอนนี้ repo นี้มีสองพื้นผิวที่แตกต่างกัน:
 
-This repo now has two distinct surfaces:
+- `ทักษะ/`
+  การบริโภคพื้นเมือง วิธีนี้จะรักษาการสนับสนุนดั้งเดิมตามที่ส่ง
+- `ทักษะ_omni/`
+  เอาต์พุตอนุพันธ์ที่ได้รับการปรับปรุง Omni เสนอโดยระบบอัตโนมัติและดูแลโดยทีม Omni Skills
 
-- `skills/`
-  Native intake. This preserves the original contribution as submitted.
-- `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+กฎการระบุแหล่งที่มาสำหรับ `skills_omni/`:
 
-Attribution rules for `skills_omni/`:
+- อนุพันธ์ที่ได้รับการปรับปรุงจะกลายเป็น Omni-maintained
+- ผู้สนับสนุนดั้งเดิมและทักษะเจ้าของภาษาขั้นต้นยังคงได้รับเครดิต
+- ไดเร็กทอรีที่ได้รับการปรับปรุงแต่ละไดเร็กทอรีจะเก็บไฟล์ `ATTRIBUTION.md` พร้อมด้วยพาธอัปสตรีม, PR, ผู้เขียน และบริบทของแหล่งที่มา
+- ไดเร็กทอรีที่ปรับปรุงแต่ละไดเร็กทอรีจะได้รับการดูแลจัดการเฉพาะเอาต์พุตเท่านั้น และต้องไม่ส่งซ้ำไปยังเส้นทางการรับของตัวเพิ่มประสิทธิภาพดั้งเดิม
+- ไดเร็กทอรีที่ได้รับการปรับปรุงแต่ละไดเร็กทอรีคาดว่าจะเป็นเอาต์พุตภาษาอังกฤษ แม้ว่าจะไม่มีต้นฉบับต้นฉบับต้นทางก็ตาม## Manual Maintainer Commands
 
-- the enhanced derivative becomes Omni-maintained
-- the original contributor and upstream native skill remain credited
-- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
-- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
-- each enhanced directory is expected to be English-language output even when the upstream native source was not
+ระบบอัตโนมัติครอบคลุมการรับ PR ปกติ แต่ผู้ดูแลยังคงสามารถเรียกใช้เครื่องมือเพิ่มประสิทธิภาพส่วนตัวได้ด้วยตนเองเมื่อจำเป็น
 
-## Manual Maintainer Commands
-
-The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
-
-Batch against a branch diff:
-
-```bash
+แบทช์กับสาขาที่แตกต่าง:```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -223,9 +191,7 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Single-skill review:
-
-```bash
+การตรวจสอบทักษะเดี่ยว:```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -233,44 +199,38 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Expected enhancer outputs per skill:
+ผลลัพธ์ของตัวเพิ่มประสิทธิภาพที่คาดหวังต่อทักษะ:
 
-- `workspace/incoming/original/<run-id>/<skill>/`
-- `workspace/enhanced-candidates/<run-id>/<skill>/`
-- `workspace/reports/<run-id>/research.json`
-- `workspace/reports/<run-id>/rewrite.json`
-- `workspace/reports/<run-id>/validation.json`
-- `workspace/reports/<run-id>/score-delta.json`
-- `workspace/reports/<run-id>/review.md`
-- `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`
+- `พื้นที่ทำงาน/ขาเข้า/ต้นฉบับ/<run-id>/<ทักษะ>/`
+- `พื้นที่ทำงาน/ผู้สมัครขั้นสูง/<run-id>/<ทักษะ>/`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/research.json`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/rewrite.json`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/validation.json`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/score-delta.json`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/review.md`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/research-prompt.md`
+- `พื้นที่ทำงาน/รายงาน/<run-id>/rewrite-prompt.md`## PR Body Expectations
 
-## PR Body Expectations
+หน่วยงานประชาสัมพันธ์ควรระบุว่า:
 
-The PR body should state:
+- ทักษะใดบ้างที่เพิ่มหรืออัปเกรด
+- บันเดิลหรือเวิร์กโฟลว์ใดที่เจาะลึกลงไป
+- มีการตรวจสอบความถูกต้องอะไรบ้าง
+- ไม่ว่าโปรแกรมเพิ่มประสิทธิภาพอัตโนมัติจะทำงานหรือไม่
+- ไม่ว่าจะเปิดหรืออัปเดตการประชาสัมพันธ์ร่วม `skills_omni/`
+- หมายเหตุผู้ดูแลพิเศษใด ๆ เกี่ยวกับการระบุแหล่งที่มาหรือการล้างข้อมูลติดตามผล## Reviewer Checklist
 
-- what skills were added or upgraded
-- which bundles or workflows they deepen
-- what validation ran
-- whether the automated enhancer ran
-- whether it opened or updated a `skills_omni/` companion PR
-- any exceptional maintainer notes about attribution or follow-up cleanup
+- การบริโภคโดยธรรมชาตินั้นถูกต้องตามกฎหมายและไม่เป็นอันตราย
+- เมตาดาต้าที่สร้างขึ้นและรายการได้รับการรีเฟรช
+- การอัปเดตชุดรวมเป็นไปโดยเจตนา
+- การตรวจสอบสาธารณะและผลลัพธ์ของบิลด์เป็นสีเขียว
+- ความคิดเห็นเกี่ยวกับสถานะตัวเพิ่มประสิทธิภาพจะตรงกับทักษะที่เปลี่ยนแปลงจริงและสถานะผลลัพธ์สุดท้าย
+- การประชาสัมพันธ์ร่วม `skills_omni/` ใดๆ จะรักษาการระบุแหล่งที่มาอย่างถูกต้อง## Example PR Scope
 
-## Reviewer Checklist
+ตัวอย่าง PR ที่ชัดเจนสามารถเพิ่มชุดเฉพาะเรื่อง เช่น:
 
-- native intake is legitimate and non-malicious
-- generated metadata and manifests were refreshed
-- bundle updates are intentional
-- public validation and build outputs are green
-- the enhancer status comment matches the actual changed skills and final outcome state
-- any `skills_omni/` companion PR preserves attribution correctly
+- ความสามารถในการสังเกตหรือทักษะ DevOps หนึ่งรายการ
+- เหตุการณ์หนึ่งเหตุการณ์หรือทักษะด้านความปลอดภัย
+- การประเมิน AI หรือทักษะการกระตุ้นเตือนหนึ่งครั้ง
 
-## Example PR Scope
-
-A strong example PR can add a thematic set such as:
-
-- one observability or DevOps skill
-- one incident or security skill
-- one AI evaluation or prompting skill
-
-That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
+ซึ่งมีขนาดใหญ่พอที่จะใช้ Scorer, เครื่องมือเพิ่มประสิทธิภาพอัตโนมัติ, โฟลว์การเผยแพร่ `skills_omni/`, บันเดิล และโมเดลการระบุแหล่งที่มา โดยไม่ต้องเปลี่ยน PR ให้เป็นการเขียนแค็ตตาล็อกใหม่ทั้งหมด

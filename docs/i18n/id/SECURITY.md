@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Jika Anda menemukan masalah keamanan di Omni Skills, jangan buka masalah publik terlebih dahulu.**
 
-Please report through one of these private channels:
+Silakan lapor melalui salah satu saluran pribadi berikut:
 
-| Channel | How |
+| Saluran | Bagaimana |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Penasihat Keamanan GitHub | [Buka penasihat pribadi](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Kontak Langsung | Hubungi langsung pengelolanya |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Komponen atau jalur yang terpengaruh
+- 🔄 Langkah-langkah reproduksi
+- ⚠️ Penilaian dampak
+- 🧪 Materi bukti konsep apa pun yang diperlukan untuk memverifikasi masalah
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Kami bertujuan untuk menerima laporan dalam waktu 48 jam**dan memprioritaskan perbaikan berdasarkan dampaknya.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Kebijakan ini mencakup waktu proses dan permukaan konten repositori:
 
-| Component | Path |
+| Komponen | Jalur |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI dan penginstal | `alat/tempat sampah/` |
+| 📚 Perpustakaan bersama | `alat/lib/` |
+| ⚙️ Pembuatan dan validasi skrip | `alat/skrip/` |
+| 📦 Artefak katalog yang dihasilkan | `dist/` |
+| 🌐 Paket API, MCP, dan A2A | `paket/` |
+| 🧠 Konten keterampilan | `skills/` — terutama perintah shell, akses jaringan, aliran kredensial, atau panduan sensitif terhadap keamanan |---
 
 ## Arsitektur
 
-The repository relies on the following security controls:
+Repositori bergantung pada kontrol keamanan berikut:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Kontrol | Deskripsi |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Bidang risiko | Metadata keterampilan mencakup `tingkat risiko` yang dinyatakan |
+| 📊 Mencetak gol | Validasi menghitung skor kematangan, praktik terbaik, kualitas, dan keamanan |
+| 🔍 Pemindai statis | Periksa `SKILL.md`, file paket, dan skrip pembantu |
+| 🦠 Pemindai opsional | Pencarian hash ClamAV dan VirusTotal (bila dikonfigurasi) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Kontrol | Deskripsi |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Keamanan jalur | Alur pemasangan menggunakan pemeriksaan keamanan jalur |
+| 🔒 Daftar yang diizinkan menulis | Penulisan sespan MCP lokal dibatasi oleh daftar yang diizinkan |
+| 👁️ Default uji coba | Alat berorientasi tulis default adalah dry-run kecuali dinonaktifkan secara eksplisit |
+| 🔐 Otentikasi & batasan | Autentikasi pembawa/kunci API, autentikasi runtime admin, pembatasan laju, daftar yang diizinkan CORS/IP |
+| 📋 Audit | Audit logging, mode pemeliharaan, dan ID permintaan |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Kontrol | Deskripsi |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Manifes checksum | Checksum SHA-256 untuk arsip yang dihasilkan |
+| ✍️ Tanda tangan | Verifikasi tanda tangan terpisah di CI sebelum dipublikasikan |
+| 🧪 Pemeriksaan asap | Latihan mengirimkan permukaan runtime sebelum rilis |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Pekerjaan keamanan utama yang tersisa**bukan**pengerasan dasar. Item yang terbuka adalah:
 
-| Area | Status |
+| Daerah | Status |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Tata kelola perusahaan | Identitas eksternal, kebijakan gateway, dan integrasi WAF di atas kontrol dalam proses saat ini |
+| 🔌 Penulis klien MCP | Penulis yang lebih luas hanya ketika kontrak konfigurasi publik cukup stabil |
+| 📊 Penyempurnaan pemindai | Penyempurnaan berkelanjutan sehingga keterampilan luar biasa tetap terpisah dengan jelas dari keterampilan yang terstruktur dengan baik |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Setiap keterampilan menyatakan salah satu dari `tingkat risiko` berikut:
 
-| Risk Level | Meaning |
+| Tingkat Risiko | Arti |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `aman` | Diperkirakan tidak ada operasi destruktif |
+| 🟡 `hati-hati` | Dapat memodifikasi file atau berinteraksi dengan sistem eksternal |
+| 🔴 `menyinggung` | Alur kerja pengujian keamanan atau permusuhan yang memerlukan otorisasi eksplisit |
+| ⛔ `kritis` | Operasi berdampak tinggi atau tingkat sistem |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Karena Omni Skills mengirimkan helper yang dapat dieksekusi, perkakas lokal yang mendukung sistem file, dan penulis konfigurasi khusus klien, kelas kerentanan ini harus diperlakukan sebagai**prioritas tinggi**bahkan jika kelas tersebut muncul "hanya lokal":
 
-| Category | Examples |
+| Kategori | Contoh |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Lintasan jalur | Direktori keluar melalui pemasangan keterampilan atau jalur konfigurasi |
+| 🔗 Keamanan symlink | Symlink berikut selama instalasi atau ekstraksi arsip |
+| 🖥️ Eksekusi perintah | Injeksi perintah sewenang-wenang melalui konten keterampilan atau skrip |
+| 📦 Verifikasi arsip | Lewati checksum atau verifikasi tanda tangan |
+| 🔓 Bypass autentikasi | Pembatasan tarif atau bypass autentikasi pada API/MCP |
+| 🔌 Melewati daftar yang diizinkan | Pengelakan daftar sespan lokal yang diizinkan |
+| 🦠 Penghindaran pemindai | Kelas negatif palsu pada pemindai statis atau eksternal |

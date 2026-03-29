@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
+naam: jouw-vaardigheidsnaam
+beschrijving: "Beschrijving in één regel van wat deze vaardigheid doet en wanneer deze te gebruiken"
+versie: "0.1.3"
+categorie: ontwikkeling
+Tags: [voorbeeld-tag-1, voorbeeld-tag-2]
+complexiteit: gemiddeld
+risico: veilig
+tools: [claude-code, cursor, gemini-cli, anti-zwaartekracht]
+bron: gemeenschap
+auteur: "Jouw naam"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----
-
-<!--
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` genereert skills/<skill>/metadata.json met canonical
+taxonomie, volwassenheidsniveau, best practices-score, kwaliteitsscore en beveiliging
+scanresultaten. Snelle injectiepatronen, destructieve opdrachten en riskant script
+constructies worden automatisch gemarkeerd.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+De vaardigheidsversie is onafhankelijk van de pakketversie. Gebruik de semantiek
+versie die zinvol is voor de vaardigheid zelf.
 
-For a top-scoring skill, also read:
+Voor een best scorende vaardigheid, lees ook:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
-
-
 ## Overzicht
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 zinnen waarin wordt uitgelegd wat deze vaardigheid doet, wie er baat bij heeft en waarom deze bestaat.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Gebruik wanneer dat nodig is [scenario 1]
+- Gebruik wanneer u wilt [scenario 2]
+- Gebruik bij het werken met [scenario 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Leg het sleutelconcept uit dat de agent moet begrijpen.### Concept 2
 
-### Concept 2
+Leg nog een ander fundamenteel concept uit.## Workflow
 
-Explain another foundational concept.
-
-## Workflow
-
-| Phase | Output | Why it matters |
+| Fase | Uitvoer | Waarom het ertoe doet |
 |:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+| Kadreer het doel | Duidelijke doelstelling | Voorkomt vage begeleiding |
+| Voer de stappen | Workflow klaar voor agenten | Maakt de vaardigheid bruikbaar |
+| Valideer de uitvoer | Acceptatiesignaal | Verhoogt het vertrouwen |
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+1. Eerste stap in de workflow
+2. Tweede stap in de workflow
+3. Derde stap in de workflow### 1. First Step
 
-### 1. First Step
+Gedetailleerde instructies voor de eerste stap.### 2. Second Step
 
-Detailed instructions for the first step.
+Gedetailleerde instructies voor de tweede stap.### 3. Third Step
 
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Gedetailleerde instructies voor de derde stap.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Uitleg:**Wat dit voorbeeld laat zien.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Uitleg:**Wat dit voorbeeld laat zien.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Doen:**Volg deze goede praktijk
+- ✅**Doen:**Volg ook deze praktijk
+- ❌**Niet doen:**Vermijd dit antipatroon
+- ❌**Niet doen:**Doe dit nooit## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Symptomen:**Hoe u weet dat dit het probleem is.
+**Oplossing:**Hoe u dit kunt oplossen.## Related Skills
 
-## Related Skills
+- `@related-skill-1` — Wanneer moet u dit in plaats daarvan gebruiken?
+- `@related-skill-2` — Hoe dit uw vaardigheden aanvult## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Checklist](referenties/checklist.md)
+- [Uitgewerkt voorbeeld](examples/example.md)
+- [Helperscript](scripts/render_example.py)

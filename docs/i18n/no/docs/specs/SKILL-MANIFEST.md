@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**Det maskinlesbare JSON-manifestet generert fra hver 'SKILL.md' under byggepipelinen – den enkeltdatakontrakten som forbrukes av alle kjøretidsoverflater.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funksjon | Stat |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Autogenerert fra SKILL.md | Implementert |
+| ✅ Brukes av CLI, API, MCP, A2A | Implementert |
+| ✅ Arkiv med kontrollsummer | Implementert |
+| ✅ Sikkerhetsklassifisering | Implementert |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Viktig**: Manifestet er en**byggeartefakt**. Bidragsyteres forfatter `SKILL.md` — pipelinen utleder JSON-manifestet automatisk.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+Manifestet eksisterer slik at**alle kjøretidsflater**bruker den samme normaliserte formen:
 
-| Surface | How It Uses Manifests |
+| Overflate | Hvordan den bruker manifester |
 |:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| 🖥️**CLI**| Søk, installer planlegging, legediagnostikk |
+| 🌐**API**| Sluttpunktsvar, filtrering, nedlastingslenker |
+| 🔌**MCP**| Verktøysvar, ressursinnhold |
+| 🤖**A2A**| Nyttelaster for oppdagelse og anbefalinger |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
-|:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| Artefakt | Sti |
+|:--------|:-----|
+| 📊 Rotmetadata | `metadata.json` |
+| 📊 Metadata per ferdighet | `skills/<skill>/metadata.json` |
+| 📋 Ferdighetsindeks | `skills_index.json` |
+| 📚 Publisert katalog | `dist/catalog.json` |
+| 📌 Manifest per ferdighet | `dist/manifests/<skill>.json` |
+| 📦 Zip-arkiv | `dist/archives/<skill>.zip` |
+| 📦 Tarball-arkiv | `dist/archives/<skill>.tar.gz` |
+| 🔒 Kontrollsummanifest | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| `schema_version` | Versjon av manifestskjemaet |
+| `id` | Stabil ferdighetsidentifikator fra `navn`-feltet |
+| `snegl` | Katalogsnegl under `ferdigheter/` |
+| `visningsnavn` | Menneskelesbar tittel fra første overskrift |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| `beskrivelse` | Kort oppsummering fra frontmatter |
+| `versjon` | Skill-versjon, uavhengig av npm-pakkeversjonen |
+| `kategori` | Kanonisk kategori (normalisert) |
+| `råkategori` | Original kategori fra frontmatter |
+| `taksonomi` | Full taksonomi metadata med antatt fallback |
+| `tags` | Søkbare tagger |
+| `kompleksitet` | `nybegynner` · `mellomliggende` · `avansert` · `ekspert` |
+| `risiko` | `safe` · `caution` · `offensive` · `kritisk` |
+| `kilde` | `omni-team` · `community` · `offisiell` |
+| `forfatter` | Attribusjonsstreng |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| `inngangspunkt` | Kanonisk `SKILL.md`-bane |
+| `paths.root` | Ferdighetskatalog i repo |
+| `paths.manifest` | Generert manifestbane i `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
-
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+| `verktøy` | Verktøyidentifikatorer fra frontmatter |
+| `install_targets` | Metadata per verktøyinstallasjon |
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
+Hvert installasjonsmål inkluderer: «verktøy», «omfang», «default_path», «installer_flag», «current_installer_behavior», «invocation»### 📦 Resources
 
-### 📦 Resources
-
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| `underressurser` | Ferdighetsunderkataloger (`referanser`, `agenter`, `assets`) |
+| `artifacts_count` | Totalt antall filer i ferdighetspakken |
+| `referansetall` | Antall referansedokumenter |
+| `agenter_antall` | Antall agentkonfigurasjoner |
+| `assets_count` | Antall aktivafiler |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| `strategi` | Installer strategi (f.eks. `copy-skill-directory`) |
+| `current_installer` | Menneskelesbar installasjonsatferd |
+| `oppskrifter` | Installasjonsoppskrifter per klient |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| Seksjon | Felter |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 `modenhet` | `ferdighetsnivå`, `ferdighetsnivåetikett` |
+| 📋 `beste_praksis` | `score` (0-100) |
+| ⭐ `kvalitet` | `score` (0-100) |
+| 🛡️ `sikkerhet` | `poengsum`, `status` |
+| ✅ `validering` | `status` |### 📝 Content
 
-### 📝 Content
+Avledede signaler: «body_length», «content_length», «body_lines», «word_count», pluss strukturelle flagg for eksempler, feilsøkingsseksjoner osv.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+En rekke av hver fil som sendes i ferdighetskatalogen:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Artefakttyper**: `inngangspunkt` · `referanse` · `agent` · `aktivum` · `lisens` · `støtte`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
+| Felt | Beskrivelse |
 |:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| `entrypoint_sha256` | Hash av SKILL.md |
+| `package_sha256` | Deterministisk sammendrag fra ordnet artefaktliste |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 Repository-pakkeversjon og ferdighetsversjon er forskjellige bekymringer. Pakken er for øyeblikket `0.1.3`, mens individuelle ferdigheter har sine egne semantiske versjoner.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| Regel | Begrunnelse |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ Må forbli utledet fra repo | Ingen manuell manifestering kreves |
+| ✅ Nye valgfrie felt kan legges til | Fremoverkompatibilitet |
+| ⚠️ Eksisterende felt må forbli stabile | Bakoverkompatibilitet |
+| 🚫 Ingen håndskrevne manifester | Byggetidsavledning er kilden til sannhet |

@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**Analisis teknis komprehensif tentang arsitektur Omni Skills, permukaan runtime, dan pipeline build saat ini.**
+> Terakhir dianalisis: 28-03-2026---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| Atribut | Nilai |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**Nama**| `keterampilan omni` |
+|**Versi paket**| `0.1.3` |
+|**Versi keterampilan**| Per keterampilan dan independen dari versi paket. Banyak keterampilan yang diterbitkan masih `0.0.1` sedangkan paketnya `0.1.2`. |
+|**Lisensi**| MIT (kode) + CC BY 4.0 (konten) |
+|**NPM**| `npx keterampilan omni` |
+|**Keterampilan yang dipublikasikan**| 32 |
+|**Paket yang ditentukan**| 7, semuanya didukung penuh oleh keterampilan yang diterbitkan |
+|**Kategori katalog aktif**| 15 keranjang aktif dari 18 kategori taksonomi kanonik |
+|**Contoh LOC runtime/build utama di bawah**| 13.600+ |
+|**Ketergantungan produksi**| 7 (@`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+Cuplikan klasifikasi tingkat repositori saat ini dari `metadata.json`:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- skor kualitas rata-rata: `96,3`
+- rata-rata skor praktik terbaik: `98,7`
+- skor keamanan rata-rata: `95.0`
+- semua 32 keterampilan yang diterbitkan divalidasi sebagai `L3`
 
-Current release baseline:
+Dasar rilis saat ini:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- rilis repositori publik: `v0.1.2`
+- rilis penambah pribadi: `v0.0.1`
+- otomatisasi rilis publik dan otomatisasi rilis pribadi aktif dan ramah lingkungan---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+Repositori ini mengikuti pola**workspace monorepo**dengan satu inti katalog bersama dan beberapa permukaan runtime.```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,321 +64,297 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+Desainnya sengaja**didorong oleh artefak**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. keterampilan ditulis sebagai `SKILL.md` ditambah paket dukungan lokal
+2. build memvalidasi, mengklasifikasikan, mengarsipkan, dan menormalkannya
+3. artefak yang dihasilkan menjadi kontrak untuk CLI, API, MCP, dan A2A---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4.500+ LOC digabungkan**— antarmuka publik utama untuk penggunaan ahli dan terpandu.
 
-| Command | Function |
+| Perintah | Fungsi |
 |:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| 🔎 `temukan [kueri]` | Pencarian katalog teks lengkap dengan filter sadar skor |
+| 📦 `instal` | Penginstalan terpandu atau berbasis bendera ke klien yang dikenal atau jalur khusus |
+| 🧾 `config-mcp` | Pratinjau atau tulis konfigurasi MCP yang sadar klien |
+| 🔌 `mcp <transportasi>` | Memulai server MCP di `stdio`, `stream`, atau `sse` |
+| 🌐 `api` | Memulai API katalog |
+| 🤖 `a2a` | Memulai waktu proses A2A |
+| 🧪 `asap` | Rilis validasi pra-penerbangan |
+| 🩺 `dokter` | Diagnostik lokal |
+| 🖥️ `ui` | Shell visual tinta dengan instalasi, penemuan, konfigurasi, dan hub layanan |
+| 🏷️ `kategorikan ulang` | Inspeksi penyimpangan taksonomi dan penulisan ulang |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI bukan lagi sekadar penginstal. Ini adalah alat operasi publik untuk seluruh platform.## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+Waktu proses publik tidak lagi diblokir pada pekerjaan dasar, dan gelombang kategori kedua telah tiba. Pekerjaan katalog berguna berikutnya adalah kedalaman, bukan pengejaran jumlah kategori.
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+Lagu kode asli yang baru diaktifkan sekarang ada di katalog:
 
-Newly activated code-native tracks now in the catalog:
+- `desain` melalui `operasi-sistem-desain`, `audit-aksesibilitas`, dan `tata kelola token-desain`
+- `alat` melalui `mcp-server-authoring`
+- `data-ai` melalui `kontrak data`
+- `pembelajaran mesin` melalui `penyajian model`
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+Arah selanjutnya yang direkomendasikan:
 
-Recommended next direction:
+1. memperdalam `desain`, `alat`, `data-ai`, dan `pembelajaran mesin`
+2. menunda `bisnis` dan `media-konten` kecuali ada proposal yang jelas-jelas bersifat kode asli
+3. mempertahankan batas kualitas saat ini daripada membuka kembali tekanan aktivasi kategori
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+Gelombang ekspansi tersebut kini tercatat di [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— menginstal keterampilan ke 7 asisten yang mampu menginstal.
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
-
-> **403 LOC** — installs skills into 7 install-capable assistants.
-
-| Flag | Target | Default Path |
+| Bendera | Sasaran | Jalur Bawaan |
 |:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
+| `--claude` | Kode Claude | `~/.claude/skills` |
+| `--kursor` | Kursor | `~/.cursor/skills` |
+| `--gemini` | CLI Gemini | `~/.gemini/skills` |
+| `--kodeks` | Kodeks CLI | `~/.codex/skills` |
 | `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+| `--antigravitasi` | Antigravitasi | `~/.gemini/antigravity/skills` |
+| `--kode terbuka` | Kode Terbuka | `<ruang kerja>/.opencode/skills` |
 
-It supports:
+Ini mendukung:
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+- pemasangan perpustakaan lengkap
+- pemasangan selektif dengan `--skill`
+- pemasangan yang dikurasi oleh `--bundle`
+- TTY terpandu dan aliran UI visual
+- jalur target khusus### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+>**828 LOC**— lapisan runtime bersama untuk CLI, API, MCP, dan A2A.
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
-
-| Export | Description |
+| Ekspor | Deskripsi |
 |:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+| 🔎 `Keterampilan pencarian()` | Pencarian dengan pencocokan teks berbobot dan dukungan filter |
+| 📋 `daftarKeterampilan()` | Pemfilteran multi-sumbu berdasarkan kualitas, praktik terbaik, tingkat, keamanan, risiko, alat, dan kategori |
+| 📌 `getSkill()` | Resolusi manifes ditambah URL publik yang diperkaya |
+| ⚖️ `bandingkanKeterampilan()` | Perbandingan berdampingan |
+| 💡 `merekomendasikan Keterampilan ()` | Rekomendasi berdasarkan tujuan |
+| 📦 `buildInstallPlan()` | Instal pembuatan rencana dengan peringatan dan panduan sadar klien |
+| 🗂️ `daftarBundles()` | Daftar bundel yang dikurasi dengan ketersediaan |
+| 📁 `daftarSkillArchives()` | Arsip dan resolusi tanda tangan |
 
-This is the real single source of runtime truth after generation.
+Ini adalah satu-satunya sumber kebenaran runtime dari generasi ke generasi.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+>**812 LOC**— implementasi MCP penuh menggunakan SDK resmi.
 
-> **812 LOC** — full MCP implementation using the official SDK.
-
-**Transports**
+**Transportasi**
 
 - `stdio`
-- streamable HTTP
+- HTTP yang dapat dialirkan
 - SSE
 
-**Always-on read-only tools**
+**Alat baca-saja yang selalu aktif**
 
-- `search_skills`
-- `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
+- `keterampilan_penelusuran`
+- `dapatkan_keterampilan`
+- `bandingkan_keterampilan`
+- `rekomendasikan_keterampilan`
+- `pratinjau_instal`
 
-**Local-mode tools**
+**Alat mode lokal**
 
-- `detect_clients`
-- `list_installed_skills`
-- `install_skills`
-- `remove_skills`
-- `configure_client_mcp`
+- `deteksi_klien`
+- `daftar_keterampilan_terinstal`
+- `instal_keterampilan`
+- `hapus_keterampilan`
+- `konfigurasi_klien_mcp`
 
-The MCP surface is deliberately split between:
+Permukaan MCP sengaja dipecah menjadi:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- penggunaan katalog jarak jauh/hanya-baca
+- penggunaan sespan lokal/mampu menulis### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1,943 LOC**— lapisan MCP yang sadar sistem file untuk deteksi klien, manajemen keterampilan, dan penulisan konfigurasi MCP.
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+Dukungan praktis saat ini:
 
-Current practical support:
+-**7 klien yang mampu menginstal**
+-**16 klien berkemampuan konfigurasi**
+-**33 target konfigurasi**
+-**19 profil konfigurasi**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
+Klien yang mampu menginstal:
 
-Install-capable clients:
-
-- Claude Code
-- Cursor
+- Kode Claude
+- Kursor
 - Gemini CLI
-- Codex CLI
+- Kodeks CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Antigravitasi
+- Kode Terbuka
 
-Config-capable clients and targets include:
+Klien dan target yang mampu melakukan konfigurasi meliputi:
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+- Pengaturan Claude, Desktop Claude, dan konfigurasi proyek Claude
+- Pengguna kursor dan konfigurasi ruang kerja
+- Ruang kerja VS Code, pengguna, orang dalam, dan konfigurasi Kontainer Dev
+- Pengaturan pengguna dan ruang kerja Gemini
+- Konfigurasi pengguna antigravitasi
+- Pengguna Kiro, ruang kerja, dan jalur lama
+- Konfigurasi Codex CLI TOML
+- Konfigurasi pengguna dan ruang kerja OpenCode
+- Pengaturan klinik
+- Pengguna GitHub Copilot CLI dan konfigurasi repo
+- Konfigurasi pengguna Kilo, proyek, dan ruang kerja
+- Lanjutkan ruang kerja YAML
+- Konfigurasi pengguna selancar angin
+- Konfigurasi ruang kerja Zed
+- Konfigurasi pengguna angsa
 
-The sidecar is intentionally honest about boundaries:
+Sidecar sengaja jujur ​​tentang batasan:
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+- itu hanya menulis di dalam daftar yang diizinkan
+- itu dipratinjau secara default
+- itu membuat penulis kelas satu hanya jika dokumen resmi memaparkan format yang stabil
+- tidak berarti bahwa setiap produk berkemampuan MCP juga merupakan target pemasangan keterampilan### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+>**715 LOC digabungkan**— API registri hanya-baca ditambah middleware tata kelola.
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
+Titik akhir yang penting:
 
-Important endpoints:
-
-- `/healthz`
+- `/ kesehatan`
 - `/openapi.json`
-- `/admin/runtime`
-- `/v1/skills`
-- `/v1/skills/:id`
-- `/v1/search`
-- `/v1/compare`
-- `/v1/bundles`
-- `/v1/install/plan`
+- `/admin/waktu proses`
+- `/v1/keterampilan`
+- `/v1/keterampilan/:id`
+- `/v1/pencarian`
+- `/v1/bandingkan`
+- `/v1/bundel`
+- `/v1/instal/rencana`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+Baseline tata kelola yang sudah diterapkan:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- autentikasi token pembawa
+- Otentikasi kunci API
+- autentikasi token admin
+- pembatasan laju dalam proses
+- minta ID
+- pencatatan audit
+- Daftar yang diizinkan CORS
+- Daftar IP yang diizinkan
+- percayai penanganan proxy
+- mode pemeliharaan### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**1.857 LOC digabungkan di seluruh server utama, runtime, dan file koordinator**— siklus hidup tugas JSON-RPC 2.0 untuk alur kerja agen-ke-agen.
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+Metode yang didukung:
 
-Supported methods:
+- `pesan/kirim`
+- `pesan/aliran`
+- `tugas/dapatkan`
+- `tugas/batal`
+- `tugas/berlangganan kembali`
+- `tugas/pushNotificationConfig/*`
 
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
-- `tasks/pushNotificationConfig/*`
+Operasi saat ini:
 
-Current operations:
+- `temukan-keterampilan`
+- `rekomendasikan-tumpukan`
+- `persiapkan-instal-rencana`
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+Model daya tahan dan koordinasi:
 
-Durability and coordination model:
+- memori, JSON, atau persistensi lokal SQLite
+- mulai ulang resume
+- pelaksana proses eksternal opsional
+- ikut serta dalam koordinasi antrian sewaan untuk pekerja SQLite bersama
+- Koordinasi opsional yang didukung Redis sebagai jalur host tingkat lanjut
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
-
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+Pilihan arsitektur utama di sini adalah**operasi lokal sederhana pertama**. Redis ada sebagai opsi lanjutan, tetapi jalur produk default tetap bersifat lokal dan ringan ketergantungan.---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
+| Skrip | Bahasa | Tujuan |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| 📊 `skill_metadata.py` | ular piton | Validasi, taksonomi, penilaian, dan pemindaian keamanan statis |
+| ✅ `validasi_skills.py` | ular piton | Pembuatan metadata per keterampilan dan untuk ringkasan root |
+| 📑 `hasilkan_index.py` | ular piton | Indeks keterampilan, manifes, arsip, tanda tangan, dan checksum |
+| 🏗️ `build_catalog.js` | Node.js | `dist/catalog.json` terakhir dan `dist/bundles.json` |
+| 🏷️ `mengkategorikan ulang_skills.py` | ular piton | Audit dan penulisan ulang kategori kanonik |
+| 🔍 `verifikasi_arsip.py` | ular piton | Verifikasi arsip dan tanda tangan |
 
-Two details matter operationally:
+Dua detail penting secara operasional:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. `dist/` adalah bagian dari kontrak runtime dan dilakukan dengan sengaja
+2. build tersebut cukup deterministik untuk mendukung verifikasi CI dan penandatanganan rilis---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+Katalog publik saat ini mencakup 32 keterampilan:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**Penemuan dan perencanaan**: `menemukan keterampilan`, `brainstorming`, `arsitektur`, `debugging`
+-**Sistem desain dan aksesibilitas**: `operasi-sistem-desain`, `audit aksesibilitas`
+-**Pengiriman produk dan full-stack**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
+-**Keamanan**: `auditor keamanan`, `pemindai kerentanan`, `respon insiden`, `pemodelan ancaman`
+-**Alur kerja pengelola OSS**: `dokumentasi`, `changelog`, `buat-pr`
+-**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
+-**Rekayasa AI**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
 
-All seven bundles are fully backed:
+Ketujuh paket didukung sepenuhnya:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
-- `devops` → `5/5`
-- `ai-engineer` → `5/5`
-- `oss-maintainer` → `4/4`
+- `penting` → `4/4`
+- `tumpukan penuh` → `5/5`
+- `desain` → `4/4`
+- `keamanan` → `4/4`
+- `pengembangan` → `5/5`
+- `ai-insinyur` → `5/5`
+- `pemelihara oss` → `4/4`
 
-Current score spread from the generated catalog:
+Skor saat ini tersebar dari katalog yang dihasilkan:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- skor kualitas: `94, 95, 96, 97, 100`
+- skor praktik terbaik: `98, 99, 100`
+- skor keamanan: semua keterampilan yang diterbitkan saat ini `95`
 
-Representative high end:
+Perwakilan kelas atas:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
-- `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+- `omni-figma` → `kualitas 100`, `praktik_terbaik 100`
+- `audit aksesibilitas` → `kualitas 99`, `praktik_terbaik 100`
+- `aliran autentikasi` → `kualitas 97`, `praktik_terbaik 99`
+- `operasi-sistem-desain` → `kualitas 97`, `praktik_terbaik 99`
+- `rekayasa rilis` → `kualitas 97`, `praktik_terbaik 99`
+- `pemodelan ancaman` → `kualitas 97`, `praktik_terbaik 99`
+- `rekayasa konteks` → `kualitas 97`, `praktik_terbaik 99`
 
-Representative lower end inside the current top band:
+Perwakilan ujung bawah dalam pita atas saat ini:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `arsitektur` → `kualitas 94`, `praktik_terbaik 98`
+- `changelog` → `kualitas 94`, `praktik_terbaik 98`
+- `buat-pr` → `kualitas 95`, `praktik_terbaik 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+Ini disengaja. Pencetak skor sekarang membedakan “luar biasa” dari “luar biasa” alih-alih meratakan seluruh katalog di bagian atas.---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**Desain yang mengutamakan artefak**
+   Setiap permukaan runtime menggunakan katalog dan manifes yang dihasilkan sama.
+2.**Cakupan protokol luas**
+   CLI, API, MCP, dan A2A hidup berdampingan tanpa memecah-mecah model data.
+3.**Ergonomi produk lokal yang kuat**
+   Penginstalan terpandu, shell visual, `config-mcp`, dan default dry-run membuat proyek dapat digunakan di luar pengguna listrik.
+4.**Postur keamanan yang jujur**
+   Penulisan lokal, pemindaian statis, penandatanganan, checksum, dan verifikasi rilis yang diizinkan semuanya bersifat eksplisit.
+5.**Jangkauan MCP yang sehat**
+   Proyek ini sekarang mendukung sejumlah besar klien berkemampuan MCP tanpa berpura-pura bahwa target yang tidak terdokumentasi adalah stabil.---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**Cakupan paket yang lebih mendalam**
+   Langkah selanjutnya adalah spesialisasi dalam paket yang sudah ada, bukan sekedar cakupan luas.
+2.**Semantik pencetak gol yang lebih kaya**
+   Masih ada ruang untuk mengevaluasi kedalaman paket referensi dan kualitas alur kerja secara lebih semantik.
+3.**Lebih banyak penulis klien hanya jika dibenarkan**
+   Ekspansi harus tetap disiplin dan terikat pada dokumen resmi yang stabil.
+4.**Dekomposisi validator**
+   `skill_metadata.py` masih merupakan modul besar dan akan mendapat manfaat dari dekomposisi internal seiring waktu.
+5.**Eskalasi tata kelola yang diselenggarakan**
+   Baseline dalam proses saat ini sudah cukup untuk hosting mandiri, namun penerapan di perusahaan pada akhirnya memerlukan gateway eksternal dan integrasi identitas.

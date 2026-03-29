@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**Csak olvasható HTTP API a készségek felfedezéséhez, kereséshez, összehasonlításhoz, telepítéstervezéshez és műtermékek letöltéséhez.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funkció | állam |
 |:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| ✅ Katalógus végpontok | Megvalósítva |
+| ✅ Auth (vivő + API kulcs) | Megvalósítva |
+| ✅ Admin futásidejű hitelesítés | Megvalósítva |
+| ✅ Díjkorlátozás | Megvalósítva |
+| ✅ Audit naplózás | Megvalósítva |
+| ✅ CORS és IP engedélyezési listák | Megvalósítva |
+| ✅ Karbantartási mód | Megvalósítva |
+| ✅ Letöltések archívuma | Megvalósítva |
+| ✅ OpenAPI specifikáció | Megvalósítva |
+| ⚠️ Irányítási háttér | Env-vezérelt, folyamat közbeni alapállapot; a külső átjáró vagy az IdP továbbra is választható |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+Az API rendszerleíró adatbázis jellegű felületet biztosít:
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 Felsorolási és szűrési képességek minőség, biztonság, kategória, kockázat stb. szerint
+- 📌 Egyéni készségnyilatkozatok lekérése
+- 🔎 Teljes szöveges keresés és több készség összehasonlítása
+- 📦 Csomaglista elérhetőséggel
+- 📐 Csak olvasható telepítési terv létrehozása
+- 📥 Létrehozott műtermékek, archívumok és ellenőrzőösszeg-jegyzékek letöltése
 
-This same catalog and manifest surface is also the basis for:
+Ugyanez a katalógus és manifest felület az alapja a következőknek is:
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- helyi CLI telepítés tervezése
+- MCP csak olvasható felfedezési válaszok
+- A2A felderítés és telepítési terv átadás
+- potenciális privát katalógusok külső hitelesítéssel a tetején---
 
 ## Gyors kezdés
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**Alapértelmezés**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+Minden biztonsági vezérlő env-vezérelt és opcionális:
 
-| Control | Variable | Example |
-|:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| Control | Változó | Példa |
+|:--------|:---------|:---------|
+| 🔑**Bemutató hitelesítés**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `cserélj engem` |
+| 🗝️**API-kulcs hitelesítés**| `OMNI_SKILLS_HTTP_API_KEYS` | `kulcs-a,kulcs-b` |
+| 🛂**Adminisztrációs hitelesítés**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
+| 🚦**Drátakorlátozás**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | "60" / "60000" |
+| 📝**Audit naplózás**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | "1" |
+| 🗂️**Ellenőrzési formátum**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | "json" vagy "szöveg" |
+| 📄**Audit fájl**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**CORS engedélyezési lista**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**IP engedélyezési lista**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | "127.0.0.1/32,10.0.0.0/8" |
+| 🔁**Megbízható proxy**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `visszacsatolás` |
+| 🚧**Karbantartási mód**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | "1" |
+| ⏱️**Próbáld újra**| "OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS" | "300" |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**Viselkedés:**
+- 🟢 `/healthz`**mindig hitelesítetlen marad**
+- 🔒 Minden más útvonal hitelesítést igényel, ha az hitelesítés engedélyezve van
+- 🛂 Az `/admin/runtime` engedélyezve van az admin tokent
+- 🚦 A sebességkorlátozás folyamatban van az "X-RateLimit-*" válaszfejlécekkel
+- 🧾 Minden válasz tartalmazza az "X-Request-Id"-et
+- 🚧 A Karbantartási mód „503”-at ad vissza nem egészségügyi, nem rendszergazdai útvonalak esetén### ✅ Current governance decision
 
-### ✅ Current governance decision
+A projekt jelenlegi iránya az, hogy**ugyanazt a katalógusformátumot használja újra nyilvános vagy privát telepítésekhez**, és szükség esetén külső szintű hitelesítést rétegezzen.
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+Ez azt jelenti:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- a jegyzék és az API alakzat megosztva marad
+- A saját üzemeltetésű és helyi telepítések a folyamat közbeni alapállapoton maradhatnak
+- A fejlettebb hosztolt irányítás később külső átjáróra vagy vállalati hitelesítési rétegre költözhet az adatmodell elágazása nélkül### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+| Módszer | Útvonal | Leírás |
+|:-------|:-----|:-------------|
+| "GET" | "/healthz" | állapotfelmérés (nem hitelesített) |
+| "GET" | `/openapi.json` | Dynamic OpenAPI 3.1 specifikáció |
+| "GET" | `/admin/runtime` | Irányítási és futásidejű pillanatkép (adminisztrátori hitelesítés, ha engedélyezve van) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
+| Módszer | Útvonal | Leírás |
+|:-------|:-----|:-------------|
+| "GET" | "/v1/készségek" | Készségek listája szűrőkkel |
+| "GET" | `/v1/skills/:id` | Egyéni készségnyilatkozat megszerzése |
+| "GET" | "/v1/search" | Teljes szöveges keresés |
+| "GET" | `/v1/compare?ids=id1,id2` | Több készség összehasonlítása |
+| "GET" | "/v1/bundles" | Csomagok listázása elérhetőséggel |
+| "POST" | `/v1/install/plan` | Telepítési terv létrehozása |### 🔎 List/Search Filters
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
-
-### 🔎 List/Search Filters
-
-| Filter | Example |
-|:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
-| `min_best_practices` | `?min_best_practices=60` |
-| `min_level` | `?min_level=2` |
-| `min_security` | `?min_security=90` |
+| Szűrő | Példa |
+|:-------|:---------|
+| "kategória" | `?category=development` |
+| "szerszám" | `?tool=cursor` |
+| `kockázat` | `?kockázat=biztonságos` |
+| `rendezni` | `?sort=quality\|best-practices\|level\|security\|name` |
+| "megrendelés" | `?order=asc\|desc` |
+| `minimum_minőség` | `?min_minőség=80` |
+| `minimum_legjobb_gyakorlatok` | `?min_best_practices=60` |
+| `min_szint` | `?min_szint=2` |
+| `minimum_biztonság` | `?min_security=90` |
 | `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| `biztonsági_állapot` | `?security_status=passed` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+| Módszer | Útvonal | Leírás |
+|:-------|:-----|:-------------|
+| "GET" | `/v1/catalog/download' | Teljes katalógus letöltése |
+| "GET" | "/v1/skills/:id/artifacts" | Sorolja fel a készségek műtermékeit |
+| "GET" | `/v1/skills/:id/archives` | Készségarchívumok listázása |
+| "GET" | `/v1/skills/:id/downloads` | Minden elérhető letöltési link |
+| "GET" | "/v1/skills/:id/download/manifest" | Skill manifest JSON |
+| "GET" | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
+| "GET" | `/v1/skills/:id/download/artifact?path=<elérési út>` | Konkrét műtermék |
+| "GET" | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Ügyességi archívum |
+| "GET" | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Leválasztott aláírás |
+| "GET" | `/v1/skills/:id/download/archive/checksums` | SHA-256 ellenőrző összegek |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+Amikor a kéréseket az API-n keresztül kezelik, a szerver**automatikusan gazdagítja**a jegyzékeket, a műtermék-listákat és a telepítési terveket a bejövő kérés forrásából származó abszolút URL-ekkel. Ez egy futásidejű gazdagítás, nem a dist/manifests/*.json fájlba.---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**A telepítési tervek előnézetek, nem pedig távoli írások.**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+Az API soha nem települ a hívó gépére. Visszaadja:
+- 📌 Válogatott készség metaadatok
+- ⚠️ Figyelmeztetések a csomag hiányzó tagjaira
+- 🖥️ Konkrét CLI parancsok helyi futtatáshoz
+- 🔗 Nyilvános letöltési URL-ek, ha elérhető a kérés eredete---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+Az MCP-kiszolgáló ugyanazokat a nyilvános API URL-eket használja újra, amikor be van állítva:```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+Ez lehetővé teszi az MCP-telepítési előnézetek számára, hogy konkrét jegyzék- és műtermék-URL-eket adjanak vissza a helyi repo-útvonalak helyett.---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+A "GET /admin/runtime" egy irányítási pillanatképet ad vissza, amely hasznos a tárolt diagnosztikához:
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- aktív hitelesítési módszerek
+- admin-auth állapot
+- sebességkorlát ablak és max
+- CORS engedélyezési lista
+- IP engedélyezési lista
+- karbantartási mód állapota
+- ellenőrzési cél és formátum
+- aktuális katalógusösszeg
+- kérjen azonosítót visszhangozva a nyomon követhetőség érdekében

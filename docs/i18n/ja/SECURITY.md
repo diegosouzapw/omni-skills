@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**オムニ スキルでセキュリティの問題を発見した場合は、最初に公開の問題を開かないでください。**
 
-Please report through one of these private channels:
+次のプライベート チャネルのいずれかを介して報告してください。
 
-| Channel | How |
+|チャンネル |どのように |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 GitHub セキュリティ アドバイザリー | [非公開アドバイザリーを開く](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 直接連絡 |管理者に直接連絡する |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 影響を受けるコンポーネントまたはパス
+- 🔄 再現手順
+- ⚠️影響評価
+- 🧪 問題を検証するために必要な概念実証資料
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ 私たちは 48 時間以内に報告を確認し、影響に応じて修正に優先順位を付けることを目指しています。---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+このポリシーは、リポジトリのランタイム サーフェスとコンテンツ サーフェスを対象としています。
 
-| Component | Path |
+|コンポーネント |パス |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI とインストーラー | `ツール/bin/` |
+| 📚 共有ライブラリ | `tools/lib/` |
+| ⚙️ ビルドおよび検証スクリプト | `ツール/スクリプト/` |
+| 📦 生成されたカタログアーティファクト | `dist/` |
+| 🌐 API、MCP、A2A パッケージ | `パッケージ/` |
+| 🧠 スキル内容 | `skills/` — 特にシェル コマンド、ネットワーク アクセス、資格情報フロー、またはセキュリティに配慮したガイダンス |---
 
 ## アーキテクチャ
 
-The repository relies on the following security controls:
+リポジトリは次のセキュリティ制御に依存しています。### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
+|コントロール |説明 |
+|:----------|:----------|
+| 🏷️ リスクフィールド |スキルのメタデータには、宣言された「リスク」レベルが含まれます。
+| 📊 スコア |検証では、成熟度、ベスト プラクティス、品質、セキュリティ スコアを計算します。
+| 🔍 静的スキャナ | `SKILL.md`、パッケージ化されたファイル、およびヘルパー スクリプトを検査します。
+| 🦠 オプションのスキャナ | ClamAV および VirusTotal ハッシュ ルックアップ (構成時) |### 🖥️ Runtime Controls
 
-| Control | Description |
-|:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+|コントロール |説明 |
+|:----------|:----------|
+| 📁 道の安全 |インストール フローはパスの安全性チェックを使用します。
+| 🔒 許可リストへの書き込み |ローカル MCP サイドカー書き込みはホワイトリストによって制限されます。
+| 👁️ ドライランのデフォルト |書き込み指向のツールは、明示的に無効にしない限り、デフォルトでドライランになります。
+| 🔐 認証と制限 |ベアラー/API キー認証、管理者ランタイム認証、レート制限、CORS/IP ホワイトリスト |
+| 📋 監査 |監査ログ、メンテナンス モード、およびリクエスト ID |### 📦 Release Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
-|:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
-
-### 📦 Release Controls
-
-| Control | Description |
-|:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+|コントロール |説明 |
+|:----------|:----------|
+| ✅ チェックサムマニフェスト |生成されたアーカイブの SHA-256 チェックサム |
+| ✍️ 署名 |公開前の CI での分離署名検証 |
+| 🧪 煙チェック |リリース前に出荷されたランタイム サーフェスを演習する |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> 残っている主なセキュリティ作業はベースラインの強化です**ではありません**。開いている項目は次のとおりです。
 
-| Area | Status |
-|:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+|エリア |ステータス |
+|:-----|:----------|
+| 🏢 エンタープライズガバナンス |現在のプロセス内制御を超える外部 ID、ゲートウェイ ポリシー、WAF の統合 |
+| 🔌 MCP クライアント ライター |パブリック構成コントラクトが十分に安定している場合にのみ、幅広いライターを使用します。
+| 📊 スキャナーの改良 |継続的な改良により、卓越したスキルが単によく構成されたスキルから明確に分離されます。---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+各スキルは、次の「リスク」レベルのいずれかを宣言します。
 
-| Risk Level | Meaning |
-|:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+|リスクレベル |意味 |
+|:-----------|:----------|
+| 🟢「安全」 |破壊的な操作は想定されていません |
+| 🟡「注意」 |ファイルを変更したり、外部システムと対話したりする可能性があります。
+| 🔴「攻撃的」 |明示的な承認を必要とするセキュリティ テストまたは敵対的なワークフロー |
+| ⛔「重大」 |影響の大きい操作またはシステムレベルの操作 |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Omni Skills には実行可能ヘルパー、ファイルシステム対応のローカル ツール、およびクライアント固有の構成ライターが同梱されているため、これらの脆弱性クラスは、「ローカルのみ」と表示される場合でも**高優先度**として扱う必要があります。
 
-| Category | Examples |
-|:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+|カテゴリー |例 |
+|:-----------|:----------|
+| 📁 パストラバーサル |スキルのインストールまたは構成パスによるディレクトリエスケープ |
+| 🔗 シンボリックリンクの安全性 |インストールまたはアーカイブ抽出中に続くシンボリックリンク |
+| 🖥️ コマンドの実行 |スキルコンテンツまたはスクリプトを介した任意のコマンドインジェクション |
+| 📦 アーカイブの検証 |チェックサムまたは署名検証のバイパス |
+| 🔓 認証バイパス | API/MCP でのレート制限または認証バイパス |
+| 🔌 許可リストのバイパス |ローカル サイドカー許可リストの回避 |
+| 🦠 スキャナ回避 |静的または外部スキャナーの偽陰性クラス |

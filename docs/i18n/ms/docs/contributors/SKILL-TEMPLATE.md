@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
+nama: nama-kemahiran anda
+perihalan: "Penerangan satu baris tentang perkara yang dilakukan oleh kemahiran ini dan bila hendak menggunakannya"
+versi: "0.1.3"
+kategori: pembangunan
+tag: [teg-contoh-1, teg-contoh-2]
+kerumitan: pertengahan
+risiko: selamat
+alatan: [kod claude, kursor, gemini-cli, antigraviti]
+sumber: komuniti
+pengarang: "Nama Anda"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----
-
-<!--
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` akan menjana kemahiran/<skill>/metadata.json dengan kanonik
+taksonomi, tahap kematangan, skor amalan terbaik, skor kualiti dan keselamatan
+hasil imbasan. Corak suntikan segera, arahan yang merosakkan dan skrip berisiko
+binaan akan dibenderakan secara automatik.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+Versi kemahiran adalah bebas daripada versi pakej. Gunakan semantik
+versi yang masuk akal untuk kemahiran itu sendiri.
 
-For a top-scoring skill, also read:
-- docs/contributors/HIGH-SCORE-PLAYBOOK.md
+Untuk kemahiran mendapat markah tertinggi, baca juga:
+- dokumen/penyumbang/BOOK-SKOR-TINGGI.md
 - docs/contributors/QUALITY-BAR.md
 -->
-
-
 ## Gambaran Keseluruhan
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 ayat menerangkan apa yang kemahiran ini lakukan, siapa yang mendapat manfaat daripadanya, dan mengapa ia wujud.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Gunakan apabila anda perlu [senario 1]
+- Gunakan apabila anda mahu [senario 2]
+- Gunakan apabila bekerja dengan [senario 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Terangkan konsep utama yang perlu difahami oleh ejen.### Concept 2
 
-### Concept 2
+Terangkan satu lagi konsep asas.## Workflow
 
-Explain another foundational concept.
+| Fasa | Output | Mengapa ia penting |
+|:------|:-------|:----------------|
+| Bingkai matlamat | Objektif yang jelas | Menghalang panduan yang tidak jelas |
+| Laksanakan langkah | Aliran kerja sedia ejen | Menjadikan kemahiran boleh diambil tindakan |
+| Sahkan output | Isyarat penerimaan | Meningkatkan keyakinan |
 
-## Workflow
+1. Langkah pertama dalam aliran kerja
+2. Langkah kedua dalam aliran kerja
+3. Langkah ketiga dalam aliran kerja### 1. First Step
 
-| Phase | Output | Why it matters |
-|:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+Arahan terperinci untuk langkah pertama.### 2. Second Step
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+Arahan terperinci untuk langkah kedua.### 3. Third Step
 
-### 1. First Step
-
-Detailed instructions for the first step.
-
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Arahan terperinci untuk langkah ketiga.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Penjelasan:**Perkara yang ditunjukkan oleh contoh ini.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Penjelasan:**Perkara yang ditunjukkan oleh contoh ini.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Lakukan:**Ikuti amalan baik ini
+- ✅**Lakukan:**Ikuti juga amalan ini
+- ❌**Jangan:**Elakkan antipattern ini
+- ❌**Jangan:**Jangan lakukan ini## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Simptom:**Bagaimana anda tahu ini masalahnya.
+**Penyelesaian:**Cara membetulkannya.## Related Skills
 
-## Related Skills
+- `@related-skill-1` — Bila hendak menggunakan ini sebaliknya
+- `@related-skill-2` — Bagaimana ini melengkapkan kemahiran anda## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Senarai Semak](rujukan/senarai semak.md)
+- [Contoh kerja](contoh/contoh.md)
+- [Skrip Pembantu](skrip/render_example.py)

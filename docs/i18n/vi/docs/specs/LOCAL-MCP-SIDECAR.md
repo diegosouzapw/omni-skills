@@ -5,55 +5,47 @@
 ---
 
 
-> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
-
----
+>**Tiện ích mở rộng chế độ cục bộ tùy chọn cho `@omni-skills/server-mcp` bổ sung các công cụ nhận biết hệ thống tệp để phát hiện ứng dụng khách, quản lý kỹ năng và tạo cấu hình MCP.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Tính năng | Tiểu bang |
 |:--------|:------|
-| ✅ Read-only catalog tools | Implemented |
-| ✅ Filesystem-aware local tools | Implemented |
-| ✅ 3 transports (stdio/stream/sse) | Implemented |
-| ✅ Allowlisted writes | Implemented |
-| ✅ Preview-before-write defaults | Implemented |
-| ✅ Client-aware MCP config writing | Implemented |
-| ✅ HTTP auth + rate limiting | Implemented |
-| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
-| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
-| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
-
----
+| ✅ Công cụ danh mục chỉ đọc | Đã triển khai |
+| ✅ Công cụ cục bộ nhận biết hệ thống tập tin | Đã triển khai |
+| ✅ 3 phương tiện (stdio/suối/sse) | Đã triển khai |
+| ✅ Viết trong danh sách được phép | Đã triển khai |
+| ✅ Mặc định xem trước trước khi ghi | Đã triển khai |
+| ✅ Viết cấu hình MCP nhận biết khách hàng | Đã triển khai |
+| ✅ Xác thực HTTP + giới hạn tốc độ | Đã triển khai |
+| ✅ Chữ ký và tổng kiểm tra tại thời điểm phát hành | Được triển khai cho các kho lưu trữ đã tạo và được API/MCP hiển thị |
+| 🟡 Thực thi chữ ký thời gian ghi cục bộ | Chưa được thi hành; xem trước và ghi chế độ cục bộ từ thanh toán cục bộ đáng tin cậy |
+| 🟢 Bảo hiểm khách hàng hiện tại | 7 máy khách có khả năng cài đặt, 16 máy khách có khả năng cấu hình, 33 mục tiêu cấu hình, 19 cấu hình cấu hình |---
 
 ## 🎯 Purpose
 
-Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
+Chế độ cục bộ thêm**công cụ nhận biết hệ thống tệp**lên trên bề mặt danh mục MCP chỉ đọc hiện có. Sử dụng nó khi một đại lý cần:
 
-- 🕵️ Detect compatible local AI clients
-- 📋 Inspect installed skills
-- 👁️ Preview skill installation or removal (dry-run)
-- 📦 Apply local skill installation or removal
-- ⚙️ Write a local MCP config file after preview
+- 🕵️ Phát hiện các ứng dụng khách AI cục bộ tương thích
+- 📋 Kiểm tra các kỹ năng đã cài đặt
+- 👁️ Xem trước cài đặt hoặc gỡ bỏ kỹ năng (chạy thử)
+- 📦 Áp dụng cài đặt hoặc gỡ bỏ kỹ năng cục bộ
+- ⚙️ Viết tệp cấu hình MCP cục bộ sau khi xem trước
 
-It deliberately separates two concerns:
+Nó cố tình tách hai mối quan tâm:
 
-- **skill installation targets**
-  clients with a stable skills directory that can use `install_skills`
-- **MCP config targets**
-  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
-
----
+-**mục tiêu cài đặt kỹ năng**
+  khách hàng có thư mục kỹ năng ổn định có thể sử dụng `install_skills`
+-**Mục tiêu cấu hình MCP**
+  máy khách hoặc IDE có định dạng cấu hình MCP được ghi lại ổn định, ngay cả khi chúng không có thư mục kỹ năng---
 
 ## 🔌 Transports
 
-| Transport | Protocol | Use Case |
-|:----------|:---------|:---------|
-| `stdio` | Pipe | Direct client integration |
-| `stream` | Streamable HTTP | Modern HTTP clients |
-| `sse` | Server-Sent Events | Legacy clients |
-
----
+| Vận tải | Giao thức | Trường hợp sử dụng |
+|:----------|:---------|:----------|
+| `stdio` | Ống | Tích hợp khách hàng trực tiếp |
+| `stream` | HTTP có thể phát trực tuyến | Máy khách HTTP hiện đại |
+| `sse` | Sự kiện do máy chủ gửi | Khách hàng kế thừa |---
 
 ## 🚀 Enable Local Mode
 
@@ -89,144 +81,130 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
-> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
-
----
+> Tự động đặt tất cả các lệnh `OMNI_SKILLS_MCP_MODE=local`.---
 
 ## 🛠️ Local Tools
 
-When local mode is enabled, these extra tools become available:
+Khi chế độ cục bộ được bật, các công cụ bổ sung này sẽ khả dụng:
 
-| Tool | Description | Default |
-|:-----|:------------|:--------|
-| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
-| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
-| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
-| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
-| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
+| Công cụ | Mô tả | Mặc định |
+|:------|:-------------|:--------|
+| 🕵️ `phát hiện khách hàng` | Quét các ứng dụng khách AI và đường dẫn kỹ năng/cấu hình của chúng | — |
+| 📋 `list_installed_skills` | Kiểm tra các kỹ năng đã cài đặt cho một khách hàng cụ thể | — |
+| 📦 `install_skills` | Cài đặt kỹ năng vào thư mục kỹ năng của khách hàng | 🔍 chạy khô |
+| 🗑️ `remove_skills` | Xóa các kỹ năng đã cài đặt khỏi máy khách | 🔍 chạy khô |
+| ⚙️ `configure_client_mcp` | Viết cấu hình MCP cho một khách hàng cụ thể | 🔍 chạy khô |
 
-> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
-
----
+> ⚠️ `install_skills`, `remove_skills` và `configure_client_mcp` mặc định là**chạy thử**khi bỏ qua `dry_run`.---
 
 ## 🎯 Supported Targets
 
 ### 📂 Skills Directories
 
-| Client | Path |
-|:-------|:-----|
-| 🔵 Claude Code | `~/.claude/skills` |
-| 🔵 Cursor | `~/.cursor/skills` |
-| 🟡 Gemini CLI | `~/.gemini/skills` |
-| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
+| Khách hàng | Đường dẫn |
+|:-------|:------|
+| 🔵 Mã Claude | `~/.claude/skills` |
+| 🔵 Con trỏ | `~/.cursor/skills` |
+| 🟡 Song Tử CLI | `~/.gemini/skills` |
+| 🟣 Phản trọng lực | `~/.gemini/anti Gravity/skills` |
 | 🟢 Kiro | `~/.kiro/skills` |
-| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
-| ⚪ OpenCode | `<workspace>/.opencode/skills` |
+| 🔴 Codex CLI | `~/.codex/skills` hoặc `$CODEX_HOME/skills` |
+| ⚪ Mã mở | `<workspace>/.opencode/skills` |
 
-These 7 targets are the only first-class install destinations today.
+7 mục tiêu này là đích cài đặt hạng nhất duy nhất hiện nay.### ⚙️ MCP Config Files
 
-### ⚙️ MCP Config Files
-
-| Target | Format |
+| Mục tiêu | Định dạng |
 |:-------|:-------|
-| `~/.claude/settings.json` | Claude Code settings JSON |
-| `<workspace>/.claude/settings.json` | Claude project settings JSON |
-| `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
-| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
+| `~/.claude/settings.json` | Cài đặt mã Claude JSON |
+| `<workspace>/.claude/settings.json` | Cài đặt dự án Claude JSON |
+| `~/.claude.json` | Di sản Claude JSON (`mcpServers`) |
+| `~/Thư viện/Hỗ trợ ứng dụng/Claude/claude_desktop_config.json` | Claude Desktop JSON (dành riêng cho hệ điều hành) |
 | `~/.cursor/mcp.json` | JSON (`mcpServers`) |
-| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
-| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
-| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
-| `~/.gemini/antigravity/mcp.json` | Antigravity JSON (`mcpServers`) |
-| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
-| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
+| `<workspace>/.cursor/mcp.json` | Không gian làm việc của con trỏ JSON (`mcpServers`) |
+| `~/.gemini/settings.json` | Người dùng Gemini JSON (`mcpServers`) |
+| `<workspace>/.gemini/settings.json` | Dự án Gemini JSON (`mcpServers`) |
+| `~/.gemini/antirabity/mcp.json` | JSON phản trọng lực (`mcpServers`) |
+| `~/.kiro/settings/mcp.json` | Người dùng Kiro JSON (`mcpServers`) |
+| `<workspace>/.kiro/settings/mcp.json` | Dự án Kiro JSON (`mcpServers`) |
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
-| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
-| `<workspace>/opencode.json` | OpenCode workspace JSON (`mcp`) |
-| `~/.config/opencode/opencode.json` | OpenCode user JSON (`mcp`) |
+| `<không gian làm việc>/.mcp.json` | JSON (`mcpServers`) |
+| `<không gian làm việc>/opencode.json` | Không gian làm việc OpenCode JSON (`mcp`) |
+| `~/.config/opencode/opencode.json` | Người dùng OpenCode JSON (`mcp`) |
 | `~/.cline/data/settings/cline_mcp_settings.json` | Cline JSON (`mcpServers`) |
 | `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON (`mcpServers`) |
-| `<workspace>/.github/mcp.json` | GitHub Copilot repository JSON (`mcpServers`) |
-| `~/.config/kilo/kilo.json` | Kilo CLI user JSON (`mcp`) |
-| `<workspace>/kilo.json` | Kilo CLI project JSON (`mcp`) |
-| `<workspace>/.kilocode/mcp.json` | Kilo Code workspace JSON (`mcpServers`) |
-| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
-| `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
-| `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
-| `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
-| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
-| `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
-| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
-| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
-| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
-| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
-| Client root `mcp.json` | JSON (per-client format) |
+| `<không gian làm việc>/.github/mcp.json` | Kho lưu trữ GitHub Copilot JSON (`mcpServers`) |
+| `~/.config/kilo/kilo.json` | Người dùng Kilo CLI JSON (`mcp`) |
+| `<không gian làm việc>/kilo.json` | Dự án Kilo CLI JSON (`mcp`) |
+| `<không gian làm việc>/.kilocode/mcp.json` | Không gian làm việc của Kilo Code JSON (`mcpServers`) |
+| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Tiếp tục không gian làm việc YAML (`mcpServers`) |
+| `<workspace>/.junie/mcp/mcp.json` | Dự án Junie JSON (`mcpServers`) |
+| `~/.junie/mcp/mcp.json` | Người dùng Junie JSON (`mcpServers`) |
+| `~/.codeium/windsurf/mcp_config.json` | Lướt ván buồm JSON (`mcpServers`) |
+| `~/.config/goose/config.yaml` | Ngỗng YAML (`tiện ích mở rộng`) |
+| `<workspace>/.zed/settings.json` | Không gian làm việc Zed JSON (`context_servers`) |
+| `<không gian làm việc>/.vscode/mcp.json` | JSON (`máy chủ`) |
+| `~/.config/Code/User/mcp.json` | Người dùng mã VS JSON (`máy chủ`) |
+| `~/.config/Code - Người trong cuộc/Người dùng/mcp.json` | Người dùng VS Code Insiders JSON (`servers`) |
+| `<workspace>/.devcontainer/devcontainer.json` | JSON của Dev Container lồng nhau (`customizations.vscode.mcp.servers`) |
+| Gốc máy khách `mcp.json` | JSON (định dạng cho mỗi khách hàng) |
 
-That gives the sidecar:
+Điều đó mang lại cho sidecar:
 
-- **16 config-capable clients or IDEs**
-- **33 first-class target paths**
-- **19 format profiles**
+-**16 máy khách hoặc IDE có khả năng cấu hình**
+-**33 đường dẫn mục tiêu hạng nhất**
+-**19 cấu hình định dạng**
 
-Current first-class config coverage spans:
+Phạm vi phủ sóng cấu hình hạng nhất hiện tại:
 
-- Claude Code and Claude Desktop
-- Cursor
-- VS Code and Dev Containers
-- Gemini CLI
-- Antigravity
+- Mã Claude và Máy tính để bàn Claude
+- Con trỏ
+- Vùng chứa mã VS và Dev
+- Song Tử CLI
+- Phản trọng lực
 - Kiro
 - Codex CLI
-- Continue
+- Tiếp tục
 - Junie
-- Windsurf
-- Goose
-- OpenCode
+- Lướt ván buồm
+- Ngỗng
+- Mã mở
 - Cline
-- GitHub Copilot CLI
-- Kilo Code
+- GitHub phi công phụ CLI
+- Mã Kilo
 - Zed
 
-Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
+Các ứng cử viên chỉ có thủ công hoặc đoạn trích vẫn cố tình nằm ngoài nhóm tác giả hạng nhất cho đến khi hợp đồng cấu hình công khai của họ đủ ổn định.### 🧭 Expansion Policy
 
-### 🧭 Expansion Policy
+Omni Skills hiện coi hỗ trợ khách hàng là mô hình ba cấp độ:
 
-Omni Skills now treats client support as a three-level model:
+1.**có khả năng cài đặt**
+   Có một thư mục kỹ năng ổn định nên CLI và sidecar có thể cài đặt kỹ năng trực tiếp.
+2.**có khả năng cấu hình**
+   Tồn tại định dạng cấu hình MCP được ghi lại, ổn định, vì vậy `config-mcp` có thể xem trước và ghi tệp hạng nhất.
+3.**chỉ thủ công hoặc đoạn trích**
+   Sản phẩm rõ ràng hỗ trợ MCP dưới một số hình thức, nhưng các tài liệu công cộng vẫn chưa biện minh cho một trình ghi tự động an toàn.
 
-1. **install-capable**
-   A stable skills directory exists, so the CLI and sidecar can install skills directly.
-2. **config-capable**
-   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
-3. **manual or snippet-only**
-   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
-
-This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
-
----
+Đây là lý do tại sao các ứng dụng khách như Trợ lý AI JetBrains vẫn chỉ sử dụng thủ công/đoạn mã, trong khi Roo Code và Postman nằm ngoài nhóm tác giả hạng nhất cho đến khi câu chuyện hợp nhất tự động an toàn của họ đủ mạnh cho dự án này.---
 
 ## 🔒 Allowlist Model
 
-The local sidecar only writes under an **explicit allowlist**.
+Sidecar cục bộ chỉ viết theo**danh sách cho phép rõ ràng**.### 🟢 Default allowlist:
 
-### 🟢 Default allowlist:
-
-- Known client roots under `$HOME`
-- `~/.codeium` for Windsurf user config
-- `~/.copilot` for GitHub Copilot CLI
-- `~/.cline` for Cline CLI
-- `~/.config/goose` for Goose config
-- `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
-- `$CODEX_HOME` (or `~/.codex` if unset)
-- Current workspace root
+- Nguồn gốc khách hàng đã biết dưới `$HOME`
+- `~/.codeium` dành cho cấu hình người dùng Windsurf
+- `~/.copilot` cho GitHub Copilot CLI
+- `~/.cline` cho Cline CLI
+- `~/.config/goose` cho cấu hình Goose
+- `~/.config/kilo` và `~/.config/opencode` cho cấu hình Kilo/OpenCode CLI
+- `$CODEX_HOME` (hoặc `~/.codex` nếu không được đặt)
+- Gốc không gian làm việc hiện tại
 - `<workspace>/.agents`
-- `<workspace>/.github`
-- `<workspace>/.kilocode`
+- `<không gian làm việc>/.github`
+- `<không gian làm việc>/.kilocode`
 - `<workspace>/.opencode`
 - `<workspace>/.zed`
 - `<workspace>/.continue`
-- `<workspace>/.vscode`
-
-### ➕ Extend the allowlist:
+- `<không gian làm việc>/.vscode`### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
@@ -381,9 +359,7 @@ mcpServers:
 
 ### 🧭 CLI Contract
 
-The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
-
-```bash
+Trình bao bọc CLI được hỗ trợ bởi sidecar giúp cho việc tạo cấu hình MCP có thể truy cập được mà không cần các lệnh gọi JSON-RPC trực tiếp:```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -393,9 +369,7 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
-
-### 🌊 Windsurf
+Hành vi mặc định là chỉ xem trước. `--write` áp dụng cấu hình cho đường dẫn đích đã được giải quyết trong danh sách cho phép.### 🌊 Windsurf
 
 ```json
 {
@@ -484,102 +458,92 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
+Công cụ `configure_client_mcp` cũng có thể ghi các cài đặt dành riêng cho Claude khi bạn vượt qua:
 
-- `allowed_mcp_servers`
+- ` được phép_mcp_servers`
 - `denied_mcp_servers`
-- `permissions_deny`
-- `enable_all_project_mcp_servers`
+- `quyền_từ chối`
+- `enable_all_project_mcp_servers`### 💜 VS Code sandboxing
 
-### 💜 VS Code sandboxing
-
-For VS Code and Dev Container targets, `configure_client_mcp` can also write:
+Đối với các mục tiêu VS Code và Dev Container, `configure_client_mcp` cũng có thể viết:
 
 - `sandboxEnabled`
 - `sandbox.filesystem.allowWrite`
-- `sandbox.network.allowHosts`
+- `sandbox.network.allowhosts`
 - `dev.watch`
 - `dev.debug.type`
 
-This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
+Điều này ánh xạ tới hướng dẫn Mã VS hiện tại dành cho máy chủ MCP stdio đóng hộp cát cục bộ.### 🧰 Cross-Client Entry Options
 
-### 🧰 Cross-Client Entry Options
+`configure_client_mcp` hiện hỗ trợ siêu dữ liệu mục nhập phong phú hơn trên các cấu hình được hỗ trợ:
 
-`configure_client_mcp` now supports richer entry metadata across supported profiles:
-
-- `headers`
+- `tiêu đề`
 - `env`
 - `env_file`
 - `cwd`
-- `timeout_ms`
-- `description`
-- `include_tools`
-- `exclude_tools`
-- `disabled`
-- `trust`
+- `thời gian chờ_ms`
+- `mô tả`
+- `bao gồm_tools`
+- `loại trừ_tools`
+- `bị vô hiệu hóa`
+- `tin tưởng`
 
-Profile-specific options:
+Tùy chọn dành riêng cho hồ sơ:
 
 - Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
-- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- Song Tử: `mcp_allowed_servers`, `mcp_excluded_servers`
 - Kiro: `disabled_tools`, `auto_approve`
-- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
+- VS Code và Dev Container: `dev_watch`, `dev_debug_type`### 📋 Generated Recipes
 
-### 📋 Generated Recipes
+`configure_client_mcp` trả về `công thức nấu ăn` cùng với bản xem trước hoặc cấu hình được áp dụng.
 
-`configure_client_mcp` returns `recipes` alongside the preview or applied config.
-
-These recipes are client-aware guidance blocks, for example:
+Các công thức nấu ăn này là các khối hướng dẫn nhận thức của khách hàng, ví dụ:
 
 - `claude mcp add ... --scope user|project`
 - `gemini mcp add ... --scope user|project`
-- `codex mcp add ...`
-- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
+- `codex mcp thêm ...`
+- công thức chỉnh sửa tệp thủ công cho Cursor, VS Code, Kiro và Claude Desktop
 
-The overall strategy is now intentionally conservative:
+Chiến lược tổng thể bây giờ là thận trọng có chủ ý:
 
-- reuse a small set of canonical config families where possible
-- keep bespoke writers only when official docs require a distinct shape
-- avoid inventing automatic writers for undocumented targets
-
----
+- tái sử dụng một tập hợp nhỏ các họ cấu hình chuẩn nếu có thể
+- chỉ giữ lại những người viết riêng khi tài liệu chính thức yêu cầu một hình dạng riêng biệt
+- tránh phát minh ra các trình soạn thảo tự động cho các mục tiêu không có giấy tờ---
 
 ## 🔐 Hosted HTTP Hardening
 
-The HTTP transports support the same env-driven controls as the catalog API:
+Việc truyền tải HTTP hỗ trợ các điều khiển dựa trên môi trường tương tự như API danh mục:
 
-| Variable | Purpose |
-|:---------|:--------|
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
+| Biến | Mục đích |
+|:----------|:--------|
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Xác thực mã thông báo mang |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Khóa API được phân tách bằng dấu phẩy |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Xem xét nội bộ thời gian chạy chỉ dành cho quản trị viên |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Số yêu cầu tối đa trên mỗi cửa sổ |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Cửa sổ giới hạn tốc độ tính bằng ms |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Bật ghi nhật ký kiểm tra |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Viết nhật ký kiểm tra vào một tập tin |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Hạn chế nguồn gốc trình duyệt |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Hạn chế IP nguồn được phép |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Trả về `503` cho các tuyến không phải quản trị viên, phi sức khỏe |
 
-> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
-
----
+> 🟢 `/healthz` vẫn mở. `/mcp`, `/sse` và `/messages` yêu cầu xác thực khi được bật. `/admin/runtime` yêu cầu mã thông báo quản trị khi được định cấu hình.---
 
 ## 🌍 Official Docs That Shape Support Decisions
 
-The current writer set and manual-only boundaries were checked against official product docs, including:
+Nhóm người viết hiện tại và ranh giới chỉ dành cho thủ công đã được kiểm tra dựa trên các tài liệu sản phẩm chính thức, bao gồm:
 
-- Anthropic Claude Code MCP
-- OpenAI Codex CLI and OpenAI Docs MCP
-- Cursor MCP docs
-- Continue MCP docs
-- Kiro MCP docs
-- OpenCode MCP docs
-- Cline MCP docs
-- Kilo Code MCP docs
-- GitHub Copilot CLI docs
-- Zed MCP docs
-- VS Code MCP docs
-- JetBrains AI Assistant MCP docs
+- Mã Claude nhân loại MCP
+- OpenAI Codex CLI và OpenAI Docs MCP
+- Tài liệu MCP con trỏ
+- Tiếp tục tài liệu MCP
+- Tài liệu Kiro MCP
+- Tài liệu MCP OpenCode
+- Tài liệu Cline MCP
+- Tài liệu Kilo Code MCP
+- Tài liệu CLI của GitHub Copilot
+- Tài liệu Zed MCP
+- Tài liệu MCP Mã VS
+- Tài liệu MCP của Trợ lý JetBrains AI
 
-Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.
+Những tài liệu đó là lý do tại sao một số khách hàng nhận được trình soạn thảo tự động hạng nhất trong khi những khách hàng khác hiện chỉ duy trì đoạn trích.

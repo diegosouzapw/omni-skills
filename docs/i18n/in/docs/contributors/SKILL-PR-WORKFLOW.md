@@ -5,69 +5,55 @@
 ---
 
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
+यह पुल अनुरोधों के लिए विहित भंडार प्रवाह है जो एक या अधिक मूल कौशल को जोड़ता या पर्याप्त रूप से उन्नत करता है।
 
-Use it when:
+इसका उपयोग तब करें जब:
 
-- adding a new skill under `skills/`
-- deepening a bundle with new domain skills
-- shipping a larger support-pack expansion
-- validating a branch with the private enhancer before maintainers merge it
+- `कौशल/` के अंतर्गत एक नया कौशल जोड़ना
+- नए डोमेन कौशल के साथ एक बंडल को गहरा करना
+- एक बड़े सपोर्ट-पैक विस्तार की शिपिंग
+- अनुरक्षकों द्वारा इसे मर्ज करने से पहले एक शाखा को निजी एन्हांसर के साथ मान्य करना## Target Outcome
 
-## Target Outcome
+एक मजबूत देशी कौशल पीआर निम्न के साथ आता है:
 
-A strong native skill PR lands with:
+- `कौशल/` के अंतर्गत एक देशी कौशल
+- सार्वजनिक सत्यापनकर्ता के लिए इसे वर्गीकृत और अनुक्रमित करने के लिए पर्याप्त सामग्री
+- सार्वजनिक सत्यापन और परीक्षण पास करना
+- पीआर के दौरान स्वचालित एन्हांसर प्रोसेसिंग
+- उन्नत डेरिवेटिव प्रकाशित होने पर एक अनुवर्ती `skills_omni/` PR
+- जरूरत पड़ने पर देशी सेवन को उसकी मूल भाषा में संरक्षित किया जाता है
+- क्यूरेटेड संवर्धित आउटपुट को अंग्रेजी में पुनः लिखा गया
+- एक तरफ़ा नेटिव-टू-क्यूरेटेड प्रवाह जो `skills_omni/` को वापस नेटिव एन्हांसर इनटेक में फीड नहीं करता है## Enhancer Outcome States
 
-- a native skill under `skills/`
-- enough content for the public validator to classify and index it
-- passing public validation and tests
-- automatic enhancer processing during the PR
-- a follow-up `skills_omni/` PR when enhanced derivatives are published
-- native intake preserved in its original language when needed
-- curated enhanced output rewritten into English
-- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
+सार्वजनिक पीआर एन्हांसर अब चार अनुरक्षक-दृश्य स्थितियों की रिपोर्ट करता है:
 
-## Enhancer Outcome States
+- `पूर्ण`
+  उन्नत व्युत्पन्न साफ़-साफ़ तैयार किया गया था और साथी `skills_omni/` प्रकाशन के लिए पात्र है।
+- 'अपमानित'
+  एन्हांसर समाप्त हो गया, लेकिन इसने फ़ॉलबैक पथ का उपयोग किया या चेतावनियाँ उत्पन्न कीं। व्युत्पन्न को स्वस्थ मानने से पहले अनुरक्षक की समीक्षा अभी भी अपेक्षित है।
+- `अवरुद्ध`
+  रन को बुनियादी ढांचे या सत्यापन मुद्दों के कारण रोक दिया गया था, जैसे कि होस्ट किए गए ओमनीरूट प्रीफ़्लाइट विफलता या उम्मीदवार सत्यापन विफलता जो प्रकाशन को रोकना चाहिए।
+- 'विफल'
+  एन्हांसर में अप्रत्याशित रनटाइम त्रुटि हुई और अनुरक्षक जांच की आवश्यकता है।## Recommended Branch Shape
 
-The public PR enhancer now reports four maintainer-visible states:
-
-- `completed`
-  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
-- `degraded`
-  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
-- `blocked`
-  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
-- `failed`
-  The enhancer hit an unexpected runtime error and needs maintainer investigation.
-
-## Recommended Branch Shape
-
-Create a focused branch:
-
-```bash
+एक केंद्रित शाखा बनाएं:```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Examples:
+उदाहरण:
 
-- `feat/incident-observability-evals`
+- `करतब/घटना-अवलोकन-मूल्यांकन`
 - `feat/devops-skill-pack`
-- `feat/security-skill-pack`
+- `करतब/सुरक्षा-कौशल-पैक`## Native Intake Rules
 
-## Native Intake Rules
+सार्वजनिक प्रवेश सतह जानबूझकर अनुमेय है।
 
-The public intake surface is intentionally permissive.
-
-Minimum:
-
-```text
+न्यूनतम:```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Recommended but no longer required for intake:
-
-```text
+अनुशंसित लेकिन अब सेवन के लिए आवश्यक नहीं:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -77,143 +63,125 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+मूल योगदान कच्चा, अधूरा या सामान्य समर्थन-पैक मानक से बाहर हो सकता है। वह जानबूझकर किया गया है। `कौशल/` मूल सेवन सतह है, क्यूरेटेड व्युत्पन्न सतह नहीं।
 
-Language policy:
+भाषा नीति:
 
-- native intake under `skills/` may be written in any language
-- the enhancer keeps the native snapshot as submitted for provenance
-- the curated derivative under `skills_omni/` must always be written in English
+- `कौशल/` के अंतर्गत मूल प्रवेश किसी भी भाषा में लिखा जा सकता है
+- एन्हांसर मूल स्नैपशॉट को उत्पत्ति के लिए सबमिट किए गए अनुसार रखता है
+- `skills_omni/` के अंतर्गत क्यूरेटेड व्युत्पन्न हमेशा अंग्रेजी में लिखा जाना चाहिए
 
-The stricter editorial bar now applies to:
+सख्त संपादकीय बार अब इन पर लागू होता है:
 
-- the generated metadata and security checks
-- the private enhancer review
-- the follow-up curated derivative under `skills_omni/`
+- उत्पन्न मेटाडेटा और सुरक्षा जांच
+- निजी एन्हांसर समीक्षा
+- `skills_omni/` के अंतर्गत अनुवर्ती क्यूरेटेड व्युत्पन्न## Authoring Sequence
 
-## Authoring Sequence
+1. `skills/<skill>/SKILL.md` बनाएं।
+2. यदि आप कर सकते हैं तो फ्रंटमैटर जोड़ें, लेकिन गुम या अधूरा फ्रंटमैटर अब मूल सेवन को अपने आप में अवरुद्ध नहीं करता है।
+3. जब आपके पास `एजेंट/`, `रेफरेंस/`, `उदाहरण/`, और `स्क्रिप्ट/` हों तो उन्हें जोड़ें।
+4. यदि कौशल मौजूदा बंडल को गहरा करता है तो `data/bundles.json` को अपडेट करें।
+5. पीआर खोलें. रेपो स्वचालन अब बाकी काम करता है।## Validation Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
-2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
-3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
-4. Update `data/bundles.json` if the skill deepens an existing bundle.
-5. Open the PR. The repo automation now does the rest.
-
-## Validation Sequence
-
-Contributors can run this exact sequence before opening the PR:
-
-```bash
+योगदानकर्ता पीआर खोलने से पहले यह सटीक क्रम चला सकते हैं:```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, also run:
-
-```bash
+यदि परिवर्तन रनटाइम या पैकेजिंग व्यवहार को भी प्रभावित करता है, तो यह भी चलाएँ:```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+जब कोई पीआर खुलता है या सिंक होता है और यह केवल `skills/` प्लस वैकल्पिक `data/bundles.json` के तहत मूल कौशल सेवन फ़ाइलों को छूता है, तो सार्वजनिक रेपो अब निजी एन्हांसर को स्वचालित रूप से ट्रिगर करता है।
 
-Current automated flow:
+वर्तमान स्वचालित प्रवाह:
 
-1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
-2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
-3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
-4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
-5. The enhancer posts progress back to the source PR.
-6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
-7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
-8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
-9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
+1. सार्वजनिक 'मान्य कौशल' वर्कफ़्लो पीआर पर चलता है और सत्यापन, निर्माण, उत्पन्न कलाकृतियों और परीक्षणों की जांच करता है।
+2. सार्वजनिक 'पीआर कौशल बढ़ाएं' वर्कफ़्लो समानांतर में शुरू होता है और बदले हुए मूल कौशल को एक-एक करके 'लाइव' मोड में संसाधित करता है।
+3. एन्हांसर 'कौशल/' से मूल कौशल को पढ़ता है, वर्तमान सर्वोत्तम प्रथाओं पर शोध करता है, और निजी कार्यक्षेत्र में एक समीक्षा किए गए उन्नत उम्मीदवार को लिखता है।
+4. एन्हांसर जरूरत पड़ने पर अपस्ट्रीम इनटेक स्नैपशॉट को उसकी मूल भाषा में रखता है, लेकिन क्यूरेटेड आउटपुट को अंग्रेजी में फिर से लिखता है।
+5. एन्हांसर पोस्ट स्रोत पीआर पर वापस प्रगति करते हैं।
+6. एन्हांसर प्रत्येक संसाधित कौशल के बाद बैच योग और नवीनतम स्थिति के साथ पीआर स्थिति टिप्पणी को अपडेट करता है।
+7. जब यह समाप्त हो जाता है, तो यह उन्नत व्युत्पन्न को 'skills_omni/' में बदल देता है और केवल 'पूर्ण' और 'डिग्रेडेड' आउटपुट के लिए सार्वजनिक रेपो में एक साथी पीआर को खोलता या अपडेट करता है।
+8. पीआर को `मुख्य` में विलय करने के बाद, निजी रेपो-जागरूक पोलर किसी भी बदले हुए मूल कौशल को पुन: संसाधित करता है, `कार्यस्थान/संवर्धित/कौशल/<कौशल>/` को ताज़ा करता है, और निजी संवर्धित आधार रेखा को नवीनतम सार्वजनिक मूल स्रोत के साथ संरेखित रखता है।
+9. मर्ज के बाद, सार्वजनिक रिलीज़ वर्कफ़्लो एनपीएम पैकेज संस्करण को टक्कर देता है, कैटलॉग कलाकृतियों को पुनर्जीवित करता है, एक रिलीज़ प्रकाशित करता है, और नए संस्करण को स्वचालित रूप से टैग करता है।
 
-Rate limit:
+दर सीमा:
 
-- the PR enhancer currently processes **1 skill per minute**
-- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
-- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
+- पीआर एन्हांसर वर्तमान में**प्रति मिनट 1 कौशल**प्रोसेस करता है
+- 40 मूल नए कौशल वाला एक पीआर लगभग 40 मिनट तक एन्हांसर कतार में रह सकता है
+- पीआर दिखाता है कि कार्य एक प्रगतिरत सीआई रन के साथ-साथ एक प्रगति टिप्पणी के रूप में है जो कौशल दर कौशल को आगे बढ़ाता है
 
-The contributor does not need to run the enhancer manually.
+योगदानकर्ता को एन्हांसर को मैन्युअल रूप से चलाने की आवश्यकता नहीं है।## No-Loop Rule For `skills_omni/`
 
-## No-Loop Rule For `skills_omni/`
+क्यूरेटेड सतह जानबूझकर एकतरफ़ा है:
 
-The curated surface is intentionally one-way:
+- मूल इनपुट `कौशल/` के माध्यम से प्रवेश करता है
+- निजी एन्हांसर उस मूल इनपुट की समीक्षा करता है
+- क्यूरेटेड आउटपुट को `skills_omni/` में प्रस्तावित किया गया है
+- `skills_omni/` को कभी भी मूल सेवन के रूप में नहीं माना जाता है
+- बाद में मूल अद्यतन अभी भी `कौशल/` के माध्यम से पुनः दर्ज होते हैं और पुन: प्रसंस्करण के बाद निजी संवर्धित आधार रेखा को प्रतिस्थापित करते हैं
 
-- native input enters through `skills/`
-- the private enhancer reviews that native input
-- curated output is proposed into `skills_omni/`
-- `skills_omni/` is never treated as native intake again
-- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
+रिपॉजिटरी अब उस सीमा को लागू करती है:
 
-The repository now enforces that boundary:
+- `skills_omni/` को संशोधित करने वाले प्रत्यक्ष सार्वजनिक पीआर अस्वीकार कर दिए जाते हैं
+- `कौशल-ओमनी/पीआर-*` शाखा परिवार से केवल स्वचालन-लिखित साथी पीआर ही वहां स्वीकार किए जाते हैं
+- मिश्रित पीआर जो एक साथ `skills/` और `skills_omni/` दोनों को बदलने का प्रयास करते हैं, अस्वीकार कर दिए जाते हैं## Automatic Versioning After Merge
 
-- direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
-- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+कौशल-असर का `मुख्य` में विलय अब रिपॉजिटरी रिलीज़ वर्कफ़्लो को स्वचालित रूप से ट्रिगर करता है।
 
-## Automatic Versioning After Merge
+वर्तमान पैकेज संस्करण नीति:
 
-Skill-bearing merges to `main` now trigger the repository release workflow automatically.
-
-Current package version policy:
-
-- patch increments by `+1` for each qualifying merge
+- प्रत्येक क्वालीफाइंग मर्ज के लिए `+1` द्वारा पैच वृद्धि
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- after `.10`, the package rolls to the next minor and resets patch
+- `.10` के बाद, पैकेज अगले माइनर पर चला जाता है और पैच को रीसेट कर देता है
 - `0.0.10` → `0.1.0`
 - `0.1.10` → `0.2.0`
 
-Current release trigger paths:
+वर्तमान रिलीज़ ट्रिगर पथ:
 
-- `skills/**`
+- `कौशल/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-That automatic release job:
+वह स्वचालित रिलीज़ कार्य:
 
-1. computes the next package version from `package.json`
-2. bumps `package.json` and `package-lock.json`
-3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
-4. runs the strict release verification pipeline
-5. commits the version bump back to `main`
-6. creates a Git tag for the new version
-7. publishes npm and GitHub Release artifacts
+1. `package.json` से अगले पैकेज संस्करण की गणना करता है
+2. `package.json` और `package-lock.json` को टक्कर देता है
+3. `metadata.json`, `skills_index.json`, `dist/`, और `docs/CATALOG.md` को पुन: उत्पन्न करता है
+4. सख्त रिलीज़ सत्यापन पाइपलाइन चलाता है
+5. संस्करण बम्प को वापस `मुख्य` पर भेजता है
+6. नए संस्करण के लिए एक Git टैग बनाता है
+7. एनपीएम और गिटहब रिलीज कलाकृतियों को प्रकाशित करता है
 
-Important rollout note:
+महत्वपूर्ण रोलआउट नोट:
 
-- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
-- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
-- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
+- GitHub एक नई वर्कफ़्लो फ़ाइल को सक्रिय रिपॉजिटरी वर्कफ़्लो के रूप में केवल तभी पंजीकृत करता है जब वह फ़ाइल डिफ़ॉल्ट शाखा तक पहुँचती है।
+- जब तक `एन्हांस पीआर स्किल्स` `मेन` पर नहीं आ जाता, योगदानकर्ता दस्तावेज़ीकृत प्रक्रिया को पढ़ सकते हैं, लेकिन GitHub अभी तक सार्वजनिक पीआर पर उस वर्कफ़्लो को स्वचालित रूप से निष्पादित नहीं करेगा।
+- वर्कफ़्लो को `मुख्य` में विलय करने के बाद, ऊपर वर्णित व्यवहार भविष्य के मूल कौशल पीआर के लिए डिफ़ॉल्ट सेवन पथ बन जाता है।## Native vs Enhanced
 
-## Native vs Enhanced
+इस रेपो की अब दो अलग-अलग सतहें हैं:
 
-This repo now has two distinct surfaces:
-
-- `skills/`
-  Native intake. This preserves the original contribution as submitted.
+- `कौशल/`
+  देशी सेवन. यह सबमिट किए गए मूल योगदान को सुरक्षित रखता है।
 - `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+  ओमनी-एन्हांस्ड डेरिवेटिव आउटपुट स्वचालन द्वारा प्रस्तावित और ओमनी स्किल्स टीम द्वारा बनाए रखा गया है।
 
-Attribution rules for `skills_omni/`:
+`skills_omni/` के लिए एट्रिब्यूशन नियम:
 
-- the enhanced derivative becomes Omni-maintained
-- the original contributor and upstream native skill remain credited
-- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
-- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
-- each enhanced directory is expected to be English-language output even when the upstream native source was not
+- उन्नत व्युत्पन्न ओमनी-रखरखाव बन जाता है
+- मूल योगदानकर्ता और अपस्ट्रीम मूल कौशल को श्रेय दिया जाता है
+- प्रत्येक उन्नत निर्देशिका अपस्ट्रीम पथ, पीआर, लेखक और स्रोत संदर्भ के साथ एक `ATTRIBUTION.md` फ़ाइल रखती है
+- प्रत्येक उन्नत निर्देशिका केवल क्यूरेटेड आउटपुट है और इसे मूल एन्हांसर इनटेक पथ में पुनः सबमिट नहीं किया जाना चाहिए
+- प्रत्येक उन्नत निर्देशिका से अंग्रेजी-भाषा आउटपुट होने की उम्मीद की जाती है, भले ही अपस्ट्रीम मूल स्रोत न हो## Manual Maintainer Commands
 
-## Manual Maintainer Commands
+स्वचालन सामान्य पीआर सेवन को कवर करता है, लेकिन रखरखावकर्ता अभी भी जरूरत पड़ने पर निजी एन्हांसर को मैन्युअल रूप से चला सकते हैं।
 
-The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
-
-Batch against a branch diff:
-
-```bash
+एक शाखा अंतर के विरुद्ध बैच:```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -223,9 +191,7 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Single-skill review:
-
-```bash
+एकल-कौशल समीक्षा:```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -233,44 +199,38 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Expected enhancer outputs per skill:
+प्रति कौशल अपेक्षित एन्हांसर आउटपुट:
 
-- `workspace/incoming/original/<run-id>/<skill>/`
-- `workspace/enhanced-candidates/<run-id>/<skill>/`
-- `workspace/reports/<run-id>/research.json`
-- `workspace/reports/<run-id>/rewrite.json`
-- `workspace/reports/<run-id>/validation.json`
-- `workspace/reports/<run-id>/score-delta.json`
-- `workspace/reports/<run-id>/review.md`
-- `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`
+- `वर्कस्पेस/इनकमिंग/ओरिजिनल/<रन-आईडी>/<स्किल>/`
+- `कार्यक्षेत्र/उन्नत-उम्मीदवार/<रन-आईडी>/<कौशल>/`
+- `वर्कस्पेस/रिपोर्ट/<रन-आईडी>/रिसर्च.जेसन`
+- `वर्कस्पेस/रिपोर्ट/<run-id>/rewrite.json`
+- `कार्यक्षेत्र/रिपोर्ट/<run-id>/validation.json`
+- `वर्कस्पेस/रिपोर्ट/<रन-आईडी>/स्कोर-डेल्टा.जेसन`
+- `वर्कस्पेस/रिपोर्ट/<रन-आईडी>/रिव्यू.एमडी`
+- `वर्कस्पेस/रिपोर्ट/<run-id>/research-prompt.md`
+- `वर्कस्पेस/रिपोर्ट/<run-id>/rewrite-prompt.md`## PR Body Expectations
 
-## PR Body Expectations
+पीआर निकाय को यह बताना चाहिए:
 
-The PR body should state:
+- कौन से कौशल जोड़े गए या उन्नत किए गए
+- वे कौन से बंडल या वर्कफ़्लो को गहरा करते हैं
+- क्या सत्यापन चला
+- क्या स्वचालित एन्हांसर चला
+- चाहे उसने `skills_omni/` साथी पीआर खोला या अपडेट किया हो
+- कोई भी असाधारण अनुरक्षक एट्रिब्यूशन या अनुवर्ती सफ़ाई के बारे में नोट करता है## Reviewer Checklist
 
-- what skills were added or upgraded
-- which bundles or workflows they deepen
-- what validation ran
-- whether the automated enhancer ran
-- whether it opened or updated a `skills_omni/` companion PR
-- any exceptional maintainer notes about attribution or follow-up cleanup
+- देशी सेवन वैध और गैर-द्वेषपूर्ण है
+- उत्पन्न मेटाडेटा और मैनिफ़ेस्ट ताज़ा किए गए
+- बंडल अपडेट जानबूझकर किए गए हैं
+- सार्वजनिक सत्यापन और बिल्ड आउटपुट हरे हैं
+- एन्हांसर स्थिति टिप्पणी वास्तविक परिवर्तित कौशल और अंतिम परिणाम स्थिति से मेल खाती है
+- कोई भी `skills_omni/` साथी पीआर एट्रिब्यूशन को सही ढंग से सुरक्षित रखता है## Example PR Scope
 
-## Reviewer Checklist
+एक मजबूत उदाहरण पीआर एक विषयगत सेट जोड़ सकता है जैसे:
 
-- native intake is legitimate and non-malicious
-- generated metadata and manifests were refreshed
-- bundle updates are intentional
-- public validation and build outputs are green
-- the enhancer status comment matches the actual changed skills and final outcome state
-- any `skills_omni/` companion PR preserves attribution correctly
+- एक अवलोकनशीलता या DevOps कौशल
+- एक घटना या सुरक्षा कौशल
+- एक एआई मूल्यांकन या संकेत कौशल
 
-## Example PR Scope
-
-A strong example PR can add a thematic set such as:
-
-- one observability or DevOps skill
-- one incident or security skill
-- one AI evaluation or prompting skill
-
-That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
+यह पीआर को पूर्ण कैटलॉग पुनर्लेखन में बदले बिना स्कोरर, स्वचालित एन्हांसर, `skills_omni/` प्रकाशन प्रवाह, बंडलों और एट्रिब्यूशन मॉडल का उपयोग करने के लिए पर्याप्त है।

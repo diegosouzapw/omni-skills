@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**빌드 파이프라인 중 각 `SKILL.md`에서 생성된 기계 판독 가능 JSON 매니페스트 — 모든 런타임 표면에서 사용되는 단일 데이터 계약입니다.**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| 기능 | 상태 |
+|:---------|:------|
+| ✅ SKILL.md에서 자동 생성됨 | 구현 |
+| ✅ CLI, API, MCP, A2A에서 사용 | 구현 |
+| ✅ 체크섬이 포함된 아카이브 | 구현 |
+| ✅ 보안 분류 | 구현 |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**중요**: 매니페스트는**빌드 아티팩트**입니다. 기여자 작성자 `SKILL.md` - 파이프라인이 JSON 매니페스트를 자동으로 파생합니다.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+매니페스트는**모든 런타임 표면**이 동일한 정규화된 형태를 사용하도록 존재합니다.
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| 표면 | 매니페스트를 사용하는 방법 |
+|:---------|:---------|
+| 🖥️**CLI**| 검색, 설치 계획, 의사 진단 |
+| 🌐**API**| 엔드포인트 응답, 필터링, 다운로드 링크 |
+| 🔌**MCP**| 도구 응답, 리소스 내용 |
+| 🤖**A2A**| 검색 및 추천 페이로드 |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
-|:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 유물 | 경로 |
+|:---------|:------|
+| 📊 루트 메타데이터 | `metadata.json` |
+| 📊 스킬별 메타데이터 | `skills/<skill>/metadata.json` |
+| 📋 기술 지수 | `skills_index.json` |
+| 📚 출판된 카탈로그 | `dist/catalog.json` |
+| 😀 스킬별 매니페스트 | `dist/manifests/<skill>.json` |
+| 📦 우편 아카이브 | `dist/archives/<skill>.zip` |
+| 📦 타르볼 아카이브 | `dist/archives/<skill>.tar.gz` |
+| 🔒 체크섬 매니페스트 | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| `스키마_버전` | 매니페스트 스키마 버전 |
+| `id` | '이름' 필드의 안정적인 기술 식별자 |
+| `슬러그` | `skills/` 아래의 디렉토리 슬러그 |
+| `디스플레이_이름` | 첫 번째 제목부터 사람이 읽을 수 있는 제목 |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| `설명` | 서론의 간략한 요약 |
+| '버전' | npm 패키지 버전과 별개인 스킬 버전 |
+| '카테고리' | 표준 범주(정규화) |
+| `원시_카테고리` | 머리말의 원본 카테고리 |
+| `분류` | 추론된 대체가 포함된 전체 분류 메타데이터 |
+| `태그` | 검색 가능한 태그 |
+| '복잡성' | `초급` · `중급` · `고급` · `전문가` |
+| '위험' | `안전` · `주의` · `공격적` · `비판적` |
+| '출처' | `옴니팀` · `커뮤니티` · `공식` |
+| '저자' | 속성 문자열 |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| `진입점` | 정식 `SKILL.md` 경로 |
+| `paths.root` | 저장소 내부의 스킬 디렉토리 |
+| `paths.manifest` | `dist/`에 생성된 매니페스트 경로 |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
-
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+| '도구' | Frontmatter의 도구 식별자 |
+| `설치_대상` | 도구별 설치 메타데이터 |
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
+각 설치 대상에는 `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`이 포함됩니다.### 📦 Resources
 
-### 📦 Resources
-
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| `하위_자원` | 스킬 하위 디렉터리(`references`, `agents`, `assets`) |
+| `아티팩트_개수` | 스킬 패키지의 총 파일 수 |
+| `참조_개수` | 참조 문서 수 |
+| `에이전트_개수` | 에이전트 구성 수 |
+| `자산_개수` | 자산 파일 수 |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| '전략' | 설치 전략(예: `copy-skill-directory`) |
+| `현재_설치 프로그램` | 사람이 읽을 수 있는 설치 동작 |
+| '레시피' | 클라이언트별 설치 방법 |### 📊 Classification
 
-### 📊 Classification
+| 섹션 | 필드 |
+|:---------|:-------|
+| 🎯 `성숙함` | `skill_level`, `skill_level_label` |
+| 📋 `최고의 실천` | `점수`(0-100) |
+| ⭐ `품질` | `점수`(0-100) |
+| 🛡️ `보안` | `점수`, `상태` |
+| ✅ `검증` | `상태` |### 📝 Content
 
-| Section | Fields |
-|:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+파생된 신호: `body_length`, `content_length`, `body_lines`, `word_count` 및 예제, 문제 해결 섹션 등에 대한 구조적 플래그### 📁 Artifacts
 
-### 📝 Content
-
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+스킬 디렉터리 내에 제공되는 모든 파일의 배열:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**아티팩트 종류**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
+| 필드 | 설명 |
 |:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| `entrypoint_sha256` | SKILL.md의 해시 |
+| `패키지_sha256` | 정렬된 아티팩트 목록의 결정적 다이제스트 |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 😀 리포지토리 패키지 버전과 스킬 버전은 고민이 다릅니다. 패키지는 현재 '0.1.3'이며, 개별 스킬에는 고유한 의미 버전이 있습니다.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
-|:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| 규칙 | 근거 |
+|:------|:------------|
+| ✅ 저장소에서 파생 가능한 상태를 유지해야 합니다 | 수동 매니페스트 작성이 필요하지 않습니다. |
+| ✅ 새로운 선택 필드를 추가할 수 있습니다 | 향후 호환성 |
+| ⚠️ 기존 분야는 안정적으로 유지되어야 함 | 이전 버전과의 호환성 |
+| 🚫 손으로 작성한 명단은 없습니다 | 빌드 타임 파생은 진실의 원천입니다 |

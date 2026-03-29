@@ -5,83 +5,71 @@
 ---
 
 
-> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
-
----
+>**उच्च परिपक्वता, सर्वोत्तम प्रथाओं, गुणवत्ता और सुरक्षा स्कोर तक पहुंचने के लिए एक ओमनी कौशल `SKILL.md` को अभ्यास में क्या चाहिए।**---
 
 ## 🎯 Purpose
 
-This guide explains how the repository's classifier actually rewards a skill.
+यह मार्गदर्शिका बताती है कि रिपॉजिटरी का क्लासिफायरियर वास्तव में किसी कौशल को कैसे पुरस्कृत करता है।
 
-Use it when you want to:
+जब आप चाहें तब इसका उपयोग करें:
 
-- author a new skill that lands in the top scoring bands
-- improve an existing skill that is stuck in `good` or low `excellent`
-- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
+- लेखक एक नया कौशल है जो शीर्ष स्कोरिंग बैंड में आता है
+- मौजूदा कौशल में सुधार करें जो 'अच्छे' या कम 'उत्कृष्ट' में अटका हुआ है
+- समझें कि सभ्य प्रारूपण वाला कौशल अभी भी एक असाधारण परिचालन संपत्ति की तरह स्कोरिंग क्यों नहीं कर रहा है
 
-This is the contributor-facing companion to:
+यह इसका योगदानकर्ता-सामना करने वाला साथी है:
 
-- [Quality Bar](QUALITY-BAR.md)
-- [Skill Anatomy](SKILL-ANATOMY.md)
-- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
+- [क्वालिटी बार](क्वालिटी-बार.एमडी)
+- [कौशल एनाटॉमी](स्किल-एनाटॉमी.एमडी)
+- [कौशल वर्गीकरण](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+लाइव कैटलॉग के लिए वर्तमान बेंचमार्क:
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
-- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
-
----
+- 32 प्रकाशित कौशल
+- वर्तमान गुणवत्ता प्रसार: `94, 95, 96, 97, 100`
+- वर्तमान सर्वोत्तम प्रथाओं का प्रसार: `98, 99, 100`
+- वर्तमान शीर्ष स्तर: `100/100` गुणवत्ता और `100/100` सर्वोत्तम प्रथाओं पर `ओमनी-फ़िग्मा`---
 
 ## 🧱 What High Scores Really Mean
 
-The classifier does **not** reward pretty markdown alone.
+क्लासिफायरियर अकेले सुंदर मार्कडाउन को पुरस्कृत**नहीं**करता है।
 
-High-scoring skills are skills that are:
+उच्च स्कोरिंग कौशल वे कौशल हैं जो हैं:
 
-- **discoverable**: the description clearly says what the skill does and when to use it
-- **operational**: the skill includes local scripts, references, and runnable examples
-- **diagnostic**: it helps the agent recover when things go wrong
-- **specific**: it is focused on one workflow, not broad advice
-- **safe**: it avoids risky patterns and ships clean scanner output
+-**खोजने योग्य**: विवरण स्पष्ट रूप से बताता है कि कौशल क्या करता है और इसका उपयोग कब करना है
+-**परिचालन**: कौशल में स्थानीय स्क्रिप्ट, संदर्भ और चलाने योग्य उदाहरण शामिल हैं
+-**नैदानिक**: यह चीजें गलत होने पर एजेंट को ठीक होने में मदद करता है
+-**विशिष्ट**: यह एक वर्कफ़्लो पर केंद्रित है, व्यापक सलाह पर नहीं
+-**सुरक्षित**: यह जोखिम भरे पैटर्न से बचाता है और स्वच्छ स्कैनर आउटपुट प्रदान करता है
 
-In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
-
----
+व्यवहार में, सबसे मजबूत कौशल एक सादे मार्कडाउन नोट की तुलना में**छोटे पैकेज्ड वर्कफ़्लो किट**की तरह अधिक व्यवहार करते हैं।---
 
 ## 📋 Score Targets
 
-Use these targets when authoring:
+लिखते समय इन लक्ष्यों का उपयोग करें:
 
-| Dimension | Strong Target | Exceptional Target |
-|:----------|:--------------|:-------------------|
-| 🎯 Maturity | `L3` | `L3` with multiple support resources |
-| 📋 Best Practices | `90+` | `96+` |
-| ⭐ Quality | `85+` | `90+` |
-| 🛡️ Security | `95+` | `95+` with zero findings |
-
----
+| आयाम | मजबूत निशाना | असाधारण लक्ष्य |
+|:---|:----|:-----|
+| 🎯परिपक्वता | `एल3` | एकाधिक समर्थन संसाधनों के साथ `L3` |
+| 📋 सर्वोत्तम अभ्यास | `90+` | `96+` |
+| ⭐ गुणवत्ता | `85+` | `90+` |
+| 🛡️ सुरक्षा | `95+` | `95+` शून्य निष्कर्षों के साथ |---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Your frontmatter should make the skill easy to classify and easy to discover:
+आपके फ्रंटमैटर को कौशल को वर्गीकृत करना और खोजना आसान बनाना चाहिए:
 
-- `name` matches the directory exactly
-- `description` explains both **what** and **when**
-- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
+- `नाम` बिल्कुल निर्देशिका से मेल खाता है
+- `विवरण`**क्या**और**कब**दोनों को समझाता है
+- `श्रेणी`, `टैग`, `उपकरण`, `जटिलता`, `जोखिम`, `स्रोत`, `लेखक`, और तिथियां सभी मौजूद हैं
 
-Good description shape:
-
-```yaml
+अच्छा वर्णन आकार:```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bad description shape:
-
-```yaml
+ख़राब वर्णन आकार:```yaml
 description: "Helps with databases."
 ```
 
@@ -89,35 +77,31 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-The strongest skills consistently include these sections:
+सबसे मजबूत कौशल में लगातार ये अनुभाग शामिल होते हैं:
 
-- `## Overview`
-- `## When to Use This Skill`
-- `## Workflow`
-- `## Examples`
-- `## Best Practices`
-- `## Troubleshooting`
-- `## Additional Resources`
+- `## अवलोकन`
+- `## इस कौशल का उपयोग कब करें`
+- `## वर्कफ़्लो`
+- `## उदाहरण`
+- `## सर्वोत्तम प्रथाएँ`
+- `## समस्या निवारण`
+- `## अतिरिक्त संसाधन`
 
-If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
-
----
+यदि इनमें से एक भी गायब है, तो स्कोर अभी भी अच्छा हो सकता है, लेकिन असाधारण दिखना कठिन हो जाता है।---
 
 ### 3. Runnable Local Support
 
-Top-scoring skills usually include:
+शीर्ष स्कोरिंग कौशल में आमतौर पर शामिल हैं:
 
-- `references/checklist.md`
-- one or more helper scripts in `scripts/`
-- at least one worked example in `examples/`
-- `agents/openai.yaml` when the skill is intended for direct agent invocation
-- direct links from `SKILL.md` to those local files
+- `संदर्भ/checklist.md`
+- `स्क्रिप्ट/` में एक या अधिक सहायक स्क्रिप्ट
+- `examples/` में कम से कम एक कार्यशील उदाहरण
+- `एजेंट/ओपनएआई.आईएमएल` जब कौशल प्रत्यक्ष एजेंट आह्वान के लिए अभिप्रेत है
+- `SKILL.md` से उन स्थानीय फ़ाइलों के लिए सीधे लिंक
 
-This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
+यह मायने रखता है क्योंकि क्लासिफायरियर**बंडल की गई समर्थन सामग्री**वाले कौशल को केवल बाहर की ओर इशारा करने वाले कौशल की तुलना में अधिक क्रियाशील मानता है।
 
-Recommended minimum:
-
-```text
+अनुशंसित न्यूनतम:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -134,22 +118,18 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-High-scoring examples are:
+उच्च स्कोरिंग उदाहरण हैं:
 
-- concrete
-- typed with a real fence such as `bash` or `python`
-- tied to a local script or repeatable command
-- representative of the workflow
+- ठोस
+- `बैश` या `पायथन` जैसे वास्तविक बाड़ के साथ टाइप किया गया
+- एक स्थानीय स्क्रिप्ट या दोहराए जाने योग्य कमांड से जुड़ा हुआ
+- वर्कफ़्लो का प्रतिनिधि
 
-Good:
-
-```bash
+अच्छा:```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Weak:
-
-```text
+कमज़ोर:```text
 Ask the agent to help with your API.
 ```
 
@@ -157,20 +137,16 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
+स्कोरर समस्या निवारण को पुरस्कृत करता है जो एजेंट को ठीक होने में मदद करता है, न कि केवल समस्या को पहचानने में।
 
-Preferred format:
-
-```md
+पसंदीदा प्रारूप:```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-This is stronger than a vague note like:
-
-```md
+यह इस जैसे अस्पष्ट नोट से अधिक मजबूत है:```md
 If the result is bad, add more detail.
 ```
 
@@ -178,50 +154,46 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
+वर्गीकरणकर्ता अब उस कौशल के बीच अंतर करता है जो केवल पूर्ण है और जो वास्तव में गहरा है।
 
-Signals that help:
+संकेत जो मदद करते हैं:
 
-- multiple concrete examples
-- multiple troubleshooting cases
-- related-skill guidance
-- richer reference packs
-- a visible `## Workflow` section with numbered steps the scorer can count directly
-- at least one operational table or execution map where it clarifies the workflow
-- more than one support directory or asset type
-- workflow sections with enough steps to guide execution
-- decision assets such as checklists, rubrics, matrices, packets, or playbooks
-- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
-- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
-- more than a single helper file when the workflow is complex enough to justify a support pack
-- enough body depth to cover tradeoffs and failure modes
-- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
+- अनेक ठोस उदाहरण
+- एकाधिक समस्या निवारण मामले
+- संबंधित-कौशल मार्गदर्शन
+- समृद्ध संदर्भ पैक
+- क्रमांकित चरणों वाला एक दृश्यमान `## वर्कफ़्लो` अनुभाग जिसे स्कोरर सीधे गिन सकता है
+- कम से कम एक परिचालन तालिका या निष्पादन मानचित्र जहां यह वर्कफ़्लो को स्पष्ट करता है
+- एक से अधिक समर्थन निर्देशिका या परिसंपत्ति प्रकार
+- निष्पादन का मार्गदर्शन करने के लिए पर्याप्त चरणों के साथ वर्कफ़्लो अनुभाग
+- निर्णय परिसंपत्तियाँ जैसे चेकलिस्ट, रूब्रिक्स, मैट्रिसेस, पैकेट, या प्लेबुक
+- `संदर्भ/`, `स्क्रिप्ट/`, `एजेंट/`, `उदाहरण/`, या `संपत्ति/` में मजबूत समर्थन-पैक विविधता
+- किट की तरह दिखने के लिए पर्याप्त पुन: प्रयोज्य समर्थन फ़ाइलें, मार्कडाउन के बगल में एक भी सहायक नहीं रखा गया है
+- जब वर्कफ़्लो एक समर्थन पैक को उचित ठहराने के लिए पर्याप्त जटिल हो तो एक से अधिक सहायक फ़ाइल
+- ट्रेडऑफ़ और विफलता मोड को कवर करने के लिए पर्याप्त बॉडी गहराई
+- सघन परिचालन मार्गदर्शन, क्योंकि स्कोरर अब पॉलिश किए गए फ़ॉर्मेटिंग को वास्तव में पुन: प्रयोज्य वर्कफ़्लो गहराई से अलग करता है
 
-Signals that do **not** help much:
+सिग्नल जो**नहीं**ज्यादा मदद करते हैं:
 
-- repeating the same instruction in different words
-- generic filler text
-- adding headings without adding substance underneath them
-
----
+- एक ही निर्देश को अलग-अलग शब्दों में दोहराना
+- सामान्य भराव पाठ
+- शीर्षकों के नीचे कोई सार डाले बिना उन्हें जोड़ना---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use this checklist before running validation:
+सत्यापन चलाने से पहले इस चेकलिस्ट का उपयोग करें:
 
-- description says **what** and **when**
-- the skill is focused on one workflow
-- `## Workflow` exists and contains numbered or bulleted steps
-- at least one runnable example exists
-- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
-- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
-- troubleshooting uses `Symptoms` and `Solution`
-- the skill can reasonably be classified as `L3`
-- no risky commands or suspicious paths are present
+- विवरण कहता है**क्या**और**कब**
+- कौशल एक वर्कफ़्लो पर केंद्रित है
+- `## वर्कफ़्लो` मौजूद है और इसमें क्रमांकित या बुलेटेड चरण शामिल हैं
+- कम से कम एक चलाने योग्य उदाहरण मौजूद है
+- `संदर्भ/`, `स्क्रिप्ट/`, और आदर्श रूप से `उदाहरण/` `SKILL.md` से जुड़े हुए हैं
+- `एजेंट/ओपनएआई.आईएमएल` तब मौजूद होता है जब कौशल एजेंट क्लाइंट में सीधे आह्वान के लिए होता है
+- समस्या निवारण `लक्षण` और `समाधान` का उपयोग करता है
+- कौशल को उचित रूप से `L3` के रूप में वर्गीकृत किया जा सकता है
+- कोई जोखिम भरा आदेश या संदिग्ध पथ मौजूद नहीं है
 
-Then run:
-
-```bash
+फिर चलाएँ:```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -230,19 +202,17 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- the description is correct but too generic
-- the markdown has sections but no operational depth
-- examples do not point to local helpers
-- troubleshooting exists but is not diagnostic
-- there are too few tags or tool identifiers
-- the skill is safe and clean but still too shallow to count as exceptional
-
----
+- विवरण सही है लेकिन बहुत सामान्य है
+- मार्कडाउन में अनुभाग हैं लेकिन कोई परिचालन गहराई नहीं है
+- उदाहरण स्थानीय मददगारों की ओर इशारा नहीं करते
+- समस्या निवारण मौजूद है लेकिन निदान नहीं है
+- बहुत कम टैग या टूल पहचानकर्ता हैं
+- कौशल सुरक्षित और स्वच्छ है लेकिन असाधारण के रूप में गिने जाने के लिए अभी भी बहुत उथला है---
 
 ## 🧭 Practical Rule
 
-If your skill feels like:
+यदि आपका कौशल ऐसा लगता है:
 
-- a **template**: it may pass
-- a **guide**: it may score well
-- a **workflow package**: it is much more likely to score at the top
+- एक**टेम्पलेट**: यह पारित हो सकता है
+- एक**मार्गदर्शिका**: यह अच्छा स्कोर कर सकता है
+- एक**वर्कफ़्लो पैकेज**: इसमें शीर्ष पर स्कोर करने की बहुत अधिक संभावना है

@@ -5,107 +5,89 @@
 ---
 
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
-
----
+>**План развития архитектуры Omni Skills: от репозитория, ориентированного на установщика, до среды выполнения общего каталога, поддерживающей CLI, API, MCP и A2A без дублирования логики.**---
 
 ## 📊 Current Platform Areas
 
-| Phase | Name | Status |
+| Фаза | Имя | Статус |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Current |
-| 2️⃣ | Read-Only Catalog API | ✅ Current |
-| 3️⃣ | MCP Discovery Surface | ✅ Current |
-| 4️⃣ | Local Install and Config Surface | ✅ Current |
-| 5️⃣ | A2A Orchestration | ✅ Current |
+| 1️⃣ | Контракты и артефакты | ✅ Текущий |
+| 2️⃣ | API каталога только для чтения | ✅ Текущий |
+| 3️⃣ | Поверхность обнаружения MCP | ✅ Текущий |
+| 4️⃣ | Поверхность локальной установки и настройки | ✅ Текущий |
+| 5️⃣ | А2А оркестровка | ✅ Текущий |### ✅ What Exists Today
 
-### ✅ What Exists Today
+- машиночитаемые артефакты каталога в `dist/`
+- HTTP API только для чтения с охватом конечных точек для поиска, объединения, сравнения, планирования установки и загрузки.
+- Сервер MCP с stdio, потоковым HTTP и SSE-транспортом.
+- локальная коляска с разрешенными операциями записи и потоками `config-mcp`
+- 7 клиентов с возможностью установки, 16 клиентов с возможностью настройки, 33 цели конфигурации MCP и 19 профилей конфигурации.
+- более глубокая специализация пакетов внутри `full-stack`, `security`, `devops` и `ai-engineer` через `auth-flows`, `threat-modeling`, `release-engineering` и `context-engineering`
+- Архивы для каждого навыка (zip, tar.gz) с контрольными суммами SHA-256 и отдельными подписями на тегах выпуска.
+- Базовые показатели управления API: проверка подлинности носителя/ключа API, проверка подлинности во время выполнения администратора, ограничение скорости, ведение журнала аудита, списки разрешенных CORS/IP, доверенный прокси-сервер, режим обслуживания и идентификаторы запросов.
+- Среда выполнения A2A с жизненным циклом задачи, устойчивостью JSON/SQLite, возобновлением перезапуска, потоковой передачей SSE, отменой, push-уведомлениями, дополнительным исполнителем процесса и арендованной координацией по согласию.### 🔭 Future Expansion Areas
 
-- machine-readable catalog artifacts in `dist/`
-- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
-- MCP server with `stdio`, streamable HTTP, and SSE transports
-- local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
-- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
-- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
-- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
+Основная дорожная карта теперь описывает текущую сферу применения платформы. Остальные пункты представляют собой области будущего расширения, а не фундаментальные пробелы:
 
-### 🔭 Future Expansion Areas
+- с этого момента в MCP будут добавляться только очень выборочные дополнения и только там, где официальные общедоступные документы делают возможной безопасную запись.
+- более глубокие справочные пакеты и более семантическая оценка, чтобы классификатор продолжал отделять исключительные навыки от просто отточенных.
+- управление на уровне предприятия, выходящее за рамки текущего базового уровня, если проекту позже потребуется интеграция шлюза или IdP.
+- более глубокая специализация по недавно активированным направлениям «дизайн», «инструменты», «данные AI» и «машинное обучение».
+- продолжение операционной доработки частного усилителя при сохранении его формальной операционной модели: OmniRouter привязан к cx/gpt-5.4, размещенное в облаке в «макетном» или ухудшенном предполетном режиме и надежное «живое» выполнение в локальной сети или самостоятельное выполнение.
+- дальнейшее совершенствование выпуска и рабочего процесса только как работа по обеспечению качества обслуживания, а не как отсутствие фундамента платформы.## Future Catalog Expansion Track
 
-The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
+Первые две публичные волны расширения категорий уже начались:
 
-- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
-- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
-- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
-- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
-- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
-
-## Future Catalog Expansion Track
-
-The first two public category-expansion waves are now landed:
-
-- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
-- `tools` → `mcp-server-authoring`
+- `дизайн` → `дизайн-системы-операции`, `аудит доступности`, `дизайн-токен-управление`
+- `инструменты` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
-- `machine-learning` → `model-serving`
+- `машинное обучение` → `обслуживание моделей`
 
-The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+Следующим рекомендуемым шагом больше не является активация категории сама по себе. Цель состоит в том, чтобы углубить эти новые активные треки, основанные на коде, чтобы они ощущались как надежные поверхности продукта, а не как опора для одного навыка.
 
-Recommended direction:
+Рекомендуемое направление:
 
-1. deepen `design` with more operational design-system workflows
-2. deepen `tools` with authoring and plugin-oriented skills
-3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
-4. deepen `machine-learning` with serving, training, and evaluation operations skills
+1. Углублять «проектирование» с помощью более оперативных рабочих процессов дизайн-системы.
+2. углублять «инструменты» с навыками разработки и работы с плагинами.
+3. Углубить data-ai с помощью навыков реализации конвейера и инструментирования.
+4. углублять «машинное обучение» с помощью навыков обслуживания, обучения и оценки операций.
 
-Categories intentionally deferred unless strong code-native proposals appear:
+Категории намеренно отложены до тех пор, пока не появятся убедительные предложения по нативному коду:
 
-- `business`
-- `content-media`
+- `бизнес`
+- `контент-медиа`
 
-That expansion history is now tracked in:
+История расширения теперь отслеживается в:
 
 - [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-
----
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
-- ✅ Introduce a machine-readable source of truth for skills
-- ✅ Support discovery, recommendation, and install planning by agents
-- ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
-
----
+- ✅ Поддерживать текущий рабочий процесс npx omni-skills в рабочем состоянии.
+- ✅ Внедрить машиночитаемый источник достоверной информации о навыках.
+- ✅ Поддержка обнаружения, рекомендаций и планирования установки агентами.
+- ✅ Отделить проблемы удаленного каталога от записей в локальной файловой системе.
+- ✅ Повторное использование одних и тех же метаданных в CLI, API, MCP и A2A.---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote install-on-user-machine from a hosted server
-- ❌ Replace `SKILL.md` as the canonical authoring format
-- ❌ Require contributors to write manifests by hand
-- ❌ Turn the project into a heavy hosted queue platform by default
-
----
+- ❌ Удаленная установка на компьютере пользователя с размещенного сервера.
+- ❌ Замените `SKILL.md` в качестве канонического авторского формата.
+- ❌ Требовать от участников писать манифесты вручную.
+- ❌ Превратите проект в платформу с тяжелой размещенной очередью по умолчанию.---
 
 ## 🏗️ Target Architecture
 
-One **catalog core** with three protocol surfaces:
+Одно**ядро каталога**с тремя поверхностями протокола:
 
-| Surface | Best For | Mode |
+| Поверхность | Лучшее для | Режим |
 |:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
-| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
+| 🌐**REST API**| Доступ к реестру, интеграция пользовательского интерфейса, сторонние потребители | Только для чтения |
+| 🔌**MCP**| Обнаружение агента, предварительная установка установки, написание конфигурации, рецепты клиента | Только чтение + локальная запись |
+| 🤖**A2A**| Оркестрация между агентами и передача плана установки | Жизненный цикл задачи с простой локальной устойчивостью |### ⚙️ Core Principle
 
-### ⚙️ Core Principle
-
-> **All protocols consume the same generated artifact family.**
-
-```text
+>**Все протоколы используют одно и то же семейство сгенерированных артефактов.**```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -115,178 +97,144 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
-
----
+Манифест остается общим контрактом. Архивы — это артефакты распространения, накладываемые поверх этого контракта, а не его замена.---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Used by hosted API and remote MCP servers.
+Используется размещенным API и удаленными серверами MCP.
 
-| ✅ Allowed | ❌ Not Allowed |
+| ✅ Разрешено | ❌ Запрещено |
 |:-----------|:---------------|
-| Search skills | Write to the caller's filesystem |
-| Fetch manifests | Mutate local client config |
-| Compare skills | Infer arbitrary machine state |
-| Recommend bundles | — |
-| Build install plans | — |
+| Навыки поиска | Запись в файловую систему вызывающего |
+| Получить манифесты | Изменить конфигурацию локального клиента |
+| Сравнить навыки | Вывести произвольное состояние машины |
+| Рекомендовать пакеты | — |
+| Создание планов установки | — |### 2️⃣ Local Installer Mode
 
-### 2️⃣ Local Installer Mode
+Используется CLI и коляской MCP.
 
-Used by the CLI and the MCP sidecar.
-
-| ✅ Allowed |
+| ✅ Разрешено |
 |:-----------|
-| Detect local AI clients |
-| Inspect installed skills |
-| Preview file operations |
-| Install or remove skill directories |
-| Write local MCP config after preview |
+| Обнаружение локальных клиентов AI |
+| Проверить установленные навыки |
+| Предварительный просмотр файловых операций |
+| Установить или удалить каталоги навыков |
+| Запись локальной конфигурации MCP после предварительного просмотра |
 
-> 📌 This remains the only mode where real OS writes happen.
-
----
+> 📌Это единственный режим, в котором происходит реальная запись ОС.---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Best for registry access, search, comparison, versioned downloads, and install planning.
+Лучше всего подходит для доступа к реестру, поиска, сравнения, загрузки версий и планирования установки.
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**Конечные точки**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`### 🔌 MCP
 
-### 🔌 MCP
+Лучше всего подходит для обнаружения с помощью инструментов, быстрых рекомендаций, предварительного просмотра установки и настройки MCP для конкретного клиента.
 
-Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
+**Инструменты только для чтения**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+**Локальные инструменты**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
 
-**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+Лучше всего подходит для передачи обнаружения, рабочих процессов планирования установки и возобновляемого выполнения задач агента.
 
-### 🤖 A2A
-
-Best for discovery handoff, install-plan workflows, and resumable agent task execution.
-
-**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
-
----
+**Текущие операции**: `обнаружить-навыки` · `рекомендовать-стек` · `подготовить-установить-план`---
 
 ## 🛡️ Security Model
 
-| Principle | Implementation |
+| Принцип | Реализация |
 |:----------|:---------------|
-| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
-| 📂 Writes stay local | CLI and MCP sidecar only |
-| 👁️ Preview before write | Dry-run defaults on local mutations |
-| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
-| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
-| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
-
----
+| 🔒 Хостинговые службы доступны только для чтения | API и удаленный MCP не записывают данные в файловую систему вызывающего объекта |
+| 📂 Пишет, оставайся локальным | Только коляска CLI и MCP |
+| 👁️ Предварительный просмотр перед записью | Пробные настройки по умолчанию для локальных мутаций |
+| 🔑 Честность очевидна | Контрольные суммы SHA-256 для сгенерированных артефактов |
+| ✍️ Доверие к релизу явно | На тегах выпуска применяются отдельные подписи |
+| ⚠️ Обнаружен риск | Метаданные рисков и безопасности распространяются на каждую поверхность среды выполнения |---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- documented target architecture
-- defined manifest schema
-- generated metadata, catalog, manifests, bundles, and archives
+- документированная целевая архитектура
+- определенная схема манифеста
+- сгенерированные метаданные, каталог, манифесты, пакеты и архивы### Phase 2: Catalog Service
 
-### Phase 2: Catalog Service
+- HTTP API только для чтения с Express 5
+- поиск, фильтрация, поиск манифеста, список пакетов, сравнение и загрузка
+- базовый уровень управления хостингом на основе env### Phase 3: MCP Discovery
 
-- read-only HTTP API with Express 5
-- search, filtering, manifest lookup, bundle listing, comparison, and downloads
-- env-driven hosted governance baseline
+- официальная интеграция `@modelcontextprotocol/sdk`
+- `stdio`, потоковая передача HTTP и SSE.
+- инструменты, ресурсы и подсказки, доступные только для чтения, поддерживаемые общим каталогом.### Phase 4: Local Install and Config Surface
 
-### Phase 3: MCP Discovery
+- локальная коляска с разрешенными операциями записи
+- обнаружение 7 клиентов с возможностью установки
+- запись конфигурации для 16 клиентов с возможностью настройки для 33 целей и 19 профилей конфигурации.
+- управляемые потоки `config-mcp` в CLI и визуальной оболочке
+- стабильная поддержка контейнеров Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose и Dev Containers.### Phase 5: A2A Orchestration
 
-- official `@modelcontextprotocol/sdk` integration
-- `stdio`, streamable HTTP, and SSE transports
-- read-only tools, resources, and prompts backed by the shared catalog
+- карточка агента в `/.well-known/agent.json`
+- методы конфигурации `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe` и push-уведомлений.
+- Сохранение JSON и SQLite с восстановлением после перезапуска.
+- дополнительный внешний исполнитель процессов
+- возможность арендованного исполнения между работниками для SQLite и дополнительная расширенная координация Redis.
+- значения по умолчанию в формате simple-first сохраняются в памяти, JSON или SQLite без внешних зависимостей.### Current Enhancer Operating Decision
 
-### Phase 4: Local Install and Config Surface
+Поддерживаемая частным энхансером «живая» модель теперь очевидна:
 
-- local sidecar with allowlisted writes
-- detection for 7 install-capable clients
-- config writing for 16 config-capable clients across 33 targets and 19 config profiles
-- guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
-
-### Phase 5: A2A Orchestration
-
-- agent card at `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
-- JSON and SQLite persistence with restart recovery
-- optional external process executor
-- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
-- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
-
-### Current Enhancer Operating Decision
-
-The private enhancer's supported `live` model is now explicit:
-
-- hosted PR automation runs a preflight-gated `live` attempt
-- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
-- the canonical reliable `live` path remains LAN or local service execution
-- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
-
----
+- хостинговая система автоматизации PR запускает предполетную «живую» попытку
+- если общедоступный шлюз OmniRoute заблокирован или работает нестабильно, PR помечается как «заблокированный» с указанием причины, связанной с оператором, а не с непрозрачным сбоем.
+- каноническим надежным «живым» путем остается локальная сеть или локальное выполнение службы.
+- запланированные частные запуски GitHub по умолчанию остаются «фиктивными», если только оператор явно не запросит «живой»---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+**Решение**: сохранить манифест в качестве общего контракта и сохранить подписанные архивы для каждого навыка в качестве поверхности распространения.
 
-**Why**:
-- CLI, API, MCP, and A2A already consume the normalized manifest shape
-- archives are ideal for download and verification, but poor as the only discovery contract
-- this keeps authoring simple and distribution verifiable
+**Почему**:
+- CLI, API, MCP и A2A уже используют нормализованную форму манифеста.
+- архивы идеальны для скачивания и проверки, но плохи как единственный контракт обнаружения
+- это делает разработку простой и позволяет проверить распространение### 2. Private or Premium Catalogs
 
-### 2. Private or Premium Catalogs
+**Решение**: повторно использовать тот же формат манифеста и каталога, а также внешнюю аутентификацию или политику уровня.
 
-**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+**Почему**:
+- это позволяет избежать разветвления модели данных
+- это соответствует текущему подходу к управлению API/MCP
+- он остается совместимым с направлением экосистемы MCP, касающимся учетных данных клиента OAuth и авторизации, управляемой предприятием.### 3. Client Writer Strategy
 
-**Why**:
-- it avoids forking the data model
-- it matches the current API/MCP governance approach
-- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+**Решение**: сосредоточить внимание на небольшом наборе канонических экспортных семейств и оставлять специализированных авторов только там, где этого требуют официальные клиентские документы.
 
-### 3. Client Writer Strategy
-
-**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
-
-**Canonical families now in use**:
+**Сейчас используются канонические семейства**:
 - JSON `mcpServers`
-- JSON `servers`
+- JSON `серверы`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Why**:
-- it keeps the implementation maintainable
-- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
-- it avoids inventing fragile writers for clients without stable public config docs
-
----
+**Почему**:
+- это делает реализацию поддерживаемой
+- он по-прежнему поддерживает специфичные для клиента потребности, такие как настройки Claude, Продолжить YAML, Zed `context_servers` и Codex TOML.
+- это позволяет избежать изобретения хрупких средств записи для клиентов без стабильных общедоступных конфигурационных документов.---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-The current decisions were checked against official ecosystem docs:
+Текущие решения были проверены на соответствие официальным документам экосистемы:
 
-- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
-- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
-- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
-- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
-
----
+- экосистема MCP теперь документирует дополнительные расширения, такие как учетные данные клиента OAuth и авторизация, управляемая предприятием, которая поддерживает внешнюю размещенную аутентификацию вместо разветвления формата каталога.
+- OpenAI документирует общедоступные документы MCP-сервера и шаблоны конфигурации Codex MCP, которые соответствуют общему манифесту, а также стратегии клиент-писателя.
+- VS Code документирует первоклассную поддержку MCP и руководство по расширению, которое усиливает поддержку специализированного средства записи на основе серверов.
+- JetBrains AI Assistant документирует настройку MCP через UX продукта, а не через стабильный кросс-платформенный файловый контракт, который на данный момент поддерживает сохранение его вручную или на территории фрагментов.---
 
 ## 🔮 Longer-Term Decision Points
 
-Only a few strategic questions remain genuinely open:
+Лишь несколько стратегических вопросов остаются по-настоящему открытыми:
 
-1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
-2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
-3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
+1. Действительно ли какой-либо клиент за пределами текущей матрицы преодолевает планку первоклассного написания, или оставшиеся продукты должны оставаться только вручную/фрагментами
+2. Когда (если вообще когда-либо) следует перейти к использованию внешнего шлюза или корпоративного IdP вместо текущего базового уровня внутри процесса?
+3. Как далеко специалист по оценке должен зайти в оценке глубины и качества работы справочного пакета, прежде чем он станет слишком самоуверенным для участников?

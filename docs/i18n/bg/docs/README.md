@@ -6,115 +6,101 @@
 
 <!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
 
-> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
+>**Централната справка за използване, работа, разширяване и разбиране на текущата платформа Omni Skills.**
 
-Standard community files live in the repository root:
-[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
-
----
+Стандартните файлове на общността се намират в корена на хранилището:
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)---
 
 ## 📊 Status Snapshot
 
-| Area | State | Details |
+| Площ | състояние | Подробности |
 |:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
-| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
-| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
-| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
-| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
-| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
-| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
-| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+| 🏗️**Време на изпълнение**| ✅ Актуално | Unified CLI, Ink визуална обвивка, API, MCP и A2A всички се доставят от един и същи пакет |
+| 📦**Каталог**| 📌 32 умения | 32 публикувани умения `L3` в 15 активни каталожни категории и 7 напълно обезпечени пакета |
+| 🎯**Инсталиране**| ✅ Актуално | Насочвано TTY инсталиране, селективни `--skill` и `--bundle`, персонализирана поддръжка на пътя и инсталиране, управлявано от откриване |
+| 🌐**API**| ✅ Актуално | API на регистъра само за четене с удостоверяване, администраторско време за изпълнение, ограничаване на скоростта, CORS/IP разрешени списъци, режим на поддръжка и изтегляния |
+| 🔌**MCP**| ✅ Актуално | `stdio` · `поток` · `sse`, локален страничен режим, 7 клиента с възможност за инсталиране, 16 клиента с възможност за конфигурация, 33 цели за конфигурация и 19 профила за конфигурация |
+| 🤖**A2A**| ✅ Актуално | Обикновено първо локално изпълнение с JSON/SQLite издръжливост, възобновяване на рестартиране, SSE поточно предаване, анулиране, режим на външен изпълнител и опционална наета координация, когато е изрично разрешено |
+| 🛡️**Сигурност**| ✅ Актуално | Статичен скенер, незадължителен ClamAV/VirusTotal, подписани артефакти за издаване, архивни контролни суми и проверка по време на издаване |
+| 📋**Класификация**| ✅ Актуално | Канонична таксономия, зрялост, разпространение на семантичното качество, разпространение на най-добрите практики и оценяване на сигурността |
+| 📁**Архиви**| ✅ Актуално | `.zip` и `.tar.gz` архиви за умение с манифести на контролна сума SHA-256 |
+| 🔐**Подписване**| ✅ Актуално | Отделени подписи, наложени върху етикети за освобождаване; локалните инсталационни потоци консумират същия манифест и метаданни за контролна сума |
+| 🧬**Всмукателен поток**| ✅ Актуално | Родните умения попадат под „умения/“; PR automation ги преглежда и предлага Omni-подобрени производни под `skills_omni/` |## 🔭 Current Project State
 
-## 🔭 Current Project State
+Основната писта сега живее в състояние на активен проект, а втората вълна за разширяване на категория вече е в каталога. Сега проектът трябва да се чете като работеща базова линия с незадължителни бъдещи разширителни песни:
 
-The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
+- public `v0.1.2` и private `v0.0.1` са текущата стабилна версия
+- каталогът вече обхваща 32 публикувани умения в 15 активни категории и 7 напълно обезпечени пакета
+- роден прием и куриран `skills_omni/` изход са работещи, включително многоезичен роден прием и куриран само английски изход
+- повърхностите на протокола, автоматизацията на освобождаване и автоматизацията на частното подобрение са в експлоатация, а не в начално зареждане
 
-- public `v0.1.2` and private `v0.0.1` are the current stable release floor
-- the catalog now covers 32 published skills across 15 active categories and 7 fully backed bundles
-- native intake and curated `skills_omni/` output are both operational, including multilingual native intake and English-only curated output
-- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+Бъдещото разширяване остава умишлено:
 
-Future expansion stays deliberate:
+- задълбочаване на `дизайн`, `инструменти`, `data-ai` и `машинно обучение`
+- избягвайте повторното отваряне на пасивни не-код-местни категории, докато текущите код-родни песни имат по-голяма дълбочина
+- запазвайте качеството на пода и пътя за преглед на подобритела непокътнати, докато правите това
 
-- deepen `design`, `tools`, `data-ai`, and `machine-learning`
-- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
-- keep the quality floor and enhancer review path intact while doing so
+Този план сега е разделен на:
 
-That plan is now split into:
-
-- the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-- and the forward-looking backlog in [tasks/README.md](tasks/README.md)
-
----
+- завършената първа вълна на разширяване в [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+- завършената втора вълна на разширяване в [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
+- и насоченото към бъдещето изоставане в [tasks/README.md](tasks/README.md)---
 
 ## 📌 Current Decisions
 
-These architecture questions are no longer “open” in practice and are now treated as project decisions:
+Тези архитектурни въпроси вече не са „отворени“ на практика и сега се третират като проектни решения:
 
-1. **Distribution stays manifest-first plus signed archives**
-   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
-2. **Private or premium catalogs should reuse the same manifest schema**
-   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
-3. **MCP config should converge on a few canonical export families**
-   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+1.**Разпространението остава първо манифест плюс подписани архиви**
+   Машинночетимият манифест остава договорът, използван от CLI, API, MCP и A2A. Подписаните архиви за умение са повърхността за изтегляне и освобождаване, наслоена върху този договор.
+2.**Личните или премиум каталозите трябва да използват повторно една и съща схема на манифест**
+   Удостоверяването и правилата трябва да се наслояват външно, а не чрез разклоняване на формата на манифеста или каталога.
+3.**MCP конфигурацията трябва да се сближава с няколко канонични фамилии за експортиране**
+   Omni Skills вече стандартизира около JSON `mcpServers`, JSON `сървъри`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions` и TOML `[mcp_servers]`, като същевременно запазва поръчкови писатели само когато официалните клиентски документи изискват различна структура.
 
-Those decisions align with current official MCP and client documentation, including:
+Тези решения са в съответствие с текущата официална MCP и клиентска документация, включително:
 
-- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
-- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
-- VS Code MCP extension and product docs at `code.visualstudio.com`
-- client docs for Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman, and JetBrains AI Assistant
-
----
+- официален MCP регистър и насоки за поддръжка на разширение в `modelcontextprotocol.io`
+- OpenAI Docs MCP и Codex CLI документи на `developers.openai.com` и `platform.openai.com`
+- VS Code MCP разширение и продуктови документи на `code.visualstudio.com`
+- клиентски документи за Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman и JetBrains AI Assistant---
 
 ## 🚀 Start Here
 
 ### 👤 If You Want to **Use** the Project
 
-| Doc | What You'll Learn |
+| Док | Какво ще научите |
 |:----|:------------------|
-| 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
-| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
-| 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
-| 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
-| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot the runtime |
+| 📘 [Първи стъпки](users/GETTING-STARTED.md) | Инсталирайте, проверете и извикайте първото си умение |
+| 🧭 [Ръководство за потребителя на CLI](users/CLI-USER-GUIDE.md) | Пълен справочник за команди и модели на използване на CLI в реалния свят |
+| 📗 [Ръководство за използване](users/USAGE.md) | CLI команди, режими на инсталиране, команди по време на изпълнение и потоци от конфигурация на MCP |
+| 📦 [Пакети](users/BUNDLES.md) | Подбрани пакети и текущата им наличност |
+| 📚 [Каталог](CATALOG.md) | Автоматично генериран каталог на публикуваните умения |
+| 🔧 [System Runbook](operations/RUNBOOK.md) | Изградете, обслужвайте, защитавайте и отстранявайте неизправности във времето за изпълнение |### 🏗️ If You Want to **Understand** the Runtime
 
-### 🏗️ If You Want to **Understand** the Runtime
-
-| Doc | What You'll Learn |
+| Док | Какво ще научите |
 |:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution, closed decisions, and remaining expansion areas |
-| 🧭 [CLI UX Roadmap](architecture/CLI-UX-ROADMAP.md) | Historical plan and current shape of the guided and visual CLI |
-| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo and shared-runtime decision |
-| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Current runtime composition, counts, and system boundaries |
-| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink visual shell, state model, and service hub |
-| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filesystem-aware tools, allowlist model, and config writing |
-| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
-| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring heuristics, and metadata artifacts |
-| 🛡️ [Security Validation](specs/SECURITY-VALIDATION.md) | Scanners, archives, signatures, and release verification |
-| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Machine-readable manifest format and compatibility contract |
+| 🗺️ [Пътна карта на Agent-Native](architecture/AGENT-NATIVE-ROADMAP.md) | Еволюция на архитектурата, затворени решения и оставащи области за разширяване |
+| 🧭 [Пътна карта за CLI UX](архитектура/CLI-UX-ROADMAP.md) | Исторически план и текуща форма на управлявания и визуален CLI |
+| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Основно монорепо и решение за споделено изпълнение |
+| 🔬 [Анализ на кодова база](архитектура/CODEBASE-ANALYSIS.md) | Текущ състав по време на изпълнение, брой и системни граници |
+| 🌐 [Повърхност на API на каталога](specs/CATALOG-API.md) | HTTP крайни точки, филтриране, управление и изтегляния |
+| 🧩 [Инсталатор с насочване чрез CLI](specs/CLI-GUIDED-INSTALLER.md) | Поведенчески договор за ръководения монтажник |
+| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Визуална обвивка на Ink, модел на състоянието и център за услуги |
+| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Инструменти, съобразени с файловата система, модел на разрешен списък и писане на конфигурация |
+| 🧭 [Матрица за поддръжка на клиенти](specs/CLIENT-SUPPORT-MATRIX.md) | Поддържани CLI и IDE клиенти, писатели, ръчни цели и препратки към източници |
+| 📊 [Класификация на уменията](specs/SKILL-CLASSIFICATION.md) | Таксономия, евристика за оценяване и артефакти на метаданни |
+| 🛡️ [Проверка на сигурността](specs/SECURITY-VALIDATION.md) | Скенери, архиви, подписи и проверка на издание |
+| 📋 [Спецификация на манифеста на уменията](specs/SKILL-MANIFEST.md) | Машинно четим формат на манифест и договор за съвместимост |### 🤝 If You Want to **Contribute**
 
-### 🤝 If You Want to **Contribute**
-
-| Doc | What You'll Learn |
+| Док | Какво ще научите |
 |:----|:------------------|
-| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
-| 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
-| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
-| 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
-| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
-| 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
-| 📋 [Tasks Backlog](tasks/README.md) | Detailed implementation backlog for the remaining public and private work |
-
----
+| 📝 [Ръководство за принос](../CONTRIBUTING.md) | Репо работен процес и очаквания за заявка за изтегляне |
+| 🧾 [Работен процес на Skill PR](contributors/SKILL-PR-WORKFLOW.md) | Нативно приемане, автоматична обработка на усилвателя, публикуване на `skills_omni/` и очаквания на рецензентите |
+| 📄 [Шаблон за умения](contributors/SKILL-TEMPLATE.md) | Стартер `SKILL.md` с актуален преден материал и структура |
+| 🔬 [Анатомия на уменията](contributors/SKILL-ANATOMY.md) | Структура и очаквания за качество за дадено умение |
+| ✅ [Лента за качество](contributors/QUALITY-BAR.md) | Критерии за приемане на хранилището |
+| 🏆 [Набор с най-добри резултати](contributors/HIGH-SCORE-PLAYBOOK.md) | Какво води до висока зрялост, качество, най-добри практики и резултати за сигурност |
+| 📋 [Натрупани задачи](tasks/README.md) | Подробно забавяне на изпълнението за оставащата публична и частна работа |---
 
 ## 🔌 Runtime Surfaces
 
@@ -127,9 +113,7 @@ npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-The published `omni-skills` binary is the unified public entry point.
-
-```bash
+Публикуваният двоичен файл `omni-skills` е унифицираната публична входна точка.```bash
 # 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
@@ -161,34 +145,28 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
-For the complete end-user command surface, use [CLI User Guide](users/CLI-USER-GUIDE.md).
+За пълната командна повърхност за краен потребител използвайте [CLI User Guide](users/CLI-USER-GUIDE.md).### 📁 Generated Artifacts
 
-### 📁 Generated Artifacts
+Конвейерът за изграждане излъчва машинночетими файлове, които управляват всяка повърхност за изпълнение:
 
-The build pipeline emits the machine-readable files that drive every runtime surface:
-
-| Artifact | Purpose |
+| Артефакт | Цел |
 |:---------|:--------|
-| `metadata.json` | Repository-wide validation and score summary |
-| `skills_index.json` | Repo-local normalized skill index |
-| `dist/catalog.json` | Published catalog for search and listing |
-| `dist/bundles.json` | Bundle definitions with availability |
-| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
-| `dist/archives/<skill>.zip` | Skill archive (zip) |
-| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+| `metadata.json` | Валидиране в цялото хранилище и обобщение на резултатите |
+| `skills_index.json` | Репо-локален нормализиран индекс на умения |
+| `dist/catalog.json` | Издаден каталог за търсене и вписване |
+| `dist/bundles.json` | Дефиниции на пакети с наличност |
+| `dist/manifests/<skill>.json` | Машинно четим манифест за всяко умение |
+| `dist/archives/<skill>.zip` | Архив на уменията (zip) |
+| `dist/archives/<skill>.tar.gz` | Архив на умения (tarball) |
+| `dist/archives/<skill>.checksums.txt` | Манифест на контролната сума на SHA-256 |
 
-`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
-### 🌐 API
+`dist/` остава ангажиран нарочно. Тези генерирани артефакти са част от договора за инсталиране, API, MCP, A2A, smoke и освобождаване.### 🌐 API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
-
-### 🔌 MCP
+API на регистъра само за четене за умения, пакети, сравнение, планиране на инсталиране и изтегляне на артефакти.### 🔌 MCP
 
 ```bash
 npx omni-skills mcp stdio
@@ -197,55 +175,49 @@ npx omni-skills mcp sse
 npx omni-skills mcp stream --local
 ```
 
-The local sidecar now supports first-class MCP config writing for:
+Локалната странична кола вече поддържа първокласно писане на MCP конфигурация за:
 
-- Claude Code
-- Cursor
-- VS Code and Dev Containers
+- Клод Код
+- Курсор
+- VS код и контейнери за разработка
 - Gemini CLI
-- Antigravity
-- Kiro
+- Антигравитация
+- Киро
 - Codex CLI
-- Continue
-- Windsurf
+- Продължете
+- Уиндсърф
 - OpenCode
-- Cline
+- Клайн
 - GitHub Copilot CLI
-- Kilo Code
-- Zed
-- Goose
-
-### 🤖 A2A
+- Кило код
+- Зед
+- Гъска### 🤖 A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
-
----
+Жизнен цикъл на задачата, поточно предаване, постоянство, възстановяване при рестартиране и локална оркестрация от първо ниво. Споделеното наето изпълнение е налично, когато е изрично активирано; Redis остава разширена хоствана опция, а не локалният път по подразбиране.---
 
 ## 🗂️ Repository Map
 
-| Path | Purpose |
+| Път | Цел |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills |
-| 📖 `docs/users/` | End-user documentation |
-| 🤝 `docs/contributors/` | Contributor templates and guidance |
-| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
-| 🔧 `docs/operations/` | Operational runbooks |
-| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
-| 📚 `docs/CATALOG.md` | Generated skill catalog |
-| 📦 `dist/` | Generated machine-readable artifacts |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A server and task runtime |
-| 🖥️ `tools/bin/` | CLI entry points |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
-
----
+| 📂 `умения/` | Канонични авторски умения |
+| 📖 `docs/users/` | Документация за краен потребител |
+| 🤝 `docs/contributors/` | Шаблони и насоки за сътрудник |
+| 🏗️ `docs/architecture/` | Пътна карта, ADR и технически анализ |
+| 🔧 `docs/operations/` | Оперативни книги |
+| 📋 `docs/specs/` | Договори за време на изпълнение, протокол и артефакт |
+| 📚 `docs/CATALOG.md` | Генериран каталог с умения |
+| 📦 `dist/` | Генерирани машинночетими артефакти |
+| 🧠 `packages/catalog-core/` | Време за изпълнение на споделен каталог |
+| 🌐 `packages/server-api/` | HTTP API само за четене |
+| 🔌 `packages/server-mcp/` | MCP сървър и локален кош |
+| 🤖 `packages/server-a2a/` | A2A сървър и време за изпълнение на задачи |
+| 🖥️ `tools/bin/` | CLI входни точки |
+| 📚 `tools/lib/` | Помощник за инсталиране и потребителски интерфейс |
+| ⚙️ `инструменти/скриптове/` | Валидиране, генериране, проверка и тестове |---
 
 ## 🧪 Release Validation
 
@@ -253,15 +225,15 @@ Task lifecycle, streaming, persistence, restart recovery, and simple-first local
 npm run smoke
 ```
 
-The smoke run validates:
+Димният цикъл потвърждава:
 
-- ✅ skill validation and metadata generation
-- ✅ taxonomy recategorization tooling
-- ✅ catalog artifact generation
-- ✅ generated catalog markdown
-- ✅ archive generation and verification
-- ✅ automated test suite
+- ✅ валидиране на умения и генериране на метаданни
+- ✅ инструмент за прекатегоризиране на таксономията
+- ✅ генериране на артефакт от каталог
+- ✅ генериран каталожен маркдаун
+- ✅ създаване и проверка на архив
+- ✅ автоматизиран тестов пакет
 - ✅ `npm pack --dry-run`
-- ✅ API boot and health
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle
+- ✅ API зареждане и здраве
+- ✅ MCP зареждане в `stdio`, `stream` и `sse`
+- ✅ A2A зареждане, анкетиране, SSE стрийминг, анулиране и жизнен цикъл на конфигуриране чрез натискане

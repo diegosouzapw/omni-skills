@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Scanare de securitate, generare de arhive, semnare opțională și pachet de distribuție pentru fiecare abilitate publicată.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Caracteristica | Stat |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Scanner de securitate static | Întotdeauna activat |
+| ✅ Clasificarea metadatelor pe abilitate | Implementat |
+| ✅ Arhive pe abilitate (zip/tar.gz) | Implementat |
+| ✅ Manifeste suma de control SHA-256 | Implementat |
+| ✅ Poarta scanerului CI pe etichetele de eliberare | Implementat |
+| ✅ npm publică fluxul de lucru din tarball verificat | Implementat |
+| ⚙️ Scanare ClamAV | Îmbogățitor opțional |
+| ⚙️ Căutare hash VirusTotal | Îmbogățitor opțional |
+| ✅ Semnarea detașată | Implementat |
+| ✅ Semnarea impusă de CI | Implementat pe etichetele de lansare |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Scanează fiecare abilitate în timpul validării:
 
-| Target | What Gets Scanned |
+| Țintă | Ce este scanat |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| 📝 `SKILL.md` | Conținutul principal de competențe |
+| 📄 Markdown/fișiere text | Referințe și documente împachetate |
+| ⚙️ Scripturi | Scripturi de automatizare ambalate |
 
-**Rule families:**
+**Familii de reguli:**
 
-| Rule | Examples |
+| Regula | Exemple |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Injectare promptă**| Modele de exfiltrare, înlocuiri de instrucțiuni |
+| 💣**Comenzi distructive**| `rm -rf`, `format`, `del /s` |
+| 🔑**Escaladare a privilegiilor**| `sudo`, `chmod 777`, modele setuid |
+| 📂**Căi suspecte**| `/etc/shadow`, `~/.ssh`, fișiere de acreditări |
+| ⚠️**Primitivi riscante**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Necesită `clamscan` în `PATH`
+- Scanează fișierele ambalate pentru malware cunoscut
+- Rezultate înregistrate în metadatele abilităților---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Numai căutarea hash**— nu se încarcă fișiere în timpul validării normale
+- Fișierele necunoscute rămân doar locale
+- Menține construcția**deterministă**și independentă de CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Poarta de eliberare stricta:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Acest pas citește `skills/*/metadata.json` generat și nu reușește dacă scanerele necesare nu au executat sau au raportat detectări.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Datele de securitate sunt emise în metadatele fiecărei aptitudini:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Acest bloc este propagat în manifeste și vizualizări de catalog, permițând CLI, API și MCP să**filtreze și să clasifice după scorul de securitate**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Fiecare abilitate publicată generează:
 
-| File | Format |
+| Fișier | Format |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | Arhiva ZIP |
+| `dist/archives/<skill>.tar.gz` | Arhiva Tarball |
+| `dist/archives/<skill>.checksums.txt` | Manifestul sumei de control SHA-256 |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+GitHub Actions lansează etichete (`v*`) acum:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. verificați că eticheta git se potrivește cu `package.json`
+2. instalați și reîmprospătați ClamAV
+3. decodați cheia de semnare a eliberării din secretele GitHub
+4. rulați `npm run release:verify`
+5. împachetați tarball-ul cu `npm pack`
+6. publicați acel tarball exact la npm cu proveniența
+7. creați o versiune GitHub cu note personalizate și elemente de verificare atașate---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Dacă nu este furnizată nicio cheie publică, construcția derivă una cu `openssl` și o plasează în `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Când este activat, fișierele `.sig` sunt emise lângă arhive și manifestul sumei de control.
 
-In CI, release tags now require signing through:
+În CI, etichetele de lansare necesită acum conectarea prin:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` sau `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- opțional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` sau `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
-|:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| Limitare | Stare |
+|:------------|:-------|
+| VirusTotal trimitere încărcare | Exclus intenționat de la validarea implicită |
+| Semnarea executării | Aplicat pe etichetele de eliberare; build-urile locale pot rula în continuare nesemnate |
+| Guvernare găzduită | Autentificarea încorporată, timpul de execuție admin, listele de permise CORS/IP, modul de întreținere și înregistrarea de audit sunt în vigoare; gateway-urile externe rămân opționale |

@@ -5,557 +5,453 @@
 ---
 
 
-> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
-> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
-
----
+>**La hoja de ruta del producto para hacer evolucionar Omni Skills desde un instalador pionero a una experiencia de terminal guiada para usuarios expertos y no expertos.**
+> Alcance: paquete npm, experiencia de instalación CLI, interfaz de usuario de terminal, flujos de lanzamiento de servicios e incorporación visual.---
 
 ## 1. Problem Statement
 
-The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
+La base actual del tiempo de ejecución es sólida, pero la experiencia inicial aún está optimizada para los usuarios que ya comprenden:
 
-- which client they want to target
-- which installation selector they want to use
-- how to translate goals into `--skill`, `--bundle`, or `find`
-- when they need CLI-only install versus MCP, API, or A2A services
+- a qué cliente quieren dirigirse
+- qué selector de instalación quieren usar
+- cómo traducir objetivos a `--skill`, `--bundle` o `find`
+- cuando necesitan una instalación solo CLI en lugar de servicios MCP, API o A2A
 
-Today:
+Hoy:
 
-- `npx omni-skills` defaults to Antigravity
-- this is technically valid and backwards-compatible
-- but it is not ideal for first-time users or less technical operators
+- `npx omni-skills` por defecto es Antigravity
+- esto es técnicamente válido y compatible con versiones anteriores
+- pero no es ideal para usuarios nuevos o operadores menos técnicos
 
-The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
+La CLI ya tiene un modo interactivo básico, pero aún está más cerca de una utilidad para desarrolladores que de una superficie de producto guiada.
 
-This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
-
----
+Esta hoja de ruta define el camino hacia una UX pública más sólida sin romper la interfaz actual basada en banderas.---
 
 ## 1.1 Delivery Status
 
-The roadmap is now largely implemented in the current repository state.
+La hoja de ruta ahora está implementada en gran medida en el estado actual del repositorio.
 
-Completed:
+Completado:
 
-- Phase 1: Guided Entrypoint Selection
-- Phase 2: Guided Install Wizard
-- Phase 3: Visual Terminal Shell
-- Phase 4: Visual Service Hub
-- Phase 5: Saved Profiles and Repeatability
-- Phase 6: Hardening, Tests, and Documentation
-
----
+- Fase 1: Selección guiada del punto de entrada
+- Fase 2: Asistente de instalación guiada
+- Fase 3: Shell de terminal visual
+- Fase 4: Centro de servicios visuales
+- Fase 5: Perfiles guardados y repetibilidad
+- Fase 6: Endurecimiento, Pruebas y Documentación---
 
 ## 2. Goals
 
-- Preserve the current expert CLI workflows
-- Make the no-argument entrypoint safe and understandable for first-time users
-- Replace silent defaults in interactive contexts with guided selection
-- Support known AI clients and arbitrary custom install paths
-- Turn install, discovery, and service boot into a coherent user journey
-- Provide a visual terminal UI that feels like a product, not just a script
-- Keep the install engine, catalog, and service runtime reusable under the UI
-
----
+- Preservar los flujos de trabajo CLI expertos actuales
+- Hacer que el punto de entrada sin argumentos sea seguro y comprensible para los usuarios nuevos
+- Reemplace los valores predeterminados silenciosos en contextos interactivos con selección guiada
+- Admite clientes de IA conocidos y rutas de instalación personalizadas arbitrarias
+- Convierta la instalación, el descubrimiento y el inicio del servicio en un recorrido de usuario coherente
+- Proporcionar una interfaz de usuario de terminal visual que parezca un producto, no solo un guión.
+- Mantener el motor de instalación, el catálogo y el tiempo de ejecución del servicio reutilizables en la interfaz de usuario.---
 
 ## 3. Non-Goals
 
-- Replacing the current flag-based CLI
-- Removing Antigravity as a supported default target
-- Shipping a web UI as the primary delivery mode
-- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
-- Replacing `SKILL.md` authoring with a database-backed admin panel
-
----
+- Reemplazo de la CLI actual basada en banderas
+- Eliminación de Antigravity como objetivo predeterminado compatible
+- Envío de una interfaz de usuario web como modo de entrega principal
+- Refactorización de los protocolos API, MCP o A2A como parte de este trabajo de UX
+- Reemplazo de la creación de `SKILL.md` con un panel de administración respaldado por una base de datos---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-These commands must continue to work exactly as they do today:
+Estos comandos deben seguir funcionando exactamente como lo hacen hoy:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `npx omni-skills find figma --tool cursor --install --yes`
+- `npx omni-skills buscar figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- `api npx omni-skills --puerto 3333`
+- `npx omni-skills a2a --puerto 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- Sesión de terminal interactiva sin argumentos: experiencia guiada abierta
+- Invocación no interactiva sin argumentos: conserva el comportamiento predeterminado de instalación actual
+- Los comandos y banderas explícitos siempre superan la inferencia de la interfaz de usuario.### 4.3 Reuse One Engine Across Modes
 
-- Interactive terminal session with no arguments: open guided experience
-- Non-interactive invocation with no arguments: preserve current install default behavior
-- Explicit commands and flags always win over UI inference
+Lo siguiente debería compartir la misma lógica interna:
 
-### 4.3 Reuse One Engine Across Modes
+- CLI de bandera primero
+- CLI en modo texto guiado
+- interfaz de usuario de terminal visual
 
-The following should share the same internal logic:
+Eso significa que la capa UX no debe poseer la lógica empresarial. Debería orquestar acciones reutilizables.### 4.4 Preview Before Write
 
-- flag-first CLI
-- guided text-mode CLI
-- visual terminal UI
+Todos los flujos guiados que provocan escrituras deben mostrar:
 
-That means the UX layer must not own business logic. It should orchestrate reusable actions.
+- objetivo resuelto
+- camino resuelto
+- habilidades o paquetes seleccionados
+- comando CLI equivalente
+- mensaje de confirmación### 4.5 Visual Does Not Mean Implicit
 
-### 4.4 Preview Before Write
+Incluso en la interfaz de usuario más rica, el sistema aún debería hacer explícitos el estado y las acciones:
 
-All guided flows that cause writes should display:
-
-- resolved target
-- resolved path
-- selected skills or bundles
-- equivalent CLI command
-- confirmation prompt
-
-### 4.5 Visual Does Not Mean Implicit
-
-Even in the richer UI, the system should still make state and actions explicit:
-
-- where the install is going
-- what will be written
-- which transport or port a service will use
-- whether a flow is read-only or local-write-capable
-
----
+- hacia dónde va la instalación
+- lo que se escribirá
+- qué transporte o puerto utilizará un servicio
+- si un flujo es de solo lectura o con capacidad de escritura local---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Needs:
+Necesidades:
 
-- fast commands
-- no forced prompts
-- stable flags
-- scriptability
+- comandos rápidos
+- sin indicaciones forzadas
+- banderas estables
+- capacidad de escritura### 5.2 Guided Product User
 
-### 5.2 Guided Product User
+Necesidades:
 
-Needs:
+- opciones claras
+- no se supone que se desee la antigravedad
+- soporte para instalaciones de rutas personalizadas
+- vista previa de instalación comprensible
+- distinción visible entre acciones de instalación y ejecución del servidor### 5.3 Operator / Platform User
 
-- clear choices
-- no assumption that Antigravity is desired
-- support for custom path installs
-- understandable install preview
-- visible distinction between install and server runtime actions
+Necesidades:
 
-### 5.3 Operator / Platform User
-
-Needs:
-
-- ability to launch MCP, API, and A2A visually
-- sane defaults
-- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
-
----
+- capacidad de iniciar MCP, API y A2A visualmente
+- valores predeterminados sensatos
+- ajuste opcional de puertos, transporte, persistencia, modo ejecutor, autenticación y modo local---
 
 ## 6. Target UX Model
 
-The product should expose three layers:
+El producto debe exponer tres capas:### 6.1 Expert Mode
 
-### 6.1 Expert Mode
+Comandos directos y banderas.
 
-Direct commands and flags.
-
-Examples:
+Ejemplos:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills mcp stream --local`
-- `npx omni-skills a2a --port 3335`
+- `npx omni-skills a2a --puerto 3335`### 6.2 Guided Install Mode
 
-### 6.2 Guided Install Mode
+Se activa cuando:
 
-Triggered when:
+- el usuario ejecuta `npx omni-skills` en un TTY sin argumentos
+- el usuario ejecuta `npx omni-skills install` sin selectores concretos
+- el usuario opta explícitamente por el modo guiado
 
-- the user runs `npx omni-skills` in a TTY with no args
-- the user runs `npx omni-skills install` with no concrete selectors
-- the user explicitly opts into guided mode
+El flujo de instalación guiada debe recorrer:
 
-The guided install flow should walk through:
+1. cliente de destino o ruta personalizada
+2. tipo de instalación
+3. selección de habilidades o paquetes
+4. vista previa
+5. confirmación
+6. ejecución
+7. próximos pasos### 6.3 Visual Operations Hub
 
-1. target client or custom path
-2. install type
-3. skill or bundle selection
-4. preview
-5. confirmation
-6. execution
-7. next steps
-
-### 6.3 Visual Operations Hub
-
-Triggered by:
+Provocado por:
 
 - `npx omni-skills ui`
 
-This should become the “home screen” for non-expert users and operators.
+Esta debería convertirse en la “pantalla de inicio” para usuarios y operadores no expertos.
 
-Core actions:
+Acciones principales:
 
-- install skills
-- discover skills
-- start MCP
-- start API
-- start A2A
-- run doctor
-- run smoke checks
-
----
+- instalar habilidades
+- descubrir habilidades
+- iniciar MCP
+- iniciar API
+- iniciar A2A
+- ejecutar doctor
+- realizar controles de humo---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-Outcome:
+Resultado:
 
-- `npx omni-skills` in TTY no longer silently assumes Antigravity
-- users are prompted to choose a client or custom path
+- `npx omni-skills` en TTY ya no asume silenciosamente Antigravity
+- se solicita a los usuarios que elijan un cliente o una ruta personalizada
 
-Requirements:
+Requisitos:
 
-- preserve non-TTY default install behavior
-- add target selector
-- support custom path capture
+- preservar el comportamiento de instalación predeterminado que no es TTY
+- agregar selector de objetivos
+- admite captura de ruta personalizada### Phase 2: Guided Install Wizard
 
-### Phase 2: Guided Install Wizard
+Resultado:
 
-Outcome:
+- la instalación se convierte en un flujo totalmente guiado
 
-- installation becomes a full guided flow
+Requisitos:
 
-Requirements:
+- selección del modo de instalación:
+  - biblioteca completa
+  - una habilidad
+  - un paquete
+  - buscar y luego instalar
+- instalar vista previa
+- representación de comando equivalente
+- confirmación y ejecución### Phase 3: Visual Terminal Shell
 
-- install mode selection:
-  - full library
-  - one skill
-  - one bundle
-  - search then install
-- install preview
-- equivalent command rendering
-- confirmation and execution
+Resultado:
 
-### Phase 3: Visual Terminal Shell
+- la interfaz de usuario de texto básica actual se convierte en una aplicación de terminal de marca
 
-Outcome:
+Requisitos:
 
-- the current basic text UI becomes a branded terminal application
+- diseño más rico
+- marca y logotipo del proyecto
+- mejor paso a paso y tarjetas
+- navegación basada en teclado
+- Implementación de terminal React vía Ink### Phase 4: Visual Service Hub
 
-Requirements:
+Resultado:
 
-- richer layout
-- project branding and logo
-- better stepper and cards
-- keyboard-driven navigation
-- React terminal implementation via Ink
+- MCP, API y A2A se pueden iniciar desde la interfaz de usuario visual
 
-### Phase 4: Visual Service Hub
+Requisitos:
 
-Outcome:
+- flujo MCP guiado
+- flujo API guiado
+- flujo A2A guiado
+- modo visible y vistas previas de configuración### Phase 5: Saved Profiles and Repeatability
 
-- MCP, API, and A2A are startable from the visual UI
+Resultado:
 
-Requirements:
+- Los ajustes preestablecidos de instalación o servicio comunes se pueden reutilizar
 
-- guided MCP flow
-- guided API flow
-- guided A2A flow
-- visible mode and config previews
+Requisitos:
 
-### Phase 5: Saved Profiles and Repeatability
+- recordar objetivos recientes
+- ajustes preestablecidos de servicio guardados
+- comandos recientes
+- paquetes o habilidades favoritos### Phase 6: Hardening, Tests, and Documentation
 
-Outcome:
+Resultado:
 
-- common install or service presets can be reused
+- la UX se convierte en una interfaz pública mantenida, no en una conveniencia ad hoc
 
-Requirements:
+Requisitos:
 
-- remember recent targets
-- saved service presets
-- recent commands
-- favorite bundles or skills
-
-### Phase 6: Hardening, Tests, and Documentation
-
-Outcome:
-
-- the UX becomes a maintained public interface, not an ad hoc convenience
-
-Requirements:
-
-- smoke coverage
-- regression tests
-- doc updates
-- operator guidance
-- package compatibility review
-
----
+- cobertura de humo
+- pruebas de regresión
+- actualizaciones de documentos
+- guía del operador
+- revisión de compatibilidad del paquete---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- `omni-skills`
-- `omni-skills install`
-- `omni-skills find`
-- `omni-skills ui`
-- `omni-skills mcp`
-- `omni-skills api`
-- `omni-skills a2a`
-- `omni-skills doctor`
-- `omni-skills smoke`
+- `omni-habilidades`
+- `instalación de omni-habilidades`
+- `hallazgo de omni-habilidades`
+- `ui-ui de habilidades omni`
+- `omni-habilidades mcp`
+- `api de omni-habilidades`
+- `omni-habilidades a2a`
+- `médico omni-habilidades`
+- `humo de omnihabilidades`### Recommended Behavior
 
-### Recommended Behavior
-
-| Invocation | Behavior |
+| Invocación | Comportamiento |
 |:-----------|:---------|
-| `omni-skills` in TTY, no args | Guided install entry |
-| `omni-skills` in non-TTY, no args | Current Antigravity default install |
-| `omni-skills install` in TTY, no selectors | Guided install wizard |
-| `omni-skills install --guided` | Force guided install flow |
-| `omni-skills ui` | Open the visual operations hub |
-| explicit flags | Execute directly without detouring into the guided flow |
-
----
+| `omni-skills` en TTY, sin argumentos | Entrada de instalación guiada |
+| `omni-skills` en no TTY, sin argumentos | Instalación predeterminada actual de Antigravity |
+| `instalación omni-skills` en TTY, sin selectores | Asistente de instalación guiada |
+| `instalación omni-skills --guiada` | Flujo de instalación guiado por la fuerza |
+| `omni-habilidades ui` | Abra el centro de operaciones visuales |
+| banderas explícitas | Ejecutar directamente sin desviarse del flujo guiado |---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Options:
+Opciones:
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
-- Custom path
+- Código Claude
+- Cursores
+- CLI de Géminis
+- CLI del Códice
+-Kiro
+- Antigravedad
+- Código abierto
+- Ruta personalizada
 
-Output:
+Salida:
 
-- selected known target OR custom filesystem path
+- destino conocido seleccionado O ruta de sistema de archivos personalizada### Step 2: Choose Install Type
 
-### Step 2: Choose Install Type
+Opciones:
 
-Options:
+- biblioteca completa
+- una habilidad publicada
+- un paquete
+- buscar y luego instalar
 
-- full library
-- one published skill
-- one bundle
-- search then install
+Salida:
 
-Output:
+- instalar alcance### Step 3: Resolve Selection
 
-- install scope
+Dependiendo del tipo de instalación:
 
-### Step 3: Resolve Selection
+- biblioteca completa: sin selector adicional
+- habilidad: listar o elegir una habilidad
+- paquete: enumera o elige un paquete
+- búsqueda: solicitar consulta, mostrar habilidades y paquetes coincidentes### Step 4: Preview
 
-Depending on install type:
+Pantalla:
 
-- full library: no additional selector
-- skill: list or choose a skill
-- bundle: list or choose a bundle
-- search: prompt for query, show matching skills and bundles
+- objetivo seleccionado
+- camino resuelto
+- habilidad o paquete seleccionado
+- comando CLI equivalente
+- si el flujo es selectivo o de instalación completa### Step 5: Confirm
 
-### Step 4: Preview
+El usuario confirma:
 
-Display:
+- si → ejecutar
+- no → cancelar o regresar### Step 6: Result
 
-- selected target
-- resolved path
-- selected skill or bundle
-- equivalent CLI command
-- whether the flow is selective or full install
+Pantalla:
 
-### Step 5: Confirm
-
-User confirms:
-
-- yes → execute
-- no → abort or go back
-
-### Step 6: Result
-
-Display:
-
-- success/failure
-- destination path
-- next step suggestion
-
----
+- éxito/fracaso
+- ruta de destino
+- sugerencia del siguiente paso---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-The operations hub should expose:
+El centro de operaciones debe exponer:### 10.1 Install
 
-### 10.1 Install
+- flujo de instalación guiado
+- búsqueda de habilidades o paquetes
+- ruta personalizada### 10.2 Discover
 
-- guided install flow
-- skill or bundle search
-- custom path
+- búsqueda de catálogo
+- filtros
+- vista previa de metadatos
+- instalar transferencia### 10.3 MCP
 
-### 10.2 Discover
+Opciones:
 
-- catalog search
-- filters
-- preview metadata
-- install handoff
+- transporte: stdio, stream, sse
+- modo local encendido/apagado
+- anfitrión
+- puerto### 10.4 API
 
-### 10.3 MCP
+Opciones:
 
-Options:
+- anfitrión
+- puerto
+- autenticación opcional
+- límite de tarifa opcional### 10.5 A2A
 
-- transport: stdio, stream, sse
-- local mode on/off
-- host
-- port
+Opciones:
 
-### 10.4 API
+- anfitrión
+- puerto
+- tipo de tienda: memoria, json, sqlite
+- ejecutor: en línea, proceso
+- opciones de arrendamiento cuando la cola sqlite está habilitada### 10.6 Diagnostics
 
-Options:
-
-- host
-- port
-- optional auth
-- optional rate limit
-
-### 10.5 A2A
-
-Options:
-
-- host
-- port
-- store type: memory, json, sqlite
-- executor: inline, process
-- lease options when sqlite queue is enabled
-
-### 10.6 Diagnostics
-
-- doctor
-- smoke
-
----
+- médico
+- fumar---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-The current `tools/bin/cli.js` mixes:
+Las mezclas actuales de `tools/bin/cli.js`:
 
-- command parsing
-- presentation
-- interactive prompts
-- action orchestration
-- service boot
+- análisis de comandos
+- presentación
+- indicaciones interactivas
+- orquestación de acciones
+- arranque de servicio
 
-The new structure should move reusable logic into:
+La nueva estructura debería trasladar la lógica reutilizable a:
 
-- `tools/lib/cli-actions/`
-- `tools/lib/install-flow/`
-- `tools/lib/service-flow/`
-- `tools/lib/ui-models/`
+- `herramientas/lib/cli-actions/`
+- `herramientas/lib/install-flow/`
+- `herramientas/lib/flujo-servicio/`
+- `herramientas/lib/ui-models/`### 11.2 Keep Installer Engine Separate
 
-### 11.2 Keep Installer Engine Separate
+`tools/bin/install.js` debe seguir siendo el backend con capacidad de escritura.
 
-`tools/bin/install.js` should remain the write-capable backend.
+La interfaz de usuario guiada debe llamar al backend del instalador existente en lugar de duplicar la lógica de instalación.### 11.3 Keep Find/Search Reusable
 
-The guided UI should call the existing installer backend rather than duplicating installation logic.
+El asistente de instalación guiada debería reutilizar la misma lógica de búsqueda de CLI y núcleo de catálogo que ya se encuentra activa:
 
-### 11.3 Keep Find/Search Reusable
+- `encontrar`
+- instalar vistas previas
+- resolución del paquete### 11.4 Prepare for Ink Without Forcing It Early
 
-The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
+La primera entrega puede permanecer en mensajes en modo texto.
 
-- `find`
-- install previews
-- bundle resolution
-
-### 11.4 Prepare for Ink Without Forcing It Early
-
-The first delivery can stay in text-mode prompts.
-
-But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
-
----
+Pero la arquitectura debe mantener una unión clara para que el flujo de texto pueda representarse posteriormente mediante Ink.---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Mitigation:
+Mitigación:
 
-- only open guided UI automatically in TTY
-- preserve current default in non-TTY
-- preserve explicit flag flows
+- solo abre la interfaz de usuario guiada automáticamente en TTY
+- preservar el valor predeterminado actual en no TTY
+- preservar los flujos de banderas explícitos### 12.2 Letting UI Own Business Logic
 
-### 12.2 Letting UI Own Business Logic
+Mitigación:
 
-Mitigation:
+- mover la orquestación a módulos de acción reutilizables
+- mantener la lógica de inicio del servicio e instalador debajo de la capa UI### 12.3 Ink Migration Too Early
 
-- move orchestration to reusable action modules
-- keep installer and service boot logic below the UI layer
+Mitigación:
 
-### 12.3 Ink Migration Too Early
+- primero enviar el flujo guiado en la pila de terminales del Nodo actual
+- luego migre a Ink una vez que la semántica de flujo sea estable### 12.4 Incomplete Service UX
 
-Mitigation:
+Mitigación:
 
-- first ship the guided flow in current Node terminal stack
-- then migrate to Ink once flow semantics are stable
-
-### 12.4 Incomplete Service UX
-
-Mitigation:
-
-- ship install wizard first
-- then layer guided service launch
-
----
+- enviar primero el asistente de instalación
+- luego lanzamiento del servicio guiado por capas---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- `npx omni-skills` in TTY no longer installs immediately
-- user can choose target client or custom path
-- non-TTY no-arg invocation still works as before
+- `npx omni-skills` en TTY ya no se instala inmediatamente
+- el usuario puede elegir el cliente de destino o la ruta personalizada
+- La invocación sin TTY y sin argumentos sigue funcionando como antes.### Phase 2
 
-### Phase 2
+- la instalación guiada admite biblioteca completa, habilidad, paquete y búsqueda e instalación
+- la vista previa siempre se muestra antes de escribir
+- se muestra el equivalente del comando### Phase 3
 
-- guided install supports full library, skill, bundle, and search-then-install
-- preview is always shown before write
-- command equivalent is displayed
+- existe una interfaz de usuario de terminal de marca
+- la interfaz de usuario está más estructurada visualmente que los menús simples de línea de lectura
+- la navegación es compatible con el teclado### Phase 4
 
-### Phase 3
+- los usuarios pueden iniciar MCP, API y A2A desde el centro visual
+- las principales opciones de tiempo de ejecución se pueden configurar de forma guiada### Phase 5
 
-- branded terminal UI exists
-- the UI is more visually structured than plain readline menus
-- navigation is keyboard-friendly
+- las preferencias recientes o guardadas son reutilizables
+- los flujos repetidos requieren menos indicaciones### Phase 6
 
-### Phase 4
-
-- users can start MCP, API, and A2A from the visual hub
-- major runtime options are configurable in guided form
-
-### Phase 5
-
-- recent or saved preferences are reusable
-- repeat flows take fewer prompts
-
-### Phase 6
-
-- smoke coverage reflects the new UX entrypoints
-- docs describe guided mode and service wizard behavior
-
----
+- la cobertura de humo refleja los nuevos puntos de entrada de UX
+- Los documentos describen el modo guiado y el comportamiento del asistente de servicio.---
 
 ## 14. Execution Order
 
-This roadmap must be implemented in this order:
+Esta hoja de ruta debe implementarse en este orden:
 
-1. Guided entrypoint selection
-2. Guided install wizard
-3. Visual terminal shell
-4. Visual service hub
-5. Saved profiles and repeatability
-6. Hardening, tests, and docs polish
+1. Selección guiada del punto de entrada
+2. Asistente de instalación guiada
+3. Carcasa del terminal visual
+4. Centro de servicios visuales
+5. Perfiles guardados y repetibilidad.
+6. Endurecimiento, pruebas y pulido de documentos.
 
-The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.
+El trabajo de implementación debe leer el archivo de tarea relevante antes de comenzar cada tarea para que el trabajo de CLI se mantenga alineado con el plan y no se desvíe.

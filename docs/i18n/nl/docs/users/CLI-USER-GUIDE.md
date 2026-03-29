@@ -5,39 +5,33 @@
 ---
 
 
-> **The full public CLI surface shipped by `omni-skills`.**
+>**Het volledige openbare CLI-oppervlak geleverd door `omni-skills`.**
 
-Use this guide when you want to:
+Gebruik deze handleiding als u:
 
-| Goal | Command Area |
+| Doel | Commandogebied |
 |:-----|:-------------|
-| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
-| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
-| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
-| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
-
----
+| 📥 Installeer vaardigheden of bundels | [Installeerstromen](#3️⃣-install-flows) |
+| 🔎 Zoek in de catalogus | [Catalogus ontdekken](#4️⃣-catalog-discovery) |
+| 🔌 MCP-clients configureren | [MCP-clientconfiguratie](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP-, API- of A2A-services | [MCP-server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Gebruik de visuele terminalshell | [Visuele shell](#9️⃣-visuele-shell) |
+| 🧪 Voer diagnostiek uit of preflight | [Diagnostiek](#🔟-diagnostiek-en-preflight) |---
 
 ## 1️⃣ Install and Entry Modes
 
-Install with `npx`:
-
-```bash
+Installeer met `npx`:```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Context | What Happens |
+| Context | Wat gebeurt er |
 |:--------|:------------|
-| 🖥️ TTY + no arguments | Opens the **guided install** flow |
-| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
-| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
-
----
+| 🖥️ TTY + geen argumenten | Opent de stroom**begeleide installatie**|
+| ⚙️ Niet-TTY + geen argumenten | Niet-interactieve installatie naar `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Merk**Inkt visuele schaal**|
+| 📝 `npx omni-skills ui --tekst` | Leesregel**tekst fallback**UI |---
 
 ## 2️⃣ Core Commands
 
@@ -45,22 +39,20 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Command | Description |
+| Commando | Beschrijving |
 |:--------|:-----------|
-| `ui` | 🎨 Visual terminal hub |
-| `find [query]` | 🔎 Catalog discovery |
-| `recategorize` | 🏷️ Taxonomy management |
-| `install [flags]` | 📥 Skill/bundle install |
-| `config-mcp` | 🔌 MCP client configuration |
-| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
-| `api` | 🌐 Catalog API |
-| `a2a` | 🤖 A2A runtime |
-| `smoke` | 🧪 Release preflight |
-| `publish-check` | 📦 Package publication check |
-| `doctor` | 🩺 Environment diagnostics |
-| `help` | ❓ Command reference |
-
----
+| `ui` | 🎨 Visuele terminalhub |
+| `vind [vraag]` | 🔎 Catalogus ontdekken |
+| `hercategoriseren` | 🏷️ Taxonomiebeheer |
+| `installeer [vlaggen]` | 📥 Vaardigheid/bundel installeren |
+| `config-mcp` | 🔌 MCP-clientconfiguratie |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP-servermodi |
+| `api` | 🌐 Catalogus-API |
+| `a2a` | 🤖 A2A-runtime |
+| `rook` | 🧪 Preflight vrijgeven |
+| `publicatiecontrole` | 📦 Pakketpublicatiecontrole |
+| `dokter` | 🩺 Omgevingsdiagnostiek |
+| `help` | ❓ Commandoreferentie |---
 
 ## 3️⃣ Install Flows
 
@@ -71,9 +63,7 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
-
-### 🎯 Single Skill
+> Met de begeleide stroom kunt u kiezen:**doelklant**→**bundel of vaardigheid**→**aangepast pad**→**voorbeeld vóór uitvoering**### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -90,19 +80,17 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Flag | Client |
+| Vlag | Klant |
 |:-----|:-------|
-| `--antigravity` | 🟣 Antigravity *(default)* |
-| `--claude` | 🟢 Claude Code |
+| `--antizwaartekracht` | 🟣 Antizwaartekracht *(standaard)* |
+| `--claude` | 🟢 ClaudeCode |
 | `--cursor` | 🔵 Cursor |
-| `--codex` | 🔴 Codex CLI |
-| `--gemini` | 🟡 Gemini CLI |
-| `--kiro` | 🟠 Kiro |
+| `--codex` | 🔴Codex CLI |
+| `--tweeling` | 🟡Gemini CLI |
+| `--kiro` | 🟠Kiro |
 | `--opencode` | ⚪ OpenCode |
 
-> Default install target (non-interactive): `~/.gemini/antigravity/skills`
-
----
+> Standaard installatiedoel (niet-interactief): `~/.gemini/antigravity/skills`---
 
 ## 4️⃣ Catalog Discovery
 
@@ -123,27 +111,23 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Flag | Purpose |
+| Vlag | Doel |
 |:-----|:--------|
-| `--category` | Filter by taxonomy category |
-| `--tool` | Filter by supported tool |
-| `--risk` | Filter by risk level |
-| `--sort` | Sort results (e.g., `quality`) |
-| `--order` | Sort order |
-| `--min-quality` | Minimum quality score |
-| `--min-best-practices` | Minimum best-practices score |
-| `--min-level` | Minimum maturity level |
-| `--min-security` | Minimum security score |
-| `--validation-status` | Filter by validation state |
-| `--security-status` | Filter by security state |
-
----
+| `--categorie` | Filteren op taxonomiecategorie |
+| `--gereedschap` | Filteren op ondersteunde tool |
+| `--risico` | Filter op risiconiveau |
+| `--sorteer` | Resultaten sorteren (bijvoorbeeld `kwaliteit`) |
+| `--bestelling` | Sorteervolgorde |
+| `--min-kwaliteit` | Minimale kwaliteitsscore |
+| `--min-best-practices` | Minimale score voor best practices |
+| `--min-niveau` | Minimum volwassenheidsniveau |
+| `--min-beveiliging` | Minimale beveiligingsscore |
+| `--validatiestatus` | Filter op validatiestatus |
+| `--beveiligingsstatus` | Filter op beveiligingsstatus |---
 
 ## 5️⃣ MCP Client Config
 
-Use `config-mcp` to preview or write client-aware MCP configuration.
-
-### 📋 List Targets
+Gebruik `config-mcp` om een ​​clientbewuste MCP-configuratie te bekijken of te schrijven.### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -169,27 +153,25 @@ npx omni-skills config-mcp \
 ```
 
 <details>
-<summary>🔌 <strong>Config-capable client surface</strong></summary>
+<summary>🔌 <strong>Config-compatibel clientoppervlak</strong></summary>
 
-| Client | Targets |
+| Klant | Doelstellingen |
 |:-------|:--------|
-| Claude | Settings and desktop targets |
-| Cursor | User and workspace |
-| Codex | TOML config |
-| Gemini | User and workspace |
-| Antigravity | User config |
-| OpenCode | User and workspace |
-| Cline | First-class target |
-| GitHub Copilot CLI | User and repo |
-| Kilo Code | User, project, and workspace |
-| Kiro | User and workspace |
-| Zed | Workspace |
-| VS Code | User, workspace, and Dev Container |
-| Continue | Workspace YAML |
-| Junie | Project and user |
-| Windsurf | User config |
-
-</details>
+| Claude | Instellingen en bureaubladdoelen |
+| Cursor | Gebruiker en werkruimte |
+| Codex | TOML-configuratie |
+| Tweeling | Gebruiker en werkruimte |
+| Antizwaartekracht | Gebruikersconfiguratie |
+| OpenCode | Gebruiker en werkruimte |
+| Klijn | Eersteklas doelwit |
+| GitHub Copilot-CLI | Gebruiker en repository |
+| Kilocode | Gebruiker, project en werkruimte |
+| Kiro | Gebruiker en werkruimte |
+| Zed | Werkruimte |
+| VS-code | Gebruiker, werkruimte en ontwikkelaarscontainer |
+| Ga verder | Werkruimte YAML |
+| juni | Project en gebruiker |
+| Windsurfen | Gebruikersconfiguratie |</details>
 
 ---
 
@@ -210,9 +192,7 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
-> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
-
----
+>**Lokale zijspan**voegt toe: clientdetectie, installatievoorbeeld, stromen installeren/verwijderen en MCP-configuratie schrijven.---
 
 ## 7️⃣ Catalog API
 
@@ -222,17 +202,15 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Route | Purpose |
+| Route | Doel |
 |:------|:--------|
-| `GET /healthz` | Health check |
-| `GET /openapi.json` | OpenAPI spec |
-| `GET /v1/skills` | List all skills |
-| `GET /v1/search` | Search the catalog |
-| `GET /v1/skills/:id/archives` | List archives for a skill |
-| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
-| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
-
----
+| `KRIJG /gezondheidz` | Gezondheidscontrole |
+| `GET /openapi.json` | OpenAPI-specificatie |
+| `GET /v1/skills` | Lijst van alle vaardigheden |
+| `GET /v1/zoeken` | Zoek in de catalogus |
+| `GET /v1/skills/:id/archives` | Archieven voor een vaardigheid weergeven |
+| `GET /v1/skills/:id/download/archive?format=zip` | Vaardighedenarchief downloaden |
+| `GET /v1/skills/:id/download/archive/checksums` | Controlesommen downloaden |---
 
 ## 8️⃣ A2A Runtime
 
@@ -242,17 +220,15 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Feature | Status |
+| Kenmerk | Staat |
 |:--------|:-------|
-| 🔎 Task-aware discovery | ✅ |
-| 📋 Install-plan handoff | ✅ |
+| 🔎 Taakbewust ontdekken | ✅ |
+| 📋 Overdracht installatieplan | ✅ |
 | 🔄 Polling | ✅ |
-| 📡 Streaming | ✅ |
-| ❌ Cancelation | ✅ |
-| 🔔 Push-notification config | ✅ |
-| 💾 Persistence | Memory, JSON, and SQLite |
-
----
+| 📡Streamen | ✅ |
+| ❌ Annulering | ✅ |
+| 🔔 Push-meldingsconfiguratie | ✅ |
+| 💾 Doorzettingsvermogen | Geheugen, JSON en SQLite |---
 
 ## 9️⃣ Visual Shell
 
@@ -262,19 +238,17 @@ npx omni-skills ui
 
 ### Functies
 
-| Feature | Description |
+| Kenmerk | Beschrijving |
 |:--------|:-----------|
-| 🧭 Guided install | Choose client or custom path |
-| 🔎 Search + install | No flag memorization needed |
-| 🔌 MCP config | Preview and write flows |
-| 🖥️ Service launch | MCP, API, and A2A guided startup |
-| 🕐 Recents | Recent installs and service relaunches |
-| ⭐ Favorites | Saved skills and bundles |
-| 💾 Presets | Named install and service presets |
+| 🧭 Begeleide installatie | Kies een client- of aangepast pad |
+| 🔎 Zoeken + installeren | Geen vlagmemorisatie nodig |
+| 🔌 MCP-configuratie | Stromen bekijken en schrijven |
+| 🖥️Servicelancering | MCP-, API- en A2A-geleide startup |
+| 🕐 Recent | Recente installaties en herlanceringen van services |
+| ⭐ Favorieten | Opgeslagen vaardigheden en bundels |
+| 💾 Voorinstellingen | Benoemde installatie- en servicevoorinstellingen |
 
-> **State path:** `~/.omni-skills/state/ui-state.json`
-
----
+>**Staatspad:**`~/.omni-skills/state/ui-state.json`---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -284,18 +258,14 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Inspects: repo state, local install state, runtime availability, and environment issues.
-
-### 🧪 Release Preflight
+> Inspecteert: repo-status, lokale installatiestatus, runtime-beschikbaarheid en omgevingsproblemen.### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
-
----
+> Valideert: build, tests, pakketuitvoer, service-boot, scannerdekking en release-verpakking.---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -308,22 +278,20 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Command | Purpose |
+| 🎯Persoon | Commando | Doel |
 |:-----------|:--------|:--------|
-| 🆕 New user | `npx omni-skills` | Guided first-time install |
-| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
-| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
-| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
-| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
-
----
+| 🆕 Nieuwe gebruiker | `npx omni-vaardigheden` ​​| Begeleide eerste installatie |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configureer lokale MCP |
+| 🔧 Operator | `npx omni-skills mcp-stream --local` | Start lokaal zijspan |
+| 📦 Onderhouder | `npx omni-skills rook` | Valideer een release |
+| 🔍 Hoofdgebruiker | `npx omni-skills vinden beveiliging --sorteerkwaliteit --min-kwaliteit 95` | Vind eerst de beste vaardigheid |---
 
 ## 📖 Related Documents
 
-| Doc | What It Covers |
-|:----|:--------------|
-| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
-| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
-| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
-| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |
+| Dok | Wat het omvat |
+|:----|:-------------|
+| 🚀 [Aan de slag](./GETTING-STARTED.md) | Installeer en verifieer in minder dan 2 minuten |
+| 📗 [Gebruiksgids](./USAGE.md) | Alle CLI-opdrachten, patronen en modi |
+| 📦 [Bundels](./BUNDLES.md) | Samengestelde vaardighedencollecties |
+| 🔧 [Systeemrunbook](../operations/RUNBOOK.md) | Operationele referentie |
+| 🔌 [Lokale MCP-zijspan](../specs/LOCAL-MCP-SIDECAR.md) | Bestandssysteemtools en configuratieschrijven |

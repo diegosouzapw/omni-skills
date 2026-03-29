@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**A csomagok a katalógus tetején rétegzett készségválasztók.**Most már mind a hét kezdőcsomagot teljes mértékben támogatják a közzétett készségek.---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+A `--bundle`**nem**telepít speciális csomagot. Ez:
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 Kibővíti a kiválasztott köteg definícióját
+2. ✅ Csak a katalógusban jelenleg elérhető tagokat telepíti
+3. ✅ Konkrét telepítési tervet készít a közzétett csomagtagokból```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+Az aktuálisan létrehozott katalógus (`dist/bundles.json`) alapján:
 
-| Bundle | Intended For | Available | Members |
-|:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| Csomag | Célja | Elérhető | Tagok |
+|:-------|:-------------|:-----------|:---------|
+| 🧰**essentials**| Minden fejlesztő |**4/4**| `készségek keresése` ✅ · `agyalás` ✅ · `architektúra` ✅ · `hibakeresés` ✅ |
+| 🌐**full-stack**| Webes és alkalmazásfejlesztők |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `adatbázis-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨**design**| Tervezési rendszerek és hozzáférhetőség |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
+| 🛡️**biztonság**| Biztonsági mérnökök |**4/4**| `biztonsági ellenőr` ✅ · `sebezhetőség-szkenner` ✅ · `incidens-reagálás` ✅ · `fenyegetés-modellezés` ✅ |
+| ⚙️**devops**| Platform és infra |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraforma` ✅ · `megfigyelhetőség-felülvizsgálat` ✅ · `kiadási tervezés` ✅ |
+| 🤖**ai-mérnök**| LLM és ML fejlesztők |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**oss-karbantartó**| OSS karbantartók |**4/4**| `készségek keresése` ✅ · `create-pr` ✅ · `módosítási napló` ✅ · `dokumentáció' ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = Megjelent és telepíthető---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+-**kurált kezdőpontot**szeretne egy domainhez
+- Olyan telepítési terveket szeretne, amelyek**kurátorok és domainspecifikusak maradnak**
+- Gyors módot szeretne egy szerepkör teljes működő készletének telepítésére### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+-**garantált minimális telepítést szeretne**
+- Már ismeri azt a**pontos készséget**, amelyre szüksége van
+- A**lehetőleg legkisebb helyigényt**szeretné egy összeállított működő készlet helyett---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
-|:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
-| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| Cél | Parancs |
+|:-----|:---------|
+| 🎯 Telepítsen egy adott közzétett készséget | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Teljesen alátámasztott kezdőcsomag | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Tervezőrendszer-csomag | `npx omni-skills --cursor --bundle design` |
+| 🔧 OSS munkafolyamat-csomag | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Biztonsági munkafolyamat-csomag | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps csomag | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI mérnöki csomag | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Döntés előtt keressen | `npx omni-skills find figma` |
+| 📋 Az összes elérhető csomag megtekintése | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+Használja a "search_skills" vagy "preview_install" eszközöket a csomagparaméterekkel.### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

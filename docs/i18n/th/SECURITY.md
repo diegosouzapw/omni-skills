@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**หากคุณพบปัญหาด้านความปลอดภัยใน Omni Skills อย่าเปิดประเด็นสาธารณะก่อน**
 
-Please report through one of these private channels:
+กรุณารายงานผ่านช่องทางส่วนตัวเหล่านี้:
 
-| Channel | How |
+| ช่อง | อย่างไร |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 คำแนะนำด้านความปลอดภัย GitHub | [เปิดที่ปรึกษาส่วนตัว](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 ติดต่อโดยตรง | ติดต่อผู้ดูแลโดยตรง |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 ส่วนประกอบหรือเส้นทางที่ได้รับผลกระทบ
+- 🔄 ขั้นตอนการสืบพันธุ์
+- ⚠️ การประเมินผลกระทบ
+- 🧪 เอกสารพิสูจน์แนวคิดใดๆ ที่จำเป็นในการตรวจสอบปัญหา
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ เรามุ่งมั่นที่จะรับทราบรายงานภายใน 48 ชั่วโมง**และจัดลำดับความสำคัญของการแก้ไขตามผลกระทบ---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+นโยบายนี้ครอบคลุมรันไทม์และพื้นผิวเนื้อหาของที่เก็บ:
 
-| Component | Path |
+| ส่วนประกอบ | เส้นทาง |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI และตัวติดตั้ง | `เครื่องมือ/ถังขยะ/` |
+| 📚 ห้องสมุดที่แชร์ | `เครื่องมือ/lib/` |
+| ⚙️ สคริปต์การสร้างและการตรวจสอบ | `เครื่องมือ/สคริปต์/` |
+| 📦 สิ่งประดิษฐ์แคตตาล็อกที่สร้างขึ้น | `dist/` |
+| 🌐 แพ็คเกจ API, MCP และ A2A | `แพ็คเกจ/` |
+| 🧠 เนื้อหาทักษะ | `ทักษะ/` — โดยเฉพาะคำสั่งเชลล์ การเข้าถึงเครือข่าย โฟลว์ข้อมูลรับรอง หรือคำแนะนำที่คำนึงถึงความปลอดภัย |---
 
 ## สถาปัตยกรรม
 
-The repository relies on the following security controls:
+พื้นที่เก็บข้อมูลอาศัยการควบคุมความปลอดภัยต่อไปนี้:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| ควบคุม | คำอธิบาย |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ สนามความเสี่ยง | ข้อมูลเมตาของทักษะมีการประกาศ `ระดับความเสี่ยง` |
+| 📊 การให้คะแนน | การตรวจสอบความถูกต้องจะคำนวณวุฒิภาวะ แนวปฏิบัติที่ดีที่สุด คุณภาพ และคะแนนความปลอดภัย |
+| 🔍 เครื่องสแกนแบบคงที่ | ตรวจสอบ `SKILL.md` ไฟล์แพ็กเกจ และสคริปต์ตัวช่วย |
+| 😢 เครื่องสแกนเสริม | การค้นหาแฮชของ ClamAV และ VirusTotal (เมื่อกำหนดค่า) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| ควบคุม | คำอธิบาย |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 ความปลอดภัยของเส้นทาง | ติดตั้งโฟลว์ใช้การตรวจสอบความปลอดภัยของเส้นทาง |
+| 🔒 รายการที่อนุญาต เขียน | รถเทียมข้างรถจักรยานยนต์ MCP ในเครื่องถูกจำกัดโดยรายการที่อนุญาต |
+| 👁️ ค่าเริ่มต้นการทดลองรัน | เครื่องมือเน้นการเขียนจะมีค่าเริ่มต้นเป็นการทดลองรัน เว้นแต่จะปิดใช้งาน | ไว้อย่างชัดเจน
+| 🔐 การตรวจสอบสิทธิ์และขีดจำกัด | การตรวจสอบสิทธิ์ผู้ถือ/คีย์ API, การตรวจสอบสิทธิ์รันไทม์ของผู้ดูแลระบบ, การจำกัดอัตรา, รายการที่อนุญาตของ CORS/IP |
+| 📋 ตรวจสอบ | การบันทึกการตรวจสอบ โหมดการบำรุงรักษา และรหัสคำขอ |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| ควบคุม | คำอธิบาย |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ รายการ Checksum | การตรวจสอบ SHA-256 สำหรับไฟล์เก็บถาวรที่สร้างขึ้น |
+| ✍️ ลายเซ็น | การตรวจสอบลายเซ็นเดี่ยวใน CI ก่อนเผยแพร่ |
+| 🧪 ตรวจควัน | ออกกำลังกายพื้นผิวรันไทม์ที่จัดส่งก่อนเผยแพร่ |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> งานรักษาความปลอดภัยหลักที่เหลืออยู่**ไม่ใช่**การชุบแข็งพื้นฐาน รายการที่เปิดรับคือ:
 
-| Area | Status |
+| พื้นที่ | สถานะ |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 การกำกับดูแลกิจการ | ข้อมูลระบุตัวตนภายนอก นโยบายเกตเวย์ และการรวม WAF เหนือการควบคุมในกระบวนการปัจจุบัน |
+| 🔌 นักเขียนลูกค้า MCP | ผู้เขียนที่กว้างขึ้นเฉพาะเมื่อสัญญาการกำหนดค่าสาธารณะมีเสถียรภาพเพียงพอ |
+| 📊 การปรับแต่งสแกนเนอร์ | การปรับปรุงอย่างต่อเนื่องเพื่อให้ทักษะพิเศษยังคงแยกออกจากทักษะที่มีโครงสร้างดีอย่างชัดเจน |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+แต่ละทักษะจะประกาศหนึ่งใน "ระดับความเสี่ยง" เหล่านี้:
 
-| Risk Level | Meaning |
-|:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| ระดับความเสี่ยง | ความหมาย |
+|:----------|:--------|
+| 🟢 `ปลอดภัย` | คาดว่าจะไม่มีการดำเนินการทำลายล้าง |
+| 🟡 `ข้อควรระวัง` | อาจแก้ไขไฟล์หรือโต้ตอบกับระบบภายนอก |
+| 🔴 `น่ารังเกียจ` | ขั้นตอนการทดสอบความปลอดภัยหรือฝ่ายตรงข้ามที่ต้องได้รับอนุญาตอย่างชัดเจน |
+| ❌ `วิกฤต` | การดำเนินการที่มีผลกระทบสูงหรือระดับระบบ |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+เนื่องจาก Omni Skills จัดส่งตัวช่วยปฏิบัติการ เครื่องมือภายในที่รับรู้ระบบไฟล์ และผู้เขียนการกำหนดค่าเฉพาะไคลเอ็นต์ คลาสช่องโหว่เหล่านี้จึงควรได้รับการปฏิบัติเป็น**ลำดับความสำคัญสูง**แม้ว่าคลาสเหล่านั้นจะปรากฏเป็น "เฉพาะในเครื่องเท่านั้น":
 
-| Category | Examples |
+| หมวดหมู่ | ตัวอย่าง |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 การสำรวจเส้นทาง | Directory Escape ผ่านการติดตั้งทักษะหรือเส้นทางการกำหนดค่า |
+| 🔗 ความปลอดภัยของ Symlink | Symlink ต่อไปนี้ระหว่างการติดตั้งหรือการแยกไฟล์เก็บถาวร |
+| 🖥️ การดำเนินการตามคำสั่ง | การแทรกคำสั่งตามอำเภอใจผ่านเนื้อหาทักษะหรือสคริปต์ |
+| 📦 การตรวจสอบเอกสารถาวร | ข้ามการตรวจสอบผลรวมหรือการตรวจสอบลายเซ็น |
+| 🔓 บายพาสการรับรองความถูกต้อง | การจำกัดอัตราหรือบายพาสการรับรองความถูกต้องบน API/MCP |
+| 🔌 บายพาสรายการที่อนุญาต | การหลีกเลี่ยงรายการที่อนุญาตสำหรับรถเทียมข้างรถจักรยานยนต์ในพื้นที่ |
+| 😢 การหลบเลี่ยงเครื่องสแกน | คลาสลบลวงในสแกนเนอร์แบบคงที่หรือภายนอก |

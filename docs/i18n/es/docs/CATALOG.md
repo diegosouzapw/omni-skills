@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Generado automáticamente a partir de `skills_index.json`: 32 habilidades en 15 categorías.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Generado: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
+- [🧠 Agentes Ai (5)](#agentes-ai)
 - [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
-- [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
+- [⚙️ Automatización CLI (1)](#cli-automation)
+- [💬 Comunicación (1)](#comunicación)
+- [🤖 Datos Ai (1)](#datos-ai)
+- [🎨 Diseño (3)](#diseño)
+- [💻 Desarrollo (3)](#desarrollo)
 - [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [📝 Documentación (2)](#documentación)
+- [🖼️ Interfaz (1)](#frontend)
+- [🌐 Web de pila completa (1)](#fullstack-web)
+- [📈 Aprendizaje automático (1)](#machine-learning)
+- [🧭 Producto (1)](#producto)
+- [🛡️ Prueba de seguridad (4)](#testing-security)
+- [🧰 Herramientas (1)](#herramientas)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`ingeniería-contexto`](../skills/ingeniería-contexto/SKILL.md) | Habilidad de flujo de trabajo de ingeniería de contexto. Utilice esta habilidad cuando un usuario necesite dar forma a las indicaciones, recuperar el contexto, la memoria y | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Habilidad de flujo de trabajo de diseño de evaluación. Utilice esta habilidad cuando un usuario necesite planes de evaluación de LLM, conjuntos de regresión, rúbricas de puntuación, o | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Habilidad de flujo de trabajo de aplicaciones LLM. Utilice esta habilidad cuando un usuario necesite patrones sólidos para el uso de herramientas, resultados estructurados, fallb | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Habilidad de flujo de trabajo de ingeniería rápida. Utilice esta habilidad cuando un usuario necesite instrucciones de tareas más claras, ejemplos, descomposición, | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | Habilidad de flujo de trabajo RAG. Utilice esta habilidad cuando un usuario necesite procesos de recuperación, fragmentación, clasificación, citas y evaluación f | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | Habilidad de flujo de trabajo de diseño de API. Utilice esta habilidad cuando un usuario necesite un contrato de servicio o HTTP claro antes de la implementación. | Recursos L3 | 100/100 | 95/100 | 95/100 aprobado |
+| [`diseño-base-de-datos`](../skills/design-base-datos/SKILL.md) | Habilidad de flujo de trabajo de diseño de bases de datos. Utilice esta habilidad cuando un usuario necesite un esquema duradero, indexación y diseño de migración antes de i | Recursos L3 | 98/100 | 94/100 | 95/100 aprobado |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`buscar-habilidades`](../skills/find-skills/SKILL.md) | Habilidad de flujo de trabajo de descubrimiento de catálogos. Utilice esta habilidad cuando un usuario solicite una capacidad, un flujo de trabajo o un asistente específico de un dominio | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Habilidad de flujo de trabajo de solicitud de extracción. Utilice esta habilidad cuando un usuario necesite una narrativa de revisión clara, un marco de riesgo y una guía para el revisor | Recursos L3 | 98/100 | 95/100 | 95/100 aprobado |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`contratos-de-datos`](../skills/contratos-de-datos/SKILL.md) | Habilidad de flujo de trabajo de contratos de datos. Utilice esta habilidad cuando un equipo necesite definir, revisar o hacer cumplir contratos entre productores | Recursos L3 | 97/100 | 95/100 | 95/100 aprobado |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`auditoría-de-acceso`](../skills/auditoría-de-acceso/SKILL.md) | Habilidad de flujo de trabajo de auditoría de accesibilidad. Utilice esta habilidad cuando un usuario necesite teclado, semántica, enfoque, contraste, movimiento o como | Recursos L3 | 100/100 | 99/100 | 95/100 aprobado |
+| [`sistemas-de-diseño-ops`](../skills/sistemas-de-diseño-ops/SKILL.md) | Habilidad de flujo de trabajo de operaciones de sistemas de diseño. Utilice esta habilidad cuando un usuario necesite gobernanza de tokens, control de deriva de componentes, re | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Diseñar habilidades de flujo de trabajo de gobernanza de tokens. Utilice esta habilidad cuando un equipo necesite presentar, cambiar el nombre, desaprobar o revisar desi | Recursos L3 | 97/100 | 95/100 | 95/100 aprobado |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`arquitectura`](../skills/architecture/SKILL.md) | Habilidad de flujo de trabajo de arquitectura. Utilice esta habilidad cuando un usuario necesite límites del sistema, compensaciones o una implementación por etapas p | Recursos L3 | 98/100 | 94/100 | 95/100 aprobado |
+| [`depuración`](../skills/debugging/SKILL.md) | Habilidad de depuración del flujo de trabajo. Utilice esta habilidad cuando un usuario necesite reproducción disciplinada, aislamiento y verificación de arreglos | Recursos L3 | 98/100 | 94/100 | 95/100 aprobado |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Habilidad de flujo de trabajo de Figma. Utilice esta habilidad cuando un usuario necesite implementación de diseño a código, inspección de Figma, búsqueda de tokens, Co | Recursos L3 | 100/100 | 100/100 | 95/100 aprobado |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Habilidad de flujo de trabajo de Docker. Utilice esta habilidad cuando un usuario necesite Dockerfiles, estrategia de creación de imágenes, refuerzo del tiempo de ejecución o contener | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Habilidad de flujo de trabajo de Kubernetes. Utilice esta habilidad cuando un usuario necesite manifiestos de carga de trabajo, estrategia de implementación, exposición al servicio o c | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`revisión-de-observabilidad`](../skills/revisión-de-observabilidad/SKILL.md) | Habilidad de flujo de trabajo de observabilidad. Utilice esta habilidad cuando un usuario necesite registros, métricas, seguimientos, alertas o revisión de SLO antes del envío. Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Liberar la habilidad del flujo de trabajo de ingeniería. Utilice esta habilidad cuando un usuario necesite un plan de lanzamiento más seguro, una política de promoción o un plan de reversión. Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`terraform`](../skills/terraform/SKILL.md) | Habilidad de flujo de trabajo de Terraform. Utilice esta habilidad cuando un usuario necesite infraestructura como estructura de código, módulos, estrategia de estado o | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## Documentación
 
-## Documentación
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`registro de cambios`](../skills/changelog/SKILL.md) | Habilidad de flujo de trabajo de notas de la versión. Utilice esta habilidad cuando un usuario necesite entradas de registro de cambios, notas de actualización o una versión concisa na | Recursos L3 | 98/100 | 94/100 | 95/100 aprobado |
+| [`documentación`](../skills/documentation/SKILL.md) | Habilidad en el flujo de trabajo de documentación. Utilice esta habilidad cuando un usuario necesite una incorporación precisa, orientación operativa o área de lanzamiento | Recursos L3 | 99/100 | 96/100 | 95/100 aprobado |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`diseño-frontend`](../skills/diseño-frontend/SKILL.md) | Habilidad de flujo de trabajo de diseño frontend. Utilice esta habilidad cuando un usuario necesite estructura, estados y patrones de interacción de la interfaz de usuario antes de i | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Habilidad de flujo de trabajo de autenticación y autorización. Utilice esta habilidad cuando un usuario necesite inicio de sesión, sesión, token, rol o permiso | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Habilidad de flujo de trabajo de servicio modelo. Utilice esta habilidad cuando un equipo necesite diseñar, revisar o reforzar la inferencia en línea, la infección por lotes | Recursos L3 | 97/100 | 95/100 | 95/100 aprobado |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`lluvia de ideas`](../skills/brainstorming/SKILL.md) | Habilidad de flujo de trabajo de lluvia de ideas. Utilice esta habilidad cuando un usuario esté explorando un problema y necesite opciones, compensaciones y una recuperación. Recursos L3 | 99/100 | 96/100 | 95/100 aprobado |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`respuesta-incidente`](../skills/respuesta-incidente/SKILL.md) | Habilidad de flujo de trabajo de respuesta a incidentes. Utilice esta habilidad cuando un usuario necesite clasificación de interrupciones, secuenciación de mitigación, comunicación de partes interesadas | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`auditor-de-seguridad`](../skills/auditor-seguridad/SKILL.md) | Habilidad de flujo de trabajo de auditoría de seguridad. Utilice esta habilidad cuando un usuario necesite una revisión centrada en riesgos de seguridad concretos en lugar de | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`modelado de amenazas`](../skills/modelado de amenazas/SKILL.md) | Habilidad de flujo de trabajo de modelado de amenazas. Utilice esta habilidad cuando un usuario necesite límites de confianza, objetivos del atacante, casos de abuso o mitig | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |
+| [`escáner de vulnerabilidad`](../skills/vulnerability-scanner/SKILL.md) | Habilidad de flujo de trabajo de escaneo de vulnerabilidades. Utilice esta habilidad cuando un usuario necesite cobertura repetible para vulnerabilidades conocidas, u | Recursos L3 | 99/100 | 97/100 | 95/100 aprobado |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Habilidad | Descripción | Nivel | Mejores prácticas | Calidad | Seguridad |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | Habilidad de flujo de trabajo de creación de servidor MCP. Utilice esta habilidad cuando un equipo necesite diseñar, implementar, validar o documentar un Modo | Recursos L3 | 97/100 | 95/100 | 95/100 aprobado |

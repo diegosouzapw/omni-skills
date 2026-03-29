@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> تم إنشاؤها تلقائيًا من `skills_index.json` - 32 مهارة عبر 15 فئة.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+تم الإنشاء: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
-- [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
-- [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [🧠 وكلاء Ai (5)](#ai-agents)
+- [🗄️ الواجهة الخلفية (2)](#الواجهة الخلفية)
+- [⚙️ أتمتة Cli (1)](#cli-automation)
+- [💬 التواصل (١)](#التواصل)
+- [🤖 داتا آي (١)](#data-ai)
+- [🎨 التصميم (3)](#تصميم)
+- [💻 التطوير (٣)](#تطوير)
+- [☁️ ديفوبس (٥)](#devops)
+- [📝التوثيق (٢)](#التوثيق)
+- [🖼️ الواجهة الأمامية (1)](#الواجهة الأمامية)
+- [🌐 ويب فولستاك (1)](#fullstack-web)
+- [📈 التعلم الآلي (١)](#التعلم الآلي)
+- [🧭 المنتج (1)](#المنتج)
+- [🛡️ اختبار الأمان (٤)](#اختبار-الأمن)
+- [🧰 الأدوات (1)](#أدوات)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`هندسة السياق`](../skills/context-engineering/SKILL.md) | مهارة سير العمل في هندسة السياق. استخدم هذه المهارة عندما يحتاج المستخدم إلى تشكيل المطالبات وسياق الاسترجاع والذاكرة و| موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`تقييم التصميم`](../skills/eval-design/SKILL.md) | مهارة سير العمل في تصميم التقييم. استخدم هذه المهارة عندما يحتاج المستخدم إلى خطط تقييم LLM، أو مجموعات الانحدار، أو نماذج التقييم، أو | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`أنماط-llm`](../skills/llm-patterns/SKILL.md) | مهارة سير عمل تطبيق LLM. استخدم هذه المهارة عندما يحتاج المستخدم إلى أنماط قوية لاستخدام الأداة، أو المخرجات المنظمة، أو Fallb | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`مهندس مطالبة`](../skills/prompt-engineer/SKILL.md) | مهارة سير العمل الهندسي الفوري. استخدم هذه المهارة عندما يحتاج المستخدم إلى تعليمات مهمة أوضح وأمثلة وتحليل و| موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`مهندس خرقة`](../skills/rag-engineer/SKILL.md) | مهارة سير العمل RAG. استخدم هذه المهارة عندما يحتاج المستخدم إلى مسارات الاسترجاع، والتقطيع، والتصنيف، والاستشهادات، والتقييم f | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | مهارة سير عمل تصميم API. استخدم هذه المهارة عندما يحتاج المستخدم إلى عقد HTTP أو عقد خدمة واضح قبل التنفيذ. | موارد L3 | 100/100 | 95/100 | مرت 95/100 |
+| [`تصميم قاعدة البيانات`](../skills/database-design/SKILL.md) | مهارة سير عمل تصميم قاعدة البيانات. استخدم هذه المهارة عندما يحتاج المستخدم إلى تصميم مخطط وفهرسة وترحيل دائم قبل | موارد L3 | 98/100 | 94/100 | مرت 95/100 |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`ابحث عن المهارات`](../skills/find-skills/SKILL.md) | مهارة سير عمل اكتشاف الكتالوج. استخدم هذه المهارة عندما يطلب المستخدم إمكانية أو سير عمل أو مساعد خاص بالمجال | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | مهارة سير عمل طلب السحب. استخدم هذه المهارة عندما يحتاج المستخدم إلى سرد مراجعة نظيف، وتأطير المخاطر، ودليل المراجع | موارد L3 | 98/100 | 95/100 | مرت 95/100 |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`عقود البيانات`](../skills/data-contracts/SKILL.md) | مهارة سير عمل عقود البيانات. استخدم هذه المهارة عندما يحتاج الفريق إلى تحديد العقود أو مراجعتها أو تنفيذها عبر المنتجين | موارد L3 | ٩٧/١٠٠ | 95/100 | مرت 95/100 |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`إمكانية الوصول إلى التدقيق`](../skills/accessibility-audit/SKILL.md) | مهارة سير عمل تدقيق إمكانية الوصول. استخدم هذه المهارة عندما يحتاج المستخدم إلى لوحة المفاتيح أو الدلالات أو التركيز أو التباين أو الحركة أو | موارد L3 | 100/100 | 99/100 | مرت 95/100 |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | مهارة سير عمل عمليات أنظمة التصميم. استخدم هذه المهارة عندما يحتاج المستخدم إلى إدارة الرمز المميز، أو التحكم في انحراف المكونات، أو إعادة | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | مهارة سير عمل حوكمة التصميم المميز. استخدم هذه المهارة عندما يحتاج الفريق إلى تقديم أو إعادة تسمية أو إهمال أو مراجعة منتديات | موارد L3 | ٩٧/١٠٠ | 95/100 | مرت 95/100 |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`الهندسة المعمارية`](../skills/architecture/SKILL.md) | مهارة سير العمل في الهندسة المعمارية. استخدم هذه المهارة عندما يحتاج المستخدم إلى حدود النظام أو المفاضلات أو التنفيذ المرحلي p | موارد L3 | 98/100 | 94/100 | مرت 95/100 |
+| [`تصحيح الأخطاء`](../skills/debugging/SKILL.md) | تصحيح مهارة سير العمل. استخدم هذه المهارة عندما يحتاج المستخدم إلى إعادة الإنتاج المنضبط والعزل وإصلاح إجراءات التحقق | موارد L3 | 98/100 | 94/100 | مرت 95/100 |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | مهارة سير العمل فيجما. استخدم هذه المهارة عندما يحتاج المستخدم إلى تنفيذ التصميم حسب التعليمات البرمجية، أو فحص Figma، أو البحث عن الرمز المميز، أو Co | موارد L3 | 100/100 | 100/100 | مرت 95/100 |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | مهارة سير عمل عامل الميناء. استخدم هذه المهارة عندما يحتاج المستخدم إلى ملفات Dockerfiles، أو استراتيجية إنشاء الصور، أو تقوية وقت التشغيل، أو تحتوي على | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | مهارة سير عمل Kubernetes. استخدم هذه المهارة عندما يحتاج المستخدم إلى بيانات عبء العمل، أو استراتيجية الطرح، أو التعرض للخدمة، أو c | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`مراجعة إمكانية الملاحظة`](../skills/observability-review/SKILL.md) | مهارة سير العمل وقابلية الملاحظة. استخدم هذه المهارة عندما يحتاج المستخدم إلى سجلات أو مقاييس أو آثار أو تنبيهات أو مراجعة SLO قبل الشحن | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`هندسة الإصدار`](../skills/release-engineering/SKILL.md) | إطلاق مهارة سير العمل الهندسي. استخدم هذه المهارة عندما يحتاج المستخدم إلى خطة إصدار أكثر أمانًا، أو سياسة الترويج، أو الرجوع إلى الحالة السابقة | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`terraform`](../skills/terraform/SKILL.md) | مهارة سير العمل Terraform. استخدم هذه المهارة عندما يحتاج المستخدم إلى بنية تحتية مثل بنية التعليمات البرمجية، أو الوحدات النمطية، أو إستراتيجية الحالة، أو | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## التوثيق
 
-## التوثيق
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`سجل التغيير`](../skills/changelog/SKILL.md) | مهارة سير العمل في ملاحظات الإصدار. استخدم هذه المهارة عندما يحتاج المستخدم إلى إدخالات سجل التغيير أو ملاحظات الترقية أو إصدار موجز | موارد L3 | 98/100 | 94/100 | مرت 95/100 |
+| [`التوثيق`](../skills/documentation/SKILL.md) | مهارة سير عمل التوثيق. استخدم هذه المهارة عندما يحتاج المستخدم إلى إعداد دقيق، أو توجيه تشغيلي، أو منطقة إطلاق | موارد L3 | 99/100 | 96/100 | مرت 95/100 |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`تصميم الواجهة الأمامية`](../skills/frontend-design/SKILL.md) | مهارة سير عمل تصميم الواجهة الأمامية. استخدم هذه المهارة عندما يحتاج المستخدم إلى بنية واجهة المستخدم والحالات وأنماط التفاعل قبل | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | مهارة سير عمل المصادقة والترخيص. استخدم هذه المهارة عندما يحتاج المستخدم إلى تسجيل الدخول أو الجلسة أو الرمز المميز أو الدور أو الإذن | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`خدمة النموذج`](../skills/model-serving/SKILL.md) | نموذج تقديم مهارة سير العمل. استخدم هذه المهارة عندما يحتاج الفريق إلى تصميم الاستدلال عبر الإنترنت أو مراجعته أو تعزيزه موارد L3 | ٩٧/١٠٠ | 95/100 | مرت 95/100 |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`العصف الذهني`](../skills/brainstorming/SKILL.md) | مهارة سير العمل بالعصف الذهني. استخدم هذه المهارة عندما يستكشف المستخدم مشكلة ما ويحتاج إلى خيارات ومقايضات وتذكير | موارد L3 | 99/100 | 96/100 | مرت 95/100 |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`استجابة الحادث`](../skills/incident-response/SKILL.md) | مهارة سير عمل الاستجابة للحوادث. استخدم هذه المهارة عندما يحتاج المستخدم إلى فرز الانقطاع وتسلسل التخفيف واتصال أصحاب المصلحة | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`مراجع الأمان`](../skills/security-auditor/SKILL.md) | مهارة سير عمل التدقيق الأمني. استخدم هذه المهارة عندما يحتاج المستخدم إلى مراجعة مركزة للمخاطر الأمنية الملموسة بدلاً من | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`نمذجة التهديدات`](../skills/threat-modeling/SKILL.md) | مهارة سير عمل نمذجة التهديد. استخدم هذه المهارة عندما يحتاج المستخدم إلى حدود الثقة أو أهداف المهاجم أو حالات إساءة الاستخدام أو التخفيف | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | مهارة مسح الثغرات الأمنية في سير العمل. استخدم هذه المهارة عندما يحتاج المستخدم إلى تغطية متكررة لنقاط الضعف المعروفة، ش | موارد L3 | 99/100 | ٩٧/١٠٠ | مرت 95/100 |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| مهارة | الوصف | المستوى | أفضل الممارسات | الجودة | الأمن |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | مهارة سير عمل تأليف خادم MCP. استخدم هذه المهارة عندما يحتاج الفريق إلى تصميم الوضع | أو تنفيذه أو التحقق من صحته أو توثيقه موارد L3 | ٩٧/١٠٠ | 95/100 | مرت 95/100 |

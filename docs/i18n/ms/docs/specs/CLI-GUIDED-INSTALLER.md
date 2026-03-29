@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Kontrak tingkah laku untuk pengalaman pemasangan berpandu dalam Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Spesifikasi ini mentakrifkan gelagat pemasangan berpandu yang terletak di atas hujung belakang pemasang sedia ada.
 
-It does not replace:
+Ia tidak menggantikan:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- bendera pakar semasa mengalir
+- manifes pemasangan terpilih
 
-It defines:
+Ia mentakrifkan:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- cara mod berpandu dimasukkan
+- cara destinasi dipilih
+- bagaimana skop pemasangan dipilih
+- maklumat pratonton apa yang mesti dipaparkan
+- bagaimana pengesahan dan pelaksanaan berfungsi---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI harus memasuki mod pemasangan berpandu apabila:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- pengguna menjalankan `kemahiran omni` tanpa args dalam TTY
+- pengguna menjalankan `pemasangan kemahiran omni` tanpa pemilih dalam TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+CLI juga harus menyokong mod berpandu eksplisit melalui pilihan khusus, seperti:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- `pemasangan kemahiran omni --dipandu`
 
-- `omni-skills install --guided`
+Mod ini harus berfungsi walaupun semasa input disalurkan dan tidak disambungkan pada TTY, selagi input standard tersedia.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Apabila dipanggil tanpa TTY dan tanpa mod berpandu diminta secara eksplisit:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- mengekalkan tingkah laku lalai semasa
+- jangan sekat menunggu gesaan---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Pemasangan berpandu mesti menyokong dua kelas destinasi:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Setiap sasaran yang diketahui memutuskan untuk:
 
-Each known target resolves to:
+- label boleh dibaca manusia
+- id alat dalaman
+- pasang bendera
+- jalan diselesaikan
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+Sasaran yang diketahui yang diperlukan:
 
-Required known targets:
-
-- Claude Code
-- Cursor
+- Kod Claude
+- Kursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Antigraviti
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Mod laluan tersuai mesti:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- gesa untuk laluan
+- selesaikan `~`
+- normalkan kepada laluan mutlak
+- tunjukkan laluan yang diselesaikan dalam pratonton---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Pemasangan berpandu mesti menyokong:### 4.1 Full Library
 
-### 4.1 Full Library
+Setara dengan pemasangan semasa tanpa `--skill` atau `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Membolehkan pengguna memilih satu kemahiran yang diterbitkan.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Membolehkan pengguna memilih satu himpunan susun atur dan menyelesaikan ahli yang diterbitkan.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Membolehkan pengguna:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- masukkan pertanyaan carian
+- periksa keputusan
+- pilih kemahiran atau berkas
+- teruskan ke pratonton pemasangan---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Sebelum pelaksanaan, pemasangan berpandu mesti memaparkan:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- label destinasi
+- laluan destinasi
+- memasang skop
+- kemahiran atau himpunan terpilih jika berkenaan
+- arahan CLI yang setara
 
-Optional but recommended:
+Pilihan tetapi disyorkan:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- ringkasan metadata kemahiran terpilih
+- ringkasan ketersediaan berkas---
 
 ## 6. Execution Contract
 
-After confirmation:
+Selepas pengesahan:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- wakil pemasangan berpandu ke bahagian belakang pemasang sedia ada
+- ia tidak melaksanakan semula fail menulis sendiri
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Pratonton arahan dan argumen pemasang yang diwakilkan sebenar mesti sepadan dengan tepat.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+Selepas pelaksanaan berjaya, hasil pemasangan berpandu harus menunjukkan:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- penunjuk kejayaan
+- laluan destinasi akhir
+- arahan yang telah dilaksanakan
+- tindakan yang disyorkan seterusnya
 
-Example next actions:
+Contoh tindakan seterusnya:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- gunakan kemahiran dalam klien yang dipilih
+- lari `doktor`
+- jalankan `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Perkara berikut kekal sah dan tidak berubah:
 
-- `omni-skills --cursor --skill omni-figma`
-- `omni-skills --bundle full-stack`
-- `omni-skills --path ./skills`
+- `kemahiran omni --kursor --kemahiran omni-figma`
+- `kemahiran omni --bundle full-stack`
+- `kemahiran omni --path ./skills`
 - `omni-skills find figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Mod berpandu menambah tingkah laku. Ia tidak membuang tingkah laku sedia ada.

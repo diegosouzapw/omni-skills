@@ -5,107 +5,89 @@
 ---
 
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
-
----
+>**Plán evolúcie architektúry pre Omni Skills: od inštalačného úložiska po zdieľaný katalógový runtime napájajúci CLI, API, MCP a A2A bez duplikovania logiky.**---
 
 ## 📊 Current Platform Areas
 
-| Phase | Name | Status |
+| Fáza | Meno | Stav |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Current |
-| 2️⃣ | Read-Only Catalog API | ✅ Current |
-| 3️⃣ | MCP Discovery Surface | ✅ Current |
-| 4️⃣ | Local Install and Config Surface | ✅ Current |
-| 5️⃣ | A2A Orchestration | ✅ Current |
+| 1️⃣ | Zmluvy a artefakty | ✅ Aktuálne |
+| 2️⃣ | Rozhranie API katalógu iba na čítanie | ✅ Aktuálne |
+| 3️⃣ | MCP Discovery Surface | ✅ Aktuálne |
+| 4️⃣ | Lokálna inštalácia a konfigurácia povrchu | ✅ Aktuálne |
+| 5️⃣ | Orchester A2A | ✅ Aktuálne |### ✅ What Exists Today
 
-### ✅ What Exists Today
+- strojovo čitateľné artefakty katalógu v `dist/`
+- HTTP API iba na čítanie s pokrytím koncových bodov pre vyhľadávanie, balíky, porovnávanie, plánovanie inštalácie a sťahovanie
+- Server MCP s prenosom `stdio`, streamovateľným HTTP a SSE
+- lokálny postranný vozík s povolenými zápismi a tokmi `config-mcp`
+- 7 klientov s možnosťou inštalácie, 16 klientov s možnosťou konfigurácie, 33 cieľov konfigurácie MCP a 19 konfiguračných profilov
+– hlbšia špecializácia balíkov v rámci „úplného zásobníka“, „zabezpečenia“, „devops“ a „ai-engineer“ prostredníctvom „tokov overenia“, „modelovania hrozieb“, „inžinierstva uvoľnenia“ a „kontextového inžinierstva“
+- archívy pre jednotlivé zručnosti (`zip`, `tar.gz`) s kontrolnými súčtami SHA-256 a oddelenými podpismi na značkách vydania
+- Základná úroveň riadenia API: overenie nosiča/kľúča API, overenie za behu správcu, obmedzenie rýchlosti, protokolovanie auditu, zoznamy povolených CORS/IP, dôveryhodný proxy, režim údržby a ID žiadostí
+- Runtime A2A so životným cyklom úlohy, trvanlivosťou JSON/SQLite, obnovením reštartu, streamovaním SSE, zrušením, upozorneniami push, voliteľným spúšťačom procesov a voliteľnou prenajatou koordináciou### 🔭 Future Expansion Areas
 
-- machine-readable catalog artifacts in `dist/`
-- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
-- MCP server with `stdio`, streamable HTTP, and SSE transports
-- local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
-- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
-- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
-- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
+Hlavná cestovná mapa teraz popisuje súčasný rozsah platformy. Zvyšné položky sú oblasti budúceho rozšírenia, nie základné medzery:
 
-### 🔭 Future Expansion Areas
+- od tohto bodu len vysoko selektívne pridania MCP a len tam, kde oficiálne verejné dokumenty umožňujú bezpečné zapisovanie
+- hlbšie referenčné balíky a viac sémantického bodovania, takže klasifikátor neustále oddeľuje výnimočné zručnosti od iba vylepšených
+- podnikové riadenie nad rámec aktuálnej základnej línie procesu, ak projekt neskôr potrebuje integráciu brány alebo IdP
+- hlbšia špecializácia v rámci novo aktivovaných stôp `design`, `tools`, `data-ai` a `machine-learning'
+- pokračovanie v prevádzke okolo súkromného vylepšenia pri zachovaní jeho formálneho prevádzkového modelu: OmniRouter pripnutý na `cx/gpt-5.4`, hostovaný cloud v `simokovom` alebo zníženom preflighte a spoľahlivé `live` na LAN alebo samohostené spustenie
+- pokračujúce uvoľňovanie a upevňovanie pracovného toku len ako práca na kvalite služieb, nie ako chýbajúci základ platformy## Future Catalog Expansion Track
 
-The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
-
-- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
-- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
-- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
-- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
-- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
-
-## Future Catalog Expansion Track
-
-The first two public category-expansion waves are now landed:
+Prvé dve vlny rozšírenia verejnej kategórie sú teraz vysadené:
 
 - `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
 - `tools` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
-- `machine-learning` → `model-serving`
+- `strojové učenie` → `modelovanie`
 
-The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+Ďalším odporúčaným krokom už nie je aktivácia kategórie pre vlastnú potrebu. Ide o prehĺbenie týchto novo aktívnych kódovo natívnych stôp, aby sa cítili ako trvanlivé povrchy produktov a nie ako opory pre jednu zručnosť.
 
-Recommended direction:
+Odporúčaný smer:
 
-1. deepen `design` with more operational design-system workflows
-2. deepen `tools` with authoring and plugin-oriented skills
-3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
-4. deepen `machine-learning` with serving, training, and evaluation operations skills
+1. prehĺbiť „dizajn“ s operatívnejšími pracovnými postupmi návrhového systému
+2. prehĺbiť `nástroje` s tvorbou a zručnosťami orientovanými na pluginy
+3. prehĺbiť `data-ai` s implementáciou-prvým potrubím a prístrojovými zručnosťami
+4. prehĺbiť „strojové učenie“ pomocou zručností obsluhy, školenia a hodnotenia
 
-Categories intentionally deferred unless strong code-native proposals appear:
+Kategórie sú zámerne odložené, pokiaľ sa neobjavia silné kódové návrhy:
 
-- `business`
-- `content-media`
+- "podnikanie".
+- „obsahové médiá“.
 
-That expansion history is now tracked in:
+História expanzie sa teraz sleduje v:
 
-- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-
----
+- [../tasks/TASK-07-KATALÓG-ŠPECIALIZÁCIA-A-KATEGÓRIA-EXPANZIA.md](../tasks/TASK-07-KATALÓG-ŠPECIALIZÁCIA-A-KATEGÓRIA-EXPANZIA.md)
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
-- ✅ Introduce a machine-readable source of truth for skills
-- ✅ Support discovery, recommendation, and install planning by agents
-- ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
-
----
+- ✅ Udržujte aktuálny pracovný postup `npx omni-skills`
+- ✅ Predstavte strojovo čitateľný zdroj pravdy pre zručnosti
+- ✅ Podpora zisťovania, odporúčaní a plánovania inštalácie agentmi
+- ✅ Oddeľte obavy vzdialeného katalógu od zápisov do lokálneho súborového systému
+- ✅ Opätovne použite rovnaké metadáta v CLI, API, MCP a A2A---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote install-on-user-machine from a hosted server
-- ❌ Replace `SKILL.md` as the canonical authoring format
-- ❌ Require contributors to write manifests by hand
-- ❌ Turn the project into a heavy hosted queue platform by default
-
----
+- ❌ Vzdialená inštalácia na používateľskom počítači z hosťovaného servera
+- ❌ Nahraďte `SKILL.md` ako kanonický formát na tvorbu obsahu
+- ❌ Požadovať od prispievateľov, aby písali manifesty ručne
+- ❌ V predvolenom nastavení premeňte projekt na ťažkú hosťovanú frontovú platformu---
 
 ## 🏗️ Target Architecture
 
-One **catalog core** with three protocol surfaces:
+Jedno**katalógové jadro**s tromi protokolovými povrchmi:
 
-| Surface | Best For | Mode |
+| Povrch | Najlepšie pre | Režim |
 |:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
-| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
+| 🌐**REST API**| Prístup k registrom, integrácia používateľského rozhrania, spotrebitelia tretích strán | Len na čítanie |
+| 🔌**MCP**| Zisťovanie agentov, ukážky inštalácie, písanie konfigurácií, recepty klientov | Iba na čítanie + lokálne zápisy |
+| 🤖**A2A**| Orchesterizácia medzi agentmi a odovzdanie plánu inštalácie | Životný cyklus úlohy s jednoduchou lokálnou trvanlivosťou |### ⚙️ Core Principle
 
-### ⚙️ Core Principle
-
-> **All protocols consume the same generated artifact family.**
-
-```text
+>**Všetky protokoly využívajú rovnakú vygenerovanú rodinu artefaktov.**```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -115,178 +97,144 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
-
----
+Manifest zostáva zdieľanou zmluvou. Archívy sú distribučné artefakty navrstvené na tejto zmluve, nie jej náhrada.---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Used by hosted API and remote MCP servers.
+Používajú ho hosťované API a vzdialené servery MCP.
 
-| ✅ Allowed | ❌ Not Allowed |
+| ✅ Povolené | ❌ Nepovolené |
 |:-----------|:---------------|
-| Search skills | Write to the caller's filesystem |
-| Fetch manifests | Mutate local client config |
-| Compare skills | Infer arbitrary machine state |
-| Recommend bundles | — |
-| Build install plans | — |
+| Vyhľadávacie zručnosti | Napíšte do súborového systému volajúceho |
+| Načítať manifesty | Zmeňte konfiguráciu lokálneho klienta |
+| Porovnať zručnosti | Vyvodiť ľubovoľný stav stroja |
+| Odporučiť balíky | — |
+| Zostavte inštalačné plány | — |### 2️⃣ Local Installer Mode
 
-### 2️⃣ Local Installer Mode
+Používa ho CLI a postranný vozík MCP.
 
-Used by the CLI and the MCP sidecar.
+| ✅ Povolené |
+|:------------|
+| Zistiť miestnych klientov AI |
+| Skontrolujte nainštalované zručnosti |
+| Ukážka operácií so súbormi |
+| Nainštalujte alebo odstráňte adresáre zručností |
+| Po náhľade napíšte lokálnu konfiguráciu MCP |
 
-| ✅ Allowed |
-|:-----------|
-| Detect local AI clients |
-| Inspect installed skills |
-| Preview file operations |
-| Install or remove skill directories |
-| Write local MCP config after preview |
-
-> 📌 This remains the only mode where real OS writes happen.
-
----
+> 📌 Toto zostáva jediný režim, v ktorom dochádza k skutočným zápisom OS.---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Best for registry access, search, comparison, versioned downloads, and install planning.
+Najlepšie pre prístup k registrom, vyhľadávanie, porovnávanie, sťahovanie verzií a plánovanie inštalácie.
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**Koncové body**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`### 🔌 MCP
 
-### 🔌 MCP
+Najlepšie pre zisťovanie pomocou nástrojov, odporúčané odporúčania, ukážky inštalácie a nastavenie MCP špecifické pre klienta.
 
-Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
+**Nástroje iba na čítanie**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+**Miestne nástroje**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
 
-**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+Najlepšie na odovzdanie zisťovania, pracovné postupy podľa plánu inštalácie a obnovenie úloh agenta.
 
-### 🤖 A2A
-
-Best for discovery handoff, install-plan workflows, and resumable agent task execution.
-
-**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
-
----
+**Aktuálne operácie**: `discover-skills` · `recommend-stack` · `prepare-install-plan`---
 
 ## 🛡️ Security Model
 
-| Principle | Implementation |
+| Princíp | Implementácia |
 |:----------|:---------------|
-| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
-| 📂 Writes stay local | CLI and MCP sidecar only |
-| 👁️ Preview before write | Dry-run defaults on local mutations |
-| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
-| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
-| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
-
----
+| 🔒 Hostované služby sú len na čítanie | API a vzdialený MCP nezapisujú do súborového systému volajúceho |
+| 📂 Píše zostať miestne | Iba postranný vozík CLI a MCP |
+| 👁️ Ukážka pred napísaním | Predvolené nastavenie suchého chodu pri lokálnych mutáciách |
+| 🔑 Bezúhonnosť je jasná | Kontrolné súčty SHA-256 pre generované artefakty |
+| ✍️ Dôvera k uvoľneniu je explicitná | Oddelené podpisy vynútené na značkách uvoľnenia |
+| ⚠️ Riziko je na povrch | Metaúdaje o rizikách a zabezpečení sa šíria na každý povrch runtime |---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- documented target architecture
-- defined manifest schema
-- generated metadata, catalog, manifests, bundles, and archives
+- zdokumentovaná cieľová architektúra
+- definovaná schéma manifestu
+- generované metadáta, katalóg, manifesty, balíky a archívy### Phase 2: Catalog Service
 
-### Phase 2: Catalog Service
+- HTTP API iba na čítanie s Express 5
+- vyhľadávanie, filtrovanie, vyhľadávanie manifestov, zoznam balíkov, porovnávanie a sťahovanie
+- základná línia hostiteľskej správy riadená env### Phase 3: MCP Discovery
 
-- read-only HTTP API with Express 5
-- search, filtering, manifest lookup, bundle listing, comparison, and downloads
-- env-driven hosted governance baseline
+- oficiálna integrácia `@modelcontextprotocol/sdk`
+- `stdio`, streamovateľné prenosy HTTP a SSE
+- nástroje, zdroje a výzvy len na čítanie podporované zdieľaným katalógom### Phase 4: Local Install and Config Surface
 
-### Phase 3: MCP Discovery
+- miestny postranný vozík s povolenými zápismi
+- detekcia pre 7 klientov s možnosťou inštalácie
+- písanie konfigurácií pre 16 klientov schopných konfigurácie v 33 cieľoch a 19 konfiguračných profiloch
+- riadené toky `config-mcp` v CLI a vizuálnom prostredí
+- stabilná podpora pre kontajnery Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose a Dev Containers### Phase 5: A2A Orchestration
 
-- official `@modelcontextprotocol/sdk` integration
-- `stdio`, streamable HTTP, and SSE transports
-- read-only tools, resources, and prompts backed by the shared catalog
+- karta agenta na adrese `/.well-known/agent.json`
+- metódy konfigurácie `správa/odoslať`, `správa/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe` a push-notification
+- Trvalosť JSON a SQLite s obnovením po reštarte
+- voliteľný externý spúšťač procesov
+- voliteľné prenajaté vykonávanie medzi pracovníkmi pre SQLite a voliteľná pokročilá koordinácia Redis
+- jednoduché predvolené hodnoty uložené v pamäti, JSON alebo SQLite bez externých závislostí### Current Enhancer Operating Decision
 
-### Phase 4: Local Install and Config Surface
+Podporovaný „živý“ model súkromného vylepšovača je teraz explicitný:
 
-- local sidecar with allowlisted writes
-- detection for 7 install-capable clients
-- config writing for 16 config-capable clients across 33 targets and 19 config profiles
-- guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
-
-### Phase 5: A2A Orchestration
-
-- agent card at `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
-- JSON and SQLite persistence with restart recovery
-- optional external process executor
-- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
-- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
-
-### Current Enhancer Operating Decision
-
-The private enhancer's supported `live` model is now explicit:
-
-- hosted PR automation runs a preflight-gated `live` attempt
-- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
-- the canonical reliable `live` path remains LAN or local service execution
-- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
-
----
+- hostovaná PR automatizácia spustí predflight-gated "live" pokus
+- ak je verejná brána OmniRoute zablokovaná alebo nestabilná, PR sa označí ako „zablokované“ s dôvodom pre operátora namiesto nepriehľadného zlyhania
+- kanonická spoľahlivá `živá` cesta zostáva vykonávaním LAN alebo lokálnej služby
+- plánované súkromné spúšťanie GitHubu zostanú predvolene `mock`, pokiaľ operátor výslovne nepožiada `live`---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+**Rozhodnutie**: ponechajte manifest ako zdieľanú zmluvu a ponechajte si podpísané archívy jednotlivých zručností ako distribučný povrch.
 
-**Why**:
-- CLI, API, MCP, and A2A already consume the normalized manifest shape
-- archives are ideal for download and verification, but poor as the only discovery contract
-- this keeps authoring simple and distribution verifiable
+**Prečo**:
+- CLI, API, MCP a A2A už používajú normalizovaný tvar manifestu
+- archívy sú ideálne na sťahovanie a overovanie, ale sú slabé ako jediná zmluva o objavení
+- vďaka tomu je tvorba jednoduchá a distribúcia je overiteľná### 2. Private or Premium Catalogs
 
-### 2. Private or Premium Catalogs
+**Rozhodnutie**: Opätovne použite rovnaký formát manifestu a katalógu a externé overenie alebo pravidlá vrstvy.
 
-**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+**Prečo**:
+- zabraňuje rozvetveniu dátového modelu
+- zodpovedá súčasnému prístupu riadenia API/MCP
+- zostáva kompatibilný so smerovaním ekosystému MCP okolo poverení klienta OAuth a autorizácie spravovanej podnikom### 3. Client Writer Strategy
 
-**Why**:
-- it avoids forking the data model
-- it matches the current API/MCP governance approach
-- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+**Rozhodnutie**: konvergujte na malej skupine kanonických exportných rodín a ponechajte si na mieru šitých spisovateľov len tam, kde to vyžadujú oficiálne klientske dokumenty.
 
-### 3. Client Writer Strategy
-
-**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
-
-**Canonical families now in use**:
+**V súčasnosti sa používajú kanonické rodiny**:
 - JSON `mcpServers`
-- JSON `servers`
-- JSON `context_servers`
+- „servery“ JSON
+- JSON `kontextové_servery`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Why**:
-- it keeps the implementation maintainable
-- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
-- it avoids inventing fragile writers for clients without stable public config docs
-
----
+**Prečo**:
+- udržiava implementáciu udržiavateľnú
+- stále podporuje špecifické potreby klienta, ako sú nastavenia Claude, Continue YAML, Zed `context_servers` a Codex TOML
+- vyhýba sa vymýšľaniu krehkých spisovateľov pre klientov bez stabilných verejných konfiguračných dokumentov---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-The current decisions were checked against official ecosystem docs:
+Súčasné rozhodnutia boli porovnané s oficiálnymi dokumentmi o ekosystéme:
 
-- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
-- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
-- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
-- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
-
----
+- Ekosystém MCP teraz dokumentuje voliteľné rozšírenia, ako sú napríklad poverenia klienta OAuth a podnikom spravovaná autorizácia, ktorá podporuje externalizáciu hosteného overenia namiesto rozdelenia formátu katalógu
+- OpenAI dokumentuje verejný MCP server a Codex MCP konfiguračné vzory, ktoré sú v súlade so zdieľaným manifestom a stratégiou klient-zapisovateľ
+- VS Code dokumentuje prvotriednu podporu MCP a sprievodcu rozšírením, ktorý posilňuje údržbu vyhradeného zapisovača založeného na serveroch
+- JetBrains AI Assistant dokumentuje nastavenie MCP prostredníctvom používateľského rozhrania produktu namiesto stabilnej zmluvy o súboroch naprieč platformami, čo zatiaľ podporuje jeho uchovanie na území s manuálom/úryvkami---
 
 ## 🔮 Longer-Term Decision Points
 
-Only a few strategic questions remain genuinely open:
+Skutočne otvorených zostáva len niekoľko strategických otázok:
 
-1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
-2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
-3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
+1. Či niektorý klient mimo aktuálnej matice skutočne prekonáva latku pre prvotriedne písanie, alebo či zostávajúce produkty by mali zostať iba manuálne/úryvky
+2. Kedy, ak vôbec niekedy, by sa malo hostiteľské riadenie presunúť za externú bránu alebo podnikového IdP namiesto súčasnej základnej línie v procese?
+3. Ako ďaleko by mal hodnotiteľ zájsť pri hodnotení hĺbky referenčného balíka a prevádzkovej kvality, kým nebude pre prispievateľov príliš mienkotvorný?

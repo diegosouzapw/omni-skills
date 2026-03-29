@@ -5,50 +5,42 @@
 ---
 
 
-> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
-> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
-
----
+>**Omni Skills sisältää sekä taitoluettelon että sen päälle rakennetut ajonaikaiset pinnat.**
+> Avustukset voivat kohdistaa jompaankumpaan alueeseen, mutta molempien on pysyttävä luotujen artefaktien ja nykyisen CLI-käyttäytymisen mukaisia.---
 
 ## 📊 Repository Baseline
 
-| Metric | Value |
+| Metrinen | Arvo |
 |:-------|:------|
-| 📦 Package version | `0.1.3` |
-| 🧠 Published skills | `32` |
-| 📦 Fully backed bundles | `7` |
-| 🖥️ Install-capable clients | `7` |
-| 🔌 MCP config-capable clients | `16` |
-| 🔄 Automatic releases | Enabled on `main` |
-
----
+| 📦 Pakettiversio | "0.1.3" |
+| 🧠 Julkaistu taidot | "32" |
+| 📦 Täysin tuetut paketit | "7" |
+| 🖥️ Asennuskykyiset asiakkaat | "7" |
+| 🔌 MCP-konfigurointia tukevat asiakkaat | "16" |
+| 🔄 Automaattiset julkaisut | Käytössä "main" |---
 
 ## Tärkeää
 
-| What | Where |
+| Mitä | Missä |
 |:-----|:------|
-| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
-| 📖 Contributor templates and guidance | `docs/contributors/` |
-| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 Native incoming skills land under | `skills/` (any language) |
-| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
-| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
-| 📖 Runtime and architecture docs | `docs/` |
-| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
-
----
+| 🧠 Taidot on kirjoitettu | `taidot/<taidon nimi>/SKILL.md` |
+| 📖 Avustajamallit ja ohjeet | `docs/contributors/` |
+| 🧾 Kanoninen PR-virta uusille taidoille | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Kotimaiset saapuvat taidot laskeutuvat | `taidot/` (mikä tahansa kieli) |
+| ✨ Kuroidut parannetut johdannaiset | `skills_omni/` (vain englanniksi, automaattinen) |
+| 🚫 `skills_omni/` on suojattu | Ei avoin suoralle julkiselle rahoitukselle |
+| 📖 Ajonaikaiset ja arkkitehtuuridokumentit | `dokumentit/` |
+| 📄 Yhteisötiedostot | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `KÄYTTÖKOODI.md` |---
 
 ## 🎯 Common Contribution Types
 
-| Type | Area |
+| Tyyppi | Alue |
 |:-----|:-----|
-| 🧠 Add or improve a skill | `skills/` |
-| 📖 Update contributor guidance | `docs/contributors/` |
-| 🖥️ Improve CLI, installer, or scripts | `tools/` |
-| 📦 Improve catalog runtime or protocol packages | `packages/` |
-| 🧪 Tighten tests, smoke checks, or release docs | Various |
-
----
+| 🧠 Lisää tai paranna taitoa | `taidot/` |
+| 📖 Päivitä avustajan opas | `docs/contributors/` |
+| 🖥️ Paranna CLI:tä, asennusohjelmaa tai komentosarjoja | `työkalut/` |
+| 📦 Paranna luettelon suoritusaikaa tai protokollapaketteja | `paketit/` |
+| 🧪 Kiristä testejä, savutarkistuksia tai vapauta asiakirjoja | Erilaisia ​​|---
 
 ## Pikakäynnistys
 
@@ -73,22 +65,18 @@ npm test
 npm run smoke
 ```
 
-> **📝 Open the PR with `Allow edits from maintainers` enabled.**
-
----
+>**📝 Avaa PR, kun Salli ylläpidon muokkaukset on käytössä.**---
 
 ## Dokumentaatio
 
-A good native incoming skill should:
+Hyvän alkuperäisen saapuvan taidon tulee:
 
-- ✅ Solve a specific problem cleanly
-- ✅ Be reusable across projects
-- ✅ Include instructions an agent can actually follow
-- ✅ Avoid vague or redundant content
-- ✅ Declare accurate frontmatter and compatibility metadata when available
-- ✅ Land with generated `metadata.json` classification artifacts after automation runs
-
-### 📁 Minimal Structure
+- ✅ Ratkaise tietty ongelma siististi
+- ✅ Olla uudelleenkäytettävä kaikissa projekteissa
+- ✅ Sisällytä ohjeet, joita agentti voi todella noudattaa
+- ✅ Vältä epämääräistä tai tarpeetonta sisältöä
+- ✅ Ilmoita tarkat frontmatter- ja yhteensopivuusmetatiedot, kun ne ovat saatavilla
+- ✅ Maa, jossa on luotuja "metadata.json"-luokitusartefakteja automaation suorittamisen jälkeen### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -107,83 +95,67 @@ skills/my-skill/
 └── scripts/
 ```
 
-> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
+>**💡 Vinkki:**Julkaisutason taitopakettien tulee sisältää "agents/", "references/", "examples/" ja "scripts/". Mutta sisäänottopinta on tarkoituksellisesti salliva – pienin natiivi sisääntuleva taito on sallittu, ja tehostimen putkilinja luo vahvemman johdannaisen.### 🌐 Language Policy
 
-### 🌐 Language Policy
+| Pinta | Hyväksytyt kielet |
+|:--------|:--------------------|
+| 📥 `taidot/` (alkuperäinen saanti) | portugali, englanti tai mikä tahansa kieli |
+| ✨ `skills_omni/` (kuroitu tulos) | vain englanti |
 
-| Surface | Accepted Languages |
-|:--------|:-------------------|
-| 📥 `skills/` (native intake) | Portuguese, English, or any language |
-| ✨ `skills_omni/` (curated output) | English only |
+> Yksityinen tehostaja säilyttää alkuperäisen lähteen sellaisena kuin se on lähetetty ja kirjoittaa kuratoidun johdannaisen uudelleen englanniksi.
 
-> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
-
-📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
-
----
+📖 Käytä [Skill PR Workflow]:a (docs/contributors/SKILL-PR-WORKFLOW.md) saadaksesi koko haara-, vahvistus- ja tehostimen tarkistusjakson.---
 
 ## ✅ Required Validation
 
-Run this before opening a PR:
-
-```bash
+Suorita tämä ennen PR:n avaamista:```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<details>
-<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
+<tiedot>
+<summary>📋 <strong>Mitä <code>npm run valide</code> luo uudelleen</strong></summary>
 
-- `metadata.json`
-- `skills/<skill>/metadata.json`
-- Canonical taxonomy mapping
-- Maturity, best practices, quality, and security scores
-- Static security findings
-- Optional ClamAV and VirusTotal scanner status (when configured)
+- "metadata.json".
+- `skills/<taito>/metadata.json`
+- Kanoninen taksonomian kartoitus
+- Kypsyys, parhaat käytännöt, laatu ja turvallisuuspisteet
+- Staattiset turvallisuushavainnot
+- Valinnainen ClamAV- ja VirusTotal-skannerin tila (kun määritetty)</details>
 
-</details>
+>**⚠️ Tärkeää:**Validointi on sopimus, jota käyttävät CLI, API, MCP, A2A, luettelot, arkistot ja julkaisuautomaatio. Käsittele luotuja metatietoja osana tarkistuspintaa, ei kertakäyttöistä tulostetta.### 📥 Intake Policy
 
-> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
-
-### 📥 Intake Policy
-
-| Condition | Behavior |
+| Kunto | Käyttäytyminen |
 |:----------|:---------|
-| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
-| Critical security findings | 🚫 Blocks intake |
-| Hard validation errors | 🚫 Blocks intake |
-| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
-
-### 🧪 Release-Grade Preflight
+| Puuttuva/epätäydellinen frontmatteri | ⚠️ Varoitukset (ei estä) |
+| Kriittiset turvallisuushavainnot | 🚫 Estää oton |
+| Kovat vahvistusvirheet | 🚫 Estää oton |
+| Tiukemmat toimitukselliset standardit | Pakotettu tehostetussa johdannaisvirtauksessa, ei alkuperäisessä sisäänoton yhteydessä |### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<details>
-<summary>📋 <strong>What the smoke pass validates</strong></summary>
+<tiedot>
+<summary>📋 <strong>Mitä savupassi vahvistaa</strong></summary>
 
-- ✅ Skill validation
-- ✅ Catalog generation
-- ✅ Docs catalog generation
-- ✅ Test suite
+- ✅ Taitojen vahvistaminen
+- ✅ Katalogin sukupolvi
+- ✅ Docs-luetteloiden luominen
+- ✅ Testisarja
 - ✅ `npm pack --dry-run`
-- ✅ API boot
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot
-- ✅ Archive verification and packaging expectations
-
-</details>
+- ✅ API-käynnistys
+- ✅ MCP-käynnistys "stdio", "stream" ja "sse" kohdissa
+- ✅ A2A saapas
+- ✅ Arkiston tarkistus ja pakkausodotukset</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
-
-```yaml
+Frontmatter on erittäin suositeltavaa. Käytä [Skill Template](docs/contributors/SKILL-TEMPLATE.md) perustana.```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -200,104 +172,88 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<details>
-<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
+<tiedot>
+<summary>🏷️ <strong>Kanoniset taksonomian luokat</strong></summary>
 
-| Category | Category |
+| Luokka | Luokka |
 |:---------|:---------|
-| `development` | `frontend` |
-| `backend` | `fullstack-web` |
-| `tools` | `cli-automation` |
-| `business` | `product` |
-| `design` | `data-ai` |
-| `ai-agents` | `machine-learning` |
-| `devops` | `testing-security` |
-| `documentation` | `content-media` |
-| `communication` | `uncategorized` |
+| "kehitys" | "etuosa" |
+| `taustaosa` | "fullstack-web" |
+| "työkalut" | `kli-automaatio` |
+| "liiketoiminta" | "tuote" |
+| "suunnittelu" | `data-ai` |
+| "ai-agents" | "koneoppiminen" |
+| "devops" | "testausturvallisuus" |
+| "asiakirjat" | "sisältömedia" |
+| "viestintä" | "luokittamaton" |</details>
 
-</details>
-
-> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
-
----
+>**ℹ️**Skill-versio on riippumaton npm-pakettiversiosta. Jos alkuperäisellä saapuvalla taidolla ei vielä ole frontmatteria, se hyväksytään varoituksella ja johdetaan väliaikaiset metatiedot hakemistosta, otsikosta ja leipätekstistä.---
 
 ## ⚙️ Runtime Contributions
 
-If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
+Jos kosketat `packages/`, `tools/bin/`, `tools/lib/` tai luot skriptejä:
 
-- 📦 Keep `dist/` and docs aligned with the implementation
-- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
-- 🔒 Keep local-write behavior behind preview or dry-run defaults
-- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
-- 🛡️ Treat security scanner warnings as part of the review bar
-- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
+- 📦 Pidä "dist/" ja asiakirjat linjassa toteutuksen kanssa
+- 🔄 Käytä mieluummin paketteja/catalog-corea uudelleen luettelologiikan kopioimisen sijaan
+- 🔒 Pidä paikallinen kirjoitustoiminta esikatselun tai kuivaajon oletusarvojen takana
+- 🔌 Pidä MCP-kirjoittajat kurissa – lisää ensiluokkaisia asetusten kirjoittajia vain, kun asiakkaalla on vakaa julkinen konfigurointisopimus
+- 🛡️ Käsittele turvaskannerin varoituksia osana tarkistuspalkkia
+- 🧪 Päivitä testit, kun muutat CLI-komentoja, siirtomuotoja tai julkisia päätepisteitä### 🚧 Important Boundary
 
-### 🚧 Important Boundary
+| Tee tämä ✅ | Älä tee tätä 🚫 |
+|:-----------|:------------------|
+| Lähetä kotimainen työ kohtaan "taidot/" | Avaa manuaaliset PR:t, jotka muokkaavat `skills_omni/` |
+| Anna automaation käsitellä tehostimen | Lisää kuratoitua sisältöä suoraan |
+| Keskity lailliseen taitojen laatuun | Ohita automatisoitu kumppani PR-virta |
 
-| Do this ✅ | Don't do this 🚫 |
-|:-----------|:-----------------|
-| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
-| Let automation handle the enhancer run | Add curated content directly |
-| Focus on legitimate skill quality | Bypass the automated companion PR flow |
-
-> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
-
----
+>**ℹ️**Kun 'taidot/' -taidot päivitetään, yksityinen tehostin käsittelee sen uudelleen ja päivittää parannetun perustason.---
 
 ## 🔄 Enhancer Outcome States
 
-During public native-skill PRs, the enhancer reports one of four states:
+Julkisten natiivitaitojen PR:n aikana tehostaja raportoi yhden neljästä tilasta:
 
-| State | Meaning |
-|:------|:--------|
-| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
-| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
-| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
-| ❌ `failed` | Unexpected error — requires maintainer investigation |
+| valtio | Merkitys |
+|:------|:---------|
+| ✅ "valmis" | Parannettu johdannainen luotu selkeästi, kelvollinen `skills_omni/` |
+| ⚠️ `heikentynyt` | Täydennetty varmistusliikkeellä tai heikommalla pisteliikkeellä – tarkasta tarkemmin |
+| 🚫 "estetty" | Pysäytetty infrastruktuuri- tai validointisyistä — estää automaattisen julkaisun |
+| ❌ "epäonnistui" | Odottamaton virhe — vaatii ylläpitäjän tutkimuksen |
 
-> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
-
----
+>**📝 Avustajien**ei tarvitse korjata tehostimen infrastruktuuriongelmia. Vastuu on toimittaa laillinen natiivitaito ja pitää repo vihreänä.---
 
 ## 🔄 Automatic Release Policy
 
-When a change lands on `main` and includes:
+Kun muutos osuu "main"-kohtaan ja sisältää:
 
-- `skills/**`
-- `skills_omni/**`
-- `data/bundles.json`
+- "taidot/**".
+- "skills_omni/**".
+- "data/bundles.json".
 
-…the repository issues a **package release automatically**.
+...arkisto julkaisee**pakettijulkaisun automaattisesti**.### 📋 Version Bump Rule
 
-### 📋 Version Bump Rule
-
-| From | To | Rule |
+| Lähettäjä | Vastaanottaja | Sääntö |
 |:-----|:---|:-----|
-| `0.1.0` | `0.1.1` | Patch +1 |
-| `0.1.9` | `0.1.10` | Patch +1 |
-| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
+| "0.1.0" | "0.1.1" | Patch +1 |
+| "0.1.9" | "0.1.10" | Patch +1 |
+| "0.1.10" | "0.2.0" | Siirry seuraavaan sivuun, nollaa korjaustiedosto |
 
-> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
-
----
+> Julkaisukulku luo uudelleen luettelon/arkistot, sitoo versiovirheen, merkitsee julkaisun, julkaisee npm:n ja luo GitHub-julkaisun automaattisesti.---
 
 ## 📝 Commit Conventions
 
-| Prefix | Use For |
-|:-------|:--------|
-| `feat:` | New skill or feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation changes |
-| `refactor:` | Code cleanup or structure changes |
-| `test:` | Test changes |
-| `chore:` | Maintenance |
-
----
+| Etuliite | Käytä |
+|:-------|:---------|
+| `feat:` | Uusi taito tai ominaisuus |
+| `korjaa:` | Virheenkorjaus |
+| `asiakirjat:` | Asiakirjojen muutokset |
+| "refaktori:" | Koodin puhdistus tai rakenteen muutokset |
+| `testi:` | Testaa muutoksia |
+| `työ:` | Huolto |---
 
 ## ❓ Need Help?
 
-| Channel | Link |
+| Kanava | Linkki |
 |:--------|:-----|
-| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Kysymyksiä | [Avaa keskustelu](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Vikoja | [Avaa numero](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Varhainen palaute | [Avaa PR-luonnos](https://github.com/diegosouzapw/omni-skills/pulls) |

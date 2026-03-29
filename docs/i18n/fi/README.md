@@ -13,10 +13,8 @@
 
 <br/>
 
-**The skill catalog that installs itself.**<br/>
-CLI · API · MCP · A2A — all from a single `npx` command.
-
-<br/>
+**Taitoluettelo, joka asentaa itsensä.**<br/>
+CLI · API · MCP · A2A – kaikki yhdestä npx-komennosta.<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -30,9 +28,7 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 <br/>
 
-[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
-
-</div>
+[⚡ Asenna 1 minuutissa](#-asennus) · [🛠️ Valitse työkalusi](#-choose-your-tool) · [📖 CLI-opas](docs/users/CLI-USER-GUIDE.md) · [📦 Paketit](docs/users/BUNDLES.md) Ajonaika [](🔌) Miksi ajonaika Omni Skills](#-why-omni-skills)</div>
 
 ---
 
@@ -42,40 +38,34 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 </div>
 
-| | Metric | Value |
+| | Metrinen | Arvo |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
-| 🎯 | **Bundles** | `7` fully backed curated bundles |
-| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
-| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
-| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
-
----
+| 📦 |**Julkaistut taidot**| "32" 15 aktiivisessa kategoriassa |
+| 🎯 |**Paketit**| "7" täysin tuetut kuratoidut paketit |
+| 🖥️ |**Asenna asiakkaat**| "7" asennuskykyiset AI-koodausavustajat |
+| 🔌 |**MCP-asiakkaat**| `16` MCP-konfigurointikykyiset asiakkaat |
+| 🔐 |**Kurattu tulos**| "32" parannetut englannin johdannaiset kohdassa "skills_omni/" |
+| 📋 |**Nykyinen julkaisu**| "v0.1.2" |---
 
 ## Pikakäynnistys
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+>**Etsitkö tekoälyn koodaustaitoja, Claude Code -taitoja, Cursor-taitoja, Codex CLI -taitoja, Gemini CLI -taitoja, Antigravity-taitoja tai asennettavia SKILL.md-kirjastoja?**
+> Olet oikeassa paikassa.### 1️⃣ What is this?
 
-### 1️⃣ What is this?
+Omni Skills on**asennettava taitoluettelo ja suoritusaika**AI-koodausavustajille. Pohjimmiltaan se on julkinen arkisto uudelleenkäytettäville SKILL.md-pelikirjoille – mutta toisin kuin tavalliset taitokokoelmat, repo**on**jakelu- ja ajonaikainen kerros.
 
-Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
+<tiedot>
+<summary>📋 <strong>Mitä sisältyy</strong></summary>
 
-<details>
-<summary>📋 <strong>What's included</strong></summary>
-
-| Component | Description |
-|:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
-| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
-| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
-| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
-| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
-| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
-| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
-
-</details>
+| Komponentti | Kuvaus |
+|:----------|:------------|
+| 🧠**Taidot**| Kuroidut SKILL.md-pohjaiset pelikirjat tekoälyavustajille |
+| 📦**Manifestit**| Luodut JSON-luettelot, niput ja arkistot |
+| 🧭**Ohjattu asennus**| Interaktiiviset TTY- ja visuaaliset pääteasennukset |
+| 🌐**Katalogi API**| Vain luku -HTTP-sovellusliittymä hakua, etsimistä ja latauksia varten |
+| 🔌**MCP-palvelin**| Löytäminen, suositukset ja asiakastietoiset konfigurointityökalut |
+| 🤖**A2A Runtime**| Agenttien välinen tehtävien organisointi |
+| ✨**Enhancement Pipeline**| Yksityinen tehostaja julkaisee kuratoimia englanninkielisiä johdannaisia ​​kohtaan "skills_omni/" |</details>
 
 ### 2️⃣ Quick Start
 
@@ -95,109 +85,95 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
+> 💬 *"Käytä `@brainstorming`a SaaS MVP:n suunnitteluun."*
 >
-> 💬 *"Use `@api-design` to review this endpoint design."*
+> 💬 *"Käytä `@api-design` tämän päätepisteen suunnittelun tarkistamiseen."*
 >
-> 💬 *"Use `@debugging` to isolate this regression."*
+> 💬 *"Käytä `@debugging` tämän regression eristämiseen."*### 5️⃣ Start with a bundle
 
-### 5️⃣ Start with a bundle
-
-| 🎯 Goal | Bundle | Command |
-|:---------|:-------|:--------|
-| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
-| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
-| Design systems | `design` | `npx omni-skills --bundle design` |
-| Security review | `security` | `npx omni-skills --bundle security` |
-| Infra and release | `devops` | `npx omni-skills --bundle devops` |
-| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
-| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
-
----
+| 🎯 Maali | Paketti | Komento |
+|:---------|:-------|:---------|
+| Yleinen suunnittelu | "olennaiset" | `npx omni-skills -- paketti olennaiset tarvikkeet` |
+| Tuotteen + sovelluksen toimitus | "täysi pino" | `npx omni-skills -- bundle full-stack` |
+| Suunnittelujärjestelmät | "suunnittelu" | `npx omni-skills -- pakettisuunnittelu` |
+| Turvatarkastus | "turvallisuus" | `npx omni-skills -- pakettitietoturva` |
+| Infra ja vapauta | "devops" | `npx omni-skills -- nippu devops` |
+| LLM-sovellukset | "ai-insinööri" | `npx omni-skills --bundle ai-engineer` |
+| OSS-huolto | "oss-maintainer" | `npx omni-skills --bundle oss-maintainer` |---
 
 ## 🧩 Core Concepts
 
-Before comparing bundles or picking an install path, understanding these five building blocks helps:
+Ennen nippujen vertailua tai asennuspolun valitsemista näiden viiden rakennuspalikan ymmärtäminen auttaa:
 
-| Concept | What it means |
-|:--------|:-------------|
-| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
-| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
-| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
-| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
-| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
+| käsite | Mitä se tarkoittaa |
+|:--------|:--------------|
+| 🧠**Taidot**| Uudelleen käytettävät SKILL.md-pelikirjat, jotka opettavat assistentin suorittamaan työnkulun hyvin |
+| 📦**Katalogiesineet**| Luodut JSON- ja arkistolähdöt, jotka mahdollistavat haun, vertailun, lataamisen ja asennuksen |
+| 🔌**MCP-asetus**| Asiakaspuolen määritys avustajille, jotka voivat löytää Omni-taidot MCP-työkalujen avulla |
+| 🤖**A2A Runtime**| Agenttien välinen orkestraatio etsimistä, suositusta ja asennussuunnitelman vaihtoa varten |
+| ✨**Kurattu tulos**| "skills_omni/" — Omnin ylläpitämä parannettu pinta, joka on erillään alkuperäisestä ylävirran syöttöaukosta |
 
-> **📝 Native/Curated policy:**
-> - `skills/` accepts native upstream intake in any language
-> - `skills_omni/` is always curated and published in English
-> - `skills_omni/` is a one-way surface and does not loop back into native intake
-
----
+>**📝 Alkuperäinen/kuroitu käytäntö:**
+> - `skills/` hyväksyy alkupään natiivisisällön millä tahansa kielellä
+> - Skills_omni/ on aina kuratoitu ja julkaistu englanniksi
+> - "skills_omni/" on yksisuuntainen pinta, eikä se palaa takaisin alkuperäiseen käyttöön---
 
 ## 💡 Why Omni Skills
 
-> **Not just "another repository with skills in folders."**
-> Omni Skills has a stronger contract and a broader runtime surface.
+>**Ei vain "toinen arkisto, jossa on taitoja kansioissa."**
+> Omni Skillsilla on vahvempi sopimus ja laajempi käyttöaikapinta.
 
-| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
-|:-------------|:----------------------|:--------------|
-| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
-| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
-| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
-| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
-| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
-| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
-
----
+| Jos haluat… | 📁 Tyypillinen taitojen repo | ✨ Omni Skills |
+|:-------------|:-----------------------|:---------------|
+| Asenna todelliseen avustajaan | Manuaalinen kopio tai mukautettu komentosarja | "npx omni-skills", ohjattu asennus, visuaalinen käyttöliittymä, valikoiva "--skill" ja "--bundle" |
+| Etsi ja vertaa taitoja | Selaa merkintöjä manuaalisesti | Luotu luettelo, suodatus, pakettien suunnittelu, haku, vertailu ja suositus |
+| Käytä samoja tietoja eri työkaluissa | Erillinen logiikka työkalua kohden | Jaetut luettelot ja luettelo CLI:lle, API:lle, MCP:lle ja A2A:lle |
+| Määritä MCP-asiakkaat | Muokkaa tiedostoja käsin | `config-mcp`, paikalliset sivuvaunujen esikatselut, luodut reseptit ja sallitut kirjoitukset |
+| Luottamustiedotteet | Paras pakkaus | Tarkistussummat, allekirjoitetut arkistot, skannerin vahvistus, CI:n vapauttaminen ja esitarkastuksen julkaiseminen |
+| Kuroi yhteisön osallistuminen | Mikä tahansa maa pysyy sellaisenaan | Alkuperäinen saanti sanalla "skills/", kuratoidut englanninkieliset johdannaiset kentässä "skills_omni/" attribuutioineen |---
 
 ## 🖥️ Compatibility and Invocation
 
-These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
+Nämä taidot noudattavat SKILL.md-mallia ja niitä voidaan käyttää normaalina arkistona, mutta paketti myös asentaa ja konfiguroi ne laajalle pinnalle:
 
-> **7** install-capable clients · **16** MCP config-capable clients
+>**7**asennuskykyisiä asiakkaita ·**16**MCP-konfigurointikykyisiä asiakkaita### 🎯 Install-Capable Clients
 
-### 🎯 Install-Capable Clients
+| Työkalu | Tyyppi | Invocation esimerkki | Asenna polku |
+|:-----|:-----|:--------------------|:--------------|
+| 🟢**Claude Code**| CLI | "Käytä aivoriihiä ominaisuuden suunnittelussa" | "~/.claude/skills" |
+| 🔵**Osoitin**| IDE | `@brainstorming auttaa minua suunnittelemaan ominaisuuden` | "~/.kursori/taidot" |
+| 🟡**Gemini CLI**| CLI | "Käytä aivoriihiä ominaisuuden suunnittelussa" | "~/.gemini/skills" |
+| 🔴**Codex CLI**| CLI | "Käytä aivoriihiä ominaisuuden suunnittelussa" | "~/.codex/skills" |
+| 🟠**Kiro**| CLI / IDE | "Käytä aivoriihiä ominaisuuden suunnittelussa" | "~/.kiro/skills" |
+| 🟣**Antigravity**| IDE | `Käytä @brainstorming-toimintoa ominaisuuden suunnitteluun` | "~/.gemini/antigravity/skills" |
+| ⚪**OpenCode**| CLI | `avoinkoodin ajo @aivoriihi` | `<työtila>/.opencode/skills' |
 
-| Tool | Type | Invocation Example | Install Path |
-|:-----|:-----|:-------------------|:-------------|
-| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
-| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
-| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
-| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
-| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
-| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
-| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
+<tiedot>
+<summary>🔌 <strong>Laajempi MCP-määritysten kattavuus (16 asiakasta)</strong></summary>
 
-<details>
-<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
+Nämä kohteet ovat osa tuettua MCP-määrityspintaa, vaikka ne eivät olisikaan asennuskohteita taitohakemistoille:
 
-These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
-
-| Client or Surface | Support Type | Notes |
-|:------------------|:------------|:------|
-| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
-| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
-| Gemini | MCP config | User and workspace settings |
-| Cline | MCP config | First-class config target |
-| GitHub Copilot CLI | MCP config | User and repo config targets |
-| Continue | MCP config | Workspace YAML generation |
-| Windsurf | MCP config | User config target |
-| Zed | MCP config | Workspace config target |
-| Goose | MCP config | User config target with generated recipe |
-| Kilo Code | MCP config | User, project, and workspace targets |
-| Junie | MCP config | Project and user config targets |
-
-</details>
+| Asiakas tai pinta | Tukityyppi | Huomautuksia |
+|:------------------|:-------------|:-------|
+| Claude-asetukset ja työpöytä | MCP-kokoonpano | Asetukset, työpöytä ja projektitiedot |
+| VS-koodi | MCP-kokoonpano | Käyttäjä-, työtila-, sisäpiiri- ja kehittäjäsäilökohteet |
+| Kaksoset | MCP-kokoonpano | Käyttäjä- ja työtilan asetukset |
+| Cline | MCP-kokoonpano | Ensiluokkainen konfigurointikohde |
+| GitHub Copilot CLI | MCP-kokoonpano | Käyttäjä- ja repo-määrityskohteet |
+| Jatka | MCP-kokoonpano | Workspace YAML sukupolvi |
+| Purjelautailu | MCP-kokoonpano | Käyttäjän asetuskohde |
+| Zed | MCP-kokoonpano | Työtilan määrityskohde |
+| Hanhi | MCP-kokoonpano | Käyttäjän konfigurointikohde luodulla reseptillä |
+| Kilo-koodi | MCP-kokoonpano | Käyttäjä-, projekti- ja työtilakohteet |
+| Junie | MCP-kokoonpano | Projektin ja käyttäjän konfigurointikohteet |</details>
 
 ---
 
 ## Asenna
 
-<table>
+<taulukko>
 <tr>
-<td width="50%">
-
-### Option A: Install with `npx` *(recommended)*
+<td width="50%">### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -254,39 +230,35 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Tool | Install Command | First Use |
-|:-----|:---------------|:----------|
-| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
-| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
-| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
-| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
-| ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
-| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
+| Työkalu | Asenna komento | Ensimmäinen käyttökerta |
+|:-----|:----------------|:-----------|
+| 🟢 Claude Code | `npx omni-skills --claude` | "Käytä aivoriihiä ominaisuuden suunnittelussa" |
+| 🔵 Kursori | `npx omni-skills --kursori` | `@brainstorming auttaa minua suunnittelemaan ominaisuuden` |
+| 🟡 Gemini CLI | `npx omni-skills --gemini` | "Käytä aivoriihiä ominaisuuden suunnittelussa" |
+| 🔴 Codex CLI | `npx omni-skills --codex` | "Käytä aivoriihiä ominaisuuden suunnittelussa" |
+| 🟣 Antigravitaatio | `npx omni-skills --antigravity` *(oletus)* | `Käytä @brainstorming-toimintoa ominaisuuden suunnitteluun` |
+| 🟠 Kiro | `npx omni-skills --kiro` | "Käytä aivoriihiä ominaisuuden suunnittelussa" |
+| ⚪ OpenCode | `npx omni-skills --opencode` | `avoinkoodin ajo @aivoriihi` |
+| 📂 Mukautettu polku | `npx omni-skills --polku ./oma-taidot` | Riippuu työkalustasi |
 
-> 📖 **Not sure where to start?**
-> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
-> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
-> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
-
----
+> 📖**Etkö ole varma mistä aloittaa?**
+> - [🚀 Aloitus](docs/users/GETTING-STARTED.md) – asenna ja vahvista alle 2 minuutissa
+> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) – täydellinen komentoviittaus
+> - [📗 Käyttöopas](docs/users/USAGE.md) - kehotteet, mallit ja ajonaikaiset tilat---
 
 ## 🔌 Runtime Surfaces
 
-Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
+Omni Skills ei ole vain taitojen kirjasto. Se paljastaa**neljä ajonaikaista pintaa**, jotka kuluttavat samaa luotua luetteloa:
 
-| Surface | State | What it does | Example |
-|:--------|:------|:-------------|:--------|
-| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
-| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
-| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
-| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
+| Pinta | valtio | Mitä se tekee | Esimerkki |
+|:--------|:------|:--------------|:---------|
+| 🖥️**CLI**| ✅ Saatavilla | Etsi, asenna, diagnosoi, visuaalinen käyttöliittymä, käynnistyspalvelut, savutarkistukset | "npx omni-skills doctor" |
+| 🌐**Katalogi API**| ✅ Saatavilla | Vain luku -luettelo, etsi, niput, vertaa, asenna suunnitelmat, lataukset | `npx omni-skills api --port 3333` |
+| 🔌**MCP**| ✅ Saatavilla | Löytäminen, suositus, asennuksen esikatselu, paikallinen sivuvaunu, konfigurointiprosessit | `npx omni-skills mcp stream --local` |
+| 🤖**A2A**| ✅ Saatavilla | Tehtävän elinkaari, kanavanvaihto, kysely, suoratoisto, peruutus, pysyvyys | `npx omni-skills a2a -- portti 3335` |
 
-<details>
-<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
-
-```bash
+<tiedot>
+<summary>🖥️ <strong>Visuaaliset komentotulkki- ja operaattorikomennot</strong></summary>```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -296,10 +268,8 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<details>
-<summary>🔌 <strong>MCP transports and config</strong></summary>
-
-```bash
+<tiedot>
+<summary>🔌 <strong>MCP-siirrot ja -asetukset</strong></summary>```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -320,41 +290,33 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Metric | Count |
+| Metrinen | Laske |
 |:-------|:------|
-| 🧠 Published skills | **32** |
-| 📂 Active categories | **15** |
-| 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **32** in `skills_omni/` |
+| 🧠 Julkaistu taidot |**32**|
+| 📂 Aktiiviset luokat |**15**|
+| 📦 Täysin tuetut paketit |**7**|
+| ✨ Kuroidut johdannaiset |**32**kohdassa `skills_omni/` |### 📦 Bundle Availability
 
-### 📦 Bundle Availability
+| Paketti | Taidot | Jäsenet |
+|:-------|:--------|:---------|
+| 🧰 "Essentials" |**4/4**✅ | `etsintätaidot` · `aivoriihi` · `arkkitehtuuri` · `virheenkorjaus` |
+| 🌐 `täysi pino` |**5/5**✅ | "frontend-design" · "api-design" · "tietokannan suunnittelu" · "omni-figma" · "auth-flows" |
+| 🎨 `design` |**5/5**✅ | "frontend-design" · "omni-figma" · "design-systems-ops" · "accessibility-audit" · "design-token-governance" |
+| 🛡️ `turvallisuus` |**4/4**✅ | "security-auditor" · "haavoittuvuusskanneri" · "incident-response" · "uhan mallinnus" |
+| ⚙️ `devops` |**5/5**✅ | "docker-expert" · "kubernetes" · "terraform" · "observability-review" · "release-engineering" |
+| 🤖 `ai-insinööri` |**7/7**✅ | "rag-engineer" · "prompt-engineer" · "llm-patterns" · "eval-design" · "context-engineering" · "data-sopimukset" · "mallinkäyttö" |
+| 🔧 `oss-maintainer` |**4/4**✅ | "find-skills" · "create-pr" · "muutosloki" · "dokumentaatio" |### ✨ Native Intake → Curated Output
 
-| Bundle | Skills | Members |
-|:-------|:-------|:--------|
-| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
-| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
-| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
-| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
-| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
-| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
-| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
+| Pinta | Tarkoitus | Kieli |
+|:--------|:--------|:----------|
+| 📥 `taidot/` | Alkuperäinen saanti | Mikä tahansa kieli |
+| ✨ `skills_omni/` | Kuroitu Omni-ylläpidetty tuotos | Aina englanti |
 
-### ✨ Native Intake → Curated Output
-
-| Surface | Purpose | Language |
-|:--------|:--------|:---------|
-| 📥 `skills/` | Native intake | Any language |
-| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
-
-> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
-
----
+>**ℹ️**Yksityinen tehostaja käsittelee natiivitaitojen muutokset uudelleen ja päivittää ne kuratoidussa perustilassa. Tämä tekee `skills_omni/`:sta**ylläpidetyn katalogipinnan**, ei toista kopiota.---
 
 ## 🛡️ Security and Release Posture
 
-> Omni Skills ships a stronger release and verification story than a plain markdown repository.
-
-### 🧪 Validation and Smoke Checks
+> Omni Skills toimittaa vahvemman julkaisu- ja vahvistustarinan kuin pelkkä arkisto.### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -363,40 +325,36 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<details>
-<summary>📋 <strong>What the pipeline validates</strong></summary>
+<tiedot>
+<summary>📋 <strong>Mitä putki vahvistaa</strong></summary>
 
-- ✅ Skill validation and metadata generation
-- ✅ Taxonomy normalization and recategorization tooling
-- ✅ Catalog and archive generation
-- ✅ Automated tests
-- ✅ API, MCP, and A2A boot paths
-- ✅ Archive verification
-- ✅ Package preflight with `npm pack --dry-run`
+- ✅ Taitojen validointi ja metatietojen luominen
+- ✅ Taksonomian normalisointi- ja uudelleenluokittelutyökalut
+- ✅ Katalogien ja arkiston luominen
+- ✅ Automaattiset testit
+- ✅ API-, MCP- ja A2A-käynnistyspolut
+- ✅ Arkiston vahvistus
+- ✅ Paketin esilento `npm pack --dry-run` -toiminnolla</details>
 
-</details>
+<tiedot>
+<summary>🔐 <strong>Vapauta asento</strong></summary>
 
-<details>
-<summary>🔐 <strong>Release posture</strong></summary>
+| Ohjaus | Kuvaus |
+|:--------|:------------|
+| 🔒 SHA-256 tarkistussummat | Kaikkien arkistojen tarkistussummaluettelot |
+| ✍️ Allekirjoitettuja esineitä | Irrotetut allekirjoitukset julkaisuartefakteista |
+| 🤖 CI-valvonta | Vapauttaminen CI:ssä ennen julkaisemista |
+| 🦠 Skanneriportit | ClamAV- ja VirusTotal-porteilla suojattu julkaisuvirta |
+| 📦 GitHub-julkaisu | Automatisoitu GitHub-julkaisun luominen |
+| 📋 npm julkaisu | Vain vahvistetusta tarballista |
+| 🔄 Automaattinen vapautus | Hyväksytyssä taito sulautuu "main" |
 
-| Control | Description |
-|:--------|:-----------|
-| 🔒 SHA-256 checksums | Checksum manifests for all archives |
-| ✍️ Signed artifacts | Detached signatures on release artifacts |
-| 🤖 CI-enforced | Release verification in CI before publication |
-| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
-| 📦 GitHub Release | Automated GitHub Release generation |
-| 📋 npm publication | From verified tarball only |
-| 🔄 Auto release | On qualifying skill merges to `main` |
+**Automaattinen julkaisu laukeaa vain, kun yhdistäminen muuttuu:**
+- "taidot/*/**".
+- "skills_omni/*/**".
+- "data/bundles.json".
 
-**Auto-release triggers only when a merge changes:**
-- `skills/*/**`
-- `skills_omni/*/**`
-- `data/bundles.json`
-
-Doc-only changes **do not** trigger package publication.
-
-</details>
+Vain asiakirjan muutokset**älä**käynnistä paketin julkaisun.</details>
 
 ---
 
@@ -404,93 +362,79 @@ Doc-only changes **do not** trigger package publication.
 
 ### 👤 For Users
 
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
-| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
-| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
-| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
-| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
+| Doc | Mitä opit |
+|:----|:------------------|
+| 🚀 [Aloitus](docs/users/GETTING-STARTED.md) | Asenna, tarkista ja kutsu alle 2 minuutissa |
+| 🧭 [CLI-käyttöopas](docs/users/CLI-USER-GUIDE.md) | Täysi komentoviittaus ja reaalimaailman mallit |
+| 📗 [Käyttöopas](docs/users/USAGE.md) | CLI-komennot, asennustilat, ajonaika ja MCP-kokoonpano |
+| 📦 [Paketit](docs/users/BUNDLES.md) | Kuroidut niput ja saatavuus |
+| 📚 [Katalogi](docs/CATALOG.md) | Automaattisesti luotu luettelo julkaistuista taidoista |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Rakenna, palvele, suojaa ja tee vianetsintä |### 🏗️ For Architects
 
-### 🏗️ For Architects
+| Doc | Mitä opit |
+|:----|:------------------|
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Arkkitehtuurin kehitys ja jäljellä olevat alueet |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Keskeinen monorepo-päätös |
+| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Ajonaikainen koostumus ja järjestelmän rajat |
+| 🌐 [Katalogin API](docs/specs/CATALOG-API.md) | HTTP-päätepisteet, suodatus, hallinta ja lataukset |
+| 🧩 [CLI-opastettu asennusohjelma](docs/specs/CLI-GUIDED-INSTALLER.md) | Ohjatun asentajan käyttäytymissopimus |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Musteen visuaalinen kuori ja tilamalli |
+| 🔌 [Paikallinen MCP-sivuvaunu](docs/specs/LOCAL-MCP-SIDECAR.md) | Tiedostojärjestelmätyökalut ja sallittujen luettelomalli |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Täydellinen asiakas- ja kirjoittajaviite |
+| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taksonomia, pisteytys ja metatiedot |
+| 🛡️ [Turvallisuusvahvistus](docs/specs/SECURITY-VALIDATION.md) | Skannerit, arkistot ja allekirjoitukset |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Koneluettava luettelomuoto |### 🤝 For Contributors
 
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
-| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
-| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
-| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
-| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
-| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
-| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
-| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
-
-### 🤝 For Contributors
-
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
-| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
-| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
-| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
-| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
-| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
-
----
+| Doc | Mitä opit |
+|:----|:------------------|
+| 📝 [Käyttäjäopas](CONTRIBUTING.md) | Repo-työnkulku ja PR-odotukset |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Alkuperäinen saanti, tehosteiden käsittely, arvioijan odotukset |
+| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Startti `SKILL.md` frontmatterilla ja rakenteella |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Rakenne- ja laatuodotukset |
+| ✅ [Laatupalkki](docs/contributors/QUALITY-BAR.md) | Hyväksymiskriteerit |
+| 🏆 [High-score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Mikä saa huipputuloksia |---
 
 ## 🗂️ Repository Layout
 
-| Path | Purpose |
+| Polku | Tarkoitus |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills and native intake |
-| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
-| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
-| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
-| 📁 `data/` | Bundle definitions and static supporting data |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
-| 🖥️ `tools/bin/` | CLI entrypoints |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
+| 📂 `taidot/` | Kanoniset kirjoittamat taidot ja syntyperäiset tiedot |
+| ✨ `skills_omni/` | Kuroidut Omnin ylläpitämät parannetut johdannaiset |
+| 📖 `docs/` | Käyttäjä-, avustaja-, arkkitehtuuri-, toiminta- ja tekninen dokumentaatio |
+| 📦 `dist/` | Luodut luettelot, niput, luettelot ja arkistot |
+| 📁 `data/` | Nipun määritelmät ja staattiset tukitiedot |
+| 🧠 `paketit/catalog-core/` | Jaetun luettelon suoritusaika |
+| 🌐 `paketit/palvelin-api/` | Vain luku - HTTP API |
+| 🔌 `paketit/palvelin-mcp/` | MCP-palvelin ja paikallinen sivuvaunu |
+| 🤖 `paketit/palvelin-a2a/` | A2A suoritusaika ja tehtävien orkestrointi |
+| 🖥️ `tools/bin/` | CLI-tulopisteet |
+| 📚 `tools/lib/` | Asennus- ja käyttöliittymäapulaiset |
+| ⚙️ `työkalut/skriptit/` | Skriptien validointi, luominen, julkaisu ja testaus |
 
-> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
----
+>**ℹ️**`dist/` on tarkoituksella versioitu, koska luodut artefaktit ovat osa asennus-, API-, MCP-, A2A-, savu- ja julkaisusopimusta.---
 
 ## 🤝 Contributing
 
-Omni Skills accepts native upstream skill intake under `skills/`.
+Omni Skills hyväksyy alkuperäisen alkuvaiheen taitojen hankinnan kohdassa "skills/".
 
-| Rule | Details |
+| Sääntö | Tiedot |
 |:-----|:--------|
-| 📥 Native intake | May be rough, authored in any language |
-| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
-| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
-| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
+| 📥 Alkuperäinen saanti | Voi olla karkea, kirjoitettu millä tahansa kielellä |
+| ✨ Kuroitu tulos | `skills_omni/` varattu automatisoimille Omni-johdannaisille |
+| 🚫 Manuaaliset muokkaukset | Julkiset manuaaliset muokkaukset parametriin `skills_omni/` hylätään |
+| 🔄 Uudelleenkäsittely | Yksityinen tehostaja käsittelee uudelleen alkuperäiset muutokset ja päivittää kuratoidun lähtötilan |
 
-> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
-
----
+> 📖**Aloita:**[Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)---
 
 ## 📄 License
 
-| Type | License |
+| Tyyppi | Lisenssi |
 |:-----|:--------|
-| 💻 Code and tooling | [MIT License](LICENSE) |
-| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
-
----
+| 💻 Koodi ja työkalut | [MIT-lisenssi](KÄYTTÖOIKEUS) |
+| 📝 Dokumentaatio ja taitosisältö | [CC BY 4.0](KÄYTTÖOIKEUS-SISÄLTÖ) |---
 
 <div align="center">
 
-**Made with 🧠 by the Omni Skills Team**
+**Tekijä: 🧠 Omni Skills Teamin toimesta**
 
-[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
-
-</div>
+[⭐ Merkitse tämä repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Ilmoita virheestä](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Keskustelut](https://github.com/diegosouzapw/omni-skills)/</div>

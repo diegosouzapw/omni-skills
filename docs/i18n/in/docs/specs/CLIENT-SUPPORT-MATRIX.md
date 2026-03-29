@@ -5,176 +5,158 @@
 ---
 
 
-This document tracks the practical client surface for Omni Skills across three inputs:
+यह दस्तावेज़ तीन इनपुटों में ओमनी स्किल्स के लिए व्यावहारिक ग्राहक सतह को ट्रैक करता है:
 
-1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
-2. the current Omni Skills MCP sidecar implementation
-3. current official documentation for each client or IDE
+1. `9router` डैशबोर्ड सूची `/home/diegosouzapw/dev/proxys/9router` में
+2. वर्तमान ओमनी स्किल्स एमसीपी साइडकार कार्यान्वयन
+3. प्रत्येक ग्राहक या आईडीई के लिए वर्तमान आधिकारिक दस्तावेज
 
-It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
-
----
+यह निर्णय लेने के लिए सत्य का कार्यशील स्रोत है कि किन ग्राहकों को प्रथम श्रेणी `कॉन्फिग-एमसीपी` समर्थन मिलता है, कौन से केवल मैनुअल रहते हैं, और कौन से केवल उम्मीदवार हैं।---
 
 ## Scope
 
-This matrix is about **client configuration for MCP**.
+यह मैट्रिक्स**एमसीपी के लिए क्लाइंट कॉन्फ़िगरेशन**के बारे में है।
 
-It is not the same as:
+यह वैसा ही नहीं है:
 
-- skill installation support
-- API compatibility
-- A2A support
-- ACP or other non-MCP protocols
+- कौशल स्थापना समर्थन
+- एपीआई अनुकूलता
+- A2A समर्थन
+- एसीपी या अन्य गैर-एमसीपी प्रोटोकॉल
 
-Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
-
----
+मैट्रिक्स में कुछ उत्पाद एमसीपी का उपभोग करते हैं लेकिन उनके पास कोई सार्थक "कौशल निर्देशिका" नहीं होती है, इसलिए उन्हें केवल कॉन्फ़िगरेशन-लक्ष्य समर्थन प्राप्त होता है।---
 
 ## 9router Inventory
 
-The `9router` dashboard currently groups these CLI tools or IDE clients:
+`9राउटर` डैशबोर्ड वर्तमान में इन सीएलआई टूल या आईडीई क्लाइंट को समूहित करता है:
 
-- Claude Code
-- OpenAI Codex
-- Factory Droid
-- OpenClaw
-- Cursor
-- Cline
-- Kilo Code
-- Continue
-- Antigravity
-- GitHub Copilot
-- OpenCode
-- Kiro AI
+- क्लाउड कोड
+- ओपनएआई कोडेक्स
+- फ़ैक्टरी ड्रॉइड
+- ओपनक्लॉ
+- कर्सर
+- क्लाइन
+-किलो कोड
+- जारी रखें
+- एंटीग्रेविटी
+- गिटहब कोपायलट
+- ओपनकोड
+- किरो ए.आई
 
-Local sources:
+स्थानीय स्रोत:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
-- [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
-
----
+- [`9राउटर/src/shared/constents/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constents/cliTools.ts)
+- [`9राउटर/src/shared/constents/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constents/cliCompatProviders.ts)---
 
 ## First-Class Support
 
-These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
+इन ग्राहकों के पास अब `config-mcp --target...` के माध्यम से ओमनी स्किल्स में एक स्थिर, स्पष्ट कहानी है।
 
-Current implementation totals:
+वर्तमान कार्यान्वयन योग:
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 first-class config targets**
-- **19 config profiles**
+-**7 इंस्टॉल-सक्षम ग्राहक**
+-**16 कॉन्फिग-सक्षम क्लाइंट**
+-**33 प्रथम श्रेणी कॉन्फ़िगरेशन लक्ष्य**
+-**19 कॉन्फ़िग प्रोफ़ाइल**
 
-| Client | Status | Config Targets | Notes |
-|:-------|:-------|:---------------|:------|
-| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
-| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
-| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
-| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
-| Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
-| Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
-| Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
-| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
-| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
-| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
-| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
-| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
-| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
-| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
-| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
-| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
-
----
+| ग्राहक | स्थिति | कॉन्फ़िग लक्ष्य | नोट्स |
+|:-------|:-------|:------------|:------|
+| क्लाउड कोड | ✅ प्रथम श्रेणी | `कार्यक्षेत्र`, `क्लाउड-प्रोजेक्ट`, `क्लाउड-उपयोगकर्ता-सेटिंग्स`, `क्लाउड-उपयोगकर्ता`, `क्लाउड-उपयोगकर्ता-विरासत`, `क्लाउड-डेस्कटॉप` | क्लाउड-विशिष्ट अनुमति/अस्वीकार नियंत्रणों के साथ `mcpServers` कॉन्फ़िगरेशन टाइप किया गया |
+| कर्सर | ✅ प्रथम श्रेणी | `कर्सर-कार्यस्थान`, `कर्सर-उपयोगकर्ता` | JSON `mcpServers` लक्ष्य |
+| वीएस कोड | ✅ प्रथम श्रेणी | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | `सर्वर` रूट का उपयोग करता है |
+| जेमिनी सीएलआई | ✅ प्रथम श्रेणी | `मिथुन-उपयोगकर्ता`, `मिथुन-कार्यक्षेत्र` | JSON सेटिंग्स + वैश्विक MCP नियंत्रणों को अनुमति देता/बहिष्कृत करता है |
+| प्रतिगुरुत्वाकर्षण | ✅ प्रथम श्रेणी | `एंटीग्रेविटी-उपयोगकर्ता` | JSON `mcpServers` लक्ष्य |
+| किरो | ✅ प्रथम श्रेणी | `किरो-उपयोगकर्ता`, `किरो-कार्यस्थान`, `किरो-उपयोगकर्ता-विरासत` | किरो-विशिष्ट अक्षम/स्वतः-अनुमोदित फ़ील्ड |
+| कोडेक्स सीएलआई | ✅ प्रथम श्रेणी | `कोडेक्स-उपयोगकर्ता` | TOML `mcp_servers` टेबल |
+| जारी रखें | ✅ प्रथम श्रेणी | `जारी रखें-कार्यस्थान` | समर्पित YAML सर्वर दस्तावेज़ |
+| विंडसर्फ़ | ✅ प्रथम श्रेणी | `विंडसर्फ-उपयोगकर्ता` | JSON `mcpServers` लक्ष्य `serverUrl` प्रविष्टियों के साथ |
+| ओपनकोड | ✅ प्रथम श्रेणी | `ओपनकोड-वर्कस्पेस`, `ओपनकोड-यूजर` | आधिकारिक `opencode.json` / उपयोगकर्ता कॉन्फ़िगरेशन शीर्ष-स्तरीय `mcp` का उपयोग कर रहा है |
+| क्लाइन | ✅ प्रथम श्रेणी | `क्लाइन-उपयोगकर्ता` | `cline_mcp_settings.json` `mcpServers` के साथ |
+| गिटहब कोपायलट सीएलआई | ✅ प्रथम श्रेणी | `कोपायलट-उपयोगकर्ता`, `कोपायलट-रेपो` | `mcp-config.json` या रेपो-स्कोप्ड `.github/mcp.json` |
+| किलो कोड | ✅ प्रथम श्रेणी | `किलो-उपयोगकर्ता`, `किलो-प्रोजेक्ट`, `किलो-वर्कस्पेस` | किलो सीएलआई `kilo.json` का उपयोग करता है; कार्यक्षेत्र एकीकरण `.kilocode/mcp.json` | का उपयोग करता है
+| जेड | ✅ प्रथम श्रेणी | `ज़ेड-वर्कस्पेस` | `.zed/settings.json` `context_servers` के साथ |
+| जूनी | ✅ प्रथम श्रेणी | `जूनी-प्रोजेक्ट`, `जूनी-उपयोगकर्ता` | `.junie/mcp/mcp.json` या `~/.junie/mcp/mcp.json` `mcpServers` का उपयोग कर |
+| हंस | ✅ प्रथम श्रेणी | `हंस-उपयोगकर्ता` | `~/.config/goose/config.yaml` लगातार एमसीपी एक्सटेंशन के लिए शीर्ष-स्तरीय `एक्सटेंशन` ऑब्जेक्ट का उपयोग कर रहा है |---
 
 ## Current Gaps
 
-These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
+`9राउटर` के ये ग्राहक ओमनी स्किल्स में अभी तक प्रथम श्रेणी के लेखक लक्ष्य नहीं हैं:
 
-| Client | Current State | Why |
-|:-------|:--------------|:----|
-| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
-| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
+| ग्राहक | वर्तमान स्थिति | क्यों |
+|:-------|:----|:----|
+| फ़ैक्टरी Droid | ⚠️ केवल मैनुअल/कस्टम | इस पास के दौरान प्राथमिक दस्तावेज़ों में कोई स्थिर सार्वजनिक MCP कॉन्फ़िगरेशन आकार नहीं मिला |
+| ओपनक्लॉ | ⚠️ केवल मैनुअल/कस्टम | फ़ैक्टरी Droid | जैसा ही मुद्दा
 
-The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
+उन्नत उपयोगकर्ताओं के लिए साइडकार का उपयोग अभी भी `--फ़ाइल` या कस्टम पथों के साथ किया जा सकता है, लेकिन ओमनी स्किल्स को स्थिर सार्वजनिक कॉन्फ़िगरेशन दस्तावेज़ों के बिना प्रथम श्रेणी के लेखकों का आविष्कार नहीं करना चाहिए।
 
-Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
+दो निकटवर्ती उत्पाद अब बेहतर ढंग से समझे जाते हैं, लेकिन फिर भी जानबूझकर प्रथम श्रेणी के स्वचालित लेखकों की कमी को रोकते हैं:
 
-| Client | Current State | Why |
-|:-------|:--------------|:----|
-| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
-| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
-| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
-
----
+| ग्राहक | वर्तमान स्थिति | क्यों |
+|:-------|:----|:----|
+| जेटब्रेन एआई असिस्टेंट | 🟡 मैनुअल/स्निपेट | आधिकारिक एमसीपी समर्थन मौजूद है, लेकिन दस्तावेज़ीकृत वर्कफ़्लो स्थिर सार्वजनिक फ़ाइल लक्ष्य के बजाय यूआई-संचालित/आयात-संचालित है |
+| डाकिया | 🟡 मैनुअल/स्निपेट | आधिकारिक एमसीपी समर्थन मौजूद है, लेकिन कॉन्फ़िगरेशन को स्थिर सार्वजनिक फ़ाइल लक्ष्य के बजाय उत्पाद यूएक्स के अंदर प्रबंधित किया जाता है
+| रू कोड | 🟡उम्मीदवार | सार्वजनिक एमसीपी दस्तावेज़ मौजूद हैं, लेकिन एक मजबूत क्रॉस-प्लेटफ़ॉर्म फ़ाइल-पथ अनुबंध को लेखक जोड़ने से पहले अभी भी पुष्टि की आवश्यकता है---
 
 ## Support Policy
 
-Omni Skills now follows this rule set:
+ओमनी स्किल्स अब इस नियम सेट का पालन करती है:
 
-1. **Install-capable** if a stable skills directory exists.
-2. **Config-capable** if a stable public MCP config file format exists.
-3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
+1.**इंस्टॉल-सक्षम**यदि एक स्थिर कौशल निर्देशिका मौजूद है।
+2.**कॉन्फिग-सक्षम**यदि एक स्थिर सार्वजनिक एमसीपी कॉन्फिग फ़ाइल प्रारूप मौजूद है।
+3.**मैन्युअल/स्निपेट-केवल**यदि उत्पाद एमसीपी का समर्थन करता है लेकिन सार्वजनिक अनुबंध यूआई-प्रथम, आयात-प्रथम, या अभी भी बहुत अस्थिर है।
 
-This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
-
-### Canonical config families already in use
+यह पहले के वास्तुकला प्रश्नों में से एक का व्यावहारिक उत्तर भी है: परियोजना को केवल प्रथम श्रेणी के लेखकों को बढ़ाना चाहिए जहां एक स्थिर सार्वजनिक प्रारूप मौजूद है, और अन्यथा विहित निर्यात परिवारों और व्यंजनों और स्निपेट्स के एक छोटे सेट पर निर्भर रहना चाहिए।### Canonical config families already in use
 
 - JSON `mcpServers`
-- JSON `servers`
+- JSON `सर्वर`
 - JSON `context_servers`
 - YAML `mcpServers`
-- TOML `[mcp_servers]`
+- TOML `[mcp_servers]`### Additional candidates worth watching
 
-### Additional candidates worth watching
-
-| Client / IDE | Recommendation | Reason |
-|:-------------|:---------------|:-------|
-| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
-| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
-| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
-| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
-| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
-
----
+| क्लाइंट/आईडीई | सिफ़ारिश | कारण |
+|:---|:-------|:-------|
+| जेटब्रेन एआई असिस्टेंट | 🟡 अभी मैनुअल/स्निपेट रखें | आधिकारिक समर्थन वास्तविक है, लेकिन यूएक्स अभी भी फ़ाइल-अनुबंध-प्रथम के बजाय उत्पाद-प्रबंधित है
+| डाकिया | 🟡 अभी मैनुअल/स्निपेट रखें | आधिकारिक सेटअप फ़ाइल-अनुबंध-प्रथम के बजाय यूआई-प्रथम और कार्यक्षेत्र-प्रबंधित है
+| रू कोड | 🟡अगली जांच करें | एमसीपी समर्थन का वादा, लेकिन लेखक की सुरक्षा मजबूत कॉन्फिग-पथ पुष्टि पर निर्भर करती है |
+| वीएस कोड कोपायलट चैट | 🟢 पहले से ही अप्रत्यक्ष रूप से कवर किया गया है | अंतर्निहित वीएस कोड एमसीपी फ़ाइल स्थान पहले से ही समर्थित हैं |
+| जेड एसीपी/एजेंट सर्वर | 🟡 अलग ट्रैक | यह एसीपी/एजेंट-सर्वर क्षेत्र है, न कि केवल एमसीपी कॉन्फिग लेखन |---
 
 ## Official Sources Used
 
-The decisions above were checked against current primary sources:
+उपरोक्त निर्णयों की जाँच वर्तमान प्राथमिक स्रोतों के विरुद्ध की गई:
 
-- [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
-- [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
-- [Cursor MCP](https://docs.cursor.com/tools)
-- [Continue MCP](https://docs.continue.dev/customize/tools)
-- [Kiro MCP](https://kiro.dev/docs/mcp)
-- [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
-- [Cline MCP](https://docs.cline.bot/mcp)
-- [Kilo Code MCP](https://kilo.ai/docs/automate/mcp/using-in-kilo-code)
-- [GitHub Copilot CLI MCP](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/cli-command-reference)
-- [Zed MCP](https://zed.dev/docs/ai/mcp)
-- [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
-- [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
-- [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
-- [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
-- [Roo Code MCP](https://docs.roocode.com/features/mcp)
-- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
-
----
+- [एंथ्रोपिक क्लाउड कोड एमसीपी](https://docs.anthropic.com/en/docs/claude-code/mcp)
+- [ओपनएआई कोडेक्स सीएलआई एमसीपी](https://platform.openai.com/docs/codex/cli)
+- [कर्सर एमसीपी](https://docs.cursor.com/tools)
+- [एमसीपी जारी रखें](https://docs.continue.dev/customize/tools)
+- [किरो एमसीपी](https://kiro.dev/docs/mcp)
+- [ओपनकोड एमसीपी](https://opencode.ai/docs/mcp-servers/)
+- [क्लाइन एमसीपी](https://docs.cline.bot/mcp)
+- [किलो कोड एमसीपी](https://kilo.ai/docs/automate/mcp/using-in-kilo-code)
+- [गिटहब कोपायलट सीएलआई एमसीपी](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/cli-command-reference)
+- [जेड एमसीपी](https://zed.dev/docs/ai/mcp)
+- [जेटब्रेन्स एआई असिस्टेंट एमसीपी](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
+- [जूनी एमसीपी](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
+- [हंस कॉन्फ़िगरेशन फ़ाइलें](https://block.github.io/goose/docs/guides/config-files/)
+- [हंस सत्र एक्सटेंशन](https://block.github.io/goose/docs/guides/session-extensions/)
+- [पोस्टमैन एमसीपी सेटअप](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [रू कोड एमसीपी](https://docs.roocode.com/features/mcp)
+- [वीएस कोड एमसीपी एक्सटेंशन गाइड](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [आधिकारिक एमसीपी रजिस्ट्री](https://prod.registry.modelcontextprotocol.io/)---
 
 ## Implementation Notes
 
-The current Omni Skills sidecar intentionally distinguishes three support levels:
+वर्तमान ओमनी स्किल्स साइडकार जानबूझकर तीन समर्थन स्तरों को अलग करता है:
 
-- **install-capable clients**
-  - have a known skills directory and can use `install_skills`
-- **config-capable clients**
-  - have a stable config target and can use `configure_client_mcp`
-- **manual/snippet clients**
-  - documented, but without a safe first-class file writer yet
+-**इंस्टॉल-सक्षम ग्राहक**
+  - एक ज्ञात कौशल निर्देशिका है और `install_skills` का उपयोग कर सकते हैं
+-**कॉन्फिग-सक्षम ग्राहक**
+  - एक स्थिर कॉन्फ़िगरेशन लक्ष्य रखें और `configure_client_mcp` का उपयोग कर सकते हैं
+-**मैनुअल/स्निपेट क्लाइंट**
+  - प्रलेखित, लेकिन अभी तक सुरक्षित प्रथम श्रेणी फ़ाइल लेखक के बिना
 
-That separation keeps the product honest.
+वह पृथक्करण उत्पाद को ईमानदार रखता है।
 
-Not every MCP-capable product should be treated as a skill-install target.
-The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.
+प्रत्येक एमसीपी-सक्षम उत्पाद को कौशल-स्थापना लक्ष्य के रूप में नहीं माना जाना चाहिए।
+विस्तार चरण को अभी पूरा माना जाता है: भविष्य में जोड़े जाने वाले अनुबंध केवल तभी लागू होने चाहिए जब वे उसी सार्वजनिक-अनुबंध पट्टी को साफ़ कर दें जिसे गूज़, जूनी, कंटिन्यू और विंडसर्फ अब साफ़ कर चुके हैं।

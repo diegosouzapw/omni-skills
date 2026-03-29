@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Hợp đồng hành vi đối với trải nghiệm cài đặt có hướng dẫn trong Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Thông số kỹ thuật này xác định hành vi cài đặt được hướng dẫn nằm trên phần phụ trợ của trình cài đặt hiện có.
 
-It does not replace:
+Nó không thay thế:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- luồng cờ chuyên gia hiện tại
+- bảng kê khai cài đặt có chọn lọc
 
-It defines:
+Nó định nghĩa:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- cách nhập chế độ hướng dẫn
+- cách chọn điểm đến
+- cách chọn phạm vi cài đặt
+- thông tin xem trước nào phải được hiển thị
+- cách xác nhận và thực thi hoạt động---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI sẽ vào chế độ cài đặt được hướng dẫn khi:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- người dùng chạy `omni-skills` mà không có đối số nào trong TTY
+- người dùng chạy `cài đặt omni-skills` mà không có bộ chọn trong TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+CLI cũng phải hỗ trợ chế độ hướng dẫn rõ ràng thông qua tùy chọn chuyên dụng, chẳng hạn như:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- `cài đặt omni-skills --guided`
 
-- `omni-skills install --guided`
+Chế độ này sẽ hoạt động ngay cả khi đầu vào được truyền qua đường ống và không được gắn vào TTY, miễn là có sẵn đầu vào tiêu chuẩn.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Khi được gọi mà không có TTY và không có chế độ hướng dẫn được yêu cầu rõ ràng:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- duy trì hành vi mặc định hiện tại
+- không chặn chờ nhắc nhở---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Cài đặt có hướng dẫn phải hỗ trợ hai lớp đích:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Mỗi mục tiêu đã biết sẽ giải quyết:
 
-Each known target resolves to:
+- nhãn con người có thể đọc được
+- id công cụ nội bộ
+- cờ cài đặt
+- đường dẫn đã giải quyết
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+Các mục tiêu bắt buộc đã biết:
 
-Required known targets:
-
-- Claude Code
-- Cursor
-- Gemini CLI
+- Mã Claude
+- Con trỏ
+- Song Tử CLI
 - Codex CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Phản trọng lực
+- Mã mở### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Chế độ đường dẫn tùy chỉnh phải:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- nhắc đường dẫn
+- giải quyết `~`
+- chuẩn hóa thành đường dẫn tuyệt đối
+- hiển thị đường dẫn đã giải quyết trong bản xem trước---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Hướng dẫn cài đặt phải hỗ trợ:### 4.1 Full Library
 
-### 4.1 Full Library
+Tương đương với cài đặt hiện tại không có `--skill` hoặc `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Cho phép người dùng chọn một kỹ năng được xuất bản.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Cho phép người dùng chọn một gói được quản lý và phân giải các thành viên đã xuất bản.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Cho phép người dùng:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- nhập truy vấn tìm kiếm
+- kiểm tra kết quả
+- chọn một kỹ năng hoặc gói
+- tiếp tục vào bản xem trước cài đặt---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Trước khi thực hiện, hướng dẫn cài đặt phải hiển thị:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- nhãn điểm đến
+- đường dẫn đích
+- phạm vi cài đặt
+- kỹ năng hoặc gói đã chọn nếu có
+- lệnh CLI tương đương
 
-Optional but recommended:
+Tùy chọn nhưng được khuyến nghị:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- tóm tắt siêu dữ liệu kỹ năng đã chọn
+- tóm tắt tính sẵn có của gói---
 
 ## 6. Execution Contract
 
-After confirmation:
+Sau khi xác nhận:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- hướng dẫn ủy quyền cài đặt cho chương trình phụ trợ trình cài đặt hiện có
+- nó không thực hiện lại tập tin tự ghi
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Bản xem trước lệnh và đối số trình cài đặt được ủy quyền thực tế phải khớp chính xác.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+Sau khi thực hiện thành công, kết quả cài đặt được hướng dẫn sẽ hiển thị:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- chỉ số thành công
+- đường dẫn đích cuối cùng
+- lệnh đã được thực thi
+- hành động được đề xuất tiếp theo
 
-Example next actions:
+Ví dụ các hành động tiếp theo:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- sử dụng kỹ năng trong khách hàng đã chọn
+- chạy `bác sĩ`
+- chạy `mcpstream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Những điều sau đây vẫn hợp lệ và không thay đổi:
 
 - `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
 - `omni-skills --path ./skills`
-- `omni-skills find figma --tool cursor --install --yes`
+- `omni-skills find figma --tool con trỏ --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Chế độ hướng dẫn thêm hành vi. Nó không loại bỏ hành vi hiện có.

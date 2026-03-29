@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Contrato conductual para la experiencia de instalación guiada en Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Esta especificación define el comportamiento de instalación guiada que se encuentra en la parte superior del backend del instalador existente.
 
-It does not replace:
+No reemplaza:
 
-- `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- `herramientas/bin/install.js`
+- flujos actuales de banderas de expertos
+- manifiestos de instalación selectiva
 
-It defines:
+Define:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- cómo se ingresa al modo guiado
+- cómo se eligen los destinos
+- cómo se elige el alcance de la instalación
+- qué información de vista previa debe mostrarse
+- cómo funcionan la confirmación y la ejecución---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+La CLI debe ingresar al modo de instalación guiada cuando:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- el usuario ejecuta `omni-skills` sin argumentos en un TTY
+- el usuario ejecuta `omni-skills install` sin selectores en un TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+La CLI también debería admitir el modo guiado explícito a través de una opción dedicada, como por ejemplo:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- `instalación omni-skills --guiada`
 
-- `omni-skills install --guided`
+Este modo debería funcionar incluso cuando la entrada está canalizada y no conectada a un TTY, siempre que la entrada estándar esté disponible.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Cuando se invoca sin TTY y sin modo guiado solicitado explícitamente:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- preservar el comportamiento predeterminado actual
+- no bloquear la espera de indicaciones---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+La instalación guiada debe admitir dos clases de destino:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Cada objetivo conocido resuelve:
 
-Each known target resolves to:
+- etiqueta legible por humanos
+- identificación de herramienta interna
+- instalar bandera
+- camino resuelto
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+Objetivos conocidos requeridos:
 
-Required known targets:
+- Código Claude
+- Cursores
+- CLI de Géminis
+- CLI del Códice
+-Kiro
+- Antigravedad
+- Código abierto### 3.2 Custom Path Target
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+El modo de ruta personalizada debe:
 
-### 3.2 Custom Path Target
-
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- solicitar un camino
+- resolver `~`
+- normalizar a ruta absoluta
+- mostrar la ruta resuelta en vista previa---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+La instalación guiada debe admitir:### 4.1 Full Library
 
-### 4.1 Full Library
+Equivalente a la instalación actual sin `--skill` o `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Permite al usuario seleccionar una habilidad publicada.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Permite al usuario seleccionar un paquete seleccionado y resuelve los miembros publicados.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Permite al usuario:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- ingrese una consulta de búsqueda
+- inspeccionar resultados
+- elige una habilidad o paquete
+- continuar en la vista previa de instalación---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Antes de la ejecución, la instalación guiada debe mostrar:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- etiqueta de destino
+- ruta de destino
+- instalar alcance
+- habilidad o paquete seleccionado si corresponde
+- comando CLI equivalente
 
-Optional but recommended:
+Opcional pero recomendado:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- resumen de metadatos de habilidades seleccionadas
+- resumen de disponibilidad del paquete---
 
 ## 6. Execution Contract
 
-After confirmation:
+Después de la confirmación:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- Instalación guiada delegados al backend del instalador existente.
+- no vuelve a implementar el archivo y se escribe solo
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+La vista previa del comando y los argumentos reales del instalador delegado deben coincidir exactamente.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+Después de una ejecución exitosa, el resultado de la instalación guiada debería mostrar:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- indicador de éxito
+- ruta de destino final
+- comando que fue ejecutado
+- siguiente acción recomendada
 
-Example next actions:
+Ejemplo de siguientes acciones:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- usa la habilidad en el cliente seleccionado
+- ejecutar "doctor"
+- ejecutar `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Lo siguiente sigue siendo válido y sin cambios:
 
 - `omni-skills --cursor --skill omni-figma`
-- `omni-skills --bundle full-stack`
-- `omni-skills --path ./skills`
-- `omni-skills find figma --tool cursor --install --yes`
+- `omni-skills --paquete completo`
+- `omni-skills --ruta ./skills`
+- `omni-skills buscar figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+El modo guiado añade comportamiento. No elimina el comportamiento existente.

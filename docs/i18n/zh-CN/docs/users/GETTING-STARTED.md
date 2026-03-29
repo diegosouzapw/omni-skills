@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**安装技能、验证设置并在 2 分钟内调用您的第一个 AI 技能。**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
-|:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+|公制|价值|
+|:--------|:--------|
+|发布技能 |**32**涵盖 15 个活跃类别，包括架构、设计、安全、DevOps、AI 工程等 |
+|定义的捆绑包 |**7**（全部由已发布的技能完全支持）|
+|可安装的客户端 |**7**（Claude Code、Cursor、Gemini CLI、Codex CLI、Kiro、Antigravity、OpenCode）|
+|支持 MCP 配置的客户端 |**16**跨 33 个一流 MCP 配置目标 |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+在交互式终端中，现在会打开引导安装程序，而不是默默地假设客户端。### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+这将打开用于安装、发现、MCP、API 和 A2A 启动的品牌终端中心。### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+在 TTY 之外，无参数安装程序仍然默认为“~/.gemini/antigravity/skills”。### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ 入门包现已得到全面支持，包括“devops”和“ai-engineer”。### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+检查技能是否落在正确的位置：```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+或者使用内置诊断：```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+为代理提供文件系统工具来检测客户端、安装/删除技能以及编写 MCP 配置：```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+您还可以为不是技能安装目标的客户端配置 MCP：```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+将技能目录公开为只读 HTTP API：```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+代理到代理的发现、推荐、安装规划、轮询和流式传输：```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+技能是一个结构化的 Markdown 剧本（“SKILL.md”），它为 AI 代理提供：
 
-| Component | Purpose |
+|组件|目的|
 |:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| 📋**前线**|机器可读的元数据（名称、类别、标签、工具、风险）|
+| 📝**身体**|针对特定任务的说明、步骤、护栏和示例 |
+| 📚**参考文献**|代理在执行过程中可以参考的支持文档 |
+| 🎨**资产**|图标、图像或其他打包资源 |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
+|文档 |你将学到什么 |
 |:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🧭 [CLI 用户指南](CLI-USER-GUIDE.md) |安装、运行时、配置和诊断的完整命令参考 |
+| 📗 【使用指南】(USAGE.md) |所有 CLI 命令、提示模式和运行时模式 |
+| 📦 [捆绑包](BUNDLES.md) |精心策划的技能集合及其可用性 |
+| 📚 [目录](../CATALOG.md) |自动生成已发布技能目录 |
+| 📖 [文档中心](../README.md) |完整文档地图 |
+| 🔧 [系统运行手册](../operations/RUNBOOK.md) |操作参考|

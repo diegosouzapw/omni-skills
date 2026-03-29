@@ -5,39 +5,33 @@
 ---
 
 
-> **The full public CLI surface shipped by `omni-skills`.**
+>**Suprafața CLI publică completă livrată de `omni-skills`.**
 
-Use this guide when you want to:
+Utilizați acest ghid atunci când doriți:
 
-| Goal | Command Area |
-|:-----|:-------------|
-| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
-| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
-| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
-| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
-
----
+| Gol | Zona de comandă |
+|:-----|:--------------|
+| 📥 Instalați abilități sau pachete | [Instalare fluxuri](#3️⃣-install-flows) |
+| 🔎 Căutați în catalog | [Descoperirea catalogului](#4️⃣-descoperire-catalog) |
+| 🔌 Configurați clienții MCP | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Porniți serviciile MCP, API sau A2A | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Utilizați shell-ul terminalului vizual | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Rulați diagnostice sau zbor prealabil | [Diagnosticare](#🔟-diagnostic-și-flight preflight) |---
 
 ## 1️⃣ Install and Entry Modes
 
-Install with `npx`:
-
-```bash
+Instalați cu `npx`:```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Context | What Happens |
+| Context | Ce se întâmplă |
 |:--------|:------------|
-| 🖥️ TTY + no arguments | Opens the **guided install** flow |
-| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
-| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
-
----
+| 🖥️ TTY + fără argumente | Deschide fluxul de**instalare ghidată**|
+| ⚙️ Non-TTY + fără argumente | Instalare non-interactivă la `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Marca**Ink visual shell**|
+| 📝 `npx omni-skills ui --text` | Readline**text alternativ**UI |---
 
 ## 2️⃣ Core Commands
 
@@ -45,22 +39,20 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Command | Description |
-|:--------|:-----------|
-| `ui` | 🎨 Visual terminal hub |
-| `find [query]` | 🔎 Catalog discovery |
-| `recategorize` | 🏷️ Taxonomy management |
-| `install [flags]` | 📥 Skill/bundle install |
-| `config-mcp` | 🔌 MCP client configuration |
-| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| Comanda | Descriere |
+|:--------|:------------|
+| `ui` | 🎨 hub terminal vizual |
+| `găsește [interogare]` | 🔎 Descoperire catalog |
+| `recategoriza` | 🏷️ Managementul taxonomiei |
+| `instalați [steaguri]` | 📥 Instalare abilitate/pachet |
+| `config-mcp` | 🔌 Configurare client MCP |
+| `mcp <stdio\|stream\|sse>` | 🔌 Moduri server MCP |
 | `api` | 🌐 Catalog API |
 | `a2a` | 🤖 A2A runtime |
-| `smoke` | 🧪 Release preflight |
-| `publish-check` | 📦 Package publication check |
-| `doctor` | 🩺 Environment diagnostics |
-| `help` | ❓ Command reference |
-
----
+| `fum` | 🧪 Lansare preflight |
+| `publicare-verificare` | 📦 Verificare publicare pachet |
+| `doctor` | 🩺 Diagnosticarea mediului |
+| `ajutor` | ❓ Referința comenzii |---
 
 ## 3️⃣ Install Flows
 
@@ -71,9 +63,7 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
-
-### 🎯 Single Skill
+> Fluxul ghidat vă permite să alegeți:**client țintă**→**pachet sau abilitate**→**cale personalizată**→**previzualizare înainte de execuție**### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -90,19 +80,17 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Flag | Client |
+| Steagul | Client |
 |:-----|:-------|
-| `--antigravity` | 🟣 Antigravity *(default)* |
-| `--claude` | 🟢 Claude Code |
+| `--antigravitație` | 🟣 Antigravitație *(implicit)* |
+| `--claude` | 🟢 Cod Claude |
 | `--cursor` | 🔵 Cursor |
 | `--codex` | 🔴 Codex CLI |
-| `--gemini` | 🟡 Gemini CLI |
+| `--gemeni` | 🟡 Gemeni CLI |
 | `--kiro` | 🟠 Kiro |
 | `--opencode` | ⚪ OpenCode |
 
-> Default install target (non-interactive): `~/.gemini/antigravity/skills`
-
----
+> Țintă de instalare implicită (non-interactivă): `~/.gemini/antigravity/skills`---
 
 ## 4️⃣ Catalog Discovery
 
@@ -123,27 +111,23 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Flag | Purpose |
+| Steagul | Scop |
 |:-----|:--------|
-| `--category` | Filter by taxonomy category |
-| `--tool` | Filter by supported tool |
-| `--risk` | Filter by risk level |
-| `--sort` | Sort results (e.g., `quality`) |
-| `--order` | Sort order |
-| `--min-quality` | Minimum quality score |
-| `--min-best-practices` | Minimum best-practices score |
-| `--min-level` | Minimum maturity level |
-| `--min-security` | Minimum security score |
-| `--validation-status` | Filter by validation state |
-| `--security-status` | Filter by security state |
-
----
+| `--categorie` | Filtrați după categoria taxonomiei |
+| `--instrument` | Filtrați după instrumentul acceptat |
+| `--risc` | Filtrați după nivelul de risc |
+| `--sort` | Sortați rezultatele (de exemplu, „calitate”) |
+| `--comanda` | Ordinea de sortare |
+| `--min-calitate` | Scorul minim de calitate |
+| `--min-bune-practices` | Scorul minim pentru cele mai bune practici |
+| `--min-level` | Nivel minim de maturitate |
+| `--min-securitate` | Scorul minim de securitate |
+| `--status-validare` | Filtrați după starea de validare |
+| `--starea-securității` | Filtrați după starea de securitate |---
 
 ## 5️⃣ MCP Client Config
 
-Use `config-mcp` to preview or write client-aware MCP configuration.
-
-### 📋 List Targets
+Utilizați `config-mcp` pentru a previzualiza sau a scrie configurația MCP care ține cont de client.### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -168,28 +152,26 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<details>
-<summary>🔌 <strong>Config-capable client surface</strong></summary>
+<detalii>
+<summary>🔌 <strong>Subfață client capabilă de configurare</strong></summary>
 
-| Client | Targets |
+| Client | Ținte |
 |:-------|:--------|
-| Claude | Settings and desktop targets |
-| Cursor | User and workspace |
+| Claude | Setări și ținte desktop |
+| Cursor | Utilizator și spațiu de lucru |
 | Codex | TOML config |
-| Gemini | User and workspace |
-| Antigravity | User config |
-| OpenCode | User and workspace |
-| Cline | First-class target |
-| GitHub Copilot CLI | User and repo |
-| Kilo Code | User, project, and workspace |
-| Kiro | User and workspace |
-| Zed | Workspace |
-| VS Code | User, workspace, and Dev Container |
-| Continue | Workspace YAML |
-| Junie | Project and user |
-| Windsurf | User config |
-
-</details>
+| Gemeni | Utilizator și spațiu de lucru |
+| Antigravitație | Configurare utilizator |
+| OpenCode | Utilizator și spațiu de lucru |
+| Cline | Țintă de primă clasă |
+| GitHub Copilot CLI | Utilizator și repo |
+| Cod Kilo | Utilizator, proiect și spațiu de lucru |
+| Kiro | Utilizator și spațiu de lucru |
+| Zed | Spațiu de lucru |
+| Cod VS | Utilizator, spațiu de lucru și Container Dev |
+| Continuare | Spațiu de lucru YAML |
+| Junie | Proiect și utilizator |
+| Windsurf | Configurare utilizator |</details>
 
 ---
 
@@ -210,9 +192,7 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
-> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
-
----
+>**Local sidecar**adaugă: detectarea clientului, previzualizarea instalării, fluxurile de instalare/eliminare și scrierea configurației MCP.---
 
 ## 7️⃣ Catalog API
 
@@ -222,17 +202,15 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Route | Purpose |
+| Traseu | Scop |
 |:------|:--------|
-| `GET /healthz` | Health check |
-| `GET /openapi.json` | OpenAPI spec |
-| `GET /v1/skills` | List all skills |
-| `GET /v1/search` | Search the catalog |
-| `GET /v1/skills/:id/archives` | List archives for a skill |
-| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
-| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
-
----
+| `GET /healthz` | Verificarea sănătății |
+| `GET /openapi.json` | Specificație OpenAPI |
+| `GET /v1/skills` | Listați toate aptitudinile |
+| `GET /v1/search` | Cauta in catalog |
+| `GET /v1/skills/:id/archives` | Listează arhivele pentru o abilitate |
+| `GET /v1/skills/:id/download/archive?format=zip` | Descărcați arhiva de abilități |
+| `GET /v1/skills/:id/download/archive/checksums` | Descărcați sumele de verificare |---
 
 ## 8️⃣ A2A Runtime
 
@@ -242,17 +220,15 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Feature | Status |
+| Caracteristica | Stare |
 |:--------|:-------|
-| 🔎 Task-aware discovery | ✅ |
-| 📋 Install-plan handoff | ✅ |
-| 🔄 Polling | ✅ |
+| 🔎 Descoperire în funcție de sarcini | ✅ |
+| 📋 Predarea planului de instalare | ✅ |
+| 🔄 Sondaj | ✅ |
 | 📡 Streaming | ✅ |
-| ❌ Cancelation | ✅ |
-| 🔔 Push-notification config | ✅ |
-| 💾 Persistence | Memory, JSON, and SQLite |
-
----
+| ❌ Anulare | ✅ |
+| 🔔 Configurare notificare push | ✅ |
+| 💾 Persistență | Memorie, JSON și SQLite |---
 
 ## 9️⃣ Visual Shell
 
@@ -262,19 +238,17 @@ npx omni-skills ui
 
 ### Funcționalități
 
-| Feature | Description |
-|:--------|:-----------|
-| 🧭 Guided install | Choose client or custom path |
-| 🔎 Search + install | No flag memorization needed |
-| 🔌 MCP config | Preview and write flows |
-| 🖥️ Service launch | MCP, API, and A2A guided startup |
-| 🕐 Recents | Recent installs and service relaunches |
-| ⭐ Favorites | Saved skills and bundles |
-| 💾 Presets | Named install and service presets |
+| Caracteristica | Descriere |
+|:--------|:------------|
+| 🧭 Instalare ghidată | Alegeți clientul sau calea personalizată |
+| 🔎 Căutați + instalați | Nu este necesară memorarea steagului |
+| 🔌 Configurare MCP | Previzualizați și scrieți fluxuri |
+| 🖥️ Lansare serviciu | Pornire ghidată MCP, API și A2A |
+| 🕐 Recente | Instalări recente și relansări de servicii |
+| ⭐ Favorite | Abilități și pachete salvate |
+| 💾 Presetari | Presetări de instalare și service denumite |
 
-> **State path:** `~/.omni-skills/state/ui-state.json`
-
----
+>**Cale de stat:**`~/.omni-skills/state/ui-state.json`---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -284,18 +258,14 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Inspects: repo state, local install state, runtime availability, and environment issues.
-
-### 🧪 Release Preflight
+> Inspectează: starea repo, starea instalării locale, disponibilitatea timpului de execuție și probleme de mediu.### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
-
----
+> Validează: construirea, testarea, ieșirea pachetului, pornirea serviciului, acoperirea scanerului și pachetul de lansare.---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -308,22 +278,20 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Command | Purpose |
-|:-----------|:--------|:--------|
-| 🆕 New user | `npx omni-skills` | Guided first-time install |
-| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
-| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
-| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
-| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
-
----
+| 🎯 Persona | Comanda | Scop |
+|:------------|:--------|:--------|
+| 🆕 Utilizator nou | `npx omni-skills` | Instalare ghidată pentru prima dată |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configurați MCP local |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Porniți sidecar local |
+| 📦 Mentenant | `npx omni-skills smoke` | Validați o versiune |
+| 🔍 Utilizator puternic | `npx omni-skills find security --sort quality --min-quality 95` | Găsiți mai întâi cea mai bună abilitate |---
 
 ## 📖 Related Documents
 
-| Doc | What It Covers |
-|:----|:--------------|
-| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
-| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
-| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
-| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |
+| Doc | Ce acoperă |
+|:----|:---------------|
+| 🚀 [Noțiuni introductive](./GETTING-STARTED.md) | Instalați și verificați în mai puțin de 2 minute |
+| 📗 [Ghid de utilizare](./USAGE.md) | Toate comenzile, modelele și modurile CLI |
+| 📦 [Pachete](./BUNDLES.md) | Colecții de abilități organizate |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Referință operațională |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Instrumente de sistem de fișiere și scriere de configurare |

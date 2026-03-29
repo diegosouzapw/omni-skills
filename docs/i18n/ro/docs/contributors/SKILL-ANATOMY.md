@@ -5,126 +5,110 @@
 ---
 
 
-> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
-
----
+>**Structură și așteptări de calitate pentru un Omni Skills `SKILL.md` — formatul de autor care alimentează întregul catalog.**---
 
 ## 📐 The Two Parts
 
-Every `SKILL.md` is composed of two distinct sections:
+Fiecare `SKILL.md` este compus din două secțiuni distincte:### 1️⃣ Frontmatter (YAML Metadata)
 
-### 1️⃣ Frontmatter (YAML Metadata)
+Metadate care pot fi citite de mașină între delimitatorii `---`. Acesta dă putere:
 
-Machine-readable metadata between `---` delimiters. It powers:
+- 📚 Indexul de competențe și generarea de catalog
+- 🔎 Căutare și filtrare CLI
+- ✅ Validare și punctaj de calitate
+- 📊 Artefacte de clasificare `metadata.json` generate
+- 📋 Per-abilitate se manifestă în `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
 
-- 📚 The skills index and catalog generation
-- 🔎 CLI search and filtering
-- ✅ Validation and quality scoring
-- 📊 Generated `metadata.json` classification artifacts
-- 📋 Per-skill manifests in `dist/manifests/`
-
-### 2️⃣ Body (Markdown Instructions)
-
-Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
-
----
+Instrucțiuni care pot fi citite de oameni (și care pot fi citite de agenți). Scrieți-l ca și cum ați**informați un dezvoltator senior**despre cum să efectuați o sarcină - suficient de specific încât un agent AI să o poată urmări fără să ghicească.---
 
 ## 📋 Frontmatter Reference
 
-| Field | Required | Type | Description |
-|:------|:---------|:-----|:------------|
-| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
-| `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
-| `category` | ⚡ | string | One canonical category from the repo taxonomy |
-| `tags` | ⚡ | string[] | Searchable tags for discovery |
-| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
-| `tools` | ⚡ | string[] | Tested AI coding assistants |
-| `source` | ⚡ | string | `omni-team` · `community` · `official` |
-| `author` | ⚡ | string | Attribution |
-| `date_added` | ⚡ | string | ISO date |
-| `date_updated` | ⚡ | string | ISO date |
+| Câmp | Necesar | Tip | Descriere |
+|:------|:----------|:-----|:-------------|
+| `nume` | ✅ | șir | Trebuie să se potrivească cu numele directorului, cu minuscule |
+| `descriere` | ✅ | șir | Descriere pe un rând (10-200 de caractere) |
+| `versiune` | ⚡ | șir | Versiune semantică pentru abilitate în sine (de exemplu, `"0.1.1"`) |
+| `categorie` | ⚡ | șir | O categorie canonică din taxonomia repo |
+| `etichete` | ⚡ | șir[] | Etichete de căutare pentru descoperire |
+| `complexitate` | ⚡ | șir | `începător` · `intermediar` · `avansat` · `expert` |
+| `risc` | ⚡ | șir | `sigur` · `atenție` · `ofensiv` · `critic` |
+| `instrumente` | ⚡ | șir[] | Asistenți de codare AI testați |
+| `sursa` | ⚡ | șir | `omni-echipă` · `comunitate` · `oficial` |
+| `autor` | ⚡ | șir | Atribuire |
+| `data_adăugată` | ⚡ | șir | data ISO |
+| `data_actualizat` | ⚡ | șir | data ISO |
 
-> ✅ = Always required · ⚡ = Required in strict mode
+> ✅ = Întotdeauna necesar · ⚡ = Necesar în modul strict
 
-The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
-
----
+Versiunea skill este independentă de versiunea pachetului npm. Pachetul este în prezent `0.1.3`, dar abilitățile existente pot rămâne valabil pe propria lor versiune semantică.---
 
 ## 🏷️ Canonical Categories
 
-The repo taxonomy currently defines **18 canonical categories**:
+Taxonomia repo definește în prezent**18 categorii canonice**:
 
-| Category | Domain |
+| Categoria | Domeniu |
 |:---------|:-------|
-| 💻 `development` | General software development |
-| 🎨 `frontend` | Frontend frameworks and UI |
-| 🔧 `backend` | Backend services and APIs |
-| 🌐 `fullstack-web` | End-to-end web development |
-| 🛠️ `tools` | Developer tooling and utilities |
-| ⚙️ `cli-automation` | CLI tools and automation scripts |
-| 📊 `business` | Business processes and strategy |
-| 📐 `product` | Product management and design |
-| 🎯 `design` | Visual and UX design |
-| 🤖 `data-ai` | Data engineering and AI applications |
-| 🧠 `ai-agents` | AI agent development and patterns |
-| 📈 `machine-learning` | ML models and training |
-| 🔌 `devops` | Infrastructure and deployment |
-| 🛡️ `testing-security` | Testing and security practices |
-| 📖 `documentation` | Documentation generation and management |
-| 🎬 `content-media` | Content creation and media |
-| 💬 `communication` | Communication tools and workflows |
-| ❓ `uncategorized` | Default when no match is found |
+| 💻 `dezvoltare` | Dezvoltare generală de software |
+| 🎨 `frontend` | Cadre frontale și interfață de utilizare |
+| 🔧 `backend` | Servicii de backend și API-uri |
+| 🌐 `fullstack-web` | Dezvoltare web end-to-end |
+| 🛠️ `instrumente` | Instrumente și utilități pentru dezvoltatori |
+| ⚙️ `cli-automation` | Instrumente CLI și scripturi de automatizare |
+| 📊 `afaceri` | Procese și strategie de afaceri |
+| 📐 `produs` | Management și design de produs |
+| 🎯 `design` | Design vizual și UX |
+| 🤖 `data-ai` | Inginerie de date și aplicații AI |
+| 🧠 `ai-agents` | Dezvoltarea și modelele agenților AI |
+| 📈 `învățare automată` | Modele ML și antrenament |
+| 🔌 `devops` | Infrastructură și implementare |
+| 🛡️ `testare-securitate` | Practici de testare și securitate |
+| 📖 `documentație` | Generarea și managementul documentației |
+| 🎬 `content-media` | Creare de conținut și media |
+| 💬 `comunicare` | Instrumente de comunicare și fluxuri de lucru |
+| ❓ `necategorizat` | Implicit când nu se găsește nicio potrivire |
 
-> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
-
----
+> Etichetele vechi precum `flux de lucru`, `arhitectură`, `infrastructură`, `securitate` și `testare` sunt normalizate automat prin maparea aliasului.---
 
 ## 📝 Body Structure
 
-A well-written skill body follows this hierarchy:
+Un corp de abilități bine scris urmează această ierarhie:
 
-### 📌 Overview (Required)
-2-3 sentences on **what** the skill does and **why** it exists.
+### 📌 Prezentare generală (obligatoriu)
+2-3 propoziții despre**ce**face abilitatea și**de ce**există.
 
-### 🎯 When to Use (Required)
-Bullet list of **specific scenarios** where this skill applies.
+### 🎯 Când se utilizează (obligatoriu)
+Lista marcatoare a**scenariilor specifice**în care se aplică această abilitate.
 
-### 📋 Core Instructions (Required)
-The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
+### 📋 Instrucțiuni de bază (obligatoriu)
+**Procesul pas cu pas**pe care agentul ar trebui să-l urmeze. Fii explicit. Fii specific. Agenții funcționează cel mai bine cu instrucțiuni clare, fără ambiguitate.
 
-### 💡 Examples (Recommended)
-Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
+### 💡 Exemple (recomandat)
+Solicitări concrete, blocuri de cod sau rezultate așteptate.**Cu cât este mai specific, cu atât mai bine.**
 
-### ✅ Best Practices (Recommended)
-Use the ✅ Do / ❌ Don't format for quick scanning.
+### ✅ Cele mai bune practici (recomandat)
+Utilizați ✅ Nu / ❌ Nu formatați pentru o scanare rapidă.
 
-### 🔧 Troubleshooting (Optional)
-Common issues and their solutions.
+### 🔧 Depanare (Opțional)
+Probleme comune și soluțiile lor.
 
-### 🔗 Related Skills (Optional)
-Cross-references to complementary skills.
-
----
+### 🔗 Abilități conexe (opțional)
+Referințe încrucișate la abilități complementare.---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Focused on **one specific** workflow or domain
-- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
-- 💡 Includes **concrete examples** with expected behavior
-- 🛡️ Has proper **error handling** guidance
-- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
-- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
+- 🎯 Concentrat pe**un singur flux de lucru sau domeniu specific
+- 📌 Instrucțiunile sunt**suficient de clare pentru ca un AI**să le urmeze fără interpretare umană
+- 💡 Include**exemple concrete**cu comportament așteptat
+- 🛡️ Are îndrumări adecvate pentru**tratarea erorilor**
+- 📊 Produce metadate sănătoase: categorie canonică, maturitate L2+, calitate 70+
+- 🧰 Livrează un pachet de asistență reutilizabil, nu numai proză, în mod ideal prin „referințe/”, „scripte/”, „exemple/” și „agenți/” acolo unde este cazul
 
-For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Pentru modelele de scor mai puternice care împing abilitățile în cele mai înalte benzi, consultați [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
 
-### ❌ Bad Skill
-
-- 🌫️ Generic advice that could apply to anything
-- 🤷 Vague instructions like "write good code"
-- 🚫 No examples or code blocks
-- ⚠️ Missing frontmatter fields
-- 📉 Low quality score (below 50)
+- 🌫️ Sfaturi generice care s-ar putea aplica la orice
+- 🤷 Instrucțiuni vagi precum „scrieți un cod bun”
+- 🚫 Fără exemple sau blocuri de cod
+- ⚠️ Lipsesc câmpuri de primă importanță
+- 📉 Scor de calitate scăzut (sub 50)

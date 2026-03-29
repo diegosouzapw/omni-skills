@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> สร้างอัตโนมัติจาก `skills_index.json` — 32 ทักษะใน 15 หมวดหมู่
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+สร้างขึ้น: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
-- [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
-- [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [🧠 ตัวแทน Ai (5)](#ai-ตัวแทน)
+- [🗄️ แบ็กเอนด์ (2)](#แบ็กเอนด์)
+- [⚙️ Cli อัตโนมัติ (1)](#cli-อัตโนมัติ)
+- [💌 การสื่อสาร (1)](#การสื่อสาร)
+- [🤖 ข้อมูล Ai (1)](#data-ai)
+- [🎨 การออกแบบ (3)](#การออกแบบ)
+- [💻 การพัฒนา (3)](#การพัฒนา)
+- [☁️ ดีวอปส์ (5)](#เดโวปส์)
+- [dictation เอกสาร (2)](#documentation)
+- [🖼️ ส่วนหน้า (1)](#ส่วนหน้า)
+- [🌐 เว็บ Fullstack (1)](#fullstack-web)
+- [📈 การเรียนรู้ของเครื่อง (1)](#การเรียนรู้ของเครื่อง)
+- [🧭 สินค้า (1)](#สินค้า)
+- [🛡️ การทดสอบความปลอดภัย (4)](#การทดสอบความปลอดภัย)
+- [🧰 เครื่องมือ (1)](#เครื่องมือ)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`วิศวกรรมบริบท`](../skills/context-engineering/SKILL.md) | ทักษะเวิร์กโฟลว์วิศวกรรมบริบท ใช้ทักษะนี้เมื่อผู้ใช้จำเป็นต้องกำหนดรูปแบบพร้อมท์ บริบทการดึงข้อมูล หน่วยความจำ และ | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`eval-design`](../skills/eval-design/SKILL.md) | การประเมินทักษะการออกแบบขั้นตอนการทำงาน ใช้ทักษะนี้เมื่อผู้ใช้ต้องการแผนการประเมิน LLM ชุดการถดถอย รูบริกการให้คะแนน o | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | ทักษะขั้นตอนการทำงานของแอปพลิเคชัน LLM ใช้ทักษะนี้เมื่อผู้ใช้ต้องการรูปแบบที่แข็งแกร่งสำหรับการใช้เครื่องมือ, ผลลัพธ์ที่มีโครงสร้าง, Fallb | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | ทักษะขั้นตอนการทำงานด้านวิศวกรรมที่รวดเร็ว ใช้ทักษะนี้เมื่อผู้ใช้ต้องการคำแนะนำงาน ตัวอย่าง การแยกส่วน | ที่ชัดเจนยิ่งขึ้น ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | ทักษะเวิร์กโฟลว์ RAG ใช้ทักษะนี้เมื่อผู้ใช้ต้องการไปป์ไลน์การดึงข้อมูล การแยกส่วน การจัดอันดับ การอ้างอิง และการประเมินผล f | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## 🗄️ Backend
 
-## 🗄️ Backend
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`api-design`](../skills/api-design/SKILL.md) | ทักษะการออกแบบเวิร์กโฟลว์ API ใช้ทักษะนี้เมื่อผู้ใช้ต้องการ HTTP หรือสัญญาบริการที่ชัดเจนก่อนที่จะนำไปใช้ | ทรัพยากร L3 | 100/100 | 95/100 | 95/100 ผ่าน |
+| [`การออกแบบฐานข้อมูล`](../skills/database-design/SKILL.md) | ทักษะการออกแบบฐานข้อมูลขั้นตอนการทำงาน ใช้ทักษะนี้เมื่อผู้ใช้ต้องการสคีมา การทำดัชนี และการออกแบบการย้ายที่คงทน ก่อน i | ทรัพยากร L3 | 98/100 | 94/100 | 95/100 ผ่าน |## ⚙️ Cli Automation
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`find-skills`](../skills/find-skills/SKILL.md) | ทักษะเวิร์กโฟลว์การค้นพบแคตตาล็อก ใช้ทักษะนี้เมื่อผู้ใช้ถามถึงความสามารถ เวิร์กโฟลว์ หรือตัวช่วยเฉพาะโดเมน | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## 💬 Communication
 
-## ⚙️ Cli Automation
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`create-pr`](../skills/create-pr/SKILL.md) | ทักษะเวิร์กโฟลว์คำขอแบบดึง ใช้ทักษะนี้เมื่อผู้ใช้ต้องการคำบรรยายบทวิจารณ์ที่ชัดเจน การกำหนดกรอบความเสี่ยง และคำแนะนำของผู้ตรวจสอบ | ทรัพยากร L3 | 98/100 | 95/100 | 95/100 ผ่าน |## 🤖 Data Ai
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | ทักษะเวิร์กโฟลว์สัญญาข้อมูล ใช้ทักษะนี้เมื่อทีมจำเป็นต้องกำหนด ทบทวน หรือบังคับใช้สัญญาระหว่างผู้ผลิต | ทรัพยากร L3 | 97/100 | 95/100 | 95/100 ผ่าน |## 🎨 Design
 
-## 💬 Communication
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | ทักษะขั้นตอนการตรวจสอบการเข้าถึง ใช้ทักษะนี้เมื่อผู้ใช้ต้องการแป้นพิมพ์ ความหมาย โฟกัส คอนทราสต์ การเคลื่อนไหว หรือเป็น | ทรัพยากร L3 | 100/100 | 99/100 | 95/100 ผ่าน |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | การออกแบบระบบการทำงานทักษะขั้นตอนการทำงาน ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการกำกับดูแลโทเค็น การควบคุมดริฟท์ส่วนประกอบ re | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | ออกแบบทักษะการกำกับดูแลเวิร์กโฟลว์โทเค็น ใช้ทักษะนี้เมื่อทีมจำเป็นต้องแนะนำ เปลี่ยนชื่อ เลิกใช้ หรือทบทวน desi | ทรัพยากร L3 | 97/100 | 95/100 | 95/100 ผ่าน |## 💻 Development
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`สถาปัตยกรรม`](../skills/architecture/SKILL.md) | ทักษะเวิร์กโฟลว์สถาปัตยกรรม ใช้ทักษะนี้เมื่อผู้ใช้ต้องการขอบเขตของระบบ ข้อดีข้อเสีย หรือการใช้งานแบบเป็นขั้น p | ทรัพยากร L3 | 98/100 | 94/100 | 95/100 ผ่าน |
+| [`การดีบัก`](../skills/debugging/SKILL.md) | การดีบักทักษะเวิร์กโฟลว์ ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการทำซ้ำอย่างมีระเบียบวินัย การแยก และแก้ไขการตรวจสอบใน | ทรัพยากร L3 | 98/100 | 94/100 | 95/100 ผ่าน |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | ทักษะเวิร์กโฟลว์ของ Figma ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการใช้งานการออกแบบเป็นโค้ด การตรวจสอบ Figma การค้นหาโทเค็น Co | ทรัพยากร L3 | 100/100 | 100/100 | 95/100 ผ่าน |## ☁️ Devops
 
-## 🤖 Data Ai
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`นักเทียบท่า-ผู้เชี่ยวชาญ`](../skills/docker-expert/SKILL.md) | ทักษะเวิร์กโฟลว์นักเทียบท่า ใช้ทักษะนี้เมื่อผู้ใช้ต้องการ Dockerfiles, กลยุทธ์การสร้างอิมเมจ, การทำให้รันไทม์แข็งแกร่งขึ้น หรือมี | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | ทักษะเวิร์กโฟลว์ Kubernetes ใช้ทักษะนี้เมื่อผู้ใช้ต้องการรายการปริมาณงาน กลยุทธ์การเปิดตัว การเปิดใช้บริการ หรือ c | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`observability-review`](../skills/observability-review/SKILL.md) | ทักษะกระบวนการทำงานด้านการสังเกต ใช้ทักษะนี้เมื่อผู้ใช้ต้องการบันทึก ตัวชี้วัด การติดตาม การแจ้งเตือน หรือการตรวจสอบ SLO ก่อนจัดส่ง | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | ปล่อยทักษะเวิร์กโฟลว์ทางวิศวกรรม ใช้ทักษะนี้เมื่อผู้ใช้ต้องการแผนการเผยแพร่ที่ปลอดภัยยิ่งขึ้น นโยบายโปรโมชัน การย้อนกลับ pa | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`terraform`](../skills/terraform/SKILL.md) | ทักษะเวิร์กโฟลว์ Terraform ใช้ทักษะนี้เมื่อผู้ใช้ต้องการโครงสร้างพื้นฐาน เช่น โครงสร้างโค้ด โมดูล กลยุทธ์สถานะ หรือ | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## เอกสาร
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`changelog`](../skills/changelog/SKILL.md) | ทักษะขั้นตอนการทำงานของบันทึกย่อประจำรุ่น ใช้ทักษะนี้เมื่อผู้ใช้ต้องการรายการบันทึกการเปลี่ยนแปลง บันทึกการอัพเกรด หรือรีลีสที่กระชับ na | ทรัพยากร L3 | 98/100 | 94/100 | 95/100 ผ่าน |
+| [`documentation`](../skills/documentation/SKILL.md) | ทักษะขั้นตอนการทำงานด้านเอกสาร ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการเริ่มต้นใช้งานที่ถูกต้อง คำแนะนำในการปฏิบัติงาน หรือพื้นที่เผยแพร่ | ทรัพยากร L3 | 99/100 | 96/100 | 95/100 ผ่าน |## 🖼️ Frontend
 
-## 🎨 Design
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`การออกแบบส่วนหน้า`](../skills/frontend-design/SKILL.md) | ทักษะเวิร์กโฟลว์การออกแบบส่วนหน้า ใช้ทักษะนี้เมื่อผู้ใช้ต้องการโครงสร้าง UI สถานะ และรูปแบบการโต้ตอบก่อน i | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## 🌐 Fullstack Web
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | ทักษะการรับรองความถูกต้องและการอนุญาตเวิร์กโฟลว์ ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการเข้าสู่ระบบ เซสชัน โทเค็น บทบาท หรือสิทธิ์ | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## 📈 Machine Learning
 
-## 💻 Development
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`model-serving`](../skills/model-serving/SKILL.md) | โมเดลทักษะการให้บริการเวิร์กโฟลว์ ใช้ทักษะนี้เมื่อทีมต้องการออกแบบ ทบทวน หรือปรับปรุงการอนุมานออนไลน์ การป้อนข้อมูลแบบแบตช์ | ทรัพยากร L3 | 97/100 | 95/100 | 95/100 ผ่าน |## 🧭 Product
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`การระดมความคิด`](../skills/brainstorming/SKILL.md) | การระดมความคิดทักษะขั้นตอนการทำงาน ใช้ทักษะนี้เมื่อผู้ใช้สำรวจปัญหาและต้องการตัวเลือก ข้อดีข้อเสีย และ Reco | ทรัพยากร L3 | 99/100 | 96/100 | 95/100 ผ่าน |## 🛡️ Testing Security
 
-## ☁️ Devops
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`การตอบสนองต่อเหตุการณ์`](../skills/incident-response/SKILL.md) | ทักษะขั้นตอนการทำงานในการตอบสนองต่อเหตุการณ์ ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการคัดแยกการหยุดทำงาน ลำดับการบรรเทาผลกระทบ ผู้มีส่วนได้ส่วนเสีย com | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | ทักษะขั้นตอนการตรวจสอบความปลอดภัย ใช้ทักษะนี้เมื่อผู้ใช้ต้องการการตรวจสอบที่มุ่งเน้นความเสี่ยงด้านความปลอดภัยที่เป็นรูปธรรมแทน | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`การสร้างแบบจำลองภัยคุกคาม`](../skills/threat-modeling/SKILL.md) | ทักษะเวิร์กโฟลว์การสร้างแบบจำลองภัยคุกคาม ใช้ทักษะนี้เมื่อผู้ใช้ต้องการขอบเขตความน่าเชื่อถือ เป้าหมายของผู้โจมตี กรณีการละเมิด หรือบรรเทา | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | ทักษะขั้นตอนการสแกนช่องโหว่ ใช้ทักษะนี้เมื่อผู้ใช้ต้องการความคุ้มครองที่สามารถทำซ้ำได้สำหรับช่องโหว่ที่ทราบ u | ทรัพยากร L3 | 99/100 | 97/100 | 95/100 ผ่าน |## 🧰 Tools
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## เอกสาร
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| ทักษะ | คำอธิบาย | ระดับ | แนวทางปฏิบัติที่ดีที่สุด | คุณภาพ | ความปลอดภัย |
+| :---- | :--------------- | :---- | :------------- | :------ | :------- |
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | ทักษะการเขียนเวิร์กโฟลว์เซิร์ฟเวอร์ MCP ใช้ทักษะนี้เมื่อทีมต้องการออกแบบ นำไปใช้ ตรวจสอบ หรือจัดทำเอกสาร Mode | ทรัพยากร L3 | 97/100 | 95/100 | 95/100 ผ่าน |

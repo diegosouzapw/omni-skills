@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**Поведенческий контракт для пользовательского интерфейса терминала на основе Ink, предоставляемого `omni-skills ui`.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Визуальная оболочка — это управляемая поверхность продукта поверх существующего интерфейса командной строки и механизма установки.
 
-It does not replace:
+Он не заменяет:
 
-- expert flag-based CLI usage
-- `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- экспертное использование CLI на основе флагов
+- `инструменты/bin/install.js`
+- порядок установки текста с подсказками
+- Поведение API, MCP или A2A во время выполнения.
 
-It defines:
+Он определяет:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- поведение `omni-skills ui`
+— запасной контракт для `omni-skills ui --text`
+- локальное состояние и постоянство предустановок
+- управляемый предварительный просмотр запуска сервиса
+- повторяемость для недавних установок и сервисных запусков---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`omni-skills ui` запускает визуальную оболочку на основе Ink.
 
-The visual shell is the primary non-expert terminal experience for:
+Визуальная оболочка — это основной интерфейс терминала для неспециалистов, позволяющий:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- установить потоки
+- обнаружение и установка по каталогу
+- запуск МКП
+- запуск API
+- Стартап А2А
+- передача врача и курения### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` запускает резервный интерфейс на основе строки чтения.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+Это остается полезным, когда:
 
-This remains useful when:
+- терминал не может правильно отображать более богатую оболочку
+- поведение в необработанном режиме ограничено
+- предпочтителен минимальный резервный текст### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Визуальная оболочка не переопределяет среду выполнения службы или запись установки напрямую.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+После предварительного просмотра и подтверждения он завершает работу и передает выполнение существующей точке входа CLI с эквивалентными аргументами и переменными среды.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+На главном экране должно быть показано:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- установить навыки
+- найти и установить
+- повторять недавние установки, если они есть
+- запускать сохраненные настройки установки, если они присутствуют
+- запустить службу
+- повторять недавние услуги, если они присутствуют
+- запускать сохраненные сервисные пресеты, если они есть
+- доктор
+- курить
+- выход
 
-The home screen should also surface:
+Также должен появиться главный экран:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- текущая доступность опубликованного пакета
+- местный штат учитывает недавние, предустановки и избранное---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+Процесс установки визуальной оболочки должен поддерживать:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- известный целевой выбор клиента
+- выбор индивидуального пути
+- полная установка библиотеки
+- установка одним навыком
+- установка одним пакетом
+- поиск, затем установка
+- предварительный просмотр перед записью
+- сохранение предустановок
+- любимый навык или переключение пакета
 
-Preview must show:
+Предварительный просмотр должен показывать:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- решена целевая метка
+- решенный путь
+- установить прицел
+- выбранный навык или пакет, если применимо
+- эквивалентная команда CLI---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+Визуальная оболочка должна направлять запуск для:### 5.1 MCP
 
-### 5.1 MCP
+- транспорт: `stdio`, `stream`, `sse`
+- режим: «только для чтения» или «локальный»
+- конфигурация хоста/порта для сетевого транспорта
+- явный предварительный просмотр команды### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- хозяин
+- порт
+- базовый или усиленный профиль
+- усиленный носитель или аутентификация по ключу API
+- усиленные параметры ограничения скорости
+- включение журнала аудита
+- явный предварительный просмотр команды### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- хозяин
+- порт
+- тип хранилища: `memory`, `json`, `sqlite`
+- путь к сохранению для устойчивых режимов
+- исполнитель: `inline`, `process`
+- режим SQLite с поддержкой очереди
+- интервал опроса и продолжительность аренды для режима общей аренды
+- явный предварительный просмотр команды---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+Визуальная оболочка сохраняет локальное состояние в:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+В состав штата в настоящее время входят:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- недавние установки
+- недавние запуски услуг
+- именованные пресеты установки
+- именованные сервисные пресеты
+- любимые навыки
+- любимые наборы
 
-The shell must support:
+Оболочка должна поддерживать:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- воспроизведение последних установок
+- воспроизведение последних запусков сервиса
+- повторное использование именованных пресетов установки
+- повторное использование пресетов именованных сервисов---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+Визуальная оболочка аддитивна.
 
-These flows must remain valid and stable:
+Эти потоки должны оставаться действительными и стабильными:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
+- `npx omni-skills find Figma --tool курсор --install --yes`
+- `npx omni-skills mcp поток --local`
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+Визуальная оболочка никогда не должна навязывать себе явные пути экспертных команд.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+Визуальная оболочка должна явно указывать состояние и запись.
 
-It must:
+Оно должно:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- предварительная установка устанавливается перед передачей записи
+- предварительный просмотр команд запуска сервиса перед выполнением
+- храните секретный материал вне предварительного просмотра команд в виде открытого текста, где это возможно.
+- сохранять состояние только локально
+- сохранить неинтерактивное поведение CLI вне визуальной оболочки

@@ -5,83 +5,69 @@
 ---
 
 
-> **The key architectural decision that shaped the monorepo workspace structure.**
-
----
+>**القرار المعماري الرئيسي الذي ساهم في تشكيل بنية مساحة عمل monorepo.**---
 
 ## 📊 Status
 
-✅ **Accepted** — current workspace direction and active repository shape.
-
----
+✅**مقبول**— اتجاه مساحة العمل الحالية وشكل المستودع النشط.---
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+بدأت Omni Skills كمستودع**تثبيت أولاً**. كان ذلك كافيًا لتوزيع محتوى `SKILL.md`، لكنه لم يكن كافيًا لعرض الكتالوج للعملاء من خلال الأسطح الأصلية للبروتوكول.
 
-We needed a foundation that could support:
+كنا بحاجة إلى مؤسسة يمكنها دعم:
 
-| Requirement | Protocol |
-|:------------|:---------|
-| 🌐 Read-only HTTP catalog API | REST |
-| 🔌 Read-only MCP server | Model Context Protocol |
-| 🤖 Agent-facing A2A surface | Agent-to-Agent |
-| 📂 Local install sidecars | Filesystem tools |
+| المتطلبات | البروتوكول |
+|:-----------|:---------|
+| 🌐 واجهة برمجة تطبيقات كتالوج HTTP للقراءة فقط | راحة |
+| 🔌 خادم MCP للقراءة فقط | بروتوكول السياق النموذجي |
+| 🤖 سطح A2A مواجه للوكيل | وكيل إلى وكيل |
+| 📂 تثبيت السيارات الجانبية المحلية | أدوات نظام الملفات |
 
-**Critical constraint**: Avoid reparsing repo files independently in each new service.
-
----
+**قيد بالغ الأهمية**: تجنب إعادة تحليل ملفات الريبو بشكل مستقل في كل خدمة جديدة.---
 
 ## ✅ Decision
 
-Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+اعتماد**monorepo الموجه نحو مساحة العمل**مع كتالوج أساسي مشترك وحزم خاصة بالبروتوكول:
 
-| Package | Purpose |
-|:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
-| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
-| 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
+| الحزمة | الغرض |
+|:--------|:-------|
+| 📦 `المهارات الشاملة` (الجذر) | مثبت CLI والبرامج النصية الريبو |
+| 🧠 `@omni-skills/catalog-core` | التحميل المشترك والبحث والمقارنة والحزم وتثبيت الخطط |
+| 🌐 `@omni-skills/server-api` | للقراءة فقط REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP مع وضع stdio/stream/sse + الوضع الجانبي المحلي |
+| 🤖 `@omni-skills/server-a2a` | وقت تشغيل مهمة A2A باستخدام بطاقة الوكيل والاستقصاء وSSE وتكوين الدفع |### 📁 Shared Data Sources
 
-### 📁 Shared Data Sources
-
-The catalog core reads generated artifacts from:
+يقرأ جوهر الكتالوج القطع الأثرية التي تم إنشاؤها من:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`
-
----
+- `skills_index.json`---
 
 ## ✅ Positive Consequences
 
-| Outcome | Impact |
-|:--------|:-------|
-| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
-| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
-| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
-| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
-| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
-
----
+| النتيجة | التأثير |
+|:--------|:------|
+| 🔗**عقد البيانات المشتركة**| تستهلك API وMCP وA2A نفس العناصر |
+| 🖥️**CLI الموحد**| يكشف ثنائي واحد عن التثبيت وواجهة المستخدم وواجهة برمجة التطبيقات (API) وMCP وA2A والتشخيصات والدخان |
+| 🧩**بروتوكول العزل**| تتكرر الأسطح الجديدة دون اقتران الأجزاء الداخلية للتركيب |
+| 🔌**العربة الجانبية المحلية**| وضع MCP قادر على الكتابة خلف القائمة المسموح بها، مع وصفات مدركة للعميل |
+| 📦**وقت تشغيل الحزمة الواحدة**| تحمل حزمة npm المنشورة أسطح البروتوكول وأدوات التحقق والعناصر التي تم إنشاؤها معًا |---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Mitigation |
-|:---------|:-----------|
-| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
-| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
-| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
-| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
-
----
+| المفاضلة | التخفيف |
+|:---------|:----------|
+| 🔄**تكرار البيانات الوصفية**| بناء بايثون + وقت تشغيل جافا سكريبت → الدمج في النهاية |
+| 🏗️**تعقيد A2A**| توجد الآن دورة حياة متينة، لكن محولات التنسيق تضيف عمقًا تشغيليًا |
+| 📦**محاذاة الكتالوج**| يتطلب التثبيت الانتقائي الأوامر والبيانات والمستندات لتبقى متزامنة |
+| 📋**حزمة فجوات البيانات الوصفية**| يمكن أن تتجاوز الحزم المهارات المنشورة، مما يتطلب تحذيرات صريحة بشأن الأعضاء المفقودين |---
 
 ## ➡️ Follow-Up Items
 
-| # | Action | Status |
-|:--|:-------|:-------|
-| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |
+| # | العمل | الحالة |
+|:--|:-------|:------|
+| 1️⃣ | مصادقة MCP عن بعد وتحديد المعدل | ✅ تم |
+| 2️⃣ | تحسين كتابة تكوين MCP الخاص بالعميل | ✅ حاضر اليوم لحاويات Claude وCursor وCodex وGemini وKiro وVS Code وDev |
+| 3️⃣ | قطع أثرية موقعة أو أرشيفات لكل مهارة | ✅ حاضر اليوم مع فرض CI على علامات الإصدار |
+| 4️⃣ | وقت تشغيل مهمة A2A → تزامن دائم | ✅ حاضر اليوم مع استمرارية JSON/SQLite، والمنفذين الخارجيين، وتنسيق عقد الإيجار، وتنسيق Redis المتقدم الاختياري |
+| 5️⃣ | قم بتوسيع الكتالوج المنشور لتغطية الحزمة على نطاق أوسع | ✅ حاضر اليوم لحزم البداية السبع المنسقة الحالية |

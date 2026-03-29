@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> `skills_index.json` से स्वतः उत्पन्न - 15 श्रेणियों में 32 कौशल।
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+उत्पन्न: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
-- [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
-- [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
-- [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [🧠 एआई एजेंट्स (5)](#एआई-एजेंट्स)
+- [🗄️ बैकएंड (2)](#बैकएंड)
+- [⚙️ सीएलआई ऑटोमेशन (1)](#सीएलआई-ऑटोमेशन)
+- [💬 संचार (1)](#संचार)
+- [🤖 डेटा एआई (1)](#डेटा-एआई)
+- [🎨 डिज़ाइन (3)](#डिज़ाइन)
+- [💻विकास (3)](#विकास)
+- [☁️ डेवोप्स (5)](#डेवोप्स)
+- [📝 दस्तावेज़ीकरण (2)](# दस्तावेज़ीकरण)
+- [🖼️ फ्रंटएंड (1)](#फ्रंटएंड)
+- [🌐 फुलस्टैक वेब (1)](#फुलस्टैक-वेब)
+- [📈 मशीन लर्निंग (1)](#मशीन-लर्निंग)
+- [🧭 उत्पाद (1)](#उत्पाद)
+- [🛡️ परीक्षण सुरक्षा (4)](#परीक्षण-सुरक्षा)
+- [🧰 उपकरण (1)](#उपकरण)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`संदर्भ-इंजीनियरिंग`](../कौशल/संदर्भ-इंजीनियरिंग/SKILL.md) | संदर्भ इंजीनियरिंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब उपयोगकर्ता को संकेतों, पुनर्प्राप्ति संदर्भ, मेमोरी और | को आकार देने की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`eval-design`](../skills/eval-design/SKILL.md) | मूल्यांकन डिज़ाइन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को एलएलएम मूल्यांकन योजना, रिग्रेशन सुइट्स, स्कोरिंग रूब्रिक्स, ओ | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`llm-पैटर्न`](../कौशल/llm-पैटर्न/SKILL.md) | एलएलएम एप्लिकेशन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब उपयोगकर्ता को टूल उपयोग, संरचित आउटपुट, फॉलब के लिए मजबूत पैटर्न की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`प्रॉम्प्ट-इंजीनियर`](../skills/prompt-engineer/SKILL.md) | शीघ्र इंजीनियरिंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को स्पष्ट कार्य निर्देशों, उदाहरणों, अपघटन आदि की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`रैग-इंजीनियर`](../skills/rag-engineer/SKILL.md) | आरएजी वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को पुनर्प्राप्ति पाइपलाइन, चंकिंग, रैंकिंग, उद्धरण और मूल्यांकन की आवश्यकता हो | L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## 🗄️ Backend
 
-## 🗄️ Backend
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`api-design`](../skills/api-design/SKILL.md) | एपीआई डिजाइन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को कार्यान्वयन से पहले एक स्पष्ट HTTP या सेवा अनुबंध की आवश्यकता हो। | L3 संसाधन | 100/100 | 95/100 | 95/100 उत्तीर्ण |
+| [`डेटाबेस-डिज़ाइन`](../skills/database-design/SKILL.md) | डेटाबेस डिज़ाइन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को i | से पहले टिकाऊ स्कीमा, इंडेक्सिंग और माइग्रेशन डिज़ाइन की आवश्यकता हो L3 संसाधन | 98/100 | 94/100 | 95/100 उत्तीर्ण |## ⚙️ Cli Automation
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`ढूंढें-कौशल`](../कौशल/खोज-कौशल/SKILL.md) | कैटलॉग खोज वर्कफ़्लो कौशल। जब कोई उपयोगकर्ता क्षमता, वर्कफ़्लो, या डोमेन-विशिष्ट सहायक मांगता है तो इस कौशल का उपयोग करें L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## 💬 Communication
 
-## ⚙️ Cli Automation
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`create-pr`](../skills/create-pr/SKILL.md) | पुल-अनुरोध वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को एक स्वच्छ समीक्षा विवरण, जोखिम निर्धारण और समीक्षक मार्गदर्शन की आवश्यकता हो L3 संसाधन | 98/100 | 95/100 | 95/100 उत्तीर्ण |## 🤖 Data Ai
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`डेटा-अनुबंध`](../कौशल/डेटा-अनुबंध/SKILL.md) | डेटा अनुबंध वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी टीम को उत्पादकों के बीच अनुबंधों को परिभाषित करने, समीक्षा करने या लागू करने की आवश्यकता हो L3 संसाधन | 97/100 | 95/100 | 95/100 उत्तीर्ण |## 🎨 Design
 
-## 💬 Communication
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | अभिगम्यता ऑडिट वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को कीबोर्ड, शब्दार्थ, फोकस, कंट्रास्ट, गति, या जैसे | की आवश्यकता हो L3 संसाधन | 100/100 | 99/100 | 95/100 उत्तीर्ण |
+| [`डिज़ाइन-सिस्टम्स-ऑप्स`](../skills/design-systems-ops/SKILL.md) | डिज़ाइन सिस्टम संचालन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को टोकन गवर्नेंस, घटक बहाव नियंत्रण, पुनः की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`डिजाइन-टोकन-गवर्नेंस`](../skills/design-token-governance/SKILL.md) | डिज़ाइन टोकन गवर्नेंस वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी टीम को देसी का परिचय देना, नाम बदलना, निंदा करना या समीक्षा करनी हो L3 संसाधन | 97/100 | 95/100 | 95/100 उत्तीर्ण |## 💻 Development
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`आर्किटेक्चर`](../कौशल/आर्किटेक्चर/SKILL.md) | वास्तुकला कार्यप्रवाह कौशल. इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को सिस्टम सीमाओं, ट्रेडऑफ़ या चरणबद्ध कार्यान्वयन की आवश्यकता हो L3 संसाधन | 98/100 | 94/100 | 95/100 उत्तीर्ण |
+| [`डीबगिंग`](../skills/debugging/SKILL.md) | डिबगिंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को अनुशासित पुनरुत्पादन, अलगाव और सत्यापन की आवश्यकता हो L3 संसाधन | 98/100 | 94/100 | 95/100 उत्तीर्ण |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | फिग्मा वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को डिज़ाइन-टू-कोड कार्यान्वयन, फिग्मा निरीक्षण, टोकन लुकअप, सह | की आवश्यकता हो L3 संसाधन | 100/100 | 100/100 | 95/100 उत्तीर्ण |## ☁️ Devops
 
-## 🤖 Data Ai
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | डॉकर वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को डॉकरफ़ाइल्स, छवि निर्माण रणनीति, रनटाइम हार्डनिंग, या सम्‍मिलित | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`कुबेरनेट्स`](../skills/kubernetes/SKILL.md) | कुबेरनेट्स वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को वर्कलोड मैनिफ़ेस्ट, रोलआउट रणनीति, सेवा एक्सपोज़र, या सी | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`अवलोकन-समीक्षा`](../कौशल/अवलोकन-समीक्षा/SKILL.md) | अवलोकनीयता कार्यप्रवाह कौशल. इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को शिपमेंट से पहले लॉग, मेट्रिक्स, ट्रेस, अलर्ट या एसएलओ समीक्षा की आवश्यकता हो। L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`रिलीज़-इंजीनियरिंग`](../कौशल/रिलीज़-इंजीनियरिंग/SKILL.md) | इंजीनियरिंग वर्कफ़्लो कौशल जारी करें। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को सुरक्षित रिलीज़ योजना, प्रचार नीति, रोलबैक पा | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`टेराफॉर्म`](../skills/terraform/SKILL.md) | टेराफ़ॉर्म वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को कोड संरचना, मॉड्यूल, राज्य रणनीति, या | जैसे बुनियादी ढांचे की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## दस्तावेज़
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`चेंजलॉग`](../skills/changelog/SKILL.md) | रिलीज़-नोट्स वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को चेंजलॉग प्रविष्टियाँ, अपग्रेड नोट्स, या संक्षिप्त रिलीज़ की आवश्यकता हो L3 संसाधन | 98/100 | 94/100 | 95/100 उत्तीर्ण |
+| [`दस्तावेज़ीकरण`](../कौशल/दस्तावेज़ीकरण/SKILL.md) | दस्तावेज़ीकरण कार्यप्रवाह कौशल. इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को सटीक ऑनबोर्डिंग, परिचालन मार्गदर्शन, या रिलीज़-रीया | की आवश्यकता हो L3 संसाधन | 99/100 | 96/100 | 95/100 उत्तीर्ण |## 🖼️ Frontend
 
-## 🎨 Design
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`फ्रंटएंड-डिज़ाइन`](../skills/frontend-design/SKILL.md) | फ्रंटएंड डिज़ाइन वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को i | से पहले यूआई संरचना, स्थिति और इंटरैक्शन पैटर्न की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## 🌐 Fullstack Web
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | प्रमाणीकरण और प्राधिकरण वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को लॉगिन, सत्र, टोकन, भूमिका या परमिट की आवश्यकता हो | L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## 📈 Machine Learning
 
-## 💻 Development
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`मॉडल-सर्विंग`](../skills/model-serving/SKILL.md) | मॉडल सर्विंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी टीम को ऑनलाइन अनुमान, बैच इन्फ़े को डिज़ाइन, समीक्षा या सख्त करने की आवश्यकता हो L3 संसाधन | 97/100 | 95/100 | 95/100 उत्तीर्ण |## 🧭 Product
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`बुद्धिशीलता`](../कौशल/विचार-मंथन/SKILL.md) | विचार-मंथन कार्यप्रवाह कौशल. इस कौशल का उपयोग तब करें जब कोई उपयोगकर्ता किसी समस्या की खोज कर रहा हो और उसे विकल्प, ट्रेडऑफ़ और एक रेको की आवश्यकता हो L3 संसाधन | 99/100 | 96/100 | 95/100 उत्तीर्ण |## 🛡️ Testing Security
 
-## ☁️ Devops
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`घटना-प्रतिक्रिया`](../कौशल/घटना-प्रतिक्रिया/SKILL.md) | घटना प्रतिक्रिया वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को आउटेज ट्राइएज, शमन अनुक्रमण, हितधारक कॉम | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`सुरक्षा-लेखा परीक्षक`](../कौशल/सुरक्षा-लेखा परीक्षक/SKILL.md) | सुरक्षा ऑडिट वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को | के बजाय ठोस सुरक्षा जोखिमों की केंद्रित समीक्षा की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`खतरा-मॉडलिंग`](../कौशल/खतरा-मॉडलिंग/SKILL.md) | खतरा मॉडलिंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को विश्वास सीमाओं, हमलावर लक्ष्यों, दुरुपयोग के मामलों, या मिटिग | की आवश्यकता हो L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |
+| [`भेद्यता-स्कैनर`](../कौशल/भेद्यता-स्कैनर/SKILL.md) | भेद्यता स्कैनिंग वर्कफ़्लो कौशल। इस कौशल का उपयोग तब करें जब किसी उपयोगकर्ता को ज्ञात कमजोरियों के लिए दोहराए जाने योग्य कवरेज की आवश्यकता हो, यू | L3 संसाधन | 99/100 | 97/100 | 95/100 उत्तीर्ण |## 🧰 Tools
 
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## दस्तावेज़
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
-
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
-
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| कौशल | विवरण | स्तर | सर्वोत्तम अभ्यास | गुणवत्ता | सुरक्षा |
+| :---- | :---------- | :---- | :---- | :------ | :------- |
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | एमसीपी सर्वर वर्कफ़्लो कौशल संलेखन। इस कौशल का उपयोग तब करें जब किसी टीम को किसी मोड को डिज़ाइन, कार्यान्वित, मान्य या दस्तावेज़ीकृत करने की आवश्यकता हो L3 संसाधन | 97/100 | 95/100 | 95/100 उत्तीर्ण |

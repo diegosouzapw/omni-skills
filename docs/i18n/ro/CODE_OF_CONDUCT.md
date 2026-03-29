@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+Noi, în calitate de membri, contribuitori și menținători, ne angajăm să facem din participarea la acest proiect și comunitate o**experiență fără hărțuire pentru toată lumea**, indiferent de vârstă, dimensiunea corpului, dizabilități vizibile sau invizibile, etnie, caracteristici sexuale, identitate și expresie de gen, nivel de experiență, educație, statut socio-economic, naționalitate, aspect personal, rasă, castă, culoare, religie sau orientare sexuală.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
+| Comportament | Exemplu |
 |:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| 💬 Limba de bun venit | A fi incluziv și respectuos în comunicare |
+| 🤝 Respect pentru diferențe | Evaluarea diferitelor puncte de vedere și experiențe |
+| 📝 Critică constructivă | Acceptând și oferind feedback cu grație |
+| 🎯 Focus pe comunitate | Prioritizarea a ceea ce este mai bun pentru proiect și comunitate |
+| ❤️ Empatie | Arătând empatie față de alți membri ai comunității |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
-|:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| Comportament |
+|:----------|
+| 🚫 Limbajul sau imaginile sexualizate și atenția sau avansurile sexuale |
+| 🚫 Comentarii trolling, insultătoare sau derogatorii |
+| 🚫 Atacurile personale sau politice |
+| 🚫 Hărțuire publică sau privată |
+| 🚫 Publicarea informațiilor private ale altcuiva fără permisiunea explicită |
+| 🚫 Altă conduită considerată în mod rezonabil inadecvată într-un cadru profesional |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+Instanțe de comportament abuziv, hărțuitor sau inacceptabil în alt mod pot fi raportate întreținătorilor prin:
 
-| Channel | How |
+| Canal | Cum |
 |:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 🔒 Canale private GitHub | Contactați prin Securitate GitHub sau Discuție |
+| 📧 Contact direct | Luați legătura direct cu întreținerii |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**Toate rapoartele vor fi examinate și investigate prompt și corect.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+Acest Cod de conduită este adaptat din [Contributor Covenant](https://www.contributor-covenant.org), versiunea 2.1.

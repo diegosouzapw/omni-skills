@@ -5,557 +5,453 @@
 ---
 
 
-> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
-> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
-
----
+>**A termék ütemterve az Omni Skills fejlesztéséhez a megjelölés előtt álló telepítőből irányított terminálélményré, szakértő és nem szakértő felhasználók számára egyaránt.**
+> Hatály: npm csomag, CLI telepítési élmény, terminál felhasználói felület, szolgáltatásindítási folyamatok és vizuális beépítés.---
 
 ## 1. Problem Statement
 
-The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
+A jelenlegi futásidejű alap erős, de a belépési élmény továbbra is olyan felhasználók számára van optimalizálva, akik már értik:
 
-- which client they want to target
-- which installation selector they want to use
-- how to translate goals into `--skill`, `--bundle`, or `find`
-- when they need CLI-only install versus MCP, API, or A2A services
+- melyik ügyfelet akarják megcélozni
+- melyik telepítésválasztót akarják használni
+- hogyan lehet a célokat "--skill", "--bundle" vagy "find" kifejezésekre fordítani
+- amikor csak CLI-s telepítésre van szükségük MCP, API vagy A2A szolgáltatásokkal szemben
 
-Today:
+Ma:
 
-- `npx omni-skills` defaults to Antigravity
-- this is technically valid and backwards-compatible
-- but it is not ideal for first-time users or less technical operators
+- Az `npx omni-skills' alapértelmezés szerint az Antigravitáció
+- ez műszakilag érvényes és visszafelé kompatibilis
+- de nem ideális kezdő felhasználók vagy kevésbé technikás kezelők számára
 
-The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
+A CLI már rendelkezik alap interaktív móddal, de még mindig közelebb áll egy fejlesztői segédprogramhoz, mint egy irányított termékfelülethez.
 
-This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
-
----
+Ez az ütemterv meghatározza az erősebb nyilvános felhasználói felhasználói élmény eléréséhez vezető utat anélkül, hogy megtörné a jelenlegi zászlóalapú felületet.---
 
 ## 1.1 Delivery Status
 
-The roadmap is now largely implemented in the current repository state.
+Az ütemterv nagyrészt a jelenlegi adattárállapotban van megvalósítva.
 
-Completed:
+Elkészült:
 
-- Phase 1: Guided Entrypoint Selection
-- Phase 2: Guided Install Wizard
-- Phase 3: Visual Terminal Shell
-- Phase 4: Visual Service Hub
-- Phase 5: Saved Profiles and Repeatability
-- Phase 6: Hardening, Tests, and Documentation
-
----
+- 1. fázis: Irányított belépési pont kiválasztása
+- 2. fázis: Irányított telepítési varázsló
+- 3. fázis: Visual Terminal Shell
+- 4. fázis: Visual Service Hub
+- 5. fázis: Mentett profilok és ismételhetőség
+- 6. fázis: Edzés, tesztek és dokumentáció---
 
 ## 2. Goals
 
-- Preserve the current expert CLI workflows
-- Make the no-argument entrypoint safe and understandable for first-time users
-- Replace silent defaults in interactive contexts with guided selection
-- Support known AI clients and arbitrary custom install paths
-- Turn install, discovery, and service boot into a coherent user journey
-- Provide a visual terminal UI that feels like a product, not just a script
-- Keep the install engine, catalog, and service runtime reusable under the UI
-
----
+- A jelenlegi szakértői CLI munkafolyamatok megőrzése
+- Tegye biztonságossá és érthetővé a vitamentes belépési pontot az első alkalommal használók számára
+- Cserélje le a csendes alapértelmezett értékeket interaktív környezetben irányított kijelöléssel
+- Támogassa az ismert AI-klienseket és tetszőleges egyéni telepítési útvonalakat
+- A telepítést, a felfedezést és a szolgáltatásindítást koherens felhasználói úttá alakítja
+- Olyan vizuális terminál felhasználói felületet biztosítson, amely terméknek tűnik, nem csak szkriptnek
+- A telepítőmotor, a katalógus és a szolgáltatás futási ideje újrafelhasználható legyen a felhasználói felületen---
 
 ## 3. Non-Goals
 
-- Replacing the current flag-based CLI
-- Removing Antigravity as a supported default target
-- Shipping a web UI as the primary delivery mode
-- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
-- Replacing `SKILL.md` authoring with a database-backed admin panel
-
----
+- A jelenlegi zászló alapú CLI cseréje
+- Az Antigravitáció, mint támogatott alapértelmezett célpont eltávolítása
+- Webes felhasználói felület szállítása elsődleges kézbesítési módként
+- Maguk az API-, MCP- vagy A2A-protokollok újrafaktorálása ennek a felhasználói élménynek a részeként
+- A `SKILL.md` authoring lecserélése adatbázis-támogatott adminisztrációs panelre---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-These commands must continue to work exactly as they do today:
+Ezeknek a parancsoknak továbbra is pontosan ugyanúgy kell működniük, mint ma:
 
-- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills --kurzor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills find figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- `npx omni-skills a2a --port 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- Interaktív terminál-munkamenet argumentumok nélkül: nyílt, irányított élmény
+- Nem interaktív hívás argumentumok nélkül: a jelenlegi telepítés alapértelmezett viselkedésének megőrzése
+- Az explicit parancsok és zászlók mindig nyerik a felhasználói felület következtetéseit### 4.3 Reuse One Engine Across Modes
 
-- Interactive terminal session with no arguments: open guided experience
-- Non-interactive invocation with no arguments: preserve current install default behavior
-- Explicit commands and flags always win over UI inference
-
-### 4.3 Reuse One Engine Across Modes
-
-The following should share the same internal logic:
+A következőknek ugyanazt a belső logikát kell osztaniuk:
 
 - flag-first CLI
-- guided text-mode CLI
-- visual terminal UI
+- irányított szöveges módú CLI
+- vizuális terminál UI
 
-That means the UX layer must not own business logic. It should orchestrate reusable actions.
+Ez azt jelenti, hogy az UX réteg nem rendelkezhet üzleti logikával. Újrafelhasználható műveleteket kell végrehajtania.### 4.4 Preview Before Write
 
-### 4.4 Preview Before Write
+Minden írást okozó irányított folyamnak meg kell jelennie:
 
-All guided flows that cause writes should display:
+- megoldott cél
+- megoldott út
+- kiválasztott készségek vagy kötegek
+- egyenértékű CLI parancs
+- megerősítési kérés### 4.5 Visual Does Not Mean Implicit
 
-- resolved target
-- resolved path
-- selected skills or bundles
-- equivalent CLI command
-- confirmation prompt
+A rendszernek még a gazdagabb felhasználói felületen is egyértelművé kell tennie az állapotot és a műveleteket:
 
-### 4.5 Visual Does Not Mean Implicit
-
-Even in the richer UI, the system should still make state and actions explicit:
-
-- where the install is going
-- what will be written
-- which transport or port a service will use
-- whether a flow is read-only or local-write-capable
-
----
+- hol tart a telepítés
+- mi lesz írva
+- melyik szállítmányt vagy kikötőt veszi igénybe egy szolgáltatás
+- egy folyam csak olvasható vagy helyi írásképes---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Needs:
+Szükségesek:
 
-- fast commands
-- no forced prompts
-- stable flags
-- scriptability
+- gyors parancsok
+- nincs kényszerű felszólítás
+- stabil zászlók
+- szkriptképesség### 5.2 Guided Product User
 
-### 5.2 Guided Product User
+Szükségesek:
 
-Needs:
+- egyértelmű választás
+- nem feltételezzük, hogy antigravitációra van szükség
+- egyéni elérési út telepítésének támogatása
+- érthető telepítési előnézet
+- látható különbség a telepítés és a kiszolgáló futásidejű műveletei között### 5.3 Operator / Platform User
 
-- clear choices
-- no assumption that Antigravity is desired
-- support for custom path installs
-- understandable install preview
-- visible distinction between install and server runtime actions
+Szükségesek:
 
-### 5.3 Operator / Platform User
-
-Needs:
-
-- ability to launch MCP, API, and A2A visually
-- sane defaults
-- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
-
----
+- MCP, API és A2A vizuális indításának képessége
+- értelmes alapértelmezések
+- opcionális portok, szállítás, perzisztencia, végrehajtó mód, hitelesítés és helyi mód hangolása---
 
 ## 6. Target UX Model
 
-The product should expose three layers:
+A terméknek három rétegben kell megjelennie:### 6.1 Expert Mode
 
-### 6.1 Expert Mode
+Közvetlen parancsok és zászlók.
 
-Direct commands and flags.
+Példák:
 
-Examples:
-
-- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills --kurzor --skill omni-figma`
 - `npx omni-skills mcp stream --local`
-- `npx omni-skills a2a --port 3335`
+- `npx omni-skills a2a --port 3335`### 6.2 Guided Install Mode
 
-### 6.2 Guided Install Mode
+Akkor vált ki, amikor:
 
-Triggered when:
+- a felhasználó futtatja az `npx omni-skills`-t egy TTY-ben args nélkül
+- a felhasználó futtatja az "npx omni-skills install" parancsot konkrét választó nélkül
+- a felhasználó kifejezetten az irányított módot választja
 
-- the user runs `npx omni-skills` in a TTY with no args
-- the user runs `npx omni-skills install` with no concrete selectors
-- the user explicitly opts into guided mode
+Az irányított telepítési folyamatnak végig kell mennie:
 
-The guided install flow should walk through:
+1. cél kliens vagy egyéni elérési út
+2. telepítés típusa
+3. készség vagy köteg kiválasztása
+4. előnézet
+5. megerősítés
+6. végrehajtás
+7. következő lépések### 6.3 Visual Operations Hub
 
-1. target client or custom path
-2. install type
-3. skill or bundle selection
-4. preview
-5. confirmation
-6. execution
-7. next steps
+Kiváltotta:
 
-### 6.3 Visual Operations Hub
+- "npx omni-skills ui".
 
-Triggered by:
+Ez legyen a „kezdőképernyő” a nem szakértő felhasználók és kezelők számára.
 
-- `npx omni-skills ui`
+Alaptevékenységek:
 
-This should become the “home screen” for non-expert users and operators.
-
-Core actions:
-
-- install skills
-- discover skills
-- start MCP
-- start API
-- start A2A
-- run doctor
-- run smoke checks
-
----
+- telepítési készségek
+- készségeket felfedezni
+- indítsa el az MCP-t
+- Indítsa el az API-t
+- indítsa el az A2A-t
+- fuss orvos
+- füstellenőrzést végezni---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-Outcome:
+Eredmény:
 
-- `npx omni-skills` in TTY no longer silently assumes Antigravity
-- users are prompted to choose a client or custom path
+- Az `npx omni-skills' a TTY-ben többé nem veszi fel csendben az antigravitációt
+- a felhasználóknak klienst vagy egyéni elérési utat kell választaniuk
 
-Requirements:
+Követelmények:
 
-- preserve non-TTY default install behavior
-- add target selector
-- support custom path capture
+- a nem TTY alapértelmezett telepítési viselkedésének megőrzése
+- Célválasztó hozzáadása
+- támogatja az egyéni útvonal rögzítését### Phase 2: Guided Install Wizard
 
-### Phase 2: Guided Install Wizard
+Eredmény:
 
-Outcome:
+- a telepítés teljes irányított áramlássá válik
 
-- installation becomes a full guided flow
+Követelmények:
 
-Requirements:
+- telepítési mód kiválasztása:
+  - teljes könyvtár
+  - egy készség
+  - egy köteg
+  - keresés, majd telepítés
+- telepítési előnézet
+- egyenértékű parancsok megjelenítése
+- megerősítés és végrehajtás### Phase 3: Visual Terminal Shell
 
-- install mode selection:
-  - full library
-  - one skill
-  - one bundle
-  - search then install
-- install preview
-- equivalent command rendering
-- confirmation and execution
+Eredmény:
 
-### Phase 3: Visual Terminal Shell
+- a jelenlegi alapszöveges felhasználói felület márkás terminálalkalmazás lesz
 
-Outcome:
+Követelmények:
 
-- the current basic text UI becomes a branded terminal application
+- gazdagabb elrendezés
+- projekt branding és logó
+- jobb stepper és kártyák
+- billentyűzet-vezérelt navigáció
+- Reagáljon a terminál megvalósítására tintával### Phase 4: Visual Service Hub
 
-Requirements:
+Eredmény:
 
-- richer layout
-- project branding and logo
-- better stepper and cards
-- keyboard-driven navigation
-- React terminal implementation via Ink
+- Az MCP, az API és az A2A a vizuális felhasználói felületről indítható
 
-### Phase 4: Visual Service Hub
+Követelmények:
 
-Outcome:
+- irányított MCP áramlás
+- irányított API áramlás
+- irányított A2A áramlás
+- látható mód és konfigurációs előnézetek### Phase 5: Saved Profiles and Repeatability
 
-- MCP, API, and A2A are startable from the visual UI
+Eredmény:
 
-Requirements:
+- A közös telepítési vagy szolgáltatási beállítások újra felhasználhatók
 
-- guided MCP flow
-- guided API flow
-- guided A2A flow
-- visible mode and config previews
+Követelmények:
 
-### Phase 5: Saved Profiles and Repeatability
+- emlékezzenek a közelmúltbeli célokra
+- mentett szolgáltatási beállítások
+- legutóbbi parancsok
+- kedvenc kötegek vagy készségek### Phase 6: Hardening, Tests, and Documentation
 
-Outcome:
+Eredmény:
 
-- common install or service presets can be reused
+- az UX karbantartott nyilvános felületté válik, nem pedig ad hoc kényelemmé
 
-Requirements:
+Követelmények:
 
-- remember recent targets
-- saved service presets
-- recent commands
-- favorite bundles or skills
-
-### Phase 6: Hardening, Tests, and Documentation
-
-Outcome:
-
-- the UX becomes a maintained public interface, not an ad hoc convenience
-
-Requirements:
-
-- smoke coverage
-- regression tests
-- doc updates
-- operator guidance
-- package compatibility review
-
----
+- füstfedés
+- regressziós tesztek
+- doc frissítések
+- kezelői útmutatás
+- csomag kompatibilitás felülvizsgálata---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- `omni-skills`
-- `omni-skills install`
-- `omni-skills find`
-- `omni-skills ui`
-- `omni-skills mcp`
-- `omni-skills api`
-- `omni-skills a2a`
-- `omni-skills doctor`
-- `omni-skills smoke`
+- "minden készségek".
+- "minden készségek telepítése".
+- "minden készségek megtalálása".
+- "minden készségek ui".
+- "minden készségek mcp".
+- "minden készségek api".
+- "minden készségek a2a".
+- "minden készségek orvosa".
+- "minden készségek füstölnek".### Recommended Behavior
 
-### Recommended Behavior
-
-| Invocation | Behavior |
+| Invokáció | Viselkedés |
 |:-----------|:---------|
-| `omni-skills` in TTY, no args | Guided install entry |
-| `omni-skills` in non-TTY, no args | Current Antigravity default install |
-| `omni-skills install` in TTY, no selectors | Guided install wizard |
-| `omni-skills install --guided` | Force guided install flow |
-| `omni-skills ui` | Open the visual operations hub |
-| explicit flags | Execute directly without detouring into the guided flow |
-
----
+| `minden készségek` a TTY-ben, no args | Irányított telepítési bejegyzés |
+| `minden készségek` nem TTY-ben, nincs args | Az Antigravity jelenlegi alapértelmezett telepítése |
+| `minden készségek telepítése` TTY-ben, választó nélkül | Irányított telepítési varázsló |
+| `omni-skills install --guided` | Kényszervezérelt telepítési folyamat |
+| "minden készségek ui" | Nyissa meg a vizuális műveleti központot |
+| explicit zászlók | Végrehajtás közvetlenül anélkül, hogy az irányított áramlásba kerülne |---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Options:
+Opciók:
 
 - Claude Code
-- Cursor
+- Kurzor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
+- Antigravitáció
 - OpenCode
-- Custom path
+- Egyéni útvonal
 
-Output:
+Kimenet:
 
-- selected known target OR custom filesystem path
+- kiválasztott ismert cél VAGY egyéni fájlrendszer elérési út### Step 2: Choose Install Type
 
-### Step 2: Choose Install Type
+Opciók:
 
-Options:
+- teljes könyvtár
+- egy publikált készség
+- egy köteg
+- keresés, majd telepítés
 
-- full library
-- one published skill
-- one bundle
-- search then install
+Kimenet:
 
-Output:
+- telepíteni hatókört### Step 3: Resolve Selection
 
-- install scope
+A telepítés típusától függően:
 
-### Step 3: Resolve Selection
+- teljes könyvtár: nincs további választó
+- készség: listázzon vagy válasszon egy képességet
+- köteg: listázza ki vagy válasszon egy csomagot
+- Keresés: lekérdezés kérése, megfelelő készségek és csomagok megjelenítése### Step 4: Preview
 
-Depending on install type:
+Kijelző:
 
-- full library: no additional selector
-- skill: list or choose a skill
-- bundle: list or choose a bundle
-- search: prompt for query, show matching skills and bundles
+- kiválasztott cél
+- megoldott út
+- kiválasztott készség vagy csomag
+- egyenértékű CLI parancs
+- az áramlás szelektív vagy teljes telepítés### Step 5: Confirm
 
-### Step 4: Preview
+A felhasználó megerősíti:
 
-Display:
+- igen → végrehajtani
+- nem → szakítsa meg vagy menjen vissza### Step 6: Result
 
-- selected target
-- resolved path
-- selected skill or bundle
-- equivalent CLI command
-- whether the flow is selective or full install
+Kijelző:
 
-### Step 5: Confirm
-
-User confirms:
-
-- yes → execute
-- no → abort or go back
-
-### Step 6: Result
-
-Display:
-
-- success/failure
-- destination path
-- next step suggestion
-
----
+- siker/kudarc
+- cél útvonala
+- javaslat a következő lépésre---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-The operations hub should expose:
+A műveleti központnak fel kell tüntetnie:### 10.1 Install
 
-### 10.1 Install
+- irányított telepítési folyamat
+- készség vagy csomag keresés
+- egyéni elérési út### 10.2 Discover
 
-- guided install flow
-- skill or bundle search
-- custom path
+- katalógus keresés
+- szűrők
+- előnézeti metaadatok
+- átadás telepítése### 10.3 MCP
 
-### 10.2 Discover
+Opciók:
 
-- catalog search
-- filters
-- preview metadata
-- install handoff
+- közlekedés: stdio, patak, sse
+- helyi mód be/ki
+- házigazda
+- kikötő### 10.4 API
 
-### 10.3 MCP
+Opciók:
 
-Options:
+- házigazda
+- kikötő
+- opcionális hitelesítés
+- választható mértékhatár### 10.5 A2A
 
-- transport: stdio, stream, sse
-- local mode on/off
-- host
-- port
+Opciók:
 
-### 10.4 API
+- házigazda
+- kikötő
+- tároló típusa: memória, json, sqlite
+- végrehajtó: inline, process
+- opciók bérlése, ha az sqlite sor engedélyezve van### 10.6 Diagnostics
 
-Options:
-
-- host
-- port
-- optional auth
-- optional rate limit
-
-### 10.5 A2A
-
-Options:
-
-- host
-- port
-- store type: memory, json, sqlite
-- executor: inline, process
-- lease options when sqlite queue is enabled
-
-### 10.6 Diagnostics
-
-- doctor
-- smoke
-
----
+- orvos
+- füst---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-The current `tools/bin/cli.js` mixes:
+A jelenlegi `tools/bin/cli.js` keveri:
 
-- command parsing
-- presentation
-- interactive prompts
-- action orchestration
-- service boot
+- parancselemzés
+- bemutató
+- interaktív promptok
+- akció hangszerelés
+- szerviz rendszerindítás
 
-The new structure should move reusable logic into:
+Az új szerkezetnek át kell helyeznie az újrafelhasználható logikát:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`
+- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
 
-### 11.2 Keep Installer Engine Separate
+A `tools/bin/install.js` írásképes háttérprogramnak kell maradnia.
 
-`tools/bin/install.js` should remain the write-capable backend.
+Az irányított felhasználói felületnek meg kell hívnia a meglévő telepítő hátterét, ahelyett, hogy megkettőzné a telepítési logikát.### 11.3 Keep Find/Search Reusable
 
-The guided UI should call the existing installer backend rather than duplicating installation logic.
+Az irányított telepítő varázslónak újra fel kell használnia ugyanazt a katalógus-mag és CLI keresési logikát, amely már működik:
 
-### 11.3 Keep Find/Search Reusable
+- "találni".
+- előzetesek telepítése
+- köteg felbontás### 11.4 Prepare for Ink Without Forcing It Early
 
-The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
+Az első kézbesítés szöveges módban maradhat.
 
-- `find`
-- install previews
-- bundle resolution
-
-### 11.4 Prepare for Ink Without Forcing It Early
-
-The first delivery can stay in text-mode prompts.
-
-But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
-
----
+De az architektúrának tiszta varrást kell tartania, hogy a szövegfolyamat később Ink segítségével lehessen renderelni.---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Mitigation:
+Mérséklés:
 
-- only open guided UI automatically in TTY
-- preserve current default in non-TTY
-- preserve explicit flag flows
+- csak az irányított felhasználói felület automatikus megnyitása TTY-ben
+- megőrzi a jelenlegi alapértelmezést nem TTY-ben
+- az explicit zászlófolyamok megőrzése### 12.2 Letting UI Own Business Logic
 
-### 12.2 Letting UI Own Business Logic
+Mérséklés:
 
-Mitigation:
+- a hangszerelés áthelyezése újrafelhasználható akciómodulokra
+- tartsa a telepítő és a szolgáltatás indító logikáját a felhasználói felület alatt### 12.3 Ink Migration Too Early
 
-- move orchestration to reusable action modules
-- keep installer and service boot logic below the UI layer
+Mérséklés:
 
-### 12.3 Ink Migration Too Early
+- először szállítsa az irányított áramlást az aktuális csomóponti terminál verembe
+- majd migráljon az Ink-re, ha az áramlási szemantika stabil### 12.4 Incomplete Service UX
 
-Mitigation:
+Mérséklés:
 
-- first ship the guided flow in current Node terminal stack
-- then migrate to Ink once flow semantics are stable
-
-### 12.4 Incomplete Service UX
-
-Mitigation:
-
-- ship install wizard first
-- then layer guided service launch
-
----
+- először küldje el a telepítő varázslót
+- majd rétegvezérelt szolgáltatásindítás---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- `npx omni-skills` in TTY no longer installs immediately
-- user can choose target client or custom path
-- non-TTY no-arg invocation still works as before
+- Az „npx omni-skills” a TTY-ben már nem települ azonnal
+- a felhasználó választhat célklienst vagy egyéni elérési utat
+- A nem TTY no-arg hívás továbbra is ugyanúgy működik, mint korábban### Phase 2
 
-### Phase 2
+- Az irányított telepítés támogatja a teljes könyvtárat, a készségeket, a csomagot és a keresést, majd telepítést
+- az előnézet mindig megjelenik az írás előtt
+- parancs megfelelője jelenik meg### Phase 3
 
-- guided install supports full library, skill, bundle, and search-then-install
-- preview is always shown before write
-- command equivalent is displayed
+- létezik márkás terminál felhasználói felület
+- a felhasználói felület vizuálisan strukturáltabb, mint a sima readline menük
+- a navigáció billentyűzetbarát### Phase 4
 
-### Phase 3
+- A felhasználók elindíthatják az MCP-t, az API-t és az A2A-t a vizuális központról
+- A fő futásidejű opciók irányított formában konfigurálhatók### Phase 5
 
-- branded terminal UI exists
-- the UI is more visually structured than plain readline menus
-- navigation is keyboard-friendly
+- a legutóbbi vagy mentett beállítások újrafelhasználhatók
+- az ismétlődő folyamok kevesebb felszólítást igényelnek### Phase 6
 
-### Phase 4
-
-- users can start MCP, API, and A2A from the visual hub
-- major runtime options are configurable in guided form
-
-### Phase 5
-
-- recent or saved preferences are reusable
-- repeat flows take fewer prompts
-
-### Phase 6
-
-- smoke coverage reflects the new UX entrypoints
-- docs describe guided mode and service wizard behavior
-
----
+- a füstölés az új UX belépési pontokat tükrözi
+- A dokumentumok az irányított módot és a szervizvarázsló viselkedését írják le---
 
 ## 14. Execution Order
 
-This roadmap must be implemented in this order:
+Ezt az ütemtervet a következő sorrendben kell végrehajtani:
 
-1. Guided entrypoint selection
-2. Guided install wizard
-3. Visual terminal shell
-4. Visual service hub
-5. Saved profiles and repeatability
-6. Hardening, tests, and docs polish
+1. Irányított belépési pont kiválasztása
+2. Irányított telepítővarázsló
+3. Vizuális terminál shell
+4. Vizuális szolgáltatási központ
+5. Mentett profilok és ismételhetőség
+6. Keményedés, tesztek és docs polírozás
 
-The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.
+A megvalósítási munkának minden egyes feladat megkezdése előtt el kell olvasnia a vonatkozó feladatfájlt, hogy a CLI-munka összhangban legyen a tervvel, és ne sodorjon el.

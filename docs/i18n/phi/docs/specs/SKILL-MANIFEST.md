@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**Ang nababasa ng machine na JSON manifest na nabuo mula sa bawat `SKILL.md` sa panahon ng build pipeline — ang nag-iisang kontrata ng data na ginagamit ng lahat ng runtime surface.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Tampok | Estado |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Awtomatikong nabuo mula sa SKILL.md | Ipinatupad |
+| ✅ Nakonsumo ng CLI, API, MCP, A2A | Ipinatupad |
+| ✅ Mga archive na may mga checksum | Ipinatupad |
+| ✅ Pag-uuri ng seguridad | Ipinatupad |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Mahalaga**: Ang manifest ay isang**build artifact**. May-akda ng Contributor na `SKILL.md` — awtomatikong nakukuha ng pipeline ang JSON manifest.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+Umiiral ang manifest upang ang**lahat ng runtime surface**ay gumagamit ng parehong normalized na hugis:
 
-| Surface | How It Uses Manifests |
+| Ibabaw | Paano Ito Gumagamit ng Mga Manipesto |
 |:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| 🖥️**CLI**| Maghanap, mag-install ng pagpaplano, diagnostic ng doktor |
+| 🌐**API**| Mga tugon sa endpoint, pag-filter, mga link sa pag-download |
+| 🔌**MCP**| Mga tugon sa tool, mga nilalaman ng mapagkukunan |
+| 🤖**A2A**| Mga payload ng pagtuklas at rekomendasyon |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| Artifact | Landas |
 |:---------|:-----|
 | 📊 Root metadata | `metadata.json` |
 | 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
+| 📋 Index ng mga kasanayan | `skills_index.json` |
+| 📚 Nai-publish na catalog | `dist/catalog.json` |
 | 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
 | 📦 Zip archive | `dist/archives/<skill>.zip` |
 | 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| `schema_version` | Bersyon ng manifest schema |
+| `id` | Stable na skill identifier mula sa field na `pangalan` |
+| `slug` | Directory slug sa ilalim ng `kasanayan/` |
+| `display_name` | Nababasa ng tao na pamagat mula sa unang heading |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| `paglalarawan` | Maikling buod mula sa frontmatter |
+| `bersyon` | Bersyon ng kasanayan, hiwalay sa bersyon ng npm package |
+| `kategorya` | Canonical na kategorya (na-normalize) |
+| `raw_category` | Orihinal na kategorya mula sa frontmatter |
+| `taxonomy` | Buong taxonomy metadata na may hinuha na fallback |
+| `mga tag` | Mga nahahanap na tag |
+| `kumplikado` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `panganib` | `ligtas` · `pag-iingat` · `nakakasakit` · `kritikal` |
+| `pinagmulan` | `omni-team` · `komunidad` · `opisyal` |
+| `may-akda` | String ng pagpapatungkol |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
 | `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| `paths.root` | Direktoryo ng kasanayan sa loob ng repo |
+| `paths.manifest` | Nakabuo ng manifest path sa `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
-
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+| `mga kasangkapan` | Mga tool identifier mula sa frontmatter |
+| `install_targets` | Metadata sa pag-install ng bawat tool |
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
+Kasama sa bawat target sa pag-install ang: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
 
-### 📦 Resources
-
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| `sub_resources` | Mga subdir ng kasanayan (`mga sanggunian`, `mga ahente`, `mga asset`) |
+| `bilang_artifacts` | Kabuuang bilang ng file sa skill package |
+| `references_count` | Bilang ng doc ng sanggunian |
+| `bilang_mga_gent` | Bilang ng config ng ahente |
+| `bilang_asset` | Bilang ng file ng asset |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| `diskarte` | Diskarte sa pag-install (hal., `copy-skill-directory`) |
+| `current_installer` | Nababasa ng tao ang gawi sa pag-install |
+| `mga recipe` | Mga recipe ng pag-install ng bawat kliyente |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| Seksyon | Mga Patlang |
 |:--------|:-------|
 | 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 📋 `best_practices` | `iskor` (0-100) |
+| ⭐ `kalidad` | `iskor` (0-100) |
+| 🛡️ `seguridad` | `score`, `status` |
+| ✅ `pagpapatunay` | `status` |### 📝 Content
 
-### 📝 Content
+Mga hinangong signal: `body_length`, `content_length`, `body_lines`, `word_count`, kasama ang mga structural flag para sa mga halimbawa, mga seksyon ng pag-troubleshoot, atbp.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+Array ng bawat file na ipinadala sa loob ng direktoryo ng kasanayan:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Mga uri ng artifact**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
+| Patlang | Paglalarawan |
 |:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| `entrypoint_sha256` | Hash ng SKILL.md |
+| `package_sha256` | Deterministic digest mula sa order na listahan ng artifact |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 Iba't ibang alalahanin ang bersyon ng pakete ng repository at bersyon ng kasanayan. Ang package ay kasalukuyang `0.1.3`, habang ang mga indibidwal na kasanayan ay may sariling mga semantic na bersyon.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| Panuntunan | Katuwiran |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ Dapat manatiling derivable mula sa repo | Walang kinakailangang manual manifest authoring |
+| ✅ Maaaring magdagdag ng mga bagong opsyonal na field | Forward compatibility |
+| ⚠️ Dapat manatiling stable ang mga kasalukuyang field | Paatras na compatibility |
+| 🚫 Walang handwritten manifests | Ang Build-time derivation ay ang pinagmulan ng katotohanan |

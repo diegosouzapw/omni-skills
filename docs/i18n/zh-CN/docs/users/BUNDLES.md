@@ -5,19 +5,15 @@
 ---
 
 
-> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by published skills.
-
----
+>**捆绑包是分层在目录顶部的精选技能选择器。**所有七个入门捆绑包现在均得到已发布技能的完全支持。---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` does **not** install a special package. It:
+`--bundle` 不会安装特殊的软件包。它：
 
-1. 📋 Expands the selected bundle definition
-2. ✅ Installs only the members currently available in the catalog
-3. ✅ Builds a concrete install plan from published bundle members
-
-```bash
+1. 📋 扩展选定的包定义
+2. ✅ 仅安装目录中当前可用的成员
+3. ✅ 根据已发布的捆绑包成员构建具体的安装计划```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -25,53 +21,45 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Based on the current generated catalog (`dist/bundles.json`):
+基于当前生成的目录（`dist/bundles.json`）：
 
-| Bundle | Intended For | Available | Members |
-|:-------|:------------|:----------|:--------|
-| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
-| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨 **design** | Design systems & accessibility | **4/4** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
-| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖 **ai-engineer** | LLM & ML devs | **5/5** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+|捆绑 |适用于 |可用 |会员 |
+|:--------|:------------|:------------|:--------|
+| 🧰**必需品**|每个开发者 |**4/4**| `查找技能` ✅ · `头脑风暴` ✅ · `架构` ✅ · `调试` ✅ |
+| 🌐**全栈**|网络和应用程序开发人员 |**5/5**| `前端设计` ✅ · `api 设计` ✅ · `数据库设计` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨**设计**|设计系统和可访问性|**4/4**| `前端设计` ✅ · `omni-figma` ✅ · `设计系统操作` ✅ · `可访问性审计` ✅ |
+| 🛡️**安全**|安全工程师|**4/4**| `安全审核器` ✅ · `漏洞扫描器` ✅ · `事件响应` ✅ · `威胁建模` ✅ |
+| ⚙️**devops**|平台和基础设施|**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `可观察性审查` ✅ · `发布工程` ✅ |
+| 🤖**人工智能工程师**| LLM 和 ML 开发人员 |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
+| 🔧**oss 维护者**| OSS 维护者 |**4/4**| `查找技能` ✅ · `创建公关` ✅ · `变更日志` ✅ · `文档` ✅ |
 
-> ✅ = Published and installable
-
----
+> ✅ = 已发布并可安装---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- You want a **curated starting point** for a domain
-- You want install plans that stay **curated and domain-specific**
-- You want a fast way to install a complete working set for a role
+- 您想要一个域名的**策划起点**
+- 您希望安装计划保持**策划和特定于域**
+- 您想要一种快速的方法来为角色安装完整的工作集### 🎯 Use `--skill` instead when:
 
-### 🎯 Use `--skill` instead when:
-
-- You want a **guaranteed minimal install**
-- You already know the **exact skill** you need
-- You want the **smallest possible footprint** instead of a curated working set
-
----
+- 您想要**保证最小安装**
+- 您已经知道您需要的**确切技能**
+- 您想要**尽可能小的占用空间**而不是精心策划的工作集---
 
 ## 💡 Practical Recommendations
 
-| Goal | Command |
+|目标|命令 |
 |:-----|:--------|
-| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
-| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Search before deciding | `npx omni-skills find figma` |
-| 📋 See all bundle availability | `cat dist/bundles.json` |
-
----
+| 🎯 安装特定的已发布技能 | `npx 全方位技能 --cursor --skill 全方位figma` |
+| 📦 完全支持的入门包 | `npx 全方位技能 --cursor --bundle full-stack` |
+| 🎨 设计系统捆绑包 | `npx 全方位技能 --cursor --bundle design` |
+| 🔧 OSS 工作流程包 | `npx 全方位技能 --codex --bundle oss-maintainer` |
+| 🛡️ 安全工作流程包 | `npx 全方位技能 --cursor --bundle security` |
+| ⚙️ DevOps 捆绑包 | `npx 全方位技能 --cursor --bundle devops` |
+| 🤖 AI 工程师捆绑包 | `npx 全方位技能 --codex --bundle ai-engineer` |
+| 🔎 决定前先搜索 | `npx 全能技能查找 Figma` |
+| 📋 查看所有捆绑包可用性 | `cat dist/bundles.json` |---
 
 ## 🔍 Inspecting Bundles
 
@@ -89,9 +77,7 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Use the `search_skills` or `preview_install` tools with bundle parameters.
-
-### 📋 Check Install Plan
+使用带有捆绑参数的“search_skills”或“preview_install”工具。### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

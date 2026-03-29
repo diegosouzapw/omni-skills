@@ -5,136 +5,103 @@
 ---
 
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Generat automat din `skills_index.json` — 32 de abilități din 15 categorii.
 
-Generated: 2026-03-28T00:00:00+00:00
-
----
+Generat: 2026-03-28T00:00:00+00:00---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
+- [🧠 Agenți Ai (5)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Communication (1)](#communication)
+- [💬 Comunicare (1)](#comunicare)
 - [🤖 Data Ai (1)](#data-ai)
 - [🎨 Design (3)](#design)
-- [💻 Development (3)](#development)
+- [💻 Dezvoltare (3)](#dezvoltare)
 - [☁️ Devops (5)](#devops)
-- [📝 Documentation (2)](#documentation)
+- [📝 Documentație (2)](#documentație)
 - [🖼️ Frontend (1)](#frontend)
 - [🌐 Fullstack Web (1)](#fullstack-web)
 - [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (1)](#product)
-- [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Tools (1)](#tools)
-
----
+- [🧭 Produs (1)](#produs)
+- [🛡️ Testarea securității (4)](#testare-securitate)
+- [🧰 Instrumente (1)](#instrumente)---
 
 ## 🧠 Ai Agents
 
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Abilități de inginerie contextuală a fluxului de lucru. Utilizați această abilitate atunci când un utilizator trebuie să modeleze solicitări, contextul de recuperare, memorie și să | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Abilități de proiectare a fluxului de lucru în evaluare. Folosiți această abilitate atunci când un utilizator are nevoie de planuri de evaluare LLM, suite de regresie, rubrici de punctare, o | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Abilități de flux de lucru pentru aplicații LLM. Utilizați această abilitate atunci când un utilizator are nevoie de modele robuste pentru utilizarea instrumentului, rezultate structurate, fallb | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`prompt-inginer`](../skills/prompt-inginer/SKILL.md) | Abilități de flux de lucru ingineresc prompt. Utilizați această abilitate atunci când un utilizator are nevoie de instrucțiuni de sarcină mai clare, exemple, descompunere, | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`rag-inginer`](../skills/rag-inginer/SKILL.md) | Abilități de flux de lucru RAG. Utilizați această abilitate atunci când un utilizator are nevoie de conducte de recuperare, fragmentare, clasare, citări și evaluare f | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## 🗄️ Backend
 
-## 🗄️ Backend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
-| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`api-design`](../skills/api-design/SKILL.md) | Abilități de flux de lucru pentru proiectarea API. Utilizați această abilitate atunci când un utilizator are nevoie de un HTTP clar sau un contract de servicii înainte de implementare. | resurse L3 | 100/100 | 95/100 | 95/100 trecut |
+| [`database-design`](../skills/database-design/SKILL.md) | Abilități de flux de lucru pentru proiectarea bazelor de date. Utilizați această abilitate atunci când un utilizator are nevoie de o schemă durabilă, indexare și design de migrare înainte de a | resurse L3 | 98/100 | 94/100 | 95/100 trecut |## ⚙️ Cli Automation
 
-## ⚙️ Cli Automation
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`find-skills`](../skills/find-skills/SKILL.md) | Abilități de flux de lucru pentru descoperirea catalogului. Utilizați această abilitate atunci când un utilizator solicită o capacitate, un flux de lucru sau un ajutor specific pentru domeniu | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## 💬 Communication
 
-## 💬 Communication
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Abilități de flux de lucru pentru solicitarea prin tragere. Folosiți această abilitate atunci când un utilizator are nevoie de o narațiune clară a recenziilor, de încadrare a riscurilor și de îndrumări ale recenzenților | resurse L3 | 98/100 | 95/100 | 95/100 trecut |## 🤖 Data Ai
 
-## 🤖 Data Ai
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Abilități de flux de lucru pentru contracte de date. Utilizați această abilitate atunci când o echipă trebuie să definească, să revizuiască sau să aplice contracte între producători | resurse L3 | 97/100 | 95/100 | 95/100 trecut |## 🎨 Design
 
-## 🎨 Design
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Abilități privind fluxul de lucru pentru auditul accesibilității. Utilizați această abilitate atunci când un utilizator are nevoie de tastatură, semantică, focalizare, contrast, mișcare sau ca | resurse L3 | 100/100 | 99/100 | 95/100 trecut |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Abilități de proiectare a operațiunilor de sisteme de lucru. Folosiți această abilitate atunci când un utilizator are nevoie de guvernare token, control al deplasării componentelor, re | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Abilități de proiectare a fluxului de lucru de guvernare a simbolurilor. Folosiți această abilitate atunci când o echipă trebuie să introducă, să redenumească, să deprecieze sau să revizuiască proiectul | resurse L3 | 97/100 | 95/100 | 95/100 trecut |## 💻 Development
 
-## 💻 Development
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`arhitectura`](../skills/architecture/SKILL.md) | Abilități de flux de lucru în arhitectură. Folosiți această abilitate atunci când un utilizator are nevoie de limite de sistem, compromisuri sau o implementare în etape p | resurse L3 | 98/100 | 94/100 | 95/100 trecut |
+| [`debugging`](../skills/debugging/SKILL.md) | Abilități de depanare a fluxului de lucru. Folosiți această abilitate atunci când un utilizator are nevoie de reproducere disciplinată, izolare și verificare a remedierii | resurse L3 | 98/100 | 94/100 | 95/100 trecut |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Abilități de flux de lucru Figma. Utilizați această abilitate atunci când un utilizator are nevoie de implementare design-to-code, inspecție Figma, căutare token, Co | resurse L3 | 100/100 | 100/100 | 95/100 trecut |## ☁️ Devops
 
-## ☁️ Devops
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Abilități de flux de lucru Docker. Utilizați această abilitate atunci când un utilizator are nevoie de fișiere Docker, strategie de creare a imaginii, întărirea timpului de execuție sau conține | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Abilități de flux de lucru Kubernetes. Utilizați această abilitate atunci când un utilizator are nevoie de manifeste de volum de lucru, strategie de lansare, expunere la serviciu sau c | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Abilități de observare a fluxului de lucru. Utilizați această abilitate atunci când un utilizator are nevoie de jurnale, valori, urme, alerte sau revizuire SLO înainte de expediere | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Eliberați abilitățile de flux de lucru de inginerie. Utilizați această abilitate atunci când un utilizator are nevoie de un plan de lansare mai sigur, de o politică de promovare, de rollback pa | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`terraform`](../skills/terraform/SKILL.md) | Abilități de flux de lucru Terraform. Utilizați această abilitate atunci când un utilizator are nevoie de infrastructură ca structură de cod, module, strategie de stat sau | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## Documentație
 
-## Documentație
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
-| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`changelog`](../skills/changelog/SKILL.md) | Abilități de flux de lucru pentru note de lansare. Utilizați această abilitate atunci când un utilizator are nevoie de intrări în jurnalul de modificări, note de actualizare sau o versiune concisă na | resurse L3 | 98/100 | 94/100 | 95/100 trecut |
+| [`documentație`](../skills/documentation/SKILL.md) | Abilități de flux de lucru în documentare. Folosiți această abilitate atunci când un utilizator are nevoie de integrare precisă, de îndrumare operațională sau de lansare | resurse L3 | 99/100 | 96/100 | 95/100 trecut |## 🖼️ Frontend
 
-## 🖼️ Frontend
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Abilități de flux de lucru pentru design front-end. Folosiți această abilitate atunci când un utilizator are nevoie de structura UI, stări și modele de interacțiune înainte de i | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## 🌐 Fullstack Web
 
-## 🌐 Fullstack Web
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Abilități de autentificare și autorizare a fluxului de lucru. Utilizați această abilitate atunci când un utilizator are nevoie de autentificare, sesiune, simbol, rol sau permis | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## 📈 Machine Learning
 
-## 📈 Machine Learning
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Abilități pentru fluxul de lucru pentru servirea modelului. Utilizați această abilitate atunci când o echipă trebuie să proiecteze, să revizuiască sau să întărească inferența online, infecția în loturi | resurse L3 | 97/100 | 95/100 | 95/100 trecut |## 🧭 Product
 
-## 🧭 Product
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Abilități de brainstorming de flux de lucru. Utilizați această abilitate atunci când un utilizator explorează o problemă și are nevoie de opțiuni, compromisuri și o recunoaștere | resurse L3 | 99/100 | 96/100 | 95/100 trecut |## 🛡️ Testing Security
 
-## 🛡️ Testing Security
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Abilități privind fluxul de lucru pentru răspuns la incident. Folosiți această abilitate atunci când un utilizator are nevoie de triajul întreruperii, secvențierea atenuării, comunicarea părților interesate | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Abilități de flux de lucru de audit de securitate. Utilizați această abilitate atunci când un utilizator are nevoie de o revizuire concentrată a riscurilor de securitate concrete în loc de o | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Abilități de modelare a amenințărilor în fluxul de lucru. Utilizați această abilitate atunci când un utilizator are nevoie de limite de încredere, obiective ale atacatorului, cazuri de abuz sau atenuare | resurse L3 | 99/100 | 97/100 | 95/100 trecut |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Abilități de scanare a vulnerabilităților în fluxul de lucru. Utilizați această abilitate atunci când un utilizator are nevoie de acoperire repetabilă pentru vulnerabilități cunoscute, u | resurse L3 | 99/100 | 97/100 | 95/100 trecut |## 🧰 Tools
 
-## 🧰 Tools
-
-| Skill | Description | Level | Best Practices | Quality | Security |
+| Îndemânare | Descriere | Nivel | Cele mai bune practici | Calitate | Securitate |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |
-
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | Cunoașterea fluxului de lucru pentru crearea serverului MCP. Utilizați această abilitate atunci când o echipă trebuie să proiecteze, să implementeze, să valideze sau să documenteze un Mod | resurse L3 | 97/100 | 95/100 | 95/100 trecut |

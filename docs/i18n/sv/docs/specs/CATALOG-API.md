@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**Skrivskyddat HTTP API för kunskapsupptäckt, sökning, jämförelse, installationsplanering och nedladdning av artefakter.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funktion | Stat |
 |:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| ✅ Katalogslutpunkter | Implementerad |
+| ✅ Auth (bärare + API-nyckel) | Implementerad |
+| ✅ Admin runtime auth | Implementerad |
+| ✅ Prisbegränsande | Implementerad |
+| ✅ Revisionsloggning | Implementerad |
+| ✅ CORS och IP-godkännandelistor | Implementerad |
+| ✅ Underhållsläge | Implementerad |
+| ✅ Arkivnedladdningar | Implementerad |
+| ✅ OpenAPI spec | Implementerad |
+| ⚠️ Styrning backend | Env-driven baslinje under process; extern gateway eller IdP fortfarande valfritt |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+API:et tillhandahåller en registerliknande yta för:
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 Lista och filtrera färdigheter efter kvalitet, säkerhet, kategori, risk och mer
+- 📌 Att hämta individuella färdigheter manifesterar
+- 🔎 Fulltextsökning och jämförelse med flera färdigheter
+- 📦 Paketlista med tillgänglighet
+- 📐 Skrivskyddad installationsplangenerering
+- 📥 Ladda ner genererade artefakter, arkiv och kontrollsummanifest
 
-This same catalog and manifest surface is also the basis for:
+Samma katalog och manifestyta är också grunden för:
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- lokal CLI installationsplanering
+- MCP skrivskyddade upptäcktssvar
+- A2A-upptäckt och överlämnande av installationsplan
+- potentiella privata kataloger med extern autentisering ovanpå---
 
 ## Snabbstart
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**Standard**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+Alla säkerhetskontroller är env-drivna och valfria:
 
-| Control | Variable | Example |
-|:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| Kontroll | Variabel | Exempel |
+|:--------|:--------|:--------|
+| 🔑**Bärare auth**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `ersätt-mig` |
+| 🗝️**API-nyckel auth**| `OMNI_SKILLS_HTTP_API_KEYS` | `nyckel-a, nyckel-b` |
+| 🛂**Admin auth**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-hemlighet` |
+| 🚦**Taxebegränsning**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**Revisionsloggning**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️**Revisionsformat**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` eller `text` |
+| 📄**Revisionsfil**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**CORS godkännandelista**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**IP-godkännandelista**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**Betrodd proxy**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧**Underhållsläge**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️**Försök igen efter**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**Beteende:**
+- `/healthz` förblir**alltid oautentiserad**
+- 🔒 Alla andra rutter kräver auth när auth är aktiverat
+- 🛂 `/admin/runtime` kräver admin-token när den är aktiverad
+- 🚦 Hastighetsbegränsning pågår med "X-RateLimit-*" svarsrubriker
+- 🧾 Varje svar har "X-Request-Id".
+- 🚧 Underhållsläge returnerar "503" för icke-hälsa, icke-administratörsrutter### ✅ Current governance decision
 
-### ✅ Current governance decision
+Den nuvarande projektinriktningen är att**återanvända samma katalogformat för offentliga eller privata distributioner**och lagerautentisera externt vid behov.
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+Det betyder:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- manifestet och API-formen förblir delade
+- Självvärd och lokala distributioner kan stanna på den pågående baslinjen
+- mer avancerad värdstyrning kan flyttas till en extern gateway eller företagsautentiseringslager senare utan att förkasta datamodellen### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
+| Metod | Väg | Beskrivning |
 |:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+| `GET` | `/healthz` | Hälsokontroll (oautentiserad) |
+| `GET` | `/openapi.json` | Dynamisk OpenAPI 3.1-specifikation |
+| `GET` | `/admin/runtime` | Styrning och ögonblicksbild av körtid (admin auth när aktiverad) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
-
-| Method | Path | Description |
+| Metod | Väg | Beskrivning |
 |:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
+| `GET` | `/v1/färdigheter` | Lista färdigheter med filter |
+| `GET` | `/v1/skills/:id` | Få individuella färdigheter manifest |
+| `GET` | `/v1/sök` | Fulltextsökning |
+| `GET` | `/v1/compare?ids=id1,id2` | Jämför flera färdigheter |
+| `GET` | `/v1/buntar` | Lista buntar med tillgänglighet |
+| `POST` | `/v1/install/plan` | Skapa en installationsplan |### 🔎 List/Search Filters
 
-### 🔎 List/Search Filters
-
-| Filter | Example |
+| Filter | Exempel |
 |:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
+| `kategori` | `?kategori=utveckling` |
+| `verktyg` | `?verktyg=markör` |
+| `risk` | `?risk=säker` |
+| `sortera` | `?sort=kvalitet\|bästa praxis\|nivå\|säkerhet\|namn` |
+| `beställning` | `?order=asc\|desc` |
+| `min_kvalitet` | `?min_kvalitet=80` |
 | `min_best_practices` | `?min_best_practices=60` |
 | `min_level` | `?min_level=2` |
-| `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| `min_säkerhet` | `?min_security=90` |
+| `valideringsstatus` | `?validation_status=godkänd` |
+| `säkerhetsstatus` | `?security_status=godkänd` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
+| Metod | Väg | Beskrivning |
 |:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+| `GET` | `/v1/katalog/download` | Ladda ner hela katalogen |
+| `GET` | `/v1/skills/:id/artifacts` | Lista skicklighetsartefakter |
+| `GET` | `/v1/skills/:id/archives` | Lista skicklighetsarkiv |
+| `GET` | `/v1/skills/:id/downloads` | Alla tillgängliga nedladdningslänkar |
+| `GET` | `/v1/skills/:id/download/manifest` | Färdighetsmanifest JSON |
+| `GET` | `/v1/skills/:id/download/entrypoint` | Färdighet SKILL.md |
+| `GET` | `/v1/skills/:id/download/artifact?path=<sökväg>` | Specifik artefakt |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skicklighetsarkiv |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Fristående signatur |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 kontrollsummor |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+När förfrågningar hanteras via API:et**berikar servern automatiskt**manifest, artefaktlistor och installationsplaner med absoluta webbadresser härledda från ursprunget för den inkommande begäran. Detta är runtime-anrikning, inte inbakat i `dist/manifests/*.json`.---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**Installationsplaner är förhandsgranskningar, inte fjärrskrivningar.**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+API:et installeras aldrig på anroparens dator. Det returnerar:
+- 📌 Valda färdighetsmetadata
+- ⚠️ Varningar för saknade paketmedlemmar
+- 🖥️ Konkreta CLI-kommandon för att köras lokalt
+- 🔗 Offentliga nedladdningsadresser när förfrågningsursprung är tillgängligt---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+MCP-servern återanvänder samma offentliga API-URL:er när den är konfigurerad:```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+Detta gör att MCP-installationsförhandsvisningar kan returnera konkreta manifest- och artefakt-URL:er istället för endast lokala repo-sökvägar.---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+`GET /admin/runtime` returnerar en styrningsöversiktsbild användbar för värddiagnostik:
 
-- active auth methods
+- aktiva autentiseringsmetoder
 - admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- Taxegränsfönster och max
+- CORS godkännandelista
+- IP-godkännandelista
+- tillstånd för underhållsläge
+- Revisionsdestination och format
+- aktuella katalogsummor
+- Begär ID-eko för spårbarhet

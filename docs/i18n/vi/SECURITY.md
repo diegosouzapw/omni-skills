@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Nếu bạn phát hiện ra vấn đề bảo mật trong Omni Skills, trước tiên đừng mở vấn đề công khai.**
 
-Please report through one of these private channels:
+Vui lòng báo cáo qua một trong các kênh riêng tư sau:
 
-| Channel | How |
+| Kênh | Như thế nào |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Tư vấn bảo mật GitHub | [Mở tư vấn riêng](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Liên hệ trực tiếp | Liên hệ trực tiếp với người bảo trì |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Thành phần hoặc đường dẫn bị ảnh hưởng
+- 🔄 Các bước sao chép
+- ⚠️ Đánh giá tác động
+- 🧪 Bất kỳ tài liệu chứng minh khái niệm nào cần thiết để xác minh vấn đề
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Chúng tôi mong muốn ghi nhận các báo cáo trong vòng 48 giờ**và ưu tiên khắc phục tùy theo mức độ tác động.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Chính sách này bao gồm thời gian chạy và bề mặt nội dung của kho lưu trữ:
 
-| Component | Path |
-|:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| Thành phần | Đường dẫn |
+|:----------|:------|
+| 🖥️ CLI và trình cài đặt | `công cụ/thùng/` |
+| 📚 Thư viện chia sẻ | `công cụ/lib/` |
+| ⚙️ Xây dựng và xác thực tập lệnh | `công cụ/tập lệnh/` |
+| 📦 Tạo các tạo phẩm danh mục | `quận/` |
+| 🌐 Gói API, MCP và A2A | `gói/` |
+| 🧠 Nội dung kỹ năng | `skills/` — đặc biệt là các lệnh shell, truy cập mạng, luồng thông tin xác thực hoặc hướng dẫn liên quan đến bảo mật |---
 
 ## Kiến trúc
 
-The repository relies on the following security controls:
+Kho lưu trữ dựa trên các biện pháp kiểm soát bảo mật sau:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
+| Kiểm soát | Mô tả |
+|:--------|:----------|
+| 🏷️ Lĩnh vực rủi ro | Siêu dữ liệu kỹ năng bao gồm mức `rủi ro` đã được khai báo |
+| 📊 Ghi điểm | Quá trình xác thực tính toán mức độ trưởng thành, các phương pháp hay nhất, chất lượng và điểm bảo mật |
+| 🔍 Máy quét tĩnh | Kiểm tra `SKILL.md`, các tệp được đóng gói và tập lệnh trợ giúp |
+| 🦠 Máy quét tùy chọn | Tra cứu hàm băm ClamAV và VirusTotal (khi được định cấu hình) |### 🖥️ Runtime Controls
 
-| Control | Description |
-|:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| Kiểm soát | Mô tả |
+|:--------|:----------|
+| 📁 Đường đi an toàn | Kiểm tra an toàn đường dẫn sử dụng luồng cài đặt |
+| 🔒 Danh sách cho phép viết | Việc ghi sidecar MCP cục bộ bị hạn chế bởi danh sách cho phép |
+| 👁️ Mặc định chạy thử | Các công cụ định hướng ghi mặc định ở chế độ chạy khô trừ khi bị tắt rõ ràng |
+| 🔐 Xác thực & giới hạn | Xác thực tài khoản/khóa API, xác thực thời gian chạy của quản trị viên, giới hạn tốc độ, danh sách cho phép CORS/IP |
+| 📋 Kiểm toán | Ghi nhật ký kiểm tra, chế độ bảo trì và ID yêu cầu |### 📦 Release Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
-|:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
-
-### 📦 Release Controls
-
-| Control | Description |
-|:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| Kiểm soát | Mô tả |
+|:--------|:----------|
+| ✅ Bảng kê khai tổng kiểm tra | Tổng kiểm tra SHA-256 cho các kho lưu trữ được tạo |
+| ✍️ Chữ ký | Xác minh chữ ký tách rời trong CI trước khi xuất bản |
+| 🧪 Kiểm tra khói | Bài tập vận chuyển các bề mặt thời gian chạy trước khi phát hành |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Công việc bảo mật chính còn lại**không**là tăng cường cơ bản. Các mục mở là:
 
-| Area | Status |
-|:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| Khu vực | Trạng thái |
+|:------|:-------|
+| 🏢 Quản trị doanh nghiệp | Nhận dạng bên ngoài, chính sách cổng và tích hợp WAF bên trên các biện pháp kiểm soát trong quy trình hiện tại |
+| 🔌 Người viết khách hàng MCP | Người viết rộng hơn chỉ khi hợp đồng cấu hình công khai đủ ổn định |
+| 📊 Tinh chỉnh máy quét | Tiếp tục sàng lọc để các kỹ năng đặc biệt luôn được tách biệt rõ ràng với những kỹ năng đơn thuần có cấu trúc tốt |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Mỗi kỹ năng khai báo một trong các cấp độ `rủi ro` sau:
 
-| Risk Level | Meaning |
-|:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| Mức độ rủi ro | Ý nghĩa |
+|:----------|:--------|
+| 🟢 `an toàn` | Dự kiến ​​không có hoạt động phá hoại |
+| 🟡 `thận trọng` | Có thể sửa đổi tệp hoặc tương tác với hệ thống bên ngoài |
+| 🔴 `xúc phạm` | Kiểm tra bảo mật hoặc quy trình làm việc đối nghịch yêu cầu ủy quyền rõ ràng |
+| ⛔ `quan trọng` | Hoạt động có tác động cao hoặc cấp hệ thống |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Vì Omni Skills cung cấp các trình trợ giúp thực thi, công cụ cục bộ nhận biết hệ thống tệp và người viết cấu hình dành riêng cho máy khách, nên các lớp lỗ hổng này phải được coi là**mức độ ưu tiên cao**ngay cả khi chúng xuất hiện "chỉ cục bộ":
 
-| Category | Examples |
-|:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| Danh mục | Ví dụ |
+|:----------|:----------|
+| 📁 Đi qua đường đi | Thoát thư mục thông qua đường dẫn cài đặt kỹ năng hoặc cấu hình |
+| 🔗 An toàn liên kết tượng trưng | Liên kết tượng trưng theo sau trong quá trình cài đặt hoặc trích xuất kho lưu trữ |
+| 🖥️ Thực thi lệnh | Chèn lệnh tùy ý thông qua nội dung kỹ năng hoặc tập lệnh |
+| 📦 Xác minh lưu trữ | Bỏ qua tổng kiểm tra hoặc xác minh chữ ký |
+| 🔓 Bỏ qua xác thực | Giới hạn tỷ lệ hoặc bỏ qua xác thực trên API/MCP |
+| 🔌 Bỏ qua danh sách cho phép | Vượt qua danh sách cho phép xe sidecar tại địa phương |
+| 🦠 Máy quét trốn tránh | Các lớp âm tính giả trong máy quét tĩnh hoặc bên ngoài |

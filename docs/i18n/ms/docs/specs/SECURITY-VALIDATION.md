@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Pengimbasan keselamatan, penjanaan arkib, tandatangan pilihan dan pembungkusan pengedaran untuk setiap kemahiran yang diterbitkan.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Ciri | Negeri |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Pengimbas keselamatan statik | Sentiasa didayakan |
+| ✅ Klasifikasi metadata setiap kemahiran | Dilaksanakan |
+| ✅ Arkib setiap kemahiran (zip/tar.gz) | Dilaksanakan |
+| ✅ SHA-256 checksum manifes | Dilaksanakan |
+| ✅ Gerbang pengimbas CI pada tag keluaran | Dilaksanakan |
+| ✅ npm menerbitkan aliran kerja daripada tarball yang disahkan | Dilaksanakan |
+| ⚙️ Pengimbasan ClamAV | Pengayaan pilihan |
+| ⚙️ Carian cincang VirusTotal | Pengayaan pilihan |
+| ✅ Menandatangani berasingan | Dilaksanakan |
+| ✅ Penandatanganan berkuatkuasa CI | Dilaksanakan pada teg keluaran |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Mengimbas setiap kemahiran semasa pengesahan:
 
-| Target | What Gets Scanned |
+| Sasaran | Perkara yang Diimbas |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| 📝 `KEMAHIRAN.md` | Kandungan kemahiran utama |
+| 📄 Fail Markdown/teks | Rujukan dan dokumen yang dibungkus |
+| ⚙️ Skrip | Skrip automasi berbungkus |
 
-**Rule families:**
+**Keluarga memerintah:**
 
-| Rule | Examples |
+| Peraturan | Contoh |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Suntikan segera**| Corak exfiltration, arahan mengatasi |
+| 💣**Arahan yang merosakkan**| `rm -rf`, `format`, `del /s` |
+| 🔑**Peningkatan keistimewaan**| `sudo`, `chmod 777`, corak setuid |
+| 📂**Laluan yang mencurigakan**| `/etc/shadow`, `~/.ssh`, fail kelayakan |
+| ⚠️**Primitif berisiko**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Memerlukan `clamscan` dalam `PATH`
+- Mengimbas fail yang dibungkus untuk mengesan perisian hasad yang diketahui
+- Keputusan direkodkan dalam metadata kemahiran---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Hash carian sahaja**— tiada muat naik fail semasa pengesahan biasa
+- Fail tidak diketahui kekal setempat sahaja
+- Mengekalkan binaan**deterministik**dan bebas CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Pintu pelepasan yang ketat:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Langkah ini membaca `kemahiran/*/metadata.json` yang dihasilkan dan gagal jika pengimbas yang diperlukan tidak melaksanakan atau melaporkan pengesanan.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Data keselamatan dipancarkan dalam setiap metadata kemahiran:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Blok ini disebarkan ke dalam paparan manifes dan katalog, membolehkan CLI, API dan MCP**menapis dan menyusun mengikut skor keselamatan**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Setiap kemahiran yang diterbitkan menjana:
 
-| File | Format |
+| Fail | Format |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP arkib |
+| `dist/archives/<skill>.tar.gz` | Arkib Tarball |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifes |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+Teg keluaran Tindakan GitHub (`v*`) sekarang:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. sahkan tag git sepadan dengan `package.json`
+2. pasang dan muat semula ClamAV
+3. menyahkod kunci tandatangan keluaran daripada rahsia GitHub
+4. jalankan `npm run release:verify`
+5. bungkus tarball dengan `npm pack`
+6. terbitkan tarball tepat itu ke npm dengan asalnya
+7. buat Keluaran GitHub dengan nota tersuai dan aset pengesahan yang dilampirkan---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Jika tiada kunci awam disediakan, binaan memperoleh satu dengan `openssl` dan meletakkannya dalam `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Apabila didayakan, fail `.sig` dipancarkan di sebelah arkib dan manifes semak.
 
-In CI, release tags now require signing through:
+Dalam CI, teg keluaran kini memerlukan tandatangan melalui:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` atau `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- pilihan `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` atau `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
+| Had | Status |
 |:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| Penyerahan muat naik VirusTotal | Sengaja dikecualikan daripada pengesahan lalai |
+| Menandatangani penguatkuasaan | Dikuatkuasakan pada tag keluaran; binaan tempatan masih boleh dijalankan tanpa ditandatangani |
+| Tadbir urus yang dihoskan | Pengesahan terbina dalam, masa jalan pentadbir, senarai dibenarkan CORS/IP, mod penyelenggaraan dan pengelogan audit telah disediakan; gerbang luaran kekal sebagai pilihan |

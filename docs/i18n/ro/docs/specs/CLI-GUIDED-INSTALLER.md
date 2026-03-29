@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Contract comportamental pentru experiența de instalare ghidată în CLI Omni Skills.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Această specificație definește comportamentul de instalare ghidată care se află deasupra backend-ului de instalare existent.
 
-It does not replace:
+Nu înlocuiește:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- fluxurile curente de steag expert
+- manifeste de instalare selective
 
-It defines:
+Acesta definește:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- cum se intră în modul ghidat
+- cum sunt alese destinațiile
+- cum se alege domeniul de aplicare
+- ce informații de previzualizare trebuie afișate
+- cum funcționează confirmarea și execuția---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI ar trebui să intre în modul de instalare ghidată atunci când:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- utilizatorul rulează „omni-skills” fără argumente într-un TTY
+- utilizatorul rulează „omni-skills install” fără selectoare într-un TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+CLI ar trebui să accepte, de asemenea, modul ghidat explicit printr-o opțiune dedicată, cum ar fi:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- `Omni-skills install --guided`
 
-- `omni-skills install --guided`
+Acest mod ar trebui să funcționeze chiar și atunci când intrarea este canalizată și nu este atașată la un TTY, atâta timp cât intrarea standard este disponibilă.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Când este invocat fără un TTY și fără modul ghidat solicitat în mod explicit:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- păstrează comportamentul implicit curent
+- nu blocați așteptarea solicitărilor---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Instalarea ghidată trebuie să accepte două clase de destinație:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Fiecare țintă cunoscută se rezolvă la:
 
-Each known target resolves to:
+- etichetă care poate fi citită de om
+- ID-ul instrumentului intern
+- instalați steag
+- calea rezolvată
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
-
-Required known targets:
+Țintele cunoscute obligatorii:
 
 - Claude Code
 - Cursor
-- Gemini CLI
+- Gemeni CLI
 - Codex CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Antigravitație
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Modul cale personalizată trebuie să:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- solicitarea unei căi
+- rezolvă `~`
+- normalizarea la calea absolută
+- arată calea rezolvată în previzualizare---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Instalarea ghidată trebuie să accepte:### 4.1 Full Library
 
-### 4.1 Full Library
+Echivalent cu instalarea curentă fără `--skill` sau `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Permite utilizatorului să selecteze o abilitate publicată.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Permite utilizatorului să selecteze un pachet organizat și să rezolve membrii publicati.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Permite utilizatorului:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- introduceți o interogare de căutare
+- inspectați rezultatele
+- alegeți o abilitate sau un pachet
+- continuați în previzualizarea instalării---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Înainte de execuție, instalarea ghidată trebuie să afișeze:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- eticheta destinatiei
+- calea de destinatie
+- instalați domeniul de aplicare
+- abilitate selectată sau pachet, dacă este cazul
+- comandă CLI echivalentă
 
-Optional but recommended:
+Opțional, dar recomandat:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- rezumatul metadatelor abilităților selectate
+- rezumatul disponibilității pachetului---
 
 ## 6. Execution Contract
 
-After confirmation:
+Dupa confirmare:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- delegați de instalare ghidați către backend-ul de instalare existent
+- nu reimplementează fișierul scrie singur
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Previzualizarea comenzii și argumentele reale de instalare delegate trebuie să se potrivească exact.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+După execuția cu succes, rezultatul instalării ghidate ar trebui să arate:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- indicator de succes
+- traseul de destinație finală
+- comanda care a fost executată
+- următoarea acțiune recomandată
 
-Example next actions:
+Exemple de acțiuni următoare:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- utilizați skill-ul în clientul selectat
+- alerga `doctor`
+- rulați `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Următoarele rămân valabile și neschimbate:
 
 - `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
 - `omni-skills --path ./skills`
 - `omni-skills find figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Modul ghidat adaugă comportament. Nu elimină comportamentul existent.

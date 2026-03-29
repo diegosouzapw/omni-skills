@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Сканиране за защита, генериране на архив, незадължително подписване и пакетиране за разпространение за всяко публикувано умение.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Характеристика | състояние |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Статичен скенер за сигурност | Винаги активиран |
+| ✅ Класификация на метаданни за всяко умение | Внедрено |
+| ✅ Архиви на умения (zip/tar.gz) | Внедрено |
+| ✅ Манифести на контролна сума SHA-256 | Внедрено |
+| ✅ CI скенер gate на етикети за освобождаване | Внедрено |
+| ✅ npm публикуване на работен процес от проверен архив | Внедрено |
+| ⚙️ ClamAV сканиране | Допълнителен обогатител |
+| ⚙️ Хеш търсене на VirusTotal | Допълнителен обогатител |
+| ✅ Отделно подписване | Внедрено |
+| ✅ Наложено подписване с CI | Внедрено при етикети за освобождаване |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Сканира всяко умение по време на валидиране:
 
-| Target | What Gets Scanned |
-|:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| Цел | Какво се сканира |
+|:-------|:----------------|
+| 📝 `SKILL.md` | Основно съдържание на умения |
+| 📄 Markdown/текстови файлове | Пакетирани препратки и документи |
+| ⚙️ Скриптове | Пакетирани скриптове за автоматизация |
 
-**Rule families:**
+**Управляващи семейства:**
 
-| Rule | Examples |
+| Правило | Примери |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Бързо инжектиране**| Модели на ексфилтрация, отмяна на инструкции |
+| 💣**Разрушителни команди**| `rm -rf`, `формат`, `del /s` |
+| 🔑**Ескалация на привилегии**| `sudo`, `chmod 777`, setuid модели |
+| 📂**Подозрителни пътища**| `/etc/shadow`, `~/.ssh`, идентификационни файлове |
+| ⚠️**Рискови примитиви**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Изисква `clamscan` в `PATH`
+- Сканира пакетираните файлове за известен зловреден софтуер
+- Резултати, записани в метаданни за умения---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Само хеш търсене**— без качване на файл по време на нормално валидиране
+- Неизвестните файлове остават само локални
+- Поддържа изграждането**детерминистично**и независимо от CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Врата за строго освобождаване:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Тази стъпка чете генерирания `skills/*/metadata.json` и се проваля, ако необходимите скенери не са изпълнили или са докладвали откривания.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Данните за сигурност се излъчват в метаданните на всяко умение:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Този блок се разпространява в манифести и изгледи на каталог, позволявайки на CLI, API и MCP да**филтрират и класират по резултат за сигурност**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Всяко публикувано умение генерира:
 
-| File | Format |
+| Файл | Формат |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP архив |
+| `dist/archives/<skill>.tar.gz` | Архив на tarball |
+| `dist/archives/<skill>.checksums.txt` | Манифест на контролната сума на SHA-256 |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+Етикети за освобождаване на GitHub Actions (`v*`) сега:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. проверете дали етикетът git съвпада с `package.json`
+2. инсталирайте и обновете ClamAV
+3. декодирайте ключа за подписване на изданието от тайните на GitHub
+4. изпълнете `npm run release:verify`
+5. пакетирайте архива с `npm pack`
+6. публикувайте този точен tarball в npm с произход
+7. създайте издание на GitHub с персонализирани бележки и прикачени активи за проверка---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Ако не е предоставен публичен ключ, компилацията извлича такъв с `openssl` и го поставя в `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Когато е активирано, `.sig` файловете се излъчват до архивите и манифеста на контролната сума.
 
-In CI, release tags now require signing through:
+В CI етикетите за освобождаване вече изискват подписване чрез:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` или `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- по избор `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` или `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
+| Ограничение | Статус |
 |:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| Изпращане на качване на VirusTotal | Умишлено изключен от проверката по подразбиране |
+| Принудително подписване | Наложени етикети при освобождаване; локалните компилации все още могат да работят неподписани |
+| Хоствано управление | Вградено удостоверяване, администраторско време за изпълнение, CORS/IP разрешени списъци, режим на поддръжка и регистриране на одит са налице; външните шлюзове остават незадължителни |

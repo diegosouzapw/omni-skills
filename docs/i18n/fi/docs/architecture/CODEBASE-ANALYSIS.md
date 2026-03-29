@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**Kattava tekninen analyysi nykyisestä Omni Skills -arkkitehtuurista, ajonaikaisista pinnoista ja rakennusputkistosta.**
+> Viimeksi analysoitu: 28.3.2026---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| Attribuutti | Arvo |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**Nimi**| "kaikki taidot" |
+|**Pakettiversio**| "0.1.3" |
+|**Taitoversiot**| Taitokohtainen ja pakettiversiosta riippumaton. Monet julkaistut taidot ovat edelleen "0.0.1", kun taas paketti on "0.1.2". |
+|**Lisenssi**| MIT (koodi) + CC BY 4.0 (sisältö) |
+|**NPM**| "npx omni-skills" |
+|**Julkaistut taidot**| 32 |
+|**Määritetyt niput**| 7, kaikki julkaistujen taitojen tukena |
+|**Aktiiviset luetteloluokat**| 15 aktiivista ryhmää 18:sta kanonisesta taksonomian kategoriasta |
+|**Ensisijainen suoritusaika/koontiversion LOC näyte alla**| 13 600+ |
+|**Tuotantoriippuvuudet**| 7 ("@modelcontextprotocol/sdk", "cors", "express", "ioredis", "muste", "reagoida", "zod") |
 
-Current repository-level classification snapshot from `metadata.json`:
+Nykyinen arkistotason luokituksen tilannekuva metadata.jsonista:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- keskimääräinen laatupiste: "96,3".
+- parhaiden käytäntöjen keskimääräinen pistemäärä: `98,7`
+- Keskimääräinen turvapistemäärä: "95,0".
+- kaikki 32 julkaistua taitoa vahvistetaan "L3".
 
-Current release baseline:
+Nykyisen julkaisun perusviiva:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- julkisen arkiston julkaisu: "v0.1.2".
+- yksityinen tehostimen julkaisu: "v0.0.1".
+- Julkinen julkaisuautomaatio ja yksityinen julkaisuautomaatio ovat sekä aktiivisia että vihreitä---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+Arkisto noudattaa**työtilan monorepo**-mallia, jossa on yksi jaettu luetteloydin ja useita ajonaikaisia ​​pintoja.```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,321 +64,297 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+Suunnittelu on tarkoituksella**artefaktilähtöinen**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. taidot on luotu SKILL.md-tiedostoina sekä paikallisia tukipaketteja
+2. koontiversio vahvistaa, luokittelee, arkistoi ja normalisoi ne
+3. luoduista artefakteista tulee sopimus CLI:lle, API:lle, MCP:lle ja A2A:lle---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4 500+ LOC yhdistettynä**— tärkein julkinen käyttöliittymä sekä asiantuntija- että ohjattuun käyttöön.
 
-| Command | Function |
-|:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| Komento | Toiminto |
+|:--------|:----------|
+| 🔎 `etsi [kysely]` | Kokotekstiluettelohaku tulostietoisilla suodattimilla |
+| 📦 "asenna" | Ohjattu tai lippupohjainen asennus tunnettuihin asiakkaisiin tai mukautettuihin polkuihin |
+| 🧾 `config-mcp` | Esikatsele tai kirjoita asiakastietoinen MCP-konfiguraatio |
+| 🔌 `mcp <kuljetus>` | Käynnistää MCP-palvelimen muodossa "stdio", "stream" tai "sse" |
+| 🌐 `api` | Käynnistää luettelon API |
+| 🤖 `a2a` | Käynnistää A2A-ajoajan |
+| 🧪 `savu` | Vapauta lentoa edeltävä vahvistus |
+| 🩺 `lääkäri` | Paikallinen diagnostiikka |
+| 🖥️ `ui` | Musteen visuaalinen kuori asennus-, etsintä-, konfigurointi- ja huoltokeskittimellä |
+| 🏷️ `luokat uudelleen` | Taksonomian poikkeaman tarkastus ja uudelleenkirjoitus |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI ei ole enää vain asennusohjelma. Se on julkisen toiminnan työkalu koko alustalle.## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+Julkinen suoritusaika ei ole enää perustyön esteenä, ja toisen luokan aalto on jo laskeutunut. Seuraava hyödyllinen luettelotyö on syvyys, ei enemmän kategorioiden jahtaamista.
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+Uudet aktivoidut koodinatiivikappaleet nyt luettelossa:
 
-Newly activated code-native tracks now in the catalog:
+- "design" parametrien "design-systems-ops", "accessibility-audit" ja "design-token-governance" kautta
+- "työkalut" mcp-server-authoringin kautta
+- "data-ai" data-sopimusten kautta
+- "koneoppiminen" mallipalvelun kautta
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+Suositeltu seuraava suunta:
 
-Recommended next direction:
+1. syvennä "design", "työkalut", "data-ai" ja "koneoppiminen"
+2. pidä "business" ja "content-media" lykättynä, ellei esiin tule selkeää koodipohjaista ehdotusta
+3. Säilytä nykyinen laatulattia sen sijaan, että avaat uudelleen luokan aktivointipaineen
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+Tämä laajennusaalto on nyt tallennettu tiedostoon [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— asentaa taidot 7 asennuskykyiseen avustajaan.
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+| Lippu | Kohde | Oletuspolku |
+|:-----|:-------|:--------------|
+| "--claude" | Claude Code | "~/.claude/skills" |
+| "--kursori" | Kursori | "~/.kursori/taidot" |
+| "--kaksoset" | Gemini CLI | "~/.gemini/skills" |
+| "--codex" | Codex CLI | "~/.codex/skills" |
+| "--kiro" | Kiro | "~/.kiro/skills" |
+| "--antigravitaatio" | Antigravitaatio | "~/.gemini/antigravity/skills" |
+| `--avokoodi` | OpenCode | `<työtila>/.opencode/skills' |
 
-> **403 LOC** — installs skills into 7 install-capable assistants.
+Se tukee:
 
-| Flag | Target | Default Path |
-|:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+- täyden kirjaston asennukset
+- valikoidut asennukset komennolla "--skill".
+- "--bundle" -paketin kuratoimat asennukset
+- ohjatut TTY- ja visuaaliset käyttöliittymät
+- mukautetut kohdepolut### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-It supports:
+>**828 LOC**— jaettu ajonaikainen kerros CLI:lle, API:lle, MCP:lle ja A2A:lle.
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+| Vienti | Kuvaus |
+|:-------|:-------------|
+| 🔎 `search Skills()` | Haku painotetulla tekstihaulla ja suodatintuella |
+| 📋 `list Skills()` | Moniakselinen suodatus laadun, parhaiden käytäntöjen, tason, suojauksen, riskin, työkalun ja luokan mukaan |
+| 📌 `getSkill()` | Ilmeinen resoluutio ja rikastetut julkiset URL-osoitteet |
+| ⚖️ `vertaa taitoja()` | Vierekkäinen vertailu |
+| 💡 `recommend Skills()` | Tavoitteellinen suositus |
+| 📦 `buildInstallPlan()` | Asenna suunnitelman luominen varoituksella ja asiakastietoisilla ohjeilla |
+| 🗂️ `listBundles()` | Kuratoitu nippuluettelo ja saatavuus |
+| 📁 `listSkillArchives()` | Arkiston ja allekirjoituksen resoluutio |
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+Tämä on todellinen ainoa ajonaikaisen totuuden lähde sukupolven jälkeen.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
+>**812 LOC**— täysi MCP-toteutus käyttäen virallista SDK:ta.
 
-| Export | Description |
-|:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+**Kuljetukset**
 
-This is the real single source of runtime truth after generation.
-
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
-
-> **812 LOC** — full MCP implementation using the official SDK.
-
-**Transports**
-
-- `stdio`
-- streamable HTTP
+- "stdio".
+- suoratoistokelpoinen HTTP
 - SSE
 
-**Always-on read-only tools**
+**Aina käytössä olevat vain luku -työkalut**
 
-- `search_skills`
-- `get_skill`
-- `compare_skills`
+- "hakutaidot".
+- "hanki_taito".
+- "taitojen vertailu".
 - `recommend_skills`
-- `preview_install`
+- "esikatselu_asennus".
 
-**Local-mode tools**
+**Paikallisen tilan työkalut**
 
-- `detect_clients`
+- "detect_clients".
 - `list_installed_skills`
-- `install_skills`
-- `remove_skills`
+- "asennustaidot".
+- "poista_taidot".
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+MCP-pinta on tarkoituksella jaettu seuraaviin:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- kauko-/vain luku -luettelon käyttö
+- Paikallinen/kirjoituskykyinen sivuvaunukäyttö### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1 943 LOC**— tiedostojärjestelmätietoinen MCP-kerros asiakkaan havaitsemiseen, taitojen hallintaan ja MCP-asetusten kirjoittamiseen.
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+Nykyinen käytännön tuki:
 
-Current practical support:
+-**7 asennuskykyistä asiakasta**
+-**16 konfigurointikykyistä asiakasta**
+-**33 määrityskohdetta**
+-**19 konfigurointiprofiilia**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
-
-Install-capable clients:
+Asennuskykyiset asiakkaat:
 
 - Claude Code
-- Cursor
+- Kursori
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
+- Antigravitaatio
 - OpenCode
 
-Config-capable clients and targets include:
+Konfigurointikykyisiä asiakkaita ja kohteita ovat mm.
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+- Claude-asetukset, Claude Desktop ja Claude-projektin asetukset
+- Kohdistimen käyttäjän ja työtilan asetukset
+- VS Code -työtila, käyttäjä, sisäpiiriläiset ja Dev Container -kokoonpano
+- Geminin käyttäjä- ja työtilan asetukset
+- Antigravitaatio-käyttäjäasetukset
+- Kiron käyttäjä-, työtila- ja vanhat polut
+- Codex CLI TOML -kokoonpano
+- OpenCode-käyttäjä- ja työtilan konfiguraatio
+- Kliinin asetukset
+- GitHub Copilot CLI -käyttäjä ja repo-konfiguraatio
+- Kilo käyttäjä-, projekti- ja työtilan konfiguraatio
+- Jatka työtilaa YAML
+- Purjelautailun käyttäjän asetukset
+- Zed-työtilan konfigurointi
+- Goose-käyttäjäasetukset
 
-The sidecar is intentionally honest about boundaries:
+Sivuvaunu on tarkoituksella rehellinen rajoista:
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+- se kirjoittaa vain sallittujen luettelon sisällä
+- se esikatselee oletuksena
+- Se pitää ensiluokkaiset kirjoittajat vain siellä, missä viralliset asiakirjat paljastavat vakaan muodon
+- Se ei väitä, että jokainen MCP-yhteensopiva tuote olisi myös taitojen asennuskohde### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+>**715 LOC yhdistetty**— vain luku -rekisteri-API ja hallinnan väliohjelmisto.
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
+Tärkeitä päätepisteitä:
 
-Important endpoints:
-
-- `/healthz`
+- "/healthz".
 - `/openapi.json`
 - `/admin/runtime`
-- `/v1/skills`
+- "/v1/taidot".
 - `/v1/skills/:id`
-- `/v1/search`
-- `/v1/compare`
-- `/v1/bundles`
+- `/v1/haku`
+- `/v1/vertaa`
+- "/v1/niput".
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+Jo toteutettu hallinnon perusviiva:
 
-- bearer token auth
-- API-key auth
+- haltijan tunnuksen todennus
+- API-avaimen todennus
 - admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- prosessinaikainen nopeuden rajoittaminen
+- pyytää tunnuksia
+- tarkastuskirjaus
+- CORS-sallitut luettelot
+- IP-sallitut listat
+- luottaa välityspalvelimen käsittelyyn
+- huoltotila### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**1 857 LOC:ta yhdistettynä pääpalvelin-, ajonaika- ja koordinaattoritiedostoihin**— JSON-RPC 2.0 -tehtävän elinkaari agenttien välisille työnkulkuille.
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+Tuetut menetelmät:
 
-Supported methods:
-
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
+- "viesti/lähetä".
+- "viesti/stream".
+- `tehtävät/saa`
+- `tehtävät/peruuta`
+- "tehtävät/tilaa uudelleen".
 - `tasks/pushNotificationConfig/*`
 
-Current operations:
+Nykyiset toiminnot:
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+- "löydä taidot".
+- `suosittele pinoa`
+- "valmistele-asennussuunnitelma".
 
-Durability and coordination model:
+Kestävyys ja koordinaatiomalli:
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
+- muistin, JSON- tai SQLite-paikallinen pysyvyys
+- Käynnistä uudelleen
+- valinnainen ulkoinen prosessin suorittaja
+- Opt-in vuokrattu jonokoordinointi jaetuille SQLite-työntekijöille
+- valinnainen Redis-tukikoordinointi kehittyneenä isännöity polkuna
 
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+Tärkein arkkitehtoninen valinta tässä on**yksinkertainen paikallinen toiminta**. Redis on lisävaihtoehtona, mutta oletustuotepolku on paikallinen ja riippuvuuskevyt.---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
-|:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| Käsikirjoitus | Kieli | Tarkoitus |
+|:-------|:----------|:---------|
+| 📊 `skill_metadata.py` | Python | Validointi, taksonomia, pisteytys ja staattinen turvaskannaus |
+| ✅ `validate_skills.py` | Python | Metatietojen luominen taitoa kohti ja juuriyhteenvetoa varten |
+| 📑 `generate_index.py` | Python | Taitohakemisto, luettelot, arkistot, allekirjoitukset ja tarkistussummat |
+| 🏗️ `build_catalog.js` | Node.js | Lopullinen "dist/catalog.json" ja "dist/bundles.json" |
+| 🏷️ `recategorize_skills.py` | Python | Kanoninen luokan tarkastus ja uudelleenkirjoitus |
+| 🔍 `verify_archives.py` | Python | Arkiston ja allekirjoituksen tarkistus |
 
-Two details matter operationally:
+Kahdella yksityiskohdalla on toiminnallisesti merkitystä:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. "dist/" on osa ajonaikaista sopimusta ja tarkoituksellisesti sitoutunut
+2. koontiversio on tarpeeksi deterministinen tukemaan CI-varmennusta ja julkaisun allekirjoitusta---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+Nykyinen julkinen luettelo kattaa 32 taitoa:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**Löydös ja suunnittelu**: "löytä taidot", "aivoriihi", "arkkitehtuuri", "virheenkorjaus"
+-**Suunnittelujärjestelmät ja saavutettavuus**: "design-systems-ops", "accessibility-audit"
+-**Tuotteiden ja täyden pinon toimitus**: "frontend-design", "api-design", "database-design", "omni-figma", "auth-flows"
+-**Turvallisuus**: "security-auditor", "vulnerability-scanner", "incident-response", "threat-modeling"
+-**OSS-ylläpitäjän työnkulut**: "documentation", "changelog", "create-pr"
+-**DevOps**: "docker-expert", "kubernetes", "terraform", "observability-review", "release-engineering"
+-**AI-tekniikka**: "rag-engineer", "prompt-engineer", "llm-patterns", "eval-design", "context-engineering"
 
-All seven bundles are fully backed:
+Kaikki seitsemän nippua ovat täysin tuetut:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
-- `devops` → `5/5`
-- `ai-engineer` → `5/5`
-- `oss-maintainer` → `4/4`
+- "essentials" → "4/4".
+- "täysi pino" → "5/5".
+- "design" → "4/4".
+- "turvallisuus" → "4/4".
+- "devops" → "5/5".
+- "ai-insinööri" → "5/5".
+- "oss-maintainer" → "4/4".
 
-Current score spread from the generated catalog:
+Nykyinen tulos levitetystä luettelosta:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- laatupisteet: "94, 95, 96, 97, 100".
+- parhaiden käytäntöjen pisteet: "98, 99, 100".
+- turvallisuuspisteet: kaikki julkaistut taidot tällä hetkellä "95".
 
-Representative high end:
+Edustava huippuluokka:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
-- `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+- "omni-figma" → "laatu 100", "parhaat_käytännöt 100"
+- "esteettömyystarkastus" → "laatu 99", "parhaat_käytännöt 100"
+- "todennusvirrat" → "laatu 97", "parhaat_käytännöt 99"
+- "design-systems-ops" → "laatu 97", "best_practices 99"
+- "julkaisusuunnittelu" → "laatu 97", "parhaat_käytännöt 99"
+- "uhan mallinnus" → "laatu 97", "parhaat_käytännöt 99"
+- "Context-engineering" → "laatu 97", "parhaat_käytännöt 99"
 
-Representative lower end inside the current top band:
+Edustava alapää nykyisen yläkaistan sisällä:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- "arkkitehtuuri" → "laatu 94", "parhaat_käytännöt 98"
+- "muutosloki" → "laatu 94", "parhaat_käytännöt 98"
+- "create-pr" → "laatu 95", "parhaat_käytännöt 98"
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+Tämä on tahallista. Pisteytystekijä erottaa nyt sanan "erinomainen" "poikkeuksellisesta" sen sijaan, että litistäisi koko luettelon huipulle.---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**Artefact-first design**
+   Jokainen ajonaikainen pinta kuluttaa saman luodun luettelon ja manifestit.
+2.**Laaja protokollan kattavuus**
+   CLI, API, MCP ja A2A toimivat rinnakkain tietomallin pirstoutumatta.
+3.**Vahva paikallisen tuotteen ergonomia**
+   Ohjattu asennus, visuaalinen komentotulkki, `config-mcp` ja kuiva-ajon oletusasetukset tekevät projektista tehokkaan käyttäjien käytettävissä.
+4.**Rehellinen turva-asento**
+   Sallitut paikalliset kirjoitukset, staattinen skannaus, allekirjoitus, tarkistussummat ja julkaisun vahvistus ovat kaikki eksplisiittisiä.
+5.**Terve MCP-kattavuus**
+   Projekti tukee nyt laajaa joukkoa nykyisiä MCP-yhteensopivia asiakkaita ilman, että teeskentelee dokumentoimattomien kohteiden olevan vakaita.---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**Syvempi paketin kattavuus**
+   Seuraava askel on erikoistuminen olemassa oleviin nippuihin, ei vain laajaa kattavuutta.
+2.**Rikkampi maalintekijän semantiikka**
+   Vielä on tilaa arvioida referenssipaketin syvyyttä ja työnkulun laatua semanttisemmin.
+3.**Lisää asiakaskirjoittajia vain perustelluissa tapauksissa**
+   Laajentumisen tulee pysyä kurinalaisena ja sidottu vakaisiin virallisiin asiakirjoihin.
+4.**Validaattorihajotus**
+   Skill_metadata.py on edelleen suuri moduuli, ja se hyötyisi sisäisestä hajoamisesta ajan myötä.
+5.**Isännöity hallinnon eskalaatio**
+   Nykyinen keskeneräinen perustila riittää itseisännöintiin, mutta yrityskäyttöönotto toivoisi lopulta ulkoisen yhdyskäytävän ja identiteetin integroinnin.

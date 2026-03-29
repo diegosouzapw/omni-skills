@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Všetko, čo potrebujete na vyvolanie zručností, spustenie služieb a obsluhu runtime Omni Skills.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+Úplné prevádzkové pracovné postupy nájdete v [🔧 System Runbook](../operations/RUNBOOK.md).
+Úplnú mapu príkazov pre koncového používateľa nájdete v [🧭 CLI User Guide](./CLI-USER-GUIDE.md).---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
+| Stav | Podrobnosti |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| ✅**Teraz k dispozícii**| 32 publikovaných zručností v oblasti dizajnu, architektúry, ladenia, dokumentov, OSS, zabezpečenia, DevOps, AI-inžinierstva, údajov, nástrojov a pracovných postupov strojového učenia |
+| 📦**Balíčky**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` a `oss-maintainer` sú dnes plne podporované |
+| 🔌**Dosah MCP**| 7 klientov s možnosťou inštalácie, 16 klientov s možnosťou konfigurácie, 33 prvotriednych cieľov konfigurácie, 19 konfiguračných profilov |
+| 🤖**Odolnosť A2A**| Lokálna odolnosť pamäte, JSON alebo SQLite, obnovenie reštartu, voliteľný spúšťač procesov a voliteľná koordinácia pre zdieľaných pracovníkov |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
+| Klient | Ako vyvolať | Cesta zručností |
 |:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| 🔵**Claude Code**| `>> /skill-name pomôž mi...` | `~/.claude/skills/` |
+| 🡥**Gemini CLI**| `Použite @skill-name na...` | `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `Použite @skill-name na...` | `~/.codex/skills/` |
+| 🢢**Kiro**| Automatické načítanie schopností na požiadanie | `~/.kiro/skills/` |
+| 🣣**Antigravitácia**| `Použite @skill-name na...` | `~/.gemini/antigravity/skills/` |
+| 🔵**Kurzor**| `@skill-name` v chate | `~/.cursor/skills/` |
+| ⚪**OpenCode**| `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛**Kopilot**| Manuálne prilepenie obsahu zručností | neuvádza sa |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Klienti ako Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline a Kilo Code primárne používajú tok `config-mcp` a nie adresár zručností.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Poznámky:**
+> - V interaktívnom termináli `npx omni-skills` teraz otvára riadený postup inštalácie
+> - `npx omni-skills ui` otvára vizuálny atramentový shell s akciami inštalácie, zisťovania a spustenia služby
+> - vizuálny shell zachováva nedávne inštalácie, nedávne spustenia služieb, obľúbené položky a pomenované predvoľby v `~/.omni-skills/state/ui-state.json`
+> - Mimo TTY je úplná inštalácia stále predvolená, keď nie je k dispozícii žiadny volič
+> - `--skill` nainštaluje iba vybraté publikované zručnosti
+> - `--bundle` rozbalí balík a nainštaluje publikovaných členov deklarovaných vo spravovanom balíku
+> - `nájsť` podporuje viac ako 12 príznakov filtra: `kvalita`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk` a ďalšie
+> - `config-mcp` je správna cesta pre produkty s podporou MCP, ktoré nemajú prvotriedny adresár zručností---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+CLI je jednotný operačný nástroj, nielen inštalačný program.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+Vizuálny plášť podporuje:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- riadená inštalácia so známym klientom alebo výberom vlastnej cesty
+- vyhľadajte a potom nainštalujte bez zapamätania si príznakov
+- riadený náhľad konfigurácie klienta MCP a toky zápisu
+- Riadené spustenie MCP, API a A2A
+- nedávne inštalácie a opätovné spustenie služby
+- uložené predvoľby inštalácie a servisu
+- obľúbené zručnosti a zväzky### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -236,10 +224,10 @@ npx omni-skills publish-check         # Alias for smoke
 
 | # | Tip |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | V riadku uveďte názov zručnosti |
+| 2️⃣ | Poskytnite presný artefakt, kód alebo kontext dizajnu, ktorý agent potrebuje |
+| 3️⃣ | Uprednostňujte `--skill` pre minimálnu inštalačnú plochu |
+| 4️⃣ | Pred ladením balíkov alebo problémov s runtime použite výrazy `doctor` a `smoke` |
+| 5️⃣ | Teraz, keď je všetkých sedem štartovacích balíkov plne zabezpečených, použite balíky ako inštalácie kurátorskej domény |
+| 6️⃣ | Použite `find --install --yes` na zisťovanie + inštaláciu v jednom toku |
+| 7️⃣ | Pozrite si [runbook](../operations/RUNBOOK.md) pre overenie, limity rýchlosti, podpisovanie a overenie env vars |

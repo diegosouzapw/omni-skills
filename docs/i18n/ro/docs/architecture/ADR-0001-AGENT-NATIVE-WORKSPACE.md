@@ -5,83 +5,69 @@
 ---
 
 
-> **The key architectural decision that shaped the monorepo workspace structure.**
-
----
+>**Decizia arhitecturală cheie care a modelat structura spațiului de lucru monorepo.**---
 
 ## 📊 Status
 
-✅ **Accepted** — current workspace direction and active repository shape.
-
----
+✅**Acceptat**— direcția curentă a spațiului de lucru și forma de depozit activă.---
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+Omni Skills a început ca un depozit**instalator-first**. A fost suficient pentru a distribui conținutul `SKILL.md`, dar nu suficient pentru a expune catalogul agenților prin suprafețe native de protocol.
 
-We needed a foundation that could support:
+Aveam nevoie de o fundație care să susțină:
 
-| Requirement | Protocol |
-|:------------|:---------|
-| 🌐 Read-only HTTP catalog API | REST |
-| 🔌 Read-only MCP server | Model Context Protocol |
-| 🤖 Agent-facing A2A surface | Agent-to-Agent |
-| 📂 Local install sidecars | Filesystem tools |
+| Cerință | Protocol |
+|:-------------|:---------|
+| 🌐 API de catalog HTTP numai pentru citire | ODIHNA |
+| 🔌 Server MCP numai pentru citire | Model Context Protocol |
+| 🤖 Suprafata A2A cu fata agentului | De la agent la agent |
+| 📂 Instalare locală sidecars | Instrumente pentru sistemul de fișiere |
 
-**Critical constraint**: Avoid reparsing repo files independently in each new service.
-
----
+**Constrângere critică**: evitați să analizați fișierele repo în mod independent în fiecare serviciu nou.---
 
 ## ✅ Decision
 
-Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+Adoptă un**monorepo orientat spre spațiu de lucru**cu un nucleu de catalog partajat și pachete specifice protocolului:
 
-| Package | Purpose |
+| Pachet | Scop |
 |:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
-| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
-| 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
+| 📦 `omni-skills` (rădăcină) | Instalare CLI și scripturi repo |
+| 🧠 `@omni-skills/catalog-core` | Încărcare partajată, căutare, comparare, pachete, planuri de instalare |
+| 🌐 `@omni-skills/server-api` | API REST numai pentru citire |
+| 🔌 `@omni-skills/server-mcp` | MCP cu stdio/stream/sse + mod local sidecar |
+| 🤖 `@omni-skills/server-a2a` | Timp de execuție a activității A2A cu card de agent, sondaj, SSE și configurație push |### 📁 Shared Data Sources
 
-### 📁 Shared Data Sources
-
-The catalog core reads generated artifacts from:
+Nucleul catalogului citește artefacte generate din:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`
-
----
+- `skills_index.json`---
 
 ## ✅ Positive Consequences
 
-| Outcome | Impact |
+| Rezultat | Impact |
 |:--------|:-------|
-| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
-| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
-| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
-| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
-| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
-
----
+| 🔗**Contract de date partajate**| API, MCP și A2A consumă aceleași artefacte |
+| 🖥️**CLI unificat**| Un binar expune instalarea, interfața de utilizare, API, MCP, A2A, diagnosticare și fum |
+| 🧩**Protocol de izolare**| Noile suprafețe repetă fără a fi conectate la elementele interne ale instalatorului |
+| 🔌**Sidecar local**| Funcționează modul MCP capabil de scriere în spatele unei liste de permise, cu rețete care țin seama de client |
+| 📦**Timp de rulare a pachetului unic**| Pachetul npm publicat conține împreună suprafețele de protocol, instrumentele de validare și artefactele generate |---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Mitigation |
+| Comerț | Atenuare |
 |:---------|:-----------|
-| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
-| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
-| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
-| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
-
----
+| 🔄**Dublare metadate**| Python build + JavaScript runtime → eventual consolida |
+| 🏗️**Complexitate A2A**| Acum există un ciclu de viață durabil, dar adaptoarele de coordonare adaugă profunzime operațională |
+| 📦**Aliniere la catalog**| Instalarea selectivă necesită comenzi, manifeste și documente pentru a rămâne sincronizate |
+| 📋**Agrupați goluri metadate**| Pachetele pot depăși competențele publicate, necesitând avertismente explicite despre membrii lipsă |---
 
 ## ➡️ Follow-Up Items
 
-| # | Action | Status |
-|:--|:-------|:-------|
-| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |
+| # | Acțiune | Stare |
+|:--|:--------|:-------|
+| 1️⃣ | Autentificare la distanță MCP și limitare a ratei | ✅ Gata |
+| 2️⃣ | Scriere îmbunătățită a configurației MCP specifice clientului | ✅ Prezent astăzi pentru Claude, Cursor, Codex, Gemini, Kiro, VS Code și Dev Containers |
+| 3️⃣ | Artefacte de lansare semnate sau arhive per abilitate | ✅ Prezentați astăzi cu aplicarea CI asupra etichetelor de lansare |
+| 4️⃣ | Timp de rulare a sarcinii A2A → orchestrare durabilă | ✅ Prezenți astăzi cu persistență JSON/SQLite, executori externi, coordonare opt-in de închiriere și coordonare Redis avansată opțională |
+| 5️⃣ | Extindeți catalogul publicat pentru o acoperire mai largă a pachetului | ✅ Prezent astăzi pentru actualele șapte pachete de start organizate |

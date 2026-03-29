@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Biztonsági szkennelés, archívum létrehozása, opcionális aláírás és terjesztési csomagolás minden közzétett készséghez.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funkció | állam |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Statikus biztonsági szkenner | Mindig engedélyezve |
+| ✅ Képességenkénti metaadat besorolás | Megvalósítva |
+| ✅ Képességenkénti archívum (zip/tar.gz) | Megvalósítva |
+| ✅ SHA-256 ellenőrzőösszeg jegyzék | Megvalósítva |
+| ✅ CI szkenner kapu kioldó címkéken | Megvalósítva |
+| ✅ npm munkafolyamat közzététele ellenőrzött tarballból | Megvalósítva |
+| ⚙️ ClamAV szkennelés | Opcionális dúsító |
+| ⚙️ VirusTotal hash keresés | Opcionális dúsító |
+| ✅ Leválasztott aláírás | Megvalósítva |
+| ✅ CI által kikényszerített aláírás | Kiadási címkéken megvalósítva |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Az érvényesítés során minden készséget megvizsgál:
 
-| Target | What Gets Scanned |
-|:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| Cél | Mi kerül beolvasásra |
+|:-------|:------------------|
+| 📝 `SKILL.md` | Fő készségtartalom |
+| 📄 Markdown/szöveges fájlok | Csomagolt referenciák és dokumentumok |
+| ⚙️ Scripts | Csomagolt automatizálási szkriptek |
 
-**Rule families:**
+**Szabálycsaládok:**
 
-| Rule | Examples |
+| szabály | Példák |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Azonnali injekció**| Kiszűrési minták, utasítások felülbírálása |
+| 💣**Romboló parancsok**| "rm -rf", "formátum", "del /s" |
+| 🔑**Privilégiumok kiterjesztése**| `sudo`, `chmod 777`, setuid minták |
+| 📂**Gyanús utak**| `/etc/shadow`, `~/.ssh`, hitelesítő adatok |
+| ⚠️**Kockázatos primitívek**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Szükséges a `camscan` a `PATH'-ban
+- Ellenőrzi a csomagolt fájlokat ismert rosszindulatú programok után
+- Az eredmények a készség metaadatai között vannak rögzítve---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Csak kivonatkeresés**— a normál érvényesítés során nincs fájlfeltöltés
+- Az ismeretlen fájlok csak helyi maradnak
+- A build**determinisztikus**és CI-független marad### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Szigorú kioldási kapu:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Ez a lépés beolvassa a generált "skills/*/metadata.json" fájlt, és meghiúsul, ha a szükséges szkennerek nem hajtottak végre vagy nem jelentettek észleléseket.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+A biztonsági adatok minden készség metaadataiban megjelennek:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Ez a blokk jegyzékekbe és katalógusnézetekbe kerül, lehetővé téve a CLI, API és MCP**szűrését és rangsorolását a biztonsági pontszám alapján**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Minden közzétett képesség a következőket generálja:
 
-| File | Format |
+| Fájl | Formátum |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archívum |
+| `dist/archives/<skill>.tar.gz` | Tarball archívum |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 ellenőrzőösszeg jegyzék |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+A GitHub Actions kiadási címkéi (`v*`) most:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. ellenőrizze, hogy a git címke egyezik-e a "package.json" fájllal
+2. telepítse és frissítse a ClamAV-ot
+3. dekódolja a kiadási aláíró kulcsot a GitHub titkaiból
+4. futtassa az `npm run release:verify' parancsot
+5. csomagolja be a tarballt `npm pack`-mal
+6. Tegye közzé ezt a pontos tarballt az npm-en származással
+7. Hozzon létre egy GitHub-kiadást egyéni megjegyzésekkel és csatolt ellenőrző eszközökkel---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Ha nincs megadva nyilvános kulcs, a build levezet egyet az `openssl`-el, és a `dist/signing/` mappába helyezi.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Ha engedélyezve van, a „.sig” fájlok az archívum és az ellenőrzőösszeg jegyzéke mellett jelennek meg.
 
-In CI, release tags now require signing through:
+A CI-ben a kiadási címkékhez a következőn keresztül kell aláírni:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- "OMNI_SKILLS_SIGN_PRIVATE_KEY_B64" vagy "OMNI_SKILLS_SIGN_PRIVATE_KEY"
+- opcionális "OMNI_SKILLS_SIGN_PUBLIC_KEY_B64" vagy "OMNI_SKILLS_SIGN_PUBLIC_KEY"---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
+| Korlátozás | Állapot |
 |:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| VirusTotal feltöltési benyújtás | Szándékosan kizárva az alapértelmezett érvényesítésből |
+| Aláírási végrehajtás | A kiadási címkékre kényszerítve; a helyi buildek továbbra is aláírás nélkül futhatnak |
+| Házigazda kormányzás | A beépített hitelesítés, adminisztrátori futásidejű, CORS/IP engedélyezési listák, karbantartási mód és ellenőrzési naplózás működik; a külső átjárók opcionálisak maradnak |

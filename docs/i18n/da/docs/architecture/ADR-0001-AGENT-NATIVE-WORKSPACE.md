@@ -5,83 +5,69 @@
 ---
 
 
-> **The key architectural decision that shaped the monorepo workspace structure.**
-
----
+>**Den vigtigste arkitektoniske beslutning, der formede monorepo-arbejdspladsstrukturen.**---
 
 ## 📊 Status
 
-✅ **Accepted** — current workspace direction and active repository shape.
-
----
+✅**Accepteret**— aktuel arbejdsområderetning og aktiv lagerform.---
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+Omni Skills startede som et**installatør-først**-lager. Det var nok til at distribuere `SKILL.md`-indhold, men ikke nok til at eksponere kataloget for agenter gennem protokol-native overflader.
 
-We needed a foundation that could support:
+Vi havde brug for en fond, der kunne støtte:
 
-| Requirement | Protocol |
-|:------------|:---------|
-| 🌐 Read-only HTTP catalog API | REST |
-| 🔌 Read-only MCP server | Model Context Protocol |
-| 🤖 Agent-facing A2A surface | Agent-to-Agent |
-| 📂 Local install sidecars | Filesystem tools |
+| Krav | Protokol |
+|:------------|:--------|
+| 🌐 Skrivebeskyttet HTTP katalog API | HVILE |
+| 🔌 Skrivebeskyttet MCP-server | Modelkontekstprotokol |
+| 🤖 Agentvendt A2A overflade | Agent-til-agent |
+| 📂 Lokal installation af sidevogne | Filsystemværktøjer |
 
-**Critical constraint**: Avoid reparsing repo files independently in each new service.
-
----
+**Kritisk begrænsning**: Undgå at reparere repo-filer uafhængigt i hver ny tjeneste.---
 
 ## ✅ Decision
 
-Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+Adopter en**arbejdspladsorienteret monorepo**med en delt katalogkerne og protokolspecifikke pakker:
 
-| Package | Purpose |
+| Pakke | Formål |
 |:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
-| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
-| 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
+| 📦 `omni-skills` (rod) | CLI-installations- og repo-scripts |
+| 🧠 `@omni-skills/catalog-core` | Delt indlæsning, søgning, sammenligning, bundter, installationsplaner |
+| 🌐 `@omni-skills/server-api` | Skrivebeskyttet REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP med stdio/stream/sse + lokal sidevognstilstand |
+| 🤖 `@omni-skills/server-a2a` | A2A-opgavekørsel med agentkort, polling, SSE og push-konfiguration |### 📁 Shared Data Sources
 
-### 📁 Shared Data Sources
-
-The catalog core reads generated artifacts from:
+Katalogkernen læser genererede artefakter fra:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`
-
----
+- `skills_index.json`---
 
 ## ✅ Positive Consequences
 
-| Outcome | Impact |
+| Udfald | Indvirkning |
 |:--------|:-------|
-| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
-| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
-| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
-| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
-| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
-
----
+| 🔗**Delt datakontrakt**| API, MCP og A2A bruger de samme artefakter |
+| 🖥️**Unified CLI**| En binær afsløring af installation, UI-skal, API, MCP, A2A, diagnostik og røg |
+| 🧩**Protokolisolering**| Nye overflader gentages uden kobling til installatørens indre |
+| 🔌**Lokal sidevogn**| Arbejder skrive-kompatibel MCP-tilstand bag en tilladelsesliste, med klient-bevidste opskrifter |
+| 📦**Enkeltpakke runtime**| Den offentliggjorte npm-pakke bærer protokoloverflader, valideringsværktøjer og genererede artefakter sammen |---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Mitigation |
-|:---------|:-----------|
-| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
-| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
-| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
-| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
-
----
+| Afvejning | Afbødning |
+|:--------|:--------|
+| 🔄**Metadataduplikering**| Python build + JavaScript runtime → konsolider til sidst |
+| 🏗️**A2A kompleksitet**| Holdbar livscyklus eksisterer nu, men koordinationsadaptere tilføjer operationsdybde |
+| 📦**Katalogjustering**| Selektiv installation kræver kommandoer, manifester og dokumenter for at forblive synkroniseret |
+| 📋**Bundle metadatahuller**| Bundles kan overgå offentliggjorte færdigheder, hvilket kræver eksplicitte advarsler om manglende medlemmer |---
 
 ## ➡️ Follow-Up Items
 
-| # | Action | Status |
+| # | Handling | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |
+| 1️⃣ | Fjern-MCP-godkendelse og hastighedsbegrænsning | ✅ Udført |
+| 2️⃣ | Forbedret klientspecifik MCP-konfigurationsskrivning | ✅ Til stede i dag for Claude, Cursor, Codex, Gemini, Kiro, VS Code og Dev Containers |
+| 3️⃣ | Underskrevne udgivelsesartefakter eller arkiver pr. færdighed | ✅ Til stede i dag med CI-håndhævelse af frigivelsesmærker |
+| 4️⃣ | A2A opgave runtime → holdbar orkestrering | ✅ Præsenter i dag med JSON/SQLite-vedholdenhed, eksterne eksekutører, opt-in leasing-koordinering og valgfri avanceret Redis-koordinering |
+| 5️⃣ | Udvid offentliggjort katalog for bredere bundtdækning | ✅ Præsenter i dag for de nuværende syv kuraterede startpakker |

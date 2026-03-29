@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**用于技能发现、搜索、比较、安装规划和工件下载的只读 HTTP API。**---
 
 ## 📊 Status
 
-| Feature | State |
+|特色|状态|
 |:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| ✅ 目录端点 |已实施 |
+| ✅ 身份验证（承载 + API 密钥）|已实施 |
+| ✅ 管理员运行时身份验证 |已实施 |
+| ✅ 速率限制 |已实施 |
+| ✅ 审核日志 |已实施 |
+| ✅ CORS 和 IP 许可名单 |已实施 |
+| ✅ 保养模式 |已实施 |
+| ✅ 存档下载 |已实施 |
+| ✅ OpenAPI 规范 |已实施 |
+| ⚠️ 治理后端 |环境驱动的进程内基线；外部网关或 IdP 仍然可选 |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+该 API 提供了一个注册表样式的表面：
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 按质量、安全性、类别、风险等列出和过滤技能
+- 📌 获取个人技能清单
+- 🔎 全文搜索和多技能比较
+- 📦 捆绑列表及可用性
+- 📐 只读安装计划生成
+- 📥 下载生成的工件、档案和校验和清单
 
-This same catalog and manifest surface is also the basis for:
+同样的目录和清单表面也是以下内容的基础：
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- 本地 CLI 安装规划
+- MCP只读发现响应
+- A2A 发现和安装计划切换
+- 潜在的私人目录，外部身份验证位于顶部---
 
 ## 快速开始
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**默认**：`127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+所有安全控制都是环境驱动的且可选：
 
-| Control | Variable | Example |
-|:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+|控制|变量|示例|
+|:--------|:--------|:--------|
+| 🔑**不记名授权**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `替换我` |
+| 🗝️**API 密钥身份验证**| `OMNI_SKILLS_HTTP_API_KEYS` | `键-a，键-b` |
+| 🛂**管理员授权**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `管理秘密` |
+| 🚦**速率限制**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**审核日志**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️**审核格式**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` 或 `text` |
+| 📄**审核文件**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**CORS 许可名单**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**IP 许可名单**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**可信代理**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `环回` |
+| 🚧**维护模式**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️**之后重试**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**行为：**
+- 🟢 `/healthz` 仍然**始终未经身份验证**
+- 🔒 当启用身份验证时，所有其他路由都需要身份验证
+- 🛂 `/admin/runtime` 启用时需要管理员令牌
+- 🚦 速率限制是通过 `X-RateLimit-*` 响应头进行的
+- 🧾 每个响应都带有 `X-Request-Id`
+- 🚧 对于非健康、非管理路由，维护模式返回“503”### ✅ Current governance decision
 
-### ✅ Current governance decision
+当前的项目方向是**为公共或私有部署重用相同的目录格式**并在需要时在外部进行分层身份验证。
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+这意味着：
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- 清单和 API 形状保持共享
+- 自托管和本地部署可以保持在进程基线上
+- 更先进的托管治理可以稍后转移到外部网关或企业身份验证层，而无需分叉数据模型### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+|方法|路径|描述 |
+|:--------|:-----|:------------|
+| `获取` | `/healthz` |健康检查（未经身份验证）|
+| `获取` | `/openapi.json` |动态OpenAPI 3.1规范|
+| `获取` | `/管理/运行时` |治理和运行时快照（启用时进行管理员身份验证）|### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
+|方法|路径|描述 |
+|:--------|:-----|:------------|
+| `获取` | `/v1/技能` |使用过滤器列出技能 |
+| `获取` | `/v1/skills/:id` |获取个人技能清单 |
+| `获取` | `/v1/搜索` |全文检索 |
+| `获取` | `/v1/compare?ids=id1,id2` |比较多项技能 |
+| `获取` | `/v1/bundles` |列出可用的捆绑包 |
+| `发布` | `/v1/install/plan` |生成安装计划 |### 🔎 List/Search Filters
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
-
-### 🔎 List/Search Filters
-
-| Filter | Example |
-|:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
-| `min_best_practices` | `?min_best_practices=60` |
-| `min_level` | `?min_level=2` |
-| `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+|过滤|示例|
+|:--------|:--------|
+| `类别` | `？类别=开发` |
+| `工具` | `？工具=光标` |
+| `风险` | `？风险=安全` |
+| `排序` | `?sort=质量\|最佳实践\|级别\|安全\|名称` |
+| `订单` | `?order=asc\|desc` |
+| `最低质量` | `？min_quality=80` |
+| `最小最佳实践` | `？min_best_practices=60` |
+| `最低级别` | `?min_level=2` |
+| `min_security` | `？min_security=90` |
+| `验证状态` | `?validation_status=通过` |
+| `安全状态` | `?security_status=通过` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+|方法|路径|描述 |
+|:--------|:-----|:------------|
+| `获取` | `/v1/catalog/download` |完整目录下载 |
+| `获取` | `/v1/skills/:id/artifacts` |技能神器一览 |
+| `获取` | `/v1/skills/:id/archives` |列出技能档案 |
+| `获取` | `/v1/skills/:id/downloads` |所有可用的下载链接 |
+| `获取` | `/v1/skills/:id/download/manifest` |技能清单 JSON |
+| `获取` | `/v1/skills/:id/download/entrypoint` |技能技能.md |
+| `获取` | `/v1/skills/:id/download/artifact?path=<路径>` |具体神器|
+| `获取` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` |技能档案|
+| `获取` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` |分离签名|
+| `获取` | `/v1/skills/:id/download/archive/checksums` | SHA-256 校验和 |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+当通过 API 处理请求时，服务器**自动丰富**清单、工件列表，并使用从传入请求源派生的绝对 URL 来安装计划。这是运行时的丰富，而不是烘焙到 `dist/manifests/*.json` 中。---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**安装计划是预览，而不是远程写入。**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+API 永远不会安装到调用者的计算机上。它返回：
+- 📌选定的技能元数据
+- ⚠️ 针对缺少捆绑成员的警告
+- 🖥️ 在本地运行的具体 CLI 命令
+- 🔗 请求源可用时的公共下载 URL---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+MCP 服务器在配置后重用相同的公共 API URL：```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+这允许 MCP 安装预览返回具体的清单和工件 URL，而不仅仅是本地存储库路径。---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+`GET /admin/runtime` 返回对托管诊断有用的治理快照：
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- 主动身份验证方法
+- 管理员身份验证状态
+- 速率限制窗口和最大值
+- CORS 许可名单
+- IP白名单
+- 维护模式状态
+- 审核目的地和格式
+- 当前目录总数
+- 请求 ID 回显以实现可追溯性

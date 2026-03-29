@@ -5,126 +5,110 @@
 ---
 
 
-> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
-
----
+>**Struktur och kvalitetsförväntningar för en Omni Skills `SKILL.md` — författarformatet som driver hela katalogen.**---
 
 ## 📐 The Two Parts
 
-Every `SKILL.md` is composed of two distinct sections:
+Varje `SKILL.md` består av två distinkta sektioner:### 1️⃣ Frontmatter (YAML Metadata)
 
-### 1️⃣ Frontmatter (YAML Metadata)
+Maskinläsbar metadata mellan `---` avgränsare. Den driver:
 
-Machine-readable metadata between `---` delimiters. It powers:
+- 📚 Kompetensindex och kataloggenerering
+- 🔎 CLI-sökning och filtrering
+- ✅ Validering och kvalitetspoäng
+- 📊 Genererade "metadata.json" klassificeringsartefakter
+- 📋 Per-skill manifesteras i `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
 
-- 📚 The skills index and catalog generation
-- 🔎 CLI search and filtering
-- ✅ Validation and quality scoring
-- 📊 Generated `metadata.json` classification artifacts
-- 📋 Per-skill manifests in `dist/manifests/`
-
-### 2️⃣ Body (Markdown Instructions)
-
-Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
-
----
+Människoläsbara (och agentläsbara) instruktioner. Skriv det som om du**briefar en senior utvecklare**om hur man utför en uppgift – tillräckligt specifikt för att en AI-agent kan följa den utan att gissa.---
 
 ## 📋 Frontmatter Reference
 
-| Field | Required | Type | Description |
-|:------|:---------|:-----|:------------|
-| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
-| `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
-| `category` | ⚡ | string | One canonical category from the repo taxonomy |
-| `tags` | ⚡ | string[] | Searchable tags for discovery |
-| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
-| `tools` | ⚡ | string[] | Tested AI coding assistants |
-| `source` | ⚡ | string | `omni-team` · `community` · `official` |
-| `author` | ⚡ | string | Attribution |
-| `date_added` | ⚡ | string | ISO date |
-| `date_updated` | ⚡ | string | ISO date |
+| Fält | Krävs | Skriv | Beskrivning |
+|:------|:--------|:-----|:------|
+| `namn` | ✅ | sträng | Måste matcha katalognamnet, gemener |
+| `beskrivning` | ✅ | sträng | Enradsbeskrivning (10-200 tecken) |
+| `version` | ⚡ | sträng | Semantisk version för själva färdigheten (t.ex. `"0.1.1"`) |
+| `kategori` | ⚡ | sträng | En kanonisk kategori från repo-taxonomien |
+| `taggar` | ⚡ | sträng[] | Sökbara taggar för upptäckt |
+| `komplexitet` | ⚡ | sträng | `nybörjare` · `mellanliggande` · `avancerad` · `expert` |
+| `risk` | ⚡ | sträng | `safe` · `caution` · `offensiv` · `kritisk` |
+| `verktyg` | ⚡ | sträng[] | Testade AI-kodningsassistenter |
+| `källa` | ⚡ | sträng | `omni-team` · `community` · `officiell` |
+| `författare` | ⚡ | sträng | Tillskrivning |
+| `date_added` | ⚡ | sträng | ISO-datum |
+| `date_updated` | ⚡ | sträng | ISO-datum |
 
-> ✅ = Always required · ⚡ = Required in strict mode
+> ✅ = Alltid obligatoriskt · ⚡ = Krävs i strikt läge
 
-The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
-
----
+Skicklighetsversionen är oberoende av npm-paketversionen. Paketet är för närvarande `0.1.3`, men befintliga färdigheter kan giltigt förbli i sin egen semantiska version.---
 
 ## 🏷️ Canonical Categories
 
-The repo taxonomy currently defines **18 canonical categories**:
+Repo-taxonomien definierar för närvarande**18 kanoniska kategorier**:
 
-| Category | Domain |
-|:---------|:-------|
-| 💻 `development` | General software development |
-| 🎨 `frontend` | Frontend frameworks and UI |
-| 🔧 `backend` | Backend services and APIs |
-| 🌐 `fullstack-web` | End-to-end web development |
-| 🛠️ `tools` | Developer tooling and utilities |
-| ⚙️ `cli-automation` | CLI tools and automation scripts |
-| 📊 `business` | Business processes and strategy |
-| 📐 `product` | Product management and design |
-| 🎯 `design` | Visual and UX design |
-| 🤖 `data-ai` | Data engineering and AI applications |
-| 🧠 `ai-agents` | AI agent development and patterns |
-| 📈 `machine-learning` | ML models and training |
-| 🔌 `devops` | Infrastructure and deployment |
-| 🛡️ `testing-security` | Testing and security practices |
-| 📖 `documentation` | Documentation generation and management |
-| 🎬 `content-media` | Content creation and media |
-| 💬 `communication` | Communication tools and workflows |
-| ❓ `uncategorized` | Default when no match is found |
+| Kategori | Domän |
+|:--------|:-------|
+| 💻 `utveckling` | Allmän mjukvaruutveckling |
+| 🎨 `frontend` | Frontend-ramverk och UI |
+| 🔧 `backend` | Backend-tjänster och API:er |
+| 🌐 `fullstack-web` | End-to-end webbutveckling |
+| 🛠️ `verktyg` | Utvecklarverktyg och verktyg |
+| ⚙️ `cli-automation` | CLI-verktyg och automatiseringsskript |
+| 📊 `affärer` | Affärsprocesser och strategi |
+| 📐 `produkt` | Produktledning och design |
+| 🎯 `design` | Visuell och UX-design |
+| 🤖 `data-ai` | Datateknik och AI-tillämpningar |
+| 🧠 `ai-agenter` | AI-agentutveckling och mönster |
+| 📈 `maskininlärning` | ML modeller och utbildning |
+| 🔌 `devops` | Infrastruktur och utbyggnad |
+| 🛡️ `test-säkerhet` | Test- och säkerhetsrutiner |
+| 📖 `dokumentation` | Generering och hantering av dokumentation |
+| 🎬 `innehåll-media` | Skapande av innehåll och media |
+| 💬 `kommunikation` | Kommunikationsverktyg och arbetsflöden |
+| ❓ `okategoriserad` | Standard när ingen matchning hittas |
 
-> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
-
----
+> Äldre etiketter som "arbetsflöde", "arkitektur", "infrastruktur", "säkerhet" och "testning" normaliseras automatiskt genom aliasmapping.---
 
 ## 📝 Body Structure
 
-A well-written skill body follows this hierarchy:
+En välskriven färdighetskropp följer denna hierarki:
 
-### 📌 Overview (Required)
-2-3 sentences on **what** the skill does and **why** it exists.
+### 📌 Översikt (obligatoriskt)
+2-3 meningar om**vad**färdigheten gör och**varför**den finns.
 
-### 🎯 When to Use (Required)
-Bullet list of **specific scenarios** where this skill applies.
+### 🎯 När ska användas (obligatoriskt)
+Punktlista med**specifika scenarier**där denna färdighet gäller.
 
-### 📋 Core Instructions (Required)
-The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
+### 📋 Grundinstruktioner (obligatoriskt)
+Den**steg-för-steg-process**som agenten bör följa. Var tydlig. Var specifik. Agenter fungerar bäst med tydliga, entydiga instruktioner.
 
-### 💡 Examples (Recommended)
-Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
+### 💡 Exempel (rekommenderas)
+Konkreta uppmaningar, kodblock eller förväntade utdata.**Ju mer specifik, desto bättre.**
 
-### ✅ Best Practices (Recommended)
-Use the ✅ Do / ❌ Don't format for quick scanning.
+### ✅ Bästa metoder (rekommenderas)
+Använd ✅ Gör / ❌ Formatera inte för snabb skanning.
 
-### 🔧 Troubleshooting (Optional)
-Common issues and their solutions.
+### 🔧 Felsökning (valfritt)
+Vanliga frågor och deras lösningar.
 
-### 🔗 Related Skills (Optional)
-Cross-references to complementary skills.
-
----
+### 🔗 Relaterade färdigheter (valfritt)
+Korsreferenser till kompletterande färdigheter.---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Focused on **one specific** workflow or domain
-- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
-- 💡 Includes **concrete examples** with expected behavior
-- 🛡️ Has proper **error handling** guidance
-- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
-- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
+- 🎯 Fokuserad på**ett specifikt**arbetsflöde eller domän
+- 📌 Instruktionerna är**tillräckligt tydliga för en AI**att följa utan mänsklig tolkning
+- 💡 Innehåller**konkreta exempel**med förväntat beteende
+- 🛡️ Har korrekt**felhantering**vägledning
+- 📊 Producerar hälsosam metadata: kanonisk kategori, mognad L2+, kvalitet 70+
+- 🧰 Skickar ett återanvändbart supportpaket, inte bara prosa, helst över "referenser/", "skript/", "exempel/" och "agenter/" där så är lämpligt
 
-For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+För de starkare poängmönstren som driver färdigheter till de högsta banden, se [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
 
-### ❌ Bad Skill
-
-- 🌫️ Generic advice that could apply to anything
-- 🤷 Vague instructions like "write good code"
-- 🚫 No examples or code blocks
-- ⚠️ Missing frontmatter fields
-- 📉 Low quality score (below 50)
+- 🌫️ Generiska råd som kan gälla vad som helst
+- 🤷 Vaga instruktioner som "skriv bra kod"
+- 🚫 Inga exempel eller kodblock
+- ⚠️ Frontmatterfält saknas
+- 📉 Lågt kvalitetspoäng (under 50)

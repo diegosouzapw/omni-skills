@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Мінімальні вимоги та рекомендації для того, щоб навички були прийняті в репозиторій Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Для авторських вказівок, спрямованих саме на найкращі показники, див. [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+Поточний контрольний показник для опублікованого каталогу:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 опубліковані навички
+- середній бал якості `96,3`
+- середня оцінка кращих практик 98,7
+- середній показник безпеки `95.0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
-|:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| # | Вимога | Як перевірити |
+|:--|:------------|:------|
+| 1️⃣ |**Дійсний передній матеріал**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Чіткий опис**| Один рядок повинен пояснювати, що робить навик (10+ символів) |
+| 3️⃣ |**Назва відповідає каталогу**| Поле `name:` ​​точно відповідає назві папки |
+| 4️⃣ |**Оглядовий розділ**| Коротке пояснення призначення в уцінці тіла |
+| 5️⃣ |**Коли використовувати розділ**| Принаймні 2 конкретних сценарії використання |
+| 6️⃣ |**Дійсні інструкції**| Покроковий вміст, який може виконати агент ШІ |
+| 7️⃣ |**Створені метадані**| Валідатор успішно видає `skills/<skill>/metadata.json` |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | Рекомендація | Оцінка впливу |
+|:--|:--------------|:-------------|
+| 8️⃣ |**Приклади**— принаймні один конкретний приклад із очікуваним результатом | 📈 Якість +10-15 |
+| 9️⃣ |**Найкращі практики**— ✅ Робити / ❌ Не вказівки | 📈 Найкращі практики +5 |
+| 🔟 |**Перевірено за допомогою інструменту**— перевірено принаймні одним помічником кодування ШІ | 📈 Якість +5 |
+| 1️⃣1️⃣ |**Теги**— релевантні теги з можливістю пошуку для виявлення | 📈 Найкращі практики +10 |
+| 1️⃣2️⃣ |**Категорія**— віднесена до однієї канонічної категорії | 📈 Найкращі практики +10 |
+| 1️⃣3️⃣ |**Усунення несправностей**— конкретні вказівки щодо `Симптомів` і `Рішення` | 📈 Найкращі практики +5-10 |
+| 1️⃣4️⃣ |**Локальні ресурси підтримки**— `посилання/`, `скрипти/` та в ідеалі `приклади/`, пов’язані з навичкою | 📈 Найкращі практики +10 |
+| 1️⃣5️⃣ |**Класифікація здорового харчування**— зрілість L3, якість 85+, передові практики 90+ | 📈 Загальний рівень |
+| 1️⃣6️⃣ |**Немає критичних знахідок безпеки**— статичний сканер пройшов чисту | 🛡️ Безпека 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Випуск | Чому |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Відсутній або недійсний передній матеріал | Порушує конвеєр перевірки |
+| ❌ Назва не відповідає каталогу | Перерви створення каталогу |
+| ❌ Порожній або тривіально короткий опис | Користувачі не можуть відкрити навик |
+| ❌ Жодного корисного вмісту (лише посилання чи заглушки) | Агенти не можуть нічого виконати |
+| ❌ Дублікат без явного покращення | Додайте цінність, не клонуйте |
+| ❌ Образливий вміст без тегу `risk: offensive` | Безпека та відповідність |
+| ❌ Критичні висновки безпеки | Оперативна ексфільтрація, деструктивні команди тощо |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
+| Розмір | Відмінно | Добре | Потребує роботи |
 |:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| ⭐**Якість**| 80+ (платина) | 60-79 (золото/срібло) | <60 (бронза/стартер) |
+| 📋**Найкращі практики**| 90+ (відмінно) | 70-89 (добре) | <70 (справедливо/потрібно працювати) |
+| 🛡️**Безпека**| 95+ (загартований) | 80-94 (захищений) | <80 (потрібен огляд) |
+| 🎯**Зрілість**| L3 (скрипти+тести) | L2 (інструкції) | L1 (лише метадані) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Щоб стабільно досягати найвищої смуги, навички повинні включати:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- чіткий опис передньої частини, який пояснює як**що**робить навик, так і**коли**його слід використовувати
+- чіткі розділи для «Коли використовувати», «Робочий процес», «Приклади», «Найкращі методи», «Усунення несправностей» і «Додаткові ресурси».
+- локальний допоміжний матеріал у розділах `references/`, `scripts/`, і в ідеалі `examples/`, посилання на які наведено безпосередньо з `SKILL.md`
+- метадані агента в `agents/openai.yaml`, коли навичка призначена для виклику безпосередньо в клієнтах агента
+- невелика робоча таблиця або еквівалентна карта виконання, якщо це вигідно робочому процесу
+- принаймні один виконуваний приклад, який вказує на локальний допоміжний сценарій або повторювану команду
+- усунення несправностей, написане як `Симптоми` плюс `Рішення`, а не загальні попередження
+- достатню глибину, щоб кваліфікувати як "L3", а не просто добре відформатовану прозу
+- більша глибина робочого процесу, активи для прийняття рішень і різноманітність пакетів підтримки, якщо вам потрібна якість найвищого діапазону
+- пакет підтримки, достатньо глибокий, щоб відчувати себе придатним для повторного використання, а не лише для покриття прапорців
+- принаймні 4 значущі сімейства підтримки або еквівалентну глибину багаторазових файлів, якщо ви хочете, щоб верхня група постійно

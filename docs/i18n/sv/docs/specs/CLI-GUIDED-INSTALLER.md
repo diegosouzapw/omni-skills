@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Beteendekontrakt för den guidade installationsupplevelsen i Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Den här specifikationen definierar det guidade installationsbeteendet som sitter ovanpå den befintliga installationsservern.
 
-It does not replace:
+Den ersätter inte:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- nuvarande expertflagga flyter
+- selektiva installationsmanifest
 
-It defines:
+Den definierar:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- hur guidat läge går in
+- hur destinationer väljs
+- hur installationsomfattningen väljs
+- vilken förhandsgranskningsinformation som måste visas
+- hur bekräftelse och verkställighet fungerar---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI:n bör gå in i guidad installationsläge när:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- användaren kör "omni-skills" utan args i en TTY
+- användaren kör `omni-skills install` utan väljare i en TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
-
-The CLI should also support explicit guided mode through a dedicated option, such as:
+CLI bör också stödja explicit guidad läge genom ett dedikerat alternativ, som:
 
 - `omni-skills install --guided`
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Det här läget bör fungera även när ingången är kopplad och inte ansluten till en TTY, så länge som standardingången är tillgänglig.### 2.3 Non-Interactive Safety Rule
 
-### 2.3 Non-Interactive Safety Rule
+När det anropas utan en TTY och utan guidat läge uttryckligen begärt:
 
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- bevara det nuvarande standardbeteendet
+- blockera inte att vänta på uppmaningar---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Guidad installation måste stödja två destinationsklasser:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Varje känt mål löser sig till:
 
-Each known target resolves to:
+- Människoläsbar etikett
+- internt verktygs-id
+- installera flagga
+- löst väg
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
-
-Required known targets:
+Krävda kända mål:
 
 - Claude Code
-- Cursor
+- Markör
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Antigravitation
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Anpassat sökvägsläge måste:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- fråga efter en väg
+- lösa `~`
+- normalisera till absolut väg
+- visa den lösta sökvägen i förhandsgranskning---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Guidad installation måste stödja:### 4.1 Full Library
 
-### 4.1 Full Library
+Motsvarar nuvarande installation utan "--skill" eller "--bundle".### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Låter användaren välja en publicerad färdighet.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Låter användaren välja ett kurerat paket och löser publicerade medlemmar.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Låter användaren:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- ange en sökfråga
+- inspektera resultaten
+- välj en färdighet eller ett paket
+- fortsätt till installationsförhandsgranskningen---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Före utförandet måste guidad installation visa:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- destinationsetikett
+- destinationsväg
+- installera omfattning
+- vald färdighet eller paket om tillämpligt
+- motsvarande CLI-kommando
 
-Optional but recommended:
+Valfritt men rekommenderas:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- sammanfattning av vald färdighetsmetadata
+- sammanfattning av pakettillgänglighet---
 
 ## 6. Execution Contract
 
-After confirmation:
+Efter bekräftelse:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- guidade installationsdelegater till den befintliga installationsprogrammets backend
+- det inte reimplementera filen skriver sig själv
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Kommandoförhandsgranskningen och de faktiska delegerade installationsargumenten måste matcha exakt.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+Efter framgångsrik exekvering bör det guidade installationsresultatet visa:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- framgångsindikator
+- slutdestinationsväg
+- kommando som utfördes
+- nästa rekommenderade åtgärd
 
-Example next actions:
+Exempel på nästa åtgärder:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- använd färdigheten i den valda klienten
+- kör `doktor`
+- kör `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Följande förblir giltiga och oförändrade:
 
 - `omni-skills --cursor --skill omni-figma`
-- `omni-skills --bundle full-stack`
+- `omni-skills --bunt full-stack`
 - `omni-skills --path ./skills`
 - `omni-skills find figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Guidat läge lägger till beteende. Det tar inte bort existerande beteende.

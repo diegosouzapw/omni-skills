@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**`omni-skills ui`에 의해 노출되는 잉크 기반 터미널 UI에 대한 동작 계약.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+시각적 셸은 기존 CLI 및 설치 프로그램 엔진 위에 표시되는 제품 안내 화면입니다.
 
-It does not replace:
+다음을 대체하지 않습니다.
 
-- expert flag-based CLI usage
-- `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- 전문가 플래그 기반 CLI 사용
+-`tools/bin/install.js`
+- 안내된 텍스트 설치 흐름
+- API, MCP 또는 A2A 런타임 동작
 
-It defines:
+이는 다음을 정의합니다.
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- `옴니 스킬 UI`의 동작
+- `omni-skills ui --text`에 대한 대체 계약
+- 로컬 상태 및 사전 설정 지속성
+- 안내된 서비스 출시 미리보기
+- 최근 설치 및 서비스 실행에 대한 반복성---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+'omni-skills ui'는 잉크 기반 시각적 셸을 시작합니다.
 
-The visual shell is the primary non-expert terminal experience for:
+시각적 셸은 다음을 위한 기본 비전문가 터미널 환경입니다.
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- 설치 흐름
+- 카탈로그 우선 검색 및 설치
+- MCP 시작
+- API 시작
+- A2A 스타트업
+- 의사와 연기 전달### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text`는 readline 기반 대체 인터페이스를 시작합니다.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+이는 다음과 같은 경우에 유용합니다.
 
-This remains useful when:
+- 터미널이 더 풍부한 쉘을 올바르게 렌더링할 수 없습니다.
+- 원시 모드 동작이 제한됩니다.
+- 최소한의 텍스트 대체가 선호됩니다.### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+시각적 셸은 서비스 런타임이나 설치 쓰기를 직접 다시 구현하지 않습니다.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+미리보기 및 확인 후에는 완전히 종료되고 동등한 인수 및 환경 변수를 사용하여 기존 CLI 진입점으로 실행이 전달됩니다.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+홈 화면은 다음을 노출해야 합니다.
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- 스킬 설치
+- 찾아 설치
+- 최근 설치가 있는 경우 반복
+- 저장된 설치 사전 설정이 있는 경우 실행
+- 서비스를 시작하다
+- 최근 서비스가 있을 때 반복
+- 저장된 서비스 사전 설정이 있는 경우 실행
+- 의사
+- 연기
+- 출구
 
-The home screen should also surface:
+홈 화면도 표시되어야 합니다.
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- 현재 게시된 번들 가용성
+- 최근 항목, 사전 설정 및 즐겨찾기에 대한 로컬 상태 개수---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+시각적 셸 설치 흐름은 다음을 지원해야 합니다.
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- 알려진 클라이언트 대상 선택
+- 사용자 정의 경로 선택
+- 전체 라이브러리 설치
+- 원스킬 설치
+- 단일 번들 설치
+- 검색 후 설치
+- 쓰기 전에 미리보기
+- 사전 설정 저장
+- 좋아하는 스킬이나 번들 토글
 
-Preview must show:
+미리보기에는 다음이 표시되어야 합니다.
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- 해결된 대상 라벨
+- 해결된 경로
+- 설치 범위
+- 해당되는 경우 선택한 스킬 또는 번들
+- 동등한 CLI 명령---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+시각적 셸은 다음에 대한 시작을 안내해야 합니다.### 5.1 MCP
 
-### 5.1 MCP
+- 전송: `stdio`, `stream`, `sse`
+- 모드: '읽기 전용' 또는 '로컬'
+- 네트워크 전송을 위한 호스트/포트 구성
+- 명시적 명령 미리보기### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- 호스트
+- 항구
+- 기본 또는 강화된 프로필
+- 강화된 전달자 또는 API 키 인증
+- 강화된 속도 제한 매개변수
+- 감사 로그 활성화
+- 명시적 명령 미리보기### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- 호스트
+- 항구
+- 저장소 유형: `memory`, `json`, `sqlite`
+- 내구성 모드를 위한 저장 경로
+- 실행자: `인라인`, `프로세스`
+- 대기열 지원 SQLite 모드
+- 공유 임대 모드의 폴링 간격 및 임대 기간
+- 명시적 명령 미리보기---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+시각적 셸은 다음 위치에서 로컬 전용 상태를 유지합니다.```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+현재 주에는 다음이 포함됩니다.
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- 최근 설치
+- 최근 서비스 출시
+- 명명된 설치 사전 설정
+- 명명된 서비스 사전 설정
+- 좋아하는 스킬
+- 좋아하는 번들
 
-The shell must support:
+셸은 다음을 지원해야 합니다.
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- 최근 설치 재생
+- 최근 서비스 출시 다시보기
+- 명명된 설치 사전 설정 재사용
+- 명명된 서비스 사전 설정 재사용---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+시각적 쉘은 추가됩니다.
 
-These flows must remain valid and stable:
+이러한 흐름은 유효하고 안정적으로 유지되어야 합니다.
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
+- `npx omni-skills 설치 --안내`
+- `npx omni-skills find figma --tool 커서 --install --yes`
+-`npx omni-skills mcp 스트림 --local`
+-`npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+시각적 셸은 명시적인 전문가 명령 경로를 강요해서는 안 됩니다.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+시각적 셸은 상태를 만들고 명시적으로 작성해야 합니다.
 
-It must:
+다음을 수행해야 합니다.
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- 쓰기 전달 전 설치 미리보기
+- 실행 전 서비스 시작 명령 미리보기
+- 가능한 경우 일반 텍스트 명령 미리보기에서 비밀 자료를 유지하세요.
+- 로컬에서만 상태 유지
+- 시각적 셸 외부에서 비대화형 CLI 동작을 유지합니다.

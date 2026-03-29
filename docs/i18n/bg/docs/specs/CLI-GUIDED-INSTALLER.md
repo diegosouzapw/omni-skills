@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Поведенчески договор за инсталационния опит в Omni Skills CLI.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Тази спецификация дефинира поведението на управлявано инсталиране, което се намира върху съществуващия бекенд на инсталатора.
 
-It does not replace:
+Не замества:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- текущият експертен флаг тече
+- манифести за селективно инсталиране
 
-It defines:
+Той определя:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- как се влиза в ръководен режим
+- как се избират дестинациите
+- как се избира обхватът на инсталиране
+- каква информация за предварителен преглед трябва да се показва
+- как работят потвърждаването и изпълнението---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+CLI трябва да влезе в режим на насочено инсталиране, когато:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- потребителят изпълнява `omni-skills` без аргументи в TTY
+- потребителят изпълнява `omni-skills install` без селектори в TTY### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
-
-The CLI should also support explicit guided mode through a dedicated option, such as:
+CLI трябва също да поддържа изричен ръководен режим чрез специална опция, като например:
 
 - `omni-skills install --guided`
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+Този режим трябва да работи дори когато въвеждането е предадено и не е свързано към TTY, стига да е наличен стандартен вход.### 2.3 Non-Interactive Safety Rule
 
-### 2.3 Non-Interactive Safety Rule
+Когато се извиква без TTY и без изрично заявен режим с насочване:
 
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- запазване на текущото поведение по подразбиране
+- не блокирайте изчакване за подкани---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Насочваното инсталиране трябва да поддържа два класа местоназначение:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Всяка известна цел се решава на:
 
-Each known target resolves to:
+- четлив етикет
+- вътрешен идентификатор на инструмента
+- флаг за инсталиране
+- разрешен път
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
+Необходими известни цели:
 
-Required known targets:
-
-- Claude Code
-- Cursor
+- Клод Код
+- Курсор
 - Gemini CLI
 - Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+- Киро
+- Антигравитация
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Персонализираният режим на път трябва:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- подкана за път
+- разрешаване на `~`
+- нормализиране до абсолютен път
+- показва разрешения път в предварителен преглед---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Насочваното инсталиране трябва да поддържа:### 4.1 Full Library
 
-### 4.1 Full Library
+Еквивалент на текущата инсталация без `--skill` или `--bundle`.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Позволява на потребителя да избере едно публикувано умение.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Позволява на потребителя да избере един подбран пакет и разрешава публикувани членове.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Позволява на потребителя:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- въведете заявка за търсене
+- проверка на резултатите
+- изберете умение или пакет
+- продължете към предварителен преглед на инсталирането---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+Преди изпълнение инсталацията с указания трябва да показва:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- етикет на местоназначението
+- дестинационен път
+- обхват на инсталиране
+- избрано умение или пакет, ако е приложимо
+- еквивалентна CLI команда
 
-Optional but recommended:
+По избор, но препоръчително:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- резюме на избраните метаданни за умения
+- обобщена информация за наличността на пакета---
 
 ## 6. Execution Contract
 
-After confirmation:
+След потвърждение:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- делегати за насочено инсталиране към съществуващия бекенд на инсталатора
+- не изпълнява повторно записите на файлове
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+Визуализацията на командата и действителните делегирани аргументи на инсталатора трябва да съвпадат точно.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+След успешно изпълнение резултатът от насочваната инсталация трябва да показва:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- индикатор за успех
+- път на крайна дестинация
+- команда, която е изпълнена
+- следващо препоръчително действие
 
-Example next actions:
+Примерни следващи действия:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- използвайте умението в избрания клиент
+- стартирайте `лекар`
+- стартирайте `mcp stream --local`---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Следното остава валидно и непроменено:
 
 - `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
 - `omni-skills --path ./skills`
 - `omni-skills find figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Насочваният режим добавя поведение. Не премахва съществуващото поведение.

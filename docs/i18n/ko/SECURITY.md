@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Omni Skills에서 보안 문제를 발견한 경우 공개 문제를 먼저 열지 마세요.**
 
-Please report through one of these private channels:
+다음 비공개 채널 중 하나를 통해 신고해 주세요.
 
-| Channel | How |
-|:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 채널 | 어떻게 |
+|:---------|:----|
+| 🔒 GitHub 보안 권고 | [비공개 자문 개설](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 직접 문의 | 관리자에게 직접 문의 |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 영향을 받는 구성 요소 또는 경로
+- 🔄 재생산 단계
+- ⚠️ 영향 평가
+- 🧪 문제를 확인하는 데 필요한 개념 증명 자료
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ 48시간 이내에 신고 내용을 확인하고**영향에 따라 수정 우선순위를 정하는 것을 목표로 합니다.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+이 정책은 저장소의 런타임 및 콘텐츠 표면을 다룹니다.
 
-| Component | Path |
-|:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 구성요소 | 경로 |
+|:----------|:------|
+| 🖥️ CLI 및 설치 프로그램 | `도구/빈/` |
+| 📚 공유 라이브러리 | `도구/lib/` |
+| ⚙️ 빌드 및 유효성 검사 스크립트 | `도구/스크립트/` |
+| 📦 생성된 카탈로그 아티팩트 | `거리/` |
+| 🌐 API, MCP 및 A2A 패키지 | `패키지/` |
+| 🧠 스킬 내용 | `skills/` — 특히 셸 명령, 네트워크 액세스, 자격 증명 흐름 또는 보안에 민감한 지침 |---
 
 ## 아키텍처
 
-The repository relies on the following security controls:
+저장소는 다음 보안 제어를 사용합니다.### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
+| 제어 | 설명 |
+|:---------|:------------|
+| 🏷️ 위험분야 | 기술 메타데이터에는 선언된 '위험' 수준이 포함됩니다 |
+| 📊 채점 | 검증을 통해 성숙도, 모범 사례, 품질 및 보안 점수를 계산합니다 |
+| 🔍 정적 스캐너 | `SKILL.md`, 패키지 파일 및 도우미 스크립트를 검사합니다. |
+| 🦠 선택적 스캐너 | ClamAV 및 VirusTotal 해시 조회(구성된 경우) |### 🖥️ Runtime Controls
 
-| Control | Description |
-|:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 제어 | 설명 |
+|:---------|:------------|
+| 📁 경로 안전 | 설치 흐름은 경로 안전 확인을 사용합니다 |
+| 🔒 허용 목록 쓰기 | 허용 목록으로 제한된 로컬 MCP 사이드카 쓰기 |
+| 👁️ 테스트 실행 기본값 | 쓰기 지향 도구는 명시적으로 비활성화하지 않는 한 기본적으로 테스트 실행으로 설정됩니다. |
+| 🔐 인증 및 제한 | 베어러/API 키 인증, 관리 런타임 인증, 속도 제한, CORS/IP 허용 목록 |
+| 📋 감사 | 감사 로깅, 유지 관리 모드 및 요청 ID |### 📦 Release Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
-|:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
-
-### 📦 Release Controls
-
-| Control | Description |
-|:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| 제어 | 설명 |
+|:---------|:------------|
+| ✅ 체크섬 매니페스트 | 생성된 아카이브에 대한 SHA-256 체크섬 |
+| ✍️ 서명 | 출판 전 CI에서 분리된 서명 확인 |
+| 🧪 연기 점검 | 출시 전에 제공된 런타임 표면을 연습해 보세요 |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> 남은 주요 보안 작업은 기본 강화가**아닙니다**. 열려 있는 항목은 다음과 같습니다.
 
-| Area | Status |
-|:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 면적 | 상태 |
+|:------|:---------|
+| 🏢 기업 거버넌스 | 현재 프로세스 내 제어에 대한 외부 ID, 게이트웨이 정책 및 WAF 통합 |
+| 🔌 MCP 클라이언트 작가 | 공개 구성 계약이 충분히 안정적인 경우에만 더 넓은 작성자 |
+| 📊 스캐너 개선 | 지속적인 개선을 통해 뛰어난 기술이 단순히 잘 구성된 기술과 명확하게 구분됩니다 |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+각 기술은 다음 '위험' 수준 중 하나를 선언합니다.
 
-| Risk Level | Meaning |
-|:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 위험 수준 | 의미 |
+|:------------|:---------|
+| 🟢 `안전` | 파괴적인 작업은 예상되지 않습니다 |
+| 🟡`주의` | 파일을 수정하거나 외부 시스템과 상호 작용할 수 있음 |
+| 🔴 `공격적` | 명시적인 승인이 필요한 보안 테스트 또는 적대적인 워크플로 |
+| ⛔`중요` | 영향력이 큰 작업 또는 시스템 수준 작업 |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Omni Skills는 실행 가능한 도우미, 파일 시스템 인식 로컬 도구 및 클라이언트별 구성 작성자를 제공하므로 이러한 취약점 클래스는 "로컬 전용"으로 표시되더라도**높은 우선순위**로 처리되어야 합니다.
 
-| Category | Examples |
+| 카테고리 | 예 |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 경로 탐색 | 스킬 설치 또는 구성 경로를 통한 디렉터리 이스케이프 |
+| 🔗 Symlink 안전 | 설치 또는 아카이브 추출 중에 따라오는 Symlink |
+| 🖥️ 명령 실행 | 스킬 컨텐츠나 스크립트를 통한 임의의 명령어 주입 |
+| 📦 아카이브 확인 | 체크섬 또는 서명 확인 우회 |
+| 🔓 인증 우회 | API/MCP의 속도 제한 또는 인증 우회 |
+| 🔌 허용 목록 우회 | 로컬 사이드카 허용 목록 우회 |
+| 🦠 스캐너 회피 | 정적 또는 외부 스캐너의 거짓 음성 클래스 |

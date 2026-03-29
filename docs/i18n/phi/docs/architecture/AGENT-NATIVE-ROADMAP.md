@@ -5,107 +5,89 @@
 ---
 
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
-
----
+>**Ang architecture evolution plan para sa Omni Skills: mula sa installer-first repository hanggang sa shared catalog runtime powering CLI, API, MCP, at A2A nang walang duplicate na logic.**---
 
 ## 📊 Current Platform Areas
 
-| Phase | Name | Status |
+| Yugto | Pangalan | Katayuan |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Current |
-| 2️⃣ | Read-Only Catalog API | ✅ Current |
-| 3️⃣ | MCP Discovery Surface | ✅ Current |
-| 4️⃣ | Local Install and Config Surface | ✅ Current |
-| 5️⃣ | A2A Orchestration | ✅ Current |
+| 1️⃣ | Mga Kontrata at Artifact | ✅ Kasalukuyan |
+| 2️⃣ | Read-Only Catalog API | ✅ Kasalukuyan |
+| 3️⃣ | Ibabaw ng Pagtuklas ng MCP | ✅ Kasalukuyan |
+| 4️⃣ | Lokal na Pag-install at Config Surface | ✅ Kasalukuyan |
+| 5️⃣ | A2A Orchestration | ✅ Kasalukuyan |### ✅ What Exists Today
 
-### ✅ What Exists Today
+- mga artifact ng catalog na nababasa ng makina sa `dist/`
+- read-only na HTTP API na may saklaw ng endpoint para sa paghahanap, mga bundle, paghahambing, pagpaplano sa pag-install, at pag-download
+- MCP server na may `stdio`, streamable HTTP, at SSE transports
+- lokal na sidecar na may mga pinahihintulutang pagsusulat at mga daloy ng `config-mcp`
+- 7 client na may kakayahang mag-install, 16 na client na may kakayahang mag-config, 33 target na config ng MCP, at 19 na profile ng config
+- mas malalim na espesyalisasyon ng bundle sa loob ng `full-stack`, `security`, `devops`, at `ai-engineer` sa pamamagitan ng `auth-flows`, `threat-modeling`, `release-engineering`, at `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) na may mga SHA-256 checksum at nakahiwalay na lagda sa mga release tag
+- Baseline ng pamamahala ng API: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, at request ID
+- A2A runtime na may task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancellation, push notifications, opsyonal na process executor, at opt-in leased coordination### 🔭 Future Expansion Areas
 
-- machine-readable catalog artifacts in `dist/`
-- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
-- MCP server with `stdio`, streamable HTTP, and SSE transports
-- local sidecar with allowlisted writes and `config-mcp` flows
-- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
-- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
-- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
-- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
+Inilalarawan na ngayon ng pangunahing roadmap ang kasalukuyang saklaw ng platform. Ang natitirang mga item ay mga lugar ng pagpapalawak sa hinaharap, hindi mga puwang sa pundasyon:
 
-### 🔭 Future Expansion Areas
+- lamang ang mga mataas na pumipili na pagdaragdag ng MCP mula sa puntong ito, at kung saan ang mga opisyal na pampublikong doc ay ginagawang posible ang isang ligtas na manunulat
+- mas malalim na reference pack at mas semantic na pagmamarka upang patuloy na ihiwalay ng classifier ang mga pambihirang kasanayan mula sa mga pinakintab lamang
+- pamamahalang hino-host ng enterprise na lampas sa kasalukuyang in-process na baseline, kung kailangan ng proyekto sa ibang pagkakataon ang gateway o pagsasama ng IdP
+- mas malalim na espesyalisasyon sa mga bagong activate na `design`, `tools`, `data-ai`, at `machine-learning` track
+- patuloy na operational polish sa paligid ng pribadong enhancer habang pinapanatili ang pormal nitong operating model: OmniRouter na naka-pin sa `cx/gpt-5.4`, naka-host na cloud sa `mock` o degraded preflight, at maaasahang `live` sa LAN o self-hosted execution
+- patuloy na pagpapalabas at pagpapatigas ng daloy ng trabaho bilang kalidad ng serbisyong trabaho, hindi bilang nawawalang pundasyon ng platform## Future Catalog Expansion Track
 
-The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
-
-- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
-- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
-- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
-- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
-- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
-
-## Future Catalog Expansion Track
-
-The first two public category-expansion waves are now landed:
+Ang unang dalawang public category-expansion wave ay nakarating na ngayon:
 
 - `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
-- `tools` → `mcp-server-authoring`
+- `mga tool` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
 - `machine-learning` → `model-serving`
 
-The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
+Ang susunod na inirerekomendang hakbang ay hindi na pag-activate ng kategorya para sa sarili nitong kapakanan. Ito ay upang palalimin ang mga bagong aktibong code-native na track na ito upang maramdaman ang mga ito na parang matibay na ibabaw ng produkto kaysa sa mga single-skill foothold.
 
-Recommended direction:
+Inirerekomendang direksyon:
 
-1. deepen `design` with more operational design-system workflows
-2. deepen `tools` with authoring and plugin-oriented skills
-3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
-4. deepen `machine-learning` with serving, training, and evaluation operations skills
+1. palalimin ang `design` na may higit pang operational na disenyo-system workflow
+2. palalimin ang `tools` gamit ang mga kasanayan sa pag-author at plugin-oriented
+3. palalimin ang `data-ai` gamit ang mga kasanayan sa pagpapatupad-unang pipeline at instrumentation
+4. palalimin ang `machine-learning` gamit ang mga kasanayan sa pagpapatakbo ng paghahatid, pagsasanay, at pagsusuri
 
-Categories intentionally deferred unless strong code-native proposals appear:
+Ang mga kategorya ay sadyang ipinagpaliban maliban kung ang mga malakas na panukalang code-native ay lumabas:
 
-- `business`
+- `negosyo`
 - `content-media`
 
-That expansion history is now tracked in:
+Ang kasaysayan ng pagpapalawak na iyon ay sinusubaybayan na ngayon sa:
 
 - [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-
----
+- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
-- ✅ Introduce a machine-readable source of truth for skills
-- ✅ Support discovery, recommendation, and install planning by agents
-- ✅ Separate remote catalog concerns from local filesystem writes
-- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
-
----
+- ✅ Panatilihing gumagana ang kasalukuyang `npx omni-skills` workflow
+- ✅ Magpakilala ng nababasa ng makina na mapagkukunan ng katotohanan para sa mga kasanayan
+- ✅ Suportahan ang pagtuklas, rekomendasyon, at pagpaplano ng pag-install ng mga ahente
+- ✅ Paghiwalayin ang malayuang mga alalahanin sa catalog mula sa mga lokal na filesystem writes
+- ✅ Muling gamitin ang parehong metadata sa CLI, API, MCP, at A2A---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote install-on-user-machine from a hosted server
-- ❌ Replace `SKILL.md` as the canonical authoring format
-- ❌ Require contributors to write manifests by hand
-- ❌ Turn the project into a heavy hosted queue platform by default
-
----
+- ❌ Remote install-on-user-machine mula sa isang naka-host na server
+- ❌ Palitan ang `SKILL.md` bilang canonical authoring format
+- ❌ Atasan ang mga kontribyutor na magsulat ng mga manifest sa pamamagitan ng kamay
+- ❌ Gawing isang mabigat na naka-host na platform ng pila ang proyekto bilang default---
 
 ## 🏗️ Target Architecture
 
-One **catalog core** with three protocol surfaces:
+Isang**catalog core**na may tatlong protocol surface:
 
-| Surface | Best For | Mode |
+| Ibabaw | Pinakamahusay Para sa | Mode |
 |:--------|:---------|:-----|
-| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
-| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
-| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
+| 🌐**REST API**| Pag-access sa rehistro, pagsasama ng UI, mga consumer ng third-party | Read-only |
+| 🔌**MCP**| Pagtuklas ng ahente, pag-install ng mga preview, pagsulat ng config, mga recipe ng kliyente | Read-only + local writes |
+| 🤖**A2A**| Ahente-to-agent orkestrasyon at install-plan handoff | Lifecycle ng gawain na may simple-unang lokal na tibay |### ⚙️ Core Principle
 
-### ⚙️ Core Principle
-
-> **All protocols consume the same generated artifact family.**
-
-```text
+>**Ang lahat ng protocol ay gumagamit ng parehong nabuong pamilya ng artifact.**```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -115,178 +97,144 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
-
----
+Ang manifest ay nananatili sa nakabahaging kontrata. Ang mga archive ay mga artifact sa pamamahagi na naka-layer sa ibabaw ng kontratang iyon, hindi isang kapalit para dito.---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Used by hosted API and remote MCP servers.
+Ginagamit ng naka-host na API at mga malayuang MCP server.
 
-| ✅ Allowed | ❌ Not Allowed |
-|:-----------|:---------------|
-| Search skills | Write to the caller's filesystem |
-| Fetch manifests | Mutate local client config |
-| Compare skills | Infer arbitrary machine state |
-| Recommend bundles | — |
-| Build install plans | — |
+| ✅ Pinapayagan | ❌ Hindi Pinapayagan |
+|:-----------|:----------------|
+| Mga kasanayan sa paghahanap | Sumulat sa filesystem ng tumatawag |
+| Kunin ang mga manifest | I-mute ang lokal na config ng kliyente |
+| Paghambingin ang mga kasanayan | Infer arbitrary machine state |
+| Magrekomenda ng mga bundle | — |
+| Bumuo ng mga plano sa pag-install | — |### 2️⃣ Local Installer Mode
 
-### 2️⃣ Local Installer Mode
+Ginamit ng CLI at ng sidecar ng MCP.
 
-Used by the CLI and the MCP sidecar.
-
-| ✅ Allowed |
+| ✅ Pinapayagan |
 |:-----------|
-| Detect local AI clients |
-| Inspect installed skills |
-| Preview file operations |
-| Install or remove skill directories |
-| Write local MCP config after preview |
+| I-detect ang mga lokal na kliyente ng AI |
+| Siyasatin ang mga naka-install na kasanayan |
+| I-preview ang mga pagpapatakbo ng file |
+| I-install o alisin ang mga direktoryo ng kasanayan |
+| Sumulat ng lokal na MCP config pagkatapos ng preview |
 
-> 📌 This remains the only mode where real OS writes happen.
-
----
+> 📌 Ito ay nananatiling ang tanging mode kung saan nangyayari ang tunay na OS writes.---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Best for registry access, search, comparison, versioned downloads, and install planning.
+Pinakamahusay para sa pag-access sa registry, paghahanap, paghahambing, pag-download ng bersyon, at pagpaplano ng pag-install.
 
-**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
+**Mga Endpoint**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`### 🔌 MCP
 
-### 🔌 MCP
+Pinakamahusay para sa pagtuklas na nakabatay sa tool, maagap na rekomendasyon, pag-install ng mga preview, at pag-setup ng MCP na partikular sa kliyente.
 
-Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
+**Read-only na tool**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+**Mga lokal na tool**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
 
-**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
+Pinakamahusay para sa discovery handoff, install-plan workflows, at resumable agent task execution.
 
-### 🤖 A2A
-
-Best for discovery handoff, install-plan workflows, and resumable agent task execution.
-
-**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
-
----
+**Mga kasalukuyang operasyon**: `discover-skills` · `recommend-stack` · `prepare-install-plan`---
 
 ## 🛡️ Security Model
 
-| Principle | Implementation |
-|:----------|:---------------|
-| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
-| 📂 Writes stay local | CLI and MCP sidecar only |
-| 👁️ Preview before write | Dry-run defaults on local mutations |
-| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
-| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
-| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
-
----
+| Prinsipyo | Pagpapatupad |
+|:----------|:----------------|
+| 🔒 Ang mga naka-host na serbisyo ay read-only | Hindi sumusulat ang API at remote MCP sa filesystem ng tumatawag |
+| 📂 Manatiling lokal ang mga pagsusulat | CLI at MCP sidecar lang |
+| 👁️ Silipin bago magsulat | Mga default na dry-run sa mga lokal na mutasyon |
+| 🔑 Ang integridad ay tahasang | Mga checksum ng SHA-256 para sa mga nabuong artifact |
+| ✍️ Ang pagpapakawala ng tiwala ay tahasang | Mga hiwalay na lagda na ipinatupad sa mga tag ng release |
+| ⚠️ Lumalabas ang panganib | Ang metadata ng peligro at seguridad ay kumakalat sa bawat runtime surface |---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- documented target architecture
-- defined manifest schema
-- generated metadata, catalog, manifests, bundles, and archives
+- dokumentadong target na arkitektura
+- tinukoy na manifest schema
+- nabuong metadata, catalog, manifest, bundle, at archive### Phase 2: Catalog Service
 
-### Phase 2: Catalog Service
+- read-only na HTTP API na may Express 5
+- paghahanap, pag-filter, manifest lookup, listahan ng bundle, paghahambing, at pag-download
+- baseline ng naka-host na pamamahala sa env-driven### Phase 3: MCP Discovery
 
-- read-only HTTP API with Express 5
-- search, filtering, manifest lookup, bundle listing, comparison, and downloads
-- env-driven hosted governance baseline
+- opisyal na `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, at SSE transports
+- read-only na mga tool, mapagkukunan, at prompt na sinusuportahan ng nakabahaging catalog### Phase 4: Local Install and Config Surface
 
-### Phase 3: MCP Discovery
+- lokal na sidecar na may mga pinahihintulutang pagsusulat
+- detection para sa 7 install-capable na mga kliyente
+- config writing para sa 16 config-capable clients sa 33 target at 19 config profile
+- may gabay na `config-mcp` na dumadaloy sa CLI at visual shell
+- matatag na suporta para sa Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, at Dev Container### Phase 5: A2A Orchestration
 
-- official `@modelcontextprotocol/sdk` integration
-- `stdio`, streamable HTTP, and SSE transports
-- read-only tools, resources, and prompts backed by the shared catalog
+- agent card sa `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, at push-notification config method
+- Pagtitiyaga ng JSON at SQLite sa pag-restart ng pagbawi
+- opsyonal na panlabas na tagapagpatupad ng proseso
+- opt-in na naupahan na pagpapatupad sa mga manggagawa para sa SQLite at opsyonal na advanced na koordinasyon ng Redis
+- mga simple-first default na pinananatili sa memorya, JSON, o SQLite nang walang mga panlabas na dependency### Current Enhancer Operating Decision
 
-### Phase 4: Local Install and Config Surface
+Ang modelo ng suportadong `live` ng pribadong enhancer ay tahasan na ngayon:
 
-- local sidecar with allowlisted writes
-- detection for 7 install-capable clients
-- config writing for 16 config-capable clients across 33 targets and 19 config profiles
-- guided `config-mcp` flows in the CLI and visual shell
-- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
-
-### Phase 5: A2A Orchestration
-
-- agent card at `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
-- JSON and SQLite persistence with restart recovery
-- optional external process executor
-- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
-- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
-
-### Current Enhancer Operating Decision
-
-The private enhancer's supported `live` model is now explicit:
-
-- hosted PR automation runs a preflight-gated `live` attempt
-- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
-- the canonical reliable `live` path remains LAN or local service execution
-- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
-
----
+- ang naka-host na PR automation ay nagpapatakbo ng isang preflight-gated na 'live' na pagsubok
+- kung ang pampublikong gateway ng OmniRoute ay naharang o hindi matatag, ang PR ay minarkahan na `naka-block` na may dahilan na nakaharap sa operator sa halip na mabigo nang malabo
+- ang canonical na maaasahang `live` na landas ay nananatiling LAN o lokal na pagpapatupad ng serbisyo
+- Ang naka-iskedyul na pribadong GitHub ay nagpapatakbo ng stay `mock` bilang default maliban kung ang isang operator ay tahasang humiling ng `live`---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
+**Desisyon**: panatilihin ang manifest bilang nakabahaging kontrata at panatilihin ang nilagdaang per-skill archive bilang surface ng pamamahagi.
 
-**Why**:
-- CLI, API, MCP, and A2A already consume the normalized manifest shape
-- archives are ideal for download and verification, but poor as the only discovery contract
-- this keeps authoring simple and distribution verifiable
+**Bakit**:
+- Kinukonsumo na ng CLI, API, MCP, at A2A ang normalized na hugis ng manifest
+- Ang mga archive ay mainam para sa pag-download at pag-verify, ngunit hindi maganda bilang ang tanging kontrata sa pagtuklas
+- pinapanatili nitong simple ang pag-akda at nabe-verify ang pamamahagi### 2. Private or Premium Catalogs
 
-### 2. Private or Premium Catalogs
+**Desisyon**: muling gamitin ang parehong format ng manifest at catalog, at panlabas na pagpapatunay ng layer o patakaran.
 
-**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
+**Bakit**:
+- iniiwasan nitong i-forking ang data model
+- tumutugma ito sa kasalukuyang diskarte sa pamamahala ng API/MCP
+- nananatili itong tugma sa direksyon ng ecosystem ng MCP sa paligid ng mga kredensyal ng kliyente ng OAuth at pahintulot na pinamamahalaan ng enterprise### 3. Client Writer Strategy
 
-**Why**:
-- it avoids forking the data model
-- it matches the current API/MCP governance approach
-- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
+**Desisyon**: magsama-sama sa isang maliit na hanay ng mga canonical export na pamilya at panatilihin lamang ang mga pasadyang manunulat kung saan kinakailangan ito ng mga opisyal na doc ng kliyente.
 
-### 3. Client Writer Strategy
-
-**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
-
-**Canonical families now in use**:
+**Ginagamit na ngayon ang mga canonical na pamilya**:
 - JSON `mcpServers`
-- JSON `servers`
+- JSON `mga server`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Why**:
-- it keeps the implementation maintainable
-- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
-- it avoids inventing fragile writers for clients without stable public config docs
-
----
+**Bakit**:
+- pinapanatili nitong mapanatili ang pagpapatupad
+- sinusuportahan pa rin nito ang mga pangangailangang partikular sa kliyente gaya ng mga setting ng Claude, Continue YAML, Zed `context_servers`, at Codex TOML
+- iniiwasan nito ang pag-imbento ng mga marupok na manunulat para sa mga kliyente na walang matatag na pampublikong config doc---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-The current decisions were checked against official ecosystem docs:
+Ang mga kasalukuyang desisyon ay sinuri laban sa mga opisyal na doc ng ecosystem:
 
-- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
-- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
-- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
-- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
-
----
+- ang MCP ecosystem ay nagdodokumento na ngayon ng mga opsyonal na extension gaya ng mga kredensyal ng kliyente ng OAuth at pahintulot na pinamamahalaan ng enterprise, na sumusuporta sa pag-externalize ng naka-host na auth sa halip na i-forking ang format ng catalog
+- Nagdodokumento ang OpenAI ng isang pampublikong docs MCP server at mga pattern ng configuration ng Codex MCP na nakaayon sa nakabahaging manifest at diskarte sa client-writer
+- Ang VS Code ay nagdodokumento ng first-class na suporta sa MCP at isang extension na gabay, na nagpapatibay sa pagpapanatili ng nakatalagang `servers`-based na manunulat nito
+- Ang JetBrains AI Assistant ay nagdodokumento ng MCP setup sa pamamagitan ng product UX sa halip na isang stable na cross-platform file contract, na sumusuporta sa pagpapanatili nito sa manual/snippet na teritoryo sa ngayon---
 
 ## 🔮 Longer-Term Decision Points
 
-Only a few strategic questions remain genuinely open:
+Ilan lamang sa mga madiskarteng tanong ang nananatiling tunay na bukas:
 
-1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
-2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
-3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?
+1. Kung ang sinumang kliyente na lampas sa kasalukuyang matrix ay tunay na nag-clear sa bar para sa first-class na pagsulat, o kung ang natitirang mga produkto ay dapat manatiling manual/snippet-only
+2. Kailan, kung sakaling, dapat lumipat ang naka-host na pamamahala sa isang panlabas na gateway o enterprise IdP sa halip na sa kasalukuyang nasa prosesong baseline?
+3. Gaano kalayo ang dapat gawin ng scorer sa pagsusuri sa lalim ng reference-pack at kalidad ng pagpapatakbo bago ito maging masyadong opinyon para sa mga kontribyutor?

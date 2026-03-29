@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Persyaratan minimum dan rekomendasi agar suatu keterampilan dapat diterima di gudang Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Untuk panduan penulisan yang ditujukan khusus pada skor band teratas, lihat [Buku Pedoman Skor Tinggi](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+Tolok ukur terkini untuk katalog yang diterbitkan:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 keterampilan yang diterbitkan
+- skor kualitas rata-rata `96,3`
+- rata-rata skor praktik terbaik `98,7`
+- skor keamanan rata-rata `95.0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
+| # | Persyaratan | Cara Memverifikasi |
 |:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| 1️⃣ |**Bagian depan yang valid**| `alat/skrip python3/validate_skills.py` |
+| 2️⃣ |**Deskripsi jelas**| Satu kalimat harus menjelaskan fungsi keterampilan (10+ karakter) |
+| 3️⃣ |**Nama cocok dengan direktori**| Bidang `nama:` sama persis dengan nama folder |
+| 4️⃣ |**Bagian Ikhtisar**| Penjelasan singkat tujuan di badan penurunan harga |
+| 5️⃣ |**Kapan Menggunakan bagian**| Setidaknya 2 skenario penggunaan spesifik |
+| 6️⃣ |**Instruksi yang dapat ditindaklanjuti**| Konten langkah demi langkah yang dapat dijalankan oleh agen AI |
+| 7️⃣ |**Metadata yang dihasilkan**| Validator berhasil mengeluarkan `skills/<skill>/metadata.json` |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
+| # | Rekomendasi | Dampak Skor |
 |:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| 8️⃣ |**Contoh**— setidaknya satu contoh nyata dengan keluaran yang diharapkan | 📈 Kualitas +10-15 |
+| 9️⃣ |**Praktik terbaik**— ✅ Panduan yang harus dilakukan / ❌ Jangan | 📈 Praktik Terbaik +5 |
+| 🔟 |**Diuji dengan alat**— diverifikasi dengan setidaknya satu asisten pengkodean AI | 📈 Kualitas +5 |
+| 1️⃣1️⃣ |**Tag**— tag relevan yang dapat dicari untuk penemuan | 📈 Praktik Terbaik +10 |
+| 1️⃣2️⃣ |**Kategori**— ditetapkan ke satu kategori kanonik | 📈 Praktik Terbaik +10 |
+| 1️⃣3️⃣ |**Pemecahan Masalah**— panduan `Gejala` dan `Solusi` yang konkret | 📈 Praktik Terbaik +5-10 |
+| 1️⃣4️⃣ |**Aset dukungan lokal**— `referensi/`, `skrip/`, dan idealnya `contoh/` ditautkan dari keterampilan | 📈 Praktik Terbaik +10 |
+| 1️⃣5️⃣ |**Klasifikasi sehat**— kematangan L3, kualitas 85+, praktik terbaik 90+ | 📈 Tingkat keseluruhan |
+| 1️⃣6️⃣ |**Tidak ada temuan keamanan penting**— pemindai statis berhasil lolos | 🛡️ Keamanan 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Edisi | Mengapa |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Bagian depan tidak ada atau tidak valid | Memutuskan jalur validasi |
+| ❌ Nama tidak sesuai dengan direktori | Menghancurkan pembuatan katalog |
+| ❌ Deskripsi singkat yang kosong atau sepele | Pengguna tidak dapat menemukan keterampilan |
+| ❌ Tidak ada konten yang dapat ditindaklanjuti (hanya tautan atau rintisan) | Agen tidak dapat mengeksekusi apa pun |
+| ❌ Duplikat tanpa perbaikan yang jelas | Tambahkan nilai, jangan dikloning |
+| ❌ Konten yang menyinggung tanpa tag `risiko: menyinggung` | Keamanan dan kepatuhan |
+| ❌ Temuan keamanan penting | Eksfiltrasi cepat, perintah destruktif, dll |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
+| Dimensi | Luar biasa | Bagus | Butuh Pekerjaan |
 |:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| ⭐**Kualitas**| 80+ (platinum) | 60-79 (emas/perak) | <60 (perunggu/pemula) |
+| 📋**Praktik Terbaik**| 90+ (luar biasa) | 70-89 (bagus) | <70 (adil/perlu kerja) |
+| 🛡️**Keamanan**| 95+ (mengeras) | 80-94 (aman) | <80 (diperlukan peninjauan) |
+| 🎯**Kedewasaan**| L3 (skrip+tes) | L2 (instruksi) | L1 (hanya metadata) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Untuk mencapai kelompok teratas secara konsisten, suatu keterampilan harus mencakup:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- deskripsi frontmatter kuat yang menjelaskan**apa**fungsi skill dan**kapan**skill harus digunakan
+- bagian eksplisit untuk `Kapan Menggunakan`, `Alur Kerja`, `Contoh`, `Praktik Terbaik`, `Pemecahan Masalah`, dan `Sumber Daya Tambahan`
+- materi pendukung lokal di bawah `references/`, `scripts/`, dan idealnya `examples/`, ditautkan langsung dari `SKILL.md`
+- metadata agen di bawah `agents/openai.yaml` ketika keterampilan dimaksudkan untuk dipanggil langsung di klien agen
+- tabel operasional kecil atau peta eksekusi yang setara jika alur kerja mendapat manfaat darinya
+- setidaknya satu contoh yang dapat dijalankan yang menunjuk ke skrip pembantu lokal atau perintah yang dapat diulang
+- pemecahan masalah ditulis sebagai `Gejala` ditambah `Solusi`, bukan peringatan umum
+- kedalaman yang cukup untuk memenuhi syarat sebagai `L3`, bukan hanya prosa yang diformat dengan baik
+- kedalaman alur kerja yang lebih kuat, aset keputusan, dan keragaman paket dukungan jika Anda menginginkan kualitas terbaik
+- Paket dukungan yang cukup dalam sehingga terasa dapat digunakan kembali, tidak hanya hadir untuk cakupan kotak centang
+- setidaknya 4 keluarga pendukung yang berarti atau kedalaman yang setara dalam file yang dapat digunakan kembali jika Anda ingin band teratas secara konsisten

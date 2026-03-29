@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
+meno: názov vašej zručnosti
+popis: "Jednoriadkový popis toho, čo táto zručnosť robí a kedy ju použiť"
+verzia: "0.1.3"
+kategória: vývoj
+značky: [example-tag-1, example-tag-2]
+zložitosť: stredná
+riziko: bezpečné
+nástroje: [claude-code, kurzor, gemini-cli, antigravitácia]
+zdroj: komunita
+autor: "Vaše meno"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----
-
-<!--
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` vygeneruje skills/<skill>/metadata.json s kanonickým
+taxonómia, úroveň zrelosti, skóre osvedčených postupov, skóre kvality a bezpečnosť
+výsledky skenovania. Vzory rýchleho vstrekovania, deštruktívne príkazy a riskantný skript
+konštrukcie budú označené automaticky.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+Verzia zručností je nezávislá od verzie balíka. Použite sémantiku
+verzia, ktorá dáva zmysel pre samotnú zručnosť.
 
-For a top-scoring skill, also read:
+Ak chcete získať najlepšie skóre, prečítajte si tiež:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
-
-
 ## Prehľad
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 vety vysvetľujúce, čo táto zručnosť robí, kto z nej ťaží a prečo existuje.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Použite, keď potrebujete [scenár 1]
+- Použite, keď chcete [scenár 2]
+- Použite pri práci s [scenár 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Vysvetlite kľúčový koncept, ktorému musí agent porozumieť.### Concept 2
 
-### Concept 2
+Vysvetlite ďalší základný koncept.## Workflow
 
-Explain another foundational concept.
-
-## Workflow
-
-| Phase | Output | Why it matters |
+| Fáza | Výstup | Prečo na tom záleží |
 |:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+| Zarámujte cieľ | Jasný cieľ | Zabraňuje vágnemu vedeniu |
+| Vykonajte kroky | Pracovný postup pripravený na agenta | Robí zručnosť použiteľnou |
+| Overiť výstup | Akceptačný signál | Zvyšuje dôveru |
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+1. Prvý krok v pracovnom postupe
+2. Druhý krok v pracovnom postupe
+3. Tretí krok v pracovnom postupe### 1. First Step
 
-### 1. First Step
+Podrobné pokyny pre prvý krok.### 2. Second Step
 
-Detailed instructions for the first step.
+Podrobné pokyny pre druhý krok.### 3. Third Step
 
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Podrobné pokyny pre tretí krok.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Vysvetlenie:**Čo ukazuje tento príklad.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Vysvetlenie:**Čo ukazuje tento príklad.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Urobte:**Postupujte podľa tohto osvedčeného postupu
+- ✅**Urobte:**Postupujte podľa tohto postupu
+- ❌**Nie:**Vyhnite sa tomuto antivzoru
+- ❌**Nerobte to:**Toto nikdy nerobte## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Príznaky:**Ako viete, že toto je problém.
+**Riešenie:**Ako to opraviť.## Related Skills
 
-## Related Skills
+- `@related-skill-1` — Kedy použiť toto miesto
+- `@related-skill-2` — Ako to dopĺňa vašu zručnosť## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Kontrolný zoznam](references/checklist.md)
+– [Spracovaný príklad](examples/example.md)
+- [Pomocný skript](scripts/render_example.py)

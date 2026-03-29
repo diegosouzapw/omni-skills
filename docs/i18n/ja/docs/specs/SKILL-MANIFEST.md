@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**ビルド パイプライン中に各 `SKILL.md` から生成される機械可読な JSON マニフェスト - すべてのランタイム サーフェスによって消費される単一のデータ コントラクト。**---
 
 ## 📊 Status
 
-| Feature | State |
+|特集 |状態 |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ SKILL.md から自動生成 |実装済み |
+| ✅ CLI、API、MCP、A2A によって消費される |実装済み |
+| ✅ チェックサム付きのアーカイブ |実装済み |
+| ✅ セキュリティ分類 |実装済み |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**重要**: マニフェストは**ビルド アーティファクト**です。寄稿者は `SKILL.md` を作成します。パイプラインは JSON マニフェストを自動的に派生します。---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+マニフェストは、**すべてのランタイム サーフェス**が同じ正規化された形状を使用するように存在します。
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+|表面 |マニフェストの使用方法 |
+|:----------|:----------|
+| 🖥️**CLI**|検索、インストール計画、医師の診断 |
+| 🌐**API**|エンドポイント応答、フィルタリング、ダウンロード リンク |
+| 🔌**MCP**|ツールの応答、リソースの内容 |
+| 🤖**A2A**|検出および推奨ペイロード |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+|アーティファクト |パス |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 ルートメタデータ | `メタデータ.json` |
+| 📊 スキルごとのメタデータ | `skills/<スキル>/metadata.json` |
+| 📋 スキルインデックス | `skills_index.json` |
+| 📚 発行済みカタログ | `dist/catalog.json` |
+| 📌 スキルごとのマニフェスト | `dist/manifests/<スキル>.json` |
+| 📦 zip アーカイブ | `dist/archives/<スキル>.zip` |
+| 📦 Tarball アーカイブ | `dist/archives/<スキル>.tar.gz` |
+| 🔒 チェックサムマニフェスト | `dist/archives/<スキル>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+|フィールド |説明 |
+|:------|:-----------|
+| `スキーマ_バージョン` |マニフェスト スキーマのバージョン |
+| `id` | 「name」フィールドからの安定したスキル識別子 |
+| `ナメクジ` | `skills/` の下のディレクトリスラッグ |
+| `表示名` |最初の見出しから人間が読めるタイトル |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+|フィールド |説明 |
+|:------|:-----------|
+| `説明` |フロントマターからの短い要約 |
+| `バージョン` |スキルのバージョン (npm パッケージのバージョンとは独立) |
+| `カテゴリー` |正規カテゴリ (正規化) |
+| `生のカテゴリ` |フロントマターのオリジナルカテゴリ |
+| `分類法` |推測されたフォールバックを備えた完全な分類メタデータ |
+| `タグ` |検索可能なタグ |
+| `複雑さ` | `初心者` · `中級者` · `上級` · `専門家` |
+| 「リスク」 | `安全` · `注意` · `攻撃的` · `重大` |
+| `ソース` | `オムニチーム` · `コミュニティ` · `公式` |
+| `著者` |属性文字列 |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+|フィールド |説明 |
+|:------|:-----------|
+| `エントリポイント` |正規の `SKILL.md` パス |
+| `paths.root` |リポジトリ内のスキル ディレクトリ |
+| `paths.manifest` | `dist/` に生成されたマニフェスト パス |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+|フィールド |説明 |
+|:------|:-----------|
+| `ツール` |フロントマターからのツール識別子 |
+| `install_targets` |ツールごとのインストールメタデータ |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+各インストール ターゲットには、「tool」、「scope」、「default_path」、「installer_flag」、「current_installer_behavior」、「invocation」が含まれます。### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+|フィールド |説明 |
+|:------|:-----------|
+| `サブリソース` |スキルのサブディレクトリ (`リファレンス`、`エージェント`、`アセット`) |
+| `アーティファクト数` |スキル パッケージ内の合計ファイル数 |
+| `参照数` |参照ドキュメント数 |
+| `エージェント数` |エージェント構成数 |
+| `資産数` |アセット ファイル数 |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+|フィールド |説明 |
+|:------|:-----------|
+| `戦略` |インストール戦略 (例: `copy-skill-directory`) |
+| `current_installer` |人間が判読できるインストール動作 |
+| `レシピ` |クライアントごとのインストール レシピ |### 📊 Classification
 
-### 📊 Classification
+|セクション |フィールド |
+|:------|:------|
+| 🎯「成熟度」 | `スキルレベル`、`スキルレベルラベル` |
+| 📋 `ベストプラクティス` | `スコア` (0-100) |
+| ⭐「品質」 | `スコア` (0-100) |
+| 🛡️「セキュリティ」 | `スコア`、`ステータス` |
+| ✅「検証」 | `ステータス` |### 📝 Content
 
-| Section | Fields |
-|:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+派生信号: `body_length`、`content_length`、`body_lines`、`word_count`、および例、トラブルシューティング セクションなどの構造フラグ。### 📁 Artifacts
 
-### 📝 Content
-
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+スキル ディレクトリ内に同梱されるすべてのファイルの配列:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**アーティファクトの種類**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+|フィールド |説明 |
+|:------|:-----------|
+| `entrypoint_sha256` | SKILL.mdのハッシュ |
+| `package_sha256` |順序付けられた成果物リストからの決定的なダイジェスト |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 リポジトリパッケージのバージョンとスキルのバージョンは別の問題です。パッケージは現在「0.1.3」ですが、個々のスキルには独自のセマンティック バージョンが含まれています。---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+|ルール |理論的根拠 |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ リポジトリから派生可能である必要があります |手動によるマニフェストの作成は必要ありません。
+| ✅ 新しいオプションフィールドを追加できます |上位互換性 |
+| ⚠️ 既存のフィールドは安定したままでなければなりません |下位互換性 |
+| 🚫 手書きのマニフェストは禁止 |ビルド時の導出が真実の源である |

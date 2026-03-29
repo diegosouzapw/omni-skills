@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Сканування безпеки, створення архіву, необов’язковий підпис і розповсюджувальна упаковка для кожного опублікованого навику.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Особливість | Держава |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Статичний сканер безпеки | Завжди ввімкнено |
+| ✅ Класифікація метаданих за навичками | Реалізовано |
+| ✅ Архіви навичок (zip/tar.gz) | Реалізовано |
+| ✅ Маніфести контрольної суми SHA-256 | Реалізовано |
+| ✅ Шлюз сканера CI на тегах випуску | Реалізовано |
+| ✅ Робочий процес публікації npm із перевіреного архіву | Реалізовано |
+| ⚙️ Сканування ClamAV | Факультативний збагачувач |
+| ⚙️ Хеш-пошук VirusTotal | Факультативний збагачувач |
+| ✅ Відокремлений підпис | Реалізовано |
+| ✅ Примусове підписання CI | Реалізовані теги випуску |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Сканує всі навички під час перевірки:
 
-| Target | What Gets Scanned |
-|:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| Цільовий | Що сканується |
+|:-------|:----------------|
+| 📝 `SKILL.md` | Основний зміст уміння |
+| 📄 Розмітка/текстові файли | Пакетні посилання та документи |
+| ⚙️ Скрипти | Пакетні сценарії автоматизації |
 
-**Rule families:**
+**Контрольні сім’ї:**
 
-| Rule | Examples |
+| Правило | Приклади |
 |:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| 🎭**Швидке введення**| Шаблони ексфільтрації, перевизначення інструкцій |
+| 💣**Руйнівні команди**| `rm -rf`, `format`, `del /s` |
+| 🔑**Підвищення привілеїв**| `sudo`, `chmod 777`, шаблони setuid |
+| 📂**Підозрілі шляхи**| `/etc/shadow`, `~/.ssh`, файли облікових даних |
+| ⚠️**Ризиковані примітиви**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Вимагає `clamscan` в `PATH`
+- Сканує запаковані файли на наявність відомого шкідливого програмного забезпечення
+- Результати, записані в метаданих навичок---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Тільки хеш-пошук**— файл не завантажується під час звичайної перевірки
+— Невідомі файли залишаються лише локальними
+- Зберігає збірку**детермінованою**та незалежною від CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Ворота суворого випуску:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Цей крок читає згенерований `skills/*/metadata.json` і не виконується, якщо потрібні сканери не виконали або не повідомили про виявлення.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Дані безпеки передаються в метаданих кожного навику:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Цей блок поширюється на маніфести та перегляди каталогу, що дозволяє CLI, API та MCP**фільтрувати та ранжувати за показником безпеки**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Кожен опублікований навик генерує:
 
-| File | Format |
+| Файл | Формат |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP архів |
+| `dist/archives/<skill>.tar.gz` | Архів tarball |
+| `dist/archives/<skill>.checksums.txt` | Маніфест контрольної суми SHA-256 |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+Теги випуску GitHub Actions (`v*`):
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. Переконайтеся, що тег git відповідає `package.json`
+2. встановіть і оновіть ClamAV
+3. декодуйте ключ підпису випуску з секретів GitHub
+4. запустіть `npm run release:verify`
+5. запакуйте архів за допомогою `npm pack`
+6. опублікуйте цей точний архів у npm із зазначенням походження
+7. Створіть випуск GitHub із спеціальними примітками та доданими активами перевірки---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Якщо відкритий ключ не надано, збірка отримує його за допомогою `openssl` і розміщує його в `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Якщо ввімкнено, файли `.sig` видають поряд з архівами та маніфестом контрольної суми.
 
-In CI, release tags now require signing through:
+У CI теги випуску тепер вимагають підпису через:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` або `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- необов'язково `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` або `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
+| Обмеження | Статус |
 |:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| VirusTotal завантаження | Навмисно виключено з перевірки за замовчуванням |
+| Підписання виконавчого | Теги, що застосовуються при випуску; локальні збірки все ще можуть працювати без підпису |
+| Розміщене управління | Вбудована автентифікація, час виконання адміністратора, дозволені списки CORS/IP, режим обслуговування та журнал аудиту є на місці; зовнішні шлюзи залишаються необов'язковими |

@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Jika anda menemui isu keselamatan dalam Kemahiran Omni, jangan buka isu awam dahulu.**
 
-Please report through one of these private channels:
+Sila laporkan melalui salah satu saluran peribadi ini:
 
-| Channel | How |
+| Saluran | Bagaimana |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Nasihat Keselamatan GitHub | [Buka nasihat peribadi](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Hubungan Terus | Hubungi terus penyelenggara |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Komponen atau laluan terjejas
+- 🔄 Langkah pembiakan
+- ⚠️ Penilaian kesan
+- 🧪 Sebarang bahan bukti konsep yang diperlukan untuk mengesahkan isu tersebut
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Kami menyasarkan untuk mengakui laporan dalam masa 48 jam**dan mengutamakan pembaikan mengikut impak.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Dasar ini meliputi masa jalan dan permukaan kandungan repositori:
 
-| Component | Path |
+| Komponen | Laluan |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI dan pemasang | `tools/bin/` |
+| 📚 Perpustakaan kongsi | `alat/lib/` |
+| ⚙️ Bina dan skrip pengesahan | `alat/skrip/` |
+| 📦 Artifak katalog yang dijana | `dist/` |
+| 🌐 Pakej API, MCP dan A2A | `pakej/` |
+| 🧠 Kandungan kemahiran | `kemahiran/` — terutamanya arahan shell, akses rangkaian, aliran bukti kelayakan atau panduan sensitif keselamatan |---
 
 ## Seni Bina
 
-The repository relies on the following security controls:
+Repositori bergantung pada kawalan keselamatan berikut:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Kawalan | Penerangan |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Bidang risiko | Metadata kemahiran termasuk tahap `risiko` yang diisytiharkan |
+| 📊 Pemarkahan | Pengesahan mengira markah kematangan, amalan terbaik, kualiti dan keselamatan |
+| 🔍 Pengimbas statik | Memeriksa `SKILL.md`, fail berbungkus dan skrip pembantu |
+| 🦠 Pengimbas pilihan | Carian cincang ClamAV dan VirusTotal (apabila dikonfigurasikan) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Kawalan | Penerangan |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Keselamatan laluan | Aliran pemasangan menggunakan semakan keselamatan laluan |
+| 🔒 Allowlist menulis | Tulisan sampingan MCP tempatan dikekang oleh senarai yang dibenarkan |
+| 👁️ Lalai larian kering | Alat berorientasikan tulis lalai kepada larian kering melainkan dilumpuhkan secara eksplisit |
+| 🔐 Pengesahan & had | Pengesahan pembawa/kunci API, pengesahan masa jalan pentadbir, pengehadan kadar, senarai dibenarkan CORS/IP |
+| 📋 Audit | Pengelogan audit, mod penyelenggaraan dan ID permintaan |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Kawalan | Penerangan |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Checksum manifes | Jumlah semak SHA-256 untuk arkib yang dijana |
+| ✍️ Tandatangan | Pengesahan tandatangan terpisah dalam CI sebelum penerbitan |
+| 🧪 Semakan asap | Latihan permukaan masa jalan yang dihantar sebelum dikeluarkan |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Kerja keselamatan utama yang tinggal ialah**bukan**pengerasan garis dasar. Item terbuka ialah:
 
-| Area | Status |
+| Kawasan | Status |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Tadbir urus perusahaan | Identiti luaran, dasar get laluan dan integrasi WAF di atas kawalan semasa dalam proses |
+| 🔌 Penulis klien MCP | Penulis yang lebih luas hanya apabila kontrak konfigurasi awam cukup stabil |
+| 📊 Penapisan pengimbas | Penambahbaikan berterusan supaya kemahiran yang luar biasa kekal jelas dipisahkan daripada yang tersusun dengan baik |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Setiap kemahiran mengisytiharkan satu daripada tahap `risiko` ini:
 
-| Risk Level | Meaning |
+| Tahap Risiko | Maksudnya |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `selamat` | Tiada operasi yang merosakkan dijangka |
+| 🟡 `berhati-hati` | Boleh mengubah suai fail atau berinteraksi dengan sistem luaran |
+| 🔴 `menyerang` | Ujian keselamatan atau aliran kerja lawan yang memerlukan kebenaran jelas |
+| ⛔ `kritikal` | Berimpak tinggi atau operasi peringkat sistem |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Oleh kerana Omni Skills menghantar pembantu boleh laku, alatan tempatan yang menyedari sistem fail dan penulis konfigurasi khusus pelanggan, kelas kerentanan ini harus dianggap sebagai**keutamaan tinggi**walaupun ia kelihatan "tempatan sahaja":
 
-| Category | Examples |
+| Kategori | Contoh |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Laluan lintasan | Melarikan direktori melalui pemasangan kemahiran atau laluan konfigurasi |
+| 🔗 Keselamatan Symlink | Symlink berikut semasa pemasangan atau pengekstrakan arkib |
+| 🖥️ Pelaksanaan perintah | Suntikan arahan sewenang-wenangnya melalui kandungan kemahiran atau skrip |
+| 📦 Pengesahan arkib | Pintasan checksum atau pengesahan tandatangan |
+| 🔓 Pintasan pengesahan | Pengehadan kadar atau pintasan pengesahan pada API/MCP |
+| 🔌 Pintasan senarai benar | Pemintasan senarai dibenarkan kereta sampingan tempatan |
+| 🦠 Pengelakan pengimbas | Kelas negatif palsu dalam pengimbas statik atau luaran |

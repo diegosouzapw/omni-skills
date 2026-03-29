@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Requisiti minimi e raccomandazioni affinché una competenza venga accettata nell'archivio Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Per indicazioni sulla creazione mirate specificamente ai punteggi più alti, vedere [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+Punto di riferimento attuale per il catalogo pubblicato:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 competenze pubblicate
+- punteggio di qualità medio "96,3".
+- punteggio medio delle migliori pratiche "98,7".
+- punteggio di sicurezza medio "95,0".---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
-|:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| # | Requisito | Come verificare |
+|:--|:----|:------|
+| 1️⃣ |**Prima pagina valida**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Descrizione chiara**| La frase di una riga deve spiegare cosa fa l'abilità (10+ caratteri) |
+| 3️⃣ |**Il nome corrisponde alla directory**| Il campo `name:` ​​corrisponde esattamente al nome della cartella |
+| 4️⃣ |**Sezione panoramica**| Breve spiegazione dello scopo nel corpo del ribasso |
+| 5️⃣ |**Sezione Quando utilizzare**| Almeno 2 scenari di utilizzo specifici |
+| 6️⃣ |**Istruzioni attuabili**| Contenuti passo passo che un agente AI può eseguire |
+| 7️⃣ |**Metadati generati**| Il validatore emette `skills/<skill>/metadata.json` con successo |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | Raccomandazione | Impatto del punteggio |
+|:--|:-------|:-----|
+| 8️⃣ |**Esempi**— almeno un esempio concreto con risultati attesi | 📈 Qualità +10-15 |
+| 9️⃣ |**Best practices**— ✅ Guida per fare/❌ non fare | 📈 Migliori pratiche +5 |
+| 🔟 |**Testato con uno strumento**: verificato con almeno un assistente di codifica AI | 📈 Qualità +5 |
+| 1️⃣1️⃣ |**Tag**: tag ricercabili rilevanti per la scoperta | 📈 Migliori pratiche +10 |
+| 1️⃣2️⃣ |**Categoria**— assegnato a una categoria canonica | 📈 Migliori pratiche +10 |
+| 1️⃣3️⃣ |**Risoluzione dei problemi**: indicazioni concrete su "Sintomi" e "Soluzioni" | 📈 Migliori pratiche +5-10 |
+| 1️⃣4️⃣ |**Risorse di supporto locale**— "riferimenti/", "script/" e, idealmente, "esempi/" collegati dalla competenza | 📈 Migliori pratiche +10 |
+| 1️⃣5️⃣ |**Classificazione sana**— maturità L3, qualità 85+, migliori pratiche 90+ | 📈 Livello complessivo |
+| 1️⃣6️⃣ |**Nessun risultato critico sulla sicurezza**: lo scanner statico risulta pulito | 🛡️ Sicurezza 100|---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Problema | Perché |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Frontmatter mancante o non valido | Interrompe la pipeline di convalida |
+| ❌ Il nome non corrisponde alla directory | Interrompe la generazione del catalogo |
+| ❌ Descrizione vuota o banalmente breve | Gli utenti non possono scoprire la competenza |
+| ❌ Nessun contenuto utilizzabile (solo link o stub) | Gli agenti non possono eseguire nulla |
+| ❌ Duplicato senza netto miglioramento | Aggiungi valore, non clonare |
+| ❌ Contenuti offensivi senza tag "rischio: offensivo" | Sicurezza e conformità |
+| ❌ Risultati critici per la sicurezza | Pronta estrazione, comandi distruttivi, ecc. |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
+| Dimensione | Eccellente | Buono | Ha bisogno di lavoro |
 |:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| ⭐**Qualità**| 80+ (platino) | 60-79 (oro/argento) | <60 (bronzo/partente) |
+| 📋**Best Practices**| 90+ (eccellente) | 70-89 (buono) | <70 (discreto/necessità di lavoro) |
+| 🛡️**Sicurezza**| 95+ (indurito) | 80-94 (sicuro) | <80 (recensione necessaria) |
+| 🎯**Maturità**| L3 (script+test) | L2 (istruzioni) | L1 (solo metadati) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Per raggiungere costantemente la fascia più alta, un'abilità dovrebbe includere:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- una descrizione efficace dell'argomento principale che spieghi sia**cosa**fa l'abilità sia**quando**dovrebbe essere utilizzata
+- sezioni esplicite per "Quando utilizzare", "Flusso di lavoro", "Esempi", "Best practice", "Risoluzione dei problemi" e "Risorse aggiuntive"
+- materiale di supporto locale in "riferimenti/", "script/" e idealmente "esempi/", collegato direttamente da "SKILL.md"
+- metadati dell'agente in `agents/openai.yaml` quando la competenza deve essere richiamata direttamente nei client dell'agente
+- una piccola tabella operativa o una mappa di esecuzione equivalente quando il flusso di lavoro ne trae vantaggio
+- almeno un esempio eseguibile che punta a uno script di supporto locale o a un comando ripetibile
+- risoluzione dei problemi scritta come "Sintomi" più "Soluzione", non avvisi generici
+- profondità sufficiente per qualificarsi come "L3", non solo prosa ben formattata
+- Maggiore profondità del flusso di lavoro, risorse decisionali e diversità del pacchetto di supporto se desideri una qualità di alto livello
+- un pacchetto di supporto sufficientemente profondo da sembrare riutilizzabile, non solo presente per la copertura delle caselle di controllo
+- almeno 4 famiglie di supporto significative o la profondità equivalente in file riutilizzabili se si desidera la fascia superiore in modo coerente

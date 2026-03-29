@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**現在のオムニ スキル アーキテクチャ、ランタイム サーフェス、ビルド パイプラインの包括的な技術分析。**
+> 最終分析日: 2026-03-28---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
-|:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|属性 |値 |
+|:----------|:-----|
+|**名前**| `オムニスキル` |
+|**パッケージ版**| `0.1.3` |
+|**スキルのバージョン**|スキルごとであり、パッケージのバージョンから独立しています。公開されているスキルの多くは依然として「0.0.1」ですが、パッケージは「0.1.2」です。 |
+|**ライセンス**| MIT (コード) + CC BY 4.0 (コンテンツ) |
+|**NPM**| `npx オムニスキル` |
+|**公開されたスキル**| 32 |
+|**定義されたバンドル**| 7、すべて公開されたスキルによって完全に裏付けられています |
+|**アクティブなカタログ カテゴリ**| 18 の正規分類カテゴリから 15 のアクティブなバケット |
+|**プライマリ ランタイム/ビルド LOC は以下にサンプリングされています**| 13,600+ |
+|**運用上の依存関係**| 7 (`@modelcontextprotocol/sdk`、`cors`、`express`、`ioredis`、`ink`、`react`、`zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+`metadata.json` からの現在のリポジトリ レベルの分類スナップショット:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- 平均品質スコア: `96.3`
+- ベストプラクティスの平均スコア: 「98.7」
+- 平均セキュリティスコア: `95.0`
+- 公開されている 32 のスキルすべてが「L3」として検証されます
 
-Current release baseline:
+現在のリリースのベースライン:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- パブリックリポジトリリリース: `v0.1.2`
+- プライベート エンハンサー リリース: `v0.0.1`
+- パブリック リリースの自動化とプライベート リリースの自動化は両方ともアクティブでグリーンです---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+リポジトリは、1 つの共有カタログ コアと複数のランタイム サーフェスを備えた**ワークスペース モノリポ**パターンに従います。```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,180 +64,166 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+デザインは意図的に**アーティファクト主導**になっています。
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. スキルは「SKILL.md」とローカル サポート パックとして作成されます。
+2. ビルドはそれらを検証、分類、アーカイブ、および正規化します。
+3. 生成されたアーティファクトは、CLI、API、MCP、および A2A のコントラクトになります---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4,500 以上の LOC を組み合わせた**— 専門家とガイド付きの両方の使用のためのメインのパブリック インターフェイス。
 
-| Command | Function |
-|:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+|コマンド |機能 |
+|:--------|:--------|
+| 🔎 `検索[クエリ]` |スコアを意識したフィルターを使用した全文カタログ検索 |
+| 📦「インストール」 |既知のクライアントまたはカスタム パスへのガイド付きまたはフラグベースのインストール |
+| 🧾 `config-mcp` |クライアント対応の MCP 構成をプレビューまたは書き込みます。
+| 🔌 `mcp <トランスポート>` | `stdio`、`stream`、または `sse` で MCP サーバーを起動します。
+| 🌐 `API` |カタログ API を開始します |
+| 🤖 `a2a` | A2A ランタイムを開始します |
+| 🧪「煙」 |リリースのプリフライト検証 |
+| 🩺「ドクター」 |ローカル診断 |
+| 🖥️「うい」 |インストール、検出、構成、サービス ハブを備えたインク ビジュアル シェル |
+| 🏷️ `再分類` |分類ドリフトの検査と書き換え |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI はもはや単なるインストーラーではありません。これは、プラットフォーム全体の公開操作ツールです。## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+パブリック ランタイムは基礎的な作業でブロックされなくなり、第 2 カテゴリーの波はすでに上陸しています。次に役立つカタログ作業は、カテゴリー数を追い求めることではなく、深化することです。
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+新しくアクティブ化されたコードネイティブ トラックがカタログに追加されました:
 
-Newly activated code-native tracks now in the catalog:
+- 「design-systems-ops」、「accessibility-audit」、および「design-token-governance」を介した「design」
+- `mcp-server-authoring` 経由の `tools`
+- 「data-contracts」経由の「data-ai」
+- 「モデル提供」を介した「機械学習」
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+推奨される次の方向:
 
-Recommended next direction:
+1.「デザイン」「ツール」「データAI」「機械学習」を深化させる
+2. 明確にコードネイティブな提案が現れない限り、「ビジネス」と「コンテンツメディア」は延期したままにする
+3. カテゴリのアクティブ化圧力を再開する代わりに、現在の品質フロアを維持します。
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+その拡張ウェーブは [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md) に記録されます。### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— 7 つのインストール可能なアシスタントにスキルをインストールします。
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+|旗 |ターゲット |デフォルトのパス |
+|:-----|:----------|:---------------|
+| `--クロード` |クロード・コード | `~/.claude/skills` |
+| `--カーソル` |カーソル | `~/.cursor/skills` |
+| `--ジェミニ` |ジェミニ CLI | `~/.gemini/skills` |
+| `--コーデックス` |コーデックス CLI | `~/.codex/skills` |
+| `--キロ` |キロ | `~/.kiro/スキル` |
+| `--反重力` |反重力 | `~/.gemini/antigravity/skills` |
+| `--opencode` |オープンコード | `<ワークスペース>/.opencode/skills` |
 
-> **403 LOC** — installs skills into 7 install-capable assistants.
+以下をサポートします。
 
-| Flag | Target | Default Path |
-|:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+- フルライブラリのインストール
+- `--skill` による選択的インストール
+- `--bundle` によって厳選されたインストール
+- ガイド付き TTY およびビジュアル UI フロー
+- カスタムターゲットパス### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-It supports:
+>**828 LOC**— CLI、API、MCP、および A2A の共有ランタイム層。
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+|エクスポート |説明 |
+|:------|:-----------|
+| 🔎 `searchSkills()` |重み付けされたテキスト マッチングとフィルターのサポートによる検索 |
+| 📋 `listSkills()` |品質、ベストプラクティス、レベル、セキュリティ、リスク、ツール、カテゴリによる多軸フィルタリング |
+| 📌 `getSkill()` |マニフェスト解決と強化されたパブリック URL |
+| ⚖️ `compareSkills()` |並べて比較 |
+| 💡 `推奨スキル()` |目標に基づいた推奨事項 |
+| 📦 `buildInstallPlan()` |警告とクライアントを意識したガイダンスを含むインストール計画の生成 |
+| 🗂️ `listBundles()` |入手可能な厳選されたバンドル リスト |
+| 📁 `listSkillArchives()` |アーカイブと署名の解決 |
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+これは、生成後の実行時の真実の真の唯一のソースです。### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
+>**812 LOC**— 公式 SDK を使用した完全な MCP 実装。
 
-| Export | Description |
-|:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+**輸送**
 
-This is the real single source of runtime truth after generation.
-
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
-
-> **812 LOC** — full MCP implementation using the official SDK.
-
-**Transports**
-
-- `stdio`
-- streamable HTTP
+- `標準オーディオ`
+- ストリーミング可能なHTTP
 - SSE
 
-**Always-on read-only tools**
+**常時稼働の読み取り専用ツール**
 
-- `search_skills`
-- `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
+- `検索スキル`
+- `スキルの取得`
+- `スキルの比較`
+- `推奨スキル`
+- `プレビュー_インストール`
 
-**Local-mode tools**
+**ローカルモードツール**
 
 - `detect_clients`
-- `list_installed_skills`
+- `インストールされたスキルのリスト`
 - `install_skills`
-- `remove_skills`
+- `スキルの削除`
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+MCP サーフェスは、以下の間で意図的に分割されています。
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- リモート/読み取り専用カタログの使用
+- ローカル/書き込み可能なサイドカーの使用### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1,943 LOC**— クライアント検出、スキル管理、および MCP 設定書き込み用のファイルシステム対応 MCP レイヤー。
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+現在の実際的なサポート:
 
-Current practical support:
+-**7 台のインストール可能なクライアント**
+-**16 個の構成可能なクライアント**
+-**33 の構成ターゲット**
+-**19 構成プロファイル**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
+インストール可能なクライアント:
 
-Install-capable clients:
+- クロード・コード
+- カーソル
+- ジェミニ CLI
+- コーデックス CLI
+- キロ
+- 反重力
+- オープンコード
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+構成可能なクライアントとターゲットには次のものがあります。
 
-Config-capable clients and targets include:
+- クロード設定、クロードデスクトップ、およびクロードプロジェクト構成
+- カーソルユーザーとワークスペース構成
+- VS Code ワークスペース、ユーザー、インサイダー、および開発コンテナー構成
+- Gemini ユーザーとワークスペースの設定
+- 反重力ユーザー設定
+- Kiro ユーザー、ワークスペース、レガシー パス
+- Codex CLI TOML 構成
+- OpenCode ユーザーとワークスペースの構成
+- クライン設定
+- GitHub Copilot CLI ユーザーとリポジトリ設定
+- Kilo ユーザー、プロジェクト、およびワークスペース構成
+- ワークスペース YAML を続行します
+- ウィンドサーフィンのユーザー設定
+- Zed ワークスペース構成
+- グースのユーザー設定
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+サイドカーは境界について意図的に正直です。
 
-The sidecar is intentionally honest about boundaries:
+- 許可リスト内のみに書き込みます
+- デフォルトでプレビューが表示されます
+- 公式ドキュメントが安定した形式を公開している場合にのみ、一流のライターを維持します
+- すべての MCP 対応製品がスキルのインストール対象であるかのように装うわけではありません### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+>**715 LOC の組み合わせ**— 読み取り専用レジストリ API とガバナンス ミドルウェア。
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
-
-> **715 LOC combined** — read-only registry API plus governance middleware.
-
-Important endpoints:
+重要なエンドポイント:
 
 - `/healthz`
 - `/openapi.json`
-- `/admin/runtime`
-- `/v1/skills`
+- `/admin/ランタイム`
+- `/v1/スキル`
 - `/v1/skills/:id`
 - `/v1/search`
 - `/v1/compare`
@@ -251,140 +231,130 @@ Important endpoints:
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+ガバナンスのベースラインはすでに実装されています:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- ベアラートークン認証
+- APIキー認証
+- 管理者トークン認証
+- プロセス中のレート制限
+- リクエストID
+- 監査ログ
+- CORS 許可リスト
+- IP許可リスト
+- トラストプロキシの処理
+- メンテナンスモード### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**メイン サーバー、ランタイム、コーディネーター ファイルを合わせた 1,857 個の LOC**— エージェント間のワークフローの JSON-RPC 2.0 タスク ライフサイクル。
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+サポートされているメソッド:
 
-Supported methods:
-
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
+- `メッセージ/送信`
+- `メッセージ/ストリーム`
+- `タスク/取得`
+- `タスク/キャンセル`
+- `タスク/再購読`
 - `tasks/pushNotificationConfig/*`
 
-Current operations:
+現在の業務:
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+- `スキルの発見`
+- `推奨スタック`
+- `インストール計画の準備`
 
-Durability and coordination model:
+耐久性と調整モデル:
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
+- メモリ、JSON、または SQLite のローカル永続性
+- 再開再開
+- オプションの外部プロセス実行プログラム
+- 共有 SQLite ワーカーのオプトイン リース キュー調整
+- 高度なホスト パスとしてのオプションの Redis ベースの調整
 
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+ここでの重要なアーキテクチャ上の選択は、**シンプルファーストのローカル操作**です。 Redis は高度なオプションとして存在しますが、デフォルトの製品パスはローカルのままで依存関係が軽いです。---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
-|:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+|スクリプト |言語 |目的 |
+|:------|:----------|:----------|
+| 📊 `skill_metadata.py` |パイソン |検証、分類、スコアリング、および静的セキュリティ スキャン |
+| ✅ `validate_skills.py` |パイソン |スキルごとおよびルートのメタデータ生成の概要 |
+| 📑 `generate_index.py` |パイソン |スキルのインデックス、マニフェスト、アーカイブ、署名、チェックサム |
+| 🏗️ `build_catalog.js` | Node.js |最終的な `dist/catalog.json` と `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` |パイソン |正規カテゴリの監査と書き換え |
+| 🔍 `verify_archives.py` |パイソン |アーカイブと署名の検証 |
 
-Two details matter operationally:
+運用上は 2 つの詳細が重要です。
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. `dist/` はランタイム コントラクトの一部であり、意図的にコミットされています
+2. ビルドは CI 検証とリリース署名をサポートするのに十分な決定性を持っています---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+現在の公開カタログには 32 のスキルが含まれています。
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**発見と計画**: 「スキルの発見」、「ブレインストーミング」、「アーキテクチャ」、「デバッグ」
+-**デザイン システムとアクセシビリティ**: `design-systems-ops`、`accessibility-audit`
+-**製品およびフルスタックの配信**: `frontend-design`、`api-design`、`database-design`、`omni-figma`、`auth-flows`
+-**セキュリティ**: `セキュリティ監査`、`脆弱性スキャナ`、`インシデント対応`、`脅威モデリング`
+-**OSS メンテナーのワークフロー**: `documentation`、`changelog`、`create-pr`
+-**DevOps**: `docker-expert`、`kubernetes`、`terraform`、`observability-review`、`release-engineering`
+-**AI エンジニアリング**: `rag-engineer`、`prompt-engineer`、`llm-patterns`、`eval-design`、`context-engineering`
 
-All seven bundles are fully backed:
+7 つのバンドルはすべて完全にサポートされています。
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
+- `必需品` → `4/4`
+- `フルスタック` → `5/5`
+- `デザイン` → `4/4`
+- `セキュリティ` → `4/4`
 - `devops` → `5/5`
-- `ai-engineer` → `5/5`
+- `ai-エンジニア` → `5/5`
 - `oss-maintainer` → `4/4`
 
-Current score spread from the generated catalog:
+生成されたカタログからの現在のスコアの分布:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- 品質スコア: `94、95、96、97、100`
+- ベストプラクティスのスコア: `98、99、100`
+- セキュリティスコア: 現在公開されているすべてのスキルは `95`
 
-Representative high end:
+代表的なハイエンド:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
-- `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+- `omni-figma` → `quality 100`、`best_practices 100`
+- `アクセシビリティ監査` → `品質 99`、`ベストプラクティス 100`
+- `auth-flows` → `quality 97`、`best_practices 99`
+- `設計システム運用` → `品質 97`、`ベストプラクティス 99`
+- `リリースエンジニアリング` → `品質 97`、`ベストプラクティス 99`
+- 「脅威モデリング」 → 「品質 97」、「ベストプラクティス 99」
+- `コンテキストエンジニアリング` → `品質 97`、`ベストプラクティス 99`
 
-Representative lower end inside the current top band:
+現在のトップバンド内の代表的な下限:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `アーキテクチャ` → `品質 94`、`ベストプラクティス 98`
+- `changelog` → `quality 94`、`best_practices 98`
+- `create-pr` → `quality 95`、`best_practices 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+これは意図的なものです。採点者は、カタログ全体を上位で平坦にするのではなく、「優秀」と「例外的」を区別するようになりました。---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**アーティファクトファーストの設計**
+   すべてのランタイム サーフェスは、生成された同じカタログとマニフェストを使用します。
+2.**幅広いプロトコルをカバー**
+   CLI、API、MCP、および A2A は、データ モデルを断片化することなく共存します。
+3.**強力な現地製品の人間工学**
+   ガイド付きインストール、ビジュアル シェル、「config-mcp」、デフォルトのドライランにより、パワー ユーザー以外でもプロジェクトを使用できるようになります。
+4.**誠実なセキュリティ体制**
+   ホワイトリストに登録されたローカル書き込み、静的スキャン、署名、チェックサム、リリース検証はすべて明示的です。
+5.**健全な MCP リーチ**
+   このプロジェクトは現在、文書化されていないターゲットが安定しているかのように装うことなく、現在の MCP 対応クライアントの幅広いセットをサポートしています。---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**より深いバンドルの適用範囲**
+   次のステップは、幅広い範囲をカバーするだけでなく、既存のバンドル内の専門化です。
+2.**より豊富なスコアラー セマンティクス**
+   参照パックの深さとワークフローの品質をより意味的に評価する余地はまだあります。
+3.**正当な場合にのみクライアント ライターを追加**
+   拡張は規律を保ち、安定した公式ドキュメントに結び付ける必要があります。
+4.**バリデーターの分解**
+   `skill_metadata.py` はまだ大きなモジュールなので、時間の経過とともに内部分解の恩恵を受けるでしょう。
+5.**ホスト型ガバナンス エスカレーション**
+   現在のインプロセス ベースラインはセルフホスティングには十分ですが、エンタープライズ展開では最終的には外部ゲートウェイと ID の統合が必要になります。

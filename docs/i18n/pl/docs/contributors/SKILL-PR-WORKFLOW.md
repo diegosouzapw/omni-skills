@@ -5,69 +5,55 @@
 ---
 
 
-This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
+Jest to kanoniczny przepływ repozytorium dla żądań ściągnięcia, które dodają lub znacząco ulepszają jedną lub więcej umiejętności natywnych.
 
-Use it when:
+Użyj go, gdy:
 
-- adding a new skill under `skills/`
-- deepening a bundle with new domain skills
-- shipping a larger support-pack expansion
-- validating a branch with the private enhancer before maintainers merge it
+- dodanie nowej umiejętności w zakładce `umiejętności/`
+- pogłębienie pakietu o nowe umiejętności dziedzinowe
+- wysyłka większego rozszerzenia pakietu wsparcia
+- sprawdzanie gałęzi za pomocą prywatnego wzmacniacza przed połączeniem jej przez opiekunów## Target Outcome
 
-## Target Outcome
+Silna natywna umiejętność PR obejmuje:
 
-A strong native skill PR lands with:
+- natywna umiejętność w zakładce `umiejętności/`
+- wystarczająca ilość treści, aby publiczny walidator mógł ją sklasyfikować i zaindeksować
+- przejście publicznej walidacji i testów
+- automatyczne przetwarzanie wzmacniaczy podczas PR
+- dalszy PR `skills_omni/` w przypadku publikacji ulepszonych instrumentów pochodnych
+- rodzime spożycie, w razie potrzeby zachowane w oryginalnym języku
+- wybrane ulepszone wyniki przepisane na język angielski
+- jednokierunkowy przepływ natywny do wyselekcjonowanego, który nie zasila `skills_omni/` z powrotem do spożycia natywnych wzmacniaczy## Enhancer Outcome States
 
-- a native skill under `skills/`
-- enough content for the public validator to classify and index it
-- passing public validation and tests
-- automatic enhancer processing during the PR
-- a follow-up `skills_omni/` PR when enhanced derivatives are published
-- native intake preserved in its original language when needed
-- curated enhanced output rewritten into English
-- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
+Publiczny wzmacniacz PR zgłasza teraz cztery stany widoczne dla opiekuna:
 
-## Enhancer Outcome States
+- „ukończone”.
+  Ulepszona pochodna została wygenerowana czysto i kwalifikuje się do publikacji towarzyszącej `skills_omni/`.
+- „zdegradowany”.
+  Wzmacniacz zakończył działanie, ale użył ścieżki awaryjnej lub wygenerował ostrzeżenia. Nadal oczekuje się przeglądu przez konserwatora przed uznaniem instrumentu pochodnego za zdrowy.
+- „zablokowany”.
+  Przebieg został zatrzymany z powodu problemów z infrastrukturą lub walidacją, takich jak błąd wstępnej inspekcji hostowanego OmniRoute lub błąd sprawdzania poprawności kandydata, który powinien uniemożliwić publikację.
+- „nie udało się”.
+  Wzmacniacz napotkał nieoczekiwany błąd w czasie wykonywania i wymaga sprawdzenia przez opiekuna.## Recommended Branch Shape
 
-The public PR enhancer now reports four maintainer-visible states:
-
-- `completed`
-  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
-- `degraded`
-  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
-- `blocked`
-  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
-- `failed`
-  The enhancer hit an unexpected runtime error and needs maintainer investigation.
-
-## Recommended Branch Shape
-
-Create a focused branch:
-
-```bash
+Utwórz skupioną gałąź:```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Examples:
+Przykłady:
 
-- `feat/incident-observability-evals`
-- `feat/devops-skill-pack`
-- `feat/security-skill-pack`
+- `ocena-obserwowalności wyczynów/incydentów'
+- `feat/devops-pakiet umiejętności`
+- `pakiet umiejętności/wyczynów bezpieczeństwa`## Native Intake Rules
 
-## Native Intake Rules
+Powierzchnia wlotu publicznego jest celowo liberalna.
 
-The public intake surface is intentionally permissive.
-
-Minimum:
-
-```text
+Minimum:```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Recommended but no longer required for intake:
-
-```text
+Zalecane, ale nie wymagane do spożycia:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -77,143 +63,125 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
+Natywny wkład może być przybliżony, niekompletny lub wykraczać poza normalny standard pakietu wsparcia. To jest zamierzone. „umiejętności/” to natywna powierzchnia odbioru, a nie wyselekcjonowana powierzchnia pochodna.
 
-Language policy:
+Polityka językowa:
 
-- native intake under `skills/` may be written in any language
-- the enhancer keeps the native snapshot as submitted for provenance
-- the curated derivative under `skills_omni/` must always be written in English
+- rodzime spożycie w rubryce `umiejętności/` może być zapisane w dowolnym języku
+- wzmacniacz zachowuje natywną migawkę w postaci przesłanej w celu sprawdzenia pochodzenia
+- wyselekcjonowana wersja pochodna pod `skills_omni/` musi zawsze być napisana w języku angielskim
 
-The stricter editorial bar now applies to:
+Bardziej rygorystyczny pasek redakcyjny ma teraz zastosowanie do:
 
-- the generated metadata and security checks
-- the private enhancer review
-- the follow-up curated derivative under `skills_omni/`
+- wygenerowane metadane i kontrole bezpieczeństwa
+- prywatna recenzja wzmacniacza
+- następna pochodna wybrana w ramach `skills_omni/`## Authoring Sequence
 
-## Authoring Sequence
+1. Utwórz `skills/<skill>/SKILL.md`.
+2. Dodaj frontmater, jeśli możesz, ale brakujący lub niekompletny frontmater nie blokuje już sam w sobie natywnego spożycia.
+3. Dodaj `agents/`, `references/`, `examples/` i `scripts/`, jeśli już je masz.
+4. Zaktualizuj plik `data/bundles.json`, jeśli umiejętność pogłębia istniejący pakiet.
+5. Otwórz PR. Automatyzacja repo zajmie się teraz resztą.## Validation Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
-2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
-3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
-4. Update `data/bundles.json` if the skill deepens an existing bundle.
-5. Open the PR. The repo automation now does the rest.
-
-## Validation Sequence
-
-Contributors can run this exact sequence before opening the PR:
-
-```bash
+Współautorzy mogą uruchomić dokładnie tę sekwencję przed otwarciem PR:```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-If the change also affects runtime or packaging behavior, also run:
-
-```bash
+Jeśli zmiana wpływa również na środowisko wykonawcze lub zachowanie opakowania, uruchom także:```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+Kiedy PR otwiera się lub synchronizuje i dotyczy tylko natywnych plików pobierania umiejętności w obszarze `skills/` plus opcjonalny plik `data/bundles.json`, publiczne repozytorium teraz automatycznie uruchamia prywatny wzmacniacz.
 
-Current automated flow:
+Aktualny zautomatyzowany przepływ:
 
-1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
-2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
-3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
-4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
-5. The enhancer posts progress back to the source PR.
-6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
-7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
-8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
-9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
+1. Publiczny przepływ pracy „Weryfikuj umiejętności” działa na PR i sprawdza walidację, kompilację, wygenerowane artefakty i testy.
+2. Publiczny przepływ pracy „Wzmocnij umiejętności PR” rozpoczyna się równolegle i przetwarza zmienione umiejętności natywne jedna po drugiej w trybie „na żywo”.
+3. Osoba wzmacniająca odczytuje natywną umiejętność z „umiejętności/”, bada aktualne najlepsze praktyki i zapisuje sprawdzonego ulepszonego kandydata w prywatnej przestrzeni roboczej.
+4. W razie potrzeby moduł wzmacniający przechowuje migawkę poboru danych w oryginalnym języku, ale przepisuje wyselekcjonowane dane wyjściowe w języku angielskim.
+5. Wzmacniacz publikuje postęp z powrotem do źródłowego PR.
+6. Wzmacniacz aktualizuje komentarz statusu PR po każdej przetworzonej umiejętności, podając sumę partii i najnowszy stan.
+7. Po zakończeniu materializuje ulepszoną pochodną w `skills_omni/` i otwiera lub aktualizuje towarzyszący PR w publicznym repo tylko dla „ukończonych” i „zdegradowanych” wyników.
+8. Po połączeniu PR z `main`, prywatny moduł odpytujący obsługujący repo ponownie przetwarza wszelkie zmienione umiejętności natywne, odświeża `workspace/enhanced/skills/<skill>/` i utrzymuje ulepszoną prywatną linię bazową zgodną z najnowszym publicznym natywnym źródłem.
+9. Po połączeniu przepływ pracy dotyczący wydania publicznego podbija wersję pakietu npm, ponownie generuje artefakty katalogu, publikuje wydanie i automatycznie oznacza nową wersję.
 
-Rate limit:
+Limit stawki:
 
-- the PR enhancer currently processes **1 skill per minute**
-- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
-- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
+- wzmacniacz PR aktualnie przetwarza**1 umiejętność na minutę**
+- PR z 40 natywnymi nowymi umiejętnościami może zatem pozostać w kolejce ulepszeń przez około 40 minut
+- PR pokazuje, że działa jako proces CI w toku, plus komentarz dotyczący postępu, który rozwija umiejętność po umiejętności
 
-The contributor does not need to run the enhancer manually.
+Kontrybutor nie musi ręcznie uruchamiać wzmacniacza.## No-Loop Rule For `skills_omni/`
 
-## No-Loop Rule For `skills_omni/`
+Wyselekcjonowana powierzchnia jest celowo jednokierunkowa:
 
-The curated surface is intentionally one-way:
+- natywne wejście wchodzi poprzez `skills/`
+- prywatny wzmacniacz sprawdza natywne dane wejściowe
+- wyselekcjonowane wyniki są proponowane w `skills_omni/`
+- `skills_omni/` nigdy więcej nie będzie traktowane jako natywne
+- późniejsze aktualizacje natywne nadal są ponownie wprowadzane poprzez `umiejętności/` i zastępują prywatną ulepszoną linię bazową po ponownym przetworzeniu
 
-- native input enters through `skills/`
-- the private enhancer reviews that native input
-- curated output is proposed into `skills_omni/`
-- `skills_omni/` is never treated as native intake again
-- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
+Repozytorium wymusza teraz tę granicę:
 
-The repository now enforces that boundary:
+- bezpośrednie publiczne PR modyfikujące `skills_omni/` są odrzucane
+- akceptowane są tam tylko PR towarzyszące autorstwa automatyzacji z rodziny gałęzi `skills-omni/pr-*`
+- mieszane PR, które próbują zmienić jednocześnie `skills/` i `skills_omni/` są odrzucane## Automatic Versioning After Merge
 
-- direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
-- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
+Łączenie umiejętności z „głównym” uruchamia teraz automatycznie proces wydawania repozytorium.
 
-## Automatic Versioning After Merge
+Aktualne zasady dotyczące wersji pakietu:
 
-Skill-bearing merges to `main` now trigger the repository release workflow automatically.
-
-Current package version policy:
-
-- patch increments by `+1` for each qualifying merge
+- przyrost łatki o `+1` dla każdego kwalifikującego się połączenia
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- after `.10`, the package rolls to the next minor and resets patch
+- po `.10` pakiet przechodzi do następnego mniejszego i resetuje łatkę
 - `0.0.10` → `0.1.0`
 - `0.1.10` → `0.2.0`
 
-Current release trigger paths:
+Ścieżki wyzwalacza bieżącej wersji:
 
-- `skills/**`
-- `skills_omni/**`
+- `umiejętności/**`
+- `umiejętności_omni/**`
 - `data/bundles.json`
 
-That automatic release job:
+To zadanie automatycznego zwalniania:
 
-1. computes the next package version from `package.json`
-2. bumps `package.json` and `package-lock.json`
-3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
-4. runs the strict release verification pipeline
-5. commits the version bump back to `main`
-6. creates a Git tag for the new version
-7. publishes npm and GitHub Release artifacts
+1. oblicza następną wersję pakietu z `package.json`
+2. podbija `package.json` i `package-lock.json`
+3. regeneruje `metadata.json`, `skills_index.json`, `dist/` i `docs/CATALOG.md`
+4. prowadzi proces ścisłej weryfikacji wydania
+5. zatwierdza zmianę wersji z powrotem na `main`
+6. tworzy tag Git dla nowej wersji
+7. publikuje artefakty wydania npm i GitHub
 
-Important rollout note:
+Ważna uwaga dotycząca wdrożenia:
 
-- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
-- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
-- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
+- GitHub rejestruje nowy plik przepływu pracy jako przepływ pracy aktywnego repozytorium dopiero wtedy, gdy plik ten dotrze do gałęzi domyślnej.
+- Dopóki opcja „Wzmocnij umiejętności PR” nie znajdzie się na liście „głównej”, współautorzy mogą czytać udokumentowany proces, ale GitHub nie wykona jeszcze automatycznie tego przepływu pracy w przypadku publicznych PR.
+- Po połączeniu przepływu pracy z „głównym”, zachowanie opisane powyżej staje się domyślną ścieżką przyjmowania przyszłych wymagań PR dotyczących umiejętności natywnych.## Native vs Enhanced
 
-## Native vs Enhanced
+To repozytorium ma teraz dwie różne powierzchnie:
 
-This repo now has two distinct surfaces:
+- `umiejętności/`
+  Natywne spożycie. Dzięki temu oryginalny wkład zostanie zachowany w formie przesłanej.
+- `umiejętności_omni/`
+  Omni-ulepszone produkty pochodne zaproponowane przez automatyzację i utrzymywane przez zespół Omni Skills.
 
-- `skills/`
-  Native intake. This preserves the original contribution as submitted.
-- `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+Reguły przypisania dla `skills_omni/`:
 
-Attribution rules for `skills_omni/`:
+- ulepszona pochodna staje się Omni-utrzymywana
+- oryginalny współtwórca i natywne umiejętności wyższego szczebla pozostają uznane
+- każdy rozszerzony katalog przechowuje plik `ATTRIBUTION.md` ze ścieżką źródłową, PR, autorem i kontekstem źródłowym
+- każdy ulepszony katalog jest wyłącznie produktem wyjściowym i nie można go ponownie przesłać do ścieżki pobierania natywnego wzmacniacza
+- oczekuje się, że każdy rozszerzony katalog będzie generowany w języku angielskim, nawet jeśli pierwotne źródło źródłowe nie było## Manual Maintainer Commands
 
-- the enhanced derivative becomes Omni-maintained
-- the original contributor and upstream native skill remain credited
-- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
-- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
-- each enhanced directory is expected to be English-language output even when the upstream native source was not
+Automatyzacja obejmuje normalne pobieranie PR, ale opiekunowie mogą nadal ręcznie uruchamiać prywatny wzmacniacz, jeśli zajdzie taka potrzeba.
 
-## Manual Maintainer Commands
-
-The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
-
-Batch against a branch diff:
-
-```bash
+Partia względem różnicy gałęzi:```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -223,9 +191,7 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Single-skill review:
-
-```bash
+Przegląd pojedynczej umiejętności:```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -233,44 +199,38 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Expected enhancer outputs per skill:
+Oczekiwane produkty wzmacniające na umiejętność:
 
-- `workspace/incoming/original/<run-id>/<skill>/`
-- `workspace/enhanced-candidates/<run-id>/<skill>/`
+- `obszar roboczy/przychodzący/oryginalny/<id-run>/<umiejętność>/`
+- `workspace/enhanced-canndidates/<run-id>/<skill>/`
 - `workspace/reports/<run-id>/research.json`
 - `workspace/reports/<run-id>/rewrite.json`
 - `workspace/reports/<run-id>/validation.json`
 - `workspace/reports/<run-id>/score-delta.json`
 - `workspace/reports/<run-id>/review.md`
 - `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`
+- `workspace/reports/<run-id>/rewrite-prompt.md`## PR Body Expectations
 
-## PR Body Expectations
+Organ PR powinien określić:
 
-The PR body should state:
+- jakie umiejętności zostały dodane lub ulepszone
+- jakie pakiety lub przepływy pracy pogłębiają
+- jaka weryfikacja została przeprowadzona
+- czy automatyczny wzmacniacz działał
+- czy otworzył lub zaktualizował PR towarzyszący `skills_omni/`
+- wszelkie wyjątkowe notatki opiekuna dotyczące przypisania lub dalszego czyszczenia## Reviewer Checklist
 
-- what skills were added or upgraded
-- which bundles or workflows they deepen
-- what validation ran
-- whether the automated enhancer ran
-- whether it opened or updated a `skills_omni/` companion PR
-- any exceptional maintainer notes about attribution or follow-up cleanup
+- pobranie natywne jest legalne i nie jest złośliwe
+- odświeżono wygenerowane metadane i manifesty
+- aktualizacje pakietów są zamierzone
+- wyniki publicznej walidacji i kompilacji są zielone
+- komentarz dotyczący statusu wzmacniacza odpowiada faktycznie zmienionym umiejętnościom i stanowi końcowego wyniku
+- dowolny PR towarzyszący `skills_omni/` poprawnie zachowuje atrybucję## Example PR Scope
 
-## Reviewer Checklist
+Dobry przykład PR może dodać zestaw tematyczny taki jak:
 
-- native intake is legitimate and non-malicious
-- generated metadata and manifests were refreshed
-- bundle updates are intentional
-- public validation and build outputs are green
-- the enhancer status comment matches the actual changed skills and final outcome state
-- any `skills_omni/` companion PR preserves attribution correctly
+- jedna obserwowalność lub umiejętność DevOps
+- jeden incydent lub umiejętność bezpieczeństwa
+- jedna umiejętność oceny lub podpowiedzi AI
 
-## Example PR Scope
-
-A strong example PR can add a thematic set such as:
-
-- one observability or DevOps skill
-- one incident or security skill
-- one AI evaluation or prompting skill
-
-That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.
+Jest wystarczająco duży, aby korzystać z funkcji oceniania, automatycznego wzmacniacza, przepływu publikacji „skills_omni/”, pakietów i modelu atrybucji bez konieczności przekształcania PR w pełne przepisanie katalogu.

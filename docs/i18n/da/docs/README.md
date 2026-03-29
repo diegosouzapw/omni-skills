@@ -6,115 +6,101 @@
 
 <!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
 
-> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
+>**Den centrale reference til at bruge, betjene, udvide og forstå den nuværende Omni Skills-platform.**
 
-Standard community files live in the repository root:
-[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
-
----
+Standard fællesskabsfiler findes i lagerroden:
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_DUCT.md)---
 
 ## 📊 Status Snapshot
 
-| Area | State | Details |
+| Område | Stat | Detaljer |
 |:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
-| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
-| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
-| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
-| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
-| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
-| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
-| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+| 🏗️**Køretid**| ✅ Nuværende | Unified CLI, Ink visual shell, API, MCP og A2A sendes alle fra den samme pakke |
+| 📦**Katalog**| 📌 32 færdigheder | 32 offentliggjorte 'L3'-færdigheder på tværs af 15 aktive katalogkategorier og 7 bundter med fuld støtte |
+| 🎯**Installer**| ✅ Nuværende | Guidet TTY-installation, selektiv `--skill` og `--bundle`, brugerdefineret stiunderstøttelse og opdagelsesdrevet installation |
+| 🌐**API**| ✅ Nuværende | Skrivebeskyttet registrerings-API med godkendelse, admin-runtime, hastighedsbegrænsning, CORS/IP-tilladelseslister, vedligeholdelsestilstand og downloads |
+| 🔌**MCP**| ✅ Nuværende | `stdio` · `stream` · `sse`, lokal sidevognstilstand, 7 installationskompatible klienter, 16 konfigurationskompatible klienter, 33 konfigurationsmål og 19 konfigurationsprofiler |
+| 🤖**A2A**| ✅ Nuværende | Simpel-første lokal kørselstid med JSON/SQLite-holdbarhed, genstart-genoptagelse, SSE-streaming, annullering, ekstern eksekveringstilstand og valgfri leaset koordinering, når det udtrykkeligt er aktiveret |
+| 🛡️**Sikkerhed**| ✅ Nuværende | Statisk scanner, valgfri ClamAV/VirusTotal, underskrevne udgivelsesartefakter, arkivkontrolsummer og verifikation af udgivelsestidspunkt |
+| 📋**Klassificering**| ✅ Nuværende | Kanonisk taksonomi, modenhed, semantisk kvalitetsspredning, spredning af bedste praksis og sikkerhedsscoring |
+| 📁**Arkiv**| ✅ Nuværende | Per-skill `.zip` og `.tar.gz` arkiver med SHA-256 checksum manifester |
+| 🔐**Underskrift**| ✅ Nuværende | Adskilte signaturer håndhæves på frigivelsesmærker; lokale installationsflows bruger de samme manifest- og kontrolsummetadata |
+| 🧬**Indtagsflow**| ✅ Nuværende | Native skills lander under `skills/`; PR-automatisering gennemgår dem og foreslår Omni-forbedrede derivater under `skills_omni/` |## 🔭 Current Project State
 
-## 🔭 Current Project State
+Grundsporet lever nu i den aktive projekttilstand, og den anden kategori-udvidelsesbølge er allerede i kataloget. Projektet skal nu læses som en fungerende baseline med valgfrie fremtidige ekspansionsspor:
 
-The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
+- offentlige `v0.1.2` og private `v0.0.1` er det aktuelle stabile udgivelsesgulv
+- Kataloget dækker nu 32 offentliggjorte færdigheder fordelt på 15 aktive kategorier og 7 fuldt understøttede bundter
+- native indtag og kurateret `skills_omni/` output er begge operationelle, inklusive flersproget native indtag og kun engelsk kurateret output
+- Protokoloverflader, udgivelsesautomatisering og privat forbedringsautomatisering er i drift, ikke i bootstrap
 
-- public `v0.1.2` and private `v0.0.1` are the current stable release floor
-- the catalog now covers 32 published skills across 15 active categories and 7 fully backed bundles
-- native intake and curated `skills_omni/` output are both operational, including multilingual native intake and English-only curated output
-- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+Fremtidig udvidelse forbliver bevidst:
 
-Future expansion stays deliberate:
+- uddybe `design`, `værktøjer`, `data-ai` og `machine-learning`
+- undgå at genåbne slumrende ikke-kodeindfødte kategorier, indtil de nuværende kodeindfødte spor har stærkere dybde
+- Hold kvalitetsgulvet og forstærkerens gennemgang intakt, mens du gør det
 
-- deepen `design`, `tools`, `data-ai`, and `machine-learning`
-- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
-- keep the quality floor and enhancer review path intact while doing so
+Planen er nu opdelt i:
 
-That plan is now split into:
-
-- the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-- and the forward-looking backlog in [tasks/README.md](tasks/README.md)
-
----
+- den afsluttede første udvidelsesbølge i [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
+- den afsluttede anden udvidelsesbølge i [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
+- og det fremadrettede efterslæb i [tasks/README.md](tasks/README.md)---
 
 ## 📌 Current Decisions
 
-These architecture questions are no longer “open” in practice and are now treated as project decisions:
+Disse arkitekturspørgsmål er ikke længere "åbne" i praksis og behandles nu som projektbeslutninger:
 
-1. **Distribution stays manifest-first plus signed archives**
-   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
-2. **Private or premium catalogs should reuse the same manifest schema**
-   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
-3. **MCP config should converge on a few canonical export families**
-   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+1.**Distribution forbliver manifest-først plus signerede arkiver**
+   Det maskinlæsbare manifest forbliver kontrakten, der forbruges af CLI, API, MCP og A2A. Underskrevne per-skill-arkiver er download- og frigivelsesoverfladen lagt oven på den kontrakt.
+2.**Private eller premium-kataloger bør genbruge det samme manifest-skema**
+   Godkendelse og politik bør være lagdelt eksternt, ikke ved at forkaste manifestet eller katalogformen.
+3.**MCP-konfiguration bør konvergere på nogle få kanoniske eksportfamilier**
+   Omni Skills standardiserer nu omkring JSON `mcpServers`, JSON `servere`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions` og TOML `[mcp_servers]`, mens de kun beholder skræddersyede writers, hvor officielle klientdokumenter kræver en anden struktur.
 
-Those decisions align with current official MCP and client documentation, including:
+Disse beslutninger stemmer overens med den nuværende officielle MCP og klientdokumentation, herunder:
 
-- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
-- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
-- VS Code MCP extension and product docs at `code.visualstudio.com`
-- client docs for Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman, and JetBrains AI Assistant
-
----
+- officiel MCP-registrering og udvidelsesstøttevejledning på `modelcontextprotocol.io`
+- OpenAI Docs MCP og Codex CLI-dokumenter på `developers.openai.com` og `platform.openai.com`
+- VS Code MCP-udvidelse og produktdokumenter på `code.visualstudio.com`
+- klientdokumenter til Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman og JetBrains AI Assistant---
 
 ## 🚀 Start Here
 
 ### 👤 If You Want to **Use** the Project
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
-| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
-| 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
-| 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
-| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot the runtime |
+| Doc | Hvad du vil lære |
+|:----|:------------------------|
+| 📘 [Kom godt i gang](brugere/KOM I GANG.md) | Installer, bekræft og påkald din første færdighed |
+| 🧭 [CLI-brugervejledning](users/CLI-USER-GUIDE.md) | Fuld kommandoreference og CLI-brugsmønstre i den virkelige verden |
+| 📗 [Brugsvejledning](brugere/USAGE.md) | CLI-kommandoer, installationstilstande, runtime-kommandoer og MCP-konfigurationsflow |
+| 📦 [Bundler](brugere/BUNDLES.md) | Kurerede bundter og deres nuværende tilgængelighed |
+| 📚 [Katalog](CATALOG.md) | Autogenereret katalog over offentliggjorte færdigheder |
+| 🔧 [System Runbook](operations/RUNBOOK.md) | Byg, servér, sikre og fejlfind kørselstiden |### 🏗️ If You Want to **Understand** the Runtime
 
-### 🏗️ If You Want to **Understand** the Runtime
+| Doc | Hvad du vil lære |
+|:----|:------------------------|
+| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Arkitekturudvikling, lukkede beslutninger og resterende udvidelsesområder |
+| 🧭 [CLI UX-køreplan](arkitektur/CLI-UX-ROADMAP.md) | Historisk plan og nuværende form af den guidede og visuelle CLI |
+| 📐 [ADR-0001: Workspace Foundation](arkitektur/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo og shared runtime-beslutning |
+| 🔬 [Kodebaseanalyse](arkitektur/CODEBASE-ANALYSIS.md) | Nuværende runtime-sammensætning, tællinger og systemgrænser |
+| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP-slutpunkter, filtrering, styring og downloads |
+| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Adfærdskontrakt for den guidede installatør |
+| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Blækvisuel skal, tilstandsmodel og servicehub |
+| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filsystembevidste værktøjer, tilladelseslistemodel og konfigurationsskrivning |
+| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Understøttede CLI- og IDE-klienter, skribenter, manuelle mål og kildehenvisninger |
+| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taksonomi, scoreheuristik og metadataartefakter |
+| 🛡️ [Sikkerhedsvalidering](specs/SECURITY-VALIDATION.md) | Scannere, arkiver, signaturer og udgivelsesbekræftelse |
+| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Maskinlæsbart manifestformat og kompatibilitetskontrakt |### 🤝 If You Want to **Contribute**
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution, closed decisions, and remaining expansion areas |
-| 🧭 [CLI UX Roadmap](architecture/CLI-UX-ROADMAP.md) | Historical plan and current shape of the guided and visual CLI |
-| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo and shared-runtime decision |
-| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Current runtime composition, counts, and system boundaries |
-| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink visual shell, state model, and service hub |
-| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filesystem-aware tools, allowlist model, and config writing |
-| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
-| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring heuristics, and metadata artifacts |
-| 🛡️ [Security Validation](specs/SECURITY-VALIDATION.md) | Scanners, archives, signatures, and release verification |
-| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Machine-readable manifest format and compatibility contract |
-
-### 🤝 If You Want to **Contribute**
-
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
-| 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
-| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
-| 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
-| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
-| 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
-| 📋 [Tasks Backlog](tasks/README.md) | Detailed implementation backlog for the remaining public and private work |
-
----
+| Doc | Hvad du vil lære |
+|:----|:------------------------|
+| 📝 [Bidragende vejledning](../CONTRIBUTING.md) | Repo workflow og pull anmodning forventninger |
+| 🧾 [Skill PR Workflow](bidragydere/SKILL-PR-WORKFLOW.md) | Native indtag, automatisk enhancer-behandling, `skills_omni/`-publicering og anmeldernes forventninger |
+| 📄 [Skill Template](bidragsydere/SKILL-TEMPLATE.md) | Starter `SKILL.md` med aktuel frontmaterie og struktur |
+| 🔬 [Skill Anatomy](bidragsydere/SKILL-ANATOMY.md) | Struktur og kvalitetsforventninger til en færdighed |
+| ✅ [Kvalitetsbar](bidragydere/QUALITY-BAR.md) | Acceptkriterier for depotet |
+| 🏆 [High-Score Playbook](bidragydere/HIGH-SCORE-PLAYBOOK.md) | Hvad driver høj modenhed, kvalitet, bedste praksis og sikkerhedsresultater |
+| 📋 [Tasks Backlog](tasks/README.md) | Detaljeret implementeringsefterslæb for det resterende offentlige og private arbejde |---
 
 ## 🔌 Runtime Surfaces
 
@@ -127,9 +113,7 @@ npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-The published `omni-skills` binary is the unified public entry point.
-
-```bash
+Den udgivne 'omni-skills' binær er det forenede offentlige indgangspunkt.```bash
 # 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
@@ -161,34 +145,28 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
-For the complete end-user command surface, use [CLI User Guide](users/CLI-USER-GUIDE.md).
+Brug [CLI User Guide](users/CLI-USER-GUIDE.md) for at få den komplette slutbrugerkommandooverflade.### 📁 Generated Artifacts
 
-### 📁 Generated Artifacts
+Byggepipelinen udsender de maskinlæsbare filer, der driver hver runtime-overflade:
 
-The build pipeline emits the machine-readable files that drive every runtime surface:
+| Artefakt | Formål |
+|:--------|:--------|
+| `metadata.json` | Validering og resultatoversigt for hele lageret |
+| `skills_index.json` | Repo-lokalt normaliseret færdighedsindeks |
+| `dist/catalog.json` | Udgivet katalog til søgning og liste |
+| `dist/bundles.json` | Bundle definitioner med tilgængelighed |
+| `dist/manifests/<skill>.json` | Maskinlæsbart manifest pr. færdighed |
+| `dist/archives/<skill>.zip` | Færdighedsarkiv (zip) |
+| `dist/archives/<skill>.tar.gz` | Færdighedsarkiv (tarball) |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 kontrolsummanifest |
 
-| Artifact | Purpose |
-|:---------|:--------|
-| `metadata.json` | Repository-wide validation and score summary |
-| `skills_index.json` | Repo-local normalized skill index |
-| `dist/catalog.json` | Published catalog for search and listing |
-| `dist/bundles.json` | Bundle definitions with availability |
-| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
-| `dist/archives/<skill>.zip` | Skill archive (zip) |
-| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
-### 🌐 API
+`dist/` forbliver begået med vilje. Disse genererede artefakter er en del af installations-, API-, MCP-, A2A-, røg- og frigivelseskontrakten.### 🌐 API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
-
-### 🔌 MCP
+Skrivebeskyttet registrerings-API til færdigheder, bundter, sammenligning, installationsplanlægning og artefaktdownloads.### 🔌 MCP
 
 ```bash
 npx omni-skills mcp stdio
@@ -197,55 +175,49 @@ npx omni-skills mcp sse
 npx omni-skills mcp stream --local
 ```
 
-The local sidecar now supports first-class MCP config writing for:
+Den lokale sidevogn understøtter nu førsteklasses MCP-konfigurationsskrivning til:
 
 - Claude Code
-- Cursor
-- VS Code and Dev Containers
+- Markør
+- VS Code og Dev Containere
 - Gemini CLI
-- Antigravity
+- Antigravitation
 - Kiro
 - Codex CLI
-- Continue
-- Windsurf
+- Fortsæt
+- Windsurfing
 - OpenCode
 - Cline
 - GitHub Copilot CLI
-- Kilo Code
+- Kilo kode
 - Zed
-- Goose
-
-### 🤖 A2A
+- Gås### 🤖 A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
-
----
+Opgavelivscyklus, streaming, vedholdenhed, genstart gendannelse og simpel-først lokal orkestrering. Delt leaset udførelse er tilgængelig, når den udtrykkeligt er aktiveret; Redis forbliver en avanceret hostet mulighed, ikke den lokale standardsti.---
 
 ## 🗂️ Repository Map
 
-| Path | Purpose |
+| Sti | Formål |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills |
-| 📖 `docs/users/` | End-user documentation |
-| 🤝 `docs/contributors/` | Contributor templates and guidance |
-| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
-| 🔧 `docs/operations/` | Operational runbooks |
-| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
-| 📚 `docs/CATALOG.md` | Generated skill catalog |
-| 📦 `dist/` | Generated machine-readable artifacts |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A server and task runtime |
-| 🖥️ `tools/bin/` | CLI entry points |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
-
----
+| 📂 `færdigheder/` | Kanoniske forfatterfærdigheder |
+| 📖 `dokumenter/brugere/` | Slutbrugerdokumentation |
+| 🤝 `dokumenter/bidragydere/` | Bidragyderskabeloner og vejledning |
+| 🏗️ `docs/architecture/` | Køreplan, ADR'er og teknisk analyse |
+| 🔧 `docs/operations/` | Operationelle runbooks |
+| 📋 `docs/specs/` | Runtime, protokol og artefaktkontrakter |
+| 📚 `docs/CATALOG.md` | Genereret færdighedskatalog |
+| 📦 `dist/` | Genererede maskinlæsbare artefakter |
+| 🧠 `pakker/katalog-kerne/` | Delt katalog runtime |
+| 🌐 `pakker/server-api/` | Skrivebeskyttet HTTP API |
+| 🔌 `pakker/server-mcp/` | MCP-server og lokal sidevogn |
+| 🤖 `pakker/server-a2a/` | A2A-server og opgavekørsel |
+| 🖥️ `tools/bin/` | CLI-indgangspunkter |
+| 📚 `tools/lib/` | Installatør og UI hjælpere |
+| ⚙️ `værktøjer/scripts/` | Validering, generering, verifikation og test |---
 
 ## 🧪 Release Validation
 
@@ -253,15 +225,15 @@ Task lifecycle, streaming, persistence, restart recovery, and simple-first local
 npm run smoke
 ```
 
-The smoke run validates:
+Røgløbet bekræfter:
 
-- ✅ skill validation and metadata generation
-- ✅ taxonomy recategorization tooling
-- ✅ catalog artifact generation
-- ✅ generated catalog markdown
-- ✅ archive generation and verification
-- ✅ automated test suite
+- ✅ færdighedsvalidering og metadatagenerering
+- ✅ værktøj til taksonomi-rekategorisering
+- ✅ katalog artefaktgenerering
+- ✅ genereret katalogmarkdown
+- ✅ arkivgenerering og verifikation
+- ✅ automatiseret testsuite
 - ✅ `npm pack --dry-run`
-- ✅ API boot and health
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle
+- ✅ API-opstart og sundhed
+- ✅ MCP-start i 'stdio', 'stream' og 'sse'
+- ✅ A2A boot, polling, SSE streaming, annullering og push-config livscyklus

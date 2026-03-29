@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**Mag-install ng mga kasanayan, i-verify ang pag-setup, at gamitin ang iyong unang kasanayan sa AI sa loob ng wala pang 2 minuto.**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| Sukatan | Halaga |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| Na-publish na mga kasanayan |**32**sa 15 aktibong kategorya kabilang ang arkitektura, disenyo, seguridad, DevOps, AI-engineering, at higit pa |
+| Tinukoy na mga bundle |**7**(lahat ay ganap na sinusuportahan ng mga nai-publish na kasanayan) |
+| Mga kliyenteng may kakayahang mag-install |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP config-capable na mga kliyente |**16**sa 33 first-class na MCP config target |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+Sa isang interactive na terminal, binubuksan nito ngayon ang ginabayang installer sa halip na tahimik na ipagpalagay ang isang kliyente.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+Binubuksan nito ang branded na terminal hub para sa pag-install, pagtuklas, MCP, API, at A2A startup.### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+Sa labas ng TTY, ang no-arg installer ay nagde-default pa rin sa `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ Ang mga starter bundle ay ganap na ngayong naka-back, kabilang ang `devops` at `ai-engineer`.### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+Suriin kung ang mga kasanayan ay nakarating sa tamang lugar:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+O gamitin ang mga built-in na diagnostic:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+Nagbibigay ng mga tool sa filesystem ng mga ahente upang matukoy ang mga kliyente, mag-install/mag-alis ng mga kasanayan, at magsulat ng mga MCP config:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+Maaari mo ring i-configure ang MCP para sa mga kliyente na hindi mga target sa pag-install ng kasanayan:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+Inilalantad ang catalog ng kasanayan bilang isang read-only na HTTP API:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+Pagtuklas ng ahente-sa-agent, rekomendasyon, pagpaplano ng pag-install, pagboto, at streaming:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+Ang kasanayan ay isang structured markdown playbook (`SKILL.md`) na nagbibigay sa isang ahente ng AI:
 
-| Component | Purpose |
+| Bahagi | Layunin |
 |:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| 📋**Frontmatter**| Metadata na nababasa ng makina (pangalan, kategorya, mga tag, tool, panganib) |
+| 📝**Katawan**| Mga tagubiling partikular sa gawain, mga hakbang, mga guardrail, at mga halimbawa |
+| 📚**Mga Sanggunian**| Mga sumusuportang dokumento na maaaring konsultahin ng ahente sa panahon ng pagpapatupad |
+| 🎨**Mga Asset**| Mga icon, larawan, o iba pang naka-package na mapagkukunan |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
+| Doc | Ano ang Matututuhan Mo |
 |:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Buong command reference para sa pag-install, runtime, config, at diagnostics |
+| 📗 [Gabay sa Paggamit](USAGE.md) | Lahat ng CLI command, prompt pattern, at runtime mode |
+| 📦 [Mga Bundle](BUNDLES.md) | Mga na-curate na koleksyon ng kasanayan at ang kanilang kakayahang magamit |
+| 📚 [Catalog](../CATALOG.md) | Awtomatikong nabuong catalog ng mga nai-publish na kasanayan |
+| 📖 [Documentation Hub](../README.md) | Buong dokumentasyong mapa |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Sanggunian sa pagpapatakbo |

@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**API HTTP tylko do odczytu do odkrywania umiejętności, wyszukiwania, porównywania, planowania instalacji i pobierania artefaktów.**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| Funkcja | stan |
+|:------------|:------|
+| ✅ Punkty końcowe katalogu | Wdrożono |
+| ✅ Autoryzacja (nośnik + klucz API) | Wdrożono |
+| ✅ Autoryzacja środowiska wykonawczego administratora | Wdrożono |
+| ✅Ograniczenie szybkości | Wdrożono |
+| ✅ Rejestrowanie audytu | Wdrożono |
+| ✅ Listy dozwolonych CORS i IP | Wdrożono |
+| ✅ Tryb konserwacji | Wdrożono |
+| ✅ Pobieranie archiwum | Wdrożono |
+| ✅ Specyfikacja OpenAPI | Wdrożono |
+| ⚠️Zaplecze zarządzania | Baza w trakcie procesu oparta na środowisku; brama zewnętrzna lub dostawca tożsamości nadal opcjonalny |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+Interfejs API zapewnia powierzchnię przypominającą rejestr dla:
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 Wyświetlanie i filtrowanie umiejętności według jakości, bezpieczeństwa, kategorii, ryzyka i innych
+- 📌 Pobieranie indywidualnych manifestów umiejętności
+- 🔎 Wyszukiwanie pełnotekstowe i porównywanie wielu umiejętności
+- 📦 Lista pakietów z informacją o dostępności
+- 📐 Generowanie planu instalacji tylko do odczytu
+- 📥 Pobieranie wygenerowanych artefaktów, archiwów i manifestów sum kontrolnych
 
-This same catalog and manifest surface is also the basis for:
+Ten sam katalog i powierzchnia manifestu jest także podstawą:
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- lokalne planowanie instalacji CLI
+- Odpowiedzi na wykrycie MCP tylko do odczytu
+- Wykrywanie A2A i przekazanie planu instalacji
+- potencjalne prywatne katalogi z zewnętrznym uwierzytelnianiem nałożonym na wierzch---
 
 ## Szybki start
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**Domyślne**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+Wszystkie kontrole bezpieczeństwa są oparte na środowisku i opcjonalne:
 
-| Control | Variable | Example |
-|:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| Kontrola | Zmienna | Przykład |
+|:--------|:-------------|:------------|
+| 🔑**Uwierzytelnienie na okaziciela**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | „zastąp mnie” |
+| 🗝️**Autoryzacja klucza API**| `OMNI_SKILLS_HTTP_API_KEYS` | `klawisz-a, klawisz-b` |
+| 🛂**Uwierzytelnienie administratora**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `tajemnica administratora` |
+| 🚦**Ograniczenie szybkości**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**Logowanie audytu**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️**Format audytu**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` lub `tekst` |
+| 📄**Plik audytowy**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**Lista dozwolonych CORS**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**Lista dozwolonych adresów IP**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**Zaufany serwer proxy**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `pętla zwrotna` |
+| 🚧**Tryb konserwacji**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️**Spróbuj ponownie po**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**Zachowanie:**
+- 🟢 `/healthz` pozostaje**zawsze nieuwierzytelnione**
+- 🔒 Wszystkie inne trasy wymagają uwierzytelnienia, gdy uwierzytelnianie jest włączone
+- 🛂 `/admin/runtime` wymaga tokena administratora, gdy jest włączony
+- 🚦 Trwa proces ograniczania szybkości z nagłówkami odpowiedzi `X-RateLimit-*`
+- 🧾 Każda odpowiedź zawiera `X-Request-Id`
+- 🚧 Tryb konserwacji zwraca „503” dla tras innych niż administracyjne### ✅ Current governance decision
 
-### ✅ Current governance decision
+Obecnym kierunkiem projektu jest**ponowne wykorzystanie tego samego formatu katalogu do wdrożeń publicznych lub prywatnych**i w razie potrzeby zewnętrzne uwierzytelnianie warstw.
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+To oznacza:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- manifest i kształt API pozostają wspólne
+- Wdrożenia własne i lokalne mogą pozostać w fazie bazowej w procesie
+- bardziej zaawansowane zarządzanie hostowane może zostać później przeniesione do bramy zewnętrznej lub warstwy autoryzacji przedsiębiorstwa bez konieczności rozwidlania modelu danych### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+| Metoda | Ścieżka | Opis |
+|:-------|:---------|:------------|
+| `DOBIERZ` | `/zdrowiez` | Kontrola stanu zdrowia (nieuwierzytelniona) |
+| `DOBIERZ` | `/openapi.json` | Specyfikacja dynamicznego OpenAPI 3.1 |
+| `DOBIERZ` | `/admin/środowisko wykonawcze` | Migawka zarządzania i środowiska wykonawczego (autoryzacja administratora, jeśli jest włączona) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
+| Metoda | Ścieżka | Opis |
+|:-------|:---------|:------------|
+| `DOBIERZ` | `/v1/umiejętności` | Lista umiejętności z filtrami |
+| `DOBIERZ` | `/v1/umiejętności/:id` | Zdobądź indywidualny manifest umiejętności |
+| `DOBIERZ` | `/v1/wyszukiwanie` | Wyszukiwanie pełnotekstowe |
+| `DOBIERZ` | `/v1/porównaj?ids=id1,id2` | Porównaj wiele umiejętności |
+| `DOBIERZ` | `/v1/pakiety` | Lista pakietów z dostępnością |
+| `POST` | `/v1/instalacja/plan` | Wygeneruj plan instalacji |### 🔎 List/Search Filters
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
-
-### 🔎 List/Search Filters
-
-| Filter | Example |
-|:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
-| `min_best_practices` | `?min_best_practices=60` |
-| `min_level` | `?min_level=2` |
-| `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| Filtruj | Przykład |
+|:-------|:------------|
+| `kategoria` | `?kategoria=rozwój` |
+| `narzędzie` | `?narzędzie=kursor` |
+| „ryzyko” | `?ryzyko=bezpieczne` |
+| `sort` | `?sort=jakość\|najlepsze praktyki\|poziom\|bezpieczeństwo\|nazwa` |
+| „zamówienie” | `?order=rosn\|malejący` |
+| `minimalna_jakość` | `?min_jakość=80` |
+| `min_najlepsze_praktyki` | `?min_best_practices=60` |
+| `min_poziom` | `?min_poziom=2` |
+| `mini_bezpieczeństwo` | `?min_security=90` |
+| `status_walidacji` | `?validation_status=zaliczony` |
+| `stan_bezpieczeństwa` | `?stan_bezpieczeństwa=zaliczony` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
-|:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+| Metoda | Ścieżka | Opis |
+|:-------|:---------|:------------|
+| `DOBIERZ` | `/v1/katalog/pobierz` | Pełny katalog do pobrania |
+| `DOBIERZ` | `/v1/umiejętności/:id/artefakty` | Lista artefaktów umiejętności |
+| `DOBIERZ` | `/v1/skills/:id/archives` | Lista archiwów umiejętności |
+| `DOBIERZ` | `/v1/skills/:id/downloads` | Wszystkie dostępne linki do pobrania |
+| `DOBIERZ` | `/v1/skills/:id/download/manifest` | Manifest umiejętności JSON |
+| `DOBIERZ` | `/v1/skills/:id/download/punkt wejścia` | Umiejętność SKILL.md |
+| `DOBIERZ` | `/v1/skills/:id/download/artifact?path=<ścieżka>` | Konkretny artefakt |
+| `DOBIERZ` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Archiwum umiejętności |
+| `DOBIERZ` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Odłączony podpis |
+| `DOBIERZ` | `/v1/skills/:id/download/archive/checksums` | Sumy kontrolne SHA-256 |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+Gdy żądania są obsługiwane przez interfejs API, serwer**automatycznie wzbogaca**manifesty, listy artefaktów i plany instalacji o bezwzględne adresy URL pochodzące ze źródła przychodzącego żądania. Jest to wzbogacanie środowiska wykonawczego, a nie wbudowane w `dist/manifests/*.json`.---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**Plany instalacji to podglądy, a nie zdalne zapisy.**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+Interfejs API nigdy nie jest instalowany na komputerze osoby wywołującej. Zwraca:
+- 📌 Wybrane metadane umiejętności
+- ⚠️ Ostrzeżenia dotyczące brakujących członków pakietu
+- 🖥️ Konkretne polecenia CLI do uruchamiania lokalnego
+- 🔗 Publiczne adresy URL pobierania, jeśli dostępne jest źródło żądania---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+Serwer MCP po skonfigurowaniu ponownie używa tych samych publicznych adresów API:```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+Dzięki temu podglądy instalacji MCP zwracają konkretne adresy URL manifestu i artefaktów, a nie tylko ścieżki lokalnego repozytorium.---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+`GET /admin/runtime` zwraca migawkę zarządzania przydatną do hostowanej diagnostyki:
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- aktywne metody uwierzytelniania
+- status autoryzacji administratora
+- okno limitu stawki i max
+- Lista dozwolonych CORS
+- Lista dozwolonych adresów IP
+- stan trybu konserwacji
+- miejsce docelowe i format audytu
+- aktualne sumy katalogowe
+- żądanie powtórzenia identyfikatora w celu zapewnienia identyfikowalności

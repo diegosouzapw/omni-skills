@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**调用技能、运行服务和操作 Omni Skills 运行时所需的一切。**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+有关完整的操作工作流程，请参阅 [🔧 系统运行手册](../operations/RUNBOOK.md)。
+有关完整的最终用户命令图，请参阅 [🧭 CLI 用户指南](./CLI-USER-GUIDE.md)。---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
-|:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+|状态 |详情 |
+|:--------|:--------|
+| ✅**现已上市**| 32 项已发布的技能，涉及设计、架构、调试、文档、OSS、安全、DevOps、AI 工程、数据、工具和机器学习工作流程 |
+| 📦**捆绑**|今天，“essentials”、“full-stack”、“design”、“security”、“devops”、“ai-engineer”和“oss-maintainer”得到了全面支持 |
+| 🔌**MCP 到达**| 7 个可安装的客户端、16 个可配置的客户端、33 个一流的配置目标、19 个配置文件 |
+| 🤖**A2A 耐用性**|内存、JSON 或 SQLite 本地持久性、重新启动恢复、可选进程执行器以及共享工作线程的选择租赁协调 |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
-|:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+|客户|如何调用 |技能之路|
+|:--------|:------------|:------------|
+| 🔵**克劳德代码**| `>> /技能名称帮助我...` | `~/.claude/skills/` |
+| 🟡**Gemini CLI**| `使用@技能名称...` | `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `使用@技能名称...` | `~/.codex/skills/` |
+| 🟢**基罗**|技能按需自动加载 | `~/.kiro/skills/` |
+| 🟣**反重力**| `使用@技能名称...` | `~/.gemini/反重力/技能/` |
+| 🔵**光标**|聊天中的“@技能名称” | `~/.cursor/skills/` |
+| ⚪**开放代码**| `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛**副驾驶**|手动粘贴技能内容 |不适用 |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Continue、Junie、Windsurf、Zed、VS Code、GitHub Copilot CLI、Cline 和 Kilo Code 等客户端主要使用“config-mcp”流程而不是技能目录。---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 注意：**
+> - 在交互式终端中，“npxomni-skills”现在打开引导安装流程
+> - `npxomni-skills ui` 打开可视 Ink shell，其中包含安装、发现和服务启动操作
+> - 可视 shell 会在 `~/.omni-skills/state/ui-state.json` 中保留最近的安装、最近的服务启动、收藏夹和命名预设
+> - 在 TTY 之外，当未提供选择器时，完整安装仍然是默认设置
+> - `--skill` 仅安装选定的已发布技能
+> - `--bundle` 扩展包并安装在策划包中声明的已发布成员
+> - `find` 支持 12 个以上过滤器标志：`quality`、`best_practices`、`skill_level`、`security`、`category`、`tool`、`risk` 等
+> - `config-mcp` 是没有一流技能目录的支持 MCP 的产品的正确路径---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+CLI是一个统一的操作工具，而不仅仅是一个安装程序。### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+视觉外壳支持：
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- 使用已知客户端或自定义路径选择进行引导安装
+- 搜索然后安装，无需记住标志
+- 引导 MCP 客户端配置预览和写入流程
+- MCP、API 和 A2A 引导启动
+- 最近的安装和服务重新启动
+- 保存的安装和服务预设
+- 最喜欢的技能和捆绑包### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| ＃|提示 |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ |在提示中按名称引用技能 |
+| 2️⃣ |提供代理所需的确切工件、代码或设计上下文 |
+| 3️⃣ |首选“--skill”以最小化安装占用空间 |
+| 4️⃣ |在调试打包或运行时问题之前使用“doctor”和“smoke” |
+| 5️⃣ |现在，所有七个入门捆绑包均已得到完全支持，请使用捆绑包作为策划的域安装 |
+| 6️⃣ |使用“find --install --yes”在一个流程中进行发现+安装 |
+| 7️⃣ |请参阅 [runbook](../operations/RUNBOOK.md) 了解身份验证、速率限制、签名和验证环境变量 |

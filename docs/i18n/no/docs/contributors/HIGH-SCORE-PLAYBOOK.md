@@ -5,83 +5,71 @@
 ---
 
 
-> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
-
----
+>**Hva en Omni Skills `SKILL.md` trenger i praksis for å oppnå høye poeng for modenhet, beste praksis, kvalitet og sikkerhet.**---
 
 ## 🎯 Purpose
 
-This guide explains how the repository's classifier actually rewards a skill.
+Denne veiledningen forklarer hvordan depotets klassifisering faktisk belønner en ferdighet.
 
-Use it when you want to:
+Bruk den når du vil:
 
-- author a new skill that lands in the top scoring bands
-- improve an existing skill that is stuck in `good` or low `excellent`
-- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
+- Forfatter en ny ferdighet som havner i toppscorende band
+- forbedre en eksisterende ferdighet som sitter fast i "god" eller lav "utmerket".
+- forstå hvorfor en ferdighet med anstendig formatering fortsatt ikke scorer som en eksepsjonell operasjonell ressurs
 
-This is the contributor-facing companion to:
+Dette er den bidragsyter-vendte følgesvennen til:
 
-- [Quality Bar](QUALITY-BAR.md)
+- [Kvalitetslinje](QUALITY-BAR.md)
 - [Skill Anatomy](SKILL-ANATOMY.md)
-- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
+- [ferdighetsklassifisering](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+Gjeldende benchmark for live-katalogen:
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
-- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
-
----
+- 32 publiserte ferdigheter
+- gjeldende kvalitetsspredning: `94, 95, 96, 97, 100`
+- gjeldende spredning av beste praksis: `98, 99, 100`
+- nåværende toppend: "omni-figma" med "100/100" kvalitet og "100/100" beste praksis---
 
 ## 🧱 What High Scores Really Mean
 
-The classifier does **not** reward pretty markdown alone.
+Klassifisereren belønner**ikke**pen nedtelling alene.
 
-High-scoring skills are skills that are:
+Høyt skårende ferdigheter er ferdigheter som er:
 
-- **discoverable**: the description clearly says what the skill does and when to use it
-- **operational**: the skill includes local scripts, references, and runnable examples
-- **diagnostic**: it helps the agent recover when things go wrong
-- **specific**: it is focused on one workflow, not broad advice
-- **safe**: it avoids risky patterns and ships clean scanner output
+-**oppdagelig**: beskrivelsen sier tydelig hva ferdigheten gjør og når den skal brukes
+-**operativ**: ferdigheten inkluderer lokale skript, referanser og kjørbare eksempler
+-**diagnostisk**: det hjelper agenten å komme seg når ting går galt
+-**spesifikt**: det er fokusert på én arbeidsflyt, ikke brede råd
+-**trygt**: den unngår risikable mønstre og sender ren skannerutgang
 
-In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
-
----
+I praksis oppfører de sterkeste ferdighetene seg mer som et**litent pakket arbeidsflytsett**enn en vanlig notis.---
 
 ## 📋 Score Targets
 
-Use these targets when authoring:
+Bruk disse målene når du skriver:
 
-| Dimension | Strong Target | Exceptional Target |
-|:----------|:--------------|:-------------------|
-| 🎯 Maturity | `L3` | `L3` with multiple support resources |
-| 📋 Best Practices | `90+` | `96+` |
-| ⭐ Quality | `85+` | `90+` |
-| 🛡️ Security | `95+` | `95+` with zero findings |
-
----
+| Dimensjon | Sterkt mål | Eksepsjonelt mål |
+|:----------|:-------------|:------------------------|
+| 🎯 Forfall | `L3` | `L3` med flere støtteressurser |
+| 📋 Beste praksis | `90+` | `96+` |
+| ⭐ Kvalitet | `85+` | `90+` |
+| 🛡️ Sikkerhet | `95+` | `95+` med null funn |---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Your frontmatter should make the skill easy to classify and easy to discover:
+Din frontmaterie skal gjøre ferdighetene lett å klassifisere og lett å oppdage:
 
-- `name` matches the directory exactly
-- `description` explains both **what** and **when**
-- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
+- `navn` samsvarer nøyaktig med katalogen
+- `beskrivelse` forklarer både**hva**og**når**
+- `kategori`, `tags`, `verktøy`, `kompleksitet`, `risiko`, `kilde`, `forfatter` og datoer er alle til stede
 
-Good description shape:
-
-```yaml
+God beskrivelsesform:```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bad description shape:
-
-```yaml
+Dårlig beskrivelsesform:```yaml
 description: "Helps with databases."
 ```
 
@@ -89,35 +77,31 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-The strongest skills consistently include these sections:
+De sterkeste ferdighetene inkluderer konsekvent disse delene:
 
-- `## Overview`
-- `## When to Use This Skill`
-- `## Workflow`
-- `## Examples`
-- `## Best Practices`
-- `## Troubleshooting`
-- `## Additional Resources`
+- `## Oversikt`
+- `## Når du skal bruke denne ferdigheten`
+- `## arbeidsflyt`
+- `## Eksempler`
+- `## beste fremgangsmåter`
+- `## Feilsøking`
+- `## Ytterligere ressurser`
 
-If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
-
----
+Hvis en av disse mangler, kan poengsummen fortsatt være bra, men det blir vanskeligere å se eksepsjonell ut.---
 
 ### 3. Runnable Local Support
 
-Top-scoring skills usually include:
+Toppscoreferdigheter inkluderer vanligvis:
 
-- `references/checklist.md`
-- one or more helper scripts in `scripts/`
-- at least one worked example in `examples/`
-- `agents/openai.yaml` when the skill is intended for direct agent invocation
-- direct links from `SKILL.md` to those local files
+- `referanser/sjekkliste.md`
+- ett eller flere hjelpeskript i `scripts/`
+- minst ett utført eksempel i `eksempler/`
+- `agents/openai.yaml` når ferdigheten er ment for direkte agentanrop
+- direkte lenker fra `SKILL.md` til de lokale filene
 
-This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
+Dette er viktig fordi klassifisereren behandler en ferdighet med**medfølgende støttemateriale**som mer handlingsdyktig enn en som bare peker utover.
 
-Recommended minimum:
-
-```text
+Anbefalt minimum:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -134,22 +118,18 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-High-scoring examples are:
+Eksempler med høy score er:
 
-- concrete
-- typed with a real fence such as `bash` or `python`
-- tied to a local script or repeatable command
-- representative of the workflow
+- betong
+- skrevet med et ekte gjerde som "bash" eller "python".
+- knyttet til et lokalt skript eller repeterbar kommando
+- representant for arbeidsflyten
 
-Good:
-
-```bash
+Bra:```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Weak:
-
-```text
+Svak:```text
 Ask the agent to help with your API.
 ```
 
@@ -157,20 +137,16 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
+Målscoreren belønner feilsøking som hjelper en agent å komme seg, ikke bare gjenkjenne et problem.
 
-Preferred format:
-
-```md
+Foretrukket format:```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-This is stronger than a vague note like:
-
-```md
+Dette er sterkere enn en vag note som:```md
 If the result is bad, add more detail.
 ```
 
@@ -178,50 +154,46 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
+Klassifisereren skiller nå mellom en ferdighet som bare er fullstendig og en som er genuint dyp.
 
-Signals that help:
+Signaler som hjelper:
 
-- multiple concrete examples
-- multiple troubleshooting cases
-- related-skill guidance
-- richer reference packs
-- a visible `## Workflow` section with numbered steps the scorer can count directly
-- at least one operational table or execution map where it clarifies the workflow
-- more than one support directory or asset type
-- workflow sections with enough steps to guide execution
-- decision assets such as checklists, rubrics, matrices, packets, or playbooks
-- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
-- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
-- more than a single helper file when the workflow is complex enough to justify a support pack
-- enough body depth to cover tradeoffs and failure modes
-- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
+- Flere konkrete eksempler
+- flere feilsøkingssaker
+- relatert ferdighetsveiledning
+- rikere referansepakker
+- en synlig "## Workflow"-seksjon med nummererte trinn som målscoreren kan telle direkte
+- minst én operasjonstabell eller utførelseskart der det tydeliggjør arbeidsflyten
+- mer enn én støttekatalog eller aktivatype
+- arbeidsflytseksjoner med nok trinn til å veilede utførelse
+- beslutningselementer som sjekklister, rubrikker, matriser, pakker eller spillebøker
+- sterkere støttepakke-mangfold på tvers av `referanser/`, `skript/`, `agenter/`, `eksempler/` eller `assets/`
+- nok gjenbrukbare støttefiler til å se ut som et sett, ikke en eneste hjelper gjemt ved siden av markdown
+- mer enn en enkelt hjelpefil når arbeidsflyten er kompleks nok til å rettferdiggjøre en støttepakke
+- nok kroppsdybde til å dekke avveininger og feilmoduser
+- tettere operativ veiledning, fordi måleren nå skiller polert formatering fra genuint gjenbrukbar arbeidsflytdybde
 
-Signals that do **not** help much:
+Signaler som**ikke**hjelper mye:
 
-- repeating the same instruction in different words
-- generic filler text
-- adding headings without adding substance underneath them
-
----
+- gjenta den samme instruksjonen med forskjellige ord
+- Generisk utfyllingstekst
+- legge til overskrifter uten å legge til substans under dem---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use this checklist before running validation:
+Bruk denne sjekklisten før du kjører validering:
 
-- description says **what** and **when**
-- the skill is focused on one workflow
-- `## Workflow` exists and contains numbered or bulleted steps
-- at least one runnable example exists
-- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
-- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
-- troubleshooting uses `Symptoms` and `Solution`
-- the skill can reasonably be classified as `L3`
-- no risky commands or suspicious paths are present
+- beskrivelsen sier**hva**og**når**
+- Ferdigheten er fokusert på én arbeidsflyt
+- `## Workflow` eksisterer og inneholder nummererte eller punkttegn
+- Det finnes minst ett kjørbart eksempel
+- `referanser/`, `skript/`, og ideelt sett `eksempler/` er koblet fra `SKILL.md`
+- `agents/openai.yaml` eksisterer når ferdigheten er ment for direkte påkalling i agentklienter
+- feilsøking bruker "Symptomer" og "Løsning".
+- ferdigheten kan med rimelighet klassifiseres som "L3".
+- ingen risikable kommandoer eller mistenkelige veier er tilstede
 
-Then run:
-
-```bash
+Kjør deretter:```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -230,19 +202,17 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- the description is correct but too generic
-- the markdown has sections but no operational depth
-- examples do not point to local helpers
-- troubleshooting exists but is not diagnostic
-- there are too few tags or tool identifiers
-- the skill is safe and clean but still too shallow to count as exceptional
-
----
+- beskrivelsen er korrekt, men for generisk
+- Markdown har seksjoner, men ingen operasjonsdybde
+– eksempler peker ikke på lokale hjelpere
+- feilsøking finnes, men er ikke diagnostisk
+- det er for få tagger eller verktøyidentifikatorer
+- Ferdigheten er trygg og ren, men fortsatt for grunn til å regnes som eksepsjonell---
 
 ## 🧭 Practical Rule
 
-If your skill feels like:
+Hvis ferdighetene dine føles som:
 
-- a **template**: it may pass
-- a **guide**: it may score well
-- a **workflow package**: it is much more likely to score at the top
+- en**mal**: den kan passere
+- en**guide**: den kan score bra
+- en**arbeidsflytpakke**: det er mye mer sannsynlig å score på toppen

@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Mga minimum na kinakailangan at rekomendasyon para sa isang kasanayang tatanggapin sa repositoryo ng Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Para sa paggabay sa pag-akda na partikular na naglalayong sa mga marka ng nangungunang banda, tingnan ang [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+Kasalukuyang benchmark para sa na-publish na catalog:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 nai-publish na mga kasanayan
+- average na marka ng kalidad `96.3`
+- average na marka ng pinakamahusay na kasanayan `98.7`
+- average na marka ng seguridad `95.0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
+| # | Kinakailangan | Paano I-verify |
 |:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| 1️⃣ |**May bisang frontmatter**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Malinaw na paglalarawan**| Dapat ipaliwanag ng one-liner kung ano ang nagagawa ng kasanayan (10+ character) |
+| 3️⃣ |**Direktoryo na tumutugma sa pangalan**| Ang field na `name:` ​​ay eksaktong tumutugma sa pangalan ng folder |
+| 4️⃣ |**Seksyon ng Pangkalahatang-ideya**| Maikling paliwanag ng layunin sa markdown body |
+| 5️⃣ |**Kailan Gamitin ang seksyon**| Hindi bababa sa 2 partikular na sitwasyon sa paggamit |
+| 6️⃣ |**Mga naaaksyong tagubilin**| Step-by-step na content na maaaring isagawa ng isang ahente ng AI |
+| 7️⃣ |**Nabuo na metadata**| Ang Validator ay matagumpay na naglalabas ng `kasanayan/<kasanayan>/metadata.json` |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | Rekomendasyon | Epekto ng Kalidad |
+|:--|:-----------------|:-------------|
+| 8️⃣ |**Mga Halimbawa**— kahit isang kongkretong halimbawa na may inaasahang output | 📈 Kalidad +10-15 |
+| 9️⃣ |**Pinakamahuhusay na kagawian**— ✅ Gawin / ❌ Huwag gabayan | 📈 Pinakamahuhusay na Kasanayan +5 |
+| 🔟 |**Sinubukan gamit ang isang tool**— na-verify gamit ang kahit isang AI coding assistant | 📈 Kalidad +5 |
+| 1️⃣1️⃣ |**Tags**— may-katuturang mahahanap na mga tag para sa pagtuklas | 📈 Pinakamahuhusay na Kasanayan +10 |
+| 1️⃣2️⃣ |**Kategorya**— itinalaga sa isang kanonikal na kategorya | 📈 Pinakamahuhusay na Kasanayan +10 |
+| 1️⃣3️⃣ |**Pag-troubleshoot**— kongkretong gabay na `Mga Sintomas` at `Solusyon` | 📈 Pinakamahuhusay na Kasanayan +5-10 |
+| 1️⃣4️⃣ |**Mga asset ng lokal na suporta**— `mga sanggunian/`, `mga script/`, at pinakamainam na `mga halimbawa/` na naka-link mula sa kasanayan | 📈 Pinakamahuhusay na Kasanayan +10 |
+| 1️⃣5️⃣ |**Healthy classification**— maturity L3, kalidad 85+, pinakamahusay na kagawian 90+ | 📈 Pangkalahatang tier |
+| 1️⃣6️⃣ |**Walang kritikal na natuklasan sa seguridad**— static scanner pass clean | 🛡️ Seguridad 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Isyu | Bakit |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Nawawala o di-wastong frontmatter | Sinisira ang pipeline ng pagpapatunay |
+| ❌ Hindi tumutugma ang pangalan sa direktoryo | Breaks catalog generation |
+| ❌ Walang laman o walang kuwentang maikling paglalarawan | Hindi matuklasan ng mga user ang kasanayan |
+| ❌ Walang naaaksyunan na content (mga link o stub lang) | Walang maipatupad ang mga ahente |
+| ❌ Doblehin nang walang malinaw na pagpapabuti | Magdagdag ng halaga, huwag i-clone |
+| ❌ Nakakasakit na content na walang `risk: offensive` tag | Kaligtasan at pagsunod |
+| ❌ Mga kritikal na natuklasan sa seguridad | Maagap na exfiltration, mapanirang utos, atbp. |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
+| Dimensyon | Mahusay | Mabuti | Nangangailangan ng Trabaho |
 |:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| ⭐**Kalidad**| 80+ (platinum) | 60-79 (ginto/pilak) | <60 (bronze/starter) |
+| 📋**Pinakamahuhusay na Kasanayan**| 90+ (mahusay) | 70-89 (mabuti) | <70 (patas/kailangan-trabaho) |
+| 🛡️**Seguridad**| 95+ (pinatigas) | 80-94 (secure) | <80 (kailangan ng pagsusuri) |
+| 🎯**Maturity**| L3 (mga script+pagsusulit) | L2 (mga tagubilin) ​​| L1 (metadata lang) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Para tuloy-tuloy na maabot ang nangungunang banda, dapat kasama sa isang kasanayan ang:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- isang malakas na paglalarawan ng frontmatter na nagpapaliwanag sa parehong**kung ano**ang ginagawa ng kasanayan at**kailan**ito dapat gamitin
+- mga tahasang seksyon para sa `Kailan Gagamitin`, `Trabaho`, `Mga Halimbawa`, `Pinakamahuhusay na Kagawian`, `Pag-troubleshoot`, at `Mga Karagdagang Mapagkukunan`
+- lokal na materyal sa suporta sa ilalim ng `references/`, `scripts/`, at ideal na `examples/`, direktang naka-link mula sa `SKILL.md`
+- metadata ng ahente sa ilalim ng `agents/openai.yaml` kapag ang kasanayan ay sinadya na direktang gamitin sa mga kliyente ng ahente
+- isang maliit na talahanayan ng pagpapatakbo o katumbas na mapa ng pagpapatupad kapag ang daloy ng trabaho ay nakikinabang mula dito
+- kahit isang runnable na halimbawa na tumuturo sa isang lokal na helper script o repeatable command
+- pag-troubleshoot na nakasulat bilang `Mga Sintomas` at `Solusyon`, hindi mga generic na babala
+- sapat na depth para maging `L3`, hindi lang well-formatted na prosa
+- mas malakas na lalim ng daloy ng trabaho, mga asset ng desisyon, at pagkakaiba-iba ng support-pack kung gusto mo ng top-band na kalidad
+- isang support pack na sapat na malalim para pakiramdam na magagamit muli, hindi lamang naroroon para sa saklaw ng checkbox
+- hindi bababa sa 4 na makabuluhang pamilya ng suporta o ang katumbas na lalim sa mga reusable na file kung gusto mo ang nangungunang banda nang tuluy-tuloy

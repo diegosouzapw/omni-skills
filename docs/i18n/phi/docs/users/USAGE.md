@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Lahat ng kailangan mo para makatawag ng mga kasanayan, magpatakbo ng mga serbisyo, at magpatakbo ng Omni Skills runtime.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+Para sa buong operational workflows, tingnan ang [🔧 System Runbook](../operations/RUNBOOK.md).
+Para sa buong end-user command map, tingnan ang [🧭 CLI User Guide](./CLI-USER-GUIDE.md).---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
+| Katayuan | Mga Detalye |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| ✅**Available na**| 32 na-publish na mga kasanayan sa kabuuan ng disenyo, arkitektura, pag-debug, mga dokumento, OSS, seguridad, DevOps, AI-engineering, data, mga tool, at mga daloy ng trabaho sa machine-learning |
+| 📦**Mga Bundle**| Ang `mga mahahalaga`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, at `oss-maintainer` ay ganap na sinusuportahan ngayon |
+| 🔌**Abot ng MCP**| 7 mga kliyenteng may kakayahang mag-install, 16 na kliyenteng may kakayahang mag-config, 33 mga target na config sa unang klase, 19 mga profile ng config |
+| 🤖**A2A tibay**| Memory, JSON, o SQLite local durability, i-restart ang resume, opsyonal na process executor, at opt-in leased coordination para sa mga shared worker |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
+| Kliyente | Paano Mag-invoke | Landas ng Kasanayan |
 |:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| 🔵**Claude Code**| `>> /skill-name tulungan mo ako...` ​​| `~/.claude/skills/` |
+| 🟡**Gemini CLI**| `Gamitin ang @skill-name para...` | `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `Gamitin ang @skill-name para...` | `~/.codex/skills/` |
+| 🟢**Kiro**| Awtomatikong pag-load ng mga kasanayan kapag hinihiling | `~/.kiro/skills/` |
+| 🟣**Antigravity**| `Gamitin ang @skill-name para...` | `~/.gemini/antigravity/skills/` |
+| 🔵**Cursor**| `@skill-name` sa chat | `~/.cursor/skills/` |
+| ⚪**OpenCode**| `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛**Copilot**| Manu-manong i-paste ang nilalaman ng kasanayan | N/A |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Pangunahing ginagamit ng mga kliyente tulad ng Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, at Kilo Code ang daloy ng `config-mcp` kaysa sa isang direktoryo ng mga kasanayan.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Mga Tala:**
+> - Sa isang interactive na terminal, nagbubukas na ngayon ang `npx omni-skills` ng may gabay na daloy ng pag-install
+> - Binubuksan ng `npx omni-skills ui` ang visual Ink shell na may mga aksyon sa pag-install, pagtuklas, at paglulunsad ng serbisyo
+> - nagpapatuloy ang visual shell ng mga kamakailang pag-install, kamakailang paglulunsad ng serbisyo, mga paborito, at pinangalanang preset sa `~/.omni-skills/state/ui-state.json`
+> - Sa labas ng isang TTY, ang buong pag-install pa rin ang default kapag walang ibinigay na tagapili
+> - Ini-install lang ng `--skill` ang mga napiling na-publish na kasanayan
+> - Pinapalawak ng `--bundle` ang bundle at ini-install ang mga na-publish na miyembro na idineklara sa na-curate na bundle
+> - Sinusuportahan ng `find` ang 12+ filter na flag: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, at higit pa
+> - Ang `config-mcp` ay ang tamang landas para sa mga produktong may kakayahang MCP na walang direktoryo ng mga kasanayan sa unang klase---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+Ang CLI ay isang pinag-isang tool sa pagpapatakbo, hindi lamang isang installer.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+Sinusuportahan ng visual shell ang:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- may gabay na pag-install gamit ang kilalang kliyente o pasadyang pagpili ng landas
+- maghanap-pagkatapos-mag-install nang hindi isinasaulo ang mga flag
+- guided MCP client config preview at write flows
+- MCP, API, at A2A guided startup
+- kamakailang pag-install at muling paglulunsad ng serbisyo
+- naka-save na pag-install at mga preset ng serbisyo
+- mga paboritong kasanayan at mga bundle### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -236,10 +224,10 @@ npx omni-skills publish-check         # Alias for smoke
 
 | # | Tip |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | I-refer ang kasanayan sa pamamagitan ng pangalan sa iyong prompt |
+| 2️⃣ | Ibigay ang eksaktong artifact, code, o konteksto ng disenyo na kailangan ng ahente |
+| 3️⃣ | Mas gusto ang `--skill` para sa kaunting bakas ng pag-install |
+| 4️⃣ | Gumamit ng `doctor` at `smoke` bago i-debug ang packaging o mga isyu sa runtime |
+| 5️⃣ | Gumamit ng mga bundle bilang mga na-curate na pag-install ng domain ngayong ang lahat ng pitong starter bundle ay ganap na naka-back |
+| 6️⃣ | Gamitin ang `find --install --yes` para sa pagtuklas + pag-install sa isang daloy |
+| 7️⃣ | Tingnan ang [runbook](../operations/RUNBOOK.md) para sa auth, mga limitasyon sa rate, pag-sign, at verification env vars |

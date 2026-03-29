@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Якщо ви виявите проблему безпеки в Omni Skills, не відкривайте спершу публічну проблему.**
 
-Please report through one of these private channels:
+Будь ласка, повідомте про це через один із цих приватних каналів:
 
-| Channel | How |
+| Канал | Як |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Консультації з безпеки GitHub | [Відкрити приватну консультацію](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Прямий контакт | Зв'яжіться з супроводжувачами безпосередньо |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Уражений компонент або шлях
+- 🔄 Етапи відтворення
+- ⚠️ Оцінка впливу
+- 🧪 Будь-який доказовий матеріал, необхідний для перевірки проблеми
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Ми прагнемо підтверджувати звіти протягом 48 годин**і розставляти пріоритети виправлень відповідно до впливу.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Ця політика стосується середовища виконання сховища та поверхонь вмісту:
 
-| Component | Path |
+| Компонент | Шлях |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI та інсталятор | `tools/bin/` |
+| 📚 Спільні бібліотеки | `tools/lib/` |
+| ⚙️ Скрипти збірки та перевірки | `інструменти/сценарії/` |
+| 📦 Згенеровані артефакти каталогу | `dist/` |
+| 🌐 Пакети API, MCP і A2A | `пакети/` |
+| 🧠 Зміст навичок | `skills/` — особливо команди оболонки, доступ до мережі, потоки облікових даних або чутливі до безпеки вказівки |---
 
 ## Архітектура
 
-The repository relies on the following security controls:
+Репозиторій покладається на такі засоби безпеки:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Контроль | Опис |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Поле ризику | Метадані навичок містять оголошений рівень «ризику» |
+| 📊 Оцінка | Перевірка обчислює зрілість, найкращі практики, якість і оцінки безпеки |
+| 🔍 Статичний сканер | Перевіряє `SKILL.md`, запаковані файли та допоміжні сценарії |
+| 🦠 Додаткові сканери | Пошук хешу ClamAV і VirusTotal (якщо налаштовано) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Контроль | Опис |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Безпека на дорозі | Потоки встановлення використовують перевірки безпеки шляху |
+| 🔒 Білий список пише | Запис локального побічного кола MCP обмежено дозволеним списком |
+| 👁️ Стандартні параметри сухого запуску | Інструменти, орієнтовані на запис, за замовчуванням працюють у режимі сухого запуску, якщо їх явно не вимкнено |
+| 🔐 Авторизація та обмеження | Аутентифікація носія/ключу API, автентифікація середовища виконання адміністратора, обмеження швидкості, дозволені списки CORS/IP |
+| 📋 Аудит | Журнал аудиту, режим обслуговування та ідентифікатори запитів |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Контроль | Опис |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Маніфести контрольної суми | Контрольні суми SHA-256 для згенерованих архівів |
+| ✍️ Підписи | Перевірка відокремленого підпису в CI перед публікацією |
+| 🧪 Перевірки диму | Тренуйте навантажені робочі поверхні перед випуском |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Основна робота з безпеки, що залишилася, це**не**посилення базової лінії. Відкритими пунктами є:
 
-| Area | Status |
+| Площа | Статус |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Управління підприємством | Зовнішня ідентифікація, політика шлюзу та інтеграція WAF над поточними елементами керування |
+| 🔌 Автори клієнтів MCP | Більш широкі автори лише тоді, коли загальнодоступні конфігураційні контракти достатньо стабільні |
+| 📊 Доопрацювання сканера | Постійне вдосконалення, щоб виняткові навички чітко відокремлювалися від просто добре структурованих |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Кожна навичка декларує один із цих «рівнів ризику»:
 
-| Risk Level | Meaning |
+| Рівень ризику | Значення |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `безпечний` | Руйнівних операцій не очікується |
+| 🟡 `обережно` | Може змінювати файли або взаємодіяти із зовнішніми системами |
+| 🔴 `наступ` | Тестування безпеки або змагальні робочі процеси, що вимагають явної авторизації |
+| ⛔ `критично` | Операції високого впливу або системного рівня |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Оскільки Omni Skills постачає виконувані помічники, локальні інструменти з урахуванням файлової системи та програми для створення конфігурації для конкретного клієнта, ці класи вразливостей мають розглядатися як**високий пріоритет**, навіть якщо вони виглядають як «лише локальні»:
 
-| Category | Examples |
+| Категорія | Приклади |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Обхід шляху | Вихід каталогу через шляхи встановлення навичок або конфігурації |
+| 🔗 Безпека символічних посилань | Символьне посилання, наступне під час інсталяції або архівування |
+| 🖥️ Виконання команд | Довільне введення команд за допомогою вмісту навичок або сценаріїв |
+| 📦 Перевірка архіву | Обхід контрольної суми або перевірки підпису |
+| 🔓 Обхід авторизації | Обмеження швидкості або обхід автентифікації на API/MCP |
+| 🔌 Обхід білого списку | Обхід локального дозволеного списку |
+| 🦠 Ухилення від сканера | Хибнонегативні класи в статичних або зовнішніх сканерах |

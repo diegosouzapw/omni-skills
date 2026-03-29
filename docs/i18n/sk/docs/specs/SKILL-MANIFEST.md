@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**Strojovo čitateľný manifest JSON vygenerovaný z každého súboru `SKILL.md` počas procesu zostavovania – jediný dátový kontrakt spotrebovaný všetkými povrchmi runtime.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Funkcia | Štát |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ Automaticky generované zo SKILL.md | Realizované |
+| ✅ Spotrebované CLI, API, MCP, A2A | Realizované |
+| ✅ Archívy s kontrolnými súčtami | Realizované |
+| ✅ Bezpečnostná klasifikácia | Realizované |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**Dôležité**: Manifest je**artefakt zostavy**. Autor prispievateľov `SKILL.md` – kanál odvodzuje manifest JSON automaticky.---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+Manifest existuje, takže**všetky povrchy spustenia**používajú rovnaký normalizovaný tvar:
 
-| Surface | How It Uses Manifests |
+| Povrch | Ako to používa prejavy |
 |:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| 🖥️**CLI**| Vyhľadávanie, plánovanie inštalácie, diagnostika lekárov |
+| 🌐**API**| Odpovede koncových bodov, filtrovanie, odkazy na stiahnutie |
+| 🔌**MCP**| Odpovede nástrojov, obsah zdrojov |
+| 🤖**A2A**| Užitočné zaťaženie zisťovania a odporúčaní |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| Artefakt | Cesta |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 Koreňové metadáta | `metadata.json` |
+| 📊 Metadáta pre jednotlivé zručnosti | `skills/<skill>/metadata.json` |
+| 📋 Index zručností | `skills_index.json` |
+| 📚 Publikovaný katalóg | `dist/catalog.json` |
+| 📌 Manifest zručnosti | `dist/manifests/<skill>.json` |
+| 📦 Zip archív | `dist/archives/<skill>.zip` |
+| 📦 Archív Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Manifest kontrolného súčtu | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| Pole | Popis |
+|:------|:-------------|
+| `verzia_schema` | Verzia schémy manifestu |
+| 'id' | Stabilný identifikátor zručnosti z poľa `name` |
+| "slimák" | Adresár slimák pod `skills/` |
+| `zobrazovaný_názov` | Ľudsky čitateľný názov od prvého nadpisu |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| Pole | Popis |
+|:------|:-------------|
+| "popis" | Krátke zhrnutie z frontmattera |
+| "verzia" | Verzia zručnosti, nezávislá od verzie balíka npm |
+| "kategória" | Kanonická kategória (normalizovaná) |
+| `raw_category` | Pôvodná kategória od frontmattera |
+| "taxonómia" | Úplné metaúdaje taxonómie s odvodenou záložnou možnosťou |
+| "značky" | Vyhľadávateľné značky |
+| "zložitosť" | `začiatočník` · `stredne pokročilý` · `pokročilý` · `expert` |
+| "riziko" | "bezpečný" · "opatrnosť" · "urážlivý" · "kritický" |
+| "zdroj" | `všetím` · `komunita` · `oficiálny` |
+| "autor" | Reťazec priradenia |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| Pole | Popis |
+|:------|:-------------|
+| "vstupný bod" | Kanonická cesta `SKILL.md` |
+| `paths.root` | Zručnosť adresár vnútri repo |
+| `cesty.manifest` | Vygenerovaná cesta manifestu v `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+| Pole | Popis |
+|:------|:-------------|
+| "nástroje" | Identifikátory nástrojov z frontmatter |
+| `install_targets` | Metadáta inštalácie pre jednotlivé nástroje |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+Každý cieľ inštalácie zahŕňa: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| Pole | Popis |
+|:------|:-------------|
+| `pod_zdroje` | Podadresáre zručností ("referencie", "agenti", "aktíva") |
+| `artifacts_count` | Celkový počet súborov v balíku zručností |
+| `počet_referencií` | Počet referenčných dokumentov |
+| `počet_agentov` | Počet konfigurácií agenta |
+| `assets_count` | Počet súborov majetku |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| Pole | Popis |
+|:------|:-------------|
+| "stratégia" | Inštalačná stratégia (napr. `copy-skill-directory`) |
+| `aktuálny_inštalátor` | Inštalačné správanie čitateľné pre človeka |
+| "recepty" | Inštalačné recepty pre klienta |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| Sekcia | Polia |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 „zrelosť“ | `skill_level`, `skill_level_label` |
+| 📋 `najlepšie_postupy` | "skóre" (0 – 100) |
+| ⭐ „kvalita“ | "skóre" (0 – 100) |
+| 🛡️ "bezpečnosť" | `skóre`, `stav` |
+| ✅ `overenie` | "stav" |### 📝 Content
 
-### 📝 Content
+Odvodené signály: dĺžka_tela, dĺžka_obsahu, riadky_body, počet_slov, plus štrukturálne príznaky pre príklady, sekcie na riešenie problémov atď.### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+Pole každého súboru dodaného v adresári zručností:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**Druhy artefaktov**: „vstupný bod“ · „odkaz“ · „agent“ · „majetok“ · „licencia“ · „podpora“### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| Pole | Popis |
+|:------|:-------------|
+| `entrypoint_sha256` | Hash súboru SKILL.md |
+| `package_sha256` | Deterministický súhrn z usporiadaného zoznamu artefaktov |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 Verzia balíka úložiska a verzia zručností sú rôzne problémy. Balík je momentálne `0.1.3`, pričom jednotlivé zručnosti majú svoje vlastné sémantické verzie.---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| Pravidlo | Odôvodnenie |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ Musí zostať odvoditeľné z repo | Nevyžaduje sa manuálne vytváranie zoznamu |
+| ✅ Je možné pridať nové voliteľné polia | Dopredná kompatibilita |
+| ⚠️ Existujúce polia musia zostať stabilné | Spätná kompatibilita |
+| 🚫 Žiadne ručne písané manifesty | Odvodzovanie v čase výstavby je zdrojom pravdy |

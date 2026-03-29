@@ -5,50 +5,42 @@
 ---
 
 
-> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
-> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
-
----
+>**ทักษะ Omni มีทั้งแคตตาล็อกทักษะและพื้นผิวรันไทม์ที่สร้างขึ้นเพิ่มเติมจากแคตตาล็อกนั้น**
+> การมีส่วนร่วมสามารถกำหนดเป้าหมายพื้นที่ใดพื้นที่หนึ่งได้ แต่ทั้งสองจะต้องสอดคล้องกับสิ่งประดิษฐ์ที่สร้างขึ้นและพฤติกรรม CLI ในปัจจุบัน---
 
 ## 📊 Repository Baseline
 
-| Metric | Value |
-|:-------|:------|
-| 📦 Package version | `0.1.3` |
-| 🧠 Published skills | `32` |
-| 📦 Fully backed bundles | `7` |
-| 🖥️ Install-capable clients | `7` |
-| 🔌 MCP config-capable clients | `16` |
-| 🔄 Automatic releases | Enabled on `main` |
-
----
+| เมตริก | ค่า |
+|:-------|:-------|
+| 📦 เวอร์ชั่นแพ็คเกจ | `0.1.3` |
+| 🧠 เผยแพร่ทักษะ | `32` |
+| 📦 บันเดิลที่ได้รับการสนับสนุนอย่างเต็มที่ | `7` |
+| 🖥️ ลูกค้าที่สามารถติดตั้งได้ | `7` |
+| 🔌 ไคลเอนต์ที่สามารถกำหนดค่า MCP ได้ | `16` |
+| 🔄 ปล่อยอัตโนมัติ | เปิดใช้งานบน `main` |---
 
 ## สำคัญ
 
-| What | Where |
+| อะไร | ที่ไหน |
 |:-----|:------|
-| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
-| 📖 Contributor templates and guidance | `docs/contributors/` |
-| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 Native incoming skills land under | `skills/` (any language) |
-| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
-| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
-| 📖 Runtime and architecture docs | `docs/` |
-| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
-
----
+| 🧠 ทักษะต่างๆ เขียนขึ้นใน | `ทักษะ/<ชื่อทักษะ>/SKILL.md` |
+| 📖 เทมเพลตและคำแนะนำสำหรับผู้ร่วมให้ข้อมูล | `เอกสาร/ผู้มีส่วนร่วม/` |
+| 🧾 โฟลว์การประชาสัมพันธ์ Canonical สำหรับทักษะใหม่ | [เวิร์กโฟลว์การประชาสัมพันธ์ทักษะ](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 ทักษะขาเข้าของเจ้าของภาษาอยู่ภายใต้ | `ทักษะ/` (ภาษาใดก็ได้) |
+| ✨ อนุพันธ์ที่ปรับปรุงแล้วที่คัดสรร | `skills_omni/` (ภาษาอังกฤษเท่านั้น อัตโนมัติ) |
+| 🚫 `skills_omni/` ได้รับการปกป้อง | ไม่เปิดรับการบริจาคสาธารณะโดยตรง |
+| 📖 เอกสารรันไทม์และสถาปัตยกรรม | `เอกสาร/` |
+| 📄 ไฟล์ชุมชน | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |---
 
 ## 🎯 Common Contribution Types
 
-| Type | Area |
+| พิมพ์ | พื้นที่ |
 |:-----|:-----|
-| 🧠 Add or improve a skill | `skills/` |
-| 📖 Update contributor guidance | `docs/contributors/` |
-| 🖥️ Improve CLI, installer, or scripts | `tools/` |
-| 📦 Improve catalog runtime or protocol packages | `packages/` |
-| 🧪 Tighten tests, smoke checks, or release docs | Various |
-
----
+| 🧠 เพิ่มหรือพัฒนาทักษะ | `ทักษะ/` |
+| 📖 อัปเดตคำแนะนำสำหรับผู้ร่วมให้ข้อมูล | `เอกสาร/ผู้มีส่วนร่วม/` |
+| 🖥️ ปรับปรุง CLI ตัวติดตั้ง หรือสคริปต์ | `เครื่องมือ/` |
+| 📦 ปรับปรุงแค็ตตาล็อกรันไทม์หรือแพ็คเกจโปรโตคอล | `แพ็คเกจ/` |
+| 🧪 เข้มงวดการทดสอบ ตรวจควัน หรือปล่อยเอกสาร | ต่างๆ |---
 
 ## เริ่มต้นอย่างรวดเร็ว
 
@@ -73,22 +65,18 @@ npm test
 npm run smoke
 ```
 
-> **📝 Open the PR with `Allow edits from maintainers` enabled.**
-
----
+>**ที่เปิด PR โดยเปิดใช้งาน `อนุญาตให้แก้ไขจากผู้ดูแล`**---
 
 ## เอกสาร
 
-A good native incoming skill should:
+ทักษะการรับเข้าที่ดีควร:
 
-- ✅ Solve a specific problem cleanly
-- ✅ Be reusable across projects
-- ✅ Include instructions an agent can actually follow
-- ✅ Avoid vague or redundant content
-- ✅ Declare accurate frontmatter and compatibility metadata when available
-- ✅ Land with generated `metadata.json` classification artifacts after automation runs
-
-### 📁 Minimal Structure
+- ✅ แก้ปัญหาเฉพาะหน้าได้อย่างหมดจด
+- ✅สามารถนำกลับมาใช้ใหม่ได้ทั่วทั้งโครงการ
+- ✅ รวมคำแนะนำที่ตัวแทนสามารถปฏิบัติตามได้จริง
+- ✅หลีกเลี่ยงเนื้อหาที่คลุมเครือหรือซ้ำซ้อน
+- ✅ ประกาศส่วนหน้าและข้อมูลเมตาความเข้ากันได้ที่ถูกต้องเมื่อมี
+- ✅ ลงจอดพร้อมกับสิ่งประดิษฐ์การจัดหมวดหมู่ `metadata.json` ที่สร้างขึ้นหลังจากระบบอัตโนมัติทำงาน### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -107,83 +95,67 @@ skills/my-skill/
 └── scripts/
 ```
 
-> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
+>**💡 เคล็ดลับ:**ชุดทักษะระดับรีลีสควรมี `ตัวแทน/`, `ข้อมูลอ้างอิง/`, `ตัวอย่าง/` และ `สคริปต์/` แต่พื้นผิวทางเข้านั้นได้รับอนุญาตโดยเจตนา — อนุญาตให้ใช้ทักษะขาเข้าขั้นต่ำได้ และไปป์ไลน์ตัวเพิ่มประสิทธิภาพจะสร้างอนุพันธ์ที่แข็งแกร่งกว่า### 🌐 Language Policy
 
-### 🌐 Language Policy
-
-| Surface | Accepted Languages |
+| พื้นผิว | ภาษาที่ยอมรับ |
 |:--------|:-------------------|
-| 📥 `skills/` (native intake) | Portuguese, English, or any language |
-| ✨ `skills_omni/` (curated output) | English only |
+| 📥 `ทักษะ/` (การบริโภคโดยธรรมชาติ) | โปรตุเกส อังกฤษ หรือภาษาใดๆ |
+| ✨ `skills_omni/` (เอาต์พุตที่คัดสรรแล้ว) | ภาษาอังกฤษเท่านั้น |
 
-> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
+> เครื่องมือเพิ่มประสิทธิภาพส่วนตัวจะรักษาแหล่งที่มาดั้งเดิมตามที่ส่งมา และเขียนอนุพันธ์ที่ได้รับการดูแลจัดการใหม่เป็นภาษาอังกฤษ
 
-📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
-
----
+📖 สำหรับสาขาทั้งหมด การตรวจสอบความถูกต้อง และลำดับการตรวจสอบการปรับปรุง ให้ใช้ [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)---
 
 ## ✅ Required Validation
 
-Run this before opening a PR:
-
-```bash
+เรียกใช้สิ่งนี้ก่อนเปิด PR:```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<details>
-<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
+<รายละเอียด>
+<summary>📋 <strong>สิ่งที่ <code>npm run validate</code> สร้างขึ้นใหม่</strong></summary>
 
-- `metadata.json`
-- `skills/<skill>/metadata.json`
-- Canonical taxonomy mapping
-- Maturity, best practices, quality, and security scores
-- Static security findings
-- Optional ClamAV and VirusTotal scanner status (when configured)
+- `เมตาดาต้า.json`
+- `ทักษะ/<ทักษะ>/metadata.json`
+- การทำแผนที่อนุกรมวิธาน Canonical
+- วุฒิภาวะ แนวปฏิบัติที่ดีที่สุด คุณภาพ และคะแนนความปลอดภัย
+- การค้นพบความปลอดภัยแบบคงที่
+- ตัวเลือกสถานะสแกนเนอร์ ClamAV และ VirusTotal (เมื่อกำหนดค่า)</details>
 
-</details>
+>**⚠️ สำคัญ:**การตรวจสอบความถูกต้องคือสัญญาที่ใช้โดย CLI, API, MCP, A2A, รายการ, การเก็บถาวร และการปล่อยอัตโนมัติ ถือว่าข้อมูลเมตาที่สร้างขึ้นเป็นส่วนหนึ่งของพื้นผิวการตรวจสอบ ไม่ใช่เอาต์พุตแบบใช้แล้วทิ้ง### 📥 Intake Policy
 
-> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
-
-### 📥 Intake Policy
-
-| Condition | Behavior |
+| สภาพ | พฤติกรรม |
 |:----------|:---------|
-| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
-| Critical security findings | 🚫 Blocks intake |
-| Hard validation errors | 🚫 Blocks intake |
-| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
-
-### 🧪 Release-Grade Preflight
+| ส่วนหน้าขาดหายไป/ไม่สมบูรณ์ | ⚠️คำเตือน(ไม่บล็อค) |
+| การค้นพบด้านความปลอดภัยที่สำคัญ | 🚫 บล็อกการบริโภค |
+| ข้อผิดพลาดในการตรวจสอบอย่างหนัก | 🚫 บล็อกการบริโภค |
+| มาตรฐานบรรณาธิการที่เข้มงวดยิ่งขึ้น | บังคับใช้ในการไหลของอนุพันธ์ที่ได้รับการปรับปรุง ไม่ใช่ที่ปริมาณดั้งเดิม |### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<details>
-<summary>📋 <strong>What the smoke pass validates</strong></summary>
+<รายละเอียด>
+<summary>📋 <strong>สิ่งที่ผ่านการตรวจสอบควัน</strong></summary>
 
-- ✅ Skill validation
-- ✅ Catalog generation
-- ✅ Docs catalog generation
-- ✅ Test suite
+- ✅ การตรวจสอบทักษะ
+- ✅ การสร้างแคตตาล็อก
+- ✅ การสร้างแค็ตตาล็อกเอกสาร
+- ✅ ชุดทดสอบ
 - ✅ `npm pack --dry-run`
-- ✅ API boot
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot
-- ✅ Archive verification and packaging expectations
-
-</details>
+- ✅ การบูต API
+- ✅ บูต MCP ใน `stdio`, `stream` และ `sse`
+- ✅บูท A2A
+- ✅ การตรวจสอบเอกสารถาวรและความคาดหวังด้านบรรจุภัณฑ์</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
-
-```yaml
+ขอแนะนำอย่างยิ่งให้ใช้ Frontmatter ใช้ [Skill Template](docs/contributors/SKILL-TEMPLATE.md) เป็นพื้นฐาน```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -200,104 +172,88 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<details>
-<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
+<รายละเอียด>
+<summary>🏷️ <strong>หมวดหมู่อนุกรมวิธานตามรูปแบบบัญญัติ</strong></summary>
 
-| Category | Category |
+| หมวดหมู่ | หมวดหมู่ |
 |:---------|:---------|
-| `development` | `frontend` |
-| `backend` | `fullstack-web` |
-| `tools` | `cli-automation` |
-| `business` | `product` |
-| `design` | `data-ai` |
-| `ai-agents` | `machine-learning` |
-| `devops` | `testing-security` |
-| `documentation` | `content-media` |
-| `communication` | `uncategorized` |
+| `การพัฒนา` | `ส่วนหน้า` |
+| `แบ็กเอนด์` | `fullstack-เว็บ` |
+| `เครื่องมือ` | `cli-อัตโนมัติ` |
+| `ธุรกิจ` | `ผลิตภัณฑ์` |
+| `การออกแบบ` | `ข้อมูล-ไอ` |
+| `ตัวแทนไอ' | `แมชชีนเลิร์นนิง` |
+| `เดโวส์` | `การทดสอบความปลอดภัย` |
+| `เอกสาร` | `เนื้อหา-สื่อ` |
+| `การสื่อสาร` | `ไม่มีหมวดหมู่` |</details>
 
-</details>
-
-> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
-
----
+>**ℹ️**เวอร์ชันทักษะไม่ขึ้นอยู่กับเวอร์ชันแพ็คเกจ npm หากทักษะขาเข้าดั้งเดิมยังไม่มี frontmatter จะได้รับการยอมรับพร้อมคำเตือนและรับข้อมูลเมตาชั่วคราวจากไดเรกทอรี ชื่อ และข้อความเนื้อหา---
 
 ## ⚙️ Runtime Contributions
 
-If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
+หากคุณแตะ `packages/`, `tools/bin/`, `tools/lib/` หรือสร้างสคริปต์:
 
-- 📦 Keep `dist/` and docs aligned with the implementation
-- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
-- 🔒 Keep local-write behavior behind preview or dry-run defaults
-- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
-- 🛡️ Treat security scanner warnings as part of the review bar
-- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
+- 📦 รักษา `dist/` และเอกสารให้สอดคล้องกับการใช้งาน
+- 🔄 ต้องการนำ `แพ็คเกจ/แค็ตตาล็อก-คอร์` มาใช้ซ้ำ แทนที่จะทำซ้ำตรรกะของแค็ตตาล็อก
+- 🔒 เก็บพฤติกรรมการเขียนในเครื่องไว้เบื้องหลังการแสดงตัวอย่างหรือค่าเริ่มต้นแบบทดลองรัน
+- 🔌 รักษาระเบียบวินัยของผู้เขียน MCP — เพิ่มเฉพาะผู้เขียนการกำหนดค่าชั้นหนึ่งเมื่อไคลเอนต์มีสัญญาการกำหนดค่าสาธารณะที่เสถียร
+- 🛡️ ปฏิบัติตามคำเตือนของเครื่องสแกนความปลอดภัยโดยเป็นส่วนหนึ่งของแถบตรวจสอบ
+- 🧪 อัปเดตการทดสอบเมื่อเปลี่ยนคำสั่ง CLI โหมดการขนส่ง หรือจุดสิ้นสุดสาธารณะ### 🚧 Important Boundary
 
-### 🚧 Important Boundary
+| ทำสิ่งนี้ ✅ | อย่าทำแบบนี้ 🚫 |
+|:----------|:-----------------|
+| ส่งงานพื้นเมืองภายใต้ `ทักษะ/` | เปิด PR ด้วยตนเองที่แก้ไข `skills_omni/` |
+| ปล่อยให้ระบบอัตโนมัติจัดการตัวเพิ่มประสิทธิภาพทำงาน | เพิ่มเนื้อหาที่ดูแลจัดการโดยตรง |
+| เน้นคุณภาพทักษะที่ถูกกฎหมาย | ข้ามขั้นตอน PR ที่แสดงร่วมอัตโนมัติ |
 
-| Do this ✅ | Don't do this 🚫 |
-|:-----------|:-----------------|
-| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
-| Let automation handle the enhancer run | Add curated content directly |
-| Focus on legitimate skill quality | Bypass the automated companion PR flow |
-
-> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
-
----
+>**ℹ️**เมื่อมีการอัปเดตทักษะดั้งเดิมใน `ทักษะ/` เครื่องมือเพิ่มประสิทธิภาพส่วนตัวจะประมวลผลใหม่และรีเฟรชพื้นฐานที่ปรับปรุงแล้ว---
 
 ## 🔄 Enhancer Outcome States
 
-During public native-skill PRs, the enhancer reports one of four states:
+ในระหว่างการประชาสัมพันธ์ทักษะพื้นเมืองสาธารณะ ผู้เพิ่มประสิทธิภาพรายงานหนึ่งในสี่สถานะ:
 
-| State | Meaning |
+| รัฐ | ความหมาย |
 |:------|:--------|
-| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
-| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
-| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
-| ❌ `failed` | Unexpected error — requires maintainer investigation |
+| ✅ `เสร็จสิ้นแล้ว` | อนุพันธ์ที่ได้รับการปรับปรุงสร้างขึ้นอย่างหมดจด มีสิทธิ์สำหรับ `skills_omni/` |
+| ⚠️ `เสื่อมโทรม` | เสร็จสิ้นด้วยทางเลือกสำรองหรือการเคลื่อนไหวของคะแนนที่อ่อนลง — ตรวจสอบอย่างละเอียดมากขึ้น |
+| 🚫 `ถูกบล็อค' | หยุดเนื่องจากเหตุผลด้านโครงสร้างพื้นฐานหรือการตรวจสอบ — ป้องกันการเผยแพร่อัตโนมัติ |
+| ❌ `ล้มเหลว` | ข้อผิดพลาดที่ไม่คาดคิด — ต้องมีการตรวจสอบผู้ดูแล |
 
-> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
-
----
+>**📝 ผู้ร่วมให้ข้อมูล**ไม่จำเป็นต้องแก้ไขปัญหาโครงสร้างพื้นฐานของเครื่องมือเพิ่มประสิทธิภาพ ความรับผิดชอบคือการส่งทักษะเนทิฟที่ถูกต้องและรักษาสีเขียวของ repo---
 
 ## 🔄 Automatic Release Policy
 
-When a change lands on `main` and includes:
+เมื่อการเปลี่ยนแปลงเข้าสู่ `main` และรวมถึง:
 
-- `skills/**`
-- `skills_omni/**`
+- `ทักษะ/**`
+- `ทักษะ_omni/**`
 - `data/bundles.json`
 
-…the repository issues a **package release automatically**.
+…พื้นที่เก็บข้อมูลจะออก**การเปิดตัวแพ็คเกจโดยอัตโนมัติ**### 📋 Version Bump Rule
 
-### 📋 Version Bump Rule
-
-| From | To | Rule |
+| จาก | ถึง | กฎ |
 |:-----|:---|:-----|
-| `0.1.0` | `0.1.1` | Patch +1 |
-| `0.1.9` | `0.1.10` | Patch +1 |
-| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
+| `0.1.0` | `0.1.1` | แพตช์ +1 |
+| `0.1.9` | `0.1.10` | แพตช์ +1 |
+| `0.1.10` | `0.2.0` | เลื่อนไปที่รองถัดไป รีเซ็ตแพตช์ |
 
-> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
-
----
+> โฟลว์การเผยแพร่จะสร้างแค็ตตาล็อก/ไฟล์เก็บถาวรใหม่ คอมมิตเวอร์ชันบัพ แท็กการเผยแพร่ เผยแพร่ npm และสร้างการเผยแพร่ GitHub โดยอัตโนมัติ---
 
 ## 📝 Commit Conventions
 
-| Prefix | Use For |
+| คำนำหน้า | ใช้สำหรับ |
 |:-------|:--------|
-| `feat:` | New skill or feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation changes |
-| `refactor:` | Code cleanup or structure changes |
-| `test:` | Test changes |
-| `chore:` | Maintenance |
-
----
+| `ความสำเร็จ:` | ทักษะหรือคุณสมบัติใหม่ |
+| `แก้ไข:` | แก้ไขข้อผิดพลาด |
+| `เอกสาร:` | การเปลี่ยนแปลงเอกสาร |
+| `รีแฟคเตอร์:` | การล้างโค้ดหรือการเปลี่ยนแปลงโครงสร้าง |
+| `ทดสอบ:` | ทดสอบการเปลี่ยนแปลง |
+| `งาน:` | การบำรุงรักษา |---
 
 ## ❓ Need Help?
 
-| Channel | Link |
+| ช่อง | ลิงค์ |
 |:--------|:-----|
-| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💌 คำถาม | [เปิดการสนทนา](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 ข้อบกพร่อง | [เปิดปัญหา](https://github.com/diegosouzapw/omni-skills/issues) |
+| ติชมล่วงหน้า | [เปิดการประชาสัมพันธ์ฉบับร่าง](https://github.com/diegosouzapw/omni-skills/pulls) |

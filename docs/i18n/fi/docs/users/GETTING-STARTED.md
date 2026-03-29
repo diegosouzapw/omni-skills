@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**Asenna taidot, tarkista asetukset ja käynnistä ensimmäinen tekoälytaitosi alle kahdessa minuutissa.**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| Metrinen | Arvo |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| Julkaistut taidot |**32**15 aktiivisessa kategoriassa, mukaan lukien arkkitehtuuri, suunnittelu, turvallisuus, DevOps, tekoälytekniikka ja paljon muuta |
+| Määritellyt niput |**7**(kaikki täysin julkaistut taidot) |
+| Asennuskykyiset asiakkaat |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP-konfigurointikykyiset asiakkaat |**16**33 ensimmäisen luokan MCP-määrityskohteessa |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+Interaktiivisessa päätteessä tämä avaa nyt ohjatun asennusohjelman sen sijaan, että ottaisi hiljaa asiakkaan käyttöön.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+Tämä avaa merkkipäätekeskuksen asennusta, etsintää, MCP-, API- ja A2A-käynnistystä varten.### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+TTY:n ulkopuolella no-arg-asennusohjelman oletusarvo on edelleen "~/.gemini/antigravity/skills".### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ Aloituspaketit ovat nyt täysin tuetut, mukaan lukien "devops" ja "ai-engineer".### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+Tarkista, että taidot osuivat oikeaan paikkaan:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+Tai käytä sisäänrakennettua diagnostiikkaa:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+Antaa agenteille tiedostojärjestelmätyökaluja asiakkaiden havaitsemiseen, asentamiseen/poistamiseen ja MCP-asetusten kirjoittamiseen:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+Voit myös määrittää MCP:n asiakkaille, jotka eivät ole taitojen asennuskohteita:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+Näyttää taitoluettelon vain luku -muotoisena HTTP-sovellusliittymänä:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+Agenttien välinen etsintä, suositus, asennussuunnittelu, äänestys ja suoratoisto:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+Taito on strukturoitu merkintäohjekirja (`SKILL.md`), joka antaa tekoälyagentille:
 
-| Component | Purpose |
+| Komponentti | Tarkoitus |
 |:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| 📋**Frontmatter**| Koneluettava metatiedot (nimi, luokka, tunnisteet, työkalut, riski) |
+| 📝**Runko**| Tehtäväkohtaiset ohjeet, askelmat, suojakaiteet ja esimerkit |
+| 📚**Referenssit**| Tukiasiakirjat, joita agentti voi tarkastella suorituksen aikana |
+| 🎨**Omaisuus**| Kuvakkeet, kuvat tai muut pakatut resurssit |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| Doc | Mitä opit |
+|:----|:-------------------|
+| 🧭 [CLI-käyttöopas](CLI-USER-GUIDE.md) | Täydellinen komentoviite asennusta, suoritusaikaa, konfigurointia ja diagnostiikkaa varten |
+| 📗 [Käyttöopas](USAGE.md) | Kaikki CLI-komennot, kehotemallit ja ajonaikaiset tilat |
+| 📦 [Bundles](BUNDLES.md) | Kuroidut taitokokoelmat ja niiden saatavuus |
+| 📚 [Katalogi](../CATALOG.md) | Automaattisesti luotu luettelo julkaistuista taidoista |
+| 📖 [Documentation Hub](../README.md) | Täysi asiakirjakartta |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Toimintaviite |

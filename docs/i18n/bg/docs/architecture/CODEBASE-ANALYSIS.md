@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**Изчерпателен технически анализ на текущата архитектура Omni Skills, повърхности за изпълнение и конвейер за изграждане.**
+> Последен анализ: 2026-03-28---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| Атрибут | Стойност |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**Име**| `omni-skills` |
+|**Версия на пакета**| `0.1.3` |
+|**Версии на умения**| За всяко умение и независимо от пакетната версия. Много публикувани умения все още са „0.0.1“, докато пакетът е „0.1.2“. |
+|**Лиценз**| MIT (код) + CC BY 4.0 (съдържание) |
+|**NPM**| `npx omni-skills` |
+|**Публикувани умения**| 32 |
+|**Дефинирани пакети**| 7, всички напълно подкрепени от публикувани умения |
+|**Активни каталожни категории**| 15 активни кофи от 18 канонични таксономични категории |
+|**Основна среда за изпълнение/компилация LOC, извадка по-долу**| 13 600+ |
+|**Производствени зависимости**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+Текуща моментна снимка на класификация на ниво хранилище от „metadata.json“:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- среден резултат за качество: `96.3`
+- среден резултат за най-добри практики: `98.7`
+- среден резултат за сигурност: `95.0`
+- всички 32 публикувани умения се валидират като „L3“.
 
-Current release baseline:
+Текуща базова версия на изданието:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- издание на публично хранилище: `v0.1.2`
+- издание на частен усилвател: `v0.0.1`
+- публичната автоматизация на пускане и автоматизацията на частното пускане са активни и зелени---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+Хранилището следва модел**workspace monorepo**с едно споделено ядро ​​на каталога и множество повърхности за изпълнение.```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,280 +64,260 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+Дизайнът умишлено е**задвижван от артефакти**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. уменията са създадени като `SKILL.md` плюс локални пакети за поддръжка
+2. изграждането ги валидира, класифицира, архивира и нормализира
+3. генерираните артефакти стават договор за CLI, API, MCP и A2A---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4500+ LOC комбинирани**— основният публичен интерфейс както за експертно, така и за ръководено използване.
 
-| Command | Function |
+| Команда | Функция |
 |:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| 🔎 `намери [заявка]` | Търсене в каталог с пълен текст с филтри, съобразени с резултатите |
+| 📦 `инсталиране` | Насочвано или базирано на флаг инсталиране в известни клиенти или потребителски пътища |
+| 🧾 `config-mcp` | Визуализирайте или напишете клиентска MCP конфигурация |
+| 🔌 `mcp <транспорт>` | Стартира MCP сървъра в `stdio`, `stream` или `sse` |
+| 🌐 `api` | Стартира API на каталога |
+| 🤖 `a2a` | Стартира A2A runtime |
+| 🧪 `дим` | Пуснете валидиране преди полет |
+| 🩺 `лекар` | Локална диагностика |
+| 🖥️ `ui` | Визуална обвивка на Ink с център за инсталиране, откриване, конфигурация и обслужване |
+| 🏷️ `прекатегоризиране` | Инспекция на дрейфа на таксономията и пренаписване |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI вече не е просто инсталатор. Това е инструментът за публични операции за цялата платформа.## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+Публичното време на изпълнение вече не е блокирано при основна работа и вълната от втора категория вече е приземена. Следващата полезна каталожна работа е дълбочината, а не повече преследване на броя на категориите.
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+Новоактивирани собствени песни с код вече в каталога:
 
-Newly activated code-native tracks now in the catalog:
+- `дизайн` чрез `design-systems-ops`, `accessibility-audit` и `design-token-governance`
+- `инструменти` чрез `mcp-server-authoring`
+- `data-ai` чрез `data-contracts`
+- „машинно обучение“ чрез „обслужване на модел“.
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+Препоръчителна следваща посока:
 
-Recommended next direction:
+1. задълбочаване на `дизайн`, `инструменти`, `data-ai` и `машинно обучение`
+2. запазете `business` и `content-media` отложени, освен ако не се появи ясно кодово предложение
+3. запазване на текущото ниво на качество вместо повторно отваряне на налягането за активиране на категорията
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+Тази вълна на разширяване вече е записана в [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— инсталира умения в 7 асистента с възможност за инсталиране.
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
-
-> **403 LOC** — installs skills into 7 install-capable assistants.
-
-| Flag | Target | Default Path |
+| Флаг | Цел | Път по подразбиране |
 |:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
+| `--клод` | Клод Код | `~/.claude/skills` |
+| `--курсор` | Курсор | `~/.cursor/skills` |
+| `--близнаци` | Gemini CLI | `~/.gemini/skills` |
 | `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+| `--киро` | Киро | `~/.kiro/skills` |
+| `--антигравитация` | Антигравитация | `~/.gemini/antigravity/skills` |
+| `--отворен код` | OpenCode | `<работно пространство>/.opencode/skills` |
 
-It supports:
+Поддържа:
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+- инсталиране на пълна библиотека
+- селективни инсталации от `--skill`
+- подбрани инсталации от `--bundle`
+- управлявани TTY и визуални UI потоци
+- потребителски целеви пътища### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+>**828 LOC**— споделен слой по време на изпълнение за CLI, API, MCP и A2A.
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
-
-| Export | Description |
+| Експорт | Описание |
 |:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+| 🔎 `searchSkills()` | Търсене с претеглено съвпадение на текст и поддръжка на филтър |
+| 📋 `listSkills()` | Многоосно филтриране по качество, най-добри практики, ниво, сигурност, риск, инструмент и категория |
+| 📌 `getSkill()` | Резолюция на манифест плюс обогатени публични URL адреси |
+| ⚖️ `compareSkills()` | Паралелно сравнение |
+| 💡 `recommendSkills()` | Целенасочена препоръка |
+| 📦 `buildInstallPlan()` | Генериране на план за инсталиране с предупреждения и насоки за клиента |
+| 🗂️ `listBundles()` | Подбран списък с пакети с наличност |
+| 📁 `listSkillArchives()` | Резолюция на архив и подпис |
 
-This is the real single source of runtime truth after generation.
+Това е истинският единствен източник на истина за времето на изпълнение след генериране.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+>**812 LOC**— пълно изпълнение на MCP с помощта на официалния SDK.
 
-> **812 LOC** — full MCP implementation using the official SDK.
-
-**Transports**
+**Транспорти**
 
 - `stdio`
-- streamable HTTP
+- стриймируем HTTP
 - SSE
 
-**Always-on read-only tools**
+**Винаги включени инструменти само за четене**
 
-- `search_skills`
+- `умения_за_търсене`
 - `get_skill`
-- `compare_skills`
+- `сравни_умения`
 - `recommend_skills`
 - `preview_install`
 
-**Local-mode tools**
+**Инструменти за локален режим**
 
 - `detect_clients`
-- `list_installed_skills`
+- `списък_инсталирани_умения`
 - `install_skills`
-- `remove_skills`
+- `премахни_умения`
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+MCP повърхността е умишлено разделена между:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- дистанционно/само за четене използване на каталог
+- локално/със възможност за писане използване с кош### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1,943 LOC**— MCP слой, съобразен с файловата система, за откриване на клиенти, управление на умения и писане на MCP конфигурация.
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+Текуща практическа подкрепа:
 
-Current practical support:
+-**7 клиента с възможност за инсталиране**
+-**16 клиента с възможност за конфигурация**
+-**33 конфигурационни цели**
+-**19 конфигурационни профила**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
+Клиенти с възможност за инсталиране:
 
-Install-capable clients:
-
-- Claude Code
-- Cursor
+- Клод Код
+- Курсор
 - Gemini CLI
 - Codex CLI
-- Kiro
-- Antigravity
+- Киро
+- Антигравитация
 - OpenCode
 
-Config-capable clients and targets include:
+Клиентите и целите с възможност за конфигурация включват:
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+- Настройки на Claude, Claude Desktop и конфигурация на проекта Claude
+- Конфигурация на потребител и работно пространство на курсора
+- Конфигурация на работно пространство на VS Code, потребител, вътрешни лица и Dev Container
+- Настройки на потребителя и работното пространство на Gemini
+- Антигравитационна потребителска конфигурация
+- Kiro потребител, работно пространство и наследени пътища
+- Codex CLI TOML конфигурация
+- OpenCode потребителска и работна конфигурация
+- Настройки на Cline
+- GitHub Copilot CLI потребител и конфигурация на репо
+- Конфигурация на потребител, проект и работно пространство на Kilo
+- Продължаване на работното пространство YAML
+- Windsurf потребителска конфигурация
+- Конфигурация на работното пространство на Zed
+- Потребителска конфигурация на Goose
 
-The sidecar is intentionally honest about boundaries:
+Колата умишлено е честен относно границите:
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+- пише само в разрешен списък
+- визуализира по подразбиране
+- поддържа първокласни писатели само когато официалните документи показват стабилен формат
+- не се преструва, че всеки съвместим с MCP продукт също е цел за инсталиране на умения### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+>**715 LOC комбинирано**— API за регистър само за четене плюс междинен софтуер за управление.
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
-
-Important endpoints:
+Важни крайни точки:
 
 - `/healthz`
 - `/openapi.json`
 - `/admin/runtime`
 - `/v1/skills`
 - `/v1/skills/:id`
-- `/v1/search`
-- `/v1/compare`
-- `/v1/bundles`
+- `/v1/търсене`
+- `/v1/сравнение`
+- `/v1/пакети`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+Базовата линия на управление вече е внедрена:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- удостоверяване на маркер на носител
+- Удостоверяване на API-ключ
+- удостоверяване на администраторски маркер
+- ограничаване на скоростта в процеса
+- заявка за идентификатори
+- одитно регистриране
+- CORS разрешени списъци
+- IP разрешени списъци
+- доверяване на прокси обработка
+- режим на поддръжка### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**1857 LOC, комбинирани в основния сървър, време за изпълнение и координиращи файлове**— JSON-RPC 2.0 жизнен цикъл на задачи за работни потоци от агент към агент.
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+Поддържани методи:
 
-Supported methods:
-
-- `message/send`
-- `message/stream`
+- `съобщение/изпрати`
+- `съобщение/поток`
 - `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
+- `задачи/отказ`
+- `задачи/повторно абониране`
 - `tasks/pushNotificationConfig/*`
 
-Current operations:
+Текущи операции:
 
-- `discover-skills`
+- `откриване-умения`
 - `recommend-stack`
-- `prepare-install-plan`
+- `подготовка-инсталационен-план`
 
-Durability and coordination model:
+Модел на издръжливост и координация:
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
+- памет, JSON или SQLite локално постоянство
+- рестартирайте резюме
+- външен изпълнител на процеса по избор
+- включване на наета координация на опашка за споделени SQLite работници
+- незадължителна координация, поддържана от Redis, като разширен хостван път
 
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+Ключовият архитектурен избор тук е**обикновена първа локална операция**. Redis съществува като разширена опция, но пътят на продукта по подразбиране остава локален и лек на зависимости.---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
+| Скрипт | Език | Цел |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| 📊 `skill_metadata.py` | Python | Валидиране, таксономия, оценяване и статично сканиране за сигурност |
+| ✅ `validate_skills.py` | Python | Генериране на метаданни за умение и за основното резюме |
+| 📑 `generate_index.py` | Python | Индекс на уменията, манифести, архиви, подписи и контролни суми |
+| 🏗️ `build_catalog.js` | Node.js | Окончателни `dist/catalog.json` и `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Одит и пренаписване на канонична категория |
+| 🔍 `verify_archives.py` | Python | Архив и проверка на подпис |
 
-Two details matter operationally:
+Оперативно важни са две подробности:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. `dist/` е част от договора за изпълнение и умишлено ангажиран
+2. изграждането е достатъчно детерминистично, за да поддържа CI проверка и подписване на версия---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+Настоящият публичен каталог обхваща 32 умения:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**Откриване и планиране**: `умения за намиране`, `мозъчна атака`, `архитектура`, `отстраняване на грешки`
+-**Системи за проектиране и достъпност**: `design-systems-ops`, `accessibility-audit`
+-**Доставка на продукти и пълен стек**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
+-**Сигурност**: `security-auditor`, `vulnerability-skener`, `incident-response`, `threat-modeling`
+-**Работни процеси на поддържащия OSS**: `документация`, `changelog`, `create-pr`
+-**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
+-**AI инженерство**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
 
-All seven bundles are fully backed:
+Всичките седем пакета са напълно обезпечени:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
+- `основни неща` → `4/4`
+- `пълен стек` → `5/5`
+- `дизайн` → `4/4`
+- `сигурност` → `4/4`
 - `devops` → `5/5`
-- `ai-engineer` → `5/5`
+- `ai-инженер` → `5/5`
 - `oss-maintainer` → `4/4`
 
-Current score spread from the generated catalog:
+Текущ резултат от генерирания каталог:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- оценки за качество: `94, 95, 96, 97, 100`
+- резултати за най-добри практики: `98, 99, 100`
+- резултат за сигурност: всички публикувани умения в момента са `95`
 
-Representative high end:
+Представителен висок клас:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
+- `omni-figma` → `качество 100`, `best_practices 100`
 - `accessibility-audit` → `quality 99`, `best_practices 100`
 - `auth-flows` → `quality 97`, `best_practices 99`
 - `design-systems-ops` → `quality 97`, `best_practices 99`
@@ -351,40 +325,36 @@ Representative high end:
 - `threat-modeling` → `quality 97`, `best_practices 99`
 - `context-engineering` → `quality 97`, `best_practices 99`
 
-Representative lower end inside the current top band:
+Представителен долен край в текущата горна лента:
 
-- `architecture` → `quality 94`, `best_practices 98`
+- `архитектура` → `качество 94`, `най-добри_практики 98`
 - `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `create-pr` → `качество 95`, `best_practices 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+Това е умишлено. Резултатистът вече разграничава „отличен“ от „изключителен“, вместо да изравнява целия каталог в горната част.---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**Първият дизайн на артефакта**
+   Всяка повърхност за изпълнение използва един и същ генериран каталог и манифести.
+2.**Широко покритие на протокола**
+   CLI, API, MCP и A2A съществуват едновременно без фрагментиране на модела на данни.
+3.**Силна ергономичност на местния продукт**
+   Насочваното инсталиране, визуалната обвивка, `config-mcp` и настройките по подразбиране на сухо правят проекта използваем и извън опитните потребители.
+4.**Честна поза за сигурност**
+   Позволените локални записи, статично сканиране, подписване, контролни суми и проверка на освобождаването са изрични.
+5.**Здравословен MCP обхват**
+   Сега проектът поддържа широк набор от настоящи клиенти с възможност за MCP, без да се преструва, че недокументираните цели са стабилни.---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**По-дълбоко покритие на пакета**
+   Следващата стъпка е специализация в съществуващите пакети, а не само широко покритие.
+2.**По-богата семантика на голмайстора**
+   Все още има място за по-семантична оценка на дълбочината на референтния пакет и качеството на работния процес.
+3.**Повече автори на клиенти само когато е оправдано**
+   Разширяването трябва да остане дисциплинирано и обвързано със стабилни официални документи.
+4.**Разлагане на валидатора**
+   `skill_metadata.py` все още е голям модул и би се възползвал от вътрешно разлагане с течение на времето.
+5.**Ескалация на хостваното управление**
+   Текущата базова линия в процес е достатъчна за самостоятелно хостване, но внедряването в предприятието в крайна сметка би искало външен шлюз и интеграция на идентичност.

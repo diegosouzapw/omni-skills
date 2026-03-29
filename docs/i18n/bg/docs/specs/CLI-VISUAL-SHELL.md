@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**Поведенчески договор за потребителския интерфейс на терминала, базиран на мастило, изложен от `omni-skills ui`.**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+Визуалната обвивка е направлявана продуктова повърхност върху съществуващия CLI и двигател на инсталатора.
 
-It does not replace:
+Не замества:
 
-- expert flag-based CLI usage
+- използване на CLI на база експертен флаг
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- потокът за инсталиране с напътстван текст
+- API, MCP или A2A поведение по време на изпълнение
 
-It defines:
+Той определя:
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- поведението на `omni-skills ui`
+- резервният договор за `omni-skills ui --text`
+- местно състояние и предварително зададено постоянство
+- предварителни прегледи при стартиране на услугата
+- повторяемост за скорошни инсталации и сервизни работи---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+`omni-skills ui` стартира базираната на мастило визуална обвивка.
 
-The visual shell is the primary non-expert terminal experience for:
+Визуалната обвивка е основното неекспертно терминално изживяване за:
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- инсталирайте потоци
+- каталог-първо откриване и инсталиране
+- MCP стартиране
+- Стартиране на API
+- A2A стартиране
+- предаване на лекар и дим### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+`omni-skills ui --text` стартира базирания на readline резервен интерфейс.
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+Това остава полезно, когато:
 
-This remains useful when:
+- терминалът не може да изобрази правилно по-богатата обвивка
+- поведението в необработен режим е ограничено
+- предпочита се минимален резервен текст### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+Визуалната обвивка не внедрява повторно времето за изпълнение на услугата или инсталационните записи директно.
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+След предварителен преглед и потвърждение, той излиза чисто и предава изпълнението на съществуващата CLI входна точка с еквивалентните аргументи и променливи на средата.---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+Началният екран трябва да показва:
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- умения за инсталиране
+- намиране и инсталиране
+- повторете последните инсталации, когато има
+- стартиране на запазени предварителни настройки за инсталиране, когато има такива
+- стартиране на услуга
+- повторете последните услуги, когато присъстват
+- стартиране на запазени предварително зададени услуги, когато има такива
+- лекар
+- дим
+- изход
 
-The home screen should also surface:
+Началният екран също трябва да се появи:
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- текуща публикувана наличност на пакет
+- местното състояние се брои за скорошни, предварително зададени и любими---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+Инсталационният поток на визуалната обвивка трябва да поддържа:
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- известен избор на клиентска цел
+- персонализиран избор на път
+- пълна инсталация на библиотеката
+- инсталация с едно умение
+- инсталация на един пакет
+- търсене-след това-инсталиране
+- преглед преди писане
+- предварително зададено запазване
+- любимо умение или превключване на пакети
 
-Preview must show:
+Визуализацията трябва да показва:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- разрешен целеви етикет
+- разрешен път
+- обхват на инсталиране
+- избрано умение или пакет, когато е приложимо
+- еквивалентна CLI команда---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+Визуалната обвивка трябва да ръководи стартирането за:### 5.1 MCP
 
-### 5.1 MCP
+- транспорт: `stdio`, `stream`, `sse`
+- режим: `само за четене` или `локален`
+- конфигурация на хост/порт за мрежови транспорти
+- явен преглед на командата### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- домакин
+- порт
+- основен или закален профил
+- затвърден носител или удостоверяване на API ключ
+- закалени гранични параметри на скоростта
+- активиране на журнал за одит
+- явен преглед на командата### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- домакин
+- порт
+- тип магазин: `memory`, `json`, `sqlite`
+- път за съхранение за издръжливи режими
+- изпълнител: `inline`, `process`
+- SQLite режим с активирана опашка
+- интервал на анкета и продължителност на лизинг за режим на споделен лизинг
+- явен преглед на командата---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+Визуалната обвивка продължава да съществува само в локално състояние в:```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+Състоянието в момента включва:
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- скорошни инсталации
+- скорошни стартирания на услугата
+- именувани предварителни настройки за инсталиране
+- предварително зададени наименувани услуги
+- любими умения
+- любими пакети
 
-The shell must support:
+Черупката трябва да поддържа:
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- повторение на последните инсталации
+- повторение на скорошни стартирания на услугата
+- повторно използване на именувани предварителни настройки за инсталиране
+- повторно използване на предварително зададени наименувани услуги---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+Визуалната обвивка е добавка.
 
-These flows must remain valid and stable:
+Тези потоци трябва да останат валидни и стабилни:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills install --guided`
 - `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
+- `npx omni-skills mcp поток --local`
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+Визуалната обвивка никога не трябва да се принуждава към изрични пътеки на експертни команди.---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+Визуалната обвивка трябва да прави състоянието и записите изрични.
 
-It must:
+Тя трябва:
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- инсталации за визуализация преди предаване на запис
+- преглед на командите за стартиране на услугата преди изпълнение
+- пазете секретен материал далеч от предварителни прегледи на команди с ясен текст, където е възможно
+- запазване на състоянието само локално
+- запазване на неинтерактивно CLI поведение извън визуалната обвивка

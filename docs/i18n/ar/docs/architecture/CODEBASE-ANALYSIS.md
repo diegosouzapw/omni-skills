@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**تحليل فني شامل لبنية Omni Skills الحالية وأسطح التشغيل ومسارات البناء.**
+> آخر تحليل: 2026-03-28---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| السمة | القيمة |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**الاسم**| `المهارات الشاملة` |
+|**نسخة الحزمة**| `0.1.3` |
+|**إصدارات المهارة**| لكل مهارة ومستقلة عن إصدار الحزمة. العديد من المهارات المنشورة لا تزال "0.0.1" بينما الحزمة "0.1.2". |
+|**الترخيص**| معهد ماساتشوستس للتكنولوجيا (الكود) + CC BY 4.0 (المحتوى) |
+|**NPM**| `مهارات npx الشاملة` |
+|**المهارات المنشورة**| 32 |
+|**الحزم المحددة**| 7، كلها مدعومة بالكامل بالمهارات المنشورة |
+|**فئات الكتالوج النشطة**| 15 مجموعة نشطة من أصل 18 فئة تصنيف أساسية |
+|**عينة من وقت التشغيل الأساسي/بناء LOC أدناه**| 13,600+ |
+|**تبعيات الإنتاج**| 7 (`@modelcontextprotocol/sdk`، `cors`، `express`، `ioredis`، `ink`، `react`، `zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+لقطة التصنيف الحالية على مستوى المستودع من "metadata.json":
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- متوسط نقاط الجودة: `96.3`
+- متوسط درجة أفضل الممارسات: `98.7`
+- متوسط درجة الأمان: `95.0`
+- جميع المهارات المنشورة الـ 32 تم التحقق من صحتها على أنها "L3".
 
-Current release baseline:
+الإصدار الأساسي الحالي:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- إصدار المستودع العام: `v0.1.2`
+- إصدار المحسن الخاص: `v0.0.1`
+- أتمتة الإصدار العام وأتمتة الإصدار الخاص كلاهما نشط وخضراء---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+يتبع المستودع نمط**مساحة العمل monorepo**مع نواة كتالوج مشترك واحد وأسطح وقت تشغيل متعددة.```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,321 +64,297 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+تم تصميم التصميم**مدفوعًا بالقطع الأثرية**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. تم تأليف المهارات باسم `SKILL.md` بالإضافة إلى حزم الدعم المحلية
+2. يقوم البناء بالتحقق من صحتها وتصنيفها وأرشفتها وتطبيعها
+3. تصبح القطع الأثرية التي تم إنشاؤها بمثابة عقد لـ CLI وAPI وMCP وA2A---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4,500+ LOC مدمج**— الواجهة العامة الرئيسية للاستخدام المتخصص والموجه.
 
-| Command | Function |
-|:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| الأمر | وظيفة |
+|:--------|:--------|
+| 🔎 `بحث عن [استعلام]` | البحث عن كتالوج النص الكامل باستخدام مرشحات مدركة للنتيجة |
+| 📦 `تثبيت` | التثبيت الموجه أو القائم على العلامة في العملاء المعروفين أو المسارات المخصصة |
+| 🧾 `config-mcp` | قم بمعاينة أو كتابة تكوين MCP المدرك للعميل |
+| 🔌`mcp <transport>` | يبدأ تشغيل خادم MCP في `stdio` أو `stream` أو `sse` |
+| 🌐 `api` | يبدأ واجهة برمجة تطبيقات الكتالوج |
+| 🤖 `a2a` | يبدأ وقت تشغيل A2A |
+| 🧪 `الدخان` | الافراج عن التحقق من صحة الاختبار المبدئي |
+| 🩺 `دكتور` | التشخيص المحلي |
+| 🖥️`ui` | الغلاف المرئي بالحبر مع التثبيت والاكتشاف والتكوين ومركز الخدمة |
+| 🏷️ `إعادة التصنيف` | فحص الانجراف التصنيفي وإعادة كتابته |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+لم تعد واجهة سطر الأوامر (CLI) مجرد أداة تثبيت. إنها أداة العمليات العامة للمنصة بأكملها.## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+لم يعد وقت التشغيل العام محظورًا على العمل التأسيسي، وقد وصلت موجة الفئة الثانية بالفعل. عمل الكتالوج المفيد التالي هو العمق، وليس المزيد من مطاردة عدد الفئات.
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+المسارات الأصلية التي تم تنشيطها حديثًا موجودة الآن في الكتالوج:
 
-Newly activated code-native tracks now in the catalog:
+- "التصميم" عبر "design-systems-ops"، و"accessibility-audit"، و"design-token-governance"
+- "الأدوات" عبر "mcp-server-authoring".
+- `data-ai` عبر ``عقود البيانات``
+- "التعلم الآلي" عبر "خدمة النماذج".
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+الاتجاه التالي الموصى به:
 
-Recommended next direction:
+1. تعميق "التصميم" و"الأدوات" و"الذكاء الاصطناعي للبيانات" و"التعلم الآلي"
+2. أبقِ "الأعمال" و"وسائط المحتوى" مؤجلة ما لم يظهر اقتراح واضح للرمز الأصلي
+3. الحفاظ على أرضية الجودة الحالية بدلاً من إعادة فتح ضغط تفعيل الفئة
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+يتم الآن تسجيل موجة التوسع هذه في [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**— تثبيت المهارات في 7 مساعدين قادرين على التثبيت.
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+| علم | الهدف | المسار الافتراضي |
+|:-----|:-------|:------------|
+| `--كلود` | كلود كود | `~/.كلود/مهارات` |
+| `--المؤشر` | المؤشر | `~/.cursor/skills` |
+| `--الجوزاء` | الجوزاء CLI | `~/.gemini/skills` |
+| `--المخطوطة` | كوديكس كلي | `~/.codex/skills` |
+| `--كيرو` | كيرو | `~/.kiro/skills` |
+| `--مضادة الجاذبية` | مكافحة الجاذبية | `~/.gemini/antigravity/skills` |
+| `--رمز مفتوح` | الكود المفتوح | `<مساحة العمل>/.opencode/skills` |
 
-> **403 LOC** — installs skills into 7 install-capable assistants.
+وهو يدعم:
 
-| Flag | Target | Default Path |
-|:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+- عمليات تثبيت المكتبة الكاملة
+- عمليات التثبيت الانتقائية بواسطة `--skill`
+- عمليات التثبيت المنسقة بواسطة `--bundle`
+- TTY الموجهة وتدفقات واجهة المستخدم المرئية
+- مسارات الهدف المخصصة### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-It supports:
+>**828 LOC**— طبقة وقت تشغيل مشتركة لـ CLI وAPI وMCP وA2A.
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+| تصدير | الوصف |
+|:-------|:----------|
+| 🔎`مهارات البحث()` | البحث باستخدام مطابقة النص المرجح ودعم التصفية |
+| 📋 `listSkills()` | تصفية متعددة المحاور حسب الجودة وأفضل الممارسات والمستوى والأمان والمخاطر والأداة والفئة |
+| 📌`getSkill()` | دقة البيان بالإضافة إلى عناوين URL العامة الغنية |
+| ⚖️ `compareSkills()` | مقارنة جنبًا إلى جنب |
+| 💡`recommendSkills()` | توصية موجهة نحو الهدف |
+| 📦 `buildInstallPlan()` | تثبيت إنشاء الخطة مع التحذيرات والإرشادات الخاصة بالعميل |
+| 🗂️ `listBundles()` | قائمة الحزمة المنسقة مع التوفر |
+| 📁`listSkillArchives()` | الأرشفة وحل التوقيع |
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+هذا هو المصدر الوحيد الحقيقي لحقيقة وقت التشغيل بعد جيل.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
+>**812 LOC**— التنفيذ الكامل لـ MCP باستخدام SDK الرسمي.
 
-| Export | Description |
-|:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+**وسائل النقل**
 
-This is the real single source of runtime truth after generation.
+- ``ستوديو``
+- HTTP قابل للتدفق
+- إس إس إي
 
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+**أدوات القراءة فقط التي تعمل دائمًا**
 
-> **812 LOC** — full MCP implementation using the official SDK.
+- `مهارات_البحث`
+- `احصل على المهارة`
+- `مقارنة_المهارات`
+- `التوصية_بالمهارات`
+- `معاينة_التثبيت`
 
-**Transports**
+**أدوات الوضع المحلي**
 
-- `stdio`
-- streamable HTTP
-- SSE
-
-**Always-on read-only tools**
-
-- `search_skills`
-- `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
-
-**Local-mode tools**
-
-- `detect_clients`
+- `اكتشاف_العملاء`
 - `list_installed_skills`
-- `install_skills`
-- `remove_skills`
+- `مهارات_التثبيت`
+- `إزالة_المهارات`
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+يتم تقسيم سطح MCP عمدا بين:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- استخدام الكتالوج عن بعد/للقراءة فقط
+- استخدام السيارة الجانبية المحلية/القادرة على الكتابة### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1,943 LOC**— طبقة MCP المدركة لنظام الملفات لاكتشاف العميل وإدارة المهارات وكتابة تكوين MCP.
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+الدعم العملي الحالي:
 
-Current practical support:
+-**7 عملاء قادرين على التثبيت**
+-**16 عميلاً قادرين على التكوين**
+-**33 هدفًا للتكوين**
+-**19 ملف تعريف التكوين**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
+العملاء القادرون على التثبيت:
 
-Install-capable clients:
+- كلود كود
+- المؤشر
+- الجوزاء CLI
+- كوديكس كلي
+- كيرو
+- مضاد الجاذبية
+- الكود المفتوح
 
-- Claude Code
-- Cursor
-- Gemini CLI
-- Codex CLI
-- Kiro
-- Antigravity
-- OpenCode
+تتضمن العملاء والأهداف القادرة على التكوين ما يلي:
 
-Config-capable clients and targets include:
+- إعدادات كلود، كلود سطح المكتب، وتكوين مشروع كلود
+- تكوين مستخدم المؤشر ومساحة العمل
+- مساحة عمل VS Code، والمستخدم، والمطلعين، وتهيئة Dev Container
+- إعدادات مستخدم الجوزاء ومساحة العمل
+- تكوين المستخدم المضاد للجاذبية
+- مستخدم Kiro ومساحة العمل والمسارات القديمة
+- تكوين Codex CLI TOML
+- تكوين مستخدم OpenCode ومساحة العمل
+- إعدادات كلاين
+- مستخدم GitHub Copilot CLI وتكوين الريبو
+- تكوين مستخدم كيلو والمشروع ومساحة العمل
+- متابعة مساحة العمل YAML
+- تكوين مستخدم ركوب الأمواج
+- تكوين مساحة العمل Zed
+- تكوين المستخدم أوزة
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+السيارة الجانبية صادقة عمدا فيما يتعلق بالحدود:
 
-The sidecar is intentionally honest about boundaries:
+- يكتب فقط داخل القائمة المسموح بها
+- يتم معاينته بشكل افتراضي
+- يحتفظ بالكتاب من الدرجة الأولى فقط عندما تعرض المستندات الرسمية تنسيقًا مستقرًا
+- لا يتظاهر بأن كل منتج قادر على MCP هو أيضًا هدف لتثبيت المهارات### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+>**715 LOC مدمج**— واجهة برمجة تطبيقات التسجيل للقراءة فقط بالإضافة إلى البرامج الوسيطة للحوكمة.
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+نقاط النهاية الهامة:
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
-
-Important endpoints:
-
-- `/healthz`
+- `/ هيلثز`
 - `/openapi.json`
-- `/admin/runtime`
-- `/v1/skills`
+- `/المشرف/وقت التشغيل`
+- `/v1/المهارات`
 - `/v1/skills/:id`
-- `/v1/search`
-- `/v1/compare`
-- `/v1/bundles`
+- `/v1/بحث`
+- `/v1/قارن`
+- `/v1/حزمة`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+خط الأساس للحوكمة الذي تم تنفيذه بالفعل:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- مصادقة الرمز المميز لحاملها
+- مصادقة مفتاح API
+- مصادقة رمز المشرف
+- الحد من معدل العملية
+- معرفات الطلب
+- تسجيل التدقيق
+- قوائم CORS المسموح بها
+- قوائم IP المسموح بها
+- الثقة في التعامل مع الوكيل
+- وضع الصيانة### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**تم دمج 1,857 LOC عبر ملفات الخادم الرئيسي ووقت التشغيل والمنسق**— دورة حياة مهمة JSON-RPC 2.0 لسير العمل من وكيل إلى وكيل.
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+الطرق المدعومة:
 
-Supported methods:
-
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
+- `رسالة/إرسال`
+- `الرسالة/الدفق`
+- `المهام/الحصول على`
+- "المهام/الإلغاء".
+- `المهام/إعادة الاشتراك`
 - `tasks/pushNotificationConfig/*`
 
-Current operations:
+العمليات الحالية:
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+- `اكتشاف المهارات`
+- "التوصية المكدس".
+- `خطة إعداد التثبيت`
 
-Durability and coordination model:
+نموذج المتانة والتنسيق:
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
+- الذاكرة أو JSON أو SQLite الثبات المحلي
+- استئناف السيرة الذاتية
+- منفذ عملية خارجي اختياري
+- الاشتراك في تنسيق قائمة الانتظار المؤجرة لعمال SQLite المشتركين
+- التنسيق الاختياري المدعوم من Redis كمسار مستضاف متقدم
 
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+الخيار المعماري الرئيسي هنا هو**التشغيل المحلي البسيط أولاً**. يوجد Redis كخيار متقدم، لكن مسار المنتج الافتراضي يظل محليًا وخفيف التبعية.---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
-|:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| البرنامج النصي | اللغة | الغرض |
+|:-------|:--------|:--------|
+| 📊`skill_metadata.py` | بايثون | التحقق من الصحة والتصنيف والتسجيل والمسح الأمني ​​الثابت |
+| ✅ `validate_skills.py` | بايثون | توليد البيانات الوصفية لكل مهارة وللملخص الجذري |
+| 📑`generate_index.py` | بايثون | فهرس المهارات والبيانات والمحفوظات والتواقيع والمجاميع الاختبارية |
+| 🏗️ `build_catalog.js` | نود.جي إس | النهائي `dist/catalog.json` و`dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | بايثون | تدقيق الفئة الأساسية وإعادة كتابتها |
+| 🔍 `verify_archives.py` | بايثون | الأرشفة والتحقق من التوقيع |
 
-Two details matter operationally:
+هناك تفصيلان مهمان من الناحية التشغيلية:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. يعد `dist/` جزءًا من عقد التشغيل ويتم الالتزام به عمدًا
+2. البناء محدد بما يكفي لدعم التحقق من CI وتوقيع الإصدار---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+يشمل الكتالوج العام الحالي 32 مهارة:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**الاكتشاف والتخطيط**: `اكتشاف المهارات`، و`العصف الذهني`، و`الهندسة المعمارية`، و`تصحيح الأخطاء`
+-**أنظمة التصميم وإمكانية الوصول**: `design-systems-ops`، `accessibility-audit`
+-**تسليم المنتج والمكدس الكامل**: `تصميم الواجهة الأمامية`، `تصميم واجهة برمجة التطبيقات`، `تصميم قاعدة البيانات`، `أومني-فيجما`، `تدفقات المصادقة`
+-**الأمان**: `مدقق الأمان`، `أداة فحص الثغرات الأمنية`، `الاستجابة للحوادث`، `نمذجة التهديدات`
+-**سير عمل صيانة OSS**: `الوثائق`، `سجل التغيير`، `إنشاء العلاقات العامة`
+-**DevOps**: `خبير عامل ميناء`، `kubernetes`، `تضاريس`، `مراجعة قابلية الملاحظة`، `هندسة الإصدار`
+-**هندسة الذكاء الاصطناعي**: `مهندس خرقة`، `مهندس سريع`، `أنماط الماجستير`، `تصميم التقييم`، `هندسة السياق`
 
-All seven bundles are fully backed:
+جميع الحزم السبعة مدعومة بالكامل:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
-- `devops` → `5/5`
-- `ai-engineer` → `5/5`
+- `الأساسيات` → `4/4`
+- `مكدس كامل` → `5/5`
+- `التصميم` → `4/4`
+- `الأمن` → `4/4`
+- `المطورون` → `5/5`
+- `مهندس الذكاء الاصطناعي` → `5/5`
 - `oss-maintainer` → `4/4`
 
-Current score spread from the generated catalog:
+انتشار النتيجة الحالية من الكتالوج الذي تم إنشاؤه:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- نقاط الجودة: `94، 95، 96، 97، 100`
+- درجات أفضل الممارسات: `98، 99، 100`
+- درجة الأمان: جميع المهارات المنشورة حاليًا `95`
 
-Representative high end:
+ممثل الراقية:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
-- `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+- `أومني فيجما` → `الجودة 100`، `أفضل_الممارسات 100`
+- `تدقيق إمكانية الوصول` ← `الجودة 99`، `أفضل_الممارسات 100`
+- `تدفقات المصادقة` → `الجودة 97`، `أفضل_الممارسات 99`
+- `تصميم أنظمة العمليات` ← `الجودة 97`، `أفضل_الممارسات 99`
+- `هندسة الإصدار` ← `الجودة 97`، `أفضل_الممارسات 99`
+- `نمذجة التهديدات` ← `الجودة 97`، `أفضل_الممارسات 99`
+- `هندسة السياق` ← `الجودة 97`، `أفضل_الممارسات 99`
 
-Representative lower end inside the current top band:
+الطرف السفلي التمثيلي داخل النطاق العلوي الحالي:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `الهندسة المعمارية` ← `الجودة 94`، `أفضل_الممارسات 98`
+- `سجل التغيير` → `الجودة 94`، `أفضل_الممارسات 98`
+- `إنشاء العلاقات العامة` → `الجودة 95`، `أفضل_الممارسات 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+هذا مقصود. يميز الهداف الآن بين "ممتاز" و"استثنائي" بدلاً من تسطيح الكتالوج بأكمله في الأعلى.---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**التصميم الأول للقطعة الأثرية**
+   يستهلك كل سطح وقت تشغيل نفس الكتالوج والبيانات التي تم إنشاؤها.
+2.**تغطية بروتوكولية واسعة**
+   تتعايش CLI وAPI وMCP وA2A دون تجزئة نموذج البيانات.
+3.**بيئة عمل قوية للمنتج المحلي**
+   التثبيت الموجه، والهيكل المرئي، و`config-mcp`، والإعدادات الافتراضية للتشغيل الجاف تجعل المشروع قابلاً للاستخدام خارج نطاق المستخدمين المتميزين.
+4.**موقف أمني صادق**
+   تعد عمليات الكتابة المحلية المدرجة في القائمة المسموح بها، والمسح الثابت، والتوقيع، والمجاميع الاختبارية، والتحقق من الإصدار كلها صريحة.
+5.**الوصول الصحي لـ MCP**
+   يدعم المشروع الآن مجموعة واسعة من العملاء الحاليين القادرين على MCP دون التظاهر بأن الأهداف غير الموثقة مستقرة.---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**تغطية أعمق للحزمة**
+   والخطوة التالية هي التخصص داخل الحزم الموجودة، وليس مجرد التغطية الواسعة.
+2.**دلالات الهداف الأكثر ثراءً**
+   لا يزال هناك مجال لتقييم عمق الحزمة المرجعية وجودة سير العمل بشكل أكثر دلالة.
+3.**المزيد من كتاب العملاء فقط عندما يكون ذلك مبررًا**
+   يجب أن يظل التوسع منضبطًا ومرتبطًا بمستندات رسمية مستقرة.
+4.**تحليل أداة التحقق**
+   لا تزال `skill_metadata.py` وحدة كبيرة وستستفيد من التحليل الداخلي بمرور الوقت.
+5.**استضافة تصعيد الإدارة**
+   يعد خط الأساس الحالي قيد التشغيل كافيًا للاستضافة الذاتية، ولكن النشر المؤسسي قد يتطلب في النهاية تكامل البوابة الخارجية والهوية.

@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Minden, ami a készségek előhívásához, a szolgáltatások futtatásához és az Omni Skills futtatókörnyezetének működtetéséhez szükséges.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+A teljes működési munkafolyamatokat a [🔧 System Runbook](../operations/RUNBOOK.md) című dokumentumban találja.
+A teljes végfelhasználói parancstérképet a [🧭 CLI felhasználói kézikönyvben](./CLI-USER-GUIDE.md) találja.---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
-|:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| Állapot | Részletek |
+|:-------|:---------|
+| ✅**Most elérhető**| 32 közzétett készség a tervezés, az architektúra, a hibakeresés, a dokumentumok, az OSS, a biztonság, a DevOps, az AI-mérnöki, az adatok, az eszközök és a gépi tanulási munkafolyamatok terén |
+| 📦**Csomagok**| Az "essentials", "full-stack", "design", "security", "devops", "ai-engineer" és "oss-maintainer" ma már teljes mértékben támogatott |
+| 🔌**MCP-elérés**| 7 telepíthető kliens, 16 konfigurálható ügyfél, 33 első osztályú konfigurációs cél, 19 konfigurációs profil |
+| 🤖**A2A tartósság**| Memória, JSON vagy SQLite helyi tartósság, újraindítási folytatás, opcionális folyamatvégrehajtó és választható bérelt koordináció megosztott dolgozók számára |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
-|:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| Ügyfél | Hogyan hívjunk | Készségek útja |
+|:-------|:--------------|:-------------|
+| 🔵**Claude Code**| `>> /készség-név segítsen nekem...` | `~/.claude/skills/` |
+| 🟡**Gemini CLI**| `Use @skill-name to...` ​​| `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `Use @skill-name to...` ​​| `~/.codex/skills/` |
+| 🟢**Kiro**| Igény szerint automatikusan betölthető készségek | `~/.kiro/skills/` |
+| 🟣**Antigravitáció**| `Use @skill-name to...` ​​| `~/.gemini/antigravitation/skills/` |
+| 🔵**Kurzor**| `@készségnév` a chatben | `~/.cursor/skills/` |
+| ⚪**OpenCode**| `nyílt kód futtatása @skill-name` | `.opencode/skills/` |
+| ⬛**másodpilóta**| Képességi tartalom manuális beillesztése | N/A |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Az olyan kliensek, mint a Continue, a Junie, a Windsurf, a Zed, a VS Code, a GitHub Copilot CLI, a Cline és a Kilo Code elsősorban a „config-mcp” folyamatot használják, nem pedig egy készségkönyvtárat.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Megjegyzések:**
+> - Egy interaktív terminálban az `npx omni-skills' most egy irányított telepítési folyamatot nyit meg
+> - "npx omni-skills ui" megnyitja a vizuális tintahéjat telepítési, felderítési és szolgáltatásindítási műveletekkel
+> - a vizuális shell megőrzi a legutóbbi telepítéseket, a legutóbbi szolgáltatásindításokat, a kedvenceket és az elnevezett előbeállításokat a `~/.omni-skills/state/ui-state.json` fájlban
+> - TTY-n kívül továbbra is a teljes telepítés az alapértelmezett, ha nincs választó
+> - A `--skill` csak a kiválasztott közzétett készségeket telepíti
+> - "--bundle" kibővíti a csomagot, és telepíti a kurált csomagban deklarált közzétett tagokat
+> - A "find" 12+ szűrőjelzőt támogat: "minőség", "best_practices", "skill_level", "security", "kategória", "eszköz", "kockázat" stb.
+> - A `config-mcp` a megfelelő út az MCP-képes termékekhez, amelyek nem rendelkeznek első osztályú készségkönyvtárral---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+A CLI egy egyesített műveleti eszköz, nem csak egy telepítő.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+A vizuális shell támogatja:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- irányított telepítés ismert kliens vagy egyéni elérési út kiválasztásával
+- keresés, majd telepítés a zászlók memorizálása nélkül
+- irányított MCP-kliens konfigurációs előnézeti és írási folyamatok
+- MCP, API és A2A irányított indítás
+- a legutóbbi telepítések és a szolgáltatás újraindításai
+- mentett telepítési és szervizbeállítások
+- kedvenc készségek és kötegek### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| # | Tipp |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | Hivatkozzon a készségre név szerint a promptban |
+| 2️⃣ | Adja meg a pontos műterméket, kódot vagy tervezési környezetet, amelyre az ügynöknek szüksége van |
+| 3️⃣ | A `--skill' előnyben részesítése minimális telepítési helyigényért |
+| 4️⃣ | Használja a "doctor" és a "smoke" szavakat a csomagolás vagy a futásidejű problémák hibakeresése előtt |
+| 5️⃣ | Használja a csomagokat válogatott domaintelepítésként most, hogy mind a hét kezdőcsomag teljes mértékben támogatott |
+| 6️⃣ | Használja a "find --install --yes" parancsot a felfedezéshez + telepítéshez egy folyamatban |
+| 7️⃣ | Tekintse meg a [runbook](../operations/RUNBOOK.md) hitelesítési, sebességkorlátozási, aláírási és ellenőrzési env vars |

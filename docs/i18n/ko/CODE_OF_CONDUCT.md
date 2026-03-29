@@ -9,48 +9,40 @@
 
 ## 🌟 Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
-
----
+회원, 기여자, 관리자로서 우리는 이 프로젝트와 커뮤니티에 나이, 신체 크기, 눈에 보이거나 보이지 않는 장애, 인종, 성징, 성 정체성 및 표현, 경험 수준, 교육, 사회 경제적 지위, 국적, 개인적 외모, 인종, 계급, 피부색, 종교 또는 성적 정체성 및 지향에 관계없이**모든 사람이 괴롭힘 없는 경험**을 할 수 있도록 만들 것을 약속합니다.---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Behavior | Example |
-|:---------|:--------|
-| 💬 Welcoming language | Being inclusive and respectful in communication |
-| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
-| 📝 Constructive criticism | Accepting and giving feedback gracefully |
-| 🎯 Community focus | Prioritizing what is best for the project and community |
-| ❤️ Empathy | Showing empathy toward other community members |
+| 행동 | 예 |
+|:---------|:---------|
+| 💬 환영하는 언어 | 포용적이고 존중하는 의사소통 |
+| 🤝 다름에 대한 존중 | 다양한 관점과 경험의 가치 평가 |
+| 📝 건설적인 비판 | 피드백을 적절하게 받아들이고 제공하기 |
+| 🎯 커뮤니티 중심 | 프로젝트와 커뮤니티에 가장 적합한 것의 우선순위 지정 |
+| ❤️공감 | 다른 커뮤니티 구성원에 대한 공감 표시 |### 🔴 Unacceptable Behaviors
 
-### 🔴 Unacceptable Behaviors
-
-| Behavior |
+| 행동 |
 |:---------|
-| 🚫 Sexualized language or imagery, and sexual attention or advances |
-| 🚫 Trolling, insulting, or derogatory comments |
-| 🚫 Personal or political attacks |
-| 🚫 Public or private harassment |
-| 🚫 Publishing someone else's private information without explicit permission |
-| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
-
----
+| 🚫 성적인 언어나 이미지, 성적 관심이나 접근 |
+| 🚫 트롤링, 모욕 또는 경멸적인 댓글 |
+| 🚫 개인적 또는 정치적 공격 |
+| 🚫 공개 또는 비공개 괴롭힘 |
+| 🚫 명시적인 허가 없이 타인의 개인정보를 게시하는 행위 |
+| 🚫 전문적인 환경에서 부적절하다고 합리적으로 간주되는 기타 행위 |---
 
 ## ⚖️ Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
+욕설, 괴롭힘 또는 기타 용납할 수 없는 행동의 사례는 다음을 통해 관리자에게 보고될 수 있습니다.
 
-| Channel | How |
-|:--------|:----|
-| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
-| 📧 Direct contact | Reach out to the maintainers directly |
+| 채널 | 어떻게 |
+|:---------|:----|
+| 🔒 GitHub 비공개 채널 | GitHub 보안 또는 토론을 통해 문의 |
+| 📧 직접 문의 | 관리자에게 직접 문의 |
 
-> **All reports will be reviewed and investigated promptly and fairly.**
-
----
+>**모든 신고사항은 신속하고 공정하게 검토 및 조사됩니다.**---
 
 ## 📜 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+본 행동강령은 [기여자 규약](https://www.contributor-covenant.org) 버전 2.1에서 수정되었습니다.

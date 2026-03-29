@@ -6,115 +6,101 @@
 
 <!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
 
-> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
+>**現在のオムニ スキル プラットフォームを使用、操作、拡張、理解するための中心的なリファレンスです。**
 
-Standard community files live in the repository root:
-[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
-
----
+標準コミュニティ ファイルはリポジトリ ルートに存在します。
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)---
 
 ## 📊 Status Snapshot
 
-| Area | State | Details |
-|:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
-| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
-| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
-| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
-| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
-| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
-| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
-| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+|エリア |状態 |詳細 |
+|:-----|:------|:----------|
+| 🏗️**ランタイム**| ✅ 現在 |統合 CLI、Ink ビジュアル シェル、API、MCP、および A2A はすべて同じパッケージから出荷されます。
+| 📦**カタログ**| 📌 32 のスキル | 15 のアクティブなカタログ カテゴリと 7 つの完全にサポートされたバンドルにわたる 32 の公開された「L3」スキル |
+| 🎯**インストール**| ✅ 現在 |ガイド付き TTY インストール、選択的 `--skill` および `--bundle`、カスタム パスのサポート、および検出主導型インストール |
+| 🌐**API**| ✅ 現在 |認証、管理ランタイム、レート制限、CORS/IP ホワイトリスト、メンテナンス モード、ダウンロードを備えた読み取り専用レジストリ API |
+| 🔌**MCP**| ✅ 現在 | `stdio` · `stream` · `sse`、ローカル サイドカー モード、7 つのインストール可能なクライアント、16 つの構成可能なクライアント、33 の構成ターゲット、および 19 の構成プロファイル |
+| 🤖**A2A**| ✅ 現在 | JSON/SQLite 耐久性、再起動再開、SSE ストリーミング、キャンセル、外部エグゼキュータ モード、および明示的に有効になっている場合のオプションのリース調整を備えたシンプル ファーストのローカル ランタイム |
+| 🛡️**セキュリティ**| ✅ 現在 |静的スキャナー、オプションの ClamAV/VirusTotal、署名付きリリース アーティファクト、アーカイブ チェックサム、リリース時検証 |
+| 📋**分類**| ✅ 現在 |正規分類法、成熟度、セマンティック品質の広がり、ベストプラクティスの広がり、セキュリティ スコアリング |
+| 📁**アーカイブ**| ✅ 現在 | SHA-256 チェックサム マニフェストを含むスキルごとの `.zip` および `.tar.gz` アーカイブ |
+| 🔐**署名**| ✅ 現在 |リリースタグに適用される分離された署名。ローカル インストール フローは同じマニフェストとチェックサム メタデータを消費します。
+| 🧬**吸気の流れ**| ✅ 現在 |ネイティブ スキルは `skills/` の下にあります。 PR オートメーションはそれらをレビューし、`skills_omni/` の下でオムニ強化された派生を提案します。## 🔭 Current Project State
 
-## 🔭 Current Project State
+現在、基礎トラックはアクティブなプロジェクト状態にあり、2 番目のカテゴリー拡張ウェーブはすでにカタログに含まれています。プロジェクトは、オプションの将来の拡張トラックを含む作業ベースラインとして読み取られるはずです。
 
-The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
+- パブリック `v0.1.2` とプライベート `v0.0.1` が現在の安定版リリースフロアです
+- カタログには、15 のアクティブなカテゴリにわたる 32 の公開スキルと 7 つの完全にサポートされたバンドルが含まれています。
+- ネイティブの取り込みと厳選された `skills_omni/` の出力は、多言語のネイティブの取り込みと英語のみの厳選された出力を含め、両方とも機能します。
+- プロトコル サーフェス、リリース自動化、およびプライベート拡張自動化は、ブートストラップではなくサービス中です。
 
-- public `v0.1.2` and private `v0.0.1` are the current stable release floor
-- the catalog now covers 32 published skills across 15 active categories and 7 fully backed bundles
-- native intake and curated `skills_omni/` output are both operational, including multilingual native intake and English-only curated output
-- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+将来の拡張は引き続き計画的に行われます。
 
-Future expansion stays deliberate:
+- 「デザイン」「ツール」「データAI」「機械学習」を深化させる
+- 現在のコードネイティブ トラックの深さが強化されるまで、休止状態の非コードネイティブ カテゴリを再開しないようにします。
+- その際、品質フロアとエンハンサーのレビュー パスをそのまま維持します
 
-- deepen `design`, `tools`, `data-ai`, and `machine-learning`
-- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
-- keep the quality floor and enhancer review path intact while doing so
+この計画は現在、次のように分割されています。
 
-That plan is now split into:
-
-- the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-- and the forward-looking backlog in [tasks/README.md](tasks/README.md)
-
----
+- [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md) 内の完了した最初の拡張ウェーブ
+- [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md) 内の完了した 2 番目の拡張ウェーブ
+- [tasks/README.md](tasks/README.md) の将来のバックログ---
 
 ## 📌 Current Decisions
 
-These architecture questions are no longer “open” in practice and are now treated as project decisions:
+これらのアーキテクチャに関する質問は、実際には「オープン」ではなくなり、プロジェクトの決定として扱われるようになりました。
 
-1. **Distribution stays manifest-first plus signed archives**
-   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
-2. **Private or premium catalogs should reuse the same manifest schema**
-   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
-3. **MCP config should converge on a few canonical export families**
-   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
+1.**配布はマニフェストファーストであり、署名付きアーカイブのままです**
+   機械可読マニフェストは、CLI、API、MCP、および A2A によって消費されるコントラクトのままです。署名されたスキルごとのアーカイブは、その契約の上に重ねられたダウンロードおよびリリースの表面です。
+2.**プライベート カタログまたはプレミアム カタログは同じマニフェスト スキーマを再利用する必要があります**
+   認証とポリシーは、マニフェストやカタログの形状をフォークすることではなく、外部で階層化する必要があります。
+3.**MCP 構成はいくつかの正規エクスポート ファミリに収束する必要があります**
+   Omni Skills は、JSON `mcpServers`、JSON `servers`、JSON `context_servers`、YAML `mcpServers`、YAML `extensions`、および TOML `[mcp_servers]` を中心に標準化する一方で、公式クライアント ドキュメントが異なる構造を必要とする場合にのみオーダーメイドのライターを維持します。
 
-Those decisions align with current official MCP and client documentation, including:
+これらの決定は、以下を含む現在の公式 MCP およびクライアント ドキュメントと一致しています。
 
-- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
-- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
-- VS Code MCP extension and product docs at `code.visualstudio.com`
-- client docs for Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman, and JetBrains AI Assistant
-
----
+- 公式 MCP レジストリと拡張機能サポート ガイダンス (「modelcontextprotocol.io」)
+- OpenAI ドキュメント MCP および Codex CLI ドキュメント (`developers.openai.com` および `platform.openai.com`)
+- VS Code MCP 拡張機能と製品ドキュメント (「code.visualstudio.com」)
+- Claude Code、Cursor、Continue、Junie、Kiro、OpenCode、Cline、Kilo Code、GitHub Copilot CLI、Zed、Goose、Postman、および JetBrains AI Assistant のクライアント ドキュメント---
 
 ## 🚀 Start Here
 
 ### 👤 If You Want to **Use** the Project
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
-| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
-| 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
-| 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
-| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot the runtime |
+|ドクター |何を学ぶか |
+|:----|:---------------|
+| 📘 [はじめに](users/GETTING-STARTED.md) |最初のスキルをインストール、検証、呼び出します |
+| 🧭 [CLI ユーザーガイド](users/CLI-USER-GUIDE.md) |完全なコマンド リファレンスと実際の CLI 使用パターン |
+| 📗 [利用ガイド](users/USAGE.md) | CLI コマンド、インストール モード、ランタイム コマンド、および MCP 構成フロー |
+| 📦 [バンドル](users/BUNDLES.md) |厳選されたバンドルとその現在の利用可能性 |
+| 📚 [カタログ](CATALOG.md) |公開されたスキルの自動生成カタログ |
+| 🔧 [システム Runbook](operations/RUNBOOK.md) |ランタイムの構築、提供、保護、トラブルシューティング |### 🏗️ If You Want to **Understand** the Runtime
 
-### 🏗️ If You Want to **Understand** the Runtime
+|ドクター |何を学ぶか |
+|:----|:---------------|
+| 🗺️ [エージェント ネイティブ ロードマップ](アーキテクチャ/AGENT-NATIVE-ROADMAP.md) |アーキテクチャの進化、終了した決定、および残りの拡張領域 |
+| 🧭 [CLI UX ロードマップ](アーキテクチャ/CLI-UX-ROADMAP.md) |ガイド付きおよびビジュアル CLI の歴史的な計画と現在の形状 |
+| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) |コアモノリポジトリと共有ランタイムの決定 |
+| 🔬 [コードベース分析](アーキテクチャ/CODEBASE-ANALYSIS.md) |現在のランタイム構成、カウント、およびシステム境界 |
+| 🌐 [カタログ API サーフェス](specs/CATALOG-API.md) | HTTP エンドポイント、フィルタリング、ガバナンス、ダウンロード |
+| 🧩 [CLI ガイド付きインストーラー](specs/CLI-GUIDED-INSTALLER.md) |ガイド付きインストーラーの動作契約 |
+| 🖥️ [CLI ビジュアル シェル](specs/CLI-VISUAL-SHELL.md) |インクのビジュアル シェル、状態モデル、およびサービス ハブ |
+| 🔌 [ローカル MCP サイドカー](specs/LOCAL-MCP-SIDECAR.md) |ファイルシステム対応ツール、許可リスト モデル、構成の書き込み |
+| 🧭 [クライアント サポート マトリックス](specs/CLIENT-SUPPORT-MAT​​RIX.md) |サポートされている CLI および IDE クライアント、ライター、手動ターゲット、およびソース参照 |
+| 📊 [スキル分類](specs/SKILL-CLASSIFICATION.md) |分類法、スコアリング ヒューリスティック、およびメタデータ アーティファクト |
+| 🛡️ [セキュリティ検証](specs/SECURITY-VALIDATION.md) |スキャナー、アーカイブ、署名、リリース検証 |
+| 📋 [スキルマニフェストスペック](specs/SKILL-MANIFEST.md) |機械可読マニフェスト形式と互換性契約 |### 🤝 If You Want to **Contribute**
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution, closed decisions, and remaining expansion areas |
-| 🧭 [CLI UX Roadmap](architecture/CLI-UX-ROADMAP.md) | Historical plan and current shape of the guided and visual CLI |
-| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo and shared-runtime decision |
-| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Current runtime composition, counts, and system boundaries |
-| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink visual shell, state model, and service hub |
-| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filesystem-aware tools, allowlist model, and config writing |
-| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
-| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring heuristics, and metadata artifacts |
-| 🛡️ [Security Validation](specs/SECURITY-VALIDATION.md) | Scanners, archives, signatures, and release verification |
-| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Machine-readable manifest format and compatibility contract |
-
-### 🤝 If You Want to **Contribute**
-
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
-| 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
-| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
-| 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
-| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
-| 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
-| 📋 [Tasks Backlog](tasks/README.md) | Detailed implementation backlog for the remaining public and private work |
-
----
+|ドクター |何を学ぶか |
+|:----|:---------------|
+| 📝 [貢献ガイド](../CONTRIBUTING.md) |リポジトリのワークフローとプル リクエストの期待 |
+| 🧾 [スキル PR ワークフロー](contributors/SKILL-PR-WORKFLOW.md) |ネイティブ取り込み、自動エンハンサー処理、`skills_omni/` パブリッシュ、およびレビュー担当者の期待 |
+| 📄 [スキルテンプレート](contributors/SKILL-TEMPLATE.md) |現在のフロントマターと構造を備えたスターター `SKILL.md` |
+| 🔬 [スキルアナトミー](寄稿者/SKILL-ANATOMY.md) |スキルに対する構造と品質の期待 |
+| ✅ [クオリティバー](寄稿者/QUALITY-BAR.md) |リポジトリの受け入れ基準 |
+| 🏆 [ハイスコア プレイブック](寄稿者/HIGH-SCORE-PLAYBOOK.md) |高い成熟度、品質、ベスト プラクティス、セキュリティ スコアを促進するもの |
+| 📋 [タスク バックログ](tasks/README.md) |残りの公的および私的作業の詳細な実装バックログ |---
 
 ## 🔌 Runtime Surfaces
 
@@ -127,9 +113,7 @@ npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-The published `omni-skills` binary is the unified public entry point.
-
-```bash
+公開された「omni-skills」バイナリは、統合されたパブリック エントリ ポイントです。```bash
 # 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
@@ -161,34 +145,28 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
-For the complete end-user command surface, use [CLI User Guide](users/CLI-USER-GUIDE.md).
+完全なエンドユーザー コマンド サーフェスについては、[CLI ユーザー ガイド](users/CLI-USER-GUIDE.md) を使用してください。### 📁 Generated Artifacts
 
-### 📁 Generated Artifacts
+ビルド パイプラインは、すべてのランタイム サーフェスを駆動する機械可読ファイルを出力します。
 
-The build pipeline emits the machine-readable files that drive every runtime surface:
+|アーティファクト |目的 |
+|:---------|:----------|
+| `メタデータ.json` |リポジトリ全体の検証とスコアの概要 |
+| `skills_index.json` |リポジトリローカルの正規化されたスキルインデックス |
+| `dist/catalog.json` |検索およびリスト用の発行済みカタログ |
+| `dist/bundles.json` |可用性のあるバンドル定義 |
+| `dist/manifests/<スキル>.json` |スキルごとの機械可読マニフェスト |
+| `dist/archives/<スキル>.zip` |スキルアーカイブ (zip) |
+| `dist/archives/<スキル>.tar.gz` |スキルアーカイブ (tarball) |
+| `dist/archives/<スキル>.checksums.txt` | SHA-256 チェックサム マニフェスト |
 
-| Artifact | Purpose |
-|:---------|:--------|
-| `metadata.json` | Repository-wide validation and score summary |
-| `skills_index.json` | Repo-local normalized skill index |
-| `dist/catalog.json` | Published catalog for search and listing |
-| `dist/bundles.json` | Bundle definitions with availability |
-| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
-| `dist/archives/<skill>.zip` | Skill archive (zip) |
-| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
-### 🌐 API
+`dist/` は意図的にコミットされたままになります。これらの生成されたアーティファクトは、インストール、API、MCP、A2A、スモーク、リリース契約の一部です。### 🌐 API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
-
-### 🔌 MCP
+スキル、バンドル、比較、インストール計画、アーティファクトのダウンロードのための読み取り専用レジストリ API。### 🔌 MCP
 
 ```bash
 npx omni-skills mcp stdio
@@ -197,55 +175,49 @@ npx omni-skills mcp sse
 npx omni-skills mcp stream --local
 ```
 
-The local sidecar now supports first-class MCP config writing for:
+ローカル サイドカーは、次のファーストクラス MCP 構成の書き込みをサポートするようになりました。
 
-- Claude Code
-- Cursor
-- VS Code and Dev Containers
-- Gemini CLI
-- Antigravity
-- Kiro
-- Codex CLI
-- Continue
-- Windsurf
-- OpenCode
-- Cline
-- GitHub Copilot CLI
-- Kilo Code
-- Zed
-- Goose
-
-### 🤖 A2A
+- クロード・コード
+- カーソル
+- VS Code と開発コンテナ
+- ジェミニ CLI
+- 反重力
+- キロ
+- コーデックス CLI
+- 続行
+- ウィンドサーフィン
+- オープンコード
+- クライン
+- GitHub コパイロット CLI
+- キロコード
+- ゼッド
+- ガチョウ### 🤖 A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
-
----
+タスクのライフサイクル、ストリーミング、永続性、再起動回復、およびシンプルファーストのローカル オーケストレーション。共有リース実行は、明示的に有効にした場合に使用できます。 Redis は、デフォルトのローカル パスではなく、高度なホスト オプションのままです。---
 
 ## 🗂️ Repository Map
 
-| Path | Purpose |
-|:-----|:--------|
-| 📂 `skills/` | Canonical authored skills |
-| 📖 `docs/users/` | End-user documentation |
-| 🤝 `docs/contributors/` | Contributor templates and guidance |
-| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
-| 🔧 `docs/operations/` | Operational runbooks |
-| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
-| 📚 `docs/CATALOG.md` | Generated skill catalog |
-| 📦 `dist/` | Generated machine-readable artifacts |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A server and task runtime |
-| 🖥️ `tools/bin/` | CLI entry points |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
-
----
+|パス |目的 |
+|:-----|:----------|
+| 📂 `スキル/` |正規の作成されたスキル |
+| 📖 `docs/users/` |エンドユーザー向けドキュメント |
+| 🤝 `ドキュメント/寄稿者/` |コントリビューターのテンプレートとガイダンス |
+| 🏗️ `ドキュメント/アーキテクチャ/` |ロードマップ、ADR、および技術分析 |
+| 🔧 `docs/operations/` |運用ランブック |
+| 📋 `docs/specs/` |ランタイム、プロトコル、およびアーティファクトのコントラクト |
+| 📚 `docs/CATALOG.md` |生成されたスキル カタログ |
+| 📦 `dist/` |生成された機械可読アーティファクト |
+| 🧠 `packages/catalog-core/` |共有カタログ ランタイム |
+| 🌐 `packages/server-api/` |読み取り専用 HTTP API |
+| 🔌 `packages/server-mcp/` | MCP サーバーとローカル サイドカー |
+| 🤖 `packages/server-a2a/` | A2A サーバーとタスク ランタイム |
+| 🖥️ `tools/bin/` | CLI エントリ ポイント |
+| 📚 `tools/lib/` |インストーラーと UI ヘルパー |
+| ⚙️ `ツール/スクリプト/` |検証、生成、検証、およびテスト |---
 
 ## 🧪 Release Validation
 
@@ -253,15 +225,15 @@ Task lifecycle, streaming, persistence, restart recovery, and simple-first local
 npm run smoke
 ```
 
-The smoke run validates:
+スモーク実行により以下が検証されます。
 
-- ✅ skill validation and metadata generation
-- ✅ taxonomy recategorization tooling
-- ✅ catalog artifact generation
-- ✅ generated catalog markdown
-- ✅ archive generation and verification
-- ✅ automated test suite
-- ✅ `npm pack --dry-run`
-- ✅ API boot and health
-- ✅ MCP boot in `stdio`, `stream`, and `sse`
-- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle
+- ✅ スキルの検証とメタデータの生成
+- ✅ 分類再分類ツール
+- ✅ カタログアーティファクトの生成
+- ✅ カタログの値下げを生成
+- ✅ アーカイブの生成と検証
+- ✅ 自動テストスイート
+- ✅ `npm Pack --dry-run`
+- ✅ API のブートと健全性
+- ✅ `stdio`、`stream`、および `sse` での MCP ブート
+- ✅ A2A ブート、ポーリング、SSE ストリーミング、キャンセル、プッシュ構成のライフサイクル

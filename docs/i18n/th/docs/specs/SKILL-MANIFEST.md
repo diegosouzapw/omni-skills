@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**ไฟล์ Manifest JSON ที่เครื่องอ่านได้ซึ่งสร้างขึ้นจาก `SKILL.md` แต่ละรายการระหว่างไปป์ไลน์บิลด์ — สัญญาข้อมูลเดียวที่ใช้โดยพื้นผิวรันไทม์ทั้งหมด**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| คุณสมบัติ | รัฐ |
+|:--------|:-------|
+| ✅ สร้างอัตโนมัติจาก SKILL.md | ดำเนินการแล้ว |
+| ✅ ใช้โดย CLI, API, MCP, A2A | ดำเนินการแล้ว |
+| ✅ คลังเก็บพร้อมเช็คซัม | ดำเนินการแล้ว |
+| ✅ การจำแนกความปลอดภัย | ดำเนินการแล้ว |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**ข้อสำคัญ**: ไฟล์ Manifest เป็น**การสร้างอาร์ติแฟกต์**ผู้เขียนผู้ร่วมให้ข้อมูล `SKILL.md` — ไปป์ไลน์ได้รับไฟล์ Manifest JSON โดยอัตโนมัติ---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+ไฟล์ Manifest มีอยู่เพื่อให้**พื้นผิวรันไทม์ทั้งหมด**ใช้รูปร่างที่ทำให้เป็นมาตรฐานเดียวกัน:
 
-| Surface | How It Uses Manifests |
+| พื้นผิว | มันใช้ Manifests อย่างไร |
 |:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| 🖥️**CLI**| ค้นหา วางแผนการติดตั้ง วินิจฉัยโดยแพทย์ |
+| 🌐**API**| การตอบกลับปลายทาง การกรอง ลิงก์ดาวน์โหลด |
+| 🔌**MCP**| การตอบสนองของเครื่องมือ เนื้อหาทรัพยากร |
+| 🤖**A2A**| เพย์โหลดการค้นพบและคำแนะนำ |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
+| สิ่งประดิษฐ์ | เส้นทาง |
 |:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| 📊 ข้อมูลเมตาของรูท | `metadata.json` |
+| 📊 ข้อมูลเมตาต่อทักษะ | `ทักษะ/<ทักษะ>/metadata.json` |
+| 📋 ดัชนีทักษะ | `skills_index.json` |
+| 📚 แคตตาล็อกที่ตีพิมพ์ | `dist/catalog.json` |
+| 📌 รายการต่อทักษะ | `dist/manifests/<ทักษะ>.json` |
+| 📦 ไฟล์ Zip | `dist/archives/<ทักษะ>.zip` |
+| 📦 ไฟล์เก็บถาวร Tarball | `dist/archives/<ทักษะ>.tar.gz` |
+| 🔒 รายการเช็คซัม | `dist/archives/<ทักษะ>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| `schema_version` | เวอร์ชันของสคีมารายการ |
+| `ไอดี` | ตัวระบุทักษะที่เสถียรจากฟิลด์ `ชื่อ` |
+| `ทาก` | Directory Slug ภายใต้ `ทักษะ/` |
+| `ชื่อที่แสดง` | ชื่อที่มนุษย์สามารถอ่านได้ตั้งแต่หัวข้อแรก |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| `คำอธิบาย` | สรุปสั้นๆ จาก frontmatter |
+| `เวอร์ชัน` | เวอร์ชันทักษะ เป็นอิสระจากเวอร์ชันแพ็คเกจ npm |
+| `หมวดหมู่` | หมวดหมู่ Canonical (ทำให้เป็นมาตรฐาน) |
+| `raw_category` | หมวดหมู่ดั้งเดิมจาก frontmatter |
+| `อนุกรมวิธาน` | ข้อมูลเมตาอนุกรมวิธานแบบเต็มพร้อมทางเลือกสำรองที่อนุมาน |
+| `แท็ก` | แท็กที่ค้นหาได้ |
+| `ความซับซ้อน` | `ผู้เริ่มต้น` · `ระดับกลาง` · `ขั้นสูง` · `ผู้เชี่ยวชาญ` |
+| `ความเสี่ยง` | `ปลอดภัย` · `ข้อควรระวัง` · `น่ารังเกียจ` · `วิพากษ์วิจารณ์` |
+| `แหล่งที่มา` | `ทีม Omni` · `ชุมชน` · `อย่างเป็นทางการ` |
+| `ผู้เขียน` | สตริงการแสดงที่มา |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| `จุดเริ่มต้น` | เส้นทาง `SKILL.md` ที่เป็นที่ยอมรับ |
+| `paths.root` | ไดเรกทอรีทักษะภายใน repo |
+| `paths.manifest` | สร้างเส้นทางรายการใน `dist/` |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
-
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+| `เครื่องมือ` | ตัวระบุเครื่องมือจาก frontmatter |
+| `install_targets` | ข้อมูลเมตาการติดตั้งต่อเครื่องมือ |
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
+เป้าหมายการติดตั้งแต่ละรายการประกอบด้วย: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
 
-### 📦 Resources
-
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| `sub_resources` | ส่วนย่อยของทักษะ (`ข้อมูลอ้างอิง`, `ตัวแทน`, `สินทรัพย์`) |
+| `จำนวนสิ่งประดิษฐ์_นับ` | จำนวนไฟล์ทั้งหมดในแพ็คเกจทักษะ |
+| `ข้อมูลอ้างอิง_จำนวน` | จำนวนเอกสารอ้างอิง |
+| `ตัวแทน_จำนวน` | จำนวนการกำหนดค่าตัวแทน |
+| `assets_count` | จำนวนไฟล์สินทรัพย์ |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| `กลยุทธ์` | กลยุทธ์การติดตั้ง (เช่น `ไดเรกทอรีทักษะการคัดลอก`) |
+| `current_installer` | พฤติกรรมการติดตั้งที่มนุษย์สามารถอ่านได้ |
+| `สูตรอาหาร` | สูตรการติดตั้งต่อลูกค้า |### 📊 Classification
 
-### 📊 Classification
-
-| Section | Fields |
+| มาตรา | สาขา |
 |:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+| 🎯 `ครบกำหนด` | `ระดับทักษะ`, `ระดับทักษะ_ฉลาก` |
+| 📋 `best_practices` | `คะแนน` (0-100) |
+| ⭐ `คุณภาพ` | `คะแนน` (0-100) |
+| 🛡️ `ความปลอดภัย` | `คะแนน`, `สถานะ` |
+| ✅ `การตรวจสอบความถูกต้อง` | `สถานะ` |### 📝 Content
 
-### 📝 Content
+สัญญาณที่ได้รับ: `body_length`, `content_length`, `body_lines`, `word_count` รวมถึงแฟล็กโครงสร้างสำหรับตัวอย่าง ส่วนการแก้ปัญหา ฯลฯ### 📁 Artifacts
 
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+อาร์เรย์ของทุกไฟล์ที่จัดส่งภายในไดเร็กทอรีทักษะ:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**ประเภทสิ่งประดิษฐ์**: `จุดเริ่มต้น` · `ข้อมูลอ้างอิง` · `ตัวแทน` · `สินทรัพย์` · `ใบอนุญาต` · `การสนับสนุน`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
+| สนาม | คำอธิบาย |
 |:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| `จุดเข้า_sha256` | แฮชของ SKILL.md |
+| `package_sha256` | สรุปแบบกำหนดจากรายการสิ่งประดิษฐ์ที่ได้รับคำสั่ง |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 เวอร์ชันแพ็คเกจพื้นที่เก็บข้อมูลและเวอร์ชันทักษะมีข้อกังวลที่แตกต่างกัน ปัจจุบันแพ็คเกจเป็น `0.1.3` ในขณะที่ทักษะส่วนบุคคลมีเวอร์ชันความหมายของตัวเอง---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
+| กฎ | เหตุผล |
 |:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| ✅ ต้องคงสืบทอดมาจาก repo | ไม่จำเป็นต้องมีการเขียนรายการด้วยตนเอง |
+| ✅ สามารถเพิ่มช่องตัวเลือกใหม่ได้ | ส่งต่อความเข้ากันได้ |
+| ⚠️ ช่องที่มีอยู่จะต้องคงที่ | ความเข้ากันได้แบบย้อนหลัง |
+| 🚫 ไม่มีรายการแสดงที่เขียนด้วยลายมือ | การสร้างเวลาเป็นแหล่งที่มาของความจริง |

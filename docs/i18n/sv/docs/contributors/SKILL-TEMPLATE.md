@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
+namn: ditt skicklighetsnamn
+description: "En rad beskrivning av vad denna färdighet gör och när den ska användas"
 version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
+kategori: utveckling
+taggar: [exempel-tagg-1, exempel-tagg-2]
+komplexitet: mellanliggande
+risk: säker
+verktyg: [claude-kod, markör, gemini-cli, antigravity]
+källa: community
+författare: "Ditt namn"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----
-
-<!--
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` kommer att generera skills/<skill>/metadata.json med canonical
+taxonomi, mognadsnivå, bästa praxis-poäng, kvalitetspoäng och säkerhet
+skanningsresultat. Prompt-injektionsmönster, destruktiva kommandon och riskfyllda skript
+konstruktioner kommer att flaggas automatiskt.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+Skicklighetsversionen är oberoende av paketversionen. Använd semantiken
+version som är vettig för själva färdigheten.
 
-For a top-scoring skill, also read:
+För att få bästa poäng, läs också:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
-
-
 ## Översikt
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 meningar som förklarar vad denna färdighet gör, vem som drar nytta av den och varför den finns.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Använd när du behöver [scenario 1]
+- Använd när du vill [scenario 2]
+- Använd när du arbetar med [scenario 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Förklara nyckelbegreppet som agenten behöver förstå.### Concept 2
 
-### Concept 2
+Förklara ett annat grundläggande koncept.## Workflow
 
-Explain another foundational concept.
+| Fas | Utgång | Varför det är viktigt |
+|:------|:-------|:---------|
+| Rama in målet | Tydligt mål | Förhindrar vag vägledning |
+| Utför stegen | Agent-redo arbetsflöde | Gör färdigheten handlingsbar |
+| Validera utdata | Acceptanssignal | Höjer självförtroende |
 
-## Workflow
+1. Första steget i arbetsflödet
+2. Andra steget i arbetsflödet
+3. Tredje steget i arbetsflödet### 1. First Step
 
-| Phase | Output | Why it matters |
-|:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+Detaljerade instruktioner för det första steget.### 2. Second Step
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+Detaljerade instruktioner för det andra steget.### 3. Third Step
 
-### 1. First Step
-
-Detailed instructions for the first step.
-
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Detaljerade instruktioner för det tredje steget.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Förklaring:**Vad det här exemplet visar.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Förklaring:**Vad det här exemplet visar.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Gör:**Följ denna goda praxis
+- ✅**Gör:**Följ även denna praxis
+- ❌**Gör inte:**Undvik detta antimönster
+- ❌**Gör inte:**Gör aldrig det här## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Symtom:**Hur du vet att detta är problemet.
+**Lösning:**Hur man fixar det.## Related Skills
 
-## Related Skills
+- `@related-skill-1` — När ska man använda detta istället
+- `@related-skill-2` — Hur detta kompletterar din skicklighet## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Checklista](referenser/checklist.md)
+- [Fungerat exempel](exempel/exempel.md)
+- [Hjälpskript](scripts/render_example.py)

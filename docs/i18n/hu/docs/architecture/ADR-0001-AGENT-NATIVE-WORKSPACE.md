@@ -5,83 +5,69 @@
 ---
 
 
-> **The key architectural decision that shaped the monorepo workspace structure.**
-
----
+>**A kulcsfontosságú építészeti döntés, amely a monorepo munkaterület szerkezetét alakította.**---
 
 ## 📊 Status
 
-✅ **Accepted** — current workspace direction and active repository shape.
-
----
+✅**Elfogadva**— a munkaterület aktuális iránya és az aktív adattár alakja.---
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+Az Omni Skills**telepítők előtt**tárolóként indult. Ez elég volt a SKILL.md tartalom terjesztéséhez, de nem elég ahhoz, hogy a katalógust az ügynökök elé tárja a protokoll-natív felületeken keresztül.
 
-We needed a foundation that could support:
+Szükségünk volt egy alapítványra, amely támogatni tudja:
 
-| Requirement | Protocol |
+| Követelmény | Jegyzőkönyv |
 |:------------|:---------|
-| 🌐 Read-only HTTP catalog API | REST |
-| 🔌 Read-only MCP server | Model Context Protocol |
-| 🤖 Agent-facing A2A surface | Agent-to-Agent |
-| 📂 Local install sidecars | Filesystem tools |
+| 🌐 Csak olvasható HTTP-katalógus API | REST |
+| 🔌 Csak olvasható MCP-szerver | Model Context Protocol |
+| 🤖 Ügynökre néző A2A felület | Agent-to-Agent |
+| 📂 Helyi oldalkocsik beszerelése | Fájlrendszer eszközök |
 
-**Critical constraint**: Avoid reparsing repo files independently in each new service.
-
----
+**Kritikus megszorítás**: Kerülje a repo fájlok önálló újraértelmezését minden új szolgáltatásban.---
 
 ## ✅ Decision
 
-Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+Fogadjon el egy**munkaterület-orientált monorepót**megosztott katalógusmaggal és protokoll-specifikus csomagokkal:
 
-| Package | Purpose |
+| Csomag | Cél |
 |:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
-| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
-| 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
+| 📦 "minden készségek" (gyökér) | CLI telepítő és repo szkriptek |
+| 🧠 `@omni-skills/catalog-core` | Megosztott betöltés, keresés, összehasonlítás, csomagok, telepítési tervek |
+| 🌐 `@omni-skills/server-api` | Csak olvasható REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP stdio/stream/sse + helyi oldalkocsi móddal |
+| 🤖 `@omni-skills/server-a2a` | A2A feladat futtatókörnyezet ügynökkártyával, lekérdezéssel, SSE-vel és push config |### 📁 Shared Data Sources
 
-### 📁 Shared Data Sources
-
-The catalog core reads generated artifacts from:
+A katalógus magja beolvassa a generált műtermékeket:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`
-
----
+- "skills_index.json".---
 
 ## ✅ Positive Consequences
 
-| Outcome | Impact |
+| Eredmény | Hatás |
 |:--------|:-------|
-| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
-| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
-| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
-| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
-| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
-
----
+| 🔗**Megosztott adatszolgáltatási szerződés**| Az API, az MCP és az A2A ugyanazokat a műtermékeket fogyasztja |
+| 🖥️**Egységes CLI**| Egy bináris felfedi a telepítést, a felhasználói felület shellt, az API-t, az MCP-t, az A2A-t, a diagnosztikát és a füstöt |
+| 🧩**Protokoll elkülönítés**| Az új felületek ismétlődnek anélkül, hogy a telepítő belső részeihez kapcsolódnának |
+| 🔌**Helyi oldalkocsi**| Működő írásképes MCP mód engedélyezési lista mögött, kliens-tudatos receptekkel |
+| 📦**Egycsomagos futásidejű**| A közzétett npm csomag együtt tartalmazza a protokollfelületeket, az érvényesítési eszközöket és a generált melléktermékeket |---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Mitigation |
+| Kompromisszum | Mérséklés |
 |:---------|:-----------|
-| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
-| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
-| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
-| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
-
----
+| 🔄**Metaadat-másolás**| Python build + JavaScript futtatókörnyezet → végül konszolidál |
+| 🏗️**A2A komplexitás**| A tartós életciklus már létezik, de a koordinációs adapterek növelik a működési mélységet |
+| 📦**Katalógus igazítás**| A szelektív telepítéshez parancsokra, jegyzékekre és dokumentumokra van szükség a szinkronizáláshoz |
+| 📋**Metaadat-hiányok kötegelése**| A csomagok felülmúlhatják a közzétett készségeket, ezért kifejezett figyelmeztetést igényelnek a hiányzó tagokról |---
 
 ## ➡️ Follow-Up Items
 
-| # | Action | Status |
+| # | Akció | Állapot |
 |:--|:-------|:-------|
-| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |
+| 1️⃣ | Távoli MCP-hitelesítés és sebességkorlátozás | ✅ Kész |
+| 2️⃣ | Továbbfejlesztett ügyfél-specifikus MCP-konfiguráció írása | ✅ A mai napon jelen van Claude, Cursor, Codex, Gemini, Kiro, VS Code és Dev Containers számára |
+| 3️⃣ | Aláírt kiadási műtermékek vagy készségenkénti archívumok | ✅ Jelenítse meg ma a CI végrehajtásával a kiadási címkéken |
+| 4️⃣ | A2A feladat futásidejű → tartós hangszerelés | ✅ Jelenítse meg ma JSON/SQLite-megtartóztatással, külső végrehajtókkal, opt-in bérleti koordinációval és opcionális továbbfejlesztett Redis-koordinációval |
+| 5️⃣ | A kiadott katalógus bővítése a csomagok szélesebb lefedettsége érdekében | ✅ Ajándék a jelenlegi hét kiválasztott kezdőcsomaghoz |

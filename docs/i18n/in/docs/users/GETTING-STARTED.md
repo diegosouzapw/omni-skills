@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**कौशल स्थापित करें, सेटअप सत्यापित करें, और 2 मिनट से कम समय में अपना पहला एआई कौशल शुरू करें।**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| मीट्रिक | मूल्य |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| प्रकाशित कौशल |**32**आर्किटेक्चर, डिज़ाइन, सुरक्षा, डेवऑप्स, एआई-इंजीनियरिंग और अन्य सहित 15 सक्रिय श्रेणियों में |
+| परिभाषित बंडल |**7**(सभी पूरी तरह से प्रकाशित कौशल द्वारा समर्थित) |
+| इंस्टॉल-सक्षम ग्राहक |**7**(क्लाउड कोड, कर्सर, जेमिनी सीएलआई, कोडेक्स सीएलआई, किरो, एंटीग्रेविटी, ओपनकोड) |
+| एमसीपी कॉन्फिग-सक्षम क्लाइंट |**16**33 प्रथम श्रेणी एमसीपी कॉन्फ़िगरेशन लक्ष्यों में |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+एक इंटरैक्टिव टर्मिनल में, यह अब चुपचाप क्लाइंट मानने के बजाय निर्देशित इंस्टॉलर को खोलता है।### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+यह इंस्टॉल, डिस्कवरी, एमसीपी, एपीआई और ए2ए स्टार्टअप के लिए ब्रांडेड टर्मिनल हब खोलता है।### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+TTY के बाहर, नो-आर्ग इंस्टॉलर अभी भी `~/.gemini/antigravity/skills` पर डिफॉल्ट होता है।### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ स्टार्टर बंडल अब पूरी तरह से समर्थित हैं, जिनमें `डेवोप्स` और `एआई-इंजीनियर` शामिल हैं।### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+जांचें कि कौशल सही जगह पर हैं:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+या अंतर्निहित निदान का उपयोग करें:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+ग्राहकों का पता लगाने, कौशल स्थापित करने/निकालने और एमसीपी कॉन्फ़िगरेशन लिखने के लिए एजेंटों को फ़ाइल सिस्टम उपकरण देता है:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+आप उन ग्राहकों के लिए भी एमसीपी कॉन्फ़िगर कर सकते हैं जो कौशल-स्थापना लक्ष्य नहीं हैं:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+कौशल कैटलॉग को केवल पढ़ने योग्य HTTP API के रूप में प्रदर्शित करता है:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+एजेंट-टू-एजेंट खोज, अनुशंसा, इंस्टॉल योजना, मतदान और स्ट्रीमिंग:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+एक कौशल एक संरचित मार्कडाउन प्लेबुक (`SKILL.md`) है जो एक AI एजेंट को देता है:
 
-| Component | Purpose |
-|:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| घटक | उद्देश्य |
+|:-------|:--------|
+| 📋**फ्रंटमैटर**| मशीन-पठनीय मेटाडेटा (नाम, श्रेणी, टैग, उपकरण, जोखिम) |
+| 📝**शरीर**| कार्य-विशिष्ट निर्देश, चरण, रेलिंग और उदाहरण |
+| 📚**संदर्भ**| निष्पादन के दौरान एजेंट सहायक दस्तावेज़ों से परामर्श कर सकता है |
+| 🎨**संपत्ति**| प्रतीक, छवियाँ, या अन्य पैकेज्ड संसाधन |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| डॉक्टर | आप क्या सीखेंगे |
+|:----|:----|
+| 🧭 [सीएलआई यूजर गाइड](सीएलआई-यूजर-गाइड.एमडी) | इंस्टाल, रनटाइम, कॉन्फ़िगरेशन और डायग्नोस्टिक्स के लिए पूर्ण कमांड संदर्भ |
+| 📗 [उपयोग मार्गदर्शिका](USAGE.md) | सभी सीएलआई कमांड, प्रॉम्प्ट पैटर्न और रनटाइम मोड |
+| 📦 [बंडल](बंडल.एमडी) | क्यूरेटेड कौशल संग्रह और उनकी उपलब्धता |
+| 📚 [कैटलॉग](../CATALOG.md) | प्रकाशित कौशल की स्वतः निर्मित सूची |
+| 📖 [डॉक्यूमेंटेशन हब](../README.md) | पूर्ण दस्तावेज़ीकरण मानचित्र |
+| 🔧 [सिस्टम रनबुक](../ऑपरेशंस/RUNBOOK.md) | परिचालन संदर्भ |

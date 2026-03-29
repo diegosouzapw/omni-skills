@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
+ім'я: ім'я-навички
+description: «Однорядковий опис того, що робить цей навик і коли його використовувати»
+версія: "0.1.3"
+категорія: розвиток
+теги: [example-tag-1, example-tag-2]
+складність: середня
+ризик: безпечний
+інструменти: [claude-code, cursor, gemini-cli, antigravity]
+Джерело: спільнота
+автор: "Твоє ім'я"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----
-
-<!--
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` створить навички/<skill>/metadata.json із канонічним
+таксономія, рівень зрілості, оцінка передового досвіду, оцінка якості та безпеки
+результати сканування. Шаблони оперативного впровадження, деструктивні команди та ризикований сценарій
+конструкції будуть позначатися автоматично.
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+Версія навичок не залежить від версії пакета. Використовуйте семантику
+версія, яка має сенс для самої навички.
 
-For a top-scoring skill, also read:
+Щоб отримати навичку з найвищим результатом, також прочитайте:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
-
-
 ## Огляд
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+2-3 речення, що пояснюють, що робить ця навичка, кому вона вигідна та чому вона існує.## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- Використовуйте, коли вам потрібно [сценарій 1]
+- Використовуйте, коли хочете [сценарій 2]
+- Використовуйте під час роботи з [сценарієм 3]## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+Поясніть ключову концепцію, яку агент повинен зрозуміти.### Concept 2
 
-### Concept 2
+Поясніть іншу основоположну концепцію.## Workflow
 
-Explain another foundational concept.
-
-## Workflow
-
-| Phase | Output | Why it matters |
+| Фаза | Вихід | Чому це важливо |
 |:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+| Обрамлення мети | Чітка мета | Запобігає нечіткі вказівки |
+| Виконайте кроки | Готовий до роботи агент | Робить навичку дієвою |
+| Перевірте результат | Приймальний сигнал | Піднімає впевненість |
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+1. Перший крок у робочому процесі
+2. Другий крок у робочому процесі
+3. Третій крок у робочому процесі### 1. First Step
 
-### 1. First Step
+Детальна інструкція для першого кроку.### 2. Second Step
 
-Detailed instructions for the first step.
+Детальна інструкція для другого кроку.### 3. Third Step
 
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+Детальна інструкція для третього кроку.## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**Пояснення:**Що демонструє цей приклад.### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**Пояснення:**Що демонструє цей приклад.## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**Робіть:**Дотримуйтесь цієї хорошої практики
+- ✅**Робіть:**Також дотримуйтеся цієї практики
+- ❌**Не:**Уникайте цього антишаблону
+- ❌**Не:**Ніколи цього не робіть## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**Симптоми:**Як ви знаєте, що це проблема.
+**Рішення:**Як це виправити.## Related Skills
 
-## Related Skills
+- `@related-skill-1` — Коли використовувати це замість цього
+- `@related-skill-2` — як це доповнює ваші навички## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [Контрольний список](references/checklist.md)
+- [Приклад роботи](examples/example.md)
+- [Допоміжний сценарій](scripts/render_example.py)

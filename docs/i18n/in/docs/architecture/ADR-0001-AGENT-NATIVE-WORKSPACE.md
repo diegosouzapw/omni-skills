@@ -5,83 +5,69 @@
 ---
 
 
-> **The key architectural decision that shaped the monorepo workspace structure.**
-
----
+>**मुख्य वास्तुशिल्प निर्णय जिसने मोनोरेपो कार्यक्षेत्र संरचना को आकार दिया।**---
 
 ## 📊 Status
 
-✅ **Accepted** — current workspace direction and active repository shape.
-
----
+✅**स्वीकृत**- वर्तमान कार्यक्षेत्र दिशा और सक्रिय भंडार आकार।---
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+ओमनी स्किल्स की शुरुआत**इंस्टॉलर-प्रथम**रिपॉजिटरी के रूप में हुई। यह `SKILL.md` सामग्री को वितरित करने के लिए पर्याप्त था, लेकिन प्रोटोकॉल-मूल सतहों के माध्यम से एजेंटों को कैटलॉग को उजागर करने के लिए पर्याप्त नहीं था।
 
-We needed a foundation that could support:
+हमें एक ऐसी नींव की ज़रूरत थी जो समर्थन कर सके:
 
-| Requirement | Protocol |
-|:------------|:---------|
-| 🌐 Read-only HTTP catalog API | REST |
-| 🔌 Read-only MCP server | Model Context Protocol |
-| 🤖 Agent-facing A2A surface | Agent-to-Agent |
-| 📂 Local install sidecars | Filesystem tools |
+| आवश्यकता | प्रोटोकॉल |
+|:---|:---|
+| 🌐 केवल पढ़ने योग्य HTTP कैटलॉग एपीआई | विश्राम |
+| 🔌 केवल पढ़ने योग्य एमसीपी सर्वर | मॉडल संदर्भ प्रोटोकॉल |
+| 🤖 एजेंट-सामना करने वाली A2A सतह | एजेंट-से-एजेंट |
+| 📂 स्थानीय साइडकार स्थापित करें | फ़ाइल सिस्टम उपकरण |
 
-**Critical constraint**: Avoid reparsing repo files independently in each new service.
-
----
+**महत्वपूर्ण बाधा**: प्रत्येक नई सेवा में रेपो फ़ाइलों को स्वतंत्र रूप से पुन: पार्स करने से बचें।---
 
 ## ✅ Decision
 
-Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
+साझा कैटलॉग कोर और प्रोटोकॉल-विशिष्ट पैकेज के साथ**कार्यक्षेत्र-उन्मुख मोनोरेपो**को अपनाएं:
 
-| Package | Purpose |
-|:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
-| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
-| 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
+| पैकेज | उद्देश्य |
+|:-------|:--------|
+| 📦 `ओम्नी-कौशल` (रूट) | सीएलआई इंस्टॉलर और रेपो स्क्रिप्ट |
+| 🧠 `@omni-skills/catalog-core` | साझा लोडिंग, खोज, तुलना, बंडल, इंस्टॉल योजनाएं |
+| 🌐 `@omni-skills/server-api` | केवल पढ़ने योग्य REST API |
+| 🔌 `@omni-skills/server-mcp` | stdio/stream/sse + स्थानीय साइडकार मोड के साथ MCP |
+| 🤖 `@omni-skills/server-a2a` | एजेंट कार्ड, पोलिंग, एसएसई और पुश कॉन्फिगरेशन के साथ A2A कार्य रनटाइम |### 📁 Shared Data Sources
 
-### 📁 Shared Data Sources
-
-The catalog core reads generated artifacts from:
+कैटलॉग कोर यहां से उत्पन्न कलाकृतियों को पढ़ता है:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`
-
----
+- `skills_index.json`---
 
 ## ✅ Positive Consequences
 
-| Outcome | Impact |
-|:--------|:-------|
-| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
-| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
-| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
-| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
-| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
-
----
+| परिणाम | प्रभाव |
+|:-------|:-------|
+| 🔗**साझा डेटा अनुबंध**| API, MCP, और A2A समान कलाकृतियों का उपभोग करते हैं |
+| 🖥️**एकीकृत सीएलआई**| एक बाइनरी इंस्टॉल, यूआई शेल, एपीआई, एमसीपी, ए2ए, डायग्नोस्टिक्स और स्मोक | को उजागर करती है
+| 🧩**प्रोटोकॉल अलगाव**| नई सतहें इंस्टॉलर आंतरिक भागों से जुड़े बिना पुनरावृत्त होती हैं |
+| 🔌**स्थानीय साइडकार**| क्लाइंट-जागरूक व्यंजनों के साथ, अनुमति सूची के पीछे लेखन-सक्षम एमसीपी मोड पर काम करना |
+| 📦**एकल-पैकेज रनटाइम**| प्रकाशित एनपीएम पैकेज प्रोटोकॉल सतहों, सत्यापन टूलींग और उत्पन्न कलाकृतियों को एक साथ ले जाता है |---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Mitigation |
-|:---------|:-----------|
-| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
-| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
-| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
-| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
-
----
+| ट्रेडऑफ़ | शमन |
+|:------|:--------|
+| 🔄**मेटाडेटा दोहराव**| पायथन बिल्ड + जावास्क्रिप्ट रनटाइम → अंततः समेकित |
+| 🏗️**A2A जटिलता**| टिकाऊ जीवनचक्र अब मौजूद है, लेकिन समन्वय एडेप्टर परिचालन गहराई जोड़ते हैं |
+| 📦**कैटलॉग संरेखण**| चयनात्मक इंस्टाल को सिंक्रोनाइज़ रहने के लिए कमांड, मेनिफेस्ट और डॉक्स की आवश्यकता होती है |
+| 📋**बंडल मेटाडेटा अंतराल**| बंडल प्रकाशित कौशल से आगे निकल सकते हैं, जिसके लिए स्पष्ट लापता सदस्य चेतावनियों की आवश्यकता होती है |---
 
 ## ➡️ Follow-Up Items
 
-| # | Action | Status |
+| # | कार्रवाई | स्थिति |
 |:--|:-------|:-------|
-| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |
+| 1️⃣ | रिमोट एमसीपी प्रमाणीकरण और दर सीमित करना | ✅ हो गया |
+| 2️⃣ | बेहतर क्लाइंट-विशिष्ट MCP कॉन्फ़िगरेशन लेखन | ✅ क्लाउड, कर्सर, कोडेक्स, जेमिनी, किरो, वीएस कोड और देव कंटेनर्स के लिए आज ही प्रस्तुत करें |
+| 3️⃣ | हस्ताक्षरित रिलीज़ कलाकृतियाँ या प्रति-कौशल पुरालेख | ✅ रिलीज टैग पर सीआई प्रवर्तन के साथ आज प्रस्तुत करें |
+| 4️⃣ | A2A कार्य रनटाइम → टिकाऊ ऑर्केस्ट्रेशन | ✅ JSON/SQLite दृढ़ता, बाहरी निष्पादकों, ऑप्ट-इन लीज़ समन्वय और वैकल्पिक उन्नत रेडिस समन्वय के साथ आज प्रस्तुत करें |
+| 5️⃣ | व्यापक बंडल कवरेज के लिए प्रकाशित कैटलॉग का विस्तार करें | ✅ वर्तमान सात क्यूरेटेड स्टार्टर बंडलों के लिए आज ही प्रस्तुत करें |

@@ -5,46 +5,40 @@
 ---
 
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
-
----
+>**HTTP API แบบอ่านอย่างเดียวสำหรับการค้นหาทักษะ ค้นหา การเปรียบเทียบ การวางแผนการติดตั้ง และการดาวน์โหลดสิ่งประดิษฐ์**---
 
 ## 📊 Status
 
-| Feature | State |
-|:--------|:------|
-| ✅ Catalog endpoints | Implemented |
-| ✅ Auth (bearer + API key) | Implemented |
-| ✅ Admin runtime auth | Implemented |
-| ✅ Rate limiting | Implemented |
-| ✅ Audit logging | Implemented |
-| ✅ CORS and IP allowlists | Implemented |
-| ✅ Maintenance mode | Implemented |
-| ✅ Archive downloads | Implemented |
-| ✅ OpenAPI spec | Implemented |
-| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
-
----
+| คุณสมบัติ | รัฐ |
+|:--------|:-------|
+| ✅ จุดสิ้นสุดแคตตาล็อก | ดำเนินการแล้ว |
+| ✅ รับรองความถูกต้อง (ผู้ถือ + รหัส API) | ดำเนินการแล้ว |
+| ✅ ผู้ดูแลระบบรันไทม์ auth | ดำเนินการแล้ว |
+| ✅ การจำกัดอัตรา | ดำเนินการแล้ว |
+| ✅ การบันทึกการตรวจสอบ | ดำเนินการแล้ว |
+| ✅ รายการที่อนุญาต CORS และ IP | ดำเนินการแล้ว |
+| ✅ โหมดการบำรุงรักษา | ดำเนินการแล้ว |
+| ✅ ดาวน์โหลดเก็บถาวร | ดำเนินการแล้ว |
+| ✅ ข้อมูลจำเพาะ OpenAPI | ดำเนินการแล้ว |
+| ⚠️ แบ็กเอนด์การกำกับดูแล | พื้นฐานที่ขับเคลื่อนด้วย Env ในกระบวนการ เกตเวย์ภายนอกหรือ IdP ยังคงเป็นทางเลือก |---
 
 ## 🎯 Purpose
 
-The API provides a registry-style surface for:
+API จัดเตรียมพื้นผิวสไตล์รีจิสทรีสำหรับ:
 
-- 📋 Listing and filtering skills by quality, security, category, risk, and more
-- 📌 Fetching individual skill manifests
-- 🔎 Full-text search and multi-skill comparison
-- 📦 Bundle listing with availability
-- 📐 Read-only install plan generation
-- 📥 Downloading generated artifacts, archives, and checksum manifests
+- 📋 การลงรายการและการกรองทักษะตามคุณภาพ ความปลอดภัย หมวดหมู่ ความเสี่ยง และอื่นๆ
+- 📌 ดึงรายการทักษะส่วนบุคคล
+- 🔎 การค้นหาข้อความแบบเต็มและการเปรียบเทียบหลายทักษะ
+- 📦 รายการชุดพร้อมความพร้อม
+- 📐 การสร้างแผนการติดตั้งแบบอ่านอย่างเดียว
+- 📥 ดาวน์โหลดสิ่งประดิษฐ์ ไฟล์เก็บถาวร และรายการตรวจสอบที่สร้างขึ้น
 
-This same catalog and manifest surface is also the basis for:
+แค็ตตาล็อกและพื้นผิวรายการเดียวกันนี้ยังเป็นพื้นฐานสำหรับ:
 
-- local CLI install planning
-- MCP read-only discovery responses
-- A2A discovery and install-plan handoff
-- potential private catalogs with external auth layered on top
-
----
+- การวางแผนการติดตั้ง CLI ท้องถิ่น
+- การตอบสนองการค้นพบแบบอ่านอย่างเดียวของ MCP
+- การค้นพบ A2A และการส่งมอบแผนการติดตั้ง
+- แค็ตตาล็อกส่วนตัวที่เป็นไปได้ซึ่งมีชั้นการตรวจสอบสิทธิ์ภายนอกอยู่ด้านบน---
 
 ## เริ่มต้นอย่างรวดเร็ว
 
@@ -66,48 +60,42 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Defaults**: `127.0.0.1:3333`
-
----
+**ค่าเริ่มต้น**: `127.0.0.1:3333`---
 
 ## 🔐 Security Controls
 
-All security controls are env-driven and optional:
+การควบคุมความปลอดภัยทั้งหมดขับเคลื่อนด้วยสภาพแวดล้อมและเป็นทางเลือก:
 
-| Control | Variable | Example |
+| ควบคุม | ตัวแปร | ตัวอย่าง |
 |:--------|:---------|:--------|
-| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
-| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| 🔑**ผู้ถือสิทธิ์**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `แทนที่ฉัน` |
+| 🗝️**การตรวจสอบสิทธิ์คีย์ API**| `OMNI_SKILLS_HTTP_API_KEYS` | `คีย์-a, คีย์-b` |
+| 🛂**ผู้ดูแลระบบตรวจสอบสิทธิ์**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `ความลับของผู้ดูแลระบบ` |
+| 🚦**จำกัดอัตรา**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝**บันทึกการตรวจสอบ**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️**รูปแบบการตรวจสอบ**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` หรือ `text` |
+| 📄**ไฟล์ตรวจสอบ**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍**รายการที่อนุญาต CORS**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱**รายการที่อนุญาต IP**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁**พร็อกซีที่เชื่อถือได้**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `วนกลับ` |
+| 🚧**โหมดการบำรุงรักษา**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️**ลองอีกครั้งหลังจาก**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Behavior:**
-- 🟢 `/healthz` remains **always unauthenticated**
-- 🔒 All other routes require auth when auth is enabled
-- 🛂 `/admin/runtime` requires the admin token when enabled
-- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
-- 🧾 Every response carries `X-Request-Id`
-- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
+**พฤติกรรม:**
+- 🟢 `/healthz` ยังคงอยู่**ไม่ผ่านการรับรองความถูกต้องเสมอ**
+- 🔒 เส้นทางอื่นๆ ทั้งหมดต้องมีการตรวจสอบสิทธิ์เมื่อเปิดใช้งานการตรวจสอบสิทธิ์
+- 🛂 `/admin/runtime` ต้องใช้โทเค็นผู้ดูแลระบบเมื่อเปิดใช้งาน
+- 🚦 การจำกัดอัตราอยู่ระหว่างดำเนินการด้วยส่วนหัวการตอบสนอง `X-RateLimit-*`
+- 🧾 ทุกการตอบกลับจะมี `X-Request-Id`
+- 🚧 โหมดการบำรุงรักษาส่งคืน `503` สำหรับเส้นทางที่ไม่เกี่ยวกับสุขภาพและไม่ใช่ผู้ดูแลระบบ### ✅ Current governance decision
 
-### ✅ Current governance decision
+ทิศทางของโปรเจ็กต์ปัจจุบันคือ**นำรูปแบบแค็ตตาล็อกเดียวกันกลับมาใช้ใหม่สำหรับการปรับใช้แบบสาธารณะหรือส่วนตัว**และการตรวจสอบสิทธิ์เลเยอร์ภายนอกเมื่อจำเป็น
 
-The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
+นั่นหมายถึง:
 
-That means:
-
-- the manifest and API shape stay shared
-- self-hosted and local deployments can stay on the in-process baseline
-- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
-
-### 🔐 Full hardened example:
+- รายการและรูปร่าง API ยังคงถูกแชร์
+- การปรับใช้แบบโฮสต์เองและแบบท้องถิ่นสามารถคงอยู่บนพื้นฐานในกระบวนการได้
+- การกำกับดูแลโฮสต์ขั้นสูงยิ่งขึ้นสามารถย้ายไปยังเกตเวย์ภายนอกหรือเลเยอร์การตรวจสอบสิทธิ์ขององค์กรในภายหลังโดยไม่ต้องฟอร์กโมเดลข้อมูล### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -129,40 +117,34 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Method | Path | Description |
+| วิธีการ | เส้นทาง | คำอธิบาย |
 |:-------|:-----|:------------|
-| `GET` | `/healthz` | Health check (unauthenticated) |
-| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
-| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
+| `รับ` | `/healthz` | ตรวจสุขภาพ (ไม่ผ่านการรับรองความถูกต้อง) |
+| `รับ` | `/openapi.json` | ข้อมูลจำเพาะ OpenAPI 3.1 แบบไดนามิก |
+| `รับ` | `/ผู้ดูแลระบบ/รันไทม์` | สแนปชอตการกำกับดูแลและรันไทม์ (ผู้ดูแลระบบรับรองความถูกต้องเมื่อเปิดใช้งาน) |### 📚 Catalog & Skills
 
-### 📚 Catalog & Skills
-
-| Method | Path | Description |
+| วิธีการ | เส้นทาง | คำอธิบาย |
 |:-------|:-----|:------------|
-| `GET` | `/v1/skills` | List skills with filters |
-| `GET` | `/v1/skills/:id` | Get individual skill manifest |
-| `GET` | `/v1/search` | Full-text search |
-| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
-| `GET` | `/v1/bundles` | List bundles with availability |
-| `POST` | `/v1/install/plan` | Generate an install plan |
+| `รับ` | `/v1/ทักษะ` | แสดงรายการทักษะพร้อมตัวกรอง |
+| `รับ` | `/v1/ทักษะ/:id` | รับรายการทักษะส่วนบุคคล |
+| `รับ` | `/v1/ค้นหา` | ค้นหาข้อความแบบเต็ม |
+| `รับ` | `/v1/compare?ids=id1,id2` | เปรียบเทียบหลายทักษะ |
+| `รับ` | `/v1/บันเดิล` | แสดงรายการชุดข้อมูลที่มีความพร้อมใช้งาน |
+| `โพสต์` | `/v1/ติดตั้ง/วางแผน` | สร้างแผนการติดตั้ง |### 🔎 List/Search Filters
 
-### 🔎 List/Search Filters
-
-| Filter | Example |
+| ตัวกรอง | ตัวอย่าง |
 |:-------|:--------|
-| `category` | `?category=development` |
-| `tool` | `?tool=cursor` |
-| `risk` | `?risk=safe` |
-| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
-| `order` | `?order=asc\|desc` |
-| `min_quality` | `?min_quality=80` |
+| `หมวดหมู่` | `?category=การพัฒนา` |
+| `เครื่องมือ` | `?เครื่องมือ=เคอร์เซอร์` |
+| `ความเสี่ยง` | `?ความเสี่ยง=ปลอดภัย` |
+| `เรียงลำดับ` | `?sort=quality\|แนวปฏิบัติที่ดีที่สุด\|ระดับ\|ความปลอดภัย\|ชื่อ` |
+| `สั่งซื้อ` | `?order=asc\|คำอธิบาย` |
+| `คุณภาพขั้นต่ำ` | `?min_quality=80` |
 | `min_best_practices` | `?min_best_practices=60` |
-| `min_level` | `?min_level=2` |
+| `ระดับต่ำสุด` | `?min_level=2` |
 | `min_security` | `?min_security=90` |
-| `validation_status` | `?validation_status=passed` |
-| `security_status` | `?security_status=passed` |
-
-### 📦 Install Plan Body
+| `validation_status` | `?validation_status=ผ่าน` |
+| `สถานะความปลอดภัย` | `?security_status=ผ่าน` |### 📦 Install Plan Body
 
 ```json
 {
@@ -176,61 +158,51 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Method | Path | Description |
+| วิธีการ | เส้นทาง | คำอธิบาย |
 |:-------|:-----|:------------|
-| `GET` | `/v1/catalog/download` | Full catalog download |
-| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
-| `GET` | `/v1/skills/:id/archives` | List skill archives |
-| `GET` | `/v1/skills/:id/downloads` | All available download links |
-| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
-| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
-
----
+| `รับ` | `/v1/แค็ตตาล็อก/ดาวน์โหลด` | ดาวน์โหลดแคตตาล็อกฉบับเต็ม |
+| `รับ` | `/v1/ทักษะ/:id/สิ่งประดิษฐ์` | แสดงรายการสิ่งประดิษฐ์ทักษะ |
+| `รับ` | `/v1/skills/:id/archives` | แสดงรายการคลังทักษะ |
+| `รับ` | `/v1/ทักษะ/:id/ดาวน์โหลด` | ลิงค์ดาวน์โหลดทั้งหมดที่มี |
+| `รับ` | `/v1/ทักษะ/:id/ดาวน์โหลด/รายการ` | รายการทักษะ JSON |
+| `รับ` | `/v1/ทักษะ/:id/ดาวน์โหลด/จุดเข้าใช้งาน` | ทักษะ SKILL.md |
+| `รับ` | `/v1/skills/:id/download/artifact?path=<path>` | สิ่งประดิษฐ์เฉพาะ |
+| `รับ` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | คลังทักษะ |
+| `รับ` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | ลายเซ็นเดี่ยว |
+| `รับ` | `/v1/skills/:id/download/archive/checksums` | ผลรวมเช็ค SHA-256 |---
 
 ## 🔗 Link Enrichment
 
-When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
-
----
+เมื่อคำขอได้รับการจัดการผ่าน API เซิร์ฟเวอร์**เพิ่มคุณค่าโดยอัตโนมัติ**รายการ รายการสิ่งประดิษฐ์ และติดตั้งแผนด้วย URL ที่แน่นอนที่ได้มาจากที่มาของคำขอที่เข้ามา นี่คือการเพิ่มประสิทธิภาพรันไทม์ ไม่ได้รวมไว้ใน `dist/manifests/*.json`---
 
 ## 📋 Install Plan Notes
 
-> ⚠️ **Install plans are previews, not remote writes.**
+> ⚠️**แผนการติดตั้งเป็นเพียงการแสดงตัวอย่าง ไม่ใช่การเขียนจากระยะไกล**
 
-The API never installs onto the caller's machine. It returns:
-- 📌 Selected skill metadata
-- ⚠️ Warnings for missing bundle members
-- 🖥️ Concrete CLI commands to run locally
-- 🔗 Public download URLs when request origin is available
-
----
+API จะไม่ติดตั้งลงในเครื่องของผู้เรียก มันกลับมา:
+- 📌 ข้อมูลเมตาทักษะที่เลือก
+- ⚠️ คำเตือนสำหรับสมาชิกบันเดิลที่หายไป
+- 🖥️ คำสั่ง CLI ที่เป็นรูปธรรมให้รันในเครื่อง
+- 🔗 URL ดาวน์โหลดสาธารณะเมื่อมีแหล่งที่มาของคำขอ---
 
 ## 🔌 Relationship to MCP
 
-The MCP server reuses the same public API URLs when configured:
-
-```bash
+เซิร์ฟเวอร์ MCP จะใช้ URL API สาธารณะเดียวกันซ้ำเมื่อกำหนดค่า:```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
-
----
+วิธีนี้ช่วยให้ตัวอย่างการติดตั้ง MCP ส่งคืนไฟล์ Manifest และ URL ของวัตถุที่เป็นรูปธรรมได้ แทนที่จะส่งเฉพาะเส้นทาง Repo ในเครื่องเท่านั้น---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
+`GET /admin/runtime` ส่งคืนสแนปชอตการกำกับดูแลที่เป็นประโยชน์สำหรับการวินิจฉัยที่โฮสต์:
 
-- active auth methods
-- admin-auth status
-- rate-limit window and max
-- CORS allowlist
-- IP allowlist
-- maintenance mode state
-- audit destination and format
-- current catalog totals
-- request ID echoing for traceability
+- วิธีการรับรองความถูกต้องที่ใช้งานอยู่
+- สถานะผู้ดูแลระบบ-รับรองความถูกต้อง
+- หน้าต่างจำกัดอัตราและสูงสุด
+- รายการที่อนุญาตของ CORS
+- รายการที่อนุญาต IP
+- สถานะโหมดการบำรุงรักษา
+- ปลายทางการตรวจสอบและรูปแบบ
+- ยอดรวมแค็ตตาล็อกปัจจุบัน
+- ขอ ID สะท้อนสำหรับการตรวจสอบย้อนกลับ

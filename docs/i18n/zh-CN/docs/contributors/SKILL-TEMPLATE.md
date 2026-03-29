@@ -5,85 +5,65 @@
 ---
 
 ---
-name: your-skill-name
-description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
-category: development
-tags: [example-tag-1, example-tag-2]
-complexity: intermediate
-risk: safe
-tools: [claude-code, cursor, gemini-cli, antigravity]
-source: community
-author: "Your Name"
-date_added: "2026-01-01"
-date_updated: "2026-01-01"
----
-
-<!--
+名称：您的技能名称
+描述：“一行描述该技能的作用以及何时使用它”
+版本：“0.1.3”
+类别： 开发
+标签：[示例标签1，示例标签2]
+复杂度： 中等
+风险：安全
+工具：[claude-code、光标、gemini-cli、反重力]
+来源：社区
+作者：《你的名字》
+添加日期：“2026-01-01”
+更新日期：“2026-01-01”
+---<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` will generate skills/<skill>/metadata.json with canonical
-taxonomy, maturity level, best practices score, quality score, and security
-scan results. Prompt-injection patterns, destructive commands, and risky script
-constructs will be flagged automatically.
+`npm run validate` 将生成具有规范的 Skills/<skill>/metadata.json
+分类、成熟度级别、最佳实践评分、质量评分和安全性
+扫描结果。提示注入模式、破坏性命令和有风险的脚本
+构造将被自动标记。
 
-The skill version is independent from the package version. Use the semantic
-version that makes sense for the skill itself.
+技能版本与软件包版本无关。使用语义
+对技能本身有意义的版本。
 
-For a top-scoring skill, also read:
-- docs/contributors/HIGH-SCORE-PLAYBOOK.md
-- docs/contributors/QUALITY-BAR.md
+对于得分最高的技能，另请阅读：
+- 文档/贡献者/HIGH-SCORE-PLAYBOOK.md
+- 文档/贡献者/QUALITY-BAR.md
 -->
-
-
 ## 概述
 
-2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
+用 2-3 句话解释该技能的用途、谁从中受益以及它存在的原因。## When to Use This Skill
 
-## When to Use This Skill
-
-- Use when you need to [scenario 1]
-- Use when you want to [scenario 2]
-- Use when working with [scenario 3]
-
-## Core Concepts
+- 当你需要时使用[场景1]
+- 当你想要的时候使用[场景2]
+- 在处理[场景 3] 时使用## Core Concepts
 
 ### Concept 1
 
-Explain the key concept the agent needs to understand.
+解释代理需要理解的关键概念。### Concept 2
 
-### Concept 2
+解释另一个基本概念。## Workflow
 
-Explain another foundational concept.
+|相|输出|为什么这很重要 |
+|:------|:--------|:----------------|
+|设定目标|明确目标 |防止模糊指导 |
+|执行步骤 |代理就绪工作流程 |使技能具有可操作性 |
+|验证输出 |接受信号|增强信心|
 
-## Workflow
+1. 工作流程的第一步
+2. 工作流程的第二步
+3. 工作流程的第三步### 1. First Step
 
-| Phase | Output | Why it matters |
-|:------|:-------|:---------------|
-| Frame the goal | Clear objective | Prevents vague guidance |
-| Execute the steps | Agent-ready workflow | Makes the skill actionable |
-| Validate the output | Acceptance signal | Raises confidence |
+第一步的详细说明。### 2. Second Step
 
-1. First step in the workflow
-2. Second step in the workflow
-3. Third step in the workflow
+第二步的详细说明。### 3. Third Step
 
-### 1. First Step
-
-Detailed instructions for the first step.
-
-### 2. Second Step
-
-Detailed instructions for the second step.
-
-### 3. Third Step
-
-Detailed instructions for the third step.
-
-## Examples
+第三步的详细说明。## Examples
 
 ### Example 1: Common Use Case
 
@@ -91,37 +71,27 @@ Detailed instructions for the third step.
 Example prompt or code here
 ```
 
-**Explanation:** What this example demonstrates.
-
-### Example 2: Advanced Use Case
+**说明：**此示例演示的内容。### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explanation:** What this example demonstrates.
+**说明：**此示例演示的内容。## Best Practices
 
-## Best Practices
-
-- ✅ **Do:** Follow this good practice
-- ✅ **Do:** Also follow this practice
-- ❌ **Don't:** Avoid this antipattern
-- ❌ **Don't:** Never do this
-
-## Troubleshooting
+- ✅**做：**遵循这个良好的做法
+- ✅**做：**也遵循这个做法
+- ❌**不要：**避免这种反模式
+- ❌**不要：**永远不要这样做## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptoms:** How you know this is the problem.
-**Solution:** How to fix it.
+**症状：**您如何知道这是问题所在。
+**解决方案：**如何修复它。## Related Skills
 
-## Related Skills
+- `@lated-skill-1` — 何时使用它
+- `@lated-skill-2` — 这如何补充你的技能## Additional Resources
 
-- `@related-skill-1` — When to use this instead
-- `@related-skill-2` — How this complements your skill
-
-## Additional Resources
-
-- [Checklist](references/checklist.md)
-- [Worked example](examples/example.md)
-- [Helper script](scripts/render_example.py)
+- [清单](参考文献/checklist.md)
+- [工作示例](examples/example.md)
+- [帮助脚本](scripts/render_example.py)

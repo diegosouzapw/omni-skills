@@ -13,10 +13,8 @@
 
 <br/>
 
-**The skill catalog that installs itself.**<br/>
-CLI · API · MCP · A2A — all from a single `npx` command.
-
-<br/>
+**Färdighetskatalogen som installerar sig själv.**<br/>
+CLI · API · MCP · A2A — allt från ett enda `npx`-kommando.<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -30,9 +28,7 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 <br/>
 
-[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
-
-</div>
+[⚡ Installera på 1 min](#-installation) · [🛠️ Välj ditt verktyg](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🟓urfac-es-runtime Omni Skills](#-varför-omni-skills)</div>
 
 ---
 
@@ -42,40 +38,34 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 </div>
 
-| | Metric | Value |
+| | Metrisk | Värde |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
-| 🎯 | **Bundles** | `7` fully backed curated bundles |
-| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
-| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
-| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
-
----
+| 📦 |**Publicerade färdigheter**| `32` över 15 aktiva kategorier |
+| 🎯 |**buntar**| "7" kurerade buntar med helt baksida |
+| 🖥️ |**Installera klienter**| `7` installationskompatibla AI-kodningsassistenter |
+| 🔌 |**MCP-kunder**| `16` MCP-konfigurationskompatibla klienter |
+| 🔐 |**Curated Output**| `32` förbättrade engelska derivator i `skills_omni/` |
+| 📋 |**Aktuell utgåva**| `v0.1.2` |---
 
 ## Snabbstart
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+>**Sökade efter färdigheter i AI-kodning, Claude Code-färdigheter, Cursor-färdigheter, Codex CLI-färdigheter, Gemini CLI-färdigheter, Antigravity-färdigheter eller installerbara `SKILL.md`-bibliotek?**
+> Du är på rätt plats.### 1️⃣ What is this?
 
-### 1️⃣ What is this?
+Omni Skills är en**installerbar färdighetskatalog och körtid**för AI-kodningsassistenter. I grunden är det ett offentligt arkiv med återanvändbara spelböcker från `SKILL.md` – men till skillnad från vanliga färdighetssamlingar är repet**distributions- och körtidsskiktet.
 
-Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
+<detaljer>
+<summary>📋 <strong>Vad ingår</strong></summary>
 
-<details>
-<summary>📋 <strong>What's included</strong></summary>
-
-| Component | Description |
+| Komponent | Beskrivning |
 |:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
-| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
-| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
-| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
-| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
-| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
-| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
-
-</details>
+| 🧠**Färdigheter**| Kurerade `SKILL.md`-baserade spelböcker för AI-assistenter |
+| 📦**Manifest**| Genererade JSON-manifest, paket och arkiv |
+| 🧭**Guidad installation**| Interaktiva TTY och visuella terminalinstallationsflöden |
+| 🌐**Catalog API**| Skrivskyddat HTTP API för sökning, upptäckt och nedladdningar |
+| 🔌**MCP-server**| Upptäckts-, rekommendations- och klientmedvetna konfigurationsverktyg |
+| 🤖**A2A Runtime**| Agent-till-agent uppgiftsorkestrering |
+| ✨**Enhancement Pipeline**| Private enhancer publicerar kurerade engelska derivator i `skills_omni/` |</details>
 
 ### 2️⃣ Quick Start
 
@@ -95,109 +85,95 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
+> 💬 *"Använd `@brainstorming` för att planera en SaaS MVP."*
 >
-> 💬 *"Use `@api-design` to review this endpoint design."*
+> 💬 *"Använd `@api-design` för att granska denna slutpunktsdesign."*
 >
-> 💬 *"Use `@debugging` to isolate this regression."*
+> 💬 *"Använd `@debugging` för att isolera denna regression."*### 5️⃣ Start with a bundle
 
-### 5️⃣ Start with a bundle
-
-| 🎯 Goal | Bundle | Command |
-|:---------|:-------|:--------|
-| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
-| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
-| Design systems | `design` | `npx omni-skills --bundle design` |
-| Security review | `security` | `npx omni-skills --bundle security` |
-| Infra and release | `devops` | `npx omni-skills --bundle devops` |
-| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
-| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
-
----
+| 🎯 Mål | Bunt | Kommando |
+|:--------|:-------|:--------|
+| Allmän teknik | `nödvändigt` | `npx omni-skills --bundle essentials` |
+| Produkt + app leverans | `full-stack` | `npx omni-skills --bunt full-stack` |
+| Designsystem | `design` | `npx omni-skills --bundle design` |
+| Säkerhetsgranskning | `säkerhet` | `npx omni-skills --bundle security` |
+| Infra och släpp | `devops` | `npx omni-skills --bundle devops` |
+| LLM-applikationer | `ai-ingenjör` | `npx omni-skills --bundle ai-engineer` |
+| OSS underhåll | `oss-underhållare` | `npx omni-skills --bundle oss-maintainer` |---
 
 ## 🧩 Core Concepts
 
-Before comparing bundles or picking an install path, understanding these five building blocks helps:
+Innan du jämför paket eller väljer en installationsväg hjälper det att förstå dessa fem byggstenar:
 
-| Concept | What it means |
-|:--------|:-------------|
-| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
-| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
-| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
-| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
-| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
+| Koncept | Vad det betyder |
+|:--------|:------------|
+| 🧠**Färdigheter**| Återanvändbara `SKILL.md`-spelböcker som lär en assistent hur man kör ett arbetsflöde väl |
+| 📦**Katalogartefakter**| Genererade JSON- och arkivutgångar som möjliggör sökning, jämförelse, nedladdning och installation |
+| 🔌**MCP Config**| Konfiguration på klientsidan för assistenter att upptäcka Omni Skills genom MCP-verktyg |
+| 🤖**A2A Runtime**| Agent-till-agent-orkestrering för upptäckt, rekommendation och överlämnande av installationsplan |
+| ✨**Curated Output**| `skills_omni/` – den förbättrade ytan som underhålls av Omni, skild från naturligt intag uppströms |
 
-> **📝 Native/Curated policy:**
-> - `skills/` accepts native upstream intake in any language
-> - `skills_omni/` is always curated and published in English
-> - `skills_omni/` is a one-way surface and does not loop back into native intake
-
----
+>**📝 Inbyggd/kurerad policy:**
+> - `skills/` accepterar ursprungligt uppströmsintag på vilket språk som helst
+> - `skills_omni/` är alltid kurerad och publicerad på engelska
+> - `skills_omni/` är en enkelriktad yta och går inte tillbaka till naturligt intag---
 
 ## 💡 Why Omni Skills
 
-> **Not just "another repository with skills in folders."**
-> Omni Skills has a stronger contract and a broader runtime surface.
+>**Inte bara "ett annat förråd med färdigheter i mappar."**
+> Omni Skills har ett starkare kontrakt och en bredare körtid.
 
-| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
-|:-------------|:----------------------|:--------------|
-| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
-| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
-| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
-| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
-| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
-| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
-
----
+| Om du vill... | 📁 Typisk kompetensrepo | ✨ Omni Skills |
+|:------------|:----------------------|:-------------------|
+| Installera i en riktig assistent | Manuell kopia eller anpassat skript | `npx omni-skills`, guidad installation, visuellt användargränssnitt, selektiv `--skill` och `--bundle` |
+| Sök och jämför färdigheter | Bläddra markdown manuellt | Genererad katalog, filtrering, paketplanering, sök, jämför och rekommendationer |
+| Använd samma data i alla verktyg | Separat logik per verktyg | Delade manifest och katalog för CLI, API, MCP och A2A |
+| Konfigurera MCP-klienter | Handredigera filer | `config-mcp`, lokala sidvagnsförhandsvisningar, genererade recept och godkännandelista |
+| Trust releaser | Bästa förpackning | Kontrollsummor, signerade arkiv, skannerverifiering, släpp CI och publicera preflight |
+| Kurera samhällsintag | Vad som än landar förblir som det är | Native intake in `skills/`, curated English derivatives in `skills_omni/` med attribution |---
 
 ## 🖥️ Compatibility and Invocation
 
-These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
+Dessa färdigheter följer `SKILL.md`-modellen och kan användas som ett normalt arkiv, men paketet installerar och konfigurerar dem också över en bred yta:
 
-> **7** install-capable clients · **16** MCP config-capable clients
+>**7**klienter som kan installeras ·**16**klienter som kan konfigurera MCP### 🎯 Install-Capable Clients
 
-### 🎯 Install-Capable Clients
+| Verktyg | Skriv | Anropsexempel | Installera sökväg |
+|:-----|:-----|:------------------------|:-------|
+|**Claude Code**| CLI | `Använd brainstorming för att planera en funktion` | `~/.claude/skills` |
+| 🔵**Markör**| IDE | `@brainstorming hjälp mig att planera en funktion` | `~/.cursor/färdigheter` |
+| 🟡**Gemini CLI**| CLI | `Använd brainstorming för att planera en funktion` | `~/.gemini/skills` |
+| 🔴**Codex CLI**| CLI | `Använd brainstorming för att planera en funktion` | `~/.codex/skills` |
+|**Kiro**| CLI / IDE | `Använd brainstorming för att planera en funktion` | `~/.kiro/skills` |
+| 🟣**Antigravitation**| IDE | `Använd @brainstorming för att planera en funktion` | `~/.gemini/antigravity/skills` |
+| ⚪**OpenCode**| CLI | `opencode run @brainstorming` | `<arbetsyta>/.opencode/skills` |
 
-| Tool | Type | Invocation Example | Install Path |
-|:-----|:-----|:-------------------|:-------------|
-| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
-| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
-| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
-| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
-| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
-| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
-| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
+<detaljer>
+<summary>🔌 <strong>Bredare MCP-konfigurationstäckning (16 klienter)</strong></summary>
 
-<details>
-<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
+Dessa mål är en del av den MCP-konfigurationsyta som stöds, även när de inte är installationsmål för färdighetskataloger:
 
-These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
-
-| Client or Surface | Support Type | Notes |
-|:------------------|:------------|:------|
-| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
-| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
-| Gemini | MCP config | User and workspace settings |
-| Cline | MCP config | First-class config target |
-| GitHub Copilot CLI | MCP config | User and repo config targets |
-| Continue | MCP config | Workspace YAML generation |
-| Windsurf | MCP config | User config target |
-| Zed | MCP config | Workspace config target |
-| Goose | MCP config | User config target with generated recipe |
-| Kilo Code | MCP config | User, project, and workspace targets |
-| Junie | MCP config | Project and user config targets |
-
-</details>
+| Klient eller yta | Supporttyp | Anteckningar |
+|:--------------------|:------------|:------|
+| Claude inställningar och skrivbord | MCP-konfiguration | Inställningar, skrivbord och projektmedvetna flöden |
+| VS-kod | MCP-konfiguration | Användare, arbetsyta, insiders och Dev Container-mål |
+| Tvillingarna | MCP-konfiguration | Användar- och arbetsytainställningar |
+| Cline | MCP-konfiguration | Förstklassigt konfigurationsmål |
+| GitHub Copilot CLI | MCP-konfiguration | Användar- och repokonfigurationsmål |
+| Fortsätt | MCP-konfiguration | Arbetsyta YAML generation |
+| Vindsurfa | MCP-konfiguration | Användarkonfigurationsmål |
+| Zed | MCP-konfiguration | Arbetsyta konfigurationsmål |
+| Gås | MCP-konfiguration | Användarkonfigurationsmål med genererat recept |
+| Kilokod | MCP-konfiguration | Användar-, projekt- och arbetsytamål |
+| Junie | MCP-konfiguration | Projekt- och användarkonfigurationsmål |</details>
 
 ---
 
 ## Installera
 
-<table>
+<tabell>
 <tr>
-<td width="50%">
-
-### Option A: Install with `npx` *(recommended)*
+<td width="50%">### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -254,39 +230,35 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Tool | Install Command | First Use |
-|:-----|:---------------|:----------|
-| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
-| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
-| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
-| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
+| Verktyg | Installera kommando | Första användning |
+|:-----|:---------------|:--------|
+| Claude Kod | `npx omni-skills --claude` | `Använd brainstorming för att planera en funktion` |
+| 🔵 Markör | `npx omni-skills --cursor` | `@brainstorming hjälp mig att planera en funktion` |
+| Gemini CLI | `npx omni-skills --gemini` | `Använd brainstorming för att planera en funktion` |
+| 🔴 Codex CLI | `npx omni-skills --codex` | `Använd brainstorming för att planera en funktion` |
+| Antigravitation | `npx omni-skills --antigravity` *(standard)* | `Använd @brainstorming för att planera en funktion` |
+| Kiro | `npx omni-skills --kiro` | `Använd brainstorming för att planera en funktion` |
 | ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
-| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
+| 📂 Anpassad sökväg | `npx omni-skills --path ./my-skills` | Beror på ditt verktyg |
 
-> 📖 **Not sure where to start?**
-> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
-> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
-> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
-
----
+> 📖**Inte säker på var du ska börja?**
+> - [🚀 Komma igång](docs/users/GETTING-STARTED.md) — installera och verifiera på under 2 minuter
+> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — fullständig kommandoreferens
+> - [📗 Användningsguide](docs/users/USAGE.md) — uppmaningar, mönster och körtidslägen---
 
 ## 🔌 Runtime Surfaces
 
-Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
+Omni Skills är inte bara ett kompetensbibliotek. Den avslöjar**fyra körtidsytor**som förbrukar samma genererade katalog:
 
-| Surface | State | What it does | Example |
-|:--------|:------|:-------------|:--------|
-| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
-| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
-| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
-| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
+| Yta | Stat | Vad det gör | Exempel |
+|:--------|:------|:------------|:--------|
+| 🖥️**CLI**| ✅ Tillgänglig | Hitta, installera, diagnostisera, visuellt användargränssnitt, starttjänster, rökkontroller | `npx omni-skills doctor` |
+| 🌐**Catalog API**| ✅ Tillgänglig | Skrivskyddad katalog, sök, paketerar, jämför, installera planer, nedladdningar | `npx omni-skills api --port 3333` |
+| 🔌**MCP**| ✅ Tillgänglig | Upptäckt, rekommendation, förhandsgranskning av installation, lokal sidovagn, konfigurationsflöden | `npx omni-skills mcp stream --local` |
+| 🤖**A2A**| ✅ Tillgänglig | Uppgiftens livscykel, handoff, polling, streaming, annullering, persistens | `npx omni-skills a2a --port 3335` |
 
-<details>
-<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
-
-```bash
+<detaljer>
+<sammanfattning>🖥️ <strong>Visuellt skal och operatörskommandon</strong></sammanfattning>```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -296,10 +268,8 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<details>
-<summary>🔌 <strong>MCP transports and config</strong></summary>
-
-```bash
+<detaljer>
+<summary>🔌 <strong>MCP-transporter och konfiguration</strong></summary>```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -320,41 +290,33 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Metric | Count |
+| Metrisk | Räkna |
 |:-------|:------|
-| 🧠 Published skills | **32** |
-| 📂 Active categories | **15** |
-| 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **32** in `skills_omni/` |
+| 🧠 Publicerade färdigheter |**32**|
+| 📂 Aktiva kategorier |**15**|
+| 📦 Helt uppbackade buntar |**7**|
+| ✨ Kurerade derivat |**32**i `skills_omni/` |### 📦 Bundle Availability
 
-### 📦 Bundle Availability
-
-| Bundle | Skills | Members |
+| Bunt | Färdigheter | Medlemmar |
 |:-------|:-------|:--------|
-| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
-| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
-| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
-| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
-| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
-| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
-| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
+| 🧰 `nödvändigt` |**4/4**✅ | `find-skills` · `brainstorming` · `arkitektur` · `debugging` |
+| 🌐 `full-stack` |**5/5**✅ | `frontend-design` · `api-design` · `databas-design` · `omni-figma` · `auth-flows` |
+| 🎨 `design` |**5/5**✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `säkerhet` |**4/4**✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
+| ⚙️ `devops` |**5/5**✅ | `docker-expert` · `kubernetes` · `terraform` · `observation-review` · `release-engineering` |
+| 🤖 `ai-ingenjör` |**7/7**✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
+| 🔧 `oss-underhållare` |**4/4**✅ | `find-skills` · `create-pr` · `changelog` · `dokumentation` |### ✨ Native Intake → Curated Output
 
-### ✨ Native Intake → Curated Output
+| Yta | Syfte | Språk |
+|:--------|:--------|:--------|
+| 📥 `färdigheter/` | Inhemskt intag | Alla språk |
+| ✨ `skills_omni/` | Kurerad Omni-underhållen utgång | Alltid engelska |
 
-| Surface | Purpose | Language |
-|:--------|:--------|:---------|
-| 📥 `skills/` | Native intake | Any language |
-| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
-
-> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
-
----
+>**ℹ️**Ändringar av inhemska färdigheter omarbetas av den privata förstärkaren och uppdateras i den utvalda baslinjen. Detta gör `skills_omni/` till en**underhållen katalogyta**, inte en andra kopia.---
 
 ## 🛡️ Security and Release Posture
 
-> Omni Skills ships a stronger release and verification story than a plain markdown repository.
-
-### 🧪 Validation and Smoke Checks
+> Omni Skills levererar en starkare release- och verifieringshistoria än ett vanligt nedskrivningsarkiv.### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -363,40 +325,36 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<details>
-<summary>📋 <strong>What the pipeline validates</strong></summary>
+<detaljer>
+<summary>📋 <strong>Vad pipelinen validerar</strong></summary>
 
-- ✅ Skill validation and metadata generation
-- ✅ Taxonomy normalization and recategorization tooling
-- ✅ Catalog and archive generation
-- ✅ Automated tests
-- ✅ API, MCP, and A2A boot paths
-- ✅ Archive verification
-- ✅ Package preflight with `npm pack --dry-run`
+- ✅ Kompetensvalidering och generering av metadata
+- ✅ Verktyg för taxonominormalisering och omkategorisering
+- ✅ Katalog- och arkivgenerering
+- ✅ Automatiserade tester
+- ✅ API-, MCP- och A2A-startvägar
+- ✅ Arkivverifiering
+- ✅ Paketpreflight med `npm pack --dry-run`</details>
 
-</details>
+<detaljer>
+<summary>🔐 <strong>Släpp hållning</strong></summary>
 
-<details>
-<summary>🔐 <strong>Release posture</strong></summary>
+| Kontroll | Beskrivning |
+|:--------|:--------|
+| 🔒 SHA-256 kontrollsummor | Kontrollsummanifest för alla arkiv |
+| ✍️ Signerade artefakter | Fristående signaturer på utgivningsartefakter |
+| 🤖 CI-tillämpad | Releaseverifiering i CI före publicering |
+| 🦠 Skannerportar | ClamAV och VirusTotal-gated release flow |
+| 📦 GitHub Release | Automatiserad GitHub Release generation |
+| 📋 npm-publikation | Endast från verifierad tarball |
+| 🔄 Autofrigöring | Vid kvalificerad skicklighet smälter samman till `main` |
 
-| Control | Description |
-|:--------|:-----------|
-| 🔒 SHA-256 checksums | Checksum manifests for all archives |
-| ✍️ Signed artifacts | Detached signatures on release artifacts |
-| 🤖 CI-enforced | Release verification in CI before publication |
-| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
-| 📦 GitHub Release | Automated GitHub Release generation |
-| 📋 npm publication | From verified tarball only |
-| 🔄 Auto release | On qualifying skill merges to `main` |
-
-**Auto-release triggers only when a merge changes:**
+**Auto-release utlöses endast när en sammanslagning ändras:**
 - `skills/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-Doc-only changes **do not** trigger package publication.
-
-</details>
+Ändringar av endast dokument**utlöser inte paketpublicering.</details>
 
 ---
 
@@ -404,93 +362,79 @@ Doc-only changes **do not** trigger package publication.
 
 ### 👤 For Users
 
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
-| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
-| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
-| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
-| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
+| Doc | Vad du kommer att lära dig |
+|:----|:------------------------|
+| 🚀 [Komma igång](docs/users/GETTING-STARTED.md) | Installera, verifiera och anropa på under 2 minuter |
+| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Fullständig kommandoreferens och verkliga mönster |
+| 📗 [Användningsguide](docs/users/USAGE.md) | CLI-kommandon, installationslägen, körtid och MCP-konfiguration |
+| 📦 [Bundles](docs/users/BUNDLES.md) | Utvalda paket och tillgänglighet |
+| 📚 [Katalog](docs/CATALOG.md) | Autogenererad katalog över publicerade färdigheter |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Bygg, betjäna, säkra och felsök |### 🏗️ For Architects
 
-### 🏗️ For Architects
+| Doc | Vad du kommer att lära dig |
+|:----|:------------------------|
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Arkitekturutveckling och återstående områden |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Central monorepo beslut |
+| 🔬 [Kodbasanalys](docs/architecture/CODEBASE-ANALYSIS.md) | Körtidssammansättning och systemgränser |
+| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP-slutpunkter, filtrering, styrning och nedladdningar |
+| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Beteendekontrakt för den guidade installatören |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Bläck visuellt skal och tillståndsmodell |
+| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filsystemverktyg och modell för godkännandelista |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Fullständig kund- och skribentreferens |
+| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomie, poängsättning och metadata |
+| 🛡️ [Säkerhetsvalidering](docs/specs/SECURITY-VALIDATION.md) | Skannrar, arkiv och signaturer |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Maskinläsbart manifestformat |### 🤝 For Contributors
 
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
-| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
-| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
-| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
-| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
-| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
-| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
-| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
-
-### 🤝 For Contributors
-
-| Doc | What You'll Learn |
-|:----|:-----------------|
-| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
-| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
-| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
-| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
-| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
-| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
-
----
+| Doc | Vad du kommer att lära dig |
+|:----|:------------------------|
+| 📝 [Bidragsguide](CONTRIBUTING.md) | Repo arbetsflöde och PR-förväntningar |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, recensents förväntningar |
+| 📄 [Skill Template](docs/contributors/SKILL-MALL.md) | Starter `SKILL.md` med frontmateria och struktur |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Struktur och kvalitetsförväntningar |
+| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptanskriterier |
+| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Vad driver höga poäng |---
 
 ## 🗂️ Repository Layout
 
-| Path | Purpose |
+| Väg | Syfte |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills and native intake |
-| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
-| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
-| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
-| 📁 `data/` | Bundle definitions and static supporting data |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
-| 🖥️ `tools/bin/` | CLI entrypoints |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
+| 📂 `färdigheter/` | Kanoniskt författade färdigheter och inhemskt intag |
+| ✨ `skills_omni/` | Kurerade Omni-underhållna förbättrade derivat |
+| 📖 `docs/` | Dokumentation för användare, bidragsgivare, arkitektur, drift och specifikationer |
+| 📦 `dist/` | Genererade manifest, paket, kataloger och arkiv |
+| 📁 `data/` | Buntdefinitioner och statiska stödjande data |
+| 🧠 `paket/katalog-kärna/` | Runtime för delad katalog |
+| 🌐 `paket/server-api/` | Skrivskyddat HTTP API |
+| 🔌 `paket/server-mcp/` | MCP-server och lokal sidovagn |
+| 🤖 `paket/server-a2a/` | A2A körtid och uppgift orkestrering |
+| 🖥️ `tools/bin/` | CLI-ingångspunkter |
+| 📚 `tools/lib/` | Installatör och UI-hjälpare |
+| ⚙️ `verktyg/skript/` | Validering, generering, release och testskript |
 
-> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
----
+>**ℹ️**`dist/` är avsiktligt versionerad eftersom de genererade artefakterna är en del av installations-, API-, MCP-, A2A-, rök- och releasekontraktet.---
 
 ## 🤝 Contributing
 
-Omni Skills accepts native upstream skill intake under `skills/`.
+Omni Skills accepterar inbyggt uppströms färdighetsintag under "färdigheter/".
 
-| Rule | Details |
+| Regel | Detaljer |
 |:-----|:--------|
-| 📥 Native intake | May be rough, authored in any language |
-| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
-| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
-| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
+| 📥 Inhemskt intag | Kan vara grov, författad på vilket språk som helst |
+| ✨ Kurerad utgång | `skills_omni/` reserverad för automationsförfattade Omni-derivat |
+| 🚫 Manuella redigeringar | Offentliga manuella redigeringar av `skills_omni/` avvisas |
+| 🔄 Upparbetning | Privat förstärkare omarbetar inhemska förändringar och uppdaterar utvald baslinje |
 
-> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
-
----
+> 📖**Börja med:**[Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)---
 
 ## 📄 License
 
-| Type | License |
+| Skriv | Licens |
 |:-----|:--------|
-| 💻 Code and tooling | [MIT License](LICENSE) |
-| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
-
----
+| 💻 Kod och verktyg | [MIT-licens](LICENS) |
+| 📝 Dokumentation och färdighetsinnehåll | [CC BY 4.0](LICENSINNEHÅLL) |---
 
 <div align="center">
 
-**Made with 🧠 by the Omni Skills Team**
+**Gjord med 🧠 av Omni Skills Team**
 
-[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
-
-</div>
+[⭐ Stjärnmärk denna repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Rapportera ett fel](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Diskussioner](https://github.com/diegosouzapskill)/discussion-skills/</div>

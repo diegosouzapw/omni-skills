@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**ทุกสิ่งที่คุณต้องการเพื่อเรียกใช้ทักษะ เรียกใช้บริการ และดำเนินการรันไทม์ทักษะ Omni**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+สำหรับเวิร์กโฟลว์การปฏิบัติงานทั้งหมด โปรดดูที่ [Optim System Runbook](../operations/RUNBOOK.md)
+สำหรับแผนผังคำสั่งสำหรับผู้ใช้ปลายทางแบบเต็ม โปรดดู [🧭 คู่มือผู้ใช้ CLI](./CLI-USER-GUIDE.md)---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
+| สถานะ | รายละเอียด |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| ✅**วางจำหน่ายแล้ว**| 32 ทักษะที่ได้รับการเผยแพร่ในด้านการออกแบบ สถาปัตยกรรม การดีบัก เอกสาร OSS ความปลอดภัย DevOps วิศวกรรม AI ข้อมูล เครื่องมือ และเวิร์กโฟลว์การเรียนรู้ของเครื่อง |
+| 📦**ชุดรวม**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` และ `oss-maintainer` ได้รับการสนับสนุนอย่างเต็มรูปแบบแล้ววันนี้ |
+| 🔌**การเข้าถึง MCP**| ไคลเอนต์ที่สามารถติดตั้งได้ 7 ตัว, ไคลเอนต์ที่สามารถกำหนดค่าได้ 16 ตัว, เป้าหมายการกำหนดค่าระดับเฟิร์สคลาส 33 ตัว, โปรไฟล์การกำหนดค่า 19 ตัว |
+| 🤖**ความทนทาน A2A**| หน่วยความจำ, JSON หรือความทนทานภายในเครื่อง SQLite, รีสตาร์ทเรซูเม่, ตัวดำเนินการกระบวนการเสริม และการเลือกรับการประสานงานแบบเช่าสำหรับผู้ปฏิบัติงานที่ใช้ร่วมกัน |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
+| ลูกค้า | วิธีการเรียกใช้ | เส้นทางทักษะ |
 |:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| 🔵**รหัสโคลด**| `>> /ชื่อทักษะ ช่วยฉันด้วย...` | `~/.claude/ทักษะ/` |
+| 🟡**ราศีเมถุน CLI**| `ใช้ @skill-name เพื่อ...` | `~/.gemini/ทักษะ/` |
+| 🔴**Codex CLI**| `ใช้ @skill-name เพื่อ...` | `~/.codex/ทักษะ/` |
+| 🟢**คิโระ**| ทักษะโหลดอัตโนมัติตามต้องการ | `~/.kiro/ทักษะ/` |
+| 🟣**ต้านแรงโน้มถ่วง**| `ใช้ @skill-name เพื่อ...` | `~/.gemini/antigravity/skills/` |
+| 🔵**เคอร์เซอร์**| `@ชื่อทักษะ` ในแชท | `~/.cursor/ทักษะ/` |
+| ⚪**OpenCode**| `opencode run @skill-name` | `.opencode/ทักษะ/` |
+| ⬛**นักบิน**| วางเนื้อหาทักษะด้วยตนเอง | ไม่มี |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+ลูกค้าเช่น Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline และ Kilo Code ใช้โฟลว์ `config-mcp` เป็นหลัก แทนที่จะเป็นไดเร็กทอรีทักษะ---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 หมายเหตุ:**
+> - ในเทอร์มินัลแบบโต้ตอบ ตอนนี้ `npx omni-skills` จะเปิดขั้นตอนการติดตั้งที่แนะนำ
+> - `npx omni-skills ui` เปิด Visual Ink Shell พร้อมการติดตั้ง การค้นพบ และการดำเนินการเปิดบริการ
+> - วิชวลเชลล์ยังคงมีการติดตั้งล่าสุด การเปิดตัวบริการล่าสุด รายการโปรด และการตั้งค่าล่วงหน้าที่มีชื่อใน `~/.omni-skills/state/ui-state.json`
+> - ภายนอก TTY การติดตั้งแบบเต็มยังคงเป็นค่าเริ่มต้นเมื่อไม่ได้ระบุตัวเลือกไว้
+> - `--skill` จะติดตั้งเฉพาะทักษะที่เผยแพร่ที่เลือกไว้เท่านั้น
+> - `--bundle` จะขยายบันเดิลและติดตั้งสมาชิกที่เผยแพร่แล้วที่ประกาศไว้ในบันเดิลที่ดูแลจัดการ
+> - `find` รองรับแฟล็กตัวกรอง 12+ รายการ: `คุณภาพ`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk` และอื่นๆ
+> - `config-mcp` เป็นเส้นทางที่ถูกต้องสำหรับผลิตภัณฑ์ที่รองรับ MCP ซึ่งไม่มีไดเรกทอรีทักษะชั้นหนึ่ง---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+CLI เป็นเครื่องมือการดำเนินงานแบบครบวงจร ไม่ใช่แค่ตัวติดตั้ง### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+วิชวลเชลล์รองรับ:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- แนะนำการติดตั้งด้วยไคลเอนต์ที่รู้จักหรือการเลือกเส้นทางที่กำหนดเอง
+- ค้นหาแล้วติดตั้งโดยไม่ต้องจำแฟล็ก
+- ดูตัวอย่างการกำหนดค่าไคลเอ็นต์ MCP ที่แนะนำและเขียนโฟลว์
+- การเริ่มต้นที่แนะนำ MCP, API และ A2A
+- การติดตั้งล่าสุดและการเปิดตัวบริการใหม่
+- บันทึกการติดตั้งและบริการที่ตั้งไว้ล่วงหน้า
+- ทักษะและชุดรวมที่ชื่นชอบ### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| # | เคล็ดลับ |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | อ้างอิงทักษะตามชื่อในพร้อมท์ของคุณ |
+| 2️⃣ | ระบุอาร์ติแฟกต์ โค้ด หรือบริบทการออกแบบที่ตัวแทนต้องการ |
+| 3️⃣ | ต้องการ `--ทักษะ` สำหรับการติดตั้งขั้นต่ำ |
+| 4️⃣ | ใช้ `doctor` และ `smoke` ก่อนแก้ไขข้อบกพร่องเกี่ยวกับบรรจุภัณฑ์หรือรันไทม์ |
+| 5️⃣ | ใช้บันเดิลเป็นการติดตั้งโดเมนที่ได้รับการดูแลจัดการในขณะนี้ โดยบันเดิลเริ่มต้นทั้งเจ็ดได้รับการสนับสนุนอย่างเต็มที่ |
+| 6️⃣ | ใช้ `find --install --yes` เพื่อการค้นพบ + การติดตั้งในขั้นตอนเดียว |
+| 7️⃣ | ดู [runbook](../operations/RUNBOOK.md) สำหรับการตรวจสอบสิทธิ์ การจำกัดอัตรา การลงนาม และการตรวจสอบสภาพแวดล้อม vars |

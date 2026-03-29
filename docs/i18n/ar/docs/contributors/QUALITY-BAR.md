@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**الحد الأدنى من المتطلبات والتوصيات المتعلقة بالمهارة التي سيتم قبولها في مستودع Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+للحصول على إرشادات التأليف التي تستهدف على وجه التحديد نتائج النطاق الأعلى، راجع [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+المعيار الحالي للكتالوج المنشور:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 مهارات منشورة
+- متوسط نقاط الجودة `96.3`
+- متوسط درجات أفضل الممارسات `98.7`
+- متوسط درجة الأمان `95.0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
+| # | المتطلبات | كيفية التحقق |
 |:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| 1️⃣ |**مادة أمامية صالحة**| `python3 Tools/scripts/validate_skills.py` |
+| 2️⃣ |**وصف واضح**| يجب أن يشرح السطر الواحد ما تفعله المهارة (أكثر من 10 أحرف) |
+| 3️⃣ |**الاسم يطابق الدليل**| الحقل `الاسم:` يطابق اسم المجلد تمامًا |
+| 4️⃣ |**قسم النظرة العامة**| شرح مختصر للهدف في هيئة تخفيض السعر |
+| 5️⃣ |**قسم متى يجب الاستخدام**| على الأقل 2 سيناريوهات استخدام محددة |
+| 6️⃣ |**تعليمات قابلة للتنفيذ**| محتوى خطوة بخطوة يمكن لعامل الذكاء الاصطناعي تنفيذه |
+| 7️⃣ |**البيانات الوصفية التي تم إنشاؤها**| يُصدر المدقق `skills/<skill>/metadata.json` بنجاح |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
-|:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| # | توصية | تأثير النتيجة |
+|:--|:--------------|:------------|
+| 8️⃣ |**أمثلة**— مثال ملموس واحد على الأقل مع المخرجات المتوقعة | 📈 الجودة +10-15 |
+| 9️⃣ |**أفضل الممارسات**— ✅ افعل / ❌ لا تهدى | 📈 أفضل الممارسات +5 |
+| 🔟 |**تم الاختبار باستخدام أداة**- تم التحقق منه باستخدام مساعد ترميز واحد على الأقل يعمل بالذكاء الاصطناعي | 📈 الجودة +5 |
+| 1️⃣1️⃣ |**العلامات**— علامات ذات صلة قابلة للبحث للاكتشاف | 📈 أفضل الممارسات +10 |
+| 1️⃣2️⃣ |**الفئة**— مخصصة لفئة أساسية واحدة | 📈 أفضل الممارسات +10 |
+| 1️⃣3️⃣ |**استكشاف الأخطاء وإصلاحها**— إرشادات ملموسة حول "الأعراض" و"الحل" | 📈 أفضل الممارسات +5-10 |
+| 1️⃣4️⃣ |**أصول الدعم المحلي**— `المراجع/`، و`النصوص البرمجية/`، ومن الأفضل أن تكون `أمثلة/` مرتبطة بالمهارة | 📈 أفضل الممارسات +10 |
+| 1️⃣5️⃣ |**التصنيف الصحي**— النضج L3، الجودة 85+، أفضل الممارسات 90+ | 📈 المستوى العام |
+| 1️⃣6️⃣ |**لا توجد نتائج أمنية مهمة**— تم فحص الماسح الضوئي الثابت | 🛡️ الأمن 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| العدد | لماذا |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ المادة الأمامية مفقودة أو غير صالحة | فواصل خط أنابيب التحقق من الصحة |
+| ❌ الاسم غير مطابق للدليل | فواصل توليد الكتالوج |
+| ❌ وصف قصير فارغ أو تافه | لا يمكن للمستخدمين اكتشاف المهارة |
+| ❌ لا يوجد محتوى قابل للتنفيذ (فقط روابط أو بذرة) | لا يمكن للوكلاء تنفيذ أي شيء |
+| ❌ مكرر بدون تحسين واضح | أضف قيمة، لا تستنسخ |
+| ❌ محتوى مسيء بدون وسم `خطر: مسيء` | السلامة والامتثال |
+| ❌ نتائج أمنية حرجة | الترشيح الفوري، والأوامر المدمرة، وما إلى ذلك |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
-|:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| البعد | ممتاز | جيد | يحتاج إلى عمل |
+|:----------|:---------|:----|:---------|:------|
+| ⭐**الجودة**| 80+ (بلاتيني) | 60-79 (ذهبي/فضي) | <60 (برونزية/بادئ) |
+| 📋**أفضل الممارسات**| 90+ (ممتاز) | 70-89 (حسن) | <70 (عادل/احتياجات-عمل) |
+| 🛡️**الأمن**| 95+ (تصلب) | 80-94 (آمنة) | <80 (بحاجة للمراجعة) |
+| 🎯**النضج**| L3 (نصوص+اختبارات) | L2 (تعليمات) | L1 (بيانات التعريف فقط) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+للوصول إلى النطاق العلوي باستمرار، يجب أن تتضمن المهارة ما يلي:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- وصف أمامي قوي يشرح كلاً من**ما**المهارة و**متى**يجب استخدامها
+- أقسام واضحة لـ "وقت الاستخدام"، و"سير العمل"، و"الأمثلة"، و"أفضل الممارسات"، و"استكشاف الأخطاء وإصلاحها"، و"الموارد الإضافية".
+- مواد الدعم المحلية ضمن "المراجع/"، و"النصوص البرمجية/"، ومن الناحية المثالية "أمثلة/"، المرتبطة مباشرةً من "SKILL.md".
+- البيانات التعريفية للوكيل ضمن `agents/openai.yaml` عندما يكون من المفترض أن يتم استدعاء المهارة مباشرة لدى عملاء الوكلاء
+- جدول عملياتي صغير أو خريطة تنفيذية مكافئة عندما يستفيد منه سير العمل
+- مثال واحد قابل للتشغيل على الأقل يشير إلى برنامج نصي مساعد محلي أو أمر قابل للتكرار
+- استكشاف الأخطاء وإصلاحها مكتوبة باسم "الأعراض" بالإضافة إلى "الحل"، وليس تحذيرات عامة
+- عمق كافٍ للتأهل إلى مستوى "L3"، وليس فقط نثرًا منسقًا جيدًا
+- عمق أقوى لسير العمل، وأصول القرار، وتنوع حزمة الدعم إذا كنت تريد جودة النطاق العلوي
+- حزمة دعم عميقة بما يكفي لتكون قابلة لإعادة الاستخدام، وليس فقط لتغطية مربع الاختيار
+- ما لا يقل عن 4 عائلات دعم ذات معنى أو ما يعادلها من العمق في الملفات القابلة لإعادة الاستخدام إذا كنت تريد النطاق العلوي باستمرار

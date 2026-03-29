@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Semua yang anda perlukan untuk menggunakan kemahiran, menjalankan perkhidmatan dan mengendalikan masa jalan Kemahiran Omni.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+Untuk aliran kerja operasi penuh, lihat [🔧 System Runbook](../operations/RUNBOOK.md).
+Untuk peta arahan pengguna akhir penuh, lihat [🧭 Panduan Pengguna CLI](./CLI-USER-GUIDE.md).---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
+| Status | Butiran |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| ✅**Boleh didapati sekarang**| 32 kemahiran diterbitkan merentas reka bentuk, seni bina, nyahpepijat, dokumen, OSS, keselamatan, DevOps, kejuruteraan AI, data, alatan dan aliran kerja pembelajaran mesin |
+| 📦**Himpunan**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` dan `oss-maintainer` disokong sepenuhnya hari ini |
+| 🔌**Capaian MCP**| 7 pelanggan berkebolehan memasang, 16 pelanggan berkebolehan konfigurasi, 33 sasaran konfigurasi kelas pertama, 19 profil konfigurasi |
+| 🤖**Ketahanan A2A**| Ketahanan tempatan memori, JSON atau SQLite, mulakan semula resume, pelaksana proses pilihan dan penyelarasan pajakan ikut serta untuk pekerja kongsi |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
+| Pelanggan | Cara Menjemput | Laluan Kemahiran |
 |:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| 🔵**Kod Claude**| `>> /nama kemahiran tolong saya...` | `~/.claude/skills/` |
+| 🟡**Gemini CLI**| `Gunakan @skill-name untuk...` | `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `Gunakan @skill-name untuk...` | `~/.codex/skills/` |
+| 🟢**Kiro**| Muatan automatik kemahiran atas permintaan | `~/.kiro/skills/` |
+| 🟣**Antigraviti**| `Gunakan @skill-name untuk...` | `~/.gemini/antigravity/skills/` |
+| 🔵**Kursor**| `@nama-kemahiran` dalam sembang | `~/.kursor/kemahiran/` |
+| ⚪**Kod Terbuka**| `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛**Copilot**| Tampalkan kandungan kemahiran secara manual | T/T |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Pelanggan seperti Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline dan Kilo Code terutamanya menggunakan aliran `config-mcp` dan bukannya direktori kemahiran.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Nota:**
+> - Dalam terminal interaktif, `npx omni-skills` kini membuka aliran pemasangan berpandu
+> - `npx omni-skills ui` membuka cangkerang Dakwat visual dengan tindakan pemasangan, penemuan dan pelancaran perkhidmatan
+> - cangkerang visual mengekalkan pemasangan terbaharu, pelancaran perkhidmatan terkini, kegemaran dan pratetap bernama dalam `~/.omni-skills/state/ui-state.json`
+> - Di luar TTY, pemasangan penuh masih menjadi lalai apabila tiada pemilih disediakan
+> - `--skill` hanya memasang kemahiran diterbitkan yang dipilih
+> - `--bundle` mengembangkan himpunan dan memasang ahli yang diterbitkan yang diisytiharkan dalam himpunan dipilih susun
+> - `find` menyokong 12+ bendera penapis: `kualiti`, `amalan_terbaik`, `peringkat_kemahiran`, `keselamatan`, `kategori`, `alat`, `risiko` dan banyak lagi
+> - `config-mcp` ialah laluan yang betul untuk produk berkemampuan MCP yang tidak mempunyai direktori kemahiran kelas pertama---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+CLI ialah alat operasi bersatu, bukan sekadar pemasang.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+Cangkang visual menyokong:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- pemasangan berpandu dengan pelanggan yang diketahui atau pemilihan laluan tersuai
+- cari-kemudian-pasang tanpa menghafal bendera
+- pratonton konfigurasi klien MCP berpandu dan aliran tulis
+- Permulaan berpandu MCP, API dan A2A
+- pemasangan baru-baru ini dan pelancaran semula perkhidmatan
+- pratetap pemasangan dan perkhidmatan yang disimpan
+- kemahiran kegemaran dan berkas### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -234,12 +222,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | Tip |
+| # | Petua |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | Rujuk kemahiran mengikut nama dalam gesaan anda |
+| 2️⃣ | Sediakan konteks artifak, kod atau reka bentuk yang tepat yang diperlukan oleh ejen |
+| 3️⃣ | Lebih suka `--kemahiran` untuk jejak pemasangan minimum |
+| 4️⃣ | Gunakan `doktor` dan `smoke` sebelum menyahpepijat isu pembungkusan atau masa jalan |
+| 5️⃣ | Gunakan himpunan sebagai pemasangan domain dipilih sekarang kerana kesemua tujuh himpunan permulaan disokong sepenuhnya |
+| 6️⃣ | Gunakan `find --install --yes` untuk penemuan + pemasangan dalam satu aliran |
+| 7️⃣ | Lihat [runbook](../operations/RUNBOOK.md) untuk pengesahan, had kadar, tandatangan dan pengesahan env vars |

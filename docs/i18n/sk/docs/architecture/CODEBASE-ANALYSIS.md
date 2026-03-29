@@ -5,46 +5,40 @@
 ---
 
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
-> Last analyzed: 2026-03-28
-
----
+>**Komplexná technická analýza súčasnej architektúry Omni Skills, runtime povrchov a zostavy.**
+> Posledná analýza: 28.03.2026---
 
 ## 📊 Project Overview
 
-| Attribute | Value |
+| Atribút | Hodnota |
 |:----------|:------|
-| **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
-| **Skill versions** | Per-skill and independent from the package version. Many published skills are still `0.0.1` while the package is `0.1.2`. |
-| **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 32 |
-| **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
-| **Primary runtime/build LOC sampled below** | 13,600+ |
-| **Production dependencies** | 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+|**Meno**| „všezručnosti“ |
+|**Verzia balenia**| "0.1.3" |
+|**Verzie schopností**| Podľa schopností a nezávisle od verzie balíka. Mnohé publikované zručnosti sú stále `0.0.1`, zatiaľ čo balík je `0.1.2`. |
+|**Licencia**| MIT (kód) + CC BY 4.0 (obsah) |
+|**NPM**| `npx omni-skills` |
+|**Publikované zručnosti**| 32 |
+|**Definované balíky**| 7, všetko plne podporované publikovanými zručnosťami |
+|**Aktívne kategórie katalógu**| 15 aktívnych skupín z 18 kategórií kanonickej taxonómie |
+|**Primárny runtime/zostava LOC uvedený nižšie**| 13 600+ |
+|**Závislosti výroby**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
 
-Current repository-level classification snapshot from `metadata.json`:
+Aktuálna snímka klasifikácie na úrovni úložiska z `metadata.json`:
 
-- average quality score: `96.3`
-- average best-practices score: `98.7`
-- average security score: `95.0`
-- all 32 published skills validate as `L3`
+- priemerné skóre kvality: `96,3`
+- priemerné skóre najlepších postupov: 98,7
+- priemerné skóre bezpečnosti: `95,0`
+- všetkých 32 publikovaných zručností je validovaných ako „L3“.
 
-Current release baseline:
+Aktuálny základ vydania:
 
-- public repository release: `v0.1.2`
-- private enhancer release: `v0.0.1`
-- public release automation and private release automation are both active and green
-
----
+- vydanie verejného úložiska: `v0.1.2`
+- vydanie súkromného vylepšenia: `v0.0.1`
+- automatizácia verejného a súkromného uvoľnenia sú aktívne a zelené---
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
-
-```text
+Úložisko sa riadi vzorom**pracovného priestoru monorepo**s jedným zdieľaným jadrom katalógu a viacerými prevádzkovými plochami.```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -70,321 +64,297 @@ The repository follows a **workspace monorepo** pattern with one shared catalog 
 └────────────────────────────────────────────────────────────┘
 ```
 
-The design is intentionally **artifact-driven**:
+Dizajn je zámerne**riadený artefaktom**:
 
-1. skills are authored as `SKILL.md` plus local support packs
-2. the build validates, classifies, archives, and normalizes them
-3. the generated artifacts become the contract for CLI, API, MCP, and A2A
-
----
+1. zručnosti sú vytvorené ako `SKILL.md` plus balíčky miestnej podpory
+2. zostava ich validuje, klasifikuje, archivuje a normalizuje
+3. vygenerované artefakty sa stanú kontraktom pre CLI, API, MCP a A2A---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
-> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
+>**4 500+ LOC dokopy**— hlavné verejné rozhranie pre expertné aj riadené použitie.
 
-| Command | Function |
+| Príkaz | Funkcia |
 |:--------|:---------|
-| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
-| 📦 `install` | Guided or flag-based install into known clients or custom paths |
-| 🧾 `config-mcp` | Preview or write client-aware MCP config |
-| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
-| 🌐 `api` | Starts the catalog API |
-| 🤖 `a2a` | Starts the A2A runtime |
-| 🧪 `smoke` | Release preflight validation |
-| 🩺 `doctor` | Local diagnostics |
-| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
+| 🔎 `nájsť [dopyt]` | Fulltextové vyhľadávanie v katalógu s filtrami na základe skóre |
+| 📦 `nainštalovať` | Riadená inštalácia alebo inštalácia založená na príznakoch do známych klientov alebo vlastných ciest |
+| 🧾 `config-mcp` | Ukážka alebo zápis konfigurácie MCP s podporou klienta |
+| 🔌 `mcp <doprava>` | Spustí MCP server v `stdio`, `stream` alebo `sse` |
+| 🌐 `api` | Spustí katalógové API |
+| 🤖 `a2a` | Spustí runtime A2A |
+| 🧪 "dym" | Predletové overenie uvoľnenia |
+| 🩺 "lekárka" | Lokálna diagnostika |
+| 🖥️ `ui` | Ink vizuálny shell s inštaláciou, zisťovaním, konfiguráciou a servisným centrom |
+| 🏷️ `prekategorizovať` | Kontrola posunu taxonómie a prepísanie |
 
-The CLI is no longer just an installer. It is the public operations tool for the whole platform.
+CLI už nie je len inštalačný program. Je to nástroj verejnej prevádzky pre celú platformu.## 🧭 Future Expansion Direction
 
-## 🧭 Future Expansion Direction
+Verejná prevádzka už nie je blokovaná pri základných prácach a vlna druhej kategórie je už pristátá. Ďalšou užitočnou katalógovou prácou je hĺbka, nie viac naháňania podľa kategórií.
 
-The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
+Novo aktivované skladby s natívnym kódom teraz v katalógu:
 
-Newly activated code-native tracks now in the catalog:
+– „design“ prostredníctvom „design-systems-ops“, „accessibility-audit“ a „design-token-governance“
+- `tools` cez `mcp-server-authoring`
+- `data-ai` cez `data-contracts`
+- „strojové učenie“ prostredníctvom „servírovania modelu“.
 
-- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
-- `tools` via `mcp-server-authoring`
-- `data-ai` via `data-contracts`
-- `machine-learning` via `model-serving`
+Odporúčaný ďalší smer:
 
-Recommended next direction:
+1. prehĺbiť „dizajn“, „nástroje“, „data-ai“ a „strojové učenie“
+2. ponechať „obchod“ a „obsah-médiá“ odložené, pokiaľ sa neobjaví jasne kódovo pôvodný návrh
+3. zachovať súčasnú úroveň kvality namiesto opätovného otvorenia aktivačného tlaku kategórie
 
-1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
-2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
-3. preserve the current quality floor instead of reopening category activation pressure
+Táto vlna expanzie je teraz zaznamenaná v [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-That expansion wave is now recorded in [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+>**403 LOC**– nainštaluje zručnosti do 7 asistentov schopných inštalácie.
 
-### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
-
-> **403 LOC** — installs skills into 7 install-capable assistants.
-
-| Flag | Target | Default Path |
+| Vlajka | Cieľ | Predvolená cesta |
 |:-----|:-------|:-------------|
-| `--claude` | Claude Code | `~/.claude/skills` |
-| `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemini` | Gemini CLI | `~/.gemini/skills` |
-| `--codex` | Codex CLI | `~/.codex/skills` |
-| `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
+| "--claude" | Claude Code | `~/.claude/skills` |
+| "--kurzor" | Kurzor | `~/.kurzor/zručnosti` |
+| "--gemini" | Gemini CLI | `~/.gemini/skills` |
+| "--codex" | Codex CLI | `~/.codex/skills` |
+| "--kiro" | Kiro | `~/.kiro/skills` |
+| "--antigravitácia" | Antigravitácia | `~/.gemini/antigravity/skills` |
+| "--opencode" | OpenCode | `<pracovný priestor>/.opencode/skills` |
 
-It supports:
+Podporuje:
 
-- full-library installs
-- selective installs by `--skill`
-- curated installs by `--bundle`
-- guided TTY and visual UI flows
-- custom target paths
+- inštalácie plnej knižnice
+- selektívne inštalácie pomocou `--skill`
+- spravované inštalácie podľa „--bundle“.
+- riadené toky TTY a vizuálneho používateľského rozhrania
+- vlastné cieľové cesty### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+>**828 LOC**– zdieľaná runtime vrstva pre CLI, API, MCP a A2A.
 
-> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
-
-| Export | Description |
+| export | Popis |
 |:-------|:------------|
-| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
-| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
-| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
-| ⚖️ `compareSkills()` | Side-by-side comparison |
-| 💡 `recommendSkills()` | Goal-driven recommendation |
-| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
-| 🗂️ `listBundles()` | Curated bundle listing with availability |
-| 📁 `listSkillArchives()` | Archive and signature resolution |
+| 🔎 `vyhľadávacie schopnosti()` | Hľadajte pomocou váženého priraďovania textu a podpory filtrov |
+| 📋 `zoznam zručností()` | Viacosové filtrovanie podľa kvality, osvedčených postupov, úrovne, zabezpečenia, rizika, nástroja a kategórie |
+| 📌 `getSkill()` | Zjavné rozlíšenie plus obohatené verejné adresy URL |
+| ⚖️ `porovnať zručnosti()` | Porovnanie vedľa seba |
+| 💡 `odporúčameSkills()` | Odporúčanie zamerané na cieľ |
+| 📦 `buildInstallPlan()` | Generovanie plánu inštalácie s upozorneniami a pokynmi pre klienta |
+| 🗂️ `zoznamBundles()` | Zoznam vybraných balíkov s dostupnosťou |
+| 📁 `zoznamArchív zručností()` | Archív a rozlíšenie podpisov |
 
-This is the real single source of runtime truth after generation.
+Toto je skutočný jediný zdroj runtime pravdy po generácii.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+>**812 LOC**— úplná implementácia MCP pomocou oficiálnej súpravy SDK.
 
-> **812 LOC** — full MCP implementation using the official SDK.
+**Doprava**
 
-**Transports**
+- "stdio".
+- streamovateľný HTTP
+- JJV
 
-- `stdio`
-- streamable HTTP
-- SSE
+**Vždy dostupné nástroje iba na čítanie**
 
-**Always-on read-only tools**
+- „vyhľadávacie_zručnosti“.
+- „získaj_zručnosť“.
+- `porovnať_zručnosti`
+- „odporúčať_zručnosti“.
+- "preview_install".
 
-- `search_skills`
-- `get_skill`
-- `compare_skills`
-- `recommend_skills`
-- `preview_install`
-
-**Local-mode tools**
+**Nástroje miestneho režimu**
 
 - `detect_clients`
-- `list_installed_skills`
-- `install_skills`
-- `remove_skills`
+- `zoznam_nainštalovaných_zručností`
+- `zručnosti_inštalácie`
+- `odstrániť_zručnosti`
 - `configure_client_mcp`
 
-The MCP surface is deliberately split between:
+Povrch MCP je zámerne rozdelený medzi:
 
-- remote/read-only catalog use
-- local/write-capable sidecar use
+- používanie katalógu na diaľku/len na čítanie
+- miestne/zapisovateľné použitie postranného vozíka### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+>**1 943 LOC**— vrstva MCP s orientáciou na súborový systém na detekciu klientov, správu zručností a zápis konfigurácie MCP.
 
-> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
+Aktuálna praktická podpora:
 
-Current practical support:
+-**7 klientov s možnosťou inštalácie**
+-**16 klientov s možnosťou konfigurácie**
+-**33 cieľov konfigurácie**
+-**19 konfiguračných profilov**
 
-- **7 install-capable clients**
-- **16 config-capable clients**
-- **33 config targets**
-- **19 config profiles**
-
-Install-capable clients:
+Klienti s možnosťou inštalácie:
 
 - Claude Code
-- Cursor
+- Kurzor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
+- Antigravitácia
 - OpenCode
 
-Config-capable clients and targets include:
+Medzi klientov a ciele s možnosťou konfigurácie patria:
 
-- Claude settings, Claude Desktop, and Claude project config
-- Cursor user and workspace config
-- VS Code workspace, user, insiders, and Dev Container config
-- Gemini user and workspace settings
-- Antigravity user config
-- Kiro user, workspace, and legacy paths
-- Codex CLI TOML config
-- OpenCode user and workspace config
-- Cline settings
-- GitHub Copilot CLI user and repo config
-- Kilo user, project, and workspace config
-- Continue workspace YAML
-- Windsurf user config
-- Zed workspace config
-- Goose user config
+- Nastavenia Claude, Claude Desktop a konfigurácia projektu Claude
+- Konfigurácia používateľa kurzora a pracovného priestoru
+- Pracovný priestor VS Code, používateľ, zasvätení a konfigurácia Dev Container
+- Nastavenia používateľa a pracovného priestoru Gemini
+- Antigravitačná konfigurácia používateľa
+- Používateľ Kiro, pracovný priestor a staršie cesty
+- Konfigurácia Codex CLI TOML
+- Konfigurácia používateľa a pracovného priestoru OpenCode
+- Nastavenia Cline
+- Používateľ a konfigurácia úložiska GitHub Copilot CLI
+- Konfigurácia používateľa, projektu a pracovného priestoru v kilo
+- Pokračovať v pracovnom priestore YAML
+- Konfigurácia používateľa Windsurf
+- Konfigurácia pracovného priestoru Zed
+- Konfigurácia používateľa Goose
 
-The sidecar is intentionally honest about boundaries:
+Postranný vozík je zámerne úprimný, pokiaľ ide o hranice:
 
-- it writes only inside an allowlist
-- it previews by default
-- it keeps first-class writers only where official docs expose a stable format
-- it does not pretend every MCP-capable product is also a skill-install target
+- zapisuje iba do zoznamu povolených
+- predvolene sa zobrazuje ukážka
+- udržuje prvotriednych spisovateľov iba tam, kde oficiálne dokumenty odhaľujú stabilný formát
+- nepredstiera, že každý produkt s podporou MCP je tiež cieľom inštalácie zručností### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+>**715 LOC v kombinácii**— API registra len na čítanie plus middleware pre riadenie.
 
-> **715 LOC combined** — read-only registry API plus governance middleware.
+Dôležité koncové body:
 
-Important endpoints:
-
-- `/healthz`
+- `/zdravie`
 - `/openapi.json`
 - `/admin/runtime`
 - `/v1/skills`
 - `/v1/skills/:id`
 - `/v1/search`
-- `/v1/compare`
+- `/v1/porovnať`
 - `/v1/bundles`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance baseline already implemented:
+Základná línia riadenia už bola implementovaná:
 
-- bearer token auth
-- API-key auth
-- admin token auth
-- in-process rate limiting
-- request IDs
-- audit logging
-- CORS allowlists
-- IP allowlists
-- trust proxy handling
-- maintenance mode
+- autentifikácia tokenu nosiča
+- Autentifikácia kľúčom API
+- autorizácia tokenu správcu
+- obmedzenie rýchlosti počas procesu
+- ID žiadostí
+- protokolovanie auditu
+- CORS zoznamy povolených
+- IP povolené zoznamy
+- dôverovať proxy spracovanie
+- udržiavací režim### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+>**1 857 LOC kombinovaných v rámci hlavného servera, runtime a súborov koordinátora**— životný cyklus úlohy JSON-RPC 2.0 pre pracovné postupy medzi agentmi.
 
-> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
+Podporované metódy:
 
-Supported methods:
-
-- `message/send`
-- `message/stream`
-- `tasks/get`
-- `tasks/cancel`
-- `tasks/resubscribe`
+- „správa/odoslanie“.
+- „správa/stream“.
+- „úlohy/dostať“.
+- "úlohy/zrušiť".
+- "úlohy/opätovné prihlásenie na odber".
 - `tasks/pushNotificationConfig/*`
 
-Current operations:
+Aktuálne operácie:
 
-- `discover-skills`
-- `recommend-stack`
-- `prepare-install-plan`
+- „objavovať zručnosti“.
+- "odporúčame-zásobník".
+- "plán prípravy na inštaláciu".
 
-Durability and coordination model:
+Model odolnosti a koordinácie:
 
-- memory, JSON, or SQLite local persistence
-- restart resume
-- optional external process executor
-- opt-in leased queue coordination for shared SQLite workers
-- optional Redis-backed coordination as an advanced hosted path
+- lokálna perzistencia pamäte, JSON alebo SQLite
+- reštartovať pokračovať
+- voliteľný externý spúšťač procesov
+- koordinácia prenajatého frontu pre zdieľaných pracovníkov SQLite
+- voliteľná koordinácia podporovaná Redis ako pokročilá hostovaná cesta
 
-The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
-
----
+Kľúčovou architektonickou voľbou je tu**jednoduchá-prvá lokálna prevádzka**. Redis existuje ako rozšírená možnosť, ale predvolená cesta k produktu zostáva lokálna a nenáročná na závislosť.---
 
 ## ⚙️ Build Pipeline
 
-| Script | Language | Purpose |
+| Scenár | Jazyk | Účel |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
-| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
-| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
-| 🔍 `verify_archives.py` | Python | Archive and signature verification |
+| 📊 `skill_metadata.py` | Python | Validácia, taxonómia, bodovanie a statické bezpečnostné skenovanie |
+| ✅ `validate_skills.py` | Python | Generovanie metadát podľa zručnosti a pre súhrn koreňového adresára |
+| 📑 `generate_index.py` | Python | Index zručností, zoznamy, archívy, podpisy a kontrolné súčty |
+| 🏗️ `build_catalog.js` | Node.js | Konečné `dist/catalog.json` a `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Kanonický audit a prepísanie kategórie |
+| 🔍 `verify_archives.py` | Python | Archív a overenie podpisov |
 
-Two details matter operationally:
+Operatívne sú dôležité dva detaily:
 
-1. `dist/` is part of the runtime contract and intentionally committed
-2. the build is deterministic enough to support CI verification and release signing
-
----
+1. `dist/` je súčasťou runtime kontraktu a je úmyselne zaviazaný
+2. zostava je dostatočne deterministická, aby podporovala overenie CI a podpisovanie vydania---
 
 ## 📦 Published Catalog
 
-The current public catalog spans 32 skills:
+Súčasný verejný katalóg zahŕňa 32 zručností:
 
-- **Discovery and planning**: `find-skills`, `brainstorming`, `architecture`, `debugging`
-- **Design systems and accessibility**: `design-systems-ops`, `accessibility-audit`
-- **Product and full-stack delivery**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
-- **Security**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
-- **OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
-- **DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
-- **AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+-**Objavovanie a plánovanie**: `nájsť zručnosti`, `brainstorming`, `architektúra`, `ladenie`
+-**Návrhové systémy a dostupnosť**: `design-systems-ops`, `accessibility-audit`
+-**Dodanie produktu a celého balíka**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
+–**Bezpečnosť**: „auditor zabezpečenia“, „skener zraniteľnosti“, „reakcia na incident“, „modelovanie hrozieb“
+-**Pracovné postupy správcu OSS**: `documentation`, `changelog`, `create-pr`
+–**DevOps**: „docker-expert“, „kubernetes“, „terraform“, „observability-review“, „release-engineering“
+-**Inžinierstvo AI**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
 
-All seven bundles are fully backed:
+Všetkých sedem balíkov je plne zabezpečených:
 
-- `essentials` → `4/4`
-- `full-stack` → `5/5`
-- `design` → `4/4`
-- `security` → `4/4`
+- `základné` → `4/4`
+- `plný zásobník` → `5/5`
+- `dizajn` → `4/4`
+- "zabezpečenie" → "4/4".
 - `devops` → `5/5`
-- `ai-engineer` → `5/5`
+- `ai-inžinier` → `5/5`
 - `oss-maintainer` → `4/4`
 
-Current score spread from the generated catalog:
+Aktuálny rozptyl skóre z vygenerovaného katalógu:
 
-- quality scores: `94, 95, 96, 97, 100`
-- best-practices scores: `98, 99, 100`
-- security score: all published skills currently `95`
+- skóre kvality: `94, 95, 96, 97, 100`
+- skóre najlepších postupov: 98, 99, 100
+- skóre bezpečnosti: všetky publikované zručnosti sú momentálne `95`
 
-Representative high end:
+Reprezentatívny high-end:
 
-- `omni-figma` → `quality 100`, `best_practices 100`
-- `accessibility-audit` → `quality 99`, `best_practices 100`
-- `auth-flows` → `quality 97`, `best_practices 99`
+- `omni-figma` → `kvalita 100`, `best_practices 100`
+- `dostupnosť-audit` → `kvalita 99`, `best_practices 100`
+- `toky autorizácie` → `kvalita 97`, `best_practices 99`
 - `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `quality 97`, `best_practices 99`
-- `threat-modeling` → `quality 97`, `best_practices 99`
-- `context-engineering` → `quality 97`, `best_practices 99`
+– „inžinierstvo vydávania“ → „kvalita 97“, „najlepšie postupy 99“
+- `modelovanie hrozieb` → `kvalita 97`, `best_practices 99`
+- `kontextové inžinierstvo` → `kvalita 97`, `best_practices 99`
 
-Representative lower end inside the current top band:
+Reprezentatívny dolný koniec v rámci aktuálneho horného pásma:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `architektúra` → `kvalita 94`, `best_practices 98`
+- `changelog` → `kvalita 94`, `best_practices 98`
+- `create-pr` → `kvalita 95`, `best_practices 98`
 
-This is intentional. The scorer now distinguishes “excellent” from “exceptional” instead of flattening the whole catalog at the top.
-
----
+Toto je zámerné. Zapisovateľ teraz rozlišuje „výborné“ od „výnimočné“ namiesto sploštenia celého katalógu navrchu.---
 
 ## 🌟 Strengths
 
-1. **Artifact-first design**
-   Every runtime surface consumes the same generated catalog and manifests.
-2. **Broad protocol coverage**
-   CLI, API, MCP, and A2A coexist without fragmenting the data model.
-3. **Strong local-product ergonomics**
-   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
-4. **Honest security posture**
-   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
-5. **Healthy MCP reach**
-   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
-
----
+1.**Návrh ako prvý artefakt**
+   Každý runtime povrch spotrebúva rovnaký vygenerovaný katalóg a manifesty.
+2.**Široké pokrytie protokolov**
+   CLI, API, MCP a A2A koexistujú bez fragmentácie dátového modelu.
+3.**Silná ergonómia miestnych produktov**
+   Riadená inštalácia, vizuálny shell, `config-mcp` a predvolené nastavenia suchého spustenia robia projekt použiteľným aj pre náročných používateľov.
+4.**Poctivý bezpečnostný postoj**
+   Povolené miestne zápisy, statické skenovanie, podpisovanie, kontrolné súčty a overenie vydania sú explicitné.
+5.**Zdravý dosah MCP**
+   Projekt teraz podporuje širokú škálu súčasných klientov s podporou MCP bez toho, aby predstierali, že nezdokumentované ciele sú stabilné.---
 
 ## 🔮 Opportunities
 
-1. **Deeper bundle coverage**
-   The next step is specialization inside the existing bundles, not just broad coverage.
-2. **Richer scorer semantics**
-   There is still room to evaluate reference-pack depth and workflow quality more semantically.
-3. **More client writers only where justified**
-   Expansion should stay disciplined and tied to stable official docs.
-4. **Validator decomposition**
-   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
-5. **Hosted governance escalation**
-   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.
+1.**Hlbšie pokrytie balíka**
+   Ďalším krokom je špecializácia v rámci existujúcich balíkov, nielen široké pokrytie.
+2.**Bohatšia sémantika strelcov**
+   Stále existuje priestor na sémantické vyhodnotenie hĺbky referenčného balíka a kvality pracovného toku.
+3.**Viac klientských autorov iba v odôvodnených prípadoch**
+   Rozšírenie by malo zostať disciplinované a viazané na stabilné oficiálne dokumenty.
+4.**Rozklad validátora**
+   `skill_metadata.py` je stále veľký modul a časom by mu prospela interná dekompozícia.
+5.**Eskalácia hosteného riadenia**
+   Súčasná základná línia procesu je dostatočná na vlastné hosťovanie, ale podnikové nasadenie by si nakoniec vyžadovalo integráciu externej brány a identity.

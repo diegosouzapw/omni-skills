@@ -5,197 +5,168 @@
 ---
 
 
-> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
-
----
+>**「omni-skills ui」によって公開されるインクベースの端末 UI の動作コントラクト。**---
 
 ## 1. Scope
 
-The visual shell is a guided product surface on top of the existing CLI and installer engine.
+ビジュアル シェルは、既存の CLI およびインストーラー エンジンの上にあるガイド付きの製品サーフェスです。
 
-It does not replace:
+以下のものを置き換えるものではありません。
 
-- expert flag-based CLI usage
+- エキスパートのフラグベースの CLI の使用法
 - `tools/bin/install.js`
-- the guided text install flow
-- API, MCP, or A2A runtime behavior
+- ガイド付きテキストのインストール フロー
+- API、MCP、または A2A ランタイム動作
 
-It defines:
+以下を定義します。
 
-- the behavior of `omni-skills ui`
-- the fallback contract for `omni-skills ui --text`
-- local state and preset persistence
-- guided service launch previews
-- repeatability for recent installs and service runs
-
----
+- `omni-skills ui`の動作
+- `omni-skills ui --text` のフォールバック コントラクト
+- ローカル状態とプリセットの永続性
+- ガイド付きサービス開始プレビュー
+- 最近のインストールとサービス実行の再現性---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` launches the Ink-based visual shell.
+「omni-skills ui」は、Ink ベースのビジュアル シェルを起動します。
 
-The visual shell is the primary non-expert terminal experience for:
+ビジュアル シェルは、次の場合の主要な非エキスパート端末エクスペリエンスです。
 
-- install flows
-- catalog-first discovery and install
-- MCP startup
-- API startup
-- A2A startup
-- doctor and smoke handoff
+- インストールフロー
+- カタログファーストの検出とインストール
+- MCPの起動
+- APIの起動
+- A2Aの起動
+- 医師と煙の引き継ぎ### 2.2 Text Fallback
 
-### 2.2 Text Fallback
+「omni-skills ui --text」は、readline ベースのフォールバック インターフェイスを起動します。
 
-`omni-skills ui --text` launches the readline-based fallback interface.
+これは、次の場合に引き続き役立ちます。
 
-This remains useful when:
+- 端末はよりリッチなシェルを正しくレンダリングできません
+- raw モードの動作は制限されています
+- 最小限のテキスト フォールバックが推奨されます### 2.3 Handoff Rule
 
-- a terminal cannot render the richer shell correctly
-- raw-mode behavior is constrained
-- a minimal text fallback is preferred
+ビジュアル シェルは、サービス ランタイムやインストールの書き込みを直接再実装しません。
 
-### 2.3 Handoff Rule
-
-The visual shell does not reimplement service runtimes or installation writes directly.
-
-After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
-
----
+プレビューと確認の後、正常に終了し、同等の引数と環境変数を使用して既存の CLI エントリポイントに実行を渡します。---
 
 ## 3. Home Screen Contract
 
-The home screen must expose:
+ホーム画面では以下を公開する必要があります。
 
-- install skills
-- find and install
-- repeat recent installs when present
-- run saved install presets when present
-- start a service
-- repeat recent services when present
-- run saved service presets when present
-- doctor
-- smoke
-- exit
+- スキルをインストールする
+- 見つけてインストールする
+- 存在する場合は最近のインストールを繰り返します
+- 保存されたインストール プリセットが存在する場合は実行します
+- サービスを開始する
+- 最近のサービスが存在する場合は繰り返します
+- 保存されたサービスプリセットが存在する場合に実行します
+- 医師
+- 煙
+- 終了
 
-The home screen should also surface:
+ホーム画面も表示されるはずです。
 
-- current published bundle availability
-- local state counts for recents, presets, and favorites
-
----
+- 現在公開されているバンドルの利用可能性
+- 最近、プリセット、お気に入りのローカル状態のカウント---
 
 ## 4. Install Flow Contract
 
-The visual shell install flow must support:
+ビジュアル シェルのインストール フローは以下をサポートする必要があります。
 
-- known client target selection
-- custom path selection
-- full library install
-- one-skill install
-- one-bundle install
-- search-then-install
-- preview before write
-- preset saving
-- favorite skill or bundle toggling
+- 既知のクライアントターゲットの選択
+- カスタムパスの選択
+- フルライブラリのインストール
+- ワンスキルインストール
+- 1 バンドルのインストール
+- 検索してインストール
+- 書き込み前のプレビュー
+- プリセットの保存
+- お気に入りのスキルまたはバンドルの切り替え
 
-Preview must show:
+プレビューには以下が表示される必要があります:
 
-- resolved target label
-- resolved path
-- install scope
-- selected skill or bundle when applicable
-- equivalent CLI command
-
----
+- 解決されたターゲットラベル
+- 解決されたパス
+- スコープのインストール
+- 該当する場合、選択したスキルまたはバンドル
+- 同等の CLI コマンド---
 
 ## 5. Service Flow Contract
 
-The visual shell must guide startup for:
+ビジュアル シェルは、以下の起動をガイドする必要があります。### 5.1 MCP
 
-### 5.1 MCP
+- トランスポート: `stdio`、`stream`、`sse`
+- モード: `読み取り専用` または `ローカル`
+- ネットワークトランスポートのホスト/ポート構成
+- 明示的なコマンドのプレビュー### 5.2 API
 
-- transport: `stdio`, `stream`, `sse`
-- mode: `read-only` or `local`
-- host/port configuration for network transports
-- explicit command preview
+- ホスト
+- ポート
+- 基本または強化されたプロファイル
+- 強化されたベアラーまたは API キー認証
+- 強化されたレート制限パラメータ
+- 監査ログの有効化
+- 明示的なコマンドのプレビュー### 5.3 A2A
 
-### 5.2 API
-
-- host
-- port
-- basic or hardened profile
-- hardened bearer or API key auth
-- hardened rate-limit parameters
-- audit log enablement
-- explicit command preview
-
-### 5.3 A2A
-
-- host
-- port
-- store type: `memory`, `json`, `sqlite`
-- store path for durable modes
-- executor: `inline`, `process`
-- queue-enabled SQLite mode
-- poll interval and lease duration for shared-lease mode
-- explicit command preview
-
----
+- ホスト
+- ポート
+- ストアタイプ: `memory`、`json`、`sqlite`
+- 耐久性モードのストアパス
+- エグゼキュータ: `インライン`、`プロセス`
+- キュー対応 SQLite モード
+- 共有リース モードのポーリング間隔とリース期間
+- 明示的なコマンドのプレビュー---
 
 ## 6. Local State Contract
 
-The visual shell persists local-only state in:
-
-```text
+ビジュアル シェルは、次の場所でローカルのみの状態を保持します。```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-State currently includes:
+現在の状態には次のものが含まれます。
 
-- recent installs
-- recent service launches
-- named install presets
-- named service presets
-- favorite skills
-- favorite bundles
+- 最近のインストール
+- 最近のサービス開始
+- 名前付きインストール プリセット
+- 名前付きサービスプリセット
+- 好きなスキル
+- お気に入りのバンドル
 
-The shell must support:
+シェルは以下をサポートする必要があります。
 
-- replaying recent installs
-- replaying recent service launches
-- reusing named install presets
-- reusing named service presets
-
----
+- 最近のインストールを再生する
+- 最近のサービス開始を再生する
+- 名前付きインストール プリセットの再利用
+- 名前付きサービスプリセットの再利用---
 
 ## 7. Compatibility Contract
 
-The visual shell is additive.
+ビジュアルシェルは追加的なものです。
 
-These flows must remain valid and stable:
+これらのフローは有効かつ安定した状態を維持する必要があります。
 
-- `npx omni-skills --cursor --skill omni-figma`
-- `npx omni-skills --bundle devops`
-- `npx omni-skills install --guided`
-- `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp stream --local`
-- `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`
+- `npxomni-skills --cursor --skillomni-figma`
+- `npxomni-skills --bundle devops`
+- `npxomni-skills install --guided`
+- `npxomni-skills find figma --toolcursor --install --yes`
+- `npxomni-skills mcp stream --local`
+- 「npx オムニスキル API --port 3333」
+- `npx オムニスキル a2a --ポート 3335`
 
-The visual shell must never force itself into explicit expert command paths.
-
----
+ビジュアル シェルは、明示的なエキスパート コマンド パスに強制的に組み込まれてはなりません。---
 
 ## 8. Safety Contract
 
-The visual shell should make state and writes explicit.
+ビジュアルシェルは状態と書き込みを明示的にする必要があります。
 
-It must:
+次のことを行う必要があります。
 
-- preview installs before write handoff
-- preview service launch commands before execution
-- keep secret material out of clear-text command previews where practical
-- persist state locally only
-- preserve non-interactive CLI behavior outside the visual shell
-
+- 書き込みハンドオフの前にインストールをプレビューします
+- 実行前にサービス起動コマンドをプレビューする
+- 実用的であれば、機密情報をクリアテキストのコマンドプレビューに含めないようにする
+- 状態をローカルにのみ保持します
+- ビジュアル シェルの外部での非対話型 CLI 動作を保持します。

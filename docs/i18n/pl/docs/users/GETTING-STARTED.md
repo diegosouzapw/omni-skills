@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**Zainstaluj umiejętności, sprawdź konfigurację i wywołaj swoją pierwszą umiejętność AI w mniej niż 2 minuty.**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| Metryczne | Wartość |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| Opublikowane umiejętności |**32**w 15 aktywnych kategoriach, w tym architektura, projektowanie, bezpieczeństwo, DevOps, inżynieria AI i nie tylko |
+| Zdefiniowane pakiety |**7**(wszystkie w pełni poparte opublikowanymi umiejętnościami) |
+| Klienci z możliwością instalacji |**7**(Kod Claude, Kursor, Gemini CLI, Codex CLI, Kiro, Antygrawitacja, OpenCode) |
+| Klienci z możliwością konfiguracji MCP |**16**w 33 pierwszorzędnych celach konfiguracyjnych MCP |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+W terminalu interaktywnym otwiera to teraz instalatora z przewodnikiem, zamiast po cichu zakładać klienta.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+Spowoduje to otwarcie markowego centrum terminali do instalacji, wykrywania, MCP, API i uruchamiania A2A.### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+Poza TTY instalator bez arg nadal domyślnie używa `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ Pakiety startowe są teraz w pełni wspierane, w tym `devops` i `ai-engineer`.### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+Sprawdź, czy umiejętności wylądowały we właściwym miejscu:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+Lub skorzystaj z wbudowanej diagnostyki:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+Udostępnia agentom narzędzia systemu plików do wykrywania klientów, instalowania/usuwania umiejętności i zapisywania konfiguracji MCP:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+Można także skonfigurować MCP dla klientów, którzy nie są obiektami docelowymi instalacji wymagającej umiejętności:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+Udostępnia katalog umiejętności jako interfejs API HTTP tylko do odczytu:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+Wykrywanie, rekomendowanie, planowanie instalacji, odpytywanie i przesyłanie strumieniowe między agentami:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+Umiejętność to ustrukturyzowany podręcznik przecen („SKILL.md”), który zapewnia agentowi AI:
 
-| Component | Purpose |
-|:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| Składnik | Cel |
+|:---------------|:------------|
+| 📋**Przedstawiciel**| Metadane do odczytu maszynowego (nazwa, kategoria, tagi, narzędzia, ryzyko) |
+| 📝**Ciało**| Instrukcje dotyczące konkretnego zadania, stopnie, poręcze i przykłady |
+| 📚**Referencje**| Dokumenty pomocnicze, z którymi agent może się zapoznać podczas realizacji |
+| 🎨**Aktywa**| Ikony, obrazy i inne pakiety zasobów |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| Doktor | Czego się nauczysz |
+|:----|:--------------------------------|
+| 🧭 [Podręcznik użytkownika CLI](CLI-USER-GUIDE.md) | Pełne informacje o poleceniach dotyczących instalacji, środowiska wykonawczego, konfiguracji i diagnostyki |
+| 📗 [Przewodnik użytkowania](USAGE.md) | Wszystkie polecenia CLI, wzorce podpowiedzi i tryby wykonawcze |
+| 📦 [Pakiety](BUNDLES.md) | Wyselekcjonowane kolekcje umiejętności i ich dostępność |
+| 📚 [Katalog](../CATALOG.md) | Automatycznie wygenerowany katalog opublikowanych umiejętności |
+| 📖 [Centrum dokumentacji](../README.md) | Pełna dokumentacja mapa |
+| 🔧 [Systemowy element Runbook](../operacje/RUNBOOK.md) | Odniesienie operacyjne |

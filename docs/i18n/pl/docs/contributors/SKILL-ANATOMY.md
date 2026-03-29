@@ -5,126 +5,110 @@
 ---
 
 
-> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
-
----
+>**Oczekiwania dotyczące struktury i jakości umiejętności Omni Skills `SKILL.md` — format autorski, na którym opiera się cały katalog.**---
 
 ## 📐 The Two Parts
 
-Every `SKILL.md` is composed of two distinct sections:
+Każdy plik `SKILL.md` składa się z dwóch odrębnych sekcji:### 1️⃣ Frontmatter (YAML Metadata)
 
-### 1️⃣ Frontmatter (YAML Metadata)
+Metadane do odczytu maszynowego pomiędzy ogranicznikami „---”. Uprawnia:
 
-Machine-readable metadata between `---` delimiters. It powers:
+- 📚 Indeks umiejętności i generowanie katalogu
+- 🔎 Wyszukiwanie i filtrowanie CLI
+- ✅ Walidacja i punktacja jakości
+- 📊 Wygenerowano artefakty klasyfikacji `metadata.json`
+- 📋 Poszczególne umiejętności manifestują się w `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
 
-- 📚 The skills index and catalog generation
-- 🔎 CLI search and filtering
-- ✅ Validation and quality scoring
-- 📊 Generated `metadata.json` classification artifacts
-- 📋 Per-skill manifests in `dist/manifests/`
-
-### 2️⃣ Body (Markdown Instructions)
-
-Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
-
----
+Instrukcje czytelne dla człowieka (i agenta). Napisz to tak, jakbyś**informował starszego programistę**o tym, jak wykonać zadanie — na tyle szczegółowo, aby agent AI mógł go śledzić bez zgadywania.---
 
 ## 📋 Frontmatter Reference
 
-| Field | Required | Type | Description |
-|:------|:---------|:-----|:------------|
-| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
-| `description` | ✅ | string | One-line description (10-200 chars) |
-| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
-| `category` | ⚡ | string | One canonical category from the repo taxonomy |
-| `tags` | ⚡ | string[] | Searchable tags for discovery |
-| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
-| `tools` | ⚡ | string[] | Tested AI coding assistants |
-| `source` | ⚡ | string | `omni-team` · `community` · `official` |
-| `author` | ⚡ | string | Attribution |
-| `date_added` | ⚡ | string | ISO date |
-| `date_updated` | ⚡ | string | ISO date |
+| Pole | Wymagane | Wpisz | Opis |
+|:------|:------------|:---------|:------------|
+| `imię` | ✅ | ciąg | Musi odpowiadać nazwie katalogu, rozdzielonej małymi literami |
+| `opis` | ✅ | ciąg | Opis jednowierszowy (10-200 znaków) |
+| `wersja` | ⚡ | ciąg | Wersja semantyczna samej umiejętności (np. `"0.1.1") |
+| `kategoria` | ⚡ | ciąg | Jedna kategoria kanoniczna z taksonomii repo |
+| `tagi` | ⚡ | ciąg[] | Przeszukiwalne tagi do odkrycia |
+| „złożoność” | ⚡ | ciąg | `początkujący` · `średniozaawansowany` · `zaawansowany` · `ekspert` |
+| „ryzyko” | ⚡ | ciąg | „bezpieczny” · „ostrożność” · „obraźliwy” · „krytyczny” |
+| `narzędzia` | ⚡ | ciąg[] | Przetestowani asystenci kodowania AI |
+| `źródło` | ⚡ | ciąg | `omni-team` · `społeczność` · `oficjalny` |
+| `autor` | ⚡ | ciąg | Atrybucja |
+| `data_dodania` | ⚡ | ciąg | Data ISO |
+| `data_aktualizacji` | ⚡ | ciąg | Data ISO |
 
-> ✅ = Always required · ⚡ = Required in strict mode
+> ✅ = Zawsze wymagane · ⚡ = Wymagane w trybie ścisłym
 
-The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
-
----
+Wersja umiejętności jest niezależna od wersji pakietu npm. Pakiet ma obecnie wersję `0.1.3`, ale istniejące umiejętności mogą pozostać w swojej własnej wersji semantycznej.---
 
 ## 🏷️ Canonical Categories
 
-The repo taxonomy currently defines **18 canonical categories**:
+Taksonomia repo definiuje obecnie**18 kategorii kanonicznych**:
 
-| Category | Domain |
-|:---------|:-------|
-| 💻 `development` | General software development |
-| 🎨 `frontend` | Frontend frameworks and UI |
-| 🔧 `backend` | Backend services and APIs |
-| 🌐 `fullstack-web` | End-to-end web development |
-| 🛠️ `tools` | Developer tooling and utilities |
-| ⚙️ `cli-automation` | CLI tools and automation scripts |
-| 📊 `business` | Business processes and strategy |
-| 📐 `product` | Product management and design |
-| 🎯 `design` | Visual and UX design |
-| 🤖 `data-ai` | Data engineering and AI applications |
-| 🧠 `ai-agents` | AI agent development and patterns |
-| 📈 `machine-learning` | ML models and training |
-| 🔌 `devops` | Infrastructure and deployment |
-| 🛡️ `testing-security` | Testing and security practices |
-| 📖 `documentation` | Documentation generation and management |
-| 🎬 `content-media` | Content creation and media |
-| 💬 `communication` | Communication tools and workflows |
-| ❓ `uncategorized` | Default when no match is found |
+| Kategoria | Domena |
+|:-------------|:-------|
+| 💻 `rozwój` | Ogólne tworzenie oprogramowania |
+| 🎨 `frontend` | Frameworki frontendowe i interfejs użytkownika |
+| 🔧 `backend` | Usługi backendu i interfejsy API |
+| 🌐 `fullstack-web` | Kompleksowe tworzenie stron internetowych |
+| 🛠️ `narzędzia` | Narzędzia programistyczne i narzędzia |
+| ⚙️ `cli-automatyzacja` | Narzędzia CLI i skrypty automatyzacji |
+| 📊 `biznes` | Procesy i strategia biznesowa |
+| 📐 `produkt` | Zarządzanie produktem i projektowanie |
+| 🎯 „projekt” | Projekt wizualny i UX |
+| 🤖 `dane-ai` | Inżynieria danych i aplikacje AI |
+| 🧠 `ai-agenci` | Rozwój i wzorce agentów AI |
+| 📈 „uczenie maszynowe” | Modele i szkolenia ML |
+| 🔌 `devops` | Infrastruktura i wdrożenie |
+| 🛡️ `testowanie bezpieczeństwa` | Praktyki testowania i bezpieczeństwa |
+| 📖 `dokumentacja` | Tworzenie i zarządzanie dokumentacją |
+| 🎬 `treść-media` | Tworzenie treści i media |
+| 💬 „komunikacja” | Narzędzia komunikacji i przepływy pracy |
+| ❓ `bez kategorii` | Domyślnie, gdy nie znaleziono dopasowania |
 
-> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
-
----
+> Starsze etykiety, takie jak „przepływ pracy”, „architektura”, „infrastruktura”, „bezpieczeństwo” i „testowanie” są automatycznie normalizowane poprzez mapowanie aliasów.---
 
 ## 📝 Body Structure
 
-A well-written skill body follows this hierarchy:
+Dobrze napisany zbiór umiejętności jest zgodny z następującą hierarchią:
 
-### 📌 Overview (Required)
-2-3 sentences on **what** the skill does and **why** it exists.
+### 📌 Przegląd (wymagany)
+2-3 zdania na temat**co**robi dana umiejętność i**dlaczego**istnieje.
 
-### 🎯 When to Use (Required)
-Bullet list of **specific scenarios** where this skill applies.
+### 🎯 Kiedy używać (wymagane)
+Wypunktowana lista**konkretnych scenariuszy**, w których ma zastosowanie ta umiejętność.
 
-### 📋 Core Instructions (Required)
-The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
+### 📋 Podstawowe instrukcje (wymagane)
+**Proces krok po kroku**, którego powinien przestrzegać agent. Bądź wyraźny. Bądź konkretny. Agenci działają najlepiej, jeśli mają jasne i jednoznaczne instrukcje.
 
-### 💡 Examples (Recommended)
-Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
+### 💡 Przykłady (zalecane)
+Konkretne podpowiedzi, bloki kodu lub oczekiwane wyniki.**Im bardziej szczegółowe, tym lepiej.**
 
-### ✅ Best Practices (Recommended)
-Use the ✅ Do / ❌ Don't format for quick scanning.
+### ✅ Najlepsze praktyki (zalecane)
+Użyj opcji ✅ Wykonaj / ❌ Nie formatuj, aby przyspieszyć skanowanie.
 
-### 🔧 Troubleshooting (Optional)
-Common issues and their solutions.
+### 🔧 Rozwiązywanie problemów (opcjonalnie)
+Typowe problemy i ich rozwiązania.
 
-### 🔗 Related Skills (Optional)
-Cross-references to complementary skills.
-
----
+### 🔗 Powiązane umiejętności (opcjonalnie)
+Odsyłacze do umiejętności uzupełniających.---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Focused on **one specific** workflow or domain
-- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
-- 💡 Includes **concrete examples** with expected behavior
-- 🛡️ Has proper **error handling** guidance
-- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
-- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
+- 🎯 Koncentruje się na**jednym konkretnym**przepływie pracy lub domenie
+- 📌 Instrukcje są**wystarczająco jasne, aby sztuczna inteligencja**mogła je zastosować bez ludzkiej interpretacji
+- 💡 Zawiera**konkretne przykłady**z oczekiwanym zachowaniem
+- 🛡️ Zawiera odpowiednie wskazówki dotyczące**obsługi błędów**
+- 📊 Tworzy zdrowe metadane: kategoria kanoniczna, dojrzałość L2+, jakość 70+
+- 🧰 Dostarcza pakiet wsparcia wielokrotnego użytku, nie tylko prozę, najlepiej w postaci `referencji/`, `skryptów/`, `przykładów/` i `agentów/` tam, gdzie to konieczne
 
-For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Aby zapoznać się z silniejszymi wzorcami punktacji, które przesuwają umiejętności do najwyższych przedziałów, zobacz [Poradnik najlepszych wyników](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
 
-### ❌ Bad Skill
-
-- 🌫️ Generic advice that could apply to anything
-- 🤷 Vague instructions like "write good code"
-- 🚫 No examples or code blocks
-- ⚠️ Missing frontmatter fields
-- 📉 Low quality score (below 50)
+- 🌫️ Ogólne porady, które mogą dotyczyć wszystkiego
+- 🤷 Niejasne instrukcje, takie jak „napisz dobry kod”
+- 🚫 Brak przykładów i bloków kodu
+- ⚠️ Brakujące pola frontmaterii
+- 📉 Niski wynik jakości (poniżej 50)

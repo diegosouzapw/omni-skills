@@ -5,50 +5,44 @@
 ---
 
 
-> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
-
----
+>**Quét bảo mật, tạo kho lưu trữ, ký tùy chọn và đóng gói phân phối cho mọi kỹ năng đã xuất bản.**---
 
 ## 📊 Status
 
-| Feature | State |
+| Tính năng | Tiểu bang |
 |:--------|:------|
-| ✅ Static security scanner | Always enabled |
-| ✅ Per-skill metadata classification | Implemented |
-| ✅ Per-skill archives (zip/tar.gz) | Implemented |
-| ✅ SHA-256 checksum manifests | Implemented |
-| ✅ CI scanner gate on release tags | Implemented |
-| ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
-| ✅ Detached signing | Implemented |
-| ✅ CI-enforced signing | Implemented on release tags |
-
----
+| ✅ Máy quét an ninh tĩnh | Luôn bật |
+| ✅ Phân loại siêu dữ liệu theo kỹ năng | Đã triển khai |
+| ✅ Lưu trữ theo kỹ năng (zip/tar.gz) | Đã triển khai |
+| ✅ Bảng kê khai tổng kiểm tra SHA-256 | Đã triển khai |
+| ✅ Cổng quét CI trên thẻ phát hành | Đã triển khai |
+| ✅ quy trình xuất bản npm từ tarball đã được xác minh | Đã triển khai |
+| ⚙️ Quét NgaoAV | Chất làm giàu tùy chọn |
+| ⚙️ Tra cứu hàm băm VirusTotal | Chất làm giàu tùy chọn |
+| ✅ Ký tách rời | Đã triển khai |
+| ✅ Ký kết được CI thực thi | Được triển khai trên thẻ phát hành |---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scans every skill during validation:
+Quét mọi kỹ năng trong quá trình xác nhận:
 
-| Target | What Gets Scanned |
+| Mục tiêu | Những gì được quét |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Main skill content |
-| 📄 Markdown/text files | Packaged references and docs |
-| ⚙️ Scripts | Packaged automation scripts |
+| 📝 `KỸ NĂNG.md` | Nội dung kỹ năng chính |
+| 📄 Đánh dấu/tệp văn bản | Tài liệu tham khảo và tài liệu đóng gói |
+| ⚙️ Kịch bản | Tập lệnh tự động hóa được đóng gói |
 
-**Rule families:**
+**Gia đình cai trị:**
 
-| Rule | Examples |
-|:-----|:---------|
-| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
-| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
-| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
-| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
-| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
-
----
+| Quy tắc | Ví dụ |
+|:------|:----------|
+| 🎭**Tiêm nhanh**| Mẫu lọc, ghi đè hướng dẫn |
+| 💣**Lệnh hủy diệt**| `rm -rf`, `format`, `del /s` |
+| 🔑**Leo thang đặc quyền**| `sudo`, `chmod 777`, mẫu setuid |
+| 📂**Những con đường đáng ngờ**| `/etc/shadow`, `~/.ssh`, tệp thông tin xác thực |
+| ⚠️**Nguyên thủy đầy rủi ro**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -56,11 +50,9 @@ Scans every skill during validation:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requires `clamscan` in `PATH`
-- Scans packaged files for known malware
-- Results recorded in skill metadata
-
----
+- Yêu cầu `clamscan` trong `PATH`
+- Quét các tập tin được đóng gói để tìm phần mềm độc hại đã biết
+- Kết quả được ghi trong siêu dữ liệu kỹ năng---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -68,33 +60,25 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
-- **Hash lookup only** — no file upload during normal validation
-- Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
-
-### 4️⃣ Scanner Coverage Verification
+-**Chỉ tra cứu hàm băm**— không tải tệp lên trong quá trình xác thực thông thường
+- Các tệp không xác định chỉ tồn tại cục bộ
+- Giữ bản dựng**xác định**và độc lập với CI### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strict release gate:
-
-```bash
+Cổng phát hành nghiêm ngặt:```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
-
----
+Bước này đọc `skills/*/metadata.json` được tạo và không thành công nếu máy quét được yêu cầu không thực thi hoặc báo cáo phát hiện.---
 
 ## 📊 Security Output Shape
 
-Security data is emitted in every skill's metadata:
-
-```json
+Dữ liệu bảo mật được phát ra trong siêu dữ liệu của mọi kỹ năng:```json
 {
   "security": {
     "score": 100,
@@ -116,21 +100,17 @@ Security data is emitted in every skill's metadata:
 }
 ```
 
-> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-
----
+> Khối này được truyền vào các bảng kê khai và chế độ xem danh mục, cho phép CLI, API và MCP**lọc và xếp hạng theo điểm bảo mật**.---
 
 ## 📦 Archive Outputs
 
-Each published skill generates:
+Mỗi kỹ năng được xuất bản sẽ tạo ra:
 
-| File | Format |
-|:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP archive |
-| `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
-
-### ✅ Verify Archives
+| Tập tin | Định dạng |
+|:------|:-------|
+| `dist/archives/<skill>.zip` | kho lưu trữ ZIP |
+| `dist/archives/<skill>.tar.gz` | Lưu trữ Tarball |
+| `dist/archives/<skill>.checksums.txt` | Bảng kê khai tổng kiểm tra SHA-256 |### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -138,17 +118,15 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions release tags (`v*`) now:
+Thẻ phát hành GitHub Actions (`v*`) hiện nay:
 
-1. verify the git tag matches `package.json`
-2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
-
----
+1. xác minh thẻ git khớp với `pack.json`
+2. cài đặt và làm mới ClamAV
+3. giải mã khóa ký phát hành từ bí mật GitHub
+4. chạy `npm run phát hành: xác minh`
+5. gói tarball bằng `npm pack`
+6. xuất bản tarball chính xác đó lên npm với xuất xứ
+7. tạo Bản phát hành GitHub với ghi chú tùy chỉnh và nội dung xác minh đính kèm---
 
 ## ✍️ Optional Signing
 
@@ -164,21 +142,19 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Nếu không cung cấp khóa công khai, bản dựng sẽ lấy một khóa có `openssl` và đặt nó vào `dist/signing/`.
 
-When enabled, `.sig` files are emitted beside the archives and checksum manifest.
+Khi được bật, các tệp `.sig` sẽ được phát ra bên cạnh kho lưu trữ và bảng kê khai tổng kiểm tra.
 
-In CI, release tags now require signing through:
+Trong CI, thẻ phát hành hiện yêu cầu đăng nhập thông qua:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
-
----
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` hoặc `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- tùy chọn `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` hoặc `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
 
 ## ⚠️ Current Limitations
 
-| Limitation | Status |
-|:-----------|:-------|
-| VirusTotal upload submission | Intentionally excluded from default validation |
-| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
-| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |
+| Hạn chế | Trạng thái |
+|:----------|:-------|
+| Gửi tải lên VirusTotal | Cố tình loại trừ khỏi quá trình xác thực mặc định |
+| Ký kết thực thi | Thực thi trên thẻ phát hành; các bản dựng cục bộ vẫn có thể chạy không dấu |
+| Quản trị được lưu trữ | Đã có sẵn xác thực tích hợp, thời gian chạy của quản trị viên, danh sách cho phép CORS/IP, chế độ bảo trì và ghi nhật ký kiểm tra; cổng bên ngoài vẫn là tùy chọn |

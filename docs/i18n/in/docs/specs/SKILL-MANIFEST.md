@@ -5,78 +5,66 @@
 ---
 
 
-> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
-
----
+>**बिल्ड पाइपलाइन के दौरान प्रत्येक `SKILL.md` से उत्पन्न मशीन-पठनीय JSON मेनिफेस्ट - सभी रनटाइम सतहों द्वारा उपभोग किया जाने वाला एकल डेटा अनुबंध।**---
 
 ## 📊 Status
 
-| Feature | State |
+| फ़ीचर | राज्य |
 |:--------|:------|
-| ✅ Auto-generated from SKILL.md | Implemented |
-| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
-| ✅ Archives with checksums | Implemented |
-| ✅ Security classification | Implemented |
+| ✅ SKILL.md से स्वतः उत्पन्न | क्रियान्वित |
+| ✅ सीएलआई, एपीआई, एमसीपी, ए2ए द्वारा उपभोग | क्रियान्वित |
+| ✅ चेकसम के साथ पुरालेख | क्रियान्वित |
+| ✅ सुरक्षा वर्गीकरण | क्रियान्वित |
 
-> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
-
----
+>**महत्वपूर्ण**: मेनिफेस्ट एक**बिल्ड आर्टिफैक्ट**है। योगदानकर्ता लेखक `SKILL.md` - पाइपलाइन स्वचालित रूप से JSON मेनिफेस्ट प्राप्त करती है।---
 
 ## 🎯 Purpose
 
-The manifest exists so that **all runtime surfaces** consume the same normalized shape:
+मेनिफेस्ट मौजूद है ताकि**सभी रनटाइम सतहें**समान सामान्यीकृत आकार का उपभोग करें:
 
-| Surface | How It Uses Manifests |
-|:--------|:---------------------|
-| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
-| 🌐 **API** | Endpoint responses, filtering, download links |
-| 🔌 **MCP** | Tool responses, resource contents |
-| 🤖 **A2A** | Discovery and recommendation payloads |
-
----
+| सतह | इसका उपयोग कैसे प्रकट होता है |
+|:-------|:----------------------|
+| 🖥️**सीएलआई**| खोजें, योजना स्थापित करें, डॉक्टर निदान |
+| 🌐**एपीआई**| समापन बिंदु प्रतिक्रियाएँ, फ़िल्टरिंग, डाउनलोड लिंक |
+| 🔌**एमसीपी**| उपकरण प्रतिक्रियाएँ, संसाधन सामग्री |
+| 🤖**A2A**| खोज और अनुशंसा पेलोड |---
 
 ## 📁 Output Locations
 
-| Artifact | Path |
-|:---------|:-----|
-| 📊 Root metadata | `metadata.json` |
-| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
-| 📋 Skills index | `skills_index.json` |
-| 📚 Published catalog | `dist/catalog.json` |
-| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
-| 📦 Zip archive | `dist/archives/<skill>.zip` |
-| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
-
----
+| कलाकृति | पथ |
+|:------|:-----|
+| 📊 रूट मेटाडेटा | `मेटाडेटा.जेसन` |
+| 📊 प्रति-कौशल मेटाडेटा | `skills/<skill>/metadata.json` |
+| 📋कौशल सूचकांक | `skills_index.json` |
+| 📚 प्रकाशित सूची | `dist/catalog.json` |
+| 📌 प्रति-कौशल प्रकट | `dist/manifests/<skill>.json` |
+| 📦 ज़िप संग्रह | `dist/archives/<skill>.zip` |
+| 📦 टारबॉल पुरालेख | `dist/archives/<skill>.tar.gz` |
+| 🔒 चेकसम मेनिफेस्ट | `dist/archives/<skill>.checksums.txt` |---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Field | Description |
-|:------|:------------|
-| `schema_version` | Version of the manifest schema |
-| `id` | Stable skill identifier from `name` field |
-| `slug` | Directory slug under `skills/` |
-| `display_name` | Human-readable title from first heading |
+| फ़ील्ड | विवरण |
+|:------|:------|
+| `schema_version` | मेनिफेस्ट स्कीमा का संस्करण |
+| `आईडी` | 'नाम' फ़ील्ड से स्थिर कौशल पहचानकर्ता |
+| 'स्लग' | `कौशल/` के अंतर्गत निर्देशिका स्लग |
+| `प्रदर्शन_नाम` | प्रथम शीर्षक से मानव-पठनीय शीर्षक |### 📝 Metadata
 
-### 📝 Metadata
-
-| Field | Description |
-|:------|:------------|
-| `description` | Short summary from frontmatter |
-| `version` | Skill version, independent from the npm package version |
-| `category` | Canonical category (normalized) |
-| `raw_category` | Original category from frontmatter |
-| `taxonomy` | Full taxonomy metadata with inferred fallback |
-| `tags` | Searchable tags |
-| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
-| `risk` | `safe` · `caution` · `offensive` · `critical` |
-| `source` | `omni-team` · `community` · `official` |
-| `author` | Attribution string |
-
-### 📅 Dates
+| फ़ील्ड | विवरण |
+|:------|:------|
+| 'विवरण' | फ्रंटमैटर से संक्षिप्त सारांश |
+| 'संस्करण' | कौशल संस्करण, एनपीएम पैकेज संस्करण से स्वतंत्र |
+| `श्रेणी` | विहित श्रेणी (सामान्यीकृत) |
+| `कच्ची_श्रेणी` | फ्रंटमैटर से मूल श्रेणी |
+| 'वर्गीकरण' | अनुमानित फ़ॉलबैक के साथ पूर्ण वर्गीकरण मेटाडेटा |
+| `टैग` | खोजने योग्य टैग |
+| 'जटिलता' | `शुरुआती` · `मध्यवर्ती` · `उन्नत` · `विशेषज्ञ` |
+| 'जोखिम' | `सुरक्षित` · `सावधानी` · `आक्रामक` · `गंभीर` |
+| 'स्रोत' | `ओमनी-टीम` · `समुदाय` · `आधिकारिक` |
+| `लेखक` | एट्रिब्यूशन स्ट्रिंग |### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -84,32 +72,26 @@ The manifest exists so that **all runtime surfaces** consume the same normalized
 
 ### 📂 Paths
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint` | Canonical `SKILL.md` path |
-| `paths.root` | Skill directory inside repo |
-| `paths.manifest` | Generated manifest path in `dist/` |
+| फ़ील्ड | विवरण |
+|:------|:------|
+| `प्रवेश बिंदु` | विहित `SKILL.md` पथ |
+| `पथ.रूट` | रेपो के अंदर कौशल निर्देशिका |
+| `पथ.प्रकट` | `dist/` में जनरेट किया गया मेनिफेस्ट पथ |### 🖥️ Compatibility
 
-### 🖥️ Compatibility
+| फ़ील्ड | विवरण |
+|:------|:------|
+| `उपकरण` | फ्रंटमैटर से उपकरण पहचानकर्ता |
+| `इंस्टॉल_लक्ष्य` | प्रति-टूल इंस्टॉल मेटाडेटा |
 
-| Field | Description |
-|:------|:------------|
-| `tools` | Tool identifiers from frontmatter |
-| `install_targets` | Per-tool install metadata |
+प्रत्येक इंस्टॉल लक्ष्य में शामिल हैं: `टूल`, `स्कोप`, `डिफॉल्ट_पाथ`, `इंस्टॉलर_फ्लैग`, `करंट_इंस्टॉलर_बिहेवियर`, `इनवोकेशन`### 📦 Resources
 
-Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
-
-### 📦 Resources
-
-| Field | Description |
-|:------|:------------|
-| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
-| `artifacts_count` | Total file count in the skill package |
-| `references_count` | Reference doc count |
-| `agents_count` | Agent config count |
-| `assets_count` | Asset file count |
-
-### 🔗 Dependencies (Reserved)
+| फ़ील्ड | विवरण |
+|:------|:------|
+| `उप_संसाधन` | कौशल उपदिर ('संदर्भ', 'एजेंट', 'संपत्ति') |
+| `कलाकृतियाँ_गिनती` | कौशल पैकेज में कुल फ़ाइल संख्या |
+| `संदर्भ_गिनती` | संदर्भ दस्तावेज़ गिनती |
+| `एजेंट_गिनती` | एजेंट कॉन्फिग गिनती |
+| `संपत्ति_गिनती` | संपत्ति फ़ाइल गिनती |### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -117,31 +99,23 @@ Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`,
 
 ### 📦 Install
 
-| Field | Description |
-|:------|:------------|
-| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
-| `current_installer` | Human-readable install behavior |
-| `recipes` | Per-client install recipes |
+| फ़ील्ड | विवरण |
+|:------|:------|
+| 'रणनीति' | रणनीति स्थापित करें (जैसे, `कॉपी-कौशल-निर्देशिका`) |
+| `current_installer` | मानव-पठनीय इंस्टॉल व्यवहार |
+| 'रेसिपी' | प्रति-ग्राहक इंस्टाल रेसिपी |### 📊 Classification
 
-### 📊 Classification
+| धारा | फ़ील्ड्स |
+|:-------|:-------|
+| 🎯 `परिपक्वता` | `कौशल_स्तर`, `कौशल_स्तर_लेबल` |
+| 📋 `सर्वोत्तम_अभ्यास` | `स्कोर` (0-100) |
+| ⭐ `गुणवत्ता` | `स्कोर` (0-100) |
+| 🛡️ `सुरक्षा` | `स्कोर`, `स्थिति` |
+| ✅ `सत्यापन` | `स्थिति` |### 📝 Content
 
-| Section | Fields |
-|:--------|:-------|
-| 🎯 `maturity` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `score` (0-100) |
-| ⭐ `quality` | `score` (0-100) |
-| 🛡️ `security` | `score`, `status` |
-| ✅ `validation` | `status` |
+व्युत्पन्न संकेत: `बॉडी_लेंथ`, `कंटेंट_लेंथ`, `बॉडी_लाइन्स`, `वर्ड_काउंट`, उदाहरण के लिए संरचनात्मक झंडे, समस्या निवारण अनुभाग, आदि।### 📁 Artifacts
 
-### 📝 Content
-
-Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
-
-### 📁 Artifacts
-
-Array of every file shipped inside the skill directory:
-
-```json
+कौशल निर्देशिका के अंदर भेजी गई प्रत्येक फ़ाइल की सरणी:```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -150,9 +124,7 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
-
-### 📦 Archives
+**कलाकृतियों के प्रकार**: `प्रवेश बिंदु` · `संदर्भ` · `एजेंट` · `संपत्ति` · `लाइसेंस` · `समर्थन`### 📦 Archives
 
 ```json
 {
@@ -167,12 +139,10 @@ Array of every file shipped inside the skill directory:
 
 ### 🔒 Checksums
 
-| Field | Description |
-|:------|:------------|
-| `entrypoint_sha256` | Hash of SKILL.md |
-| `package_sha256` | Deterministic digest from ordered artifact list |
-
----
+| फ़ील्ड | विवरण |
+|:------|:------|
+| `entrypoint_sha256` | SKILL.md का हैश |
+| `पैकेज_शा256` | आदेशित कलाकृतियों की सूची से नियतात्मक डाइजेस्ट |---
 
 ## 📋 Example Manifest
 
@@ -213,15 +183,13 @@ Array of every file shipped inside the skill directory:
 }
 ```
 
-> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
-
----
+> 📌 रिपॉजिटरी पैकेज संस्करण और कौशल संस्करण अलग-अलग चिंताएं हैं। पैकेज वर्तमान में `0.1.3` है, जबकि व्यक्तिगत कौशल का अपना अर्थ संस्करण होता है।---
 
 ## ⚠️ Compatibility Notes
 
-| Rule | Rationale |
-|:-----|:----------|
-| ✅ Must stay derivable from repo | No manual manifest authoring required |
-| ✅ New optional fields can be added | Forward compatibility |
-| ⚠️ Existing fields must remain stable | Backward compatibility |
-| 🚫 No handwritten manifests | Build-time derivation is the source of truth |
+| नियम | तर्क |
+|:----|:----|
+| ✅ रेपो से व्युत्पन्न रहना चाहिए | किसी मैन्युअल मेनिफेस्ट संलेखन की आवश्यकता नहीं है |
+| ✅ नए वैकल्पिक फ़ील्ड जोड़े जा सकते हैं | आगे की अनुकूलता |
+| ⚠️ मौजूदा फ़ील्ड स्थिर रहना चाहिए | पिछड़ी अनुकूलता |
+| 🚫 कोई हस्तलिखित घोषणा पत्र नहीं | बिल्ड-टाइम व्युत्पत्ति सत्य का स्रोत है |

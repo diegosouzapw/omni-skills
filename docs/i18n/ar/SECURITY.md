@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**إذا اكتشفت مشكلة أمنية في Omni Skills، فلا تفتح مشكلة عامة أولاً.**
 
-Please report through one of these private channels:
+يرجى الإبلاغ عبر إحدى هذه القنوات الخاصة:
 
-| Channel | How |
+| قناة | كيف |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 استشارات أمنية لـ GitHub | [افتح استشارة خاصة](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 إتصال مباشر | اتصل بالمشرفين مباشرة |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 المكون أو المسار المتأثر
+- 🔄 خطوات التكاثر
+- ⚠️ تقييم التأثير
+- 🧪 أي مادة إثبات المفهوم مطلوبة للتحقق من المشكلة
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ نهدف إلى الإقرار بالبلاغات خلال 48 ساعة**وتحديد أولويات الإصلاحات وفقًا للتأثير.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+تغطي هذه السياسة وقت تشغيل المستودع وأسطح المحتوى:
 
-| Component | Path |
-|:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| مكون | المسار |
+|:---------|:-----|
+| 🖥️CLI والمثبت | `أدوات/بن/` |
+| 📚 المكتبات المشتركة | `أدوات/ليب/` |
+| ⚙️ بناء البرامج النصية والتحقق من صحتها | `أدوات/برامج نصية/` |
+| 📦 تم إنشاء التحف الكتالوج | `ديست/` |
+| 🌐 حزم API وMCP وA2A | `الحزم/` |
+| 🧠 محتوى المهارة | `المهارات/` - خاصة أوامر الصدفة، أو الوصول إلى الشبكة، أو تدفقات بيانات الاعتماد، أو التوجيهات الحساسة للأمان |---
 
 ## الهندسة
 
-The repository relies on the following security controls:
+يعتمد المستودع على الضوابط الأمنية التالية:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
+| التحكم | الوصف |
+|:--------|:----------|
+| 🏷️ مجال المخاطرة | تشتمل البيانات الوصفية للمهارة على مستوى "خطر" معلن |
+| 📊 التهديف | التحقق من الصحة يحسب النضج وأفضل الممارسات والجودة ودرجات الأمان |
+| 🔍 الماسح الضوئي الثابت | يفحص `SKILL.md` والملفات المجمعة والبرامج النصية المساعدة |
+| 🦠 الماسحات الضوئية الاختيارية | البحث عن تجزئة ClamAV وVirusTotal (عند تكوينهما) |### 🖥️ Runtime Controls
 
-| Control | Description |
-|:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| التحكم | الوصف |
+|:--------|:----------|
+| 📁 سلامة المسار | تستخدم عمليات التثبيت عمليات التحقق من سلامة المسار |
+| 🔒 القائمة المسموحة تكتب | عمليات الكتابة الجانبية لـ MCP المحلية مقيدة بالقائمة المسموح بها |
+| 👁️ افتراضيات التشغيل الجاف | يتم تشغيل الأدوات الموجهة للكتابة بشكل افتراضي على التشغيل الجاف ما لم يتم تعطيلها بشكل صريح |
+| 🔐 المصادقة والحدود | مصادقة مفتاح الحامل/واجهة برمجة التطبيقات، ومصادقة وقت التشغيل الإداري، وتحديد المعدل، وقوائم CORS/IP المسموح بها |
+| 📋 التدقيق | تسجيل التدقيق ووضع الصيانة ومعرفات الطلب |### 📦 Release Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
-|:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
-
-### 📦 Release Controls
-
-| Control | Description |
-|:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| التحكم | الوصف |
+|:--------|:----------|
+| ✅بيانات المجموع الاختباري | المجموع الاختباري SHA-256 للأرشيفات التي تم إنشاؤها |
+| ✍️ التوقيعات | التحقق من التوقيع المنفصل في CI قبل النشر |
+| 🧪 فحص الدخان | قم بتمرين أسطح وقت التشغيل المشحونة قبل الإصدار |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> العمل الأمني ​​الرئيسي المتبقي هو**ليس**تقوية خط الأساس. العناصر المفتوحة هي:
 
-| Area | Status |
+| المنطقة | الحالة |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 حوكمة المؤسسات | الهوية الخارجية وسياسة البوابة وتكامل WAF فوق عناصر التحكم الحالية قيد التشغيل |
+| 🔌 كتاب عملاء MCP | الكتاب الأوسع نطاقًا فقط عندما تكون عقود التكوين العامة مستقرة بدرجة كافية |
+| 📊 تهذيب الماسح الضوئي | التحسين المستمر بحيث تظل المهارات الاستثنائية منفصلة بوضوح عن المهارات المنظمة جيدًا |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+تعلن كل مهارة عن أحد مستويات "الخطر" هذه:
 
-| Risk Level | Meaning |
-|:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| مستوى المخاطر | معنى |
+|:----------|:--------|
+| 🟢 `آمنة` | لا توجد عمليات تدميرية متوقعة |
+| 🟡 `الحذر` | قد يقوم بتعديل الملفات أو التفاعل مع الأنظمة الخارجية |
+| 🔴`هجومية` | اختبار الأمان أو سير العمل الخصوم الذي يتطلب تصريحًا صريحًا |
+| ⛔ `حرجة` | عمليات عالية التأثير أو على مستوى النظام |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+نظرًا لأن Omni Skills تقدم مساعدات قابلة للتنفيذ، وأدوات محلية مدركة لنظام الملفات، وكاتبات تكوين خاصة بالعميل، فيجب التعامل مع فئات الثغرات الأمنية هذه على أنها**أولوية عالية**حتى لو ظهرت "محلية فقط":
 
-| Category | Examples |
-|:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| الفئة | أمثلة |
+|:---------|:--------|
+| 📁 اجتياز المسار | الهروب من الدليل عبر تثبيت المهارات أو مسارات التكوين |
+| 🔗 أمان Symlink | الارتباط الرمزي التالي أثناء التثبيت أو استخراج الأرشيف |
+| 🖥️ تنفيذ الأمر | حقن الأوامر التعسفية عبر محتوى المهارات أو البرامج النصية |
+| 📦 التحقق من الأرشيف | تجاوز المجموع الاختباري أو التحقق من التوقيع |
+| 🔓 تجاوز المصادقة | تحديد المعدل أو تجاوز المصادقة على API/MCP |
+| 🔌 تجاوز القائمة المسموح بها | التحايل على القائمة المسموح بها للسيارات الجانبية المحلية |
+| 🦠 التهرب من الماسح الضوئي | فئات سلبية كاذبة في الماسحات الضوئية الثابتة أو الخارجية |

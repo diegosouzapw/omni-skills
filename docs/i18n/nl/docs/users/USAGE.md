@@ -5,40 +5,34 @@
 ---
 
 
-> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
+>**Alles wat u nodig hebt om vaardigheden aan te roepen, services uit te voeren en de Omni Skills-runtime te gebruiken.**
 
-For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
-For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
-
----
+Zie het [🔧 System Runbook](../operations/RUNBOOK.md) voor volledige operationele werkstromen.
+Zie de [🧭 CLI-gebruikershandleiding](./CLI-USER-GUIDE.md) voor de volledige opdrachtkaart voor eindgebruikers.---
 
 ## 📊 Current Catalog Reality
 
-| Status | Details |
+| Staat | Details |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
-| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
-| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
-
----
+| ✅**Nu verkrijgbaar**| 32 gepubliceerde vaardigheden op het gebied van ontwerp, architectuur, debugging, documenten, OSS, beveiliging, DevOps, AI-engineering, data, tools en machine learning-workflows |
+| 📦**Bundels**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` en `oss-maintainer` worden vandaag volledig ondersteund |
+| 🔌**MCP-bereik**| 7 clients die geschikt zijn voor installatie, 16 clients die geschikt zijn voor configuratie, 33 eersteklas configuratiedoelen, 19 configuratieprofielen |
+| 🤖**A2A-duurzaamheid**| Geheugen, JSON of SQLite lokale duurzaamheid, hervatten van herstart, optionele procesuitvoerder en opt-in gehuurde coördinatie voor gedeelde werknemers |---
 
 ## 🖥️ Invocation by Client
 
-| Client | How to Invoke | Skills Path |
-|:-------|:-------------|:------------|
-| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
-| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
-| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
-| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
-| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
-| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
-| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛ **Copilot** | Paste skill content manually | N/A |
+| Klant | Hoe u een beroep kunt doen op | Vaardigheidspad |
+|:-------|:-------------|:-----------|
+| 🔵**Claude-code**| `>> /vaardigheidsnaam help mij...` | `~/.claude/skills/` |
+| 🟡**Gemini CLI**| `Gebruik @vaardigheidsnaam om...` | `~/.gemini/skills/` |
+| 🔴**Codex CLI**| `Gebruik @vaardigheidsnaam om...` | `~/.codex/skills/` |
+| 🟢**Kiro**| Vaardigheden worden op aanvraag automatisch geladen | `~/.kiro/skills/` |
+| 🟣**Antizwaartekracht**| `Gebruik @vaardigheidsnaam om...` | `~/.gemini/antigravity/skills/` |
+| 🔵**Cursor**| `@vaardigheidsnaam` in chat | `~/.cursor/skills/` |
+| ⚪**OpenCode**| `opencode run @skill-naam` | `.opencode/skills/` |
+| ⬛**Copiloot**| Vaardigheidsinhoud handmatig plakken | N.v.t. |
 
-Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
-
----
+Clients zoals Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline en Kilo Code gebruiken voornamelijk de `config-mcp`-stroom in plaats van een vaardighedenmap.---
 
 ## 💬 Prompt Patterns
 
@@ -107,39 +101,33 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
-> **📌 Notes:**
-> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
-> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
-> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
-> - `--skill` installs only the selected published skills
-> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
-> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
-> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
-
----
+>**📌 Opmerkingen:**
+> - In een interactieve terminal opent `npx omni-skills` nu een begeleide installatiestroom
+> - `npx omni-skills ui` opent de visuele Ink-shell met installatie-, detectie- en service-lanceringsacties
+> - de visuele shell bewaart recente installaties, recente servicelanceringen, favorieten en benoemde voorinstellingen in `~/.omni-skills/state/ui-state.json`
+> - Buiten een TTY is volledige installatie nog steeds de standaard als er geen selector beschikbaar is
+> - `--skill` installeert alleen de geselecteerde gepubliceerde vaardigheden
+> - `--bundle` breidt de bundel uit en installeert de gepubliceerde leden die zijn gedeclareerd in de samengestelde bundel
+> - `find` ondersteunt meer dan 12 filtervlaggen: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk` en meer
+> - `config-mcp` is het juiste pad voor MCP-compatibele producten die geen eersteklas vaardighedenmap hebben---
 
 ## 🔌 Runtime Commands
 
-The CLI is a unified operations tool, not just an installer.
-
-### 🖥️ Visual Shell
+De CLI is een uniforme bewerkingstool en niet alleen een installatieprogramma.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-The visual shell supports:
+De visuele schil ondersteunt:
 
-- guided install with known client or custom path selection
-- search-then-install without memorizing flags
-- guided MCP client config preview and write flows
-- MCP, API, and A2A guided startup
-- recent installs and service relaunches
-- saved install and service presets
-- favorite skills and bundles
-
-### 🩺 Diagnostics
+- begeleide installatie met bekende client of aangepaste padselectie
+- zoeken en installeren zonder vlaggen te onthouden
+- begeleide preview van MCP-clientconfiguratie en schrijfstromen
+- MCP-, API- en A2A-geleide opstart
+- recente installaties en herlanceringen van services
+- opgeslagen installatie- en servicevoorinstellingen
+- favoriete vaardigheden en bundels### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -236,10 +224,10 @@ npx omni-skills publish-check         # Alias for smoke
 
 | # | Tip |
 |:--|:----|
-| 1️⃣ | Reference the skill by name in your prompt |
-| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
-| 3️⃣ | Prefer `--skill` for a minimal install footprint |
-| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
-| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
-| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
-| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |
+| 1️⃣ | Verwijs naar de vaardigheid op naam in uw prompt |
+| 2️⃣ | Geef de exacte artefact-, code- of ontwerpcontext op die de agent nodig heeft |
+| 3️⃣ | Geef de voorkeur aan `--skill` voor een minimale installatievoetafdruk |
+| 4️⃣ | Gebruik `doctor` en `smoke` voordat u fouten in de verpakking of runtime oplost |
+| 5️⃣ | Gebruik bundels als beheerde domeininstallaties nu alle zeven starterbundels volledig worden ondersteund |
+| 6️⃣ | Gebruik `find --install --yes` voor ontdekking + installatie in één stroom |
+| 7️⃣ | Zie het [runbook](../operations/RUNBOOK.md) voor verificatie, snelheidslimieten, ondertekening en verificatie-env vars |

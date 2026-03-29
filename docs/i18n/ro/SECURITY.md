@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Dacă descoperiți o problemă de securitate în Omni Skills, nu deschideți mai întâi o problemă publică.**
 
-Please report through one of these private channels:
+Vă rugăm să raportați prin unul dintre aceste canale private:
 
-| Channel | How |
+| Canal | Cum |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 Aviz de securitate GitHub | [Deschideți un aviz privat](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Contact direct | Contactați direct menținătorii |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Componenta sau calea afectată
+- 🔄 Etape de reproducere
+- ⚠️ Evaluarea impactului
+- 🧪 Orice material de dovadă a conceptului necesar pentru a verifica problema
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ Ne propunem să confirmăm rapoartele în termen de 48 de ore**și să acordăm prioritate remediărilor în funcție de impact.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Această politică acoperă timpul de rulare și suprafețele de conținut ale depozitului:
 
-| Component | Path |
+| Componenta | Calea |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI și programul de instalare | `instrumente/bin/` |
+| 📚 Biblioteci partajate | `tools/lib/` |
+| ⚙️ Construire și validare scripturi | `instrumente/scripturi/` |
+| 📦 Artefacte de catalog generate | `dist/` |
+| 🌐 Pachete API, MCP și A2A | `pachete/` |
+| 🧠 Conținut de abilități | `skills/` — în special comenzi shell, acces la rețea, fluxuri de acreditări sau îndrumări sensibile la securitate |---
 
 ## Arhitectură
 
-The repository relies on the following security controls:
+Depozitul se bazează pe următoarele controale de securitate:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
+| Control | Descriere |
+|:--------|:------------|
+| 🏷️ Câmp de risc | Metadatele aptitudinilor includ un „nivel de risc” declarat |
+| 📊 Punctajul | Validarea calculează scorurile de maturitate, cele mai bune practici, calitate și securitate |
+| 🔍 Scanner static | Inspectează `SKILL.md`, fișierele împachetate și scripturile de ajutor |
+| 🦠 Scanere optionale | Căutare hash ClamAV și VirusTotal (când este configurat) |### 🖥️ Runtime Controls
 
-| Control | Description |
-|:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| Control | Descriere |
+|:--------|:------------|
+| 📁 Siguranța căii | Fluxurile de instalare utilizează verificări de siguranță ale căilor |
+| 🔒 Lista de permise scrie | Scrierile secundare MCP locale constrânse de o listă de permis |
+| 👁️ Setări implicite de funcționare uscată | Instrumentele orientate spre scriere sunt prestabilite pentru rulare uscată, dacă nu sunt dezactivate în mod explicit |
+| 🔐 Autentificare și limite | Autentificare purtător/cheie API, autorizare runtime admin, limitare a ratei, liste permise CORS/IP |
+| 📋 Audit | Înregistrare de audit, modul de întreținere și ID-uri de solicitare |### 📦 Release Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
-|:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
-
-### 📦 Release Controls
-
-| Control | Description |
-|:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| Control | Descriere |
+|:--------|:------------|
+| ✅ Manifeste sume de control | Sume de control SHA-256 pentru arhivele generate |
+| ✍️ Semnături | Verificarea semnăturii detașate în CI înainte de publicare |
+| 🧪 Verificări de fum | Suprafețele de rulare livrate de exercițiu înainte de lansare |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Principala activitate de securitate rămasă este**nu**consolidarea liniei de bază. Elementele deschise sunt:
 
-| Area | Status |
+| Zona | Stare |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Guvernanța întreprinderii | Identitatea externă, politica gateway-ului și integrarea WAF deasupra controalelor curente în proces |
+| 🔌 Scriitori de client MCP | Scriitori mai largi numai atunci când contractele de configurare publică sunt suficient de stabile |
+| 📊 Rafinament scaner | Rafinament continuu, astfel încât abilitățile excepționale să rămână clar separate de cele pur și simplu bine structurate |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Fiecare abilitate declară unul dintre aceste niveluri de „risc”:
 
-| Risk Level | Meaning |
+| Nivel de risc | Înțeles |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `sigur` | Nu se preconizează operațiuni distructive |
+| 🟡 `atenție` | Poate modifica fișierele sau poate interacționa cu sisteme externe |
+| 🔴 `ofensivă` | Testare de securitate sau fluxuri de lucru contradictorii care necesită autorizare explicită |
+| ⛔ `critic` | Operațiuni cu impact ridicat sau la nivel de sistem |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Deoarece Omni Skills furnizează ajutoare executabile, instrumente locale care știe sistemul de fișiere și scriitoare de configurare specifice clientului, aceste clase de vulnerabilități ar trebui tratate ca**prioritate mare**chiar dacă apar „numai locale”:
 
-| Category | Examples |
+| Categoria | Exemple |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Parcurs traseu | Escape director prin căile de instalare sau de configurare a competențelor |
+| 🔗 Siguranța legăturii simbolice | Urmează linkul simbolic în timpul instalării sau extragerii arhivei |
+| 🖥️ Execuția comenzii | Injectare arbitrară de comandă prin conținut de abilități sau scripturi |
+| 📦 Verificarea arhivei | Ocolirea sumei de control sau verificarea semnăturii |
+| 🔓 Auth bypass | Limitarea ratei sau ocolirea autentificării pe API/MCP |
+| 🔌 Ocolirea listei de permise | Eludarea listei de permise pentru sidecar local |
+| 🦠 Evaziunea scanerului | Clase fals-negative în scanere statice sau externe |

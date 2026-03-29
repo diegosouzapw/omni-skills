@@ -5,39 +5,33 @@
 ---
 
 
-> **The full public CLI surface shipped by `omni-skills`.**
+>**Den fullstendige offentlige CLI-overflaten sendes av `omni-skills`.**
 
-Use this guide when you want to:
+Bruk denne veiledningen når du vil:
 
-| Goal | Command Area |
+| Mål | Kommandoområde |
 |:-----|:-------------|
-| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
-| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
-| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
-| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
-
----
+| 📥 Installer ferdigheter eller pakker | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Søk i katalogen | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Konfigurer MCP-klienter | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP-, API- eller A2A-tjenester | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Bruk det visuelle terminalskallet | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Kjør diagnostikk eller preflight | [Diagnostikk](#🔟-diagnostikk-og-preflight) |---
 
 ## 1️⃣ Install and Entry Modes
 
-Install with `npx`:
-
-```bash
+Installer med `npx`:```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Context | What Happens |
+| Kontekst | Hva skjer |
 |:--------|:------------|
-| 🖥️ TTY + no arguments | Opens the **guided install** flow |
-| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
-| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
-
----
+| 🖥️ TTY + ingen argumenter | Åpner flyten for**veiledet installasjon**|
+| ⚙️ Ikke-TTY + ingen argumenter | Ikke-interaktiv installering til `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Merket**Ink visual shell**|
+| 📝 `npx omni-skills ui --text` | Leselinje**tekstreserve**UI |---
 
 ## 2️⃣ Core Commands
 
@@ -45,22 +39,20 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Command | Description |
-|:--------|:-----------|
-| `ui` | 🎨 Visual terminal hub |
-| `find [query]` | 🔎 Catalog discovery |
-| `recategorize` | 🏷️ Taxonomy management |
-| `install [flags]` | 📥 Skill/bundle install |
-| `config-mcp` | 🔌 MCP client configuration |
-| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
-| `api` | 🌐 Catalog API |
-| `a2a` | 🤖 A2A runtime |
-| `smoke` | 🧪 Release preflight |
-| `publish-check` | 📦 Package publication check |
-| `doctor` | 🩺 Environment diagnostics |
-| `help` | ❓ Command reference |
-
----
+| Kommando | Beskrivelse |
+|:--------|:--------|
+| `ui` | 🎨 Visuell terminalhub |
+| `finn [søk]` | 🔎 Katalogfunn |
+| `rekategorisere` | 🏷️ Taksonomistyring |
+| `installer [flagg]` | 📥 Installasjon av ferdigheter/pakke |
+| `config-mcp` | 🔌 MCP-klientkonfigurasjon |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP-servermoduser |
+| `api` | 🌐 Katalog API |
+| `a2a` | 🤖 A2A kjøretid |
+| `røyk` | 🧪 Slipp forhåndsflyging |
+| `publiseringssjekk` | 📦 Pakkepubliseringssjekk |
+| `lege` | 🩺 Miljødiagnostikk |
+| `hjelp` | ❓ Kommandoreferanse |---
 
 ## 3️⃣ Install Flows
 
@@ -71,9 +63,7 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
-
-### 🎯 Single Skill
+> Den guidede flyten lar deg velge:**målklient**→**pakke eller ferdighet**→**egendefinert bane**→**forhåndsvisning før utførelse**### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -90,19 +80,17 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Flag | Client |
+| Flagg | Kunde |
 |:-----|:-------|
-| `--antigravity` | 🟣 Antigravity *(default)* |
-| `--claude` | 🟢 Claude Code |
-| `--cursor` | 🔵 Cursor |
+| `--antigravitasjon` | 🟣 Antigravitasjon *(standard)* |
+| `--claude` | Claude Kode |
+| `--markør` | 🔵 Markør |
 | `--codex` | 🔴 Codex CLI |
-| `--gemini` | 🟡 Gemini CLI |
-| `--kiro` | 🟠 Kiro |
+| `--tvilling` | 🟡 Gemini CLI |
+| `--kiro` | Kiro |
 | `--opencode` | ⚪ OpenCode |
 
-> Default install target (non-interactive): `~/.gemini/antigravity/skills`
-
----
+> Standard installasjonsmål (ikke-interaktivt): `~/.gemini/antigravity/skills`---
 
 ## 4️⃣ Catalog Discovery
 
@@ -123,27 +111,23 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Flag | Purpose |
+| Flagg | Formål |
 |:-----|:--------|
-| `--category` | Filter by taxonomy category |
-| `--tool` | Filter by supported tool |
-| `--risk` | Filter by risk level |
-| `--sort` | Sort results (e.g., `quality`) |
-| `--order` | Sort order |
-| `--min-quality` | Minimum quality score |
-| `--min-best-practices` | Minimum best-practices score |
-| `--min-level` | Minimum maturity level |
-| `--min-security` | Minimum security score |
-| `--validation-status` | Filter by validation state |
-| `--security-status` | Filter by security state |
-
----
+| `--kategori` | Filtrer etter taksonomikategori |
+| `--verktøy` | Filtrer etter støttet verktøy |
+| `--risiko` | Filtrer etter risikonivå |
+| `--sort` | Sorter resultater (f.eks. "kvalitet") |
+| `--ordre` | Sorteringsrekkefølge |
+| `--min-kvalitet` | Minste kvalitetspoengsum |
+| `--min-beste-praksis` | Minste poengsum for beste praksis |
+| `--min-nivå` | Minimum forfallsnivå |
+| `--min-sikkerhet` | Minste sikkerhetspoengsum |
+| `--valideringsstatus` | Filtrer etter valideringstilstand |
+| `--sikkerhetsstatus` | Filtrer etter sikkerhetstilstand |---
 
 ## 5️⃣ MCP Client Config
 
-Use `config-mcp` to preview or write client-aware MCP configuration.
-
-### 📋 List Targets
+Bruk `config-mcp` for å forhåndsvise eller skrive klientbevisst MCP-konfigurasjon.### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -168,28 +152,26 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<details>
-<summary>🔌 <strong>Config-capable client surface</strong></summary>
+<detaljer>
+<summary>🔌 <strong>Konfigurasjonskompatibel klientoverflate</strong></summary>
 
-| Client | Targets |
+| Kunde | Mål |
 |:-------|:--------|
-| Claude | Settings and desktop targets |
-| Cursor | User and workspace |
-| Codex | TOML config |
-| Gemini | User and workspace |
-| Antigravity | User config |
-| OpenCode | User and workspace |
-| Cline | First-class target |
-| GitHub Copilot CLI | User and repo |
-| Kilo Code | User, project, and workspace |
-| Kiro | User and workspace |
-| Zed | Workspace |
-| VS Code | User, workspace, and Dev Container |
-| Continue | Workspace YAML |
-| Junie | Project and user |
-| Windsurf | User config |
-
-</details>
+| Claude | Innstillinger og skrivebordsmål |
+| Markør | Bruker og arbeidsområde |
+| Codex | TOML-konfigurasjon |
+| Tvillingene | Bruker og arbeidsområde |
+| Antigravitasjon | Brukerkonfigurasjon |
+| OpenCode | Bruker og arbeidsområde |
+| Cline | Førsteklasses mål |
+| GitHub Copilot CLI | Bruker og repo |
+| Kilokode | Bruker, prosjekt og arbeidsområde |
+| Kiro | Bruker og arbeidsområde |
+| Zed | Arbeidsområde |
+| VS-kode | Bruker, arbeidsområde og Dev Container |
+| Fortsett | Arbeidsområde YAML |
+| Junie | Prosjekt og bruker |
+| Vindsurfing | Brukerkonfigurasjon |</details>
 
 ---
 
@@ -210,9 +192,7 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
-> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
-
----
+>**Lokal sidevogn**legger til: klientdeteksjon, installeringsforhåndsvisning, installer/fjern flyter og MCP-konfigurasjonsskriving.---
 
 ## 7️⃣ Catalog API
 
@@ -222,17 +202,15 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Route | Purpose |
+| Rute | Formål |
 |:------|:--------|
-| `GET /healthz` | Health check |
-| `GET /openapi.json` | OpenAPI spec |
-| `GET /v1/skills` | List all skills |
-| `GET /v1/search` | Search the catalog |
-| `GET /v1/skills/:id/archives` | List archives for a skill |
-| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
-| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
-
----
+| `GET /helse` | Helsesjekk |
+| `GET /openapi.json` | OpenAPI-spesifikasjon |
+| `GET /v1/skills` | Liste alle ferdigheter |
+| `GET /v1/søk` | Søk i katalogen |
+| `GET /v1/skills/:id/archives` | Liste arkiver for en ferdighet |
+| `GET /v1/skills/:id/download/archive?format=zip` | Last ned ferdighetsarkiv |
+| `GET /v1/skills/:id/download/archive/checksums` | Last ned sjekksummer |---
 
 ## 8️⃣ A2A Runtime
 
@@ -242,17 +220,15 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Feature | Status |
+| Funksjon | Status |
 |:--------|:-------|
-| 🔎 Task-aware discovery | ✅ |
-| 📋 Install-plan handoff | ✅ |
-| 🔄 Polling | ✅ |
+| 🔎 Oppgavebevisst oppdagelse | ✅ |
+| 📋 Overlevering av installasjonsplan | ✅ |
+| 🔄 Avstemning | ✅ |
 | 📡 Streaming | ✅ |
-| ❌ Cancelation | ✅ |
-| 🔔 Push-notification config | ✅ |
-| 💾 Persistence | Memory, JSON, and SQLite |
-
----
+| ❌ Avbestilling | ✅ |
+| 🔔 Push-varslingskonfigurasjon | ✅ |
+| 💾 Utholdenhet | Minne, JSON og SQLite |---
 
 ## 9️⃣ Visual Shell
 
@@ -262,19 +238,17 @@ npx omni-skills ui
 
 ### Funksjoner
 
-| Feature | Description |
-|:--------|:-----------|
-| 🧭 Guided install | Choose client or custom path |
-| 🔎 Search + install | No flag memorization needed |
-| 🔌 MCP config | Preview and write flows |
-| 🖥️ Service launch | MCP, API, and A2A guided startup |
-| 🕐 Recents | Recent installs and service relaunches |
-| ⭐ Favorites | Saved skills and bundles |
-| 💾 Presets | Named install and service presets |
+| Funksjon | Beskrivelse |
+|:--------|:--------|
+| 🧭 Veiledet installasjon | Velg klient eller tilpasset bane |
+| 🔎 Søk + installer | Ingen flaggminne er nødvendig |
+| 🔌 MCP-konfigurasjon | Forhåndsvis og skriv flyter |
+| 🖥️ Tjenestelansering | MCP, API og A2A guidet oppstart |
+| 🕐 Nylig | Nylige installasjoner og relanseringer av tjenester |
+| ⭐ Favoritter | Lagrede ferdigheter og bunter |
+| 💾 Forhåndsinnstillinger | Navngitte forhåndsinnstillinger for installasjon og service |
 
-> **State path:** `~/.omni-skills/state/ui-state.json`
-
----
+>**Tilstandsbane:**`~/.omni-skills/state/ui-state.json`---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -284,18 +258,14 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Inspects: repo state, local install state, runtime availability, and environment issues.
-
-### 🧪 Release Preflight
+> Inspiserer: repo-status, lokal installasjonstilstand, kjøretidstilgjengelighet og miljøproblemer.### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
-
----
+> Validerer: build, tester, pakkeutgang, serviceoppstart, skannerdekning og utgivelsespakke.---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -308,22 +278,20 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Command | Purpose |
+| 🎯 Persona | Kommando | Formål |
 |:-----------|:--------|:--------|
-| 🆕 New user | `npx omni-skills` | Guided first-time install |
-| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
-| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
-| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
-| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
-
----
+| 🆕 Ny bruker | `npx omni-skills` | Veiledet førstegangsinstallasjon |
+| 🔧 Operatør | `npx omni-skills config-mcp --list-targets` | Konfigurer lokal MCP |
+| 🔧 Operatør | `npx omni-skills mcp stream --local` | Start lokal sidevogn |
+| 📦 Vedlikeholder | `npx omni-skills smoke` | Valider en utgivelse |
+| 🔍 Strømbruker | `npx omni-skills find security --sort quality --min-quality 95` | Finn den beste ferdigheten først |---
 
 ## 📖 Related Documents
 
-| Doc | What It Covers |
+| Dok | Hva det dekker |
 |:----|:--------------|
-| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
-| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
-| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
-| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |
+| 🚀 [Kom i gang](./KOM I GANG.md) | Installer og verifiser på under 2 minutter |
+| 📗 [Bruksveiledning](./USAGE.md) | Alle CLI-kommandoer, mønstre og moduser |
+| 📦 [Bundler](./BUNDLES.md) | Kuraterte ferdighetssamlinger |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Driftsreferanse |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filsystemverktøy og konfigurasjonsskriving |

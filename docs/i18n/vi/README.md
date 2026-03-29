@@ -13,10 +13,8 @@
 
 <br/>
 
-**The skill catalog that installs itself.**<br/>
-CLI · API · MCP · A2A — all from a single `npx` command.
-
-<br/>
+**Danh mục kỹ năng tự cài đặt.**<br/>
+CLI · API · MCP · A2A — tất cả chỉ từ một lệnh `npx` duy nhất.<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -30,9 +28,7 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 <br/>
 
-[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
-
-</div>
+[⚡ Cài đặt trong 1 phút](#-installation) · [🛠️ Chọn công cụ của bạn](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Tại sao lại là Omni Kỹ năng](#-why-omni-skills)</div>
 
 ---
 
@@ -42,40 +38,34 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 </div>
 
-| | Metric | Value |
+| | Số liệu | Giá trị |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
-| 🎯 | **Bundles** | `7` fully backed curated bundles |
-| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
-| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
-| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
-
----
+| 📦 |**Kỹ năng đã xuất bản**| `32` trên 15 danh mục đang hoạt động |
+| 🎯 |**Gói**| `7` gói được quản lý đầy đủ |
+| 🖥️ |**Cài đặt ứng dụng khách**| `7` trợ lý mã hóa AI có khả năng cài đặt |
+| 🔌 |**Khách hàng MCP**| `16` Máy khách có khả năng cấu hình MCP |
+| 🔐 |**Đầu ra được tuyển chọn**| `32` dẫn xuất tiếng Anh nâng cao trong `skills_omni/` |
+| 📋 |**Bản phát hành hiện tại**| `v0.1.2` |---
 
 ## Bắt đầu nhanh
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+>**Đã tìm kiếm các kỹ năng mã hóa AI, kỹ năng Mã Claude, kỹ năng Con trỏ, kỹ năng Codex CLI, kỹ năng CLI của Gemini, kỹ năng Chống trọng lực hoặc thư viện `SKILL.md` có thể cài đặt?**
+> Bạn đang ở đúng nơi.### 1️⃣ What is this?
 
-### 1️⃣ What is this?
+Omni Skills là**danh mục kỹ năng và thời gian chạy**có thể cài đặt**dành cho trợ lý mã hóa AI. Về cốt lõi, đây là một kho lưu trữ công khai gồm các sách chơi `SKILL.md` có thể tái sử dụng — nhưng không giống như các bộ sưu tập kỹ năng đơn giản, kho lưu trữ**là**lớp phân phối và thời gian chạy.
 
-Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
+<chi tiết>
+<summary>📋 <strong>Bao gồm những gì</strong></summary>
 
-<details>
-<summary>📋 <strong>What's included</strong></summary>
-
-| Component | Description |
-|:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
-| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
-| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
-| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
-| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
-| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
-| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
-
-</details>
+| Thành phần | Mô tả |
+|:----------|:----------|
+| 🧠**Kỹ năng**| Sách hướng dẫn dựa trên `SKILL.md` được tuyển chọn dành cho trợ lý AI |
+| 📦**Biểu hiện**| Đã tạo các tệp kê khai, gói và kho lưu trữ JSON |
+| 🧭**Cài đặt có hướng dẫn**| TTY tương tác và quy trình cài đặt thiết bị đầu cuối trực quan |
+| 🌐**API danh mục**| API HTTP chỉ đọc để tìm kiếm, khám phá và tải xuống |
+| 🔌**Máy chủ MCP**| Khám phá, đề xuất và công cụ cấu hình nhận biết khách hàng |
+| 🤖**Thời gian chạy A2A**| Điều phối nhiệm vụ giữa các đại lý |
+| ✨**Đường ống nâng cao**| Công cụ cải tiến riêng xuất bản các dẫn xuất tiếng Anh được tuyển chọn thành `skills_omni/` |</details>
 
 ### 2️⃣ Quick Start
 
@@ -95,109 +85,95 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
+> 💬 *"Sử dụng `@brainstorming` để lập kế hoạch SaaS MVP."*
 >
-> 💬 *"Use `@api-design` to review this endpoint design."*
+> 💬 *"Sử dụng `@api-design` để xem lại thiết kế điểm cuối này."*
 >
-> 💬 *"Use `@debugging` to isolate this regression."*
+> 💬 *"Sử dụng `@debugging` để tách biệt hồi quy này."*### 5️⃣ Start with a bundle
 
-### 5️⃣ Start with a bundle
-
-| 🎯 Goal | Bundle | Command |
-|:---------|:-------|:--------|
-| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
-| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
-| Design systems | `design` | `npx omni-skills --bundle design` |
-| Security review | `security` | `npx omni-skills --bundle security` |
-| Infra and release | `devops` | `npx omni-skills --bundle devops` |
-| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
-| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
-
----
+| 🎯 Mục tiêu | Gói | Lệnh |
+|:----------|:-------|:--------|
+| Kỹ thuật tổng hợp | `thiết yếu` | `kỹ năng đa dạng của npx --các yếu tố cần thiết` |
+| Phân phối sản phẩm + ứng dụng | `đầy đủ` | `npx omni-skills --bundle full-stack` |
+| Hệ thống thiết kế | `thiết kế` | `kỹ năng đa dạng của npx --thiết kế theo gói` |
+| Đánh giá bảo mật | `bảo mật` | `kỹ năng đa năng của npx --bảo mật gói` |
+| Hồng ngoại và phát hành | `devops` | `npx omni-skills --bundle devops` |
+| Ứng dụng LLM | `ai-kỹ sư` | `npx omni-skills --bundle ai-engineer` |
+| Bảo trì OSS | `người bảo trì oss` | `npx omni-skills --bundle oss-maintainer` |---
 
 ## 🧩 Core Concepts
 
-Before comparing bundles or picking an install path, understanding these five building blocks helps:
+Trước khi so sánh các gói hoặc chọn đường dẫn cài đặt, việc hiểu năm khối xây dựng này sẽ giúp:
 
-| Concept | What it means |
+| Khái niệm | Ý nghĩa của nó |
 |:--------|:-------------|
-| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
-| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
-| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
-| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
-| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
+| 🧠**Kỹ năng**| Sách hướng dẫn `SKILL.md` có thể tái sử dụng để dạy trợ lý cách thực hiện tốt quy trình làm việc |
+| 📦**Danh mục hiện vật**| Đã tạo các đầu ra JSON và lưu trữ cho phép tìm kiếm, so sánh, tải xuống và cài đặt |
+| 🔌**Cấu hình MCP**| Cấu hình phía máy khách để trợ lý khám phá Kỹ năng Omni thông qua các công cụ MCP |
+| 🤖**Thời gian chạy A2A**| Phối hợp giữa các tác nhân để khám phá, đề xuất và chuyển giao kế hoạch cài đặt |
+| ✨**Đầu ra tuyển chọn**| `skills_omni/` — bề mặt nâng cao được duy trì bằng Omni, tách biệt với lượng tiếp nhận ngược dòng gốc |
 
-> **📝 Native/Curated policy:**
-> - `skills/` accepts native upstream intake in any language
-> - `skills_omni/` is always curated and published in English
-> - `skills_omni/` is a one-way surface and does not loop back into native intake
-
----
+>**📝 Chính sách gốc/sắp tuyển:**
+> - `skills/` chấp nhận đầu vào bản địa ngược dòng bằng bất kỳ ngôn ngữ nào
+> - `skills_omni/` luôn được tuyển chọn và xuất bản bằng tiếng Anh
+> - `skills_omni/` là bề mặt một chiều và không quay trở lại nguồn gốc---
 
 ## 💡 Why Omni Skills
 
-> **Not just "another repository with skills in folders."**
-> Omni Skills has a stronger contract and a broader runtime surface.
+>**Không chỉ là "một kho lưu trữ khác có các kỹ năng trong thư mục."**
+> Omni Skills có hợp đồng mạnh mẽ hơn và phạm vi thời gian chạy rộng hơn.
 
-| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
+| Nếu bạn muốn… | 📁 Kho kỹ năng tiêu biểu | ✨ Kỹ năng Omni |
 |:-------------|:----------------------|:--------------|
-| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
-| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
-| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
-| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
-| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
-| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
-
----
+| Cài đặt vào một trợ lý thực sự | Sao chép thủ công hoặc tập lệnh tùy chỉnh | `npx omni-skills`, cài đặt có hướng dẫn, giao diện người dùng trực quan, chọn lọc `--skill` và `--bundle` |
+| Tìm kiếm và so sánh kỹ năng | Duyệt đánh dấu thủ công | Tạo danh mục, lọc, lập kế hoạch gói, tìm kiếm, so sánh và đề xuất |
+| Sử dụng cùng một dữ liệu trên các công cụ | Logic riêng biệt cho mỗi công cụ | Các bảng kê khai và danh mục được chia sẻ cho CLI, API, MCP và A2A |
+| Định cấu hình máy khách MCP | Tập tin chỉnh sửa bằng tay | `config-mcp`, bản xem trước sidecar cục bộ, công thức nấu ăn được tạo và ghi vào danh sách cho phép |
+| Bản phát hành tin cậy | Đóng gói nỗ lực tốt nhất | Tổng kiểm tra, lưu trữ đã ký, xác minh máy quét, phát hành CI và xuất bản preflight |
+| Quản lý lượng tiếp nhận của cộng đồng | Dù vùng đất nào vẫn như cũ | Lượng tiếp thu bản địa trong `skills/`, các dẫn xuất tiếng Anh được tuyển chọn trong `skills_omni/` có ghi công |---
 
 ## 🖥️ Compatibility and Invocation
 
-These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
+Các kỹ năng này tuân theo mô hình `SKILL.md` và có thể được sử dụng như một kho lưu trữ thông thường, nhưng gói này cũng cài đặt và định cấu hình chúng trên một bề mặt rộng:
 
-> **7** install-capable clients · **16** MCP config-capable clients
+>**7**máy khách có khả năng cài đặt ·**16**máy khách có khả năng cấu hình MCP### 🎯 Install-Capable Clients
 
-### 🎯 Install-Capable Clients
+| Công cụ | Loại | Ví dụ về lời gọi | Đường dẫn cài đặt |
+|:------|:------|:-------------------|:-------------|
+| 🟢**Mã Claude**| CLI | `Dùng động não để lập kế hoạch cho một tính năng` | `~/.claude/skills` |
+| 🔵**Con trỏ**| IDE | `@brainstorming giúp tôi lên kế hoạch cho một tính năng` | `~/.cursor/skills` |
+| 🟡**Song Tử CLI**| CLI | `Dùng động não để lập kế hoạch cho một tính năng` | `~/.gemini/skills` |
+| 🔴**Codex CLI**| CLI | `Dùng động não để lập kế hoạch cho một tính năng` | `~/.codex/skills` |
+| 🟠**Kiro**| CLI/IDE | `Dùng động não để lập kế hoạch cho một tính năng` | `~/.kiro/skills` |
+| 🟣**Phản trọng lực**| IDE | `Sử dụng @brainstorming để lên kế hoạch cho một tính năng` | `~/.gemini/anti Gravity/skills` |
+| ⚪**Mã mở**| CLI | `chạy mã mở @brainstorming` | `<workspace>/.opencode/skills` |
 
-| Tool | Type | Invocation Example | Install Path |
-|:-----|:-----|:-------------------|:-------------|
-| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
-| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
-| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
-| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
-| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
-| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
-| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
+<chi tiết>
+<summary>🔌 <strong>Phạm vi cấu hình MCP rộng hơn (16 khách hàng)</strong></summary>
 
-<details>
-<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
+Các mục tiêu này là một phần của bề mặt cấu hình MCP được hỗ trợ, ngay cả khi chúng không phải là mục tiêu cài đặt cho thư mục kỹ năng:
 
-These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
-
-| Client or Surface | Support Type | Notes |
-|:------------------|:------------|:------|
-| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
-| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
-| Gemini | MCP config | User and workspace settings |
-| Cline | MCP config | First-class config target |
-| GitHub Copilot CLI | MCP config | User and repo config targets |
-| Continue | MCP config | Workspace YAML generation |
-| Windsurf | MCP config | User config target |
-| Zed | MCP config | Workspace config target |
-| Goose | MCP config | User config target with generated recipe |
-| Kilo Code | MCP config | User, project, and workspace targets |
-| Junie | MCP config | Project and user config targets |
-
-</details>
+| Khách hàng hoặc Bề mặt | Loại hỗ trợ | Ghi chú |
+|:-------------------|:-------------|:------|
+| Cài đặt Claude và máy tính để bàn | Cấu hình MCP | Các quy trình cài đặt, màn hình nền và nhận biết dự án |
+| Mã VS | Cấu hình MCP | Mục tiêu của người dùng, không gian làm việc, người trong cuộc và Dev Container |
+| Song Tử | Cấu hình MCP | Cài đặt người dùng và không gian làm việc |
+| Cline | Cấu hình MCP | Mục tiêu cấu hình hạng nhất |
+| GitHub phi công phụ CLI | Cấu hình MCP | Mục tiêu cấu hình người dùng và repo |
+| Tiếp tục | Cấu hình MCP | Tạo YAML không gian làm việc |
+| Lướt ván buồm | Cấu hình MCP | Mục tiêu cấu hình người dùng |
+| Zed | Cấu hình MCP | Mục tiêu cấu hình không gian làm việc |
+| Ngỗng | Cấu hình MCP | Mục tiêu cấu hình người dùng với công thức được tạo |
+| Mã Kilo | Cấu hình MCP | Mục tiêu người dùng, dự án và không gian làm việc |
+| Junie | Cấu hình MCP | Mục tiêu cấu hình dự án và người dùng |</details>
 
 ---
 
 ## Cài đặt
 
-<table>
+<bảng>
 <tr>
-<td width="50%">
-
-### Option A: Install with `npx` *(recommended)*
+<td width="50%">### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -254,39 +230,35 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Tool | Install Command | First Use |
-|:-----|:---------------|:----------|
-| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
-| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
-| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
-| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
-| ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
-| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
+| Công cụ | Lệnh cài đặt | Sử dụng lần đầu |
+|:------|:---------------|:----------|
+| 🟢 Mã Claude | `kỹ năng đa năng của npx --claude` | `Dùng động não để lập kế hoạch cho một tính năng` |
+| 🔵 Con trỏ | `kỹ năng đa năng của npx --cursor` | `@brainstorming giúp tôi lên kế hoạch cho một tính năng` |
+| 🟡 Song Tử CLI | `kỹ năng đa năng của npx --gemini` | `Dùng động não để lập kế hoạch cho một tính năng` |
+| 🔴 Codex CLI | `kỹ năng đa năng của npx --codex` | `Dùng động não để lập kế hoạch cho một tính năng` |
+| 🟣 Phản trọng lực | `npx omni-skills --antirabity` *(mặc định)* | `Sử dụng @brainstorming để lên kế hoạch cho một tính năng` |
+| 🟠 Kiro | `kỹ năng đa năng của npx --kiro` | `Dùng động não để lập kế hoạch cho một tính năng` |
+| ⚪ Mã mở | `kỹ năng đa năng của npx --opencode` | `chạy mã mở @brainstorming` |
+| 📂 Đường dẫn tùy chỉnh | `npx omni-skills --path ./my-skills` | Phụ thuộc vào công cụ của bạn |
 
-> 📖 **Not sure where to start?**
-> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
-> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
-> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
-
----
+> 📖**Không biết bắt đầu từ đâu?**
+> - [🚀 Bắt đầu](docs/users/GETTING-STARTED.md) — cài đặt và xác minh trong vòng chưa đầy 2 phút
+> - [🧭 CLI Hướng dẫn sử dụng](docs/users/CLI-USER-GUIDE.md) — tham khảo lệnh đầy đủ
+> - [📗 Hướng dẫn sử dụng](docs/users/USAGE.md) — lời nhắc, mẫu và chế độ thời gian chạy---
 
 ## 🔌 Runtime Surfaces
 
-Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
+Omni Skills không chỉ là một thư viện các kỹ năng. Nó hiển thị**bốn bề mặt thời gian chạy**sử dụng cùng một danh mục được tạo:
 
-| Surface | State | What it does | Example |
+| Bề mặt | Tiểu bang | Nó làm gì | Ví dụ |
 |:--------|:------|:-------------|:--------|
-| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
-| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
-| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
-| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
+| 🖥️**CLI**| ✅ Có sẵn | Tìm, cài đặt, chẩn đoán, giao diện người dùng trực quan, dịch vụ khởi động, kiểm tra khói | `bác sĩ đa năng npx` |
+| 🌐**API danh mục**| ✅ Có sẵn | Danh mục chỉ đọc, tìm kiếm, gói, so sánh, gói cài đặt, tải xuống | `npx omni-skills api --port 3333` |
+| 🔌**MCP**| ✅ Có sẵn | Khám phá, đề xuất, xem trước cài đặt, sidecar cục bộ, luồng cấu hình | `npx omni-skills mcp streaming --local` |
+| 🤖**A2A**| ✅ Có sẵn | Vòng đời nhiệm vụ, bàn giao, bỏ phiếu, phát trực tuyến, hủy bỏ, kiên trì | `npx omni-skills a2a --port 3335` |
 
-<details>
-<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
-
-```bash
+<chi tiết>
+<summary>🖥️ <strong>Các lệnh vận hành và shell trực quan</strong></summary>```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -296,10 +268,8 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<details>
-<summary>🔌 <strong>MCP transports and config</strong></summary>
-
-```bash
+<chi tiết>
+<summary>🔌 <strong>MCP vận chuyển và cấu hình</strong></summary>```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -320,41 +290,33 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Metric | Count |
+| Số liệu | Đếm |
 |:-------|:------|
-| 🧠 Published skills | **32** |
-| 📂 Active categories | **15** |
-| 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **32** in `skills_omni/` |
+| 🧠 Kỹ năng công bố |**32**|
+| 📂 Danh mục hoạt động |**15**|
+| 📦 Các gói được hỗ trợ đầy đủ |**7**|
+| ✨ Các công cụ phái sinh được tuyển chọn |**32**trong `skills_omni/` |### 📦 Bundle Availability
 
-### 📦 Bundle Availability
-
-| Bundle | Skills | Members |
+| Gói | Kỹ năng | Thành viên |
 |:-------|:-------|:--------|
-| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
-| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
-| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
-| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
-| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
-| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
-| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
+| 🧰 `thiết yếu` |**4/4**✅ | `kỹ năng tìm kiếm` · `động não` · `kiến trúc` · `gỡ lỗi` |
+| 🌐 `đầy đủ` |**5/5**✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
+| 🎨 `thiết kế` |**5/5**✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `bảo mật` |**4/4**✅ | `kiểm toán viên bảo mật` · `máy quét lỗ hổng` · `phản hồi sự cố` · `mô hình hóa mối đe dọa` |
+| ⚙️ `devops` |**5/5**✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
+| 🤖 `ai-kỹ sư` |**7/7**✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contract` · `model-services` |
+| 🔧 `người bảo trì oss` |**4/4**✅ | `find-skills` · `create-pr` · `changelog` · `tài liệu` |### ✨ Native Intake → Curated Output
 
-### ✨ Native Intake → Curated Output
-
-| Surface | Purpose | Language |
+| Bề mặt | Mục đích | Ngôn ngữ |
 |:--------|:--------|:---------|
-| 📥 `skills/` | Native intake | Any language |
-| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
+| 📥 `kỹ năng/` | Lượng bản địa | Bất kỳ ngôn ngữ |
+| ✨ `skills_omni/` | Đầu ra được duy trì Omni được quản lý | Luôn Tiếng Anh |
 
-> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
-
----
+>**ℹ️**Các thay đổi đối với kỹ năng gốc được bộ tăng cường riêng tư xử lý lại và làm mới trong đường cơ sở được quản lý. Điều này làm cho `skills_omni/` trở thành**bề mặt danh mục được duy trì**, không phải là bản sao thứ hai.---
 
 ## 🛡️ Security and Release Posture
 
-> Omni Skills ships a stronger release and verification story than a plain markdown repository.
-
-### 🧪 Validation and Smoke Checks
+> Omni Skills mang đến câu chuyện xác minh và phát hành mạnh mẽ hơn kho lưu trữ giảm giá đơn thuần.### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -363,40 +325,36 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<details>
-<summary>📋 <strong>What the pipeline validates</strong></summary>
+<chi tiết>
+<summary>📋 <strong>Quy trình xác thực nội dung gì</strong></summary>
 
-- ✅ Skill validation and metadata generation
-- ✅ Taxonomy normalization and recategorization tooling
-- ✅ Catalog and archive generation
-- ✅ Automated tests
-- ✅ API, MCP, and A2A boot paths
-- ✅ Archive verification
-- ✅ Package preflight with `npm pack --dry-run`
+- ✅ Xác thực kỹ năng và tạo siêu dữ liệu
+- ✅ Công cụ chuẩn hóa và phân loại lại phân loại
+- ✅ Tạo danh mục và lưu trữ
+- ✅ Kiểm tra tự động
+- ✅ Đường dẫn khởi động API, MCP và A2A
+- ✅ Xác minh lưu trữ
+- ✅ Đóng gói preflight với `npm pack --dry-run`</details>
 
-</details>
+<chi tiết>
+<tóm tắt>🔐 <strong>Tư thế thả ra</strong></tóm tắt>
 
-<details>
-<summary>🔐 <strong>Release posture</strong></summary>
+| Kiểm soát | Mô tả |
+|:--------|:----------|
+| 🔒 Tổng kiểm tra SHA-256 | Bảng kê khai tổng kiểm tra cho tất cả các kho lưu trữ |
+| ✍️ Hiện vật có chữ ký | Chữ ký tách rời trên các tạo phẩm phát hành |
+| 🤖 CI thực thi | Đưa ra xác minh trong CI trước khi xuất bản |
+| 🦠 Cổng quét | Luồng phát hành ClamAV và VirusTotal |
+| 📦 Phát hành GitHub | Tạo bản phát hành GitHub tự động |
+| 📋 ấn phẩm npm | Chỉ từ tarball đã được xác minh |
+| 🔄 Tự động phát hành | Về kỹ năng đủ điều kiện hợp nhất với `main` |
 
-| Control | Description |
-|:--------|:-----------|
-| 🔒 SHA-256 checksums | Checksum manifests for all archives |
-| ✍️ Signed artifacts | Detached signatures on release artifacts |
-| 🤖 CI-enforced | Release verification in CI before publication |
-| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
-| 📦 GitHub Release | Automated GitHub Release generation |
-| 📋 npm publication | From verified tarball only |
-| 🔄 Auto release | On qualifying skill merges to `main` |
-
-**Auto-release triggers only when a merge changes:**
-- `skills/*/**`
+**Chỉ kích hoạt tự động phát hành khi hợp nhất thay đổi:**
+- `kỹ năng/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-Doc-only changes **do not** trigger package publication.
-
-</details>
+Những thay đổi chỉ dành cho tài liệu**không**kích hoạt việc xuất bản gói.</details>
 
 ---
 
@@ -404,93 +362,79 @@ Doc-only changes **do not** trigger package publication.
 
 ### 👤 For Users
 
-| Doc | What You'll Learn |
+| Tài liệu | Bạn sẽ học được gì |
 |:----|:-----------------|
-| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
-| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
-| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
-| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
-| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
-| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
+| 🚀 [Bắt đầu](docs/users/GETTING-STARTED.md) | Cài đặt, xác minh và gọi trong vòng chưa đầy 2 phút |
+| 🧭 [Hướng dẫn sử dụng CLI](docs/users/CLI-USER-GUIDE.md) | Tham chiếu lệnh đầy đủ và các mẫu trong thế giới thực |
+| 📗 [Hướng dẫn sử dụng](docs/users/USAGE.md) | Lệnh CLI, chế độ cài đặt, thời gian chạy và cấu hình MCP |
+| 📦 [Gói](docs/users/BUNDLES.md) | Các gói tuyển chọn và tính sẵn có |
+| 📚 [Danh mục](docs/CATALOG.md) | Danh mục các kỹ năng đã xuất bản được tạo tự động |
+| 🔧 [Runbook hệ thống](docs/Operations/RUNBOOK.md) | Xây dựng, phục vụ, bảo mật và khắc phục sự cố |### 🏗️ For Architects
 
-### 🏗️ For Architects
-
-| Doc | What You'll Learn |
+| Tài liệu | Bạn sẽ học được gì |
 |:----|:-----------------|
-| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
-| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
-| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
-| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
-| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
-| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
-| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
-| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
-| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
+| 🗺️ [Lộ trình của tác nhân-bản địa](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Sự phát triển kiến ​​trúc và các khu vực còn lại |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Quyết định monorepo cốt lõi |
+| 🔬 [Phân tích cơ sở mã](docs/architecture/CODEBASE-ANALYSIS.md) | Thành phần thời gian chạy và ranh giới hệ thống |
+| 🌐 [API danh mục](docs/specs/CATALOG-API.md) | Điểm cuối HTTP, lọc, quản trị và tải xuống |
+| 🧩 [Trình cài đặt có hướng dẫn CLI](docs/specs/CLI-GUIDED-INSTALLER.md) | Hợp đồng hành vi dành cho người cài đặt được hướng dẫn |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Mô hình trạng thái và vỏ trực quan bằng mực |
+| 🔌 [Sidecar MCP cục bộ](docs/specs/LOCAL-MCP-SIDECAR.md) | Công cụ hệ thống tập tin và mô hình danh sách cho phép |
+| 📊 [Ma trận hỗ trợ khách hàng](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Tài liệu tham khảo đầy đủ của khách hàng và nhà văn |
+| 🏷️ [Phân loại kỹ năng](docs/specs/SKILL-CLASSIFICATION.md) | Phân loại, tính điểm và siêu dữ liệu |
+| 🛡️ [Xác thực bảo mật](docs/specs/SECURITY-VALIDATION.md) | Máy quét, lưu trữ và chữ ký |
+| 📋 [Bản kê khai kỹ năng](docs/specs/SKILL-MANIFEST.md) | Định dạng tệp kê khai có thể đọc được bằng máy |### 🤝 For Contributors
 
-### 🤝 For Contributors
-
-| Doc | What You'll Learn |
+| Tài liệu | Bạn sẽ học được gì |
 |:----|:-----------------|
-| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
-| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
-| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
-| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
-| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
-| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
-
----
+| 📝 [Hướng dẫn đóng góp](CONTRIBUTING.md) | Quy trình làm việc Repo và kỳ vọng PR |
+| 🧾 [Quy trình PR kỹ năng](docs/contributors/SKILL-PR-WORKFLOW.md) | Tiếp nhận bản địa, xử lý nâng cao, kỳ vọng của người đánh giá |
+| 📄 [Mẫu kỹ năng](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` với cấu trúc và vật chất cơ bản |
+| 🔬 [Giải phẫu kỹ năng](docs/contributors/SKILL-ANATOMY.md) | Kỳ vọng về cơ cấu và chất lượng |
+| ✅ [Thanh chất lượng](docs/contributors/QUALITY-BAR.md) | Tiêu chí chấp nhận |
+| 🏆 [Playbook điểm cao](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Điều gì thúc đẩy điểm cao |---
 
 ## 🗂️ Repository Layout
 
-| Path | Purpose |
-|:-----|:--------|
-| 📂 `skills/` | Canonical authored skills and native intake |
-| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
-| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
-| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
-| 📁 `data/` | Bundle definitions and static supporting data |
-| 🧠 `packages/catalog-core/` | Shared catalog runtime |
-| 🌐 `packages/server-api/` | Read-only HTTP API |
-| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
-| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
-| 🖥️ `tools/bin/` | CLI entrypoints |
-| 📚 `tools/lib/` | Installer and UI helpers |
-| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
+| Đường dẫn | Mục đích |
+|:------|:--------|
+| 📂 `kỹ năng/` | Kỹ năng tác giả Canonical và tiếp thu bản địa |
+| ✨ `skills_omni/` | Các dẫn xuất nâng cao được quản lý bởi Omni |
+| 📖 `tài liệu/` | Tài liệu về người dùng, người đóng góp, kiến ​​trúc, hoạt động và thông số kỹ thuật |
+| 📦 `quận/` | Các bảng kê khai, gói, danh mục và kho lưu trữ đã được tạo |
+| 📁 `dữ liệu/` | Định nghĩa gói và dữ liệu hỗ trợ tĩnh |
+| 🧠 `gói/catalog-core/` | Thời gian chạy danh mục được chia sẻ |
+| 🌐 `gói/server-api/` | API HTTP chỉ đọc |
+| 🔌 `gói/server-mcp/` | Máy chủ MCP và xe sidecar cục bộ |
+| 🤖 `gói/server-a2a/` | Thời gian chạy A2A và điều phối tác vụ |
+| 🖥️ `công cụ/thùng/` | Điểm vào CLI |
+| 📚 `công cụ/lib/` | Trình trợ giúp trình cài đặt và giao diện người dùng |
+| ⚙️ `công cụ/tập lệnh/` | Các tập lệnh xác thực, tạo, phát hành và kiểm tra |
 
-> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
-
----
+>**ℹ️**`dist/` được tạo phiên bản có chủ ý vì các tạo phẩm được tạo là một phần của hợp đồng cài đặt, API, MCP, A2A, smoke và phát hành.---
 
 ## 🤝 Contributing
 
-Omni Skills accepts native upstream skill intake under `skills/`.
+Omni Skills chấp nhận việc tiếp thu kỹ năng ngược dòng gốc theo `skills/`.
 
-| Rule | Details |
-|:-----|:--------|
-| 📥 Native intake | May be rough, authored in any language |
-| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
-| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
-| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
+| Quy tắc | Chi tiết |
+|:------|:--------|
+| 📥 Tiếp thu bản địa | Có thể thô, được viết bằng bất kỳ ngôn ngữ nào |
+| ✨ Đầu ra được tuyển chọn | `skills_omni/` dành riêng cho các dẫn xuất Omni được tạo tự động hóa |
+| 🚫 Chỉnh sửa thủ công | Các chỉnh sửa thủ công công khai đối với `skills_omni/` bị từ chối |
+| 🔄 Tái chế | Công cụ tăng cường riêng tư xử lý lại các thay đổi gốc và làm mới đường cơ sở được quản lý |
 
-> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
-
----
+> 📖**Bắt đầu với:**[Hướng dẫn đóng góp](CONTRIBUTING.md) · [Quy trình PR kỹ năng](docs/contributors/SKILL-PR-WORKFLOW.md)---
 
 ## 📄 License
 
-| Type | License |
-|:-----|:--------|
-| 💻 Code and tooling | [MIT License](LICENSE) |
-| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
-
----
+| Loại | Giấy phép |
+|:------|:--------|
+| 💻 Mã và công cụ | [Giấy phép MIT](GIẤY PHÉP) |
+| 📝 Nội dung tài liệu và kỹ năng | [CC BY 4.0](NỘI DUNG GIẤY PHÉP) |---
 
 <div align="center">
 
-**Made with 🧠 by the Omni Skills Team**
+**Được tạo bởi 🧠 bởi Nhóm Kỹ năng Omni**
 
-[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
-
-</div>
+[⭐ Gắn dấu sao cho kho lưu trữ này](https://github.com/diegosouzapw/omni-skills) · [🐛 Báo cáo lỗi](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Thảo luận](https://github.com/diegosouzapw/omni-skills/discussions)</div>

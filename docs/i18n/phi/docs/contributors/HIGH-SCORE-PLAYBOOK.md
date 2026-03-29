@@ -5,83 +5,71 @@
 ---
 
 
-> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
-
----
+>**Ano ang kailangan ng Omni Skills `SKILL.md` sa pagsasanay upang maabot ang mataas na maturity, pinakamahusay na kasanayan, kalidad, at mga marka ng seguridad.**---
 
 ## 🎯 Purpose
 
-This guide explains how the repository's classifier actually rewards a skill.
+Ipinapaliwanag ng gabay na ito kung paano aktwal na ginagantimpalaan ng classifier ng repositoryo ang isang kasanayan.
 
-Use it when you want to:
+Gamitin ito kapag gusto mong:
 
-- author a new skill that lands in the top scoring bands
-- improve an existing skill that is stuck in `good` or low `excellent`
-- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
+- may-akda ng isang bagong kasanayan na dumarating sa nangungunang mga banda ng pagmamarka
+- pagbutihin ang isang umiiral na kasanayan na natigil sa `mahusay` o mababang `mahusay`
+- unawain kung bakit ang isang kasanayang may disenteng pag-format ay hindi pa rin nagmamarka bilang isang pambihirang asset sa pagpapatakbo
 
-This is the contributor-facing companion to:
+Ito ang kasamang nakaharap sa contributor sa:
 
 - [Quality Bar](QUALITY-BAR.md)
 - [Skill Anatomy](SKILL-ANATOMY.md)
-- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
+- [Pag-uuri ng Kasanayan](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+Kasalukuyang benchmark para sa live na catalog:
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
-- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
-
----
+- 32 nai-publish na mga kasanayan
+- kasalukuyang pagkalat ng kalidad: `94, 95, 96, 97, 100`
+- kasalukuyang pinakamahuhusay na kagawian na kumakalat: `98, 99, 100`
+- kasalukuyang nangungunang dulo: `omni-figma` sa `100/100` na kalidad at `100/100` na pinakamahusay na kagawian---
 
 ## 🧱 What High Scores Really Mean
 
-The classifier does **not** reward pretty markdown alone.
+Ang classifier ay**hindi**nagbibigay ng magandang markdown nang mag-isa.
 
-High-scoring skills are skills that are:
+Ang mga kasanayang may mataas na marka ay mga kasanayan na:
 
-- **discoverable**: the description clearly says what the skill does and when to use it
-- **operational**: the skill includes local scripts, references, and runnable examples
-- **diagnostic**: it helps the agent recover when things go wrong
-- **specific**: it is focused on one workflow, not broad advice
-- **safe**: it avoids risky patterns and ships clean scanner output
+-**natutuklasan**: malinaw na sinasabi ng paglalarawan kung ano ang nagagawa ng kasanayan at kung kailan ito gagamitin
+-**operational**: kasama sa kasanayan ang mga lokal na script, reference, at runnable na halimbawa
+-**diagnostic**: tinutulungan nito ang ahente na makabawi kapag nagkamali
+-**specific**: ito ay nakatutok sa isang workflow, hindi malawak na payo
+-**ligtas**: iniiwasan nito ang mga mapanganib na pattern at nagpapadala ng malinis na output ng scanner
 
-In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
-
----
+Sa pagsasagawa, ang pinakamalakas na kasanayan ay kumikilos nang higit na parang isang**maliit na nakabalot na workflow kit**kaysa sa isang simpleng markdown note.---
 
 ## 📋 Score Targets
 
-Use these targets when authoring:
+Gamitin ang mga target na ito kapag nag-akda:
 
-| Dimension | Strong Target | Exceptional Target |
+| Dimensyon | Malakas na Target | Pambihirang Target |
 |:----------|:--------------|:-------------------|
-| 🎯 Maturity | `L3` | `L3` with multiple support resources |
-| 📋 Best Practices | `90+` | `96+` |
-| ⭐ Quality | `85+` | `90+` |
-| 🛡️ Security | `95+` | `95+` with zero findings |
-
----
+| 🎯 Maturity | `L3` | `L3` na may maraming mapagkukunan ng suporta |
+| 📋 Pinakamahuhusay na Kasanayan | `90+` | `96+` |
+| ⭐ Kalidad | `85+` | `90+` |
+| 🛡️ Seguridad | `95+` | `95+` na may zero na natuklasan |---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Your frontmatter should make the skill easy to classify and easy to discover:
+Dapat gawing madaling uriin at madaling matuklasan ng iyong frontmatter ang kasanayan:
 
-- `name` matches the directory exactly
-- `description` explains both **what** and **when**
-- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
+- Ang `pangalan` ay eksaktong tumutugma sa direktoryo
+- Ipinapaliwanag ng `paglalarawan` ang parehong**ano**at**kailan**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, at mga petsa ay naroroon lahat
 
-Good description shape:
-
-```yaml
+Magandang paglalarawan ng hugis:```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bad description shape:
-
-```yaml
+Hindi magandang hugis ng paglalarawan:```yaml
 description: "Helps with databases."
 ```
 
@@ -89,35 +77,31 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-The strongest skills consistently include these sections:
+Ang pinakamalakas na kasanayan ay patuloy na kinabibilangan ng mga seksyong ito:
 
-- `## Overview`
-- `## When to Use This Skill`
-- `## Workflow`
-- `## Examples`
-- `## Best Practices`
-- `## Troubleshooting`
-- `## Additional Resources`
+- `## Pangkalahatang-ideya`
+- `## Kailan Gagamitin ang Kakayahang Ito`
+- `## Daloy ng Trabaho`
+- `## Mga Halimbawa`
+- `## Pinakamahuhusay na Kasanayan`
+- `## Pag-troubleshoot`
+- `## Karagdagang Mga Mapagkukunan`
 
-If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
-
----
+Kung nawawala ang isa sa mga ito, maaari pa ring maging maganda ang marka, ngunit nagiging mas mahirap na magmukhang katangi-tangi.---
 
 ### 3. Runnable Local Support
 
-Top-scoring skills usually include:
+Ang mga kasanayan sa nangungunang pagmamarka ay karaniwang kinabibilangan ng:
 
-- `references/checklist.md`
-- one or more helper scripts in `scripts/`
-- at least one worked example in `examples/`
-- `agents/openai.yaml` when the skill is intended for direct agent invocation
-- direct links from `SKILL.md` to those local files
+- `mga sanggunian/checklist.md`
+- isa o higit pang helper script sa `scripts/`
+- hindi bababa sa isang nagtrabahong halimbawa sa `mga halimbawa/`
+- `agents/openai.yaml` kapag ang kasanayan ay inilaan para sa direktang pagtawag sa ahente
+- mga direktang link mula sa `SKILL.md` sa mga lokal na file
 
-This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
+Mahalaga ito dahil itinuturing ng classifier ang isang kasanayan na may**naka-bundle na materyal ng suporta**bilang mas naaaksyunan kaysa sa isa na tumuturo lamang palabas.
 
-Recommended minimum:
-
-```text
+Inirerekomendang minimum:```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -134,22 +118,18 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-High-scoring examples are:
+Ang mga halimbawa ng mataas na marka ay:
 
-- concrete
-- typed with a real fence such as `bash` or `python`
-- tied to a local script or repeatable command
-- representative of the workflow
+- kongkreto
+- nai-type gamit ang totoong bakod gaya ng `bash` o `python`
+- nakatali sa isang lokal na script o repeatable command
+- kinatawan ng daloy ng trabaho
 
-Good:
-
-```bash
+mabuti:```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Weak:
-
-```text
+mahina:```text
 Ask the agent to help with your API.
 ```
 
@@ -157,20 +137,16 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
+Ang scorer ay nagbibigay ng gantimpala sa pag-troubleshoot na tumutulong sa isang ahente na mabawi, hindi lamang makilala ang isang problema.
 
-Preferred format:
-
-```md
+Gustong format:```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-This is stronger than a vague note like:
-
-```md
+Ito ay mas malakas kaysa sa hindi malinaw na tala tulad ng:```md
 If the result is bad, add more detail.
 ```
 
@@ -178,50 +154,46 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
+Tinutukoy na ngayon ng classifier ang pagitan ng isang kasanayang kumpleto lamang at isa na talagang malalim.
 
-Signals that help:
+Mga signal na makakatulong:
 
-- multiple concrete examples
-- multiple troubleshooting cases
-- related-skill guidance
-- richer reference packs
-- a visible `## Workflow` section with numbered steps the scorer can count directly
-- at least one operational table or execution map where it clarifies the workflow
-- more than one support directory or asset type
-- workflow sections with enough steps to guide execution
-- decision assets such as checklists, rubrics, matrices, packets, or playbooks
-- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
-- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
-- more than a single helper file when the workflow is complex enough to justify a support pack
-- enough body depth to cover tradeoffs and failure modes
-- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
+- maramihang mga konkretong halimbawa
+- maramihang mga kaso sa pag-troubleshoot
+- gabay na may kaugnayan sa kasanayan
+- mas mayamang reference pack
+- isang nakikitang seksyong `## Workflow` na may bilang na mga hakbang na direktang mabibilang ng scorer
+- kahit man lang isang operational table o execution map kung saan nililinaw nito ang workflow
+- higit sa isang direktoryo ng suporta o uri ng asset
+- mga seksyon ng daloy ng trabaho na may sapat na mga hakbang upang gabayan ang pagpapatupad
+- mga asset ng desisyon gaya ng mga checklist, rubrics, matrice, packet, o playbook
+- mas malakas na pagkakaiba-iba ng support-pack sa mga `reference/`, `script/`, `agents/`, `examples/`, o `assets/`
+- sapat na magagamit muli na mga file ng suporta upang magmukhang isang kit, walang isang katulong na nakatago sa tabi ng markdown
+- higit sa isang file ng helper kapag ang daloy ng trabaho ay sapat na kumplikado upang bigyang-katwiran ang isang support pack
+- sapat na lalim ng katawan upang masakop ang mga tradeoff at mga mode ng pagkabigo
+- mas siksik na patnubay sa pagpapatakbo, dahil ang scorer ay nakikilala na ngayon ang pinakintab na pag-format mula sa tunay na magagamit muli na lalim ng daloy ng trabaho
 
-Signals that do **not** help much:
+Mga signal na**hindi**nakakatulong nang malaki:
 
-- repeating the same instruction in different words
-- generic filler text
-- adding headings without adding substance underneath them
-
----
+- pag-uulit ng parehong pagtuturo sa iba't ibang salita
+- generic na filler text
+- pagdaragdag ng mga heading nang walang pagdaragdag ng substance sa ilalim ng mga ito---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use this checklist before running validation:
+Gamitin ang checklist na ito bago patakbuhin ang pagpapatunay:
 
-- description says **what** and **when**
-- the skill is focused on one workflow
-- `## Workflow` exists and contains numbered or bulleted steps
-- at least one runnable example exists
-- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
-- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
-- troubleshooting uses `Symptoms` and `Solution`
-- the skill can reasonably be classified as `L3`
-- no risky commands or suspicious paths are present
+- ang paglalarawan ay nagsasabing**ano**at**kailan**
+- ang kasanayan ay nakatuon sa isang daloy ng trabaho
+- Umiiral ang `## Workflow` at naglalaman ng mga may numero o naka-bullet na hakbang
+- mayroon man lang isang runnable na halimbawa
+- Ang `mga sanggunian/`, `mga script/`, at pinakamainam na `mga halimbawa/` ay naka-link mula sa `SKILL.md`
+- Umiiral ang `agents/openai.yaml` kapag ang kasanayan ay para sa direktang invocation sa mga kliyenteng ahente
+- Ang pag-troubleshoot ay gumagamit ng `Mga Sintomas` at `Solusyon`
+- ang kasanayan ay maaaring makatwirang maiuri bilang `L3`
+- walang mga mapanganib na utos o kahina-hinalang landas
 
-Then run:
-
-```bash
+Pagkatapos ay tumakbo:```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -230,19 +202,17 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- the description is correct but too generic
-- the markdown has sections but no operational depth
-- examples do not point to local helpers
-- troubleshooting exists but is not diagnostic
-- there are too few tags or tool identifiers
-- the skill is safe and clean but still too shallow to count as exceptional
-
----
+- tama ang paglalarawan ngunit masyadong generic
+- may mga seksyon ang markdown ngunit walang lalim ng pagpapatakbo
+- ang mga halimbawa ay hindi tumuturo sa mga lokal na katulong
+- umiiral ang pag-troubleshoot ngunit hindi diagnostic
+- masyadong kakaunti ang mga tag o tool identifier
+- ang kasanayan ay ligtas at malinis ngunit napakababaw pa rin upang mabilang na katangi-tangi---
 
 ## 🧭 Practical Rule
 
-If your skill feels like:
+Kung ang iyong kakayahan ay parang:
 
-- a **template**: it may pass
-- a **guide**: it may score well
-- a **workflow package**: it is much more likely to score at the top
+- isang**template**: maaaring pumasa ito
+- isang**gabay**: maaari itong makakuha ng mahusay
+- isang**workflow package**: ito ay mas malamang na makakuha ng puntos sa tuktok

@@ -5,20 +5,16 @@
 ---
 
 
-> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
-
----
+>**Telepítsen képességeket, ellenőrizze a beállításokat, és 2 percen belül előhívja első AI-készségét.**---
 
 ## 📊 Current Catalog Status
 
-| Metric | Value |
+| Metrikus | Érték |
 |:-------|:------|
-| Published skills | **32** across 15 active categories including architecture, design, security, DevOps, AI-engineering, and more |
-| Defined bundles | **7** (all fully backed by published skills) |
-| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP config-capable clients | **16** across 33 first-class MCP config targets |
-
----
+| Megjelent készségek |**32**15 aktív kategóriában, beleértve az építészetet, a tervezést, a biztonságot, a DevOps-t, a mesterséges intelligencia-tervezést és egyebeket |
+| Meghatározott kötegek |**7**(mindegyik teljes mértékben alátámasztja a közzétett készségeket) |
+| Telepíthető kliensek |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP konfigurálható ügyfelek |**16**33 első osztályú MCP konfigurációs célon |---
 
 ## 📦 Step 1 — Install
 
@@ -28,21 +24,15 @@
 npx omni-skills
 ```
 
-In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
-
-### 🖥️ Visual Shell
+Egy interaktív terminálban ez most megnyitja az irányított telepítőt, ahelyett, hogy csendben klienst feltételezne.### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
+Ez megnyitja a márkás terminálközpontot a telepítéshez, a felderítéshez, az MCP-hez, az API-hoz és az A2A-indításhoz.### 🎯 Default Install (Antigravity Outside TTY)
 
-### 🎯 Default Install (Antigravity Outside TTY)
-
-Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
-
-### 🖱️ Focused Install — One Skill, One Client
+A TTY-n kívül a no-arg telepítő továbbra is alapértelmezés szerint a `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -65,9 +55,7 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
-
-### 🎛️ Multiple Targets at Once
+> ✅ Az indítócsomagok most már teljesen támogatottak, beleértve a "devops" és az "ai-engineer".### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -77,9 +65,7 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Check that skills landed in the right place:
-
-```bash
+Ellenőrizze, hogy a készségek a megfelelő helyre kerültek-e:```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -96,9 +82,7 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Or use the built-in diagnostics:
-
-```bash
+Vagy használja a beépített diagnosztikát:```bash
 npx omni-skills doctor
 ```
 
@@ -124,15 +108,11 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
-
-```bash
+Fájlrendszer-eszközöket biztosít az ügynököknek a kliensek észleléséhez, a telepítéshez/eltávolításhoz, valamint az MCP-konfigurációk írásához:```bash
 npx omni-skills mcp stream --local
 ```
 
-You can also configure MCP for clients that are not skill-install targets:
-
-```bash
+Az MCP-t olyan ügyfelek számára is beállíthatja, amelyek nem készségszintű telepítési célok:```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -140,17 +120,13 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Exposes the skill catalog as a read-only HTTP API:
-
-```bash
+A készségkatalógust csak olvasható HTTP API-ként teszi közzé:```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
-
-```bash
+Ügynökök közötti felderítés, ajánlás, telepítés tervezés, lekérdezés és adatfolyam:```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -158,24 +134,22 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
+A készség egy strukturált leértékelési útmutató (`SKILL.md`), amely egy AI-ügynököt ad:
 
-| Component | Purpose |
+| Alkatrész | Cél |
 |:----------|:--------|
-| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
-| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
-| 📚 **References** | Supporting docs the agent can consult during execution |
-| 🎨 **Assets** | Icons, images, or other packaged resources |
-
----
+| 📋**Frontmatter**| Géppel olvasható metaadatok (név, kategória, címkék, eszközök, kockázat) |
+| 📝**Body**| Feladatspecifikus utasítások, lépések, korlátok és példák |
+| 📚**Referenciák**| Támogató dokumentumok, amelyeket az ügynök a végrehajtás során tekinthet meg |
+| 🎨**Eszközök**| Ikonok, képek vagy egyéb csomagolt források |---
 
 ## ➡️ Next Steps
 
-| Doc | What You'll Learn |
-|:----|:------------------|
-| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
-| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
-| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
-| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
-| 📖 [Documentation Hub](../README.md) | Full documentation map |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| Doc | Mit fogsz tanulni |
+|:----|:-------------------|
+| 🧭 [CLI felhasználói útmutató](CLI-USER-GUIDE.md) | Teljes parancsreferencia a telepítéshez, a futtatáshoz, a konfigurációhoz és a diagnosztikához |
+| 📗 [Használati útmutató](USAGE.md) | Minden CLI-parancs, prompt-minta és futási mód |
+| 📦 [Csomagok](BUNDLES.md) | Felügyelt készséggyűjtemények és elérhetőségük |
+| 📚 [Katalógus](../CATALOG.md) | A közzétett készségek automatikusan generált katalógusa |
+| 📖 [Documentation Hub](../README.md) | Teljes dokumentációs térkép |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Működési referencia |

@@ -5,62 +5,54 @@
 ---
 
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+>**Minimálne požiadavky a odporúčania pre zručnosť, ktorá sa má prijať do úložiska Omni Skills.**
 
-For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+Pokyny pre tvorbu zamerané špecificky na skóre najlepších kapiel nájdete v [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Current benchmark for the published catalog:
+Aktuálny benchmark pre publikovaný katalóg:
 
-- 32 published skills
-- average quality score `96.3`
-- average best-practices score `98.7`
-- average security score `95.0`
-
----
+- 32 publikovaných zručností
+- priemerné skóre kvality `96,3`
+- priemerné skóre najlepších postupov `98,7`
+- priemerné skóre bezpečnosti `95,0`---
 
 ## 🔒 Required (Must Pass)
 
-| # | Requirement | How to Verify |
+| # | Požiadavka | Ako overiť |
 |:--|:------------|:--------------|
-| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
-| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
-| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
-| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
-| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
-| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
-
----
+| 1️⃣ |**Platný frontmatter**| `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ |**Jasný popis**| Jeden riadok musí vysvetľovať, čo zručnosť robí (10+ znakov) |
+| 3️⃣ |**Názov zodpovedá adresáru**| Pole `name:` ​​presne zodpovedá názvu priečinka |
+| 4️⃣ |**Prehľadová časť**| Krátke vysvetlenie účelu v zrážkovom orgáne |
+| 5️⃣ |**Sekcia Kedy použiť**| Aspoň 2 špecifické scenáre použitia |
+| 6️⃣ |**Postupné pokyny**| Obsah krok za krokom, ktorý môže agent AI spustiť |
+| 7️⃣ |**Vygenerované metadáta**| Validátor úspešne vygeneruje `skills/<skill>/metadata.json` |---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Recommendation | Score Impact |
+| # | Odporúčanie | Vplyv skóre |
 |:--|:---------------|:-------------|
-| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
-| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
-| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
-| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
-| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
-| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
-| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
-
----
+| 8️⃣ |**Príklady**— aspoň jeden konkrétny príklad s očakávaným výstupom | 📈 Kvalita +10-15 |
+| 9️⃣ |**Osvedčené postupy**— ✅ Robiť / ❌ Neuvádzať | 📈 Najlepšie postupy +5 |
+| 🔟 |**Testované pomocou nástroja**– overené aspoň jedným asistentom kódovania AI | 📈 Kvalita +5 |
+| 1️⃣1️⃣ |**Značky**— relevantné vyhľadávateľné značky na objavenie | 📈 Najlepšie postupy +10 |
+| 1️⃣2️⃣ |**Kategória**– priradená k jednej kanonickej kategórii | 📈 Najlepšie postupy +10 |
+| 1️⃣3️⃣ |**Odstraňovanie problémov**– konkrétne pokyny k „príznakom“ a „riešeniu“ | 📈 Najlepšie postupy +5-10 |
+| 1️⃣4️⃣ |**Miestne podporné prostriedky**— `odkazy/`, `skripty/` a ideálne `príklady/` prepojené zo zručnosti | 📈 Najlepšie postupy +10 |
+| 1️⃣5️⃣ |**Zdravá klasifikácia**– zrelosť L3, kvalita 85+, osvedčené postupy 90+ | 📈 Celková úroveň |
+| 1️⃣6️⃣ |**Žiadne kritické bezpečnostné zistenia**— statický skener prejde čistým | 🛡️ Bezpečnosť 100 |---
 
 ## ❌ Reasons for Rejection
 
-| Issue | Why |
+| Vydanie | Prečo |
 |:------|:----|
-| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
-| ❌ Name doesn't match directory | Breaks catalog generation |
-| ❌ Empty or trivially short description | Users can't discover the skill |
-| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
-| ❌ Duplicate without clear improvement | Add value, don't clone |
-| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
-| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
-
----
+| ❌ Chýbajúci alebo neplatný frontmatter | Prerušenia overovacieho potrubia |
+| ❌ Názov sa nezhoduje s adresárom | Prestávky na generovanie katalógu |
+| ❌ Prázdny alebo triviálne krátky popis | Používatelia nemôžu objaviť zručnosť |
+| ❌ Žiadny akčný obsah (iba odkazy alebo útržky) | Agenti nemôžu nič vykonať |
+| ❌ Duplikát bez jasného zlepšenia | Pridajte hodnotu, neklonujte |
+| ❌ Urážlivý obsah bez značky `riziko: urážlivý` | Bezpečnosť a súlad |
+| ❌ Kritické bezpečnostné zistenia | Rýchla exfiltrácia, deštruktívne príkazy atď. |---
 
 ## 🧪 Verify Locally
 
@@ -80,27 +72,25 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Excellent | Good | Needs Work |
+| Rozmer | Vynikajúce | Dobrý | Potrebuje prácu |
 |:----------|:----------|:-----|:-----------|
-| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
-| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
-| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
-| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
-
----
+| ⭐**Kvalita**| 80+ (platina) | 60-79 (zlato/striebro) | <60 (bronz/štartér) |
+| 📋**Osvedčené postupy**| 90+ (výborne) | 70-89 (dobré) | <70 (spravodlivá práca/práca podľa potrieb) |
+| 🛡️**Bezpečnosť**| 95+ (kalené) | 80-94 (zabezpečené) | <80 (potrebná kontrola) |
+| 🎯**Dospelosť**| L3 (skriptá+testy) | L2 (návod) | L1 (iba metaúdaje) |---
 
 ## 🧭 What High Scores Require
 
-To reach the top band consistently, a skill should include:
+Ak chcete neustále dosahovať najvyššie pásmo, zručnosť by mala zahŕňať:
 
-- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
-- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
-- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
-- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
-- a small operational table or equivalent execution map when the workflow benefits from it
-- at least one runnable example that points to a local helper script or repeatable command
-- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
-- enough depth to qualify as `L3`, not just well-formatted prose
-- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
-- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
-- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently
+- silný popis frontmattera, ktorý vysvetľuje**čo**daná zručnosť robí a**kedy**by sa mala použiť
+- explicitné sekcie pre „Kedy použiť“, „Pracovný postup“, „Príklady“, „Osvedčené postupy“, „Riešenie problémov“ a „Ďalšie zdroje“
+- miestny podporný materiál pod `references/`, `scripts/` a ideálne `examples/`, prepojený priamo z `SKILL.md`
+- metadáta agenta pod `agents/openai.yaml`, keď sa má zručnosť vyvolať priamo v klientoch agentov
+- malá operačná tabuľka alebo ekvivalentná mapa vykonávania, keď to pracovný tok využíva
+- aspoň jeden spustiteľný príklad, ktorý ukazuje na lokálny pomocný skript alebo opakovateľný príkaz
+- Riešenie problémov napísané ako "Príznaky" plus "Riešenie", nie všeobecné upozornenia
+- dostatočná hĺbka na to, aby sa dal kvalifikovať ako „L3“, nie len dobre naformátovaná próza
+- väčšia hĺbka pracovného toku, možnosti rozhodovania a rozmanitosť balíkov podpory, ak chcete špičkovú kvalitu
+- podporný balík, ktorý je dostatočne hlboký na to, aby bol opakovane použiteľný, nielen na pokrytie začiarkavacích políčok
+- aspoň 4 zmysluplné podporné rodiny alebo ekvivalentnú hĺbku v opakovane použiteľných súboroch, ak chcete, aby bol horný pás konzistentný

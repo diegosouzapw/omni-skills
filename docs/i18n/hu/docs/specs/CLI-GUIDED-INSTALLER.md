@@ -5,169 +5,137 @@
 ---
 
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
-
----
+>**Viselkedési szerződés az Omni Skills CLI irányított telepítési tapasztalataira.**---
 
 ## 1. Scope
 
-This spec defines the guided install behavior that sits on top of the existing installer backend.
+Ez a specifikáció határozza meg az irányított telepítési viselkedést, amely a meglévő telepítői háttér tetején található.
 
-It does not replace:
+Nem helyettesíti:
 
 - `tools/bin/install.js`
-- current expert flag flows
-- selective install manifests
+- aktuális szakértői zászló folyik
+- szelektív telepítési manifesztek
 
-It defines:
+Meghatározza:
 
-- how guided mode is entered
-- how destinations are chosen
-- how install scope is chosen
-- what preview information must be displayed
-- how confirmation and execution work
-
----
+- hogyan lép be az irányított módba
+- hogyan választják ki az úti célokat
+- a telepítési hatókör kiválasztása
+- milyen előnézeti információkat kell megjeleníteni
+- hogyan működik a megerősítés és a végrehajtás---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-The CLI should enter guided install mode when:
+A CLI-nek irányított telepítési módba kell lépnie, ha:
 
-- the user runs `omni-skills` with no args in a TTY
-- the user runs `omni-skills install` with no selectors in a TTY
+- a felhasználó "omni-skills"-t futtat arg nélkül a TTY-ben
+- a felhasználó futtatja a "minden készségek telepítését" választó nélkül a TTY-ben### 2.2 Forced Guided Entry
 
-### 2.2 Forced Guided Entry
+A CLI-nek az explicit irányított módot is támogatnia kell egy dedikált opción keresztül, például:
 
-The CLI should also support explicit guided mode through a dedicated option, such as:
+- "Omni-skills install --guided".
 
-- `omni-skills install --guided`
+Ennek a módnak akkor is működnie kell, ha a bemenet vezetékes, és nincs TTY-hez csatlakoztatva, mindaddig, amíg elérhető a szabványos bemenet.### 2.3 Non-Interactive Safety Rule
 
-This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
+TTY nélkül és kifejezetten kért irányított mód nélkül:
 
-### 2.3 Non-Interactive Safety Rule
-
-When invoked without a TTY and without guided mode explicitly requested:
-
-- preserve the current default behavior
-- do not block waiting for prompts
-
----
+- megőrzi a jelenlegi alapértelmezett viselkedést
+- ne tiltsa le a felszólításokra való várakozást---
 
 ## 3. Destination Model
 
-Guided install must support two destination classes:
+Az irányított telepítésnek támogatnia kell két célosztályt:### 3.1 Known Client Target
 
-### 3.1 Known Client Target
+Minden ismert cél a következőképpen alakul:
 
-Each known target resolves to:
+- ember által olvasható címke
+- belső szerszámazonosító
+- zászló telepítése
+- megoldott út
 
-- human-readable label
-- internal tool id
-- install flag
-- resolved path
-
-Required known targets:
+Szükséges ismert célok:
 
 - Claude Code
-- Cursor
+- Kurzor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravity
-- OpenCode
+- Antigravitáció
+- OpenCode### 3.2 Custom Path Target
 
-### 3.2 Custom Path Target
+Az egyéni útvonal módnak:
 
-Custom path mode must:
-
-- prompt for a path
-- resolve `~`
-- normalize to absolute path
-- show the resolved path in preview
-
----
+- ösvény megadása
+- oldja meg a `~`
+- normalizálás abszolút útvonalra
+- a megoldott útvonal megjelenítése az előnézetben---
 
 ## 4. Install Scope Model
 
-Guided install must support:
+Az irányított telepítésnek támogatnia kell:### 4.1 Full Library
 
-### 4.1 Full Library
+Egyenértékű a jelenlegi telepítéssel „--skill” vagy „--bundle” nélkül.### 4.2 Single Skill
 
-Equivalent to current install with no `--skill` or `--bundle`.
+Lehetővé teszi a felhasználó számára, hogy válasszon egy közzétett képességet.### 4.3 Single Bundle
 
-### 4.2 Single Skill
+Lehetővé teszi a felhasználó számára, hogy válasszon egy kiválasztott csomagot, és feloldja a közzétett tagokat.### 4.4 Search Then Install
 
-Lets the user select one published skill.
+Lehetővé teszi a felhasználó számára:
 
-### 4.3 Single Bundle
-
-Lets the user select one curated bundle and resolves published members.
-
-### 4.4 Search Then Install
-
-Lets the user:
-
-- enter a search query
-- inspect results
-- choose a skill or bundle
-- continue into install preview
-
----
+- írjon be egy keresési lekérdezést
+- vizsgálja meg az eredményeket
+- válasszon egy készséget vagy csomagot
+- folytassa a telepítés előnézetével---
 
 ## 5. Preview Contract
 
-Before execution, guided install must display:
+A végrehajtás előtt az irányított telepítésnek meg kell jelennie:
 
-- destination label
-- destination path
-- install scope
-- selected skill or bundle if applicable
-- equivalent CLI command
+- rendeltetési címke
+- cél útvonala
+- telepíteni hatókört
+- adott esetben kiválasztott készség vagy csomag
+- egyenértékű CLI parancs
 
-Optional but recommended:
+Nem kötelező, de ajánlott:
 
-- selected skill metadata summary
-- bundle availability summary
-
----
+- a kiválasztott készség metaadatainak összefoglalása
+- a csomag elérhetőségének összefoglalója---
 
 ## 6. Execution Contract
 
-After confirmation:
+Megerősítés után:
 
-- guided install delegates to the existing installer backend
-- it does not reimplement file writes itself
+- irányított telepítési delegáltak a meglévő telepítői háttérrendszerhez
+- nem újraimplementálja a fájl írja magát
 
-The command preview and the actual delegated installer args must match exactly.
-
----
+A parancs előnézetének és a tényleges delegált telepítőértékeknek pontosan meg kell egyeznie.---
 
 ## 7. Result Contract
 
-After successful execution, the guided install result should show:
+A sikeres végrehajtás után az irányított telepítés eredményének a következőnek kell lennie:
 
-- success indicator
-- final destination path
-- command that was executed
-- next recommended action
+- sikermutató
+- végső cél útvonala
+- végrehajtott parancs
+- következő javasolt művelet
 
-Example next actions:
+Példa a következő műveletekre:
 
-- use the skill in the selected client
-- run `doctor`
-- run `mcp stream --local`
-
----
+- használja a készséget a kiválasztott kliensben
+- fuss `doktor`
+- futtassa az `mcp stream --local` parancsot---
 
 ## 8. Compatibility Contract
 
-The following remain valid and unchanged:
+Az alábbiak érvényben maradnak és változatlanok:
 
 - `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
 - `omni-skills --path ./skills`
-- `omni-skills find figma --tool cursor --install --yes`
+- `minden készségek megtalálják a figma --tool cursor --install --yes`
 
-Guided mode adds behavior. It does not remove existing behavior.
+Az irányított mód viselkedést ad hozzá. Nem távolítja el a meglévő viselkedést.

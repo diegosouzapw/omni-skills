@@ -9,109 +9,91 @@
 
 ## 🚨 Reporting a Vulnerability
 
-> **If you discover a security issue in Omni Skills, do not open a public issue first.**
+>**Als u een beveiligingsprobleem ontdekt in Omni Skills, open dan niet eerst een openbaar probleem.**
 
-Please report through one of these private channels:
+Meld het via een van deze privékanalen:
 
-| Channel | How |
+| Kanaal | Hoe |
 |:--------|:----|
-| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direct Contact | Contact the maintainers directly |
+| 🔒 GitHub-beveiligingsadvies | [Open een privéadvies](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Direct contact | Neem rechtstreeks contact op met de beheerders |### 📋 Include in Your Report
 
-### 📋 Include in Your Report
+- 📁 Betrokken onderdeel of pad
+- 🔄 Reproductiestappen
+- ⚠️ Impactbeoordeling
+- 🧪 Al het proof-of-concept-materiaal dat nodig is om het probleem te verifiëren
 
-- 📁 Affected component or path
-- 🔄 Reproduction steps
-- ⚠️ Impact assessment
-- 🧪 Any proof-of-concept material needed to verify the issue
-
-> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
-
----
+>**⏱️ We streven ernaar meldingen binnen 48 uur te bevestigen**en prioriteit te geven aan oplossingen op basis van de impact.---
 
 ## 🎯 Scope
 
-This policy covers the repository's runtime and content surfaces:
+Dit beleid heeft betrekking op de runtime- en inhoudsoppervlakken van de repository:
 
-| Component | Path |
+| Onderdeel | Pad |
 |:----------|:-----|
-| 🖥️ CLI and installer | `tools/bin/` |
-| 📚 Shared libraries | `tools/lib/` |
-| ⚙️ Build and validation scripts | `tools/scripts/` |
-| 📦 Generated catalog artifacts | `dist/` |
-| 🌐 API, MCP, and A2A packages | `packages/` |
-| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
-
----
+| 🖥️ CLI en installatieprogramma | `tools/bin/` |
+| 📚 Gedeelde bibliotheken | `tools/lib/` |
+| ⚙️ Bouw- en validatiescripts | `tools/scripts/` |
+| 📦 Gegenereerde catalogusartefacten | `dist/` |
+| 🌐 API-, MCP- en A2A-pakketten | `pakketten/` |
+| 🧠 Vaardigheidsinhoud | `skills/` — vooral shell-opdrachten, netwerktoegang, inlogstromen of beveiligingsgevoelige begeleiding |---
 
 ## Architectuur
 
-The repository relies on the following security controls:
+De repository is afhankelijk van de volgende beveiligingsmaatregelen:### 🧠 Skill-Level Controls
 
-### 🧠 Skill-Level Controls
-
-| Control | Description |
+| Controle | Beschrijving |
 |:--------|:-----------|
-| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
-| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🏷️ Risicoveld | Metagegevens van vaardigheden bevatten een aangegeven 'risiconiveau' |
+| 📊 Scoren | Validatie berekent volwassenheid, best practices, kwaliteit en beveiligingsscores |
+| 🔍 Statische scanner | Inspecteert `SKILL.md`, verpakte bestanden en helperscripts |
+| 🦠 Optionele scanners | ClamAV en VirusTotal hash opzoeken (indien geconfigureerd) |### 🖥️ Runtime Controls
 
-### 🖥️ Runtime Controls
-
-| Control | Description |
+| Controle | Beschrijving |
 |:--------|:-----------|
-| 📁 Path safety | Install flows use path safety checks |
-| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
-| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
-| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
-| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+| 📁 Padveiligheid | Installatiestromen gebruiken padveiligheidscontroles |
+| 🔒 Toelatingslijst schrijft | Lokale MCP-zijspanschrijfbewerkingen worden beperkt door een toelatingslijst |
+| 👁️ Standaardwaarden voor drooglopen | Schrijfgerichte tools zijn standaard in de droogmodus, tenzij expliciet uitgeschakeld |
+| 🔐 Authenticatie en limieten | Verificatie via drager/API-sleutel, verificatie tijdens runtime van beheerder, snelheidsbeperking, CORS/IP-toelatingslijsten |
+| 📋 Controle | Auditregistratie, onderhoudsmodus en aanvraag-ID's |### 📦 Release Controls
 
-### 📦 Release Controls
-
-| Control | Description |
+| Controle | Beschrijving |
 |:--------|:-----------|
-| ✅ Checksum manifests | SHA-256 checksums for generated archives |
-| ✍️ Signatures | Detached signature verification in CI before publication |
-| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
-
----
+| ✅ Checksum-manifesten | SHA-256-controlesommen voor gegenereerde archieven |
+| ✍️ Handtekeningen | Vrijstaande handtekeningverificatie in CI vóór publicatie |
+| 🧪 Rookcontroles | Oefen verscheept runtime-oppervlakken vóór release |---
 
 ## 🔮 What Is Still Open
 
-> The main security work remaining is **not** baseline hardening. The open items are:
+> Het voornaamste resterende veiligheidswerk is**niet**het versterken van de basislijn. De openstaande posten zijn:
 
-| Area | Status |
+| Gebied | Staat |
 |:-----|:-------|
-| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
-| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
-| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
-
----
+| 🏢 Ondernemingsbestuur | Externe identiteit, gatewaybeleid en WAF-integratie boven de huidige controles tijdens het proces |
+| 🔌 MCP-clientschrijvers | Bredere schrijvers alleen als openbare configuratiecontracten stabiel genoeg zijn |
+| 📊 Scannerverfijning | Voortdurende verfijning zodat uitzonderlijke vaardigheden duidelijk gescheiden blijven van louter goed gestructureerde vaardigheden |---
 
 ## ⚠️ Risk Levels in Skills
 
-Each skill declares one of these `risk` levels:
+Elke vaardigheid geeft een van deze ‘risiconiveaus’ aan:
 
-| Risk Level | Meaning |
+| Risiconiveau | Betekenis |
 |:-----------|:--------|
-| 🟢 `safe` | No destructive operations expected |
-| 🟡 `caution` | May modify files or interact with external systems |
-| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
-| ⛔ `critical` | High-impact or system-level operations |
-
----
+| 🟢 `veilig` | Geen destructieve operaties verwacht |
+| 🟡 `let op` | Kan bestanden wijzigen of communiceren met externe systemen |
+| 🔴`beledigend` | Beveiligingstests of vijandige workflows waarvoor expliciete autorisatie vereist is |
+| ⛔ `kritisch` | Operaties met grote impact of op systeemniveau |---
 
 ## 📋 Disclosure Notes
 
-Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
+Omdat Omni Skills uitvoerbare helpers, bestandssysteembewuste lokale tools en klantspecifieke configuratieschrijvers levert, moeten deze kwetsbaarheidsklassen als**hoge prioriteit**worden behandeld, zelfs als ze "alleen lokaal" verschijnen:
 
-| Category | Examples |
+| Categorie | Voorbeelden |
 |:---------|:---------|
-| 📁 Path traversal | Directory escape via skill install or config paths |
-| 🔗 Symlink safety | Symlink following during install or archive extraction |
-| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
-| 📦 Archive verification | Bypass of checksum or signature verification |
-| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
-| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
-| 🦠 Scanner evasion | False-negative classes in static or external scanners |
+| 📁 Padovergang | Directory-escape via vaardigheidsinstallatie of configuratiepaden |
+| 🔗 Symlink veiligheid | Symlink volgt tijdens installatie of archiefextractie |
+| 🖥️Commando-uitvoering | Willekeurige commando-injectie via vaardigheidsinhoud of scripts |
+| 📦 Archiefverificatie | Omzeilen van controlesom of handtekeningverificatie |
+| 🔓 Verificatie omzeilen | Snelheidsbeperking of authenticatie omzeilen op API/MCP |
+| 🔌 Toelatingslijst omzeilen | Lokale zijspan-toelatingslijst omzeilen |
+| 🦠 Scannerontwijking | Vals-negatieve klassen in statische of externe scanners |
