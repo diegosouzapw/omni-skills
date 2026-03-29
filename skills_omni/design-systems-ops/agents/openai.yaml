@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Systems Ops"
+  short_description: "Review token, component, and design-system rollout changes before they drift or break consumers"
+  default_prompt: "Use $design-systems-ops to review token, component, and design-system rollout changes before they ship."

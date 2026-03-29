@@ -1,7 +1,7 @@
 <!-- omni-skills: version=0.1.2; skills=32; updated_at=2026-03-28 -->
 # 🧠 Omni Skills: Installable Agentic Skills, Runtime Surfaces, and Curated Enhancement
 
-> **Installable GitHub catalog of curated AI coding skills with a unified CLI, catalog API, MCP, A2A, and a private enhancement workflow that publishes curated English derivatives into `skills_omni/`.**
+> **Installable GitHub repository and catalog of curated AI coding skills with a unified CLI, catalog API, MCP, A2A, and a private enhancement workflow that publishes curated English derivatives into `skills_omni/`.**
 > Omni Skills keeps `SKILL.md` authoring, but it also ships the machine-readable catalog, archives, signatures, and protocol surfaces that let agents discover, compare, install, and operate those skills as a real product surface.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -15,7 +15,7 @@
 **Start here:** [Install in 1 minute](#installation) · [Choose your tool](#choose-your-tool) · [CLI User Guide](docs/users/CLI-USER-GUIDE.md) · [Bundles](docs/users/BUNDLES.md) · [Runtime Surfaces](#runtime-surfaces) · [Why Omni Skills](#why-omni-skills) · [skills_omni](#native-intake-and-curated-output)
 
 **Current release:** `v0.1.2`
-**Catalog today:** `32` published skills · `15` active categories · `7` fully backed bundles · `29` curated enhanced derivatives in `skills_omni/`
+**Catalog today:** `32` published skills · `15` active categories · `7` fully backed bundles · `32` curated enhanced derivatives in `skills_omni/`
 
 ---
 
@@ -66,7 +66,7 @@ It includes:
 - an A2A task runtime
 - a private enhancement pipeline that can publish curated English derivatives into `skills_omni/`
 
-This is why the project behaves differently from a plain “skills repo”: the repository is also the distribution and runtime layer.
+At the simplest level, Omni Skills is a public repository of reusable skills. What makes it different is that the repository is also the distribution and runtime layer.
 
 ### 2. Quick Start
 
@@ -149,7 +149,7 @@ If you want a smaller but more operationally useful library, that is the point o
 
 ## Compatibility and Invocation
 
-These skills follow the `SKILL.md` model and can be installed into multiple assistants. The public package currently supports **7 install-capable clients** and **16 config-capable clients** for MCP configuration.
+These skills follow the `SKILL.md` model and can be used as a normal repository of skills, but the public package also installs and configures them across a broad client surface. The current runtime supports **7 install-capable clients** and **16 config-capable clients** for MCP configuration.
 
 | Tool | Type | Invocation Example | Install Path |
 | :--- | :--- | :----------------- | :----------- |
@@ -174,6 +174,26 @@ The broader MCP config surface also supports:
 - Junie
 - Gemini user/workspace configs
 - Claude settings and desktop targets
+
+### Broader MCP configuration coverage
+
+These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
+
+| Client or Surface | Support Type | Notes |
+| :---------------- | :----------- | :---- |
+| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
+| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
+| Gemini | MCP config | User and workspace settings |
+| Cline | MCP config | First-class config target |
+| GitHub Copilot CLI | MCP config | User and repo config targets |
+| Continue | MCP config | Workspace YAML generation |
+| Windsurf | MCP config | User config target |
+| Zed | MCP config | Workspace config target |
+| Goose | MCP config | User config target with generated recipe |
+| Kilo Code | MCP config | User, project, and workspace targets |
+| Junie | MCP config | Project and user config targets |
+
+That broader surface is one of the main reasons Omni Skills reads more like a platform than a plain repository of markdown skills.
 
 ---
 
@@ -295,7 +315,7 @@ The current generated catalog contains:
 - `32` published skills
 - `15` active catalog categories
 - `7` fully backed bundles
-- `29` curated enhanced derivatives already mirrored into `skills_omni/`
+- `32` curated enhanced derivatives already mirrored into `skills_omni/`
 
 ### Current bundle availability
 

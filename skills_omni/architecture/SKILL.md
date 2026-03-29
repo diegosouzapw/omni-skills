@@ -22,7 +22,7 @@ tools:
 source: "omni-team"
 author: "Omni Skills Team"
 date_added: "2026-03-26"
-date_updated: "2026-03-28"
+date_updated: "2026-03-29"
 upstream_skill: "skills/architecture"
 upstream_author: "Omni Skills Team"
 upstream_source: "omni-team"

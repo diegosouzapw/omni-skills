@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Engineering"
+  short_description: "Design reliable context packets for prompts, memory, retrieval, and tools"
+  default_prompt: "Use $context-engineering to restructure the context packet and budget for this agent."

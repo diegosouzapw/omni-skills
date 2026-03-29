@@ -446,7 +446,7 @@ SECURITY_PATTERN_RULES = [
         "severity": "critical",
         "message": "Instruction attempts to reveal prompts, secrets, or hidden context.",
         "pattern": re.compile(
-            r"(reveal|print|dump|exfiltrat|leak).{0,40}(system prompt|hidden prompt|secret|api key|token|credentials?)",
+            r"(reveal|print|dump|exfiltrat|leak).{0,40}(system prompt|hidden prompt|secret|api key|credentials?|access token|bearer token|session token|refresh token|auth token)",
             re.IGNORECASE,
         ),
     },

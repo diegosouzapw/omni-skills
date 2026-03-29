@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accessibility Audit"
+  short_description: "Review keyboard, focus, semantics, contrast, and motion risks before shipping UI"
+  default_prompt: "Use $accessibility-audit to review this UI for keyboard flow, semantics, focus, contrast, and motion risks."
