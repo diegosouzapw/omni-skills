@@ -6,7 +6,7 @@
 
 ## 📊 Status
 
-✅ **Accepted** — Implemented and proven.
+✅ **Accepted** — current workspace direction and active repository shape.
 
 ---
 
@@ -76,7 +76,7 @@ The catalog core reads generated artifacts from:
 | # | Action | Status |
 |:--|:-------|:-------|
 | 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
-| 2️⃣ | Improved client-specific MCP config writing | ✅ Implemented for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
-| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Implemented with CI enforcement on release tags |
-| 4️⃣ | A2A task runtime → durable orchestration | ✅ Implemented with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
-| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Implemented for the current six curated starter bundles |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

@@ -12,31 +12,38 @@ Standard community files live in the repository root:
 
 | Area | State | Details |
 |:-----|:------|:--------|
-| 🏗️ **Runtime** | ✅ Complete | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
+| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
 | 📦 **Catalog** | 📌 32 skills | 32 published `L3` skills across 15 active catalog categories and 7 fully backed bundles |
-| 🎯 **Install** | ✅ Complete | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
-| 🌐 **API** | ✅ Complete | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
-| 🔌 **MCP** | ✅ Complete | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
-| 🤖 **A2A** | ✅ Implemented | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
-| 🛡️ **Security** | ✅ Complete | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
-| 📋 **Classification** | ✅ Complete | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
-| 📁 **Archives** | ✅ Complete | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
-| 🔐 **Signing** | ✅ Complete | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Complete | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
+| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
+| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
+| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
+| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
+| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
+| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
+| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
+| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
 
-## 🔭 Next Track
+## 🔭 Current Project State
 
-The current foundation backlog is complete, and the second category-expansion wave has now landed. The next planned public track is:
+The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
 
-- keep the public `v0.1.2` release baseline and the private `v0.0.1` enhancer baseline as the new stable floor
-- deepen the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks without lowering the current quality floor
-- avoid reopening dormant non-code-native categories until the new code-native tracks have real specialization depth
+- public `v0.1.2` and private `v0.0.1` are the current stable release floor
+- the catalog now covers 32 published skills across 15 active categories and 7 fully backed bundles
+- native intake and curated `skills_omni/` output are both operational, including multilingual native intake and English-only curated output
+- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+
+Future expansion stays deliberate:
+
+- deepen `design`, `tools`, `data-ai`, and `machine-learning`
+- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
 - keep the quality floor and enhancer review path intact while doing so
 
 That plan is now split into:
 
 - the completed first expansion wave in [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
 - the completed second expansion wave in [tasks/TASK-08-SECOND-CATEGORY-WAVE.md](tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
+- and the forward-looking backlog in [tasks/README.md](tasks/README.md)
 
 ---
 
@@ -67,7 +74,7 @@ Those decisions align with current official MCP and client documentation, includ
 | Doc | What You'll Learn |
 |:----|:------------------|
 | 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
-| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Complete command reference and real-world CLI usage patterns |
+| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
 | 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
 | 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
 | 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |

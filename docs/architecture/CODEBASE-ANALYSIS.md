@@ -94,9 +94,9 @@ The design is intentionally **artifact-driven**:
 
 The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-## 🧭 Next Expansion Direction
+## 🧭 Future Expansion Direction
 
-The public runtime is no longer blocked on foundational work, and the second category wave is now landed. The next useful catalog work is depth, not more category-count chasing.
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
 Newly activated code-native tracks now in the catalog:
 

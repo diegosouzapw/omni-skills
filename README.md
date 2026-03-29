@@ -40,7 +40,7 @@ Omni Skills is no longer only an installer.
 
 ## 📌 Current Status
 
-The runtime foundation is in place and the public catalog now fully backs every starter bundle with published skills.
+The runtime foundation is in place and the project now operates as a unified catalog, installer, protocol runtime, and release pipeline. The public catalog, installer flows, protocol surfaces, validation pipeline, and release automation all exist in the current repository state.
 
 - Published skills currently available: **32**
 - Current published skills span architecture, frontend, backend, design, documentation, security, DevOps, AI application, data, tools, and machine-learning workflows
@@ -49,30 +49,32 @@ The runtime foundation is in place and the public catalog now fully backs every 
 - The published npm package is also the default end-user entry point for installation, discovery, diagnostics, and service boot
 - Default install target with no flags: **Antigravity** at `~/.gemini/antigravity/skills`
 - MCP config coverage now spans **16 config-capable clients** across **33** first-class targets and **19** config profiles
+- Native intake under `skills/` can be multilingual, while curated output under `skills_omni/` is always rewritten and published in English
+- The private enhancer now reprocesses native skill updates and refreshes its enhanced baseline so curated output stays current
 
-The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the six curated starter bundles.
+The docs below reflect that shift directly: bundle installs no longer depend on roadmap placeholders for the current seven curated starter bundles.
 
 Native intake policy now intentionally differs from curated output:
 
 - `skills/` accepts rough native incoming skills, even when they are still incomplete
 - `skills_omni/` is the Omni-maintained enhanced surface proposed back by automation
 
-### What comes next
+### Current Project State
 
-The current foundation track is complete. The current release baseline is also closed:
+The current release baseline is active:
 
 - public runtime release `v0.1.2` is published and green in `Validate Skills`, `CodeQL`, and `Release and Publish`
 - private enhancer release `v0.0.1` is published and green in `Private Release`
 - the private scheduled/manual poller is green again after the state-persistence fix
 
-The next planned wave is narrower:
+Future work stays additive, not foundational:
 
 - deepen the newly active `design`, `tools`, `data-ai`, and `machine-learning` tracks without dropping the quality floor
 - keep the current category set selective rather than reopening dormant non-code-native buckets too early
 - keep the private enhancer on its formal operating model: `cx/gpt-5.4`, GitHub hosted in `mock` or degraded preflight mode, and reliable `live` on LAN or self-hosted execution
 - formalize the next public catalog wave as a multi-category implementation track, not ad hoc skill additions
 
-The implementation backlog for that next phase lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md), starting with [TASK-08-SECOND-CATEGORY-WAVE.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/TASK-08-SECOND-CATEGORY-WAVE.md).
+The implementation backlog for future expansion lives in [docs/tasks/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/tasks/README.md).
 
 ---
 
@@ -187,8 +189,8 @@ The `v*` tag workflow rebuilds the release with required antivirus gates, signs 
 
 When a merge to `main` changes:
 
-- `skills/**`
-- `skills_omni/**`
+- `skills/*/**`
+- `skills_omni/*/**`
 - or `data/bundles.json`
 
 the repo now computes the next package version automatically and publishes it.
@@ -253,10 +255,10 @@ Selective installs use the generated manifests and published artifacts from `dis
 
 | Surface | Status | What it does | Example |
 | :------ | :----- | :----------- | :------ |
-| **CLI** | Implemented | Find and install skills, run diagnostics, open the terminal UI, boot services, run smoke checks | `npx omni-skills doctor` |
-| **Catalog API** | Implemented | Read-only catalog, search, bundles, install plans, artifact downloads | `npx omni-skills api --port 3333` |
-| **MCP** | Implemented | Discovery, recommendation, install preview, optional local sidecar mode | `npx omni-skills mcp stream --local` |
-| **A2A** | Implemented | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, simple-first memory/JSON/SQLite persistence, and opt-in lease-aware recovery for shared workers | `npx omni-skills a2a --port 3335` |
+| **CLI** | Available | Find and install skills, run diagnostics, open the terminal UI, boot services, run smoke checks | `npx omni-skills doctor` |
+| **Catalog API** | Available | Read-only catalog, search, bundles, install plans, artifact downloads | `npx omni-skills api --port 3333` |
+| **MCP** | Available | Discovery, recommendation, install preview, optional local sidecar mode | `npx omni-skills mcp stream --local` |
+| **A2A** | Available | Task-aware discovery, install-plan handoff, polling, streaming, cancelation, push notifications, simple-first memory/JSON/SQLite persistence, and opt-in lease-aware recovery for shared workers | `npx omni-skills a2a --port 3335` |
 
 ### MCP Transports
 
@@ -308,7 +310,8 @@ Each skill also gets a generated `skills/<skill>/metadata.json` with:
 
 The current generated catalog contains:
 
-- `28` published skills in `dist/catalog.json`
+- `32` published skills in `dist/catalog.json`
+- `15` active catalog categories
 - installable skill bundles for planning, download, MCP, and A2A handoff
 - curated bundle definitions in `dist/bundles.json`
 
@@ -318,10 +321,10 @@ Current bundle availability:
 | :----- | :------------ | :---- |
 | `essentials` | `4/4` | `find-skills`, `brainstorming`, `architecture`, `debugging` |
 | `full-stack` | `5/5` | `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows` |
-| `design` | `4/4` | `frontend-design`, `omni-figma`, `design-systems-ops`, `accessibility-audit` |
+| `design` | `5/5` | `frontend-design`, `omni-figma`, `design-systems-ops`, `accessibility-audit`, `design-token-governance` |
 | `security` | `4/4` | `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling` |
 | `devops` | `5/5` | `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering` |
-| `ai-engineer` | `5/5` | `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering` |
+| `ai-engineer` | `7/7` | `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`, `data-contracts`, `model-serving` |
 | `oss-maintainer` | `4/4` | `find-skills`, `create-pr`, `changelog`, `documentation` |
 
 This means `--bundle` is now a real install surface for all seven curated starter bundles, not only a roadmap-aware planning helper.
@@ -414,9 +417,10 @@ Tag-based release automation now also validates:
 
 ---
 
-## 🛣️ What Is Still Pending At Platform Level
+## 🛣️ Future Expansion Options
 
-- installation through npm/CLI is already in place; the items below are platform-expansion work
+The platform is complete for the present scope. The items below are optional future expansion tracks, not blockers:
+
 - broader MCP client coverage only where public, stable config contracts justify first-class writers
 - enterprise-grade hosted governance above the built-in controls, such as external identity, gateway policy, and WAF integration
 - further semantic scorer refinement and richer reference packs now that both best-practices and quality scores have real spread

@@ -4,17 +4,17 @@
 
 ---
 
-## 📊 Phase Status
+## 📊 Current Platform Areas
 
 | Phase | Name | Status |
 |:------|:-----|:-------|
-| 1️⃣ | Contracts and Artifacts | ✅ Completed |
-| 2️⃣ | Read-Only Catalog API | ✅ Completed |
-| 3️⃣ | MCP Discovery Surface | ✅ Completed |
-| 4️⃣ | Local Install and Config Surface | ✅ Completed |
-| 5️⃣ | A2A Orchestration | ✅ Completed |
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-### ✅ What Is Implemented
+### ✅ What Exists Today
 
 - machine-readable catalog artifacts in `dist/`
 - read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
@@ -26,16 +26,18 @@
 - API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
 - A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-### ⏳ What Remains Open
+### 🔭 Future Expansion Areas
+
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
 
 - only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
 - deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
 - enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
-- the next catalog-expansion wave should deepen the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks before reopening any non-code-native dormant categories
-- the private enhancer now has a formal operating model: OmniRouter runs are pinned to `cx/gpt-5.4`, hosted cloud remains `mock` or degraded preflight, and reliable `live` stays on LAN or self-hosted execution
-- the release/workflow baseline is now closed at public `v0.1.2` and private `v0.0.1`; the next work is expansion and operational polish, not foundational CI bring-up
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
 
-## Next Catalog Expansion Track
+## Future Catalog Expansion Track
 
 The first two public category-expansion waves are now landed:
 
@@ -179,27 +181,27 @@ Best for discovery handoff, install-plan workflows, and resumable agent task exe
 
 ---
 
-## 📋 Phase Details
+## 📋 Platform Details
 
-### Phase 1: Contracts and Artifacts ✅
+### Phase 1: Contracts and Artifacts
 
 - documented target architecture
 - defined manifest schema
 - generated metadata, catalog, manifests, bundles, and archives
 
-### Phase 2: Catalog Service ✅
+### Phase 2: Catalog Service
 
 - read-only HTTP API with Express 5
 - search, filtering, manifest lookup, bundle listing, comparison, and downloads
 - env-driven hosted governance baseline
 
-### Phase 3: MCP Discovery ✅
+### Phase 3: MCP Discovery
 
 - official `@modelcontextprotocol/sdk` integration
 - `stdio`, streamable HTTP, and SSE transports
 - read-only tools, resources, and prompts backed by the shared catalog
 
-### Phase 4: Local Install and Config Surface ✅
+### Phase 4: Local Install and Config Surface
 
 - local sidecar with allowlisted writes
 - detection for 7 install-capable clients
@@ -207,7 +209,7 @@ Best for discovery handoff, install-plan workflows, and resumable agent task exe
 - guided `config-mcp` flows in the CLI and visual shell
 - stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
 
-### Phase 5: A2A Orchestration ✅
+### Phase 5: A2A Orchestration
 
 - agent card at `/.well-known/agent.json`
 - `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
@@ -276,9 +278,9 @@ The current decisions were checked against official ecosystem docs:
 
 ---
 
-## 🔮 Next Decision Points
+## 🔮 Longer-Term Decision Points
 
-Only a few questions remain genuinely open:
+Only a few strategic questions remain genuinely open:
 
 1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
 2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
