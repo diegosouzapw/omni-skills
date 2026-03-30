@@ -1,6 +1,6 @@
 # 📚 Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 32 skills across 15 categories.
+> Auto-generated from `skills_index.json` — 40 skills across 15 categories.
 
 Generated: 2026-03-28T00:00:00+00:00
 
@@ -8,7 +8,7 @@ Generated: 2026-03-28T00:00:00+00:00
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
+- [🧠 Ai Agents (12)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
 - [💬 Communication (1)](#communication)
@@ -18,7 +18,7 @@ Generated: 2026-03-28T00:00:00+00:00
 - [☁️ Devops (5)](#devops)
 - [📝 Documentation (2)](#documentation)
 - [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
+- [🌐 Fullstack Web (2)](#fullstack-web)
 - [📈 Machine Learning (1)](#machine-learning)
 - [🧭 Product (1)](#product)
 - [🛡️ Testing Security (4)](#testing-security)
@@ -30,11 +30,18 @@ Generated: 2026-03-28T00:00:00+00:00
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`building-agents`](../skills/building-agents/SKILL.md) | Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or confi | L2 instructions | 19/100 | 42/100 | 40/100 warn |
 | [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`creating-inline-actions`](../skills/creating-inline-actions/SKILL.md) | Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection o | L2 instructions | 20/100 | 44/100 | 30/100 warn |
 | [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`handling-attachments`](../skills/handling-attachments/SKILL.md) | File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachmen | L2 instructions | 16/100 | 38/100 | 60/100 warn |
+| [`handling-commands`](../skills/handling-commands/SKILL.md) | Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash com | L2 instructions | 7/100 | 37/100 | 100/100 passed |
+| [`handling-transactions`](../skills/handling-transactions/SKILL.md) | Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or hand | L2 instructions | 20/100 | 46/100 | 100/100 passed |
 | [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`managing-groups`](../skills/managing-groups/SKILL.md) | Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sendi | L2 instructions | 16/100 | 38/100 | 90/100 warn |
 | [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`sending-reactions`](../skills/sending-reactions/SKILL.md) | Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing sta | L2 instructions | 16/100 | 38/100 | 100/100 passed |
 
 ## 🗄️ Backend
 
@@ -105,6 +112,7 @@ Generated: 2026-03-28T00:00:00+00:00
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`resolving-domains`](../skills/resolving-domains/SKILL.md) | ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farc | L2 instructions | 20/100 | 45/100 | 30/100 warn |
 
 ## 📈 Machine Learning
 

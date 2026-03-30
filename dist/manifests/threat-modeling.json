@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/threat-modeling/scripts/render_threat_packet.py",
-              "sha256": "9d7ba5998768e93eb44fd7212d9f5ae959c0fa51337a6210ac71f067f27c9a54",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/threat-modeling/metadata.json",
       "kind": "support",
-      "size_bytes": 6113,
-      "sha256": "e4a0e6af9a487c714eb39d9c23005d70eec67b892853db5de16e99dd4477ebfe"
+      "size_bytes": 5839,
+      "sha256": "f3a07ab8b82aac55784ae59021e5ae602509e2fdd0c86db37bd33ca8317f69f9"
     },
     {
       "path": "skills/threat-modeling/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/threat-modeling.zip",
       "file_name": "threat-modeling.zip",
-      "size_bytes": 17856,
-      "sha256": "807b106401adbebfddc3d871d8d2dd1427b62e155d7c38595e275705b46693a3",
+      "size_bytes": 17582,
+      "sha256": "378c13939fd1826f596963e4fc8eb43f51e2ef927a07a29e8a3ca6f7751b801c",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/threat-modeling.zip.sig",
-        "sha256": "0a3558e8485c10b3588fd6bf594159c91f263e4b99f41bd19405be92e46d70b3",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/threat-modeling.zip.sig dist/archives/threat-modeling.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/threat-modeling.tar.gz",
       "file_name": "threat-modeling.tar.gz",
       "size_bytes": 30743,
-      "sha256": "3ef176e650ca54f22a67854b3ea1dab8a2f600239cbf43f43ccbf9da3cd2e385",
+      "sha256": "addd95630e326b3e480e9b293c763d36735a043f9c348fcc3a8cd11e52836b00",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/threat-modeling.tar.gz.sig",
-        "sha256": "e230d959cf20a7986746fd010363934f280938086702b2358b1f505ca21392f8",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/threat-modeling.tar.gz.sig dist/archives/threat-modeling.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/threat-modeling.checksums.txt",
     "file_name": "threat-modeling.checksums.txt",
-    "sha256": "029cf9b3a68bf953f8d21822deb7383b42e5a6f5bc1d7e6ff8139e2dad8ba12b",
+    "sha256": "0670494e427c4a5b9b93ee79c89f702453d6e55d08a8e9f8f43fe5b3fa3a511b",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/threat-modeling.checksums.txt.sig",
-      "sha256": "877870fb22d415560ce13ed8cbaacd14b6826321d1c8793965963d768a44ff5d",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/threat-modeling.checksums.txt.sig dist/archives/threat-modeling.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "f11f6f51f394fd952de61d5bb883360961c8d226ff93bf1be2d6b01ab86150d7",
-    "package_sha256": "1dcc858fa216ad759d84cb64559d923d1998e40c35420e287155873ec939624c"
+    "package_sha256": "f3bfe053e6a09f5ede32c3d407b04b0af5c461b91b828b2a56938ffb9e732587"
   }
 }

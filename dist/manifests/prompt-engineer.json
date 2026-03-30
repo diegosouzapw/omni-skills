@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/prompt-engineer/scripts/render_prompt_packet.py",
-              "sha256": "442fac32bca1633e1b2d4560560b1091a7cff52cfa10528f5e1df3af38da8cf1",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/prompt-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 6053,
-      "sha256": "021770c742e2e2ec94d2d1a86394ea2a96f29d1ea6d548d733539929f08fcf9a"
+      "size_bytes": 5779,
+      "sha256": "143e80e7c3d348a2f52051817aed50e79b89f82dd9f633b0415373749bebecb4"
     },
     {
       "path": "skills/prompt-engineer/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/prompt-engineer.zip",
       "file_name": "prompt-engineer.zip",
-      "size_bytes": 16232,
-      "sha256": "98d1355018195c77b269404d86f0a2054fd5a93cdbe5981218c7e9a44e07320b",
+      "size_bytes": 15958,
+      "sha256": "1b3235a348d9b71f12a03b0bd6423b03790d0dcad5917692354caa0aaac00964",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/prompt-engineer.zip.sig",
-        "sha256": "6d9a6e3a950b4a1f519fa1a12148aa1235a32594c41d4068ae91d6811a798b08",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.zip.sig dist/archives/prompt-engineer.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/prompt-engineer.tar.gz",
       "file_name": "prompt-engineer.tar.gz",
       "size_bytes": 30743,
-      "sha256": "7eed5b8225254e168e8ebbca3c8436130d817b0b055f7083474d2c24c50d9dde",
+      "sha256": "06a4b3d7b842f37ff91252d5b7246120d9fd749df21691f7f5586b2ec5f5644b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/prompt-engineer.tar.gz.sig",
-        "sha256": "0468f479afe759e8394b03dab168b01fab83bdb134c76a4cb984ac7f83a0e710",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.tar.gz.sig dist/archives/prompt-engineer.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/prompt-engineer.checksums.txt",
     "file_name": "prompt-engineer.checksums.txt",
-    "sha256": "e6b5b81d42b1f21b29c880700ec9383344c3f3226de7e6852d9a77338e38d84b",
+    "sha256": "0b6057b1980d498107bee170231fcc8035446d59852a8de5c21fb552b3d145f0",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/prompt-engineer.checksums.txt.sig",
-      "sha256": "b6b66618e680e640dba526c6524ab1daedc8c79e1dee9729fb16d4ebfc4457e3",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/prompt-engineer.checksums.txt.sig dist/archives/prompt-engineer.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "7ec58f5fae0a4f0d0b0aba2294a7758865bac2303a06c4176cc127530708032c",
-    "package_sha256": "56878b5bf55cc42793bb2c62de8c035cd2cb22c32ea555fbe463f862e269e0b9"
+    "package_sha256": "6b9ca5b002260c66082b2b2b14a9660254261faf9f731cd37de2c27b484b4dc1"
   }
 }

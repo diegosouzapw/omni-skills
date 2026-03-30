@@ -1,0 +1,366 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "building-agents",
+  "slug": "building-agents",
+  "display_name": "XMTP agent basics",
+  "description": "Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or configuring environment variables. Triggers on agent setup, XMTP configuration, message handling, or middleware implementation.",
+  "version": "1.0.0",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/building-agents/SKILL.md",
+  "paths": {
+    "root": "skills/building-agents",
+    "manifest": "dist/manifests/building-agents.json",
+    "metadata": "skills/building-agents/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 10,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 19,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 416,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 12,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 3.24
+      }
+    },
+    "quality": {
+      "score": 42,
+      "tier": "bronze",
+      "breakdown": {
+        "body": 14,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 0
+      }
+    },
+    "security": {
+      "score": 40,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 6,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-environment.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "> Warning: Running `yarn gen:keys` will append keys to your existing `.env` file.",
+          "line": 38
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-from-env.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "createSigner(createUser(validHex(process.env.XMTP_WALLET_KEY))),",
+          "line": 17
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-from-env.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "env: process.env.XMTP_ENV as \"local\" | \"dev\" | \"production\",",
+          "line": 19
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-from-env.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "dbPath: process.env.XMTP_DB_DIRECTORY,",
+          "line": 20
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-from-env.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "// Load .env file",
+          "line": 30
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/building-agents/rules/setup-from-env.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "process.loadEnvFile(\".env\");",
+          "line": 31
+        }
+      ],
+      "signals": {
+        "scanned_files": 9,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-environment.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-from-env.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-from-env.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-from-env.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-from-env.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/building-agents/rules/setup-from-env.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 2576,
+    "content_length": 2941,
+    "body_lines": 93,
+    "word_count": 301,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 416,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 12,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 3.24
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/building-agents/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1122,
+      "sha256": "0a8b0e00b24f7cf20d78d6356fcb5bd8b5e66e4fb0bed2ac3bfe761e3a557188"
+    },
+    {
+      "path": "skills/building-agents/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 676,
+      "sha256": "3acb08c4489d84754583c0963c87ec7d9e25bb2d3656c802acce6f1af5178858"
+    },
+    {
+      "path": "skills/building-agents/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 2941,
+      "sha256": "443df2b988bd90727c4669f0d98dd6056301e6be726df7ad323ad9639dda5708"
+    },
+    {
+      "path": "skills/building-agents/metadata.json",
+      "kind": "support",
+      "size_bytes": 8280,
+      "sha256": "079af1e18b59cba761310d313c49a165ce37bbe5f6ad9328de390de37a6f6fe2"
+    },
+    {
+      "path": "skills/building-agents/rules/events-lifecycle.md",
+      "kind": "support",
+      "size_bytes": 860,
+      "sha256": "83b2a4d356977dc99b97b49f48e9440f02fc6e627b213af227f967750ce3768d"
+    },
+    {
+      "path": "skills/building-agents/rules/events-text.md",
+      "kind": "support",
+      "size_bytes": 913,
+      "sha256": "ea8680c198ac2943f0d712378afdee4c789d99889f95b5965afaf8354e8ae5b7"
+    },
+    {
+      "path": "skills/building-agents/rules/middleware-basics.md",
+      "kind": "support",
+      "size_bytes": 1280,
+      "sha256": "b624299d34f7dbedf2b8a638e54bd21d8f24e72a22c9fb224809e5be9f9eacca"
+    },
+    {
+      "path": "skills/building-agents/rules/middleware-command-router.md",
+      "kind": "support",
+      "size_bytes": 1200,
+      "sha256": "2563d5ea6b999f180302033362631d7e14ec89d161c4242994ea89b7d37de0c8"
+    },
+    {
+      "path": "skills/building-agents/rules/setup-environment.md",
+      "kind": "support",
+      "size_bytes": 716,
+      "sha256": "09c402e69012924d5bcc6c7fc584242fb0d4a7fefb98561efb742184625db72d"
+    },
+    {
+      "path": "skills/building-agents/rules/setup-from-env.md",
+      "kind": "support",
+      "size_bytes": 1096,
+      "sha256": "5c3b3c07f9804447d3cdc0c6987f968b7627d9e6785566e6622f10c0a1047caf"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/building-agents.zip",
+      "file_name": "building-agents.zip",
+      "size_bytes": 20594,
+      "sha256": "5cac8e353d138a5b2b01adcd38ad586b3ca05efaf0ad3103990ce6c03459cfd5",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/building-agents.tar.gz",
+      "file_name": "building-agents.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "f60ba3f4acfca46ec48c14a6d3810029797829832dc393cd71fb4b01a3ff7cbc",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/building-agents.checksums.txt",
+    "file_name": "building-agents.checksums.txt",
+    "sha256": "8af51fd1f872c0c91c70d0b707f161f9ee2f98a48be9e485a9ce91c19209dc35",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "443df2b988bd90727c4669f0d98dd6056301e6be726df7ad323ad9639dda5708",
+    "package_sha256": "f1489489ef7e258d633e9582e74819b1d3b946d9c68dde87c3e9b03047defb30"
+  }
+}

@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/data-contracts/scripts/render_data_contract_packet.py",
-              "sha256": "c7be2df90011ce37c877408dc2c59b65d3294c94d4fa80798b3a4df0bf8af51e",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/data-contracts/metadata.json",
       "kind": "support",
-      "size_bytes": 6055,
-      "sha256": "fea021afbcc992bc7a1eb124ace98d74fe1f07c25e263ab30e80ad9a7e2355ac"
+      "size_bytes": 5775,
+      "sha256": "979888a862293df76e4c033471990d2b6a9a8203d8b1af9faf54e6b079400961"
     },
     {
       "path": "skills/data-contracts/agents/openai.yaml",
@@ -369,15 +359,14 @@
       "format": "zip",
       "path": "dist/archives/data-contracts.zip",
       "file_name": "data-contracts.zip",
-      "size_bytes": 16277,
-      "sha256": "df62ac3ded71b08c96cd8ee23bffb52c22a3132190829e3a336055af2190a8d4",
+      "size_bytes": 15997,
+      "sha256": "8a6d673d6314217091a6e3ba111cc5dc5ed64223ef8a32d65694172bf74e1988",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/data-contracts.zip.sig",
-        "sha256": "66d6a0318dd6eed1444e5e6c501c942da69998607eda6980b0f9a2f128c7c277",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/data-contracts.zip.sig dist/archives/data-contracts.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -385,32 +374,30 @@
       "path": "dist/archives/data-contracts.tar.gz",
       "file_name": "data-contracts.tar.gz",
       "size_bytes": 30743,
-      "sha256": "adc665c2bbae5136981ed56d08186c7fd0c00ec3a82971e6006c6168eb9d6ba0",
+      "sha256": "ff0a0d4c58e810d48d430a4894a6dd2e27a0447c9a859971bbca97ce539dcf5b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/data-contracts.tar.gz.sig",
-        "sha256": "d36b4834c0a8bf7d5e21d2dd86b78c50b53c054c91ae9dfe59be694efd1402e3",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/data-contracts.tar.gz.sig dist/archives/data-contracts.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/data-contracts.checksums.txt",
     "file_name": "data-contracts.checksums.txt",
-    "sha256": "99202fc5e2ccc9d5dfe9d75e199ec10833117a629df5d9572dd1b1c1bd541138",
+    "sha256": "4a20f8edfdb76a4939864d722bd69a31a4797aa5ba920766a725dac48eca3a00",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/data-contracts.checksums.txt.sig",
-      "sha256": "2b6ca200ccbbf9900ad07a165a77f82cd2b2070d037adf04e46af7605a5fec8c",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/data-contracts.checksums.txt.sig dist/archives/data-contracts.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "95effc5876b3200ff67744c36f9b23035bf00b3640e831d3d4db8da03885098a",
-    "package_sha256": "861afbea0624cd256f944143f0d8593a805faa881f79737407c5d6f1fad6321b"
+    "package_sha256": "6c15801d215d03a745cc1c66fcbe35398f21648dee3b540606d10f7e95dd693f"
   }
 }

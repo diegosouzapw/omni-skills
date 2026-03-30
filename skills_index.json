@@ -2,9 +2,9 @@
   "schema_version": "2026-03-26",
   "version": "1.2.0",
   "generated_at": "2026-03-28T00:00:00+00:00",
-  "total_skills": 32,
+  "total_skills": 40,
   "categories": {
-    "ai-agents": 5,
+    "ai-agents": 12,
     "backend": 2,
     "cli-automation": 1,
     "communication": 1,
@@ -14,7 +14,7 @@
     "devops": 5,
     "documentation": 2,
     "frontend": 1,
-    "fullstack-web": 1,
+    "fullstack-web": 2,
     "machine-learning": 1,
     "product": 1,
     "testing-security": 4,
@@ -124,7 +124,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "5da7d29762e9ca4799f56adac2e70a1d3e02085ac424fee62dc2882133f107cf",
-        "package_sha256": "7bd53ee91531c1d99655cfca280297b30e90f1b1b12d77c30ed0e2c763c439aa"
+        "package_sha256": "9ff5148d3340301f466d24f216a3449fd627b81f6846e7e0284ff7ee92271548"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -241,7 +241,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "2f1aed623f8c04eeb981be3c2cc523799d8da8d604e78c41db4128c6752eb6f1",
-        "package_sha256": "312ab8b60d44b330286d1f5cfa4779750b5d928fa9545db7378ffc1da4dbe907"
+        "package_sha256": "f0ec97152124dce288ed2b964f6c4a32ff80298d424006e54a9c5dccbedfd17b"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -357,7 +357,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "19945a8743c280602dfb8574fcacd5cea8e08c693c379ddc28a31a13252d7a04",
-        "package_sha256": "90bccfe25652cc870c280d4cb0c4dc9d7679e800003ca125eaa6c00552e3d259"
+        "package_sha256": "b48ddb29e61c5663e216f62eb4ec766e63b0a50952e87b03cb2163dfbb2bfe7b"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -474,7 +474,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "e4ab1b345d7fbecbcee5e5bc2221203ca20c729d2cb24affa1ea6466185c6ac4",
-        "package_sha256": "38ca6dbf9a5840613b38b74c7f41259736bcbb0d1d0ce6d59c5d6daaf824e7bc"
+        "package_sha256": "acf033b5465eb295295ab9be44b7c52f751eca283b522b5ee9ab780b4297fa33"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -590,7 +590,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "37d00d1066ecb59c560193593959ecc0308d9e111cff4fa4ea2037ba55159899",
-        "package_sha256": "d1c048497c4f3024c17864ab8c9c141c88c5343e6ee332fc286e2554fb2bc2a7"
+        "package_sha256": "f65b8517896f98810b33d603e12b2c9b3a2d3afecc855361a4143ecf02e83131"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -605,6 +605,57 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "building-agents",
+      "name": "building-agents",
+      "display_name": "XMTP agent basics",
+      "description": "Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or configuring environment variables. Triggers on agent setup, XMTP configuration, message handling, or middleware implementation.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/building-agents",
+      "entrypoint_path": "skills/building-agents/SKILL.md",
+      "manifest_path": "dist/manifests/building-agents.json",
+      "metadata_path": "skills/building-agents/metadata.json",
+      "content_length": 2941,
+      "body_length": 2576,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 10,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "443df2b988bd90727c4669f0d98dd6056301e6be726df7ad323ad9639dda5708",
+        "package_sha256": "f1489489ef7e258d633e9582e74819b1d3b946d9c68dde87c3e9b03047defb30"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 19,
+      "best_practices_tier": "needs-work",
+      "quality_score": 42,
+      "quality_tier": "bronze",
+      "security_score": 40,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "validation_status": "warn"
     },
     {
       "id": "changelog",
@@ -706,7 +757,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "9c79e4b528f2e8fd8eda2c91bae3f795560d35071ca60b04410d23a9e2842d0b",
-        "package_sha256": "8c13b58c72a957e1edbd9f5d37b6a9750e72f17f7dd228fb5e0cdc33bf74ebba"
+        "package_sha256": "0db0bdf676940a0fce07ea86c6ac0d1a8186e24febd5faa6edfca2c2bfa75a25"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -823,7 +874,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "2a68ac95e3a9c9b3e2b8fcaba52a5d4d05ac7a03d679ab57dbd19e4606ae23fe",
-        "package_sha256": "b85cbb66a05345f857a96ceab72e21ff2c83429007e4ada4c764f13d4a99188e"
+        "package_sha256": "87c51b862738538331d0d72da0a7320e81e9281a1fbf0c6f72bc65e893bb89ac"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -939,7 +990,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "cae9cbc76a089d72655cabc6cb7649ba7fe8848fcea4de8953db9c61bce98665",
-        "package_sha256": "201dc2e72930811482c6fa4bec80e4498c21cd96093456ac1a0c93507f46cc37"
+        "package_sha256": "c4a092db46597bfff9c2115ec11369f57375581b680ca1dff476794154b11853"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -954,6 +1005,57 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "creating-inline-actions",
+      "name": "creating-inline-actions",
+      "display_name": "XMTP inline actions",
+      "description": "Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection options, or any button-based interaction. Triggers on inline actions, buttons, menus, or ActionBuilder.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/creating-inline-actions",
+      "entrypoint_path": "skills/creating-inline-actions/SKILL.md",
+      "manifest_path": "dist/manifests/creating-inline-actions.json",
+      "metadata_path": "skills/creating-inline-actions/metadata.json",
+      "content_length": 4162,
+      "body_length": 3809,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "c71c271ec3f0d4445587eebff6abe56398858cad30769249b1d3076e197c21d9",
+        "package_sha256": "1b9d128ad888b1837d08fa173af8d455122ae5bd18d16dc95e9ba330e9601bdc"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "quality_score": 44,
+      "quality_tier": "bronze",
+      "security_score": 30,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "validation_status": "warn"
     },
     {
       "id": "data-contracts",
@@ -1056,7 +1158,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "95effc5876b3200ff67744c36f9b23035bf00b3640e831d3d4db8da03885098a",
-        "package_sha256": "861afbea0624cd256f944143f0d8593a805faa881f79737407c5d6f1fad6321b"
+        "package_sha256": "6c15801d215d03a745cc1c66fcbe35398f21648dee3b540606d10f7e95dd693f"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1172,7 +1274,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "8de2104765a5b7c3e8f54f577952d79e8a54044afa6a1c313a3fd35d4ba7f158",
-        "package_sha256": "663e55ed850e2b009e69d7627c56c7ac0dfd2ef28b98a36877f03bf7e06a0add"
+        "package_sha256": "c187c9b6ff973f8d3eabbbdda156619f1a15b62b67b2710922da709f693ce90c"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1288,7 +1390,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "c57264842995d4dc9c46e8d114449456f2a1b48e9713d20c56a4e4bb0558652e",
-        "package_sha256": "1ea0e767395ed3140a03380f6a7c934f17956062ef79467e0795bcce7c1e1c07"
+        "package_sha256": "a0b8192f3e9bac755c86537525379a955eaa111d4e1b0ae52a477583f9fca2ec"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1406,7 +1508,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "3d241f8ab2f70c73d8d182cfe323f6dafca0372a48d83e737f87736a94f6949e",
-        "package_sha256": "6ce3302f14e70768df30cccc95d41aa5ec8c0292d245605bf0567726192249cb"
+        "package_sha256": "d446c8300b0bd0fa1694d8d2a5d82da97b511a235cd950e2ad79e8151a3113c9"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1523,7 +1625,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "1a744779b4773327035ae88764d54975782f5429a1f9dd7604fae69deab39022",
-        "package_sha256": "36109c2e31c7c1353c4fcdf75b47864d154ecdf5b5977a5e12bd422e4436ea98"
+        "package_sha256": "e3287e0cae51637917956f613dc1dc57acfb8e145fc3a44deed4827ad52f0718"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1640,7 +1742,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "37ec1fb4800710091a76efb48d4df49071b30f719f40fb218173396d8e07e928",
-        "package_sha256": "8a4715d84e42d51dcdc8389bb021584d6b330a9e1a1eaac5ac89e8018f7d6247"
+        "package_sha256": "5f2cbf69cfae6a9ae5123499c818290a70a38a0b971fbc4d7a7414630fb44fd6"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1756,7 +1858,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "14769fd32f19480795d3ad81015aa0d8fac6eb70ce28db4db868b1d2cb4b3272",
-        "package_sha256": "89a7bda9ceeca7dca2ad0c1e7789cf0e9e122648c0cb8a8ae03ec738760c24c6"
+        "package_sha256": "724ee886373781843b3036400ffde5959dc143c498c3d42a18f84eb81cd01044"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1873,7 +1975,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "9993529c849c39fb24b32dd36665eb9c48dac7706d6dd30d90e70b548e628f4f",
-        "package_sha256": "cbedcc9911e3de3c56ffde593704a645185813aa005976b3e24ac5ab3c3576f7"
+        "package_sha256": "1e70fb762a96052964e88ee8c01eb25c8ec0ddccea36ed6ed734e20a261886f4"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -1991,7 +2093,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
-        "package_sha256": "7ec63a680c50b05c7a3cd85f9722346fd465b1e479c85a06d8b2b4cf8ff9d439"
+        "package_sha256": "17b851fd32c9a25c2129dbb36ab6b57b12e726f2d26647376f5c6898b0194cb1"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2108,7 +2210,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "03bf3df1efccf93451ca78a38fcc9cde90c8a57d874c853de71e1aeb46d7644d",
-        "package_sha256": "cbddc526e844b0106bd0dafdbc335615246272fdf846f4a159885052b5d00c09"
+        "package_sha256": "9e990001b7cf4b5d1e23e8de87ba4ed411d278e88a5103d8432271f6c8b66771"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2123,6 +2225,159 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "handling-attachments",
+      "name": "handling-attachments",
+      "display_name": "XMTP attachments",
+      "description": "File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachments. Triggers on file upload, image sending, or remote attachment handling.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/handling-attachments",
+      "entrypoint_path": "skills/handling-attachments/SKILL.md",
+      "manifest_path": "dist/manifests/handling-attachments.json",
+      "metadata_path": "skills/handling-attachments/metadata.json",
+      "content_length": 1875,
+      "body_length": 1553,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "17bea955bd78d4d364c2857011f5d05ba384493d04f369904d289639280c06c4",
+        "package_sha256": "8bf6180a963297ab5b40a17d2aec9351637e032c436e2d2596c8850ed07ab982"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "security_score": 60,
+      "security_tier": "risky",
+      "security_status": "warn",
+      "validation_status": "warn"
+    },
+    {
+      "id": "handling-commands",
+      "name": "handling-commands",
+      "display_name": "XMTP commands and validation",
+      "description": "Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash commands, validators, or message filters. Triggers on command handling, input validation, or type guards.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/handling-commands",
+      "entrypoint_path": "skills/handling-commands/SKILL.md",
+      "manifest_path": "dist/manifests/handling-commands.json",
+      "metadata_path": "skills/handling-commands/metadata.json",
+      "content_length": 1666,
+      "body_length": 1319,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "5149c5493458e3ea6e2aabe9df5ac00fa64b73fb149a5d9a1199d84fc5b4c19c",
+        "package_sha256": "350e33ef0d9b88bbb49a5c5475c8b86b9e4a4af72e6539e272f2281d5c19d25f"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 7,
+      "best_practices_tier": "needs-work",
+      "quality_score": 37,
+      "quality_tier": "starter",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "validation_status": "warn"
+    },
+    {
+      "id": "handling-transactions",
+      "name": "handling-transactions",
+      "display_name": "XMTP transactions",
+      "description": "Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or handling transaction confirmations. Triggers on USDC transfer, wallet calls, or transaction reference.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/handling-transactions",
+      "entrypoint_path": "skills/handling-transactions/SKILL.md",
+      "manifest_path": "dist/manifests/handling-transactions.json",
+      "metadata_path": "skills/handling-transactions/metadata.json",
+      "content_length": 4025,
+      "body_length": 3678,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "31599069ee7ce29f78f0051537936e65db7b008efc76bc6c023ef719a781a9c3",
+        "package_sha256": "b14975f20769975c7b3b9e60780e32f711bd53eaf4961918b8134200262b1b62"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "quality_score": 46,
+      "quality_tier": "bronze",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "validation_status": "warn"
     },
     {
       "id": "incident-response",
@@ -2225,7 +2480,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "ad9f5320762b014b86979db9f3e546cf03682569d598dacdf47eeaf00fc6bc33",
-        "package_sha256": "58af948a91a670c2af1c630136a7ade49d2972912f1b43abbf6e17f1f8baee16"
+        "package_sha256": "b6e7aa9984846681ee6c93937688ad6904c952e941afaa7c32a460db54a95a41"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2342,7 +2597,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "83811baa90634eee059fe25428b1611d24301700405db8a77d3637238a8da458",
-        "package_sha256": "ad638826eca98a7fde01c279e59faef2f0fa55cb180ab2fcb3ef96cab31febe4"
+        "package_sha256": "51cc6498c1402aba5902abd1019ad6ea7ff22f2192b8266c8858dc65a66e095a"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2459,7 +2714,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "6edeedf6a69d888e04d83a91416675c799ec91de096a64dba85f520aaaa97bbc",
-        "package_sha256": "a5df84ae9c9afce573c8c7bdd9d813b95e9c66d6d9bb73ec3eea2a1d65d6c6dd"
+        "package_sha256": "fbd43ce25a73d805431cc4958c4fa4d0f95924412223e0456b84628a5f68bc00"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2474,6 +2729,57 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "managing-groups",
+      "name": "managing-groups",
+      "display_name": "XMTP groups",
+      "description": "Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sending welcome messages. Triggers on group creation, member management, or permissions.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/managing-groups",
+      "entrypoint_path": "skills/managing-groups/SKILL.md",
+      "manifest_path": "dist/manifests/managing-groups.json",
+      "metadata_path": "skills/managing-groups/metadata.json",
+      "content_length": 2027,
+      "body_length": 1701,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 8,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "96610452fbc690ce4a74dde526d1ada793758d616d471e24045fb33dfea59639",
+        "package_sha256": "bfd85f78034e3715d570ac0f3ac6a4dfe9294c971bf6527b1efdda8ecfe592af"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "security_score": 90,
+      "security_tier": "review",
+      "security_status": "warn",
+      "validation_status": "warn"
     },
     {
       "id": "mcp-server-authoring",
@@ -2577,7 +2883,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "87ce12e4c7652d24662b28344d088f59a929264a1b4227e846196670bc8be7e5",
-        "package_sha256": "e5f785cc736693c9505b124ccd08faab6c8d3b105c7f91261152dad3961fefc3"
+        "package_sha256": "422436466e36cb43f49b8a6fea6ca8a8f5f90a6ca1fa285d9a28b6e0a21ba950"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2694,7 +3000,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "046d8aae96e779ebc48e576f8b7e828a66634310320eb6d20654f966230743c1",
-        "package_sha256": "6946c6d351454c59c1ffa81a09b7e81216f16864f727952be9dce33bc4c67722"
+        "package_sha256": "afe974c722d824c58fff767228f118b6b7690033c128710c9cc8a7bcce8bfae5"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2811,7 +3117,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "d9d6b8b29a670b8b3b4ecd9a3d7abca404895197dbac0ce88d82f72b4d4e8181",
-        "package_sha256": "38369f788ffc81794e8982381b0dcebdd97262930cbc9305c24a6660ff297d86"
+        "package_sha256": "b022cb5c0209fc6bbe075361a9ffad70d4c8256d1d94bccf54c3b949ac6e4cb4"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -2911,7 +3217,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76",
-        "package_sha256": "2ff9a7b7607a8b03cfaef0e2d4c78d3f6929f0a39bb12a91908c67e1f803453e"
+        "package_sha256": "f8f9a4c75d757de2fb851c8d6b0cc71ed625a3a4208e490fc84e3b8513116599"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3028,7 +3334,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "7ec58f5fae0a4f0d0b0aba2294a7758865bac2303a06c4176cc127530708032c",
-        "package_sha256": "56878b5bf55cc42793bb2c62de8c035cd2cb22c32ea555fbe463f862e269e0b9"
+        "package_sha256": "6b9ca5b002260c66082b2b2b14a9660254261faf9f731cd37de2c27b484b4dc1"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3145,7 +3451,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "552bd8a89603398bea716ed95bfbf0883812e2bd8a33e9722c7527af07f41957",
-        "package_sha256": "7f87f0fd7356281c482322158aa18e9389fdb1ad64abac30398f4c78fd8addd1"
+        "package_sha256": "aeafcfd00eee011325a423928d3cb6e5e1ac3f380009074ed3ea25c445f40d06"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3262,7 +3568,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "4d0ffe4d6f1e60898d21cc625a96a5c5dff1e19915ce583d3cda00ade7c4ec4e",
-        "package_sha256": "840fd81a2287074f8aad47a0479b1f8833b0d6642fe09fa6c3c3bf5e1d66170f"
+        "package_sha256": "6179aacb695bb4e932b29e25d69b6973cbf27138a57949642cc66df86ad58e8e"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3277,6 +3583,57 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "resolving-domains",
+      "name": "resolving-domains",
+      "display_name": "XMTP domain resolver",
+      "description": "ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farcaster profiles. Triggers on ENS resolution, Farcaster lookup, or mention extraction.",
+      "version": "1.0.0",
+      "category": "fullstack-web",
+      "raw_category": "fullstack-web",
+      "taxonomy": {
+        "raw_category": "fullstack-web",
+        "canonical_category": "fullstack-web",
+        "inferred_category": "fullstack-web",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/resolving-domains",
+      "entrypoint_path": "skills/resolving-domains/SKILL.md",
+      "manifest_path": "dist/manifests/resolving-domains.json",
+      "metadata_path": "skills/resolving-domains/metadata.json",
+      "content_length": 3998,
+      "body_length": 3665,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "77e246a11ae50b1ea2897234879c91684c973b5760498268f7341b662e6b8a33",
+        "package_sha256": "c604b1338d266d2234f8ec7b73ed9360bee0308700660344db6488b87be98338"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "quality_score": 45,
+      "quality_tier": "bronze",
+      "security_score": 30,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "validation_status": "warn"
     },
     {
       "id": "security-auditor",
@@ -3378,7 +3735,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "2b92d94f2e7a49b50b708a260b8d269ba2e79ec1560c0cab6ede5f80fbaa8bc4",
-        "package_sha256": "ac004fd470d53386480373f2d20b94975f70f7f4a0fbc3a37dd5a19dfcb38eae"
+        "package_sha256": "adb4a85e54829371a4b2c143431c7f794f6c9bb0ccf8d2c5f53c8b3da160c369"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3393,6 +3750,57 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "sending-reactions",
+      "name": "sending-reactions",
+      "display_name": "XMTP reactions",
+      "description": "Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing state with thinking emoji. Triggers on emoji reactions, thinking indicator, or message acknowledgment.",
+      "version": "1.0.0",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [],
+      "complexity": "",
+      "risk": "unknown",
+      "tools": [],
+      "source": "",
+      "author": "xmtp",
+      "date_added": "",
+      "date_updated": "",
+      "path": "skills/sending-reactions",
+      "entrypoint_path": "skills/sending-reactions/SKILL.md",
+      "manifest_path": "dist/manifests/sending-reactions.json",
+      "metadata_path": "skills/sending-reactions/metadata.json",
+      "content_length": 1730,
+      "body_length": 1386,
+      "sub_resources": [
+        "rules"
+      ],
+      "artifacts_count": 7,
+      "install_targets": [],
+      "checksums": {
+        "entrypoint_sha256": "71cbf63d8d6eb1b589b6b02eb2c9d018d896a1762af79bbac91237c976b672f8",
+        "package_sha256": "64fc5c8951349fffb48100e5bff85c7ffdbbc29013e73dc2aee0fb70cec87dbb"
+      },
+      "archives_count": 2,
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true,
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "validation_status": "warn"
     },
     {
       "id": "terraform",
@@ -3495,7 +3903,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "78dd03a54b2a35bdd7b678353e88407167813c79dc0574f01df3e9069d5f903d",
-        "package_sha256": "a11fa44e57c528474af57ec41df43e549ccb464b6d3cfb326af27f5bd1dc702d"
+        "package_sha256": "8f9ec978371db1762f6b3ed6f1b0a0233ef4008a2def190649c57f0b5403649c"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3612,7 +4020,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "f11f6f51f394fd952de61d5bb883360961c8d226ff93bf1be2d6b01ab86150d7",
-        "package_sha256": "1dcc858fa216ad759d84cb64559d923d1998e40c35420e287155873ec939624c"
+        "package_sha256": "f3bfe053e6a09f5ede32c3d407b04b0af5c461b91b828b2a56938ffb9e732587"
       },
       "archives_count": 2,
       "skill_level": 3,
@@ -3729,7 +4137,7 @@
       ],
       "checksums": {
         "entrypoint_sha256": "5f10ad123762087117fe82606041d508c1e6fdee802ab6c5fec0463543c96a03",
-        "package_sha256": "c6424b2e79ff3e24546d8cdf073423066a38cfaecb38c8d8433f3534cb30139e"
+        "package_sha256": "d35d8e1d80d19e64daf5b490030c03aac3549ed7c087e05e95cd1a6e9d5ff182"
       },
       "archives_count": 2,
       "skill_level": 3,

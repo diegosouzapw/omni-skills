@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/auth-flows/scripts/render_auth_packet.py",
-              "sha256": "e4ce3d52f1ef333cdb23fd3b0d4d868973b9402677b660b5337f01f69ceb1a17",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/auth-flows/metadata.json",
       "kind": "support",
-      "size_bytes": 6075,
-      "sha256": "760a60d1c39341acb0b6be03592a916d9024539855ea387cc70635845bb9427b"
+      "size_bytes": 5808,
+      "sha256": "1d952b27f3f9d464caa484f811340f80a18b03203443963eb7420c69955bc80e"
     },
     {
       "path": "skills/auth-flows/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/auth-flows.zip",
       "file_name": "auth-flows.zip",
-      "size_bytes": 17183,
-      "sha256": "7384fe43e86299d2163175e440894917d8af3d94e58f84f24175364f3a237448",
+      "size_bytes": 16916,
+      "sha256": "3c3cabf9994179ba6108387dfb46b68db7f1c286bdb411f46203e3c2286fc77a",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/auth-flows.zip.sig",
-        "sha256": "2b29cda4ca3b3b554491efcf4fee08a1428fd2c27228cb7cfcf8e65299c37b1d",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/auth-flows.zip.sig dist/archives/auth-flows.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/auth-flows.tar.gz",
       "file_name": "auth-flows.tar.gz",
       "size_bytes": 30743,
-      "sha256": "2ab671f701506814f9a79eb393f690c4af4ae9b78d0baba29445a4029d9a5618",
+      "sha256": "4415ca6994f9170e6ccbe7ad730161a79480ff018220da78ea50865e31785c9b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/auth-flows.tar.gz.sig",
-        "sha256": "ea7088d10bfdef6d613554a814bedc58f991201ae9d9724ba80357b58b097141",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/auth-flows.tar.gz.sig dist/archives/auth-flows.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/auth-flows.checksums.txt",
     "file_name": "auth-flows.checksums.txt",
-    "sha256": "777c7e1a78a5a66974bb4625b3ab0fb2eed684778efc456b724b6718328b884c",
+    "sha256": "8e583f4d334ec3803ea99e7444cba01e3864eaff684655dbc2332f5011044a72",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/auth-flows.checksums.txt.sig",
-      "sha256": "4be4fc8ed6236ba074021a8149d26de4c4c07732474cc0536857a25512340ec8",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/auth-flows.checksums.txt.sig dist/archives/auth-flows.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "e4ab1b345d7fbecbcee5e5bc2221203ca20c729d2cb24affa1ea6466185c6ac4",
-    "package_sha256": "38ca6dbf9a5840613b38b74c7f41259736bcbb0d1d0ce6d59c5d6daaf824e7bc"
+    "package_sha256": "acf033b5465eb295295ab9be44b7c52f751eca283b522b5ee9ab780b4297fa33"
   }
 }

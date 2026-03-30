@@ -1,0 +1,2 @@
+76404569ac99c5b0042d23246d71590677f7801bde40f3e631964e3ff443636e  handling-commands.zip
+6a5fd87214ec1eb807af5b0552ec2aa1ba7739a7e9ea82ccbf25ede09b7eb090  handling-commands.tar.gz

@@ -7,13 +7,13 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 32,
+    "total_skills": 40,
     "passed": 32,
-    "warnings": 0,
+    "warnings": 8,
     "errors": 0,
-    "average_quality_score": 96.3,
-    "average_best_practices_score": 98.7,
-    "average_security_score": 95.0
+    "average_quality_score": 85.3,
+    "average_best_practices_score": 82.3,
+    "average_security_score": 89.8
   },
   "taxonomy": {
     "canonical_categories": [
@@ -37,7 +37,7 @@
       "uncategorized"
     ],
     "counts": {
-      "ai-agents": 5,
+      "ai-agents": 12,
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
@@ -47,7 +47,7 @@
       "devops": 5,
       "documentation": 2,
       "frontend": 1,
-      "fullstack-web": 1,
+      "fullstack-web": 2,
       "machine-learning": 1,
       "product": 1,
       "testing-security": 4,
@@ -57,23 +57,28 @@
   "distribution": {
     "skill_levels": {
       "l1": 0,
-      "l2": 0,
+      "l2": 8,
       "l3": 32
     },
     "quality_tiers": {
-      "platinum": 32
+      "bronze": 4,
+      "platinum": 32,
+      "starter": 4
     },
     "security_tiers": {
-      "review": 32
+      "blocked": 3,
+      "hardened": 3,
+      "review": 33,
+      "risky": 1
     },
     "security_status": {
-      "passed": 32,
-      "warn": 0,
+      "passed": 35,
+      "warn": 5,
       "failed": 0
     },
     "validation_status": {
       "passed": 32,
-      "warn": 0,
+      "warn": 8,
       "failed": 0
     }
   },
@@ -174,6 +179,25 @@
       "entrypoint": "skills/brainstorming/SKILL.md"
     },
     {
+      "id": "building-agents",
+      "display_name": "XMTP agent basics",
+      "description": "Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or configuring environment variables. Triggers on agent setup, XMTP configuration, message handling, or middleware implementation.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 42,
+      "quality_tier": "bronze",
+      "best_practices_score": 19,
+      "best_practices_tier": "needs-work",
+      "security_score": 40,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/building-agents/metadata.json",
+      "entrypoint": "skills/building-agents/SKILL.md"
+    },
+    {
       "id": "changelog",
       "display_name": "Changelog",
       "description": "Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release narrative.",
@@ -229,6 +253,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/create-pr/metadata.json",
       "entrypoint": "skills/create-pr/SKILL.md"
+    },
+    {
+      "id": "creating-inline-actions",
+      "display_name": "XMTP inline actions",
+      "description": "Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection options, or any button-based interaction. Triggers on inline actions, buttons, menus, or ActionBuilder.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 44,
+      "quality_tier": "bronze",
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "security_score": 30,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/creating-inline-actions/metadata.json",
+      "entrypoint": "skills/creating-inline-actions/SKILL.md"
     },
     {
       "id": "data-contracts",
@@ -421,6 +464,63 @@
       "entrypoint": "skills/frontend-design/SKILL.md"
     },
     {
+      "id": "handling-attachments",
+      "display_name": "XMTP attachments",
+      "description": "File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachments. Triggers on file upload, image sending, or remote attachment handling.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "security_score": 60,
+      "security_tier": "risky",
+      "security_status": "warn",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/handling-attachments/metadata.json",
+      "entrypoint": "skills/handling-attachments/SKILL.md"
+    },
+    {
+      "id": "handling-commands",
+      "display_name": "XMTP commands and validation",
+      "description": "Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash commands, validators, or message filters. Triggers on command handling, input validation, or type guards.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 37,
+      "quality_tier": "starter",
+      "best_practices_score": 7,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/handling-commands/metadata.json",
+      "entrypoint": "skills/handling-commands/SKILL.md"
+    },
+    {
+      "id": "handling-transactions",
+      "display_name": "XMTP transactions",
+      "description": "Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or handling transaction confirmations. Triggers on USDC transfer, wallet calls, or transaction reference.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 46,
+      "quality_tier": "bronze",
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/handling-transactions/metadata.json",
+      "entrypoint": "skills/handling-transactions/SKILL.md"
+    },
+    {
       "id": "incident-response",
       "display_name": "Incident Response",
       "description": "Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder communication, or post-incident follow-up.",
@@ -476,6 +576,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/llm-patterns/metadata.json",
       "entrypoint": "skills/llm-patterns/SKILL.md"
+    },
+    {
+      "id": "managing-groups",
+      "display_name": "XMTP groups",
+      "description": "Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sending welcome messages. Triggers on group creation, member management, or permissions.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "security_score": 90,
+      "security_tier": "review",
+      "security_status": "warn",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/managing-groups/metadata.json",
+      "entrypoint": "skills/managing-groups/SKILL.md"
     },
     {
       "id": "mcp-server-authoring",
@@ -611,6 +730,25 @@
       "entrypoint": "skills/release-engineering/SKILL.md"
     },
     {
+      "id": "resolving-domains",
+      "display_name": "XMTP domain resolver",
+      "description": "ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farcaster profiles. Triggers on ENS resolution, Farcaster lookup, or mention extraction.",
+      "raw_category": "fullstack-web",
+      "canonical_category": "fullstack-web",
+      "quality_score": 45,
+      "quality_tier": "bronze",
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "security_score": 30,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/resolving-domains/metadata.json",
+      "entrypoint": "skills/resolving-domains/SKILL.md"
+    },
+    {
       "id": "security-auditor",
       "display_name": "Security Auditor",
       "description": "Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a generic review.",
@@ -628,6 +766,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/security-auditor/metadata.json",
       "entrypoint": "skills/security-auditor/SKILL.md"
+    },
+    {
+      "id": "sending-reactions",
+      "display_name": "XMTP reactions",
+      "description": "Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing state with thinking emoji. Triggers on emoji reactions, thinking indicator, or message acknowledgment.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 38,
+      "quality_tier": "starter",
+      "best_practices_score": 16,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/sending-reactions/metadata.json",
+      "entrypoint": "skills/sending-reactions/SKILL.md"
     },
     {
       "id": "terraform",

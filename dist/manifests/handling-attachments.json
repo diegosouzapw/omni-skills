@@ -1,0 +1,328 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "handling-attachments",
+  "slug": "handling-attachments",
+  "display_name": "XMTP attachments",
+  "description": "File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachments. Triggers on file upload, image sending, or remote attachment handling.",
+  "version": "1.0.0",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "xmtp",
+  "dates": {
+    "added": "",
+    "updated": ""
+  },
+  "entrypoint": "skills/handling-attachments/SKILL.md",
+  "paths": {
+    "root": "skills/handling-attachments",
+    "manifest": "dist/manifests/handling-attachments.json",
+    "metadata": "skills/handling-attachments/metadata.json"
+  },
+  "compatibility": {
+    "tools": [],
+    "install_targets": []
+  },
+  "resources": {
+    "sub_resources": [
+      "rules"
+    ],
+    "artifacts_count": 7,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": []
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "has_scripts": false,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 16,
+      "tier": "needs-work",
+      "signals": {
+        "workflow_steps_count": 0,
+        "workflow_section_length": 0,
+        "when_to_use_section_length": 0,
+        "best_practices_items_count": 0,
+        "best_practices_section_length": 0,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 0,
+        "resources_items_count": 0,
+        "resources_section_length": 0,
+        "examples_section_length": 477,
+        "examples_code_blocks_count": 2,
+        "related_skills_section_length": 0,
+        "decision_assets_count": 0,
+        "table_count": 5,
+        "linked_resource_families_count": 0,
+        "linked_resource_families": [],
+        "support_links_count": 0,
+        "support_files_count": 0,
+        "references_files_count": 0,
+        "scripts_files_count": 0,
+        "examples_files_count": 0,
+        "agents_files_count": 0,
+        "assets_files_count": 0,
+        "tools_count": 0,
+        "tags_count": 0,
+        "body_density": 2.98
+      }
+    },
+    "quality": {
+      "score": 38,
+      "tier": "starter",
+      "breakdown": {
+        "body": 10,
+        "description": 10,
+        "metadata": 3,
+        "recency": 7,
+        "resources": 5,
+        "best_practices": 0,
+        "semantic_depth": 1,
+        "operational_depth": 2,
+        "support_pack": 0
+      }
+    },
+    "security": {
+      "score": 60,
+      "tier": "risky",
+      "status": "warn",
+      "findings_count": 4,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/handling-attachments/rules/upload-callback.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "pinataJwt: process.env.PINATA_JWT,",
+          "line": 19
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/handling-attachments/rules/upload-callback.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "pinataGateway: process.env.PINATA_GATEWAY,",
+          "line": 20
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/handling-attachments/rules/upload-callback.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "Bucket: process.env.S3_BUCKET,",
+          "line": 51
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/handling-attachments/rules/upload-callback.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "return `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;",
+          "line": 57
+        }
+      ],
+      "signals": {
+        "scanned_files": 6,
+        "script_files": 0,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "tags are empty",
+        "tools are empty",
+        "security medium: Sensitive OS or credential path referenced. [skills/handling-attachments/rules/upload-callback.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/handling-attachments/rules/upload-callback.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/handling-attachments/rules/upload-callback.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/handling-attachments/rules/upload-callback.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 1553,
+    "content_length": 1875,
+    "body_lines": 59,
+    "word_count": 176,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 1,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": true,
+    "has_when_to_use_section": false,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 0,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 477,
+      "examples_code_blocks_count": 2,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 5,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 2.98
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/handling-attachments/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1094,
+      "sha256": "4eae7623a925319475ee326035d383bfbdae22935ea590462a26a18a538c83e6"
+    },
+    {
+      "path": "skills/handling-attachments/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 691,
+      "sha256": "fad77bafedfb6a73c9ebfc415ff8c3b60a65f3394292f391ea38a4bde2836f1e"
+    },
+    {
+      "path": "skills/handling-attachments/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 1875,
+      "sha256": "17bea955bd78d4d364c2857011f5d05ba384493d04f369904d289639280c06c4"
+    },
+    {
+      "path": "skills/handling-attachments/metadata.json",
+      "kind": "support",
+      "size_bytes": 7251,
+      "sha256": "ab9fe1c308e698587a493a2dd014ac3e9a1d7975e8436d88a06e972b056eae78"
+    },
+    {
+      "path": "skills/handling-attachments/rules/receive-attachment.md",
+      "kind": "support",
+      "size_bytes": 1233,
+      "sha256": "325ed9a3639802eb0edb18af1ff6ad10474713e9a08e4bd1cb73bc7c011c4052"
+    },
+    {
+      "path": "skills/handling-attachments/rules/send-remote-attachment.md",
+      "kind": "support",
+      "size_bytes": 1096,
+      "sha256": "fee958ec049955825a9af2ba4c8beb1e17af60f9ad457a758437255ba16c5e59"
+    },
+    {
+      "path": "skills/handling-attachments/rules/upload-callback.md",
+      "kind": "support",
+      "size_bytes": 1655,
+      "sha256": "7300e4593f5f11b1ad37fe7804a2b6a0f13f7321705755f9663adb1b5052a9d4"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/handling-attachments.zip",
+      "file_name": "handling-attachments.zip",
+      "size_bytes": 16007,
+      "sha256": "026e0becfa0f426b111d52d7d42116fa28563628bd104ed9e0d70149543166a0",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/handling-attachments.tar.gz",
+      "file_name": "handling-attachments.tar.gz",
+      "size_bytes": 30743,
+      "sha256": "8f56877b042febe9003a0002ba2e28b626653ab23346bfb8bc8cf36fb04c5920",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/handling-attachments.checksums.txt",
+    "file_name": "handling-attachments.checksums.txt",
+    "sha256": "49ec4b84745c1da09d5a1f565c5ec56533aef21c1a23019914ea08041d422234",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "17bea955bd78d4d364c2857011f5d05ba384493d04f369904d289639280c06c4",
+    "package_sha256": "8bf6180a963297ab5b40a17d2aec9351637e032c436e2d2596c8850ed07ab982"
+  }
+}
