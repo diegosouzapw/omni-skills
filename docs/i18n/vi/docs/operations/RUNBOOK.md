@@ -5,7 +5,9 @@
 ---
 
 
->**Hướng dẫn vận hành đầy đủ để xây dựng, xác thực, cung cấp, bảo mật và khắc phục sự cố Omni Skills.**---
+> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
+
+---
 
 ## 1️⃣ Local Development Cycle
 
@@ -25,36 +27,44 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-| Lệnh | Nó làm gì |
+| Command | What It Does |
 |:--------|:-------------|
-| `npm chạy xác thực` | Xác thực `SKILL.md`, tạo lại `metadata.json`, tính toán phân loại/sự trưởng thành/chất lượng/bảo mật |
-| `npm run taxonomy:report` | Hiển thị đề xuất trôi dạt danh mục mà không cần viết lại tệp |
-| `npm run verify:scanners` | Xác nhận phạm vi phủ sóng của máy quét được ghi trong siêu dữ liệu kỹ năng được tạo |
-| `npm run phát hành: ghi chú` | Tạo ghi chú phát hành tùy chỉnh từ siêu dữ liệu, gói và lịch sử git |
-| `npm run build` | Tái tạo danh mục/tệp kê khai/lưu trữ/tổng ​​kiểm tra, xác minh mức độ bao phủ và lưu trữ của máy quét, xây dựng lại `docs/CATALOG.md` |
-| `kiểm tra npm` | Bộ khói đầy đủ trên các luồng CLI, API, MCP, sidecar và lưu trữ |---
+| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
+| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
+| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
+| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
+| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
+
+---
 
 ## 🖥️ Visual Shell
 
-CLI đã xuất bản hiện bao gồm trình bao toán tử dựa trên Ink:```bash
+The published CLI now includes an Ink-based operator shell:
+
+```bash
 npx omni-skills ui
 ```
 
-Khả năng hiện tại:
+Current capabilities:
 
-- hướng dẫn cài đặt cho các máy khách đã biết và đường dẫn tùy chỉnh
-- luồng tìm kiếm rồi cài đặt
-- Trình hướng dẫn khởi chạy MCP
-- Trình hướng dẫn khởi chạy API
-- Trình hướng dẫn khởi chạy A2A
-- các lần cài đặt và khởi chạy lại dịch vụ gần đây
-- cài đặt trước cài đặt và dịch vụ được đặt tên
+- guided install for known clients and custom paths
+- search-then-install flow
+- MCP launch wizard
+- API launch wizard
+- A2A launch wizard
+- recent installs and service relaunches
+- named install and service presets
 
-Đường dẫn trạng thái cục bộ:```text
+Local state path:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Dự phòng:```bash
+Fallback:
+
+```bash
 npx omni-skills ui --text
 ```
 
@@ -90,32 +100,40 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-Máy quét tĩnh tự động kiểm tra tất cả các kỹ năng:
+The static scanner checks all skills automatically:
 
-| Gia đình quy tắc | Ví dụ |
-|:----------||:----------|
-| 🎭 Tiêm ngay | Mẫu lọc, ghi đè hướng dẫn |
-| 💣 Lệnh hủy diệt | `rm -rf`, `định dạng`, `mkfs` |
-| 🔑 Đường đi đáng ngờ | `/etc/shadow`, `~/.ssh`, tệp thông tin xác thực |
-| ⚠️ Nguyên thủy đầy rủi ro | `shell=True`, `pickle.load`, `eval`, `extractall` |### 🦠 Optional ClamAV
+| Rule Family | Examples |
+|:------------|:---------|
+| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
+| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
+| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> Yêu cầu `clamscan` trong `PATH`.### 🔒 Optional VirusTotal
+> Requires `clamscan` in `PATH`.
+
+### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> Chỉ tra cứu băm — các tệp không xác định sẽ**không được tải lên**theo mặc định.### ✅ Verify Scanner Coverage
+> Hash lookup only — unknown files are **not uploaded** by default.
+
+### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-Cổng phát hành nghiêm ngặt:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -127,15 +145,17 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-Các kho lưu trữ được tạo tự động bởi `npm run build`:
+Archives are produced automatically by `npm run build`:
 
-| Đầu ra | Đường dẫn |
-|:-------|:------|
+| Output | Path |
+|:-------|:-----|
 | 📦 ZIP | `dist/archives/<skill>.zip` |
 | 📦 Tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Tổng kiểm tra | `dist/archives/<skill>.checksums.txt` |
+| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` được cam kết có chủ ý trong kho lưu trữ này. Danh mục, bảng kê khai, gói và kho lưu trữ được tạo là đầu vào thời gian chạy cho các luồng cài đặt CLI, bề mặt tải xuống API, bản xem trước MCP, chuyển giao nhiệm vụ A2A, kiểm tra khói và xác minh bản phát hành.### ✅ Verify Archives
+`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -147,35 +167,43 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Ghi đè khóa công khai tùy chọn:```bash
+Optional public key override:
+
+```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Nếu không cung cấp khóa chung, bản dựng sẽ lấy một khóa thông qua `openssl` thành `dist/signing/`.### 🔁 Compute the Next Package Version
+> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
+
+### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-Chính sách phiên bản:
+Version policy:
 
-- tăng dần bản vá cho đến `.10`
-- sau `.10`, bản phát hành tiếp theo sẽ xuất hiện nhỏ và đặt lại bản vá thành `.0`
+- patch increments until `.10`
+- after `.10`, the next release rolls minor and resets patch to `.0`
 
-Ví dụ:
+Examples:
 
 - `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`---
+- `0.1.10 -> 0.2.0`
+
+---
 
 ## 5️⃣ Installation Flows
 
-| Kịch bản | Lệnh |
-|:----------|:--------|
-| 📥 Cài đặt mặc định (AntiGravity) | `kỹ năng đa năng của npx` |
-| 🎯 Kỹ năng cụ thể + khách hàng | `npx omni-skills --cursor --skill omni-figma` |
-| 🔎 Khám phá → cài đặt | `npx omni-skills find figma --tool con trỏ --install --yes` |
-| 📦 Gói cài đặt | `npx omni-skills --cursor --bundle Essentials` |
-| 🩺 Xác minh cài đặt | `bác sĩ đa năng npx` |---
+| Scenario | Command |
+|:---------|:--------|
+| 📥 Default install (Antigravity) | `npx omni-skills` |
+| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verify install | `npx omni-skills doctor` |
+
+---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -188,19 +216,21 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-| Lọc | Cờ | Ví dụ |
-|:-------|:------|:--------|
-| 📂 Danh mục | `--category` | `--phát triển danh mục` |
-| 🖥️ Công cụ | `--công cụ` | `--con trỏ công cụ` |
-| ⚠️ Rủi ro | `--rủi ro` | `--rủi ro an toàn` |
-| 📊 Sắp xếp | `--sắp xếp` | `--chất lượng sắp xếp\|các phương pháp hay nhất\|cấp độ\|bảo mật\|name` |
-| 🔄 Đặt hàng | `--order` | `--order asc\|desc` |
-| ⭐ Chất lượng tối thiểu | `--min-chất lượng` | `--min-chất lượng 80` |
-| 📋 BP tối thiểu | `--min-thực hành tốt nhất` | `--min-thực hành tốt nhất 60` |
-| 🎯 Cấp độ tối thiểu | `--min-level` | `--min-cấp 2` |
-| 🛡️ Bảo mật tối thiểu | `--min-security` | `--min-security 90` |
-| ✅ Xác thực | `--xác thực-trạng thái` | `--tình trạng xác thực đã được thông qua` |
-| 🛡️ An ninh | `--tình trạng bảo mật` | `--tình trạng bảo mật đã được thông qua` |---
+| Filter | Flag | Example |
+|:-------|:-----|:--------|
+| 📂 Category | `--category` | `--category development` |
+| 🖥️ Tool | `--tool` | `--tool cursor` |
+| ⚠️ Risk | `--risk` | `--risk safe` |
+| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Order | `--order` | `--order asc\|desc` |
+| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
+| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
+| 🎯 Min level | `--min-level` | `--min-level 2` |
+| 🛡️ Min security | `--min-security` | `--min-security 90` |
+| ✅ Validation | `--validation-status` | `--validation-status passed` |
+| 🛡️ Security | `--security-status` | `--security-status passed` |
+
+---
 
 ## 7️⃣ API Operations
 
@@ -212,29 +242,33 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-| Phương pháp | Điểm cuối | Mục đích |
-|:-------|:----------|:--------|
-| `NHẬN` | `/healthz` | Kiểm tra sức khỏe |
-| `NHẬN` | `/openapi.json` | Thông số OpenAPI 3.1 |
-| `NHẬN` | `/v1/kỹ năng` | Danh sách có bộ lọc |
-| `NHẬN` | `/v1/tìm kiếm` | Tìm kiếm toàn văn |
-| `NHẬN` | `/v1/skills/:id/archives` | Lưu trữ danh sách |
-| `NHẬN` | `/v1/skills/:id/download/archive?format=zip` | Tải xuống kho lưu trữ |
-| `NHẬN` | `/v1/skills/:id/download/archive/checksums` | Bảng kê khai tổng kiểm tra |### 🔐 Hosted API Hardening
+| Method | Endpoint | Purpose |
+|:-------|:---------|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
+| `GET` | `/v1/skills` | List with filters |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/skills/:id/archives` | Archive listing |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
 
-| Tính năng | Lệnh |
+### 🔐 Hosted API Hardening
+
+| Feature | Command |
 |:--------|:--------|
-| 🔑 Người mang xác thực | `OMNI_SKILLS_HTTP_BEARER_TOKEN=thay thế tôi npx api đa kỹ năng` |
-| 🗝️ Xác thực khóa API | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx api kỹ năng đa năng` |
-| 🛂 Xác thực thời gian chạy của quản trị viên | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=bí mật quản trị viên npx omni-skills api` |
-| 🚦 Giới hạn tỷ lệ | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx api đa kỹ năng` |
-| 📝 Ghi nhật ký kiểm tra | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx api đa kỹ năng` |
-| 🌍 Danh sách cho phép CORS | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
-| 🧱 Danh sách cho phép IP | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx api đa kỹ năng` |
-| 🚧 Chế độ bảo trì | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx api đa kỹ năng` |
-| 🔁 Proxy đáng tin cậy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx api đa kỹ năng` |
+| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
+| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
+| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
+| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
+| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` vẫn mở theo thiết kế; các tuyến danh mục yêu cầu xác thực khi được bật. `GET /admin/runtime` yêu cầu mã thông báo quản trị khi được định cấu hình và trả về ảnh chụp nhanh quản trị trực tiếp.---
+> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
+
+---
 
 ## 8️⃣ MCP Operations
 
@@ -254,29 +288,33 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-Xe sidecar hiện có thể xem trước hoặc ghi cấu hình MCP cho:
+The sidecar can now preview or write MCP config for:
 
-- Cài đặt dự án và người dùng Claude
-- Cấu hình máy tính để bàn Claude
-- Cấu hình người dùng Cline
-- Cấu hình kho lưu trữ và người dùng GitHub Copilot CLI
-- Cấu hình người dùng và không gian làm việc của con trỏ
-- Cấu hình Codex TOML
-- Cài đặt dự án và người dùng Gemini
-- Cấu hình dự án và người dùng Kilo CLI
-- Cấu hình không gian làm việc Kilo
-- Cài đặt dự án và người dùng Kiro
-- Cấu hình người dùng và không gian làm việc OpenCode
-- Tiếp tục config YAML của không gian làm việc
-- Cấu hình người dùng lướt ván
-- Cấu hình không gian làm việc của Zed
-- không gian làm việc `.mcp.json`
-- Không gian làm việc và cấu hình người dùng của VS Code
-- Cấu hình Dev Container
+- Claude user and project settings
+- Claude Desktop config
+- Cline user config
+- GitHub Copilot CLI user and repository config
+- Cursor user and workspace config
+- Codex TOML config
+- Gemini user and project settings
+- Kilo CLI user and project config
+- Kilo workspace config
+- Kiro user and project settings
+- OpenCode user and workspace config
+- Continue workspace YAML config
+- Windsurf user config
+- Zed workspace config
+- workspace `.mcp.json`
+- VS Code workspace and user config
+- Dev Container config
 
-`configure_client_mcp` cũng trả về `công thức nấu ăn` cho mỗi khách hàng để người vận hành có được CLI tương đương hoặc các bước thiết lập thủ công cùng với bản xem trước.### 🧾 MCP Config Preview and Write Flow
+`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
 
-Sử dụng CLI hợp nhất khi bạn muốn tạo cấu hình mà không cần gọi trực tiếp công cụ MCP:```bash
+### 🧾 MCP Config Preview and Write Flow
+
+Use the unified CLI when you want config generation without calling the MCP tool directly:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -285,15 +323,19 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Lớp vỏ trực quan hiển thị quy trình làm việc tương tự thông qua:
+The visual shell exposes the same workflow through:
 
-- `giao diện người dùng đa năng npx`
-- `Dịch vụ`
-- `Cấu hình máy khách MCP`
+- `npx omni-skills ui`
+- `Services`
+- `Configure MCP client`
 
-Lệnh vẫn ở chế độ xem trước trừ khi `--write` được thông qua.### 🔐 Hosted MCP Hardening
+The command stays in preview mode unless `--write` is passed.
 
-Các biến env tương tự như API:```bash
+### 🔐 Hosted MCP Hardening
+
+Same env vars as the API:
+
+```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -303,9 +345,11 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**Các tuyến được bảo vệ**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
 
-> 🟢 `/healthz` vẫn mở.---
+> 🟢 `/healthz` remains open.
+
+---
 
 ## 9️⃣ A2A Operations
 
@@ -324,13 +368,17 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-Đường dẫn cục bộ mặc định trước hết vẫn đơn giản:
+The default local path stays simple-first:
 
-- Tính kiên trì của `json` hoặc `sqlite` có thể chạy khi tính năng bỏ phiếu hàng đợi bị vô hiệu hóa
-- chỉ đặt `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` khi bạn muốn chuyển đổi dự phòng yêu cầu và thuê nhiều công nhân
-- giữ sự phối hợp của Redis như một tùy chọn được lưu trữ nâng cao, không phải là đường cơ sở### 🧱 Multi-Worker Lease Setup
+- `json` or `sqlite` persistence can run with queue polling disabled
+- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
+- keep Redis coordination as an advanced hosted option, not the baseline
 
-Chạy nhiều nút A2A trên cùng một cửa hàng SQLite để chuyển đổi dự phòng dựa trên hợp đồng thuê:```bash
+### 🧱 Multi-Worker Lease Setup
+
+Run more than one A2A node against the same SQLite store to get lease-based failover:
+
+```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -350,9 +398,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Nếu một công nhân chết trong khi một nhiệm vụ đang "đang hoạt động", một công nhân khác có thể lấy lại nó sau khi hợp đồng thuê hết hạn và tiếp tục thực hiện.### 🟥 Redis Coordination
+If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
 
-Đối với việc triển khai được lưu trữ trên máy chủ hoặc nhiều nút không muốn phối hợp hàng đợi bị ràng buộc với kho lưu trữ SQLite được chia sẻ, hãy chuyển điều phối viên sang Redis:```bash
+### 🟥 Redis Coordination
+
+For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
+
+```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -364,40 +416,48 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Ở chế độ này:
+In this mode:
 
-- tính kiên trì vẫn tồn tại trong JSON hoặc SQLite
-- nhiệm vụ yêu cầu và quyền sở hữu cho thuê chuyển sang Redis
-- nhiều nút A2A có thể chia sẻ một hàng đợi mà không cần dựa vào sự phối hợp cấp hàng SQLite### 📡 Endpoints
+- persistence still lives in JSON or SQLite
+- task claiming and lease ownership move to Redis
+- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
 
-| Phương pháp | Đường dẫn | Mục đích |
-|:-------|:------|:--------|
-| `NHẬN` | `/healthz` | Kiểm tra sức khỏe |
-| `NHẬN` | `/.well-known/agent.json` | Thẻ đại lý (khám phá A2A) |
-| `ĐĂNG` | `/a2a` | Điểm cuối JSON-RPC cho các tác vụ và phát trực tuyến |### 🧭 Supported JSON-RPC Methods
+### 📡 Endpoints
 
-| Phương pháp | Mục đích |
+| Method | Path | Purpose |
+|:-------|:-----|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
+| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
+
+### 🧭 Supported JSON-RPC Methods
+
+| Method | Purpose |
 |:-------|:--------|
-| `tin nhắn/gửi` | Bắt đầu hoặc tiếp tục một nhiệm vụ |
-| `tin nhắn/luồng` | Bắt đầu một nhiệm vụ và truyền phát các bản cập nhật SSE |
-| `nhiệm vụ/nhận` | Thăm dò ảnh chụp nhanh nhiệm vụ |
-| `nhiệm vụ/hủy` | Hủy tác vụ đang hoạt động |
-| `nhiệm vụ/đăng ký lại` | Tiếp tục cập nhật SSE cho tác vụ hiện có |
-| `tác vụ/pushNotificationConfig/set` | Đăng ký webhook đẩy |
-| `tác vụ/pushNotificationConfig/get` | Đọc cấu hình đẩy |
-| `tác vụ/pushNotificationConfig/list` | Liệt kê các cấu hình đẩy cho một tác vụ |
-| `tác vụ/pushNotificationConfig/xóa` | Xóa cấu hình đẩy |### 📡 Task Lifecycle
+| `message/send` | Start or continue a task |
+| `message/stream` | Start a task and stream SSE updates |
+| `tasks/get` | Poll a task snapshot |
+| `tasks/cancel` | Cancel an active task |
+| `tasks/resubscribe` | Resume SSE updates for an existing task |
+| `tasks/pushNotificationConfig/set` | Register a push webhook |
+| `tasks/pushNotificationConfig/get` | Read a push config |
+| `tasks/pushNotificationConfig/list` | List push configs for a task |
+| `tasks/pushNotificationConfig/delete` | Remove a push config |
 
-Thời gian chạy hiện tại hỗ trợ các trạng thái tác vụ sau:
+### 📡 Task Lifecycle
 
-- `đã gửi`
-- `làm việc`
-- `yêu cầu đầu vào`
-- `hoàn thành`
-- `bị hủy`
-- `thất bại`
+The current runtime supports these task states:
 
-Các tác vụ được lưu giữ vào tệp JSON hoặc kho lưu trữ SQLite và được tải lại khi khởi động lại. Các nhiệm vụ đã hoàn thành và bị gián đoạn vẫn có sẵn. Các tác vụ vẫn được "gửi" hoặc "đang hoạt động" trong khi tắt máy sẽ được khôi phục bằng siêu dữ liệu khởi động lại rõ ràng và được tiếp tục tự động theo mặc định.### 🧪 Example: Start a Task
+- `submitted`
+- `working`
+- `input-required`
+- `completed`
+- `canceled`
+- `failed`
+
+Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
+
+### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -463,12 +523,14 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-Kho lưu trữ hiện có hai quy trình công việc:
+The repository now has two workflows:
 
-| Quy trình làm việc | Kích hoạt | Mục đích |
-|:----------|:--------|:--------|
-| `xác thực.yml` | Đẩy/PR sang `main` | Xây dựng, kiểm tra và xác nhận các tạo phẩm được tạo đã được cam kết |
-| `phát hành.yml` | Tag push `v*` hoặc gửi thủ công | Chạy trình quét cấp phát hành, xác minh thẻ phiên bản, ký các tạo phẩm, đóng gói tarball, xuất bản lên npm và tạo Bản phát hành GitHub |### 🔖 Tag a Release
+| Workflow | Trigger | Purpose |
+|:---------|:--------|:--------|
+| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
+| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
+
+### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -477,73 +539,79 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-| Bí mật | Được sử dụng bởi | Mục đích |
+| Secret | Used By | Purpose |
 |:-------|:--------|:--------|
-| `VT_API_KEY` hoặc `VIRUSTOTAL` | `phát hành.yml` | Yêu cầu tra cứu hàm băm VirusTotal trong các bản phát hành |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` hoặc `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `phát hành.yml` | Khóa riêng bắt buộc để đăng nhập kho lưu trữ tách rời trong CI |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` hoặc `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `phát hành.yml` | Ghi đè khóa công khai tùy chọn; mặt khác bắt nguồn từ khóa riêng |
-| `NPM_TOKEN` | công việc `pub-npm` | Xác thực `npm Publish` cho các bản phát hành thẻ |### 🦠 Release Scanner Policy
+| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
+| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
 
-`release.yml` thiết lập hoặc chuẩn bị:
+### 🦠 Release Scanner Policy
+
+`release.yml` sets or prepares:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
-- `VT_API_KEY=${{ secret.VT_API_KEY || bí mật.VIRUSTOTAL }}`
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` từ bộ lưu trữ tạm thời của người chạy
+- `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
 
-Điều đó có nghĩa là mọi bản phát hành dựa trên thẻ phải:
+That means every tag-based release must:
 
-- cài đặt và làm mới ClamAV trên Á hậu
-- tạo lại siêu dữ liệu khi bật ClamAV
-- tạo lại siêu dữ liệu khi bật VirusTotal
-- giải mã tài liệu khóa ký CI vào bộ lưu trữ tạm thời của người chạy
-- vượt qua `npm run verify:scanners:strict`
-- vượt qua `npm run verify:archives:strict`
-- vượt qua các bài kiểm tra và xác minh gói trước khi xuất bản npm
-- tạo ghi chú phát hành tùy chỉnh từ siêu dữ liệu danh mục và lịch sử git
-- tạo Bản phát hành GitHub với nội dung phát hành đính kèm sau khi xuất bản---
+- install and refresh ClamAV on the runner
+- regenerate metadata with ClamAV enabled
+- regenerate metadata with VirusTotal enabled
+- decode CI signing key material into runner temp storage
+- pass `npm run verify:scanners:strict`
+- pass `npm run verify:archives:strict`
+- pass tests and package verification before npm publish
+- generate custom release notes from catalog metadata and git history
+- create a GitHub Release with attached release assets after publish
+
+---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-| Biến | Mục đích | Mặc định |
-|:----------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` | Ghi đè đường dẫn gốc danh mục | Tự động phát hiện |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Đường dẫn ghi bổ sung được phép | Nguồn gốc khách hàng đã biết |
-| `OMNI_SKILLS_MCP_MODE` | Đặt thành `local` cho sidecar | Từ xa |
-| `OMNI_SKILLS_MCP_LOCAL_MODE` | Cờ Alt cho chế độ cục bộ | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | URL API công khai cho MCP | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` | URL cơ sở công khai | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Mã thông báo xác thực mang | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Khóa API được phân tách bằng dấu phẩy | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Mã thông báo xác thực thời gian chạy của quản trị viên | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Số yêu cầu tối đa trên mỗi cửa sổ | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Khoảng thời gian giới hạn tốc độ (ms) | — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Bật ghi nhật ký kiểm tra | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | đầu ra kiểm tra `json` hoặc `text` | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Đường dẫn tệp nhật ký kiểm tra tùy chọn | thiết bị xuất chuẩn |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Danh sách cho phép nguồn gốc CORS được phân tách bằng dấu phẩy | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Danh sách cho phép IP hoặc CIDR được phân tách bằng dấu phẩy | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Cài đặt proxy tin cậy nhanh | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Kích hoạt phản hồi bảo trì | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Bảo trì `Thử lại sau` giây | `300` |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Mô phỏng độ trễ tác vụ không đồng bộ | `80` |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | kho tác vụ `json`, `sqlite` hoặc `memory` | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` | Tệp lưu trữ tác vụ A2A tùy chỉnh | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Cho phép bỏ phiếu hàng đợi chia sẻ cho nhân viên nhận biết hợp đồng thuê | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | điều phối viên `store`, `sqlite`, `local` hoặc `redis` | `cửa hàng` |
-| `OMNI_SKILLS_A2A_REDIS_URL` | URL Redis để phối hợp bên ngoài | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Tiền tố khóa Redis cho siêu dữ liệu hàng đợi | `kỹ năng đa năng:a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Khoảng thời gian bỏ phiếu xếp hàng cho công nhân thuê | `250` |
-| `OMNI_SKILLS_A2A_LEASE_MS` | Thời hạn thuê trước khi một công nhân khác có thể đòi lại công việc | `4000` |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` | Mã định danh công nhân ổn định cho quyền sở hữu hợp đồng thuê và chẩn đoán | Tên máy chủ + PID + hậu tố ngẫu nhiên |
-| `OMNI_SKILLS_A2A_EXECUTOR` | người thực thi tác vụ `nội tuyến` hoặc `process` | `nội tuyến` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Ghi đè lệnh nhân viên bên ngoài | Nút nhị phân |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` | Mảng JSON của đối số công nhân bên ngoài | `["gói/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Tiếp tục các tác vụ đã gửi/đang làm việc đã được khôi phục khi khởi động | `1` |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Cho phép webhook không phải HTTPS bên ngoài localhost | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` | Kích hoạt tính năng quét ClamAV | `0` |
-| `VT_API_KEY` | Khóa API VirusTotal | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Khóa riêng để ký | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Ghi đè khóa công khai | Tự động bắt nguồn |---
+| Variable | Purpose | Default |
+|:---------|:--------|:--------|
+| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
+| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
+| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
+| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
+| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
+
+---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -561,46 +629,66 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. Xây dựng lại với `npm run build`
-2. Chạy lại `npm run verify:archives`
-3. Nếu tính năng ký được bật, hãy xác nhận khóa chung và tính khả dụng của `openssl`### 🦠 Release Workflow Fails on Scanner Coverage
+1. Rebuild with `npm run build`
+2. Rerun `npm run verify:archives`
+3. If signing is enabled, confirm the public key and `openssl` availability
 
-- Xác nhận `VT_API_KEY` tồn tại trong kho bí mật
-- Xác nhận `freshclam` thành công trên Á hậu
-- Xây dựng lại cục bộ với `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
-- Chạy lại `npm run verify:scanners:strict`### 📦 npm Publish Fails in CI
+### 🦠 Release Workflow Fails on Scanner Coverage
 
-- Xác nhận `NPM_TOKEN` tồn tại trong kho lưu trữ bí mật
-- Xác nhận thẻ Git khớp chính xác với phiên bản `package.json`
-- Kiểm tra xem tarball được tải lên bởi `release-verify` có tồn tại trong các tạo phẩm của quy trình công việc không### ✍️ Release Signing Fails in CI
+- Confirm `VT_API_KEY` exists in repository secrets
+- Confirm `freshclam` succeeded on the runner
+- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Rerun `npm run verify:scanners:strict`
 
-- Xác nhận `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` hoặc `OMNI_SKILLS_SIGN_PRIVATE_KEY` tồn tại trong kho lưu trữ bí mật
-- Nếu bạn cung cấp bí mật khóa chung, hãy xác nhận nó khớp với khóa riêng
-- Xác nhận `openssl` có sẵn và khóa riêng có định dạng PEM
-- Xây dựng lại cục bộ với `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
-- Chạy lại `npm run verify:archives:strict`### 🔒 API/MCP Returns `401 Unauthorized`
+### 📦 npm Publish Fails in CI
 
-- Xác minh `OMNI_SKILLS_HTTP_BEARER_TOKEN` hoặc `OMNI_SKILLS_HTTP_API_KEYS`
-- Bao gồm `Ủy quyền: Bearer <token>` hoặc tiêu đề `x-api-key`### 🚦 API/MCP Returns `429 Too Many Requests`
+- Confirm `NPM_TOKEN` exists in repository secrets
+- Confirm the Git tag matches `package.json` version exactly
+- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
 
-- Tăng `OMNI_SKILLS_RATE_LIMIT_MAX`
-- Mở rộng `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- Giảm lưu lượng truy cập bùng nổ từ khách hàng hoặc đầu dò### 🛂 API/MCP Admin Runtime Returns `401`
+### ✍️ Release Signing Fails in CI
 
-- Xác minh `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
-- Gửi `x-admin-token: <token>` hoặc `Ủy quyền: Bearer <admin-token>`### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
+- If you provide a public key secret, confirm it matches the private key
+- Confirm `openssl` is available and the private key is PEM-formatted
+- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Rerun `npm run verify:archives:strict`
 
-- Tắt `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- Sử dụng `/healthz` để thăm dò độ sống trong quá trình bảo trì
-- Sử dụng `/admin/runtime` với mã thông báo quản trị để chẩn đoán nhà điều hành### 🌍 Browser Requests Fail CORS Validation
+### 🔒 API/MCP Returns `401 Unauthorized`
 
-- Xác minh `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
-- Bao gồm lược đồ và máy chủ lưu trữ chính xác, ví dụ: `https://app.example.com`### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
+- Include `Authorization: Bearer <token>` or `x-api-key` header
 
-- Xác minh `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
-- Xác minh `OMNI_SKILLS_A2A_REDIS_URL`
-- Kiểm tra kết nối Redis từ mọi nút
-- Kiểm tra `/healthz` để tìm ảnh chụp nhanh `phối hợp`### 🩺 General Diagnostics
+### 🚦 API/MCP Returns `429 Too Many Requests`
+
+- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduce burst traffic from clients or probes
+
+### 🛂 API/MCP Admin Runtime Returns `401`
+
+- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
+- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
+
+### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+
+- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
+- Use `/healthz` for liveness probes during maintenance
+- Use `/admin/runtime` with the admin token for operator diagnostics
+
+### 🌍 Browser Requests Fail CORS Validation
+
+- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
+- Include the exact scheme and host, for example `https://app.example.com`
+
+### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+
+- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
+- Verify `OMNI_SKILLS_A2A_REDIS_URL`
+- Check Redis connectivity from every node
+- Inspect `/healthz` for the `coordination` snapshot
+
+### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

@@ -5,55 +5,69 @@
 ---
 
 
-Toto je kanonický tok úložiska pre požiadavky na stiahnutie, ktoré pridávajú alebo podstatne inovujú jednu alebo viac natívnych zručností.
+This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
 
-Použite ho, keď:
+Use it when:
 
-- pridanie novej zručnosti pod `skills/`
-- prehĺbenie balíka nových doménových zručností
-- odoslanie väčšieho rozšírenia balíka podpory
-- overenie vetvy so súkromným zlepšovačom predtým, ako ju správcovia zlúčia## Target Outcome
+- adding a new skill under `skills/`
+- deepening a bundle with new domain skills
+- shipping a larger support-pack expansion
+- validating a branch with the private enhancer before maintainers merge it
 
-Silná natívna zručnosť PR prináša:
+## Target Outcome
 
-- prirodzená zručnosť pod `skills/`
-- dostatok obsahu na to, aby ho verejný overovateľ klasifikoval a indexoval
-- absolvovanie verejnej validácie a testov
-- automatické spracovanie zosilňovača počas PR
-- nadväzujúce `skills_omni/` PR po zverejnení vylepšených derivátov
-- pôvodný príjem v prípade potreby zachovaný v pôvodnom jazyku
-- kurátorsky vylepšený výstup prepísaný do angličtiny
-- jednosmerný tok od natívneho k kurátoru, ktorý neprivádza `skills_omni/` späť do príjmu natívneho zosilňovača## Enhancer Outcome States
+A strong native skill PR lands with:
 
-Verejný zosilňovač PR teraz hlási štyri stavy viditeľné pre správcu:
+- a native skill under `skills/`
+- enough content for the public validator to classify and index it
+- passing public validation and tests
+- automatic enhancer processing during the PR
+- a follow-up `skills_omni/` PR when enhanced derivatives are published
+- native intake preserved in its original language when needed
+- curated enhanced output rewritten into English
+- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
 
-- "dokončené".
-  Vylepšený derivát bol vygenerovaný čisto a je vhodný na publikáciu `skills_omni/`.
-- "degradovaný".
-  Vylepšovač skončil, ale použil záložnú cestu alebo vytvoril varovania. Stále sa očakáva kontrola zo strany správcu predtým, ako bude derivát považovať za zdravý.
-- "zablokované".
-  Spustenie zastavili problémy s infraštruktúrou alebo overením, ako napríklad zlyhanie predletovej kontroly hostiteľa OmniRoute alebo zlyhanie overenia kandidáta, ktoré by malo zabrániť zverejneniu.
-- "nepodarilo sa".
-  Vylepšovač narazil na neočakávanú chybu behu a potrebuje vyšetrovanie správcom.## Recommended Branch Shape
+## Enhancer Outcome States
 
-Vytvorte zameranú vetvu:```bash
+The public PR enhancer now reports four maintainer-visible states:
+
+- `completed`
+  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
+- `degraded`
+  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
+- `blocked`
+  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
+- `failed`
+  The enhancer hit an unexpected runtime error and needs maintainer investigation.
+
+## Recommended Branch Shape
+
+Create a focused branch:
+
+```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Príklady:
+Examples:
 
-- `výkon/incident-observability-evals`
-- „balíček zručností/devops“.
-- „balíček výkonov/bezpečnostných zručností“.## Native Intake Rules
+- `feat/incident-observability-evals`
+- `feat/devops-skill-pack`
+- `feat/security-skill-pack`
 
-Plocha verejného odberu je zámerne povolená.
+## Native Intake Rules
 
-minimum:```text
+The public intake surface is intentionally permissive.
+
+Minimum:
+
+```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Odporúčané, ale už nie potrebné na príjem:```text
+Recommended but no longer required for intake:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -63,125 +77,143 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-Natívny príspevok môže byť hrubý, neúplný alebo mimo bežného štandardu balíka podpory. To je zámerné. `skills/` je prirodzený vstupný povrch, nie povrch kurovaného derivátu.
+The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
 
-Jazykové pravidlá:
+Language policy:
 
-- natívny príjem pod `skills/` môže byť napísaný v akomkoľvek jazyku
-- zosilňovač uchová natívnu snímku tak, ako bola predložená na určenie pôvodu
-- spravovaný derivát pod `skills_omni/` musí byť vždy napísaný v angličtine
+- native intake under `skills/` may be written in any language
+- the enhancer keeps the native snapshot as submitted for provenance
+- the curated derivative under `skills_omni/` must always be written in English
 
-Prísnejšia redakčná hranica teraz platí pre:
+The stricter editorial bar now applies to:
 
-- vytvorené metaúdaje a bezpečnostné kontroly
-- recenzia súkromného zosilňovača
-- nadväzujúci kurátorský derivát pod `skills_omni/`## Authoring Sequence
+- the generated metadata and security checks
+- the private enhancer review
+- the follow-up curated derivative under `skills_omni/`
 
-1. Vytvorte `skills/<skill>/SKILL.md`.
-2. Pridajte frontmatter, ak môžete, ale chýbajúci alebo neúplný frontmatter už sám o sebe neblokuje pôvodný príjem.
-3. Pridajte `agents/`, `references/`, `examples/` a `scripts/`, keď ich už máte.
-4. Ak zručnosť prehĺbi existujúci balík, aktualizujte súbor `data/bundles.json`.
-5. Otvorte PR. O zvyšok sa teraz postará repo automatizácia.## Validation Sequence
+## Authoring Sequence
 
-Prispievatelia môžu pred otvorením PR spustiť presnú postupnosť:```bash
+1. Create `skills/<skill>/SKILL.md`.
+2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
+3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
+4. Update `data/bundles.json` if the skill deepens an existing bundle.
+5. Open the PR. The repo automation now does the rest.
+
+## Validation Sequence
+
+Contributors can run this exact sequence before opening the PR:
+
+```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-Ak zmena ovplyvňuje aj runtime alebo správanie balenia, spustite aj:```bash
+If the change also affects runtime or packaging behavior, also run:
+
+```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-Keď sa PR otvorí alebo zosynchronizuje a dotkne sa iba natívnych súborov príjmu zručností pod `skills/` plus voliteľného `data/bundles.json`, verejné úložisko teraz automaticky spustí súkromný vylepšenie.
+When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
 
-Aktuálny automatický tok:
+Current automated flow:
 
-1. Verejný pracovný postup `Validate Skills` beží na PR a kontroluje validáciu, zostavenie, generované artefakty a testy.
-2. Verejný pracovný postup `Enhance PR Skills` začína paralelne a spracováva zmenené natívne zručnosti jednu po druhej v `živom` režime.
-3. Vylepšovač prečíta natívnu zručnosť z `skills/`, preskúma aktuálne osvedčené postupy a napíše recenzovaného vylepšeného kandidáta v súkromnom pracovnom priestore.
-4. Zosilňovač v prípade potreby uchováva snímku príjmu v pôvodnom jazyku, ale prepíše upravený výstup do angličtiny.
-5. Vylepšovač odošle postup späť do zdroja PR.
-6. Vylepšovač aktualizuje komentár stavu PR po každej spracovanej zručnosti s celkovými súčtami dávok a najnovším stavom.
-7. Keď skončí, zhmotní vylepšený derivát do `skills_omni/` a otvorí alebo aktualizuje sprievodné PR vo verejnom repo pre `dokončené` a `degradované` výstupy.
-8. Po zlúčení PR do `main`, súkromný repo-aware poler znovu spracuje všetky zmenené natívne zručnosti, obnoví `workspace/vylepšené/zručnosti/<skill>/` a udržiava súkromnú vylepšenú základnú líniu v súlade s najnovším verejným natívnym zdrojom.
-9. Po zlúčení pracovný tok verejných verzií obnoví verziu balíka npm, regeneruje artefakty katalógu, publikuje vydanie a automaticky označí novú verziu.
+1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
+2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
+3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
+4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
+5. The enhancer posts progress back to the source PR.
+6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
+7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
+8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
+9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
 
-Limit sadzby:
+Rate limit:
 
-- PR zosilňovač momentálne spracováva**1 zručnosť za minútu**
-- PR so 40 natívnymi novými zručnosťami môže preto zostať vo fronte zosilňovača asi 40 minút
-- PR ukazuje, že práca ako prebiehajúca CI plus komentár k pokroku, ktorý posúva zručnosti vpred
+- the PR enhancer currently processes **1 skill per minute**
+- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
+- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
 
-Prispievateľ nemusí spúšťať vylepšenie manuálne.## No-Loop Rule For `skills_omni/`
+The contributor does not need to run the enhancer manually.
 
-Ošetrený povrch je zámerne jednosmerný:
+## No-Loop Rule For `skills_omni/`
 
-- natívny vstup vstupuje cez `skills/`
-- súkromné recenzie vylepšovačov natívneho vstupu
-- kurátorský výstup je navrhnutý do `skills_omni/`
-- `skills_omni/` sa už nikdy nepovažuje za prirodzený príjem
-- neskoršie natívne aktualizácie stále znova vstupujú cez `skills/` a po opätovnom spracovaní nahrádzajú súkromný vylepšený základ
+The curated surface is intentionally one-way:
 
-Úložisko teraz presadzuje túto hranicu:
+- native input enters through `skills/`
+- the private enhancer reviews that native input
+- curated output is proposed into `skills_omni/`
+- `skills_omni/` is never treated as native intake again
+- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
 
-- priame verejné PR, ktoré modifikujú `skills_omni/`, sú odmietnuté
-- akceptujú sa tam iba sprievodné PR autorizované pre automatizáciu z rodiny pobočiek `skills-omni/pr-*`
-- zmiešané PR, ktoré sa pokúšajú zmeniť súčasne `skills/` aj `skills_omni/`, sú odmietnuté## Automatic Versioning After Merge
+The repository now enforces that boundary:
 
-Zlúčenia nesúce zručnosti do `main` teraz automaticky spúšťajú pracovný postup vydania úložiska.
+- direct public PRs that modify `skills_omni/` are rejected
+- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
 
-Aktuálna politika verzie balíka:
+## Automatic Versioning After Merge
 
-- oprava sa zvýši o `+1` pre každé kvalifikačné zlúčenie
+Skill-bearing merges to `main` now trigger the repository release workflow automatically.
+
+Current package version policy:
+
+- patch increments by `+1` for each qualifying merge
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- po `.10` sa balík presunie na ďalšiu vedľajšiu a obnoví opravu
-- "0.0.10" → "0.1.0".
-- "0.1.10" → "0.2.0".
+- after `.10`, the package rolls to the next minor and resets patch
+- `0.0.10` → `0.1.0`
+- `0.1.10` → `0.2.0`
 
-Cesty spúšťača aktuálneho vydania:
+Current release trigger paths:
 
-- „zručnosti/**“.
+- `skills/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-Táto úloha automatického uvoľnenia:
+That automatic release job:
 
-1. vypočíta ďalšiu verziu balíka z `package.json`
-2. Narazí na `package.json` a `package-lock.json`
-3. regeneruje `metadata.json`, `skills_index.json`, `dist/` a `docs/CATALOG.md`
-4. prevádzkuje prísne overovací kanál
-5. potvrdí zmenu verzie späť na `main`
-6. vytvorí značku Git pre novú verziu
-7. zverejňuje artefakty npm a GitHub Release
+1. computes the next package version from `package.json`
+2. bumps `package.json` and `package-lock.json`
+3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
+4. runs the strict release verification pipeline
+5. commits the version bump back to `main`
+6. creates a Git tag for the new version
+7. publishes npm and GitHub Release artifacts
 
-Dôležitá poznámka k uvedeniu:
+Important rollout note:
 
-- GitHub zaregistruje nový súbor pracovného toku ako aktívny pracovný tok úložiska až potom, čo tento súbor dosiahne predvolenú vetvu.
-- Kým sa `Enhance PR Skills` nedostane na `main`, prispievatelia si môžu prečítať zdokumentovaný proces, ale GitHub zatiaľ nevykoná tento pracovný postup automaticky na verejných PR.
-- Po zlúčení pracovného toku do „hlavného“ sa správanie opísané vyššie stane predvolenou cestou prijímania budúcich natívnych PR zručností.## Native vs Enhanced
+- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
+- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
+- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
 
-Toto úložisko má teraz dva odlišné povrchy:
+## Native vs Enhanced
 
-- „zručnosti/“.
-  Natívny príjem. Tým sa zachová pôvodný príspevok tak, ako bol predložený.
+This repo now has two distinct surfaces:
+
+- `skills/`
+  Native intake. This preserves the original contribution as submitted.
 - `skills_omni/`
-  Omni-vylepšený odvodený výstup navrhnutý automatizáciou a udržiavaný tímom Omni Skills Team.
+  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
 
-Pravidlá pripisovania pre `skills_omni/`:
+Attribution rules for `skills_omni/`:
 
-- vylepšený derivát sa stáva Omni-udržovaným
-- pôvodný prispievateľ a pôvodná natívna zručnosť zostávajú pripočítané
-- každý vylepšený adresár uchováva súbor `ATTRIBUTION.md` s upstream cestou, PR, autorom a kontextom zdroja
-- každý vylepšený adresár je len kurátorským výstupom a nesmie byť znovu zaslaný do natívnej cesty prijímania zosilňovača
-- od každého vylepšeného adresára sa očakáva, že bude výstupom v anglickom jazyku, a to aj v prípade, že pôvodný pôvodný zdroj nebol## Manual Maintainer Commands
+- the enhanced derivative becomes Omni-maintained
+- the original contributor and upstream native skill remain credited
+- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
+- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
+- each enhanced directory is expected to be English-language output even when the upstream native source was not
 
-Automatizácia pokrýva bežný príjem PR, ale správcovia môžu v prípade potreby stále spustiť súkromný zosilňovač manuálne.
+## Manual Maintainer Commands
 
-Dávka oproti rozdielu vetvy:```bash
+The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
+
+Batch against a branch diff:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -191,7 +223,9 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Prehľad jednej zručnosti:```bash
+Single-skill review:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -199,7 +233,7 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Očakávané výstupy zosilňovača na zručnosť:
+Expected enhancer outputs per skill:
 
 - `workspace/incoming/original/<run-id>/<skill>/`
 - `workspace/enhanced-candidates/<run-id>/<skill>/`
@@ -209,28 +243,34 @@ Očakávané výstupy zosilňovača na zručnosť:
 - `workspace/reports/<run-id>/score-delta.json`
 - `workspace/reports/<run-id>/review.md`
 - `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<id-spustenia>/rewrite-prompt.md`## PR Body Expectations
+- `workspace/reports/<run-id>/rewrite-prompt.md`
 
-Orgán PR by mal uviesť:
+## PR Body Expectations
 
-- aké zručnosti boli pridané alebo vylepšené
-- ktoré zväzky alebo pracovné postupy prehlbujú
-- aké overenie prebiehalo
-- či sa spustil automatický zosilňovač
-- či otvoril alebo aktualizoval sprievodné PR `skills_omni/`
-- akékoľvek výnimočné poznámky správcu týkajúce sa pripisovania alebo následného čistenia## Reviewer Checklist
+The PR body should state:
 
-- natívny príjem je legitímny a nie škodlivý
-- vygenerované metadáta a manifesty boli obnovené
-- aktualizácie balíkov sú zámerné
-- verejná validácia a stavebné výstupy sú zelené
-- komentár stavu zosilňovača zodpovedá skutočne zmeneným zručnostiam a konečnému stavu výsledku
-- každý sprievodný PR `skills_omni/` správne zachováva uvedenie zdroja## Example PR Scope
+- what skills were added or upgraded
+- which bundles or workflows they deepen
+- what validation ran
+- whether the automated enhancer ran
+- whether it opened or updated a `skills_omni/` companion PR
+- any exceptional maintainer notes about attribution or follow-up cleanup
 
-Silný príklad PR môže pridať tematický súbor, ako napríklad:
+## Reviewer Checklist
 
-- jedna pozorovateľnosť alebo zručnosť DevOps
-- jeden incident alebo bezpečnostná zručnosť
-- jedna schopnosť hodnotenia AI alebo nabádania
+- native intake is legitimate and non-malicious
+- generated metadata and manifests were refreshed
+- bundle updates are intentional
+- public validation and build outputs are green
+- the enhancer status comment matches the actual changed skills and final outcome state
+- any `skills_omni/` companion PR preserves attribution correctly
 
-To je dostatočne veľké na to, aby sa uplatňoval skórovač, automatický zlepšovač, tok publikovania `skills_omni/`, balíky a model pripisovania bez toho, aby sa PR zmenilo na úplné prepísanie katalógu.
+## Example PR Scope
+
+A strong example PR can add a thematic set such as:
+
+- one observability or DevOps skill
+- one incident or security skill
+- one AI evaluation or prompting skill
+
+That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.

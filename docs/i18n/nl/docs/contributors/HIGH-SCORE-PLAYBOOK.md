@@ -5,71 +5,83 @@
 ---
 
 
->**Wat een Omni Skills `SKILL.md` in de praktijk nodig heeft om hoge scores voor volwassenheid, best practices, kwaliteit en beveiliging te bereiken.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-In deze handleiding wordt uitgelegd hoe de classificator van de repository een vaardigheid daadwerkelijk beloont.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Gebruik het wanneer u:
+Use it when you want to:
 
-- ontwikkel een nieuwe vaardigheid die in de best scorende bands belandt
-- een bestaande vaardigheid verbeteren die vastzit in 'goed' of laag 'uitstekend'
-- begrijp waarom een vaardigheid met fatsoenlijke opmaak nog steeds niet scoort als een uitzonderlijke operationele troef
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Dit is de op bijdragers gerichte aanvulling op:
+This is the contributor-facing companion to:
 
-- [Kwaliteitsbalk](QUALITY-BAR.md)
-- [Vaardigheidanatomie](SKILL-ANATOMY.md)
-- [Vaardigheidsclassificatie](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Huidige benchmark voor de live catalogus:
+Current benchmark for the live native catalog:
 
-- 32 gepubliceerde vaardigheden
-- huidige kwaliteitsspreiding: `94, 95, 96, 97, 100`
-- huidige best practices-spreiding: `98, 99, 100`
-- huidige topklasse: `omni-figma` met `100/100` kwaliteit en `100/100` best practices---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-De classificator beloont**niet**alleen een mooie prijsverlaging.
+The classifier does **not** reward pretty markdown alone.
 
-Hoogscorende vaardigheden zijn vaardigheden die:
+High-scoring skills are skills that are:
 
--**vindbaar**: in de beschrijving staat duidelijk wat de vaardigheid doet en wanneer je deze moet gebruiken
--**operationeel**: de vaardigheid omvat lokale scripts, referenties en uitvoerbare voorbeelden
--**diagnostisch**: het helpt de agent te herstellen als er iets misgaat
--**specifiek**: het is gericht op één workflow, niet op breed advies
--**veilig**: het vermijdt risicovolle patronen en levert schone scanneruitvoer
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-In de praktijk gedragen de sterkste vaardigheden zich meer als een**klein verpakte workflowkit**dan als een eenvoudige afprijsnota.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Gebruik deze doelen bij het schrijven:
+Use these targets when authoring:
 
-| Afmeting | Sterk doel | Uitzonderlijk doel |
-|:----------|:--------------|:------------------|
-| 🎯 Rijpheid | `L3` | `L3` met meerdere ondersteuningsbronnen |
-| 📋 Beste praktijken | `90+` | `96+` |
-| ⭐ Kwaliteit | `85+` | `90+` |
-| 🛡️ Beveiliging | `95+` | `95+` met nul bevindingen |---
+| Dimension | Strong Target | Exceptional Target |
+|:----------|:--------------|:-------------------|
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Je frontmatter moet ervoor zorgen dat de vaardigheid gemakkelijk te classificeren en gemakkelijk te ontdekken is:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `naam` komt exact overeen met de directory
-- `beschrijving` legt zowel**wat**als**wanneer**uit
-- 'categorie', 'tags', 'tools', 'complexiteit', 'risico', 'bron', 'auteur' en datums zijn allemaal aanwezig
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Goede beschrijving vorm:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Slechte beschrijving vorm:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-De sterkste vaardigheden omvatten consequent deze secties:
+The strongest skills consistently include these sections:
 
-- `## Overzicht`
-- `## Wanneer gebruik je deze vaardigheid`
-- `## Werkstroom`
-- `## Voorbeelden`
-- `## Beste praktijken`
-- `## Probleemoplossing`
-- `## Aanvullende bronnen`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Als een van deze ontbreekt, kan de score nog steeds goed zijn, maar wordt het moeilijker om er uitzonderlijk uit te zien.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-De best scorende vaardigheden omvatten meestal:
+Top-scoring skills usually include:
 
-- `referenties/checklist.md`
-- een of meer helperscripts in `scripts/`
-- minstens één uitgewerkt voorbeeld in `examples/`
-- `agents/openai.yaml` wanneer de vaardigheid bedoeld is voor directe aanroep van agenten
-- directe links van `SKILL.md` naar die lokale bestanden
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Dit is van belang omdat de classificator een vaardigheid met**gebundeld ondersteunend materiaal**beschouwt als bruikbaarder dan een vaardigheid die alleen maar naar buiten wijst.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Aanbevolen minimum:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Hoog scorende voorbeelden zijn:
+High-scoring examples are:
 
-- beton
-- getypt met een echt hek zoals `bash` of `python`
-- gebonden aan een lokaal script of herhaalbare opdracht
-- representatief voor de workflow
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-Goed:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Zwak:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-De scorer beloont het oplossen van problemen waardoor een agent kan herstellen en niet alleen een probleem kan herkennen.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Voorkeur formaat:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Dit is sterker dan een vage opmerking als:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-De classificator maakt nu onderscheid tussen een vaardigheid die louter compleet is en een vaardigheid die werkelijk diepgaand is.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Signalen die helpen:
+Signals that help:
 
-- meerdere concrete voorbeelden
-- meerdere gevallen van probleemoplossing
-- begeleiding van gerelateerde vaardigheden
-- rijkere referentiepakketten
-- een zichtbaar `## Workflow`-gedeelte met genummerde stappen die de scorer direct kan tellen
-- minstens één operationele tabel of uitvoeringskaart waar het de workflow verduidelijkt
-- meer dan één ondersteuningsmap of itemtype
-- workflowsecties met voldoende stappen om de uitvoering te begeleiden
-- beslissingsmiddelen zoals checklists, rubrieken, matrices, pakketten of draaiboeken
-- sterkere diversiteit aan ondersteuningspakketten voor `references/`, `scripts/`, `agents/`, `examples/` of `assets/`
-- voldoende herbruikbare ondersteuningsbestanden die eruitzien als een bouwpakket, zonder dat er ook maar één helper naast de prijsverlaging zit
-- meer dan één enkel hulpbestand als de workflow complex genoeg is om een ondersteuningspakket te rechtvaardigen
-- voldoende lichaamsdiepte om afwegingen en faalmodi te dekken
-- dichtere operationele begeleiding, omdat de scorer nu gepolijste opmaak onderscheidt van echt herbruikbare workflow-diepte
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Signalen die**niet**veel helpen:
+Signals that do **not** help much:
 
-- dezelfde instructie in verschillende woorden herhalen
-- algemene vultekst
-- kopjes toevoegen zonder inhoud eronder toe te voegen---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Gebruik deze checklist voordat u de validatie uitvoert:
+Use this checklist before running validation:
 
-- beschrijving zegt**wat**en**wanneer**
-- de vaardigheid is gericht op één workflow
-- `## Workflow` bestaat en bevat genummerde stappen of stappen met opsommingstekens
-- er bestaat minstens één uitvoerbaar voorbeeld
-- `references/`, `scripts/` en idealiter `examples/` zijn gelinkt vanuit `SKILL.md`
-- `agents/openai.yaml` bestaat wanneer de vaardigheid bedoeld is voor directe aanroep in agentclients
-- probleemoplossing gebruikt 'Symptomen' en 'Oplossing'
-- de vaardigheid kan redelijkerwijs worden geclassificeerd als `L3`
-- er zijn geen risicovolle commando's of verdachte paden aanwezig
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Voer vervolgens uit:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- de beschrijving is correct maar te algemeen
-- de afwaardering heeft secties maar geen operationele diepte
-- voorbeelden verwijzen niet naar lokale helpers
-- Er bestaat probleemoplossing, maar deze is niet diagnostisch
-- er zijn te weinig tags of tool-ID's
-- de vaardigheid is veilig en schoon, maar nog steeds te oppervlakkig om als uitzonderlijk te gelden---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Als uw vaardigheid aanvoelt als:
+If your skill feels like:
 
-- een**sjabloon**: deze kan passeren
-- een**gids**: deze kan goed scoren
-- een**workflowpakket**: de kans is veel groter dat je bovenaan scoort
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

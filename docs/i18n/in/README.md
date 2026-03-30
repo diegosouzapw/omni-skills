@@ -4,7 +4,7 @@
 
 ---
 
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
 <div align="center">
 
@@ -13,8 +13,12 @@
 
 <br/>
 
-**कौशल सूची जो स्वयं स्थापित होती है।**<br/>
-सीएलआई · एपीआई · एमसीपी · ए2ए - सभी एक `एनपीएक्स` कमांड से।<br/>
+**The skill catalog that installs itself.**<br/>
+CLI · API · MCP · A2A — all from a single `npx` command.
+
+> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
+
+<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -26,9 +30,44 @@
 [![API](https://img.shields.io/badge/🌐_API-read--only_catalog-0366d6?style=for-the-badge)](#-runtime-surfaces)
 [![A2A](https://img.shields.io/badge/🤖_A2A-task_lifecycle-orange?style=for-the-badge)](#-runtime-surfaces)
 
+<p align="center">
+  🇺🇸 English
+  · <a href="docs/i18n/es/README.md">🇪🇸 Español</a>
+  · <a href="docs/i18n/fr/README.md">🇫🇷 Français</a>
+  · <a href="docs/i18n/de/README.md">🇩🇪 Deutsch</a>
+  · <a href="docs/i18n/it/README.md">🇮🇹 Italiano</a>
+  · <a href="docs/i18n/ru/README.md">🇷🇺 Русский</a>
+  · <a href="docs/i18n/zh-CN/README.md">🇨🇳 中文（简体）</a>
+  · <a href="docs/i18n/ja/README.md">🇯🇵 日本語</a>
+  · <a href="docs/i18n/ko/README.md">🇰🇷 한국어</a>
+  · <a href="docs/i18n/ar/README.md">🇸🇦 العربية</a>
+  · <a href="docs/i18n/in/README.md">🇮🇳 हिन्दी</a>
+  · <a href="docs/i18n/th/README.md">🇹🇭 ไทย</a>
+  · <a href="docs/i18n/vi/README.md">🇻🇳 Tiếng Việt</a>
+  · <a href="docs/i18n/id/README.md">🇮🇩 Bahasa Indonesia</a>
+  · <a href="docs/i18n/ms/README.md">🇲🇾 Bahasa Melayu</a>
+  · <a href="docs/i18n/nl/README.md">🇳🇱 Nederlands</a>
+  · <a href="docs/i18n/pl/README.md">🇵🇱 Polski</a>
+  · <a href="docs/i18n/sv/README.md">🇸🇪 Svenska</a>
+  · <a href="docs/i18n/no/README.md">🇳🇴 Norsk</a>
+  · <a href="docs/i18n/da/README.md">🇩🇰 Dansk</a>
+  · <a href="docs/i18n/fi/README.md">🇫🇮 Suomi</a>
+  · <a href="docs/i18n/pt/README.md">🇵🇹 Português (Portugal)</a>
+  · <a href="docs/i18n/ro/README.md">🇷🇴 Română</a>
+  · <a href="docs/i18n/hu/README.md">🇭🇺 Magyar</a>
+  · <a href="docs/i18n/bg/README.md">🇧🇬 Български</a>
+  · <a href="docs/i18n/sk/README.md">🇸🇰 Slovenčina</a>
+  · <a href="docs/i18n/uk-UA/README.md">🇺🇦 Українська</a>
+  · <a href="docs/i18n/he/README.md">🇮🇱 עברית</a>
+  · <a href="docs/i18n/phi/README.md">🇵🇭 Filipino</a>
+  · <a href="docs/i18n/pt-BR/README.md">🇧🇷 Português (Brasil)</a>
+</p>
+
 <br/>
 
-[⚡ 1 मिनट में इंस्टॉल करें](#-इंस्टॉलेशन) · [🛠️ अपना टूल चुनें](#-अपना टूल चुनें) · [📖 सीएलआई गाइड](docs/users/CLI-USER-GUIDE.md) · [📦 बंडल](docs/users/BUNDLES.md) · [🔌 रनटाइम](#-रनटाइम-सतह) · [💡 क्यों ओमनी कौशल](#-क्यों-ओमनी-कौशल)</div>
+[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
+
+</div>
 
 ---
 
@@ -38,34 +77,41 @@
 
 </div>
 
-| | मीट्रिक | मूल्य |
+| | Metric | Value |
 |:--|:-------|:------|
-| 📦 |**प्रकाशित कौशल**| 15 सक्रिय श्रेणियों में `32` |
-| 🎯 |**बंडल**| `7` पूरी तरह से समर्थित क्यूरेटेड बंडल |
-| 🖥️ |**ग्राहक स्थापित करें**| `7` इंस्टॉल-सक्षम एआई कोडिंग सहायक |
-| 🔌 |**एमसीपी ग्राहक**| `16` एमसीपी कॉन्फिग-सक्षम क्लाइंट |
-| 🔐 |**क्यूरेटेड आउटपुट**| `32` ने `skills_omni/` में अंग्रेजी डेरिवेटिव को बढ़ाया |
-| 📋 |**वर्तमान रिलीज**| `v0.1.2` |---
+| 📦 | **Published Skills** | `48` native skills across 15 active categories |
+| 🎯 | **Bundles** | `7` fully backed curated bundles |
+| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
+| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
+| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
+| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 📋 | **Current Release** | `v0.1.3` |
+
+---
 
 ## त्वरित प्रारंभ
 
->**एआई कोडिंग कौशल, क्लाउड कोड कौशल, कर्सर कौशल, कोडेक्स सीएलआई कौशल, जेमिनी सीएलआई कौशल, एंटीग्रेविटी कौशल, या इंस्टॉल करने योग्य `SKILL.md` लाइब्रेरी की खोज की गई?**
-> आप सही जगह पर हैं.### 1️⃣ What is this?
+> 🔍 **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
+> **You're in the right place.** 👇
 
-ओमनी स्किल्स एआई कोडिंग सहायकों के लिए एक**इंस्टॉल करने योग्य कौशल कैटलॉग और रनटाइम**है। इसके मूल में, यह पुन: प्रयोज्य `SKILL.md` प्लेबुक का एक सार्वजनिक भंडार है - लेकिन सादे कौशल संग्रह के विपरीत, रेपो वितरण और रनटाइम परत है।
+### 1️⃣ What is this?
 
-<विवरण>
-<सारांश>📋 <strong>क्या शामिल है</strong></सारांश>
+Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
 
-| घटक | विवरण |
-|:-------|:-------|
-| 🧠**कौशल**| एआई सहायकों के लिए क्यूरेटेड `SKILL.md`-आधारित प्लेबुक |
-| 📦**प्रकट**| जेनरेटेड JSON मेनिफ़ेस्ट, बंडल और पुरालेख |
-| 🧭**निर्देशित इंस्टाल**| इंटरएक्टिव टीटीवाई और विजुअल टर्मिनल इंस्टाल प्रवाह |
-| 🌐**कैटलॉग एपीआई**| खोज, खोज और डाउनलोड के लिए केवल पढ़ने योग्य HTTP एपीआई |
-| 🔌**एमसीपी सर्वर**| खोज, अनुशंसा, और क्लाइंट-जागरूक कॉन्फिग टूलिंग |
-| 🤖**A2A रनटाइम**| एजेंट-टू-एजेंट कार्य ऑर्केस्ट्रेशन |
-| ✨**एन्हांसमेंट पाइपलाइन**| निजी एन्हांसर क्यूरेटेड अंग्रेजी डेरिवेटिव को `skills_omni/` | में प्रकाशित करता है</details>
+<details>
+<summary>📋 <strong>What's included</strong></summary>
+
+| Component | Description |
+|:----------|:-----------|
+| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
+| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
+| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
+| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
+| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
+| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
+| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
+
+</details>
 
 ### 2️⃣ Quick Start
 
@@ -85,95 +131,109 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"सास एमवीपी की योजना बनाने के लिए `@ब्रेनस्टॉर्मिंग` का उपयोग करें।"*
+> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
 >
-> 💬 *"इस एंडपॉइंट डिज़ाइन की समीक्षा करने के लिए `@api-design` का उपयोग करें।"*
+> 💬 *"Use `@api-design` to review this endpoint design."*
 >
-> 💬 *"इस प्रतिगमन को अलग करने के लिए `@debugging` का उपयोग करें।"*### 5️⃣ Start with a bundle
+> 💬 *"Use `@debugging` to isolate this regression."*
 
-| 🎯लक्ष्य | बंडल | आदेश |
-|:------|:-------|:--------|
-| सामान्य इंजीनियरिंग | 'आवश्यक' | `एनपीएक्स ओमनी-स्किल्स--बंडल एसेंशियल` |
-| उत्पाद + ऐप डिलीवरी | `फुल-स्टैक` | `एनपीएक्स ओमनी-स्किल्स--बंडल फुल-स्टैक` |
-| डिज़ाइन सिस्टम | 'डिज़ाइन' | `एनपीएक्स ओमनी-स्किल्स--बंडल डिज़ाइन` |
-| सुरक्षा समीक्षा | 'सुरक्षा' | `एनपीएक्स ओमनी-स्किल्स--बंडल सुरक्षा` |
-| इन्फ्रा और रिलीज | 'देवोप्स' | `एनपीएक्स ओमनी-स्किल्स--बंडल डेवॉप्स` |
-| एलएलएम अनुप्रयोग | `एआई-इंजीनियर` | `एनपीएक्स ओम्नी-स्किल्स --बंडल एआई-इंजीनियर` |
-| ओएसएस रखरखाव | `ओएसएस-मेंटेनर` | `एनपीएक्स ओमनी-स्किल्स--बंडल ओएस-मेंटेनर` |---
+### 5️⃣ Start with a bundle
+
+| 🎯 Goal | Bundle | Command |
+|:---------|:-------|:--------|
+| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
+| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
+| Design systems | `design` | `npx omni-skills --bundle design` |
+| Security review | `security` | `npx omni-skills --bundle security` |
+| Infra and release | `devops` | `npx omni-skills --bundle devops` |
+| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
+| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
+
+---
 
 ## 🧩 Core Concepts
 
-बंडलों की तुलना करने या इंस्टॉल पथ चुनने से पहले, इन पांच बिल्डिंग ब्लॉक्स को समझने से मदद मिलती है:
+Before comparing bundles or picking an install path, understanding these five building blocks helps:
 
-| संकल्पना | इसका क्या मतलब है |
-|:--------|:--------|
-| 🧠**कौशल**| पुन: प्रयोज्य `SKILL.md` प्लेबुक जो एक सहायक को वर्कफ़्लो को अच्छी तरह से निष्पादित करना सिखाती हैं |
-| 📦**कैटलॉग कलाकृतियाँ**| खोज, तुलना, डाउनलोड और इंस्टॉल को सक्षम करने वाले JSON और आर्काइव आउटपुट जेनरेट किए गए
-| 🔌**एमसीपी कॉन्फिग**| एमसीपी टूल के माध्यम से ओमनी कौशल की खोज करने के लिए सहायकों के लिए क्लाइंट-साइड कॉन्फ़िगरेशन |
-| 🤖**A2A रनटाइम**| खोज, अनुशंसा और इंस्टॉल-प्लान हैंडऑफ़ के लिए एजेंट-टू-एजेंट ऑर्केस्ट्रेशन |
-| ✨**क्यूरेटेड आउटपुट**| `skills_omni/` - ओमनी-रखरखाव वाली उन्नत सतह, मूल अपस्ट्रीम सेवन से अलग |
+| Concept | What it means |
+|:--------|:-------------|
+| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
+| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
+| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
+| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
+| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
 
->**📝 मूल/क्यूरेटेड नीति:**
-> - `कौशल/` किसी भी भाषा में मूल अपस्ट्रीम सेवन को स्वीकार करता है
-> - `skills_omni/` हमेशा अंग्रेजी में क्यूरेट और प्रकाशित किया जाता है
-> - `skills_omni/` एक तरफ़ा सतह है और मूल सेवन में वापस नहीं आती है---
+> **📝 Native/Curated policy:**
+> - `skills/` accepts native upstream intake in any language
+> - `skills_omni/` is always curated and published in English
+> - `skills_omni/` is a one-way surface and does not loop back into native intake
+
+---
 
 ## 💡 Why Omni Skills
 
->**सिर्फ "फ़ोल्डरों में कौशल के साथ एक और भंडार" नहीं।**
-> ओमनी स्किल्स के पास एक मजबूत अनुबंध और व्यापक रनटाइम सतह है।
+> **Not just "another repository with skills in folders."**
+> Omni Skills has a stronger contract and a broader runtime surface.
 
-| यदि आप चाहें तो... | 📁 विशिष्ट कौशल रेपो | ✨ ओमनी कौशल |
-|:---|:----------------------|:----|
-| एक वास्तविक सहायक में स्थापित करें | मैन्युअल कॉपी या कस्टम स्क्रिप्ट | `एनपीएक्स ओमनी-स्किल्स`, गाइडेड इंस्टाल, विज़ुअल यूआई, चयनात्मक `--स्किल` और `--बंडल` |
-| कौशल खोजें और तुलना करें | मार्कडाउन को मैन्युअल रूप से ब्राउज़ करें | जेनरेटेड कैटलॉग, फ़िल्टरिंग, बंडल प्लानिंग, खोज, तुलना और अनुशंसा |
-| सभी टूल में समान डेटा का उपयोग करें | प्रति टूल अलग तर्क | सीएलआई, एपीआई, एमसीपी और ए2ए के लिए साझा मैनिफ़ेस्ट और कैटलॉग |
-| MCP क्लाइंट कॉन्फ़िगर करें | फ़ाइलें हाथ से संपादित करें | `कॉन्फिग-एमसीपी`, स्थानीय साइडकार पूर्वावलोकन, जेनरेट की गई रेसिपी, और अनुमति सूची में लिखे लेख |
-| ट्रस्ट विज्ञप्ति | सर्वोत्तम प्रयास वाली पैकेजिंग | चेकसम, हस्ताक्षरित अभिलेखागार, स्कैनर सत्यापन, सीआई जारी करें, और प्रीफ्लाइट प्रकाशित करें |
-| क्यूरेट समुदाय सेवन | जो भी भूमि यथावत रहती है | `कौशल/` में मूल प्रवेश, `कौशल_ओम्नी/` में क्यूरेटेड अंग्रेजी डेरिवेटिव्स एट्रिब्यूशन के साथ |---
+| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
+|:-------------|:----------------------|:--------------|
+| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
+| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
+| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
+| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
+| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
+| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
+
+---
 
 ## 🖥️ Compatibility and Invocation
 
-ये कौशल `SKILL.md` मॉडल का पालन करते हैं और इन्हें सामान्य रिपॉजिटरी के रूप में उपयोग किया जा सकता है, लेकिन पैकेज उन्हें एक व्यापक सतह पर स्थापित और कॉन्फ़िगर भी करता है:
+These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
 
->**7**इंस्टॉल-सक्षम क्लाइंट ·**16**एमसीपी कॉन्फिग-सक्षम क्लाइंट### 🎯 Install-Capable Clients
+> **7** install-capable clients · **16** MCP config-capable clients
 
-| उपकरण | प्रकार | मंगलाचरण उदाहरण | पथ स्थापित करें |
-|:----|:-----|:-------------------|:----|
-| 🟢**क्लाउड कोड**| सीएलआई | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` | `~/.क्लाउड/कौशल` |
-| 🔵**कर्सर**| आईडीई | `@विचार-मंथन से मुझे एक फीचर की योजना बनाने में मदद मिली` | `~/.कर्सर/कौशल` |
-| 🟡**मिथुन सीएलआई**| सीएलआई | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` | `~/.gemini/skills` |
-| 🔴**कोडेक्स सीएलआई**| सीएलआई | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` | `~/.कोडेक्स/कौशल` |
-| 🟠**किरो**| सीएलआई/आईडीई | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` | `~/.किरो/कौशल` |
-| 🟣**एंटीग्रेविटी**| आईडीई | `सुविधा की योजना बनाने के लिए @brainstorming का उपयोग करें` | `~/.gemini/antigravity/skills` |
-| ⚪**ओपनकोड**| सीएलआई | `ओपनकोड रन @ब्रेनस्टॉर्मिंग` | `<workspace>/.opencode/skills` |
+### 🎯 Install-Capable Clients
 
-<विवरण>
-<सारांश>🔌 <strong>व्यापक एमसीपी कॉन्फ़िगरेशन कवरेज (16 ग्राहक)</strong></सारांश>
+| Tool | Type | Invocation Example | Install Path |
+|:-----|:-----|:-------------------|:-------------|
+| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
+| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
+| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
+| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
+| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
+| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
+| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
 
-ये लक्ष्य समर्थित MCP कॉन्फ़िगरेशन सतह का हिस्सा हैं, तब भी जब वे कौशल निर्देशिकाओं के लिए स्थापित लक्ष्य नहीं हैं:
+<details>
+<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
 
-| ग्राहक या सतह | समर्थन प्रकार | नोट्स |
-|:------------------|:---|:------|
-| क्लाउड सेटिंग्स और डेस्कटॉप | एमसीपी कॉन्फिग | सेटिंग्स, डेस्कटॉप और प्रोजेक्ट-अवेयर फ़्लो |
-| वीएस कोड | एमसीपी कॉन्फिग | उपयोगकर्ता, कार्यक्षेत्र, अंदरूनी सूत्र और देव कंटेनर लक्ष्य |
-| मिथुन | एमसीपी कॉन्फिग | उपयोगकर्ता और कार्यस्थान सेटिंग्स |
-| क्लाइन | एमसीपी कॉन्फिग | प्रथम श्रेणी विन्यास लक्ष्य |
-| गिटहब कोपायलट सीएलआई | एमसीपी कॉन्फिग | उपयोगकर्ता और रेपो कॉन्फ़िगरेशन लक्ष्य |
-| जारी रखें | एमसीपी कॉन्फिग | कार्यक्षेत्र YAML पीढ़ी |
-| विंडसर्फ़ | एमसीपी कॉन्फिग | उपयोगकर्ता कॉन्फ़िगरेशन लक्ष्य |
-| जेड | एमसीपी कॉन्फिग | कार्यस्थान कॉन्फ़िगरेशन लक्ष्य |
-| हंस | एमसीपी कॉन्फिग | जनरेट की गई रेसिपी के साथ उपयोगकर्ता कॉन्फ़िगरेशन लक्ष्य |
-| किलो कोड | एमसीपी कॉन्फिग | उपयोगकर्ता, प्रोजेक्ट और कार्यक्षेत्र लक्ष्य |
-| जूनी | एमसीपी कॉन्फिग | प्रोजेक्ट और उपयोगकर्ता कॉन्फ़िगरेशन लक्ष्य |</details>
+These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
+
+| Client or Surface | Support Type | Notes |
+|:------------------|:------------|:------|
+| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
+| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
+| Gemini | MCP config | User and workspace settings |
+| Cline | MCP config | First-class config target |
+| GitHub Copilot CLI | MCP config | User and repo config targets |
+| Continue | MCP config | Workspace YAML generation |
+| Windsurf | MCP config | User config target |
+| Zed | MCP config | Workspace config target |
+| Goose | MCP config | User config target with generated recipe |
+| Kilo Code | MCP config | User, project, and workspace targets |
+| Junie | MCP config | Project and user config targets |
+
+</details>
 
 ---
 
 ## स्थापित करें
 
-<तालिका>
+<table>
 <tr>
-<td चौड़ाई='50%'>### Option A: Install with `npx` *(recommended)*
+<td width="50%">
+
+### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -230,35 +290,39 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| उपकरण | कमांड स्थापित करें | पहला प्रयोग |
-|:----|:----------------------|:----------|
-| 🟢 क्लाउड कोड | `एनपीएक्स ओमनी-स्किल्स --क्लाउड` | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` |
-| 🔵 कर्सर | `एनपीएक्स ओम्नी-स्किल्स--कर्सर` | `@विचार-मंथन से मुझे एक फीचर की योजना बनाने में मदद मिली` |
-| 🟡 जेमिनी सीएलआई | `एनपीएक्स ओम्नी-स्किल्स--जेमिनी` | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` |
-| 🔴 कोडेक्स सीएलआई | `एनपीएक्स ओमनी-स्किल्स --कोडेक्स` | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` |
-| 🟣 एंटीग्रेविटी | `एनपीएक्स ओमनी-स्किल्स--एंटीग्रेविटी` *(डिफ़ॉल्ट)* | `सुविधा की योजना बनाने के लिए @brainstorming का उपयोग करें` |
-| 🟠किरो | `एनपीएक्स ओम्नी-स्किल्स--किरो` | `किसी सुविधा की योजना बनाने के लिए विचार-मंथन का उपयोग करें` |
-| ⚪ ओपनकोड | `एनपीएक्स ओमनी-स्किल्स --ओपनकोड` | `ओपनकोड रन @ब्रेनस्टॉर्मिंग` |
-| 📂 कस्टम पथ | `एनपीएक्स ओमनी-स्किल्स --पथ ./माय-स्किल्स` | आपके टूल पर निर्भर करता है |
+| Tool | Install Command | First Use |
+|:-----|:---------------|:----------|
+| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
+| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
+| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
+| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
+| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
+| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
+| ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
+| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
 
-> 📖**निश्चित नहीं कि कहां से शुरू करें?**
-> - [🚀 आरंभ करना](docs/users/GETTING-STARTED.md) — 2 मिनट के अंदर इंस्टॉल करें और सत्यापित करें
-> - [🧭 सीएलआई उपयोगकर्ता गाइड](docs/users/CLI-USER-GUIDE.md) - पूर्ण कमांड संदर्भ
-> - [📗 उपयोग मार्गदर्शिका](docs/users/USAGE.md) - संकेत, पैटर्न और रनटाइम मोड---
+> 📖 **Not sure where to start?**
+> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
+> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
+> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
+
+---
 
 ## 🔌 Runtime Surfaces
 
-ओमनी स्किल्स केवल कौशलों की लाइब्रेरी नहीं है। यह**चार रनटाइम सतहों**को उजागर करता है जो समान जेनरेट किए गए कैटलॉग का उपभोग करते हैं:
+Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
 
-| सतह | राज्य | यह क्या करता है | उदाहरण |
-|:--------|:------|:-------|:--------|
-| 🖥️**सीएलआई**| ✅ उपलब्ध | ढूंढें, इंस्टॉल करें, निदान करें, विज़ुअल यूआई, बूट सेवाएं, धुआं जांचें | `एनपीएक्स ओमनी-स्किल्स डॉक्टर` |
-| 🌐**कैटलॉग एपीआई**| ✅ उपलब्ध | केवल-पढ़ें कैटलॉग, खोज, बंडल, तुलना, योजनाएं स्थापित करें, डाउनलोड | `एनपीएक्स ओमनी-स्किल्स एपीआई --पोर्ट 3333` |
-| 🔌**एमसीपी**| ✅ उपलब्ध | खोज, सिफ़ारिश, इंस्टॉल पूर्वावलोकन, स्थानीय साइडकार, कॉन्फ़िगरेशन प्रवाह | `एनपीएक्स ओमनी-स्किल्स एमसीपी स्ट्रीम --लोकल` |
-| 🤖**A2A**| ✅ उपलब्ध | कार्य जीवनचक्र, हैंडऑफ़, मतदान, स्ट्रीमिंग, रद्दीकरण, दृढ़ता | `एनपीएक्स ओमनी-स्किल्स ए2ए--पोर्ट 3335` |
+| Surface | State | What it does | Example |
+|:--------|:------|:-------------|:--------|
+| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
+| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
+| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
+| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
 
-<विवरण>
-<सारांश>🖥️ <strong>विज़ुअल शेल और ऑपरेटर कमांड</strong></सारांश>```bash
+<details>
+<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
+
+```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -268,8 +332,10 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<विवरण>
-<सारांश>🔌 <strong>एमसीपी परिवहन और कॉन्फ़िगरेशन</strong></सारांश>```bash
+<details>
+<summary>🔌 <strong>MCP transports and config</strong></summary>
+
+```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -290,33 +356,41 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| मीट्रिक | गिनती |
+| Metric | Count |
 |:-------|:------|
-| 🧠प्रकाशित कौशल |**32**|
-| 📂 सक्रिय श्रेणियां |**15**|
-| 📦 पूरी तरह से समर्थित बंडल |**7**|
-| ✨ क्यूरेटेड डेरिवेटिव |**32**`skills_omni/` में |### 📦 Bundle Availability
+| 🧠 Native intake skills | **48** |
+| 📂 Active categories | **15** |
+| 📦 Fully backed bundles | **7** |
+| ✨ Curated derivatives | **32** in `skills_omni/` |
 
-| बंडल | कौशल | सदस्य |
+### 📦 Bundle Availability
+
+| Bundle | Skills | Members |
 |:-------|:-------|:--------|
-| 🧰 `आवश्यक` |**4/4**✅ | `खोज-कौशल` · `बुद्धिशीलता` · `वास्तुकला` · `डिबगिंग` |
-| 🌐 `फुल-स्टैक` |**5/5**✅ | `फ्रंटएंड-डिज़ाइन` · `एपीआई-डिज़ाइन` · `डेटाबेस-डिज़ाइन` · `ओमनी-फ़िग्मा` · `ऑथ-फ़्लोज़` |
-| 🎨 `डिज़ाइन` |**5/5**✅ | `फ्रंटएंड-डिज़ाइन` · `ओमनी-फ़िग्मा` · `डिज़ाइन-सिस्टम-ऑप्स` · `एक्सेसिबिलिटी-ऑडिट` · `डिज़ाइन-टोकन-गवर्नेंस` |
-| 🛡️ `सुरक्षा` |**4/4**✅ | `सुरक्षा-लेखा परीक्षक` · `भेद्यता-स्कैनर` · `घटना-प्रतिक्रिया` · `खतरा-मॉडलिंग` |
-| ⚙️ `डेवोप्स` |**5/5**✅ | `डॉकर-विशेषज्ञ` · `कुबेरनेट्स` · `टेराफॉर्म` · `अवलोकन-समीक्षा` · `रिलीज़-इंजीनियरिंग` |
-| 🤖 `एआई-इंजीनियर` |**7/7**✅ | `रैग-इंजीनियर` · `प्रॉम्प्ट-इंजीनियर` · `एलएम-पैटर्न` · `एवल-डिज़ाइन` · `संदर्भ-इंजीनियरिंग` · `डेटा-कॉन्ट्रैक्ट` · `मॉडल-सर्विंग` |
-| 🔧 `oss-maintainer` |**4/4**✅ | `खोज-कौशल` · `क्रिएट-पीआर` · `चेंजलॉग` · `दस्तावेज़ीकरण` |### ✨ Native Intake → Curated Output
+| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
+| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
+| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
+| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
+| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
+| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
 
-| सतह | उद्देश्य | भाषा |
-|:--------|:--------|:------|
-| 📥 `कौशल/` | देशी सेवन | कोई भी भाषा |
-| ✨ `skills_omni/` | क्यूरेटेड ओमनी-रखरखाव आउटपुट | हमेशा अंग्रेजी |
+### ✨ Native Intake → Curated Output
 
->**ℹ️**मूल कौशल में परिवर्तन को निजी एन्हांसर द्वारा पुन: संसाधित किया जाता है और क्यूरेटेड बेसलाइन में ताज़ा किया जाता है। यह `skills_omni/` को एक**रखरखावित कैटलॉग सतह**बनाता है, दूसरी प्रति नहीं।---
+| Surface | Purpose | Language |
+|:--------|:--------|:---------|
+| 📥 `skills/` | Native intake | Any language |
+| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
+
+> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
+
+---
 
 ## 🛡️ Security and Release Posture
 
-> ओमनी स्किल्स एक सादे मार्कडाउन रिपॉजिटरी की तुलना में एक मजबूत रिलीज और सत्यापन कहानी पेश करता है।### 🧪 Validation and Smoke Checks
+> Omni Skills ships a stronger release and verification story than a plain markdown repository.
+
+### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -325,36 +399,40 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<विवरण>
-<सारांश>📋 <strong>पाइपलाइन क्या मान्य करती है</strong></सारांश>
+<details>
+<summary>📋 <strong>What the pipeline validates</strong></summary>
 
-- ✅ कौशल सत्यापन और मेटाडेटा निर्माण
-- ✅ वर्गीकरण सामान्यीकरण और पुनर्वर्गीकरण टूलींग
-- ✅ कैटलॉग और पुरालेख निर्माण
-- ✅ स्वचालित परीक्षण
-- ✅ एपीआई, एमसीपी, और ए2ए बूट पथ
-- ✅ पुरालेख सत्यापन
-- ✅ `एनपीएम पैक --ड्राई-रन` के साथ पैकेज प्रीफ्लाइट</details>
+- ✅ Skill validation and metadata generation
+- ✅ Taxonomy normalization and recategorization tooling
+- ✅ Catalog and archive generation
+- ✅ Automated tests
+- ✅ API, MCP, and A2A boot paths
+- ✅ Archive verification
+- ✅ Package preflight with `npm pack --dry-run`
 
-<विवरण>
-<सारांश>🔐 <strong>रिलीज़ आसन</strong></सारांश>
+</details>
 
-| नियंत्रण | विवरण |
-|:-------|:-------|
-| 🔒 SHA-256 चेकसम | सभी अभिलेखों के लिए चेकसम मैनिफ़ेस्ट |
-| ✍️हस्ताक्षरित कलाकृतियाँ | रिलीज़ कलाकृतियों पर पृथक हस्ताक्षर |
-| 🤖 सीआई-प्रवर्तन | प्रकाशन से पहले सीआई में सत्यापन जारी करें |
-| 🦠स्कैनर गेट्स | क्लैमएवी और वायरसटोटल-गेटेड रिलीज फ्लो |
-| 📦 गिटहब रिलीज | स्वचालित GitHub रिलीज़ जनरेशन |
-| 📋 एनपीएम प्रकाशन | केवल सत्यापित टारबॉल से |
-| 🔄 स्वतः रिलीज | योग्यता प्राप्त करने पर कौशल `मुख्य` में विलीन हो जाता है |
+<details>
+<summary>🔐 <strong>Release posture</strong></summary>
 
-**ऑटो-रिलीज़ ट्रिगर केवल तभी होता है जब मर्ज बदलता है:**
-- `कौशल/*/**`
+| Control | Description |
+|:--------|:-----------|
+| 🔒 SHA-256 checksums | Checksum manifests for all archives |
+| ✍️ Signed artifacts | Detached signatures on release artifacts |
+| 🤖 CI-enforced | Release verification in CI before publication |
+| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
+| 📦 GitHub Release | Automated GitHub Release generation |
+| 📋 npm publication | From verified tarball only |
+| 🔄 Auto release | On qualifying skill merges to `main` |
+
+**Auto-release triggers only when a merge changes:**
+- `skills/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-दस्तावेज़-केवल परिवर्तन**नहीं**पैकेज प्रकाशन को ट्रिगर करते हैं।</details>
+Doc-only changes **do not** trigger package publication.
+
+</details>
 
 ---
 
@@ -362,79 +440,95 @@ npm run smoke            # Full release preflight
 
 ### 👤 For Users
 
-| डॉक्टर | आप क्या सीखेंगे |
-|:---|:----|
-| 🚀 [आरंभ करना](docs/users/GETTING-STARTED.md) | 2 मिनट के अंदर इंस्टॉल करें, सत्यापित करें और प्रारंभ करें |
-| 🧭 [सीएलआई यूजर गाइड](docs/users/CLI-USER-GUIDE.md) | पूर्ण कमांड संदर्भ और वास्तविक दुनिया पैटर्न |
-| 📗 [उपयोग मार्गदर्शिका](docs/users/USAGE.md) | सीएलआई कमांड, इंस्टाल मोड, रनटाइम और एमसीपी कॉन्फिगरेशन |
-| 📦 [बंडल](docs/users/BUNDLES.md) | क्यूरेटेड बंडल और उपलब्धता |
-| 📚 [कैटलॉग](docs/CATALOG.md) | प्रकाशित कौशल की स्वतः निर्मित सूची |
-| 🔧 [सिस्टम रनबुक](दस्तावेज़/संचालन/RUNBOOK.md) | निर्माण करें, सेवा करें, सुरक्षित करें और समस्या निवारण करें |### 🏗️ For Architects
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
+| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
+| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
+| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
+| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
 
-| डॉक्टर | आप क्या सीखेंगे |
-|:---|:----|
-| 🗺️ [एजेंट-नेटिव रोडमैप](docs/architecture/AGENT-NATIVE-ROADMAP.md) | वास्तुकला विकास और शेष क्षेत्र |
-| 📐 [ADR-0001: वर्कस्पेस फाउंडेशन](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | कोर मोनोरेपो निर्णय |
-| 🔬 [कोडबेस विश्लेषण](docs/architecture/CODEBASE-ANALYSIS.md) | रनटाइम संरचना और सिस्टम सीमाएँ |
-| 🌐 [कैटलॉग एपीआई](docs/specs/CATALOG-API.md) | HTTP समापन बिंदु, फ़िल्टरिंग, शासन, और डाउनलोड |
-| 🧩 [सीएलआई गाइडेड इंस्टॉलर](docs/specs/CLI-GUIDED-INSTALLER.md) | निर्देशित इंस्टॉलर के लिए व्यवहार अनुबंध |
-| 🖥️ [सीएलआई विजुअल शेल](docs/specs/CLI-VISUAL-SHELL.md) | स्याही दृश्य शैल और राज्य मॉडल |
-| 🔌 [स्थानीय एमसीपी साइडकार](docs/specs/LOCAL-MCP-SIDECAR.md) | फ़ाइल सिस्टम उपकरण और अनुमति सूची मॉडल |
-| 📊 [क्लाइंट सपोर्ट मैट्रिक्स](docs/specs/CLIENT-SUPPORT-MATRIX.md) | पूर्ण ग्राहक और लेखक संदर्भ |
-| 🏷️ [कौशल वर्गीकरण](docs/specs/SKILL-CLASSIFICATION.md) | वर्गीकरण, स्कोरिंग, और मेटाडेटा |
-| 🛡️ [सुरक्षा सत्यापन](docs/specs/SECURITY-VALIDATION.md) | स्कैनर, पुरालेख, और हस्ताक्षर |
-| 📋 [कौशल प्रकट](docs/specs/SKILL-MANIFEST.md) | मशीन-पठनीय मैनिफ़ेस्ट प्रारूप |### 🤝 For Contributors
+### 🏗️ For Architects
 
-| डॉक्टर | आप क्या सीखेंगे |
-|:---|:----|
-| 📝 [योगदान मार्गदर्शिका](CONTRIBUTING.md) | रेपो वर्कफ़्लो और पीआर अपेक्षाएँ |
-| 🧾 [कौशल पीआर वर्कफ़्लो](docs/contributors/SKILL-PR-WORKFLOW.md) | मूलनिवासी सेवन, वर्धक प्रसंस्करण, समीक्षक अपेक्षाएं |
-| 📄 [कौशल टेम्पलेट](docs/contributors/SKILL-TEMPLATE.md) | फ्रंटमैटर और संरचना के साथ स्टार्टर `SKILL.md` |
-| 🔬 [स्किल एनाटॉमी](docs/contributors/SKILL-ANATOMY.md) | संरचना और गुणवत्ता अपेक्षाएँ |
-| ✅ [क्वालिटी बार](docs/contributors/QUALITY-BAR.md) | स्वीकृति मानदंड |
-| 🏆 [हाई-स्कोर प्लेबुक](दस्तावेज़/योगदानकर्ता/हाई-स्कोर-प्लेबुक.एमडी) | उच्च अंक प्राप्त करने के पीछे क्या कारण है |---
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
+| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
+| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
+| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
+| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
+| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
+| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
+
+### 🤝 For Contributors
+
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
+| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
+| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
+| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
+
+---
 
 ## 🗂️ Repository Layout
 
-| पथ | उद्देश्य |
-|:----|:--------|
-| 📂 `कौशल/` | विहित लिखित कौशल और देशी सेवन |
-| ✨ `skills_omni/` | क्यूरेटेड ओमनी-रखरखाव उन्नत डेरिवेटिव |
-| 📖 `दस्तावेज़/` | उपयोगकर्ता, योगदानकर्ता, वास्तुकला, संचालन, और विशिष्ट दस्तावेज़ीकरण |
-| 📦 `जिला/` | जेनरेटेड मैनिफ़ेस्ट, बंडल, कैटलॉग और पुरालेख |
-| 📁 `डेटा/` | बंडल परिभाषाएँ और स्थिर सहायक डेटा |
-| 🧠 `पैकेज/कैटलॉग-कोर/` | साझा कैटलॉग रनटाइम |
-| 🌐 `पैकेज/सर्वर-एपीआई/` | केवल पढ़ने योग्य HTTP एपीआई |
-| 🔌 `पैकेज/सर्वर-एमसीपी/` | एमसीपी सर्वर और स्थानीय साइडकार |
-| 🤖 `पैकेज/सर्वर-a2a/` | A2A रनटाइम और कार्य ऑर्केस्ट्रेशन |
-| 🖥️ `टूल्स/बिन/` | सीएलआई प्रवेश बिंदु |
-| 📚 `टूल्स/लिब/` | इंस्टॉलर और यूआई सहायक |
-| ⚙️ `टूल्स/स्क्रिप्ट/` | सत्यापन, निर्माण, रिलीज और परीक्षण स्क्रिप्ट |
+| Path | Purpose |
+|:-----|:--------|
+| 📂 `skills/` | Canonical authored skills and native intake |
+| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
+| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
+| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
+| 📁 `data/` | Bundle definitions and static supporting data |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime |
+| 🌐 `packages/server-api/` | Read-only HTTP API |
+| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
+| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
+| 🖥️ `tools/bin/` | CLI entrypoints |
+| 📚 `tools/lib/` | Installer and UI helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
 
->**ℹ️**`dist/` को जानबूझकर संस्करणित किया गया है क्योंकि उत्पन्न कलाकृतियाँ इंस्टाल, एपीआई, एमसीपी, ए2ए, स्मोक और रिलीज़ अनुबंध का हिस्सा हैं।---
+> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
+
+---
 
 ## 🤝 Contributing
 
-ओमनी स्किल्स 'कौशल/' के तहत देशी अपस्ट्रीम कौशल को स्वीकार करता है।
+Omni Skills accepts native upstream skill intake under `skills/`.
 
-| नियम | विवरण |
-|:----|:--------|
-| 📥 देशी सेवन | कच्चा हो सकता है, किसी भी भाषा में लिखा जा सकता है |
-| ✨ क्यूरेटेड आउटपुट | `skills_omni/` स्वचालन-लेखक ओमनी डेरिवेटिव के लिए आरक्षित |
-| 🚫 मैन्युअल संपादन | `skills_omni/` में सार्वजनिक मैनुअल संपादन अस्वीकार कर दिए जाते हैं |
-| 🔄 पुनर्प्रसंस्करण | निजी एन्हांसर मूल परिवर्तनों को पुन: संसाधित करता है और क्यूरेटेड बेसलाइन को ताज़ा करता है
+| Rule | Details |
+|:-----|:--------|
+| 📥 Native intake | May be rough, authored in any language |
+| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
+| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
+| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
 
-> 📖**इससे प्रारंभ करें:**[योगदान मार्गदर्शिका](CONTRIBUTING.md) · [कौशल पीआर वर्कफ़्लो](docs/contributors/SKILL-PR-WORKFLOW.md)---
+> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
+
+---
 
 ## 📄 License
 
-| प्रकार | लाइसेंस |
-|:----|:--------|
-| 💻 कोड और टूलींग | [एमआईटी लाइसेंस](लाइसेंस) |
-| 📝 दस्तावेज़ीकरण और कौशल सामग्री | [सीसी बाय 4.0](लाइसेंस-सामग्री) |---
+| Type | License |
+|:-----|:--------|
+| 💻 Code and tooling | [MIT License](LICENSE) |
+| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
+
+---
 
 <div align="center">
 
-**ओमनी स्किल्स टीम द्वारा 🧠 के साथ बनाया गया**
+**Made with 🧠 by the Omni Skills Team**
 
-[⭐ इस रेपो को तारांकित करें](https://github.com/diegosouzapw/omni-skills) · [🐛 बग की रिपोर्ट करें](https://github.com/diegosouzapw/omni-skills/issues) · [💬 चर्चाएँ](https://github.com/diegosouzapw/omni-skills/discussions)</div>
+[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
+
+*If Omni Skills helps you build faster, consider giving it a ⭐ — it helps others discover the project!*
+
+</div>

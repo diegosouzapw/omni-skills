@@ -5,7 +5,9 @@
 ---
 
 
->**用于构建、验证、服务、保护 Omni Skills 和故障排除的完整操作指南。**---
+> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
+
+---
 
 ## 1️⃣ Local Development Cycle
 
@@ -25,36 +27,44 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-|命令 |它有什么作用 |
+| Command | What It Does |
 |:--------|:-------------|
-| `npm 运行验证` |验证“SKILL.md”，重新生成“metadata.json”，计算分类/成熟度/质量/安全性 |
-| `npm 运行分类：报告` |显示类别漂移建议，无需重写文件 |
-| `npm 运行验证：扫描仪` |确认生成的技能元数据中记录的扫描仪覆盖范围 |
-| `npm run release:notes` |从元数据、捆绑包和 git 历史记录生成自定义发行说明 |
-| `npm 运行构建` |重新生成目录/清单/存档/校验和，验证扫描仪覆盖范围和存档，重建 `docs/CATALOG.md` |
-| `npm 测试` |跨 CLI、API、MCP、sidecar 和存档流的完整烟雾套件 |---
+| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
+| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
+| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
+| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
+| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
+
+---
 
 ## 🖥️ Visual Shell
 
-已发布的 CLI 现在包括基于 Ink 的操作员 shell：```bash
+The published CLI now includes an Ink-based operator shell:
+
+```bash
 npx omni-skills ui
 ```
 
-目前的能力：
+Current capabilities:
 
-- 已知客户端和自定义路径的引导安装
-- 搜索然后安装流程
-- MCP启动向导
-- API启动向导
-- A2A 启动向导
-- 最近的安装和服务重新启动
-- 命名安装和服务预设
+- guided install for known clients and custom paths
+- search-then-install flow
+- MCP launch wizard
+- API launch wizard
+- A2A launch wizard
+- recent installs and service relaunches
+- named install and service presets
 
-本地状态路径：```text
+Local state path:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-倒退：```bash
+Fallback:
+
+```bash
 npx omni-skills ui --text
 ```
 
@@ -90,32 +100,40 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-静态扫描仪会自动检查所有技能：
+The static scanner checks all skills automatically:
 
-|规则系列|示例 |
+| Rule Family | Examples |
 |:------------|:---------|
-| 🎭 及时注射 |渗透模式、指令覆盖 |
-| 💣 破坏性命令 | `rm -rf`、`格式`、`mkfs` |
-| 🔑 可疑路径 | `/etc/shadow`、`~/.ssh`、凭证文件 |
-| ⚠️ 有风险的原语 | `shell=True`、`pickle.load`、`eval`、`extractall` |### 🦠 Optional ClamAV
+| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
+| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
+| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> 需要“PATH”中的“clamscan”。### 🔒 Optional VirusTotal
+> Requires `clamscan` in `PATH`.
+
+### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> 仅哈希查找 - 默认情况下**不上传**未知文件。### ✅ Verify Scanner Coverage
+> Hash lookup only — unknown files are **not uploaded** by default.
+
+### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-严格的释放门：```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -127,15 +145,17 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-档案由“npm run build”自动生成：
+Archives are produced automatically by `npm run build`:
 
-|输出|路径|
-|:--------|:-----|
-| 📦 邮编 | `dist/archives/<skill>.zip` |
-| 📦 压缩包 | `dist/archives/<skill>.tar.gz` |
-| 🔒 校验和 | `dist/archives/<skill>.checksums.txt` |
+| Output | Path |
+|:-------|:-----|
+| 📦 ZIP | `dist/archives/<skill>.zip` |
+| 📦 Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` 是故意在此存储库中提交的。生成的目录、清单、捆绑包和存档是 CLI 安装流程、API 下载界面、MCP 预览、A2A 任务切换、冒烟测试和发布验证的运行时输入。### ✅ Verify Archives
+`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -147,35 +167,43 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-可选的公钥覆盖：```bash
+Optional public key override:
+
+```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> 如果未提供公钥，则构建会通过“openssl”将公钥派生到“dist/signing/”中。### 🔁 Compute the Next Package Version
+> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
+
+### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-版本政策：
+Version policy:
 
-- 补丁增量直到“.10”
-- 在“.10”之后，下一个版本将发布次要版本并将补丁重置为“.0”
+- patch increments until `.10`
+- after `.10`, the next release rolls minor and resets patch to `.0`
 
-示例：
+Examples:
 
 - `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`---
+- `0.1.10 -> 0.2.0`
+
+---
 
 ## 5️⃣ Installation Flows
 
-|场景 |命令 |
+| Scenario | Command |
 |:---------|:--------|
-| 📥 默认安装（反重力）| `npx 全方位技能` |
-| 🎯 特定技能+客户| `npx 全方位技能 --cursor --skill 全方位figma` |
-| 🔎 发现 → 安装 | `npx 全方位技能 find Figma --tool 光标 --install --yes` |
-| 📦 捆绑安装 | `npx 全方位技能 --cursor --bundle 要点` |
-| 🩺 验证安装 | `npx 全能医生` |---
+| 📥 Default install (Antigravity) | `npx omni-skills` |
+| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verify install | `npx omni-skills doctor` |
+
+---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -188,19 +216,21 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-|过滤|旗帜|示例|
+| Filter | Flag | Example |
 |:-------|:-----|:--------|
-| 📂 类别 | `--类别` | `--category development` |
-| 🖥️工具| `--工具` | `--工具光标` |
-| ⚠️ 风险 | `--风险` | `--风险安全` |
-| 📊 排序 | `--排序` | `--排序质量\|最佳实践\|级别\|安全\|名称` |
-| 🔄 订购 | `--顺序` | `--order asc\|desc` |
-| ⭐ 最低品质 | `--最低质量` | `--最低质量 80` |
-| 📋 最小血压 | `--最小最佳实践` | `--min-best-practices 60` |
-| 🎯 最低等级 | `--最低级别` | `--最低级别 2` |
-| 🛡️ 最低安全 | `--min-security` | `--最低安全性 90` |
-| ✅ 验证 | `--验证状态` | `--validation-status passed` |
-| 🛡️ 安全 | `--安全状态` | `--security-status passed` |---
+| 📂 Category | `--category` | `--category development` |
+| 🖥️ Tool | `--tool` | `--tool cursor` |
+| ⚠️ Risk | `--risk` | `--risk safe` |
+| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Order | `--order` | `--order asc\|desc` |
+| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
+| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
+| 🎯 Min level | `--min-level` | `--min-level 2` |
+| 🛡️ Min security | `--min-security` | `--min-security 90` |
+| ✅ Validation | `--validation-status` | `--validation-status passed` |
+| 🛡️ Security | `--security-status` | `--security-status passed` |
+
+---
 
 ## 7️⃣ API Operations
 
@@ -212,29 +242,33 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-|方法|端点 |目的|
-|:--------|:--------|:--------|
-| `获取` | `/healthz` |健康检查|
-| `获取` | `/openapi.json` | OpenAPI 3.1 规范 |
-| `获取` | `/v1/技能` |带过滤器的列表 |
-| `获取` | `/v1/搜索` |全文检索 |
-| `获取` | `/v1/skills/:id/archives` |存档列表 |
-| `获取` | `/v1/skills/:id/download/archive?format=zip` |下载存档 |
-| `获取` | `/v1/skills/:id/download/archive/checksums` |校验和清单 |### 🔐 Hosted API Hardening
+| Method | Endpoint | Purpose |
+|:-------|:---------|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
+| `GET` | `/v1/skills` | List with filters |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/skills/:id/archives` | Archive listing |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
 
-|特色|命令 |
+### 🔐 Hosted API Hardening
+
+| Feature | Command |
 |:--------|:--------|
-| 🔑 不记名授权 | `OMNI_SKILLS_HTTP_BEARER_TOKEN=替换我的 npx 全方位技能 api` |
-| 🗝️ API 密钥身份验证 | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx 全方位技能 api` |
-| 🛂 管理员运行时身份验证 | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=管理员秘密 npx 全方位技能 api` |
-| 🚦 速率限制 | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx 全方位技能 api` |
-| 📝 审计日志 | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx 全方位技能 api` |
-| 🌍 CORS 许可名单 | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx 全方位技能 api` |
-| 🧱 IP 许可名单 | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx 全方位技能 API` |
-| 🚧 维护模式 | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx 全方位技能 api` |
-| 🔁 可信代理 | `OMNI_SKILLS_HTTP_TRUST_PROXY=环回 npx 全方位技能 api` |
+| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
+| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
+| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
+| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
+| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` 按照设计保持开放；目录路由启用时需要身份验证。 “GET /admin/runtime”在配置时需要管理员令牌并返回实时治理快照。---
+> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
+
+---
 
 ## 8️⃣ MCP Operations
 
@@ -254,29 +288,33 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-sidecar 现在可以预览或写入 MCP 配置：
+The sidecar can now preview or write MCP config for:
 
-- Claude 用户和项目设置
-- 克劳德桌面配置
-- 克莱恩用户配置
-- GitHub Copilot CLI 用户和存储库配置
-- 光标用户和工作区配置
-- Codex TOML 配置
-- Gemini 用户和项目设置
-- Kilo CLI 用户和项目配置
-- Kilo 工作区配置
-- Kiro 用户和项目设置
-- OpenCode 用户和工作区配置
-- 继续工作区 YAML 配置
-- 风帆冲浪用户配置
-- Zed 工作区配置
-- 工作区`.mcp.json`
-- VS Code 工作区和用户配置
-- 开发容器配置
+- Claude user and project settings
+- Claude Desktop config
+- Cline user config
+- GitHub Copilot CLI user and repository config
+- Cursor user and workspace config
+- Codex TOML config
+- Gemini user and project settings
+- Kilo CLI user and project config
+- Kilo workspace config
+- Kiro user and project settings
+- OpenCode user and workspace config
+- Continue workspace YAML config
+- Windsurf user config
+- Zed workspace config
+- workspace `.mcp.json`
+- VS Code workspace and user config
+- Dev Container config
 
-`configure_client_mcp` 还返回每个客户端的 `recipes`，以便操作员获得等效的 CLI 或手动设置步骤以及预览。### 🧾 MCP Config Preview and Write Flow
+`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
 
-当您想要生成配置而不直接调用 MCP 工具时，请使用统一 CLI：```bash
+### 🧾 MCP Config Preview and Write Flow
+
+Use the unified CLI when you want config generation without calling the MCP tool directly:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -285,15 +323,19 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-可视外壳通过以下方式公开相同的工作流程：
+The visual shell exposes the same workflow through:
 
-- `npx 全方位技能 ui`
-- `服务`
-- `配置 MCP 客户端`
+- `npx omni-skills ui`
+- `Services`
+- `Configure MCP client`
 
-除非传递“--write”，否则该命令将保持预览模式。### 🔐 Hosted MCP Hardening
+The command stays in preview mode unless `--write` is passed.
 
-与 API 相同的环境变量：```bash
+### 🔐 Hosted MCP Hardening
+
+Same env vars as the API:
+
+```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -303,9 +345,11 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**受保护的路由**： `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
 
-> 🟢 `/healthz` 保持开放。---
+> 🟢 `/healthz` remains open.
+
+---
 
 ## 9️⃣ A2A Operations
 
@@ -324,13 +368,17 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-默认本地路径保持简单优先：
+The default local path stays simple-first:
 
-- `json` 或 `sqlite` 持久性可以在禁用队列轮询的情况下运行
-- 仅当您需要多工作人员声明和租用故障转移时才设置“OMNI_SKILLS_A2A_QUEUE_ENABLED=1”
-- 将 Redis 协调保留为高级托管选项，而不是基线### 🧱 Multi-Worker Lease Setup
+- `json` or `sqlite` persistence can run with queue polling disabled
+- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
+- keep Redis coordination as an advanced hosted option, not the baseline
 
-针对同一 SQLite 存储运行多个 A2A 节点以获得基于租约的故障转移：```bash
+### 🧱 Multi-Worker Lease Setup
+
+Run more than one A2A node against the same SQLite store to get lease-based failover:
+
+```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -350,9 +398,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-如果一个工作人员在任务“工作”时死亡，另一个工作人员可以在租约到期后回收它并继续执行。### 🟥 Redis Coordination
+If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
 
-对于不希望队列协调绑定到共享 SQLite 存储的托管或多节点部署，请将协调器切换到 Redis：```bash
+### 🟥 Redis Coordination
+
+For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
+
+```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -364,40 +416,48 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-在此模式下：
+In this mode:
 
-- 持久性仍然存在于 JSON 或 SQLite 中
-- 任务声明和租赁所有权转移到 Redis
-- 多个A2A节点可以共享一个队列，而不依赖于SQLite行级协调### 📡 Endpoints
+- persistence still lives in JSON or SQLite
+- task claiming and lease ownership move to Redis
+- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
 
-|方法|路径|目的|
-|:--------|:-----|:--------|
-| `获取` | `/healthz` |健康检查|
-| `获取` | `/.well-known/agent.json` |代理卡（A2A发现）|
-| `发布` | `/a2a` |用于任务和流传输的 JSON-RPC 端点 |### 🧭 Supported JSON-RPC Methods
+### 📡 Endpoints
 
-|方法|目的|
-|:--------|:--------|
-| `消息/发送` |开始或继续任务 |
-| `消息/流` |启动任务并传输 SSE 更新 |
-| `任务/获取` |轮询任务快照 |
-| `任务/取消` |取消活动任务 |
-| `任务/重新订阅` |恢复现有任务的 SSE 更新 |
-| `任务/pushNotificationConfig/set` |注册推送 webhook |
-| `任务/pushNotificationConfig/get` |读取推送配置 |
-| `任务/pushNotificationConfig/列表` |列出任务的推送配置 |
-| `任务/pushNotificationConfig/删除` |删除推送配置 |### 📡 Task Lifecycle
+| Method | Path | Purpose |
+|:-------|:-----|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
+| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
 
-当前运行时支持以下任务状态：
+### 🧭 Supported JSON-RPC Methods
 
-- `已提交`
--`工作`
-- `需要输入`
-- `已完成`
-- `已取消`
-- `失败`
+| Method | Purpose |
+|:-------|:--------|
+| `message/send` | Start or continue a task |
+| `message/stream` | Start a task and stream SSE updates |
+| `tasks/get` | Poll a task snapshot |
+| `tasks/cancel` | Cancel an active task |
+| `tasks/resubscribe` | Resume SSE updates for an existing task |
+| `tasks/pushNotificationConfig/set` | Register a push webhook |
+| `tasks/pushNotificationConfig/get` | Read a push config |
+| `tasks/pushNotificationConfig/list` | List push configs for a task |
+| `tasks/pushNotificationConfig/delete` | Remove a push config |
 
-任务将保存到 JSON 文件或 SQLite 存储中，并在重新启动时重新加载。已完成和中断的任务仍然可用。在关闭期间仍然“已提交”或“正在工作”的任务将通过显式重新启动元数据进行恢复，并且默认情况下会自动恢复。### 🧪 Example: Start a Task
+### 📡 Task Lifecycle
+
+The current runtime supports these task states:
+
+- `submitted`
+- `working`
+- `input-required`
+- `completed`
+- `canceled`
+- `failed`
+
+Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
+
+### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -463,12 +523,14 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-存储库现在有两个工作流程：
+The repository now has two workflows:
 
-|工作流程|触发|目的|
+| Workflow | Trigger | Purpose |
 |:---------|:--------|:--------|
-| `验证.yml` |推送/PR 到 `main` |构建、测试并确认生成的工件已提交 |
-| `release.yml` |标签推送 `v*` 或手动调度 |运行发布级扫描程序、验证版本标签、签署工件、打包 tarball、发布到 npm 并创建 GitHub 版本 |### 🔖 Tag a Release
+| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
+| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
+
+### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -477,73 +539,79 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-|秘密|使用者 |目的|
-|:--------|:--------|:--------|
-| `VT_API_KEY` 或 `VIRUSTOTAL` | `release.yml` |需要在发布版本中进行 VirusTotal 哈希查找 |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` 或 `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | CI 中分离存档签名所需的私钥 |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` 或 `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` |可选的公钥覆盖；否则从私钥派生 |
-| `NPM_TOKEN` | `publish-npm` 工作 |验证标签发布的“npmpublish” |### 🦠 Release Scanner Policy
+| Secret | Used By | Purpose |
+|:-------|:--------|:--------|
+| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
+| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
 
-`release.yml` 设置或准备：
+### 🦠 Release Scanner Policy
+
+`release.yml` sets or prepares:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
--`VT_API_KEY=${{secrets.VT_API_KEY ||秘密.VIRUSTOTAL }}`
-- 来自跑步者临时存储的“OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH”
+- `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
 
-这意味着每个基于标签的版本都必须：
+That means every tag-based release must:
 
-- 在跑步者上安装并刷新 ClamAV
-- 启用 ClamAV 时重新生成元数据
-- 在启用 VirusTotal 的情况下重新生成元数据
-- 将 CI 签名密钥材料解码到运行器临时存储中
-- 通过 `npm run verify:scanners:strict`
-- 通过 `npm run verify:archives:strict`
-- 在 npm 发布之前通过测试和包验证
-- 从目录元数据和 git 历史记录生成自定义发行说明
-- 发布后创建带有附加发布资产的 GitHub 版本---
+- install and refresh ClamAV on the runner
+- regenerate metadata with ClamAV enabled
+- regenerate metadata with VirusTotal enabled
+- decode CI signing key material into runner temp storage
+- pass `npm run verify:scanners:strict`
+- pass `npm run verify:archives:strict`
+- pass tests and package verification before npm publish
+- generate custom release notes from catalog metadata and git history
+- create a GitHub Release with attached release assets after publish
+
+---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-|变量|目的|默认 |
+| Variable | Purpose | Default |
 |:---------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` |覆盖目录根路径 |自动检测 |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` |额外允许的写入路径 |已知的客户根源 |
-| `OMNI_SKILLS_MCP_MODE` |将 sidecar 设置为“local” |远程|
-| `OMNI_SKILLS_MCP_LOCAL_MODE` |本地模式的 Alt 标志 | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | MCP 的公共 API URL | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` |公共基础网址 | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` |不记名身份验证令牌 | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` |以逗号分隔的 API 密钥 | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` |管理运行时身份验证令牌 | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` |每个窗口的最大请求数 | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` |速率限制窗口（毫秒）| — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` |启用审核日志记录 | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` 或 `text` 审核输出 | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` |可选的审核日志文件路径 |标准输出|
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` |以逗号分隔的 CORS 来源允许列表 | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` |以逗号分隔的 IP 或 CIDR 允许列表 | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` |快速信任代理设置 | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` |启用维护响应 | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` |维护“重试后”秒 | `300` |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` |模拟异步任务延迟 | `80` |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`、`sqlite` 或 `memory` 任务存储 | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` |自定义 A2A 任务存储文件 | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` |为具有租赁意识的工作人员启用共享队列轮询 | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`、`sqlite`、`local` 或 `redis` 协调器 | `商店` |
-| `OMNI_SKILLS_A2A_REDIS_URL` |用于外部协调的 Redis URL | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` |队列元数据的 Redis 键前缀 | `全能技能：a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` |租赁工人的队列轮询间隔| `250` |
-| `OMNI_SKILLS_A2A_LEASE_MS` |另一个工作人员可以收回任务之前的租约期限 | `4000` |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` |用于租赁所有权和诊断的稳定工人标识符 |主机名+PID+随机后缀|
-| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` 或 `process` 任务执行器 | `内联` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` |覆盖外部工作命令 |节点二进制 |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` |外部工作参数的 JSON 数组 | `["packages/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` |启动时恢复已提交/正在工作的任务 | `1` |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` |允许本地主机外部的非 HTTPS webhook | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` |启用 ClamAV 扫描 | `0` |
-| `VT_API_KEY` | VirusTotal API 密钥 | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` |用于签名的私钥 | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` |公钥覆盖 |自动派生 |---
+| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
+| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
+| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
+| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
+| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
+
+---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -561,46 +629,66 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. 使用 `npm run build` 重建
-2. 重新运行 `npm run verify:archives`
-3. 如果启用了签名，请确认公钥和 `openssl` 可用性### 🦠 Release Workflow Fails on Scanner Coverage
+1. Rebuild with `npm run build`
+2. Rerun `npm run verify:archives`
+3. If signing is enabled, confirm the public key and `openssl` availability
 
-- 确认存储库机密中存在“VT_API_KEY”
-- 确认“freshclam”在跑步者上成功
-- 使用 `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build` 在本地重建
-- 重新运行 `npm run verify:scanners:strict`### 📦 npm Publish Fails in CI
+### 🦠 Release Workflow Fails on Scanner Coverage
 
-- 确认存储库机密中存在“NPM_TOKEN”
-- 确认 Git 标签与 `package.json` 版本完全匹配
-- 检查工作流程工件中是否存在通过“release-verify”上传的 tarball### ✍️ Release Signing Fails in CI
+- Confirm `VT_API_KEY` exists in repository secrets
+- Confirm `freshclam` succeeded on the runner
+- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Rerun `npm run verify:scanners:strict`
 
-- 确认存储库机密中存在“OMNI_SKILLS_SIGN_PRIVATE_KEY_B64”或“OMNI_SKILLS_SIGN_PRIVATE_KEY”
-- 如果您提供公钥秘密，请确认它与私钥匹配
-- 确认“openssl”可用且私钥为 PEM 格式
-- 使用“OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build”在本地重建
-- 重新运行 `npm run verify:archives:strict`### 🔒 API/MCP Returns `401 Unauthorized`
+### 📦 npm Publish Fails in CI
 
-- 验证“OMNI_SKILLS_HTTP_BEARER_TOKEN”或“OMNI_SKILLS_HTTP_API_KEYS”
-- 包含 `Authorization: Bearer <token>` 或 `x-api-key` 标头### 🚦 API/MCP Returns `429 Too Many Requests`
+- Confirm `NPM_TOKEN` exists in repository secrets
+- Confirm the Git tag matches `package.json` version exactly
+- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
 
-- 增加`OMNI_SKILLS_RATE_LIMIT_MAX`
-- 扩大`OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- 减少来自客户端或探测器的突发流量### 🛂 API/MCP Admin Runtime Returns `401`
+### ✍️ Release Signing Fails in CI
 
-- 验证“OMNI_SKILLS_HTTP_ADMIN_TOKEN”
-- 发送 `x-admin-token: <token>` 或 `Authorization: Bearer <admin-token>`### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
+- If you provide a public key secret, confirm it matches the private key
+- Confirm `openssl` is available and the private key is PEM-formatted
+- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Rerun `npm run verify:archives:strict`
 
-- 禁用`OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- 在维护期间使用“/healthz”进行活性探针
-- 使用“/admin/runtime”和管理令牌进行操作员诊断### 🌍 Browser Requests Fail CORS Validation
+### 🔒 API/MCP Returns `401 Unauthorized`
 
-- 验证“OMNI_SKILLS_HTTP_ALLOWED_ORIGINS”
-- 包括确切的方案和主机，例如“https://app.example.com”### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
+- Include `Authorization: Bearer <token>` or `x-api-key` header
 
-- 验证“OMNI_SKILLS_A2A_COORDINATION_TYPE=redis”
-- 验证“OMNI_SKILLS_A2A_REDIS_URL”
-- 检查每个节点的 Redis 连接性
-- 检查“/healthz”中的“coordination”快照### 🩺 General Diagnostics
+### 🚦 API/MCP Returns `429 Too Many Requests`
+
+- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduce burst traffic from clients or probes
+
+### 🛂 API/MCP Admin Runtime Returns `401`
+
+- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
+- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
+
+### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+
+- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
+- Use `/healthz` for liveness probes during maintenance
+- Use `/admin/runtime` with the admin token for operator diagnostics
+
+### 🌍 Browser Requests Fail CORS Validation
+
+- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
+- Include the exact scheme and host, for example `https://app.example.com`
+
+### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+
+- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
+- Verify `OMNI_SKILLS_A2A_REDIS_URL`
+- Check Redis connectivity from every node
+- Inspect `/healthz` for the `coordination` snapshot
+
+### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

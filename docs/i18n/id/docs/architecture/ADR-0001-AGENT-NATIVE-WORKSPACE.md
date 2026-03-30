@@ -5,69 +5,83 @@
 ---
 
 
->**Keputusan arsitektur utama yang membentuk struktur ruang kerja monorepo.**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**Diterima**— arah ruang kerja saat ini dan bentuk repositori aktif.---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills dimulai sebagai repositori**yang mengutamakan penginstal**. Jumlah tersebut cukup untuk mendistribusikan konten `SKILL.md`, namun tidak cukup untuk memaparkan katalog kepada agen melalui platform asli protokol.
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-Kami membutuhkan sebuah yayasan yang dapat mendukung:
+We needed a foundation that could support:
 
-| Persyaratan | Protokol |
+| Requirement | Protocol |
 |:------------|:---------|
-| 🌐 API katalog HTTP hanya baca | Istirahat |
-| 🔌 Server MCP hanya baca | Protokol Konteks Model |
-| 🤖 Permukaan A2A yang menghadap agen | Agen-ke-Agen |
-| 📂 Pemasangan lokal sespan | Alat sistem file |
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**Kendala kritis**: Hindari memparsing ulang file repo secara independen di setiap layanan baru.---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-Gunakan**monorepo berorientasi ruang kerja**dengan inti katalog bersama dan paket khusus protokol:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| Paket | Tujuan |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `keterampilan omni` (root) | Penginstal CLI dan skrip repo |
-| 🧠 `@omni-skills/catalog-core` | Pemuatan bersama, pencarian, perbandingan, bundel, paket pemasangan |
-| 🌐 `@omni-skills/server-api` | REST API hanya baca |
-| 🔌 `@omni-skills/server-mcp` | MCP dengan stdio/stream/sse + mode sespan lokal |
-| 🤖 `@omni-skills/server-a2a` | Runtime tugas A2A dengan Kartu Agen, polling, SSE, dan konfigurasi push |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-Inti katalog membaca artefak yang dihasilkan dari:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `keterampilan_index.json`---
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| Hasil | Dampak |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**Kontrak data bersama**| API, MCP, dan A2A menggunakan artefak yang sama |
-| 🖥️**CLI Terpadu**| Satu biner mengekspos instalasi, shell UI, API, MCP, A2A, diagnostik, dan smoke |
-| 🧩**Protokol isolasi**| Permukaan baru melakukan iterasi tanpa sambungan ke internal penginstal |
-| 🔌**Sespan lokal**| Mode MCP berkemampuan tulis yang berfungsi di belakang daftar yang diizinkan, dengan resep yang sadar klien |
-| 📦**Waktu proses satu paket**| Paket npm yang diterbitkan menyatukan permukaan protokol, alat validasi, dan artefak yang dihasilkan |---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| Pengorbanan | Mitigasi |
+| Tradeoff | Mitigation |
 |:---------|:-----------|
-| 🔄**Duplikasi metadata**| Build Python + runtime JavaScript → akhirnya dikonsolidasikan |
-| 🏗️**Kompleksitas A2A**| Siklus hidup yang tahan lama kini ada, tetapi adaptor koordinasi menambah kedalaman operasional |
-| 📦**Penyelarasan katalog**| Penginstalan selektif memerlukan perintah, manifes, dan dokumen agar tetap tersinkronisasi |
-| 📋**Kesenjangan metadata paket**| Kumpulan dapat melampaui keterampilan yang dipublikasikan, memerlukan peringatan eksplisit anggota yang hilang |---
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | Aksi | Status |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Otentikasi MCP jarak jauh dan pembatasan laju | ✅ Selesai |
-| 2️⃣ | Peningkatan penulisan konfigurasi MCP khusus klien | ✅ Hadir hari ini untuk Claude, Cursor, Codex, Gemini, Kiro, VS Code, dan Dev Containers |
-| 3️⃣ | Artefak rilis yang ditandatangani atau arsip per keterampilan | ✅ Hadir hari ini dengan penegakan CI pada tag rilis |
-| 4️⃣ | Runtime tugas A2A → orkestrasi yang tahan lama | ✅ Hadir hari ini dengan persistensi JSON/SQLite, pelaksana eksternal, koordinasi sewa keikutsertaan, dan koordinasi Redis tingkat lanjut opsional |
-| 5️⃣ | Perluas katalog yang diterbitkan untuk cakupan paket yang lebih luas | ✅ Hadir hari ini untuk tujuh starter bundle yang dikurasi saat ini |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

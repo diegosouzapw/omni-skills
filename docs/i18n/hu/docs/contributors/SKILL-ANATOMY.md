@@ -5,110 +5,126 @@
 ---
 
 
->**Struktúra és minőségi elvárások egy Omni Skills `SKILL.md-vel – a teljes katalógust meghatározó szerzői formátummal – szemben.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Minden `SKILL.md` két különálló részből áll:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Géppel olvasható metaadatok `---` határolók között. Erősíti:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 A készségek indexe és katalógusgenerálása
-- 🔎 CLI keresés és szűrés
-- ✅ Érvényesítés és minőségi pontozás
-- 📊 Létrehozott „metadata.json” osztályozási műtermékek
-- 📋 A készségenkénti megnyilvánulások a `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Ember által olvasható (és ügynök által olvasható) utasítások. Írd le úgy, mintha**eligazítást adnál egy vezető fejlesztőnek**egy feladat végrehajtásáról – ez elég specifikus ahhoz, hogy egy AI-ügynök találgatás nélkül kövesse azt.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Mező | Kötelező | Típus | Leírás |
-|:------|:---------|:-----|:-------------|
-| `név` | ✅ | húr | Meg kell egyeznie a könyvtár nevével, kisbetűvel és kötőjellel |
-| "leírás" | ✅ | húr | Egysoros leírás (10-200 karakter) |
-| "verzió" | ⚡ | húr | Magának a készségnek a szemantikus változata (pl. `"0.1.1"`) |
-| "kategória" | ⚡ | húr | Egy kanonikus kategória a repo taxonómiából |
-| "címkék" | ⚡ | string[] | Kereshető címkék felfedezéshez |
-| "bonyolultság" | ⚡ | húr | "kezdő" · "középfok" · "haladó" · "szakértő" |
-| `kockázat` | ⚡ | húr | "biztonságos" · "vigyázat" · "sértő" · "kritikus" |
-| "szerszámok" | ⚡ | string[] | Tesztelt AI kódoló asszisztensek |
-| "forrás" | ⚡ | húr | `omni-team` · `közösség` · `hivatalos` |
-| "szerző" | ⚡ | húr | Attribútum |
-| `hozzáadás_dátuma` | ⚡ | húr | ISO dátum |
-| `frissítés dátuma` | ⚡ | húr | ISO dátum |
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------|
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Mindig kötelező · ⚡ = Szigorú módban kötelező
+> ✅ = Always required · ⚡ = Required in strict mode
 
-A készség verzió független az npm csomag verziójától. A csomag jelenleg `0.1.3`, de a meglévő készségek érvényesen megmaradhatnak saját szemantikai verziójukon.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-A repo taxonómia jelenleg**18 kanonikus kategóriát**határoz meg:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Kategória | Domain |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `fejlesztés` | Általános szoftverfejlesztés |
-| 🎨 `frontend` | Frontend keretrendszerek és felhasználói felület |
-| 🔧 `backend` | Háttérszolgáltatások és API-k |
-| 🌐 `fullstack-web` | Teljes körű webfejlesztés |
-| 🛠️ `eszközök` | Fejlesztői szerszámok és segédprogramok |
-| ⚙️ `kli-automatizálás` | CLI-eszközök és automatizálási parancsfájlok |
-| 📊 `üzleti` | Üzleti folyamatok és stratégia |
-| 📐 `termék` | Termékmenedzsment és -tervezés |
-| 🎯 `design` | Vizuális és UX tervezés |
-| 🤖 `data-ai` | Adatmérnöki és mesterséges intelligencia alkalmazások |
-| 🧠 `ai-agents` | AI ügynök fejlesztés és minták |
-| 📈 `gépi tanulás` | ML modellek és képzés |
-| 🔌 `devops` | Infrastruktúra és telepítés |
-| 🛡️ `tesztelés-biztonság` | Tesztelési és biztonsági gyakorlatok |
-| 📖 `dokumentáció` | Dokumentáció létrehozása és kezelése |
-| 🎬 `tartalom-média` | Tartalomkészítés és média |
-| 💬 `kommunikáció` | Kommunikációs eszközök és munkafolyamatok |
-| ❓ "besorolatlan" | Alapértelmezett, ha nem található egyezés |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> A régebbi címkék, például a "munkafolyamat", "architektúra", "infrastruktúra", "biztonság" és "tesztelés" automatikusan normalizálódnak az alias-leképezés révén.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Egy jól megírt készségtest a következő hierarchiát követi:
+A well-written skill body follows this hierarchy:
 
-### 📌 Áttekintés (kötelező)
-2-3 mondat arról, hogy**mit**csinál a készség és**miért**létezik.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Mikor kell használni (kötelező)
-A**specifikus forgatókönyvek**felsorolása, ahol ez a készség érvényes.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Alapvető utasítások (kötelező)
-A**lépésről lépésre**az ügynöknek követnie kell. Legyen egyértelmű. Legyen konkrét. Az ügynökök világos, egyértelmű utasításokkal működnek a legjobban.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Példák (ajánlott)
-Konkrét promptok, kódblokkok vagy várt kimenetek.**Minél pontosabb, annál jobb.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Bevált gyakorlatok (ajánlott)
-A gyors beolvasáshoz használja a ✅ Do / ❌ Ne formáz gombot.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Hibaelhárítás (opcionális)
-Gyakori problémák és megoldásaik.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Kapcsolódó készségek (opcionális)
-Kereszthivatkozások a kiegészítő készségekre.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯**egy konkrét**munkafolyamatra vagy domainre összpontosít
-- 📌 Az utasítások**elég egyértelműek ahhoz, hogy egy mesterséges intelligencia**emberi értelmezés nélkül is kövesse őket
-- 💡**konkrét példákat**tartalmaz a várható viselkedéssel
-- 🛡️ Megfelelő**hibakezelési**útmutatóval rendelkezik
-- 📊 Egészséges metaadatokat állít elő: kanonikus kategória, lejárat L2+, minőség 70+
-- 🧰 Újrafelhasználható támogatási csomagot szállít, nem csak prózát, ideális esetben „references/”, „scripts/”, „examples/” és „agents/”, ahol szükséges
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Az erősebb pontozási mintákért, amelyek a képességeket a legmagasabb sávokba helyezik, lásd a [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md) című részt.### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Általános tanács, amely bármire vonatkozhat
-- 🤷 homályos utasítások, például "írj jó kódot"
-- 🚫 Nincsenek példák vagy kódblokkok
-- ⚠️ Hiányzó frontmatter mezők
-- 📉 Alacsony minőségi pontszám (50 alatt)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

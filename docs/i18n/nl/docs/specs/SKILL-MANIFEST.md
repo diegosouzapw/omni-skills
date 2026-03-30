@@ -5,66 +5,78 @@
 ---
 
 
->**Het machinaal leesbare JSON-manifest dat is gegenereerd op basis van elke `SKILL.md` tijdens de build-pijplijn: het enkele datacontract dat door alle runtime-oppervlakken wordt verbruikt.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Kenmerk | Staat |
+| Feature | State |
 |:--------|:------|
-| ✅ Automatisch gegenereerd vanuit SKILL.md | Geïmplementeerd |
-| ✅ Verbruikt door CLI, API, MCP, A2A | Geïmplementeerd |
-| ✅ Archieven met controlesommen | Geïmplementeerd |
-| ✅ Beveiligingsclassificatie | Geïmplementeerd |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Belangrijk**: het manifest is een**build-artefact**. Auteur van bijdrager `SKILL.md` — de pijplijn leidt het JSON-manifest automatisch af.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-Het manifest bestaat zodat**alle runtime-oppervlakken**dezelfde genormaliseerde vorm hebben:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Oppervlakte | Hoe het gebruik maakt van manifesten |
+| Surface | How It Uses Manifests |
 |:--------|:---------------------|
-| 🖥️**CLI**| Zoeken, installatieplanning, doktersdiagnostiek |
-| 🌐**API**| Eindpuntreacties, filteren, downloadlinks |
-| 🔌**MCP**| Toolreacties, broninhoud |
-| 🤖**A2A**| Ontdekkings- en aanbevelingspayloads |---
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Artefact | Pad |
+| Artifact | Path |
 |:---------|:-----|
-| 📊 Root-metagegevens | `metadata.json` |
-| 📊 Metagegevens per vaardigheid | `skills/<vaardigheid>/metadata.json` |
-| 📋 Vaardighedenindex | `skills_index.json` |
-| 📚 Gepubliceerde catalogus | `dist/catalog.json` |
-| 📌 Manifest per vaardigheid | `dist/manifests/<skill>.json` |
-| 📦 Zip-archief | `dist/archives/<vaardigheid>.zip` |
-| 📦 Tarball-archief | `dist/archives/<skill>.tar.gz` |
-| 🔒 Checksum-manifest | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Veld | Beschrijving |
+| Field | Description |
 |:------|:------------|
-| `schema_versie` | Versie van het manifestschema |
-| `id` | Stabiele vaardigheids-ID uit veld 'naam' |
-| `slak` | Directory-slug onder `skills/` |
-| `weergave_naam` | Voor mensen leesbare titel vanaf eerste kop |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Veld | Beschrijving |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `beschrijving` | Korte samenvatting van frontmatter |
-| `versie` | Skill-versie, onafhankelijk van de npm-pakketversie |
-| `categorie` | Canonieke categorie (genormaliseerd) |
-| `raw_categorie` | Originele categorie van frontmatter |
-| `taxonomie` | Volledige taxonomie-metagegevens met afgeleide terugval |
-| `labels` | Doorzoekbare tags |
-| `complexiteit` | `beginner` · `gemiddeld` · `gevorderd` · `expert` |
-| `risico` | `veilig` · `voorzichtig` · `aanstootgevend` · `kritisch` |
-| `bron` | `omni-team` · `gemeenschap` · `officieel` |
-| `auteur` | Toeschrijvingsreeks |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@ Het manifest bestaat zodat**alle runtime-oppervlakken**dezelfde genormaliseerde 
 
 ### 📂 Paths
 
-| Veld | Beschrijving |
+| Field | Description |
 |:------|:------------|
-| `ingangspunt` | Canoniek `SKILL.md`-pad |
-| `paden.root` | Vaardigheidsmap in repository |
-| `paden.manifest` | Gegenereerd manifestpad in `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Veld | Beschrijving |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `gereedschap` | Tool-ID's van frontmatter |
-| `install_targets` | Metagegevens per tool installeren |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Elk installatiedoel bevat: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Veld | Beschrijving |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `sub_bronnen` | Submappen voor vaardigheden (`referenties`, `agenten`, `activa`) |
-| `artefacten_aantal` | Totaal aantal bestanden in het vaardighedenpakket |
-| `referenties_aantal` | Aantal referentiedocumenten |
-| `agenten_telling` | Aantal agentconfiguraties |
-| `activa_aantal` | Aantal activabestanden |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@ Elk installatiedoel bevat: `tool`, `scope`, `default_path`, `installer_flag`, `c
 
 ### 📦 Install
 
-| Veld | Beschrijving |
+| Field | Description |
 |:------|:------------|
-| `strategie` | Installatiestrategie (bijvoorbeeld `copy-skill-directory`) |
-| `huidig_installatieprogramma` | Voor mensen leesbaar installatiegedrag |
-| `recepten` | Installatierecepten per klant |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Sectie | Velden |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯`volwassenheid` | `skill_level`, `skill_level_label` |
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
 | 📋 `best_practices` | `score` (0-100) |
-| ⭐ `kwaliteit` | `score` (0-100) |
-| 🛡️`beveiliging` | `score`, `status` |
-| ✅ `validatie` | `status` |### 📝 Content
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Afgeleide signalen: `body_length`, `content_length`, `body_lines`, `word_count`, plus structurele vlaggen voor voorbeelden, secties voor probleemoplossing, enz.### 📁 Artifacts
+### 📝 Content
 
-Array van elk bestand dat in de vaardighedenmap wordt verzonden:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@ Array van elk bestand dat in de vaardighedenmap wordt verzonden:```json
 }
 ```
 
-**Artefactsoorten**: `ingangspunt` · `referentie` · `agent` · `asset` · `licentie` · `ondersteuning`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@ Array van elk bestand dat in de vaardighedenmap wordt verzonden:```json
 
 ### 🔒 Checksums
 
-| Veld | Beschrijving |
+| Field | Description |
 |:------|:------------|
-| `entrypoint_sha256` | Hash van SKILL.md |
-| `pakket_sha256` | Deterministische samenvatting van de geordende artefactlijst |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@ Array van elk bestand dat in de vaardighedenmap wordt verzonden:```json
 }
 ```
 
-> 📌 De versie van het repositorypakket en de vaardigheidsversie zijn verschillende problemen. Het pakket is momenteel '0.1.3', terwijl individuele vaardigheden hun eigen semantische versies hebben.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Regel | Reden |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Moet afleidbaar blijven van repo | Geen handmatig manifestontwerp vereist |
-| ✅ Er kunnen nieuwe optionele velden worden toegevoegd | Voorwaartse compatibiliteit |
-| ⚠️Bestaande velden moeten stabiel blijven | Achterwaartse compatibiliteit |
-| 🚫 Geen handgeschreven manifesten | Afleiding van de bouwtijd is de bron van de waarheid |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

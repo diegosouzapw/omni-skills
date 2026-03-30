@@ -5,66 +5,78 @@
 ---
 
 
->**Маніфест JSON, що зчитується машиною, створений з кожного `SKILL.md` під час конвеєра збірки — єдиного контракту даних, який використовується всіма поверхнями середовища виконання.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Особливість | Держава |
+| Feature | State |
 |:--------|:------|
-| ✅ Автоматично створено з SKILL.md | Реалізовано |
-| ✅ Споживається CLI, API, MCP, A2A | Реалізовано |
-| ✅ Архіви з контрольними сумами | Реалізовано |
-| ✅ Клас безпеки | Реалізовано |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Важливо**: маніфест є**артефактом збірки**. Автор автора `SKILL.md` — конвеєр автоматично отримує маніфест JSON.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-Маніфест існує так, що**всі поверхні середовища виконання**мають однакову нормалізовану форму:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Поверхня | Як він використовує маніфести |
-|:--------|:--------------------|
-| 🖥️**CLI**| Пошук, монтаж планування, лікар діагностика |
-| 🌐**API**| Відповіді кінцевої точки, фільтрація, посилання для завантаження |
-| 🔌**MCP**| Відповіді інструменту, вміст ресурсу |
-| 🤖**A2A**| Корисне навантаження виявлення та рекомендації |---
+| Surface | How It Uses Manifests |
+|:--------|:---------------------|
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Артефакт | Шлях |
+| Artifact | Path |
 |:---------|:-----|
-| 📊 Кореневі метадані | `metadata.json` |
-| 📊 Метадані навичок | `skills/<skill>/metadata.json` |
-| 📋 Індекс навичок | `skills_index.json` |
-| 📚 Опублікований каталог | `dist/catalog.json` |
-| 📌 Маніфест навичок | `dist/manifests/<skill>.json` |
-| 📦 Zip-архів | `dist/archives/<skill>.zip` |
-| 📦 Архів tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Маніфест контрольної суми | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Поле | Опис |
+| Field | Description |
 |:------|:------------|
-| `схема_версії` | Версія схеми маніфесту |
-| `id` | Стабільний ідентифікатор навичок із поля `name` |
-| `слимак` | Служба каталогу в `skills/` |
-| `display_name` | Зрозумілий заголовок з першого заголовка |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Поле | Опис |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `опис` | Коротке резюме від frontmatter |
-| `версія` | Версія навичок, незалежна від версії пакета npm |
-| `категорія` | Канонічна категорія (нормована) |
-| `необроблена_категорія` | Оригінальна категорія від frontmatter |
-| `таксономія` | Повні метадані таксономії з імовірним резервним |
-| `теги` | Пошукові теги |
-| `складність` | `початківець` · `середній` · `просунутий` · `експерт` |
-| `ризик` | `безпечно` · `обережно` · `образливо` · `критично` |
-| `джерело` | `омні-команда` · `спільнота` · `офіційний` |
-| `автор` | Рядок атрибуції |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@
 
 ### 📂 Paths
 
-| Поле | Опис |
+| Field | Description |
 |:------|:------------|
-| `точка входу` | Канонічний шлях `SKILL.md` |
-| `paths.root` | Каталог навичок у сховищі |
-| `paths.manifest` | Згенерований шлях маніфесту в `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Поле | Опис |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `інструменти` | Ідентифікатори інструментів із Frontmatter |
-| `install_targets` | Метадані встановлення кожного інструменту |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Кожна ціль встановлення включає: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Поле | Опис |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `суб_ресурси` | Підкаталоги навичок (`посилання`, `агенти`, `активи`) |
-| `число_артефактів` | Загальна кількість файлів у пакеті навичок |
-| `кількість_посилань` | Кількість довідкових документів |
-| `агентів_кількість` | Кількість конфігурацій агента |
-| `assets_count` | Кількість файлів активів |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@
 
 ### 📦 Install
 
-| Поле | Опис |
+| Field | Description |
 |:------|:------------|
-| `стратегія` | Стратегія встановлення (наприклад, `copy-skill-directory`) |
-| `поточний_інсталятор` | Зрозуміла поведінка встановлення |
-| `рецепти` | Рецепти інсталяції для кожного клієнта |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Розділ | Поля |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯 `зрілість` | `skill_level`, `skill_level_label` |
-| 📋 `best_practices` | `оцінка` (0-100) |
-| ⭐ `якість` | `оцінка` (0-100) |
-| 🛡️ `безпека` | `оцінка`, `статус` |
-| ✅ `перевірка` | `статус` |### 📝 Content
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Похідні сигнали: `body_length`, `content_length`, `body_lines`, `word_count`, а також структурні позначки для прикладів, розділів усунення несправностей тощо.### 📁 Artifacts
+### 📝 Content
 
-Масив кожного файлу, надісланого в каталог навичок:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@
 }
 ```
 
-**Типи артефактів**: `точка входу` · `посилання` · `агент` · `актив` · `ліцензія` · `підтримка`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@
 
 ### 🔒 Checksums
 
-| Поле | Опис |
+| Field | Description |
 |:------|:------------|
-| `entrypoint_sha256` | Хеш SKILL.md |
-| `package_sha256` | Детермінований дайджест із упорядкованого списку артефактів |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@
 }
 ```
 
-> 📌 Версія пакета репозиторію та версія навичок – різні проблеми. Пакет наразі `0.1.3`, тоді як окремі навички мають власні семантичні версії.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Правило | Обґрунтування |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Повинен залишатися похідним від репо | Створення маніфесту вручну не потрібно |
-| ✅ Можна додавати нові необов’язкові поля | Пряма сумісність |
-| ⚠️ Існуючі поля мають залишатися стабільними | Зворотна сумісність |
-| 🚫 Немає рукописних маніфестів | Виведення часу створення є джерелом істини |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

@@ -5,40 +5,47 @@
 ---
 
 
->**Átfogó technikai elemzés a jelenlegi Omni Skills architektúráról, a futásidejű felületekről és a build folyamatról.**
-> Utolsó elemzés: 2026-03-28---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| Attribútum | Érték |
+| Attribute | Value |
 |:----------|:------|
-|**Név**| "minden készségek" |
-|**Csomagváltozat**| "0.1.3" |
-|**Képességi változatok**| Készségenként és a csomag verziójától független. Sok közzétett képesség továbbra is „0.0.1”, míg a csomag „0.1.2”. |
-|**Engedély**| MIT (kód) + CC BY 4.0 (tartalom) |
-|**NPM**| "npx omni-skills" |
-|**Közzé tett készségek**| 32 |
-|**Meghatározott kötegek**| 7, mindezt teljes mértékben publikált készségek támogatják |
-|**Aktív katalóguskategóriák**| 15 aktív csoport a 18 kanonikus taxonómia kategóriából |
-|**Az elsődleges futási környezet/építési LOC minta az alábbiakban**| 13 600+ |
-|**Termelési függőségek**| 7 ("@modelcontextprotocol/sdk", "cors", "express", "ioredis", "tinta", "react", "zod") |
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-Jelenlegi adattárszintű besorolási pillanatkép a "metadata.json" fájlból:
+Current repository-level classification snapshot from `metadata.json`:
 
-- átlagos minőségi pontszám: "96,3".
-- a legjobb gyakorlatok átlagos pontszáma: `98,7`
-- átlagos biztonsági pontszám: "95,0".
-- mind a 32 közzétett készség "L3"-ként érvényes
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-A jelenlegi kiadás alapértéke:
+Current release baseline:
 
-- nyilvános adattár kiadása: `v0.1.2`
-- privát javító kiadás: `v0.0.1`
-- A nyilvános kiadás automatizálása és a privát kiadás automatizálása egyaránt aktív és zöld---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-Az adattár**munkaterületi monorepo**mintát követ, egy megosztott katalógusmaggal és több futásidejű felülettel.```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,297 +71,333 @@ Az adattár**munkaterületi monorepo**mintát követ, egy megosztott katalógusm
 └────────────────────────────────────────────────────────────┘
 ```
 
-A tervezés szándékosan**műtermékvezérelt**:
+The design is intentionally **artifact-driven**:
 
-1. A készségek `SKILL.md` plusz helyi támogatási csomagként vannak létrehozva
-2. a build érvényesíti, osztályozza, archiválja és normalizálja azokat
-3. a generált melléktermékek a CLI, API, MCP és A2A szerződésévé válnak---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4500+ LOC kombinálva**— a fő nyilvános interfész szakértői és irányított használatra egyaránt.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| Parancs | Funkció |
+| Command | Function |
 |:--------|:---------|
-| 🔎 `[lekérdezés] keresése` | Teljes szövegű katalógus keresés pontozó szűrőkkel |
-| 📦 `telepítés` | Irányított vagy zászló alapú telepítés ismert kliensekre vagy egyéni útvonalakra |
-| 🧾 `config-mcp` | Előnézet vagy írjon kliens-tudatos MCP-konfigurációt |
-| 🔌 `mcp <transport>` | Elindítja az MCP-kiszolgálót `stdio`, `stream` vagy `sse` |
-| 🌐 `api` | Elindítja a katalógus API |
-| 🤖 `a2a` | Elindítja az A2A futtatókörnyezetet |
-| 🧪 `füstölni` | Az ellenőrzés előtti ellenőrzés kiadása |
-| 🩺 `doktor` | Helyi diagnosztika |
-| 🖥️ `ui` | Ink vizuális shell telepítéssel, felfedezéssel, konfigurációval és szervizközponttal |
-| 🏷️ `újrakategorizálás` | Taxonómia-sodródás ellenőrzése és átírása |
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-A CLI már nem csak egy telepítő. Ez a nyilvános műveleti eszköz az egész platform számára.## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-A nyilvános futásidőt már nem akadályozzák az alapozási munkák, és a második kategória hulláma már leszállt. A következő hasznos katalógusmunka a mélység, nem pedig a kategóriaszámlálás hajsza.
+## 🧭 Future Expansion Direction
 
-Újonnan aktivált kód-natív számok már a katalógusban:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- "design" a "design-systems-ops", "accessibility-audit" és "design-token-governance" segítségével
-- "tools" az "mcp-server-authoring" segítségével
-- "data-ai" az "adatszerződéseken" keresztül
-- "gépi tanulás" a "modellszolgáltatáson" keresztül
+Newly activated code-native tracks now in the catalog:
 
-Javasolt a következő irány:
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-1. elmélyítse a "design", "eszközök", "data-ai" és "gépi tanulás" fogalmát
-2. az "üzleti" és a "tartalom-média" elhalasztása, hacsak nem jelenik meg egyértelműen kódalapú javaslat
-3. a jelenlegi minőségi padló megőrzése a kategória aktiválási nyomás újranyitása helyett
+Recommended next direction:
 
-Ezt a bővítési hullámot a [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md) fájl rögzíti.### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
->**403 LOC**– a készségeket 7 telepíthető asszisztensbe telepíti.
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
-| zászló | Cél | Alapértelmezett elérési út |
-|:-----|:-------|:--------------|
-| "--claude" | Claude Code | "~/.claude/skills" |
-| "--kurzor" | Kurzor | "~/.kurzor/készségek" |
-| "--gemini" | Gemini CLI | "~/.gemini/skills" |
-| "--kódex" | Codex CLI | "~/.codex/skills" |
-| "--kiro" | Kiro | "~/.kiro/skills" |
-| "--antigravitáció" | Antigravitáció | "~/.gemini/antigravitation/skills" |
-| "--nyitott kód" | OpenCode | `<munkaterület>/.opencode/skills` |
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-Támogatja:
+> **403 LOC** — installs skills into 7 install-capable assistants.
 
-- teljes könyvtár telepítése
-- szelektív telepítések a "--skill" paraméterrel
-- a „--bundle” által kiválasztott telepítések
-- Irányított TTY és vizuális felhasználói felület
-- egyéni cél útvonalak### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+| Flag | Target | Default Path |
+|:-----|:-------|:-------------|
+| `--claude` | Claude Code | `~/.claude/skills` |
+| `--cursor` | Cursor | `~/.cursor/skills` |
+| `--gemini` | Gemini CLI | `~/.gemini/skills` |
+| `--codex` | Codex CLI | `~/.codex/skills` |
+| `--kiro` | Kiro | `~/.kiro/skills` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
+| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
->**828 LOC**– megosztott futásidejű réteg a CLI-hez, API-hoz, MCP-hez és A2A-hoz.
+It supports:
 
-| Export | Leírás |
-|:-------|:-------------|
-| 🔎 `searchSkills()` | Keresés súlyozott szövegegyeztetéssel és szűrőtámogatással |
-| 📋 `Skills()` | Többtengelyes szűrés minőség, bevált gyakorlatok, szint, biztonság, kockázat, eszköz és kategória szerint |
-| 📌 `getSkill()` | Nyilvánvaló felbontás plusz bővített nyilvános URL-ek |
-| ⚖️ `Készségek összehasonlítása()` | Egymás melletti összehasonlítás |
-| 💡 `RecommendSkills()` | Célvezérelt ajánlás |
-| 📦 `buildInstallPlan()` | Telepítse a tervgenerálást figyelmeztetésekkel és ügyfélbarát útmutatásokkal |
-| 🗂️ `listBundles()` | Kurált csomaglista elérhetőséggel |
-| 📁 `listSkillArchives()` | Archívum és aláírás felbontás |
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
-Ez a futásidejű igazság valódi egyetlen forrása generációról generációra.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
->**812 LOC**— teljes MCP-megvalósítás a hivatalos SDK használatával.
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
-**közlekedés**
+| Export | Description |
+|:-------|:------------|
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
-- "stdio".
-- streamelhető HTTP
+This is the real single source of runtime truth after generation.
+
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+
+> **812 LOC** — full MCP implementation using the official SDK.
+
+**Transports**
+
+- `stdio`
+- streamable HTTP
 - SSE
 
-**Mindig működő, csak olvasható eszközök**
+**Always-on read-only tools**
 
-- "keresési_készségek".
-- "szerezzen_készséget".
-- `készségek összehasonlítása`
-- "ajánlott_készségek".
-- "előzetes_telepítés".
+- `search_skills`
+- `get_skill`
+- `compare_skills`
+- `recommend_skills`
+- `preview_install`
 
-**Helyi módú eszközök**
+**Local-mode tools**
 
-- "ügyfelek észlelése".
-- "telepített_készségek listája".
-- "telepítési_készségek".
+- `detect_clients`
+- `list_installed_skills`
+- `install_skills`
 - `remove_skills`
 - `configure_client_mcp`
 
-Az MCP felület szándékosan fel van osztva:
+The MCP surface is deliberately split between:
 
-- távoli/csak olvasható katalógushasználat
-- helyi/írásra képes oldalkocsi használat### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1,943 LOC**– fájlrendszer-tudatos MCP-réteg ügyfélfelismeréshez, képességkezeléshez és MCP-konfiguráció íráshoz.
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-Jelenlegi gyakorlati támogatás:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 telepítésre képes kliens**
--**16 konfigurálható kliens**
--**33 konfigurációs cél**
--**19 konfigurációs profil**
+Current practical support:
 
-Telepíthető kliensek:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
+
+Install-capable clients:
 
 - Claude Code
-- Kurzor
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitáció
+- Antigravity
 - OpenCode
 
-A konfigurálható kliensek és célok a következők:
+Config-capable clients and targets include:
 
-- Claude beállítások, Claude Desktop és Claude projekt konfigurációja
-- Kurzor felhasználó és munkaterület konfigurációja
-- VS Code munkaterület, felhasználó, bennfentesek és Dev Container konfigurációja
-- Gemini felhasználói és munkaterületi beállítások
-- Antigravitációs felhasználói konfiguráció
-- Kiro felhasználói, munkaterületi és örökölt elérési utak
-- Codex CLI TOML konfig
-- OpenCode felhasználói és munkaterület-konfiguráció
-- Klinika beállításai
-- GitHub Copilot CLI felhasználói és repo konfigurációja
-- Kilo felhasználó, projekt és munkaterület konfigurációja
-- A YAML munkaterület folytatása
-- Windsurf felhasználói konfiguráció
-- Zed munkaterület konfigurációja
-- Goose felhasználói konfiguráció
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
+- Zed workspace config
+- Goose user config
 
-Az oldalkocsi szándékosan őszinte a határokat illetően:
+The sidecar is intentionally honest about boundaries:
 
-- csak engedélyezőlistán belül ír
-- alapértelmezés szerint megtekinti az előnézetet
-- csak ott tart első osztályú írókat, ahol a hivatalos dokumentumok stabil formátumot mutatnak
-- nem állítja, hogy minden MCP-képes termék egyben készség-telepítési célpont is lenne### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
->**715 LOC kombinált**– csak olvasható regisztrációs API plusz irányítási köztes szoftver.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-Fontos végpontok:
+> **715 LOC combined** — read-only registry API plus governance middleware.
 
-- "/healthz".
+Important endpoints:
+
+- `/healthz`
 - `/openapi.json`
 - `/admin/runtime`
-- "/v1/készségek".
+- `/v1/skills`
 - `/v1/skills/:id`
-- "/v1/search".
-- "/v1/összehasonlítás".
-- "/v1/bundles".
-- `/v1/telepítés/terv`
+- `/v1/search`
+- `/v1/compare`
+- `/v1/bundles`
+- `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Már végrehajtott irányítási alapállapot:
+Governance baseline already implemented:
 
-- hordozó token hitelesítés
-- API-kulcs hitelesítés
-- admin token hitelesítés
-- folyamat közbeni sebességkorlátozás
-- kérjen azonosítókat
-- audit naplózás
-- CORS engedélyezési listák
-- IP engedélyezési listák
-- megbízható proxy kezelés
-- karbantartási mód### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- bearer token auth
+- API-key auth
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**1857 LOC kombinálva a fő szerver, futásidejű és koordinátor fájlok között**— JSON-RPC 2.0 feladatéletciklus az ügynökök közötti munkafolyamatokhoz.
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-Támogatott módszerek:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `üzenet/küldés`
-- "üzenet/folyam".
-- `feladatok/kap`
-- `feladatok/mégse`
-- `feladatok/újrafeliratkozás`
+Supported methods:
+
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
 - `tasks/pushNotificationConfig/*`
 
-Jelenlegi műveletek:
+Current operations:
 
-- `fedez fel-készségeket`
+- `discover-skills`
 - `recommend-stack`
-- `telepítési terv előkészítése`
+- `prepare-install-plan`
 
-Tartósság és koordinációs modell:
+Durability and coordination model:
 
-- memória, JSON vagy SQLite helyi megmaradás
-- újraindítás folytatása
-- opcionális külső folyamatvégrehajtó
-- opt-in bérelt sorkoordináció a megosztott SQLite dolgozók számára
-- opcionális Redis által támogatott koordináció fejlett hosztolt útvonalként
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
 
-A legfontosabb építészeti választás itt az**egyszerű helyi üzemeltetés**. A Redis speciális opcióként létezik, de az alapértelmezett termékútvonal továbbra is helyi marad, és a függőségi jelzőfény marad.---
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| Script | Nyelv | Cél |
-|:-------|:----------|:--------|
-| 📊 `skill_metadata.py` | Python | Érvényesítés, taxonómia, pontozás és statikus biztonsági szkennelés |
-| ✅ `validate_skills.py` | Python | Metaadatok generálása készségenként és a gyökérösszefoglalóhoz |
-| 📑 `generate_index.py` | Python | Képességindex, jegyzékek, archívumok, aláírások és ellenőrző összegek |
-| 🏗️ `build_catalog.js` | Node.js | Utolsó "dist/catalog.json" és "dist/bundles.json" |
-| 🏷️ `recategorize_skills.py` | Python | Kanonikus kategória audit és átírás |
-| 🔍 `verify_archives.py` | Python | Archívum és aláírás ellenőrzése |
+| Script | Language | Purpose |
+|:-------|:---------|:--------|
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-Működési szempontból két részlet számít:
+Two details matter operationally:
 
-1. A `dist/` a futásidejű szerződés része, és szándékosan kötődik
-2. a build elég determinisztikus ahhoz, hogy támogassa a CI-ellenőrzést és a kiadás-aláírást---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-A jelenlegi nyilvános katalógus 32 képességet ölel fel:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**Felfedezés és tervezés**: "készségek keresése", "ötletgyűjtés", "architektúra", "hibakeresés"
--**Rendszerek tervezése és hozzáférhetőség**: "design-systems-ops", "accessibility-audit"
--**Termék és teljes köteg kiszállítás**: "frontend-design", "api-design", "database-design", "omni-figma", "auth-flows"
--**Biztonság**: "security-auditor", "sebezhetőség-ellenőrző", "incidens-válasz", "fenyegetés-modellezés"
--**OSS-karbantartó munkafolyamatok**: "dokumentáció", "módosítási napló", "create-pr"
--**DevOps**: "docker-expert", "kubernetes", "terraform", "megfigyelhetőség-felülvizsgálat", "kiadási tervezés"
--**AI tervezés**: "rag-engineer", "prompt-engineer", "llm-patterns", "eval-design", "context-engineering"
+Current native category distribution from `metadata.json`:
 
-Mind a hét csomag teljes mértékben támogatott:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- "essentials" → "4/4".
-- "full-stack" → "5/5".
-- "design" → "4/4".
-- "biztonság" → "4/4".
-- "devops" → "5/5".
-- "ai-mérnök" → "5/5".
-- "oss-maintainer" → "4/4".
+This broader intake surface is intentional:
 
-Aktuális pontszám a generált katalógusból:
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
 
-- minőségi pontszámok: "94, 95, 96, 97, 100".
-- legjobb gyakorlatok pontszámai: "98, 99, 100".
-- biztonsági pontszám: az összes közzétett készség jelenleg „95”.
+All seven bundles are fully backed:
 
-Reprezentatív high end:
+- `essentials` → `4/4`
+- `full-stack` → `5/5`
+- `design` → `5/5`
+- `security` → `4/4`
+- `devops` → `5/5`
+- `ai-engineer` → `7/7`
+- `oss-maintainer` → `4/4`
 
-- "omni-figma" → "minőség 100", "best_practices 100"
-- "Hozzáférhetőség-audit" → "minőség 99", "best_practices 100"
-- "auth-flows" → "quality 97", "best_practices 99"
-- "design-systems-ops" → "quality 97", "best_practices 99"
-- "kiadási tervezés" → "minőség 97", "best_practices 99"
-- "fenyegetés-modellezés" → "minőség 97", "best_practices 99"
-- "context-engineering" → "minőség 97", "best_practices 99"
+Current score spread from the generated native catalog:
 
-Reprezentatív alsó vége a jelenlegi felső sávon belül:
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-- "architektúra" → "minőség 94", "best_practices 98"
-- "változásnapló" → "minőség 94", "best_practices 98"
-- "create-pr" → "minőség 95", "best_practices 98"
+Representative high end:
 
-Ez szándékos. A pontozó most megkülönbözteti a „kiváló”-t a „kivételestől”, ahelyett, hogy az egész katalógust a tetejére lapítaná.---
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
+- `auth-flows` → `quality 97`, `best_practices 99`
+- `design-systems-ops` → `quality 97`, `best_practices 99`
+- `release-engineering` → `quality 97`, `best_practices 99`
+- `threat-modeling` → `quality 97`, `best_practices 99`
+- `context-engineering` → `quality 97`, `best_practices 99`
+
+Representative warning-grade native intake:
+
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
+
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**Első műalkotás**
-   Minden futásidejű felület ugyanazt a generált katalógust és manifestet használja.
-2.**Széles protokoll-lefedettség**
-   A CLI, az API, az MCP és az A2A együtt léteznek anélkül, hogy az adatmodellt feldarabolnák.
-3.**Erős helyi termék ergonómia**
-   Az irányított telepítés, a vizuális shell, a "config-mcp" és a szárazon futtatott alapértelmezések a projektet a nagyfelhasználókon túl is használhatóvá teszik.
-4.**Őszinte biztonsági testtartás**
-   Az engedélyezett helyi írások, a statikus szkennelés, az aláírás, az ellenőrző összegek és a kiadás ellenőrzése mind explicit.
-5.**Egészséges MCP-elérés**
-   A projekt immár a jelenlegi MCP-képes kliensek széles körét támogatja anélkül, hogy azt feltételezné, hogy a nem dokumentált célok stabilak.---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**Mélyebb csomaglefedettség**
-   A következő lépés a meglévő csomagokon belüli specializáció, nem csak a széles körű lefedettség.
-2.**Gazdagabb pontszerző szemantika**
-   Még mindig van hely a referenciacsomag mélységének és a munkafolyamat minőségének szemantikai szempontból történő értékelésére.
-3.**További ügyfél-író csak indokolt esetben**
-   A terjeszkedésnek fegyelmezettnek kell maradnia, és stabil hivatalos dokumentumokhoz kell kötnie.
-4.**Validátor lebontás**
-   A „skill_metadata.py” még mindig egy nagy modul, és idővel előnyös lenne a belső lebontás.
-5.**Hostált irányítás eszkalációja**
-   A jelenlegi folyamatban lévő alapvonal elegendő az önálló üzemeltetéshez, de a vállalati telepítés végül külső átjárót és identitásintegrációt igényel.
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

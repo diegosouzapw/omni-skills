@@ -5,168 +5,196 @@
 ---
 
 
->**Hợp đồng hành vi cho giao diện người dùng thiết bị đầu cuối dựa trên Ink được cung cấp bởi `omni-skills ui`.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Lớp vỏ trực quan là bề mặt sản phẩm được hướng dẫn phía trên công cụ cài đặt và CLI hiện có.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Nó không thay thế:
+It does not replace:
 
-- cách sử dụng CLI dựa trên cờ chuyên gia
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- quy trình cài đặt văn bản hướng dẫn
-- Hành vi thời gian chạy API, MCP hoặc A2A
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Nó định nghĩa:
+It defines:
 
-- hành vi của `omni-skills ui`
-- hợp đồng dự phòng cho `omni-skills ui --text`
-- trạng thái cục bộ và sự kiên trì đặt trước
-- bản xem trước ra mắt dịch vụ có hướng dẫn
-- khả năng lặp lại cho các lần cài đặt và chạy dịch vụ gần đây---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` ra mắt giao diện trực quan dựa trên Ink.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Visual Shell là trải nghiệm thiết bị đầu cuối không chuyên nghiệp chính dành cho:
+The visual shell is the primary non-expert terminal experience for:
 
-- luồng cài đặt
-- khám phá và cài đặt danh mục đầu tiên
-- Khởi động MCP
-- Khởi động API
-- Khởi nghiệp A2A
-- bác sĩ và bàn giao thuốc lá### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` khởi chạy giao diện dự phòng dựa trên dòng đọc.
+### 2.2 Text Fallback
 
-Điều này vẫn hữu ích khi:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- một thiết bị đầu cuối không thể hiển thị chính xác lớp vỏ phong phú hơn
-- hành vi ở chế độ thô bị hạn chế
-- ưu tiên dự phòng văn bản tối thiểu### 2.3 Handoff Rule
+This remains useful when:
 
-Shell trực quan không thực hiện lại thời gian chạy dịch vụ hoặc ghi cài đặt trực tiếp.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Sau khi xem trước và xác nhận, nó sẽ thoát hoàn toàn và chuyển giao việc thực thi cho điểm nhập CLI hiện có với các đối số và biến môi trường tương đương.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Màn hình chính phải hiển thị:
+The home screen must expose:
 
-- kỹ năng cài đặt
-- tìm và cài đặt
-- lặp lại các cài đặt gần đây khi có
-- chạy cài đặt trước cài đặt đã lưu khi có
-- bắt đầu một dịch vụ
-- lặp lại các dịch vụ gần đây khi có mặt
-- chạy các cài đặt trước dịch vụ đã lưu khi có mặt
-- bác sĩ
-- khói
-- thoát
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-Màn hình chính cũng sẽ hiển thị:
+The home screen should also surface:
 
-- tính khả dụng của gói được xuất bản hiện tại
-- số lượng trạng thái cục bộ cho các mục gần đây, cài đặt trước và mục yêu thích---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Luồng cài đặt shell trực quan phải hỗ trợ:
+The visual shell install flow must support:
 
-- lựa chọn mục tiêu khách hàng đã biết
-- lựa chọn đường dẫn tùy chỉnh
-- cài đặt đầy đủ thư viện
-- cài đặt một kỹ năng
-- cài đặt một gói
-- tìm kiếm rồi cài đặt
-- xem trước trước khi viết
-- lưu cài sẵn
-- kỹ năng yêu thích hoặc chuyển đổi gói
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Bản xem trước phải hiển thị:
+Preview must show:
 
-- nhãn mục tiêu đã được giải quyết
-- đường dẫn đã giải quyết
-- phạm vi cài đặt
-- kỹ năng hoặc gói được chọn khi áp dụng
-- lệnh CLI tương đương---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Shell trực quan phải hướng dẫn khởi động cho:### 5.1 MCP
+The visual shell must guide startup for:
 
-- vận chuyển: `stdio`, `stream`, `sse`
-- chế độ: `chỉ đọc` hoặc `cục bộ`
-- cấu hình máy chủ/cổng cho việc vận chuyển mạng
-- xem trước lệnh rõ ràng### 5.2 API
+### 5.1 MCP
 
-- chủ nhà
-- cổng
-- hồ sơ cơ bản hoặc cứng
-- người mang cứng hoặc xác thực khóa API
-- thông số giới hạn tốc độ cứng
-- kích hoạt nhật ký kiểm tra
-- xem trước lệnh rõ ràng### 5.3 A2A
+- transport: `stdio`, `stream`, `sse`
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- chủ nhà
-- cổng
-- loại cửa hàng: `bộ nhớ`, `json`, `sqlite`
-- đường dẫn lưu trữ cho các chế độ bền
-- người thực thi: `nội tuyến`, `quy trình`
-- chế độ SQLite kích hoạt hàng đợi
-- khoảng thời gian thăm dò và thời gian thuê cho chế độ cho thuê chung
-- xem trước lệnh rõ ràng---
+### 5.2 API
+
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
+- executor: `inline`, `process`
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Lớp vỏ trực quan vẫn duy trì trạng thái cục bộ trong:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Nhà nước hiện nay bao gồm:
+State currently includes:
 
-- lượt cài đặt gần đây
-- ra mắt dịch vụ gần đây
-- đặt tên cài đặt trước
-- cài đặt trước dịch vụ được đặt tên
-- kỹ năng yêu thích
-- gói yêu thích
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Shell phải hỗ trợ:
+The shell must support:
 
-- phát lại các cài đặt gần đây
-- phát lại các lần ra mắt dịch vụ gần đây
-- sử dụng lại các cài đặt trước cài đặt có tên
-- sử dụng lại các cài đặt trước dịch vụ được đặt tên---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Vỏ trực quan là phụ gia.
+The visual shell is additive.
 
-Các luồng này phải duy trì hiệu lực và ổn định:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `cài đặt kỹ năng đa năng của npx --guided`
-- `npx omni-skills find figma --tool con trỏ --install --yes`
-- `npx omni-skills mcp luồng --local`
+- `npx omni-skills install --guided`
+- `npx omni-skills find figma --tool cursor --install --yes`
+- `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-Lớp vỏ trực quan không bao giờ được ép buộc mình vào các đường dẫn lệnh chuyên gia rõ ràng.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Lớp vỏ trực quan phải tạo trạng thái và ghi rõ ràng.
+The visual shell should make state and writes explicit.
 
-Nó phải:
+It must:
 
-- xem trước cài đặt trước khi viết bàn giao
-- xem trước các lệnh khởi chạy dịch vụ trước khi thực hiện
-- giữ tài liệu bí mật khỏi các bản xem trước lệnh văn bản rõ ràng khi thực tế
-- chỉ tồn tại trạng thái cục bộ
-- duy trì hành vi CLI không tương tác bên ngoài lớp vỏ trực quan
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

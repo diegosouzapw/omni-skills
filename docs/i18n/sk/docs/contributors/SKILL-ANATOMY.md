@@ -5,110 +5,126 @@
 ---
 
 
->**Očakávania štruktúry a kvality pre Omni Skills `SKILL.md` – formát na tvorbu obsahu, ktorý poháňa celý katalóg.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Každý súbor `SKILL.md` sa skladá z dvoch samostatných častí:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Strojovo čitateľné metadáta medzi oddeľovačmi `---`. Posilňuje:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 Index zručností a generovanie katalógu
-- 🔎 Vyhľadávanie a filtrovanie CLI
-- ✅ Validácia a hodnotenie kvality
-- 📊 Generované artefakty klasifikácie `metadata.json`
-- 📋 Každá zručnosť sa prejavuje v `dist/manifesty/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Inštrukcie čitateľné pre ľudí (a čitateľné pre agentov). Napíšte to, ako keby ste**informovali staršieho vývojára**o tom, ako vykonať úlohu – dostatočne špecifickú na to, aby ju agent AI mohol sledovať bez hádania.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Pole | povinné | Typ | Popis |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| "meno" | ✅ | reťazec | Musí sa zhodovať s názvom adresára s malými pomlčkami |
-| "popis" | ✅ | reťazec | Jednoriadkový popis (10 – 200 znakov) |
-| "verzia" | ⚡ | reťazec | Sémantická verzia pre samotnú zručnosť (napr. `"0.1.1"`) |
-| "kategória" | ⚡ | reťazec | Jedna kanonická kategória z repo taxonómie |
-| "značky" | ⚡ | reťazec[] | Vyhľadávateľné značky na objavovanie |
-| "zložitosť" | ⚡ | reťazec | `začiatočník` · `stredne pokročilý` · `pokročilý` · `expert` |
-| "riziko" | ⚡ | reťazec | "bezpečný" · "opatrnosť" · "urážlivý" · "kritický" |
-| "nástroje" | ⚡ | reťazec[] | Testovaní asistenti kódovania AI |
-| "zdroj" | ⚡ | reťazec | `všetím` · `komunita` · `oficiálny` |
-| "autor" | ⚡ | reťazec | Pripisovanie |
-| `dátum_pridania` | ⚡ | reťazec | Dátum ISO |
-| `date_updated` | ⚡ | reťazec | Dátum ISO |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Vyžaduje sa vždy · ⚡ = Vyžaduje sa v prísnom režime
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Verzia zručností je nezávislá od verzie balíka npm. Balík je momentálne `0.1.3`, ale existujúce zručnosti môžu platne zostať na svojej vlastnej sémantickej verzii.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-Repo taxonómia v súčasnosti definuje**18 kanonických kategórií**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Kategória | Doména |
+| Category | Domain |
 |:---------|:-------|
-| 💻 "vývoj" | Všeobecný vývoj softvéru |
-| 🎨 `frontend` | Frontendové rámce a používateľské rozhranie |
-| 🔧 `backend` | Backendové služby a API |
-| 🌐 `fullstack-web` | End-to-end vývoj webu |
-| 🛠️ `nástroje` | Vývojárske nástroje a nástroje |
-| ⚙️ `cli-automatizácia` | Nástroje CLI a automatizačné skripty |
-| 📊 "podnikanie" | Obchodné procesy a stratégia |
-| 📐 "produkt" | Produktový manažment a dizajn |
-| 🎯 `dizajn` | Vizuálny a UX dizajn |
-| 🤖 `data-ai` | Dátové inžinierstvo a aplikácie AI |
-| 🧠 `ai-agenti` | Vývoj a vzory agentov AI |
-| 📈 `strojové učenie` | Modely ML a školenia |
-| 🔌 "devops" | Infraštruktúra a rozmiestnenie |
-| 🛡️ "testovanie-bezpečnosť" | Testovacie a bezpečnostné postupy |
-| 📖 "dokumentácia" | Tvorba a správa dokumentácie |
-| 🎬 `obsah-médiá` | Tvorba obsahu a médiá |
-| 💬 "komunikácia" | Komunikačné nástroje a pracovné postupy |
-| ❓ „nezaradené“ | Predvolené, keď sa nenájde žiadna zhoda |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Staršie označenia ako „workflow“, „architektúra“, „infraštruktúra“, „zabezpečenie“ a „testovanie“ sa automaticky normalizujú pomocou mapovania aliasov.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Dobre napísané telo zručností sa riadi touto hierarchiou:
+A well-written skill body follows this hierarchy:
 
-### 📌 Prehľad (povinné)
-2-3 vety o tom,**čo**daná zručnosť robí a**prečo**existuje.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Kedy použiť (povinné)
-Zoznam**špecifických scenárov**, kde sa táto zručnosť uplatňuje.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Základné pokyny (povinné)
-**proces krok za krokom**, ktorý by mal agent dodržiavať. Buďte explicitní. Buďte konkrétni. Agenti najlepšie fungujú s jasnými a jednoznačnými pokynmi.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Príklady (odporúčané)
-Konkrétne výzvy, bloky kódu alebo očakávané výstupy.**Čím konkrétnejšie, tým lepšie.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Osvedčené postupy (odporúčané)
-Na rýchle skenovanie použite ✅ Robiť / ❌ Neformátovať.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Riešenie problémov (voliteľné)
-Bežné problémy a ich riešenia.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Súvisiace zručnosti (voliteľné)
-Krížové odkazy na doplnkové zručnosti.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Zamerané na**jeden konkrétny**pracovný postup alebo doménu
-- 📌 Pokyny sú**dostatočne jasné na to, aby ich AI**mohla nasledovať bez ľudského výkladu
-- 💡 Zahŕňa**konkrétne príklady**s očakávaným správaním
-- 🛡️ Má správne pokyny na**spracovanie chýb**
-- 📊 Vytvára zdravé metadáta: kanonická kategória, zrelosť L2+, kvalita 70+
-- 🧰 Zasiela opakovane použiteľný balík podpory, nielen prózu, ideálne cez `referencie/`, `skripty/`, `príklady/` a `agenti/` tam, kde je to vhodné
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Pre silnejšie vzory bodovania, ktoré posúvajú zručnosti do najvyšších pásiem, si pozrite [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Všeobecná rada, ktorá sa môže vzťahovať na čokoľvek
-- 🤷 Nejasné pokyny ako „napíš dobrý kód“
-- 🚫 Žiadne príklady ani bloky kódu
-- ⚠️ Chýbajúce frontmatterové polia
-- 📉 Nízke skóre kvality (menej ako 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

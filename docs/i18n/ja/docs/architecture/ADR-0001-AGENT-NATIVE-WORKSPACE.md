@@ -5,69 +5,83 @@
 ---
 
 
->**モノリポジトリのワークスペース構造を形成した重要なアーキテクチャ上の決定。**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**承認済み**— 現在のワークスペースの方向とアクティブなリポジトリの形状。---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills は**インストーラーファースト**リポジトリとして始まりました。これは「SKILL.md」コンテンツを配布するには十分でしたが、プロトコル ネイティブのサーフェスを通じてエージェントにカタログを公開するには十分ではありませんでした。
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-私たちは以下をサポートできる基盤を必要としていました。
+We needed a foundation that could support:
 
-|要件 |プロトコル |
-|:-----------|:----------|
-| 🌐 読み取り専用 HTTP カタログ API |休憩 |
-| 🔌 読み取り専用 MCP サーバー |モデルコンテキストプロトコル |
-| 🤖 エージェント側の A2A サーフェス |エージェント間 |
-| 📂 ローカルインストールサイドカー |ファイルシステムツール |
+| Requirement | Protocol |
+|:------------|:---------|
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**重要な制約**: 新しいサービスごとにリポジトリ ファイルを個別に再解析することは避けてください。---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-共有カタログ コアとプロトコル固有のパッケージを備えた**ワークスペース指向のモノリポ**を採用します。
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-|パッケージ |目的 |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `オムニスキル` (ルート) | CLI インストーラーとリポジトリ スクリプト |
-| 🧠 `@omni-skills/カタログコア` |共有ロード、検索、比較、バンドル、インストール プラン |
-| 🌐 `@omni-skills/server-api` |読み取り専用 REST API |
-| 🔌 `@omni-skills/server-mcp` | stdio/stream/sse + ローカル サイドカー モードを備えた MCP |
-| 🤖 `@omni-skills/server-a2a` |エージェント カード、ポーリング、SSE、およびプッシュ構成を備えた A2A タスク ランタイム |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-カタログ コアは、生成されたアーティファクトを以下から読み取ります。
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
-- `dist/manifests/<スキル>.json`
-- `skills_index.json`---
+- `dist/manifests/<skill>.json`
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-|結果 |影響 |
-|:------|:------|
-| 🔗**共有データ契約**| API、MCP、および A2A は同じアーティファクトを消費します。
-| 🖥️**統合 CLI**| 1 つのバイナリは、インストール、UI シェル、API、MCP、A2A、診断、およびスモークを公開します。
-| 🧩**プロトコルの分離**|新しいサーフェスは、インストーラの内部に結合せずに反復されます。
-| 🔌**ローカルサイドカー**|クライアント対応のレシピを使用して、ホワイトリストの背後で書き込み可能な MCP モードを動作させる |
-| 📦**単一パッケージのランタイム**|公開された npm パッケージには、プロトコル サーフェス、検証ツール、生成されたアーティファクトが一緒に含まれています。---
+| Outcome | Impact |
+|:--------|:-------|
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-|トレードオフ |緩和 |
-|:-----------|:----------|
-| 🔄**メタデータの重複**| Python ビルド + JavaScript ランタイム → 最終的に統合 |
-| 🏗️**A2A の複雑さ**|永続的なライフサイクルが存在しますが、調整アダプターにより運用の深さが追加されます。
-| 📦**カタログの調整**|選択的インストールでは、同期を保つためにコマンド、マニフェスト、ドキュメントが必要です。
-| 📋**バンドルのメタデータのギャップ**|バンドルは公開されたスキルを上回る可能性があり、メンバーが欠落していることを明示的に警告する必要があります。---
+| Tradeoff | Mitigation |
+|:---------|:-----------|
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # |アクション |ステータス |
-|:--|:------|:------|
-| 1️⃣ |リモート MCP 認証とレート制限 | ✅ 完了 |
-| 2️⃣ |クライアント固有の MCP 設定の書き込みを改善 | ✅ Claude、Cursor、Codex、Gemini、Kiro、VS Code、Dev Containers に本日プレゼント |
-| 3️⃣ |署名付きリリース アーティファクトまたはスキルごとのアーカイブ | ✅ リリース タグに対する CI の適用を本日発表 |
-| 4️⃣ | A2A タスク ランタイム → 耐久性のあるオーケストレーション | ✅ JSON/SQLite 永続性、外部エグゼキュータ、オプトイン リース調整、およびオプションの高度な Redis 調整を今すぐ提供 |
-| 5️⃣ |公開カタログを拡張してバンドルの範囲を拡大 | ✅ 現在厳選された 7 つのスターター バンドルを本日プレゼント |
+| # | Action | Status |
+|:--|:-------|:-------|
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

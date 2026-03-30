@@ -5,89 +5,108 @@
 ---
 
 
->**Der Architektur-Evolutionsplan für Omni Skills: vom Installer-First-Repository zur Laufzeit des gemeinsamen Katalogs, die CLI, API, MCP und A2A ohne duplizierte Logik unterstützt.**---
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+
+---
 
 ## 📊 Current Platform Areas
 
 | Phase | Name | Status |
 |:------|:-----|:-------|
-| 1️⃣ | Verträge und Artefakte | ✅ Aktuell |
-| 2️⃣ | Schreibgeschützte Katalog-API | ✅ Aktuell |
-| 3️⃣ | MCP Discovery-Oberfläche | ✅ Aktuell |
-| 4️⃣ | Lokale Installations- und Konfigurationsoberfläche | ✅ Aktuell |
-| 5️⃣ | A2A-Orchestrierung | ✅ Aktuell |### ✅ What Exists Today
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-- Maschinenlesbare Katalogartefakte in „dist/“.
-– schreibgeschützte HTTP-API mit Endpunktabdeckung für Suche, Bundles, Vergleich, Installationsplanung und Downloads
-- MCP-Server mit „stdio“, streambaren HTTP- und SSE-Transporten
-- Lokaler Sidecar mit Schreibvorgängen auf der Zulassungsliste und „config-mcp“-Flows
-– 7 installierbare Clients, 16 konfigurationsfähige Clients, 33 MCP-Konfigurationsziele und 19 Konfigurationsprofile
-- Tiefergehende Bundle-Spezialisierung innerhalb von „Full-Stack“, „Security“, „Devops“ und „AI-Engineer“ über „Auth-Flows“, „Threat-Modeling“, „Release-Engineering“ und „Context-Engineering“.
-- Pro-Skill-Archive („zip“, „tar.gz“) mit SHA-256-Prüfsummen und getrennten Signaturen auf Release-Tags
-– API-Governance-Basislinie: Träger-/API-Schlüsselauthentifizierung, Administrator-Laufzeitauthentifizierung, Ratenbegrenzung, Prüfprotokollierung, CORS/IP-Zulassungslisten, Vertrauensproxy, Wartungsmodus und Anforderungs-IDs
-– A2A-Laufzeit mit Aufgabenlebenszyklus, JSON/SQLite-Dauerhaftigkeit, Wiederaufnahme des Neustarts, SSE-Streaming, Abbruch, Push-Benachrichtigungen, optionalem Prozessausführer und Opt-in-Leasing-Koordination### 🔭 Future Expansion Areas
+### ✅ What Exists Today
 
-Die Kern-Roadmap beschreibt nun den aktuellen Plattformumfang. Bei den übrigen Elementen handelt es sich um zukünftige Erweiterungsbereiche, nicht um grundlegende Lücken:
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
+- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-- ab diesem Zeitpunkt nur noch hochselektive MCP-Ergänzungen und nur dort, wo offizielle öffentliche Dokumente einen sicheren Autor ermöglichen
-- Umfangreichere Referenzpakete und mehr semantische Bewertung, sodass der Klassifikator weiterhin außergewöhnliche Fähigkeiten von lediglich ausgefeilten Fähigkeiten trennt
-- Vom Unternehmen gehostete Governance über die aktuelle In-Process-Baseline hinaus, wenn das Projekt später eine Gateway- oder IdP-Integration benötigt
-- tiefere Spezialisierung in den neu aktivierten Bereichen „Design“, „Tools“, „Daten-KI“ und „Maschinelles Lernen“.
-- Fortsetzung der betrieblichen Optimierung rund um den privaten Enhancer unter Beibehaltung seines formellen Betriebsmodells: OmniRouter an „cx/gpt-5.4“ angeheftet, gehostete Cloud im „Mock“- oder degradierten Preflight und zuverlässige „Live“-Ausführung im LAN oder selbstgehostete Ausführung
-- Fortsetzung der Release- und Workflow-Verstärkung nur als Quality-of-Service-Arbeit, nicht als fehlende Plattformgrundlage## Future Catalog Expansion Track
+### 🔭 Future Expansion Areas
 
-Die ersten beiden öffentlichen Kategorieerweiterungswellen sind nun gelandet:
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
 
-- „Design“ → „Design-Systems-Ops“, „Zugänglichkeitsprüfung“, „Design-Token-Governance“.
-- „Tools“ → „MCP-Server-Authoring“.
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
+
+## Future Catalog Expansion Track
+
+The first two public category-expansion waves are now landed:
+
+- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
+- `tools` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
-- „Maschinelles Lernen“ → „Modellbereitstellung“.
+- `machine-learning` → `model-serving`
 
-Der nächste empfohlene Schritt ist nicht mehr die Aktivierung der Kategorie als Selbstzweck. Es geht darum, diese neu aktiven Code-Native-Tracks zu vertiefen, sodass sie sich wie dauerhafte Produktoberflächen anfühlen und nicht wie Stützpunkte für einzelne Fertigkeiten.
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
 
-Empfohlene Richtung:
+Recommended direction:
 
-1. „Design“ durch funktionsfähigere Design-System-Workflows vertiefen
-2. „Tools“ mit Autoren- und Plugin-orientierten Fähigkeiten vertiefen
-3. Vertiefen Sie „Data-AI“ mit Implementierungs-First-Pipeline- und Instrumentierungskompetenzen
-4. Vertiefung des „maschinellen Lernens“ mit Fähigkeiten in den Bereichen Service, Schulung und Bewertung
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
-Kategorien wurden absichtlich zurückgestellt, es sei denn, es werden starke Code-native Vorschläge angezeigt:
+Categories intentionally deferred unless strong code-native proposals appear:
 
-- „Geschäft“.
-- „Content-Medien“.
+- `business`
+- `content-media`
 
-Diese Expansionsgeschichte wird jetzt verfolgt in:
+That expansion history now lives in the mainline runtime docs rather than a separate public task backlog:
 
-- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
+- [Codebase Analysis](CODEBASE-ANALYSIS.md)
+- [Catalog](../CATALOG.md)
+
+---
 
 ## 🎯 Goals
 
-- ✅ Sorgen Sie dafür, dass der aktuelle „npx omni-skills“-Workflow funktioniert
-- ✅ Einführung einer maschinenlesbaren Wahrheitsquelle für Kompetenzen
-- ✅ Unterstützung bei der Erkennung, Empfehlung und Installationsplanung durch Agenten
-- ✅ Trennen Sie Remote-Katalogbelange von Schreibvorgängen im lokalen Dateisystem
-- ✅ Dieselben Metadaten für CLI, API, MCP und A2A wiederverwenden---
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
+
+---
 
 ## 🚫 Non-Goals
 
-- ❌ Remote-Installation auf dem Benutzercomputer von einem gehosteten Server
-- ❌ Ersetzen Sie „SKILL.md“ als kanonisches Autorenformat
-- ❌ Fordern Sie die Mitwirkenden auf, Manifeste von Hand zu schreiben
-- ❌ Verwandeln Sie das Projekt standardmäßig in eine stark gehostete Warteschlangenplattform---
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
+
+---
 
 ## 🏗️ Target Architecture
 
-Ein**Katalogkern**mit drei Protokolloberflächen:
+One **catalog core** with three protocol surfaces:
 
-| Oberfläche | Am besten für | Modus |
+| Surface | Best For | Mode |
 |:--------|:---------|:-----|
-| 🌐**REST-API**| Registrierungszugriff, UI-Integrationen, Drittanbieter-Konsumenten | Schreibgeschützt |
-| 🔌**MCP**| Agentenerkennung, Installationsvorschauen, Konfigurationsschreiben, Client-Rezepte | Schreibgeschützt + lokale Schreibvorgänge |
-| 🤖**A2A**| Agent-zu-Agent-Orchestrierung und Installationsplanübergabe | Aufgabenlebenszyklus mit einfacher lokaler Haltbarkeit |### ⚙️ Core Principle
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
->**Alle Protokolle nutzen dieselbe generierte Artefaktfamilie.**```text
+### ⚙️ Core Principle
+
+> **All protocols consume the same generated artifact family.**
+
+```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -97,144 +116,178 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-Das Manifest bleibt der gemeinsame Vertrag. Archive sind Verteilungsartefakte, die über diesem Vertrag liegen, und kein Ersatz dafür.---
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
+
+---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Wird von gehosteten API- und Remote-MCP-Servern verwendet.
+Used by hosted API and remote MCP servers.
 
-| ✅ Erlaubt | ❌ Nicht erlaubt |
+| ✅ Allowed | ❌ Not Allowed |
 |:-----------|:---------------|
-| Suchfähigkeiten | In das Dateisystem des Aufrufers schreiben |
-| Manifeste abrufen | Lokale Client-Konfiguration ändern |
-| Fähigkeiten vergleichen | Beliebigen Maschinenzustand ableiten |
-| Pakete empfehlen | — |
-| Installationspläne erstellen | — |### 2️⃣ Local Installer Mode
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-Wird von der CLI und dem MCP-Sidecar verwendet.
+### 2️⃣ Local Installer Mode
 
-| ✅ Erlaubt |
+Used by the CLI and the MCP sidecar.
+
+| ✅ Allowed |
 |:-----------|
-| Lokale KI-Clients erkennen |
-| Installierte Fähigkeiten überprüfen |
-| Vorschau von Dateivorgängen |
-| Skillverzeichnisse installieren oder entfernen |
-| Lokale MCP-Konfiguration nach Vorschau schreiben |
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
 
-> 📌 Dies ist nach wie vor der einzige Modus, in dem echte Betriebssystemschreibvorgänge stattfinden.---
+> 📌 This remains the only mode where real OS writes happen.
+
+---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Ideal für Registrierungszugriff, Suche, Vergleich, versionierte Downloads und Installationsplanung.
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**Endpunkte**: „GET /v1/skills“ · „GET /v1/skills/:id“ · „GET /v1/search“ · „GET /v1/compare“ · „GET /v1/bundles“ · „POST /v1/install/plan“ · „GET /healthz“.### 🔌 MCP
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-Ideal für die werkzeugbasierte Erkennung, sofortige Empfehlungen, Installationsvorschauen und kundenspezifische MCP-Einrichtung.
+### 🔌 MCP
 
-**Schreibgeschützte Tools**: „search_skills“ · „get_skill“ · „compare_skills“ · „recommend_skills“ · „preview_install“.
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
-**Lokale Tools**: „detect_clients“ · „list_installed_skills“ · „install_skills“ · „remove_skills“ · „configure_client_mcp“.### 🤖 A2A
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-Am besten geeignet für Erkennungsübergabe, Installationsplan-Workflows und wiederaufnehmbare Agentenaufgabenausführung.
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-**Aktuelle Vorgänge**: „discover-skills“ · „recommend-stack“ · „prepare-install-plan“.---
+### 🤖 A2A
+
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
+
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+
+---
 
 ## 🛡️ Security Model
 
-| Prinzip | Umsetzung |
+| Principle | Implementation |
 |:----------|:---------------|
-| 🔒 Gehostete Dienste sind schreibgeschützt | API und Remote-MCP schreiben nicht in das Dateisystem des Aufrufers |
-| 📂 Schreibt bleibt lokal | Nur CLI- und MCP-Sidecar |
-| 👁️ Vorschau vor dem Schreiben | Probelauf-Standardwerte für lokale Mutationen |
-| 🔑 Integrität ist explizit | SHA-256-Prüfsummen für generierte Artefakte |
-| ✍️ Freigabevertrauen ist explizit | Getrennte Signaturen werden auf Release-Tags erzwungen |
-| ⚠️ Risiko ist aufgetaucht | Risiko- und Sicherheitsmetadaten werden an jede Laufzeitoberfläche weitergegeben |---
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
+
+---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- dokumentierte Zielarchitektur
-- Definiertes Manifestschema
-- generierte Metadaten, Kataloge, Manifeste, Bundles und Archive### Phase 2: Catalog Service
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
-- schreibgeschützte HTTP-API mit Express 5
-- Suche, Filterung, Manifestsuche, Bundle-Auflistung, Vergleich und Downloads
-– Umgebungsgesteuerte gehostete Governance-Grundlinie### Phase 3: MCP Discovery
+### Phase 2: Catalog Service
 
-- offizielle „@modelcontextprotocol/sdk“-Integration
-- „stdio“, streambare HTTP- und SSE-Transporte
-- schreibgeschützte Tools, Ressourcen und Eingabeaufforderungen, die durch den gemeinsam genutzten Katalog unterstützt werden### Phase 4: Local Install and Config Surface
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
-- Lokaler Sidecar mit Schreibvorgängen auf der Zulassungsliste
-- Erkennung für 7 installierbare Clients
-- Schreiben von Konfigurationen für 16 konfigurationsfähige Clients auf 33 Zielen und 19 Konfigurationsprofilen
-- Geführte „config-mcp“-Abläufe in der CLI und der visuellen Shell
-- Stabile Unterstützung für Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose und Dev Containers### Phase 5: A2A Orchestration
+### Phase 3: MCP Discovery
 
-- Agentenkarte unter „/.well-known/agent.json“.
-- Konfigurationsmethoden „message/send“, „message/stream“, „tasks/get“, „tasks/cancel“, „tasks/resubscribe“ und Push-Benachrichtigung
-- JSON- und SQLite-Persistenz mit Neustartwiederherstellung
-- optionaler externer Prozessausführer
-- Opt-in-geleaste Ausführung für alle Mitarbeiter für SQLite und optionale erweiterte Redis-Koordination
-- Simple-First-Standardwerte werden im Speicher, JSON oder SQLite ohne externe Abhängigkeiten beibehalten### Current Enhancer Operating Decision
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-Das vom privaten Enhancer unterstützte „Live“-Modell ist jetzt explizit:
+### Phase 4: Local Install and Config Surface
 
-- Die gehostete PR-Automatisierung führt einen Preflight-gesteuerten „Live“-Versuch durch
-– Wenn das öffentliche OmniRoute-Gateway blockiert oder instabil ist, wird der PR mit einem betreiberbezogenen Grund als „blockiert“ markiert, anstatt undurchsichtig auszufallen
-- Der kanonisch zuverlässige „Live“-Pfad bleibt LAN oder die lokale Dienstausführung
-- Geplante private GitHub-Ausführungen bleiben standardmäßig „simuliert“, es sei denn, ein Betreiber fordert ausdrücklich „Live“ an---
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
+
+### Phase 5: A2A Orchestration
+
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
+
+### Current Enhancer Operating Decision
+
+The private enhancer's supported `live` model is now explicit:
+
+- hosted PR automation runs a preflight-gated `live` attempt
+- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
+- the canonical reliable `live` path remains LAN or local service execution
+- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
+
+---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Entscheidung**: Behalten Sie das Manifest als gemeinsamen Vertrag bei und behalten Sie signierte pro-Skill-Archive als Verteilungsoberfläche bei.
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
 
-**Warum**:
-– CLI, API, MCP und A2A nutzen bereits die normalisierte Manifestform
-- Archive eignen sich ideal zum Herunterladen und Überprüfen, sind aber als einziger Discovery-Vertrag schlecht geeignet
-- Dadurch bleibt die Erstellung einfach und die Verteilung nachweisbar### 2. Private or Premium Catalogs
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
 
-**Entscheidung**: Das gleiche Manifest- und Katalogformat wiederverwenden und die Authentifizierung oder Richtlinie extern schichten.
+### 2. Private or Premium Catalogs
 
-**Warum**:
-- Es vermeidet eine Aufspaltung des Datenmodells
-- Es entspricht dem aktuellen API/MCP-Governance-Ansatz
-– Es bleibt mit der Ausrichtung des MCP-Ökosystems rund um OAuth-Client-Anmeldeinformationen und unternehmensverwaltete Autorisierung kompatibel### 3. Client Writer Strategy
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
 
-**Entscheidung**: Konvergenz auf einen kleinen Satz kanonischer Exportfamilien und behalten Sie maßgeschneiderte Writer nur dort bei, wo offizielle Kundendokumente dies erfordern.
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
 
-**Kanonische Familien werden jetzt verwendet**:
-- JSON „mcpServers“.
-- JSON-„Server“.
-- JSON „context_servers“.
-- YAML „mcpServers“.
-- TOML „[mcp_servers]“.
+### 3. Client Writer Strategy
 
-**Warum**:
-- Es sorgt dafür, dass die Implementierung wartbar bleibt
-- Es unterstützt weiterhin kundenspezifische Anforderungen wie Claude-Einstellungen, Continue YAML, Zed „context_servers“ und Codex TOML
-- Es wird vermieden, fragile Writer für Clients ohne stabile öffentliche Konfigurationsdokumente zu erfinden---
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
+- JSON `mcpServers`
+- JSON `servers`
+- JSON `context_servers`
+- YAML `mcpServers`
+- TOML `[mcp_servers]`
+
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-Die aktuellen Entscheidungen wurden anhand offizieller Ökosystemdokumente überprüft:
+The current decisions were checked against official ecosystem docs:
 
-– Das MCP-Ökosystem dokumentiert jetzt optionale Erweiterungen wie OAuth-Client-Anmeldeinformationen und unternehmensverwaltete Autorisierung, die die Externalisierung der gehosteten Authentifizierung anstelle der Abspaltung des Katalogformats unterstützt
-– OpenAI dokumentiert einen öffentlichen Dokumenten-MCP-Server und Codex-MCP-Konfigurationsmuster, die mit der Shared-Manifest-plus-Client-Writer-Strategie übereinstimmen
-- VS Code dokumentiert erstklassige MCP-Unterstützung und einen Erweiterungsleitfaden, der die Wartung seines dedizierten „serverbasierten“ Writers erleichtert
-– JetBrains AI Assistant dokumentiert die MCP-Einrichtung über die Benutzeroberfläche des Produkts und nicht über einen stabilen plattformübergreifenden Dateivertrag, der es unterstützt, es vorerst im manuellen/Snippet-Bereich zu belassen---
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
 
 ## 🔮 Longer-Term Decision Points
 
-Nur wenige strategische Fragen bleiben wirklich offen:
+Only a few strategic questions remain genuinely open:
 
-1. Ob ein Kunde jenseits der aktuellen Matrix wirklich die Messlatte für erstklassiges Schreiben setzt oder ob die übrigen Produkte weiterhin manuell/nur als Snippet verfügbar sein sollten
-2. Wann, wenn überhaupt, sollte die gehostete Governance hinter einem externen Gateway oder Unternehmens-IdP statt der aktuellen In-Process-Baseline verlagert werden?
-3. Wie weit sollte der Bewerter bei der Bewertung der Tiefe des Referenzpakets und der operativen Qualität gehen, bevor es für die Mitwirkenden zu eigensinnig wird?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

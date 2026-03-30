@@ -4,7 +4,7 @@
 
 ---
 
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
 <div align="center">
 
@@ -13,8 +13,12 @@
 
 <br/>
 
-**Каталог навичок, який встановлюється сам.**<br/>
-CLI · API · MCP · A2A — усе з однієї команди `npx`.<br/>
+**The skill catalog that installs itself.**<br/>
+CLI · API · MCP · A2A — all from a single `npx` command.
+
+> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
+
+<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -26,9 +30,44 @@ CLI · API · MCP · A2A — усе з однієї команди `npx`.<br/>
 [![API](https://img.shields.io/badge/🌐_API-read--only_catalog-0366d6?style=for-the-badge)](#-runtime-surfaces)
 [![A2A](https://img.shields.io/badge/🤖_A2A-task_lifecycle-orange?style=for-the-badge)](#-runtime-surfaces)
 
+<p align="center">
+  🇺🇸 English
+  · <a href="docs/i18n/es/README.md">🇪🇸 Español</a>
+  · <a href="docs/i18n/fr/README.md">🇫🇷 Français</a>
+  · <a href="docs/i18n/de/README.md">🇩🇪 Deutsch</a>
+  · <a href="docs/i18n/it/README.md">🇮🇹 Italiano</a>
+  · <a href="docs/i18n/ru/README.md">🇷🇺 Русский</a>
+  · <a href="docs/i18n/zh-CN/README.md">🇨🇳 中文（简体）</a>
+  · <a href="docs/i18n/ja/README.md">🇯🇵 日本語</a>
+  · <a href="docs/i18n/ko/README.md">🇰🇷 한국어</a>
+  · <a href="docs/i18n/ar/README.md">🇸🇦 العربية</a>
+  · <a href="docs/i18n/in/README.md">🇮🇳 हिन्दी</a>
+  · <a href="docs/i18n/th/README.md">🇹🇭 ไทย</a>
+  · <a href="docs/i18n/vi/README.md">🇻🇳 Tiếng Việt</a>
+  · <a href="docs/i18n/id/README.md">🇮🇩 Bahasa Indonesia</a>
+  · <a href="docs/i18n/ms/README.md">🇲🇾 Bahasa Melayu</a>
+  · <a href="docs/i18n/nl/README.md">🇳🇱 Nederlands</a>
+  · <a href="docs/i18n/pl/README.md">🇵🇱 Polski</a>
+  · <a href="docs/i18n/sv/README.md">🇸🇪 Svenska</a>
+  · <a href="docs/i18n/no/README.md">🇳🇴 Norsk</a>
+  · <a href="docs/i18n/da/README.md">🇩🇰 Dansk</a>
+  · <a href="docs/i18n/fi/README.md">🇫🇮 Suomi</a>
+  · <a href="docs/i18n/pt/README.md">🇵🇹 Português (Portugal)</a>
+  · <a href="docs/i18n/ro/README.md">🇷🇴 Română</a>
+  · <a href="docs/i18n/hu/README.md">🇭🇺 Magyar</a>
+  · <a href="docs/i18n/bg/README.md">🇧🇬 Български</a>
+  · <a href="docs/i18n/sk/README.md">🇸🇰 Slovenčina</a>
+  · <a href="docs/i18n/uk-UA/README.md">🇺🇦 Українська</a>
+  · <a href="docs/i18n/he/README.md">🇮🇱 עברית</a>
+  · <a href="docs/i18n/phi/README.md">🇵🇭 Filipino</a>
+  · <a href="docs/i18n/pt-BR/README.md">🇧🇷 Português (Brasil)</a>
+</p>
+
 <br/>
 
-[⚡ Встановіть за 1 хв](#-інсталяція) · [🛠️ Виберіть свій інструмент](#-choose-your-tool) · [📖 Посібник CLI](docs/users/CLI-USER-GUIDE.md) · [📦 Пакети](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Чому Omni Skills](#-why-omni-skills)</div>
+[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
+
+</div>
 
 ---
 
@@ -38,34 +77,41 @@ CLI · API · MCP · A2A — усе з однієї команди `npx`.<br/>
 
 </div>
 
-| | Метричний | Значення |
+| | Metric | Value |
 |:--|:-------|:------|
-| 📦 |**Опубліковані навички**| `32` у 15 активних категоріях |
-| 🎯 |**Пакети**| `7` повністю підтримані пакети |
-| 🖥️ |**Встановити клієнти**| `7` Помічники кодування ШІ з можливістю встановлення |
-| 🔌 |**Клієнти MCP**| `16` Клієнти з можливістю конфігурації MCP |
-| 🔐 |**Відповідний результат**| `32` покращені англійські похідні в `skills_omni/` |
-| 📋 |**Поточний випуск**| `v0.1.2` |---
+| 📦 | **Published Skills** | `48` native skills across 15 active categories |
+| 🎯 | **Bundles** | `7` fully backed curated bundles |
+| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
+| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
+| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
+| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 📋 | **Current Release** | `v0.1.3` |
+
+---
 
 ## Швидкий старт
 
->**Шукали навички кодування штучного інтелекту, навички Claude Code, навички Cursor, навички Codex CLI, навички Gemini CLI, навички Antigravity або бібліотеки `SKILL.md`, які можна встановити?**
-> Ви в правильному місці.### 1️⃣ What is this?
+> 🔍 **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
+> **You're in the right place.** 👇
 
-Omni Skills — це**встановлюваний каталог навичок і середовище виконання**для помічників кодування ШІ. За своєю суттю це загальнодоступне сховище багаторазових підручників `SKILL.md`, але на відміну від простих колекцій навичок, репо**є**рівнем розповсюдження та виконання.
+### 1️⃣ What is this?
 
-<подробиці>
-<summary>📋 <strong>Що включено</strong></summary>
+Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
 
-| Компонент | Опис |
-|:----------|:----------|
-| 🧠**Навички**| Підібрані підручники на основі `SKILL.md` для помічників ШІ |
-| 📦**Маніфести**| Згенеровані маніфести JSON, пакети та архіви |
-| 🧭**Керівне встановлення**| Потоки встановлення інтерактивного TTY та візуального терміналу |
-| 🌐**API каталогу**| HTTP API лише для читання для пошуку, виявлення та завантажень |
-| 🔌**MCP-сервер**| Інструменти виявлення, рекомендації та конфігурації з урахуванням клієнта |
-| 🤖**A2A Runtime**| Оркестровка завдань між агентами |
-| ✨**Конвеєр вдосконалення**| Приватний покращувач публікує підібрані англійські похідні в `skills_omni/` |</details>
+<details>
+<summary>📋 <strong>What's included</strong></summary>
+
+| Component | Description |
+|:----------|:-----------|
+| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
+| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
+| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
+| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
+| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
+| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
+| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
+
+</details>
 
 ### 2️⃣ Quick Start
 
@@ -85,95 +131,109 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Використовуйте `@brainstorming`, щоб спланувати SaaS MVP."*
+> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
 >
-> 💬 *"Використовуйте `@api-design`, щоб переглянути цей дизайн кінцевої точки."*
+> 💬 *"Use `@api-design` to review this endpoint design."*
 >
-> 💬 *"Використовуйте `@debugging`, щоб ізолювати цю регресію."*### 5️⃣ Start with a bundle
+> 💬 *"Use `@debugging` to isolate this regression."*
 
-| 🎯 Мета | Пакет | Команда |
+### 5️⃣ Start with a bundle
+
+| 🎯 Goal | Bundle | Command |
 |:---------|:-------|:--------|
-| Загальне машинобудування | `необхідне` | `npx omni-skills --bundle basics` |
-| Доставка продукту + програми | `повний стек` | `npx omni-skills --bundle full-stack` |
-| Проектування систем | `дизайн` | `npx omni-skills --bundle design` |
-| Огляд безпеки | `безпека` | `npx omni-skills --bundle security` |
-| Інфра та реліз | `devops` | `npx omni-skills --bundle devops` |
-| LLM програми | `ai-інженер` | `npx omni-skills --bundle ai-engineer` |
-| Обслуговування OSS | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |---
+| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
+| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
+| Design systems | `design` | `npx omni-skills --bundle design` |
+| Security review | `security` | `npx omni-skills --bundle security` |
+| Infra and release | `devops` | `npx omni-skills --bundle devops` |
+| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
+| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
+
+---
 
 ## 🧩 Core Concepts
 
-Перш ніж порівнювати пакети чи вибирати шлях встановлення, розуміння цих п’яти будівельних блоків допоможе:
+Before comparing bundles or picking an install path, understanding these five building blocks helps:
 
-| Концепція | Що це означає |
+| Concept | What it means |
 |:--------|:-------------|
-| 🧠**Навички**| Багаторазові підручники `SKILL.md`, які навчають помічника, як правильно виконувати робочий процес |
-| 📦**Артефакти каталогу**| Згенеровані вихідні дані JSON і архіви, що дозволяють шукати, порівнювати, завантажувати та встановлювати |
-| 🔌**Конфігурація MCP**| Конфігурація на стороні клієнта для помічників для виявлення навичок Omni за допомогою інструментів MCP |
-| 🤖**A2A Runtime**| Організація між агентами для виявлення, рекомендацій і передачі плану встановлення |
-| ✨**Відповідний результат**| `skills_omni/` — покращена поверхня, що підтримується Omni, окрема від вихідного входу |
+| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
+| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
+| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
+| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
+| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
 
->**📝 Нативна/підібрана політика:**
-> - `skills/` допускає початкове надходження будь-якою мовою
-> - `skills_omni/` завжди курується та публікується англійською мовою
-> - `skills_omni/` є односторонньою поверхнею і не повертається до рідного споживання---
+> **📝 Native/Curated policy:**
+> - `skills/` accepts native upstream intake in any language
+> - `skills_omni/` is always curated and published in English
+> - `skills_omni/` is a one-way surface and does not loop back into native intake
+
+---
 
 ## 💡 Why Omni Skills
 
->**Не просто «ще одне сховище з навичками в папках».**
-> Omni Skills має сильніший контракт і ширшу робочу поверхню.
+> **Not just "another repository with skills in folders."**
+> Omni Skills has a stronger contract and a broader runtime surface.
 
-| Якщо ви хочете… | 📁 Типове сховище навичок | ✨ Усі навички |
-|:-------------|:---------------------|:--------------|
-| Встановити в справжнього помічника | Копіювання вручну або спеціальний сценарій | `npx omni-skills`, кероване встановлення, візуальний інтерфейс користувача, вибіркові `--skill` і `--bundle` |
-| Навички пошуку та порівняння | Перегляд уцінки вручну | Створений каталог, фільтрація, планування пакетів, пошук, порівняння та рекомендація |
-| Використовуйте однакові дані в усіх інструментах | Окрема логіка для кожного інструменту | Спільні маніфести та каталог для CLI, API, MCP і A2A |
-| Налаштування клієнтів MCP | Ручне редагування файлів | `config-mcp`, локальний попередній перегляд, згенеровані рецепти та записи в білому списку |
-| Довірчі випуски | Найкраща упаковка | Контрольні суми, підписані архіви, перевірка сканера, випуск КІ та публікація перед друком |
-| Куратор споживання спільноти | Будь-яка земля залишається як є | Рідне споживання в `skills/`, підібрані англійські похідні в `skills_omni/` з посиланням на авторство |---
+| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
+|:-------------|:----------------------|:--------------|
+| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
+| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
+| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
+| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
+| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
+| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
+
+---
 
 ## 🖥️ Compatibility and Invocation
 
-Ці навички відповідають моделі `SKILL.md` і можуть використовуватися як звичайне сховище, але пакет також встановлює та налаштовує їх на широкій поверхні:
+These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
 
->**7**клієнтів із можливістю встановлення ·**16**клієнтів із можливістю конфігурації MCP### 🎯 Install-Capable Clients
+> **7** install-capable clients · **16** MCP config-capable clients
 
-| Інструмент | Тип | Приклад виклику | Інсталювати шлях |
+### 🎯 Install-Capable Clients
+
+| Tool | Type | Invocation Example | Install Path |
 |:-----|:-----|:-------------------|:-------------|
-| 🟢**Клод Код**| CLI | `Використовуйте мозковий штурм для планування функції` | `~/.claude/skills` |
-| 🔵**Курсор**| IDE | `@brainstorming допоможи мені спланувати функцію` | `~/.cursor/skills` |
-| 🟡**Gemini CLI**| CLI | `Використовуйте мозковий штурм для планування функції` | `~/.gemini/skills` |
-| 🔴**Codex CLI**| CLI | `Використовуйте мозковий штурм для планування функції` | `~/.codex/skills` |
-| 🟠**Кіро**| CLI / IDE | `Використовуйте мозковий штурм для планування функції` | `~/.kiro/skills` |
-| 🟣**Антигравітація**| IDE | `Використовуйте @brainstorming для планування функції` | `~/.gemini/antigravity/skills` |
-| ⚪**OpenCode**| CLI | `запуск відкритого коду @brainstorming` | `<робоча область>/.opencode/skills` |
+| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
+| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
+| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
+| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
+| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
+| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
+| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
 
-<подробиці>
-<summary>🔌 <strong>Ширше покриття конфігурації MCP (16 клієнтів)</strong></summary>
+<details>
+<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
 
-Ці цілі є частиною підтримуваної поверхні конфігурації MCP, навіть якщо вони не є цілями встановлення для каталогів навичок:
+These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
 
-| Клієнт або поверхня | Тип підтримки | Примітки |
+| Client or Surface | Support Type | Notes |
 |:------------------|:------------|:------|
-| Налаштування Claude і робочий стіл | Конфігурація MCP | Налаштування, робочий стіл і потоки з урахуванням проекту |
-| Код VS | Конфігурація MCP | Користувач, робоча область, інсайдери та цільові контейнери для розробників |
-| Близнюки | Конфігурація MCP | Налаштування користувача та робочої області |
-| Клайн | Конфігурація MCP | Цільова конфігурація першого класу |
-| GitHub Copilot CLI | Конфігурація MCP | Цілі конфігурації користувача та сховища |
-| Продовжити | Конфігурація MCP | Робоча область Генерація YAML |
-| Віндсерфінг | Конфігурація MCP | Ціль конфігурації користувача |
-| Зед | Конфігурація MCP | Ціль конфігурації робочої області |
-| Гусак | Конфігурація MCP | Ціль конфігурації користувача зі згенерованим рецептом |
-| Код кіло | Конфігурація MCP | Цілі користувача, проекту та робочої області |
-| Джуні | Конфігурація MCP | Цілі конфігурації проекту та користувача |</details>
+| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
+| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
+| Gemini | MCP config | User and workspace settings |
+| Cline | MCP config | First-class config target |
+| GitHub Copilot CLI | MCP config | User and repo config targets |
+| Continue | MCP config | Workspace YAML generation |
+| Windsurf | MCP config | User config target |
+| Zed | MCP config | Workspace config target |
+| Goose | MCP config | User config target with generated recipe |
+| Kilo Code | MCP config | User, project, and workspace targets |
+| Junie | MCP config | Project and user config targets |
+
+</details>
 
 ---
 
 ## Встановити
 
-<таблиця>
+<table>
 <tr>
-<td width="50%">### Option A: Install with `npx` *(recommended)*
+<td width="50%">
+
+### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -230,35 +290,39 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Інструмент | Встановити команду | Перше використання |
-|:-----|:--------------|:----------|
-| 🟢 Клод Код | `npx omni-skills --claude` | `Використовуйте мозковий штурм для планування функції` |
-| 🔵 Курсор | `npx omni-skills --cursor` | `@brainstorming допоможи мені спланувати функцію` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Використовуйте мозковий штурм для планування функції` |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Використовуйте мозковий штурм для планування функції` |
-| 🟣 Антигравітація | `npx omni-skills --antigravity` *(за замовчуванням)* | `Використовуйте @brainstorming для планування функції` |
-| 🟠 Кіро | `npx omni-skills --kiro` | `Використовуйте мозковий штурм для планування функції` |
-| ⚪ OpenCode | `npx omni-skills --opencode` | `запуск відкритого коду @brainstorming` |
-| 📂 Спеціальний шлях | `npx omni-skills --path ./my-skills` | Залежить від вашого інструменту |
+| Tool | Install Command | First Use |
+|:-----|:---------------|:----------|
+| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
+| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
+| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
+| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
+| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
+| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
+| ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
+| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
 
-> 📖**Не знаєте, з чого почати?**
-> - [🚀 Початок роботи](docs/users/GETTING-STARTED.md) — установіть і перевірте менш ніж за 2 хвилини
-> - [🧭 Посібник користувача CLI](docs/users/CLI-USER-GUIDE.md) — повний довідник команд
-> - [📗 Посібник із використання](docs/users/USAGE.md) — підказки, шаблони та режими виконання---
+> 📖 **Not sure where to start?**
+> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
+> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
+> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
+
+---
 
 ## 🔌 Runtime Surfaces
 
-Omni Skills — це не лише бібліотека навичок. Він надає**чотири робочі поверхні**, які використовують той самий згенерований каталог:
+Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
 
-| Поверхня | Держава | Що він робить | Приклад |
+| Surface | State | What it does | Example |
 |:--------|:------|:-------------|:--------|
-| 🖥️**CLI**| ✅ В наявності | Пошук, інсталяція, діагностика, візуальний інтерфейс користувача, служби завантаження, димові перевірки | `npx omni-skills doctor` |
-| 🌐**API каталогу**| ✅ В наявності | Каталог лише для читання, пошук, пакети, порівняння, плани встановлення, завантаження | `npx omni-skills api --port 3333` |
-| 🔌**MCP**| ✅ В наявності | Виявлення, рекомендація, попередній перегляд інсталяції, локальна допомога, потоки конфігурації | `npx omni-skills mcp stream --local` |
-| 🤖**A2A**| ✅ В наявності | Життєвий цикл завдання, передача, опитування, потокове передавання, скасування, збереження | `npx omni-skills a2a --port 3335` |
+| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
+| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
+| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
+| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
 
-<подробиці>
-<summary>🖥️ <strong>Візуальна оболонка та команди операторів</strong></summary>```bash
+<details>
+<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
+
+```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -268,8 +332,10 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<подробиці>
-<summary>🔌 <strong>Транспорти та конфігурація MCP</strong></summary>```bash
+<details>
+<summary>🔌 <strong>MCP transports and config</strong></summary>
+
+```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -290,33 +356,41 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Метричний | Граф |
+| Metric | Count |
 |:-------|:------|
-| 🧠 Опубліковані навички |**32**|
-| 📂 Активні категорії |**15**|
-| 📦 Пакети з повною підтримкою |**7**|
-| ✨ Підібрані похідні |**32**у `skills_omni/` |### 📦 Bundle Availability
+| 🧠 Native intake skills | **48** |
+| 📂 Active categories | **15** |
+| 📦 Fully backed bundles | **7** |
+| ✨ Curated derivatives | **32** in `skills_omni/` |
 
-| Пакет | Навички | Члени |
+### 📦 Bundle Availability
+
+| Bundle | Skills | Members |
 |:-------|:-------|:--------|
-| 🧰 `необхідне` |**4/4**✅ | `знайти навички` · `мозковий штурм` · `архітектура` · `налагодження` |
-| 🌐 `повний стек` |**5/5**✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
-| 🎨 `дизайн` |**5/5**✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
-| 🛡️ `безпека` |**4/4**✅ | `аудитор безпеки` · `сканер вразливостей` · `відповідь на інцидент` · `моделювання загроз` |
-| ⚙️ `devops` |**5/5**✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
-| 🤖 `ai-інженер` |**7/7**✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
-| 🔧 `oss-maintainer` |**4/4**✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |### ✨ Native Intake → Curated Output
+| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
+| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
+| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
+| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
+| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
+| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
 
-| Поверхня | Призначення | Мова |
+### ✨ Native Intake → Curated Output
+
+| Surface | Purpose | Language |
 |:--------|:--------|:---------|
-| 📥 `навички/` | Нативний прийом | Будь-яка мова |
-| ✨ `skills_omni/` | Підібраний вихід, що підтримується Omni | Завжди англійською |
+| 📥 `skills/` | Native intake | Any language |
+| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
 
->**ℹ️**Зміни рідних навичок повторно обробляються приватним розширювачем і оновлюються в підібраній базовій лінії. Це робить `skills_omni/`**обслуговуваною поверхнею каталогу**, а не другою копією.---
+> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
+
+---
 
 ## 🛡️ Security and Release Posture
 
-> Omni Skills пропонує потужнішу історію випуску та перевірки, ніж звичайне сховище уцінки.### 🧪 Validation and Smoke Checks
+> Omni Skills ships a stronger release and verification story than a plain markdown repository.
+
+### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -325,36 +399,40 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<подробиці>
-<summary>📋 <strong>Що конвеєр перевіряє</strong></summary>
+<details>
+<summary>📋 <strong>What the pipeline validates</strong></summary>
 
-- ✅ Перевірка навичок і генерація метаданих
-- ✅ Інструмент нормалізації таксономії та перекатегоризації
-- ✅ Створення каталогу та архіву
-- ✅ Автоматизовані тести
-- ✅ Шляхи завантаження API, MCP і A2A
-- ✅ Перевірка архіву
-- ✅ Пакет перед польотом з `npm pack --dry-run`</details>
+- ✅ Skill validation and metadata generation
+- ✅ Taxonomy normalization and recategorization tooling
+- ✅ Catalog and archive generation
+- ✅ Automated tests
+- ✅ API, MCP, and A2A boot paths
+- ✅ Archive verification
+- ✅ Package preflight with `npm pack --dry-run`
 
-<подробиці>
-<summary>🔐 <strong>Відпустіть позу</strong></summary>
+</details>
 
-| Контроль | Опис |
+<details>
+<summary>🔐 <strong>Release posture</strong></summary>
+
+| Control | Description |
 |:--------|:-----------|
-| 🔒 Контрольні суми SHA-256 | Маніфести контрольної суми для всіх архівів |
-| ✍️ Підписані артефакти | Відокремлені підписи на артефактах випуску |
-| 🤖 із застосуванням CI | Перевірка випуску в CI перед публікацією |
-| 🦠 Ворота сканера | Потік випуску ClamAV і VirusTotal |
-| 📦 Випуск GitHub | Автоматизоване створення випуску GitHub |
-| 📋 публікація npm | Лише з перевіреного архіву |
-| 🔄 Автоматичний випуск | За кваліфікаційним навиком зливається з `основним` |
+| 🔒 SHA-256 checksums | Checksum manifests for all archives |
+| ✍️ Signed artifacts | Detached signatures on release artifacts |
+| 🤖 CI-enforced | Release verification in CI before publication |
+| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
+| 📦 GitHub Release | Automated GitHub Release generation |
+| 📋 npm publication | From verified tarball only |
+| 🔄 Auto release | On qualifying skill merges to `main` |
 
-**Автоматичне звільнення запускається лише тоді, коли об’єднання змінюється:**
-- `навички/*/**`
+**Auto-release triggers only when a merge changes:**
+- `skills/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-Зміни лише в документах**не**ініціюють публікацію пакета.</details>
+Doc-only changes **do not** trigger package publication.
+
+</details>
 
 ---
 
@@ -362,79 +440,95 @@ npm run smoke            # Full release preflight
 
 ### 👤 For Users
 
-| Док | Що ви дізнаєтеся |
-|:----|:----------------|
-| 🚀 [Початок роботи](docs/users/GETTING-STARTED.md) | Встановіть, перевірте та запустіть менш ніж за 2 хвилини |
-| 🧭 [Посібник користувача CLI](docs/users/CLI-USER-GUIDE.md) | Повний довідник команд і шаблони реального світу |
-| 📗 [Посібник із використання](docs/users/USAGE.md) | Команди CLI, режими встановлення, час виконання та конфігурація MCP |
-| 📦 [Пакети](docs/users/BUNDLES.md) | Підібрані пакети та доступність |
-| 📚 [Каталог](docs/CATALOG.md) | Автоматично створений каталог опублікованих навичок |
-| 🔧 [Системний Runbook](docs/operations/RUNBOOK.md) | Створюйте, обслуговуйте, захищайте та усувайте неполадки |### 🏗️ For Architects
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
+| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
+| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
+| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
+| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
 
-| Док | Що ви дізнаєтеся |
-|:----|:----------------|
-| 🗺️ [Дорожня карта Agent-Native](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Еволюція архітектури та інші райони |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Базове рішення монорепо |
-| 🔬 [Аналіз кодової бази](docs/architecture/CODEBASE-ANALYSIS.md) | Склад середовища виконання та межі системи |
-| 🌐 [API каталогу](docs/specs/CATALOG-API.md) | Кінцеві точки HTTP, фільтрація, керування та завантаження |
-| 🧩 [Керований інсталятор CLI](docs/specs/CLI-GUIDED-INSTALLER.md) | Поведінковий контракт для керованого монтажника |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Візуальна оболонка Ink і модель стану |
-| 🔌 [Локальний MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Інструменти файлової системи та модель білого списку |
-| 📊 [Матриця підтримки клієнтів](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Повна довідка про клієнта та автора |
-| 🏷️ [Класифікація навичок](docs/specs/SKILL-CLASSIFICATION.md) | Таксономія, оцінка та метадані |
-| 🛡️ [Перевірка безпеки](docs/specs/SECURITY-VALIDATION.md) | Сканери, архіви та підписи |
-| 📋 [Маніфест навичок](docs/specs/SKILL-MANIFEST.md) | Машинозчитуваний формат маніфесту |### 🤝 For Contributors
+### 🏗️ For Architects
 
-| Док | Що ви дізнаєтеся |
-|:----|:----------------|
-| 📝 [Посібник зі співробітництва](CONTRIBUTING.md) | Робочий процес репо та PR очікування |
-| 🧾 [Робочий процес Skill PR](docs/contributors/SKILL-PR-WORKFLOW.md) | Рідне споживання, обробка підсилювача, очікування рецензентів |
-| 📄 [Шаблон навичок](docs/contributors/SKILL-TEMPLATE.md) | Стартер `SKILL.md` з фронтматером і структурою |
-| 🔬 [Анатомія навичок](docs/contributors/SKILL-ANATOMY.md) | Структура та очікування якості |
-| ✅ [Індикатор якості](docs/contributors/QUALITY-BAR.md) | Критерії прийняття |
-| 🏆 [Збірник найкращих результатів](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Що сприяє високим результатам |---
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
+| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
+| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
+| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
+| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
+| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
+| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
+
+### 🤝 For Contributors
+
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
+| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
+| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
+| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
+
+---
 
 ## 🗂️ Repository Layout
 
-| Шлях | Призначення |
+| Path | Purpose |
 |:-----|:--------|
-| 📂 `навички/` | Канонічні авторські навички та рідне споживання |
-| ✨ `skills_omni/` | Підібрані покращені похідні, які підтримуються Omni |
-| 📖 `документи/` | Документація щодо користувачів, учасників, архітектури, операцій і специфікацій |
-| 📦 `dist/` | Створені маніфести, пакети, каталог і архіви |
-| 📁 `дані/` | Визначення пакетів і статичні допоміжні дані |
-| 🧠 `packages/catalog-core/` | Час виконання спільного каталогу |
-| 🌐 `packages/server-api/` | HTTP API лише для читання |
-| 🔌 `packages/server-mcp/` | Сервер MCP і локальний коляска |
-| 🤖 `packages/server-a2a/` | Середа виконання A2A та оркестровка завдань |
-| 🖥️ `tools/bin/` | Точки входу CLI |
-| 📚 `tools/lib/` | Інсталятор та помічники інтерфейсу користувача |
-| ⚙️ `інструменти/сценарії/` | Сценарії перевірки, створення, випуску та тестування |
+| 📂 `skills/` | Canonical authored skills and native intake |
+| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
+| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
+| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
+| 📁 `data/` | Bundle definitions and static supporting data |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime |
+| 🌐 `packages/server-api/` | Read-only HTTP API |
+| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
+| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
+| 🖥️ `tools/bin/` | CLI entrypoints |
+| 📚 `tools/lib/` | Installer and UI helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
 
->**ℹ️**`dist/` навмисно має версії, оскільки згенеровані артефакти є частиною контракту на встановлення, API, MCP, A2A, smoke і випуску.---
+> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
+
+---
 
 ## 🤝 Contributing
 
-Omni Skills приймає вихідні початкові навички в розділі `skills/`.
+Omni Skills accepts native upstream skill intake under `skills/`.
 
-| Правило | Подробиці |
+| Rule | Details |
 |:-----|:--------|
-| 📥 Рідний прийом | Може бути грубим, написаним будь-якою мовою |
-| ✨ Підібраний результат | `skills_omni/` зарезервовано для автоматизованих похідних Omni |
-| 🚫 Редагування вручну | Загальнодоступні ручні редагування `skills_omni/` відхиляються |
-| 🔄 Повторна обробка | Приватний покращувач повторно обробляє власні зміни та оновлює підібрану базову лінію |
+| 📥 Native intake | May be rough, authored in any language |
+| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
+| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
+| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
 
-> 📖**Почніть із:**[Посібник зі сприяння](CONTRIBUTING.md) · [Робочий процес Skill PR](docs/contributors/SKILL-PR-WORKFLOW.md)---
+> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
+
+---
 
 ## 📄 License
 
-| Тип | Ліцензія |
+| Type | License |
 |:-----|:--------|
-| 💻 Код та інструменти | [Ліцензія MIT](ЛІЦЕНЗІЯ) |
-| 📝 Документація та вміст навичок | [CC BY 4.0](ЛІЦЕНЗІЯ-ВМІСТ) |---
+| 💻 Code and tooling | [MIT License](LICENSE) |
+| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
+
+---
 
 <div align="center">
 
-**Створено за допомогою 🧠 командою Omni Skills**
+**Made with 🧠 by the Omni Skills Team**
 
-[⭐ Це репо зірочкою](https://github.com/diegosouzapw/omni-skills) · [🐛 Повідомити про помилку](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Обговорення](https://github.com/diegosouzapw/omni-skills/discussions)</div>
+[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
+
+*If Omni Skills helps you build faster, consider giving it a ⭐ — it helps others discover the project!*
+
+</div>

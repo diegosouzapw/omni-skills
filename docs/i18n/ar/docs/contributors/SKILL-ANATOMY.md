@@ -5,110 +5,126 @@
 ---
 
 
->**توقعات الهيكلة والجودة لمهارات Omni Skills `SKILL.md` - تنسيق التأليف الذي يدعم الكتالوج بأكمله.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-يتكون كل `SKILL.md` من قسمين متميزين:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-البيانات الوصفية المقروءة آليًا بين المحددات `---`. انها القوى:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 فهرس المهارات وتوليد الكتالوج
-- 🔎 بحث وتصفية CLI
-- ✅ التحقق من الصحة وتسجيل الجودة
-- 📊 عناصر التصنيف التي تم إنشاؤها `metadata.json`
-- 📋 تظهر كل مهارة في `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-تعليمات يمكن قراءتها بواسطة الإنسان (ويمكن للوكيل قراءتها). اكتبها كما لو كنت**تقدم إحاطة لأحد كبار المطورين**حول كيفية تنفيذ مهمة محددة بدرجة كافية حتى يتمكن وكيل الذكاء الاصطناعي من متابعتها دون تخمين.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| المجال | مطلوب | اكتب | الوصف |
-|:------|:---------|:------|:-----------|
-| `الاسم` | ✅ | سلسلة | يجب أن يتطابق مع اسم الدليل، موصول بأحرف صغيرة |
-| `الوصف` | ✅ | سلسلة | وصف من سطر واحد (10-200 حرف) |
-| `الإصدار` | ⚡ | سلسلة | النسخة الدلالية للمهارة نفسها (على سبيل المثال، `"0.1.1"`) |
-| `الفئة` | ⚡ | سلسلة | فئة أساسية واحدة من تصنيف الريبو |
-| `العلامات` | ⚡ | سلسلة[] | علامات قابلة للبحث للاكتشاف |
-| "التعقيد" | ⚡ | سلسلة | `مبتدئ` · `متوسط` · `متقدم` `خبير` |
-| `خطر` | ⚡ | سلسلة | `آمن` · `تحذير` · `هجومي` · `حرج` |
-| `الأدوات` | ⚡ | سلسلة[] | مساعدو ترميز الذكاء الاصطناعي الذين تم اختبارهم |
-| `المصدر` | ⚡ | سلسلة | `الفريق الشامل` · `المجتمع` `الرسمي` |
-| `المؤلف` | ⚡ | سلسلة | الإسناد |
-| `تاريخ_الإضافة` | ⚡ | سلسلة | تاريخ الأيزو |
-| `تاريخ_التحديث` | ⚡ | سلسلة | تاريخ الأيزو |
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------|
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = مطلوب دائمًا · ⚡ = مطلوب في الوضع الصارم
+> ✅ = Always required · ⚡ = Required in strict mode
 
-إصدار المهارة مستقل عن إصدار حزمة npm. الحزمة حاليًا هي "0.1.3"، ولكن يمكن أن تظل المهارات الموجودة بشكل صحيح في نسختها الدلالية الخاصة بها.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-يحدد تصنيف الريبو حاليًا**18 فئة أساسية**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| الفئة | المجال |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `التنمية` | تطوير البرمجيات العامة |
-| 🎨 `الواجهة الأمامية` | أطر الواجهة الأمامية وواجهة المستخدم |
-| 🔧 `الواجهة الخلفية` | الخدمات الخلفية وواجهات برمجة التطبيقات |
-| 🌐 `fullstack-web` | تطوير الويب الشامل |
-| 🛠️ `الأدوات` | أدوات المطور والمرافق |
-| ⚙️ `cli-automation` | أدوات CLI والبرامج النصية للأتمتة |
-| 📊 `الأعمال` | العمليات التجارية والاستراتيجية |
-| 📐 `المنتج` | إدارة وتصميم المنتجات |
-| 🎯 `التصميم` | التصميم المرئي وتجربة المستخدم |
-| 🤖 `data-ai` | هندسة البيانات وتطبيقات الذكاء الاصطناعي |
-| 🧠 `ai-agents` | تطوير وأنماط وكيل الذكاء الاصطناعي |
-| 📈 `التعلم الآلي` | نماذج ML والتدريب |
-| 🔌 `ديوبس` | البنية التحتية والنشر |
-| 🛡️ `الاختبار-الأمان` | ممارسات الاختبار والأمان |
-| 📖 `التوثيق` | توليد الوثائق وإدارتها |
-| 🎬 `محتوى الوسائط` | إنشاء المحتوى والوسائط |
-| 💬 `التواصل` | أدوات الاتصال وسير العمل |
-| ❓`غير مصنف` | الافتراضي عند عدم العثور على تطابق |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> تتم تسوية التصنيفات القديمة مثل "سير العمل"، و"الهندسة المعمارية"، و"البنية التحتية"، و"الأمان"، و"الاختبار" تلقائيًا من خلال تعيين الأسماء المستعارة.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-تتبع مجموعة المهارات المكتوبة جيدًا هذا التسلسل الهرمي:
+A well-written skill body follows this hierarchy:
 
-### 📌 نظرة عامة (مطلوب)
-2-3 جمل حول**ماذا**المهارة و**لماذا**موجودة.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 متى يتم الاستخدام (مطلوب)
-قائمة نقطية بـ**سيناريوهات محددة**حيث تنطبق هذه المهارة.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 التعليمات الأساسية (مطلوبة)
-**العملية خطوة بخطوة**التي يجب على الوكيل اتباعها. كن واضحا. كن محددًا. يعمل الوكلاء بشكل أفضل مع تعليمات واضحة لا لبس فيها.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 أمثلة (موصى بها)
-المطالبات الملموسة أو كتل التعليمات البرمجية أو المخرجات المتوقعة.**كلما كان الأمر أكثر تحديدًا، كان ذلك أفضل.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ أفضل الممارسات (موصى بها)
-استخدم ✅ افعل / ❌ لا تقم بالتنسيق للمسح السريع.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 استكشاف الأخطاء وإصلاحها (اختياري)
-القضايا المشتركة وحلولها.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 المهارات ذات الصلة (اختياري)
-إشارات مرجعية إلى المهارات التكميلية.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 التركيز على**سير عمل أو مجال واحد محدد**
-- 📌 التعليمات**واضحة بما يكفي ليتبعها الذكاء الاصطناعي**دون تفسير بشري
-- 💡 يتضمن**أمثلة ملموسة**مع السلوك المتوقع
-- 🛡️ لديه إرشادات**التعامل مع الأخطاء**المناسبة
-- 📊 إنتاج بيانات وصفية سليمة: الفئة الأساسية، النضج L2+، الجودة 70+
-- 🧰 يتم شحن حزمة دعم قابلة لإعادة الاستخدام، وليس فقط النثر، بشكل مثالي عبر "المراجع/"، و"النصوص البرمجية/"، و"الأمثلة/"، و"الوكلاء/" حيثما كان ذلك مناسبًا
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-للحصول على أنماط تسجيل أقوى تدفع المهارات إلى أعلى النطاقات، راجع [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ نصيحة عامة يمكن أن تنطبق على أي شيء
-- 🤷 تعليمات غامضة مثل "اكتب كودًا جيدًا"
-- 🚫 لا توجد أمثلة أو كتل برمجية
-- ⚠️ حقول المادة الأمامية مفقودة
-- 📉 نقاط جودة منخفضة (أقل من 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

@@ -5,16 +5,21 @@
 ---
 
 
->**Instalează abilități, verifică configurația și invocă-ți prima abilitate AI în mai puțin de 2 minute.**---
+> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
+
+---
 
 ## 📊 Current Catalog Status
 
-| Metric | Valoare |
+| Metric | Value |
 |:-------|:------|
-| Abilități publicate |**32**în 15 categorii active, inclusiv arhitectură, design, securitate, DevOps, inginerie AI și multe altele |
-| Pachete definite |**7**(toate susținute în totalitate de abilitățile publicate) |
-| Clienți capabili de instalare |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| Clienți capabili de configurare MCP |**16**în 33 de obiective de configurare MCP de primă clasă |---
+| Native catalog | **48** skills across 15 active categories, including architecture, design, security, DevOps, AI-engineering, and imported native intake |
+| Curated output | **32** enhanced English derivatives in `skills_omni/` |
+| Defined bundles | **7** (all fully backed by published catalog skills) |
+| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP config-capable clients | **16** across 33 first-class MCP config targets |
+
+---
 
 ## 📦 Step 1 — Install
 
@@ -24,15 +29,21 @@
 npx omni-skills
 ```
 
-Într-un terminal interactiv, acesta deschide acum programul de instalare ghidat în loc să presupună în tăcere un client.### 🖥️ Visual Shell
+In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
+
+### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-Aceasta deschide hub-ul terminal de marcă pentru instalare, descoperire, MCP, API și pornire A2A.### 🎯 Default Install (Antigravity Outside TTY)
+This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
 
-În afara unui TTY, programul de instalare no-arg rămâne implicit la `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
+### 🎯 Default Install (Antigravity Outside TTY)
+
+Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
+
+### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -55,7 +66,9 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ Pachetele de pornire sunt acum complet susținute, inclusiv `devops` și `ai-engineer`.### 🎛️ Multiple Targets at Once
+> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
+
+### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -65,7 +78,9 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Verificați dacă abilitățile au ajuns la locul potrivit:```bash
+Check that skills landed in the right place:
+
+```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -82,7 +97,9 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Sau utilizați diagnosticul încorporat:```bash
+Or use the built-in diagnostics:
+
+```bash
 npx omni-skills doctor
 ```
 
@@ -108,11 +125,15 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Oferă agenților instrumente de sistem de fișiere pentru a detecta clienții, a instala/elimina abilități și a scrie configurații MCP:```bash
+Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
+
+```bash
 npx omni-skills mcp stream --local
 ```
 
-De asemenea, puteți configura MCP pentru clienți care nu sunt ținte de instalare a competențelor:```bash
+You can also configure MCP for clients that are not skill-install targets:
+
+```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -120,13 +141,17 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Expune catalogul de aptitudini ca un API HTTP numai pentru citire:```bash
+Exposes the skill catalog as a read-only HTTP API:
+
+```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Descoperirea, recomandarea, planificarea instalării, sondarea și transmiterea în flux de la agent la agent:```bash
+Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
+
+```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -134,22 +159,24 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-O abilitate este un manual de reducere structurat (`SKILL.md`) care oferă unui agent AI:
+A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
 
-| Componenta | Scop |
+| Component | Purpose |
 |:----------|:--------|
-| 📋**Frontmatter**| Metadate care pot fi citite de mașină (nume, categorie, etichete, instrumente, risc) |
-| 📝**Corpul**| Instrucțiuni specifice sarcinii, pași, balustrade și exemple |
-| 📚**Referințe**| Documente de sprijin pe care agentul le poate consulta în timpul execuției |
-| 🎨**Active**| Pictograme, imagini sau alte resurse ambalate |---
+| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
+| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
+| 📚 **References** | Supporting docs the agent can consult during execution |
+| 🎨 **Assets** | Icons, images, or other packaged resources |
+
+---
 
 ## ➡️ Next Steps
 
-| Doc | Ce vei învăța |
+| Doc | What You'll Learn |
 |:----|:------------------|
-| 🧭 [Ghid de utilizare CLI](CLI-USER-GUIDE.md) | Referință de comandă completă pentru instalare, rulare, configurare și diagnosticare |
-| 📗 [Ghid de utilizare](USAGE.md) | Toate comenzile CLI, modelele de prompt și modurile de rulare |
-| 📦 [Pachete](BUNDLES.md) | Colecții de abilități organizate și disponibilitatea lor |
-| 📚 [Catalog](../CATALOG.md) | Catalog autogenerat de competențe publicate |
-| 📖 [Documentation Hub](../README.md) | Harta documentatiei complete |
-| 🔧 [System Runbook](../operations/RUNBOOK.md) | Referință operațională |
+| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
+| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
+| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
+| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
+| 📖 [Documentation Hub](../README.md) | Full documentation map |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |

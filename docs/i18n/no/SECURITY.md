@@ -9,91 +9,109 @@
 
 ## 🚨 Reporting a Vulnerability
 
->**Hvis du oppdager et sikkerhetsproblem i Omni Skills, ikke åpne en offentlig utgave først.**
+> **If you discover a security issue in Omni Skills, do not open a public issue first.**
 
-Vennligst rapporter gjennom en av disse private kanalene:
+Please report through one of these private channels:
 
-| Kanal | Hvordan |
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHub sikkerhetsrådgivning | [Åpne en privat rådgivning](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Direkte kontakt | Kontakt vedlikeholderne direkte |### 📋 Include in Your Report
+| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Direct Contact | Contact the maintainers directly |
 
-- 📁 Berørt komponent eller bane
-- 🔄 Reproduksjonstrinn
-- ⚠️ Konsekvensutredning
-- 🧪 Alt proof-of-concept-materiale som trengs for å bekrefte problemet
+### 📋 Include in Your Report
 
->**⏱️ Vi tar sikte på å godkjenne rapporter innen 48 timer**og prioritere rettelser etter innvirkning.---
+- 📁 Affected component or path
+- 🔄 Reproduction steps
+- ⚠️ Impact assessment
+- 🧪 Any proof-of-concept material needed to verify the issue
+
+> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
+
+---
 
 ## 🎯 Scope
 
-Denne policyen dekker depotets kjøretid og innholdsoverflater:
+This policy covers the repository's runtime and content surfaces:
 
-| Komponent | Sti |
+| Component | Path |
 |:----------|:-----|
-| 🖥️ CLI og installatør | `tools/bin/` |
-| 📚 Delte biblioteker | `tools/lib/` |
-| ⚙️ Bygg og valideringsskript | `verktøy/skript/` |
-| 📦 Genererte katalogartefakter | `dist/` |
-| 🌐 API-, MCP- og A2A-pakker | `pakker/` |
-| 🧠 Ferdighetsinnhold | `skills/` – spesielt shell-kommandoer, nettverkstilgang, legitimasjonsflyter eller sikkerhetssensitiv veiledning |---
+| 🖥️ CLI and installer | `tools/bin/` |
+| 📚 Shared libraries | `tools/lib/` |
+| ⚙️ Build and validation scripts | `tools/scripts/` |
+| 📦 Generated catalog artifacts | `dist/` |
+| 🌐 API, MCP, and A2A packages | `packages/` |
+| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
+
+---
 
 ## Arkitektur
 
-Depotet er avhengig av følgende sikkerhetskontroller:### 🧠 Skill-Level Controls
+The repository relies on the following security controls:
 
-| Kontroll | Beskrivelse |
-|:--------|:--------|
-| 🏷️ Risikofelt | Ferdighetsmetadata inkluderer et erklært "risiko"-nivå |
-| 📊 Scoring | Validering beregner modenhet, beste praksis, kvalitet og sikkerhetspoeng |
-| 🔍 Statisk skanner | Inspiserer `SKILL.md`, pakkede filer og hjelpeskript |
-| 🦠 Valgfrie skannere | ClamAV og VirusTotal hash-oppslag (når konfigurert) |### 🖥️ Runtime Controls
+### 🧠 Skill-Level Controls
 
-| Kontroll | Beskrivelse |
-|:--------|:--------|
-| 📁 Stisikkerhet | Installer flyter bruk veisikkerhetskontroller |
-| 🔒 Tillatelsesliste skriver | Lokal MCP-sidevogn skriver begrenset av en godkjenningsliste |
-| 👁️ Tørrkjøre standarder | Skriveorienterte verktøy er standard til tørrkjøring med mindre de er eksplisitt deaktivert |
-| 🔐 Autentisering og begrensninger | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP-godkjenningslister |
-| 📋 Revisjon | Revisjonslogging, vedlikeholdsmodus og forespørsels-IDer |### 📦 Release Controls
+| Control | Description |
+|:--------|:-----------|
+| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
+| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
+| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
+| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
 
-| Kontroll | Beskrivelse |
-|:--------|:--------|
-| ✅ Kontrollsummanifester | SHA-256-sjekksummer for genererte arkiver |
-| ✍️ Signaturer | Fjernet signaturverifisering i CI før publisering |
-| 🧪 Røyksjekker | Tren leverte runtime overflater før utgivelse |---
+### 🖥️ Runtime Controls
+
+| Control | Description |
+|:--------|:-----------|
+| 📁 Path safety | Install flows use path safety checks |
+| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
+| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
+| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
+| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+
+### 📦 Release Controls
+
+| Control | Description |
+|:--------|:-----------|
+| ✅ Checksum manifests | SHA-256 checksums for generated archives |
+| ✍️ Signatures | Detached signature verification in CI before publication |
+| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
+
+---
 
 ## 🔮 What Is Still Open
 
-> Det viktigste sikkerhetsarbeidet som gjenstår er**ikke**grunnlinjeherding. De åpne elementene er:
+> The main security work remaining is **not** baseline hardening. The open items are:
 
-| Område | Status |
+| Area | Status |
 |:-----|:-------|
-| 🏢 Bedriftsstyring | Ekstern identitet, gatewaypolicy og WAF-integrasjon over gjeldende prosesskontroller |
-| 🔌 MCP-klientskribenter | Bredere forfattere bare når offentlige konfigurasjonskontrakter er stabile nok |
-| 📊 Skannerforfining | Fortsatt foredling slik at eksepsjonelle ferdigheter holdes klart atskilt fra bare godt strukturerte |---
+| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
+| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
+| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
+
+---
 
 ## ⚠️ Risk Levels in Skills
 
-Hver ferdighet erklærer ett av disse "risiko"-nivåene:
+Each skill declares one of these `risk` levels:
 
-| Risikonivå | Betydning |
+| Risk Level | Meaning |
 |:-----------|:--------|
-| `trygt` | Ingen destruktive operasjoner forventet |
-| `forsiktig` | Kan endre filer eller samhandle med eksterne systemer |
-| 🔴 `støtende` | Sikkerhetstesting eller kontradiktoriske arbeidsflyter som krever eksplisitt autorisasjon |
-| ⛔ `kritisk` | Effektive operasjoner eller operasjoner på systemnivå |---
+| 🟢 `safe` | No destructive operations expected |
+| 🟡 `caution` | May modify files or interact with external systems |
+| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
+| ⛔ `critical` | High-impact or system-level operations |
+
+---
 
 ## 📋 Disclosure Notes
 
-Fordi Omni Skills sender kjørbare hjelpere, filsystembevisste lokalt verktøy og klientspesifikke konfigurasjonsforfattere, bør disse sårbarhetsklassene behandles som**høy prioritet**selv om de vises som "kun lokalt":
+Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
 
-| Kategori | Eksempler |
-|:--------|:--------|
-| 📁 Traversering av sti | Directory escape via ferdighetsinstallering eller konfigurasjonsbaner |
-| 🔗 Symlink sikkerhet | Symbolkobling som følger under installasjon eller arkivutvinning |
-| 🖥️ Kommandoutførelse | Vilkårlig kommandoinjeksjon via ferdighetsinnhold eller skript |
-| 📦 Arkivverifisering | Omgå kontrollsum eller signaturverifisering |
-| 🔓 Auth bypass | Hastighetsbegrensende eller autentiseringsomgåelse på API/MCP |
-| 🔌 Omgå tillatelsesliste | Omgåelse av lokal godkjenningsliste for sidevogn |
-| 🦠 Skannerunndragelse | Falsk-negative klasser i statiske eller eksterne skannere |
+| Category | Examples |
+|:---------|:---------|
+| 📁 Path traversal | Directory escape via skill install or config paths |
+| 🔗 Symlink safety | Symlink following during install or archive extraction |
+| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
+| 📦 Archive verification | Bypass of checksum or signature verification |
+| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
+| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
+| 🦠 Scanner evasion | False-negative classes in static or external scanners |

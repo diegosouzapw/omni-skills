@@ -5,40 +5,46 @@
 ---
 
 
->**API HTTP baca-saja untuk penemuan keterampilan, penelusuran, perbandingan, perencanaan pemasangan, dan pengunduhan artefak.**---
+> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
+
+---
 
 ## 📊 Status
 
-| Fitur | Negara |
+| Feature | State |
 |:--------|:------|
-| ✅ Titik akhir katalog | Diimplementasikan |
-| ✅ Auth (pembawa + kunci API) | Diimplementasikan |
-| ✅ Otentikasi waktu proses admin | Diimplementasikan |
-| ✅ Pembatasan tarif | Diimplementasikan |
-| ✅ Pencatatan audit | Diimplementasikan |
-| ✅ Daftar yang diizinkan CORS dan IP | Diimplementasikan |
-| ✅ Mode pemeliharaan | Diimplementasikan |
-| ✅ Unduhan arsip | Diimplementasikan |
-| ✅ Spesifikasi OpenAPI | Diimplementasikan |
-| ⚠️ Bagian belakang tata kelola | Dasar dalam proses yang didorong oleh lingkungan; gateway eksternal atau IdP masih opsional |---
+| ✅ Catalog endpoints | Implemented |
+| ✅ Auth (bearer + API key) | Implemented |
+| ✅ Admin runtime auth | Implemented |
+| ✅ Rate limiting | Implemented |
+| ✅ Audit logging | Implemented |
+| ✅ CORS and IP allowlists | Implemented |
+| ✅ Maintenance mode | Implemented |
+| ✅ Archive downloads | Implemented |
+| ✅ OpenAPI spec | Implemented |
+| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
+
+---
 
 ## 🎯 Purpose
 
-API menyediakan permukaan bergaya registri untuk:
+The API provides a registry-style surface for:
 
-- 📋 Mendaftar dan memfilter keterampilan berdasarkan kualitas, keamanan, kategori, risiko, dan banyak lagi
-- 📌 Mengambil wujud keterampilan individu
-- 🔎 Pencarian teks lengkap dan perbandingan multi-keterampilan
-- 📦 Daftar bundel dengan ketersediaan
-- 📐 Pembuatan paket instalasi hanya-baca
-- 📥 Mengunduh artefak, arsip, dan manifes checksum yang dihasilkan
+- 📋 Listing and filtering skills by quality, security, category, risk, and more
+- 📌 Fetching individual skill manifests
+- 🔎 Full-text search and multi-skill comparison
+- 📦 Bundle listing with availability
+- 📐 Read-only install plan generation
+- 📥 Downloading generated artifacts, archives, and checksum manifests
 
-Katalog dan permukaan manifes yang sama juga menjadi dasar untuk:
+This same catalog and manifest surface is also the basis for:
 
-- perencanaan pemasangan CLI lokal
-- Respons penemuan MCP hanya-baca
-- Penemuan A2A dan serah terima rencana pemasangan
-- katalog pribadi potensial dengan autentikasi eksternal berlapis di atasnya---
+- local CLI install planning
+- MCP read-only discovery responses
+- A2A discovery and install-plan handoff
+- potential private catalogs with external auth layered on top
+
+---
 
 ## Mulai Cepat
 
@@ -60,42 +66,48 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Default**: `127.0.0.1:3333`---
+**Defaults**: `127.0.0.1:3333`
+
+---
 
 ## 🔐 Security Controls
 
-Semua kontrol keamanan digerakkan oleh lingkungan dan opsional:
+All security controls are env-driven and optional:
 
-| Kontrol | Variabel | Contoh |
+| Control | Variable | Example |
 |:--------|:---------|:--------|
-| 🔑**Pembawa autentikasi**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `ganti-saya` |
-| 🗝️**Otentikasi kunci API**| `OMNI_SKILLS_HTTP_API_KEYS` | `kunci-a,kunci-b` |
-| 🛂**Otentikasi Admin**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `rahasia admin` |
-| 🚦**Pembatasan tarif**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝**Pencatatan audit**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️**Format audit**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` atau `teks` |
-| 📄**Berkas audit**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍**Daftar CORS yang diizinkan**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱**Daftar IP yang diizinkan**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁**Proksi tepercaya**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `putar balik` |
-| 🚧**Mode pemeliharaan**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️**Coba lagi setelah**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
+| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
+| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
+| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
+| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Perilaku:**
-- 🟢 `/healthz` tetap**selalu tidak diautentikasi**
-- 🔒 Semua rute lain memerlukan autentikasi saat autentikasi diaktifkan
-- 🛂 `/admin/runtime` memerlukan token admin saat diaktifkan
-- 🚦 Pembatasan tarif sedang dalam proses dengan header respons `X-RateLimit-*`
-- 🧾 Setiap respons membawa `X-Request-Id`
-- 🚧 Mode pemeliharaan mengembalikan `503` untuk rute non-kesehatan dan non-admin### ✅ Current governance decision
+**Behavior:**
+- 🟢 `/healthz` remains **always unauthenticated**
+- 🔒 All other routes require auth when auth is enabled
+- 🛂 `/admin/runtime` requires the admin token when enabled
+- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
+- 🧾 Every response carries `X-Request-Id`
+- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
 
-Arah proyek saat ini adalah**menggunakan kembali format katalog yang sama untuk penerapan publik atau pribadi**dan melapisi autentikasi secara eksternal bila diperlukan.
+### ✅ Current governance decision
 
-Artinya:
+The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
 
-- manifes dan bentuk API tetap dibagikan
-- penerapan yang dihosting sendiri dan lokal dapat tetap berada pada garis dasar yang sedang dalam proses
-- tata kelola host yang lebih canggih dapat dipindahkan ke gateway eksternal atau lapisan autentikasi perusahaan di kemudian hari tanpa melakukan forking model data### 🔐 Full hardened example:
+That means:
+
+- the manifest and API shape stay shared
+- self-hosted and local deployments can stay on the in-process baseline
+- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
+
+### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -117,34 +129,40 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Metode | Jalur | Deskripsi |
+| Method | Path | Description |
 |:-------|:-----|:------------|
-| `DAPATKAN` | `/kesehatan` | Pemeriksaan kesehatan (tidak diautentikasi) |
-| `DAPATKAN` | `/openapi.json` | Spesifikasi Dinamis OpenAPI 3.1 |
-| `DAPATKAN` | `/admin/waktu proses` | Snapshot tata kelola dan runtime (auth admin bila diaktifkan) |### 📚 Catalog & Skills
+| `GET` | `/healthz` | Health check (unauthenticated) |
+| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
+| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
 
-| Metode | Jalur | Deskripsi |
+### 📚 Catalog & Skills
+
+| Method | Path | Description |
 |:-------|:-----|:------------|
-| `DAPATKAN` | `/v1/keterampilan` | Daftar keterampilan dengan filter |
-| `DAPATKAN` | `/v1/keterampilan/:id` | Dapatkan manifes keterampilan individu |
-| `DAPATKAN` | `/v1/pencarian` | Pencarian teks lengkap |
-| `DAPATKAN` | `/v1/bandingkan?ids=id1,id2` | Bandingkan beberapa keterampilan |
-| `DAPATKAN` | `/v1/bundel` | Daftar bundel dengan ketersediaan |
-| `POSTING` | `/v1/instal/rencana` | Hasilkan rencana instalasi |### 🔎 List/Search Filters
+| `GET` | `/v1/skills` | List skills with filters |
+| `GET` | `/v1/skills/:id` | Get individual skill manifest |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
+| `GET` | `/v1/bundles` | List bundles with availability |
+| `POST` | `/v1/install/plan` | Generate an install plan |
 
-| menyaring | Contoh |
+### 🔎 List/Search Filters
+
+| Filter | Example |
 |:-------|:--------|
-| `kategori` | `?kategori=pengembangan` |
-| `alat` | `?alat=kursor` |
-| `risiko` | `?risiko=aman` |
-| `sortir` | `?sort=quality\|praktik terbaik\|level\|keamanan\|nama` |
-| `pesanan` | `?pesanan=asc\|desc` |
-| `kualitas_minimal` | `?kualitas_min=80` |
-| `praktik_terbaik_minimal` | `?min_best_practices=60` |
-| `tingkat_menit` | `?tingkat_min=2` |
-| `keamanan_min' | `?keamanan_min=90` |
-| `status_validasi` | `?validasi_status=lulus` |
-| `status_keamanan` | `?status_keamanan=lulus` |### 📦 Install Plan Body
+| `category` | `?category=development` |
+| `tool` | `?tool=cursor` |
+| `risk` | `?risk=safe` |
+| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
+| `order` | `?order=asc\|desc` |
+| `min_quality` | `?min_quality=80` |
+| `min_best_practices` | `?min_best_practices=60` |
+| `min_level` | `?min_level=2` |
+| `min_security` | `?min_security=90` |
+| `validation_status` | `?validation_status=passed` |
+| `security_status` | `?security_status=passed` |
+
+### 📦 Install Plan Body
 
 ```json
 {
@@ -158,51 +176,61 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Metode | Jalur | Deskripsi |
+| Method | Path | Description |
 |:-------|:-----|:------------|
-| `DAPATKAN` | `/v1/katalog/unduh` | Unduh katalog lengkap |
-| `DAPATKAN` | `/v1/skills/:id/artefak` | Daftar artefak keterampilan |
-| `DAPATKAN` | `/v1/skills/:id/arsip` | Daftar arsip keterampilan |
-| `DAPATKAN` | `/v1/skills/:id/downloads` | Semua tautan unduhan yang tersedia |
-| `DAPATKAN` | `/v1/skills/:id/download/manifest` | Manifes keterampilan JSON |
-| `DAPATKAN` | `/v1/skills/:id/download/entrypoint` | Keterampilan KETERAMPILAN.md |
-| `DAPATKAN` | `/v1/skills/:id/download/artifact?path=<path>` | Artefak tertentu |
-| `DAPATKAN` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Arsip keterampilan |
-| `DAPATKAN` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Tanda tangan terpisah |
-| `DAPATKAN` | `/v1/skills/:id/download/archive/checksums` | Checksum SHA-256 |---
+| `GET` | `/v1/catalog/download` | Full catalog download |
+| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
+| `GET` | `/v1/skills/:id/archives` | List skill archives |
+| `GET` | `/v1/skills/:id/downloads` | All available download links |
+| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
+| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
+| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
+
+---
 
 ## 🔗 Link Enrichment
 
-Saat permintaan ditangani melalui API, server**secara otomatis memperkaya**manifes, daftar artefak, dan paket instalasi dengan URL absolut yang berasal dari asal permintaan masuk. Ini adalah pengayaan waktu proses, tidak dimasukkan ke dalam `dist/manifests/*.json`.---
+When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
+
+---
 
 ## 📋 Install Plan Notes
 
-> ⚠️**Paket penginstalan adalah pratinjau, bukan penulisan jarak jauh.**
+> ⚠️ **Install plans are previews, not remote writes.**
 
-API tidak pernah diinstal ke mesin pemanggil. Ini mengembalikan:
-- 📌 Metadata keterampilan yang dipilih
-- ⚠️ Peringatan bagi anggota bundel yang hilang
-- 🖥️ Perintah CLI konkrit untuk dijalankan secara lokal
-- 🔗 URL unduhan publik saat asal permintaan tersedia---
+The API never installs onto the caller's machine. It returns:
+- 📌 Selected skill metadata
+- ⚠️ Warnings for missing bundle members
+- 🖥️ Concrete CLI commands to run locally
+- 🔗 Public download URLs when request origin is available
+
+---
 
 ## 🔌 Relationship to MCP
 
-Server MCP menggunakan kembali URL API publik yang sama saat dikonfigurasi:```bash
+The MCP server reuses the same public API URLs when configured:
+
+```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-Hal ini memungkinkan pratinjau pemasangan MCP menampilkan URL manifes dan artefak nyata, bukan hanya jalur repo lokal saja.---
+This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
+
+---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` mengembalikan snapshot tata kelola yang berguna untuk diagnostik yang dihosting:
+`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
 
-- metode autentikasi aktif
-- status admin-autentikasi
-- jendela batas tarif dan maks
-- Daftar yang diizinkan CORS
-- Daftar IP yang diizinkan
-- status mode pemeliharaan
-- tujuan dan format audit
-- total katalog saat ini
-- permintaan ID bergema untuk ketertelusuran
+- active auth methods
+- admin-auth status
+- rate-limit window and max
+- CORS allowlist
+- IP allowlist
+- maintenance mode state
+- audit destination and format
+- current catalog totals
+- request ID echoing for traceability

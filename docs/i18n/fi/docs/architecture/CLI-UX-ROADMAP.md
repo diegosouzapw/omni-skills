@@ -5,453 +5,557 @@
 ---
 
 
->**Tuotekartta Omni-taitojen kehittämiseen lippu-ensimmäisestä asentajasta ohjatuksi päätekokemukseksi sekä kokeneille että ei-asiantuntijoille.**
-> Laajuus: npm-paketti, CLI-asennuskokemus, terminaalin käyttöliittymä, palvelun käynnistysprosessit ja visuaalinen käyttöönotto.---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-Nykyinen suoritusaikapohja on vahva, mutta pääsykokemus on silti optimoitu käyttäjille, jotka jo ymmärtävät:
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- mihin asiakkaaseen he haluavat kohdistaa
-- mitä asennusvalitsinta he haluavat käyttää
-- kuinka tavoitteet muunnetaan sanoiksi "--taito", "--paketti" tai "etsi"
-- kun he tarvitsevat vain CLI-asennuksen MCP-, API- tai A2A-palveluihin verrattuna
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-Tänään:
+Today:
 
-- `npx omni-skills' oletuksena on Antigravity
-- Tämä on teknisesti pätevä ja taaksepäin yhteensopiva
-- mutta se ei ole ihanteellinen ensikertalaisille tai vähemmän teknisille käyttäjille
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-CLI:ssä on jo interaktiivinen perustila, mutta se on silti lähempänä kehittäjäapuohjelmaa kuin ohjattua tuotepintaa.
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-Tämä tiekartta määrittelee polun vahvempaan julkiseen käyttökokemukseen rikkomatta nykyistä lippupohjaista käyttöliittymää.---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-Tiekartta on nyt suurelta osin toteutettu nykyisessä arkiston tilassa.
+The roadmap is now largely implemented in the current repository state.
 
-Valmistunut:
+Completed:
 
-- Vaihe 1: Ohjattu aloituspisteen valinta
-- Vaihe 2: Ohjattu asennus
-- Vaihe 3: Visual Terminal Shell
-- Vaihe 4: Visual Service Hub
-- Vaihe 5: Tallennetut profiilit ja toistettavuus
-- Vaihe 6: Karkaisu, testit ja dokumentointi---
+- Phase 1: Guided Entrypoint Selection
+- Phase 2: Guided Install Wizard
+- Phase 3: Visual Terminal Shell
+- Phase 4: Visual Service Hub
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- Säilytä nykyiset asiantuntija-CLI-työnkulut
-- Tee argumentittomasta aloituskohdasta turvallinen ja ymmärrettävä ensikertalaisille
-- Korvaa hiljaiset oletukset interaktiivisissa yhteyksissä ohjatulla valinnalla
-- Tukee tunnettuja tekoälyasiakkaita ja mielivaltaisia mukautettuja asennuspolkuja
-- Muuta asennus, etsiminen ja palvelun käynnistys johdonmukaiseksi käyttäjämatkaksi
-- Tarjoa visuaalinen päätekäyttöliittymä, joka tuntuu tuotteelta, ei vain skriptiltä
-- Pidä asennusmoottori, luettelo ja palvelun suoritusaika uudelleenkäytettävinä käyttöliittymässä---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- Nykyisen lippupohjaisen CLI:n korvaaminen
-- Antigravitaatio poistetaan tuetuista oletuskohteista
-- Verkkokäyttöliittymän lähettäminen ensisijaisena toimitustapana
-- Itse API-, MCP- tai A2A-protokollien muokkaaminen osana tätä UX-työtä
-- SKILL.md-kirjoittamisen korvaaminen tietokannan tukemalla hallintapaneelilla---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-Näiden komentojen on toimittava edelleen täsmälleen samalla tavalla kuin nykyään:
+These commands must continue to work exactly as they do today:
 
-- "npx omni-skills --kursori --taito omni-figma".
+- `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- "npx omni-skills find figma -- tool cursor -- install --yes"
-- "npx omni-skills mcp stream --local".
-- `npx omni-skills api --portti 3333`
-- "npx omni-skills a2a -- portti 3335".### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills find figma --tool cursor --install --yes`
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills api --port 3333`
+- `npx omni-skills a2a --port 3335`
 
-- Interaktiivinen pääteistunto ilman argumentteja: avoin ohjattu kokemus
-- Ei-interaktiivinen kutsu ilman argumentteja: säilytä nykyinen asennuksen oletuskäyttäytyminen
-- Eksplisiittiset komennot ja liput voittaa aina käyttöliittymän päättelyn### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-Seuraavilla pitäisi olla sama sisäinen logiikka:
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
 
-- lippu ensimmäinen CLI
-- ohjattu tekstitila CLI
-- Visuaalinen päätekäyttöliittymä
+### 4.3 Reuse One Engine Across Modes
 
-Tämä tarkoittaa, että UX-kerros ei saa omistaa liiketoimintalogiikkaa. Sen tulisi järjestää uudelleenkäytettäviä toimia.### 4.4 Preview Before Write
+The following should share the same internal logic:
 
-Kaikkien ohjattujen kulujen, jotka aiheuttavat kirjoittamista, tulee näyttää:
+- flag-first CLI
+- guided text-mode CLI
+- visual terminal UI
 
-- ratkaistu tavoite
-- ratkaistu polku
-- valitut taidot tai niput
-- vastaava CLI-komento
-- vahvistuskehote### 4.5 Visual Does Not Mean Implicit
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-Jopa rikkaammassa käyttöliittymässä järjestelmän tulisi silti tehdä tila ja toimet selkeästi:
+### 4.4 Preview Before Write
 
-- minne asennus on menossa
-- mitä kirjoitetaan
-- mitä kuljetusta tai satamaa palvelu käyttää
-- onko vuo vain luku - tai paikalliskirjoituskykyinen---
+All guided flows that cause writes should display:
+
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
+
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Tarvitsee:
+Needs:
 
-- nopeat komennot
-- ei pakotettuja kehotteita
-- vakaat liput
-- käsikirjoitettavuus### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-Tarvitsee:
+### 5.2 Guided Product User
 
-- selkeitä valintoja
-- ei ole olemassa oletusta, että antigravitaatiota halutaan
-- tuki mukautetun polun asennuksille
-- ymmärrettävä asennuksen esikatselu
-- näkyvä ero asennuksen ja palvelimen ajonaikaisten toimien välillä### 5.3 Operator / Platform User
+Needs:
 
-Tarvitsee:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- kyky käynnistää MCP, API ja A2A visuaalisesti
-- järkevät oletukset
-- valinnainen porttien, kuljetuksen, pysyvyyden, toimeenpanotilan, todentamisen ja paikallisen tilan viritys---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-Tuotteen tulee paljastaa kolme kerrosta:### 6.1 Expert Mode
+The product should expose three layers:
 
-Suorat komennot ja liput.
+### 6.1 Expert Mode
 
-Esimerkkejä:
+Direct commands and flags.
 
-- "npx omni-skills --kursori --taito omni-figma".
-- "npx omni-skills mcp stream --local".
-- "npx omni-skills a2a -- portti 3335".### 6.2 Guided Install Mode
+Examples:
 
-Käynnistyy, kun:
+- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills a2a --port 3335`
 
-- käyttäjä suorittaa `npx omni-skills' TTY:ssä ilman argeja
-- käyttäjä suorittaa "npx omni-skills install" ilman konkreettisia valitsimia
-- käyttäjä valitsee ohjatun tilan
+### 6.2 Guided Install Mode
 
-Ohjatun asennuksen tulisi kulkea läpi:
+Triggered when:
 
-1. kohdeasiakas tai mukautettu polku
-2. asennustyyppi
-3. taito tai nippu valinta
-4. esikatselu
-5. vahvistus
-6. toteutus
-7. seuraavat vaiheet### 6.3 Visual Operations Hub
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-Laukaisi:
+The guided install flow should walk through:
 
-- "npx omni-skills ui".
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
 
-Tästä pitäisi tulla "aloitusnäyttö" ei-asiantuntijoille käyttäjille ja operaattoreille.
+### 6.3 Visual Operations Hub
 
-Keskeiset toimet:
+Triggered by:
 
-- asennustaidot
-- löytää taitoja
-- Käynnistä MCP
-- Käynnistä API
-- aloita A2A
-- juokse lääkäri
-- suorittaa savutarkastuksia---
+- `npx omni-skills ui`
+
+This should become the “home screen” for non-expert users and operators.
+
+Core actions:
+
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-Tulos:
+Outcome:
 
-- "npx omni-skills" TTY:ssä ei enää hiljaa ota antigravitaatiota
-- Käyttäjiä kehotetaan valitsemaan asiakas tai mukautettu polku
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-Vaatimukset:
+Requirements:
 
-- säilyttää ei-TTY-oletusasennuskäyttäytyminen
-- Lisää kohdevalitsin
-- Tukee mukautettua polkua### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-Tulos:
+### Phase 2: Guided Install Wizard
 
-- asennuksesta tulee täysi ohjattu virtaus
+Outcome:
 
-Vaatimukset:
+- installation becomes a full guided flow
 
-- asennustilan valinta:
-  - täysi kirjasto
-  - yksi taito
-  - yksi nippu
-  - etsi ja asenna
-- asennuksen esikatselu
-- vastaava komentotoisto
-- vahvistus ja toteutus### Phase 3: Visual Terminal Shell
+Requirements:
 
-Tulos:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- nykyisestä perustekstikäyttöliittymästä tulee merkkipäätesovellus
+### Phase 3: Visual Terminal Shell
 
-Vaatimukset:
+Outcome:
 
-- rikkaampi ulkoasu
-- projektin brändäys ja logo
-- parempi stepperi ja kortit
-- näppäimistöohjattu navigointi
-- Reagoi terminaalin toteutukseen musteen kautta### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-Tulos:
+Requirements:
 
-- MCP, API ja A2A voidaan käynnistää visuaalisesta käyttöliittymästä
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-Vaatimukset:
+### Phase 4: Visual Service Hub
 
-- ohjattu MCP-virtaus
-- ohjattu API-kulku
-- ohjattu A2A virtaus
-- näkyvä tila ja asetusten esikatselut### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-Tulos:
+- MCP, API, and A2A are startable from the visual UI
 
-- Yleisiä asennus- tai palveluesiasetuksia voidaan käyttää uudelleen
+Requirements:
 
-Vaatimukset:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- muista viimeaikaiset tavoitteet
-- tallennetut palvelun esiasetukset
-- viimeisimmät komennot
-- suosikkinippuja tai -taitoja### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-Tulos:
+Outcome:
 
-- UX:stä tulee ylläpidetty julkinen käyttöliittymä, ei ad hoc -mukavuus
+- common install or service presets can be reused
 
-Vaatimukset:
+Requirements:
 
-- savun suoja
-- regressiotestit
-- doc-päivitykset
-- käyttäjän opastus
-- paketin yhteensopivuuden tarkistus---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- "kaikki taidot".
-- "kaikki taidot asentaa".
-- "kaikki taidot".
-- "kaikki taidot ui".
-- "kaikki taidot mcp".
-- "kaikkitaidot api".
-- "kaikki taidot a2a".
-- "kaikkitaidot lääkäri".
-- "kaikkitaidot savu".### Recommended Behavior
+- `omni-skills`
+- `omni-skills install`
+- `omni-skills find`
+- `omni-skills ui`
+- `omni-skills mcp`
+- `omni-skills api`
+- `omni-skills a2a`
+- `omni-skills doctor`
+- `omni-skills smoke`
 
-| Kutsuminen | Käyttäytyminen |
+### Recommended Behavior
+
+| Invocation | Behavior |
 |:-----------|:---------|
-| "kaikki taidot" TTY:ssä, ei argeja | Ohjattu asennus |
-| "kaikki taidot" ei-TTY:ssä, ei argeja | Nykyinen Antigravitation oletusasennus |
-| "kaikki taidot asennus" TTY:ssä, ei valitsimia | Ohjattu asennus |
-| `kaikki taidot install --guided` | Pakota ohjattu asennuskulku |
-| "kaikki taidot ui" | Avaa visuaalisten toimintojen keskus |
-| selkeät liput | Suorita suoraan ilman kiertokulkua ohjattuun virtaukseen |---
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
+| `omni-skills install --guided` | Force guided install flow |
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Vaihtoehdot:
+Options:
 
 - Claude Code
-- Kursori
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitaatio
+- Antigravity
 - OpenCode
-- Mukautettu polku
+- Custom path
 
-Lähtö:
+Output:
 
-- valittu tunnettu kohde TAI mukautettu tiedostojärjestelmäpolku### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-Vaihtoehdot:
+### Step 2: Choose Install Type
 
-- täysi kirjasto
-- yksi julkaistu taito
-- yksi nippu
-- etsi ja asenna
+Options:
 
-Lähtö:
+- full library
+- one published skill
+- one bundle
+- search then install
 
-- asenna laajuus### Step 3: Resolve Selection
+Output:
 
-Asennustyypistä riippuen:
+- install scope
 
-- täysi kirjasto: ei ylimääräistä valitsinta
-- taito: luettele tai valitse taito
-- nippu: luettele tai valitse nippu
-- Haku: kysy kyselyä, näytä yhteensopivia taitoja ja nippuja### Step 4: Preview
+### Step 3: Resolve Selection
 
-Näyttö:
+Depending on install type:
 
-- valittu kohde
-- ratkaistu polku
-- valittu taito tai nippu
-- vastaava CLI-komento
-- onko virtaus valikoiva vai täysi asennus### Step 5: Confirm
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-Käyttäjä vahvistaa:
+### Step 4: Preview
 
-- kyllä → suorita
-- ei → keskeytä tai palaa### Step 6: Result
+Display:
 
-Näyttö:
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
 
-- menestys/epäonnistuminen
-- määränpään polku
-- ehdotus seuraavaksi---
+### Step 5: Confirm
+
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-Toimintakeskuksen tulee paljastaa:### 10.1 Install
+The operations hub should expose:
 
-- ohjattu asennuskulku
-- taito- tai pakettihaku
-- mukautettu polku### 10.2 Discover
+### 10.1 Install
 
-- luettelohaku
-- suodattimet
-- esikatsella metatietoja
-- asenna kanavanvaihto### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-Vaihtoehdot:
+### 10.2 Discover
 
-- liikenne: stdio, stream, sse
-- paikallinen tila päälle/pois
--isäntä
-- portti### 10.4 API
+- catalog search
+- filters
+- preview metadata
+- install handoff
 
-Vaihtoehdot:
+### 10.3 MCP
 
--isäntä
-- portti
-- valinnainen todennus
-- valinnainen hintaraja### 10.5 A2A
+Options:
 
-Vaihtoehdot:
+- transport: stdio, stream, sse
+- local mode on/off
+- host
+- port
 
--isäntä
-- portti
-- tallennustyyppi: muisti, json, sqlite
-- toteuttaja: inline, prosessi
-- vuokrausvaihtoehdot, kun sqlite-jono on käytössä### 10.6 Diagnostics
+### 10.4 API
 
--lääkäri
-- savua---
+Options:
+
+- host
+- port
+- optional auth
+- optional rate limit
+
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-Nykyinen "tools/bin/cli.js" sekoittaa:
+The current `tools/bin/cli.js` mixes:
 
-- komentojen jäsennys
-- esittely
-- interaktiiviset kehotteet
-- toiminnan orkestrointi
-- huoltoalusta
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-Uuden rakenteen pitäisi siirtää uudelleen käytettävä logiikka:
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
-- Tools/lib/install-flow/
-- Tools/lib/service-flow/
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/install-flow/`
+- `tools/lib/service-flow/`
+- `tools/lib/ui-models/`
 
-`tools/bin/install.js' pitäisi pysyä kirjoituskykyisenä taustaohjelmana.
+### 11.2 Keep Installer Engine Separate
 
-Ohjatun käyttöliittymän tulisi kutsua olemassa olevaa asennusohjelman taustaohjelmaa sen sijaan, että se kopioi asennuslogiikkaa.### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-Ohjatun asennustoiminnon tulisi käyttää uudelleen samaa luetteloydin- ja CLI-hakulogiikkaa, joka on jo käytössä:
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- "löytää".
-- asenna esikatselut
-- nipun resoluutio### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-Ensimmäinen toimitus voi pysyä tekstitilassa.
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-Mutta arkkitehtuurin tulisi säilyttää selkeä sauma, jotta tekstivirta voidaan myöhemmin renderöidä Inkin avulla.---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Lieventäminen:
+Mitigation:
 
-- vain avaa ohjattu käyttöliittymä automaattisesti TTY:ssä
-- säilyttää nykyinen oletusarvo muussa kuin TTY:ssä
-- säilyttää nimenomaiset lippuvirrat### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-Lieventäminen:
+### 12.2 Letting UI Own Business Logic
 
-- Siirrä orkestraatio uudelleenkäytettäviin toimintamoduuleihin
-- Pidä asennusohjelman ja palvelun käynnistyslogiikka käyttöliittymäkerroksen alapuolella### 12.3 Ink Migration Too Early
+Mitigation:
 
-Lieventäminen:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
 
-- lähetä ensin ohjattu virtaus nykyisessä solmupäätepinossa
-- siirry sitten Inkiin, kun virtauksen semantiikka on vakaa### 12.4 Incomplete Service UX
+### 12.3 Ink Migration Too Early
 
-Lieventäminen:
+Mitigation:
 
-- lähetä ohjattu asennusohjelma ensin
-- sitten kerrosohjattu palvelun käynnistäminen---
+- first ship the guided flow in current Node terminal stack
+- then migrate to Ink once flow semantics are stable
+
+### 12.4 Incomplete Service UX
+
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- "npx omni-skills" TTY:ssä ei enää asennu välittömästi
-- käyttäjä voi valita kohdeasiakkaan tai mukautetun polun
-- ei-TTY no-arg -kutsu toimii edelleen kuten ennen### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- Ohjattu asennus tukee täyttä kirjastoa, taitoja, nippua ja etsi ja asenna
-- esikatselu näkyy aina ennen kirjoittamista
-- komentovastine näytetään### Phase 3
+### Phase 2
 
-- merkkipäätteen käyttöliittymä on olemassa
-- Käyttöliittymä on visuaalisesti jäsennellympi kuin tavalliset Readline-valikot
-- navigointi on näppäimistöystävällinen### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- Käyttäjät voivat käynnistää MCP:n, API:n ja A2A:n visuaalisesta keskittimestä
-- Tärkeimmät ajonaikaiset vaihtoehdot ovat konfiguroitavissa ohjatussa muodossa### Phase 5
+### Phase 3
 
-- Viimeaikaiset tai tallennetut asetukset ovat uudelleenkäytettäviä
-- Toistovirtaukset vievät vähemmän kehotteita### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- savupeitto heijastaa uusia UX-tulopisteitä
-- dokumentit kuvaavat ohjatun tilan ja ohjatun palvelun toiminnan---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-Tämä etenemissuunnitelma on toteutettava seuraavassa järjestyksessä:
+This roadmap must be implemented in this order:
 
-1. Ohjattu sisääntulopisteen valinta
-2. Ohjattu asennustoiminto
-3. Visuaalinen päätekuori
-4. Visuaalinen palvelukeskus
-5. Tallennetut profiilit ja toistettavuus
-6. Kovettuminen, testit ja docs kiillotus
+1. Guided entrypoint selection
+2. Guided install wizard
+3. Visual terminal shell
+4. Visual service hub
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-Toteutustyön tulee lukea asiaankuuluva tehtävätiedosto ennen kunkin tehtävän aloittamista, jotta CLI-työ pysyy linjassa suunnitelman kanssa eikä ajaudu.
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

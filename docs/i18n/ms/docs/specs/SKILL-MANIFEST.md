@@ -5,66 +5,78 @@
 ---
 
 
->**Manifes JSON yang boleh dibaca mesin yang dijana daripada setiap `SKILL.md` semasa saluran paip binaan — kontrak data tunggal yang digunakan oleh semua permukaan masa jalan.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Ciri | Negeri |
+| Feature | State |
 |:--------|:------|
-| ✅ Dijana secara automatik daripada SKILL.md | Dilaksanakan |
-| ✅ Dimakan oleh CLI, API, MCP, A2A | Dilaksanakan |
-| ✅ Arkib dengan jumlah semak | Dilaksanakan |
-| ✅ Klasifikasi keselamatan | Dilaksanakan |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Penting**: Manifes ialah**artifak binaan**. Pengarang penyumbang `SKILL.md` — saluran paip memperoleh manifes JSON secara automatik.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-Manifes wujud supaya**semua permukaan masa jalan**menggunakan bentuk ternormal yang sama:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Permukaan | Bagaimana Ia Menggunakan Manifes |
+| Surface | How It Uses Manifests |
 |:--------|:---------------------|
-| 🖥️**CLI**| Cari, pasang perancangan, diagnostik doktor |
-| 🌐**API**| Respons titik akhir, penapisan, pautan muat turun |
-| 🔌**MCP**| Respons alat, kandungan sumber |
-| 🤖**A2A**| Muatan penemuan dan cadangan |---
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Artifak | Laluan |
+| Artifact | Path |
 |:---------|:-----|
-| 📊 Metadata akar | `metadata.json` |
-| 📊 Metadata setiap kemahiran | `kemahiran/<kemahiran>/metadata.json` |
-| 📋 Indeks kemahiran | `indeks_kemahiran.json` |
-| 📚 Katalog yang diterbitkan | `dist/catalog.json` |
-| 📌 Manifes setiap kemahiran | `dist/manifests/<skill>.json` |
-| 📦 Zip arkib | `dist/archives/<skill>.zip` |
-| 📦 Arkib Tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Manifes jumlah semak | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Medan | Penerangan |
+| Field | Description |
 |:------|:------------|
-| `versi_skema` | Versi skema manifes |
-| `id` | Pengecam kemahiran stabil daripada medan `nama` |
-| `slug` | Slug direktori di bawah `kemahiran/` |
-| `nama_paparan` | Tajuk boleh dibaca manusia dari tajuk pertama |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Medan | Penerangan |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `penerangan` | Ringkasan ringkas dari frontmatter |
-| `versi` | Versi kemahiran, bebas daripada versi pakej npm |
-| `kategori` | Kategori kanonik (dinormalkan) |
-| `kategori_mentah` | Kategori asal dari frontmatter |
-| `taksonomi` | Metadata taksonomi penuh dengan sandaran kesimpulan |
-| `tag` | Tag boleh dicari |
-| `kerumitan` | `pemula` · `pertengahan` · `maju` · `pakar` |
-| `risiko` | `selamat` · `berhati-hati` · `menyinggung` · `kritikal` |
-| `sumber` | `omni-team` · `community` · `official` |
-| `pengarang` | Rentetan atribusi |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@ Manifes wujud supaya**semua permukaan masa jalan**menggunakan bentuk ternormal y
 
 ### 📂 Paths
 
-| Medan | Penerangan |
+| Field | Description |
 |:------|:------------|
-| `titik masuk` | Laluan `SKILL.md` kanonik |
-| `paths.root` | Direktori kemahiran di dalam repo |
-| `paths.manifest` | Laluan manifes dijana dalam `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Medan | Penerangan |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `alat` | Pengecam alat daripada frontmatter |
-| `sasaran_pasang` | Metadata pemasangan setiap alat |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Setiap sasaran pemasangan termasuk: `alat`, `skop`, `laluan_lalai`, `bendera_pemasang`, `kelakuan_pemasang_semasa`, `seruan`### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Medan | Penerangan |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `sub_sumber` | Subdir kemahiran (`rujukan`, `ejen`, `aset`) |
-| `bilangan_artifak` | Jumlah kiraan fail dalam pakej kemahiran |
-| `bilangan_rujukan` | Kiraan dokumen rujukan |
-| `bilangan_ejen` | Kiraan konfigurasi ejen |
-| `bilangan_aset` | Kiraan fail aset |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@ Setiap sasaran pemasangan termasuk: `alat`, `skop`, `laluan_lalai`, `bendera_pem
 
 ### 📦 Install
 
-| Medan | Penerangan |
+| Field | Description |
 |:------|:------------|
-| `strategi` | Strategi pemasangan (cth., `copy-skill-directory`) |
-| `pemasang_semasa` | Tingkah laku pemasangan boleh dibaca manusia |
-| `resipi` | Resipi pemasangan setiap pelanggan |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Bahagian | Medan |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯 `kematangan` | `peringkat_kemahiran`, `label_peringkat_kemahiran` |
-| 📋 `amalan_terbaik` | `skor` (0-100) |
-| ⭐ `berkualiti` | `skor` (0-100) |
-| 🛡️ `keselamatan` | `skor`, `status` |
-| ✅ `pengesahan` | `status` |### 📝 Content
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Isyarat terbitan: `body_length`, `content_length`, `body_lines`, `word_count`, serta bendera struktur untuk contoh, bahagian penyelesaian masalah, dsb.### 📁 Artifacts
+### 📝 Content
 
-Tatasusunan setiap fail yang dihantar di dalam direktori kemahiran:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@ Tatasusunan setiap fail yang dihantar di dalam direktori kemahiran:```json
 }
 ```
 
-**Jenis artifak**: `titik masuk` · `rujukan` · `ejen` · `aset` · `lesen` · `sokongan`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@ Tatasusunan setiap fail yang dihantar di dalam direktori kemahiran:```json
 
 ### 🔒 Checksums
 
-| Medan | Penerangan |
+| Field | Description |
 |:------|:------------|
-| `titik masuk_sha256` | Hash of SKILL.md |
-| `pakej_sha256` | Digest deterministik daripada senarai artifak yang dipesan |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@ Tatasusunan setiap fail yang dihantar di dalam direktori kemahiran:```json
 }
 ```
 
-> 📌 Versi pakej repositori dan versi kemahiran adalah kebimbangan yang berbeza. Pakej pada masa ini adalah `0.1.3`, manakala kemahiran individu membawa versi semantik mereka sendiri.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Peraturan | Rasional |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Mesti kekal boleh terbit daripada repo | Tiada pengarangan manifes manual diperlukan |
-| ✅ Medan pilihan baharu boleh ditambah | Keserasian ke hadapan |
-| ⚠️ Medan sedia ada mesti kekal stabil | Keserasian ke belakang |
-| 🚫 Tiada manifes tulisan tangan | Derivasi masa binaan ialah sumber kebenaran |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

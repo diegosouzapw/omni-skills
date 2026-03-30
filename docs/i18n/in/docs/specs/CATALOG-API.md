@@ -5,40 +5,46 @@
 ---
 
 
->**कौशल खोज, खोज, तुलना, इंस्टॉल योजना और आर्टिफैक्ट डाउनलोड के लिए केवल पढ़ने योग्य HTTP एपीआई।**---
+> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
+
+---
 
 ## 📊 Status
 
-| फ़ीचर | राज्य |
+| Feature | State |
 |:--------|:------|
-| ✅ कैटलॉग समापन बिंदु | क्रियान्वित |
-| ✅ प्रामाणिक (वाहक + एपीआई कुंजी) | क्रियान्वित |
-| ✅ एडमिन रनटाइम ऑथ | क्रियान्वित |
-| ✅ दर सीमित करना | क्रियान्वित |
-| ✅ ऑडिट लॉगिंग | क्रियान्वित |
-| ✅ CORS और IP अनुमति सूचियाँ | क्रियान्वित |
-| ✅ रखरखाव मोड | क्रियान्वित |
-| ✅ डाउनलोड पुरालेख | क्रियान्वित |
-| ✅ ओपनएपीआई स्पेक | क्रियान्वित |
-| ⚠️ गवर्नेंस बैकएंड | पर्यावरण-संचालित, इन-प्रोसेस बेसलाइन; बाहरी गेटवे या आईडीपी अभी भी वैकल्पिक है |---
+| ✅ Catalog endpoints | Implemented |
+| ✅ Auth (bearer + API key) | Implemented |
+| ✅ Admin runtime auth | Implemented |
+| ✅ Rate limiting | Implemented |
+| ✅ Audit logging | Implemented |
+| ✅ CORS and IP allowlists | Implemented |
+| ✅ Maintenance mode | Implemented |
+| ✅ Archive downloads | Implemented |
+| ✅ OpenAPI spec | Implemented |
+| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
+
+---
 
 ## 🎯 Purpose
 
-एपीआई इसके लिए एक रजिस्ट्री-शैली की सतह प्रदान करता है:
+The API provides a registry-style surface for:
 
-- 📋 गुणवत्ता, सुरक्षा, श्रेणी, जोखिम और बहुत कुछ के आधार पर कौशल को सूचीबद्ध करना और फ़िल्टर करना
-- 📌 व्यक्तिगत कौशल प्राप्त करना प्रकट होता है
-- 🔎 पूर्ण-पाठ खोज और बहु-कौशल तुलना
-- 📦 उपलब्धता के साथ बंडल सूची
-- 📐 रीड-ओनली इंस्टाल प्लान जेनरेशन
-- 📥 उत्पन्न कलाकृतियों, पुरालेखों और चेकसम मेनिफेस्टों को डाउनलोड करना
+- 📋 Listing and filtering skills by quality, security, category, risk, and more
+- 📌 Fetching individual skill manifests
+- 🔎 Full-text search and multi-skill comparison
+- 📦 Bundle listing with availability
+- 📐 Read-only install plan generation
+- 📥 Downloading generated artifacts, archives, and checksum manifests
 
-यही सूची और प्रकट सतह इसका आधार भी है:
+This same catalog and manifest surface is also the basis for:
 
-- स्थानीय सीएलआई स्थापना योजना
-- एमसीपी केवल पढ़ने योग्य खोज प्रतिक्रियाएँ
-- A2A डिस्कवरी और इंस्टाल-प्लान हैंडऑफ़
-- शीर्ष पर स्तरित बाहरी लेख के साथ संभावित निजी कैटलॉग---
+- local CLI install planning
+- MCP read-only discovery responses
+- A2A discovery and install-plan handoff
+- potential private catalogs with external auth layered on top
+
+---
 
 ## त्वरित प्रारंभ
 
@@ -60,42 +66,48 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**डिफ़ॉल्ट**: `127.0.0.1:3333`---
+**Defaults**: `127.0.0.1:3333`
+
+---
 
 ## 🔐 Security Controls
 
-सभी सुरक्षा नियंत्रण पर्यावरण-संचालित और वैकल्पिक हैं:
+All security controls are env-driven and optional:
 
-| नियंत्रण | परिवर्तनीय | उदाहरण |
-|:--------|:------|:--------|
-| 🔑**वाहक प्राधिकरण**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `रिप्लेस-मी` |
-| 🗝️**एपीआई कुंजी प्रमाणीकरण**| `OMNI_SKILLS_HTTP_API_KEYS` | `की-ए,की-बी` |
-| 🛂**एडमिन ऑथ**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `एडमिन-सीक्रेट` |
-| 🚦**दर सीमित**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝**ऑडिट लॉगिंग**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️**ऑडिट प्रारूप**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` या `text` |
-| 📄**ऑडिट फ़ाइल**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍**CORS अनुमति सूची**| `OMNI_SKILLS_HTTP_ALOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱**आईपी अनुमति सूची**| `OMNI_SKILLS_HTTP_ALOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁**विश्वसनीय प्रॉक्सी**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | 'लूपबैक' |
-| 🚧**रखरखाव मोड**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️**बाद में पुनः प्रयास करें**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| Control | Variable | Example |
+|:--------|:---------|:--------|
+| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
+| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
+| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
+| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
+| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**व्यवहार:**
-- 🟢 `/healthz`**हमेशा अप्रमाणित**रहता है
-- 🔒 प्रमाणीकरण सक्षम होने पर अन्य सभी मार्गों को प्रमाणीकरण की आवश्यकता होती है
-- 🛂 `/admin/runtime` को सक्षम होने पर एडमिन टोकन की आवश्यकता होती है
-- 🚦 `X-RateLimit-*` प्रतिक्रिया हेडर के साथ दर सीमित करने की प्रक्रिया चल रही है
-- 🧾 प्रत्येक प्रतिक्रिया में `X-Request-Id` होता है
-- 🚧 रखरखाव मोड गैर-स्वास्थ्य, गैर-व्यवस्थापक मार्गों के लिए `503` लौटाता है### ✅ Current governance decision
+**Behavior:**
+- 🟢 `/healthz` remains **always unauthenticated**
+- 🔒 All other routes require auth when auth is enabled
+- 🛂 `/admin/runtime` requires the admin token when enabled
+- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
+- 🧾 Every response carries `X-Request-Id`
+- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
 
-वर्तमान परियोजना की दिशा**सार्वजनिक या निजी परिनियोजन के लिए समान कैटलॉग प्रारूप का पुन: उपयोग**करना और जरूरत पड़ने पर बाहरी रूप से लेयर ऑथ करना है।
+### ✅ Current governance decision
 
-इसका मतलब है:
+The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
 
-- मेनिफेस्ट और एपीआई आकार साझा रहते हैं
-- स्व-होस्टेड और स्थानीय परिनियोजन इन-प्रोसेस बेसलाइन पर बने रह सकते हैं
-- अधिक उन्नत होस्टेड गवर्नेंस बाद में डेटा मॉडल को फोर्क किए बिना बाहरी गेटवे या एंटरप्राइज ऑथ लेयर पर जा सकता है### 🔐 Full hardened example:
+That means:
+
+- the manifest and API shape stay shared
+- self-hosted and local deployments can stay on the in-process baseline
+- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
+
+### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -117,34 +129,40 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| विधि | पथ | विवरण |
-|:-------|:-----|:----|
-| 'प्राप्त करें' | `/healthz` | स्वास्थ्य जांच (अप्रमाणित) |
-| 'प्राप्त करें' | `/openapi.json` | डायनामिक ओपनएपीआई 3.1 विनिर्देश |
-| 'प्राप्त करें' | `/एडमिन/रनटाइम` | शासन और रनटाइम स्नैपशॉट (सक्षम होने पर व्यवस्थापक प्राधिकरण) |### 📚 Catalog & Skills
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/healthz` | Health check (unauthenticated) |
+| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
+| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
 
-| विधि | पथ | विवरण |
-|:-------|:-----|:----|
-| 'प्राप्त करें' | `/v1/कौशल` | फ़िल्टर के साथ कौशलों की सूची बनाएं |
-| 'प्राप्त करें' | `/v1/skills/:id` | व्यक्तिगत कौशल प्रकट करें |
-| 'प्राप्त करें' | `/v1/खोज` | पूर्ण-पाठ खोज |
-| 'प्राप्त करें' | `/v1/तुलना?ids=id1,id2` | अनेक कौशलों की तुलना करें |
-| 'प्राप्त करें' | `/v1/बंडल` | उपलब्धता के साथ बंडलों की सूची बनाएं |
-| `पोस्ट` | `/v1/इंस्टॉल/प्लान` | एक इंस्टाल योजना बनाएं |### 🔎 List/Search Filters
+### 📚 Catalog & Skills
 
-| फ़िल्टर | उदाहरण |
-|:-------|:-------|
-| `श्रेणी` | `?श्रेणी=विकास` |
-| `उपकरण` | `?टूल=कर्सर` |
-| 'जोखिम' | `?जोखिम=सुरक्षित` |
-| 'सॉर्ट' | `?सॉर्ट=गुणवत्ता\|सर्वोत्तम अभ्यास\|स्तर\|सुरक्षा\|नाम` |
-| `आदेश` | `?order=asc\|desc` |
-| `न्यूनतम_गुणवत्ता` | `?min_quality=80` |
-| `न्यूनतम_सर्वोत्तम_अभ्यास` | `?min_best_practices=60` |
-| `न्यूनतम_स्तर` | `?min_level=2` |
-| `न्यूनतम_सुरक्षा` | `?min_security=90` |
-| `सत्यापन_स्थिति` | `?validation_status=उत्तीर्ण` |
-| `सुरक्षा_स्थिति` | `?security_status=उत्तीर्ण` |### 📦 Install Plan Body
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/skills` | List skills with filters |
+| `GET` | `/v1/skills/:id` | Get individual skill manifest |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
+| `GET` | `/v1/bundles` | List bundles with availability |
+| `POST` | `/v1/install/plan` | Generate an install plan |
+
+### 🔎 List/Search Filters
+
+| Filter | Example |
+|:-------|:--------|
+| `category` | `?category=development` |
+| `tool` | `?tool=cursor` |
+| `risk` | `?risk=safe` |
+| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
+| `order` | `?order=asc\|desc` |
+| `min_quality` | `?min_quality=80` |
+| `min_best_practices` | `?min_best_practices=60` |
+| `min_level` | `?min_level=2` |
+| `min_security` | `?min_security=90` |
+| `validation_status` | `?validation_status=passed` |
+| `security_status` | `?security_status=passed` |
+
+### 📦 Install Plan Body
 
 ```json
 {
@@ -158,51 +176,61 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| विधि | पथ | विवरण |
-|:-------|:-----|:----|
-| 'प्राप्त करें' | `/v1/कैटलॉग/डाउनलोड` | पूर्ण कैटलॉग डाउनलोड |
-| 'प्राप्त करें' | `/v1/skills/:id/artfacts` | कौशल कलाकृतियों की सूची |
-| 'प्राप्त करें' | `/v1/skills/:id/archives` | सूची कौशल पुरालेख |
-| 'प्राप्त करें' | `/v1/skills/:id/downloads` | सभी उपलब्ध डाउनलोड लिंक |
-| 'प्राप्त करें' | `/v1/skills/:id/download/manifest` | कौशल प्रकट JSON |
-| 'प्राप्त करें' | `/v1/skills/:id/download/entrypoint` | कौशल SKILL.md |
-| 'प्राप्त करें' | `/v1/skills/:id/download/artifact?path=<path>` | विशिष्ट कलाकृति |
-| 'प्राप्त करें' | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | कौशल पुरालेख |
-| 'प्राप्त करें' | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | पृथक हस्ताक्षर |
-| 'प्राप्त करें' | `/v1/skills/:id/download/archive/checksums` | SHA-256 चेकसम |---
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/catalog/download` | Full catalog download |
+| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
+| `GET` | `/v1/skills/:id/archives` | List skill archives |
+| `GET` | `/v1/skills/:id/downloads` | All available download links |
+| `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
+| `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
+| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
+
+---
 
 ## 🔗 Link Enrichment
 
-जब अनुरोधों को एपीआई के माध्यम से प्रबंधित किया जाता है, तो सर्वर स्वचालित रूप से मैनिफ़ेस्ट, आर्टिफैक्ट लिस्टिंग को समृद्ध करता है, और आने वाले अनुरोध मूल से प्राप्त पूर्ण यूआरएल के साथ योजनाएं स्थापित करता है। यह रनटाइम संवर्धन है, `dist/manifests/*.json` में बेक नहीं किया गया है।---
+When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
+
+---
 
 ## 📋 Install Plan Notes
 
-> ⚠️**इंस्टॉल योजनाएं पूर्वावलोकन हैं, रिमोट राइट्स नहीं।**
+> ⚠️ **Install plans are previews, not remote writes.**
 
-एपीआई कभी भी कॉलर की मशीन पर इंस्टॉल नहीं होता है। यह लौटाता है:
-- 📌 चयनित कौशल मेटाडेटा
-- ⚠️ लापता बंडल सदस्यों के लिए चेतावनी
-- 🖥️ कंक्रीट सीएलआई स्थानीय स्तर पर चलाने के लिए आदेश देता है
-- 🔗 अनुरोध मूल उपलब्ध होने पर सार्वजनिक डाउनलोड यूआरएल---
+The API never installs onto the caller's machine. It returns:
+- 📌 Selected skill metadata
+- ⚠️ Warnings for missing bundle members
+- 🖥️ Concrete CLI commands to run locally
+- 🔗 Public download URLs when request origin is available
+
+---
 
 ## 🔌 Relationship to MCP
 
-कॉन्फ़िगर होने पर MCP सर्वर समान सार्वजनिक API URL का पुन: उपयोग करता है:```bash
+The MCP server reuses the same public API URLs when configured:
+
+```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-यह एमसीपी को केवल स्थानीय रेपो पथों के बजाय ठोस मैनिफ़ेस्ट और आर्टिफैक्ट यूआरएल वापस करने के लिए पूर्वावलोकन स्थापित करने की अनुमति देता है।---
+This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
+
+---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` होस्ट किए गए डायग्नोस्टिक्स के लिए उपयोगी गवर्नेंस स्नैपशॉट लौटाता है:
+`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
 
-- सक्रिय प्रमाणीकरण विधियाँ
-- व्यवस्थापक-लेखक स्थिति
-- दर-सीमा विंडो और अधिकतम
-- सीओआरएस अनुमति सूची
-- आईपी अनुमति सूची
-- रखरखाव मोड स्थिति
-- ऑडिट गंतव्य और प्रारूप
-- वर्तमान कैटलॉग योग
-- पता लगाने की क्षमता के लिए अनुरोध आईडी गूंज रही है
+- active auth methods
+- admin-auth status
+- rate-limit window and max
+- CORS allowlist
+- IP allowlist
+- maintenance mode state
+- audit destination and format
+- current catalog totals
+- request ID echoing for traceability

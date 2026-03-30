@@ -5,15 +5,19 @@
 ---
 
 
->**الحزم عبارة عن محددات مهارات منسقة موضوعة في أعلى الكتالوج.**جميع الحزم السبعة للمبتدئين مدعومة بالكامل بالمهارات المنشورة.---
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by currently cataloged skills.
+
+---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` لا**لا**تثبت حزمة خاصة. هو:
+`--bundle` does **not** install a special package. It:
 
-1. 📋 يوسع تعريف الحزمة المحددة
-2. ✅ تثبيت الأعضاء المتاحين حاليًا في الكتالوج فقط
-3. ✅ يبني خطة تثبيت ملموسة من أعضاء الحزمة المنشورة```bash
+1. 📋 Expands the selected bundle definition
+2. ✅ Installs only the members currently available in the catalog
+3. ✅ Builds a concrete install plan from published bundle members
+
+```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -21,45 +25,53 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-استنادًا إلى الكتالوج الذي تم إنشاؤه حاليًا (`dist/bundles.json`):
+Based on the current generated catalog (`dist/bundles.json`):
 
-| حزمة | مخصص لـ | متاح | الأعضاء |
+| Bundle | Intended For | Available | Members |
 |:-------|:------------|:----------|:--------|
-| 🧰**الأساسيات**| كل مطور |**4/4**| `العثور على المهارات` ✅ · `العصف الذهني` ✅ · `الهندسة المعمارية` ✅ · `التصحيح` ✅ |
-| 🌐**مكدس كامل**| مطورو الويب والتطبيقات |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `تصميم قاعدة البيانات` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨**التصميم**| أنظمة التصميم وإمكانية الوصول |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️**الأمن**| مهندسين امن |**4/4**| `مدقق الأمان` ✅ · `ماسح الثغرات الأمنية` ✅ · `الاستجابة للحوادث` ✅ · ``نمذجة التهديدات`` ✅ |
-| ⚙️**ديفوبس**| منصة والأشعة تحت الحمراء |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · ``terraform`` ✅ · ``قابلية الملاحظة`` ✅ · ``هندسة الإصدار`` ✅ |
-| 🤖**مهندس الذكاء الاصطناعي**| تطوير LLM و ML |**5/5**| `rag-engineer` ✅ · ``prompt-engineer`` ✅ · ``أنماط الماجستير`` ✅ ·`تصميم التقييم` ✅ ·``هندسة السياق`` ✅ |
-| 🔧**oss-maintener**| مشرفو OSS |**4/4**| `البحث عن المهارات` ✅ · `إنشاء العلاقات العامة` ✅ · `سجل التغيير` ✅ · `الوثائق` ✅ |
+| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **5/5** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ · `design-token-governance` ✅ |
+| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
+| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **7/7** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ · `data-contracts` ✅ · `model-serving` ✅ |
+| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = منشور وقابل للتثبيت---
+> ✅ = Published and installable
+
+---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- أنت تريد**نقطة بداية منسقة**للنطاق
-- تريد تثبيت خطط تظل**منظمة ومحددة بالمجال**
-- تريد طريقة سريعة لتثبيت مجموعة عمل كاملة للدور### 🎯 Use `--skill` instead when:
+- You want a **curated starting point** for a domain
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
-- أنت تريد**الحد الأدنى المضمون من التثبيت**
-- أنت تعرف بالفعل**المهارة الدقيقة**التي تحتاجها
-- أنت تريد**أصغر مساحة ممكنة**بدلاً من مجموعة عمل منسقة---
+### 🎯 Use `--skill` instead when:
+
+- You want a **guaranteed minimal install**
+- You already know the **exact skill** you need
+- You want the **smallest possible footprint** instead of a curated working set
+
+---
 
 ## 💡 Practical Recommendations
 
-| الهدف | الأمر |
+| Goal | Command |
 |:-----|:--------|
-| 🎯 تثبيت مهارة منشورة محددة | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 حزمة البداية المدعومة بالكامل | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 حزمة أنظمة التصميم | `npx omni-skills --cursor --bundle design` |
-| 🔧 حزمة سير عمل OSS | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ حزمة سير العمل الأمني ​​| `npx omni-skills --cursor --bundle Security` |
-| ⚙️ حزمة DevOps | `npx omni-skills --cursor --bundle devops` |
-| 🤖 حزمة مهندس الذكاء الاصطناعي | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 ابحث قبل أن تقرر | `npx omni-skills ابحث عن Figma` |
-| 📋 شاهد كل توفر الباقة | `cat dist/bundles.json` |---
+| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Search before deciding | `npx omni-skills find figma` |
+| 📋 See all bundle availability | `cat dist/bundles.json` |
+
+---
 
 ## 🔍 Inspecting Bundles
 
@@ -77,7 +89,9 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-استخدم أدوات `search_skills` أو `preview_install` مع معلمات الحزمة.### 📋 Check Install Plan
+Use the `search_skills` or `preview_install` tools with bundle parameters.
+
+### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

@@ -9,91 +9,109 @@
 
 ## 🚨 Reporting a Vulnerability
 
->**Ha biztonsági problémát fedez fel az Omni Skills szolgáltatásban, először ne nyisson nyilvános kérdést.**
+> **If you discover a security issue in Omni Skills, do not open a public issue first.**
 
-Kérjük, jelentse az alábbi privát csatornák egyikén:
+Please report through one of these private channels:
 
-| Csatorna | Hogyan |
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHub biztonsági figyelmeztetés | [Nyiss meg egy privát tanácsadót](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
-| 📧 Közvetlen kapcsolatfelvétel | Forduljon közvetlenül a karbantartókhoz |### 📋 Include in Your Report
+| 🔒 GitHub Security Advisory | [Open a private advisory](https://github.com/diegosouzapw/omni-skills/security/advisories/new) |
+| 📧 Direct Contact | Contact the maintainers directly |
 
-- 📁 Érintett komponens vagy elérési út
-- 🔄 Reprodukciós lépések
-- ⚠️ Hatásvizsgálat
-- 🧪 Bármilyen elméleti bizonyíték a probléma ellenőrzéséhez
+### 📋 Include in Your Report
 
->**⏱️ Célunk, hogy a bejelentéseket 48 órán belül**nyugtázzuk, és a hatásoknak megfelelően priorizáljuk a javításokat.---
+- 📁 Affected component or path
+- 🔄 Reproduction steps
+- ⚠️ Impact assessment
+- 🧪 Any proof-of-concept material needed to verify the issue
+
+> **⏱️ We aim to acknowledge reports within 48 hours** and prioritize fixes according to impact.
+
+---
 
 ## 🎯 Scope
 
-Ez a házirend lefedi a lerakat futásidejű és tartalmi felületeit:
+This policy covers the repository's runtime and content surfaces:
 
-| Alkatrész | Útvonal |
+| Component | Path |
 |:----------|:-----|
-| 🖥️ CLI és telepítő | `tools/bin/` |
-| 📚 Megosztott könyvtárak | `tools/lib/` |
-| ⚙️ Szkriptek készítése és ellenőrzése | `tools/scripts/` |
-| 📦 Generált katalógus-termékek | `dist/` |
-| 🌐 API, MCP és A2A csomagok | `csomagok/` |
-| 🧠 Ügyességi tartalom | `skills/` – különösen shell-parancsok, hálózati hozzáférés, hitelesítési adatfolyamok vagy biztonságérzékeny útmutatás |---
+| 🖥️ CLI and installer | `tools/bin/` |
+| 📚 Shared libraries | `tools/lib/` |
+| ⚙️ Build and validation scripts | `tools/scripts/` |
+| 📦 Generated catalog artifacts | `dist/` |
+| 🌐 API, MCP, and A2A packages | `packages/` |
+| 🧠 Skill content | `skills/` — especially shell commands, network access, credential flows, or security-sensitive guidance |
+
+---
 
 ## Architektúra
 
-Az adattár a következő biztonsági ellenőrzésekre támaszkodik:### 🧠 Skill-Level Controls
+The repository relies on the following security controls:
 
-| Control | Leírás |
-|:--------|:------------|
-| 🏷️ Kockázati mező | A készségek metaadatai deklarált kockázati szintet tartalmaznak |
-| 📊 Pontozás | Az érvényesítés kiszámítja az érettséget, a bevált gyakorlatokat, a minőséget és a biztonsági pontszámokat |
-| 🔍 Statikus szkenner | Ellenőrzi a `SKILL.md' fájlt, a csomagolt fájlokat és a segédszkripteket |
-| 🦠 Választható szkennerek | ClamAV és VirusTotal hash keresés (ha be van állítva) |### 🖥️ Runtime Controls
+### 🧠 Skill-Level Controls
 
-| Control | Leírás |
-|:--------|:------------|
-| 📁 Útbiztonság | Telepítse az áramlásokat útvonalbiztonsági ellenőrzésekkel |
-| 🔒 Engedélyezőlista írja | A helyi MCP oldalkocsis írásokat egy engedélyezési lista korlátozza |
-| 👁️ Szárazfutási alapértékek | Az írásorientált eszközök alapértelmezés szerint szárazon futnak, hacsak nincsenek kifejezetten letiltva |
-| 🔐 Hitelesítés és korlátozások | Adathordozó/API-kulcs hitelesítés, rendszergazdai futásidejű hitelesítés, sebességkorlátozás, CORS/IP engedélyezési listák |
-| 📋 Audit | Naplónaplózás, karbantartási mód és kérésazonosítók |### 📦 Release Controls
+| Control | Description |
+|:--------|:-----------|
+| 🏷️ Risk field | Skill metadata includes a declared `risk` level |
+| 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
+| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
+| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
 
-| Control | Leírás |
-|:--------|:------------|
-| ✅ Ellenőrzőösszeg-nyilatkozatok | SHA-256 ellenőrző összegek generált archívumokhoz |
-| ✍️ Aláírások | Leválasztott aláírás ellenőrzése a CI-ben a közzététel előtt |
-| 🧪 Füstellenőrzés | Gyakorolja a szállított futásidejű felületeket a kiadás előtt |---
+### 🖥️ Runtime Controls
+
+| Control | Description |
+|:--------|:-----------|
+| 📁 Path safety | Install flows use path safety checks |
+| 🔒 Allowlist writes | Local MCP sidecar writes constrained by an allowlist |
+| 👁️ Dry-run defaults | Write-oriented tools default to dry-run unless explicitly disabled |
+| 🔐 Auth & limits | Bearer/API-key auth, admin runtime auth, rate limiting, CORS/IP allowlists |
+| 📋 Audit | Audit logging, maintenance mode, and request IDs |
+
+### 📦 Release Controls
+
+| Control | Description |
+|:--------|:-----------|
+| ✅ Checksum manifests | SHA-256 checksums for generated archives |
+| ✍️ Signatures | Detached signature verification in CI before publication |
+| 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
+
+---
 
 ## 🔮 What Is Still Open
 
-> A hátralévő fő biztonsági munka a**nem**alapvonal-megerősítés. A nyitott tételek a következők:
+> The main security work remaining is **not** baseline hardening. The open items are:
 
-| Terület | Állapot |
+| Area | Status |
 |:-----|:-------|
-| 🏢 Vállalatirányítás | Külső identitás, átjáróházirend és WAF-integráció a jelenlegi folyamaton belüli ellenőrzések felett |
-| 🔌 MCP kliens írók | Csak akkor írj szélesebb kört, ha a nyilvános konfigurációs szerződések elég stabilak |
-| 📊 Szkenner finomítás | Folyamatos finomítás, hogy a kivételes készségek egyértelműen elkülönüljenek a pusztán jól strukturáltoktól |---
+| 🏢 Enterprise governance | External identity, gateway policy, and WAF integration above current in-process controls |
+| 🔌 MCP client writers | Broader writers only when public config contracts are stable enough |
+| 📊 Scanner refinement | Continued refinement so exceptional skills stay clearly separated from merely well-structured ones |
+
+---
 
 ## ⚠️ Risk Levels in Skills
 
-Minden készség deklarál egyet a következő „kockázati” szintek közül:
+Each skill declares one of these `risk` levels:
 
-| Kockázati szint | Jelentése |
+| Risk Level | Meaning |
 |:-----------|:--------|
-| 🟢 `biztonságos` | Nem várható romboló művelet |
-| 🟡 `vigyázat` | Módosíthatja a fájlokat vagy kölcsönhatásba léphet külső rendszerekkel |
-| 🔴 `sértő` | Biztonsági tesztelés vagy kontradiktórius munkafolyamatok, amelyek kifejezett engedélyt igényelnek |
-| ⛔ `kritikus' | Nagy hatású vagy rendszerszintű műveletek |---
+| 🟢 `safe` | No destructive operations expected |
+| 🟡 `caution` | May modify files or interact with external systems |
+| 🔴 `offensive` | Security-testing or adversarial workflows requiring explicit authorization |
+| ⛔ `critical` | High-impact or system-level operations |
+
+---
 
 ## 📋 Disclosure Notes
 
-Mivel az Omni Skills futtatható segédprogramokat, fájlrendszer-tudatos helyi eszközöket és kliens-specifikus konfigurációírókat szállít, ezeket a sebezhetőségi osztályokat**magas prioritású**ként kell kezelni, még akkor is, ha „csak helyi”-nek tűnnek:
+Because Omni Skills ships executable helpers, filesystem-aware local tooling, and client-specific config writers, these vulnerability classes should be treated as **high priority** even if they appear "local only":
 
-| Kategória | Példák |
+| Category | Examples |
 |:---------|:---------|
-| 📁 Út bejárás | Címtár-kilépés készségtelepítésen vagy konfigurációs útvonalon keresztül |
-| 🔗 Symlink safety | Symlink követés a telepítés vagy az archívum kibontása közben |
-| 🖥️ Parancs végrehajtás | Tetszőleges parancsinjektálás képességtartalom vagy szkriptek segítségével |
-| 📦 Archívum ellenőrzése | Az ellenőrzőösszeg megkerülése vagy az aláírás ellenőrzése |
-| 🔓 Auth bypass | Sebességkorlátozás vagy hitelesítés megkerülése API/MCP-n |
-| 🔌 Az engedélyezési lista megkerülése | Helyi oldalkocsis engedélyezési lista megkerülése |
-| 🦠 Szkenner kijátszása | Hamis negatív osztályok statikus vagy külső szkennerekben |
+| 📁 Path traversal | Directory escape via skill install or config paths |
+| 🔗 Symlink safety | Symlink following during install or archive extraction |
+| 🖥️ Command execution | Arbitrary command injection via skill content or scripts |
+| 📦 Archive verification | Bypass of checksum or signature verification |
+| 🔓 Auth bypass | Rate-limiting or authentication bypass on API/MCP |
+| 🔌 Allowlist bypass | Local sidecar allowlist circumvention |
+| 🦠 Scanner evasion | False-negative classes in static or external scanners |

@@ -5,65 +5,85 @@
 ---
 
 ---
-имя: имя-вашего-навыка
-описание: "Однострочное описание того, что делает этот навык и когда его использовать"
-версия: "0.1.3"
-категория: разработка
-теги: [пример-тег-1, пример-тег-2]
-сложность: средняя
-риск: безопасный
-инструменты: [Клод-код, курсор, Gemini-Cli, Антигравитация]
-источник: сообщество
-автор: "Твое имя"
-date_added: "01.01.2026"
-date_updated: "01.01.2026"
----<!--
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
+date_added: "2026-01-01"
+date_updated: "2026-01-01"
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` создаст навыки/<skill>/metadata.json с каноническим
-таксономия, уровень зрелости, оценка лучших практик, оценка качества и безопасность
-результаты сканирования. Шаблоны быстрого внедрения, деструктивные команды и рискованные сценарии
-конструкции будут помечены автоматически.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-Версия навыка не зависит от версии пакета. Используйте семантику
-версия, которая имеет смысл для самого навыка.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Чтобы получить максимальный результат, прочтите также:
-- документы/авторы/HIGH-SCORE-PLAYBOOK.md
-- документы/участники/QUALITY-BAR.md
+For a top-scoring skill, also read:
+- docs/contributors/HIGH-SCORE-PLAYBOOK.md
+- docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Обзор
 
-2–3 предложения, объясняющие, что делает этот навык, кому он выгоден и почему он существует.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Используйте, когда вам нужно [сценарий 1]
-- Используйте, когда хотите [сценарий 2]
-- Используйте при работе со [сценарием 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Объясните ключевую концепцию, которую должен понять агент.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Объясните еще одну основополагающую концепцию.## Workflow
+### Concept 2
 
-| Фаза | Выход | Почему это важно |
+Explain another foundational concept.
+
+## Workflow
+
+| Phase | Output | Why it matters |
 |:------|:-------|:---------------|
-| Сформулируйте цель | Четкая цель | Предотвращает расплывчатое руководство |
-| Выполните шаги | Рабочий процесс, готовый к работе с агентом | Делает навык полезным |
-| Подтвердите вывод | Прием сигнала | Повышает уверенность |
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-1. Первый шаг рабочего процесса
-2. Второй шаг рабочего процесса
-3. Третий шаг рабочего процесса### 1. First Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Подробная инструкция для первого шага.### 2. Second Step
+### 1. First Step
 
-Подробная инструкция для второго шага.### 3. Third Step
+Detailed instructions for the first step.
 
-Подробная инструкция к третьему шагу.## Examples
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ testing-security, documentation, content-media, communication, uncategorized.
 Example prompt or code here
 ```
 
-**Объяснение:**Что демонстрирует этот пример.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Объяснение:**Что демонстрирует этот пример.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Делайте:**Следуйте этому передовому опыту.
-- ✅**Делайте:**Также следуйте этой практике.
-- ❌**Не следует:**Избегайте этого антипаттерна.
-- ❌**Нельзя:**Никогда не делайте этого## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Симптомы:**Откуда вы знаете, что это проблема.
-**Решение:**Как это исправить.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@related-skill-1` — когда использовать это вместо этого
-- `@related-skill-2` — как это дополняет ваши навыки.## Additional Resources
+## Related Skills
 
-- [Контрольный список](ссылки/checklist.md)
-- [Работающий пример](examples/example.md)
-- [Вспомогательный скрипт](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

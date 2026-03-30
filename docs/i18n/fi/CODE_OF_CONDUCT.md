@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-Me jäseninä, avustajina ja ylläpitäjinä lupaamme tehdä osallistumisesta tähän hankkeeseen ja yhteisöön**häirintättömän kokemuksen kaikille**iästä, ruumiin koosta, näkyvästä tai näkymätön vammasta, etnisestä taustasta, sukupuoliominaisuuksista, sukupuoli-identiteetistä ja ilmaisusta, kokemustasosta, koulutuksesta, sosioekonomisesta asemasta, kansallisuudesta, henkilökohtaisesta ulkonäöstä, rodusta, kastista, väristä, uskonnosta tai suuntautumisesta riippumatta.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Käyttäytyminen | Esimerkki |
+| Behavior | Example |
 |:---------|:--------|
-| 💬 Tervetuloa kieli | Osallistava ja kunnioittava viestintä |
-| 🤝 Kunnioita eroja | Erilaisten näkemysten ja kokemusten arvostaminen |
-| 📝 Rakentavaa kritiikkiä | Palautteen vastaanottaminen ja antaminen sulavasti |
-| 🎯 Yhteisökeskeisyys | Projektille ja yhteisölle parhaiten sopivan priorisointi |
-| ❤️ Empatiaa | Osoittaa empatiaa muita yhteisön jäseniä kohtaan |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| Käyttäytyminen |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 Seksuaalista kielenkäyttöä tai kuvia ja seksuaalista huomiota tai edistystä |
-| 🚫 Trollaavat, loukkaavat tai halventavat kommentit |
-| 🚫 Henkilökohtaiset tai poliittiset hyökkäykset |
-| 🚫 Julkinen tai yksityinen häirintä |
-| 🚫 Jonkun muun henkilökohtaisten tietojen julkaiseminen ilman nimenomaista lupaa |
-| 🚫 Muu kohtuudella sopimaton käytös ammatillisessa ympäristössä |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-Loukkaavasta, häiritsevästä tai muuten sopimattomasta käytöksestä voidaan ilmoittaa ylläpitäjille seuraavasti:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| Kanava | Miten |
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHubin yksityiset kanavat | Ota yhteyttä GitHub-tietoturvan tai keskustelun kautta |
-| 📧 Suora yhteys | Ota yhteyttä suoraan ylläpitäjiin |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**Kaikki raportit tarkistetaan ja tutkitaan nopeasti ja oikeudenmukaisesti.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-Nämä käytännesäännöt on mukautettu [Contributor Covenantin](https://www.contributor-covenant.org) versiosta 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

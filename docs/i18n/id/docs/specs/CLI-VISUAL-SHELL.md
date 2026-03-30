@@ -5,168 +5,196 @@
 ---
 
 
->**Kontrak perilaku untuk UI terminal berbasis Tinta yang diekspos oleh `omni-skills ui`.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Shell visual adalah permukaan produk yang dipandu di atas CLI dan mesin penginstal yang ada.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Itu tidak menggantikan:
+It does not replace:
 
-- penggunaan CLI berbasis tanda ahli
-- `alat/bin/install.js`
-- alur pemasangan teks yang dipandu
-- Perilaku runtime API, MCP, atau A2A
+- expert flag-based CLI usage
+- `tools/bin/install.js`
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Ini mendefinisikan:
+It defines:
 
-- perilaku `omni-skill ui`
-- kontrak cadangan untuk `omni-skills ui --text`
-- keadaan lokal dan persistensi preset
-- pratinjau peluncuran layanan yang dipandu
-- pengulangan untuk instalasi terbaru dan layanan berjalan---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` meluncurkan cangkang visual berbasis Tinta.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Shell visual adalah pengalaman terminal non-ahli utama untuk:
+The visual shell is the primary non-expert terminal experience for:
 
-- instal arus
-- penemuan dan pemasangan katalog pertama
-- permulaan MCP
-- permulaan API
-- permulaan A2A
-- serah terima dokter dan asap### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` meluncurkan antarmuka fallback berbasis readline.
+### 2.2 Text Fallback
 
-Ini tetap berguna ketika:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- terminal tidak dapat merender shell yang lebih kaya dengan benar
-- perilaku mode mentah dibatasi
-- penggantian teks minimal lebih disukai### 2.3 Handoff Rule
+This remains useful when:
 
-Shell visual tidak mengimplementasikan ulang runtime layanan atau penulisan instalasi secara langsung.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Setelah pratinjau dan konfirmasi, ia keluar dengan bersih dan menyerahkan eksekusi ke titik masuk CLI yang ada dengan argumen dan variabel lingkungan yang setara.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Layar beranda harus menampilkan:
+The home screen must expose:
 
-- menginstal keterampilan
-- temukan dan instal
-- ulangi pemasangan terkini jika ada
-- jalankan preset instalasi yang disimpan saat ada
-- memulai layanan
-- ulangi layanan terkini jika ada
-- menjalankan preset layanan tersimpan saat ada
-- dokter
-- merokok
-- keluar
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-Layar beranda juga akan muncul:
+The home screen should also surface:
 
-- ketersediaan bundel yang diterbitkan saat ini
-- Jumlah negara bagian lokal untuk yang terbaru, preset, dan favorit---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Alur pemasangan shell visual harus mendukung:
+The visual shell install flow must support:
 
-- pemilihan target klien yang diketahui
-- pemilihan jalur khusus
-- pemasangan perpustakaan lengkap
-- instalasi satu keterampilan
-- instalasi satu bundel
-- cari-lalu-instal
-- pratinjau sebelum menulis
-- penghematan yang telah ditetapkan
-- skill favorit atau toggling bundel
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Pratinjau harus menunjukkan:
+Preview must show:
 
-- label target terselesaikan
-- jalur terselesaikan
-- instal ruang lingkup
-- keterampilan atau bundel yang dipilih bila berlaku
-- perintah CLI yang setara---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Shell visual harus memandu startup untuk:### 5.1 MCP
+The visual shell must guide startup for:
 
-- transportasi: `stdio`, `stream`, `sse`
-- mode: `hanya-baca` atau `lokal`
-- Konfigurasi host/port untuk transport jaringan
-- pratinjau perintah eksplisit### 5.2 API
+### 5.1 MCP
 
-- tuan rumah
-- pelabuhan
-- profil dasar atau yang diperkeras
-- pembawa yang diperkeras atau autentikasi kunci API
-- parameter batas laju yang diperkeras
-- pengaktifan log audit
-- pratinjau perintah eksplisit### 5.3 A2A
+- transport: `stdio`, `stream`, `sse`
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- tuan rumah
-- pelabuhan
-- jenis penyimpanan: `memori`, `json`, `sqlite`
-- jalur penyimpanan untuk mode tahan lama
-- pelaksana: `inline`, `proses`
-- Mode SQLite yang mengaktifkan antrian
-- Interval jajak pendapat dan durasi sewa untuk mode sewa bersama
-- pratinjau perintah eksplisit---
+### 5.2 API
+
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
+- executor: `inline`, `process`
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Shell visual tetap mempertahankan status lokal saja di:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Negara bagian saat ini meliputi:
+State currently includes:
 
-- pemasangan terkini
-- peluncuran layanan terbaru
-- bernama instal preset
-- bernama preset layanan
-- keterampilan favorit
-- bundel favorit
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Shell harus mendukung:
+The shell must support:
 
-- memutar ulang pemasangan terkini
-- memutar ulang peluncuran layanan terkini
-- menggunakan kembali preset instalasi bernama
-- menggunakan kembali preset layanan bernama---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Cangkang visualnya bersifat aditif.
+The visual shell is additive.
 
-Aliran ini harus tetap valid dan stabil:
+These flows must remain valid and stable:
 
-- `npx omni-skill --kursor --skill omni-figma`
-- `npx omni-skill --bundle devops`
-- `npx pemasangan omni-skill --guided`
-- `npx omni-skills temukan figma --tool kursor --install --yes`
-- `npx aliran mcp keterampilan omni --lokal`
-- `npx omni-skill api --port 3333`
-- `npx keterampilan omni a2a --port 3335`
+- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills --bundle devops`
+- `npx omni-skills install --guided`
+- `npx omni-skills find figma --tool cursor --install --yes`
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills api --port 3333`
+- `npx omni-skills a2a --port 3335`
 
-Shell visual tidak boleh memaksakan dirinya ke jalur perintah ahli yang eksplisit.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Shell visual harus membuat status dan penulisan menjadi eksplisit.
+The visual shell should make state and writes explicit.
 
-Itu harus:
+It must:
 
-- pratinjau pemasangan sebelum menulis handoff
-- pratinjau perintah peluncuran layanan sebelum dieksekusi
-- jauhkan materi rahasia dari pratinjau perintah teks jelas jika memungkinkan
-- tetap menyatakan secara lokal saja
-- pertahankan perilaku CLI non-interaktif di luar shell visual
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

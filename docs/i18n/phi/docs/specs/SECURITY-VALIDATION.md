@@ -5,44 +5,50 @@
 ---
 
 
->**Pag-scan ng seguridad, pagbuo ng archive, opsyonal na pag-sign, at packaging ng pamamahagi para sa bawat na-publish na kasanayan.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| Tampok | Estado |
+| Feature | State |
 |:--------|:------|
-| ✅ Static security scanner | Palaging pinagana |
-| ✅ Pag-uuri ng metadata sa bawat kasanayan | Ipinatupad |
-| ✅ Mga archive sa bawat kasanayan (zip/tar.gz) | Ipinatupad |
-| ✅ SHA-256 checksum manifests | Ipinatupad |
-| ✅ CI scanner gate sa mga release tag | Ipinatupad |
-| ✅ npm publish workflow mula sa na-verify na tarball | Ipinatupad |
-| ⚙️ Pag-scan ng ClamAV | Opsyonal na enricher |
-| ⚙️ VirusTotal hash lookup | Opsyonal na enricher |
-| ✅ Detached signing | Ipinatupad |
-| ✅ CI-enforced signing | Ipinatupad sa mga tag ng release |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Ini-scan ang bawat kasanayan sa panahon ng pagpapatunay:
+Scans every skill during validation:
 
-| Target | Ano ang Nai-scan |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| 📝 `KASANAYAN.md` | Pangunahing nilalaman ng kasanayan |
-| 📄 Markdown/text files | Mga naka-package na sanggunian at mga dokumento |
-| ⚙️ Mga Script | Mga naka-package na script ng automation |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**Mga pamilya ng panuntunan:**
+**Rule families:**
 
-| Panuntunan | Mga halimbawa |
+| Rule | Examples |
 |:-----|:---------|
-| 🎭**Maagap na iniksyon**| Mga pattern ng exfiltration, override ng pagtuturo |
-| 💣**Mga mapanirang utos**| `rm -rf`, `format`, `del /s` |
-| 🔑**Pagtaas ng pribilehiyo**| `sudo`, `chmod 777`, mga setuid pattern |
-| 📂**Mga kahina-hinalang landas**| `/etc/shadow`, `~/.ssh`, mga file ng kredensyal |
-| ⚠️**Mapanganib na mga primitive**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@ Ini-scan ang bawat kasanayan sa panahon ng pagpapatunay:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Nangangailangan ng `clamscan` sa `PATH`
-- Ini-scan ang mga naka-package na file para sa kilalang malware
-- Mga resultang naitala sa metadata ng kasanayan---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**Hash lookup lang**— walang pag-upload ng file sa panahon ng normal na pagpapatunay
-- Ang mga hindi kilalang file ay mananatiling lokal lamang
-- Pinapanatili ang build**deterministic**at CI-independent### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Mahigpit na gate ng paglabas:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-Binabasa ng hakbang na ito ang mga nabuong `kasanayan/*/metadata.json` at nabigo kung ang mga kinakailangang scanner ay hindi nagsagawa o nag-ulat ng mga pagtuklas.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-Ang data ng seguridad ay inilalabas sa bawat metadata ng kasanayan:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ Ang data ng seguridad ay inilalabas sa bawat metadata ng kasanayan:```json
 }
 ```
 
-> Ang block na ito ay pinalaganap sa mga manifest at catalog view, na nagbibigay-daan sa CLI, API, at MCP na**mag-filter at mag-rank ayon sa marka ng seguridad**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-Ang bawat nai-publish na kasanayan ay bumubuo ng:
+Each published skill generates:
 
 | File | Format |
 |:-----|:-------|
 | `dist/archives/<skill>.zip` | ZIP archive |
 | `dist/archives/<skill>.tar.gz` | Tarball archive |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |### ✅ Verify Archives
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-Mga tag na inilabas ng GitHub Actions (`v*`) ngayon:
+GitHub Actions release tags (`v*`) now:
 
-1. i-verify na tumutugma ang git tag sa `package.json`
-2. i-install at i-refresh ang ClamAV
-3. i-decode ang release signing key mula sa mga lihim ng GitHub
-4. patakbuhin ang `npm run release:verify`
-5. i-package ang tarball ng `npm pack`
-6. i-publish ang eksaktong tarball sa npm na may provenance
-7. gumawa ng GitHub Release na may mga custom na tala at naka-attach na mga asset sa pag-verify---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Kung walang ibinigay na pampublikong key, ang build ay kukuha ng isa na may `openssl` at inilalagay ito sa `dist/signing/`.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-Kapag pinagana, ang mga `.sig` na file ay ilalabas sa tabi ng mga archive at checksum manifest.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-Sa CI, ang mga release tag ay nangangailangan na ngayon ng pag-sign sa pamamagitan ng:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` o `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- opsyonal na `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` o `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| Limitasyon | Katayuan |
+| Limitation | Status |
 |:-----------|:-------|
-| Pagsusumite ng pag-upload ng VirusTotal | Sinadyang ibinukod mula sa default na pagpapatunay |
-| Paglagda sa pagpapatupad | Ipinapatupad sa mga tag ng release; ang mga lokal na build ay maaari pa ring tumakbo nang hindi nalagdaan |
-| Naka-host na pamamahala | Ang built-in na auth, admin runtime, CORS/IP allowlists, maintenance mode, at audit logging ay nasa lugar; nananatiling opsyonal ang mga panlabas na gateway |
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

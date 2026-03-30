@@ -5,54 +5,63 @@
 ---
 
 
->**ओमनी स्किल्स रिपॉजिटरी में स्वीकार किए जाने वाले किसी कौशल के लिए न्यूनतम आवश्यकताएं और सिफारिशें।**
+> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
 
-विशेष रूप से शीर्ष-बैंड स्कोर पर लक्षित लेखन मार्गदर्शन के लिए, [हाई-स्कोर प्लेबुक](हाई-स्कोर-प्लेबुक.एमडी) देखें।
+For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-प्रकाशित कैटलॉग के लिए वर्तमान बेंचमार्क:
+Current benchmark for the native catalog:
 
-- 32 प्रकाशित कौशल
-- औसत गुणवत्ता स्कोर `96.3`
-- औसत सर्वोत्तम अभ्यास स्कोर `98.7`
-- औसत सुरक्षा स्कोर `95.0`---
+- 48 published native skills
+- average quality score `87.5`
+- average best-practices score `85.2`
+- average security score `90.6`
+- validation mix `40` passed, `8` warn, `0` failed
+
+---
 
 ## 🔒 Required (Must Pass)
 
-| # | आवश्यकता | कैसे सत्यापित करें |
-|:--|:---|:---|
-| 1️⃣ |**वैध मुद्दा**| `python3 टूल्स/स्क्रिप्ट/validate_skills.py` |
-| 2️⃣ |**स्पष्ट विवरण**| एक-पंक्ति में स्पष्ट करना होगा कि कौशल क्या करता है (10+ वर्ण) |
-| 3️⃣ |**नाम निर्देशिका से मेल खाता है**| `नाम:` फ़ील्ड फ़ोल्डर नाम से बिल्कुल मेल खाता है |
-| 4️⃣ |**अवलोकन अनुभाग**| मार्कडाउन बॉडी में उद्देश्य की संक्षिप्त व्याख्या |
-| 5️⃣ |**अनुभाग का उपयोग कब करें**| कम से कम 2 विशिष्ट उपयोग परिदृश्य |
-| 6️⃣ |**कार्रवाई योग्य निर्देश**| चरण-दर-चरण सामग्री जिसे AI एजेंट निष्पादित कर सकता है |
-| 7️⃣ |**उत्पन्न मेटाडेटा**| सत्यापनकर्ता `skills/<skill>/metadata.json` को सफलतापूर्वक उत्सर्जित करता है |---
+| # | Requirement | How to Verify |
+|:--|:------------|:--------------|
+| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
+| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
+| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
+| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
+| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
+| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
+
+---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | सिफ़ारिश | स्कोर प्रभाव |
-|:--|:------------|:----------------|
-| 8️⃣ |**उदाहरण**- अपेक्षित आउटपुट के साथ कम से कम एक ठोस उदाहरण | 📈 गुणवत्ता +10-15 |
-| 9️⃣ |**सर्वोत्तम अभ्यास**— ✅ करें / ❌ मार्गदर्शन न करें | 📈 सर्वोत्तम अभ्यास +5 |
-| 🔟 |**एक उपकरण के साथ परीक्षण किया गया**- कम से कम एक एआई कोडिंग सहायक के साथ सत्यापित | 📈 गुणवत्ता +5 |
-| 1️⃣1️⃣ |**टैग**— खोज के लिए प्रासंगिक खोज योग्य टैग | 📈 सर्वोत्तम अभ्यास +10 |
-| 1️⃣2️⃣ |**श्रेणी**- एक विहित श्रेणी को सौंपी गई | 📈 सर्वोत्तम अभ्यास +10 |
-| 1️⃣3️⃣ |**समस्या निवारण**— ठोस 'लक्षण' और 'समाधान' मार्गदर्शन | 📈 सर्वोत्तम अभ्यास +5-10 |
-| 1️⃣4️⃣ |**स्थानीय समर्थन संपत्ति**- `संदर्भ/`, `स्क्रिप्ट/`, और आदर्श रूप से कौशल से जुड़े `उदाहरण/` | 📈 सर्वोत्तम अभ्यास +10 |
-| 1️⃣5️⃣ |**स्वस्थ वर्गीकरण**- परिपक्वता एल3, गुणवत्ता 85+, सर्वोत्तम अभ्यास 90+ | 📈 समग्र स्तर |
-| 1️⃣6️⃣ |**कोई गंभीर सुरक्षा निष्कर्ष नहीं**— स्थिर स्कैनर साफ़ हो जाता है | 🛡️ सुरक्षा 100 |---
+| # | Recommendation | Score Impact |
+|:--|:---------------|:-------------|
+| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
+| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
+| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
+| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
+| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+
+---
 
 ## ❌ Reasons for Rejection
 
-| अंक | क्यों |
+| Issue | Why |
 |:------|:----|
-| ❌ गुम या अमान्य फ्रंटमैटर | सत्यापन पाइपलाइन को तोड़ता है |
-| ❌ नाम निर्देशिका से मेल नहीं खाता | कैटलॉग पीढ़ी को तोड़ता है |
-| ❌ खाली या तुच्छ संक्षिप्त विवरण | उपयोगकर्ता कौशल की खोज नहीं कर सकते |
-| ❌ कोई कार्रवाई योग्य सामग्री नहीं (सिर्फ लिंक या स्टब्स) | एजेंट कुछ भी निष्पादित नहीं कर सकते |
-| ❌ स्पष्ट सुधार के बिना डुप्लिकेट | मूल्य जोड़ें, क्लोन न करें |
-| ❌ `जोखिम: आपत्तिजनक` टैग के बिना आपत्तिजनक सामग्री | सुरक्षा और अनुपालन |
-| ❌ महत्वपूर्ण सुरक्षा निष्कर्ष | शीघ्र घुसपैठ, विनाशकारी आदेश, आदि |---
+| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
+| ❌ Name doesn't match directory | Breaks catalog generation |
+| ❌ Empty or trivially short description | Users can't discover the skill |
+| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
+| ❌ Duplicate without clear improvement | Add value, don't clone |
+| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
+| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
+
+---
 
 ## 🧪 Verify Locally
 
@@ -72,25 +81,27 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| आयाम | उत्कृष्ट | अच्छा | कार्य की आवश्यकता है |
-|:---|:---|:-----|:----|
-| ⭐**गुणवत्ता**| 80+ (प्लैटिनम) | 60-79 (सोना/चांदी) | <60 (कांस्य/स्टार्टर) |
-| 📋**सर्वोत्तम अभ्यास**| 90+ (उत्कृष्ट) | 70-89 (अच्छा) | <70 (निष्पक्ष/आवश्यकता-कार्य) |
-| 🛡️**सुरक्षा**| 95+ (कठोर) | 80-94 (सुरक्षित) | <80 (समीक्षा आवश्यक) |
-| 🎯**परिपक्वता**| एल3 (स्क्रिप्ट+परीक्षण) | एल2 (निर्देश) | L1 (केवल मेटाडेटा) |---
+| Dimension | Excellent | Good | Needs Work |
+|:----------|:----------|:-----|:-----------|
+| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
+| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
+| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
 
 ## 🧭 What High Scores Require
 
-लगातार शीर्ष बैंड तक पहुंचने के लिए, एक कौशल में शामिल होना चाहिए:
+To reach the top band consistently, a skill should include:
 
-- एक मजबूत फ्रंटमैटर विवरण जो बताता है कि**क्या**कौशल करता है और**कब**इसका उपयोग किया जाना चाहिए
-- 'कब उपयोग करें', 'वर्कफ़्लो', 'उदाहरण', 'सर्वोत्तम अभ्यास', 'समस्या निवारण' और 'अतिरिक्त संसाधन' के लिए स्पष्ट अनुभाग
-- `संदर्भ/`, `स्क्रिप्ट/`, और आदर्श रूप से `उदाहरण/` के अंतर्गत स्थानीय समर्थन सामग्री, सीधे `SKILL.md` से जुड़ी हुई
-- `एजेंट/ओपनएआई.आईएमएल` के तहत एजेंट मेटाडेटा, जब कौशल को सीधे एजेंट क्लाइंट में लागू करना होता है
-- एक छोटी परिचालन तालिका या समतुल्य निष्पादन मानचित्र जब वर्कफ़्लो को इससे लाभ होता है
-- कम से कम एक चलाने योग्य उदाहरण जो स्थानीय सहायक स्क्रिप्ट या दोहराने योग्य कमांड की ओर इशारा करता है
-- समस्या निवारण को 'लक्षण' और 'समाधान' के रूप में लिखा जाता है, सामान्य चेतावनियों के रूप में नहीं
-- `एल3` के रूप में अर्हता प्राप्त करने के लिए पर्याप्त गहराई, न कि केवल अच्छी तरह से प्रारूपित गद्य
-- यदि आप टॉप-बैंड गुणवत्ता चाहते हैं तो मजबूत वर्कफ़्लो गहराई, निर्णय संपत्ति और समर्थन-पैक विविधता
-- एक समर्थन पैक जो पुन: प्रयोज्य महसूस करने के लिए पर्याप्त गहरा है, न कि केवल चेकबॉक्स कवरेज के लिए मौजूद है
-- यदि आप लगातार शीर्ष बैंड चाहते हैं तो कम से कम 4 सार्थक समर्थन परिवार या पुन: प्रयोज्य फ़ाइलों में समतुल्य गहराई
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
+- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
+- a small operational table or equivalent execution map when the workflow benefits from it
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose
+- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
+- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently

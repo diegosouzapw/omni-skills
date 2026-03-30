@@ -5,110 +5,126 @@
 ---
 
 
->**Mga inaasahan sa istruktura at kalidad para sa isang Omni Skills `SKILL.md` — ang format ng pag-akda na nagpapagana sa buong catalog.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Ang bawat `SKILL.md` ay binubuo ng dalawang natatanging seksyon:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Metadata na nababasa ng machine sa pagitan ng mga `---` delimiter. Pinapalakas nito ang:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 Ang index ng mga kasanayan at pagbuo ng katalogo
-- 🔎 CLI paghahanap at pag-filter
-- ✅ Pagpapatunay at pagmamarka ng kalidad
-- 📊 Nakabuo ng mga artifact ng klasipikasyon ng `metadata.json`
-- 📋 Per-skill manifests sa `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Nababasa ng tao (at nababasa ng ahente) na mga tagubilin. Isulat ito na parang**nagsasanay ka sa isang senior developer**tungkol sa kung paano magsagawa ng isang gawain — sapat na tiyak na masusundan ito ng isang ahente ng AI nang hindi hinuhulaan.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Patlang | Kinakailangan | Uri | Paglalarawan |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `pangalan` | ✅ | string | Dapat tumugma sa pangalan ng direktoryo, lowercase-hyphenated |
-| `paglalarawan` | ✅ | string | Isang linyang paglalarawan (10-200 character) |
-| `bersyon` | ⚡ | string | Semantic na bersyon para sa mismong kasanayan (hal., `"0.1.1"`) |
-| `kategorya` | ⚡ | string | Isang kanonikal na kategorya mula sa repo taxonomy |
-| `mga tag` | ⚡ | string[] | Mga nahahanap na tag para sa pagtuklas |
-| `kumplikado` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
-| `panganib` | ⚡ | string | `ligtas` · `pag-iingat` · `nakakasakit` · `kritikal` |
-| `mga kasangkapan` | ⚡ | string[] | Mga nasubok na AI coding assistant |
-| `pinagmulan` | ⚡ | string | `omni-team` · `komunidad` · `opisyal` |
-| `may-akda` | ⚡ | string | Pagpapatungkol |
-| `date_added` | ⚡ | string | Petsa ng ISO |
-| `petsa_na-update` | ⚡ | string | Petsa ng ISO |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Laging kailangan · ⚡ = Kinakailangan sa strict mode
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Ang bersyon ng kasanayan ay independiyente mula sa bersyon ng npm package. Ang package ay kasalukuyang `0.1.3`, ngunit ang mga umiiral na kasanayan ay maaaring wastong manatili sa kanilang sariling semantic na bersyon.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-Ang repo taxonomy ay kasalukuyang tumutukoy sa**18 canonical na kategorya**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Kategorya | Domain |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `kaunlaran` | Pangkalahatang software development |
-| 🎨 `frontend` | Frontend frameworks at UI |
-| 🔧 `backend` | Mga serbisyo at API ng backend |
-| 🌐 `fullstack-web` | End-to-end na web development |
-| 🛠️ `mga kasangkapan` | Tooling at mga utility ng developer |
-| ⚙️ `cli-automation` | CLI tool at automation script |
-| 📊 `negosyo` | Mga proseso at diskarte sa negosyo |
-| 📐 `produkto` | Pamamahala ng produkto at disenyo |
-| 🎯 `disenyo` | Visual at UX na disenyo |
-| 🤖 `data-ai` | Data engineering at AI application |
-| 🧠 `ai-agents` | Pag-unlad at mga pattern ng ahente ng AI |
-| 📈 `pag-aaral ng makina` | Mga modelo ng ML at pagsasanay |
-| 🔌 `devops` | Imprastraktura at deployment |
-| 🛡️ `pagsubok-seguridad` | Mga kasanayan sa pagsubok at seguridad |
-| 📖 `dokumentasyon` | Pagbuo at pamamahala ng dokumentasyon |
-| 🎬 `content-media` | Paglikha ng nilalaman at media |
-| 💬 `komunikasyon` | Mga tool sa komunikasyon at daloy ng trabaho |
-| ❓ `hindi nakategorya` | Default kapag walang nakitang tugma |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Ang mga legacy na label tulad ng `workflow`, `architecture`, `infrastructure`, `security`, at `testing` ay awtomatikong na-normalize sa pamamagitan ng alias mapping.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Ang isang mahusay na nakasulat na katawan ng kasanayan ay sumusunod sa hierarchy na ito:
+A well-written skill body follows this hierarchy:
 
-### 📌 Pangkalahatang-ideya (Kinakailangan)
-2-3 pangungusap sa**ano**ang nagagawa ng kasanayan at**bakit**ito umiiral.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Kailan Gagamitin (Kinakailangan)
-Bullet list ng**mga partikular na sitwasyon**kung saan naaangkop ang kasanayang ito.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Mga Pangunahing Tagubilin (Kinakailangan)
-Ang**step-by-step na proseso**na dapat sundin ng ahente. Maging tahasan. Maging tiyak. Pinakamahusay na gumagana ang mga ahente sa malinaw, hindi malabo na mga tagubilin.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Mga Halimbawa (Inirerekomenda)
-Mga konkretong prompt, mga bloke ng code, o inaasahang mga output.**Kung mas tiyak, mas mabuti.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Pinakamahuhusay na Kasanayan (Inirerekomenda)
-Gamitin ang ✅ Gawin / ❌ Huwag i-format para sa mabilisang pag-scan.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Pag-troubleshoot (Opsyonal)
-Mga karaniwang isyu at ang kanilang mga solusyon.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Mga Kaugnay na Kasanayan (Opsyonal)
-Mga cross-reference sa mga pantulong na kasanayan.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Nakatuon sa**isang partikular na**workflow o domain
-- 📌 Ang mga tagubilin ay**sapat na malinaw para sundin ng AI**nang walang interpretasyon ng tao
-- 💡 May kasamang**mga konkretong halimbawa**na may inaasahang pag-uugali
-- 🛡️ May tamang**error handling**guidance
-- 📊 Gumagawa ng malusog na metadata: canonical na kategorya, maturity L2+, kalidad 70+
-- 🧰 Nagpapadala ng reusable na support pack, hindi lamang prosa, mas mabuti sa `reference/`, `scripts/`, `examples/`, at `agents/` kung naaangkop
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Para sa mas malakas na pattern ng pagmamarka na nagtutulak ng mga kasanayan sa pinakamataas na banda, tingnan ang [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Pangkalahatang payo na maaaring naaangkop sa anumang bagay
-- 🤷 Malabong mga tagubilin tulad ng "magsulat ng magandang code"
-- 🚫 Walang mga halimbawa o mga bloke ng code
-- ⚠️ Nawawalang frontmatter field
-- 📉 Mababang marka ng kalidad (mababa sa 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

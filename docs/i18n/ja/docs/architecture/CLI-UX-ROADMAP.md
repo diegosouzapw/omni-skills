@@ -5,453 +5,557 @@
 ---
 
 
->**オムニ スキルをフラグファースト インストーラーから、専門家と非専門家の両方のユーザー向けのガイド付きターミナル エクスペリエンスに進化させるための製品ロードマップ。**
-> 範囲: npm パッケージ、CLI インストール エクスペリエンス、ターミナル UI、サービス起動フロー、ビジュアル オンボーディング。---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-現在のランタイム基盤は強力ですが、エントリ エクスペリエンスは、すでに以下を理解しているユーザー向けに最適化されています。
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- どのクライアントをターゲットにしたいのか
-- どのインストール セレクターを使用するか
-- 目標を「--skill」、「--bundle」、または「find」に変換する方法
-- CLI のみのインストールが必要な場合と、MCP、API、または A2A サービスが必要な場合
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-今日:
+Today:
 
-- 「npx オムニスキル」のデフォルトは反重力です
-- これは技術的に有効であり、下位互換性があります
-- ただし、初めてのユーザーや技術の低いオペレーターには理想的ではありません
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-CLI にはすでに基本的な対話モードがありますが、ガイド付きの製品サーフェイスというよりは開発者ユーティリティにまだ近いです。
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-このロードマップは、現在のフラグベースのインターフェイスを壊すことなく、より強力なパブリック UX への道を定義します。---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-ロードマップの大部分は、現在のリポジトリの状態で実装されています。
+The roadmap is now largely implemented in the current repository state.
 
-完了:
+Completed:
 
-- フェーズ 1: ガイド付きエントリポイントの選択
-- フェーズ 2: ガイド付きインストール ウィザード
-- フェーズ 3: ビジュアル ターミナル シェル
-- フェーズ 4: ビジュアル サービス ハブ
-- フェーズ 5: 保存されたプロファイルと再現性
-- フェーズ 6: 強化、テスト、および文書化---
+- Phase 1: Guided Entrypoint Selection
+- Phase 2: Guided Install Wizard
+- Phase 3: Visual Terminal Shell
+- Phase 4: Visual Service Hub
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- 現在のエキスパート CLI ワークフローを保持します。
-- 引数なしのエントリポイントを安全かつ初めてのユーザーにとって理解しやすいものにする
-- インタラクティブなコンテキストでのサイレントデフォルトをガイド付き選択に置き換えます
-- 既知の AI クライアントと任意のカスタム インストール パスをサポート
-- インストール、検出、サービス起動を一貫したユーザー ジャーニーに変える
-- 単なるスクリプトではなく、製品のような視覚的なターミナル UI を提供します
-- インストール エンジン、カタログ、サービス ランタイムを UI で再利用できるようにする---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- 現在のフラグベースの CLI を置き換える
-- サポートされているデフォルトのターゲットから反重力を削除
-- プライマリ配信モードとして Web UI を配信する
-- この UX 作業の一環として、API、MCP、または A2A プロトコル自体をリファクタリングする
-- 「SKILL.md」オーサリングをデータベースベースの管理パネルに置き換える---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-これらのコマンドは、現在とまったく同じように機能し続ける必要があります。
+These commands must continue to work exactly as they do today:
 
-- `npxomni-skills --cursor --skillomni-figma`
-- `npxomni-skills --bundle devops`
-- `npxomni-skills find figma --toolcursor --install --yes`
-- `npxomni-skills mcp stream --local`
-- 「npx オムニスキル API --port 3333」
-- `npx オムニスキル a2a --ポート 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills --bundle devops`
+- `npx omni-skills find figma --tool cursor --install --yes`
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills api --port 3333`
+- `npx omni-skills a2a --port 3335`
 
-- 引数なしの対話型ターミナル セッション: オープンなガイド付きエクスペリエンス
-- 引数なしの非対話型呼び出し: 現在のインストールのデフォルト動作を保持します。
-- 明示的なコマンドとフラグは常に UI 推論よりも優先されます### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-以下は同じ内部ロジックを共有する必要があります。
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
 
-- フラグファースト CLI
-- ガイド付きテキストモード CLI
-- ビジュアルターミナルUI
+### 4.3 Reuse One Engine Across Modes
 
-つまり、UX レイヤーはビジネス ロジックを所有してはなりません。再利用可能なアクションを調整する必要があります。### 4.4 Preview Before Write
+The following should share the same internal logic:
 
-書き込みを引き起こすすべてのガイド付きフローが表示されます。
+- flag-first CLI
+- guided text-mode CLI
+- visual terminal UI
 
-- 解決された目標
-- 解決されたパス
-- 選択したスキルまたはバンドル
-- 同等の CLI コマンド
-- 確認プロンプト### 4.5 Visual Does Not Mean Implicit
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-よりリッチな UI であっても、システムは状態とアクションを明示的にする必要があります。
+### 4.4 Preview Before Write
 
-- インストールが行われる場所
-- 何が書かれるのか
-- サービスが使用するトランスポートまたはポート
-- フローが読み取り専用かローカル書き込み可能か---
+All guided flows that cause writes should display:
+
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
+
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-ニーズ:
+Needs:
 
-- 高速コマンド
-- 強制的なプロンプトはありません
-- 安定したフラグ
-- スクリプト化可能性### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-ニーズ:
+### 5.2 Guided Product User
 
-- 明確な選択肢
-- 反重力が望まれるという仮定はありません
-- カスタムパスインストールのサポート
-- わかりやすいインストールプレビュー
-- インストールアクションとサーバーランタイムアクションの視覚的な区別### 5.3 Operator / Platform User
+Needs:
 
-ニーズ:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- MCP、API、A2Aを視覚的に起動する機能
-- まともなデフォルト
-- ポート、トランスポート、永続性、エグゼキューター モード、認証、およびローカル モードのオプションの調整---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-製品は 3 つのレイヤーを公開する必要があります。### 6.1 Expert Mode
+The product should expose three layers:
 
-直接のコマンドとフラグ。
+### 6.1 Expert Mode
 
-例:
+Direct commands and flags.
 
-- `npxomni-skills --cursor --skillomni-figma`
-- `npxomni-skills mcp stream --local`
-- `npx オムニスキル a2a --ポート 3335`### 6.2 Guided Install Mode
+Examples:
 
-次の場合にトリガーされます:
+- `npx omni-skills --cursor --skill omni-figma`
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills a2a --port 3335`
 
-- ユーザーは引数なしで TTY で「npxomni-skills」を実行します
-- ユーザーは具体的なセレクターを使用せずに「npxomni-skills install」を実行します。
-- ユーザーがガイド付きモードを明示的に選択する
+### 6.2 Guided Install Mode
 
-ガイド付きインストール フローは次のとおりです。
+Triggered when:
 
-1. ターゲットクライアントまたはカスタムパス
-2.インストールタイプ
-3. スキルまたはバンドルの選択
-4. プレビュー
-5.確認
-6. 実行
-7. 次のステップ### 6.3 Visual Operations Hub
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-きっかけ:
+The guided install flow should walk through:
 
-- 「npx オムニスキル ui」
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
 
-これは、専門家以外のユーザーやオペレーターにとっての「ホーム画面」になります。
+### 6.3 Visual Operations Hub
 
-主なアクション:
+Triggered by:
 
-- スキルをインストールする
-- スキルを発見する
-- MCPを開始します
-- APIを開始する
-- A2Aを開始します
-- 医者を走らせる
-- 煙チェックを実行する---
+- `npx omni-skills ui`
+
+This should become the “home screen” for non-expert users and operators.
+
+Core actions:
+
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-結果:
+Outcome:
 
-- TTY の「npx オムニスキル」は、反重力を暗黙的に想定しなくなりました
-- ユーザーはクライアントまたはカスタム パスを選択するよう求められます
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-要件:
+Requirements:
 
-- TTY 以外のデフォルトのインストール動作を保持する
-- ターゲットセレクターを追加
-- カスタムパスキャプチャをサポート### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-結果:
+### Phase 2: Guided Install Wizard
 
-- インストールは完全なガイド付きフローになります
+Outcome:
 
-要件:
+- installation becomes a full guided flow
 
-- インストールモードの選択:
-  - 充実したライブラリ
-  - スキル 1 つ
-  - 1バンドル
-  - 検索してインストールします
-- プレビューをインストールする
-- 同等のコマンドレンダリング
-- 確認と実行### Phase 3: Visual Terminal Shell
+Requirements:
 
-結果:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- 現在の基本的なテキスト UI はブランド化されたターミナル アプリケーションになります
+### Phase 3: Visual Terminal Shell
 
-要件:
+Outcome:
 
-- より豊富なレイアウト
-- プロジェクトのブランディングとロゴ
-- より良いステッパーとカード
-- キーボードによるナビゲーション
-- Ink を介した React ターミナルの実装### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-結果:
+Requirements:
 
-- MCP、API、A2AはビジュアルUIから起動可能
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-要件:
+### Phase 4: Visual Service Hub
 
-- ガイド付き MCP フロー
-- ガイド付き API フロー
-- ガイド付き A2A フロー
-- 表示モードと構成プレビュー### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-結果:
+- MCP, API, and A2A are startable from the visual UI
 
-- 共通のインストールまたはサービスのプリセットを再利用できます
+Requirements:
 
-要件:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- 最近のターゲットを記憶する
-- 保存されたサービスプリセット
-- 最近のコマンド
-- お気に入りのバンドルまたはスキル### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-結果:
+Outcome:
 
-- UX はその場限りの利便性ではなく、維持されるパブリック インターフェイスになります。
+- common install or service presets can be reused
 
-要件:
+Requirements:
 
-- 煙の範囲
-- 回帰テスト
-- ドキュメントの更新
-- オペレーターのガイダンス
-- パッケージの互換性レビュー---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- 「オムニスキル」
-- 「オムニスキルインストール」
-- 「オムニスキル検索」
-- 「オムニスキルUI」
-- 「オムニスキルMCP」
-- 「オムニスキルAPI」
-- `オムニスキル a2a`
-- 「万能ドクター」
-- 「オムニスキルスモーク」### Recommended Behavior
+- `omni-skills`
+- `omni-skills install`
+- `omni-skills find`
+- `omni-skills ui`
+- `omni-skills mcp`
+- `omni-skills api`
+- `omni-skills a2a`
+- `omni-skills doctor`
+- `omni-skills smoke`
 
-|呼び出し |行動 |
-|:-----------|:-----------|
-| TTY の「オムニスキル」、引数なし |ガイド付きインストール エントリ |
-|非 TTY の `omni-skills`、引数なし |現在の Antigravity のデフォルト インストール |
-| TTY の「omni-skills install」、セレクターなし |ガイド付きインストール ウィザード |
-| `omni-skills install --guided` |強制ガイド付きインストール フロー |
-| `オムニスキルUI` |ビジュアル オペレーション ハブを開く |
-|明示的なフラグ |ガイドされたフローを迂回せずに直接実行 |---
+### Recommended Behavior
+
+| Invocation | Behavior |
+|:-----------|:---------|
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
+| `omni-skills install --guided` | Force guided install flow |
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-オプション:
+Options:
 
-- クロード・コード
-- カーソル
-- ジェミニ CLI
-- コーデックス CLI
-- キロ
-- 反重力
-- オープンコード
-- カスタムパス
+- Claude Code
+- Cursor
+- Gemini CLI
+- Codex CLI
+- Kiro
+- Antigravity
+- OpenCode
+- Custom path
 
-出力:
+Output:
 
-- 選択した既知のターゲットまたはカスタム ファイルシステム パス### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-オプション:
+### Step 2: Choose Install Type
 
-- 充実したライブラリ
-- 公開スキル 1 つ
-- 1バンドル
-- 検索してインストールします
+Options:
 
-出力:
+- full library
+- one published skill
+- one bundle
+- search then install
 
-- スコープのインストール### Step 3: Resolve Selection
+Output:
 
-インストールの種類に応じて次のようになります。
+- install scope
 
-- 完全なライブラリ: 追加のセレクターなし
-- スキル: スキルをリストまたは選択します
-- バンドル: バンドルをリストまたは選択します
-- 検索: クエリのプロンプトを表示し、一致するスキルとバンドルを表示します### Step 4: Preview
+### Step 3: Resolve Selection
 
-表示:
+Depending on install type:
 
-- 選択されたターゲット
-- 解決されたパス
-- 選択したスキルまたはバンドル
-- 同等の CLI コマンド
-- フローが選択インストールか完全インストールか### Step 5: Confirm
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-ユーザーは次のことを確認します:
+### Step 4: Preview
 
-- はい → 実行
-- いいえ → 中止または戻ります### Step 6: Result
+Display:
 
-表示:
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
 
-- 成功/失敗
-- 宛先パス
-- 次のステップの提案---
+### Step 5: Confirm
+
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-オペレーション ハブは以下を公開する必要があります。### 10.1 Install
+The operations hub should expose:
 
-- ガイド付きインストール フロー
-- スキルまたはバンドルの検索
-- カスタムパス### 10.2 Discover
+### 10.1 Install
 
-- カタログ検索
-- フィルター
-- メタデータのプレビュー
-- ハンドオフをインストールする### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-オプション:
+### 10.2 Discover
 
-- トランスポート: stdio、ストリーム、sse
-- ローカルモードのオン/オフ
-- ホスト
-- ポート### 10.4 API
+- catalog search
+- filters
+- preview metadata
+- install handoff
 
-オプション:
+### 10.3 MCP
 
-- ホスト
-- ポート
-- オプションの認証
-- オプションのレート制限### 10.5 A2A
+Options:
 
-オプション:
+- transport: stdio, stream, sse
+- local mode on/off
+- host
+- port
 
-- ホスト
-- ポート
-- ストアの種類: メモリ、json、sqlite
-- エグゼキュータ: インライン、プロセス
-- SQLiteキューが有効な場合のリースオプション### 10.6 Diagnostics
+### 10.4 API
 
-- 医師
-- 煙---
+Options:
+
+- host
+- port
+- optional auth
+- optional rate limit
+
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-現在の「tools/bin/cli.js」には次のものが混在しています。
+The current `tools/bin/cli.js` mixes:
 
-- コマンド解析
-- プレゼンテーション
-- インタラクティブなプロンプト
-- アクションオーケストレーション
-- サービスブート
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-新しい構造では、再利用可能なロジックを次の場所に移動する必要があります。
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/ui-models/`
 
-「tools/bin/install.js」は書き込み可能なバックエンドのままにする必要があります。
+### 11.2 Keep Installer Engine Separate
 
-ガイド付き UI は、インストール ロジックを複製するのではなく、既存のインストーラー バックエンドを呼び出す必要があります。### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-ガイド付きインストール ウィザードは、既に機能している同じカタログ コアと CLI 検索ロジックを再利用する必要があります。
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- 「見つける」
-- プレビューをインストールする
-- バンドルの解決### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-最初の配信はテキスト モード プロンプトのままにすることができます。
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-ただし、後でテキスト フローを Ink 経由でレンダリングできるように、アーキテクチャでは明確な継ぎ目を維持する必要があります。---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-軽減策:
+Mitigation:
 
-- TTY でのみガイド付き UI を自動的に開きます
-- 非 TTY で現在のデフォルトを保持する
-- 明示的なフラグ フローを保持する### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-軽減策:
+### 12.2 Letting UI Own Business Logic
 
-- オーケストレーションを再利用可能なアクション モジュールに移動します
-- インストーラーとサービスの起動ロジックを UI レイヤーの下に保持します### 12.3 Ink Migration Too Early
+Mitigation:
 
-軽減策:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
 
-- 最初に現在のノード端末スタックでガイド付きフローを出荷します
-- フロー セマンティクスが安定したら、Ink に移行します。### 12.4 Incomplete Service UX
+### 12.3 Ink Migration Too Early
 
-軽減策:
+Mitigation:
 
-- 最初にインストールウィザードを出荷します
-- その後、レイヤーガイド付きサービスの起動---
+- first ship the guided flow in current Node terminal stack
+- then migrate to Ink once flow semantics are stable
+
+### 12.4 Incomplete Service UX
+
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- TTY の「npxomni-skills」はすぐにはインストールされなくなりました
-- ユーザーはターゲットクライアントまたはカスタムパスを選択できます
-- 非 TTY 引数なしの呼び出しは以前と同様に機能します### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- ガイド付きインストールは、完全なライブラリ、スキル、バンドル、検索してからインストールをサポートします
-- 書き込み前に常にプレビューが表示されます
-- 同等のコマンドが表示されます### Phase 3
+### Phase 2
 
-- ブランドの端末 UI が存在します
-- UI は、単純な readline メニューよりも視覚的に構造化されています。
-- ナビゲーションはキーボードフレンドリーです### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- ユーザーはビジュアルハブから MCP、API、A2A を開始できます
-- 主要なランタイム オプションはガイド付き形式で構成可能### Phase 5
+### Phase 3
 
-- 最近の設定または保存された設定は再利用可能です
-- 繰り返しフローではプロンプトが少なくなります### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- スモーク カバレッジは新しい UX エントリポイントを反映しています
-- ガイド付きモードとサービス ウィザードの動作について説明したドキュメント---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-このロードマップは次の順序で実装する必要があります。
+This roadmap must be implemented in this order:
 
-1. ガイド付きエントリーポイントの選択
-2. ガイド付きインストールウィザード
-3. ビジュアルターミナルシェル
-4. ビジュアルサービスハブ
-5. 保存されたプロファイルと再現性
-6. 強化、テスト、ドキュメントの仕上げ
+1. Guided entrypoint selection
+2. Guided install wizard
+3. Visual terminal shell
+4. Visual service hub
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-実装作業では、CLI 作業が計画と一致し、ずれないようにするために、各タスクを開始する前に関連するタスク ファイルを読み取る必要があります。
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

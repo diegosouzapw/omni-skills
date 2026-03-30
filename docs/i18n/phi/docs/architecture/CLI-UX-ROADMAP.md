@@ -5,243 +5,289 @@
 ---
 
 
->**Ang roadmap ng produkto para sa nagbabagong Omni Skills mula sa isang flag-first installer tungo sa isang guided terminal experience para sa parehong eksperto at hindi ekspertong user.**
-> Saklaw: npm package, karanasan sa pag-install ng CLI, terminal UI, mga daloy ng paglulunsad ng serbisyo, at visual na onboarding.---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-Ang kasalukuyang runtime foundation ay matibay, ngunit ang karanasan sa pagpasok ay na-optimize pa rin para sa mga user na nakakaunawa na:
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- sinong kliyente ang gusto nilang i-target
-- kung aling tagapili ng pag-install ang gusto nilang gamitin
-- kung paano isalin ang mga layunin sa `--skill`, `--bundle`, o `find`
-- kapag kailangan nila ng CLI-only install kumpara sa mga serbisyo ng MCP, API, o A2A
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-ngayon:
+Today:
 
-- Nagde-default ang `npx omni-skills` sa Antigravity
-- ito ay teknikal na wasto at pabalik-katugma
-- ngunit hindi ito mainam para sa mga unang beses na gumagamit o hindi gaanong teknikal na mga operator
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-Ang CLI ay mayroon nang pangunahing interactive na mode, ngunit mas malapit pa rin ito sa isang utility ng developer kaysa sa isang may gabay na ibabaw ng produkto.
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-Tinutukoy ng roadmap na ito ang landas patungo sa mas malakas na pampublikong UX nang hindi sinisira ang kasalukuyang interface na nakabatay sa bandila.---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-Ang roadmap ay higit na ipinapatupad sa kasalukuyang estado ng repositoryo.
+The roadmap is now largely implemented in the current repository state.
 
-Nakumpleto:
+Completed:
 
-- Phase 1: Pinatnubayang Entrypoint Selection
+- Phase 1: Guided Entrypoint Selection
 - Phase 2: Guided Install Wizard
 - Phase 3: Visual Terminal Shell
 - Phase 4: Visual Service Hub
-- Phase 5: Mga Nai-save na Profile at Pag-uulit
-- Phase 6: Pagpapatigas, Pagsusuri, at Dokumentasyon---
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- Panatilihin ang kasalukuyang mga dalubhasang CLI workflow
-- Gawing ligtas at naiintindihan ang entrypoint na walang argumento para sa mga unang beses na gumagamit
-- Palitan ang mga silent default sa mga interactive na konteksto ng may gabay na pagpili
-- Suportahan ang mga kilalang AI client at arbitrary na custom na mga path ng pag-install
-- Gawing magkakaugnay na paglalakbay ng user ang pag-install, pagtuklas, at pag-boot ng serbisyo
-- Magbigay ng visual terminal UI na parang isang produkto, hindi lamang isang script
-- Panatilihing magagamit muli ang install engine, catalog, at runtime ng serbisyo sa ilalim ng UI---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- Pinapalitan ang kasalukuyang flag-based na CLI
-- Pag-alis ng Antigravity bilang isang sinusuportahang default na target
-- Pagpapadala ng web UI bilang pangunahing mode ng paghahatid
-- Refactoring API, MCP, o A2A protocol mismo bilang bahagi ng gawaing UX na ito
-- Pinapalitan ang `SKILL.md` authoring ng isang database-backed admin panel---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-Ang mga utos na ito ay dapat na patuloy na gumana nang eksakto tulad ng ginagawa nila ngayon:
+These commands must continue to work exactly as they do today:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills find figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills a2a --port 3335`
 
-- Interactive na terminal session na walang mga argumento: bukas na may gabay na karanasan
-- Non-interactive na invocation na walang argumento: panatilihin ang kasalukuyang pag-install ng default na gawi
-- Ang mga tahasang command at flag ay palaging nananalo sa UI inference### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-Ang mga sumusunod ay dapat magbahagi ng parehong panloob na lohika:
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
+
+### 4.3 Reuse One Engine Across Modes
+
+The following should share the same internal logic:
 
 - flag-first CLI
-- may gabay na text-mode CLI
+- guided text-mode CLI
 - visual terminal UI
 
-Nangangahulugan iyon na ang layer ng UX ay hindi dapat nagmamay-ari ng lohika ng negosyo. Dapat itong ayusin ang mga magagamit na pagkilos.### 4.4 Preview Before Write
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-Ang lahat ng may gabay na daloy na nagiging sanhi ng pagsusulat ay dapat magpakita ng:
+### 4.4 Preview Before Write
 
-- nalutas na target
-- nalutas na landas
-- napiling mga kasanayan o mga bundle
-- katumbas na utos ng CLI
-- prompt ng kumpirmasyon### 4.5 Visual Does Not Mean Implicit
+All guided flows that cause writes should display:
 
-Kahit na sa mas mayamang UI, dapat pa ring gawing tahasan ng system ang estado at mga pagkilos:
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
 
-- kung saan pupunta ang pag-install
-- kung ano ang isusulat
-- kung aling transportasyon o port ang gagamitin ng isang serbisyo
-- kung ang isang daloy ay read-only o local-write-capable---
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Kailangan:
+Needs:
 
-- mabilis na mga utos
-- walang sapilitang senyas
-- matatag na mga bandila
-- kakayahang mag-script### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-Kailangan:
+### 5.2 Guided Product User
 
-- malinaw na mga pagpipilian
-- walang pagpapalagay na ang Antigravity ay ninanais
-- suporta para sa mga custom na pag-install ng path
-- naiintindihan na preview ng pag-install
-- nakikitang pagkakaiba sa pagitan ng pag-install at mga aksyon ng runtime ng server### 5.3 Operator / Platform User
+Needs:
 
-Kailangan:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- kakayahang maglunsad ng MCP, API, at A2A nang biswal
-- matino default
-- opsyonal na pag-tune ng mga port, transportasyon, pagtitiyaga, executor mode, auth, at lokal na mode---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-Dapat ilantad ng produkto ang tatlong layer:### 6.1 Expert Mode
+The product should expose three layers:
 
-Mga direktang utos at watawat.
+### 6.1 Expert Mode
 
-Mga halimbawa:
+Direct commands and flags.
+
+Examples:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills mcp stream --local`
-- `npx omni-skills a2a --port 3335`### 6.2 Guided Install Mode
+- `npx omni-skills a2a --port 3335`
 
-Na-trigger kapag:
+### 6.2 Guided Install Mode
 
-- nagpapatakbo ang user ng `npx omni-skills` sa isang TTY na walang args
-- nagpapatakbo ang user ng `npx omni-skills install` nang walang mga konkretong tagapili
-- tahasang nag-opt in ang user sa guided mode
+Triggered when:
 
-Ang ginabayang daloy ng pag-install ay dapat dumaan sa:
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-1. target na kliyente o custom na landas
-2. uri ng pag-install
-3. kasanayan o pagpili ng bundle
-4. silipin
-5. kumpirmasyon
-6. pagpapatupad
-7. mga susunod na hakbang### 6.3 Visual Operations Hub
+The guided install flow should walk through:
 
-Na-trigger ng:
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
+
+### 6.3 Visual Operations Hub
+
+Triggered by:
 
 - `npx omni-skills ui`
 
-Dapat itong maging "home screen" para sa mga hindi ekspertong user at operator.
+This should become the “home screen” for non-expert users and operators.
 
-Mga pangunahing aksyon:
+Core actions:
 
-- mga kasanayan sa pag-install
-- tumuklas ng mga kasanayan
-- simulan ang MCP
-- simulan ang API
-- simulan ang A2A
-- tumakbo ng doktor
-- magpatakbo ng mga tseke ng usok---
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-kinalabasan:
+Outcome:
 
-- Hindi na tahimik na ipinapalagay ng `npx omni-skills` sa TTY ang Antigravity
-- sinenyasan ang mga user na pumili ng kliyente o custom na landas
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-Mga kinakailangan:
+Requirements:
 
-- panatilihin ang hindi TTY na default na gawi sa pag-install
-- magdagdag ng tagapili ng target
-- suportahan ang pasadyang pagkuha ng landas### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-kinalabasan:
+### Phase 2: Guided Install Wizard
 
-- Ang pag-install ay nagiging ganap na ginabayang daloy
+Outcome:
 
-Mga kinakailangan:
+- installation becomes a full guided flow
 
-- pagpili ng mode ng pag-install:
-  - buong library
-  - isang kasanayan
-  - isang bundle
-  - maghanap pagkatapos ay i-install
-- i-install ang preview
-- katumbas na pag-render ng command
-- kumpirmasyon at pagpapatupad### Phase 3: Visual Terminal Shell
+Requirements:
 
-kinalabasan:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- ang kasalukuyang pangunahing text UI ay nagiging isang branded na terminal application
+### Phase 3: Visual Terminal Shell
 
-Mga kinakailangan:
+Outcome:
 
-- mas mayamang layout
-- branding at logo ng proyekto
-- mas mahusay na stepper at mga card
-- nabigasyon na hinihimok ng keyboard
-- Mag-react sa pagpapatupad ng terminal sa pamamagitan ng Ink### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-kinalabasan:
+Requirements:
 
-- Ang MCP, API, at A2A ay nagsisimula mula sa visual na UI
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-Mga kinakailangan:
+### Phase 4: Visual Service Hub
 
-- ginabayang daloy ng MCP
-- ginabayang daloy ng API
-- ginabayang daloy ng A2A
-- nakikitang mode at mga preview ng config### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-kinalabasan:
+- MCP, API, and A2A are startable from the visual UI
 
-- ang karaniwang pag-install o mga preset ng serbisyo ay maaaring magamit muli
+Requirements:
 
-Mga kinakailangan:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- tandaan ang mga kamakailang target
-- naka-save na mga preset ng serbisyo
-- kamakailang mga utos
-- mga paboritong bundle o kasanayan### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-kinalabasan:
+Outcome:
 
-- ang UX ay nagiging isang pinapanatili na pampublikong interface, hindi isang ad hoc na kaginhawahan
+- common install or service presets can be reused
 
-Mga kinakailangan:
+Requirements:
 
-- saklaw ng usok
-- mga pagsubok sa regression
-- mga update ng doc
-- gabay ng operator
-- pagsusuri sa pagiging tugma ng package---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
@@ -255,22 +301,26 @@ Mga kinakailangan:
 - `omni-skills api`
 - `omni-skills a2a`
 - `omni-skills doctor`
-- `omni-skills smoke`### Recommended Behavior
+- `omni-skills smoke`
 
-| Panawagan | Pag-uugali |
+### Recommended Behavior
+
+| Invocation | Behavior |
 |:-----------|:---------|
-| `omni-skills` sa TTY, walang args | May gabay na entry sa pag-install |
-| `omni-skills` sa hindi TTY, walang args | Kasalukuyang Antigravity default na pag-install |
-| `omni-skills install` sa TTY, walang mga pumipili | Ginabayang install wizard |
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
 | `omni-skills install --guided` | Force guided install flow |
-| `omni-skills ui` | Buksan ang visual operations hub |
-| tahasang mga flag | Direktang isagawa nang hindi lumilihis sa ginabayang daloy |---
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Mga Pagpipilian:
+Options:
 
 - Claude Code
 - Cursor
@@ -279,179 +329,233 @@ Mga Pagpipilian:
 - Kiro
 - Antigravity
 - OpenCode
-- Pasadyang landas
+- Custom path
 
 Output:
 
-- napiling kilalang target O custom na path ng filesystem### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-Mga Pagpipilian:
+### Step 2: Choose Install Type
 
-- buong library
-- isang nai-publish na kasanayan
-- isang bundle
-- maghanap pagkatapos ay i-install
+Options:
+
+- full library
+- one published skill
+- one bundle
+- search then install
 
 Output:
 
-- I-install ang saklaw### Step 3: Resolve Selection
+- install scope
 
-Depende sa uri ng pag-install:
+### Step 3: Resolve Selection
 
-- buong library: walang karagdagang tagapili
-- kasanayan: ilista o pumili ng isang kasanayan
-- bundle: ilista o pumili ng bundle
-- paghahanap: prompt para sa query, ipakita ang pagtutugma ng mga kasanayan at mga bundle### Step 4: Preview
+Depending on install type:
 
-Display:
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-- napiling target
-- nalutas na landas
-- napiling kasanayan o bundle
-- katumbas na utos ng CLI
-- kung ang daloy ay pumipili o ganap na pag-install### Step 5: Confirm
-
-Kinukumpirma ng user:
-
-- oo → isagawa
-- hindi → abort o bumalik### Step 6: Result
+### Step 4: Preview
 
 Display:
 
-- tagumpay/kabiguan
-- landas ng patutunguhan
-- mungkahi sa susunod na hakbang---
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
+
+### Step 5: Confirm
+
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-Dapat ilantad ng operations hub ang:### 10.1 Install
+The operations hub should expose:
 
-- ginabayang daloy ng pag-install
-- kasanayan o paghahanap ng bundle
-- pasadyang landas### 10.2 Discover
+### 10.1 Install
 
-- paghahanap ng katalogo
-- mga filter
-- i-preview ang metadata
-- i-install ang handoff### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-Mga Pagpipilian:
+### 10.2 Discover
 
-- transportasyon: stdio, stream, sse
-- lokal na mode on/off
+- catalog search
+- filters
+- preview metadata
+- install handoff
+
+### 10.3 MCP
+
+Options:
+
+- transport: stdio, stream, sse
+- local mode on/off
 - host
-- daungan### 10.4 API
+- port
 
-Mga Pagpipilian:
+### 10.4 API
 
-- host
-- daungan
-- opsyonal na auth
-- opsyonal na limitasyon sa rate### 10.5 A2A
-
-Mga Pagpipilian:
+Options:
 
 - host
-- daungan
-- uri ng tindahan: memorya, json, sqlite
-- tagapagpatupad: inline, proseso
-- Mga opsyon sa pag-upa kapag pinagana ang sqlite queue### 10.6 Diagnostics
+- port
+- optional auth
+- optional rate limit
 
-- doktor
-- usok---
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-Ang kasalukuyang `tools/bin/cli.js` ay naghahalo:
+The current `tools/bin/cli.js` mixes:
 
-- pag-parse ng command
-- pagtatanghal
-- mga interactive na senyas
-- orkestrasyon ng aksyon
-- boot ng serbisyo
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-Dapat ilipat ng bagong istraktura ang reusable logic sa:
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/ui-models/`
 
-Ang `tools/bin/install.js` ay dapat manatiling backend na may kakayahang sumulat.
+### 11.2 Keep Installer Engine Separate
 
-Dapat tawagan ng may gabay na UI ang kasalukuyang installer backend sa halip na i-duplicate ang logic ng pag-install.### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-Dapat gamitin muli ng guided install wizard ang parehong catalog-core at CLI search logic na nagpapagana na:
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- `hanapin`
-- i-install ang mga preview
-- resolution ng bundle### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-Ang unang paghahatid ay maaaring manatili sa text-mode prompt.
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-Ngunit ang arkitektura ay dapat panatilihing malinaw ang tahi upang ang daloy ng teksto ay mai-render sa ibang pagkakataon sa pamamagitan ng Ink.---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Pagbawas:
+Mitigation:
 
-- awtomatikong buksan ang guided UI sa TTY
-- panatilihin ang kasalukuyang default sa hindi TTY
-- panatilihin ang tahasang mga daloy ng bandila### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-Pagbawas:
+### 12.2 Letting UI Own Business Logic
 
-- ilipat ang orkestra sa magagamit muli na mga module ng pagkilos
-- panatilihin ang installer at service boot logic sa ibaba ng UI layer### 12.3 Ink Migration Too Early
+Mitigation:
 
-Pagbawas:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
 
-- unang ipadala ang guided flow sa kasalukuyang Node terminal stack
-- pagkatapos ay lumipat sa Ink kapag naging stable na ang flow semantics### 12.4 Incomplete Service UX
+### 12.3 Ink Migration Too Early
 
-Pagbawas:
+Mitigation:
 
-- ship install wizard muna
-- pagkatapos ay paglulunsad ng serbisyong ginagabayan ng layer---
+- first ship the guided flow in current Node terminal stack
+- then migrate to Ink once flow semantics are stable
+
+### 12.4 Incomplete Service UX
+
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- Hindi na agad nag-i-install ang `npx omni-skills` sa TTY
-- Maaaring pumili ang user ng target na kliyente o custom na landas
-- gumagana pa rin ang non-TTY no-arg invocation tulad ng dati### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- Sinusuportahan ng guided install ang buong library, kasanayan, bundle, at search-then-install
-- Palaging ipinapakita ang preview bago magsulat
-- ipinapakita ang katumbas ng command### Phase 3
+### Phase 2
 
-- umiiral ang branded na terminal UI
-- ang UI ay mas visually structured kaysa sa mga simpleng readline na menu
-- Ang nabigasyon ay keyboard-friendly### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- maaaring simulan ng mga user ang MCP, API, at A2A mula sa visual hub
-- Ang mga pangunahing opsyon sa runtime ay maaaring i-configure sa guided form### Phase 5
+### Phase 3
 
-- magagamit muli ang mga kamakailan o naka-save na kagustuhan
-- ang mga umuulit na daloy ay tumatagal ng mas kaunting mga senyas### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- Ang saklaw ng usok ay sumasalamin sa mga bagong UX entrypoints
-- Inilalarawan ng mga doc ang guided mode at pag-uugali ng service wizard---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-Ang roadmap na ito ay dapat ipatupad sa ganitong pagkakasunud-sunod:
+This roadmap must be implemented in this order:
 
-1. May gabay na pagpili ng entrypoint
+1. Guided entrypoint selection
 2. Guided install wizard
 3. Visual terminal shell
 4. Visual service hub
-5. Naka-save na mga profile at repeatability
-6. Hardening, pagsubok, at docs polish
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-Dapat basahin ng gawaing pagpapatupad ang nauugnay na file ng gawain bago simulan ang bawat gawain upang manatiling nakahanay ang gawaing CLI sa plano at hindi naaanod.
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

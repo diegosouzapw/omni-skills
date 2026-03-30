@@ -5,71 +5,83 @@
 ---
 
 
->**ทักษะ Omni ที่ `SKILL.md` ต้องการในทางปฏิบัติเพื่อให้ได้คะแนนวุฒิภาวะ แนวทางปฏิบัติที่ดีที่สุด คุณภาพ และความปลอดภัยสูง**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-คู่มือนี้จะอธิบายว่าตัวแยกประเภทของพื้นที่เก็บข้อมูลให้รางวัลแก่ทักษะอย่างไร
+This guide explains how the repository's classifier actually rewards a skill.
 
-ใช้เมื่อคุณต้องการ:
+Use it when you want to:
 
-- สร้างทักษะใหม่ที่จะอยู่ในกลุ่มที่ทำคะแนนสูงสุด
-- พัฒนาทักษะที่มีอยู่ซึ่งติดอยู่ที่ 'ดี' หรือ 'ดีเยี่ยม' ต่ำ
-- ทำความเข้าใจว่าเหตุใดทักษะที่มีการจัดรูปแบบที่เหมาะสมจึงยังไม่ได้รับคะแนนเหมือนเป็นสินทรัพย์ในการดำเนินงานที่ยอดเยี่ยม
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-นี่คือเพื่อนร่วมทางที่พบปะกับผู้ร่วมให้ข้อมูลเพื่อ:
+This is the contributor-facing companion to:
 
-- [แถบคุณภาพ](QUALITY-BAR.md)
-- [ทักษะกายวิภาคศาสตร์](SKILL-ANATOMY.md)
-- [การจำแนกทักษะ](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-เกณฑ์มาตรฐานปัจจุบันสำหรับแคตตาล็อกสด:
+Current benchmark for the live native catalog:
 
-- 32 ทักษะที่เผยแพร่
-- สเปรดคุณภาพปัจจุบัน: `94, 95, 96, 97, 100`
-- แนวทางปฏิบัติที่ดีที่สุดในปัจจุบันแพร่กระจาย: `98, 99, 100`
-- ระดับบนสุดในปัจจุบัน: `omni-figma` ที่คุณภาพ `100/100` และแนวทางปฏิบัติที่ดีที่สุด `100/100`---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-ตัวแยกประเภทไม่ได้**ให้รางวัลการลดราคาที่ค่อนข้างสวยเพียงอย่างเดียว
+The classifier does **not** reward pretty markdown alone.
 
-ทักษะที่ได้คะแนนสูงคือทักษะที่:
+High-scoring skills are skills that are:
 
--**ค้นพบได้**: คำอธิบายระบุอย่างชัดเจนว่าทักษะนี้ทำอะไรและควรใช้เมื่อใด
--**การปฏิบัติงาน**: ทักษะประกอบด้วยสคริปต์ในเครื่อง ข้อมูลอ้างอิง และตัวอย่างที่รันได้
--**การวินิจฉัย**: ช่วยให้เจ้าหน้าที่ฟื้นตัวเมื่อมีสิ่งผิดปกติเกิดขึ้น
--**เฉพาะเจาะจง**: มุ่งเน้นไปที่ขั้นตอนการทำงานเดียว ไม่ใช่คำแนะนำแบบกว้างๆ
--**ปลอดภัย**: หลีกเลี่ยงรูปแบบที่มีความเสี่ยงและส่งเอาต์พุตสแกนเนอร์ที่สะอาด
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-ในทางปฏิบัติ ทักษะที่แข็งแกร่งที่สุดจะมีลักษณะเหมือน**ชุดเวิร์กโฟลว์ขนาดเล็ก**มากกว่าบันทึกย่อแบบธรรมดา---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-ใช้เป้าหมายเหล่านี้เมื่อเขียน:
+Use these targets when authoring:
 
-| มิติข้อมูล | เป้าหมายที่แข็งแกร่ง | เป้าหมายพิเศษ |
+| Dimension | Strong Target | Exceptional Target |
 |:----------|:--------------|:-------------------|
-| 🎯 ครบกำหนด | `L3` | `L3` พร้อมทรัพยากรสนับสนุนมากมาย |
-| 📋 แนวทางปฏิบัติที่ดีที่สุด | `90+` | `96+` |
-| ⭐ คุณภาพ | `85+` | `90+` |
-| 🛡️ ความปลอดภัย | `95+` | `95+` โดยไม่พบผลลัพธ์เป็นศูนย์ |---
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-สิ่งสำคัญของคุณควรทำให้ทักษะนั้นง่ายต่อการจัดประเภทและง่ายต่อการค้นพบ:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `name` ตรงกับไดเร็กทอรีทุกประการ
-- `คำอธิบาย` อธิบายทั้ง**อะไร**และ**เมื่อใด**
-- มี "หมวดหมู่", "แท็ก", "เครื่องมือ", "ความซับซ้อน", "ความเสี่ยง", "แหล่งที่มา", "ผู้เขียน" และวันที่ทั้งหมด
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-รูปร่างคำอธิบายที่ดี:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-รูปร่างคำอธิบายไม่ถูกต้อง:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-ทักษะที่แข็งแกร่งที่สุดประกอบด้วยส่วนเหล่านี้อย่างสม่ำเสมอ:
+The strongest skills consistently include these sections:
 
-- `## ภาพรวม`
-- `## เมื่อใดควรใช้ทักษะนี้`
-- `## ขั้นตอนการทำงาน`
-- `## ตัวอย่าง`
-- `## แนวทางปฏิบัติที่ดีที่สุด`
-- `## การแก้ไขปัญหา`
-- `## แหล่งข้อมูลเพิ่มเติม`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-หากขาดไปอย่างใดอย่างหนึ่ง คะแนนก็ยังดีอยู่ แต่จะดูโดดเด่นได้ยากขึ้น---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-ทักษะการให้คะแนนสูงสุดมักประกอบด้วย:
+Top-scoring skills usually include:
 
-- `ข้อมูลอ้างอิง/รายการตรวจสอบ.md`
-- สคริปต์ตัวช่วยตั้งแต่หนึ่งตัวขึ้นไปใน `scripts/`
-- อย่างน้อยหนึ่งตัวอย่างการทำงานใน `examples/`
-- `agents/openai.yaml` เมื่อทักษะมีไว้สำหรับการเรียกใช้ตัวแทนโดยตรง
-- ลิงก์โดยตรงจาก `SKILL.md` ไปยังไฟล์ในเครื่องเหล่านั้น
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-สิ่งนี้สำคัญเนื่องจากตัวแยกประเภทถือว่าทักษะที่มี**เนื้อหาสนับสนุนแบบรวมกลุ่ม**นั้นสามารถนำไปใช้ได้จริงมากกว่าทักษะที่ชี้ออกไปด้านนอกเท่านั้น
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-ขั้นต่ำที่แนะนำ:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-ตัวอย่างคะแนนสูงได้แก่:
+High-scoring examples are:
 
-- คอนกรีต
-- พิมพ์ด้วยรั้วจริง เช่น `bash` หรือ `python`
-- เชื่อมโยงกับสคริปต์ท้องถิ่นหรือคำสั่งที่ทำซ้ำได้
-- เป็นตัวแทนของขั้นตอนการทำงาน
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-ดี:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-อ่อนแอ:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-ผู้บันทึกคะแนนให้รางวัลแก่การแก้ไขปัญหาที่ช่วยให้ตัวแทนฟื้นตัว ไม่ใช่แค่จดจำปัญหาเท่านั้น
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-รูปแบบที่ต้องการ:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-สิ่งนี้แข็งแกร่งกว่าบันทึกที่คลุมเครือเช่น:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-ตอนนี้ตัวแยกประเภทสามารถแยกความแตกต่างระหว่างทักษะที่เพียงแค่สมบูรณ์กับทักษะที่ลึกซึ้งอย่างแท้จริง
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-สัญญาณที่ช่วย:
+Signals that help:
 
-- ตัวอย่างที่เป็นรูปธรรมหลายรายการ
-- กรณีการแก้ไขปัญหาหลายกรณี
-- คำแนะนำทักษะที่เกี่ยวข้อง
-- ชุดอ้างอิงที่สมบูรณ์ยิ่งขึ้น
-- ส่วน `## ขั้นตอนการทำงาน` ที่มองเห็นได้พร้อมหมายเลขขั้นตอนที่ผู้บันทึกคะแนนสามารถนับได้โดยตรง
-- อย่างน้อยหนึ่งตารางการปฏิบัติงานหรือแผนผังการดำเนินการที่ชี้แจงขั้นตอนการทำงาน
-- ไดเรกทอรีสนับสนุนหรือประเภทเนื้อหามากกว่าหนึ่งรายการ
-- ส่วนเวิร์กโฟลว์ที่มีขั้นตอนเพียงพอที่จะเป็นแนวทางในการดำเนินการ
-- สินทรัพย์การตัดสินใจ เช่น รายการตรวจสอบ รูบริก เมทริกซ์ แพ็กเก็ต หรือคู่มือการเล่น
-- ความหลากหลายของชุดสนับสนุนที่แข็งแกร่งยิ่งขึ้นใน `ข้อมูลอ้างอิง/`, `สคริปต์/`, `ตัวแทน/`, `ตัวอย่าง/` หรือ `สินทรัพย์/`
-- ไฟล์สนับสนุนที่สามารถนำมาใช้ซ้ำได้มากพอที่จะดูเหมือนเป็นชุดอุปกรณ์ ไม่ใช่ตัวช่วยแม้แต่ตัวเดียวที่ซ่อนอยู่ถัดจากมาร์กดาวน์
-- ไฟล์ตัวช่วยมากกว่าหนึ่งไฟล์เมื่อเวิร์กโฟลว์ซับซ้อนพอที่จะพิสูจน์ชุดสนับสนุน
-- ความลึกของร่างกายเพียงพอที่จะครอบคลุมการแลกเปลี่ยนและโหมดความล้มเหลว
-- คำแนะนำในการปฏิบัติงานที่หนาแน่นยิ่งขึ้น เนื่องจากขณะนี้ผู้บันทึกคะแนนสามารถแยกแยะการจัดรูปแบบที่สวยงามออกจากความลึกของเวิร์กโฟลว์ที่นำกลับมาใช้ใหม่ได้อย่างแท้จริง
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-สัญญาณที่**ไม่**ช่วยได้มาก:
+Signals that do **not** help much:
 
-- ทำซ้ำคำสั่งเดียวกันด้วยคำที่ต่างกัน
-- ข้อความตัวเติมทั่วไป
-- เพิ่มหัวข้อโดยไม่ต้องเพิ่มเนื้อหาข้างใต้---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-ใช้รายการตรวจสอบนี้ก่อนที่จะดำเนินการตรวจสอบ:
+Use this checklist before running validation:
 
-- คำอธิบายบอกว่า**อะไร**และ**เมื่อใด**
-- ทักษะนี้เน้นไปที่ขั้นตอนการทำงานเดียว
-- `## Workflow` มีอยู่และมีขั้นตอนที่มีหมายเลขหรือสัญลักษณ์แสดงหัวข้อย่อย
-- มีตัวอย่างที่สามารถรันได้อย่างน้อยหนึ่งตัวอย่าง
-- `ข้อมูลอ้างอิง/`, `สคริปต์/` และตามหลักการแล้ว `ตัวอย่าง/` เชื่อมโยงจาก `SKILL.md`
-- `agents/openai.yaml` มีอยู่เมื่อทักษะมีไว้สำหรับการเรียกใช้โดยตรงในไคลเอนต์ตัวแทน
-- การแก้ไขปัญหาใช้ 'อาการ' และ 'วิธีแก้ปัญหา'
-- ทักษะสามารถจัดประเภทได้อย่างสมเหตุสมผลเป็น `L3`
-- ไม่มีคำสั่งที่มีความเสี่ยงหรือเส้นทางที่น่าสงสัย
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-จากนั้นรัน:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- คำอธิบายถูกต้องแต่กว้างเกินไป
-- มาร์กดาวน์มีส่วนต่างๆ แต่ไม่มีความลึกในการปฏิบัติงาน
-- ตัวอย่างไม่ได้ชี้ไปที่ผู้ช่วยในพื้นที่
-- มีการแก้ไขปัญหาแต่ไม่ได้รับการวินิจฉัย
-- มีแท็กหรือตัวระบุเครื่องมือน้อยเกินไป
-- ทักษะนี้ปลอดภัยและสะอาด แต่ยังตื้นเกินไปที่จะนับว่ายอดเยี่ยม---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-หากทักษะของคุณรู้สึกเหมือน:
+If your skill feels like:
 
--**เทมเพลต**: อาจผ่านไปได้
--**คำแนะนำ**: อาจทำคะแนนได้ดี
--**แพ็คเกจเวิร์กโฟลว์**: มีแนวโน้มที่จะได้คะแนนสูงกว่ามาก
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

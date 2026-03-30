@@ -5,15 +5,19 @@
 ---
 
 
->**ชุดรวมคือตัวเลือกทักษะที่คัดสรรมาซึ่งซ้อนกันอยู่ด้านบนสุดของแค็ตตาล็อก**ขณะนี้ชุดรวมเริ่มต้นทั้ง 7 ชุดได้รับการสนับสนุนจากทักษะที่เผยแพร่แล้ว---
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by currently cataloged skills.
+
+---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` ไม่**ไม่**ติดตั้งแพ็คเกจพิเศษ มัน:
+`--bundle` does **not** install a special package. It:
 
-1. 📋 ขยายคำจำกัดความบันเดิลที่เลือก
-2. ✅ ติดตั้งเฉพาะสมาชิกที่มีอยู่ในแค็ตตาล็อกในปัจจุบันเท่านั้น
-3. ✅ สร้างแผนการติดตั้งที่เป็นรูปธรรมจากสมาชิกชุดที่เผยแพร่```bash
+1. 📋 Expands the selected bundle definition
+2. ✅ Installs only the members currently available in the catalog
+3. ✅ Builds a concrete install plan from published bundle members
+
+```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -21,45 +25,53 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-อิงตามแค็ตตาล็อกที่สร้างขึ้นในปัจจุบัน (`dist/bundles.json`):
+Based on the current generated catalog (`dist/bundles.json`):
 
-| มัด | มีไว้สำหรับ | มีจำหน่าย | สมาชิก |
+| Bundle | Intended For | Available | Members |
 |:-------|:------------|:----------|:--------|
-| 🧰**สิ่งสำคัญ**| นักพัฒนาทุกคน |**4/4**| `ค้นหาทักษะ` ✅ · `การระดมความคิด` ✅ · `สถาปัตยกรรม` ✅ · `การดีบัก` ✅ |
-| 🌐**เต็มกอง**| นักพัฒนาเว็บและแอป |**5/5**| `การออกแบบส่วนหน้า` ✅ · `การออกแบบ api` ✅ · `การออกแบบฐานข้อมูล` ✅ · `omni-figma` ✅ · `การตรวจสอบสิทธิ์` ✅ |
-| 🎨**การออกแบบ**| ระบบการออกแบบและการเข้าถึง |**4/4**| `การออกแบบส่วนหน้า` ✅ · `omni-figma` ✅ · `การออกแบบระบบ-ops` ✅ · `การตรวจสอบการเข้าถึง` ✅ |
-| 🛡️**ความปลอดภัย**| วิศวกรรักษาความปลอดภัย |**4/4**| `ผู้ตรวจสอบความปลอดภัย` ✅ · `เครื่องสแกนช่องโหว่` ✅ · `การตอบสนองต่อเหตุการณ์` ✅ · `การสร้างแบบจำลองภัยคุกคาม` ✅ |
-| ⚙️**เดวอปส์**| แพลตฟอร์ม & อินฟรา |**5/5**| `นักเทียบท่า-ผู้เชี่ยวชาญ` ✅ · `kubernetes` ✅ · `terraform` ✅ · `การตรวจสอบความสามารถในการสังเกต` ✅ · `วิศวกรรมการเปิดตัว` ✅ |
-| 🤖**ai-engineer**| นักพัฒนา LLM และ ML |**5/5**| `rag-engineer` ✅ · `วิศวกรพร้อมท์` ✅ · `llm-รูปแบบ` ✅ · `eval-design` ✅ · `วิศวกรรมบริบท` ✅ |
-| 🔧**oss-ผู้ดูแล**| ผู้ดูแล OSS |**4/4**| `ค้นหาทักษะ` ✅ · `create-pr` ✅ · `บันทึกการเปลี่ยนแปลง` ✅ · `เอกสารประกอบ` ✅ |
+| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **5/5** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ · `design-token-governance` ✅ |
+| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
+| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **7/7** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ · `data-contracts` ✅ · `model-serving` ✅ |
+| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = เผยแพร่และติดตั้งได้---
+> ✅ = Published and installable
+
+---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- คุณต้องการ**จุดเริ่มต้นที่ได้รับการดูแลจัดการ**สำหรับโดเมน
-- คุณต้องการติดตั้งแผนการติดตั้งที่**ได้รับการดูแลจัดการและเฉพาะโดเมน**
-- คุณต้องวิธีการที่รวดเร็วในการติดตั้งชุดการทำงานที่สมบูรณ์สำหรับบทบาท### 🎯 Use `--skill` instead when:
+- You want a **curated starting point** for a domain
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
-- คุณต้อง**รับประกันการติดตั้งขั้นต่ำ**
-- คุณรู้**ทักษะที่แน่นอน**ที่คุณต้องการอยู่แล้ว
-- คุณต้องการ**รอยเท้าที่เล็กที่สุดที่เป็นไปได้**แทนที่จะเป็นชุดการทำงานที่ดูแลจัดการ---
+### 🎯 Use `--skill` instead when:
+
+- You want a **guaranteed minimal install**
+- You already know the **exact skill** you need
+- You want the **smallest possible footprint** instead of a curated working set
+
+---
 
 ## 💡 Practical Recommendations
 
-| เป้าหมาย | คำสั่ง |
+| Goal | Command |
 |:-----|:--------|
-| 🎯 ติดตั้งทักษะที่เผยแพร่โดยเฉพาะ | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 ชุดสตาร์ทเตอร์ที่ได้รับการสนับสนุนอย่างเต็มที่ | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 ชุดระบบการออกแบบ | `npx omni-skills --cursor -- การออกแบบบันเดิล` |
-| 🏽 ชุดเวิร์กโฟลว์ OSS | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ ชุดเวิร์กโฟลว์ความปลอดภัย | `npx omni-skills --cursor --bundle security` |
-| ⚙️ ชุด DevOps | `npx omni-skills --cursor --bundle devops` |
-| 🤖 ชุดวิศวกร AI | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 ค้นหาก่อนตัดสินใจ | `npx omni-skills ค้นหา figma` |
-| 📋 ดูความพร้อมของชุดรวมทั้งหมด | `cat dist/bundles.json` |---
+| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Search before deciding | `npx omni-skills find figma` |
+| 📋 See all bundle availability | `cat dist/bundles.json` |
+
+---
 
 ## 🔍 Inspecting Bundles
 
@@ -77,7 +89,9 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-ใช้เครื่องมือ `search_skills` หรือ `preview_install` พร้อมพารามิเตอร์บันเดิล### 📋 Check Install Plan
+Use the `search_skills` or `preview_install` tools with bundle parameters.
+
+### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

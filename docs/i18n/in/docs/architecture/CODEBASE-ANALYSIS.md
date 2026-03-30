@@ -5,40 +5,47 @@
 ---
 
 
->**वर्तमान ओमनी स्किल आर्किटेक्चर, रनटाइम सतहों और बिल्ड पाइपलाइन का व्यापक तकनीकी विश्लेषण।**
-> अंतिम विश्लेषण: 2026-03-28---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| विशेषता | मूल्य |
-|:-------|:------|
-|**नाम**| `सर्व-कौशल` |
-|**पैकेज संस्करण**| `0.1.3` |
-|**कौशल संस्करण**| प्रति-कौशल और पैकेज संस्करण से स्वतंत्र। कई प्रकाशित कौशल अभी भी `0.0.1` हैं जबकि पैकेज `0.1.2` है। |
-|**लाइसेंस**| एमआईटी (कोड) + सीसी बाय 4.0 (सामग्री) |
-|**एनपीएम**| `एनपीएक्स ओम्नी-कौशल` |
-|**प्रकाशित कौशल**| 32 |
-|**परिभाषित बंडल**| 7, सभी पूरी तरह से प्रकाशित कौशल द्वारा समर्थित |
-|**सक्रिय कैटलॉग श्रेणियां**| 18 विहित वर्गीकरण श्रेणियों में से 15 सक्रिय बकेट |
-|**प्राथमिक रनटाइम/बिल्ड एलओसी का नमूना नीचे दिया गया है**| 13,600+ |
-|**उत्पादन निर्भरता**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| Attribute | Value |
+|:----------|:------|
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-`मेटाडेटा.जेसन` से वर्तमान रिपॉजिटरी-स्तरीय वर्गीकरण स्नैपशॉट:
+Current repository-level classification snapshot from `metadata.json`:
 
-- औसत गुणवत्ता स्कोर: `96.3`
-- औसत सर्वोत्तम अभ्यास स्कोर: `98.7`
-- औसत सुरक्षा स्कोर: `95.0`
-- सभी 32 प्रकाशित कौशल `एल3` के रूप में मान्य हैं
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-वर्तमान रिलीज़ बेसलाइन:
+Current release baseline:
 
-- सार्वजनिक रिपॉजिटरी रिलीज़: `v0.1.2`
-- निजी एन्हांसर रिलीज़: `v0.0.1`
-- सार्वजनिक रिलीज़ स्वचालन और निजी रिलीज़ स्वचालन दोनों सक्रिय और हरित हैं---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-रिपॉजिटरी एक साझा कैटलॉग कोर और एकाधिक रनटाइम सतहों के साथ**वर्कस्पेस मोनोरेपो**पैटर्न का पालन करती है।```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,297 +71,333 @@
 └────────────────────────────────────────────────────────────┘
 ```
 
-डिज़ाइन जानबूझकर**विरूपण साक्ष्य-चालित**है:
+The design is intentionally **artifact-driven**:
 
-1. कौशल को `SKILL.md` प्लस स्थानीय सहायता पैक के रूप में लिखा गया है
-2. बिल्ड उन्हें मान्य करता है, वर्गीकृत करता है, संग्रहीत करता है और उन्हें सामान्य बनाता है
-3. उत्पन्न कलाकृतियाँ सीएलआई, एपीआई, एमसीपी और ए2ए के लिए अनुबंध बन जाती हैं---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4,500+ एलओसी संयुक्त**- विशेषज्ञ और निर्देशित उपयोग दोनों के लिए मुख्य सार्वजनिक इंटरफ़ेस।
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| आदेश | कार्य |
-|:-------|:------|
-| 🔎 `ढूंढें [क्वेरी]` | स्कोर-अवेयर फ़िल्टर के साथ पूर्ण-पाठ कैटलॉग खोज |
-| 📦 `इंस्टॉल करें` | ज्ञात क्लाइंट या कस्टम पथों में निर्देशित या ध्वज-आधारित स्थापना |
-| 🧾 `कॉन्फिग-एमसीपी` | क्लाइंट-अवेयर MCP कॉन्फ़िगरेशन का पूर्वावलोकन करें या लिखें |
-| 🔌 `एमसीपी <ट्रांसपोर्ट>` | MCP सर्वर को `stdio`, `stream`, या `sse` | में प्रारंभ करता है
-| 🌐 `एपीआई` | कैटलॉग एपीआई प्रारंभ करता है |
-| 🤖 `a2a` | A2A रनटाइम प्रारंभ करता है |
-| 🧪 `धुआं` | उड़ान पूर्व सत्यापन जारी करें |
-| 🩺 `डॉक्टर` | स्थानीय निदान |
-| 🖥️ `उई` | इंस्टाल, डिस्कवरी, कॉन्फिगरेशन और सर्विस हब के साथ इंक विज़ुअल शेल |
-| 🏷️ `पुनः वर्गीकृत करें` | वर्गीकरण बहाव निरीक्षण और पुनर्लेखन |
+| Command | Function |
+|:--------|:---------|
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-सीएलआई अब केवल एक इंस्टॉलर नहीं है। यह संपूर्ण प्लेटफ़ॉर्म के लिए सार्वजनिक संचालन उपकरण है।## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-सार्वजनिक रनटाइम अब मूलभूत कार्य पर अवरुद्ध नहीं है, और दूसरी श्रेणी की लहर पहले ही आ चुकी है। अगला उपयोगी कैटलॉग कार्य गहराई है, न कि अधिक श्रेणी-गणना का पीछा करना।
+## 🧭 Future Expansion Direction
 
-कैटलॉग में अब नए सक्रिय कोड-नेटिव ट्रैक:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- `डिज़ाइन-सिस्टम-ऑप्स`, `एक्सेसिबिलिटी-ऑडिट`, और `डिज़ाइन-टोकन-गवर्नेंस` के माध्यम से `डिज़ाइन`
-- `एमसीपी-सर्वर-ऑथरिंग` के माध्यम से `टूल्स`
-- `डेटा-एआई` `डेटा-कॉन्ट्रैक्ट` के माध्यम से
-- `मॉडल-सर्विंग` के माध्यम से `मशीन-लर्निंग`
+Newly activated code-native tracks now in the catalog:
 
-अनुशंसित अगली दिशा:
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-1. `डिज़ाइन`, `टूल्स`, `डेटा-एआई`, और `मशीन-लर्निंग` को गहरा करें
-2. `बिजनेस` और `कंटेंट-मीडिया` को तब तक स्थगित रखें जब तक कि स्पष्ट रूप से कोड-मूल प्रस्ताव सामने न आ जाए
-3. श्रेणी सक्रियण दबाव को फिर से खोलने के बजाय वर्तमान गुणवत्ता स्तर को संरक्षित करें
+Recommended next direction:
 
-वह विस्तार तरंग अब [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md) में दर्ज की गई है।### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
->**403 एलओसी**- 7 इंस्टॉल-सक्षम सहायकों में कौशल स्थापित करता है।
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
-| झंडा | लक्ष्य | डिफ़ॉल्ट पथ |
-|:----|:-------|:----|
-| `-क्लाउड` | क्लाउड कोड | `~/.क्लाउड/कौशल` |
-| `--कर्सर` | कर्सर | `~/.कर्सर/कौशल` |
-| `--मिथुन` | जेमिनी सीएलआई | `~/.gemini/skills` |
-| `-कोडेक्स` | कोडेक्स सीएलआई | `~/.कोडेक्स/कौशल` |
-| `-किरो` | किरो | `~/.किरो/कौशल` |
-| `--एंटीग्रेविटी` | प्रतिगुरुत्वाकर्षण | `~/.gemini/antigravity/skills` |
-| `-ओपनकोड` | ओपनकोड | `<workspace>/.opencode/skills` |
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-यह समर्थन करता है:
+> **403 LOC** — installs skills into 7 install-capable assistants.
 
-- पूर्ण-लाइब्रेरी स्थापित
-- `--skill` द्वारा चयनात्मक इंस्टालेशन
-- `--बंडल` द्वारा क्यूरेटेड इंस्टाल
-- निर्देशित टीटीवाई और विज़ुअल यूआई प्रवाह
-- कस्टम लक्ष्य पथ### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+| Flag | Target | Default Path |
+|:-----|:-------|:-------------|
+| `--claude` | Claude Code | `~/.claude/skills` |
+| `--cursor` | Cursor | `~/.cursor/skills` |
+| `--gemini` | Gemini CLI | `~/.gemini/skills` |
+| `--codex` | Codex CLI | `~/.codex/skills` |
+| `--kiro` | Kiro | `~/.kiro/skills` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
+| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
->**828 एलओसी**- सीएलआई, एपीआई, एमसीपी और ए2ए के लिए साझा रनटाइम परत।
+It supports:
 
-| निर्यात | विवरण |
-|:------|:------|
-| 🔎 `सर्चस्किल्स()` | भारित पाठ मिलान और फ़िल्टर समर्थन के साथ खोजें |
-| 📋 `सूची कौशल()` | गुणवत्ता, सर्वोत्तम प्रथाओं, स्तर, सुरक्षा, जोखिम, उपकरण और श्रेणी द्वारा बहु-अक्ष फ़िल्टरिंग |
-| 📌 `गेटस्किल()` | प्रकट संकल्प और समृद्ध सार्वजनिक यूआरएल |
-| ⚖️ `तुलना कौशल()` | अगल-बगल तुलना |
-| 💡 `सिफारिश कौशल()` | लक्ष्य-संचालित अनुशंसा |
-| 📦 `buildInstallPlan()` | चेतावनियों और ग्राहक-जागरूक मार्गदर्शन के साथ योजना निर्माण स्थापित करें |
-| 🗂️ `लिस्टबंडल्स()` | उपलब्धता के साथ क्यूरेटेड बंडल सूची |
-| 📁 `listSkillArchives()` | पुरालेख और हस्ताक्षर संकल्प |
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
-यह पीढ़ी दर पीढ़ी रनटाइम सत्य का वास्तविक एकल स्रोत है।### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
->**812 एलओसी**- आधिकारिक एसडीके का उपयोग करके पूर्ण एमसीपी कार्यान्वयन।
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
-**परिवहन**
+| Export | Description |
+|:-------|:------------|
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
-- `स्टडियो`
-- स्ट्रीम करने योग्य HTTP
-- एसएसई
+This is the real single source of runtime truth after generation.
 
-**हमेशा ऑन-ओनली रीड-ओनली टूल्स**
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-- `खोज_कौशल`
-- `कौशल प्राप्त करें`
-- `तुलना_कौशल`
-- `सिफारिश_कौशल`
-- `पूर्वावलोकन_इंस्टॉल`
+> **812 LOC** — full MCP implementation using the official SDK.
 
-**स्थानीय-मोड उपकरण**
+**Transports**
+
+- `stdio`
+- streamable HTTP
+- SSE
+
+**Always-on read-only tools**
+
+- `search_skills`
+- `get_skill`
+- `compare_skills`
+- `recommend_skills`
+- `preview_install`
+
+**Local-mode tools**
 
 - `detect_clients`
-- `सूची_स्थापित_कौशल`
-- `इंस्टॉल_स्किल्स`
-- `निकालें_कौशल`
+- `list_installed_skills`
+- `install_skills`
+- `remove_skills`
 - `configure_client_mcp`
 
-एमसीपी सतह को जानबूझकर इनके बीच विभाजित किया गया है:
+The MCP surface is deliberately split between:
 
-- दूरस्थ/केवल पढ़ने योग्य कैटलॉग का उपयोग
-- स्थानीय/लिखने योग्य साइडकार का उपयोग### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1,943 एलओसी**- क्लाइंट डिटेक्शन, कौशल प्रबंधन और एमसीपी कॉन्फ़िगरेशन लेखन के लिए फ़ाइल सिस्टम-जागरूक एमसीपी परत।
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-वर्तमान व्यावहारिक समर्थन:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 इंस्टॉल-सक्षम ग्राहक**
--**16 कॉन्फिग-सक्षम क्लाइंट**
--**33 कॉन्फ़िगरेशन लक्ष्य**
--**19 कॉन्फ़िग प्रोफ़ाइल**
+Current practical support:
 
-इंस्टॉल-सक्षम ग्राहक:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
 
-- क्लाउड कोड
-- कर्सर
-- जेमिनी सीएलआई
-- कोडेक्स सीएलआई
-- किरो
-- एंटीग्रेविटी
-- ओपनकोड
+Install-capable clients:
 
-कॉन्फ़िगरेशन-सक्षम ग्राहकों और लक्ष्यों में शामिल हैं:
+- Claude Code
+- Cursor
+- Gemini CLI
+- Codex CLI
+- Kiro
+- Antigravity
+- OpenCode
 
-- क्लाउड सेटिंग्स, क्लाउड डेस्कटॉप और क्लाउड प्रोजेक्ट कॉन्फ़िगरेशन
-- कर्सर उपयोगकर्ता और कार्यक्षेत्र कॉन्फिगरेशन
-- वीएस कोड कार्यक्षेत्र, उपयोगकर्ता, अंदरूनी सूत्र और देव कंटेनर कॉन्फ़िगरेशन
-- मिथुन उपयोगकर्ता और कार्यक्षेत्र सेटिंग्स
-- एंटीग्रेविटी यूजर कॉन्फिगरेशन
-- किरो उपयोगकर्ता, कार्यक्षेत्र और विरासत पथ
-- कोडेक्स सीएलआई टीओएमएल कॉन्फिगरेशन
-- ओपनकोड उपयोगकर्ता और कार्यक्षेत्र कॉन्फिगरेशन
-- क्लाइन सेटिंग्स
-- GitHub Copilot CLI उपयोगकर्ता और रेपो कॉन्फ़िगरेशन
-- किलो उपयोगकर्ता, प्रोजेक्ट और कार्यक्षेत्र कॉन्फ़िगरेशन
-- कार्यस्थान YAML जारी रखें
-- विंडसर्फ उपयोगकर्ता कॉन्फिगरेशन
-- जेड वर्कस्पेस कॉन्फ़िगरेशन
-- हंस उपयोगकर्ता विन्यास
+Config-capable clients and targets include:
 
-साइडकार जानबूझकर सीमाओं के बारे में ईमानदार है:
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
+- Zed workspace config
+- Goose user config
 
-- यह केवल अनुमति सूची के अंदर ही लिखता है
-- यह डिफ़ॉल्ट रूप से पूर्वावलोकन करता है
-- यह प्रथम श्रेणी के लेखकों को केवल वहीं रखता है जहां आधिकारिक दस्तावेज़ एक स्थिर प्रारूप को उजागर करते हैं
-- यह दिखावा नहीं करता कि प्रत्येक एमसीपी-सक्षम उत्पाद एक कौशल-स्थापित लक्ष्य भी है### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+The sidecar is intentionally honest about boundaries:
 
->**715 एलओसी संयुक्त**- रीड-ओनली रजिस्ट्री एपीआई प्लस गवर्नेंस मिडलवेयर।
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
-महत्वपूर्ण समापन बिंदु:
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+
+> **715 LOC combined** — read-only registry API plus governance middleware.
+
+Important endpoints:
 
 - `/healthz`
 - `/openapi.json`
-- `/एडमिन/रनटाइम`
-- `/v1/कौशल`
+- `/admin/runtime`
+- `/v1/skills`
 - `/v1/skills/:id`
-- `/v1/खोज`
-- `/v1/तुलना`
-- `/v1/बंडल`
-- `/v1/इंस्टॉल/प्लान`
+- `/v1/search`
+- `/v1/compare`
+- `/v1/bundles`
+- `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-शासन आधार रेखा पहले ही लागू की जा चुकी है:
+Governance baseline already implemented:
 
-- वाहक टोकन प्राधिकरण
-- एपीआई-कुंजी प्रमाणीकरण
-- एडमिन टोकन ऑथ
-- इन-प्रोसेस दर सीमित करना
-- आईडी का अनुरोध करें
-- ऑडिट लॉगिंग
-- सीओआरएस अनुमति सूचियाँ
-- आईपी अनुमति सूचियाँ
-- प्रॉक्सी हैंडलिंग पर भरोसा करें
-- रखरखाव मोड### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- bearer token auth
+- API-key auth
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**मुख्य सर्वर, रनटाइम और समन्वयक फ़ाइलों में संयुक्त 1,857 LOC**- एजेंट-टू-एजेंट वर्कफ़्लो के लिए JSON-RPC 2.0 कार्य जीवनचक्र।
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-समर्थित विधियाँ:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `संदेश/भेजें`
-- `संदेश/स्ट्रीम`
-- `कार्य/प्राप्त करें`
-- `कार्य/रद्द करें`
-- `कार्य/पुनः सदस्यता`
-- `कार्य/pushNotificationConfig/*`
+Supported methods:
 
-वर्तमान परिचालन:
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
+- `tasks/pushNotificationConfig/*`
 
-- `खोज-कौशल`
-- `अनुशंसा-स्टैक`
-- `तैयार-इंस्टॉल-योजना`
+Current operations:
 
-स्थायित्व और समन्वय मॉडल:
+- `discover-skills`
+- `recommend-stack`
+- `prepare-install-plan`
 
-- मेमोरी, JSON, या SQLite स्थानीय दृढ़ता
-- बायोडाटा दोबारा शुरू करें
-- वैकल्पिक बाहरी प्रक्रिया निष्पादक
-- साझा SQLite श्रमिकों के लिए ऑप्ट-इन लीज़्ड कतार समन्वय
-- उन्नत होस्टेड पथ के रूप में वैकल्पिक रेडिस-समर्थित समन्वय
+Durability and coordination model:
 
-यहां मुख्य वास्तुशिल्प विकल्प**सरल-पहला स्थानीय ऑपरेशन**है। रेडिस एक उन्नत विकल्प के रूप में मौजूद है, लेकिन डिफ़ॉल्ट उत्पाद पथ स्थानीय और निर्भरता-हल्का रहता है।---
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
+
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| स्क्रिप्ट | भाषा | उद्देश्य |
-|:-------|:------|:--------|
-| 📊 `skill_metadata.py` | पायथन | सत्यापन, वर्गीकरण, स्कोरिंग, और स्थैतिक सुरक्षा स्कैनिंग |
-| ✅ `validate_skills.py` | पायथन | प्रति कौशल और रूट सारांश के लिए मेटाडेटा पीढ़ी |
-| 📑 `generate_index.py` | पायथन | कौशल सूचकांक, घोषणापत्र, पुरालेख, हस्ताक्षर और चेकसम |
-| 🏗️ `build_catalog.js` | नोड.जेएस | अंतिम `dist/catalog.json` और `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | पायथन | विहित श्रेणी लेखापरीक्षा और पुनर्लेखन |
-| 🔍 `verify_archives.py` | पायथन | पुरालेख और हस्ताक्षर सत्यापन |
+| Script | Language | Purpose |
+|:-------|:---------|:--------|
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-दो विवरण परिचालनात्मक रूप से मायने रखते हैं:
+Two details matter operationally:
 
-1. `dist/` रनटाइम अनुबंध का हिस्सा है और जानबूझकर प्रतिबद्ध है
-2. बिल्ड सीआई सत्यापन और रिलीज साइनिंग का समर्थन करने के लिए पर्याप्त नियतात्मक है---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-वर्तमान सार्वजनिक सूची में 32 कौशल शामिल हैं:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**खोज और योजना**: `खोज-कौशल`, `बुद्धिशीलता`, `वास्तुकला`, `डीबगिंग`
--**डिज़ाइन सिस्टम और एक्सेसिबिलिटी**: `डिज़ाइन-सिस्टम-ऑप्स`, `एक्सेसिबिलिटी-ऑडिट`
--**उत्पाद और पूर्ण-स्टैक डिलीवरी**: `फ्रंटएंड-डिज़ाइन`, `एपीआई-डिज़ाइन`, `डेटाबेस-डिज़ाइन`, `ओमनी-फ़िग्मा`, `ऑथ-फ़्लोज़`
--**सुरक्षा**: `सुरक्षा-लेखा परीक्षक`, `भेद्यता-स्कैनर`, `घटना-प्रतिक्रिया`, `खतरा-मॉडलिंग`
--**ओएसएस अनुरक्षक वर्कफ़्लो**: `प्रलेखन`, `चेंजलॉग`, `क्रिएट-पीआर`
--**डेवऑप्स**: `डॉकर-विशेषज्ञ`, `कुबेरनेट्स`, `टेराफॉर्म`, `अवलोकन-समीक्षा`, `रिलीज़-इंजीनियरिंग`
--**एआई इंजीनियरिंग**: `रैग-इंजीनियर`, `प्रॉम्प्ट-इंजीनियर`, `एलएम-पैटर्न`, `एवल-डिज़ाइन`, `संदर्भ-इंजीनियरिंग`
+Current native category distribution from `metadata.json`:
 
-सभी सात बंडल पूरी तरह से समर्थित हैं:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- `आवश्यक` → `4/4`
-- `फुल-स्टैक` → `5/5`
-- `डिज़ाइन` → `4/4`
-- `सुरक्षा` → `4/4`
-- `डेवोप्स` → `5/5`
-- `एआई-इंजीनियर` → `5/5`
-- `ओएसएस-मेंटेनर` → `4/4`
+This broader intake surface is intentional:
 
-उत्पन्न कैटलॉग से वर्तमान स्कोर फैला:
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
 
-- गुणवत्ता स्कोर: `94, 95, 96, 97, 100`
-- सर्वोत्तम अभ्यास स्कोर: `98, 99, 100`
-- सुरक्षा स्कोर: वर्तमान में सभी प्रकाशित कौशल `95`
+All seven bundles are fully backed:
 
-प्रतिनिधि उच्च अंत:
+- `essentials` → `4/4`
+- `full-stack` → `5/5`
+- `design` → `5/5`
+- `security` → `4/4`
+- `devops` → `5/5`
+- `ai-engineer` → `7/7`
+- `oss-maintainer` → `4/4`
 
-- `omni-figma` → `गुणवत्ता 100`, `best_practices 100`
-- `एक्सेसिबिलिटी-ऑडिट` → `क्वालिटी 99`, `बेस्ट_प्रैक्टिसेज 100`
-- `ऑथ-फ्लो` → `क्वालिटी 97`, `बेस्ट_प्रैक्टिसेस 99`
-- `डिज़ाइन-सिस्टम-ऑप्स` → `गुणवत्ता 97`, `best_practices 99`
-- `रिलीज़-इंजीनियरिंग` → `गुणवत्ता 97`, `best_practices 99`
-- `खतरा-मॉडलिंग` → `गुणवत्ता 97`, `best_practices 99`
-- `संदर्भ-इंजीनियरिंग` → `गुणवत्ता 97`, `best_practices 99`
+Current score spread from the generated native catalog:
 
-वर्तमान शीर्ष बैंड के अंदर प्रतिनिधि निचला सिरा:
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-- `वास्तुकला` → `गुणवत्ता 94`, `सर्वोत्तम_प्रथाएँ 98`
-- `चेंजलॉग` → `गुणवत्ता 94`, `best_practices 98`
-- `create-pr` → `गुणवत्ता 95`, `best_practices 98`
+Representative high end:
 
-यह जानबूझकर किया गया है. स्कोरर अब पूरे कैटलॉग को शीर्ष पर समतल करने के बजाय "उत्कृष्ट" को "असाधारण" से अलग करता है।---
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
+- `auth-flows` → `quality 97`, `best_practices 99`
+- `design-systems-ops` → `quality 97`, `best_practices 99`
+- `release-engineering` → `quality 97`, `best_practices 99`
+- `threat-modeling` → `quality 97`, `best_practices 99`
+- `context-engineering` → `quality 97`, `best_practices 99`
+
+Representative warning-grade native intake:
+
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
+
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**कलाकृति-प्रथम डिज़ाइन**
-   प्रत्येक रनटाइम सतह समान जेनरेटेड कैटलॉग और मैनिफ़ेस्ट का उपभोग करती है।
-2.**व्यापक प्रोटोकॉल कवरेज**
-   सीएलआई, एपीआई, एमसीपी और ए2ए डेटा मॉडल को खंडित किए बिना सह-अस्तित्व में हैं।
-3.**मजबूत स्थानीय-उत्पाद एर्गोनॉमिक्स**
-   गाइडेड इंस्टाल, विज़ुअल शेल, `कॉन्फिग-एमसीपी`, और ड्राई-रन डिफॉल्ट्स प्रोजेक्ट को बिजली उपयोगकर्ताओं से परे उपयोग करने योग्य बनाते हैं।
-4.**ईमानदार सुरक्षा मुद्रा**
-   अनुमत सूचीबद्ध स्थानीय लेखन, स्थैतिक स्कैनिंग, हस्ताक्षर, चेकसम और रिलीज़ सत्यापन सभी स्पष्ट हैं।
-5.**स्वस्थ एमसीपी पहुंच**
-   यह परियोजना अब मौजूदा एमसीपी-सक्षम ग्राहकों के व्यापक समूह का समर्थन करती है, बिना यह दिखावा किए कि गैर-दस्तावेज लक्ष्य स्थिर हैं।---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**गहरा बंडल कवरेज**
-   अगला कदम मौजूदा बंडलों के अंदर विशेषज्ञता है, न कि केवल व्यापक कवरेज।
-2.**समृद्ध स्कोरर शब्दार्थ**
-   संदर्भ-पैक गहराई और वर्कफ़्लो गुणवत्ता का अधिक अर्थपूर्ण मूल्यांकन करने के लिए अभी भी जगह है।
-3.**अधिक ग्राहक लेखक केवल वहीं जहां उचित हो**
-   विस्तार अनुशासित और स्थिर आधिकारिक दस्तावेज़ों से बंधा रहना चाहिए।
-4.**सत्यापनकर्ता अपघटन**
-   `skill_metadata.py` अभी भी एक बड़ा मॉड्यूल है और समय के साथ आंतरिक अपघटन से लाभान्वित होगा।
-5.**आयोजित शासन वृद्धि**
-   वर्तमान इन-प्रोसेस बेसलाइन स्व-होस्टिंग के लिए पर्याप्त है, लेकिन एंटरप्राइज़ परिनियोजन अंततः बाहरी गेटवे और पहचान एकीकरण चाहता है।
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

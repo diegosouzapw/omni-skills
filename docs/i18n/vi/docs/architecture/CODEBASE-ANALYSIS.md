@@ -5,40 +5,47 @@
 ---
 
 
->**Phân tích kỹ thuật toàn diện về kiến trúc Omni Skills hiện tại, các bề mặt thời gian chạy và quy trình xây dựng.**
-> Phân tích lần cuối: 28-03-2026---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| Thuộc tính | Giá trị |
+| Attribute | Value |
 |:----------|:------|
-|**Tên**| `kỹ năng đa năng` |
-|**Phiên bản trọn gói**| `0.1.3` |
-|**Phiên bản kỹ năng**| Theo kỹ năng và độc lập với phiên bản gói. Nhiều kỹ năng được xuất bản vẫn là `0.0.1` trong khi gói là `0.1.2`. |
-|**Giấy phép**| MIT (mã) + CC BY 4.0 (nội dung) |
-|**NPM**| `kỹ năng đa năng của npx` |
-|**Kỹ năng đã xuất bản**| 32 |
-|**Các gói được xác định**| 7, tất cả đều được hỗ trợ đầy đủ bởi các kỹ năng đã xuất bản |
-|**Danh mục danh mục đang hoạt động**| 15 nhóm hoạt động trong số 18 danh mục phân loại chuẩn |
-|**LOC thời gian chạy chính/bản dựng được lấy mẫu bên dưới**| 13.600+ |
-|**Phụ thuộc sản xuất**| 7 ("@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-Ảnh chụp nhanh phân loại cấp kho lưu trữ hiện tại từ `metadata.json`:
+Current repository-level classification snapshot from `metadata.json`:
 
-- điểm chất lượng trung bình: `96,3`
-- điểm thực hành tốt nhất trung bình: `98,7`
-- điểm bảo mật trung bình: `95,0`
-- tất cả 32 kỹ năng được công bố đều xác thực là `L3`
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-Đường cơ sở phát hành hiện tại:
+Current release baseline:
 
-- phát hành kho lưu trữ công cộng: `v0.1.2`
-- phát hành trình tăng cường riêng tư: `v0.0.1`
-- tự động hóa phát hành công khai và tự động hóa phát hành riêng tư đều đang hoạt động và thân thiện với môi trường---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-Kho lưu trữ tuân theo mẫu**workspace monorepo**với một lõi danh mục dùng chung và nhiều bề mặt thời gian chạy.```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,297 +71,333 @@ Kho lưu trữ tuân theo mẫu**workspace monorepo**với một lõi danh mục
 └────────────────────────────────────────────────────────────┘
 ```
 
-Thiết kế được cố ý**hướng đến đồ tạo tác**:
+The design is intentionally **artifact-driven**:
 
-1. kỹ năng được tác giả là `SKILL.md` cộng với các gói hỗ trợ địa phương
-2. bản dựng xác thực, phân loại, lưu trữ và chuẩn hóa chúng
-3. các tạo phẩm được tạo sẽ trở thành hợp đồng cho CLI, API, MCP và A2A---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4.500+ LỘC kết hợp**— giao diện chung chính dành cho cả cách sử dụng chuyên môn và hướng dẫn.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| Lệnh | Chức năng |
-|:--------|:----------|
-| 🔎 `tìm [truy vấn]` | Tìm kiếm danh mục toàn văn với các bộ lọc nhận biết điểm |
-| 📦 `cài đặt` | Cài đặt theo hướng dẫn hoặc dựa trên cờ vào các máy khách đã biết hoặc đường dẫn tùy chỉnh |
-| 🧾 `config-mcp` | Xem trước hoặc ghi cấu hình MCP nhận biết máy khách |
-| 🔌 `mcp <vận chuyển>` | Khởi động máy chủ MCP trong `stdio`, `stream` hoặc `sse` |
-| 🌐 `api` | Bắt đầu API danh mục |
-| 🤖 `a2a` | Bắt đầu thời gian chạy A2A |
-| 🧪 `khói` | Phát hành xác nhận trước chuyến bay |
-| 🩺 `bác sĩ` | Chẩn đoán cục bộ |
-| 🖥️ `ui` | Ink Visual Shell với trung tâm cài đặt, khám phá, cấu hình và dịch vụ |
-| 🏷️ `phân loại lại` | Kiểm tra trôi dạt phân loại và viết lại |
+| Command | Function |
+|:--------|:---------|
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-CLI không còn chỉ là một trình cài đặt nữa. Nó là công cụ hoạt động công cộng cho toàn bộ nền tảng.## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-Thời gian chạy công khai không còn bị chặn đối với công việc cơ bản và làn sóng danh mục thứ hai đã cập bến. Công việc lập danh mục hữu ích tiếp theo là chiều sâu chứ không phải theo đuổi nhiều danh mục hơn.
+## 🧭 Future Expansion Direction
 
-Các bản nhạc gốc mã mới được kích hoạt hiện có trong danh mục:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- `thiết kế` thông qua `design-systems-ops`, `khả năng truy cập-kiểm toán` và `design-token-quản trị`
-- `công cụ` thông qua `mcp-server-authoring`
-- `data-ai` thông qua `data-contract`
-- `học máy` thông qua `phục vụ mô hình`
+Newly activated code-native tracks now in the catalog:
 
-Đề xuất hướng tiếp theo:
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-1. đào sâu thêm `thiết kế`, `công cụ`, `data-ai` và `machine-learning`
-2. hoãn lại `business` và `content-media` trừ khi xuất hiện một đề xuất có nguồn gốc mã rõ ràng
-3. Giữ nguyên chất lượng sàn hiện tại thay vì mở lại áp lực kích hoạt danh mục
+Recommended next direction:
 
-Làn sóng mở rộng đó hiện được ghi lại trong [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
->**403 LỘC**— cài đặt các kỹ năng vào 7 trợ lý có khả năng cài đặt.
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
-| Cờ | Mục tiêu | Đường dẫn mặc định |
-|:------|:-------|:-------------|
-| `--claude` | Mã Claude | `~/.claude/skills` |
-| `--con trỏ` | Con trỏ | `~/.cursor/skills` |
-| `--gemini` | Song Tử CLI | `~/.gemini/skills` |
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+
+> **403 LOC** — installs skills into 7 install-capable assistants.
+
+| Flag | Target | Default Path |
+|:-----|:-------|:-------------|
+| `--claude` | Claude Code | `~/.claude/skills` |
+| `--cursor` | Cursor | `~/.cursor/skills` |
+| `--gemini` | Gemini CLI | `~/.gemini/skills` |
 | `--codex` | Codex CLI | `~/.codex/skills` |
 | `--kiro` | Kiro | `~/.kiro/skills` |
-| `--phản hấp dẫn` | Phản lực hấp dẫn | `~/.gemini/anti Gravity/skills` |
-| `--opencode` | Mã mở | `<workspace>/.opencode/skills` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
+| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
-Nó hỗ trợ:
+It supports:
 
-- cài đặt toàn bộ thư viện
-- cài đặt có chọn lọc bởi `--skill`
-- số lượt cài đặt được quản lý bởi `--bundle`
-- TTY có hướng dẫn và luồng giao diện người dùng trực quan
-- đường dẫn mục tiêu tùy chỉnh### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
->**828 LOC**— lớp thời gian chạy dùng chung cho CLI, API, MCP và A2A.
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-| Xuất khẩu | Mô tả |
-|:-------|:-------------|
-| 🔎 `searchSkills()` | Tìm kiếm với tính năng khớp văn bản có trọng số và hỗ trợ bộ lọc |
-| 📋 `listSkills()` | Lọc đa trục theo chất lượng, phương pháp hay nhất, cấp độ, bảo mật, rủi ro, công cụ và danh mục |
-| ✔️ `getSkill()` | Độ phân giải kê khai cộng với các URL công khai được làm phong phú |
-| ⚖️ `so sánh Kỹ năng()` | So sánh song song |
-| 💡 `giới thiệuSkills()` | Đề xuất hướng đến mục tiêu |
-| 📦 `buildInstallPlan()` | Cài đặt tạo kế hoạch với các cảnh báo và hướng dẫn dành cho khách hàng |
-| 🗂️ `listBundles()` | Danh sách gói được tuyển chọn có sẵn |
-| 📁 `listSkillArchives()` | Giải pháp lưu trữ và chữ ký |
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
-Đây là nguồn duy nhất thực sự của sự thật thời gian chạy sau thế hệ.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+| Export | Description |
+|:-------|:------------|
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
->**812 LOC**— triển khai MCP đầy đủ bằng SDK chính thức.
+This is the real single source of runtime truth after generation.
 
-**Vận chuyển**
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+
+> **812 LOC** — full MCP implementation using the official SDK.
+
+**Transports**
 
 - `stdio`
-- HTTP có thể phát trực tuyến
+- streamable HTTP
 - SSE
 
-**Công cụ chỉ đọc luôn bật**
+**Always-on read-only tools**
 
-- `kỹ năng tìm kiếm`
-- `có được kỹ năng`
-- `so sánh_kỹ năng`
-- `giới thiệu_kỹ năng`
+- `search_skills`
+- `get_skill`
+- `compare_skills`
+- `recommend_skills`
 - `preview_install`
 
-**Công cụ chế độ cục bộ**
+**Local-mode tools**
 
-- `phát hiện_khách hàng`
+- `detect_clients`
 - `list_installed_skills`
 - `install_skills`
 - `remove_skills`
 - `configure_client_mcp`
 
-Bề mặt MCP được cố tình phân chia giữa:
+The MCP surface is deliberately split between:
 
-- sử dụng danh mục từ xa/chỉ đọc
-- sử dụng sidecar cục bộ/có khả năng ghi### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1.943 LỘC**— lớp MCP nhận biết hệ thống tệp để phát hiện ứng dụng khách, quản lý kỹ năng và ghi cấu hình MCP.
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-Hỗ trợ thực tế hiện tại:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 máy khách có khả năng cài đặt**
--**16 máy khách có khả năng cấu hình**
--**33 mục tiêu cấu hình**
--**19 hồ sơ cấu hình**
+Current practical support:
 
-Các máy khách có khả năng cài đặt:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
 
-- Mã Claude
-- Con trỏ
-- Song Tử CLI
+Install-capable clients:
+
+- Claude Code
+- Cursor
+- Gemini CLI
 - Codex CLI
 - Kiro
-- Phản trọng lực
-- Mã mở
+- Antigravity
+- OpenCode
 
-Các máy khách và mục tiêu có khả năng cấu hình bao gồm:
+Config-capable clients and targets include:
 
-- Cài đặt Claude, Claude Desktop và cấu hình dự án Claude
-- Cấu hình người dùng và không gian làm việc của con trỏ
-- Không gian làm việc của VS Code, người dùng, người dùng nội bộ và cấu hình Dev Container
-- Cài đặt người dùng và không gian làm việc của Gemini
-- Cấu hình người dùng chống trọng lực
-- Đường dẫn người dùng, không gian làm việc và kế thừa Kiro
-- Cấu hình Codex CLI TOML
-- Cấu hình người dùng và không gian làm việc OpenCode
-- Cài đặt Cline
-- Cấu hình repo và người dùng GitHub Copilot CLI
-- Cấu hình người dùng, dự án và không gian làm việc Kilo
-- Tiếp tục không gian làm việc YAML
-- Cấu hình người dùng lướt ván
-- Cấu hình không gian làm việc của Zed
-- Cấu hình người dùng Goose
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
+- Zed workspace config
+- Goose user config
 
-Sidecar cố tình trung thực về ranh giới:
+The sidecar is intentionally honest about boundaries:
 
-- nó chỉ ghi bên trong danh sách cho phép
-- nó xem trước theo mặc định
-- nó chỉ giữ các nhà văn hạng nhất ở những nơi tài liệu chính thức có định dạng ổn định
-- nó không giả vờ rằng mọi sản phẩm có khả năng MCP đều là mục tiêu cài đặt kỹ năng### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
->**715 LOC kết hợp**— API đăng ký chỉ đọc cộng với phần mềm trung gian quản trị.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-Điểm cuối quan trọng:
+> **715 LOC combined** — read-only registry API plus governance middleware.
+
+Important endpoints:
 
 - `/healthz`
 - `/openapi.json`
 - `/admin/runtime`
-- `/v1/kỹ năng`
+- `/v1/skills`
 - `/v1/skills/:id`
-- `/v1/tìm kiếm`
-- `/v1/so sánh`
-- `/v1/bó`
-- `/v1/cài đặt/kế hoạch`
+- `/v1/search`
+- `/v1/compare`
+- `/v1/bundles`
+- `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Cơ sở quản trị đã được triển khai:
+Governance baseline already implemented:
 
-- xác thực mã thông báo mang
-- Xác thực khóa API
-- xác thực mã thông báo quản trị viên
-- giới hạn tốc độ trong quá trình
-- ID yêu cầu
-- ghi nhật ký kiểm tra
-- Danh sách cho phép CORS
-- Danh sách cho phép IP
-- xử lý proxy tin cậy
-- Chế độ bảo trì### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- bearer token auth
+- API-key auth
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**1.857 LOC được kết hợp trên các tệp máy chủ chính, thời gian chạy và điều phối viên**— Vòng đời tác vụ JSON-RPC 2.0 dành cho quy trình làm việc giữa các tác nhân.
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-Các phương pháp được hỗ trợ:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `tin nhắn/gửi`
-- `tin nhắn/luồng`
-- `nhiệm vụ/nhận`
-- `nhiệm vụ/hủy`
-- `nhiệm vụ/đăng ký lại`
-- `tác vụ/pushNotificationConfig/*`
+Supported methods:
 
-Hoạt động hiện tại:
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
+- `tasks/pushNotificationConfig/*`
 
-- `kỹ năng khám phá`
-- `khuyên-ngăn xếp`
-- `chuẩn bị-cài đặt-kế hoạch`
+Current operations:
 
-Mô hình độ bền và phối hợp:
+- `discover-skills`
+- `recommend-stack`
+- `prepare-install-plan`
 
-- tính bền vững cục bộ của bộ nhớ, JSON hoặc SQLite
-- khởi động lại sơ yếu lý lịch
-- tùy chọn thực thi quy trình bên ngoài
-- chọn tham gia phối hợp hàng đợi thuê cho các nhân viên SQLite được chia sẻ
-- phối hợp được hỗ trợ bởi Redis tùy chọn dưới dạng đường dẫn được lưu trữ nâng cao
+Durability and coordination model:
 
-Lựa chọn kiến trúc quan trọng ở đây là**hoạt động cục bộ đơn giản đầu tiên**. Redis tồn tại dưới dạng tùy chọn nâng cao, nhưng đường dẫn sản phẩm mặc định vẫn là cục bộ và phụ thuộc nhẹ.---
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
+
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| Kịch bản | Ngôn ngữ | Mục đích |
-|:-------|:----------|:--------|
-| 📊 `skill_metadata.py` | Python | Xác thực, phân loại, tính điểm và quét bảo mật tĩnh |
-| ✅ `validate_skills.py` | Python | Tạo siêu dữ liệu cho mỗi kỹ năng và cho bản tóm tắt gốc |
-| 📑 `tạo_index.py` | Python | Chỉ mục kỹ năng, bảng kê khai, lưu trữ, chữ ký và tổng kiểm tra |
-| 🏗️ `build_catalog.js` | Node.js | `dist/catalog.json` và `dist/bundles.json` cuối cùng |
-| 🏷️ `recategorize_skills.py` | Python | Kiểm tra và viết lại danh mục Canonical |
-| 🔍 `verify_archives.py` | Python | Lưu trữ và xác minh chữ ký |
+| Script | Language | Purpose |
+|:-------|:---------|:--------|
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-Hai chi tiết quan trọng trong hoạt động:
+Two details matter operationally:
 
-1. `dist/` là một phần của hợp đồng thời gian chạy và được cam kết có chủ ý
-2. bản dựng đủ chắc chắn để hỗ trợ xác minh CI và ký phát hành---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-Danh mục công cộng hiện tại bao gồm 32 kỹ năng:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**Khám phá và lập kế hoạch**: `tìm kỹ năng`, `động não`, `kiến trúc`, `gỡ lỗi`
--**Thiết kế hệ thống và khả năng tiếp cận**: `design-systems-ops`, `accessibility-audit`
--**Phân phối sản phẩm và full-stack**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
--**Bảo mật**: `kiểm tra viên bảo mật`, `máy quét lỗ hổng`, `phản hồi sự cố`, `mô hình hóa mối đe dọa`
--**Quy trình làm việc của người bảo trì OSS**: `documentation`, `changelog`, `create-pr`
--**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
--**Kỹ thuật AI**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+Current native category distribution from `metadata.json`:
 
-Tất cả bảy gói đều được hỗ trợ đầy đủ:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- `thiết yếu` → `4/4`
-- `đầy đủ` → `5/5`
-- `thiết kế` → `4/4`
-- `bảo mật` → `4/4`
+This broader intake surface is intentional:
+
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
+
+All seven bundles are fully backed:
+
+- `essentials` → `4/4`
+- `full-stack` → `5/5`
+- `design` → `5/5`
+- `security` → `4/4`
 - `devops` → `5/5`
-- `ai-kỹ sư` → `5/5`
-- `người bảo trì oss` → `4/4`
+- `ai-engineer` → `7/7`
+- `oss-maintainer` → `4/4`
 
-Điểm hiện tại trải rộng từ danh mục được tạo:
+Current score spread from the generated native catalog:
 
-- Điểm chất lượng: `94, 95, 96, 97, 100`
-- điểm thực hành tốt nhất: `98, 99, 100`
-- điểm bảo mật: tất cả các kỹ năng được công bố hiện tại `95`
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-Cao cấp đại diện:
+Representative high end:
 
-- `omni-figma` → `chất lượng 100`, `thực hành tốt nhất 100`
-- `kiểm tra khả năng truy cập` → `chất lượng 99`, `thực hành tốt nhất 100`
-- `auth-flows` → `chất lượng 97`, `best_practices 99`
-- `design-systems-ops` → `chất lượng 97`, `best_practices 99`
-- `kỹ thuật phát hành` → `chất lượng 97`, `thực hành tốt nhất 99`
-- `mô hình mối đe dọa` → `chất lượng 97`, `thực hành tốt nhất 99`
-- `kỹ thuật ngữ cảnh` → `chất lượng 97`, `thực hành tốt nhất 99`
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
+- `auth-flows` → `quality 97`, `best_practices 99`
+- `design-systems-ops` → `quality 97`, `best_practices 99`
+- `release-engineering` → `quality 97`, `best_practices 99`
+- `threat-modeling` → `quality 97`, `best_practices 99`
+- `context-engineering` → `quality 97`, `best_practices 99`
 
-Cấp dưới đại diện trong nhóm hàng đầu hiện tại:
+Representative warning-grade native intake:
 
-- `kiến trúc` → `chất lượng 94`, `thực hành tốt nhất 98`
-- `changelog` → `chất lượng 94`, `best_practices 98`
-- `create-pr` → `chất lượng 95`, `best_practices 98`
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
 
-Đây là cố ý. Giờ đây, người chấm điểm sẽ phân biệt “xuất sắc” với “đặc biệt” thay vì làm phẳng toàn bộ danh mục ở trên cùng.---
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**Thiết kế ưu tiên hiện vật**
-   Mọi bề mặt thời gian chạy đều sử dụng cùng một danh mục và bảng kê khai được tạo.
-2.**Phạm vi giao thức rộng rãi**
-   CLI, API, MCP và A2A cùng tồn tại mà không làm phân mảnh mô hình dữ liệu.
-3.**Công thái học mạnh mẽ của sản phẩm địa phương**
-   Cài đặt có hướng dẫn, trình bao trực quan, `config-mcp` và các giá trị mặc định chạy thử giúp dự án có thể sử dụng được đối với những người dùng thành thạo.
-4.**Chế độ bảo mật trung thực**
-   Ghi cục bộ, quét tĩnh, ký, tổng kiểm tra và xác minh bản phát hành đều được liệt kê rõ ràng.
-5.**Phạm vi tiếp cận MCP lành mạnh**
-   Dự án hiện hỗ trợ một lượng lớn khách hàng hiện tại có khả năng MCP mà không giả vờ rằng các mục tiêu không có giấy tờ là ổn định.---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**Phạm vi bao phủ gói sâu hơn**
-   Bước tiếp theo là chuyên môn hóa bên trong các gói hiện có, không chỉ bao phủ rộng rãi.
-2.**Ngữ nghĩa của cầu thủ ghi bàn phong phú hơn**
-   Vẫn còn chỗ để đánh giá độ sâu của gói tham chiếu và chất lượng quy trình làm việc theo ngữ nghĩa.
-3.**Chỉ thêm người viết khách hàng khi hợp lý**
-   Việc mở rộng phải có kỷ luật và gắn liền với các tài liệu chính thức ổn định.
-4.**Phân tách trình xác thực**
-   `skill_metadata.py` vẫn là một mô-đun lớn và sẽ được hưởng lợi từ việc phân tách nội bộ theo thời gian.
-5.**Leo thang quản trị được lưu trữ**
-   Đường cơ sở trong quy trình hiện tại là đủ để tự lưu trữ, nhưng việc triển khai doanh nghiệp cuối cùng sẽ cần tích hợp danh tính và cổng bên ngoài.
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

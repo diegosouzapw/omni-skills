@@ -5,42 +5,50 @@
 ---
 
 
->**ओमनी स्किल्स में एक कौशल कैटलॉग और उस कैटलॉग के शीर्ष पर निर्मित रनटाइम सतहें दोनों शामिल हैं।**
-> योगदान किसी भी क्षेत्र को लक्षित कर सकता है, लेकिन दोनों को उत्पन्न कलाकृतियों और वर्तमान सीएलआई व्यवहार के साथ संरेखित रहना चाहिए।---
+> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
+
+---
 
 ## 📊 Repository Baseline
 
-| मीट्रिक | मूल्य |
+| Metric | Value |
 |:-------|:------|
-| 📦 पैकेज संस्करण | `0.1.3` |
-| 🧠प्रकाशित कौशल | `32` |
-| 📦 पूरी तरह से समर्थित बंडल | `7` |
-| 🖥️ इंस्टॉल-सक्षम ग्राहक | `7` |
-| 🔌 एमसीपी कॉन्फिग-सक्षम क्लाइंट | `16` |
-| 🔄 स्वचालित रिलीज़ | `मुख्य` पर सक्षम |---
+| 📦 Package version | `0.1.3` |
+| 🧠 Published skills | `32` |
+| 📦 Fully backed bundles | `7` |
+| 🖥️ Install-capable clients | `7` |
+| 🔌 MCP config-capable clients | `16` |
+| 🔄 Automatic releases | Enabled on `main` |
+
+---
 
 ## महत्वपूर्ण
 
-| क्या | कहाँ |
-|:----|:------|
-| 🧠 कौशल | में लिखे गए हैं `skills/<skill-name>/SKILL.md` |
-| 📖 योगदानकर्ता टेम्पलेट और मार्गदर्शन | `दस्तावेज़/योगदानकर्ता/` |
-| 🧾नए कौशल के लिए कैनोनिकल पीआर प्रवाह | [कौशल पीआर वर्कफ़्लो](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 मूल आवक कौशल भूमि के अंतर्गत | `कौशल/` (कोई भी भाषा) |
-| ✨ क्यूरेटेड उन्नत डेरिवेटिव | `skills_omni/` (केवल अंग्रेज़ी, स्वचालित) |
-| 🚫 `skills_omni/` सुरक्षित है | प्रत्यक्ष सार्वजनिक योगदान के लिए खुला नहीं |
-| 📖 रनटाइम और आर्किटेक्चर डॉक्स | `दस्तावेज़/` |
-| 📄सामुदायिक फ़ाइलें | `README.md` · `CONTRIBUTING.md` · `Security.md` · `CODE_OF_CONDUCT.md` |---
+| What | Where |
+|:-----|:------|
+| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
+| 📖 Contributor templates and guidance | `docs/contributors/` |
+| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Native incoming skills land under | `skills/` (any language) |
+| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
+| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 📖 Runtime and architecture docs | `docs/` |
+| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
+
+---
 
 ## 🎯 Common Contribution Types
 
-| प्रकार | क्षेत्र |
-|:----|:-----|
-| 🧠 कोई कौशल जोड़ें या सुधारें | `कौशल/` |
-| 📖 अद्यतन योगदानकर्ता मार्गदर्शन | `दस्तावेज़/योगदानकर्ता/` |
-| 🖥️ सीएलआई, इंस्टॉलर या स्क्रिप्ट में सुधार करें | `उपकरण/` |
-| 📦 कैटलॉग रनटाइम या प्रोटोकॉल पैकेज में सुधार करें | `पैकेज/` |
-| 🧪 परीक्षण सख्त करें, धूम्रपान की जाँच करें, या दस्तावेज़ जारी करें | विविध |---
+| Type | Area |
+|:-----|:-----|
+| 🧠 Add or improve a skill | `skills/` |
+| 📖 Update contributor guidance | `docs/contributors/` |
+| 🖥️ Improve CLI, installer, or scripts | `tools/` |
+| 📦 Improve catalog runtime or protocol packages | `packages/` |
+| 🧪 Tighten tests, smoke checks, or release docs | Various |
+
+---
 
 ## त्वरित प्रारंभ
 
@@ -65,18 +73,22 @@ npm test
 npm run smoke
 ```
 
->**📝 `अनुरक्षकों से संपादन की अनुमति दें` सक्षम करके पीआर खोलें।**---
+> **📝 Open the PR with `Allow edits from maintainers` enabled.**
+
+---
 
 ## दस्तावेज़
 
-एक अच्छा देशी आवक कौशल होना चाहिए:
+A good native incoming skill should:
 
-- ✅ किसी विशिष्ट समस्या का समाधान सफाई से करें
-- ✅ सभी परियोजनाओं में पुन: प्रयोज्य बनें
-- ✅ उन निर्देशों को शामिल करें जिनका एक एजेंट वास्तव में पालन कर सकता है
-- ✅ अस्पष्ट या अनावश्यक सामग्री से बचें
-- ✅ उपलब्ध होने पर सटीक फ्रंटमैटर और संगतता मेटाडेटा घोषित करें
-- ✅ स्वचालन चलने के बाद उत्पन्न `मेटाडेटा.जेसन` वर्गीकरण कलाकृतियों वाली भूमि### 📁 Minimal Structure
+- ✅ Solve a specific problem cleanly
+- ✅ Be reusable across projects
+- ✅ Include instructions an agent can actually follow
+- ✅ Avoid vague or redundant content
+- ✅ Declare accurate frontmatter and compatibility metadata when available
+- ✅ Land with generated `metadata.json` classification artifacts after automation runs
+
+### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -95,67 +107,83 @@ skills/my-skill/
 └── scripts/
 ```
 
->**💡 टिप:**रिलीज़-ग्रेड कौशल पैक में `एजेंट/`, `संदर्भ/`, `उदाहरण/`, और `स्क्रिप्ट/` शामिल होना चाहिए। लेकिन सेवन सतह जानबूझकर अनुमेय है - न्यूनतम मूल आवक कौशल की अनुमति है, और एन्हांसर पाइपलाइन मजबूत व्युत्पन्न उत्पन्न करती है।### 🌐 Language Policy
+> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
 
-| सतह | स्वीकृत भाषाएँ |
-|:-------|:-------------------|
-| 📥 `कौशल/` (मूल सेवन) | पुर्तगाली, अंग्रेजी, या कोई भी भाषा |
-| ✨ `skills_omni/` (क्यूरेटेड आउटपुट) | केवल अंग्रेजी |
+### 🌐 Language Policy
 
-> निजी एन्हांसर सबमिट किए गए मूल स्रोत को संरक्षित करता है और क्यूरेटेड व्युत्पन्न को अंग्रेजी में फिर से लिखता है।
+| Surface | Accepted Languages |
+|:--------|:-------------------|
+| 📥 `skills/` (native intake) | Portuguese, English, or any language |
+| ✨ `skills_omni/` (curated output) | English only |
 
-📖 पूर्ण शाखा, सत्यापन और एन्हांसर-समीक्षा अनुक्रम के लिए, [कौशल पीआर वर्कफ़्लो](docs/contributors/SKILL-PR-WORKFLOW.md) का उपयोग करें।---
+> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
+
+📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
+
+---
 
 ## ✅ Required Validation
 
-पीआर खोलने से पहले इसे चलाएँ:```bash
+Run this before opening a PR:
+
+```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<विवरण>
-<सारांश>📋 <strong>क्या <कोड>एनपीएम रन वैलिडेट</कोड> पुन: उत्पन्न करता है</strong></सारांश>
+<details>
+<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
 
-- `मेटाडेटा.जेसन`
+- `metadata.json`
 - `skills/<skill>/metadata.json`
-- कैनोनिकल टैक्सोनॉमी मैपिंग
-- परिपक्वता, सर्वोत्तम अभ्यास, गुणवत्ता और सुरक्षा स्कोर
-- स्थैतिक सुरक्षा निष्कर्ष
-- वैकल्पिक ClamAV और वायरसटोटल स्कैनर स्थिति (कॉन्फ़िगर होने पर)</details>
+- Canonical taxonomy mapping
+- Maturity, best practices, quality, and security scores
+- Static security findings
+- Optional ClamAV and VirusTotal scanner status (when configured)
 
->**⚠️ महत्वपूर्ण:**सत्यापन सीएलआई, एपीआई, एमसीपी, ए2ए, मैनिफ़ेस्ट, अभिलेखागार और रिलीज़ ऑटोमेशन द्वारा उपयोग किया जाने वाला अनुबंध है। जेनरेट किए गए मेटाडेटा को समीक्षा सतह के हिस्से के रूप में मानें, डिस्पोजेबल आउटपुट के रूप में नहीं।### 📥 Intake Policy
+</details>
 
-| शर्त | व्यवहार |
-|:-------|:------|
-| गुम/अधूरा फ्रंटमैटर | ⚠️ चेतावनियाँ (अवरुद्ध नहीं करतीं) |
-| महत्वपूर्ण सुरक्षा निष्कर्ष | 🚫 ब्लॉक सेवन |
-| कठिन सत्यापन त्रुटियाँ | 🚫 ब्लॉक सेवन |
-| सख्त संपादकीय मानक | उन्नत व्युत्पन्न प्रवाह में लागू, मूल सेवन पर नहीं |### 🧪 Release-Grade Preflight
+> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+### 📥 Intake Policy
+
+| Condition | Behavior |
+|:----------|:---------|
+| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
+| Critical security findings | 🚫 Blocks intake |
+| Hard validation errors | 🚫 Blocks intake |
+| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
+
+### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<विवरण>
-<सारांश>📋 <strong>धुआं पास क्या मान्य करता है</strong></सारांश>
+<details>
+<summary>📋 <strong>What the smoke pass validates</strong></summary>
 
-- ✅ कौशल सत्यापन
-- ✅ कैटलॉग जनरेशन
-- ✅ डॉक्स कैटलॉग जनरेशन
-- ✅ टेस्ट सुइट
-- ✅ `एनपीएम पैक--ड्राई-रन`
-- ✅ एपीआई बूट
-- ✅ `stdio`, `stream`, और `sse` में MCP बूट
-- ✅ A2A बूट
-- ✅ पुरालेख सत्यापन और पैकेजिंग अपेक्षाएँ</details>
+- ✅ Skill validation
+- ✅ Catalog generation
+- ✅ Docs catalog generation
+- ✅ Test suite
+- ✅ `npm pack --dry-run`
+- ✅ API boot
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot
+- ✅ Archive verification and packaging expectations
+
+</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-फ्रंटमैटर की पुरजोर अनुशंसा की जाती है। आधार रेखा के रूप में [कौशल टेम्पलेट](docs/contributors/SKILL-TEMPLATE.md) का उपयोग करें।```yaml
+Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
+
+```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -172,88 +200,104 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<विवरण>
-<सारांश>🏷️ <strong>विहित वर्गीकरण श्रेणियां</strong></सारांश>
+<details>
+<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
 
-| श्रेणी | श्रेणी |
-|:------|:------|
-| 'विकास' | `फ्रंटएंड` |
-| `बैकएंड` | `फुलस्टैक-वेब` |
-| `उपकरण` | `क्ली-ऑटोमेशन` |
-| 'व्यवसाय' | 'उत्पाद' |
-| 'डिज़ाइन' | `डेटा-एआई` |
-| `एआई-एजेंट` | `मशीन-लर्निंग` |
-| 'देवोप्स' | `परीक्षण-सुरक्षा` |
-| `दस्तावेज़ीकरण` | `सामग्री-मीडिया` |
-| `संचार` | 'अवर्गीकृत' |</details>
+| Category | Category |
+|:---------|:---------|
+| `development` | `frontend` |
+| `backend` | `fullstack-web` |
+| `tools` | `cli-automation` |
+| `business` | `product` |
+| `design` | `data-ai` |
+| `ai-agents` | `machine-learning` |
+| `devops` | `testing-security` |
+| `documentation` | `content-media` |
+| `communication` | `uncategorized` |
 
->**ℹ️**कौशल संस्करण एनपीएम पैकेज संस्करण से स्वतंत्र है। यदि किसी मूल आवक कौशल में अभी तक फ्रंटमैटर नहीं है, तो इसे चेतावनियों के साथ स्वीकार किया जाएगा और निर्देशिका, शीर्षक और मुख्य पाठ से अस्थायी मेटाडेटा प्राप्त किया जाएगा।---
+</details>
+
+> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
+
+---
 
 ## ⚙️ Runtime Contributions
 
-यदि आप `पैकेज/`, `टूल्स/बिन/`, `टूल्स/लिब/` को स्पर्श करते हैं, या स्क्रिप्ट बनाते हैं:
+If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 
-- 📦 `dist/` और दस्तावेज़ों को कार्यान्वयन के साथ संरेखित रखें
-- 🔄 कैटलॉग तर्क की नकल करने के बजाय `पैकेज/कैटलॉग-कोर` का पुन: उपयोग करना पसंद करें
-- 🔒 पूर्वावलोकन या ड्राई-रन डिफॉल्ट के पीछे स्थानीय-लेखन व्यवहार रखें
-- 🔌 एमसीपी लेखकों को अनुशासित रखें - प्रथम श्रेणी कॉन्फिग राइटर तभी जोड़ें जब क्लाइंट के पास एक स्थिर सार्वजनिक कॉन्फिग अनुबंध हो
-- 🛡️ सुरक्षा स्कैनर चेतावनियों को समीक्षा बार का हिस्सा मानें
-- 🧪 सीएलआई कमांड, ट्रांसपोर्ट मोड या सार्वजनिक एंडपॉइंट बदलते समय परीक्षण अपडेट करें### 🚧 Important Boundary
+- 📦 Keep `dist/` and docs aligned with the implementation
+- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
+- 🔒 Keep local-write behavior behind preview or dry-run defaults
+- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
+- 🛡️ Treat security scanner warnings as part of the review bar
+- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
 
-| ऐसा करो ✅ | ऐसा मत करो 🚫 |
-|:----|:------------------|
-| `कौशल/` | के अंतर्गत मूल कार्य सबमिट करें मैन्युअल पीआर खोलें जो `skills_omni/` | को संपादित करते हैं
-| स्वचालन को एन्हांसर चलाने दें | सीधे क्यूरेटेड सामग्री जोड़ें |
-| वैध कौशल गुणवत्ता पर ध्यान दें | स्वचालित साथी पीआर प्रवाह को बायपास करें |
+### 🚧 Important Boundary
 
->**ℹ️**जब `कौशल/` में एक मूल कौशल को अद्यतन किया जाता है, तो निजी एन्हांसर इसे पुन: संसाधित करता है और बढ़ी हुई आधार रेखा को ताज़ा करता है।---
+| Do this ✅ | Don't do this 🚫 |
+|:-----------|:-----------------|
+| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
+| Let automation handle the enhancer run | Add curated content directly |
+| Focus on legitimate skill quality | Bypass the automated companion PR flow |
+
+> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
+
+---
 
 ## 🔄 Enhancer Outcome States
 
-सार्वजनिक देशी-कौशल पीआर के दौरान, एन्हांसर चार स्थितियों में से एक की रिपोर्ट करता है:
+During public native-skill PRs, the enhancer reports one of four states:
 
-| राज्य | मतलब |
-|:------|:-------|
-| ✅ `पूर्ण` | उन्नत व्युत्पन्न साफ़-साफ़ तैयार किया गया, `skills_omni/` के लिए पात्र |
-| ⚠️ `अपमानित` | फ़ॉलबैक या कमज़ोर स्कोर मूवमेंट के साथ पूर्ण - अधिक ध्यान से निरीक्षण करें |
-| 🚫 `अवरुद्ध` | बुनियादी ढांचे या सत्यापन कारणों से रोका गया - स्वतः-प्रकाशन को रोकता है |
-| ❌ `विफल` | अनपेक्षित त्रुटि - अनुरक्षक जांच की आवश्यकता है |
+| State | Meaning |
+|:------|:--------|
+| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
+| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
+| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
+| ❌ `failed` | Unexpected error — requires maintainer investigation |
 
->**📝योगदानकर्ताओं**को उन्नत बुनियादी ढांचे के मुद्दों को ठीक करने की आवश्यकता नहीं है। जिम्मेदारी एक वैध देशी कौशल प्रस्तुत करना और रेपो को हरा-भरा रखना है।---
+> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
+
+---
 
 ## 🔄 Automatic Release Policy
 
-जब कोई परिवर्तन `मुख्य` पर आता है और इसमें शामिल होता है:
+When a change lands on `main` and includes:
 
-- `कौशल/**`
+- `skills/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-...रिपॉजिटरी**पैकेज रिलीज़ स्वचालित रूप से**जारी करती है।### 📋 Version Bump Rule
+…the repository issues a **package release automatically**.
 
-| से | को | नियम |
-|:----|:---|:-----|
-| `0.1.0` | `0.1.1` | पैच +1 |
-| `0.1.9` | `0.1.10` | पैच +1 |
-| `0.1.10` | `0.2.0` | अगले माइनर पर रोल करें, पैच रीसेट करें |
+### 📋 Version Bump Rule
 
-> रिलीज़ प्रवाह कैटलॉग/अभिलेखागार को पुनर्जीवित करता है, संस्करण बम्प करता है, रिलीज़ को टैग करता है, एनपीएम प्रकाशित करता है, और स्वचालित रूप से GitHub रिलीज़ बनाता है।---
+| From | To | Rule |
+|:-----|:---|:-----|
+| `0.1.0` | `0.1.1` | Patch +1 |
+| `0.1.9` | `0.1.10` | Patch +1 |
+| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
+
+> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
+
+---
 
 ## 📝 Commit Conventions
 
-| उपसर्ग | के लिए उपयोग करें |
-|:-------|:-------|
-| `करतब:` | नया कौशल या सुविधा |
-| `ठीक करें:` | बग फिक्स |
-| `दस्तावेज़:` | दस्तावेज़ीकरण परिवर्तन |
-| `रिफैक्टर:` | कोड सफ़ाई या संरचना परिवर्तन |
-| `परीक्षण:` | परीक्षण परिवर्तन |
-| `घर का काम:` | रखरखाव |---
+| Prefix | Use For |
+|:-------|:--------|
+| `feat:` | New skill or feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `refactor:` | Code cleanup or structure changes |
+| `test:` | Test changes |
+| `chore:` | Maintenance |
+
+---
 
 ## ❓ Need Help?
 
-| चैनल | लिंक |
+| Channel | Link |
 |:--------|:-----|
-| 💬 प्रश्न | [एक चर्चा खोलें](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 कीड़े | [एक अंक खोलें](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 प्रारंभिक प्रतिक्रिया | [ड्राफ्ट पीआर खोलें](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |

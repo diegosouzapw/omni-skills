@@ -5,69 +5,83 @@
 ---
 
 
->**Ang pangunahing desisyon sa arkitektura na humubog sa istruktura ng monorepo workspace.**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**Tinanggap**— kasalukuyang direksyon ng workspace at aktibong hugis ng repositoryo.---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Nagsimula ang Omni Skills bilang isang**installer-first**repository. Iyon ay sapat na upang ipamahagi ang nilalamang `SKILL.md`, ngunit hindi sapat upang ilantad ang catalog sa mga ahente sa pamamagitan ng mga lumalabas na protocol-native.
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-Kailangan namin ng isang pundasyon na maaaring suportahan:
+We needed a foundation that could support:
 
-| Kinakailangan | Protocol |
+| Requirement | Protocol |
 |:------------|:---------|
-| 🌐 Read-only HTTP catalog API | pahinga |
-| 🔌 Read-only na MCP server | Model Context Protocol |
-| 🤖 A2A surface na nakaharap sa ahente | Ahente-sa-Agent |
-| 📂 Lokal na pag-install ng mga sidecar | Mga tool sa filesystem |
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**Critical constraint**: Iwasang i-reparsing ang repo file nang hiwalay sa bawat bagong serbisyo.---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-Mag-adopt ng**workspace-oriented monorepo**na may nakabahaging catalog core at mga protocol-specific na package:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| Package | Layunin |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `omni-skills` (ugat) | CLI installer at repo script |
-| 🧠 `@omni-skills/catalog-core` | Nakabahaging pag-load, paghahanap, paghahambing, mga bundle, mga plano sa pag-install |
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
 | 🌐 `@omni-skills/server-api` | Read-only REST API |
-| 🔌 `@omni-skills/server-mcp` | MCP na may stdio/stream/sse + local sidecar mode |
-| 🤖 `@omni-skills/server-a2a` | A2A task runtime na may Agent Card, polling, SSE, at push config |### 📁 Shared Data Sources
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-Binabasa ng core ng catalog ang mga nabuong artifact mula sa:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`---
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| Kinalabasan | Epekto |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**Kontrata ng nakabahaging data**| Ang API, MCP, at A2A ay gumagamit ng parehong mga artifact |
-| 🖥️**Pinag-isang CLI**| Inilalantad ng isang binary ang pag-install, shell ng UI, API, MCP, A2A, mga diagnostic, at usok |
-| 🧩**Protocol isolation**| Ang mga bagong surface ay umuulit nang hindi nakakabit sa mga installer internals |
-| 🔌**Lokal na sidecar**| Gumagana ang MCP mode na may kakayahang sumulat sa likod ng isang allowlist, na may mga recipe na alam ng kliyente |
-| 📦**Single-package runtime**| Ang na-publish na npm package ay nagdadala ng mga protocol surface, validation tooling, at mga nabuong artifact nang magkasama |---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| Tradeoff | Pagbabawas |
+| Tradeoff | Mitigation |
 |:---------|:-----------|
-| 🔄**Pagdoble ng metadata**| Python build + JavaScript runtime → kalaunan ay pinagsama-sama |
-| 🏗️**A2A complexity**| Umiiral na ngayon ang matibay na lifecycle, ngunit ang mga adapter ng koordinasyon ay nagdaragdag ng lalim ng pagpapatakbo |
-| 📦**Pag-align ng Catalog**| Nangangailangan ang selective install ng mga command, manifest, at docs upang manatiling naka-synchronize |
-| 📋**Bundle metadata gaps**| Maaaring malampasan ng mga bundle ang nai-publish na mga kasanayan, na nangangailangan ng tahasang mga babala ng nawawalang miyembro |---
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | Aksyon | Katayuan |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Remote na pagpapatotoo ng MCP at paglilimita sa rate | ✅ Tapos na |
-| 2️⃣ | Pinahusay na pagsusulat ng MCP config na partikular sa kliyente | ✅ Present ngayon para sa Claude, Cursor, Codex, Gemini, Kiro, VS Code, at Dev Containers |
-| 3️⃣ | Mga nilagdaang artifact o per-skill archive | ✅ Ipakita ngayon na may CI enforcement sa mga release tag |
-| 4️⃣ | A2A task runtime → matibay na orkestra | ✅ Present ngayon na may JSON/SQLite persistence, external executors, opt-in lease coordination, at opsyonal na advanced Redis coordination |
-| 5️⃣ | Palawakin ang naka-publish na catalog para sa mas malawak na saklaw ng bundle | ✅ Present ngayon para sa kasalukuyang pitong na-curate na starter bundle |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

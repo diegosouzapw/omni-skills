@@ -4,7 +4,7 @@
 
 ---
 
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
 <div align="center">
 
@@ -15,6 +15,8 @@
 
 **The skill catalog that installs itself.**<br/>
 CLI · API · MCP · A2A — all from a single `npx` command.
+
+> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
 
 <br/>
 
@@ -27,6 +29,39 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 [![MCP](https://img.shields.io/badge/🔌_MCP-stdio_%7C_stream_%7C_sse-2ea44f?style=for-the-badge)](#-runtime-surfaces)
 [![API](https://img.shields.io/badge/🌐_API-read--only_catalog-0366d6?style=for-the-badge)](#-runtime-surfaces)
 [![A2A](https://img.shields.io/badge/🤖_A2A-task_lifecycle-orange?style=for-the-badge)](#-runtime-surfaces)
+
+<p align="center">
+  🇺🇸 English
+  · <a href="docs/i18n/es/README.md">🇪🇸 Español</a>
+  · <a href="docs/i18n/fr/README.md">🇫🇷 Français</a>
+  · <a href="docs/i18n/de/README.md">🇩🇪 Deutsch</a>
+  · <a href="docs/i18n/it/README.md">🇮🇹 Italiano</a>
+  · <a href="docs/i18n/ru/README.md">🇷🇺 Русский</a>
+  · <a href="docs/i18n/zh-CN/README.md">🇨🇳 中文（简体）</a>
+  · <a href="docs/i18n/ja/README.md">🇯🇵 日本語</a>
+  · <a href="docs/i18n/ko/README.md">🇰🇷 한국어</a>
+  · <a href="docs/i18n/ar/README.md">🇸🇦 العربية</a>
+  · <a href="docs/i18n/in/README.md">🇮🇳 हिन्दी</a>
+  · <a href="docs/i18n/th/README.md">🇹🇭 ไทย</a>
+  · <a href="docs/i18n/vi/README.md">🇻🇳 Tiếng Việt</a>
+  · <a href="docs/i18n/id/README.md">🇮🇩 Bahasa Indonesia</a>
+  · <a href="docs/i18n/ms/README.md">🇲🇾 Bahasa Melayu</a>
+  · <a href="docs/i18n/nl/README.md">🇳🇱 Nederlands</a>
+  · <a href="docs/i18n/pl/README.md">🇵🇱 Polski</a>
+  · <a href="docs/i18n/sv/README.md">🇸🇪 Svenska</a>
+  · <a href="docs/i18n/no/README.md">🇳🇴 Norsk</a>
+  · <a href="docs/i18n/da/README.md">🇩🇰 Dansk</a>
+  · <a href="docs/i18n/fi/README.md">🇫🇮 Suomi</a>
+  · <a href="docs/i18n/pt/README.md">🇵🇹 Português (Portugal)</a>
+  · <a href="docs/i18n/ro/README.md">🇷🇴 Română</a>
+  · <a href="docs/i18n/hu/README.md">🇭🇺 Magyar</a>
+  · <a href="docs/i18n/bg/README.md">🇧🇬 Български</a>
+  · <a href="docs/i18n/sk/README.md">🇸🇰 Slovenčina</a>
+  · <a href="docs/i18n/uk-UA/README.md">🇺🇦 Українська</a>
+  · <a href="docs/i18n/he/README.md">🇮🇱 עברית</a>
+  · <a href="docs/i18n/phi/README.md">🇵🇭 Filipino</a>
+  · <a href="docs/i18n/pt-BR/README.md">🇧🇷 Português (Brasil)</a>
+</p>
 
 <br/>
 
@@ -44,19 +79,20 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 | | Metric | Value |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
+| 📦 | **Published Skills** | `48` native skills across 15 active categories |
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients |
 | 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
+| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 📋 | **Current Release** | `v0.1.3` |
 
 ---
 
 ## התחלה מהירה
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+> 🔍 **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
+> **You're in the right place.** 👇
 
 ### 1️⃣ What is this?
 
@@ -322,7 +358,7 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 | Metric | Count |
 |:-------|:------|
-| 🧠 Published skills | **32** |
+| 🧠 Native intake skills | **48** |
 | 📂 Active categories | **15** |
 | 📦 Fully backed bundles | **7** |
 | ✨ Curated derivatives | **32** in `skills_omni/` |
@@ -492,5 +528,7 @@ Omni Skills accepts native upstream skill intake under `skills/`.
 **Made with 🧠 by the Omni Skills Team**
 
 [⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
+
+*If Omni Skills helps you build faster, consider giving it a ⭐ — it helps others discover the project!*
 
 </div>

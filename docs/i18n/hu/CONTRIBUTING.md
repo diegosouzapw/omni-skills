@@ -5,42 +5,50 @@
 ---
 
 
->**Az Omni Skills egy készségkatalógust és a katalógus tetejére épített futásidejű felületeket is tartalmaz.**
-> A hozzájárulások bármelyik területet megcélozhatják, de mindkettőnek összhangban kell lennie a generált műtermékekkel és az aktuális CLI viselkedéssel.---
+> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
+
+---
 
 ## 📊 Repository Baseline
 
-| Metrikus | Érték |
+| Metric | Value |
 |:-------|:------|
-| 📦 Csomag verzió | "0.1.3" |
-| 🧠 Megjelent készségek | "32" |
-| 📦 Teljesen alátámasztott csomagok | "7" |
-| 🖥️ Telepítésre képes kliensek | "7" |
-| 🔌 MCP-konfigurációra képes kliensek | "16" |
-| 🔄 Automatikus kiadások | Engedélyezve a "fő" |---
+| 📦 Package version | `0.1.3` |
+| 🧠 Published skills | `32` |
+| 📦 Fully backed bundles | `7` |
+| 🖥️ Install-capable clients | `7` |
+| 🔌 MCP config-capable clients | `16` |
+| 🔄 Automatic releases | Enabled on `main` |
+
+---
 
 ## Fontos
 
-| Milyen | Hol |
+| What | Where |
 |:-----|:------|
-| 🧠 A készségek szerzői | `készségek/<készségnév>/SKILL.md` |
-| 📖 Közreműködői sablonok és útmutatás | `dokumentumok/közreműködők/` |
-| 🧾 Kanonikus PR-folyam az új készségekért | [Skill PR-munkafolyamat](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 A natív bejövő készségek | `készségek/` (bármilyen nyelv) |
-| ✨ Kurált továbbfejlesztett származékok | `skills_omni/` (csak angolul, automatizált) |
-| 🚫 A `skills_omni/` védett | Közvetlen állami hozzájárulásra nem alkalmas |
-| 📖 Futásidejű és építészeti dokumentumok | `dokumentumok/` |
-| 📄 Közösségi fájlok | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `KÖZVETÉSI_KÓD.md` |---
+| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
+| 📖 Contributor templates and guidance | `docs/contributors/` |
+| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Native incoming skills land under | `skills/` (any language) |
+| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
+| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 📖 Runtime and architecture docs | `docs/` |
+| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
+
+---
 
 ## 🎯 Common Contribution Types
 
-| Típus | Terület |
+| Type | Area |
 |:-----|:-----|
-| 🧠 Képesség hozzáadása vagy fejlesztése | `készségek/` |
-| 📖 Közreműködői útmutató frissítése | `dokumentumok/közreműködők/` |
-| 🖥️ A CLI, a telepítő vagy a szkriptek javítása | `eszközök/` |
-| 📦 A katalógus futtatókörnyezetének vagy protokollcsomagjainak javítása | `csomagok/` |
-| 🧪 A tesztek szigorítása, a füstellenőrzés vagy a dokumentumok kiadása | Különféle |---
+| 🧠 Add or improve a skill | `skills/` |
+| 📖 Update contributor guidance | `docs/contributors/` |
+| 🖥️ Improve CLI, installer, or scripts | `tools/` |
+| 📦 Improve catalog runtime or protocol packages | `packages/` |
+| 🧪 Tighten tests, smoke checks, or release docs | Various |
+
+---
 
 ## Gyors kezdés
 
@@ -65,18 +73,22 @@ npm test
 npm run smoke
 ```
 
->**📝 Nyissa meg a PR-t úgy, hogy a "Szerkesztések engedélyezése a karbantartóktól" engedélyezve van.**---
+> **📝 Open the PR with `Allow edits from maintainers` enabled.**
+
+---
 
 ## Dokumentáció
 
-Egy jó natív bejövő készségnek:
+A good native incoming skill should:
 
-- ✅ Egy adott problémát tisztán megoldani
-- ✅ Legyen újra felhasználható projektek során
-- ✅ Tartalmazzon utasításokat, amelyeket az ügynök ténylegesen követhet
-- ✅ Kerülje a homályos vagy felesleges tartalmat
-- ✅ Pontos frontanyag és kompatibilitási metaadatok deklarálása, ha rendelkezésre állnak
-- ✅ Földet generált "metadata.json" osztályozási melléktermékekkel az automatizálás után### 📁 Minimal Structure
+- ✅ Solve a specific problem cleanly
+- ✅ Be reusable across projects
+- ✅ Include instructions an agent can actually follow
+- ✅ Avoid vague or redundant content
+- ✅ Declare accurate frontmatter and compatibility metadata when available
+- ✅ Land with generated `metadata.json` classification artifacts after automation runs
+
+### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -95,67 +107,83 @@ skills/my-skill/
 └── scripts/
 ```
 
->**💡 Tipp:**A kiadási szintű készségcsomagoknak tartalmazniuk kell az „agents/”, „references/”, „examples/” és „scripts/” elemeket. De a beviteli felület szándékosan megengedő – egy minimális natív bejövő képesség megengedett, és az erősítő folyamat az erősebb származékot generálja.### 🌐 Language Policy
+> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
 
-| Felület | Elfogadott nyelvek |
-|:--------|:--------------------|
-| 📥 `készségek/` (natív bevitel) | portugál, angol vagy bármilyen nyelv |
-| ✨ `skills_omni/` (kurált kimenet) | csak angolul |
+### 🌐 Language Policy
 
-> A privát javító megőrzi a natív forrást a benyújtott formában, és átírja a kurált származékot angolra.
+| Surface | Accepted Languages |
+|:--------|:-------------------|
+| 📥 `skills/` (native intake) | Portuguese, English, or any language |
+| ✨ `skills_omni/` (curated output) | English only |
 
-📖 A teljes elágazás, érvényesítés és javító-ellenőrzési sorrendhez használja a [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) alkalmazást.---
+> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
+
+📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
+
+---
 
 ## ✅ Required Validation
 
-Futtassa ezt a PR megnyitása előtt:```bash
+Run this before opening a PR:
+
+```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<részletek>
-<summary>📋 <strong>Mit generál újra az <code>npm run valide</code></strong></summary>
+<details>
+<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
 
-- "metadata.json".
-- `skills/<készség>/metadata.json`
-- Kanonikus taxonómia leképezés
-- Érettség, bevált gyakorlatok, minőségi és biztonsági pontszámok
-- Statikus biztonsági megállapítások
-- Opcionális ClamAV és VirusTotal szkenner állapota (ha be van állítva)</details>
+- `metadata.json`
+- `skills/<skill>/metadata.json`
+- Canonical taxonomy mapping
+- Maturity, best practices, quality, and security scores
+- Static security findings
+- Optional ClamAV and VirusTotal scanner status (when configured)
 
->**⚠️ Fontos:**Az érvényesítés a CLI, API, MCP, A2A, manifesztek, archívumok és kiadásautomatizálás által használt szerződés. A generált metaadatokat az áttekintési felület részeként kell kezelni, nem eldobható kimenetként.### 📥 Intake Policy
+</details>
 
-| Állapot | Viselkedés |
+> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+### 📥 Intake Policy
+
+| Condition | Behavior |
 |:----------|:---------|
-| Hiányzó/nem teljes frontanyag | ⚠️ Figyelmeztetések (nem blokkol) |
-| Kritikus biztonsági megállapítások | 🚫 Blokkolja a bevitelt |
-| Kemény érvényesítési hibák | 🚫 Blokkolja a bevitelt |
-| Szigorúbb szerkesztői szabvány | Megerősített származékos áramlásban kényszerítve, nem natív bevitelnél |### 🧪 Release-Grade Preflight
+| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
+| Critical security findings | 🚫 Blocks intake |
+| Hard validation errors | 🚫 Blocks intake |
+| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
+
+### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<részletek>
-<summary>📋 <strong>Amit a füstbérlet érvényesít</strong></summary>
+<details>
+<summary>📋 <strong>What the smoke pass validates</strong></summary>
 
-- ✅ Képességellenőrzés
-- ✅ Katalógus generálás
-- ✅ Dokumentumok katalógus generálása
-- ✅ Tesztcsomag
+- ✅ Skill validation
+- ✅ Catalog generation
+- ✅ Docs catalog generation
+- ✅ Test suite
 - ✅ `npm pack --dry-run`
 - ✅ API boot
-- ✅ MCP rendszerindítás az "stdio", "stream" és "sse" fájlokban
-- ✅ A2A csizma
-- ✅ Archívum ellenőrzési és csomagolási elvárások</details>
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot
+- ✅ Archive verification and packaging expectations
+
+</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-A Frontmatter erősen ajánlott. Használja a [Skill Template]-et (docs/contributors/SKILL-TEMPLATE.md) alapként.```yaml
+Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
+
+```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -172,88 +200,104 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<részletek>
-<summary>🏷️ <strong>Kanonikus taxonómiai kategóriák</strong></summary>
+<details>
+<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
 
-| Kategória | Kategória |
+| Category | Category |
 |:---------|:---------|
-| "fejlesztés" | `frontend` |
-| `háttér` | `fullstack-web` |
-| "szerszámok" | `kli-automatizálás` |
-| "üzleti" | "termék" |
-| "tervezés" | `data-ai` |
-| "ai-ügynökök" | "gépi tanulás" |
-| `devops` | "tesztelési biztonság" |
-| "dokumentáció" | "tartalom-média" |
-| "kommunikáció" | "besorolatlan" |</details>
+| `development` | `frontend` |
+| `backend` | `fullstack-web` |
+| `tools` | `cli-automation` |
+| `business` | `product` |
+| `design` | `data-ai` |
+| `ai-agents` | `machine-learning` |
+| `devops` | `testing-security` |
+| `documentation` | `content-media` |
+| `communication` | `uncategorized` |
 
->**ℹ️**A Skill verzió független az npm csomag verziójától. Ha egy natív bejövő készség még nem rendelkezik frontanyaggal, akkor a rendszer figyelmeztetésekkel fogadja el, és ideiglenes metaadatokat von le a könyvtárból, a címből és a törzsszövegből.---
+</details>
+
+> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
+
+---
 
 ## ⚙️ Runtime Contributions
 
-Ha megérinti a `packages/`, a `tools/bin/`, a `tools/lib/` elemeket, vagy összeállítja a szkripteket:
+If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 
-- 📦 Tartsa a dist/-t és a dokumentumokat a megvalósításhoz igazítva
-- 🔄 Inkább használja a "packages/catalog-core" újbóli használatát a katalóguslogika megkettőzése helyett
-- 🔒 Tartsa a helyi írási viselkedést az előnézeti vagy szárazon futtatott alapértelmezett értékek mögött
-- 🔌 Tartsa fegyelmezetten az MCP-írókat – csak akkor vegyen fel első osztályú konfigurációs írókat, ha az ügyfélnek stabil nyilvános konfigurációs szerződése van
-- 🛡️ Kezelje a biztonsági szkenner figyelmeztetéseit a felülvizsgálati sáv részeként
-- 🧪 Frissítse a teszteket a CLI-parancsok, szállítási módok vagy nyilvános végpontok módosításakor### 🚧 Important Boundary
+- 📦 Keep `dist/` and docs aligned with the implementation
+- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
+- 🔒 Keep local-write behavior behind preview or dry-run defaults
+- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
+- 🛡️ Treat security scanner warnings as part of the review bar
+- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
 
-| Tedd ezt ✅ | Ne tedd ezt 🚫 |
-|:-----------|:------------------|
-| Nyújtsa be a natív munkát a „készségek/” | Nyissa meg a `skills_omni/` |
-| Hagyja, hogy az automatizálás kezelje a javító futtatását | Közvetlenül adjon hozzá válogatott tartalmat |
-| Fókuszban a jogos képzettségminőség | Az automatizált társ PR-folyam megkerülése |
+### 🚧 Important Boundary
 
->**ℹ️**Amikor a `skills/` natív készsége frissül, a privát javító újrafeldolgozza azt, és frissíti a továbbfejlesztett alapvonalat.---
+| Do this ✅ | Don't do this 🚫 |
+|:-----------|:-----------------|
+| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
+| Let automation handle the enhancer run | Add curated content directly |
+| Focus on legitimate skill quality | Bypass the automated companion PR flow |
+
+> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
+
+---
 
 ## 🔄 Enhancer Outcome States
 
-A natív készségek nyilvános PR-jei során a javító négy állapot egyikét jelenti:
+During public native-skill PRs, the enhancer reports one of four states:
 
-| állam | Jelentése |
-|:------|:---------|
-| ✅ `befejezve` | Tisztán generált továbbfejlesztett származék, alkalmas a `skills_omni/` |
-| ⚠️ `leépült` | Visszaeséssel vagy gyengébb pontmozgással kiegészítve – ellenőrizze alaposabban |
-| 🚫 `blokkolva` | Infrastrukturális vagy érvényesítési okokból leállítva – megakadályozza az automatikus közzétételt |
-| ❌ "sikertelen" | Váratlan hiba – karbantartói vizsgálat szükséges |
+| State | Meaning |
+|:------|:--------|
+| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
+| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
+| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
+| ❌ `failed` | Unexpected error — requires maintainer investigation |
 
->**📝 A közreműködőknek**nem kell javítaniuk az infrastrukturális problémákat. A felelősség egy legitim natív képesség benyújtása és a repo zöld megőrzése.---
+> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
+
+---
 
 ## 🔄 Automatic Release Policy
 
-Amikor egy változás a "fő"-be kerül, és a következőket tartalmazza:
+When a change lands on `main` and includes:
 
-- `készségek/**`
+- `skills/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-…a tároló automatikusan kiad egy**csomagkibocsátást**.### 📋 Version Bump Rule
+…the repository issues a **package release automatically**.
 
-| Feladó | To | szabály |
+### 📋 Version Bump Rule
+
+| From | To | Rule |
 |:-----|:---|:-----|
-| "0.1.0" | "0.1.1" | Patch +1 |
-| "0.1.9" | "0.1.10" | Patch +1 |
-| "0.1.10" | "0.2.0" | Görgessen a következő minorra, állítsa vissza a javítást |
+| `0.1.0` | `0.1.1` | Patch +1 |
+| `0.1.9` | `0.1.10` | Patch +1 |
+| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
 
-> A kiadási folyamat újragenerálja a katalógust/archívumot, véglegesíti a verzióleütést, megcímkézi a kiadást, közzéteszi az npm-et, és automatikusan létrehozza a GitHub-verziót.---
+> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
+
+---
 
 ## 📝 Commit Conventions
 
-| Előtag | Használja |
-|:-------|:---------|
-| `feat:` | Új készség vagy funkció |
-| `fix:` | Hibajavítás |
-| `dokumentumok:` | Változások a dokumentációban |
-| "refaktor:" | Kódtisztítás vagy szerkezetmódosítások |
-| `teszt:` | Tesztmódosítások |
-| `munka:` | Karbantartás |---
+| Prefix | Use For |
+|:-------|:--------|
+| `feat:` | New skill or feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `refactor:` | Code cleanup or structure changes |
+| `test:` | Test changes |
+| `chore:` | Maintenance |
+
+---
 
 ## ❓ Need Help?
 
-| Csatorna | Link |
+| Channel | Link |
 |:--------|:-----|
-| 💬 Kérdések | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Bugs | [Nyisson meg egy problémát](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Korai visszajelzés | [Nyissa meg a PR-tervezetet](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |

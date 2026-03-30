@@ -5,40 +5,47 @@
 ---
 
 
->**Omfattende teknisk analyse af den nuværende Omni Skills-arkitektur, runtime-overflader og byggepipeline.**
-> Sidst analyseret: 2026-03-28---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| Attribut | Værdi |
+| Attribute | Value |
 |:----------|:------|
-|**Navn**| `omni-færdigheder` |
-|**Pakkeversion**| `0.1.3` |
-|**Skill versioner**| Per-skill og uafhængig af pakkeversionen. Mange offentliggjorte færdigheder er stadig `0.0.1`, mens pakken er `0.1.2`. |
-|**Licens**| MIT (kode) + CC BY 4.0 (indhold) |
-|**NPM**| `npx omni-skills` |
-|**Udgivne færdigheder**| 32 |
-|**Definerede bundter**| 7, alle fuldt understøttet af offentliggjorte færdigheder |
-|**Aktive katalogkategorier**| 15 aktive buckets ud af 18 kanoniske taksonomikategorier |
-|**Primær runtime/build LOC samplet nedenfor**| 13.600+ |
-|**Produktionsafhængigheder**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-Aktuelt klassificeringsøjebliksbillede på lagerniveau fra `metadata.json`:
+Current repository-level classification snapshot from `metadata.json`:
 
-- gennemsnitlig kvalitetsscore: `96,3`
-- Gennemsnitlig score for bedste praksis: "98,7".
-- gennemsnitlig sikkerhedsscore: `95,0`
-- alle 32 offentliggjorte færdigheder valideres som "L3".
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-Nuværende udgivelsesbaseline:
+Current release baseline:
 
-- public repository release: `v0.1.2`
-- privat enhancer-udgivelse: `v0.0.1`
-- offentlig udgivelsesautomatisering og privat udgivelsesautomatisering er både aktive og grønne---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-Lagret følger et**workspace monorepo**-mønster med én delt katalogkerne og flere runtime-overflader.```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,297 +71,333 @@ Lagret følger et**workspace monorepo**-mønster med én delt katalogkerne og fl
 └────────────────────────────────────────────────────────────┘
 ```
 
-Designet er bevidst**artefaktdrevet**:
+The design is intentionally **artifact-driven**:
 
-1. færdigheder er skrevet som `SKILL.md` plus lokale supportpakker
-2. bygningen validerer, klassificerer, arkiverer og normaliserer dem
-3. de genererede artefakter bliver kontrakten for CLI, API, MCP og A2A---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4.500+ LOC kombineret**— den vigtigste offentlige grænseflade til både ekspert og guidet brug.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| Kommando | Funktion |
-|:--------|:--------|
-| 🔎 `find [forespørgsel]` | Fuldtekstkatalogsøgning med score-bevidste filtre |
-| 📦 `installer` | Guidet eller flagbaseret installation i kendte klienter eller brugerdefinerede stier |
-| 🧾 `config-mcp` | Forhåndsvis eller skriv klient-bevidst MCP-konfiguration |
-| 🔌 `mcp <transport>` | Starter MCP-serveren i `stdio`, `stream` eller `sse` |
-| 🌐 `api` | Starter kataloget API |
-| 🤖 `a2a` | Starter A2A runtime |
-| 🧪 'røg' | Release preflight validering |
-| 🩺 `læge` | Lokal diagnostik |
-| 🖥️ `ui` | Ink visual shell med installation, opdagelse, konfiguration og servicehub |
-| 🏷️ `rekategoriser` | Taksonomi afdriftsinspektion og omskrivning |
+| Command | Function |
+|:--------|:---------|
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-CLI'en er ikke længere kun et installationsprogram. Det er det offentlige driftsværktøj for hele platformen.## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-Den offentlige kørselstid er ikke længere blokeret på grundarbejde, og den anden kategori-bølge er allerede landet. Det næste nyttige katalogarbejde er dybde, ikke mere jagt efter kategorier.
+## 🧭 Future Expansion Direction
 
-Nyligt aktiverede kodeindfødte spor nu i kataloget:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- `design` via `design-systems-ops`, `accessibility-audit` og `design-token-governance`
-- `værktøjer` via `mcp-server-authoring`
+Newly activated code-native tracks now in the catalog:
+
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
 - `data-ai` via `data-contracts`
-- `maskine-læring` via `model-serving`
+- `machine-learning` via `model-serving`
 
-Anbefalet næste retning:
+Recommended next direction:
 
-1. uddybe `design`, `værktøjer`, `data-ai` og `machine-learning`
-2. holde "forretning" og "indholdsmedier" udsat, medmindre der fremkommer et klart kodebaseret forslag
-3. bevare det nuværende kvalitetsgulv i stedet for genåbningskategori aktiveringstryk
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
-Denne ekspansionsbølge er nu registreret i [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
->**403 LOC**— installerer færdigheder i 7 installationskompatible assistenter.
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
 
-| Flag | Mål | Standardsti |
-|:-----|:-------|:---------|
-| `--claude` | Claude kode | `~/.claude/færdigheder` |
-| `--cursor` | Markør | `~/.cursor/færdigheder` |
-| `--gemini` | Gemini CLI | `~/.gemini/færdigheder` |
-| `--codex` | Codex CLI | `~/.codex/færdigheder` |
+> **403 LOC** — installs skills into 7 install-capable assistants.
+
+| Flag | Target | Default Path |
+|:-----|:-------|:-------------|
+| `--claude` | Claude Code | `~/.claude/skills` |
+| `--cursor` | Cursor | `~/.cursor/skills` |
+| `--gemini` | Gemini CLI | `~/.gemini/skills` |
+| `--codex` | Codex CLI | `~/.codex/skills` |
 | `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antityngdekraft` | Antigravitation | `~/.gemini/antigravity/skills` |
-| `--opencode` | OpenCode | `<arbejdsområde>/.opencode/skills` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
+| `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
-Det understøtter:
+It supports:
 
-- fuld-bibliotek installerer
-- selektive installationer af `--skill`
-- kuraterede installationer af `--bundle`
-- guidede TTY og visuelle UI flows
-- tilpassede målstier### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
->**828 LOC**— delt runtime-lag til CLI, API, MCP og A2A.
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-| Eksporter | Beskrivelse |
-|:-------|:----------|
-| 🔎 `searchSkills()` | Søg med vægtet tekstmatchning og filterstøtte |
-| 📋 `listSkills()` | Flerakset filtrering efter kvalitet, bedste praksis, niveau, sikkerhed, risiko, værktøj og kategori |
-| 📌 `getSkill()` | Manifest opløsning plus berigede offentlige URL'er |
-| ⚖️ `compareSkills()` | Side-by-side sammenligning |
-| 💡 `recommendSkills()` | Målstyret anbefaling |
-| 📦 `buildInstallPlan()` | Installer plangenerering med advarsler og klientbevidst vejledning |
-| 🗂️ `listBundles()` | Kurateret pakkeliste med tilgængelighed |
-| 📁 `listSkillArchives()` | Arkiv- og underskriftsopløsning |
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
-Dette er den rigtige enkeltkilde til runtime sandhed efter generation.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+| Export | Description |
+|:-------|:------------|
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
->**812 LOC**— fuld MCP-implementering ved hjælp af det officielle SDK.
+This is the real single source of runtime truth after generation.
 
-**Transport**
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-- 'stdio'
-- streambar HTTP
+> **812 LOC** — full MCP implementation using the official SDK.
+
+**Transports**
+
+- `stdio`
+- streamable HTTP
 - SSE
 
-**Altid-aktiverede skrivebeskyttede værktøjer**
+**Always-on read-only tools**
 
-- `søgefærdigheder`
-- `bliv_færdighed`
-- `sammenlign_færdigheder`
-- `anbefal_færdigheder`
+- `search_skills`
+- `get_skill`
+- `compare_skills`
+- `recommend_skills`
 - `preview_install`
 
-**Værktøjer i lokal tilstand**
+**Local-mode tools**
 
-- `opdag_klienter`
-- `liste_installerede_færdigheder`
+- `detect_clients`
+- `list_installed_skills`
 - `install_skills`
-- `fjerne_færdigheder`
+- `remove_skills`
 - `configure_client_mcp`
 
-MCP-overfladen er bevidst delt mellem:
+The MCP surface is deliberately split between:
 
-- fjern-/skrivebeskyttet katalogbrug
-- lokal/skrivedygtig sidevognsbrug### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1.943 LOC**— filsystembevidst MCP-lag til klientdetektering, færdighedsstyring og MCP-konfigurationsskrivning.
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-Aktuel praktisk støtte:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 installationskompatible klienter**
--**16 konfigurationskompatible klienter**
--**33 konfigurationsmål**
--**19 konfigurationsprofiler**
+Current practical support:
 
-Installationskompatible klienter:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
+
+Install-capable clients:
 
 - Claude Code
-- Markør
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitation
+- Antigravity
 - OpenCode
 
-Konfigurationskompatible klienter og mål inkluderer:
+Config-capable clients and targets include:
 
-- Claude-indstillinger, Claude Desktop og Claude-projektkonfiguration
-- Markørbruger- og arbejdsområdekonfiguration
-- VS Code arbejdsområde, bruger, insidere og Dev Container-konfiguration
-- Gemini bruger- og arbejdsområdeindstillinger
-- Antigravity brugerkonfiguration
-- Kiro bruger, arbejdsområde og ældre stier
-- Codex CLI TOML konfig
-- OpenCode bruger og arbejdsområde konfiguration
-- Cline indstillinger
-- GitHub Copilot CLI-bruger og repo-konfiguration
-- Kilo bruger-, projekt- og arbejdsområdekonfiguration
-- Fortsæt arbejdsområde YAML
-- Windsurf brugerkonfig
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
 - Zed workspace config
-- Goose brugerkonfiguration
+- Goose user config
 
-Sidevognen er bevidst ærlig omkring grænser:
+The sidecar is intentionally honest about boundaries:
 
-- den skriver kun inde i en tilladelsesliste
-- den forhåndsviser som standard
-- det holder kun førsteklasses forfattere, hvor officielle dokumenter afslører et stabilt format
-- det foregiver ikke, at hvert MCP-kompatible produkt også er et mål for færdighedsinstallation### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
->**715 LOC kombineret**— skrivebeskyttet registry API plus styrings-middleware.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-Vigtige endepunkter:
+> **715 LOC combined** — read-only registry API plus governance middleware.
+
+Important endpoints:
 
 - `/healthz`
 - `/openapi.json`
 - `/admin/runtime`
-- `/v1/færdigheder`
+- `/v1/skills`
 - `/v1/skills/:id`
-- `/v1/søg`
-- `/v1/sammenlign`
+- `/v1/search`
+- `/v1/compare`
 - `/v1/bundles`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Governance-baseline allerede implementeret:
+Governance baseline already implemented:
 
-- ihændehaver token auth
-- API-nøglegodkendelse
+- bearer token auth
+- API-key auth
 - admin token auth
-- hastighedsbegrænsning i processen
-- anmode om ID'er
-- revisionslogning
-- CORS tilladelseslister
-- IP-tilladelseslister
-- tillidsfuldmagtshåndtering
-- vedligeholdelsestilstand### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**1.857 LOC kombineret på tværs af hovedserver-, runtime- og koordinatorfilerne**— JSON-RPC 2.0 opgavelivscyklus for agent-til-agent arbejdsgange.
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-Understøttede metoder:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `besked/send`
-- `besked/stream`
-- `opgaver/få`
-- `opgaver/annuller`
-- `opgaver/gentilmeld`
+Supported methods:
+
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
 - `tasks/pushNotificationConfig/*`
 
-Nuværende operationer:
+Current operations:
 
-- `opdag-færdigheder`
-- `anbefal-stak`
-- `forbered-installer-plan`
+- `discover-skills`
+- `recommend-stack`
+- `prepare-install-plan`
 
-Holdbarhed og koordinationsmodel:
+Durability and coordination model:
 
-- hukommelse, JSON eller SQLite lokal persistens
-- genstart CV
-- valgfri ekstern procesudøver
-- opt-in leaset køkoordinering for delte SQLite-arbejdere
-- valgfri Redis-støttet koordinering som en avanceret hostet sti
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
 
-Det vigtigste arkitektoniske valg her er**simpel-først lokal drift**. Redis eksisterer som en avanceret mulighed, men standardproduktstien forbliver lokal og afhængighedslys.---
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| Script | Sprog | Formål |
-|:-------|:--------|:--------|
-| 📊 `skill_metadata.py` | Python | Validering, taksonomi, scoring og statisk sikkerhedsscanning |
-| ✅ `validate_skills.py` | Python | Metadatagenerering pr. færdighed og for rodresuméet |
-| 📑 `generate_index.py` | Python | Færdighedsindeks, manifester, arkiver, signaturer og kontrolsummer |
-| 🏗️ `build_catalog.js` | Node.js | Endelig `dist/catalog.json` og `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Kanonisk kategori revision og omskrivning |
-| 🔍 `verify_archives.py` | Python | Verifikation af arkiv og signatur |
+| Script | Language | Purpose |
+|:-------|:---------|:--------|
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-To detaljer betyder noget operationelt:
+Two details matter operationally:
 
-1. `dist/` er en del af runtime-kontrakten og er bevidst begået
-2. bygningen er deterministisk nok til at understøtte CI-verifikation og frigivelsessignering---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-Det nuværende offentlige katalog spænder over 32 færdigheder:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**Opdagelse og planlægning**: "find-færdigheder", "brainstorming", "arkitektur", "debugging"
--**Designsystemer og tilgængelighed**: `design-systems-ops`, `accessibility-audit`
--**Produkt og fuld-stack levering**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
--**Sikkerhed**: 'sikkerhedsrevisor', 'sårbarhedsscanner', 'hændelsessvar', 'trusselsmodellering'
--**OSS-vedligeholder arbejdsgange**: `dokumentation`, `changelog`, `create-pr`
--**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
--**AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+Current native category distribution from `metadata.json`:
 
-Alle syv bundter er fuldt understøttet:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- `essentielle` → `4/4`
-- `fuld stak` → `5/5`
-- `design` → `4/4`
-- `sikkerhed` → `4/4`
+This broader intake surface is intentional:
+
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
+
+All seven bundles are fully backed:
+
+- `essentials` → `4/4`
+- `full-stack` → `5/5`
+- `design` → `5/5`
+- `security` → `4/4`
 - `devops` → `5/5`
-- `ai-ingeniør` → `5/5`
-- `oss-vedligeholder` → `4/4`
+- `ai-engineer` → `7/7`
+- `oss-maintainer` → `4/4`
 
-Nuværende scorespredning fra det genererede katalog:
+Current score spread from the generated native catalog:
 
-- Kvalitetsresultater: `94, 95, 96, 97, 100`
-- bedste praksis-score: `98, 99, 100`
-- Sikkerhedsscore: alle offentliggjorte færdigheder i øjeblikket "95".
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-Repræsentant high end:
+Representative high end:
 
-- `omni-figma` → `kvalitet 100`, `best_practices 100`
-- `accessibility-audit` → `kvalitet 99`, `best_practices 100`
-- `godkendelsesflows` → `kvalitet 97`, `best_practices 99`
-- `design-systems-ops` → `kvalitet 97`, `best_practices 99`
-- `release-engineering` → `kvalitet 97`, `best_practices 99`
-- `trusselsmodellering` → `kvalitet 97`, `best_practices 99`
-- `context-engineering` → `kvalitet 97`, `best_practices 99`
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
+- `auth-flows` → `quality 97`, `best_practices 99`
+- `design-systems-ops` → `quality 97`, `best_practices 99`
+- `release-engineering` → `quality 97`, `best_practices 99`
+- `threat-modeling` → `quality 97`, `best_practices 99`
+- `context-engineering` → `quality 97`, `best_practices 99`
 
-Repræsentativ nedre ende inden for det nuværende øverste bånd:
+Representative warning-grade native intake:
 
-- `arkitektur` → `kvalitet 94`, `bedste_praksis 98`
-- `ændringslog` → `kvalitet 94`, `best_practices 98`
-- `create-pr` → `kvalitet 95`, `best_practices 98`
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
 
-Dette er bevidst. Målscoreren skelner nu "fremragende" fra "exceptionel" i stedet for at udjævne hele kataloget øverst.---
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**Artefakt-først design**
-   Hver runtime-overflade bruger det samme genererede katalog og manifesterer.
-2.**Bred protokoldækning**
-   CLI, API, MCP og A2A eksisterer samtidig uden at fragmentere datamodellen.
-3.**Stærk lokal produktergonomi**
-   Guidet installation, visual shell, `config-mcp` og dry-run standarder gør projektet brugbart ud over superbrugere.
-4.**Ærlig sikkerhedsstilling**
-   Tilladte lokale skrivninger, statisk scanning, signering, kontrolsummer og frigivelsesbekræftelse er alle eksplicitte.
-5.**Sund MCP rækkevidde**
-   Projektet understøtter nu et bredt sæt af nuværende MCP-kompatible klienter uden at lade som om, at udokumenterede mål er stabile.---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**Dybere bundtdækning**
-   Det næste trin er specialisering inden for de eksisterende bundter, ikke kun bred dækning.
-2.**Rige scorersemantik**
-   Der er stadig plads til at evaluere referencepakkens dybde og workflowkvalitet mere semantisk.
-3.**Flere klientskribenter kun hvor det er berettiget**
-   Udvidelse bør forblive disciplineret og bundet til stabile officielle dokumenter.
-4.**Validator-nedbrydning**
-   `skill_metadata.py` er stadig et stort modul og vil drage fordel af intern dekomponering over tid.
-5.**Eskalering af værtsstyring**
-   Den nuværende basislinje i processen er nok til selvhosting, men virksomhedsimplementering vil i sidste ende ønske ekstern gateway og identitetsintegration.
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

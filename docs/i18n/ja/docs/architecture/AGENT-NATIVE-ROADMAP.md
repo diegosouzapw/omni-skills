@@ -5,89 +5,108 @@
 ---
 
 
->**オムニ スキルのアーキテクチャ進化計画: インストーラーファースト リポジトリから、ロジックを重複させることなく CLI、API、MCP、A2A を強化する共有カタログ ランタイムまで。**---
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+
+---
 
 ## 📊 Current Platform Areas
 
-|フェーズ |名前 |ステータス |
-|:------|:-----|:------|
-| 1️⃣ |契約と成果物 | ✅ 現在 |
-| 2️⃣ |読み取り専用カタログ API | ✅ 現在 |
-| 3️⃣ | MCP ディスカバリー サーフェス | ✅ 現在 |
-| 4️⃣ |ローカル インストールと構成サーフェス | ✅ 現在 |
-| 5️⃣ | A2A オーケストレーション | ✅ 現在 |### ✅ What Exists Today
+| Phase | Name | Status |
+|:------|:-----|:-------|
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-- `dist/` 内の機械読み取り可能なカタログ アーティファクト
-- 検索、バンドル、比較、インストール計画、ダウンロードのためのエンドポイントをカバーする読み取り専用 HTTP API
-- 「stdio」、ストリーミング可能な HTTP、および SSE トランスポートを備えた MCP サーバー
-- ホワイトリストに登録された書き込みと「config-mcp」フローを備えたローカル サイドカー
-- 7 つのインストール可能なクライアント、16 つの構成可能なクライアント、33 の MCP 構成ターゲット、および 19 の構成プロファイル
-- 「フルスタック」、「セキュリティ」、「devops」、および「ai-engineer」内の「auth-flows」、「threat-modeling」、「release-engineering」、および「context-engineering」を介したより深いバンドルの特殊化
-- SHA-256 チェックサムとリリース タグの切り離された署名を含むスキルごとのアーカイブ (`zip`、`tar.gz`)
-- API ガバナンス ベースライン: ベアラー/API キー認証、管理者ランタイム認証、レート制限、監査ログ、CORS/IP ホワイトリスト、トラスト プロキシ、メンテナンス モード、リクエスト ID
-- タスクのライフサイクル、JSON/SQLite 耐久性、再起動再開、SSE ストリーミング、キャンセル、プッシュ通知、オプションのプロセス エグゼキューター、およびオプトイン リース調整を備えた A2A ランタイム### 🔭 Future Expansion Areas
+### ✅ What Exists Today
 
-コア ロードマップでは、現在のプラットフォームの範囲が説明されています。残りの項目は将来の拡張領域であり、基本的なギャップではありません。
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
+- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-- この時点からは、非常に選択的な MCP の追加のみが行われ、公式の公開ドキュメントによって安全なライターが可能になった場合にのみ追加されます。
-- より深いリファレンス パックとよりセマンティックなスコアリングにより、分類器は優れたスキルと単なる洗練されたスキルを区別し続けることができます。
-- プロジェクトで後でゲートウェイまたは IdP の統合が必要になった場合、現在のインプロセス ベースラインを超えたエンタープライズ ホスト型ガバナンス
-- 新たにアクティブ化された「デザイン」、「ツール」、「データ AI」、および「機械学習」トラックにわたるより深い専門化
-- 正式なオペレーティング モデルを維持しながら、プライベート エンハンサーを中心とした継続的な運用の磨きをかけます。OmniRouter は「cx/gpt-5.4」に固定され、ホストされたクラウドは「モック」または劣化したプリフライトで、LAN 上での信頼性の高い「ライブ」またはセルフホスト実行です。
-- 継続的なリリースとワークフローの強化は、プラットフォーム基盤の欠落としてではなく、サービス品質の作業としてのみ行われます。## Future Catalog Expansion Track
+### 🔭 Future Expansion Areas
 
-最初の 2 つのパブリック カテゴリ拡張ウェーブが上陸しました。
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
 
-- `design` → `design-systems-ops`、`accessibility-audit`、`design-token-governance`
-- `ツール` → `mcp-server-authoring`
-- `データai` → `データコントラクト`
-- `機械学習` → `モデル提供`
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
 
-次に推奨されるステップは、カテゴリのアクティブ化だけを目的としたものではなくなりました。これは、これらの新しくアクティブなコードネイティブ トラックを深化し、単一スキルの足がかりではなく、耐久性のある製品表面のように感じられるようにすることです。
+## Future Catalog Expansion Track
 
-推奨される方向:
+The first two public category-expansion waves are now landed:
 
-1. より運用可能なデザインシステムのワークフローで「デザイン」を深化させる
-2. オーサリングとプラグイン指向のスキルで「ツール」を深めます
-3. 実装ファーストのパイプラインとインストルメンテーションのスキルで「データ AI」を深化させる
-4. サービス提供、トレーニング、評価の運用スキルで「機械学習」を深めます
+- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
+- `tools` → `mcp-server-authoring`
+- `data-ai` → `data-contracts`
+- `machine-learning` → `model-serving`
 
-強力なコードネイティブの提案が表示されない限り、意図的に延期されるカテゴリ:
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
 
-- 「ビジネス」
-- `コンテンツメディア`
+Recommended direction:
 
-その拡張履歴は現在、次の場所で追跡されています。
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
-- [../tasks/TASK-07-カタログ-スペシャライゼーション-アンド-カテゴリ-拡張.md](../tasks/TASK-07-カタログ-スペシャライゼーション-アンド-カテゴリ-拡張.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
+Categories intentionally deferred unless strong code-native proposals appear:
+
+- `business`
+- `content-media`
+
+That expansion history now lives in the mainline runtime docs rather than a separate public task backlog:
+
+- [Codebase Analysis](CODEBASE-ANALYSIS.md)
+- [Catalog](../CATALOG.md)
+
+---
 
 ## 🎯 Goals
 
-- ✅ 現在の「npxomni-skills」ワークフローを機能し続ける
-- ✅ スキルに関する機械可読な信頼できる情報源を導入する
-- ✅ エージェントによる検出、推奨、インストール計画のサポート
-- ✅ リモート カタログの問題をローカル ファイルシステムの書き込みから分離する
-- ✅ CLI、API、MCP、A2A 全体で同じメタデータを再利用---
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
+
+---
 
 ## 🚫 Non-Goals
 
-- ❌ ホストされたサーバーからユーザーマシンにリモートインストール
-- ❌ 正規のオーサリング形式として「SKILL.md」を置き換えます
-- ❌ 貢献者にマニフェストを手書きで書くことを要求する
-- ❌ デフォルトでプロジェクトを高負荷のホスト型キュー プラットフォームに変える---
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
+
+---
 
 ## 🏗️ Target Architecture
 
-3 つのプロトコル サーフェスを備えた 1 つの**カタログ コア**:
+One **catalog core** with three protocol surfaces:
 
-|表面 |最適な用途 |モード |
-|:--------|:-----------|:-----|
-| 🌐**REST API**|レジストリ アクセス、UI 統合、サードパーティ コンシューマ |読み取り専用 |
-| 🔌**MCP**|エージェントの検出、インストール プレビュー、構成の書き込み、クライアント レシピ |読み取り専用 + ローカル書き込み |
-| 🤖**A2A**|エージェント間のオーケストレーションとインストール計画のハンドオフ |シンプルファーストのローカル耐久性を備えたタスクのライフサイクル |### ⚙️ Core Principle
+| Surface | Best For | Mode |
+|:--------|:---------|:-----|
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
->**すべてのプロトコルは、同じ生成されたアーティファクト ファミリを使用します。**```text
+### ⚙️ Core Principle
+
+> **All protocols consume the same generated artifact family.**
+
+```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -97,144 +116,178 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-マニフェストは共有コントラクトのままです。アーカイブは、その契約の上に重ねられた配布成果物であり、契約に代わるものではありません。---
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
+
+---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-ホストされた API およびリモート MCP サーバーによって使用されます。
+Used by hosted API and remote MCP servers.
 
-| ✅ 許可 | ❌ 許可されない |
-|:-----------|:------|
-|検索スキル |呼び出し元のファイルシステムに書き込みます。
-|マニフェストを取得する |ローカルクライアント構成を変更する |
-|スキルを比較する |任意のマシン状態を推測する |
-|バンドルを推奨する | — |
-|インストール計画を構築する | — |### 2️⃣ Local Installer Mode
+| ✅ Allowed | ❌ Not Allowed |
+|:-----------|:---------------|
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-CLI および MCP サイドカーによって使用されます。
+### 2️⃣ Local Installer Mode
 
-| ✅ 許可 |
-|:----------|
-|ローカル AI クライアントを検出する |
-|インストールされているスキルを検査する |
-|ファイル操作のプレビュー |
-|スキル ディレクトリをインストールまたは削除する |
-|プレビュー後にローカル MCP 構成を書き込む |
+Used by the CLI and the MCP sidecar.
 
-> 📌 これは、実際の OS 書き込みが行われる唯一のモードのままです。---
+| ✅ Allowed |
+|:-----------|
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
+
+> 📌 This remains the only mode where real OS writes happen.
+
+---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-レジストリへのアクセス、検索、比較、バージョン管理されたダウンロード、インストール計画に最適です。
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**エンドポイント**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`### 🔌 MCP
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-ツールベースの検出、プロンプトによる推奨事項、インストールのプレビュー、およびクライアント固有の MCP セットアップに最適です。
+### 🔌 MCP
 
-**読み取り専用ツール**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
-**ローカル ツール**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-検出ハンドオフ、インストール計画ワークフロー、再開可能なエージェント タスクの実行に最適です。
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-**現在の操作**: `discover-skills` · `recommend-stack` · `prepare-install-plan`---
+### 🤖 A2A
+
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
+
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+
+---
 
 ## 🛡️ Security Model
 
-|原則 |実装 |
-|:----------|:----------|
-| 🔒 ホストされたサービスは読み取り専用です | API とリモート MCP は呼び出し元のファイルシステムに書き込みません。
-| 📂 書き込みはローカルに留まります | CLI および MCP サイドカーのみ |
-| 👁️ 書く前にプレビュー |ローカル突然変異に対するドライランのデフォルト |
-| 🔑 誠実さは明示的です |生成されたアーティファクトの SHA-256 チェックサム |
-| ✍️ 解放の信頼は明示的です |リリースタグに適用される切り離された署名 |
-| ⚠️ リスクが表面化 |リスクとセキュリティのメタデータはすべてのランタイム サーフェスに伝播します。---
+| Principle | Implementation |
+|:----------|:---------------|
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
+
+---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- 文書化されたターゲット アーキテクチャ
-- 定義されたマニフェストスキーマ
-- 生成されたメタデータ、カタログ、マニフェスト、バンドル、およびアーカイブ### Phase 2: Catalog Service
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
-- Express 5 による読み取り専用 HTTP API
-- 検索、フィルタリング、マニフェストの検索、バンドルのリスト、比較、ダウンロード
-- 環境主導のホスト型ガバナンス ベースライン### Phase 3: MCP Discovery
+### Phase 2: Catalog Service
 
-- 公式の「@modelcontextprotocol/sdk」統合
-- `stdio`、ストリーミング可能な HTTP、および SSE トランスポート
-- 共有カタログに基づく読み取り専用ツール、リソース、プロンプト### Phase 4: Local Install and Config Surface
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
-- ホワイトリストに登録された書き込みを含むローカル サイドカー
-- 7 つのインストール可能なクライアントの検出
-- 33 のターゲットと 19 の構成プロファイルにわたる 16 の構成対応クライアントの構成書き込み
-- CLI およびビジュアル シェルでのガイド付き `config-mcp` フロー
-- Claude、Cursor、VS Code、Gemini、Antigravity、Kiro、Codex、Continue、Windsurf、OpenCode、Cline、GitHub Copilot CLI、Kilo Code、Zed、Goose、Dev Containers の安定したサポート### Phase 5: A2A Orchestration
+### Phase 3: MCP Discovery
 
-- `/.well-known/agent.json` のエージェント カード
-- `message/send`、`message/stream`、`tasks/get`、`tasks/cancel`、`tasks/resubscribe`、およびプッシュ通知設定メソッド
-- 再起動リカバリによる JSON および SQLite の永続化
-- オプションの外部プロセス実行プログラム
-- SQLite およびオプションの高度な Redis 調整のためのワーカー間でのオプトイン リース実行
-- シンプルファーストのデフォルトは外部依存関係なしにメモリ、JSON、または SQLite 上に保持されます。### Current Enhancer Operating Decision
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-プライベート エンハンサーでサポートされている「ライブ」モデルが明示的になりました。
+### Phase 4: Local Install and Config Surface
 
-- ホスト型 PR オートメーションは、プリフライトゲートによる「ライブ」試行を実行します
-- パブリック OmniRoute ゲートウェイがブロックされているか不安定な場合、PR は不透明に失敗するのではなく、オペレーター向けの理由で「ブロック」とマークされます。
-- 正規の信頼できる「ライブ」パスは LAN またはローカル サービスの実行のままです
-- スケジュールされたプライベート GitHub の実行は、オペレーターが明示的に「live」を要求しない限り、デフォルトで「mock」のままになります。---
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
+
+### Phase 5: A2A Orchestration
+
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
+
+### Current Enhancer Operating Decision
+
+The private enhancer's supported `live` model is now explicit:
+
+- hosted PR automation runs a preflight-gated `live` attempt
+- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
+- the canonical reliable `live` path remains LAN or local service execution
+- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
+
+---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**決定**: マニフェストを共有コントラクトとして保持し、署名されたスキルごとのアーカイブを配布サーフェスとして保持します。
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
 
-**理由**:
-- CLI、API、MCP、および A2A はすでに正規化されたマニフェスト形状を使用しています
-- アーカイブはダウンロードと検証には理想的ですが、唯一の証拠開示契約としては不十分です
-- これにより、オーサリングが簡単になり、配布が検証可能になります。### 2. Private or Premium Catalogs
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
 
-**決定**: 同じマニフェストとカタログ形式を再利用し、認証またはポリシーを外部に階層化します。
+### 2. Private or Premium Catalogs
 
-**理由**:
-- データモデルのフォークを回避します
-- 現在の API/MCP ガバナンス アプローチと一致します
-- OAuth クライアント認証情報および企業管理の認可に関する MCP エコシステムの方向性との互換性を維持します### 3. Client Writer Strategy
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
 
-**決定**: 少数の正規エクスポート ファミリに集中し、公式クライアント ドキュメントで必要な場合にのみ特注のライターを維持します。
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
 
-**現在使用されている正規ファミリ**:
+### 3. Client Writer Strategy
+
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
 - JSON `mcpServers`
-- JSON「サーバー」
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**理由**:
-- 実装を保守可能に保ちます
-- クロード設定、Continue YAML、Zed `context_servers`、Codex TOML などのクライアント固有のニーズを引き続きサポートします
-- 安定した公開設定ドキュメントのないクライアントのために壊れやすいライターを発明することを回避します---
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-現在の決定は、公式エコシステム ドキュメントと照合してチェックされました。
+The current decisions were checked against official ecosystem docs:
 
-- MCP エコシステムは、OAuth クライアント認証情報や企業管理の認証などのオプションの拡張機能を文書化するようになりました。これにより、カタログ形式をフォークする代わりにホストされた認証の外部化がサポートされます。
-- OpenAI は、共有マニフェストとクライアントライター戦略に沿ったパブリック ドキュメント MCP サーバーと Codex MCP 構成パターンを文書化します。
-- VS Code は、ファーストクラスの MCP サポートと、専用の「サーバー」ベースのライターの維持を強化する拡張ガイドを文書化します。
-- JetBrains AI Assistant は、安定したクロスプラットフォーム ファイル契約ではなく、製品 UX を通じて MCP セットアップを文書化します。これにより、現時点ではマニュアル/スニペットの領域に留めることがサポートされます。---
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
 
 ## 🔮 Longer-Term Decision Points
 
-本当に未解決の戦略的質問はいくつかだけです。
+Only a few strategic questions remain genuinely open:
 
-1. 現在のマトリックスを超えたクライアントが本当に一流のライティングの基準をクリアしているかどうか、それとも残りの製品はマニュアル/スニペットのみのままであるべきかどうか
-2. ホステッド ガバナンスを現在のインプロセス ベースラインではなく、外部ゲートウェイまたはエンタープライズ IdP の背後に移行する必要がある場合は、いつですか?
-3. スコアラーは、貢献者にとって意見が偏りすぎてしまう前に、リファレンス パックの深さと運用品質をどこまで評価する必要がありますか?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

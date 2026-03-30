@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-Nosotros, como miembros, contribuyentes y mantenedores, nos comprometemos a hacer de la participación en este proyecto y comunidad una**experiencia libre de acoso para todos**, independientemente de la edad, el tamaño corporal, la discapacidad visible o invisible, el origen étnico, las características sexuales, la identidad y expresión de género, el nivel de experiencia, la educación, el estatus socioeconómico, la nacionalidad, la apariencia personal, la raza, la casta, el color, la religión o la identidad y orientación sexual.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Comportamiento | Ejemplo |
+| Behavior | Example |
 |:---------|:--------|
-| 💬 Lenguaje de bienvenida | Ser inclusivos y respetuosos en la comunicación |
-| 🤝 Respeto por las diferencias | Valorar diferentes puntos de vista y experiencias |
-| 📝 Crítica constructiva | Aceptar y dar comentarios con gracia |
-| 🎯 Enfoque comunitario | Priorizar lo que es mejor para el proyecto y la comunidad |
-| ❤️ Empatía | Mostrar empatía hacia otros miembros de la comunidad |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| Comportamiento |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 Lenguaje o imágenes sexualizadas y atención o insinuaciones sexuales |
-| 🚫 Comentarios trolling, insultantes o despectivos |
-| 🚫 Ataques personales o políticos |
-| 🚫 Acoso público o privado |
-| 🚫 Publicar información privada de otra persona sin permiso explícito |
-| 🚫 Otras conductas razonablemente consideradas inapropiadas en un entorno profesional |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-Los casos de comportamiento abusivo, acosador o de otro modo inaceptable pueden informarse a los mantenedores a través de:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| Canal | Cómo |
+| Channel | How |
 |:--------|:----|
-| 🔒 Canales privados de GitHub | Contacto a través de GitHub Seguridad o Discusión |
-| 📧 Contacto directo | Comuníquese directamente con los mantenedores |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**Todos los informes serán revisados ​​e investigados de manera rápida y justa.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-Este Código de conducta está adaptado del [Pacto del colaborador](https://www.contributor-covenant.org), versión 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

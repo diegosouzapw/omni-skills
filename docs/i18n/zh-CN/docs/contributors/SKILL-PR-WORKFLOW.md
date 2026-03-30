@@ -5,55 +5,69 @@
 ---
 
 
-这是添加或大幅升级一项或多项本机技能的拉取请求的规范存储库流程。
+This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
 
-在以下情况下使用它：
+Use it when:
 
-- 在“技能/”下添加新技能
-- 深化新领域技能的捆绑
-- 发布更大的支持包扩展
-- 在维护者合并分支之前使用私有增强器验证分支## Target Outcome
+- adding a new skill under `skills/`
+- deepening a bundle with new domain skills
+- shipping a larger support-pack expansion
+- validating a branch with the private enhancer before maintainers merge it
 
-强大的本地技能公关具有以下特点：
+## Target Outcome
 
-- `skills/` 下的原生技能
-- 足够的内容供公共验证器对其进行分类和索引
-- 通过公开验证和测试
-- PR期间自动增强剂处理
-- 发布增强型衍生品时的后续“skills_omni/” PR
-- 需要时以原始语言保留母语摄入量
-- 精心策划的增强输出重写为英语
-- 一种单向原生到策划流程，不会将“skills_omni/”反馈回原生增强剂摄入量## Enhancer Outcome States
+A strong native skill PR lands with:
 
-公共 PR 增强器现在报告四个维护者可见的状态：
+- a native skill under `skills/`
+- enough content for the public validator to classify and index it
+- passing public validation and tests
+- automatic enhancer processing during the PR
+- a follow-up `skills_omni/` PR when enhanced derivatives are published
+- native intake preserved in its original language when needed
+- curated enhanced output rewritten into English
+- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
 
-- `已完成`
-  增强的衍生品是干净地生成的，并且有资格用于配套的“skills_omni/”出版物。
-- ‘降级’
-  增强器完成了，但它使用了后备路径或产生了警告。在将衍生品视为健康之前，仍需进行维护者审查。
-- `被阻止`
-  运行因基础设施或验证问题而停止，例如托管 OmniRoute 预检失败或应阻止发布的候选验证失败。
-- `失败`
-  增强器遇到了意外的运行时错误，需要维护人员进行调查。## Recommended Branch Shape
+## Enhancer Outcome States
 
-创建一个重点分支：```bash
+The public PR enhancer now reports four maintainer-visible states:
+
+- `completed`
+  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
+- `degraded`
+  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
+- `blocked`
+  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
+- `failed`
+  The enhancer hit an unexpected runtime error and needs maintainer investigation.
+
+## Recommended Branch Shape
+
+Create a focused branch:
+
+```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-示例：
+Examples:
 
-- `壮举/事件可观察性评估`
-- `壮举/devops-技能包`
-- `壮举/安全技能包`## Native Intake Rules
+- `feat/incident-observability-evals`
+- `feat/devops-skill-pack`
+- `feat/security-skill-pack`
 
-公共入口表面是故意允许的。
+## Native Intake Rules
 
-最低限度：```text
+The public intake surface is intentionally permissive.
+
+Minimum:
+
+```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-建议但不再需要摄入：```text
+Recommended but no longer required for intake:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -63,125 +77,143 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-本机贡献可能很粗糙、不完整或超出正常的支持包标准。那是故意的。 “技能/”是原生的吸收表面，而不是策划的衍生表面。
+The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
 
-语言政策：
+Language policy:
 
-- “技能/”下的母语摄入可以用任何语言书写
-- 增强器保留提交的本机快照以供出处
-- `skills_omni/` 下的精选衍生品必须始终用英语编写
+- native intake under `skills/` may be written in any language
+- the enhancer keeps the native snapshot as submitted for provenance
+- the curated derivative under `skills_omni/` must always be written in English
 
-更严格的编辑栏现在适用于：
+The stricter editorial bar now applies to:
 
-- 生成的元数据和安全检查
-- 私人增强剂审查
-- `skills_omni/` 下的后续策划衍生品## Authoring Sequence
+- the generated metadata and security checks
+- the private enhancer review
+- the follow-up curated derivative under `skills_omni/`
 
-1. 创建`skills/<skill>/SKILL.md`。
-2. 如果可以的话，添加 frontmatter，但是缺失或不完整的 frontmatter 本身不再阻碍本地摄入。
-3. 如果已经有 `agents/`、`references/`、`examples/` 和 `scripts/`，请添加它们。
-4. 如果技能加深了现有捆绑包，则更新“data/bundles.json”。
-5. 打开 PR。回购自动化现在完成剩下的工作。## Validation Sequence
+## Authoring Sequence
 
-贡献者可以在打开 PR 之前运行这个确切的序列：```bash
+1. Create `skills/<skill>/SKILL.md`.
+2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
+3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
+4. Update `data/bundles.json` if the skill deepens an existing bundle.
+5. Open the PR. The repo automation now does the rest.
+
+## Validation Sequence
+
+Contributors can run this exact sequence before opening the PR:
+
+```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-如果更改还影响运行时或打包行为，则还运行：```bash
+If the change also affects runtime or packaging behavior, also run:
+
+```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-当 PR 打开或同步时，它仅涉及“skills/”下的本机技能摄入文件以及可选的“data/bundles.json”，公共存储库现在会自动触发私有增强器。
+When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
 
-当前自动流程：
+Current automated flow:
 
-1. 公共“验证技能”工作流程在 PR 上运行，并检查验证、构建、生成的工件和测试。
-2. 公共“增强公关技能”工作流程并行启动，并在“实时”模式下一一处理更改后的本地技能。
-3. 增强者从“skills/”中读取本机技能，研究当前最佳实践，并在私有工作区中编写经过审查的增强候选。
-4. 增强器在需要时将上游摄入快照保留为其原始语言，但用英语重写策划输出。
-5. 增强器将进度发布回源 PR。
-6. 增强器在每次处理技能后更新 PR 状态注释，包括批次总数和最新状态。
-7. 完成后，它将增强的衍生品具体化为“skills_omni/”，并在公共存储库中打开或更新配套 PR，仅用于“已完成”和“已降级”输出。
-8. PR 合并到 `main` 后，私有存储库感知轮询器会重新处理任何更改的本机技能，刷新 `workspace/enhanced/skills/<skill>/`，并使私有增强基线与最新的公共本机源保持一致。
-9. 合并后，公开发布工作流程会更改 npm 包版本、重新生成目录工件、发布版本并自动标记新版本。
+1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
+2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
+3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
+4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
+5. The enhancer posts progress back to the source PR.
+6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
+7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
+8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
+9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
 
-速率限制：
+Rate limit:
 
-- PR 增强器当前每分钟处理**1 个技能**
-- 因此，具有 40 项原生新技能的 PR 可以在增强器队列中停留大约 40 分钟
-- PR 显示工作作为正在进行的 CI 运行以及逐项提升技能的进度评论
+- the PR enhancer currently processes **1 skill per minute**
+- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
+- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
 
-贡献者不需要手动运行增强器。## No-Loop Rule For `skills_omni/`
+The contributor does not need to run the enhancer manually.
 
-精心策划的表面是有意单向的：
+## No-Loop Rule For `skills_omni/`
 
-- 原生输入通过`skills/`进入
-- 私人增强器审查本机输入
-- 建议将策划输出纳入“skills_omni/”
-- `skills_omni/` 不再被视为本地摄入
-- 后来的原生更新仍然通过`skills/`重新进入并在重新处理后替换私有增强基线
+The curated surface is intentionally one-way:
 
-存储库现在强制执行该边界：
+- native input enters through `skills/`
+- the private enhancer reviews that native input
+- curated output is proposed into `skills_omni/`
+- `skills_omni/` is never treated as native intake again
+- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
 
-- 修改 `skills_omni/` 的直接公共 PR 被拒绝
-- 仅接受来自“skills-omni/pr-*”分支系列的自动化编写的配套 PR
-- 尝试同时更改“skills/”和“skills_omni/”的混合 PR 会被拒绝## Automatic Versioning After Merge
+The repository now enforces that boundary:
 
-与“main”的技能合并现在会自动触发存储库发布工作流程。
+- direct public PRs that modify `skills_omni/` are rejected
+- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
 
-当前包版本政策：
+## Automatic Versioning After Merge
 
-- 对于每个合格的合并，补丁增量为“+1”
+Skill-bearing merges to `main` now trigger the repository release workflow automatically.
+
+Current package version policy:
+
+- patch increments by `+1` for each qualifying merge
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- 在“.10”之后，软件包滚动到下一个次要版本并重置补丁
-- `0.0.10`→`0.1.0`
-- `0.1.10`→`0.2.0`
+- after `.10`, the package rolls to the next minor and resets patch
+- `0.0.10` → `0.1.0`
+- `0.1.10` → `0.2.0`
 
-当前发布触发路径：
+Current release trigger paths:
 
-- `技能/**`
-- `技能_全能/**`
-- `数据/bundles.json`
+- `skills/**`
+- `skills_omni/**`
+- `data/bundles.json`
 
-自动释放作业：
+That automatic release job:
 
-1. 从 `package.json` 计算下一个包版本
-2. 碰撞 `package.json` 和 `package-lock.json`
-3. 重新生成 `metadata.json`、`skills_index.json`、`dist/` 和 `docs/CATALOG.md`
-4.运行严格的发布验证管道
-5. 将版本更新提交回 `main`
-6.为新版本创建Git标签
-7. 发布 npm 和 GitHub Release 工件
+1. computes the next package version from `package.json`
+2. bumps `package.json` and `package-lock.json`
+3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
+4. runs the strict release verification pipeline
+5. commits the version bump back to `main`
+6. creates a Git tag for the new version
+7. publishes npm and GitHub Release artifacts
 
-重要的推出说明：
+Important rollout note:
 
-- GitHub 仅在新的工作流程文件到达默认分支后将其注册为活动存储库工作流程。
-- 在“增强 PR 技能”登陆“main”之前，贡献者可以阅读记录的流程，但 GitHub 还不会在公共 PR 上自动执行该工作流程。
-- 工作流程合并到“main”后，上述行为将成为未来原生技能 PR 的默认摄入路径。## Native vs Enhanced
+- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
+- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
+- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
 
-该存储库现在有两个不同的表面：
+## Native vs Enhanced
 
-- `技能/`
-  原生摄入。这保留了提交的原始贡献。
-- `技能_全能/`
-  由自动化提出并由 Omni 技能团队维护的 Omni 增强衍生输出。
+This repo now has two distinct surfaces:
 
-`skills_omni/` 的归因规则：
+- `skills/`
+  Native intake. This preserves the original contribution as submitted.
+- `skills_omni/`
+  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
 
-- 增强的衍生品成为全能维护的
-- 原始贡献者和上游本地技能仍然被记入
-- 每个增强目录都保留一个“ATTRIBUTION.md”文件，其中包含上游路径、PR、作者和源上下文
-- 每个增强目录仅是精选输出，不得重新提交到本机增强器摄入路径中
-- 每个增强的目录都应该是英语输出，即使上游本地源不是## Manual Maintainer Commands
+Attribution rules for `skills_omni/`:
 
-自动化涵盖了正常的 PR 摄入量，但维护人员仍然可以在需要时手动运行私人增强器。
+- the enhanced derivative becomes Omni-maintained
+- the original contributor and upstream native skill remain credited
+- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
+- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
+- each enhanced directory is expected to be English-language output even when the upstream native source was not
 
-针对分支差异进行批处理：```bash
+## Manual Maintainer Commands
+
+The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
+
+Batch against a branch diff:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -191,7 +223,9 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-单技能回顾：```bash
+Single-skill review:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -199,38 +233,44 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-每项技能的预期增强器输出：
+Expected enhancer outputs per skill:
 
-- `工作区/传入/原始/<运行ID>/<技能>/`
-- `工作区/增强候选/<运行 ID>/<技能>/`
+- `workspace/incoming/original/<run-id>/<skill>/`
+- `workspace/enhanced-candidates/<run-id>/<skill>/`
 - `workspace/reports/<run-id>/research.json`
 - `workspace/reports/<run-id>/rewrite.json`
 - `workspace/reports/<run-id>/validation.json`
 - `workspace/reports/<run-id>/score-delta.json`
 - `workspace/reports/<run-id>/review.md`
 - `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`## PR Body Expectations
+- `workspace/reports/<run-id>/rewrite-prompt.md`
 
-公关机构应声明：
+## PR Body Expectations
 
-- 添加或升级了哪些技能
-- 他们深化了哪些捆绑包或工作流程
-- 运行了什么验证
-- 自动增强器是否运行
-- 是否打开或更新了“skills_omni/”配套 PR
-- 任何关于归因或后续清理的特殊维护者注释## Reviewer Checklist
+The PR body should state:
 
-- 原生摄入是合法且非恶意的
-- 生成的元数据和清单已刷新
-- 捆绑更新是有意的
-- 公共验证和构建输出是绿色的
-- 增强器状态评论与实际更改的技能和最终结果状态相匹配
-- 任何 `skills_omni/` 配套 PR 都能正确保留归因## Example PR Scope
+- what skills were added or upgraded
+- which bundles or workflows they deepen
+- what validation ran
+- whether the automated enhancer ran
+- whether it opened or updated a `skills_omni/` companion PR
+- any exceptional maintainer notes about attribution or follow-up cleanup
 
-一个强有力的 PR 示例可以添加主题集，例如：
+## Reviewer Checklist
 
-- 一项可观察性或 DevOps 技能
-- 一项事件或安全技能
-- 一项AI评估或提示技能
+- native intake is legitimate and non-malicious
+- generated metadata and manifests were refreshed
+- bundle updates are intentional
+- public validation and build outputs are green
+- the enhancer status comment matches the actual changed skills and final outcome state
+- any `skills_omni/` companion PR preserves attribution correctly
 
-这足够大，可以运行评分器、自动增强器、“skills_omni/”发布流程、捆绑包和归因模型，而无需将 PR 转变为完整的目录重写。
+## Example PR Scope
+
+A strong example PR can add a thematic set such as:
+
+- one observability or DevOps skill
+- one incident or security skill
+- one AI evaluation or prompting skill
+
+That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.

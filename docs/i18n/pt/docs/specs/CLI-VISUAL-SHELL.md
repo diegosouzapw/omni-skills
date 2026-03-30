@@ -5,168 +5,196 @@
 ---
 
 
->**Contrato comportamental para a UI do terminal baseado em Ink exposto por `omni-skills ui`.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-O shell visual é uma superfície de produto guiada sobre a CLI existente e o mecanismo de instalação.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Não substitui:
+It does not replace:
 
-- uso de CLI baseado em sinalizador especializado
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- o fluxo de instalação de texto guiado
-- Comportamento de tempo de execução API, MCP ou A2A
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Ele define:
+It defines:
 
-- o comportamento de `omni-skills ui`
-- o contrato substituto para `omni-skills ui --text`
-- estado local e persistência predefinida
-- visualizações guiadas de lançamento de serviços
-- repetibilidade para instalações recentes e execuções de serviço---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` lança o shell visual baseado em Ink.
+`omni-skills ui` launches the Ink-based visual shell.
 
-O shell visual é a principal experiência de terminal não especializado para:
+The visual shell is the primary non-expert terminal experience for:
 
-- instalar fluxos
-- primeira descoberta e instalação do catálogo
-- inicialização do MCP
-- inicialização da API
-- Inicialização A2A
-- médico e transferência de fumaça### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` inicia a interface de fallback baseada em readline.
+### 2.2 Text Fallback
 
-Isso continua útil quando:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- um terminal não pode renderizar o shell mais rico corretamente
-- o comportamento do modo bruto é restrito
-- é preferível um substituto mínimo de texto### 2.3 Handoff Rule
+This remains useful when:
 
-O shell visual não reimplementa tempos de execução de serviço ou gravações de instalação diretamente.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Após a visualização e confirmação, ele sai de forma limpa e entrega a execução ao ponto de entrada CLI existente com os argumentos e variáveis ​​de ambiente equivalentes.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-A tela inicial deve expor:
+The home screen must expose:
 
-- instalar habilidades
-- encontrar e instalar
-- repetir instalações recentes quando presentes
-- execute predefinições de instalação salvas quando presentes
-- iniciar um serviço
-- repetir serviços recentes quando presentes
-- execute predefinições de serviço salvas quando presentes
-- médico
-- fumaça
-- saída
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-A tela inicial também deve aparecer:
+The home screen should also surface:
 
-- disponibilidade atual do pacote publicado
-- contagens de estado local para recentes, predefinições e favoritos---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-O fluxo de instalação do shell visual deve oferecer suporte a:
+The visual shell install flow must support:
 
-- seleção de alvo de cliente conhecido
-- seleção de caminho personalizado
-- instalação completa da biblioteca
-- instalação com uma habilidade
-- instalação de um pacote
-- pesquise e instale
-- visualizar antes de escrever
-- salvamento predefinido
-- habilidade favorita ou alternância de pacote
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-A visualização deve mostrar:
+Preview must show:
 
-- rótulo de destino resolvido
-- caminho resolvido
-- instalar escopo
-- habilidade ou pacote selecionado quando aplicável
-- comando CLI equivalente---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-O shell visual deve orientar a inicialização para:### 5.1 MCP
+The visual shell must guide startup for:
 
-- transporte: `stdio`, `stream`, `sse`
-- modo: `somente leitura` ou `local`
-- configuração de host/porta para transportes de rede
-- visualização explícita do comando### 5.2 API
+### 5.1 MCP
 
-- anfitrião
-- porto
-- perfil básico ou endurecido
-- portador reforçado ou autenticação de chave API
-- parâmetros de limite de taxa reforçados
-- ativação do log de auditoria
-- visualização explícita do comando### 5.3 A2A
+- transport: `stdio`, `stream`, `sse`
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- anfitrião
-- porto
-- tipo de armazenamento: `memory`, `json`, `sqlite`
-- armazenar caminho para modos duráveis
+### 5.2 API
+
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
 - executor: `inline`, `process`
-- modo SQLite habilitado para fila
-- intervalo de pesquisa e duração da locação para modo de locação compartilhada
-- visualização explícita do comando---
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-O shell visual persiste no estado somente local em:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-O estado atualmente inclui:
+State currently includes:
 
-- instalações recentes
-- lançamentos recentes de serviços
-- predefinições de instalação nomeadas
-- predefinições de serviço nomeadas
-- habilidades favoritas
-- pacotes favoritos
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-O shell deve suportar:
+The shell must support:
 
-- reproduzindo instalações recentes
-- reproduzindo lançamentos de serviços recentes
-- reutilizando predefinições de instalação nomeadas
-- reutilizando predefinições de serviço nomeadas---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-A concha visual é aditiva.
+The visual shell is additive.
 
-Esses fluxos devem permanecer válidos e estáveis:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `instalação npx omni-skills --guided`
-- `npx omni-skills encontrar figma --tool cursor --install --yes`
+- `npx omni-skills install --guided`
+- `npx omni-skills find figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-O shell visual nunca deve forçar-se a seguir caminhos de comando especializados explícitos.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-O shell visual deve tornar o estado e escrever explícitos.
+The visual shell should make state and writes explicit.
 
-Deve:
+It must:
 
-- visualizar instalações antes da transferência de gravação
-- visualizar comandos de inicialização do serviço antes da execução
-- mantenha o material secreto fora das visualizações de comandos em texto simples, quando for prático
-- persiste o estado apenas localmente
-- preservar o comportamento CLI não interativo fora do shell visual
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

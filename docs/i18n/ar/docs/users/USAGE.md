@@ -5,34 +5,42 @@
 ---
 
 
->**كل ما تحتاجه لاستدعاء المهارات وتشغيل الخدمات وتشغيل وقت تشغيل Omni Skills.**
+> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
 
-للحصول على سير العمل التشغيلي الكامل، راجع [🔧 System Runbook](../operations/RUNBOOK.md).
-للحصول على خريطة أوامر المستخدم النهائي الكاملة، راجع [🧭 دليل مستخدم CLI](./CLI-USER-GUIDE.md).---
+For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
+For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
+
+---
 
 ## 📊 Current Catalog Reality
 
-| الحالة | التفاصيل |
-|:-------|:-------|
-| ✅**متاح الآن**| 32 مهارات منشورة عبر التصميم والهندسة المعمارية وتصحيح الأخطاء والمستندات وOSS والأمن وDevOps وهندسة الذكاء الاصطناعي والبيانات والأدوات وسير عمل التعلم الآلي |
-| 📦**الحزم**| `essentials` و`full-stack` و`design` و`security` و`devops` و`ai-engineer` و`oss-maintainer` مدعومة بالكامل اليوم |
-| 🔌**وصول MCP**| 7 عملاء قادرين على التثبيت، و16 عميلًا قادرون على التكوين، و33 هدف تكوين من الدرجة الأولى، و19 ملف تعريف تكوين |
-| 🤖**متانة A2A**| الذاكرة، أو JSON، أو SQLite، المتانة المحلية، واستئناف إعادة التشغيل، ومنفذ العملية الاختياري، والتنسيق المؤجر للعمال المشتركين |---
+| Status | Details |
+|:-------|:--------|
+| ✅ **Available now** | 48 native catalog skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
+| ✨ **Curated surface** | 32 English-only Omni-maintained derivatives in `skills_omni/` |
+| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
+| 🧪 **Validation mix** | 40 native skills pass cleanly today, and 8 remain intentionally warning-grade in the permissive intake surface |
+| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
+| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
+
+---
 
 ## 🖥️ Invocation by Client
 
-| العميل | كيفية الاستدعاء | مسار المهارات |
-|:-------|:------------|:-----------|
-| 🔵**كلود كود**| `>> /skill-name ساعدني...` | `~/.claude/skills/` |
-| 🟡**الجوزاء CLI**| `استخدم @skill-name لـ...` | `~/.gemini/skills/` |
-| 🔴**Codex CLI**| `استخدم @skill-name لـ...` | `~/.codex/skills/` |
-| 🟢**كيرو**| تحميل المهارات تلقائيًا عند الطلب | `~/.kiro/skills/` |
-| 🟣**مضادة الجاذبية**| `استخدم @skill-name لـ...` | `~/.gemini/antigravity/skills/` |
-| 🔵**المؤشر**| `@اسم المهارة` في الدردشة | `~/.cursor/skills/` |
-| ⚪**الرمز المفتوح**| `تشغيل الكود المفتوح @skill-name` | `.opencode/skills/` |
-| ⬛**مساعد الطيار**| لصق محتوى المهارة يدويًا | لا يوجد |
+| Client | How to Invoke | Skills Path |
+|:-------|:-------------|:------------|
+| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
+| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
+| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
+| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
+| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
+| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
+| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛ **Copilot** | Paste skill content manually | N/A |
 
-يستخدم العملاء مثل continue وjunie وwindsurf وzed وvs code وGitHub Copilot CLI وCline وKilo Code بشكل أساسي تدفق `config-mcp` بدلاً من دليل المهارات.---
+Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
+
+---
 
 ## 💬 Prompt Patterns
 
@@ -101,33 +109,39 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
->**📌 ملاحظات:**
-> - في محطة تفاعلية، يفتح `npx omni-skills' الآن مسار التثبيت الموجه
-> - يفتح `npx omni-skills ui` غلاف الحبر المرئي مع إجراءات التثبيت والاكتشاف وتشغيل الخدمة
-> - يحافظ الغلاف المرئي على عمليات التثبيت الأخيرة وعمليات إطلاق الخدمة الحديثة والمفضلات والإعدادات المسبقة المسماة في `~/.omni-skills/state/ui-state.json`
-> - خارج جهاز TTY، يظل التثبيت الكامل هو الإعداد الافتراضي في حالة عدم توفير محدد
-> - `--skill` يثبت فقط المهارات المنشورة المحددة
-> - `--bundle` يوسع الحزمة ويثبت الأعضاء المنشورين المعلنين في الحزمة المنسقة
-> - يدعم "البحث" أكثر من 12 علامة تصفية: "الجودة"، و"أفضل_الممارسات"، و"مستوى_المهارة"، و"الأمان"، و"الفئة"، و"الأداة"، و"المخاطر"، والمزيد
-> - `config-mcp` هو المسار الصحيح للمنتجات التي تدعم MCP والتي لا تحتوي على دليل مهارات من الدرجة الأولى---
+> **📌 Notes:**
+> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
+> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
+> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
+> - Outside a TTY, a full-library install to the Antigravity path is still the default when no selector is provided
+> - `--skill` installs only the selected published skills
+> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
+> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
+> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
+
+---
 
 ## 🔌 Runtime Commands
 
-تعد واجهة سطر الأوامر (CLI) أداة عمليات موحدة، وليست مجرد أداة تثبيت.### 🖥️ Visual Shell
+The CLI is a unified operations tool, not just an installer.
+
+### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-يدعم الغلاف المرئي:
+The visual shell supports:
 
-- التثبيت الموجه مع العميل المعروف أو اختيار المسار المخصص
-- البحث ثم التثبيت بدون حفظ الأعلام
-- معاينة تكوين عميل MCP الموجهة وكتابة التدفقات
-- بدء التشغيل الموجه MCP وAPI وA2A
-- عمليات التثبيت الأخيرة وإعادة إطلاق الخدمة
-- حفظ التثبيت والخدمة المسبقة
-- المهارات والحزم المفضلة### 🩺 Diagnostics
+- guided install with known client or custom path selection
+- search-then-install without memorizing flags
+- guided MCP client config preview and write flows
+- MCP, API, and A2A guided startup
+- recent installs and service relaunches
+- saved install and service presets
+- favorite skills and bundles
+
+### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -222,12 +236,12 @@ npx omni-skills publish-check         # Alias for smoke
 
 ## 🎯 Tips
 
-| # | نصيحة |
+| # | Tip |
 |:--|:----|
-| 1️⃣ | قم بالإشارة إلى المهارة بالاسم في الموجه الخاص بك |
-| 2️⃣ | قم بتوفير المنتج أو الكود أو سياق التصميم الدقيق الذي يحتاجه الوكيل |
-| 3️⃣ | تفضل `--skill` للحصول على الحد الأدنى من مساحة التثبيت |
-| 4️⃣ | استخدم "doctor" و"smoke" قبل تصحيح أخطاء التغليف أو مشكلات وقت التشغيل |
-| 5️⃣ | استخدم الحزم كعمليات تثبيت للمجال المنسق الآن بعد أن أصبحت جميع الحزم السبعة المبدئية مدعومة بالكامل |
-| 6️⃣ | استخدم "find --install --yes" للاكتشاف + التثبيت في تدفق واحد |
-| 7️⃣ | راجع [runbook](../operations/RUNBOOK.md) للمصادقة وحدود المعدل والتوقيع والتحقق env vars |
+| 1️⃣ | Reference the skill by name in your prompt |
+| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
+| 3️⃣ | Prefer `--skill` for a minimal install footprint |
+| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
+| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
+| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
+| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |

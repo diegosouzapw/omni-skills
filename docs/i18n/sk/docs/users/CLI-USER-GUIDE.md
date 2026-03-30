@@ -5,33 +5,39 @@
 ---
 
 
->**Úplný verejný povrch CLI dodávaný „omni-skills“.**
+> **The full public CLI surface shipped by `omni-skills`.**
 
-Túto príručku použite, keď chcete:
+Use this guide when you want to:
 
-| Cieľ | Oblasť príkazov |
-|:-----|:--------------|
-| 📥 Nainštalujte si zručnosti alebo balíky | [Postupy inštalácie](#3️⃣-postupy inštalácie) |
-| 🔎 Hľadať v katalógu | [Objavenie katalógu](#4️⃣-objavenie katalógu) |
-| 🔌 Konfigurácia klientov MCP | [Konfigurácia klienta MCP](#5️⃣-mcp-client-config) |
-| 🖥️ Spustite služby MCP, API alebo A2A | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-katalógové-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Použite vizuálny kryt terminálu | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Spustite diagnostiku alebo predbežnú kontrolu | [Diagnostika](#🔟-diagnostika-a-predletová kontrola) |---
+| Goal | Command Area |
+|:-----|:-------------|
+| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
+
+---
 
 ## 1️⃣ Install and Entry Modes
 
-Inštalovať pomocou `npx`:```bash
+Install with `npx`:
+
+```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Kontext | Čo sa stane |
+| Context | What Happens |
 |:--------|:------------|
-| 🖥️ TTY + žiadne argumenty | Otvorí postup**riadenej inštalácie**|
-| ⚙️ Non-TTY + žiadne argumenty | Neinteraktívna inštalácia do `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Značkový**Vizuálny obal atramentu**|
-| 📝 `npx omni-skills ui --text` | Readline**záložný text**UI |---
+| 🖥️ TTY + no arguments | Opens the **guided install** flow |
+| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+
+---
 
 ## 2️⃣ Core Commands
 
@@ -39,20 +45,22 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Príkaz | Popis |
+| Command | Description |
 |:--------|:-----------|
-| "ui" | 🎨 Vizuálny terminálový rozbočovač |
-| "nájsť [dopyt]" | 🔎 Objavovanie katalógu |
-| "prekategorizovať" | 🏷️ Správa taxonómie |
-| `nainštalovať [príznaky]` | 📥 Inštalácia zručnosti/balíka |
-| `config-mcp` | 🔌 Konfigurácia klienta MCP |
-| `mcp <stdio\|stream\|sse>` | 🔌 Režimy servera MCP |
-| "api" | 🌐 Katalógové API |
-| "a2a" | 🤖 Doba chodu A2A |
-| "dym" | 🧪 Uvoľnite predbežnú kontrolu |
-| "zverejniť-kontrola" | 📦 Kontrola zverejnenia balíka |
-| "lekár" | 🩺 Diagnostika prostredia |
-| "pomoc" | ❓ Odkaz na príkaz |---
+| `ui` | 🎨 Visual terminal hub |
+| `find [query]` | 🔎 Catalog discovery |
+| `recategorize` | 🏷️ Taxonomy management |
+| `install [flags]` | 📥 Skill/bundle install |
+| `config-mcp` | 🔌 MCP client configuration |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| `api` | 🌐 Catalog API |
+| `a2a` | 🤖 A2A runtime |
+| `smoke` | 🧪 Release preflight |
+| `publish-check` | 📦 Package publication check |
+| `doctor` | 🩺 Environment diagnostics |
+| `help` | ❓ Command reference |
+
+---
 
 ## 3️⃣ Install Flows
 
@@ -63,7 +71,9 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> Sprievodca vám umožňuje vybrať si:**cieľový klient**→**balík alebo zručnosť**→**vlastná cesta**→**náhľad pred spustením**### 🎯 Single Skill
+> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
+
+### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -80,17 +90,19 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Vlajka | Klient |
+| Flag | Client |
 |:-----|:-------|
-| "--antigravitácia" | 🟣 Antigravitácia *(predvolené)* |
-| "--claude" | 🢢 Claude Code |
-| "--kurzor" | 🔵 Kurzor |
-| "--codex" | 🔴 Codex CLI |
-| "--gemini" | 🡡 Gemini CLI |
-| "--kiro" | 🠠 Kiro |
-| "--opencode" | ⚪ OpenCode |
+| `--antigravity` | 🟣 Antigravity *(default)* |
+| `--claude` | 🟢 Claude Code |
+| `--cursor` | 🔵 Cursor |
+| `--codex` | 🔴 Codex CLI |
+| `--gemini` | 🟡 Gemini CLI |
+| `--kiro` | 🟠 Kiro |
+| `--opencode` | ⚪ OpenCode |
 
-> Predvolený cieľ inštalácie (neinteraktívny): `~/.gemini/antigravity/skills`---
+> Default install target (non-interactive): `~/.gemini/antigravity/skills`
+
+---
 
 ## 4️⃣ Catalog Discovery
 
@@ -111,23 +123,27 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Vlajka | Účel |
+| Flag | Purpose |
 |:-----|:--------|
-| "--kategória" | Filtrovať podľa kategórie taxonómie |
-| "--nástroj" | Filtrovať podľa podporovaného nástroja |
-| "--riziko" | Filtrovať podľa úrovne rizika |
-| "--triediť" | Zoradiť výsledky (napr. „kvalita“) |
-| "--objednať" | Poradie zoradenia |
-| "--min-kvalita" | Minimálne skóre kvality |
-| "--min-best-practices" | Minimálne skóre osvedčených postupov |
-| `--min-level` | Minimálna úroveň splatnosti |
-| "--min-bezpečnosť" | Minimálne skóre bezpečnosti |
-| `--validačný-stav` | Filtrovať podľa stavu overenia |
-| "--bezpečnostný-stav" | Filtrovať podľa stavu zabezpečenia |---
+| `--category` | Filter by taxonomy category |
+| `--tool` | Filter by supported tool |
+| `--risk` | Filter by risk level |
+| `--sort` | Sort results (e.g., `quality`) |
+| `--order` | Sort order |
+| `--min-quality` | Minimum quality score |
+| `--min-best-practices` | Minimum best-practices score |
+| `--min-level` | Minimum maturity level |
+| `--min-security` | Minimum security score |
+| `--validation-status` | Filter by validation state |
+| `--security-status` | Filter by security state |
+
+---
 
 ## 5️⃣ MCP Client Config
 
-Použite `config-mcp` na zobrazenie ukážky alebo zápis konfigurácie MCP pre klienta.### 📋 List Targets
+Use `config-mcp` to preview or write client-aware MCP configuration.
+
+### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -152,26 +168,28 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<podrobnosti>
-<summary>🔌 <strong>Povrch klienta s možnosťou konfigurácie</strong></summary>
+<details>
+<summary>🔌 <strong>Config-capable client surface</strong></summary>
 
-| Klient | Ciele |
+| Client | Targets |
 |:-------|:--------|
-| Claude | Nastavenia a ciele pracovnej plochy |
-| Kurzor | Používateľ a pracovný priestor |
-| Kódex | Konfigurácia TOML |
-| Blíženci | Používateľ a pracovný priestor |
-| Antigravitácia | Užívateľská konfigurácia |
-| OpenCode | Používateľ a pracovný priestor |
-| Cline | Prvotriedny cieľ |
-| GitHub Copilot CLI | Používateľ a repo |
-| Kilový kód | Používateľ, projekt a pracovný priestor |
-| Kiro | Používateľ a pracovný priestor |
-| Zed | Pracovný priestor |
-| VS kód | Používateľ, pracovný priestor a kontajner pre vývojárov |
-| Pokračovať | Pracovný priestor YAML |
-| Junie | Projekt a užívateľ |
-| Windsurfing | Užívateľská konfigurácia |</details>
+| Claude | Settings and desktop targets |
+| Cursor | User and workspace |
+| Codex | TOML config |
+| Gemini | User and workspace |
+| Antigravity | User config |
+| OpenCode | User and workspace |
+| Cline | First-class target |
+| GitHub Copilot CLI | User and repo |
+| Kilo Code | User, project, and workspace |
+| Kiro | User and workspace |
+| Zed | Workspace |
+| VS Code | User, workspace, and Dev Container |
+| Continue | Workspace YAML |
+| Junie | Project and user |
+| Windsurf | User config |
+
+</details>
 
 ---
 
@@ -192,7 +210,9 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
->**Miestny sidecar**pridáva: detekciu klienta, ukážku inštalácie, toky inštalácie/odstránenia a zápis konfigurácie MCP.---
+> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
+
+---
 
 ## 7️⃣ Catalog API
 
@@ -202,15 +222,17 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Trasa | Účel |
+| Route | Purpose |
 |:------|:--------|
-| `GET /healthz` | Zdravotná prehliadka |
-| `GET /openapi.json` | Špecifikácia OpenAPI |
-| "ZÍSKAJTE /v1/zručnosti" | Zoznam všetkých zručností |
-| "GET /v1/search" | Hľadať v katalógu |
-| `GET /v1/skills/:id/archives` | Zoznam archívov pre zručnosť |
-| `ZÍSKAJTE /v1/skills/:id/download/archive?format=zip` | Stiahnite si archív zručností |
-| `ZÍSKAJTE /v1/skills/:id/download/archive/checksums` | Stiahnuť kontrolné súčty |---
+| `GET /healthz` | Health check |
+| `GET /openapi.json` | OpenAPI spec |
+| `GET /v1/skills` | List all skills |
+| `GET /v1/search` | Search the catalog |
+| `GET /v1/skills/:id/archives` | List archives for a skill |
+| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
+| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
+
+---
 
 ## 8️⃣ A2A Runtime
 
@@ -220,15 +242,17 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Funkcia | Stav |
+| Feature | Status |
 |:--------|:-------|
-| 🔎 Objavovanie podľa úloh | ✅ |
-| 📋 Odovzdanie plánu inštalácie | ✅ |
-| 🔄 Hlasovanie | ✅ |
-| 📡 Streamovanie | ✅ |
-| ❌ Zrušenie | ✅ |
-| 🔔 Konfigurácia push-notifikácií | ✅ |
-| 💾 Vytrvalosť | Pamäť, JSON a SQLite |---
+| 🔎 Task-aware discovery | ✅ |
+| 📋 Install-plan handoff | ✅ |
+| 🔄 Polling | ✅ |
+| 📡 Streaming | ✅ |
+| ❌ Cancelation | ✅ |
+| 🔔 Push-notification config | ✅ |
+| 💾 Persistence | Memory, JSON, and SQLite |
+
+---
 
 ## 9️⃣ Visual Shell
 
@@ -238,17 +262,19 @@ npx omni-skills ui
 
 ### Funkcie
 
-| Funkcia | Popis |
+| Feature | Description |
 |:--------|:-----------|
-| 🧭 Riadená inštalácia | Vyberte si klienta alebo vlastnú cestu |
-| 🔎 Hľadať + nainštalovať | Nie je potrebné zapamätanie vlajky |
-| 🔌 Konfigurácia MCP | Ukážka a zápis tokov |
-| 🖥️ Spustenie služby | Riadené spustenie MCP, API a A2A |
-| 🕐 Nedávne | Nedávne inštalácie a opätovné spustenie služby |
-| ⭐ Obľúbené | Uložené zručnosti a balíky |
-| 💾 Predvoľby | Pomenované predvoľby inštalácie a služby |
+| 🧭 Guided install | Choose client or custom path |
+| 🔎 Search + install | No flag memorization needed |
+| 🔌 MCP config | Preview and write flows |
+| 🖥️ Service launch | MCP, API, and A2A guided startup |
+| 🕐 Recents | Recent installs and service relaunches |
+| ⭐ Favorites | Saved skills and bundles |
+| 💾 Presets | Named install and service presets |
 
->**Cesta k stavu:**`~/.omni-skills/state/ui-state.json`---
+> **State path:** `~/.omni-skills/state/ui-state.json`
+
+---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -258,14 +284,18 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Kontroluje: stav repo, stav lokálnej inštalácie, dostupnosť runtime a problémy s prostredím.### 🧪 Release Preflight
+> Inspects: repo state, local install state, runtime availability, and environment issues.
+
+### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Validuje: zostavenie, testy, výstup balíka, spustenie služby, pokrytie skenerom a uvoľnenie balenia.---
+> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
+
+---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -278,20 +308,22 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Príkaz | Účel |
+| 🎯 Persona | Command | Purpose |
 |:-----------|:--------|:--------|
-| 🆕 Nový užívateľ | `npx omni-skills` | Riadená prvá inštalácia |
-| 🔧 Prevádzkovateľ | `npx omni-skills config-mcp --list-targets` | Konfigurácia lokálneho MCP |
-| 🔧 Prevádzkovateľ | `npx omni-skills mcp stream --local` | Štart miestnej sajdkáry |
-| 📦 Údržba | `npx omni-skills smoke` | Overenie vydania |
-| 🔍 Výkonný používateľ | `npx omni-skills nájsť bezpečnosť --triediť kvalitu --min-kvalitu 95` | Najprv nájdite najlepšiu zručnosť |---
+| 🆕 New user | `npx omni-skills` | Guided first-time install |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
+| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
+| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
+
+---
 
 ## 📖 Related Documents
 
-| Doc | Čo pokrýva |
-|:----|:---------------|
-| 🚀 [Začíname](./GETTING-STARTED.md) | Inštalácia a overenie za menej ako 2 minúty |
-| 📗 [Sprievodca používaním](./USAGE.md) | Všetky príkazy, vzory a režimy CLI |
-| 📦 [Bundles](./BUNDLES.md) | Vybrané zbierky zručností |
-| 🔧 [Súbor Runbook](../operations/RUNBOOK.md) | Prevádzkový odkaz |
-| 🔌 [Miestny MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Nástroje súborového systému a zápis konfigurácie |
+| Doc | What It Covers |
+|:----|:--------------|
+| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
+| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
+| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |

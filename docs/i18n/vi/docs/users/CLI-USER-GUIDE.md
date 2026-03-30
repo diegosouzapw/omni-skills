@@ -5,33 +5,39 @@
 ---
 
 
->**Giao diện CLI công khai đầy đủ được cung cấp bởi `omni-skills`.**
+> **The full public CLI surface shipped by `omni-skills`.**
 
-Sử dụng hướng dẫn này khi bạn muốn:
+Use this guide when you want to:
 
-| Mục tiêu | Khu vực chỉ huy |
-|:------|:-------------|
-| 📥 Cài đặt kỹ năng hoặc gói | [Quy trình cài đặt](#3️⃣-install-flows) |
-| 🔎 Tìm kiếm danh mục | [Khám phá danh mục](#4️⃣-catalog-discovery) |
-| 🔌 Định cấu hình máy khách MCP | [Cấu hình máy khách MCP](#5️⃣-mcp-client-config) |
-| 🖥️ Bắt đầu dịch vụ MCP, API hoặc A2A | [Máy chủ MCP](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Sử dụng vỏ thiết bị đầu cuối trực quan | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Chạy chẩn đoán hoặc kiểm tra trước | [Chẩn đoán](#🔟-diagnostics-and-preflight) |---
+| Goal | Command Area |
+|:-----|:-------------|
+| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
+
+---
 
 ## 1️⃣ Install and Entry Modes
 
-Cài đặt bằng `npx`:```bash
+Install with `npx`:
+
+```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Bối cảnh | Điều gì xảy ra |
-|:--------|:-------------|
-| 🖥️ TTY + không tranh cãi | Mở luồng**cài đặt có hướng dẫn**|
-| ⚙️ Không TTY + không tranh luận | Cài đặt không tương tác vào `~/.gemini/antiGravity/skills` |
-| 🎨 `npx omni-skills ui` | Được gắn nhãn hiệu**Vỏ hình ảnh mực**|
-| 📝 `npx omni-skills ui --text` | Readline**văn bản dự phòng**UI |---
+| Context | What Happens |
+|:--------|:------------|
+| 🖥️ TTY + no arguments | Opens the **guided install** flow |
+| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+
+---
 
 ## 2️⃣ Core Commands
 
@@ -39,20 +45,22 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Lệnh | Mô tả |
-|:--------|:----------|
-| `ui` | 🎨 Trung tâm thiết bị đầu cuối trực quan |
-| `tìm [truy vấn]` | 🔎 Khám phá danh mục |
-| `phân loại lại` | 🏷️ Quản lý phân loại |
-| `cài đặt [cờ]` | 📥 Cài đặt kỹ năng/gói |
-| `config-mcp` | 🔌 Cấu hình máy khách MCP |
-| `mcp <stdio\|stream\|sse>` | 🔌 Chế độ máy chủ MCP |
-| `api` | 🌐 API danh mục |
-| `a2a` | 🤖 Thời gian chạy A2A |
-| `khói` | 🧪 Phát hành ánh sáng trước |
-| `kiểm tra xuất bản` | 📦 Kiểm tra xuất bản gói |
-| `bác sĩ` | 🩺 Chẩn đoán môi trường |
-| `giúp` | ❓ Tham chiếu lệnh |---
+| Command | Description |
+|:--------|:-----------|
+| `ui` | 🎨 Visual terminal hub |
+| `find [query]` | 🔎 Catalog discovery |
+| `recategorize` | 🏷️ Taxonomy management |
+| `install [flags]` | 📥 Skill/bundle install |
+| `config-mcp` | 🔌 MCP client configuration |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| `api` | 🌐 Catalog API |
+| `a2a` | 🤖 A2A runtime |
+| `smoke` | 🧪 Release preflight |
+| `publish-check` | 📦 Package publication check |
+| `doctor` | 🩺 Environment diagnostics |
+| `help` | ❓ Command reference |
+
+---
 
 ## 3️⃣ Install Flows
 
@@ -63,7 +71,9 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> Quy trình hướng dẫn cho phép bạn chọn:**khách hàng mục tiêu**→**gói hoặc kỹ năng**→**đường dẫn tùy chỉnh**→**xem trước trước khi thực hiện**### 🎯 Single Skill
+> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
+
+### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -80,17 +90,19 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Cờ | Khách hàng |
-|:------|:-------|
-| `--phản hấp dẫn` | 🟣 Phản trọng lực *(mặc định)* |
-| `--claude` | 🟢 Mã Claude |
-| `--con trỏ` | 🔵 Con trỏ |
+| Flag | Client |
+|:-----|:-------|
+| `--antigravity` | 🟣 Antigravity *(default)* |
+| `--claude` | 🟢 Claude Code |
+| `--cursor` | 🔵 Cursor |
 | `--codex` | 🔴 Codex CLI |
-| `--gemini` | 🟡 Song Tử CLI |
+| `--gemini` | 🟡 Gemini CLI |
 | `--kiro` | 🟠 Kiro |
-| `--opencode` | ⚪ Mã mở |
+| `--opencode` | ⚪ OpenCode |
 
-> Mục tiêu cài đặt mặc định (không tương tác): `~/.gemini/antiGravity/skills`---
+> Default install target (non-interactive): `~/.gemini/antigravity/skills`
+
+---
 
 ## 4️⃣ Catalog Discovery
 
@@ -111,23 +123,27 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Cờ | Mục đích |
-|:------|:--------|
-| `--category` | Lọc theo danh mục phân loại |
-| `--công cụ` | Lọc theo công cụ được hỗ trợ |
-| `--rủi ro` | Lọc theo mức độ rủi ro |
-| `--sắp xếp` | Sắp xếp kết quả (ví dụ: `chất lượng`) |
-| `--order` | Sắp xếp thứ tự |
-| `--min-chất lượng` | Điểm chất lượng tối thiểu |
-| `--min-thực hành tốt nhất` | Điểm thực hành tốt nhất tối thiểu |
-| `--min-level` | Mức trưởng thành tối thiểu |
-| `--min-security` | Điểm bảo mật tối thiểu |
-| `--xác thực-trạng thái` | Lọc theo trạng thái xác thực |
-| `--tình trạng bảo mật` | Lọc theo trạng thái bảo mật |---
+| Flag | Purpose |
+|:-----|:--------|
+| `--category` | Filter by taxonomy category |
+| `--tool` | Filter by supported tool |
+| `--risk` | Filter by risk level |
+| `--sort` | Sort results (e.g., `quality`) |
+| `--order` | Sort order |
+| `--min-quality` | Minimum quality score |
+| `--min-best-practices` | Minimum best-practices score |
+| `--min-level` | Minimum maturity level |
+| `--min-security` | Minimum security score |
+| `--validation-status` | Filter by validation state |
+| `--security-status` | Filter by security state |
+
+---
 
 ## 5️⃣ MCP Client Config
 
-Sử dụng `config-mcp` để xem trước hoặc ghi cấu hình MCP nhận biết máy khách.### 📋 List Targets
+Use `config-mcp` to preview or write client-aware MCP configuration.
+
+### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -152,26 +168,28 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<chi tiết>
-<summary>🔌 <strong>Bề mặt khách hàng có khả năng cấu hình</strong></summary>
+<details>
+<summary>🔌 <strong>Config-capable client surface</strong></summary>
 
-| Khách hàng | Mục tiêu |
+| Client | Targets |
 |:-------|:--------|
-| Claude | Cài đặt và mục tiêu trên máy tính để bàn |
-| Con trỏ | Người dùng và không gian làm việc |
-| Codex | Cấu hình TOML |
-| Song Tử | Người dùng và không gian làm việc |
-| Phản lực hấp dẫn | Cấu hình người dùng |
-| Mã mở | Người dùng và không gian làm việc |
-| Cline | Mục tiêu hạng nhất |
-| GitHub phi công phụ CLI | Người dùng và repo |
-| Mã Kilo | Người dùng, dự án và không gian làm việc |
-| Kiro | Người dùng và không gian làm việc |
-| Zed | Không gian làm việc |
-| Mã VS | Người dùng, không gian làm việc và Dev Container |
-| Tiếp tục | Không gian làm việc YAML |
-| Junie | Dự án và người dùng |
-| Lướt ván buồm | Cấu hình người dùng |</details>
+| Claude | Settings and desktop targets |
+| Cursor | User and workspace |
+| Codex | TOML config |
+| Gemini | User and workspace |
+| Antigravity | User config |
+| OpenCode | User and workspace |
+| Cline | First-class target |
+| GitHub Copilot CLI | User and repo |
+| Kilo Code | User, project, and workspace |
+| Kiro | User and workspace |
+| Zed | Workspace |
+| VS Code | User, workspace, and Dev Container |
+| Continue | Workspace YAML |
+| Junie | Project and user |
+| Windsurf | User config |
+
+</details>
 
 ---
 
@@ -192,7 +210,9 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
->**Sidecar cục bộ**bổ sung thêm: phát hiện ứng dụng khách, xem trước cài đặt, luồng cài đặt/gỡ bỏ và ghi cấu hình MCP.---
+> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
+
+---
 
 ## 7️⃣ Catalog API
 
@@ -202,15 +222,17 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Tuyến đường | Mục đích |
+| Route | Purpose |
 |:------|:--------|
-| `NHẬN /sức khỏe` | Kiểm tra sức khỏe |
-| `NHẬN /openapi.json` | Thông số OpenAPI |
-| `NHẬN /v1/kỹ năng` | Liệt kê tất cả các kỹ năng |
-| `NHẬN /v1/tìm kiếm` | Tìm kiếm danh mục |
-| `NHẬN /v1/skills/:id/archives` | Liệt kê tài liệu lưu trữ cho một kỹ năng |
-| `NHẬN /v1/skills/:id/download/archive?format=zip` | Tải xuống kho lưu trữ kỹ năng |
-| `NHẬN /v1/skills/:id/download/archive/checksums` | Tải xuống tổng kiểm tra |---
+| `GET /healthz` | Health check |
+| `GET /openapi.json` | OpenAPI spec |
+| `GET /v1/skills` | List all skills |
+| `GET /v1/search` | Search the catalog |
+| `GET /v1/skills/:id/archives` | List archives for a skill |
+| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
+| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
+
+---
 
 ## 8️⃣ A2A Runtime
 
@@ -220,15 +242,17 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Tính năng | Trạng thái |
+| Feature | Status |
 |:--------|:-------|
-| 🔎 Khám phá nhận thức nhiệm vụ | ✅ |
-| 📋 Bàn giao kế hoạch cài đặt | ✅ |
-| 🔄 Bỏ phiếu | ✅ |
-| 📡 Đang phát trực tuyến | ✅ |
-| ❌ Hủy bỏ | ✅ |
-| 🔔 Cấu hình thông báo đẩy | ✅ |
-| 💾 Kiên trì | Bộ nhớ, JSON và SQLite |---
+| 🔎 Task-aware discovery | ✅ |
+| 📋 Install-plan handoff | ✅ |
+| 🔄 Polling | ✅ |
+| 📡 Streaming | ✅ |
+| ❌ Cancelation | ✅ |
+| 🔔 Push-notification config | ✅ |
+| 💾 Persistence | Memory, JSON, and SQLite |
+
+---
 
 ## 9️⃣ Visual Shell
 
@@ -238,17 +262,19 @@ npx omni-skills ui
 
 ### Tính năng
 
-| Tính năng | Mô tả |
-|:--------|:----------|
-| 🧭 Hướng dẫn cài đặt | Chọn ứng dụng khách hoặc đường dẫn tùy chỉnh |
-| 🔎 Tìm kiếm + cài đặt | Không cần ghi nhớ cờ |
-| 🔌 Cấu hình MCP | Xem trước và ghi luồng |
-| 🖥️ Ra mắt dịch vụ | Khởi động có hướng dẫn MCP, API và A2A |
-| 🕐 Gần đây | Các lượt cài đặt và khởi chạy lại dịch vụ gần đây |
-| ⭐ Yêu thích | Các kỹ năng và gói đã lưu |
-| 💾 Cài đặt trước | Cài đặt trước cài đặt và dịch vụ được đặt tên |
+| Feature | Description |
+|:--------|:-----------|
+| 🧭 Guided install | Choose client or custom path |
+| 🔎 Search + install | No flag memorization needed |
+| 🔌 MCP config | Preview and write flows |
+| 🖥️ Service launch | MCP, API, and A2A guided startup |
+| 🕐 Recents | Recent installs and service relaunches |
+| ⭐ Favorites | Saved skills and bundles |
+| 💾 Presets | Named install and service presets |
 
->**Đường dẫn trạng thái:**`~/.omni-skills/state/ui-state.json`---
+> **State path:** `~/.omni-skills/state/ui-state.json`
+
+---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -258,14 +284,18 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Kiểm tra: trạng thái kho lưu trữ, trạng thái cài đặt cục bộ, tính khả dụng của thời gian chạy và các vấn đề về môi trường.### 🧪 Release Preflight
+> Inspects: repo state, local install state, runtime availability, and environment issues.
+
+### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Xác thực: bản dựng, kiểm tra, đầu ra gói, khởi động dịch vụ, phạm vi phủ sóng của máy quét và đóng gói phát hành.---
+> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
+
+---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -278,20 +308,22 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Nhân vật | Lệnh | Mục đích |
-|:----------|:--------|:--------|
-| 🆕 Người dùng mới | `kỹ năng đa năng của npx` | Hướng dẫn cài đặt lần đầu |
-| 🔧 Nhà điều hành | `npx omni-skills config-mcp --list-target` | Định cấu hình MCP cục bộ |
-| 🔧 Nhà điều hành | `npx omni-skills mcp streaming --local` | Bắt đầu sidecar địa phương |
-| 📦 Người bảo trì | `npx omni-skills smoke` | Xác thực một bản phát hành |
-| 🔍 Người dùng quyền lực | `npx omni-skills find security --sort chất lượng --min-quality 95` | Tìm kỹ năng tốt nhất trước |---
+| 🎯 Persona | Command | Purpose |
+|:-----------|:--------|:--------|
+| 🆕 New user | `npx omni-skills` | Guided first-time install |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
+| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
+| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
+
+---
 
 ## 📖 Related Documents
 
-| Tài liệu | Nó bao gồm những gì |
+| Doc | What It Covers |
 |:----|:--------------|
-| 🚀 [Bắt đầu](./GETTING-STARTED.md) | Cài đặt và xác minh trong vòng chưa đầy 2 phút |
-| 📗 [Hướng dẫn sử dụng](./USAGE.md) | Tất cả các lệnh, mẫu và chế độ CLI |
-| 📦 [Gói](./BUNDLES.md) | Bộ sưu tập kỹ năng giám tuyển |
-| 🔧 [Runbook hệ thống](../Operations/RUNBOOK.md) | Tham khảo hoạt động |
-| 🔌 [Sidecar MCP cục bộ](../specs/LOCAL-MCP-SIDECAR.md) | Công cụ hệ thống tập tin và viết cấu hình |
+| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
+| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
+| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |

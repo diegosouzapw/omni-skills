@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-Ние като членове, сътрудници и поддържащи се ангажираме да превърнем участието в този проект и общността в**изживяване без тормоз за всеки**, независимо от възрастта, размера на тялото, видимо или невидимо увреждане, етническа принадлежност, полови характеристики, полова идентичност и изразяване, ниво на опит, образование, социално-икономически статус, националност, външен вид, раса, каста, цвят, религия или сексуална идентичност и ориентация.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Поведение | Пример |
+| Behavior | Example |
 |:---------|:--------|
-| 💬 Приветлив език | Приобщаване и уважение в комуникацията |
-| 🤝 Уважение към различията | Оценяване на различни гледни точки и опит |
-| 📝 Градивна критика | Приемане и даване на обратна връзка елегантно |
-| 🎯 Фокус върху общността | Приоритетизиране на най-доброто за проекта и общността |
-| ❤️ Емпатия | Показване на емпатия към други членове на общността |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| Поведение |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 Сексуализиран език или образи и сексуално внимание или напредък |
-| 🚫 Тролене, обидни или унизителни коментари |
-| 🚫 Лични или политически нападки |
-| 🚫 Публичен или частен тормоз |
-| 🚫 Публикуване на нечия лична информация без изрично разрешение |
-| 🚫 Друго поведение, основателно считано за неподходящо в професионална среда |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-Случаи на злоупотреба, тормоз или по друг начин неприемливо поведение могат да бъдат докладвани на поддържащите чрез:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| Канал | Как |
+| Channel | How |
 |:--------|:----|
-| 🔒 Частни канали на GitHub | Контакт чрез GitHub Сигурност или Дискусия |
-| 📧 Директен контакт | Свържете се директно с поддържащите |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**Всички доклади ще бъдат прегледани и разследвани своевременно и справедливо.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-Този кодекс на поведение е адаптиран от [Договора на сътрудниците](https://www.contributor-covenant.org), версия 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

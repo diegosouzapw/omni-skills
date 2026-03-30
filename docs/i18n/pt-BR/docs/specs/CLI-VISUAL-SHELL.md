@@ -198,4 +198,3 @@ It must:
 - keep secret material out of clear-text command previews where practical
 - persist state locally only
 - preserve non-interactive CLI behavior outside the visual shell
-

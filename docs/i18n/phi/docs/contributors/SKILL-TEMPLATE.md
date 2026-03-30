@@ -5,65 +5,85 @@
 ---
 
 ---
-pangalan: iyong-kasanayan-pangalan
-paglalarawan: "Isang linyang paglalarawan ng kung ano ang ginagawa ng kasanayang ito at kung kailan ito gagamitin"
-bersyon: "0.1.3"
-kategorya: pag-unlad
-mga tag: [halimbawa-tag-1, halimbawa-tag-2]
-pagiging kumplikado: intermediate
-panganib: ligtas
-mga tool: [claude-code, cursor, gemini-cli, antigravity]
-pinagmulan: komunidad
-may-akda: "Ang iyong Pangalan"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-Ang `npm run validate` ay bubuo ng mga kasanayan/<skill>/metadata.json na may canonical
-taxonomy, maturity level, best practices score, quality score, at seguridad
-i-scan ang mga resulta. Mga pattern ng prompt-injection, mapanirang utos, at mapanganib na script
-ang mga konstruksyon ay awtomatikong ma-flag.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-Ang bersyon ng kasanayan ay independiyente mula sa bersyon ng pakete. Gamitin ang semantiko
-bersyon na may katuturan para sa kasanayan mismo.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Para sa kasanayan sa nangungunang pagmamarka, basahin din ang:
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Pangkalahatang-ideya
 
-2-3 pangungusap na nagpapaliwanag kung ano ang nagagawa ng kasanayang ito, sino ang nakikinabang dito, at kung bakit ito umiiral.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Gamitin kapag kailangan mong [scenario 1]
-- Gamitin kapag gusto mong [scenario 2]
-- Gamitin kapag nagtatrabaho sa [scenario 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Ipaliwanag ang pangunahing konsepto na kailangang maunawaan ng ahente.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Ipaliwanag ang isa pang pangunahing konsepto.## Workflow
+### Concept 2
 
-| Yugto | Output | Bakit ito mahalaga |
-|:------|:-------|:----------------|
-| I-frame ang layunin | Malinaw na layunin | Pinipigilan ang malabong gabay |
-| Isagawa ang mga hakbang | Daloy ng trabaho na handa ng ahente | Ginagawang naaaksyunan ang kasanayan |
-| I-validate ang output | Signal ng pagtanggap | Nagtataas ng kumpiyansa |
+Explain another foundational concept.
 
-1. Unang hakbang sa daloy ng trabaho
-2. Pangalawang hakbang sa daloy ng trabaho
-3. Pangatlong hakbang sa daloy ng trabaho### 1. First Step
+## Workflow
 
-Mga detalyadong tagubilin para sa unang hakbang.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-Mga detalyadong tagubilin para sa ikalawang hakbang.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Mga detalyadong tagubilin para sa ikatlong hakbang.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Mga detalyadong tagubilin para sa ikatlong hakbang.## Examples
 Example prompt or code here
 ```
 
-**Paliwanag:**Ano ang ipinapakita ng halimbawang ito.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Paliwanag:**Ano ang ipinapakita ng halimbawang ito.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Gawin:**Sundin ang mabuting kasanayang ito
-- ✅**Gawin:**Sundin din ang kasanayang ito
-- ❌**Huwag:**Iwasan ang antipattern na ito
-- ❌**Huwag:**Huwag kailanman gawin ito## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Mga Sintomas:**Paano mo malalaman na ito ang problema.
-**Solusyon:**Paano ito ayusin.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@related-skill-1` — Kailan ito gagamitin sa halip
-- `@related-skill-2` — Paano ito nakakadagdag sa iyong kakayahan## Additional Resources
+## Related Skills
+
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
 
 - [Checklist](references/checklist.md)
-- [Worked example](example/example.md)
+- [Worked example](examples/example.md)
 - [Helper script](scripts/render_example.py)

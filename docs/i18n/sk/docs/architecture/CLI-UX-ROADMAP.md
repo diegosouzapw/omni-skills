@@ -5,453 +5,557 @@
 ---
 
 
->**Cestovná mapa produktu pre vývoj Omni Skills z inštalačného programu, ktorý je prvým vlajkou, na riadený terminál pre skúsených aj laických používateľov.**
-> Rozsah: balík npm, skúsenosti s inštaláciou CLI, používateľské rozhranie terminálu, toky spúšťania služieb a vizuálna integrácia.---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-Súčasný základ runtime je silný, ale vstupné prostredie je stále optimalizované pre používateľov, ktorí už rozumejú:
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- na akého klienta sa chcú zamerať
-- ktorý výber inštalácie chcú použiť
-– ako preložiť ciele do výrazov „--skill“, „--bundle“ alebo „find“
-- keď potrebujú nainštalovať iba CLI oproti službám MCP, API alebo A2A
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-dnes:
+Today:
 
-- `npx omni-skills` je predvolene Antigravitácia
-- je to technicky platné a spätne kompatibilné
-- ale nie je ideálny pre začínajúcich používateľov alebo menej technických operátorov
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-CLI už má základný interaktívny režim, ale stále má bližšie k nástroju pre vývojárov ako k riadenej ploche produktu.
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-Tento plán definuje cestu k silnejšiemu verejnému UX bez toho, aby narušil súčasné rozhranie založené na príznakoch.---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-Plán je teraz z veľkej časti implementovaný v súčasnom stave úložiska.
+The roadmap is now largely implemented in the current repository state.
 
-Dokončené:
+Completed:
 
-- Fáza 1: Riadený výber vstupného bodu
-- Fáza 2: Sprievodca inštaláciou so sprievodcom
-- Fáza 3: Visual Terminal Shell
-- Fáza 4: Visual Service Hub
-- Fáza 5: Uložené profily a opakovateľnosť
-- Fáza 6: Kalenie, skúšky a dokumentácia---
+- Phase 1: Guided Entrypoint Selection
+- Phase 2: Guided Install Wizard
+- Phase 3: Visual Terminal Shell
+- Phase 4: Visual Service Hub
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- Zachovať aktuálne pracovné postupy expertného CLI
-- Urobte vstupný bod bez argumentov bezpečný a zrozumiteľný pre nových používateľov
-- Nahraďte tiché predvolené hodnoty v interaktívnych kontextoch riadeným výberom
-- Podpora známych klientov AI a ľubovoľné vlastné inštalačné cesty
-- Premeňte inštaláciu, vyhľadávanie a spustenie služby na koherentnú cestu používateľa
-- Poskytnite vizuálne používateľské rozhranie terminálu, ktoré pôsobí ako produkt, nielen ako skript
-- Udržujte inštalačný modul, katalóg a servisný modul na opakované použitie v používateľskom rozhraní---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- Nahradenie aktuálneho CLI založeného na príznakoch
-- Odstránenie antigravitácie ako podporovaného predvoleného cieľa
-- Doručenie webového používateľského rozhrania ako primárneho spôsobu doručenia
-- Refaktorovanie samotných protokolov API, MCP alebo A2A ako súčasť tejto práce UX
-- Nahradenie tvorby `SKILL.md` administračným panelom podporovaným databázou---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-Tieto príkazy musia naďalej fungovať presne tak ako dnes:
+These commands must continue to work exactly as they do today:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
-- `npx omni-skills nájdu figma --tool kurzor --install --yes`
+- `npx omni-skills find figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills a2a --port 3335`
 
-- Interaktívna terminálová relácia bez argumentov: otvorená riadená skúsenosť
-- Neinteraktívne vyvolanie bez argumentov: zachovať aktuálne predvolené správanie inštalácie
-- Explicitné príkazy a príznaky vždy vyhrávajú nad odvodením používateľského rozhrania### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-Nasledujúce by mali mať rovnakú vnútornú logiku:
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
 
-- vlajkový prvý CLI
-- riadený textový režim CLI
-- vizuálne používateľské rozhranie terminálu
+### 4.3 Reuse One Engine Across Modes
 
-To znamená, že vrstva UX nesmie vlastniť obchodnú logiku. Mala by organizovať opakovane použiteľné akcie.### 4.4 Preview Before Write
+The following should share the same internal logic:
 
-Všetky riadené toky, ktoré spôsobujú zápisy, by mali zobrazovať:
+- flag-first CLI
+- guided text-mode CLI
+- visual terminal UI
 
-- vyriešený cieľ
-- vyriešená cesta
-- vybrané zručnosti alebo balíky
-- ekvivalentný príkaz CLI
-- výzva na potvrdenie### 4.5 Visual Does Not Mean Implicit
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-Dokonca aj v bohatšom používateľskom rozhraní by mal systém stále explicitne uvádzať stav a akcie:
+### 4.4 Preview Before Write
 
-- kde prebieha inštalácia
-- čo sa bude písať
-- ktorú dopravu alebo prístav služba použije
-- či je tok len na čítanie alebo s možnosťou lokálneho zápisu---
+All guided flows that cause writes should display:
+
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
+
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Potreby:
+Needs:
 
-- rýchle príkazy
-- žiadne nútené výzvy
-- stabilné vlajky
-- skriptovateľnosť### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-Potreby:
+### 5.2 Guided Product User
 
-- jasné voľby
-- žiadny predpoklad, že je žiaduca antigravitácia
-- podpora pre inštaláciu vlastnej cesty
-- zrozumiteľný náhľad inštalácie
-- viditeľný rozdiel medzi inštaláciou a behu servera### 5.3 Operator / Platform User
+Needs:
 
-Potreby:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- schopnosť vizuálne spustiť MCP, API a A2A
-- rozumné predvolené hodnoty
-- voliteľné ladenie portov, transportu, perzistencie, režimu vykonávateľa, autorizácie a lokálneho režimu---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-Produkt by mal exponovať tri vrstvy:### 6.1 Expert Mode
+The product should expose three layers:
 
-Priame príkazy a príznaky.
+### 6.1 Expert Mode
 
-Príklady:
+Direct commands and flags.
+
+Examples:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills mcp stream --local`
-- `npx omni-skills a2a --port 3335`### 6.2 Guided Install Mode
+- `npx omni-skills a2a --port 3335`
 
-Spustí sa, keď:
+### 6.2 Guided Install Mode
 
-- používateľ spustí `npx omni-skills` v TTY bez argumentov
-- používateľ spustí `npx omni-skills install` bez konkrétnych selektorov
-- používateľ sa výslovne rozhodne pre režim so sprievodcom
+Triggered when:
 
-Riadený postup inštalácie by mal prechádzať cez:
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-1. cieľový klient alebo vlastná cesta
-2. typ inštalácie
-3. výber zručnosti alebo zväzku
-4. náhľad
-5. potvrdenie
-6. vykonanie
-7. ďalšie kroky### 6.3 Visual Operations Hub
+The guided install flow should walk through:
 
-Spustené:
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
+
+### 6.3 Visual Operations Hub
+
+Triggered by:
 
 - `npx omni-skills ui`
 
-Toto by sa malo stať „domovskou obrazovkou“ pre neodborných používateľov a operátorov.
+This should become the “home screen” for non-expert users and operators.
 
-Hlavné akcie:
+Core actions:
 
-- zručnosti inštalácie
-- objavovať zručnosti
-- spustiť MCP
-- spustiť API
-- štart A2A
-- bež doktor
-- vykonajte kontrolu dymu---
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-výsledok:
+Outcome:
 
-- `npx omni-skills` v TTY už v tichosti nepreberá antigravitáciu
-- používatelia sú vyzvaní, aby si vybrali klienta alebo vlastnú cestu
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-Požiadavky:
+Requirements:
 
-- zachovať predvolené správanie inštalácie, ktoré nie je TTY
-- pridať volič cieľa
-- podpora vlastného zachytávania cesty### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-výsledok:
+### Phase 2: Guided Install Wizard
 
-- inštalácia sa stáva plne riadeným tokom
+Outcome:
 
-Požiadavky:
+- installation becomes a full guided flow
 
-- výber režimu inštalácie:
-  - plná knižnica
-  - jedna zručnosť
-  - jeden zväzok
-  - vyhľadajte a nainštalujte
-- ukážka inštalácie
-- ekvivalentné vykresľovanie príkazov
-- potvrdenie a vykonanie### Phase 3: Visual Terminal Shell
+Requirements:
 
-výsledok:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- súčasné základné textové používateľské rozhranie sa stáva značkovou terminálovou aplikáciou
+### Phase 3: Visual Terminal Shell
 
-Požiadavky:
+Outcome:
 
-- bohatšie rozloženie
-- branding a logo projektu
-- lepší stepper a karty
-- klávesnicou ovládaná navigácia
-- Reagovať implementáciu terminálu prostredníctvom atramentu### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-výsledok:
+Requirements:
 
-- MCP, API a A2A sa dajú spustiť z vizuálneho používateľského rozhrania
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-Požiadavky:
+### Phase 4: Visual Service Hub
 
-- riadený tok MCP
-- riadený tok API
-- vedený prúd A2A
-- viditeľný režim a ukážky konfigurácie### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-výsledok:
+- MCP, API, and A2A are startable from the visual UI
 
-- bežné inštalačné alebo servisné predvoľby možno opätovne použiť
+Requirements:
 
-Požiadavky:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- zapamätať si nedávne ciele
-- uložené predvoľby služieb
-- posledné príkazy
-- obľúbené zväzky alebo zručnosti### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-výsledok:
+Outcome:
 
-- UX sa stáva udržiavaným verejným rozhraním, nie ad hoc pohodlím
+- common install or service presets can be reused
 
-Požiadavky:
+Requirements:
 
-- pokrytie dymom
-- regresné testy
-- aktualizácie dokumentov
-- vedenie operátora
-- kontrola kompatibility balíka---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- „všezručnosti“.
-- „inštalácia všemožných zručností“.
-- „nájsť všemožné zručnosti“.
-- „ui všemožných zručností“.
-- `mni-skills mcp`
-- `všemožné zručnosti api`
-- „všezručnosti a2a“.
-- „lekár všemožných zručností“.
-- „fajčiť všemožné zručnosti“.### Recommended Behavior
+- `omni-skills`
+- `omni-skills install`
+- `omni-skills find`
+- `omni-skills ui`
+- `omni-skills mcp`
+- `omni-skills api`
+- `omni-skills a2a`
+- `omni-skills doctor`
+- `omni-skills smoke`
 
-| Vyvolanie | Správanie |
+### Recommended Behavior
+
+| Invocation | Behavior |
 |:-----------|:---------|
-| „Všeobecné zručnosti“ v TTY, žiadne argumenty | Vstup so sprievodcom inštalácie |
-| „Všeobecné zručnosti“ v non-TTY, žiadne argumenty | Aktuálna predvolená inštalácia Antigravity |
-| `omni-skills install` v TTY, žiadne selektory | Sprievodca inštaláciou |
-| `inštalácia omni-skills --riadená` | Inštalačný tok s núteným vedením |
-| `omni-skills ui` | Otvorte centrum vizuálnych operácií |
-| explicitné vlajky | Vykonajte priamo bez odbočenia do riadeného toku |---
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
+| `omni-skills install --guided` | Force guided install flow |
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Možnosti:
+Options:
 
 - Claude Code
-- Kurzor
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitácia
+- Antigravity
 - OpenCode
-- Vlastná cesta
+- Custom path
 
-výstup:
+Output:
 
-- vybratá známa cieľová ALEBO vlastná cesta súborového systému### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-Možnosti:
+### Step 2: Choose Install Type
 
-- plná knižnica
-- jedna publikovaná zručnosť
-- jeden zväzok
-- vyhľadajte a nainštalujte
+Options:
 
-výstup:
+- full library
+- one published skill
+- one bundle
+- search then install
 
-- inštalovať rozsah### Step 3: Resolve Selection
+Output:
 
-V závislosti od typu inštalácie:
+- install scope
 
-- úplná knižnica: žiadny ďalší selektor
-- zručnosť: uveďte alebo vyberte zručnosť
-- zväzok: zoznam alebo výber zväzku
-- vyhľadávanie: výzva na zadanie dopytu, zobrazenie zodpovedajúcich zručností a balíkov### Step 4: Preview
+### Step 3: Resolve Selection
 
-Displej:
+Depending on install type:
 
-- vybraný cieľ
-- vyriešená cesta
-- vybraná zručnosť alebo zväzok
-- ekvivalentný príkaz CLI
-- či je prietok selektívny alebo úplná inštalácia### Step 5: Confirm
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-Používateľ potvrdzuje:
+### Step 4: Preview
 
-- áno → vykonať
-- nie → prerušiť alebo vrátiť sa späť### Step 6: Result
+Display:
 
-Displej:
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
 
-- úspech/neúspech
-- cieľová cesta
-- návrh ďalšieho kroku---
+### Step 5: Confirm
+
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-Operačné centrum by malo odhaľovať:### 10.1 Install
+The operations hub should expose:
 
-- riadený tok inštalácie
-- vyhľadávanie zručností alebo zväzkov
-- vlastná cesta### 10.2 Discover
+### 10.1 Install
 
-- vyhľadávanie v katalógu
-- filtre
-- náhľad metadát
-- nainštalovať odovzdanie### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-Možnosti:
+### 10.2 Discover
 
-- doprava: stdio, stream, sse
-- zapnutie/vypnutie lokálneho režimu
-- hostiteľ
-- prístav### 10.4 API
+- catalog search
+- filters
+- preview metadata
+- install handoff
 
-Možnosti:
+### 10.3 MCP
 
-- hostiteľ
-- prístav
-- voliteľné overenie
-- voliteľný limit sadzby### 10.5 A2A
+Options:
 
-Možnosti:
+- transport: stdio, stream, sse
+- local mode on/off
+- host
+- port
 
-- hostiteľ
-- prístav
-- typ úložiska: pamäť, json, sqlite
-- vykonávateľ: inline, proces
-- možnosti prenájmu, keď je povolená fronta sqlite### 10.6 Diagnostics
+### 10.4 API
 
-- lekár
-- fajčiť---
+Options:
+
+- host
+- port
+- optional auth
+- optional rate limit
+
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-Aktuálne kombinácie `tools/bin/cli.js`:
+The current `tools/bin/cli.js` mixes:
 
-- analýza príkazov
-- prezentácia
-- interaktívne výzvy
-- akčná orchestrácia
-- servisné spustenie
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-Nová štruktúra by mala presunúť opakovane použiteľnú logiku do:
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/ui-models/`
 
-`tools/bin/install.js` by mal zostať backendom s možnosťou zápisu.
+### 11.2 Keep Installer Engine Separate
 
-Riadené používateľské rozhranie by malo namiesto duplikovania inštalačnej logiky volať existujúci backend inštalátora.### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-Sprievodca inštaláciou so sprievodcom by mal znova použiť rovnakú logiku vyhľadávania v jadre katalógu a CLI:
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- "nájsť".
-- inštalovať ukážky
-- rozlíšenie zväzku### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-Prvá dodávka môže zostať v textovom režime.
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-Ale architektúra by si mala zachovať čistý šev, aby sa tok textu dal neskôr vykresliť pomocou atramentu.---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-zmiernenie:
+Mitigation:
 
-- v TTY sa automaticky otvára iba riadené používateľské rozhranie
-- zachovať aktuálne predvolené nastavenie v non-TTY
-- zachovať explicitné toky vlajok### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-zmiernenie:
+### 12.2 Letting UI Own Business Logic
 
-- presunúť orchestráciu na opätovne použiteľné akčné moduly
-- Ponechajte logiku zavádzania inštalátora a služby pod vrstvou používateľského rozhrania### 12.3 Ink Migration Too Early
+Mitigation:
 
-zmiernenie:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
+
+### 12.3 Ink Migration Too Early
+
+Mitigation:
 
 - first ship the guided flow in current Node terminal stack
-- then migrate to Ink once flow semantics are stable### 12.4 Incomplete Service UX
+- then migrate to Ink once flow semantics are stable
 
-zmiernenie:
+### 12.4 Incomplete Service UX
 
-- prvý sprievodca inštaláciou lode
-- potom sa spustí služba riadená vrstvami---
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- `npx omni-skills` v TTY sa už nenainštaluje okamžite
-- užívateľ si môže vybrať cieľového klienta alebo vlastnú cestu
-- non-TTY no-arg vyvolanie stále funguje ako predtým### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- riadená inštalácia podporuje úplnú knižnicu, zručnosti, balík a vyhľadávanie a potom inštaláciu
-- náhľad sa vždy zobrazí pred zápisom
-- zobrazí sa ekvivalent príkazu### Phase 3
+### Phase 2
 
-- existuje značkové používateľské rozhranie terminálu
-- Používateľské rozhranie je viac vizuálne štruktúrované ako jednoduché ponuky
-- Navigácia je vhodná pre klávesnicu### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- používatelia môžu spustiť MCP, API a A2A z vizuálneho centra
-- hlavné možnosti runtime sú konfigurovateľné v riadenej forme### Phase 5
+### Phase 3
 
-- nedávne alebo uložené predvoľby sú opätovne použiteľné
-- opakované toky vyžadujú menej výziev### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- pokrytie dymom odráža nové vstupné body UX
-- dokumenty popisujú riadený režim a správanie sprievodcu službou---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-Tento plán sa musí implementovať v tomto poradí:
+This roadmap must be implemented in this order:
 
-1. Riadený výber vstupného bodu
-2. Sprievodca inštaláciou so sprievodcom
-3. Vizuálny kryt terminálu
-4. Centrum vizuálnych služieb
-5. Uložené profily a opakovateľnosť
-6. Kalenie, skúšky a leštenie dokumentov
+1. Guided entrypoint selection
+2. Guided install wizard
+3. Visual terminal shell
+4. Visual service hub
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-Implementačná práca by si mala prečítať príslušný súbor úloh pred spustením každej úlohy, aby práca CLI zostala v súlade s plánom a nehýbala sa.
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

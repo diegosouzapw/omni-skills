@@ -5,54 +5,63 @@
 ---
 
 
->**Mindestanforderungen und Empfehlungen für die Aufnahme einer Fertigkeit in das Omni Skills-Repository.**
+> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
 
-Anleitungen zum Verfassen, die speziell auf Spitzenwerte abzielen, finden Sie im [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Aktueller Benchmark für den veröffentlichten Katalog:
+Current benchmark for the native catalog:
 
-- 32 veröffentlichte Fähigkeiten
-- durchschnittlicher Qualitätsfaktor „96,3“.
-- durchschnittliche Best-Practices-Bewertung „98,7“.
-- durchschnittliche Sicherheitsbewertung „95,0“.---
+- 48 published native skills
+- average quality score `87.5`
+- average best-practices score `85.2`
+- average security score `90.6`
+- validation mix `40` passed, `8` warn, `0` failed
+
+---
 
 ## 🔒 Required (Must Pass)
 
-| # | Anforderung | So überprüfen Sie |
+| # | Requirement | How to Verify |
 |:--|:------------|:--------------|
-| 1️⃣ |**Gültige Titelangabe**| `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ |**Klare Beschreibung**| Einzeiler muss erklären, was der Skill bewirkt (10+ Zeichen) |
-| 3️⃣ |**Name stimmt mit Verzeichnis überein**| Das Feld „name:“ entspricht genau dem Ordnernamen |
-| 4️⃣ |**Übersichtsbereich**| Kurze Erläuterung des Zwecks im Abschriftentext |
-| 5️⃣ |**Abschnitt „Wann zu verwenden“**| Mindestens 2 spezifische Nutzungsszenarien |
-| 6️⃣ |**Umsetzbare Anweisungen**| Schritt-für-Schritt-Inhalte, die ein KI-Agent ausführen kann |
-| 7️⃣ |**Generierte Metadaten**| Validator gibt „skills/<skill>/metadata.json“ erfolgreich aus |---
+| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
+| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
+| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
+| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
+| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
+| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
+
+---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Empfehlung | Score Impact |
+| # | Recommendation | Score Impact |
 |:--|:---------------|:-------------|
-| 8️⃣ |**Beispiele**– mindestens ein konkretes Beispiel mit erwarteter Ausgabe | 📈 Qualität +10-15 |
-| 9️⃣ |**Best Practices**– ✅ Do/❌ Don't-Anleitung | 📈 Best Practices +5 |
-| 🔟 |**Getestet mit einem Tool**– verifiziert mit mindestens einem KI-Codierungsassistenten | 📈 Qualität +5 |
-| 1️⃣1️⃣ |**Tags**– relevante durchsuchbare Tags zur Entdeckung | 📈 Best Practices +10 |
-| 1️⃣2️⃣ |**Kategorie**– einer kanonischen Kategorie zugeordnet | 📈 Best Practices +10 |
-| 1️⃣3️⃣ |**Fehlerbehebung**– konkrete „Symptome“ und „Lösungshinweise“ | 📈 Best Practices +5-10 |
-| 1️⃣4️⃣ |**Lokale Supportressourcen**– „references/“, „scripts/“ und idealerweise „examples/“, verlinkt über den Skill | 📈 Best Practices +10 |
-| 1️⃣5️⃣ |**Gesunde Klassifizierung**– Reifegrad L3, Qualität 85+, Best Practices 90+ | 📈 Gesamtstufe |
-| 1️⃣6️⃣ |**Keine kritischen Sicherheitsbefunde**– statischer Scanner besteht sauber | 🛡️ Sicherheit 100 |---
+| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
+| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
+| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
+| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
+| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+
+---
 
 ## ❌ Reasons for Rejection
 
-| Problem | Warum |
+| Issue | Why |
 |:------|:----|
-| ❌ Fehlende oder ungültige Titelangabe | Unterbricht die Validierungspipeline |
-| ❌ Name stimmt nicht mit Verzeichnis überein | Unterbricht die Kataloggenerierung |
-| ❌ Leere oder trivial kurze Beschreibung | Benutzer können den Skill | nicht entdecken
-| ❌ Keine umsetzbaren Inhalte (nur Links oder Stubs) | Agenten können nichts ausführen |
-| ❌ Duplizieren ohne deutliche Verbesserung | Mehrwert schaffen, nicht klonen |
-| ❌ Anstößige Inhalte ohne „Risiko: anstößig“-Tag | Sicherheit und Compliance |
-| ❌ Kritische Sicherheitsergebnisse | Sofortige Exfiltration, zerstörerische Befehle usw. |---
+| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
+| ❌ Name doesn't match directory | Breaks catalog generation |
+| ❌ Empty or trivially short description | Users can't discover the skill |
+| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
+| ❌ Duplicate without clear improvement | Add value, don't clone |
+| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
+| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
+
+---
 
 ## 🧪 Verify Locally
 
@@ -72,25 +81,27 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimension | Ausgezeichnet | Gut | Braucht Arbeit |
+| Dimension | Excellent | Good | Needs Work |
 |:----------|:----------|:-----|:-----------|
-| ⭐**Qualität**| 80+ (Platin) | 60-79 (Gold/Silber) | <60 (Bronze/Starter) |
-| 📋**Best Practices**| 90+ (ausgezeichnet) | 70-89 (gut) | <70 (fair/muss bearbeitet werden) |
-| 🛡️**Sicherheit**| 95+ (gehärtet) | 80-94 (sicher) | <80 (Überprüfung erforderlich) |
-| 🎯**Reife**| L3 (Skripte+Tests) | L2 (Anleitung) | L1 (nur Metadaten) |---
+| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
+| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
+| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
 
 ## 🧭 What High Scores Require
 
-Um dauerhaft das Top-Band zu erreichen, sollte eine Fertigkeit Folgendes umfassen:
+To reach the top band consistently, a skill should include:
 
-- eine aussagekräftige Beschreibung, die erklärt,**was**die Fertigkeit bewirkt und**wann**sie verwendet werden sollte
-- explizite Abschnitte für „Verwendungszweck“, „Workflow“, „Beispiele“, „Best Practices“, „Fehlerbehebung“ und „Zusätzliche Ressourcen“.
-- Lokales Supportmaterial unter „references/“, „scripts/“ und idealerweise „examples/“, direkt verlinkt von „SKILL.md“.
-- Agent-Metadaten unter „agents/openai.yaml“, wenn der Skill direkt in Agent-Clients aufgerufen werden soll
-- eine kleine Betriebstabelle oder eine gleichwertige Ausführungskarte, wenn der Arbeitsablauf davon profitiert
-– mindestens ein ausführbares Beispiel, das auf ein lokales Hilfsskript oder einen wiederholbaren Befehl verweist
-- Fehlerbehebung in Form von „Symptomen“ plus „Lösung“, nicht als allgemeine Warnungen
-- Genug Tiefe, um als „L3“ zu gelten, nicht nur als gut formatierte Prosa
-- Stärkere Workflow-Tiefe, Entscheidungsressourcen und Support-Pack-Vielfalt, wenn Sie erstklassige Qualität wünschen
-- ein Support-Paket, das tief genug ist, um wiederverwendbar zu sein, und nicht nur zur Abdeckung von Kontrollkästchen vorhanden ist
-- mindestens 4 aussagekräftige Stützfamilien oder die entsprechende Tiefe in wiederverwendbaren Dateien, wenn Sie das obere Band konsistent wünschen
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
+- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
+- a small operational table or equivalent execution map when the workflow benefits from it
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose
+- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
+- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently

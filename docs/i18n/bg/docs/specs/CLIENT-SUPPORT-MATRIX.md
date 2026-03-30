@@ -5,131 +5,147 @@
 ---
 
 
-Този документ проследява практическата клиентска повърхност за Omni Skills в три входа:
+This document tracks the practical client surface for Omni Skills across three inputs:
 
-1. инвентаризацията на таблото за управление на `9router` в `/home/diegosouzapw/dev/proxys/9router`
-2. текущото внедряване на MCP с кош Omni Skills
-3. актуална официална документация за всеки клиент или IDE
+1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
+2. the current Omni Skills MCP sidecar implementation
+3. current official documentation for each client or IDE
 
-Това е работещият източник на истина за вземане на решение кои клиенти получават първокласна `config-mcp` поддръжка, кои остават само ръчни и кои са само кандидати.---
+It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
+
+---
 
 ## Scope
 
-Тази матрица е за**клиентска конфигурация за MCP**.
+This matrix is about **client configuration for MCP**.
 
-Не е същото като:
+It is not the same as:
 
-- поддръжка за инсталиране на умения
-- API съвместимост
-- A2A поддръжка
-- ACP или други не-MCP протоколи
+- skill installation support
+- API compatibility
+- A2A support
+- ACP or other non-MCP protocols
 
-Някои продукти в матрицата консумират MCP, но**нямат**смислена „директория с умения“, така че получават само поддръжка за цел на конфигурация.---
+Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
+
+---
 
 ## 9router Inventory
 
-Таблото за управление на `9router` в момента групира тези CLI инструменти или IDE клиенти:
+The `9router` dashboard currently groups these CLI tools or IDE clients:
 
-- Клод Код
+- Claude Code
 - OpenAI Codex
-- Фабричен дроид
+- Factory Droid
 - OpenClaw
-- Курсор
-- Клайн
-- Кило код
-- Продължете
-- Антигравитация
+- Cursor
+- Cline
+- Kilo Code
+- Continue
+- Antigravity
 - GitHub Copilot
 - OpenCode
-- Киро AI
+- Kiro AI
 
-Местни източници:
+Local sources:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
 - [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)---
+- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
+
+---
 
 ## First-Class Support
 
-Тези клиенти вече имат стабилна, ясна история в Omni Skills чрез `config-mcp --target ...`.
+These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
 
-Общо текущо изпълнение:
+Current implementation totals:
 
--**7 клиента с възможност за инсталиране**
--**16 клиента с възможност за конфигурация**
--**33 първокласни цели за конфигурация**
--**19 конфигурационни профила**
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 first-class config targets**
+- **19 config profiles**
 
-| Клиент | Статус | Конфигурационни цели | Бележки |
+| Client | Status | Config Targets | Notes |
 |:-------|:-------|:---------------|:------|
-| Клод Код | ✅ Първокласен | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Въведена конфигурация на `mcpServers` със специфични за Claude контроли за разрешаване/отказ |
-| Курсор | ✅ Първокласен | `работно пространство на курсора`, `потребител на курсора` | JSON `mcpServers` цели |
-| VS код | ✅ Първокласен | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Използва `servers` root |
-| Gemini CLI | ✅ Първокласен | `gemini-user`, `gemini-workspace` | JSON настройки + глобални контроли за разрешаване/изключване на MCP |
-| Антигравитация | ✅ Първокласен | `antigravity-user` | JSON `mcpServers` цел |
-| Киро | ✅ Първокласен | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Деактивирани/автоматично одобрени полета, специфични за Kiro |
-| Codex CLI | ✅ Първокласен | `codex-user` | TOML таблици `mcp_servers` |
-| Продължи | ✅ Първокласен | `continue-workspace` | Специален документ за YAML сървър |
-| Уиндсърф | ✅ Първокласен | `windsurf-user` | JSON цел `mcpServers` със записи `serverUrl` |
-| OpenCode | ✅ Първокласен | `работно пространство с отворен код`, `потребител с отворен код` | Официален `opencode.json` / потребителска конфигурация с помощта на `mcp` от най-високо ниво |
-| Клайн | ✅ Първокласен | `cline-user` | `cline_mcp_settings.json` с `mcpServers` |
-| GitHub Copilot CLI | ✅ Първокласен | `copilot-user`, `copilot-repo` | `mcp-config.json` или `.github/mcp.json` с репо обхват |
-| Код на килограм | ✅ Първокласен | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI използва `kilo.json`; интеграцията на работното пространство използва `.kilocode/mcp.json` |
-| Зед | ✅ Първокласен | `zed-workspace` | `.zed/settings.json` с `context_servers` |
-| Джуни | ✅ Първокласен | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` или `~/.junie/mcp/mcp.json` с помощта на `mcpServers` |
-| гъска | ✅ Първокласен | `goose-user` | `~/.config/goose/config.yaml` с използване на обект `extensions` от най-високо ниво за постоянни MCP разширения |---
+| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
+| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
+| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
+| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
+| Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
+| Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
+| Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
+| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
+| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
+| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
+| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
+| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
+| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
+| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
+| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
+| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
+
+---
 
 ## Current Gaps
 
-Тези клиенти от `9router` все още**не**са първокласни писателски цели в Omni Skills:
+These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
 
-| Клиент | Текущо състояние | Защо |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| Фабричен дроид | ⚠️ Само ръчно/по избор | Не е открита стабилна публична форма на MCP конфигурация в основните документи по време на това преминаване |
-| OpenClaw | ⚠️ Само ръчно/по избор | Същият проблем като Factory Droid |
+| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
+| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
 
-Страничната кола все още може да се използва с `--file` или персонализирани пътеки за напреднали потребители, но Omni Skills не трябва да измисля първокласни писатели без стабилни публични конфигурационни документи.
+The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
 
-Два съседни продукта вече са по-добре разбрани, но все още умишлено спират пред първокласните автоматични писатели:
+Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
 
-| Клиент | Текущо състояние | Защо |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| JetBrains AI Assistant | 🟡 Ръководство/фрагмент | Съществува официална поддръжка на MCP, но документираният работен процес е по-скоро управляван от UI/импортиране, отколкото като стабилна цел за публичен файл |
-| Пощальон | 🟡 Ръководство/фрагмент | Съществува официална поддръжка на MCP, но конфигурацията се управлява вътре в потребителския интерфейс на продукта, а не в стабилен публичен целеви файл |
-| Ру код | 🟡 Кандидат | Съществуват публични MCP документи, но силен междуплатформен договор за файлов път все още се нуждае от потвърждение преди добавяне на писател |---
+| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
+| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
+| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
+
+---
 
 ## Support Policy
 
-Omni Skills вече следва този набор от правила:
+Omni Skills now follows this rule set:
 
-1.**С възможност за инсталиране**, ако съществува стабилна директория с умения.
-2.**Съвместим с конфигурация**, ако съществува стабилен публичен формат на MCP конфигурационен файл.
-3.**Ръчно/само с фрагменти**, ако продуктът поддържа MCP, но публичният договор е UI-first, import-first или все още е твърде нестабилен.
+1. **Install-capable** if a stable skills directory exists.
+2. **Config-capable** if a stable public MCP config file format exists.
+3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
 
-Това е и практическият отговор на един от по-ранните въпроси относно архитектурата: проектът трябва да продължи да развива първокласни автори само там, където съществува стабилен публичен формат, а в противен случай да се опира на по-малък набор от канонични семейства за експорт плюс рецепти и фрагменти.### Canonical config families already in use
+This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
+
+### Canonical config families already in use
 
 - JSON `mcpServers`
-- JSON `сървъри`
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
-- TOML `[mcp_servers]`### Additional candidates worth watching
+- TOML `[mcp_servers]`
 
-| Клиент / IDE | Препоръка | Причина |
-|:-------------|:--------|:-------|
-| JetBrains AI Assistant | 🟡 Запазете ръководството/фрагмента засега | Официалната поддръжка е реална, но UX все още се управлява от продукта, а не първо от договора за файлове |
-| Пощальон | 🟡 Запазете ръководството/фрагмента засега | Официалната настройка е първо потребителски интерфейс и управлявано работно пространство, а не първо договор за файлове |
-| Ру код | 🟡 Проучете следващия | Обещаваща поддръжка на MCP, но безопасността на писателя зависи от по-силното потвърждение на конфигурационния път |
-| VS Code Copilot Chat | 🟢 Вече обхванати непряко | Подлежащите MCP файлови местоположения на VS Code вече се поддържат |
-| Zed ACP/агентни сървъри | 🟡 Отделна писта | Това е територия на ACP/агент-сървър, а не само писане на MCP конфигурация |---
+### Additional candidates worth watching
+
+| Client / IDE | Recommendation | Reason |
+|:-------------|:---------------|:-------|
+| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
+| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
+| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
+| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
+| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
+
+---
 
 ## Official Sources Used
 
-Решенията по-горе бяха проверени спрямо текущи първични източници:
+The decisions above were checked against current primary sources:
 
 - [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
 - [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
-- [MCP на курсора](https://docs.cursor.com/tools)
-- [Продължаване на MCP](https://docs.continue.dev/customize/tools)
+- [Cursor MCP](https://docs.cursor.com/tools)
+- [Continue MCP](https://docs.continue.dev/customize/tools)
 - [Kiro MCP](https://kiro.dev/docs/mcp)
 - [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
 - [Cline MCP](https://docs.cline.bot/mcp)
@@ -138,25 +154,27 @@ Omni Skills вече следва този набор от правила:
 - [Zed MCP](https://zed.dev/docs/ai/mcp)
 - [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
 - [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
-- [Конфигурационни файлове на Goose](https://block.github.io/goose/docs/guides/config-files/)
-- [Разширения за Goose Session](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Настройка на Postman MCP](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
+- [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
+- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
 - [Roo Code MCP](https://docs.roocode.com/features/mcp)
-- [VS Code MCP Ръководство за разширение](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Официален MCP регистър](https://prod.registry.modelcontextprotocol.io/)---
+- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
+
+---
 
 ## Implementation Notes
 
-Текущият Omni Skills sidecar умишлено разграничава три нива на поддръжка:
+The current Omni Skills sidecar intentionally distinguishes three support levels:
 
--**клиенти с възможност за инсталиране**
-  - имат известна директория с умения и могат да използват `install_skills`
--**клиенти с възможност за конфигурация**
-  - имат стабилна целева конфигурация и могат да използват `configure_client_mcp`
--**ръчни/клиенти с фрагменти**
-  - документиран, но все още без безопасен първокласен запис на файлове
+- **install-capable clients**
+  - have a known skills directory and can use `install_skills`
+- **config-capable clients**
+  - have a stable config target and can use `configure_client_mcp`
+- **manual/snippet clients**
+  - documented, but without a safe first-class file writer yet
 
-Това разделение поддържа продукта честен.
+That separation keeps the product honest.
 
-Не всеки съвместим с MCP продукт трябва да се третира като цел за инсталиране на умения.
-Фазата на разширяване се счита за завършена за сега: бъдещите допълнения трябва да се приземят само ако изчистят същата лента за обществен договор, която Goose, Junie, Continue и Windsurf сега изчистват.
+Not every MCP-capable product should be treated as a skill-install target.
+The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.

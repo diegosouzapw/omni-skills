@@ -5,15 +5,19 @@
 ---
 
 
->**Bundter er udvalgte færdighedsvælgere, der ligger oven på kataloget.**Alle syv startpakker er nu fuldt understøttet af offentliggjorte færdigheder.---
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by currently cataloged skills.
+
+---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` installerer**ikke**en speciel pakke. Det:
+`--bundle` does **not** install a special package. It:
 
-1. 📋 Udvider den valgte bundtdefinition
-2. ✅ Installerer kun de medlemmer, der i øjeblikket er tilgængelige i kataloget
-3. ✅ Opbygger en konkret installationsplan fra offentliggjorte bundlemedlemmer```bash
+1. 📋 Expands the selected bundle definition
+2. ✅ Installs only the members currently available in the catalog
+3. ✅ Builds a concrete install plan from published bundle members
+
+```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -21,45 +25,53 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Baseret på det aktuelle genererede katalog (`dist/bundles.json`):
+Based on the current generated catalog (`dist/bundles.json`):
 
-| bundt | Beregnet til | Tilgængelig | Medlemmer |
-|:-------|:------------|:---------|:--------|
-| 🧰**essentielle**| Hver udvikler |**4/4**| `find-færdigheder` ✅ · `brainstorming` ✅ · `arkitektur` ✅ · `debugging` ✅ |
-| 🌐**fuld stack**| Web- og app-udviklere |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨**design**| Design systemer & tilgængelighed |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ |
-| 🛡️**sikkerhed**| Sikkerhedsingeniører |**4/4**| `sikkerhedsrevisor` ✅ · `sårbarhed-scanner` ✅ · `hændelse-respons` ✅ · `trusselsmodellering` ✅ |
-| ⚙️**devops**| Platform & infra |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observation-review` ✅ · `release-engineering` ✅ |
-| 🤖**ai-ingeniør**| LLM & ML udviklere |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧**oss-vedligeholder**| OSS-vedligeholdere |**4/4**| `find-færdigheder` ✅ · `create-pr` ✅ · `changelog` ✅ · `dokumentation` ✅ |
+| Bundle | Intended For | Available | Members |
+|:-------|:------------|:----------|:--------|
+| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **5/5** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ · `design-token-governance` ✅ |
+| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
+| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **7/7** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ · `data-contracts` ✅ · `model-serving` ✅ |
+| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = Udgivet og kan installeres---
+> ✅ = Published and installable
+
+---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- Du vil have et**kurateret udgangspunkt**for et domæne
-- Du vil have installationsplaner, der forbliver**kurateret og domænespecifikke**
-- Du vil have en hurtig måde at installere et komplet arbejdssæt til en rolle på### 🎯 Use `--skill` instead when:
+- You want a **curated starting point** for a domain
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
-- Du vil have en**garanteret minimal installation**
-- Du kender allerede den**præcise færdighed**, du har brug for
-- Du vil have det**mindst mulige fodaftryk**i stedet for et kurateret arbejdssæt---
+### 🎯 Use `--skill` instead when:
+
+- You want a **guaranteed minimal install**
+- You already know the **exact skill** you need
+- You want the **smallest possible footprint** instead of a curated working set
+
+---
 
 ## 💡 Practical Recommendations
 
-| Mål | Kommando |
+| Goal | Command |
 |:-----|:--------|
-| 🎯 Installer en specifik offentliggjort færdighed | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Fuldt understøttet startpakke | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Design system bundle | `npx omni-skills --cursor --bundle design` |
+| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
 | 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Sikkerhedsworkflow-pakke | `npx omni-skills --cursor --bundle security` |
-| ⚙️ DevOps-pakke | `npx omni-skills --cursor --bundle devops` |
-| 🤖 AI-ingeniørbundt | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Søg før du beslutter dig | `npx omni-skills find figma` |
-| 📋 Se alle bundter tilgængelighed | `cat dist/bundles.json` |---
+| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Search before deciding | `npx omni-skills find figma` |
+| 📋 See all bundle availability | `cat dist/bundles.json` |
+
+---
 
 ## 🔍 Inspecting Bundles
 
@@ -77,7 +89,9 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Brug værktøjerne "search_skills" eller "preview_install" med bundleparametre.### 📋 Check Install Plan
+Use the `search_skills` or `preview_install` tools with bundle parameters.
+
+### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

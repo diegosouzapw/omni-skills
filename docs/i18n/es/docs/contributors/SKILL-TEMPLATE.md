@@ -5,65 +5,85 @@
 ---
 
 ---
-nombre: nombre-de-su-habilidad
-descripción: "Descripción de una línea de lo que hace esta habilidad y cuándo usarla"
-versión: "0.1.3"
-categoría: desarrollo
-etiquetas: [etiqueta-ejemplo-1, etiqueta-ejemplo-2]
-complejidad: intermedia
-riesgo: seguro
-herramientas: [claude-code, cursor, gemini-cli, antigravedad]
-fuente: comunidad
-autor: "Tu nombre"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validar` generará skills/<skill>/metadata.json con canonical
-taxonomía, nivel de madurez, puntuación de mejores prácticas, puntuación de calidad y seguridad
-resultados del escaneo. Patrones de inyección rápida, comandos destructivos y secuencias de comandos arriesgadas
-Las construcciones se marcarán automáticamente.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-La versión de la habilidad es independiente de la versión del paquete. Usa la semántica
-versión que tenga sentido para la habilidad en sí.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Para conocer una habilidad con la máxima puntuación, lea también:
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Resumen
 
-2 o 3 frases que expliquen qué hace esta habilidad, quién se beneficia de ella y por qué existe.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Úselo cuando lo necesite [escenario 1]
-- Úsalo cuando quieras [escenario 2]
-- Úselo cuando trabaje con [escenario 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Explique el concepto clave que el agente debe comprender.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Explique otro concepto fundamental.## Workflow
+### Concept 2
 
-| Fase | Salida | Por qué es importante |
+Explain another foundational concept.
+
+## Workflow
+
+| Phase | Output | Why it matters |
 |:------|:-------|:---------------|
-| Encuadre la portería | Objetivo claro | Evita indicaciones vagas |
-| Ejecute los pasos | Flujo de trabajo listo para el agente | Hace que la habilidad sea procesable |
-| Validar la salida | Señal de aceptación | Aumenta la confianza |
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-1. Primer paso del flujo de trabajo
-2. Segundo paso del flujo de trabajo
-3. Tercer paso del flujo de trabajo### 1. First Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Instrucciones detalladas para el primer paso.### 2. Second Step
+### 1. First Step
 
-Instrucciones detalladas para el segundo paso.### 3. Third Step
+Detailed instructions for the first step.
 
-Instrucciones detalladas para el tercer paso.## Examples
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Instrucciones detalladas para el tercer paso.## Examples
 Example prompt or code here
 ```
 
-**Explicación:**Lo que demuestra este ejemplo.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Explicación:**Lo que demuestra este ejemplo.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Hacer:**Seguir esta buena práctica
-- ✅**Hacer:**Seguir también esta práctica
-- ❌**No:**Evite este antipatrón
-- ❌**No:**Nunca hagas esto## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Síntomas:**Cómo sabes que este es el problema.
-**Solución:**Cómo solucionarlo.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@ related-skill-1`: cuándo usar esto en su lugar
-- `@ related-skill-2`: cómo esto complementa tu habilidad## Additional Resources
+## Related Skills
 
-- [Lista de verificación](referencias/checklist.md)
-- [Ejemplo resuelto](ejemplos/ejemplo.md)
-- [Script de ayuda](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

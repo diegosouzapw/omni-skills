@@ -5,54 +5,63 @@
 ---
 
 
->**Minimale vereisten en aanbevelingen voor acceptatie van een vaardigheid in de Omni Skills-repository.**
+> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
 
-Voor schrijfrichtlijnen die specifiek gericht zijn op topbandscores, zie [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
+For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Huidige benchmark voor de gepubliceerde catalogus:
+Current benchmark for the native catalog:
 
-- 32 gepubliceerde vaardigheden
-- gemiddelde kwaliteitsscore `96,3`
-- gemiddelde best practices scoren `98,7`
-- gemiddelde beveiligingsscore `95,0`---
+- 48 published native skills
+- average quality score `87.5`
+- average best-practices score `85.2`
+- average security score `90.6`
+- validation mix `40` passed, `8` warn, `0` failed
+
+---
 
 ## 🔒 Required (Must Pass)
 
-| # | Vereiste | Hoe te verifiëren |
+| # | Requirement | How to Verify |
 |:--|:------------|:--------------|
-| 1️⃣ |**Geldige frontmaterie**| `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ |**Duidelijke omschrijving**| Oneliner moet uitleggen wat de vaardigheid doet (10+ tekens) |
-| 3️⃣ |**Naam komt overeen met map**| `naam:` veld komt exact overeen met de mapnaam |
-| 4️⃣ |**Overzichtssectie**| Korte uitleg van het doel in de prijsverlagingstekst |
-| 5️⃣ |**Wanneer gebruiken?**| Minimaal 2 specifieke gebruiksscenario's |
-| 6️⃣ |**Bruikbare instructies**| Stapsgewijze inhoud die een AI-agent kan uitvoeren |
-| 7️⃣ |**Gegenereerde metadata**| Validator verzendt `skills/<skill>/metadata.json` met succes |---
+| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
+| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
+| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
+| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
+| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
+| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
+
+---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Aanbeveling | Score-impact |
-|:--|:---------------|:------------|
-| 8️⃣ |**Voorbeelden**— minstens één concreet voorbeeld met verwachte output | 📈 Kwaliteit +10-15 |
-| 9️⃣ |**Best practices**— ✅ Wel / ❌ Niet begeleiden | 📈 Beste praktijken +5 |
-| 🔟 |**Getest met een tool**— geverifieerd met ten minste één AI-codeerassistent | 📈 Kwaliteit +5 |
-| 1️⃣1️⃣ |**Tags**— relevante doorzoekbare tags voor ontdekking | 📈 Beste praktijken +10 |
-| 1️⃣2️⃣ |**Categorie**— toegewezen aan één canonieke categorie | 📈 Beste praktijken +10 |
-| 1️⃣3️⃣ |**Problemen oplossen**— concrete begeleiding bij `Symptomen` en `Oplossingen` | 📈 Beste praktijken +5-10 |
-| 1️⃣4️⃣ |**Lokale ondersteuningsmiddelen**— `referenties/`, `scripts/` en idealiter `voorbeelden/` gekoppeld aan de vaardigheid | 📈 Beste praktijken +10 |
-| 1️⃣5️⃣ |**Gezonde classificatie**— volwassenheid L3, kwaliteit 85+, best practices 90+ | 📈 Algemeen niveau |
-| 1️⃣6️⃣ |**Geen kritieke beveiligingsbevindingen**— statische scanner is schoon | 🛡️ Beveiliging 100 |---
+| # | Recommendation | Score Impact |
+|:--|:---------------|:-------------|
+| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
+| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
+| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
+| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
+| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+
+---
 
 ## ❌ Reasons for Rejection
 
-| Uitgave | Waarom |
+| Issue | Why |
 |:------|:----|
-| ❌ Ontbrekende of ongeldige frontmaterie | Breekt validatiepijplijn |
-| ❌ Naam komt niet overeen met directory | Onderbreekt catalogusgeneratie |
-| ❌ Lege of triviaal korte beschrijving | Gebruikers kunnen de vaardigheid |
-| ❌ Geen bruikbare inhoud (alleen links of stubs) | Agenten kunnen niets uitvoeren |
-| ❌ Dupliceren zonder duidelijke verbetering | Voeg waarde toe, kloon niet |
-| ❌ Aanstootgevende inhoud zonder 'risico: aanstootgevende' tag | Veiligheid en compliance |
-| ❌ Kritische beveiligingsbevindingen | Snelle exfiltratie, destructieve commando's, enz. |---
+| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
+| ❌ Name doesn't match directory | Breaks catalog generation |
+| ❌ Empty or trivially short description | Users can't discover the skill |
+| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
+| ❌ Duplicate without clear improvement | Add value, don't clone |
+| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
+| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
+
+---
 
 ## 🧪 Verify Locally
 
@@ -72,25 +81,27 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Afmeting | Uitstekend | Goed | Heeft werk nodig |
+| Dimension | Excellent | Good | Needs Work |
 |:----------|:----------|:-----|:-----------|
-| ⭐**Kwaliteit**| 80+ (platina) | 60-79 (goud/zilver) | <60 (brons/starter) |
-| 📋**Beste praktijken**| 90+ (uitstekend) | 70-89 (goed) | <70 (redelijk/werk vereist) |
-| 🛡️**Beveiliging**| 95+ (gehard) | 80-94 (beveiligd) | <80 (beoordeling nodig) |
-| 🎯**Rijptijd**| L3 (scripts+tests) | L2 (instructies) | L1 (alleen metadata) |---
+| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
+| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
+| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
 
 ## 🧭 What High Scores Require
 
-Om consequent de topband te bereiken, moet een vaardigheid het volgende omvatten:
+To reach the top band consistently, a skill should include:
 
-- een sterke frontmatter-beschrijving die uitlegt**wat**de vaardigheid doet en**wanneer**deze moet worden gebruikt
-- expliciete secties voor 'Wanneer te gebruiken', 'Workflow', 'Voorbeelden', 'Beste praktijken', 'Problemen oplossen' en 'Aanvullende bronnen'
-- lokaal ondersteuningsmateriaal onder `references/`, `scripts/`, en idealiter `examples/`, rechtstreeks gelinkt vanuit `SKILL.md`
-- agent-metagegevens onder `agents/openai.yaml` wanneer de vaardigheid bedoeld is om rechtstreeks in agent-clients te worden aangeroepen
-- een kleine operationele tabel of een gelijkwaardige uitvoeringskaart wanneer de workflow hiervan profiteert
-- ten minste één uitvoerbaar voorbeeld dat verwijst naar een lokaal helperscript of herhaalbare opdracht
-- probleemoplossing geschreven als 'Symptomen' plus 'Oplossing', geen algemene waarschuwingen
-- genoeg diepgang om als `L3` te kwalificeren, niet alleen maar goed opgemaakt proza
-- Sterkere workflow-diepte, beslissingsmiddelen en diversiteit in het ondersteuningspakket als u topkwaliteit wilt
-- een ondersteuningspakket dat diep genoeg is om herbruikbaar te zijn, en niet alleen aanwezig is voor dekking van selectievakjes
-- minimaal 4 betekenisvolle steunfamilies of de gelijkwaardige diepgang in herbruikbare bestanden als je consistent de topband wilt
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
+- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
+- a small operational table or equivalent execution map when the workflow benefits from it
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose
+- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
+- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently

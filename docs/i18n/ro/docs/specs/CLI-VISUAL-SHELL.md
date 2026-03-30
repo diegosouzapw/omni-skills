@@ -5,149 +5,175 @@
 ---
 
 
->**Contract comportamental pentru interfața de utilizare a terminalului bazată pe cerneală expusă de „omni-skills ui”.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Învelișul vizual este o suprafață de produs ghidată deasupra CLI-ului existent și a motorului de instalare.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Nu înlocuiește:
+It does not replace:
 
-- Utilizare expert CLI bazată pe flag
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- fluxul de instalare a textului ghidat
-- Comportamentul de rulare API, MCP sau A2A
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Acesta definește:
+It defines:
 
-- comportamentul `omni-skills ui`
-- contractul de rezervă pentru `omni-skills ui --text`
-- stare locală și persistență prestabilită
-- previzualizări ghidate de lansare a serviciului
-- repetabilitate pentru instalările recente și rulările de service---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` lansează shell-ul vizual bazat pe cerneală.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Visual shell-ul este experiența principală a terminalului non-expert pentru:
+The visual shell is the primary non-expert terminal experience for:
 
-- instalarea fluxurilor
-- catalog-prima descoperire și instalare
-- Pornire MCP
-- Pornire API
-- Pornire A2A
-- doctor și transfer de fum### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` lansează interfața de rezervă bazată pe readline.
+### 2.2 Text Fallback
 
-Acesta rămâne util atunci când:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- un terminal nu poate reda corect shell-ul mai bogat
-- comportamentul în modul brut este constrâns
-- este de preferat un text minim de rezervă### 2.3 Handoff Rule
+This remains useful when:
 
-Visual shell nu reimplementează timpii de execuție ai serviciului sau scrierile de instalare direct.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-După previzualizare și confirmare, iese curat și predă execuția către punctul de intrare CLI existent cu argumentele și variabilele de mediu echivalente.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Ecranul de start trebuie să expună:
+The home screen must expose:
 
-- abilități de instalare
-- găsiți și instalați
-- repetați instalările recente când sunt prezente
-- rulați setările de instalare salvate atunci când sunt prezente
-- începe un serviciu
-- repetați serviciile recente când sunt prezente
-- rulați presetările de serviciu salvate atunci când sunt prezente
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
 - doctor
-- fum
-- iesire
+- smoke
+- exit
 
-Ecranul de start ar trebui, de asemenea, să apară:
+The home screen should also surface:
 
-- disponibilitatea actuală a pachetului publicat
-- contează statul local pentru recente, presetări și favorite---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Fluxul de instalare vizual shell trebuie să accepte:
+The visual shell install flow must support:
 
-- selecția țintei clientului cunoscut
-- selecție personalizată a căii
-- instalarea bibliotecii complete
-- instalare cu o singură abilitate
-- instalare cu un singur pachet
-- căutare-apoi-instalare
-- previzualizare înainte de scriere
-- salvare presetată
-- abilitate preferată sau comutare pachet
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Previzualizarea trebuie să arate:
+Preview must show:
 
-- eticheta țintă rezolvată
-- calea rezolvată
-- instalați domeniul de aplicare
-- abilitate sau pachet selectat, atunci când este cazul
-- comandă CLI echivalentă---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Învelișul vizual trebuie să ghideze pornirea pentru:### 5.1 MCP
+The visual shell must guide startup for:
+
+### 5.1 MCP
 
 - transport: `stdio`, `stream`, `sse`
-- modul: `numai citire` sau `local`
-- configurare gazdă/port pentru transporturi în rețea
-- previzualizare explicită a comenzii### 5.2 API
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- gazdă
-- port
-- profil de bază sau călit
-- purtător întărit sau autentificare cheie API
-- parametrii de viteză-limită întăriți
-- activarea jurnalului de audit
-- previzualizare explicită a comenzii### 5.3 A2A
+### 5.2 API
 
-- gazdă
+- host
 - port
-- tip magazin: `memory`, `json`, `sqlite`
-- calea de stocare pentru moduri durabile
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
 - executor: `inline`, `process`
-- modul SQLite activat pentru coadă
-- interval de sondaj și durata de închiriere pentru modul de închiriere partajată
-- previzualizare explicită a comenzii---
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Învelișul vizual persistă în starea doar locală în:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Statul include în prezent:
+State currently includes:
 
-- instalări recente
-- lansări recente de servicii
-- presetări de instalare denumite
-- presetări de servicii denumite
-- aptitudini preferate
-- pachete preferate
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Carcasa trebuie să suporte:
+The shell must support:
 
-- reluarea instalărilor recente
-- reluarea lansărilor recente de servicii
-- reutilizarea presetărilor de instalare numite
-- reutilizarea setărilor prestabilite de servicii denumite---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Învelișul vizual este aditiv.
+The visual shell is additive.
 
-Aceste fluxuri trebuie să rămână valabile și stabile:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
@@ -157,16 +183,18 @@ Aceste fluxuri trebuie să rămână valabile și stabile:
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-Shell-ul vizual nu trebuie niciodată să se forțeze în căi explicite de comandă expert.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Shell-ul vizual ar trebui să facă starea și scrierile explicite.
+The visual shell should make state and writes explicit.
 
-Acesta trebuie:
+It must:
 
-- previzualizați instalările înainte de transferul scrisului
-- previzualizați comenzile de lansare a serviciului înainte de execuție
-- păstrați materialul secret în afara previzualizărilor comenzilor în text clar, acolo unde este practic
-- persistă starea numai la nivel local
-- păstrați comportamentul CLI non-interactiv în afara shell-ului vizual
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

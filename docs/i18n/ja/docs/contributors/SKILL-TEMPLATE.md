@@ -5,65 +5,85 @@
 ---
 
 ---
-名前: あなたのスキル名
-description: 「このスキルが何をするのか、いつ使用するのかについての 1 行の説明」
-バージョン：「0.1.3」
-カテゴリー: 開発
-タグ: [タグ例 1、タグ例 2]
-複雑さ: 中程度
-リスク: 安全
-ツール: [クロードコード、カーソル、ジェミニクリ、反重力]
-出典: コミュニティ
-作者：「君の名は。」
-追加された日付: "2026-01-01"
-更新日: "2026-01-01"
----<!--
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
+date_added: "2026-01-01"
+date_updated: "2026-01-01"
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` は正規の skill/<skill>/metadata.json を生成します。
-分類、成熟度レベル、ベスト プラクティス スコア、品質スコア、セキュリティ
-スキャン結果。プロンプトインジェクションパターン、破壊的なコマンド、危険なスクリプト
-構成要素には自動的にフラグが付けられます。
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-スキルのバージョンはパッケージのバージョンとは独立しています。セマンティクスを使用する
-スキル自体にとって意味のあるバージョン。
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-最高得点のスキルについては、以下もお読みください。
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## 概要
 
-このスキルが何をするのか、誰が恩恵を受けるのか、そしてなぜこのスキルが存在するのかを説明する 2 ～ 3 文。## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- 必要な場合に使用します [シナリオ 1]
-- こんなときに使います【シナリオ2】
-- [シナリオ 3] で作業する場合に使用します。## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-エージェントが理解する必要がある重要な概念を説明します。### Concept 2
+Explain the key concept the agent needs to understand.
 
-もう 1 つの基本的な概念を説明します。## Workflow
+### Concept 2
 
-|フェーズ |出力 |なぜそれが重要なのか |
-|:------|:------|:---------------|
-|ゴールを設定する |明確な目標 |曖昧な指導を防ぐ |
-| | の手順を実行します。エージェント対応のワークフロー |スキルを実行可能にする |
-|出力を検証する |受理信号 |自信を高める |
+Explain another foundational concept.
 
-1. ワークフローの最初のステップ
-2. ワークフローの 2 番目のステップ
-3. ワークフローの 3 番目のステップ### 1. First Step
+## Workflow
 
-最初のステップの詳細な手順。### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-2 番目のステップの詳細な手順。### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-3 番目のステップの詳細な手順。## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ testing-security, documentation, content-media, communication, uncategorized.
 Example prompt or code here
 ```
 
-**説明:**この例が示す内容。### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**説明:**この例が示す内容。## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**実行してください:**この良い習慣に従ってください
-- ✅**実行してください:**この実践にも従ってください
-- ❌**してはいけないこと:**このアンチパターンを避けてください
-- ❌**してはいけないこと:**絶対に行わないでください。## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**症状:**これが問題であることをどのようにして知ることができますか。
-**解決策:**修正方法。## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@relative-skill-1` — 代わりにこれを使用する場合
-- `@relative-skill-2` — これがあなたのスキルをどのように補完するか## Additional Resources
+## Related Skills
 
-- [チェックリスト](references/checklist.md)
-- [作業例](examples/example.md)
-- [ヘルパースクリプト](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

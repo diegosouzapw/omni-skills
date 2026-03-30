@@ -5,65 +5,85 @@
 ---
 
 ---
-navn: dit-færdighedsnavn
-beskrivelse: "En-linje beskrivelse af, hvad denne færdighed gør, og hvornår den skal bruges"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
 version: "0.1.3"
-kategori: udvikling
-tags: [eksempel-tag-1, eksempel-tag-2]
-kompleksitet: mellemliggende
-risiko: sikker
-værktøjer: [claude-kode, markør, gemini-cli, antigravity]
-kilde: samfund
-forfatter: "Dit navn"
-dato_tilføjet: "2026-01-01"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
+date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` vil generere skills/<skill>/metadata.json med canonical
-taksonomi, modenhedsniveau, score for bedste praksis, kvalitetsscore og sikkerhed
-scanningsresultater. Prompt-injektionsmønstre, destruktive kommandoer og risikabelt script
-konstruktioner vil blive markeret automatisk.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-Færdighedsversionen er uafhængig af pakkeversionen. Brug semantikken
-version, der giver mening for selve færdigheden.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-For en topscorende færdighed, læs også:
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Overblik
 
-2-3 sætninger, der forklarer, hvad denne færdighed gør, hvem der har gavn af den, og hvorfor den eksisterer.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Brug, når du har brug for at [scenarie 1]
-- Brug, når du vil [scenario 2]
-- Brug, når du arbejder med [scenarie 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Forklar det nøglebegreb, agenten skal forstå.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Forklar et andet grundlæggende koncept.## Workflow
+### Concept 2
 
-| Fase | Udgang | Hvorfor det betyder noget |
-|:------|:-------|:---------|
-| Indram målet | Klart mål | Forhindrer vag vejledning |
-| Udfør trinene | Agent-klar arbejdsgang | Gør færdigheden handlekraftig |
-| Valider outputtet | Acceptsignal | Øger tilliden |
+Explain another foundational concept.
 
-1. Første trin i arbejdsgangen
-2. Andet trin i arbejdsgangen
-3. Tredje trin i arbejdsgangen### 1. First Step
+## Workflow
 
-Detaljerede instruktioner til det første trin.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-Detaljerede instruktioner til andet trin.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Detaljerede instruktioner til det tredje trin.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Detaljerede instruktioner til det tredje trin.## Examples
 Example prompt or code here
 ```
 
-**Forklaring:**Hvad dette eksempel viser.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Forklaring:**Hvad dette eksempel viser.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Gør:**Følg denne gode praksis
-- ✅**Gør:**Følg også denne praksis
-- ❌**Gør det ikke:**Undgå dette antimønster
-- ❌**Lad være med:**Gør aldrig dette## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Symptomer:**Hvordan du ved, at dette er problemet.
-**Løsning:**Sådan repareres det.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@related-skill-1` — Hvornår skal du bruge dette i stedet
-- `@related-skill-2` — Hvordan dette komplementerer dine færdigheder## Additional Resources
+## Related Skills
 
-- [Tjekliste](references/checklist.md)
-- [Bearbejdet eksempel](eksempel/eksempel.md)
-- [Hjælperscript](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

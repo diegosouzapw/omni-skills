@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-Wij als leden, contribuanten en beheerders beloven deelname aan dit project en deze gemeenschap tot een**intimidatievrije ervaring voor iedereen**te maken, ongeacht leeftijd, lichaamsgrootte, zichtbare of onzichtbare handicap, etniciteit, geslachtskenmerken, genderidentiteit en -expressie, ervaringsniveau, opleiding, sociaal-economische status, nationaliteit, persoonlijke verschijning, ras, kaste, huidskleur, religie of seksuele identiteit en geaardheid.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Gedrag | Voorbeeld |
+| Behavior | Example |
 |:---------|:--------|
-| 💬 Gastvrije taal | Inclusief en respectvol zijn in communicatie |
-| 🤝 Respect voor verschillen | Het waarderen van verschillende standpunten en ervaringen |
-| 📝 Constructieve kritiek | Feedback op een elegante manier accepteren en geven |
-| 🎯 Gemeenschapsfocus | Prioriteit geven aan wat het beste is voor het project en de gemeenschap |
-| ❤️ Empathie | Empathie tonen tegenover andere leden van de gemeenschap |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| Gedrag |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 Geseksualiseerde taal of beelden, en seksuele aandacht of avances |
-| 🚫 Trollende, beledigende of denigrerende opmerkingen |
-| 🚫 Persoonlijke of politieke aanvallen |
-| 🚫 Publieke of private intimidatie |
-| 🚫 Privégegevens van iemand anders publiceren zonder expliciete toestemming |
-| 🚫 Ander gedrag dat redelijkerwijs als ongepast wordt beschouwd in een professionele omgeving |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-Gevallen van beledigend, intimiderend of anderszins onaanvaardbaar gedrag kunnen aan de beheerders worden gemeld via:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| Kanaal | Hoe |
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHub privékanalen | Neem contact op via GitHub Beveiliging of Discussie |
-| 📧 Direct contact | Neem rechtstreeks contact op met de beheerders |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**Alle meldingen worden snel en eerlijk beoordeeld en onderzocht.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-Deze gedragscode is een aangepaste versie van het [Contributor Covenant](https://www.contributor-covenant.org), versie 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

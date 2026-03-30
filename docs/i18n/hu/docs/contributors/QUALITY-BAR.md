@@ -5,54 +5,63 @@
 ---
 
 
->**Minimális követelmények és ajánlások a képességek Omni Skills adattárába való felvételéhez.**
+> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
 
-A kifejezetten a legfelsőbb sávban elért eredményeket célzó alkotási útmutatásért lásd a [High-score Playbook](HIGH-SCORE-PLAYBOOK.md).
+For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-A kiadott katalógus jelenlegi referenciaértéke:
+Current benchmark for the native catalog:
 
-- 32 publikált készség
-- átlagos minőségi pontszám `96,3`
-- a legjobb gyakorlatok átlagos pontszáma `98,7`
-- átlagos biztonsági pontszám `95,0`---
+- 48 published native skills
+- average quality score `87.5`
+- average best-practices score `85.2`
+- average security score `90.6`
+- validation mix `40` passed, `8` warn, `0` failed
+
+---
 
 ## 🔒 Required (Must Pass)
 
-| # | Követelmény | Hogyan ellenőrizhető |
-|:--|:------------|:---------------|
-| 1️⃣ |**Érvényes előterjesztés**| `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ |**Egyértelmű leírás**| Az egysorosnak el kell magyaráznia, mit csinál a készség (10+ karakter) |
-| 3️⃣ |**A név megfelel a könyvtárnak**| a `name:` ​​mező pontosan megegyezik a mappa nevével |
-| 4️⃣ |**Áttekintés szakasz**| A cél rövid magyarázata a leértékelés törzsében |
-| 5️⃣ |**Mikor kell használni szakasz**| Legalább 2 konkrét használati forgatókönyv |
-| 6️⃣ |**Működtethető utasítások**| Lépésről lépésre tartalom, amelyet egy AI-ügynök végrehajthat |
-| 7️⃣ |**Létrehozott metaadatok**| A Validator sikeresen kiadja a `skills/<skill>/metadata.json` fájlt---
+| # | Requirement | How to Verify |
+|:--|:------------|:--------------|
+| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
+| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
+| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
+| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
+| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
+| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
+
+---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | ajánlás | Ponthatás |
-|:--|:---------------|:--------------|
-| 8️⃣ |**Példák**— legalább egy konkrét példa a várt kimenettel | 📈 Minőség +10-15 |
-| 9️⃣ |**Bevált gyakorlatok**— ✅ Tedd / ❌ Ne adj útmutatást | 📈 Bevált gyakorlatok +5 |
-| 🔟 |**Eszközzel tesztelve**— legalább egy AI kódoló asszisztenssel ellenőrizve | 📈 Minőség +5 |
-| 1️⃣1️⃣ |**Címkék**– releváns kereshető címkék a felfedezéshez | 📈 Legjobb gyakorlatok +10 |
-| 1️⃣2️⃣ |**Kategória**– egy kanonikus kategóriához rendelve | 📈 Legjobb gyakorlatok +10 |
-| 1️⃣3️⃣ |**Hibaelhárítás**– konkrét "tünetek" és "megoldás" útmutató | 📈 Bevált gyakorlatok +5-10 |
-| 1️⃣4️⃣ |**Helyi támogatási eszközök**— `references/`, `scripts/` és ideális esetben `examples/` a készségből | 📈 Legjobb gyakorlatok +10 |
-| 1️⃣5️⃣ |**Egészséges besorolás**– lejárat L3, minőség 85+, legjobb gyakorlatok 90+ | 📈 Teljes szint |
-| 1️⃣6️⃣ |**Nincs kritikus biztonsági megállapítás**– a statikus szkenner tiszta | 🛡️ Biztonság 100 |---
+| # | Recommendation | Score Impact |
+|:--|:---------------|:-------------|
+| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
+| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
+| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
+| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
+| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+
+---
 
 ## ❌ Reasons for Rejection
 
-| Kiadás | Miért |
+| Issue | Why |
 |:------|:----|
-| ❌ Hiányzó vagy érvénytelen frontanyag | Megszakítja az érvényesítési folyamatot |
-| ❌ A név nem egyezik a | könyvtárral Megszakítja a katalógusgenerálást |
-| ❌ Üres vagy triviálisan rövid leírás | A felhasználók nem fedezhetik fel a készséget |
-| ❌ Nincs használható tartalom (csak linkek vagy csonkok) | Az ügynökök nem hajthatnak végre semmit |
-| ❌ Másolás egyértelmű javítás nélkül | Adjon hozzá értéket, ne klónozzon |
-| ❌ Sértő tartalom "kockázat: sértő" címke nélkül | Biztonság és megfelelőség |
-| ❌ Kritikus biztonsági megállapítások | Gyors kiszűrés, pusztító parancsok stb. |---
+| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
+| ❌ Name doesn't match directory | Breaks catalog generation |
+| ❌ Empty or trivially short description | Users can't discover the skill |
+| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
+| ❌ Duplicate without clear improvement | Add value, don't clone |
+| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
+| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
+
+---
 
 ## 🧪 Verify Locally
 
@@ -72,25 +81,27 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Méret | Kiváló | Jó | Munka kell |
-|:----------|:----------|:-----|:------------|
-| ⭐**Minőség**| 80+ (platina) | 60-79 (arany/ezüst) | <60 (bronz/induló) |
-| 📋**Legjobb gyakorlatok**| 90+ (kiváló) | 70-89 (jó) | <70 (tisztességes/munka igény) |
-| 🛡️**Biztonság**| 95+ (edzett) | 80-94 (biztonságos) | <80 (felülvizsgálat szükséges) |
-| 🎯**Lejárat**| L3 (szkriptek+tesztek) | L2 (utasítások) | L1 (csak metaadatok) |---
+| Dimension | Excellent | Good | Needs Work |
+|:----------|:----------|:-----|:-----------|
+| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
+| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
+| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
 
 ## 🧭 What High Scores Require
 
-Ahhoz, hogy következetesen elérjük a felső sávot, egy készségnek tartalmaznia kell:
+To reach the top band consistently, a skill should include:
 
-- egy erőteljes frontmater leírás, amely elmagyarázza, hogy**mit**csinál a készség, és**mikor**kell használni
-- kifejezett szakaszok a "Mikor kell használni", "Munkafolyamat", "Példák", "Bevált módszerek", "Hibaelhárítás" és "További források"
-- helyi segédanyag a "references/", "scripts/" és ideális esetben az "examples/" alatt, közvetlenül a SKILL.md fájlból hivatkozva
-- ügynök metaadatok az "agents/openai.yaml" alatt, ha a készség közvetlenül az ügynökkliensekben hívható meg
-- egy kis műveleti tábla vagy azzal egyenértékű végrehajtási térkép, ha a munkafolyamat hasznot húz belőle
-- legalább egy futtatható példa, amely egy helyi segédszkriptre vagy megismételhető parancsra mutat
-- hibaelhárítás a "Tünetek" és a "Megoldás" néven írva, nem általános figyelmeztetések
-- elég mélység ahhoz, hogy "L3"-nak minősüljön, nem csak jól formázott próza
-- erősebb munkafolyamat-mélység, döntési eszközök és támogatási csomagok sokfélesége, ha csúcssávos minőséget szeretne
-- elég mély támasztócsomag ahhoz, hogy újrafelhasználható legyen, nem csak a jelölőnégyzet lefedésére
-- legalább 4 értelmes támogató család vagy ennek megfelelő mélység az újrafelhasználható fájlokban, ha azt szeretné, hogy a felső sáv következetes legyen
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
+- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
+- a small operational table or equivalent execution map when the workflow benefits from it
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose
+- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
+- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently

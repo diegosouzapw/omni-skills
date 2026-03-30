@@ -5,110 +5,126 @@
 ---
 
 
->**ओमनी स्किल्स `SKILL.md` के लिए संरचना और गुणवत्ता अपेक्षाएँ - संलेखन प्रारूप जो संपूर्ण कैटलॉग को शक्ति प्रदान करता है।**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-प्रत्येक `SKILL.md` दो अलग-अलग अनुभागों से बना है:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-`---` सीमांकक के बीच मशीन-पठनीय मेटाडेटा। यह शक्तियाँ देता है:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 कौशल सूचकांक और कैटलॉग निर्माण
-- 🔎 सीएलआई खोज और फ़िल्टरिंग
-- ✅ सत्यापन और गुणवत्ता स्कोरिंग
-- 📊 उत्पन्न `metadata.json` वर्गीकरण कलाकृतियाँ
-- 📋 प्रति-कौशल `dist/manifests/` में प्रकट होता है### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-मानव-पठनीय (और एजेंट-पठनीय) निर्देश। इसे ऐसे लिखें जैसे कि आप**एक वरिष्ठ डेवलपर**को किसी कार्य को करने के बारे में जानकारी दे रहे हों - इतना विशिष्ट कि एक एआई एजेंट बिना अनुमान लगाए उसका अनुसरण कर सके।---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| फ़ील्ड | आवश्यक | प्रकार | विवरण |
-|:------|:---------|:-----|:----|
-| 'नाम' | ✅ | स्ट्रिंग | निर्देशिका नाम से मेल खाना चाहिए, लोअरकेस-हाइफ़नेटेड |
-| 'विवरण' | ✅ | स्ट्रिंग | एक-पंक्ति विवरण (10-200 अक्षर) |
-| 'संस्करण' | ⚡ | स्ट्रिंग | स्वयं कौशल के लिए अर्थपूर्ण संस्करण (उदाहरण के लिए, `"0.1.1"`) |
-| `श्रेणी` | ⚡ | स्ट्रिंग | रेपो वर्गीकरण से एक विहित श्रेणी |
-| `टैग` | ⚡ | स्ट्रिंग[] | खोज के लिए खोजने योग्य टैग |
-| 'जटिलता' | ⚡ | स्ट्रिंग | `शुरुआती` · `मध्यवर्ती` · `उन्नत` · `विशेषज्ञ` |
-| 'जोखिम' | ⚡ | स्ट्रिंग | `सुरक्षित` · `सावधानी` · `आक्रामक` · `गंभीर` |
-| `उपकरण` | ⚡ | स्ट्रिंग[] | एआई कोडिंग सहायकों का परीक्षण किया गया |
-| 'स्रोत' | ⚡ | स्ट्रिंग | `ओमनी-टीम` · `समुदाय` · `आधिकारिक` |
-| `लेखक` | ⚡ | स्ट्रिंग | गुण |
-| `दिनांक_जोड़ा गया` | ⚡ | स्ट्रिंग | आईएसओ तिथि |
-| `दिनांक_अद्यतन` | ⚡ | स्ट्रिंग | आईएसओ तिथि |
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------|
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = सदैव आवश्यक · ⚡ = सख्त मोड में आवश्यक
+> ✅ = Always required · ⚡ = Required in strict mode
 
-कौशल संस्करण एनपीएम पैकेज संस्करण से स्वतंत्र है। पैकेज वर्तमान में `0.1.3` है, लेकिन मौजूदा कौशल वैध रूप से अपने स्वयं के अर्थपूर्ण संस्करण पर बने रह सकते हैं।---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-रेपो वर्गीकरण वर्तमान में**18 विहित श्रेणियां**को परिभाषित करता है:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| श्रेणी | डोमेन |
-|:------|:------|
-| 💻 `विकास` | सामान्य सॉफ्टवेयर विकास |
-| 🎨 `फ्रंटएंड` | फ्रंटएंड फ्रेमवर्क और यूआई |
-| 🔧 `बैकएंड` | बैकएंड सेवाएँ और एपीआई |
-| 🌐 `फुलस्टैक-वेब` | एंड-टू-एंड वेब डेवलपमेंट |
-| 🛠️ `उपकरण` | डेवलपर टूलींग और उपयोगिताएँ |
-| ⚙️ `क्ली-ऑटोमेशन` | सीएलआई उपकरण और स्वचालन स्क्रिप्ट |
-| 📊 `व्यापार` | व्यावसायिक प्रक्रियाएं और रणनीति |
-| 📐 `उत्पाद` | उत्पाद प्रबंधन और डिज़ाइन |
-| 🎯 `डिज़ाइन` | विज़ुअल और यूएक्स डिज़ाइन |
-| 🤖 `डेटा-एआई` | डेटा इंजीनियरिंग और एआई अनुप्रयोग |
-| 🧠 `एआई-एजेंट` | एआई एजेंट विकास और पैटर्न |
-| 📈 `मशीन-लर्निंग` | एमएल मॉडल और प्रशिक्षण |
-| 🔌 `डेवोप्स` | बुनियादी ढांचा और तैनाती |
-| 🛡️ `परीक्षण-सुरक्षा` | परीक्षण और सुरक्षा प्रथाएं |
-| 📖 `दस्तावेज़ीकरण` | दस्तावेज़ीकरण निर्माण और प्रबंधन |
-| 🎬 `सामग्री-मीडिया` | सामग्री निर्माण और मीडिया |
-| 💬 `संचार` | संचार उपकरण और वर्कफ़्लो |
-| ❓ `अवर्गीकृत` | कोई मिलान न मिलने पर डिफ़ॉल्ट |
+| Category | Domain |
+|:---------|:-------|
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> `वर्कफ़्लो`, `आर्किटेक्चर`, `इंफ़्रास्ट्रक्चर`, `सुरक्षा`, और `परीक्षण` जैसे लीगेसी लेबल उपनाम मैपिंग के माध्यम से स्वचालित रूप से सामान्यीकृत होते हैं।---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-एक अच्छी तरह से लिखित कौशल निकाय इस पदानुक्रम का अनुसरण करता है:
+A well-written skill body follows this hierarchy:
 
-### 📌 अवलोकन (आवश्यक)
-**क्या**कौशल करता है और**क्यों**पर 2-3 वाक्य।
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 कब उपयोग करें (आवश्यक)
-**विशिष्ट परिदृश्यों**की बुलेट सूची जहां यह कौशल लागू होता है।
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 मुख्य निर्देश (आवश्यक)
-एजेंट को**चरण-दर-चरण प्रक्रिया**का पालन करना चाहिए। स्पष्ट रहें. विशिष्ट रहो। एजेंट स्पष्ट, स्पष्ट निर्देशों के साथ सबसे अच्छा काम करते हैं।
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 उदाहरण (अनुशंसित)
-ठोस संकेत, कोड ब्लॉक, या अपेक्षित आउटपुट।**जितना अधिक विशिष्ट, उतना बेहतर।**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ सर्वोत्तम अभ्यास (अनुशंसित)
-त्वरित स्कैनिंग के लिए ✅ Do / ❌ Dont फॉर्मेट का उपयोग करें।
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 समस्या निवारण (वैकल्पिक)
-सामान्य मुद्दे और उनके समाधान.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗संबंधित कौशल (वैकल्पिक)
-पूरक कौशलों का क्रॉस-रेफरेंस।---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯**एक विशिष्ट**वर्कफ़्लो या डोमेन पर केंद्रित
-- 📌 निर्देश**AI**के लिए इतने स्पष्ट हैं कि उनका मानव व्याख्या के बिना पालन किया जा सकता है
-- 💡अपेक्षित व्यवहार के साथ**ठोस उदाहरण**शामिल हैं
-- 🛡️ उचित**त्रुटि प्रबंधन**मार्गदर्शन है
-- 📊 स्वस्थ मेटाडेटा तैयार करता है: विहित श्रेणी, परिपक्वता L2+, गुणवत्ता 70+
-- 🧰 एक पुन: प्रयोज्य समर्थन पैक भेजता है, न केवल गद्य, आदर्श रूप से `संदर्भ/`, `स्क्रिप्ट/`, `उदाहरण/`, और `एजेंट/` जहां उपयुक्त हो
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-कौशल को उच्चतम बैंड में धकेलने वाले मजबूत स्कोरिंग पैटर्न के लिए, [हाई-स्कोर प्लेबुक](हाई-स्कोर-प्लेबुक.एमडी) देखें।### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ सामान्य सलाह जो किसी भी चीज़ पर लागू हो सकती है
-- 🤷 अस्पष्ट निर्देश जैसे "अच्छा कोड लिखें"
-- 🚫 कोई उदाहरण या कोड ब्लॉक नहीं
-- ⚠️ फ्रंटमैटर फ़ील्ड गायब हैं
-- 📉 निम्न गुणवत्ता स्कोर (50 से नीचे)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

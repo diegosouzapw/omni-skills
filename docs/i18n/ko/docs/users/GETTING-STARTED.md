@@ -5,16 +5,21 @@
 ---
 
 
->**스킬을 설치하고, 설정을 확인하고, 2분 이내에 첫 번째 AI 스킬을 호출하세요.**---
+> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
+
+---
 
 ## 📊 Current Catalog Status
 
-| 미터법 | 가치 |
+| Metric | Value |
 |:-------|:------|
-| 공개된 기술 |**32**아키텍처, 디자인, 보안, DevOps, AI 엔지니어링 등을 포함한 15개 활성 카테고리 |
-| 정의된 번들 |**7**(모두 공개된 기술로 완전히 뒷받침됨) |
-| 설치 가능 클라이언트 |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| MCP 구성 가능 클라이언트 | 33개의 일류 MCP 구성 대상에 걸쳐**16**|---
+| Native catalog | **48** skills across 15 active categories, including architecture, design, security, DevOps, AI-engineering, and imported native intake |
+| Curated output | **32** enhanced English derivatives in `skills_omni/` |
+| Defined bundles | **7** (all fully backed by published catalog skills) |
+| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP config-capable clients | **16** across 33 first-class MCP config targets |
+
+---
 
 ## 📦 Step 1 — Install
 
@@ -24,15 +29,21 @@
 npx omni-skills
 ```
 
-대화형 터미널에서는 이제 클라이언트를 자동으로 가정하는 대신 안내식 설치 프로그램이 열립니다.### 🖥️ Visual Shell
+In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
+
+### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-그러면 설치, 검색, MCP, API 및 A2A 시작을 위한 브랜드 터미널 허브가 열립니다.### 🎯 Default Install (Antigravity Outside TTY)
+This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
 
-TTY 외부에서는 인수 없는 설치 프로그램의 기본값은 여전히 ​​`~/.gemini/antigravity/skills`입니다.### 🖱️ Focused Install — One Skill, One Client
+### 🎯 Default Install (Antigravity Outside TTY)
+
+Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
+
+### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -55,7 +66,9 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ 이제 'devops' 및 'ai-engineer'를 포함한 스타터 번들이 완전히 지원됩니다.### 🎛️ Multiple Targets at Once
+> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
+
+### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -65,7 +78,9 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-기술이 올바른 위치에 있는지 확인하십시오.```bash
+Check that skills landed in the right place:
+
+```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -82,7 +97,9 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-또는 내장된 진단 기능을 사용하세요.```bash
+Or use the built-in diagnostics:
+
+```bash
 npx omni-skills doctor
 ```
 
@@ -108,11 +125,15 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-클라이언트를 감지하고, 기술을 설치/제거하고, MCP 구성을 작성할 수 있는 파일 시스템 도구를 에이전트에 제공합니다.```bash
+Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
+
+```bash
 npx omni-skills mcp stream --local
 ```
 
-스킬 설치 대상이 아닌 클라이언트에 대해 MCP를 구성할 수도 있습니다.```bash
+You can also configure MCP for clients that are not skill-install targets:
+
+```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -120,13 +141,17 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-기술 카탈로그를 읽기 전용 HTTP API로 노출합니다.```bash
+Exposes the skill catalog as a read-only HTTP API:
+
+```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-에이전트 간 검색, 권장 사항, 설치 계획, 폴링 및 스트리밍:```bash
+Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
+
+```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -134,22 +159,24 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-스킬은 AI 에이전트에 다음을 제공하는 구조화된 마크다운 플레이북(`SKILL.md`)입니다.
+A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
 
-| 구성요소 | 목적 |
-|:----------|:---------|
-| 📋**머리말**| 기계가 읽을 수 있는 메타데이터(이름, 카테고리, 태그, 도구, 위험) |
-| 📝**몸**| 작업별 지침, 단계, 가드레일 및 예 |
-| 📚**참고자료**| 에이전트가 실행 중에 참조할 수 있는 지원 문서 |
-| 🎨**자산**| 아이콘, 이미지 또는 기타 패키지 리소스 |---
+| Component | Purpose |
+|:----------|:--------|
+| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
+| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
+| 📚 **References** | Supporting docs the agent can consult during execution |
+| 🎨 **Assets** | Icons, images, or other packaged resources |
+
+---
 
 ## ➡️ Next Steps
 
-| 문서 | 무엇을 배울 것인가 |
-|:----|:------|
-| 🧭 [CLI 사용자 가이드](CLI-USER-GUIDE.md) | 설치, 런타임, 구성 및 진단에 대한 전체 명령 참조 |
-| 📗 [사용 가이드](USAGE.md) | 모든 CLI 명령, 프롬프트 패턴 및 런타임 모드 |
-| 📦 [번들](BUNDLES.md) | 선별된 기술 컬렉션 및 가용성 |
-| 📚 [카탈로그](../CATALOG.md) | 게시된 기술의 자동 생성 카탈로그 |
-| 📖 [문서 허브](../README.md) | 전체 문서 맵 |
-| 🔧 [시스템 런북](../options/RUNBOOK.md) | 운영 참조 |
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
+| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
+| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
+| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
+| 📖 [Documentation Hub](../README.md) | Full documentation map |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |

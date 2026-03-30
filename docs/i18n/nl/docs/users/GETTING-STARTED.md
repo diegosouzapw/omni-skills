@@ -5,16 +5,21 @@
 ---
 
 
->**Installeer vaardigheden, verifieer de instellingen en gebruik je eerste AI-vaardigheid in minder dan 2 minuten.**---
+> **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
+
+---
 
 ## 📊 Current Catalog Status
 
-| Metrisch | Waarde |
+| Metric | Value |
 |:-------|:------|
-| Gepubliceerde vaardigheden |**32**in 15 actieve categorieën, waaronder architectuur, ontwerp, beveiliging, DevOps, AI-engineering en meer |
-| Gedefinieerde bundels |**7**(allemaal volledig ondersteund door gepubliceerde vaardigheden) |
-| Clients die geschikt zijn voor installatie |**7**(Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
-| Clients met MCP-configuratie |**16**over 33 eersteklas MCP-configuratiedoelen |---
+| Native catalog | **48** skills across 15 active categories, including architecture, design, security, DevOps, AI-engineering, and imported native intake |
+| Curated output | **32** enhanced English derivatives in `skills_omni/` |
+| Defined bundles | **7** (all fully backed by published catalog skills) |
+| Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
+| MCP config-capable clients | **16** across 33 first-class MCP config targets |
+
+---
 
 ## 📦 Step 1 — Install
 
@@ -24,15 +29,21 @@
 npx omni-skills
 ```
 
-In een interactieve terminal wordt nu het begeleide installatieprogramma geopend in plaats van stilletjes uit te gaan van een client.### 🖥️ Visual Shell
+In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
+
+### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-Hiermee wordt de terminalhub met merknaam geopend voor installatie, detectie, MCP, API en A2A-startup.### 🎯 Default Install (Antigravity Outside TTY)
+This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
 
-Buiten een TTY is het no-arg-installatieprogramma nog steeds standaard ingesteld op `~/.gemini/antigravity/skills`.### 🖱️ Focused Install — One Skill, One Client
+### 🎯 Default Install (Antigravity Outside TTY)
+
+Outside a TTY, the no-arg installer still defaults to `~/.gemini/antigravity/skills`.
+
+### 🖱️ Focused Install — One Skill, One Client
 
 ```bash
 npx omni-skills --cursor --skill omni-figma
@@ -55,7 +66,9 @@ npx omni-skills --codex --bundle full-stack
 npx omni-skills --codex --bundle ai-engineer
 ```
 
-> ✅ De starterbundels worden nu volledig ondersteund, inclusief `devops` en `ai-engineer`.### 🎛️ Multiple Targets at Once
+> ✅ The starter bundles are now fully backed, including `devops` and `ai-engineer`.
+
+### 🎛️ Multiple Targets at Once
 
 ```bash
 npx omni-skills --cursor --gemini --skill omni-figma
@@ -65,7 +78,9 @@ npx omni-skills --cursor --gemini --skill omni-figma
 
 ## ✅ Step 2 — Verify
 
-Controleer of de vaardigheden op de juiste plek terecht zijn gekomen:```bash
+Check that skills landed in the right place:
+
+```bash
 # 🟣 Antigravity (default target)
 test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
@@ -82,7 +97,9 @@ test -d ~/.gemini/skills && echo "✅ Skills installed"
 test -d .opencode/skills && echo "✅ Skills installed"
 ```
 
-Of gebruik de ingebouwde diagnostiek:```bash
+Or use the built-in diagnostics:
+
+```bash
 npx omni-skills doctor
 ```
 
@@ -108,11 +125,15 @@ Use @find-skills to check if there's already a skill for this workflow.
 
 ### 🔌 Local MCP Sidecar
 
-Geeft agenten bestandssysteemtools om clients te detecteren, vaardigheden te installeren/verwijderen en MCP-configuraties te schrijven:```bash
+Gives agents filesystem tools to detect clients, install/remove skills, and write MCP configs:
+
+```bash
 npx omni-skills mcp stream --local
 ```
 
-U kunt MCP ook configureren voor clients die geen vaardigheidsinstallatiedoelen zijn:```bash
+You can also configure MCP for clients that are not skill-install targets:
+
+```bash
 npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp --write
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp --write
@@ -120,13 +141,17 @@ npx omni-skills config-mcp --target copilot-user --transport stream --url http:/
 
 ### 🌐 Catalog API
 
-Geeft de vaardighedencatalogus weer als een alleen-lezen HTTP-API:```bash
+Exposes the skill catalog as a read-only HTTP API:
+
+```bash
 npx omni-skills api --port 3333
 ```
 
 ### 🤖 A2A Task Runtime
 
-Agent-tot-agent detectie, aanbeveling, installatieplanning, polling en streaming:```bash
+Agent-to-agent discovery, recommendation, install planning, polling, and streaming:
+
+```bash
 npx omni-skills a2a --port 3335
 ```
 
@@ -134,22 +159,24 @@ npx omni-skills a2a --port 3335
 
 ## 💡 What Is a Skill?
 
-Een vaardigheid is een gestructureerd markdown-playbook (`SKILL.md`) dat een AI-agent het volgende geeft:
+A skill is a structured markdown playbook (`SKILL.md`) that gives an AI agent:
 
-| Onderdeel | Doel |
+| Component | Purpose |
 |:----------|:--------|
-| 📋**Frontmaterie**| Machineleesbare metadata (naam, categorie, tags, tools, risico) |
-| 📝**Lichaam**| Taakspecifieke instructies, stappen, leuningen en voorbeelden |
-| 📚**Referenties**| Ondersteunende documenten die de agent tijdens de uitvoering kan raadplegen |
-| 🎨**Activiteiten**| Pictogrammen, afbeeldingen of andere verpakte bronnen |---
+| 📋 **Frontmatter** | Machine-readable metadata (name, category, tags, tools, risk) |
+| 📝 **Body** | Task-specific instructions, steps, guardrails, and examples |
+| 📚 **References** | Supporting docs the agent can consult during execution |
+| 🎨 **Assets** | Icons, images, or other packaged resources |
+
+---
 
 ## ➡️ Next Steps
 
-| Dok | Wat je leert |
+| Doc | What You'll Learn |
 |:----|:------------------|
-| 🧭 [CLI-gebruikershandleiding](CLI-USER-GUIDE.md) | Volledige opdrachtreferentie voor installatie, runtime, configuratie en diagnostiek |
-| 📗 [Gebruiksgids](USAGE.md) | Alle CLI-opdrachten, promptpatronen en runtimemodi |
-| 📦 [Bundels](BUNDLES.md) | Samengestelde vaardighedencollecties en hun beschikbaarheid |
-| 📚 [Catalogus](../CATALOG.md) | Automatisch gegenereerde catalogus van gepubliceerde vaardigheden |
-| 📖 [Documentatiehub](../README.md) | Volledige documentatiekaart |
-| 🔧 [Systeemrunbook](../operations/RUNBOOK.md) | Operationele referentie |
+| 🧭 [CLI User Guide](CLI-USER-GUIDE.md) | Full command reference for install, runtime, config, and diagnostics |
+| 📗 [Usage Guide](USAGE.md) | All CLI commands, prompt patterns, and runtime modes |
+| 📦 [Bundles](BUNDLES.md) | Curated skill collections and their availability |
+| 📚 [Catalog](../CATALOG.md) | Auto-generated catalog of published skills |
+| 📖 [Documentation Hub](../README.md) | Full documentation map |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |

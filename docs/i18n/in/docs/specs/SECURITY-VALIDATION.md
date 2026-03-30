@@ -5,44 +5,50 @@
 ---
 
 
->**प्रत्येक प्रकाशित कौशल के लिए सुरक्षा स्कैनिंग, संग्रह निर्माण, वैकल्पिक हस्ताक्षर और वितरण पैकेजिंग।**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| फ़ीचर | राज्य |
+| Feature | State |
 |:--------|:------|
-| ✅ स्टेटिक सुरक्षा स्कैनर | हमेशा सक्षम |
-| ✅ प्रति-कौशल मेटाडेटा वर्गीकरण | क्रियान्वित |
-| ✅ प्रति-कौशल पुरालेख (zip/tar.gz) | क्रियान्वित |
-| ✅ SHA-256 चेकसम मैनिफ़ेस्ट | क्रियान्वित |
-| ✅ रिलीज टैग पर सीआई स्कैनर गेट | क्रियान्वित |
-| ✅ एनपीएम सत्यापित टारबॉल से वर्कफ़्लो प्रकाशित करें | क्रियान्वित |
-| ⚙️ ClamAV स्कैनिंग | वैकल्पिक संवर्धन |
-| ⚙️ वायरसटोटल हैश लुकअप | वैकल्पिक संवर्धन |
-| ✅ अलग हस्ताक्षर | क्रियान्वित |
-| ✅ सीआई-प्रवर्तित हस्ताक्षर | रिलीज़ टैग पर कार्यान्वित |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-सत्यापन के दौरान प्रत्येक कौशल को स्कैन करता है:
+Scans every skill during validation:
 
-| लक्ष्य | क्या स्कैन किया जाता है |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | मुख्य कौशल सामग्री |
-| 📄 मार्कडाउन/टेक्स्ट फ़ाइलें | पैकेज्ड सन्दर्भ और दस्तावेज़ |
-| ⚙️ स्क्रिप्ट्स | पैकेज्ड ऑटोमेशन स्क्रिप्ट |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**नियम परिवार:**
+**Rule families:**
 
-| नियम | उदाहरण |
-|:----|:------|
-| 🎭**शीघ्र इंजेक्शन**| एक्सफिल्ट्रेशन पैटर्न, निर्देश ओवरराइड |
-| 💣**विनाशकारी आदेश**| `आरएम-आरएफ`, `प्रारूप`, `डेल /एस` |
-| 🔑**विशेषाधिकार वृद्धि**| `sudo`, `chmod 777`, सेतुइड पैटर्न |
-| 📂**संदिग्ध रास्ते**| `/etc/shadow`, `~/.ssh`, क्रेडेंशियल फ़ाइलें |
-| ⚠️**जोखिम भरे आदिम**| `शेल=ट्रू`, `पिकल.लोड`, `इवल`, `एक्सट्रैक्टऑल` |---
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- `PATH` में `clamscan` की आवश्यकता है
-- ज्ञात मैलवेयर के लिए पैक की गई फ़ाइलों को स्कैन करता है
-- कौशल मेटाडेटा में दर्ज परिणाम---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**केवल हैश लुकअप**- सामान्य सत्यापन के दौरान कोई फ़ाइल अपलोड नहीं
-- अज्ञात फ़ाइलें केवल स्थानीय रहती हैं
-- बिल्ड को**नियतात्मक**और सीआई-स्वतंत्र रखता है### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-सख्त रिलीज गेट:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-यह चरण जनरेट किए गए `skills/*/metadata.json` को पढ़ता है और यदि आवश्यक स्कैनर निष्पादित नहीं करते हैं या पहचान की सूचना नहीं देते हैं तो विफल हो जाता है।---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-प्रत्येक कौशल के मेटाडेटा में सुरक्षा डेटा उत्सर्जित होता है:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ npm run verify:scanners:strict
 }
 ```
 
-> इस ब्लॉक को मैनिफ़ेस्ट और कैटलॉग दृश्यों में प्रचारित किया जाता है, जिससे सीएलआई, एपीआई और एमसीपी को**सुरक्षा स्कोर द्वारा फ़िल्टर और रैंक**करने में सक्षम बनाया जाता है।---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-प्रत्येक प्रकाशित कौशल उत्पन्न करता है:
+Each published skill generates:
 
-| फ़ाइल | प्रारूप |
-|:----|:-------|
-| `dist/archives/<skill>.zip` | ज़िप संग्रह |
-| `dist/archives/<skill>.tar.gz` | टारबॉल पुरालेख |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 चेकसम मेनिफेस्ट |### ✅ Verify Archives
+| File | Format |
+|:-----|:-------|
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub क्रियाएँ अब टैग (`v*`) जारी करती हैं:
+GitHub Actions release tags (`v*`) now:
 
-1. सत्यापित करें कि git टैग `package.json` से मेल खाता है
-2. ClamAV को स्थापित और ताज़ा करें
-3. GitHub रहस्यों से रिलीज़ साइनिंग कुंजी को डिकोड करें
-4. `एनपीएम रन रिलीज:वेरिफाई` चलाएं
-5. टारबॉल को `एनपीएम पैक` के साथ पैकेज करें
-6. उस सटीक टारबॉल को उत्पत्ति के साथ एनपीएम पर प्रकाशित करें
-7. कस्टम नोट्स और संलग्न सत्यापन परिसंपत्तियों के साथ एक GitHub रिलीज़ बनाएं---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> यदि कोई सार्वजनिक कुंजी प्रदान नहीं की गई है, तो बिल्ड `openssl` के साथ एक कुंजी प्राप्त करता है और इसे `dist/signing/` में रखता है।
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-सक्षम होने पर, `.sig` फ़ाइलें अभिलेखागार और चेकसम मेनिफेस्ट के बगल में उत्सर्जित होती हैं।
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-सीआई में, रिलीज़ टैग को अब हस्ताक्षर करने की आवश्यकता है:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` या `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- वैकल्पिक `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` या `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| सीमा | स्थिति |
-|:--------|:-------|
-| वायरसटोटल अपलोड सबमिशन | जानबूझकर डिफ़ॉल्ट सत्यापन से बाहर रखा गया |
-| हस्ताक्षर प्रवर्तन | रिलीज़ टैग पर लागू; स्थानीय बिल्ड अभी भी अहस्ताक्षरित चल सकते हैं |
-| होस्ट किया गया शासन | बिल्ट-इन ऑथ, एडमिन रनटाइम, सीओआरएस/आईपी अनुमति सूचियाँ, रखरखाव मोड और ऑडिट लॉगिंग मौजूद हैं; बाहरी प्रवेश द्वार वैकल्पिक बने रहेंगे |
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

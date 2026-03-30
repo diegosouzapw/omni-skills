@@ -5,33 +5,39 @@
 ---
 
 
->**`omni-skills`에서 제공하는 전체 공개 CLI 표면.**
+> **The full public CLI surface shipped by `omni-skills`.**
 
-다음과 같은 경우 이 가이드를 사용하세요.
+Use this guide when you want to:
 
-| 목표 | 명령 영역 |
-|:------|:-------------|
-| 📥 스킬 또는 번들 설치 | [설치 흐름](#3️⃣-install-flows) |
-| 🔎 카탈로그 검색 | [카탈로그 검색](#4️⃣-catalog-discovery) |
-| 🔌 MCP 클라이언트 구성 | [MCP 클라이언트 구성](#5️⃣-mcp-client-config) |
-| 🖥️ MCP, API 또는 A2A 서비스 시작 | [MCP 서버](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 시각적 터미널 셸 사용 | [비주얼 쉘](#9️⃣-visual-shell) |
-| 🧪 진단 또는 프리플라이트 실행 | [진단](#🔟-diagnostics-and-preflight) |---
+| Goal | Command Area |
+|:-----|:-------------|
+| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
+
+---
 
 ## 1️⃣ Install and Entry Modes
 
-`npx`로 설치:```bash
+Install with `npx`:
+
+```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| 컨텍스트 | 무슨 일이 일어나는지 |
-|:---------|:------------|
-| 🖥️ TTY + 인수 없음 |**설치 안내**흐름 열기 |
-| ⚙️ 비 TTY + 인수 없음 | `~/.gemini/antigravity/skills`에 비대화형 설치 |
-| 🎨 `npx 옴니 스킬 UI` | 브랜드**잉크 시각적 쉘**|
-| 📝`npx omni-skills ui --text` | Readline**텍스트 대체**UI |---
+| Context | What Happens |
+|:--------|:------------|
+| 🖥️ TTY + no arguments | Opens the **guided install** flow |
+| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+
+---
 
 ## 2️⃣ Core Commands
 
@@ -39,20 +45,22 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| 명령 | 설명 |
-|:---------|:------------|
-| `ui` | 🎨 비주얼 터미널 허브 |
-| `[쿼리] 찾기` | 🔎 카탈로그 검색 |
-| '재분류' | 🏷️ 분류 관리 |
-| `[플래그] 설치` | 📥 스킬/번들 설치 |
-| `config-mcp` | 🔌 MCP 클라이언트 구성 |
-| `mcp <stdio\|stream\|sse>` | 🔌 MCP 서버 모드 |
-| `API` | 🌐 카탈로그 API |
-| `a2a` | 🤖 A2A 런타임 |
-| `연기` | 🧪 비행 전 출시 |
-| `게시 확인` | 📦 패키지 게시 확인 |
-| '의사' | 🩺 환경 진단 |
-| '도움말' | ❓ 명령어 참조 |---
+| Command | Description |
+|:--------|:-----------|
+| `ui` | 🎨 Visual terminal hub |
+| `find [query]` | 🔎 Catalog discovery |
+| `recategorize` | 🏷️ Taxonomy management |
+| `install [flags]` | 📥 Skill/bundle install |
+| `config-mcp` | 🔌 MCP client configuration |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| `api` | 🌐 Catalog API |
+| `a2a` | 🤖 A2A runtime |
+| `smoke` | 🧪 Release preflight |
+| `publish-check` | 📦 Package publication check |
+| `doctor` | 🩺 Environment diagnostics |
+| `help` | ❓ Command reference |
+
+---
 
 ## 3️⃣ Install Flows
 
@@ -63,7 +71,9 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> 안내된 흐름을 통해 다음을 선택할 수 있습니다.**대상 클라이언트**→**번들 또는 스킬**→**사용자 정의 경로**→**실행 전 미리 보기**### 🎯 Single Skill
+> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
+
+### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -80,17 +90,19 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| 플래그 | 클라이언트 |
-|:------|:---------|
-| `--반중력` | 🟣 반중력 *(기본값)* |
-| `--클로드` | 🟢 클로드 코드 |
-| `--커서` | 🔵 커서 |
-| `--codex` | 🔴 코덱스 CLI |
-| `--gemini` | 🟡 쌍둥이자리 CLI |
-| `--키로` | 🟠 키로 |
-| `--오픈코드` | ⚪ 오픈코드 |
+| Flag | Client |
+|:-----|:-------|
+| `--antigravity` | 🟣 Antigravity *(default)* |
+| `--claude` | 🟢 Claude Code |
+| `--cursor` | 🔵 Cursor |
+| `--codex` | 🔴 Codex CLI |
+| `--gemini` | 🟡 Gemini CLI |
+| `--kiro` | 🟠 Kiro |
+| `--opencode` | ⚪ OpenCode |
 
-> 기본 설치 대상(비대화형): `~/.gemini/antigravity/skills`---
+> Default install target (non-interactive): `~/.gemini/antigravity/skills`
+
+---
 
 ## 4️⃣ Catalog Discovery
 
@@ -111,23 +123,27 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| 플래그 | 목적 |
-|:------|:---------|
-| `--카테고리` | 분류 카테고리별로 필터링 |
-| `--도구` | 지원되는 도구로 필터링 |
-| `--위험` | 위험 수준별로 필터링 |
-| `--sort` | 결과 정렬(예: `quality`) |
-| `--주문` | 정렬 순서 |
-| `--최소 품질` | 최소 품질평가점수 |
-| `--min-best-practices` | 최소 모범 사례 점수 |
-| `--최소 수준` | 최소 성숙도 |
-| `--최소 보안` | 최소 보안 점수 |
-| `--검증 상태` | 유효성 검사 상태로 필터링 |
-| `--보안 상태` | 보안 상태별로 필터링 |---
+| Flag | Purpose |
+|:-----|:--------|
+| `--category` | Filter by taxonomy category |
+| `--tool` | Filter by supported tool |
+| `--risk` | Filter by risk level |
+| `--sort` | Sort results (e.g., `quality`) |
+| `--order` | Sort order |
+| `--min-quality` | Minimum quality score |
+| `--min-best-practices` | Minimum best-practices score |
+| `--min-level` | Minimum maturity level |
+| `--min-security` | Minimum security score |
+| `--validation-status` | Filter by validation state |
+| `--security-status` | Filter by security state |
+
+---
 
 ## 5️⃣ MCP Client Config
 
-클라이언트 인식 MCP 구성을 미리 보거나 작성하려면 `config-mcp`를 사용하세요.### 📋 List Targets
+Use `config-mcp` to preview or write client-aware MCP configuration.
+
+### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -152,26 +168,28 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<상세>
-<summary>🔌 <strong>구성 가능 클라이언트 표면</strong></summary>
+<details>
+<summary>🔌 <strong>Config-capable client surface</strong></summary>
 
-| 클라이언트 | 대상 |
-|:-------|:---------|
-| 클로드 | 설정 및 데스크탑 대상 |
-| 커서 | 사용자 및 작업공간 |
-| 코덱스 | TOML 구성 |
-| 쌍둥이자리 | 사용자 및 작업공간 |
-| 반중력 | 사용자 구성 |
-| 오픈코드 | 사용자 및 작업공간 |
-| 클라인 | 일류 대상 |
-| GitHub 코파일럿 CLI | 사용자 및 저장소 |
-| 킬로 코드 | 사용자, 프로젝트 및 작업공간 |
-| 키로 | 사용자 및 작업공간 |
-| 제드 | 작업공간 |
-| VS 코드 | 사용자, 작업공간 및 Dev 컨테이너 |
-| 계속 | 작업공간 YAML |
-| 주니 | 프로젝트 및 사용자 |
-| 윈드서핑 | 사용자 구성 |</details>
+| Client | Targets |
+|:-------|:--------|
+| Claude | Settings and desktop targets |
+| Cursor | User and workspace |
+| Codex | TOML config |
+| Gemini | User and workspace |
+| Antigravity | User config |
+| OpenCode | User and workspace |
+| Cline | First-class target |
+| GitHub Copilot CLI | User and repo |
+| Kilo Code | User, project, and workspace |
+| Kiro | User and workspace |
+| Zed | Workspace |
+| VS Code | User, workspace, and Dev Container |
+| Continue | Workspace YAML |
+| Junie | Project and user |
+| Windsurf | User config |
+
+</details>
 
 ---
 
@@ -192,7 +210,9 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
->**로컬 사이드카**에는 클라이언트 감지, 설치 미리보기, 흐름 설치/제거 및 MCP 구성 작성이 추가되었습니다.---
+> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
+
+---
 
 ## 7️⃣ Catalog API
 
@@ -202,15 +222,17 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| 경로 | 목적 |
-|:------|:---------|
-| `GET /healthz` | 건강검진 |
-| `GET /openapi.json` | OpenAPI 사양 |
-| `GET /v1/skills` | 모든 기술 나열 |
-| `GET /v1/search` | 카탈로그 검색 |
-| `GET /v1/skills/:id/archives` | 기술에 대한 아카이브 나열 |
-| `GET /v1/skills/:id/download/archive?format=zip` | 스킬 아카이브 다운로드 |
-| `GET /v1/skills/:id/download/archive/checksums` | 체크섬 다운로드 |---
+| Route | Purpose |
+|:------|:--------|
+| `GET /healthz` | Health check |
+| `GET /openapi.json` | OpenAPI spec |
+| `GET /v1/skills` | List all skills |
+| `GET /v1/search` | Search the catalog |
+| `GET /v1/skills/:id/archives` | List archives for a skill |
+| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
+| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
+
+---
 
 ## 8️⃣ A2A Runtime
 
@@ -220,15 +242,17 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| 기능 | 상태 |
-|:---------|:-------|
-| 🔎 작업 인식 검색 | ✅ |
-| 📋 설치 계획 전달 | ✅ |
-| 🔄 여론조사 | ✅ |
-| 📡 스트리밍 | ✅ |
-| ❌ 취소 | ✅ |
-| 🔔 푸시 알림 구성 | ✅ |
-| 💾 지속성 | 메모리, JSON 및 SQLite |---
+| Feature | Status |
+|:--------|:-------|
+| 🔎 Task-aware discovery | ✅ |
+| 📋 Install-plan handoff | ✅ |
+| 🔄 Polling | ✅ |
+| 📡 Streaming | ✅ |
+| ❌ Cancelation | ✅ |
+| 🔔 Push-notification config | ✅ |
+| 💾 Persistence | Memory, JSON, and SQLite |
+
+---
 
 ## 9️⃣ Visual Shell
 
@@ -238,17 +262,19 @@ npx omni-skills ui
 
 ### 기능
 
-| 기능 | 설명 |
-|:---------|:------------|
-| 🧭 안내 설치 | 클라이언트 또는 사용자 정의 경로 선택 |
-| 🔎 검색 + 설치 | 깃발 암기가 필요하지 않습니다 |
-| 🔌 MCP 구성 | 흐름 미리보기 및 쓰기 |
-| 🖥️ 서비스 출시 | MCP, API 및 A2A 안내 시작 |
-| 🕐 최근 | 최근 설치 및 서비스 재출시 |
-| ⭐ 즐겨찾기 | 저장된 스킬 및 번들 |
-| 💾 사전 설정 | 명명된 설치 및 서비스 사전 설정 |
+| Feature | Description |
+|:--------|:-----------|
+| 🧭 Guided install | Choose client or custom path |
+| 🔎 Search + install | No flag memorization needed |
+| 🔌 MCP config | Preview and write flows |
+| 🖥️ Service launch | MCP, API, and A2A guided startup |
+| 🕐 Recents | Recent installs and service relaunches |
+| ⭐ Favorites | Saved skills and bundles |
+| 💾 Presets | Named install and service presets |
 
->**상태 경로:**`~/.omni-skills/state/ui-state.json`---
+> **State path:** `~/.omni-skills/state/ui-state.json`
+
+---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -258,14 +284,18 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> 검사: repo 상태, 로컬 설치 상태, 런타임 가용성 및 환경 문제.### 🧪 Release Preflight
+> Inspects: repo state, local install state, runtime availability, and environment issues.
+
+### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> 검증: 빌드, 테스트, 패키지 출력, 서비스 부팅, 스캐너 적용 범위 및 릴리스 패키징.---
+> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
+
+---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -278,20 +308,22 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 페르소나 | 명령 | 목적 |
-|:------------|:---------|:---------|
-| 🆕 신규 사용자 | `npx 옴니 스킬` | 최초 설치 안내 |
-| 🔧 운영자 | `npx omni-skills config-mcp --list-targets` | 로컬 MCP 구성 |
-| 🔧 운영자 | `npx omni-skills mcp 스트림 --local` | 로컬 사이드카 시작 |
-| 📦 유지관리자 | `npx 옴니 스킬 연기` | 릴리스 유효성 검사 |
-| 🔍 고급 사용자 | `npx omni-skills 보안 찾기 --정렬 품질 --최소 품질 95` | 최고의 기술을 먼저 찾아보세요 |---
+| 🎯 Persona | Command | Purpose |
+|:-----------|:--------|:--------|
+| 🆕 New user | `npx omni-skills` | Guided first-time install |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
+| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
+| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
+
+---
 
 ## 📖 Related Documents
 
-| 문서 | 다루는 내용 |
+| Doc | What It Covers |
 |:----|:--------------|
-| 🚀 [시작하기](./GETTING-STARTED.md) | 2분 이내에 설치 및 확인 |
-| 📗 [사용 가이드](./USAGE.md) | 모든 CLI 명령, 패턴 및 모드 |
-| 📦 [번들](./BUNDLES.md) | 엄선된 기술 컬렉션 |
-| 🔧 [시스템 런북](../options/RUNBOOK.md) | 운영 참조 |
-| 🔌 [로컬 MCP 사이드카](../specs/LOCAL-MCP-SIDECAR.md) | 파일 시스템 도구 및 구성 작성 |
+| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
+| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
+| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |

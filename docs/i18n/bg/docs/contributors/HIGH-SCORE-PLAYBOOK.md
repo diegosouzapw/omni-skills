@@ -5,71 +5,83 @@
 ---
 
 
->**От какво се нуждае на практика Omni Skills `SKILL.md`, за да достигне висока степен на зрялост, най-добри практики, качество и резултати за сигурност.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-Това ръководство обяснява как класификаторът на хранилището всъщност възнаграждава дадено умение.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Използвайте го, когато искате да:
+Use it when you want to:
 
-- създайте ново умение, което попада в групите с най-добри резултати
-- подобряване на съществуващо умение, което е заседнало в „добро“ или ниско „отлично“.
-- разберете защо едно умение с прилично форматиране все още не се точкува като изключителен оперативен актив
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Това е спътникът, обърнат към сътрудниците на:
+This is the contributor-facing companion to:
 
-- [Лента за качество](QUALITY-BAR.md)
-- [Анатомия на уменията](SKILL-ANATOMY.md)
-- [Класификация на умения](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Текущ показател за каталога на живо:
+Current benchmark for the live native catalog:
 
-- 32 публикувани умения
-- текущо разпределение на качеството: `94, 95, 96, 97, 100`
-- разпространение на текущите най-добри практики: `98, 99, 100`
-- текущ горен край: „omni-figma“ при качество „100/100“ и най-добри практики „100/100“---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-Класификаторът**не**възнаграждава само доста намаление.
+The classifier does **not** reward pretty markdown alone.
 
-Уменията с високи точки са умения, които са:
+High-scoring skills are skills that are:
 
--**откриваем**: описанието ясно казва какво прави умението и кога да го използвате
--**оперативно**: умението включва локални скриптове, препратки и примери за изпълнение
--**диагностика**: помага на агента да се възстанови, когато нещата се объркат
--**специфичен**: фокусиран е върху един работен процес, а не върху общи съвети
--**безопасно**: избягва рискови модели и изпраща чист изход от скенера
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-На практика най-силните умения се държат по-скоро като**малък пакетиран комплект за работен процес**, отколкото като обикновена бележка.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Използвайте тези цели, когато създавате:
+Use these targets when authoring:
 
-| Измерение | Силна цел | Изключителна цел |
+| Dimension | Strong Target | Exceptional Target |
 |:----------|:--------------|:-------------------|
-| 🎯 Зрялост | „L3“ | `L3` с множество ресурси за поддръжка |
-| 📋 Най-добри практики | `90+` | `96+` |
-| ⭐ Качество | `85+` | `90+` |
-| 🛡️ Сигурност | `95+` | `95+` с нулеви констатации |---
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Вашият преден материал трябва да направи умението лесно за класифициране и лесно за откриване:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `име` съвпада точно с директорията
-- `описание` обяснява както**какво**, така и**кога**
-- `категория`, `тагове`, `инструменти`, `сложност`, `риск`, `източник`, `автор` и дати са налице
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Добра форма на описание:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Лоша форма на описание:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-Най-силните умения последователно включват следните раздели:
+The strongest skills consistently include these sections:
 
-- `## Преглед`
-- `## Кога да използвате това умение`
-- `## Работен процес`
-- `## Примери`
-- `## Най-добри практики`
-- `## Отстраняване на неизправности`
-- `## Допълнителни ресурси`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Ако едно от тях липсва, резултатът все още може да бъде добър, но става по-трудно да изглеждате изключителни.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-Уменията за най-добри резултати обикновено включват:
+Top-scoring skills usually include:
 
 - `references/checklist.md`
-- един или повече помощни скриптове в `scripts/`
-- поне един работещ пример в `examples/`
-- `agents/openai.yaml`, когато умението е предназначено за директно извикване на агент
-- директни връзки от `SKILL.md` към тези локални файлове
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Това има значение, защото класификаторът третира умение с**комплектиран помощен материал**като по-действащо от такова, което сочи само навън.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Препоръчителен минимум:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Примери с високи резултати са:
+High-scoring examples are:
 
-- бетон
-- въведени с истинска ограда като `bash` или `python`
-- обвързани с локален скрипт или повторяема команда
-- представител на работния процес
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-добре:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Слаб:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-Резултатистът възнаграждава отстраняването на неизправности, което помага на агента да се възстанови, а не просто да разпознае проблем.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Предпочитан формат:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Това е по-силно от неясна бележка като:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-Класификаторът вече прави разлика между умение, което е просто завършено, и такова, което е наистина дълбоко.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Сигнали, които помагат:
+Signals that help:
 
-- множество конкретни примери
-- множество случаи на отстраняване на неизправности
-- насоки за свързани умения
-- по-богати референтни пакети
-- видима секция „## Работен процес“ с номерирани стъпки, които голмайсторът може да брои директно
-- поне една оперативна таблица или карта за изпълнение, където се изяснява работният процес
-- повече от една директория за поддръжка или тип актив
-- секции на работния процес с достатъчно стъпки за насочване на изпълнението
-- активи за вземане на решения като контролни списъци, рубрики, матрици, пакети или книги за игра
-- по-голямо разнообразие от пакети за поддръжка в `референции/`, `скриптове/`, `агенти/`, `примери/` или `активи/`
-- достатъчно многократно използвани файлове за поддръжка, за да изглеждат като комплект, без нито един помощник, поставен до маркдауна
-- повече от един помощен файл, когато работният процес е достатъчно сложен, за да оправдае пакет за поддръжка
-- достатъчна дълбочина на тялото, за да покрие компромиси и режими на отказ
-- по-плътни оперативни насоки, тъй като инструментът за оценка вече разграничава изпипаното форматиране от дълбочината на работния процес за многократна употреба
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Сигнали, които**не**помагат много:
+Signals that do **not** help much:
 
-- повтаряне на една и съща инструкция с различни думи
-- общ текст за пълнене
-- добавяне на заглавия без добавяне на съдържание под тях---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Използвайте този контролен списък, преди да стартирате проверка:
+Use this checklist before running validation:
 
-- описанието казва**какво**и**кога**
-- умението е фокусирано върху един работен процес
-- `## Работен поток` съществува и съдържа номерирани или отбелязани с водещи символи стъпки
-- съществува поне един пример за изпълнение
-- `референции/`, `скриптове/` и в идеалния случай `примери/` са свързани от `SKILL.md`
-- `agents/openai.yaml` съществува, когато умението е предназначено за директно извикване в клиенти на агент
-- отстраняването на неизправности използва `Симптоми` и `Решение`
-- умението може разумно да се класифицира като „L3“.
-- няма рискови команди или подозрителни пътища
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-След това стартирайте:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- описанието е правилно, но твърде общо
-- маркдаунът има секции, но няма работна дълбочина
-- примерите не сочат местни помощници
-- отстраняване на неизправности съществува, но не е диагностика
-- има твърде малко етикети или идентификатори на инструменти
-- умението е безопасно и чисто, но все още твърде плитко, за да се счита за изключително---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Ако вашите умения се чувстват като:
+If your skill feels like:
 
--**шаблон**: може да мине
--**ръководство**: може да има добри резултати
--**пакет за работен процес**: много по-вероятно е да постигнете най-висок резултат
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

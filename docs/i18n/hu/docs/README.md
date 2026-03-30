@@ -4,103 +4,116 @@
 
 ---
 
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
->**A központi referencia a jelenlegi Omni Skills platform használatához, működtetéséhez, bővítéséhez és megértéséhez.**
+> **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
 
-A szabványos közösségi fájlok a lerakat gyökérben élnek:
-(---
+Standard community files live in the repository root:
+[`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
+
+---
 
 ## 📊 Status Snapshot
 
-| Terület | állam | Részletek |
+| Area | State | Details |
 |:-----|:------|:--------|
-| 🏗️**Runtime**| ✅ Aktuális | Az egyesített parancssori felület, az Ink vizuális shell, az API, az MCP és az A2A ugyanabból a csomagból szállítják |
-| 📦**Katalógus**| 📌 32 készség | 32 közzétett "L3" készség 15 aktív katalóguskategóriában és 7 teljesen támogatott csomagban |
-| 🎯**Telepítés**| ✅ Aktuális | Irányított TTY-telepítés, szelektív `--skill` és `--bundle`, egyéni elérési út-támogatás és felfedezés-vezérelt telepítés |
-| 🌐**API**| ✅ Aktuális | Csak olvasható regisztrációs API hitelesítéssel, adminisztrátori futásidővel, sebességkorlátozással, CORS/IP engedélyezési listákkal, karbantartási móddal és letöltésekkel |
-| 🔌**MCP**| ✅ Aktuális | `stdio` · `stream` · `sse`, helyi oldalkocsi mód, 7 telepítésre alkalmas kliens, 16 konfigurálható kliens, 33 konfigurációs cél és 19 konfigurációs profil |
-| 🤖**A2A**| ✅ Aktuális | Egyszerű első helyi futási környezet JSON/SQLite tartóssággal, újraindítással, SSE streameléssel, törléssel, külső végrehajtó móddal és opcionális bérelt koordinációval, ha kifejezetten engedélyezve van |
-| 🛡️**Biztonság**| ✅ Aktuális | Statikus szkenner, opcionális ClamAV/VirusTotal, aláírt kiadási melléktermékek, archív ellenőrző összegek és kiadási idő ellenőrzése |
-| 📋**Osztályozás**| ✅ Aktuális | Kanonikus taxonómia, érettség, szemantikai minőség elterjedése, bevált gyakorlatok terjedése és biztonsági pontozás |
-| 📁**Archívum**| ✅ Aktuális | Képességenkénti ".zip" és ".tar.gz" archívumok SHA-256 ellenőrzőösszeg-jegyzékekkel |
-| 🔐**Aláírás**| ✅ Aktuális | Leválasztott aláírások a kiadási címkéken; a helyi telepítési folyamatok ugyanazt a jegyzékfájlt és ellenőrzőösszeg metaadatokat fogyasztják |
-| 🧬**Beszívási áramlás**| ✅ Aktuális | Az anyanyelvi készségek a `készségek/` alá kerülnek; A PR-automatizálás felülvizsgálja őket, és Omni-bővített származékokat javasol a `skills_omni/` alatt |## 🔭 Current Project State
+| 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
+| 📦 **Catalog** | 📌 48 skills | 48 native catalog skills across 15 active categories, with 32 curated English derivatives in `skills_omni/` and 7 fully backed bundles |
+| 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
+| 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
+| 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
+| 🤖 **A2A** | ✅ Current | Simple-first local runtime with JSON/SQLite durability, restart resume, SSE streaming, cancelation, external executor mode, and optional leased coordination when explicitly enabled |
+| 🛡️ **Security** | ✅ Current | Static scanner, optional ClamAV/VirusTotal, signed release artifacts, archive checksums, and release-time verification |
+| 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
+| 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
+| 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
+| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
 
-Az alapozó pálya most aktív projektállapotban él, a második kategória-bővítési hullám pedig már a katalógusban van. A projektet most működő alapvonalnak kell tekinteni opcionális jövőbeli bővítési sávokkal:
+## 🔭 Current Project State
 
-- A nyilvános "v0.1.2" és a privát "v0.0.1" a jelenlegi stabil kiadási szint
-- a katalógus jelenleg 32 közzétett készségről szól 15 aktív kategóriában és 7 teljes körűen támogatott csomagban
-- a natív bevitel és a kurált `skills_omni/` kimenet egyaránt működőképes, beleértve a többnyelvű natív bevitelt és a csak angol kurált kimenetet
-- A protokollfelületek, a kiadási automatizálás és a privát fejlesztési automatizálás üzemel, nem a bootstrapben
+The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
 
-A jövőbeli bővítés szándékos marad:
+- public `v0.1.3` and private `v1.0.0` are the current stable release floor
+- the catalog now covers 48 native skills across 15 active categories, with 40 passing validation cleanly and 8 currently in warning-grade native intake
+- curated `skills_omni/` output remains a maintained English-only surface with 32 automation-managed derivatives
+- protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
 
-- elmélyítse a "design", "eszközök", "data-ai" és "gépi tanulás" fogalmát
-- kerülje az alvó, nem kódolt natív kategóriák újbóli megnyitását, amíg a jelenlegi kód-natív sávok mélyebbek lesznek
-- a minőségi padló és az erősítő áttekintési útvonalának sértetlen maradása közben
+Future expansion stays deliberate:
 
-Ez a terv most a következőkre oszlik:
+- deepen `design`, `tools`, `data-ai`, and `machine-learning`
+- avoid reopening dormant non-code-native categories until the current code-native tracks have stronger depth
+- keep the quality floor and enhancer review path intact while doing so
 
-- a befejezett első bővítési hullám a [tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md]-ben (tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- a befejezett második bővítési hullám a [tasks/TASK-08-SECOND-CATEGORY-WAVE.md]-ben (tasks/TASK-08-SECOND-CATEGORY-WAVE.md)
-- és az előretekintő lemaradás a [tasks/README.md]-ben (tasks/README.md)---
+That expansion work is now reflected directly in the live catalog and architecture docs:
+
+- the current catalog snapshot in [Catalog](CATALOG.md)
+- the runtime and artifact shape in [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md)
+- the forward direction in [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md)
+
+---
 
 ## 📌 Current Decisions
 
-Ezek az építészeti kérdések a gyakorlatban már nem „nyitottak”, és projektdöntésként kezelik őket:
+These architecture questions are no longer “open” in practice and are now treated as project decisions:
 
-1.**A terjesztés továbbra is nyilvántartott marad, valamint aláírt archívum**
-   A géppel olvasható jegyzék továbbra is a CLI, API, MCP és A2A által felhasznált szerződés marad. Az aláírt készségenkénti archívumok a letöltési és kiadási felületek, amelyek a szerződés tetejére rétegződnek.
-2.**A privát vagy prémium katalógusoknak ugyanazt a jegyzéksémát kell használniuk**
-   A hitelesítést és a házirendet kívülről kell rétegezni, nem pedig a jegyzék vagy a katalógus alakjának elágazásával.
-3.**Az MCP-konfigurációnak konvergálnia kell néhány kanonikus exportcsaládhoz**
-   Az Omni Skills mostantól szabványosítja a JSON "mcpServers", a JSON "szerverek", a JSON "környezeti_kiszolgálók", a YAML "mcpServers", a YAML "bővítmények" és a TOML "[mcp_servers]" TOML-t, miközben a testreszabott írókhoz csak akkor van szükség, ha a hivatalos kliens-dokumentumok eltérőek.
+1. **Distribution stays manifest-first plus signed archives**
+   The machine-readable manifest remains the contract consumed by CLI, API, MCP, and A2A. Signed per-skill archives are the download and release surface layered on top of that contract.
+2. **Private or premium catalogs should reuse the same manifest schema**
+   Auth and policy should be layered externally, not by forking the manifest or catalog shape.
+3. **MCP config should converge on a few canonical export families**
+   Omni Skills now standardizes around JSON `mcpServers`, JSON `servers`, JSON `context_servers`, YAML `mcpServers`, YAML `extensions`, and TOML `[mcp_servers]`, while keeping bespoke writers only where official client docs require a different structure.
 
-Ezek a döntések összhangban vannak a jelenlegi hivatalos MCP-vel és ügyféldokumentációval, beleértve:
+Those decisions align with current official MCP and client documentation, including:
 
-- hivatalos MCP-nyilvántartási és kiterjesztés-támogatási útmutató a `modelcontextprotocol.io' oldalon
-- OpenAI Docs MCP és Codex CLI dokumentumok a "developers.openai.com" és a "platform.openai.com" webhelyeken
-- VS Code MCP kiterjesztés és termékdokumentumok a "code.visualstudio.com" oldalon
-- Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman és JetBrains AI Assistant kliensdokumentumai---
+- official MCP Registry and extension support guidance at `modelcontextprotocol.io`
+- OpenAI Docs MCP and Codex CLI docs at `developers.openai.com` and `platform.openai.com`
+- VS Code MCP extension and product docs at `code.visualstudio.com`
+- client docs for Claude Code, Cursor, Continue, Junie, Kiro, OpenCode, Cline, Kilo Code, GitHub Copilot CLI, Zed, Goose, Postman, and JetBrains AI Assistant
+
+---
 
 ## 🚀 Start Here
 
 ### 👤 If You Want to **Use** the Project
 
-| Doc | Mit fogsz tanulni |
-|:----|:-------------------|
-| 📘 [Kezdő lépések](users/GETTING-STARTED.md) | Telepítse, ellenőrizze és hívja elő első készségeit |
-| 🧭 [CLI felhasználói útmutató](users/CLI-USER-GUIDE.md) | Teljes parancsreferencia és valós CLI használati minták |
-| 📗 [Használati útmutató](users/USAGE.md) | CLI-parancsok, telepítési módok, futásidejű parancsok és MCP-konfigurációs folyamatok |
-| 📦 [Csomagok](users/BUNDLES.md) | A válogatott csomagok és jelenlegi elérhetőségük |
-| 📚 [Katalógus](CATALOG.md) | A közzétett készségek automatikusan generált katalógusa |
-| 🔧 [System Runbook](operations/RUNBOOK.md) | A futási környezet összeállítása, kiszolgálása, biztonságossá tétele és hibaelhárítása |### 🏗️ If You Want to **Understand** the Runtime
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 📘 [Getting Started](users/GETTING-STARTED.md) | Install, verify, and invoke your first skill |
+| 🧭 [CLI User Guide](users/CLI-USER-GUIDE.md) | Full command reference and real-world CLI usage patterns |
+| 📗 [Usage Guide](users/USAGE.md) | CLI commands, install modes, runtime commands, and MCP config flows |
+| 📦 [Bundles](users/BUNDLES.md) | Curated bundles and their current availability |
+| 📚 [Catalog](CATALOG.md) | Auto-generated catalog of published skills |
+| 🔧 [System Runbook](operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot the runtime |
 
-| Doc | Mit fogsz tanulni |
-|:----|:-------------------|
-| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Az építészet fejlődése, a lezárt döntések és a fennmaradó bővítési területek |
-| 🧭 [CLI UX ütemterv](architecture/CLI-UX-ROADMAP.md) | Az irányított és vizuális CLI történeti terve és jelenlegi formája |
-| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo és megosztott futásidejű döntés |
-| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Jelenlegi futásidejű összetétel, számok és rendszerhatárok |
-| 🌐 [Katalógus API felület](specifikáció/CATALOG-API.md) | HTTP-végpontok, szűrés, irányítás és letöltések |
-| 🧩 [CLI irányított telepítő](specs/CLI-GUIDED-INSTALLER.md) | Viselkedési szerződés az irányított telepítő számára |
-| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink vizuális héj, állapotmodell és szolgáltatási központ |
-| 🔌 [Helyi MCP-oldalkocsi](specifikációk/LOCAL-MCP-SIDECAR.md) | Fájlrendszer-tudatos eszközök, engedélyezési lista modell és konfigurációk írása |
-| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Támogatott CLI és IDE kliensek, írók, kézi célok és forráshivatkozások |
-| 📊 [Skill Classification](specifikáció/SKILL-CLASSIFICATION.md) | Taxonómia, pontozási heurisztika és metaadat-termékek |
-| 🛡️ [Biztonsági ellenőrzés](specs/SECURITY-VALIDATION.md) | Szkennerek, archívumok, aláírások és kiadás-ellenőrzés |
-| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Géppel olvasható jegyzékformátum és kompatibilitási szerződés |### 🤝 If You Want to **Contribute**
+### 🏗️ If You Want to **Understand** the Runtime
 
-| Doc | Mit fogsz tanulni |
-|:----|:-------------------|
-| 📝 [Hozzájárulási útmutató](../CONTRIBUTING.md) | Repo munkafolyamat és lekérési elvárások |
-| 🧾 [Skill PR-munkafolyamat](contributors/SKILL-PR-WORKFLOW.md) | Natív bevitel, automatikus javító feldolgozás, `skills_omni/` közzététel és a lektori elvárások |
-| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` aktuális frontanyaggal és szerkezettel |
-| 🔬 [Skill Anatomy](közreműködők/SKILL-ANATOMY.md) | Szerkezeti és minőségi elvárások egy képességgel szemben |
-| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Az adattár elfogadási feltételei |
-| 🏆 [High-score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | Mi vezet a magas érettséghez, a minőséghez, a bevált gyakorlatokhoz és a biztonsági pontszámokhoz |
-| 📋 [Tasks Backlog](tasks/README.md) | Részletes végrehajtási hátralék a fennmaradó köz- és magánmunkához |---
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 🗺️ [Agent-Native Roadmap](architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution, closed decisions, and remaining expansion areas |
+| 🧭 [CLI UX Roadmap](architecture/CLI-UX-ROADMAP.md) | Historical plan and current shape of the guided and visual CLI |
+| 📐 [ADR-0001: Workspace Foundation](architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo and shared-runtime decision |
+| 🔬 [Codebase Analysis](architecture/CODEBASE-ANALYSIS.md) | Current runtime composition, counts, and system boundaries |
+| 🌐 [Catalog API Surface](specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
+| 🧩 [CLI Guided Installer](specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
+| 🖥️ [CLI Visual Shell](specs/CLI-VISUAL-SHELL.md) | Ink visual shell, state model, and service hub |
+| 🔌 [Local MCP Sidecar](specs/LOCAL-MCP-SIDECAR.md) | Filesystem-aware tools, allowlist model, and config writing |
+| 🧭 [Client Support Matrix](specs/CLIENT-SUPPORT-MATRIX.md) | Supported CLI and IDE clients, writers, manual targets, and source references |
+| 📊 [Skill Classification](specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring heuristics, and metadata artifacts |
+| 🛡️ [Security Validation](specs/SECURITY-VALIDATION.md) | Scanners, archives, signatures, and release verification |
+| 📋 [Skill Manifest Spec](specs/SKILL-MANIFEST.md) | Machine-readable manifest format and compatibility contract |
+
+### 🤝 If You Want to **Contribute**
+
+| Doc | What You'll Learn |
+|:----|:------------------|
+| 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
+| 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
+| 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
+| 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |
+| ✅ [Quality Bar](contributors/QUALITY-BAR.md) | Acceptance criteria for the repository |
+| 🏆 [High-Score Playbook](contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high maturity, quality, best-practices, and security scores |
+
+---
 
 ## 🔌 Runtime Surfaces
 
@@ -113,7 +126,9 @@ npx omni-skills ui                    # Ink visual shell
 npx omni-skills ui --text             # Text fallback UI
 ```
 
-A közzétett 'omni-skills' bináris az egységes nyilvános belépési pont.```bash
+The published `omni-skills` binary is the unified public entry point.
+
+```bash
 # 🔎 Discovery
 npx omni-skills find figma
 npx omni-skills find mcp --sort quality --min-quality 90 --min-security 95
@@ -145,28 +160,34 @@ npx omni-skills smoke
 npx omni-skills doctor
 ```
 
-A teljes végfelhasználói parancsfelülethez használja a [CLI User Guide](users/CLI-USER-GUIDE.md) alkalmazást.### 📁 Generated Artifacts
+For the complete end-user command surface, use [CLI User Guide](users/CLI-USER-GUIDE.md).
 
-Az összeállítási folyamat minden futási felületet meghajtó géppel olvasható fájlokat bocsát ki:
+### 📁 Generated Artifacts
 
-| Műtárgy | Cél |
+The build pipeline emits the machine-readable files that drive every runtime surface:
+
+| Artifact | Purpose |
 |:---------|:--------|
-| `metadata.json` | Az egész adattárra kiterjedő érvényesítés és pontszám összefoglaló |
-| `skills_index.json` | Repo-local normalizált képzettségi index |
-| `dist/catalog.json` | Megjelent katalógus kereséshez és listázáshoz |
-| `dist/bundles.json` | Csomagdefiníciók elérhetőséggel |
-| `dist/manifests/<skill>.json` | Képességenkénti géppel olvasható jegyzék |
-| `dist/archives/<skill>.zip` | Ügyességi archívum (zip) |
-| `dist/archives/<skill>.tar.gz` | Ügyességi archívum (tarball) |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 ellenőrzőösszeg jegyzék |
+| `metadata.json` | Repository-wide validation and score summary |
+| `skills_index.json` | Repo-local normalized skill index |
+| `dist/catalog.json` | Published catalog for search and listing |
+| `dist/bundles.json` | Bundle definitions with availability |
+| `dist/manifests/<skill>.json` | Per-skill machine-readable manifest |
+| `dist/archives/<skill>.zip` | Skill archive (zip) |
+| `dist/archives/<skill>.tar.gz` | Skill archive (tarball) |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
 
-`dist/` szándékosan elkötelezett marad. Ezek az előállított melléktermékek a telepítési, API, MCP, A2A, füstölési és kiadási szerződés részét képezik.### 🌐 API
+`dist/` stays committed on purpose. These generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
+
+### 🌐 API
 
 ```bash
 npx omni-skills api --port 3333
 ```
 
-Csak olvasható regisztrációs API a készségek, csomagok, összehasonlítás, telepítés tervezése és műtermékek letöltéséhez.### 🔌 MCP
+Read-only registry API for skills, bundles, comparison, install planning, and artifact downloads.
+
+### 🔌 MCP
 
 ```bash
 npx omni-skills mcp stdio
@@ -175,49 +196,55 @@ npx omni-skills mcp sse
 npx omni-skills mcp stream --local
 ```
 
-A helyi oldalkocsi mostantól támogatja az első osztályú MCP-konfiguráció írását:
+The local sidecar now supports first-class MCP config writing for:
 
 - Claude Code
-- Kurzor
-- VS kód és fejlesztői tárolók
+- Cursor
+- VS Code and Dev Containers
 - Gemini CLI
-- Antigravitáció
+- Antigravity
 - Kiro
 - Codex CLI
-- Folytasd
-- Szörf
+- Continue
+- Windsurf
 - OpenCode
 - Cline
-- GitHub másodpilóta CLI
+- GitHub Copilot CLI
 - Kilo Code
 - Zed
-- Liba### 🤖 A2A
+- Goose
+
+### 🤖 A2A
 
 ```bash
 npx omni-skills a2a --port 3335
 ```
 
-Feladatok életciklusa, streamelés, kitartás, újraindítás helyreállítása és egyszerű helyi hangszerelés. A megosztott bérelt végrehajtás akkor érhető el, ha kifejezetten engedélyezve van; A Redis továbbra is egy speciális hosztolt beállítás, nem pedig az alapértelmezett helyi elérési út.---
+Task lifecycle, streaming, persistence, restart recovery, and simple-first local orchestration. Shared leased execution is available when explicitly enabled; Redis remains an advanced hosted option, not the default local path.
+
+---
 
 ## 🗂️ Repository Map
 
-| Útvonal | Cél |
-|:-----|:---------|
-| 📂 `készségek/` | Kanonikus szerzői készségek |
-| 📖 `docs/users/` | Végfelhasználói dokumentáció |
-| 🤝 `dokumentumok/közreműködők/` | Közreműködői sablonok és útmutató |
-| 🏗️ `dokumentumok/architektúra/` | Útiterv, ADR-ek és technikai elemzés |
-| 🔧 `dokumentumok/műveletek/` | Operatív runbookok |
-| 📋 `dokumentumok/specifikációk/` | Futásidejű, protokoll- és műtermék-szerződések |
-| 📚 `docs/CATALOG.md` | Készített készségkatalógus |
-| 📦 `dist/` | Generált géppel olvasható műtermékek |
-| 🧠 `csomagok/katalógusmag/` | Megosztott katalógus futásidejű |
-| 🌐 `csomagok/szerver-api/` | Csak olvasható HTTP API |
-| 🔌 `csomagok/szerver-mcp/` | MCP szerver és helyi oldalkocsi |
-| 🤖 `csomagok/szerver-a2a/` | A2A szerver és feladat futásidejű |
-| 🖥️ `tools/bin/` | CLI belépési pontok |
-| 📚 `tools/lib/` | Telepítő és felhasználói felület segítők |
-| ⚙️ `tools/scripts/` | Validálás, generálás, ellenőrzés és tesztek |---
+| Path | Purpose |
+|:-----|:--------|
+| 📂 `skills/` | Canonical authored skills |
+| 📖 `docs/users/` | End-user documentation |
+| 🤝 `docs/contributors/` | Contributor templates and guidance |
+| 🏗️ `docs/architecture/` | Roadmap, ADRs, and technical analysis |
+| 🔧 `docs/operations/` | Operational runbooks |
+| 📋 `docs/specs/` | Runtime, protocol, and artifact contracts |
+| 📚 `docs/CATALOG.md` | Generated skill catalog |
+| 📦 `dist/` | Generated machine-readable artifacts |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime |
+| 🌐 `packages/server-api/` | Read-only HTTP API |
+| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
+| 🤖 `packages/server-a2a/` | A2A server and task runtime |
+| 🖥️ `tools/bin/` | CLI entry points |
+| 📚 `tools/lib/` | Installer and UI helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, verification, and tests |
+
+---
 
 ## 🧪 Release Validation
 
@@ -225,15 +252,15 @@ Feladatok életciklusa, streamelés, kitartás, újraindítás helyreállítása
 npm run smoke
 ```
 
-A füstfutás érvényesíti:
+The smoke run validates:
 
-- ✅ készségellenőrzés és metaadatok generálása
-- ✅ taxonómia átkategorizáló eszköz
-- ✅ katalógus-termékek generálása
-- ✅ generált katalógus leárazás
-- ✅ archívum létrehozása és ellenőrzése
-- ✅ automatizált tesztcsomag
+- ✅ skill validation and metadata generation
+- ✅ taxonomy recategorization tooling
+- ✅ catalog artifact generation
+- ✅ generated catalog markdown
+- ✅ archive generation and verification
+- ✅ automated test suite
 - ✅ `npm pack --dry-run`
-- ✅ API rendszerindítás és egészség
-- ✅ MCP rendszerindítás az "stdio", "stream" és "sse" fájlokban
-- ✅ A2A rendszerindítás, lekérdezés, SSE streamelés, törlés és push-config életciklus
+- ✅ API boot and health
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot, polling, SSE streaming, cancelation, and push-config lifecycle

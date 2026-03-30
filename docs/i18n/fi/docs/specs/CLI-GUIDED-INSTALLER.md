@@ -5,137 +5,169 @@
 ---
 
 
->**Käyttäytymissopimus Omni Skills CLI:n ohjatusta asennuskokemuksesta.**---
+> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
+
+---
 
 ## 1. Scope
 
-Tämä spesifikaatio määrittää ohjatun asennuskäyttäytymisen, joka on olemassa olevan asennusohjelman taustaohjelman päällä.
+This spec defines the guided install behavior that sits on top of the existing installer backend.
 
-Se ei korvaa:
+It does not replace:
 
-- "tools/bin/install.js".
-- nykyiset asiantuntijaliput
-- valikoiva asennusluettelo
+- `tools/bin/install.js`
+- current expert flag flows
+- selective install manifests
 
-Se määrittelee:
+It defines:
 
-- kuinka ohjattu tila siirrytään
-- miten kohteet valitaan
-- kuinka asennusalue valitaan
-- mitä esikatselutietoja on näytettävä
-- kuinka vahvistus ja toteutus toimivat---
+- how guided mode is entered
+- how destinations are chosen
+- how install scope is chosen
+- what preview information must be displayed
+- how confirmation and execution work
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-CLI:n pitäisi siirtyä ohjattuun asennustilaan, kun:
+The CLI should enter guided install mode when:
 
-- käyttäjä suorittaa "kaikki taidot" ilman argeja TTY:ssä
-- käyttäjä suorittaa "omni-skills install" ilman valitsimia TTY:ssä### 2.2 Forced Guided Entry
+- the user runs `omni-skills` with no args in a TTY
+- the user runs `omni-skills install` with no selectors in a TTY
 
-CLI:n tulisi myös tukea eksplisiittistä ohjattua tilaa erillisen vaihtoehdon kautta, kuten:
+### 2.2 Forced Guided Entry
 
-- `kaikki taidot asennus --opastettu`
+The CLI should also support explicit guided mode through a dedicated option, such as:
 
-Tämän tilan pitäisi toimia myös silloin, kun tuloa ei ole liitetty TTY:hen, kunhan vakiotulo on käytettävissä.### 2.3 Non-Interactive Safety Rule
+- `omni-skills install --guided`
 
-Käytettäessä ilman TTY:tä ja ilman erikseen pyydettyä ohjattua tilaa:
+This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
 
-- säilyttää nykyinen oletuskäyttäytyminen
-- älä estä kehotteiden odottamista---
+### 2.3 Non-Interactive Safety Rule
+
+When invoked without a TTY and without guided mode explicitly requested:
+
+- preserve the current default behavior
+- do not block waiting for prompts
+
+---
 
 ## 3. Destination Model
 
-Ohjatun asennuksen on tuettava kahta kohdeluokkaa:### 3.1 Known Client Target
+Guided install must support two destination classes:
 
-Jokainen tunnettu kohde ratkaisee:
+### 3.1 Known Client Target
 
-- ihmisen luettava etiketti
-- sisäinen työkalutunnus
-- asenna lippu
-- ratkaistu polku
+Each known target resolves to:
 
-Vaaditut tunnetut kohteet:
+- human-readable label
+- internal tool id
+- install flag
+- resolved path
+
+Required known targets:
 
 - Claude Code
-- Kursori
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitaatio
-- OpenCode### 3.2 Custom Path Target
+- Antigravity
+- OpenCode
 
-Mukautetun polkutilan tulee:
+### 3.2 Custom Path Target
 
-- kysy polkua
-- ratkaise `~`
-- normalisoi absoluuttiseen polkuun
-- näytä ratkaistu polku esikatselussa---
+Custom path mode must:
+
+- prompt for a path
+- resolve `~`
+- normalize to absolute path
+- show the resolved path in preview
+
+---
 
 ## 4. Install Scope Model
 
-Ohjatun asennuksen on tuettava:### 4.1 Full Library
+Guided install must support:
 
-Vastaa nykyistä asennusta ilman "--skill" tai "--bundle".### 4.2 Single Skill
+### 4.1 Full Library
 
-Antaa käyttäjän valita yhden julkaistun taidon.### 4.3 Single Bundle
+Equivalent to current install with no `--skill` or `--bundle`.
 
-Antaa käyttäjän valita yhden kuratoidun paketin ja ratkaista julkaistut jäsenet.### 4.4 Search Then Install
+### 4.2 Single Skill
 
-Antaa käyttäjän:
+Lets the user select one published skill.
 
-- kirjoita hakukysely
-- Tarkista tulokset
-- valitse taito tai nippu
-- jatka asennuksen esikatseluun---
+### 4.3 Single Bundle
+
+Lets the user select one curated bundle and resolves published members.
+
+### 4.4 Search Then Install
+
+Lets the user:
+
+- enter a search query
+- inspect results
+- choose a skill or bundle
+- continue into install preview
+
+---
 
 ## 5. Preview Contract
 
-Ennen suorittamista ohjatun asennuksen tulee näyttää:
+Before execution, guided install must display:
 
-- kohdetarra
-- määränpään polku
-- asenna laajuus
-- valittu taito tai paketti tarvittaessa
-- vastaava CLI-komento
+- destination label
+- destination path
+- install scope
+- selected skill or bundle if applicable
+- equivalent CLI command
 
-Valinnainen mutta suositeltava:
+Optional but recommended:
 
-- Valittujen taitojen metatietojen yhteenveto
-- paketin saatavuuden yhteenveto---
+- selected skill metadata summary
+- bundle availability summary
+
+---
 
 ## 6. Execution Contract
 
-Vahvistuksen jälkeen:
+After confirmation:
 
-- ohjatut asennusedustajat olemassa olevaan asennusohjelman taustajärjestelmään
-- se ei toteuta tiedostojen kirjoittamista uudelleen
+- guided install delegates to the existing installer backend
+- it does not reimplement file writes itself
 
-Komennon esikatselun ja todellisten delegoitujen asennusohjelman argien on vastattava täsmälleen.---
+The command preview and the actual delegated installer args must match exactly.
+
+---
 
 ## 7. Result Contract
 
-Onnistuneen suorituksen jälkeen ohjatun asennuksen tuloksen pitäisi näyttää:
+After successful execution, the guided install result should show:
 
-- onnistumisen indikaattori
-- lopullinen määränpääpolku
-- suoritettu komento
-- seuraava suositeltu toimenpide
+- success indicator
+- final destination path
+- command that was executed
+- next recommended action
 
-Esimerkki seuraavista toimista:
+Example next actions:
 
-- käyttää taitoa valitussa asiakkaassa
-- ajaa "lääkäri".
-- suorita "mcp stream --local".---
+- use the skill in the selected client
+- run `doctor`
+- run `mcp stream --local`
+
+---
 
 ## 8. Compatibility Contract
 
-Seuraavat ovat voimassa ja ennallaan:
+The following remain valid and unchanged:
 
-- "kaikki taidot --kursori --taito omni-figma".
-- "kaikki taidot -- nippu täysi pino".
-- `kaikki taidot --polku ./taidot`
-- `kaikki taidot löytää figma --tool cursor --install --yes`
+- `omni-skills --cursor --skill omni-figma`
+- `omni-skills --bundle full-stack`
+- `omni-skills --path ./skills`
+- `omni-skills find figma --tool cursor --install --yes`
 
-Ohjattu tila lisää käyttäytymistä. Se ei poista olemassa olevaa käyttäytymistä.
+Guided mode adds behavior. It does not remove existing behavior.

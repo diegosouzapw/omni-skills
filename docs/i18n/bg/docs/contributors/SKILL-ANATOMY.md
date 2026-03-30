@@ -5,110 +5,126 @@
 ---
 
 
->**Структура и очаквания за качество за Omni Skills `SKILL.md` — авторският формат, който захранва целия каталог.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Всеки `SKILL.md` се състои от два отделни раздела:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Машинночетими метаданни между разделителите „---“. Той захранва:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 Индексът на уменията и генерирането на каталог
-- 🔎 CLI търсене и филтриране
-- ✅ Валидиране и оценяване на качеството
-- 📊 Генерирани артефакти за класификация на `metadata.json`
-- 📋 За всяко умение се проявява в `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Инструкции, които могат да се четат от човека (и от агента). Напишете го така, сякаш**информирате старши разработчик**как да изпълни дадена задача — достатъчно специфична, за да може AI агент да я следва, без да предполага.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Поле | Задължително | Тип | Описание |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `име` | ✅ | низ | Трябва да съответства на името на директорията, с малки букви и тирета |
-| `описание` | ✅ | низ | Едноредово описание (10-200 знака) |
-| `версия` | ⚡ | низ | Семантична версия за самото умение (напр. „0.1.1“) |
-| `категория` | ⚡ | низ | Една канонична категория от таксономията на репо |
-| `тагове` | ⚡ | низ [] | Етикети за търсене за откриване |
-| `сложност` | ⚡ | низ | `начинаещ` · `средно напреднал` · `напреднал` · `експерт` |
-| `риск` | ⚡ | низ | `безопасно` · `внимание` · `офанзивно` · `критично` |
-| `инструменти` | ⚡ | низ [] | Тествани помощници за кодиране с изкуствен интелект |
-| `източник` | ⚡ | низ | `омни-отбор` · `общност` · `официален` |
-| `автор` | ⚡ | низ | Приписване |
-| `добавена_дата` | ⚡ | низ | ISO дата |
-| `актуализирана_дата` | ⚡ | низ | ISO дата |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Винаги се изисква · ⚡ = Изисква се в строг режим
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Версията на уменията е независима от версията на пакета npm. В момента пакетът е `0.1.3`, но съществуващите умения могат валидно да останат в собствената си семантична версия.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-Репо таксономията в момента дефинира**18 канонични категории**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Категория | Домейн |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `развитие` | Обща разработка на софтуер |
-| 🎨 `frontend` | Предни рамки и потребителски интерфейс |
-| 🔧 `backend` | Бекенд услуги и API |
-| 🌐 `fullstack-web` | Уеб разработка от край до край |
-| 🛠️ `инструменти` | Инструменти и помощни програми за разработчици |
-| ⚙️ `cli-automation` | CLI инструменти и скриптове за автоматизация |
-| 📊 `бизнес` | Бизнес процеси и стратегия |
-| 📐 `продукт` | Продуктово управление и дизайн |
-| 🎯 `дизайн` | Визуален и UX дизайн |
-| 🤖 `data-ai` | Инженеринг на данни и AI приложения |
-| 🧠 `ai-agents` | Разработка и модели на AI агент |
-| 📈 „машинно обучение“ | ML модели и обучение |
-| 🔌 `devops` | Инфраструктура и внедряване |
-| 🛡️ `testing-security` | Практики за тестване и сигурност |
-| 📖 `документация` | Генериране и управление на документация |
-| 🎬 `content-media` | Създаване на съдържание и медии |
-| 💬 `комуникация` | Комуникационни инструменти и работни процеси |
-| ❓ `некатегоризиран` ​​| По подразбиране, когато не е намерено съответствие |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Наследените етикети като „работен поток“, „архитектура“, „инфраструктура“, „сигурност“ и „тестване“ се нормализират автоматично чрез съпоставяне на псевдоними.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Добре написаното тяло на уменията следва тази йерархия:
+A well-written skill body follows this hierarchy:
 
-### 📌 Преглед (задължително)
-2-3 изречения за**какво**прави умението и**защо**съществува.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Кога да се използва (задължително)
-Списък с водещи точки с**специфични сценарии**, при които това умение се прилага.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Основни инструкции (задължително)
-**Процесът стъпка по стъпка**, който агентът трябва да следва. Бъдете изрични. Бъдете конкретни. Агентите работят най-добре с ясни, недвусмислени инструкции.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Примери (препоръчително)
-Конкретни подкани, кодови блокове или очаквани резултати.**Колкото по-конкретни, толкова по-добре.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Най-добри практики (препоръчително)
-Използвайте ✅ Прави / ❌ Не форматирай за бързо сканиране.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Отстраняване на неизправности (по избор)
-Често срещани проблеми и техните решения.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Свързани умения (по избор)
-Препратки към допълващи се умения.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Фокусиран върху**един конкретен**работен процес или домейн
-- 📌 Инструкциите са**достатъчно ясни, за да ги следва AI**без човешка интерпретация
-- 💡 Включва**конкретни примери**с очаквано поведение
-- 🛡️ Има подходящи указания за**обработване на грешки**
-- 📊 Създава здрави метаданни: канонична категория, зрялост L2+, качество 70+
-- 🧰 Изпраща пакет за поддръжка за многократна употреба, не само проза, в идеалния случай през `референции/`, `скриптове/`, `примери/` и `агенти/`, където е подходящо
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-За по-силните модели на точкуване, които издигат уменията в най-високите граници, вижте [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Общи съвети, които могат да се прилагат за всичко
-- 🤷 Неясни инструкции като "напишете добър код"
-- 🚫 Без примери или кодови блокове
-- ⚠️ Липсващи полета за предна материя
-- 📉 Нисък качествен резултат (под 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

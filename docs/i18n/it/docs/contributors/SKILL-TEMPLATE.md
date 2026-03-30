@@ -5,65 +5,85 @@
 ---
 
 ---
-nome: il nome della tua abilità
-descrizione: "Descrizione in una riga di cosa fa questa abilità e quando usarla"
-versione: "0.1.3"
-categoria: sviluppo
-tag: [esempio-tag-1, esempio-tag-2]
-complessità: intermedia
-rischio: sicuro
-strumenti: [claude-code, cursore, gemini-cli, antigravità]
-fonte: comunità
-autore: "Il tuo nome"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` genererà skills/<skill>/metadata.json con canonical
-tassonomia, livello di maturità, punteggio delle migliori pratiche, punteggio di qualità e sicurezza
-risultati della scansione. Modelli di prompt-injection, comandi distruttivi e script rischiosi
-i costrutti verranno contrassegnati automaticamente.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-La versione della competenza è indipendente dalla versione del pacchetto. Usa la semantica
-versione che abbia senso per l'abilità stessa.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Per un'abilità con il punteggio più alto, leggi anche:
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Panoramica
 
-2-3 frasi che spiegano cosa fa questa abilità, chi ne trae beneficio e perché esiste.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Da utilizzare quando è necessario [scenario 1]
-- Usa quando vuoi [scenario 2]
-- Da utilizzare quando si lavora con [scenario 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Spiegare il concetto chiave che l'agente deve comprendere.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Spiega un altro concetto fondamentale.## Workflow
+### Concept 2
 
-| Fase | Uscita | Perché è importante |
-|:------|:-------|:-------|
-| Inquadra l'obiettivo | Obiettivo chiaro | Impedisce una guida vaga |
-| Eseguire i passaggi | Flusso di lavoro pronto per l'agente | Rende l'abilità utilizzabile |
-| Convalidare l'output | Segnale di accettazione | Aumenta la fiducia |
+Explain another foundational concept.
 
-1. Primo passo nel flusso di lavoro
-2. Secondo passaggio nel flusso di lavoro
-3. Terzo passaggio nel flusso di lavoro### 1. First Step
+## Workflow
 
-Istruzioni dettagliate per il primo passaggio.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-Istruzioni dettagliate per il secondo passaggio.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Istruzioni dettagliate per il terzo passaggio.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Istruzioni dettagliate per il terzo passaggio.## Examples
 Example prompt or code here
 ```
 
-**Spiegazione:**Cosa dimostra questo esempio.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Spiegazione:**Cosa dimostra questo esempio.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Fai:**Segui questa buona pratica
-- ✅**Fai:**Segui anche questa pratica
-- ❌**Non fare:**Evita questo antipattern
-- ❌**Non farlo:**Non farlo mai## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Sintomi:**Come fai a saperlo è questo il problema.
-**Soluzione:**come risolverlo.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@lated-skill-1` — Quando utilizzare invece questo
-- `@lated-skill-2` — Come questo completa la tua abilità## Additional Resources
+## Related Skills
 
-- [Lista di controllo](riferimenti/checklist.md)
-- [Esempio realizzato](esempi/esempio.md)
-- [Script di supporto](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

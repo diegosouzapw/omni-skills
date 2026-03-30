@@ -5,71 +5,83 @@
 ---
 
 
->**Những điều mà Omni Skills `SKILL.md` cần có trong thực tế để đạt được mức độ trưởng thành cao, phương pháp thực hành tốt nhất, chất lượng và điểm bảo mật.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-Hướng dẫn này giải thích cách bộ phân loại của kho lưu trữ thực sự khen thưởng một kỹ năng.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Sử dụng nó khi bạn muốn:
+Use it when you want to:
 
-- tạo ra một kỹ năng mới nằm trong nhóm ghi điểm cao nhất
-- cải thiện một kỹ năng hiện có đang bị mắc kẹt ở mức `tốt` hoặc thấp `xuất sắc`
-- hiểu lý do tại sao một kỹ năng có định dạng phù hợp vẫn không được ghi điểm như một tài sản hoạt động đặc biệt
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Đây là người bạn đồng hành hướng tới người đóng góp cho:
+This is the contributor-facing companion to:
 
-- [Thanh chất lượng](QUALITY-BAR.md)
-- [Giải phẫu kỹ năng](SKILL-ANATOMY.md)
-- [Phân loại kỹ năng](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Điểm chuẩn hiện tại cho danh mục trực tiếp:
+Current benchmark for the live native catalog:
 
-- 32 kỹ năng được công bố
-- mức chênh lệch chất lượng hiện tại: `94, 95, 96, 97, 100`
-- mức chênh lệch thực tiễn tốt nhất hiện nay: `98, 99, 100`
-- kết quả cao nhất hiện tại: `omni-figma` với chất lượng `100/100` và các phương pháp hay nhất `100/100`---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-Trình phân loại**không**chỉ thưởng cho mức giảm giá khá lớn.
+The classifier does **not** reward pretty markdown alone.
 
-Kỹ năng đạt điểm cao là những kỹ năng:
+High-scoring skills are skills that are:
 
--**có thể khám phá**: mô tả nêu rõ chức năng của kỹ năng và thời điểm sử dụng kỹ năng đó
--**hoạt động**: kỹ năng bao gồm các tập lệnh cục bộ, tài liệu tham khảo và các ví dụ có thể chạy được
--**chẩn đoán**: giúp nhân viên phục hồi khi có sự cố xảy ra
--**cụ thể**: nó tập trung vào một quy trình công việc, không phải lời khuyên rộng rãi
--**an toàn**: nó tránh được các mẫu rủi ro và gửi đầu ra máy quét sạch
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-Trong thực tế, các kỹ năng mạnh nhất hoạt động giống**một bộ công việc được đóng gói nhỏ**hơn là một ghi chú đánh dấu đơn giản.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Sử dụng các mục tiêu này khi soạn thảo:
+Use these targets when authoring:
 
-| Kích thước | Mục Tiêu Mạnh | Mục tiêu đặc biệt |
+| Dimension | Strong Target | Exceptional Target |
 |:----------|:--------------|:-------------------|
-| 🎯 Trưởng thành | `L3` | `L3` với nhiều tài nguyên hỗ trợ |
-| 📋 Các phương pháp hay nhất | `90+` | `96+` |
-| ⭐ Chất lượng | `85+` | `90+` |
-| 🛡️ An ninh | `95+` | `95+` không có kết quả |---
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Vấn đề chính của bạn phải làm cho kỹ năng trở nên dễ phân loại và dễ khám phá:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `name` khớp chính xác với thư mục
-- `description` giải thích cả**cái gì**và**khi**
-- `danh mục`, `thẻ`, `công cụ`, `độ phức tạp`, `rủi ro`, `nguồn`, `tác giả` và ngày tháng đều có mặt
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Hình dạng mô tả tốt:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Hình dạng mô tả sai:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-Các kỹ năng mạnh nhất luôn bao gồm các phần sau:
+The strongest skills consistently include these sections:
 
-- `## Tổng quan`
-- `## Khi nào nên sử dụng kỹ năng này`
-- `##Quy trình làm việc`
-- `## Ví dụ`
-- `## Các phương pháp hay nhất`
-- `##Xử lý sự cố`
-- `## Tài nguyên bổ sung`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Nếu thiếu một trong những điều này, điểm vẫn có thể tốt nhưng sẽ khó để trông xuất sắc hơn.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-Các kỹ năng ghi điểm cao nhất thường bao gồm:
+Top-scoring skills usually include:
 
-- `tài liệu tham khảo/checklist.md`
-- một hoặc nhiều tập lệnh trợ giúp trong `scripts/`
-- ít nhất một ví dụ hoạt động trong `examples/`
-- `agent/openai.yaml` khi kỹ năng này được dùng để gọi tác nhân trực tiếp
-- liên kết trực tiếp từ `SKILL.md` đến các tệp cục bộ đó
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Điều này quan trọng vì trình phân loại coi kỹ năng có**tài liệu hỗ trợ đi kèm**là dễ thực hiện hơn so với kỹ năng chỉ hướng ra ngoài.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Tối thiểu được đề xuất:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Các ví dụ đạt điểm cao là:
+High-scoring examples are:
 
-- bê tông
-- được gõ bằng hàng rào thực chẳng hạn như `bash` hoặc `python`
-- gắn với tập lệnh cục bộ hoặc lệnh lặp lại
-- đại diện của quy trình làm việc
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-Tốt:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Yếu đuối:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-Người ghi điểm khen thưởng việc khắc phục sự cố giúp nhân viên phục hồi chứ không chỉ nhận ra vấn đề.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Định dạng ưa thích:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Điều này mạnh hơn một ghi chú mơ hồ như:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-Bây giờ, bộ phân loại có thể phân biệt giữa một kỹ năng chỉ hoàn thiện và một kỹ năng thực sự sâu sắc.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Các tín hiệu giúp:
+Signals that help:
 
-- nhiều ví dụ cụ thể
-- nhiều trường hợp khắc phục sự cố
-- Hướng dẫn kỹ năng liên quan
-- gói tham khảo phong phú hơn
-- phần `## Quy trình làm việc` hiển thị với các bước được đánh số mà người ghi điểm có thể đếm trực tiếp
-- ít nhất một bảng vận hành hoặc sơ đồ thực hiện để làm rõ quy trình làm việc
-- nhiều hơn một thư mục hỗ trợ hoặc loại tài sản
-- phần quy trình làm việc với đủ các bước để hướng dẫn thực hiện
-- tài sản quyết định như danh sách kiểm tra, phiếu tự đánh giá, ma trận, gói hoặc sổ tay
-- tính đa dạng của gói hỗ trợ mạnh mẽ hơn trên `references/`, `scripts/`, `agent/`, `examples/` hoặc `assets/`
-- đủ các tệp hỗ trợ có thể tái sử dụng để trông giống như một bộ công cụ, không có một công cụ trợ giúp nào được giấu bên cạnh phần đánh dấu
-- nhiều hơn một tệp trợ giúp khi quy trình làm việc đủ phức tạp để biện minh cho gói hỗ trợ
-- đủ độ sâu cơ thể để trang trải các chế độ đánh đổi và thất bại
-- hướng dẫn vận hành dày đặc hơn, vì giờ đây, trình ghi điểm có thể phân biệt định dạng tinh tế với độ sâu quy trình làm việc có thể tái sử dụng thực sự
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Các tín hiệu**không**giúp ích nhiều:
+Signals that do **not** help much:
 
-- lặp lại cùng một hướng dẫn bằng các từ khác nhau
-- văn bản phụ chung
-- thêm tiêu đề mà không thêm nội dung bên dưới chúng---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Sử dụng danh sách kiểm tra này trước khi chạy xác thực:
+Use this checklist before running validation:
 
-- mô tả nói**cái gì**và**khi nào**
-- kỹ năng tập trung vào một quy trình công việc
-- `## Quy trình làm việc` tồn tại và chứa các bước được đánh số hoặc có dấu đầu dòng
-- tồn tại ít nhất một ví dụ có thể chạy được
-- `references/`, `scripts/`, và lý tưởng nhất là `examples/` được liên kết từ `SKILL.md`
-- `agents/openai.yaml` tồn tại khi kỹ năng này được dùng để gọi trực tiếp trong các máy khách đại lý
-- xử lý sự cố sử dụng `Triệu chứng` và `Giải pháp`
-- kỹ năng có thể được phân loại một cách hợp lý là `L3`
-- không có lệnh rủi ro hoặc đường dẫn đáng ngờ
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Sau đó chạy:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- mô tả đúng nhưng quá chung chung
-- markdown có các phần nhưng không có độ sâu hoạt động
-- ví dụ không trỏ đến người trợ giúp địa phương
-- tồn tại sự cố nhưng không thể chẩn đoán được
-- có quá ít thẻ hoặc số nhận dạng công cụ
-- kỹ năng an toàn và sạch sẽ nhưng vẫn còn quá nông để được coi là xuất sắc---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Nếu kỹ năng của bạn cảm thấy như:
+If your skill feels like:
 
-- một**mẫu**: nó có thể vượt qua
-- một**hướng dẫn**: nó có thể đạt điểm cao
--**gói quy trình làm việc**: có nhiều khả năng đạt điểm cao nhất
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

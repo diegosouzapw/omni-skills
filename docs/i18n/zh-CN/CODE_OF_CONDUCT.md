@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-作为成员、贡献者和维护者，我们承诺让参与此项目和社区的每个人都获得**无骚扰的体验**，无论年龄、体型、明显或不可见的残疾、种族、性别特征、性别认同和表达、经验水平、教育、社会经济地位、国籍、个人外表、种族、种姓、肤色、宗教或性认同和取向。---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-|行为 |示例|
+| Behavior | Example |
 |:---------|:--------|
-| 💬 欢迎语言 |沟通时保持包容和尊重 |
-| 🤝 尊重差异 |重视不同的观点和经验|
-| 📝 建设性批评 |优雅地接受和提供反馈 |
-| 🎯 社区焦点 |优先考虑对项目和社区最有利的事情 |
-| ❤️同理心|对其他社区成员表现出同理心 |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-|行为 |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 性语言或意象，以及性关注或性挑逗 |
-| 🚫 恶搞、侮辱或贬损评论 |
-| 🚫 个人或政治攻击 |
-| 🚫 公开或私下骚扰 |
-| 🚫 未经明确许可发布他人的私人信息 |
-| 🚫 在专业环境中被合理认为不适当的其他行为 |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-可以通过以下方式向维护人员报告辱骂、骚扰或其他不可接受的行为：
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-|频道|如何|
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHub 私人频道 |通过 GitHub 安全或讨论联系 |
-| 📧 直接联系 |直接联系维护人员 |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**所有报告都将得到及时、公正的审查和调查。**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-本行为准则改编自[贡献者契约](https://www.contributor-covenant.org) 2.1 版。
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

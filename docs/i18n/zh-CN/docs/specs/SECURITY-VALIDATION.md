@@ -5,44 +5,50 @@
 ---
 
 
->**针对每项已发布技能的安全扫描、存档生成、可选签名和分发打包。**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-|特色|状态|
+| Feature | State |
 |:--------|:------|
-| ✅ 静态安全扫描仪 |始终启用 |
-| ✅ 按技能元数据分类 |已实施 |
-| ✅ 按技能存档 (zip/tar.gz) |已实施 |
-| ✅ SHA-256 校验和清单 |已实施 |
-| ✅ 发布标签上的 CI 扫描器门 |已实施 |
-| ✅ 来自经过验证的 tarball 的 npm 发布工作流程 |已实施 |
-| ⚙️ ClamAV 扫描 |可选浓缩器|
-| ⚙️ VirusTotal 哈希查找 |可选浓缩器|
-| ✅ 独立签名 |已实施 |
-| ✅ CI 强制签名 |在发布标签上实现 |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-在验证期间扫描每个技能：
+Scans every skill during validation:
 
-|目标|扫描什么 |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| 📝 `技能.md` |主要技能内容|
-| 📄 Markdown/文本文件 |打包的参考资料和文档 |
-| ⚙️ 脚本 |打包的自动化脚本 |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**规则系列：**
+**Rule families:**
 
-|规则|示例 |
+| Rule | Examples |
 |:-----|:---------|
-| 🎭**及时注射**|渗透模式、指令覆盖 |
-| 💣**破坏性命令**| `rm -rf`、`format`、`del /s` |
-| 🔑**权限升级**| `sudo`、`chmod 777`、setuid 模式 |
-| 📂**可疑路径**| `/etc/shadow`、`~/.ssh`、凭证文件 |
-| ⚠️**有风险的原语**| `shell=True`、`pickle.load`、`eval`、`extractall` |---
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- 在“PATH”中需要“clamscan”
-- 扫描打包文件中的已知恶意软件
-- 结果记录在技能元数据中---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**仅哈希查找**- 正常验证期间不上传文件
-- 未知文件仅保留在本地
-- 保持构建**确定性**和 CI 独立性### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-严格的释放门：```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-此步骤读取生成的“skills/*/metadata.json”，如果所需的扫描程序未执行或报告检测，则此步骤会失败。---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-安全数据在每个技能的元数据中发出：```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ npm run verify:scanners:strict
 }
 ```
 
-> 该块被传播到清单和目录视图中，使 CLI、API 和 MCP 能够**按安全分数进行过滤和排名**。---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-每个发布的技能都会生成：
+Each published skill generates:
 
-|文件|格式|
-|:-----|:--------|
-| `dist/archives/<skill>.zip` | ZIP 存档 |
-| `dist/archives/<skill>.tar.gz` |压缩包存档 |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 校验和清单 |### ✅ Verify Archives
+| File | Format |
+|:-----|:-------|
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions 现已发布标签 (`v*`)：
+GitHub Actions release tags (`v*`) now:
 
-1. 验证 git 标签是否匹配 `package.json`
-2.安装并刷新ClamAV
-3. 从 GitHub 机密中解码发布签名密钥
-4. 运行 `npm run release:verify`
-5. 使用 npm pack 打包 tarball
-6. 将确切的 tarball 发布到 npm 并注明出处
-7. 创建带有自定义注释和附加验证资产的 GitHub 版本---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> 如果未提供公钥，则构建会使用“openssl”派生一个公钥并将其放置在“dist/signing/”中。
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-启用后，“.sig”文件将在存档和校验和清单旁边发出。
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-在 CI 中，发布标签现在需要通过以下方式签名：
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` 或 `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- 可选“OMNI_SKILLS_SIGN_PUBLIC_KEY_B64”或“OMNI_SKILLS_SIGN_PUBLIC_KEY”---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-|限制|状态 |
-|:-----------|:--------|
-| VirusTotal 上传提交 |故意排除在默认验证之外 |
-|签署执行 |强制发布标签；本地构建可能仍会运行未签名的|
-|托管治理 |内置身份验证、管理运行时、CORS/IP 允许列表、维护模式和审核日志记录均已到位；外部网关仍然是可选的|
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

@@ -5,69 +5,83 @@
 ---
 
 
->**Ключовото архитектурно решение, което оформи структурата на работното пространство на monorepo.**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**Прието**— текуща посока на работното пространство и форма на активното хранилище.---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills стартира като**инсталатор-първо**хранилище. Това беше достатъчно, за да разпространи съдържанието на `SKILL.md`, но не достатъчно, за да изложи каталога на агенти чрез повърхности, базирани на протокола.
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-Имахме нужда от фондация, която да поддържа:
+We needed a foundation that could support:
 
-| Изискване | Протокол |
+| Requirement | Protocol |
 |:------------|:---------|
-| 🌐 API за HTTP каталог само за четене | ПОЧИВКА |
-| 🔌 MCP сървър само за четене | Протокол на моделния контекст |
-| 🤖 A2A повърхност, обърната към агента | Агент-към-агент |
-| 📂 Локално инсталиране на кошове | Инструменти за файлова система |
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**Критично ограничение**: Избягвайте повторно анализиране на репо файлове независимо във всяка нова услуга.---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-Приемете**ориентирано към работното пространство monorepo**със споделено ядро на каталога и специфични за протокола пакети:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| Пакет | Цел |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `omni-skills` (корен) | CLI инсталатор и репо скриптове |
-| 🧠 `@omni-skills/catalog-core` | Споделено зареждане, търсене, сравнение, пакети, планове за инсталиране |
-| 🌐 `@omni-skills/server-api` | REST API само за четене |
-| 🔌 `@omni-skills/server-mcp` | MCP със stdio/stream/sse + локален страничен режим |
-| 🤖 `@omni-skills/server-a2a` | Време за изпълнение на задача A2A с карта на агент, анкета, SSE и конфигурация за натискане |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-Ядрото на каталога чете генерирани артефакти от:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`---
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| Резултат | Въздействие |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**Договор за споделени данни**| API, MCP и A2A използват едни и същи артефакти |
-| 🖥️**Unified CLI**| Един двоичен файл разкрива инсталация, UI shell, API, MCP, A2A, диагностика и дим |
-| 🧩**Изолация на протокола**| Новите повърхности се повтарят без свързване с вътрешните части на инсталатора |
-| 🔌**Местен кош**| Работещ MCP режим с възможност за запис зад списък с разрешени, с клиентски рецепти |
-| 📦**Среда за изпълнение на един пакет**| Публикуваният npm пакет носи заедно повърхностите на протокола, инструментите за валидиране и генерираните артефакти |---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| Компромис | Смекчаване |
+| Tradeoff | Mitigation |
 |:---------|:-----------|
-| 🔄**Дублиране на метаданни**| Изграждане на Python + среда за изпълнение на JavaScript → евентуално консолидиране |
-| 🏗️**Сложност A2A**| Вече съществува издръжлив жизнен цикъл, но координационните адаптери добавят оперативна дълбочина |
-| 📦**Подреждане на каталога**| Селективното инсталиране изисква команди, манифести и документи, за да останат синхронизирани |
-| 📋**Групиране на пропуски в метаданни**| Пакетите могат да изпреварят публикуваните умения, като изискват изрични предупреждения за липсващи членове |---
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | Действие | Статус |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Отдалечено MCP удостоверяване и ограничаване на скоростта | ✅ Готово |
-| 2️⃣ | Подобрено писане на специфични за клиента MCP конфигурации | ✅ Представяне днес за Claude, Cursor, Codex, Gemini, Kiro, VS Code и Dev Containers |
-| 3️⃣ | Подписани артефакти за освобождаване или архиви за всяко умение | ✅ Представяне днес с прилагане на CI на етикети за освобождаване |
-| 4️⃣ | Време за изпълнение на задачи A2A → трайна оркестрация | ✅ Представяне днес с постоянство JSON/SQLite, външни изпълнители, координиране на лизинг по избор и опционална разширена координация на Redis |
-| 5️⃣ | Разширете публикувания каталог за по-широко покритие на пакета | ✅ Представяне днес за текущите седем подбрани стартови пакета |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

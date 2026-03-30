@@ -4,7 +4,7 @@
 
 ---
 
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
 <div align="center">
 
@@ -13,8 +13,12 @@
 
 <br/>
 
-**A készségkatalógus, amely önmagát telepíti.**<br/>
-CLI · API · MCP · A2A – mindez egyetlen "npx" parancsból.<br/>
+**The skill catalog that installs itself.**<br/>
+CLI · API · MCP · A2A — all from a single `npx` command.
+
+> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
+
+<br/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Content License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-blue.svg)](LICENSE-CONTENT)
@@ -26,9 +30,44 @@ CLI · API · MCP · A2A – mindez egyetlen "npx" parancsból.<br/>
 [![API](https://img.shields.io/badge/🌐_API-read--only_catalog-0366d6?style=for-the-badge)](#-runtime-surfaces)
 [![A2A](https://img.shields.io/badge/🤖_A2A-task_lifecycle-orange?style=for-the-badge)](#-runtime-surfaces)
 
+<p align="center">
+  🇺🇸 English
+  · <a href="docs/i18n/es/README.md">🇪🇸 Español</a>
+  · <a href="docs/i18n/fr/README.md">🇫🇷 Français</a>
+  · <a href="docs/i18n/de/README.md">🇩🇪 Deutsch</a>
+  · <a href="docs/i18n/it/README.md">🇮🇹 Italiano</a>
+  · <a href="docs/i18n/ru/README.md">🇷🇺 Русский</a>
+  · <a href="docs/i18n/zh-CN/README.md">🇨🇳 中文（简体）</a>
+  · <a href="docs/i18n/ja/README.md">🇯🇵 日本語</a>
+  · <a href="docs/i18n/ko/README.md">🇰🇷 한국어</a>
+  · <a href="docs/i18n/ar/README.md">🇸🇦 العربية</a>
+  · <a href="docs/i18n/in/README.md">🇮🇳 हिन्दी</a>
+  · <a href="docs/i18n/th/README.md">🇹🇭 ไทย</a>
+  · <a href="docs/i18n/vi/README.md">🇻🇳 Tiếng Việt</a>
+  · <a href="docs/i18n/id/README.md">🇮🇩 Bahasa Indonesia</a>
+  · <a href="docs/i18n/ms/README.md">🇲🇾 Bahasa Melayu</a>
+  · <a href="docs/i18n/nl/README.md">🇳🇱 Nederlands</a>
+  · <a href="docs/i18n/pl/README.md">🇵🇱 Polski</a>
+  · <a href="docs/i18n/sv/README.md">🇸🇪 Svenska</a>
+  · <a href="docs/i18n/no/README.md">🇳🇴 Norsk</a>
+  · <a href="docs/i18n/da/README.md">🇩🇰 Dansk</a>
+  · <a href="docs/i18n/fi/README.md">🇫🇮 Suomi</a>
+  · <a href="docs/i18n/pt/README.md">🇵🇹 Português (Portugal)</a>
+  · <a href="docs/i18n/ro/README.md">🇷🇴 Română</a>
+  · <a href="docs/i18n/hu/README.md">🇭🇺 Magyar</a>
+  · <a href="docs/i18n/bg/README.md">🇧🇬 Български</a>
+  · <a href="docs/i18n/sk/README.md">🇸🇰 Slovenčina</a>
+  · <a href="docs/i18n/uk-UA/README.md">🇺🇦 Українська</a>
+  · <a href="docs/i18n/he/README.md">🇮🇱 עברית</a>
+  · <a href="docs/i18n/phi/README.md">🇵🇭 Filipino</a>
+  · <a href="docs/i18n/pt-BR/README.md">🇧🇷 Português (Brasil)</a>
+</p>
+
 <br/>
 
-[⚡ Telepítés 1 percen belül](#-telepítés) · [🛠️ Válassza ki az eszközt](#-choose-your-tool) · [📖 CLI útmutató](docs/users/CLI-USER-GUIDE.md) · [📦 Csomagok](docs/users/BUNDLES.md) Futásidejű [](🔌) Miért futásidejű Omni Skills](#-why-omni-skills)</div>
+[⚡ Install in 1 min](#-installation) · [🛠️ Choose your tool](#-choose-your-tool) · [📖 CLI Guide](docs/users/CLI-USER-GUIDE.md) · [📦 Bundles](docs/users/BUNDLES.md) · [🔌 Runtime](#-runtime-surfaces) · [💡 Why Omni Skills](#-why-omni-skills)
+
+</div>
 
 ---
 
@@ -38,34 +77,41 @@ CLI · API · MCP · A2A – mindez egyetlen "npx" parancsból.<br/>
 
 </div>
 
-| | Metrikus | Érték |
+| | Metric | Value |
 |:--|:-------|:------|
-| 📦 |**Publicated Skills**| "32" 15 aktív kategóriában |
-| 🎯 |**Csomagok**| `7` teljesen alátámasztott válogatott csomagok |
-| 🖥️ |**Kliensek telepítése**| "7" telepítésre alkalmas AI kódoló asszisztensek |
-| 🔌 |**MCP-kliensek**| `16` MCP-konfigurációra alkalmas kliensek |
-| 🔐 |**Kurált kimenet**| `32` továbbfejlesztett angol származékok a `skills_omni/` |
-| 📋 |**Jelenlegi kiadás**| "v0.1.2" |---
+| 📦 | **Published Skills** | `48` native skills across 15 active categories |
+| 🎯 | **Bundles** | `7` fully backed curated bundles |
+| 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
+| 🔌 | **MCP Clients** | `16` MCP config-capable clients |
+| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
+| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 📋 | **Current Release** | `v0.1.3` |
+
+---
 
 ## Gyors kezdés
 
->**AI kódolási készségeket, Claude Code készségeket, kurzor készségeket, Codex CLI készségeket, Gemini CLI készségeket, Antigravitációs készségeket vagy telepíthető SKILL.md könyvtárakat keresett?**
-> Jó helyen jársz.### 1️⃣ What is this?
+> 🔍 **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
+> **You're in the right place.** 👇
 
-Az Omni Skills egy**telepíthető készségkatalógus és futási idő**az AI kódoló asszisztensek számára. Lényegében ez az újrafelhasználható `SKILL.md` játékkönyvek nyilvános tárháza – de az egyszerű készséggyűjteményekkel ellentétben a repo**egy**a terjesztési és futási réteg.
+### 1️⃣ What is this?
 
-<részletek>
-<summary>📋 <strong>Mit tartalmaz</strong></summary>
+Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks — but unlike plain skill collections, the repo **is** the distribution and runtime layer.
 
-| Alkatrész | Leírás |
+<details>
+<summary>📋 <strong>What's included</strong></summary>
+
+| Component | Description |
 |:----------|:-----------|
-| 🧠**Készségek**| SKILL.md-alapú játékkönyvek AI-asszisztensek számára
-| 📦**Manifests**| Létrehozott JSON-jegyzékek, csomagok és archívumok |
-| 🧭**Irányított telepítés**| Interaktív TTY és vizuális terminál telepítési folyamatok |
-| 🌐**Katalógus API**| Csak olvasható HTTP API kereséshez, felfedezéshez és letöltésekhez |
-| 🔌**MCP szerver**| Felfedezési, ajánlási és ügyfélbarát konfigurációs eszközök |
-| 🤖**A2A futásidejű**| Ügynök-ügynök feladatszervezés |
-| ✨**Enhancement Pipeline**| A Private Enhancer a válogatott angol származékokat a `skills_omni/` |</details>
+| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
+| 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
+| 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
+| 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
+| 🔌 **MCP Server** | Discovery, recommendation, and client-aware config tooling |
+| 🤖 **A2A Runtime** | Agent-to-agent task orchestration |
+| ✨ **Enhancement Pipeline** | Private enhancer publishes curated English derivatives into `skills_omni/` |
+
+</details>
 
 ### 2️⃣ Quick Start
 
@@ -85,95 +131,109 @@ test -d ~/.gemini/antigravity/skills && echo "✅ Skills installed"
 
 ### 4️⃣ Use your first skill
 
-> 💬 *"Használja a `@brainstorming" kifejezést SaaS MVP megtervezéséhez."*
+> 💬 *"Use `@brainstorming` to plan a SaaS MVP."*
 >
-> 💬 *"A `@api-design` használatával tekintse át ezt a végponttervet."*
+> 💬 *"Use `@api-design` to review this endpoint design."*
 >
-> 💬 *"A regresszió elkülönítéséhez használja a "@debugging" parancsot."*### 5️⃣ Start with a bundle
+> 💬 *"Use `@debugging` to isolate this regression."*
 
-| 🎯 Cél | Csomag | Parancs |
+### 5️⃣ Start with a bundle
+
+| 🎯 Goal | Bundle | Command |
 |:---------|:-------|:--------|
-| Általános gépészet | `essentials` | `npx omni-skills --csomag lényegi elemei` |
-| Termék + alkalmazás kézbesítés | `full-stack` | `npx omni-skills --bundle full-stack` |
-| Tervező rendszerek | "tervezés" | `npx omni-skills --bundle design` |
-| Biztonsági felülvizsgálat | "biztonság" | `npx omni-skills -- csomagbiztonság` |
-| Infra és kiadás | `devops` | `npx omni-skills --bundle devops` |
-| LLM alkalmazások | "ai-mérnök" | `npx omni-skills --bundle ai-engineer` |
-| OSS karbantartás | "oss-fenntartó" | `npx omni-skills --bundle oss-maintainer` |---
+| General engineering | `essentials` | `npx omni-skills --bundle essentials` |
+| Product + app delivery | `full-stack` | `npx omni-skills --bundle full-stack` |
+| Design systems | `design` | `npx omni-skills --bundle design` |
+| Security review | `security` | `npx omni-skills --bundle security` |
+| Infra and release | `devops` | `npx omni-skills --bundle devops` |
+| LLM applications | `ai-engineer` | `npx omni-skills --bundle ai-engineer` |
+| OSS maintenance | `oss-maintainer` | `npx omni-skills --bundle oss-maintainer` |
+
+---
 
 ## 🧩 Core Concepts
 
-A csomagok összehasonlítása vagy a telepítési útvonal kiválasztása előtt az alábbi öt építőelem megértése segít:
+Before comparing bundles or picking an install path, understanding these five building blocks helps:
 
-| koncepció | Mit jelent |
-|:--------|:--------------|
-| 🧠**Készségek**| Újrafelhasználható `SKILL.md` játékkönyvek, amelyek megtanítják az asszisztenst a munkafolyamatok megfelelő végrehajtására |
-| 📦**Katalógus-termékek**| Létrehozott JSON és archív kimenetek, amelyek lehetővé teszik a keresést, az összehasonlítást, a letöltést és a telepítést |
-| 🔌**MCP Config**| Kliensoldali konfiguráció az asszisztensek számára az Omni készségek felfedezéséhez az MCP-eszközökön keresztül |
-| 🤖**A2A futásidejű**| Ügynökök közötti irányítás a felfedezéshez, ajánlásokhoz és telepítési terv átadáshoz |
-| ✨**Kurált kimenet**| `skills_omni/` – az Omni által karbantartott továbbfejlesztett felület, külön a natív upstream beviteltől |
+| Concept | What it means |
+|:--------|:-------------|
+| 🧠 **Skills** | Reusable `SKILL.md` playbooks that teach an assistant how to execute a workflow well |
+| 📦 **Catalog Artifacts** | Generated JSON and archive outputs enabling search, comparison, download, and install |
+| 🔌 **MCP Config** | Client-side configuration for assistants to discover Omni Skills through MCP tools |
+| 🤖 **A2A Runtime** | Agent-to-agent orchestration for discovery, recommendation, and install-plan handoff |
+| ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
 
->**📝 Natív/Kurált irányelv:**
-> - A `skills/` bármilyen nyelven elfogadja a natív upstream bevitelt
-> - A `skills_omni/` mindig angol nyelven kerül összeállításra és közzétételre
-> - A `skills_omni/` egy egyirányú felület, és nem lép vissza a natív bevitelbe---
+> **📝 Native/Curated policy:**
+> - `skills/` accepts native upstream intake in any language
+> - `skills_omni/` is always curated and published in English
+> - `skills_omni/` is a one-way surface and does not loop back into native intake
+
+---
 
 ## 💡 Why Omni Skills
 
->**Nem csak „egy másik tárhely a mappákban való készségekkel”.**
-> Az Omni Skills erősebb szerződéssel és szélesebb futásidejű felülettel rendelkezik.
+> **Not just "another repository with skills in folders."**
+> Omni Skills has a stronger contract and a broader runtime surface.
 
-| Ha szeretné… | 📁 Tipikus készségek repo | ✨ Omni Skills |
-|:-------------|:-----------------------|:---------------|
-| Telepítés valódi asszisztensbe | Kézi másolás vagy egyéni szkript | "npx omni-skills", irányított telepítés, vizuális felhasználói felület, szelektív "--skill" és "--bundle" |
-| Készségek keresése és összehasonlítása | Böngésszen manuális jelölések | Generált katalógus, szűrés, csomagtervezés, keresés, összehasonlítás és ajánlás |
-| Használja ugyanazokat az adatokat az eszközök között | Szerszámonként külön logika | Megosztott jegyzékek és katalógus a CLI, API, MCP és A2A |
-| MCP-kliensek konfigurálása | Fájlok kézi szerkesztése | `config-mcp`, helyi oldalkocsi előnézetek, generált receptek és engedélyezési listán szereplő írások |
-| Trust kiadások | Legjobb erőfeszítést igénylő csomagolás | Ellenőrző összegek, aláírt archívumok, szkenner-ellenőrzés, CI kiadása és elővizsgálat közzététele |
-| A közösség felvételének kurátora | Bármilyen föld is marad, ahogy van | Natív bevitel a `skills/`-ben, kurált angol származékok a `skills_omni/`-ben forrásmegjelöléssel |---
+| If you want… | 📁 Typical skills repo | ✨ Omni Skills |
+|:-------------|:----------------------|:--------------|
+| Install into a real assistant | Manual copy or custom script | `npx omni-skills`, guided install, visual UI, selective `--skill` and `--bundle` |
+| Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
+| Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
+| Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
+| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
+| Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
+
+---
 
 ## 🖥️ Compatibility and Invocation
 
-Ezek a készségek a "SKILL.md" modellt követik, és normál tárolóként is használhatók, de a csomag széles felületen is telepíti és konfigurálja őket:
+These skills follow the `SKILL.md` model and can be used as a normal repository, but the package also installs and configures them across a broad surface:
 
->**7**telepítésre képes kliensek ·**16**MCP-konfigurációra alkalmas kliensek### 🎯 Install-Capable Clients
+> **7** install-capable clients · **16** MCP config-capable clients
 
-| Szerszám | Típus | Meghívás példa | Útvonal telepítése |
-|:-----|:-----|:--------------------|:--------------|
-| 🟢**Claude Code**| CLI | `Használjon ötletbörzét egy funkció megtervezéséhez' | "~/.claude/skills" |
-| 🔵**Kurzor**| IDE | `@brainstorming segít megtervezni egy szolgáltatást` | "~/.kurzor/készségek" |
-| 🟡**Gemini CLI**| CLI | `Használjon ötletbörzét egy funkció megtervezéséhez' | "~/.gemini/skills" |
-| 🔴**Codex CLI**| CLI | `Használjon ötletbörzét egy funkció megtervezéséhez' | "~/.codex/skills" |
-| 🟠**Kiro**| CLI / IDE | `Használjon ötletbörzét egy funkció megtervezéséhez' | "~/.kiro/skills" |
-| 🟣**Antigravitáció**| IDE | `Használja a @brainstorming funkciót egy funkció megtervezéséhez` | "~/.gemini/antigravitation/skills" |
-| ⚪**OpenCode**| CLI | `nyílt kód futtatása @brainstorming` | `<munkaterület>/.opencode/skills` |
+### 🎯 Install-Capable Clients
 
-<részletek>
-<summary>🔌 <strong>Az MCP-konfiguráció szélesebb lefedettsége (16 ügyfél)</strong></summary>
+| Tool | Type | Invocation Example | Install Path |
+|:-----|:-----|:-------------------|:-------------|
+| 🟢 **Claude Code** | CLI | `Use brainstorming to plan a feature` | `~/.claude/skills` |
+| 🔵 **Cursor** | IDE | `@brainstorming help me plan a feature` | `~/.cursor/skills` |
+| 🟡 **Gemini CLI** | CLI | `Use brainstorming to plan a feature` | `~/.gemini/skills` |
+| 🔴 **Codex CLI** | CLI | `Use brainstorming to plan a feature` | `~/.codex/skills` |
+| 🟠 **Kiro** | CLI / IDE | `Use brainstorming to plan a feature` | `~/.kiro/skills` |
+| 🟣 **Antigravity** | IDE | `Use @brainstorming to plan a feature` | `~/.gemini/antigravity/skills` |
+| ⚪ **OpenCode** | CLI | `opencode run @brainstorming` | `<workspace>/.opencode/skills` |
 
-Ezek a célok a támogatott MCP konfigurációs felület részét képezik, még akkor is, ha nem a készségkönyvtárak telepítési célpontjai:
+<details>
+<summary>🔌 <strong>Broader MCP Configuration Coverage (16 clients)</strong></summary>
 
-| Kliens vagy felület | Támogatás típusa | Megjegyzések |
-|:------------------|:-------------|:------|
-| Claude beállítások és az asztal | MCP konfiguráció | Beállítások, asztali és projekt-tudatos folyamatok |
-| VS kód | MCP konfiguráció | Felhasználói, munkaterületi, bennfentesek és fejlesztői tárolócélok |
-| Ikrek | MCP konfiguráció | Felhasználói és munkaterületi beállítások |
-| Cline | MCP konfiguráció | Első osztályú konfigurációs cél |
-| GitHub Copilot CLI | MCP konfiguráció | Felhasználói és repo konfigurációs célok |
-| Folytatás | MCP konfiguráció | Workspace YAML generáció |
-| Szörf | MCP konfiguráció | Felhasználói konfiguráció cél |
-| Zed | MCP konfiguráció | Munkaterület konfigurációs cél |
-| liba | MCP konfiguráció | Felhasználói konfigurációs cél generált recepttel |
-| Kilo Code | MCP konfiguráció | Felhasználói, projekt- és munkaterületi célok |
-| Junie | MCP konfiguráció | Projekt- és felhasználói konfigurációs célok |</details>
+These targets are part of the supported MCP configuration surface, even when they are not install targets for skill directories:
+
+| Client or Surface | Support Type | Notes |
+|:------------------|:------------|:------|
+| Claude settings and desktop | MCP config | Settings, desktop, and project-aware flows |
+| VS Code | MCP config | User, workspace, insiders, and Dev Container targets |
+| Gemini | MCP config | User and workspace settings |
+| Cline | MCP config | First-class config target |
+| GitHub Copilot CLI | MCP config | User and repo config targets |
+| Continue | MCP config | Workspace YAML generation |
+| Windsurf | MCP config | User config target |
+| Zed | MCP config | Workspace config target |
+| Goose | MCP config | User config target with generated recipe |
+| Kilo Code | MCP config | User, project, and workspace targets |
+| Junie | MCP config | Project and user config targets |
+
+</details>
 
 ---
 
 ## Telepítés
 
-<tábla>
+<table>
 <tr>
-<td width="50%">### Option A: Install with `npx` *(recommended)*
+<td width="50%">
+
+### Option A: Install with `npx` *(recommended)*
 
 ```bash
 npx omni-skills
@@ -230,35 +290,39 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ## 🛠️ Choose Your Tool
 
-| Szerszám | Parancs telepítése | Első használat |
-|:-----|:---------------|:-----------|
-| 🟢 Claude Code | `npx omni-skills --claude` | `Használjon ötletbörzét egy funkció megtervezéséhez' |
-| 🔵 Kurzor | `npx omni-skills --kurzor` | `@brainstorming segít megtervezni egy szolgáltatást` |
-| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Használjon ötletbörzét egy funkció megtervezéséhez' |
-| 🔴 Codex CLI | `npx omni-skills --codex` | `Használjon ötletbörzét egy funkció megtervezéséhez' |
-| 🟣 Antigravitáció | `npx omni-skills --antigravitation` *(alapértelmezett)* | `Használja a @brainstorming funkciót egy funkció megtervezéséhez` |
-| 🟠 Kiro | `npx omni-skills --kiro` | `Használjon ötletbörzét egy funkció megtervezéséhez' |
-| ⚪ OpenCode | `npx omni-skills --opencode` | `nyílt kód futtatása @brainstorming` |
-| 📂 Egyéni útvonal | `npx omni-skills --path ./my-skills` | A szerszámtól függ |
+| Tool | Install Command | First Use |
+|:-----|:---------------|:----------|
+| 🟢 Claude Code | `npx omni-skills --claude` | `Use brainstorming to plan a feature` |
+| 🔵 Cursor | `npx omni-skills --cursor` | `@brainstorming help me plan a feature` |
+| 🟡 Gemini CLI | `npx omni-skills --gemini` | `Use brainstorming to plan a feature` |
+| 🔴 Codex CLI | `npx omni-skills --codex` | `Use brainstorming to plan a feature` |
+| 🟣 Antigravity | `npx omni-skills --antigravity` *(default)* | `Use @brainstorming to plan a feature` |
+| 🟠 Kiro | `npx omni-skills --kiro` | `Use brainstorming to plan a feature` |
+| ⚪ OpenCode | `npx omni-skills --opencode` | `opencode run @brainstorming` |
+| 📂 Custom path | `npx omni-skills --path ./my-skills` | Depends on your tool |
 
-> 📖**Nem tudja, hol kezdje?**
-> - [🚀 Kezdő lépések](docs/users/GETTING-STARTED.md) – telepítse és ellenőrizze 2 percen belül
-> - [🧭 CLI felhasználói kézikönyv](docs/users/CLI-USER-GUIDE.md) – teljes parancshivatkozás
-> - [📗 Használati útmutató](docs/users/USAGE.md) – promptok, minták és futási módok---
+> 📖 **Not sure where to start?**
+> - [🚀 Getting Started](docs/users/GETTING-STARTED.md) — install and verify in under 2 minutes
+> - [🧭 CLI User Guide](docs/users/CLI-USER-GUIDE.md) — full command reference
+> - [📗 Usage Guide](docs/users/USAGE.md) — prompts, patterns, and runtime modes
+
+---
 
 ## 🔌 Runtime Surfaces
 
-Az Omni Skills nem csak a készségek könyvtára.**négy futásidejű felületet**tesz közzé, amelyek ugyanazt a generált katalógust fogyasztják:
+Omni Skills is not only a library of skills. It exposes **four runtime surfaces** that consume the same generated catalog:
 
-| Felület | állam | Mit csinál | Példa |
-|:--------|:------|:-------------|:---------|
-| 🖥️**CLI**| ✅ Elérhető | Keresés, telepítés, diagnosztizálás, vizuális felhasználói felület, rendszerindítási szolgáltatások, füstellenőrzés | `npx omni-skills doctor` |
-| 🌐**Katalógus API**| ✅ Elérhető | Csak olvasható katalógus, keresés, csomagok, összehasonlítás, tervek telepítése, letöltések | `npx omni-skills api --port 3333` |
-| 🔌**MCP**| ✅ Elérhető | Felfedezés, ajánlás, telepítési előnézet, helyi oldalkocsi, konfigurációs folyamatok | `npx omni-skills mcp stream --local` |
-| 🤖**A2A**| ✅ Elérhető | Feladat életciklusa, átadás, lekérdezés, adatfolyam, törlés, fennmaradás | `npx omni-skills a2a --port 3335` |
+| Surface | State | What it does | Example |
+|:--------|:------|:-------------|:--------|
+| 🖥️ **CLI** | ✅ Available | Find, install, diagnose, visual UI, boot services, smoke checks | `npx omni-skills doctor` |
+| 🌐 **Catalog API** | ✅ Available | Read-only catalog, search, bundles, compare, install plans, downloads | `npx omni-skills api --port 3333` |
+| 🔌 **MCP** | ✅ Available | Discovery, recommendation, install preview, local sidecar, config flows | `npx omni-skills mcp stream --local` |
+| 🤖 **A2A** | ✅ Available | Task lifecycle, handoff, polling, streaming, cancelation, persistence | `npx omni-skills a2a --port 3335` |
 
-<részletek>
-<summary>🖥️ <strong>Vizuális shell- és operátorparancsok</strong></summary>```bash
+<details>
+<summary>🖥️ <strong>Visual shell and operator commands</strong></summary>
+
+```bash
 npx omni-skills ui                # Ink visual terminal hub
 npx omni-skills ui --text         # Text fallback UI
 npx omni-skills doctor            # Environment diagnostics
@@ -268,8 +332,10 @@ npx omni-skills publish-check     # Package publication checks
 
 </details>
 
-<részletek>
-<summary>🔌 <strong>MCP-átvitelek és konfigurációk</strong></summary>```bash
+<details>
+<summary>🔌 <strong>MCP transports and config</strong></summary>
+
+```bash
 # Start MCP transports
 npx omni-skills mcp stdio
 npx omni-skills mcp stream
@@ -290,33 +356,41 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 ### 📊 Current Catalog
 
-| Metrikus | Gróf |
+| Metric | Count |
 |:-------|:------|
-| 🧠 Megjelent készségek |**32**|
-| 📂 Aktív kategóriák |**15**|
-| 📦 Teljesen alátámasztott csomagok |**7**|
-| ✨ Kurált származékok |**32**a `skills_omni/` |### 📦 Bundle Availability
+| 🧠 Native intake skills | **48** |
+| 📂 Active categories | **15** |
+| 📦 Fully backed bundles | **7** |
+| ✨ Curated derivatives | **32** in `skills_omni/` |
 
-| Csomag | Készségek | Tagok |
-|:-------|:--------|:--------|
-| 🧰 `essentials` |**4/4**✅ | `készségek keresése` · `agyalás` · `architektúra` · `hibakeresés` |
-| 🌐 `full-stack` |**5/5**✅ | "frontend-design" · "api-design" · "adatbázis-design" · "omni-figma" · "auth-flows" |
-| 🎨 `design` |**5/5**✅ | "frontend-design" · "omni-figma" · "design-systems-ops" · "accessibility-audit" · "design-token-governance" |
-| 🛡️ `biztonság` |**4/4**✅ | `security-auditor` · `sebezhetőség-ellenőrző` · `incidens-válasz` · `fenyegetés-modellezés` |
-| ⚙️ `devops` |**5/5**✅ | "docker-expert" · "kubernetes" · "terraform" · "megfigyelhetőség-felülvizsgálat" · "kiadási tervezés" |
-| 🤖 `ai-mérnök` |**7/7**✅ | "rag-engineer" · "prompt-engineer" · "llm-patterns" · "eval-design" · "context-engineering" · "adat-szerződések" · "modell-szolgáltatás" |
-| 🔧 `oss-karbantartó` |**4/4**✅ | „find-skills” · „create-pr” · „changelog” · „dokumentáció” |### ✨ Native Intake → Curated Output
+### 📦 Bundle Availability
 
-| Felület | Cél | Nyelv |
-|:--------|:--------|:----------|
-| 📥 `készségek/` | Natív bevitel | Bármilyen nyelv |
-| ✨ `skills_omni/` | Összegyűjtött, teljes körűen karbantartott kimenet | Mindig angol |
+| Bundle | Skills | Members |
+|:-------|:-------|:--------|
+| 🧰 `essentials` | **4/4** ✅ | `find-skills` · `brainstorming` · `architecture` · `debugging` |
+| 🌐 `full-stack` | **5/5** ✅ | `frontend-design` · `api-design` · `database-design` · `omni-figma` · `auth-flows` |
+| 🎨 `design` | **5/5** ✅ | `frontend-design` · `omni-figma` · `design-systems-ops` · `accessibility-audit` · `design-token-governance` |
+| 🛡️ `security` | **4/4** ✅ | `security-auditor` · `vulnerability-scanner` · `incident-response` · `threat-modeling` |
+| ⚙️ `devops` | **5/5** ✅ | `docker-expert` · `kubernetes` · `terraform` · `observability-review` · `release-engineering` |
+| 🤖 `ai-engineer` | **7/7** ✅ | `rag-engineer` · `prompt-engineer` · `llm-patterns` · `eval-design` · `context-engineering` · `data-contracts` · `model-serving` |
+| 🔧 `oss-maintainer` | **4/4** ✅ | `find-skills` · `create-pr` · `changelog` · `documentation` |
 
->**ℹ️**A natív készségek változásait a privát fejlesztő újradolgozza, és a kurált alaphelyzetben frissíti. Ez teszi a `skills_omni/`**karbantartott katalógusfelületet**, nem pedig egy második példányt.---
+### ✨ Native Intake → Curated Output
+
+| Surface | Purpose | Language |
+|:--------|:--------|:---------|
+| 📥 `skills/` | Native intake | Any language |
+| ✨ `skills_omni/` | Curated Omni-maintained output | Always English |
+
+> **ℹ️** Changes to native skills are reprocessed by the private enhancer and refreshed in the curated baseline. This makes `skills_omni/` a **maintained catalog surface**, not a second copy.
+
+---
 
 ## 🛡️ Security and Release Posture
 
-> Az Omni Skills erősebb kiadási és ellenőrzési történetet kínál, mint egy egyszerű leárazási adattár.### 🧪 Validation and Smoke Checks
+> Omni Skills ships a stronger release and verification story than a plain markdown repository.
+
+### 🧪 Validation and Smoke Checks
 
 ```bash
 npm run validate         # Skill validation and metadata generation
@@ -325,36 +399,40 @@ npm test                 # Automated tests
 npm run smoke            # Full release preflight
 ```
 
-<részletek>
-<summary>📋 <strong>Amit a folyamat érvényesít</strong></summary>
+<details>
+<summary>📋 <strong>What the pipeline validates</strong></summary>
 
-- ✅ Készségek ellenőrzése és metaadatok generálása
-- ✅ Taxonómia normalizálási és újrakategorizáló eszközök
-- ✅ Katalógus és archívum generálás
-- ✅ Automatizált tesztek
-- ✅ API, MCP és A2A rendszerindítási útvonalak
-- ✅ Archívum ellenőrzése
-- ✅ Csomag előfuvarozása `npm pack --dry-run` funkcióval</details>
+- ✅ Skill validation and metadata generation
+- ✅ Taxonomy normalization and recategorization tooling
+- ✅ Catalog and archive generation
+- ✅ Automated tests
+- ✅ API, MCP, and A2A boot paths
+- ✅ Archive verification
+- ✅ Package preflight with `npm pack --dry-run`
 
-<részletek>
-<summary>🔐 <strong>A testtartás felengedése</strong></summary>
+</details>
 
-| Control | Leírás |
-|:--------|:------------|
-| 🔒 SHA-256 ellenőrző összegek | Az összes archívum ellenőrzőösszeg-jegyzékei |
-| ✍️ Aláírt tárgyak | Leválasztott aláírások a kiadási műtermékekről |
-| 🤖 CI által kikényszerített | Kibocsátás ellenőrzése a CI-ben a közzététel előtt |
-| 🦠 Szkenner kapuk | ClamAV és VirusTotal-kapuzott kiadási folyamat |
-| 📦 GitHub kiadás | Automatizált GitHub kiadás generálása |
-| 📋 npm kiadvány | Csak ellenőrzött tarballból |
-| 🔄 Automatikus kioldás | Minősítéskor a készség összeolvad a "fő" |
+<details>
+<summary>🔐 <strong>Release posture</strong></summary>
 
-**Az automatikus feloldás csak akkor aktiválódik, ha az egyesítés megváltozik:**
-- "készségek/*/**".
+| Control | Description |
+|:--------|:-----------|
+| 🔒 SHA-256 checksums | Checksum manifests for all archives |
+| ✍️ Signed artifacts | Detached signatures on release artifacts |
+| 🤖 CI-enforced | Release verification in CI before publication |
+| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
+| 📦 GitHub Release | Automated GitHub Release generation |
+| 📋 npm publication | From verified tarball only |
+| 🔄 Auto release | On qualifying skill merges to `main` |
+
+**Auto-release triggers only when a merge changes:**
+- `skills/*/**`
 - `skills_omni/*/**`
 - `data/bundles.json`
 
-Csak a dokumentum módosításai**nem**váltják ki a csomag közzétételét.</details>
+Doc-only changes **do not** trigger package publication.
+
+</details>
 
 ---
 
@@ -362,79 +440,95 @@ Csak a dokumentum módosításai**nem**váltják ki a csomag közzétételét.</
 
 ### 👤 For Users
 
-| Doc | Mit fogsz tanulni |
-|:----|:------------------|
-| 🚀 [Kezdő lépések](docs/users/GETTING-STARTED.md) | Telepítés, ellenőrzés és előhívás 2 percen belül |
-| 🧭 [CLI felhasználói útmutató](docs/users/CLI-USER-GUIDE.md) | Teljes parancsreferencia és valós minták |
-| 📗 [Használati útmutató](docs/users/USAGE.md) | CLI-parancsok, telepítési módok, futási idő és MCP-konfiguráció |
-| 📦 [Csomagok](docs/users/BUNDLES.md) | Válogatott csomagok és elérhetőség |
-| 📚 [Katalógus](docs/CATALOG.md) | A közzétett készségek automatikusan generált katalógusa |
-| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Építés, kiszolgálás, biztonságossá tétel és hibaelhárítás |### 🏗️ For Architects
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🚀 [Getting Started](docs/users/GETTING-STARTED.md) | Install, verify, and invoke in under 2 minutes |
+| 🧭 [CLI User Guide](docs/users/CLI-USER-GUIDE.md) | Full command reference and real-world patterns |
+| 📗 [Usage Guide](docs/users/USAGE.md) | CLI commands, install modes, runtime, and MCP config |
+| 📦 [Bundles](docs/users/BUNDLES.md) | Curated bundles and availability |
+| 📚 [Catalog](docs/CATALOG.md) | Auto-generated catalog of published skills |
+| 🔧 [System Runbook](docs/operations/RUNBOOK.md) | Build, serve, secure, and troubleshoot |
 
-| Doc | Mit fogsz tanulni |
-|:----|:------------------|
-| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Az építészet fejlődése és a fennmaradó területek |
-| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Alapvető monorepo határozat |
-| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Futásidejű összetétel és rendszerhatárok |
-| 🌐 [Katalógus API](docs/specs/CATALOG-API.md) | HTTP-végpontok, szűrés, irányítás és letöltések |
-| 🧩 [CLI irányított telepítő](docs/specs/CLI-GUIDED-INSTALLER.md) | Viselkedési szerződés az irányított telepítő számára |
-| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Tinta vizuális héj és állapotmodell |
-| 🔌 [Helyi MCP-oldalkar](docs/specs/LOCAL-MCP-SIDECAR.md) | Fájlrendszer-eszközök és engedélyezési lista modell |
-| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Teljes ügyfél- és írói referencia |
-| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonómia, pontozás és metaadatok |
-| 🛡️ [Biztonsági ellenőrzés](docs/specs/SECURITY-VALIDATION.md) | Szkennerek, archívumok és aláírások |
-| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Géppel olvasható jegyzékformátum |### 🤝 For Contributors
+### 🏗️ For Architects
 
-| Doc | Mit fogsz tanulni |
-|:----|:------------------|
-| 📝 [Hozzájárulási útmutató](CONTRIBUTING.md) | Repo munkafolyamat és PR elvárások |
-| 🧾 [Skill PR-munkafolyamat](docs/contributors/SKILL-PR-WORKFLOW.md) | Natív bevitel, fokozó feldolgozás, felülvizsgálói elvárások |
-| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` frontanyaggal és szerkezettel |
-| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Szerkezeti és minőségi elvárások |
-| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Elfogadási feltételek |
-| 🏆 [High-score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | Mi vezet a magas pontszámokhoz |---
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 🗺️ [Agent-Native Roadmap](docs/architecture/AGENT-NATIVE-ROADMAP.md) | Architecture evolution and remaining areas |
+| 📐 [ADR-0001: Workspace Foundation](docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md) | Core monorepo decision |
+| 🔬 [Codebase Analysis](docs/architecture/CODEBASE-ANALYSIS.md) | Runtime composition and system boundaries |
+| 🌐 [Catalog API](docs/specs/CATALOG-API.md) | HTTP endpoints, filtering, governance, and downloads |
+| 🧩 [CLI Guided Installer](docs/specs/CLI-GUIDED-INSTALLER.md) | Behavioral contract for the guided installer |
+| 🖥️ [CLI Visual Shell](docs/specs/CLI-VISUAL-SHELL.md) | Ink visual shell and state model |
+| 🔌 [Local MCP Sidecar](docs/specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and allowlist model |
+| 📊 [Client Support Matrix](docs/specs/CLIENT-SUPPORT-MATRIX.md) | Full client and writer reference |
+| 🏷️ [Skill Classification](docs/specs/SKILL-CLASSIFICATION.md) | Taxonomy, scoring, and metadata |
+| 🛡️ [Security Validation](docs/specs/SECURITY-VALIDATION.md) | Scanners, archives, and signatures |
+| 📋 [Skill Manifest](docs/specs/SKILL-MANIFEST.md) | Machine-readable manifest format |
+
+### 🤝 For Contributors
+
+| Doc | What You'll Learn |
+|:----|:-----------------|
+| 📝 [Contributing Guide](CONTRIBUTING.md) | Repo workflow and PR expectations |
+| 🧾 [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) | Native intake, enhancer processing, reviewer expectations |
+| 📄 [Skill Template](docs/contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with frontmatter and structure |
+| 🔬 [Skill Anatomy](docs/contributors/SKILL-ANATOMY.md) | Structure and quality expectations |
+| ✅ [Quality Bar](docs/contributors/QUALITY-BAR.md) | Acceptance criteria |
+| 🏆 [High-Score Playbook](docs/contributors/HIGH-SCORE-PLAYBOOK.md) | What drives high scores |
+
+---
 
 ## 🗂️ Repository Layout
 
-| Útvonal | Cél |
-|:-----|:---------|
-| 📂 `készségek/` | Kanonikus szerzői készségek és natív bevitel |
-| ✨ `skills_omni/` | Omni által karbantartott, továbbfejlesztett származékok kurátora |
-| 📖 `dokumentumok/` | Felhasználói, közreműködői, architektúra, működési és specifikációs dokumentáció |
-| 📦 `dist/` | Létrehozott jegyzékek, csomagok, katalógusok és archívumok |
-| 📁 `data/` | Kötegdefiníciók és statikus alátámasztó adatok |
-| 🧠 `csomagok/katalógusmag/` | Megosztott katalógus futásidejű |
-| 🌐 `csomagok/szerver-api/` | Csak olvasható HTTP API |
-| 🔌 `csomagok/szerver-mcp/` | MCP szerver és helyi oldalkocsi |
-| 🤖 `csomagok/szerver-a2a/` | A2A futásidejű és feladat-hangszerelés |
-| 🖥️ `tools/bin/` | CLI belépési pontok |
-| 📚 `tools/lib/` | Telepítő és felhasználói felület segítők |
-| ⚙️ `tools/scripts/` | Szkriptek ellenőrzése, generálása, kiadása és tesztelése |
+| Path | Purpose |
+|:-----|:--------|
+| 📂 `skills/` | Canonical authored skills and native intake |
+| ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
+| 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
+| 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
+| 📁 `data/` | Bundle definitions and static supporting data |
+| 🧠 `packages/catalog-core/` | Shared catalog runtime |
+| 🌐 `packages/server-api/` | Read-only HTTP API |
+| 🔌 `packages/server-mcp/` | MCP server and local sidecar |
+| 🤖 `packages/server-a2a/` | A2A runtime and task orchestration |
+| 🖥️ `tools/bin/` | CLI entrypoints |
+| 📚 `tools/lib/` | Installer and UI helpers |
+| ⚙️ `tools/scripts/` | Validation, generation, release, and test scripts |
 
->**ℹ️**A `dist/` szándékosan van verziószámítva, mert a generált melléktermékek a telepítési, API-, MCP-, A2A-, füst- és kiadási szerződés részét képezik.---
+> **ℹ️** `dist/` is intentionally versioned because the generated artifacts are part of the install, API, MCP, A2A, smoke, and release contract.
+
+---
 
 ## 🤝 Contributing
 
-Az Omni Skills elfogadja a natív upstream készségfelvételt a „skills/” alatt.
+Omni Skills accepts native upstream skill intake under `skills/`.
 
-| szabály | Részletek |
-|:-----|:---------|
-| 📥 Natív bevitel | Lehet durva, bármilyen nyelven íródott |
-| ✨ Kurált kimenet | `skills_omni/` az automatizálás által létrehozott Omni-származékok számára fenntartva |
-| 🚫 Kézi szerkesztések | A `skills_omni/` nyilvános kézi szerkesztései elutasítva |
-| 🔄 Újrafeldolgozás | A Privát javító újrafeldolgozza a natív változtatásokat és frissíti a kiválasztott alapvonalat |
+| Rule | Details |
+|:-----|:--------|
+| 📥 Native intake | May be rough, authored in any language |
+| ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
+| 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
+| 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
 
-> 📖**Kezdje:**[Hozzájárulási útmutató](CONTRIBUTING.md) · [Skill PR-munkafolyamat](docs/contributors/SKILL-PR-WORKFLOW.md)---
+> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
+
+---
 
 ## 📄 License
 
-| Típus | Licenc |
-|:-----|:---------|
-| 💻 Kód és szerszámok | [MIT-engedély](LICENC) |
-| 📝 Dokumentáció és készségtartalom | [CC 4.0](LICENC-TARTALOM) |---
+| Type | License |
+|:-----|:--------|
+| 💻 Code and tooling | [MIT License](LICENSE) |
+| 📝 Documentation and skill content | [CC BY 4.0](LICENSE-CONTENT) |
+
+---
 
 <div align="center">
 
-**Készítette: 🧠, az Omni Skills Team**
+**Made with 🧠 by the Omni Skills Team**
 
-[⭐ Csillagozza meg ezt a repót](https://github.com/diegosouzapw/omni-skills) · [🐛 Hiba bejelentése](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Beszélgetések](https://github.com/diegosouzapw/omni-skills)/</div>
+[⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
+
+*If Omni Skills helps you build faster, consider giving it a ⭐ — it helps others discover the project!*
+
+</div>

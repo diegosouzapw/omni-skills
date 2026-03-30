@@ -5,453 +5,557 @@
 ---
 
 
->**Pelan hala tuju produk untuk mengembangkan Kemahiran Omni daripada pemasang pertama bendera kepada pengalaman terminal berpandu untuk pengguna pakar dan bukan pakar.**
-> Skop: pakej npm, pengalaman pemasangan CLI, UI terminal, aliran pelancaran perkhidmatan dan onboarding visual.---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-Asas masa jalan semasa adalah kukuh, tetapi pengalaman kemasukan masih dioptimumkan untuk pengguna yang sudah memahami:
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- pelanggan mana yang mereka mahu sasarkan
-- pemilih pemasangan yang mereka mahu gunakan
-- cara menterjemah matlamat kepada `--skill`, `--bundle` atau `find`
-- apabila mereka memerlukan pemasangan CLI sahaja berbanding perkhidmatan MCP, API atau A2A
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-hari ini:
+Today:
 
-- `npx omni-skills` lalai kepada Antigravity
-- ini sah secara teknikal dan serasi ke belakang
-- tetapi ia tidak sesuai untuk pengguna kali pertama atau kurang pengendali teknikal
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-CLI sudah mempunyai mod interaktif asas, tetapi ia masih lebih dekat dengan utiliti pembangun daripada permukaan produk berpandu.
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-Pelan jalan ini mentakrifkan laluan ke UX awam yang lebih kukuh tanpa melanggar antara muka berasaskan bendera semasa.---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-Pelan hala tuju kini sebahagian besarnya dilaksanakan dalam keadaan repositori semasa.
+The roadmap is now largely implemented in the current repository state.
 
-Selesai:
+Completed:
 
-- Fasa 1: Pemilihan Entrypoint Berpandu
-- Fasa 2: Wizard Pemasangan Berpandu
-- Fasa 3: Shell Terminal Visual
-- Fasa 4: Hab Perkhidmatan Visual
-- Fasa 5: Profil Disimpan dan Kebolehulangan
-- Fasa 6: Pengerasan, Ujian dan Dokumentasi---
+- Phase 1: Guided Entrypoint Selection
+- Phase 2: Guided Install Wizard
+- Phase 3: Visual Terminal Shell
+- Phase 4: Visual Service Hub
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- Kekalkan aliran kerja CLI pakar semasa
-- Jadikan titik masuk tanpa hujah selamat dan mudah difahami untuk pengguna kali pertama
-- Gantikan lalai senyap dalam konteks interaktif dengan pemilihan berpandu
-- Sokong pelanggan AI yang diketahui dan laluan pemasangan tersuai sewenang-wenangnya
-- Tukar pemasangan, penemuan dan but perkhidmatan menjadi perjalanan pengguna yang koheren
-- Sediakan UI terminal visual yang dirasakan seperti produk, bukan hanya skrip
-- Pastikan enjin pemasangan, katalog dan masa jalan perkhidmatan boleh diguna semula di bawah UI---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- Menggantikan CLI berasaskan bendera semasa
-- Mengalih keluar Antigraviti sebagai sasaran lalai yang disokong
-- Menghantar UI web sebagai mod penghantaran utama
-- Memfaktorkan semula protokol API, MCP atau A2A sendiri sebagai sebahagian daripada kerja UX ini
-- Menggantikan pengarangan `SKILL.md` dengan panel pentadbir yang disokong pangkalan data---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-Perintah ini mesti terus berfungsi sama seperti hari ini:
+These commands must continue to work exactly as they do today:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills find figma --tool cursor --install --yes`
-- `strim mcp kemahiran omni-npx --local`
+- `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills a2a --port 3335`
 
-- Sesi terminal interaktif tanpa hujah: pengalaman berpandu terbuka
-- Seruan bukan interaktif tanpa hujah: kekalkan gelagat lalai pemasangan semasa
-- Perintah dan bendera eksplisit sentiasa memenangi inferens UI### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-Yang berikut harus berkongsi logik dalaman yang sama:
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
 
-- CLI didahulukan bendera
-- CLI mod teks berpandu
-- UI terminal visual
+### 4.3 Reuse One Engine Across Modes
 
-Ini bermakna lapisan UX tidak boleh memiliki logik perniagaan. Ia harus mengatur tindakan yang boleh diguna semula.### 4.4 Preview Before Write
+The following should share the same internal logic:
 
-Semua aliran berpandu yang menyebabkan penulisan hendaklah memaparkan:
+- flag-first CLI
+- guided text-mode CLI
+- visual terminal UI
 
-- sasaran diselesaikan
-- jalan diselesaikan
-- kemahiran atau himpunan terpilih
-- arahan CLI yang setara
-- gesaan pengesahan### 4.5 Visual Does Not Mean Implicit
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-Walaupun dalam UI yang lebih kaya, sistem harus tetap menyatakan keadaan dan tindakan yang jelas:
+### 4.4 Preview Before Write
 
-- ke mana pemasangan akan pergi
-- apa yang akan ditulis
-- pengangkutan atau pelabuhan mana yang akan digunakan oleh perkhidmatan
-- sama ada aliran boleh baca sahaja atau boleh tulis tempatan---
+All guided flows that cause writes should display:
+
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
+
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Keperluan:
+Needs:
 
-- arahan pantas
-- tiada gesaan paksa
-- bendera stabil
-- kebolehskripan### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-Keperluan:
+### 5.2 Guided Product User
 
-- pilihan yang jelas
-- tiada andaian bahawa Antigraviti dikehendaki
-- sokongan untuk pemasangan laluan tersuai
-- pratonton pemasangan yang boleh difahami
-- perbezaan yang boleh dilihat antara tindakan pemasangan dan masa jalan pelayan### 5.3 Operator / Platform User
+Needs:
 
-Keperluan:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- keupayaan untuk melancarkan MCP, API dan A2A secara visual
-- lalai waras
-- penalaan pilihan pelabuhan, pengangkutan, kegigihan, mod pelaksana, pengesahan dan mod tempatan---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-Produk harus mendedahkan tiga lapisan:### 6.1 Expert Mode
+The product should expose three layers:
 
-Perintah langsung dan bendera.
+### 6.1 Expert Mode
 
-Contoh:
+Direct commands and flags.
+
+Examples:
 
 - `npx omni-skills --cursor --skill omni-figma`
-- `strim mcp kemahiran omni-npx --local`
-- `npx omni-skills a2a --port 3335`### 6.2 Guided Install Mode
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills a2a --port 3335`
 
-Dicetuskan apabila:
+### 6.2 Guided Install Mode
 
-- pengguna menjalankan `npx omni-skills` dalam TTY tanpa args
-- pengguna menjalankan `npx omni-skills install` tanpa pemilih konkrit
-- pengguna secara eksplisit memilih mod berpandu
+Triggered when:
 
-Aliran pemasangan berpandu harus melalui:
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-1. pelanggan sasaran atau laluan tersuai
-2. jenis pemasangan
-3. kemahiran atau pemilihan berkas
-4. pratonton
-5. pengesahan
-6. pelaksanaan
-7. langkah seterusnya### 6.3 Visual Operations Hub
+The guided install flow should walk through:
 
-Dicetuskan oleh:
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
+
+### 6.3 Visual Operations Hub
+
+Triggered by:
 
 - `npx omni-skills ui`
 
-Ini sepatutnya menjadi "skrin utama" untuk pengguna dan pengendali bukan pakar.
+This should become the “home screen” for non-expert users and operators.
 
-Tindakan teras:
+Core actions:
 
-- kemahiran memasang
-- temui kemahiran
-- mulakan MCP
-- mulakan API
-- mulakan A2A
-- lari doktor
-- menjalankan pemeriksaan asap---
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-Hasil:
+Outcome:
 
-- `npx omni-skills` dalam TTY tidak lagi secara senyap menganggap Antigraviti
-- pengguna digesa untuk memilih pelanggan atau laluan tersuai
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-Keperluan:
+Requirements:
 
-- mengekalkan tingkah laku pemasangan lalai bukan TTY
-- tambah pemilih sasaran
-- menyokong tangkapan laluan tersuai### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-Hasil:
+### Phase 2: Guided Install Wizard
 
-- pemasangan menjadi aliran berpandu penuh
+Outcome:
 
-Keperluan:
+- installation becomes a full guided flow
 
-- pemilihan mod pemasangan:
-  - perpustakaan penuh
-  - satu kemahiran
-  - satu berkas
-  - cari kemudian pasang
-- pasang pratonton
-- rendering arahan yang setara
-- pengesahan dan pelaksanaan### Phase 3: Visual Terminal Shell
+Requirements:
 
-Hasil:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- UI teks asas semasa menjadi aplikasi terminal berjenama
+### Phase 3: Visual Terminal Shell
 
-Keperluan:
+Outcome:
 
-- susun atur yang lebih kaya
-- penjenamaan dan logo projek
-- stepper dan kad yang lebih baik
-- navigasi dipacu papan kekunci
-- Bertindak balas pelaksanaan terminal melalui Dakwat### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-Hasil:
+Requirements:
 
-- MCP, API dan A2A boleh dimulakan daripada UI visual
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-Keperluan:
+### Phase 4: Visual Service Hub
 
-- aliran MCP berpandu
-- aliran API berpandu
-- aliran A2A berpandu
-- mod boleh dilihat dan pratonton konfigurasi### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-Hasil:
+- MCP, API, and A2A are startable from the visual UI
 
-- pratetap pemasangan atau perkhidmatan biasa boleh digunakan semula
+Requirements:
 
-Keperluan:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- ingat sasaran baru-baru ini
-- pratetap perkhidmatan yang disimpan
-- arahan terkini
-- berkas atau kemahiran kegemaran### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-Hasil:
+Outcome:
 
-- UX menjadi antara muka awam yang dikekalkan, bukan kemudahan ad hoc
+- common install or service presets can be reused
 
-Keperluan:
+Requirements:
 
-- litupan asap
-- ujian regresi
-- kemas kini dokumen
-- panduan pengendali
-- semakan keserasian pakej---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- `kemahiran omni`
-- `pemasangan kemahiran omni`
-- `mencari kemahiran omni`
-- `ui kemahiran omni`
-- `mcp kemahiran omni`
-- `api kemahiran omni`
-- `kemahiran omni a2a`
-- `doktor berkemahiran omni`
-- `asap kemahiran omni`### Recommended Behavior
+- `omni-skills`
+- `omni-skills install`
+- `omni-skills find`
+- `omni-skills ui`
+- `omni-skills mcp`
+- `omni-skills api`
+- `omni-skills a2a`
+- `omni-skills doctor`
+- `omni-skills smoke`
 
-| Doa | Tingkah laku |
+### Recommended Behavior
+
+| Invocation | Behavior |
 |:-----------|:---------|
-| `kemahiran omni` dalam TTY, tiada hujah | Entri pemasangan berpandu |
-| `kemahiran omni` dalam bukan TTY, tiada args | Pemasangan lalai Antigraviti semasa |
-| `pemasangan kemahiran omni` dalam TTY, tiada pemilih | Wizard pemasangan berpandu |
-| `omni-skills install --guided` | Paksa aliran pemasangan berpandu |
-| `omni-kemahiran ui` | Buka hab operasi visual |
-| bendera eksplisit | Laksanakan terus tanpa melencong ke dalam aliran berpandu |---
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
+| `omni-skills install --guided` | Force guided install flow |
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Pilihan:
+Options:
 
-- Kod Claude
-- Kursor
+- Claude Code
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigraviti
+- Antigravity
 - OpenCode
-- Laluan tersuai
+- Custom path
 
 Output:
 
-- sasaran yang diketahui ATAU laluan sistem fail tersuai yang dipilih### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-Pilihan:
+### Step 2: Choose Install Type
 
-- perpustakaan penuh
-- satu kemahiran yang diterbitkan
-- satu berkas
-- cari kemudian pasang
+Options:
+
+- full library
+- one published skill
+- one bundle
+- search then install
 
 Output:
 
-- memasang skop### Step 3: Resolve Selection
+- install scope
 
-Bergantung pada jenis pemasangan:
+### Step 3: Resolve Selection
 
-- perpustakaan penuh: tiada pemilih tambahan
-- kemahiran: senaraikan atau pilih kemahiran
-- berkas: senaraikan atau pilih satu berkas
-- carian: gesaan untuk pertanyaan, tunjukkan kemahiran padanan dan himpunan### Step 4: Preview
+Depending on install type:
 
-paparan:
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-- sasaran yang dipilih
-- jalan diselesaikan
-- kemahiran atau berkas yang dipilih
-- arahan CLI yang setara
-- sama ada aliran adalah selektif atau pemasangan penuh### Step 5: Confirm
+### Step 4: Preview
 
-Pengguna mengesahkan:
+Display:
 
-- ya → laksanakan
-- tidak → batalkan atau balik### Step 6: Result
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
 
-paparan:
+### Step 5: Confirm
 
-- kejayaan/kegagalan
-- laluan destinasi
-- cadangan langkah seterusnya---
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-Hab operasi harus mendedahkan:### 10.1 Install
+The operations hub should expose:
 
-- aliran pemasangan berpandu
-- kemahiran atau carian bundle
-- laluan tersuai### 10.2 Discover
+### 10.1 Install
 
-- carian katalog
-- penapis
-- pratonton metadata
-- pasang handoff### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-Pilihan:
+### 10.2 Discover
 
-- pengangkutan: stdio, aliran, sse
-- mod tempatan hidup/mati
-- tuan rumah
-- pelabuhan### 10.4 API
+- catalog search
+- filters
+- preview metadata
+- install handoff
 
-Pilihan:
+### 10.3 MCP
 
-- tuan rumah
-- pelabuhan
-- pengesahan pilihan
-- had kadar pilihan### 10.5 A2A
+Options:
 
-Pilihan:
+- transport: stdio, stream, sse
+- local mode on/off
+- host
+- port
 
-- tuan rumah
-- pelabuhan
-- jenis kedai: memori, json, sqlite
-- pelaksana: sebaris, proses
-- pilihan pajakan apabila baris gilir sqlite didayakan### 10.6 Diagnostics
+### 10.4 API
 
-- doktor
-- asap---
+Options:
+
+- host
+- port
+- optional auth
+- optional rate limit
+
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-`tools/bin/cli.js` semasa bercampur:
+The current `tools/bin/cli.js` mixes:
 
-- menghurai arahan
-- pembentangan
-- gesaan interaktif
-- orkestrasi tindakan
-- but perkhidmatan
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-Struktur baharu harus memindahkan logik boleh guna semula ke:
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/ui-models/`
 
-`tools/bin/install.js` hendaklah kekal sebagai bahagian belakang berkebolehan menulis.
+### 11.2 Keep Installer Engine Separate
 
-UI berpandu harus memanggil bahagian belakang pemasang sedia ada dan bukannya menduplikasi logik pemasangan.### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-Wizard pemasangan berpandu harus menggunakan semula teras katalog yang sama dan logik carian CLI yang sudah dikuasakan:
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- `cari`
-- pasang pratonton
-- resolusi berkas### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-Penghantaran pertama boleh kekal dalam gesaan mod teks.
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-Tetapi seni bina harus mengekalkan jahitan yang jelas supaya aliran teks kemudiannya boleh diberikan melalui Dakwat.---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Mitigasi:
+Mitigation:
 
-- hanya buka UI berpandu secara automatik dalam TTY
-- kekalkan lalai semasa dalam bukan TTY
-- mengekalkan aliran bendera yang jelas### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-Mitigasi:
+### 12.2 Letting UI Own Business Logic
 
-- pindahkan orkestrasi ke modul tindakan boleh guna semula
-- kekalkan pemasang dan logik but perkhidmatan di bawah lapisan UI### 12.3 Ink Migration Too Early
+Mitigation:
 
-Mitigasi:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
 
-- pertama menghantar aliran berpandu dalam timbunan terminal Nod semasa
-- kemudian berhijrah ke Dakwat setelah semantik aliran stabil### 12.4 Incomplete Service UX
+### 12.3 Ink Migration Too Early
 
-Mitigasi:
+Mitigation:
 
-- wizard pemasangan kapal dahulu
-- kemudian pelancaran perkhidmatan berpandukan lapisan---
+- first ship the guided flow in current Node terminal stack
+- then migrate to Ink once flow semantics are stable
+
+### 12.4 Incomplete Service UX
+
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- `npx omni-skills` dalam TTY tidak lagi dipasang dengan serta-merta
-- pengguna boleh memilih pelanggan sasaran atau laluan tersuai
-- invocation non-TTY no-arg masih berfungsi seperti sebelumnya### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- pemasangan berpandu menyokong perpustakaan penuh, kemahiran, himpunan dan cari-kemudian-pasang
-- pratonton sentiasa ditunjukkan sebelum menulis
-- arahan setara dipaparkan### Phase 3
+### Phase 2
 
-- UI terminal berjenama wujud
-- UI lebih berstruktur visual daripada menu garis baca biasa
-- navigasi adalah mesra papan kekunci### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- pengguna boleh memulakan MCP, API dan A2A dari hab visual
-- pilihan masa jalan utama boleh dikonfigurasikan dalam bentuk berpandu### Phase 5
+### Phase 3
 
-- pilihan terbaharu atau disimpan boleh diguna semula
-- aliran ulangan mengambil lebih sedikit gesaan### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- liputan asap mencerminkan titik masuk UX baharu
-- dokumen menerangkan mod berpandu dan tingkah laku wizard perkhidmatan---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-Pelan hala tuju ini mesti dilaksanakan dalam susunan ini:
+This roadmap must be implemented in this order:
 
-1. Pemilihan pintu masuk berpandu
-2. Wizard pemasangan berpandu
-3. Cangkerang terminal visual
-4. Hab perkhidmatan visual
-5. Profil yang disimpan dan kebolehulangan
-6. Pengerasan, ujian dan penggilap dokumen
+1. Guided entrypoint selection
+2. Guided install wizard
+3. Visual terminal shell
+4. Visual service hub
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-Kerja pelaksanaan harus membaca fail tugas yang berkaitan sebelum memulakan setiap tugas supaya kerja CLI kekal sejajar dengan rancangan dan tidak hanyut.
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

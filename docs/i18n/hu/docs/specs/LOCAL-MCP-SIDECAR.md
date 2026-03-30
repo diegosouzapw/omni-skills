@@ -5,47 +5,55 @@
 ---
 
 
->**Opcionális helyi módú kiterjesztés az `@omni-skills/server-mcp`-hez, amely fájlrendszer-tudatos eszközöket ad hozzá a kliensészleléshez, a képességkezeléshez és az MCP-konfigurációk generálásához.**---
+> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
+
+---
 
 ## 📊 Status
 
-| Funkció | állam |
+| Feature | State |
 |:--------|:------|
-| ✅ Csak olvasható katalóguseszközök | Megvalósítva |
-| ✅ Fájlrendszer-tudatos helyi eszközök | Megvalósítva |
-| ✅ 3 szállítás (stdio/stream/sse) | Megvalósítva |
-| ✅ Engedélyezett írások | Megvalósítva |
-| ✅ Előnézet-írás előtti alapértelmezett beállítások | Megvalósítva |
-| ✅ Kliens-tudatos MCP-konfiguráció írása | Megvalósítva |
-| ✅ HTTP hitelesítés + sebességkorlátozás | Megvalósítva |
-| ✅ Megjelenéskori aláírások és ellenőrző összegek | Létrehozott archívumokhoz implementálva és API/MCP segítségével |
-| 🟡 Helyi írási idejű aláírás-érvényesítés | Még nem hajtották végre; helyi mód előnézetek és írások a megbízható helyi pénztárból |
-| 🟢 Aktuális ügyféllefedettség | 7 telepíthető kliens, 16 konfigurálható ügyfél, 33 konfigurációs cél, 19 konfigurációs profil |---
+| ✅ Read-only catalog tools | Implemented |
+| ✅ Filesystem-aware local tools | Implemented |
+| ✅ 3 transports (stdio/stream/sse) | Implemented |
+| ✅ Allowlisted writes | Implemented |
+| ✅ Preview-before-write defaults | Implemented |
+| ✅ Client-aware MCP config writing | Implemented |
+| ✅ HTTP auth + rate limiting | Implemented |
+| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
+| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
+| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
+
+---
 
 ## 🎯 Purpose
 
-A helyi mód**fájlrendszer-tudatos eszközöket**ad hozzá a meglévő, csak olvasható MCP-katalógus felületéhez. Akkor használja, ha egy ügynöknek szüksége van:
+Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
 
-- 🕵️ Kompatibilis helyi AI-kliensek észlelése
-- 📋 Ellenőrizze a telepített készségeket
-- 👁️ Képesség beszerelésének vagy eltávolításának előnézete (száraz futás)
-- 📦 Alkalmazza a helyi készségek telepítését vagy eltávolítását
-- ⚙️ Írjon egy helyi MCP konfigurációs fájlt az előnézet után
+- 🕵️ Detect compatible local AI clients
+- 📋 Inspect installed skills
+- 👁️ Preview skill installation or removal (dry-run)
+- 📦 Apply local skill installation or removal
+- ⚙️ Write a local MCP config file after preview
 
-Szándékosan elkülönít két aggodalmat:
+It deliberately separates two concerns:
 
--**készséges telepítési célok**
-  stabil készségkönyvtárral rendelkező ügyfelek, amelyek használhatják az „install_skills” paramétert
--**MCP konfigurációs célok**
-  stabil dokumentált MCP konfigurációs formátumú kliensek vagy IDE-k, még akkor is, ha nem rendelkeznek képességkönyvtárral---
+- **skill installation targets**
+  clients with a stable skills directory that can use `install_skills`
+- **MCP config targets**
+  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
+
+---
 
 ## 🔌 Transports
 
-| Szállítás | Jegyzőkönyv | Használati eset |
-|:----------|:---------|:----------|
-| "stdio" | Cső | Közvetlen kliens integráció |
-| "folyam" | Streamálható HTTP | Modern HTTP kliensek |
-| "sse" | Szerver által küldött események | Hagyományos ügyfelek |---
+| Transport | Protocol | Use Case |
+|:----------|:---------|:---------|
+| `stdio` | Pipe | Direct client integration |
+| `stream` | Streamable HTTP | Modern HTTP clients |
+| `sse` | Server-Sent Events | Legacy clients |
+
+---
 
 ## 🚀 Enable Local Mode
 
@@ -81,130 +89,144 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
-> Minden parancs automatikusan beállítja az OMNI_SKILLS_MCP_MODE=local értéket.---
+> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
+
+---
 
 ## 🛠️ Local Tools
 
-Ha a helyi mód engedélyezve van, ezek az extra eszközök válnak elérhetővé:
+When local mode is enabled, these extra tools become available:
 
-| Szerszám | Leírás | Alapértelmezett |
+| Tool | Description | Default |
 |:-----|:------------|:--------|
-| 🕵️ `detect_clients` | AI kliensek és képességeik/konfigurációs útvonalaik keresése | — |
-| 📋 `telepített_készségek listája` | Egy adott ügyfél telepített képességeinek ellenőrzése | — |
-| 📦 `telepítési_készségek` | A készségek telepítése az ügyfél készségjegyzékébe | 🔍 szárazon futás |
-| 🗑️ `remove_skills` | Telepített készségek eltávolítása az ügyfélből | 🔍 szárazon futás |
-| ⚙️ `configure_client_mcp` | Írjon MCP konfigurációt egy adott ügyfélhez | 🔍 szárazon futás |
+| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
+| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
+| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
+| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
+| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
 
-> ⚠️ Az "install_skills", "remove_skills" és a "configure_client_mcp" alapértelmezés szerint**dry-run**, ha a "dry_run" ki van hagyva.---
+> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
+
+---
 
 ## 🎯 Supported Targets
 
 ### 📂 Skills Directories
 
-| Ügyfél | Útvonal |
+| Client | Path |
 |:-------|:-----|
-| 🔵 Claude Code | "~/.claude/skills" |
-| 🔵 Kurzor | "~/.kurzor/készségek" |
-| 🟡 Gemini CLI | "~/.gemini/skills" |
-| 🟣 Antigravitáció | "~/.gemini/antigravitation/skills" |
-| 🟢 Kiro | "~/.kiro/skills" |
-| 🔴 Codex CLI | "~/.codex/skills" vagy "$CODEX_HOME/skills" |
-| ⚪ OpenCode | `<munkaterület>/.opencode/skills` |
+| 🔵 Claude Code | `~/.claude/skills` |
+| 🔵 Cursor | `~/.cursor/skills` |
+| 🟡 Gemini CLI | `~/.gemini/skills` |
+| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
+| 🟢 Kiro | `~/.kiro/skills` |
+| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
+| ⚪ OpenCode | `<workspace>/.opencode/skills` |
 
-Ez a 7 célpont ma az egyetlen első osztályú telepítési cél.### ⚙️ MCP Config Files
+These 7 targets are the only first-class install destinations today.
 
-| Cél | Formátum |
-|:-------|:--------|
-| `~/.claude/settings.json` | Claude Code beállítások JSON |
-| `<munkaterület>/.claude/settings.json` | Claude projektbeállítások JSON |
+### ⚙️ MCP Config Files
+
+| Target | Format |
+|:-------|:-------|
+| `~/.claude/settings.json` | Claude Code settings JSON |
+| `<workspace>/.claude/settings.json` | Claude project settings JSON |
 | `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
-| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specifikus) |
+| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
 | `~/.cursor/mcp.json` | JSON (`mcpServers`) |
-| `<munkaterület>/.cursor/mcp.json` | Kurzor munkaterület JSON (`mcpServers`) |
-| `~/.gemini/settings.json` | Gemini felhasználó JSON (`mcpServers`) |
-| `<munkaterület>/.gemini/settings.json` | Gemini projekt JSON (`mcpServers`) |
+| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
+| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
+| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
 | `~/.gemini/antigravity/mcp.json` | Antigravity JSON (`mcpServers`) |
-| `~/.kiro/settings/mcp.json` | Kiro felhasználó JSON (`mcpServers`) |
-| `<munkaterület>/.kiro/settings/mcp.json` | Kiro projekt JSON (`mcpServers`) |
-| `~/.codex/config.toml` | TOML (`[mcp_szerverek]`) |
-| `<munkaterület>/.mcp.json` | JSON (`mcpServers`) |
-| `<munkaterület>/opencode.json` | OpenCode munkaterület JSON (`mcp`) |
-| `~/.config/opencode/opencode.json` | OpenCode felhasználó JSON (`mcp`) |
+| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
+| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
+| `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
+| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
+| `<workspace>/opencode.json` | OpenCode workspace JSON (`mcp`) |
+| `~/.config/opencode/opencode.json` | OpenCode user JSON (`mcp`) |
 | `~/.cline/data/settings/cline_mcp_settings.json` | Cline JSON (`mcpServers`) |
 | `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON (`mcpServers`) |
-| `<munkaterület>/.github/mcp.json` | GitHub másodpilóta JSON tárház (`mcpServers`) |
-| `~/.config/kilo/kilo.json` | Kilo CLI felhasználó JSON (`mcp`) |
-| `<munkaterület>/kilo.json` | Kilo CLI projekt JSON (`mcp`) |
-| `<munkaterület>/.kilocode/mcp.json` | Kilo Code munkaterület JSON (`mcpServers`) |
-| `<munkaterület>/.continue/mcpServers/omni-skills.yaml` | Munkaterület folytatása YAML (`mcpServers`) |
-| `<munkaterület>/.junie/mcp/mcp.json` | Junie projekt JSON (`mcpServers`) |
-| `~/.junie/mcp/mcp.json` | Junie felhasználó JSON (`mcpServers`) |
+| `<workspace>/.github/mcp.json` | GitHub Copilot repository JSON (`mcpServers`) |
+| `~/.config/kilo/kilo.json` | Kilo CLI user JSON (`mcp`) |
+| `<workspace>/kilo.json` | Kilo CLI project JSON (`mcp`) |
+| `<workspace>/.kilocode/mcp.json` | Kilo Code workspace JSON (`mcpServers`) |
+| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
+| `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
+| `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
 | `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
-| `~/.config/goose/config.yaml` | Goose YAML (`kiterjesztések`) |
-| `<munkaterület>/.zed/settings.json` | Zed munkaterület JSON (`context_servers`) |
-| `<munkaterület>/.vscode/mcp.json` | JSON ("szerverek") |
-| `~/.config/Code/User/mcp.json` | VS Code felhasználó JSON (`szerverek`) |
-| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders felhasználó JSON ("szerverek") |
-| `<munkaterület>/.devcontainer/devcontainer.json` | Beágyazott fejlesztői tároló JSON (`customizations.vscode.mcp.servers`) |
-| Ügyfélgyökér `mcp.json` | JSON (ügyfélenkénti formátum) |
+| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
+| `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
+| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
+| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
+| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
+| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
+| Client root `mcp.json` | JSON (per-client format) |
 
-Ez adja az oldalkocsit:
+That gives the sidecar:
 
--**16 konfigurálható kliens vagy IDE**
--**33 első osztályú célútvonal**
--**19 formátumú profil**
+- **16 config-capable clients or IDEs**
+- **33 first-class target paths**
+- **19 format profiles**
 
-A jelenlegi első osztályú konfigurációs lefedettség:
+Current first-class config coverage spans:
 
-- Claude Code és Claude Desktop
-- Kurzor
-- VS kód és fejlesztői tárolók
+- Claude Code and Claude Desktop
+- Cursor
+- VS Code and Dev Containers
 - Gemini CLI
-- Antigravitáció
+- Antigravity
 - Kiro
 - Codex CLI
-- Folytasd
+- Continue
 - Junie
-- Szörf
-- Liba
+- Windsurf
+- Goose
 - OpenCode
 - Cline
-- GitHub másodpilóta CLI
+- GitHub Copilot CLI
 - Kilo Code
 - Zed
 
-A manuális vagy csak részletet tartalmazó jelöltek továbbra is szándékosan kívül esnek az első osztályú írókészleten, amíg a nyilvános konfigurációs szerződéseik elég stabilak nem lesznek.### 🧭 Expansion Policy
+Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
 
-Az Omni Skills mostantól háromszintű modellként kezeli az ügyfélszolgálatot:
+### 🧭 Expansion Policy
 
-1.**telepíthető**
-   Létezik egy stabil képességkönyvtár, így a CLI és az oldalkocsi közvetlenül telepítheti a készségeket.
-2.**konfigurálható**
-   Létezik egy stabil, dokumentált MCP konfigurációs formátum, így a `config-mcp` meg tudja tekinteni és meg tudja írni az első osztályú fájlt.
-3.**kézi vagy csak részlet**
-   A termék valamilyen formában egyértelműen támogatja az MCP-t, de a publikus dokumentumok még nem indokolják a biztonságos automatikus írót.
+Omni Skills now treats client support as a three-level model:
 
-Ez az oka annak, hogy az olyan kliensek, mint a JetBrains AI Assistant, csak manuálisan/részletesen maradnak, míg a Roo Code és a Postman kívül maradnak az első osztályú írókészleten, amíg a biztonságos automatikus egyesítési történetük elég erős lesz ehhez a projekthez.---
+1. **install-capable**
+   A stable skills directory exists, so the CLI and sidecar can install skills directly.
+2. **config-capable**
+   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
+3. **manual or snippet-only**
+   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
+
+This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
+
+---
 
 ## 🔒 Allowlist Model
 
-A helyi oldalkocsi csak egy**explicit engedélyezési listára**ír.### 🟢 Default allowlist:
+The local sidecar only writes under an **explicit allowlist**.
 
-- Ismert ügyfélgyökerek a „$HOME” alatt
-- `~/.codeium` a Windsurf felhasználói konfigurációhoz
-- `~/.copilot` a GitHub Copilot CLI-hez
-- `~/.cline` a Cline CLI-hez
-- `~/.config/goose` a Goose config számára
-- "~/.config/kilo" és "~/.config/opencode" a Kilo/OpenCode CLI-konfigurációhoz
-- "$CODEX_HOME" (vagy "~/.codex", ha nincs beállítva)
-- Jelenlegi munkaterület gyökér
-- "<munkaterület>/.ügynökök".
-- `<munkaterület>/.github`
-- `<munkaterület>/.kilocode`
-- `<munkaterület>/.opencode`
-- `<munkaterület>/.zed`
-- `<munkaterület>/.folytatás`
-- `<munkaterület>/.vscode`### ➕ Extend the allowlist:
+### 🟢 Default allowlist:
+
+- Known client roots under `$HOME`
+- `~/.codeium` for Windsurf user config
+- `~/.copilot` for GitHub Copilot CLI
+- `~/.cline` for Cline CLI
+- `~/.config/goose` for Goose config
+- `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
+- `$CODEX_HOME` (or `~/.codex` if unset)
+- Current workspace root
+- `<workspace>/.agents`
+- `<workspace>/.github`
+- `<workspace>/.kilocode`
+- `<workspace>/.opencode`
+- `<workspace>/.zed`
+- `<workspace>/.continue`
+- `<workspace>/.vscode`
+
+### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
@@ -359,7 +381,9 @@ mcpServers:
 
 ### 🧭 CLI Contract
 
-Az oldalkocsis CLI-burkoló lehetővé teszi az MCP-konfiguráció létrehozását közvetlen JSON-RPC hívások nélkül:```bash
+The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -369,7 +393,9 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Az alapértelmezett viselkedés csak előnézet. A `--write` az engedélyezési lista alatti feloldott célútvonalra alkalmazza a konfigurációt.### 🌊 Windsurf
+Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
+
+### 🌊 Windsurf
 
 ```json
 {
@@ -458,92 +484,102 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-A `configure_client_mcp` eszköz Claude-specifikus beállításokat is írhat, amikor megfelel:
+The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
 
-- "allowed_mcp_servers".
-- "megtagadott_mcp_szerverek".
-- "permissions_deny".
-- `enable_all_project_mcp_servers`### 💜 VS Code sandboxing
+- `allowed_mcp_servers`
+- `denied_mcp_servers`
+- `permissions_deny`
+- `enable_all_project_mcp_servers`
 
-VS Code és Dev Container célok esetén a `configure_client_mcp` a következőket is írhatja:
+### 💜 VS Code sandboxing
 
-- "SandboxEnabled".
+For VS Code and Dev Container targets, `configure_client_mcp` can also write:
+
+- `sandboxEnabled`
 - `sandbox.filesystem.allowWrite`
 - `sandbox.network.allowHosts`
 - `dev.watch`
 - `dev.debug.type`
 
-Ez megfelel a jelenlegi VS Code útmutatásnak a helyi stdio MCP-kiszolgálók sandbox-kezeléséhez.### 🧰 Cross-Client Entry Options
+This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
 
-A `configure_client_mcp` mostantól gazdagabb bejegyzési metaadatokat támogat a támogatott profilokban:
+### 🧰 Cross-Client Entry Options
 
-- "fejlécek".
-- "env".
-- "env_file".
-- "cwd".
+`configure_client_mcp` now supports richer entry metadata across supported profiles:
+
+- `headers`
+- `env`
+- `env_file`
+- `cwd`
 - `timeout_ms`
-- "leírás".
-- "include_tools".
-- "kizárja az eszközöket".
-- `letiltva`
-- "bizalom".
+- `description`
+- `include_tools`
+- `exclude_tools`
+- `disabled`
+- `trust`
 
-Profilspecifikus lehetőségek:
+Profile-specific options:
 
-- Claude: "allowed_mcp_servers", "denied_mcp_servers", "permissions_deny", "enable_all_project_mcp_servers"
-- Gemini: "mcp_allowed_servers", "mcp_excluded_servers"
-- Kiro: "letiltott_eszközök", "automatikus_jóváhagyás".
-- VS kód és fejlesztői tárolók: "dev_watch", "dev_debug_type"### 📋 Generated Recipes
+- Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
+- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- Kiro: `disabled_tools`, `auto_approve`
+- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
 
-A „configure_client_mcp” a „recepteket” adja vissza az előnézet vagy az alkalmazott konfiguráció mellett.
+### 📋 Generated Recipes
 
-Ezek a receptek ügyfél-tudatos útmutatási blokkok, például:
+`configure_client_mcp` returns `recipes` alongside the preview or applied config.
 
-- `claude mcp add... --scope user|project`
+These recipes are client-aware guidance blocks, for example:
+
+- `claude mcp add ... --scope user|project`
 - `gemini mcp add ... --scope user|project`
-- `codex mcp add...`
-- kézi fájlszerkesztési receptek Cursor, VS Code, Kiro és Claude Desktop számára
+- `codex mcp add ...`
+- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
 
-Az átfogó stratégia most szándékosan konzervatív:
+The overall strategy is now intentionally conservative:
 
-- lehetőség szerint használjon fel egy kis kanonikus konfigurációs családot
-- csak akkor tartson egyedi írókat, ha a hivatalos dokumentumok külön formát igényelnek
-- kerülje az automatikus írók feltalálását a nem dokumentált célpontokhoz---
+- reuse a small set of canonical config families where possible
+- keep bespoke writers only when official docs require a distinct shape
+- avoid inventing automatic writers for undocumented targets
+
+---
 
 ## 🔐 Hosted HTTP Hardening
 
-A HTTP átvitelek ugyanazokat az env-vezérelt vezérlőket támogatják, mint a katalógus API:
+The HTTP transports support the same env-driven controls as the catalog API:
 
-| Változó | Cél |
+| Variable | Purpose |
 |:---------|:--------|
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | hordozó token hitelesítés |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Vesszővel elválasztott API kulcsok |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Csak adminisztrátori futásidejű önvizsgálat |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Maximális kérések ablakonként |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit ablak ms-ban |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Ellenőrzési naplózás engedélyezése |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Audit napló írása fájlba |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | A böngésző eredetének korlátozása |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Az engedélyezett forrás IP-címek korlátozása |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | A nem adminisztratív, nem egészségügyi útvonalak esetén adja vissza az `503-ast |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
 
-> 🟢 `/healthz` nyitva marad. Az „/mcp”, „/sse” és „/messages” hitelesítést igényel, ha engedélyezve van. Az `/admin/runtime' az adminisztrátori tokent igényli, amikor be van állítva.---
+> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
+
+---
 
 ## 🌍 Official Docs That Shape Support Decisions
 
-A jelenlegi írókészletet és a csak manuálisan használható határokat a hivatalos termékdokumentumokhoz hasonlították, többek között:
+The current writer set and manual-only boundaries were checked against official product docs, including:
 
-- Antropikus Claude Code MCP
-- OpenAI Codex CLI és OpenAI Docs MCP
-- Kurzor MCP dokumentumok
-- Az MCP-dokumentumok folytatása
-- Kiro MCP doksi
-- OpenCode MCP dokumentumok
-- Cline MCP dokumentumok
-- Kilo Code MCP dokumentumok
-- GitHub Copilot CLI dokumentumok
-- Zed MCP dokumentumok
-- VS Code MCP dokumentumok
+- Anthropic Claude Code MCP
+- OpenAI Codex CLI and OpenAI Docs MCP
+- Cursor MCP docs
+- Continue MCP docs
+- Kiro MCP docs
+- OpenCode MCP docs
+- Cline MCP docs
+- Kilo Code MCP docs
+- GitHub Copilot CLI docs
+- Zed MCP docs
+- VS Code MCP docs
 - JetBrains AI Assistant MCP docs
 
-Ezek a dokumentumok az oka annak, hogy egyes kliensek első osztályú automatikus írókat kapnak, míg mások egyelőre csak részletet tartalmaznak.
+Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.

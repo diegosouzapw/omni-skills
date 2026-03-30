@@ -5,149 +5,175 @@
 ---
 
 
->**Поведінковий контракт для інтерфейсу користувача терміналу на основі рукописного вводу, доступний `omni-skills ui`.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Візуальна оболонка — це керована поверхня продукту поверх існуючого CLI та інсталятора.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Він не замінює:
+It does not replace:
 
-- використання CLI на основі експертного прапора
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- потік інсталяції тексту
-- Поведінка під час виконання API, MCP або A2A
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Він визначає:
+It defines:
 
-- поведінка `omni-skills ui`
-- резервний контракт для `omni-skills ui --text`
-- локальний стан і задана стійкість
-- попередній перегляд служби з інструкціями
-- повторюваність останніх установок і запусків обслуговування---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` запускає візуальну оболонку на основі Ink.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Візуальна оболонка є основним неекспертним терміналом для:
+The visual shell is the primary non-expert terminal experience for:
 
-- встановити потоки
-- каталог - перше відкриття та встановлення
-- Запуск MCP
-- Запуск API
-- Запуск A2A
-- передача лікаря та диму### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` запускає резервний інтерфейс на основі readline.
+### 2.2 Text Fallback
 
-Це залишається корисним, коли:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- термінал не може правильно відобразити розширену оболонку
-- поведінка в необробленому режимі обмежена
-- бажано використовувати мінімальний резервний текст### 2.3 Handoff Rule
+This remains useful when:
 
-Візуальна оболонка не переопределяет часи виконання служби або безпосередньо записує інсталяцію.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Після попереднього перегляду та підтвердження він завершує роботу та передає виконання існуючій точці входу CLI з еквівалентними аргументами та змінними середовища.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Головний екран має відображати:
+The home screen must expose:
 
-- встановити навички
-- знайти та встановити
-- повторити останні встановлення, якщо є
-- запускати збережені налаштування встановлення, якщо вони є
-- запустити послугу
-- повторити останні служби, якщо вони присутні
-- запускати збережені попередні налаштування служби, якщо вони присутні
-- лікар
-- дим
-- вихід
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-Головний екран також має з’явитися:
+The home screen should also surface:
 
-- поточна доступність опублікованого комплекту
-- місцевий стан враховує останні, попередньо встановлені та вибрані---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Потік встановлення візуальної оболонки має підтримувати:
+The visual shell install flow must support:
 
-- відомий вибір цільового клієнта
-- індивідуальний вибір шляху
-- повна інсталяція бібліотеки
-- установка однієї навички
-- однопакетна установка
-- пошук-потім-встановлення
-- попередній перегляд перед записом
-- збереження попереднього налаштування
-- улюблений навик або перемикання пакетів
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Попередній перегляд повинен показувати:
+Preview must show:
 
-- вирішена цільова мітка
-- розв'язаний шлях
-- обсяг установки
-- вибраний навик або набір, якщо це можливо
-- еквівалентна команда CLI---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Візуальна оболонка повинна керувати запуском для:### 5.1 MCP
+The visual shell must guide startup for:
 
-- транспорт: `stdio`, `stream`, `sse`
-- режим: `тільки для читання` або `локальний`
-- конфігурація хост/порт для мережевих транспортів
-- явний попередній перегляд команди### 5.2 API
+### 5.1 MCP
 
-- господар
-- порт
-- базовий або зміцнений профіль
-- надійний носій або автентифікація ключа API
-- посилені граничні параметри
-- ввімкнення журналу аудиту
-- явний попередній перегляд команди### 5.3 A2A
+- transport: `stdio`, `stream`, `sse`
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- господар
-- порт
-- тип зберігання: `memory`, `json`, `sqlite`
-- шлях зберігання для довговічних режимів
-- виконавець: `inline`, `process`
-- режим SQLite з підтримкою черги
-- інтервал опитування та тривалість оренди для режиму спільної оренди
-- явний попередній перегляд команди---
+### 5.2 API
+
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
+- executor: `inline`, `process`
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Візуальна оболонка зберігає лише локальний стан у:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Стан на даний момент включає:
+State currently includes:
 
-- останні встановлення
-- останні запуски послуг
-- іменовані пресети встановлення
-- іменовані пресети послуг
-- улюблені навички
-- улюблені пучки
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Оболонка повинна підтримувати:
+The shell must support:
 
-- відтворення останніх встановлень
-- відтворення останніх запусків служби
-- повторне використання іменованих попередніх налаштувань встановлення
-- повторне використання іменованих попередніх налаштувань служби---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Візуальна оболонка є адитивною.
+The visual shell is additive.
 
-Ці потоки мають залишатися дійсними та стабільними:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
@@ -157,16 +183,18 @@
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-Візуальна оболонка ніколи не повинна примушувати себе до явних експертних шляхів команд.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Візуальна оболонка повинна робити стан і записи явними.
+The visual shell should make state and writes explicit.
 
-Він повинен:
+It must:
 
-- попередній перегляд встановлень перед записом
-- попередній перегляд команд запуску служби перед виконанням
-- тримайте секретний матеріал подалі від попереднього перегляду відкритих команд, де це можливо
-- зберігати стан лише локально
-- зберегти неінтерактивну поведінку CLI поза візуальною оболонкою
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

@@ -5,44 +5,50 @@
 ---
 
 
->**การสแกนความปลอดภัย การสร้างไฟล์เก็บถาวร การลงนามเพิ่มเติม และแพ็คเกจการแจกจ่ายสำหรับทุกทักษะที่เผยแพร่**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| คุณสมบัติ | รัฐ |
-|:--------|:-------|
-| ✅ เครื่องสแกนความปลอดภัยแบบคงที่ | เปิดใช้งานเสมอ |
-| ✅ การจำแนกข้อมูลเมตาต่อทักษะ | ดำเนินการแล้ว |
-| ✅ ไฟล์เก็บถาวรต่อทักษะ (zip/tar.gz) | ดำเนินการแล้ว |
-| ✅ รายการตรวจสอบผลรวม SHA-256 | ดำเนินการแล้ว |
-| ✅ ประตูสแกนเนอร์ CI บนแท็กปล่อย | ดำเนินการแล้ว |
-| ✅ npm เผยแพร่เวิร์กโฟลว์จาก tarball ที่ตรวจสอบแล้ว | ดำเนินการแล้ว |
-| ⚙️ สแกน ClamAV | อุปกรณ์เสริมเสริมสมรรถนะ |
-| ⚙️ ค้นหาแฮชของ VirusTotal | อุปกรณ์เสริมเสริมสมรรถนะ |
-| ✅ลายเซ็นต์เดี่ยว | ดำเนินการแล้ว |
-| ✅ การลงนามที่บังคับใช้ CI | ใช้งานกับแท็กปล่อย |---
+| Feature | State |
+|:--------|:------|
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-สแกนทุกทักษะระหว่างการตรวจสอบ:
+Scans every skill during validation:
 
-| เป้าหมาย | สิ่งที่ได้รับการสแกน |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| ` `SKILL.md` | เนื้อหาทักษะหลัก |
-| 📄 มาร์กดาวน์/ไฟล์ข้อความ | แพ็คเกจอ้างอิงและเอกสาร |
-| ⚙️ สคริปต์ | สคริปต์อัตโนมัติแบบแพ็กเกจ |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**กลุ่มกฎ:**
+**Rule families:**
 
-| กฎ | ตัวอย่าง |
+| Rule | Examples |
 |:-----|:---------|
-| 🎭**ฉีดด่วน**| รูปแบบการกรอง คำสั่งแทนที่ |
-| 💣**คำสั่งทำลายล้าง**| `rm -rf`, `รูปแบบ`, `del /s` |
-| 🔑**การยกระดับสิทธิพิเศษ**| `sudo`, `chmod 777`, รูปแบบการตั้งค่า |
-| 📂**เส้นทางที่น่าสงสัย**| `/etc/shadow`, `~/.ssh`, ไฟล์ข้อมูลประจำตัว |
-| ⚠️**ดั้งเดิมที่มีความเสี่ยง**| `shell=True`, `pickle.load`, `eval`, `แยกทั้งหมด` |---
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- ต้องใช้ `clamscan` ใน `PATH`
-- สแกนไฟล์แพ็คเกจเพื่อหามัลแวร์ที่รู้จัก
-- ผลลัพธ์ที่บันทึกไว้ในข้อมูลเมตาของทักษะ---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**การค้นหาแฮชเท่านั้น**— ไม่มีการอัพโหลดไฟล์ระหว่างการตรวจสอบปกติ
-- ไฟล์ที่ไม่รู้จักยังคงอยู่ในเครื่องเท่านั้น
-- คงไว้ซึ่ง**การกำหนด**และไม่ขึ้นอยู่กับ CI### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-ประตูปล่อยที่เข้มงวด:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-ขั้นตอนนี้จะอ่าน `skills/*/metadata.json` ที่สร้างขึ้น และจะล้มเหลวหากเครื่องสแกนที่จำเป็นไม่ได้ดำเนินการหรือรายงานการตรวจจับ---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-ข้อมูลความปลอดภัยจะถูกปล่อยออกมาในทุกข้อมูลเมตาของทักษะ:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ npm run verify:scanners:strict
 }
 ```
 
-> บล็อกนี้เผยแพร่ไปยังรายการและมุมมองแค็ตตาล็อก ทำให้ CLI, API และ MCP สามารถ**กรองและจัดอันดับตามคะแนนความปลอดภัย**---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-ทักษะที่เผยแพร่แต่ละรายการจะสร้าง:
+Each published skill generates:
 
-| ไฟล์ | รูปแบบ |
+| File | Format |
 |:-----|:-------|
-| `dist/archives/<ทักษะ>.zip` | ไฟล์ ZIP |
-| `dist/archives/<ทักษะ>.tar.gz` | ไฟล์เก็บถาวร Tarball |
-| `dist/archives/<ทักษะ>.checksums.txt` | รายการตรวจสอบผลรวม SHA-256 |### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-แท็กปล่อย GitHub Actions (`v*`) ทันที:
+GitHub Actions release tags (`v*`) now:
 
-1. ตรวจสอบว่าแท็ก git ตรงกับ `package.json`
-2. ติดตั้งและรีเฟรช ClamAV
-3. ถอดรหัสคีย์การลงนามการเปิดตัวจากความลับ GitHub
-4. รัน `npm run release:verify`
-5. บรรจุ tarball ด้วย `npm pack`
-6. เผยแพร่ tarball ที่แน่นอนนั้นไปที่ npm พร้อมแหล่งที่มา
-7. สร้าง GitHub Release พร้อมบันทึกที่กำหนดเองและแนบเนื้อหาการตรวจสอบ---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> หากไม่มีการระบุคีย์สาธารณะ โครงสร้างจะได้รับรหัส `openssl` และวางไว้ใน `dist/signing/`
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-เมื่อเปิดใช้งาน ไฟล์ `.sig` จะถูกส่งออกไปข้างไฟล์เก็บถาวรและรายการตรวจสอบ
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-ใน CI แท็ก release ตอนนี้จำเป็นต้องลงชื่อเข้าใช้ผ่าน:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` หรือ `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- ทางเลือก `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` หรือ `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| ข้อจำกัด | สถานะ |
-|:----------|:-------|
-| ส่งการอัพโหลด VirusTotal | จงใจแยกออกจากการตรวจสอบเริ่มต้น |
-| การบังคับใช้การลงนาม | บังคับใช้กับแท็กปล่อย งานสร้างในเครื่องอาจยังคงทำงานโดยไม่ได้ลงนาม |
-| โฮสต์การกำกับดูแล | มีการตรวจสอบสิทธิ์ในตัว รันไทม์ของผู้ดูแลระบบ รายการที่อนุญาตของ CORS/IP โหมดการบำรุงรักษา และการบันทึกการตรวจสอบ เกตเวย์ภายนอกยังคงเป็นทางเลือก |
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

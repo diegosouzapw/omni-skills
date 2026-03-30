@@ -5,15 +5,19 @@
 ---
 
 
->**Balíčky sú vybrané selektory zručností navrstvené navrchu katalógu.**Všetkých sedem počiatočných balíčkov je teraz plne podporovaných publikovanými zručnosťami.---
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by currently cataloged skills.
+
+---
 
 ## ⚙️ How Bundles Work
 
-`--bundle`**nenainštaluje**špeciálny balík. to:
+`--bundle` does **not** install a special package. It:
 
-1. 📋 Rozbalí vybranú definíciu balíka
-2. ✅ Inštaluje iba členov aktuálne dostupných v katalógu
-3. ✅ Vytvorí konkrétny plán inštalácie z publikovaných členov balíka```bash
+1. 📋 Expands the selected bundle definition
+2. ✅ Installs only the members currently available in the catalog
+3. ✅ Builds a concrete install plan from published bundle members
+
+```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -21,45 +25,53 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-Na základe aktuálne vygenerovaného katalógu (`dist/bundles.json`):
+Based on the current generated catalog (`dist/bundles.json`):
 
-| Balík | Určené pre | K dispozícii | Členovia |
+| Bundle | Intended For | Available | Members |
 |:-------|:------------|:----------|:--------|
-| 🧰**základné**| Každý vývojár |**4/4**| `nájsť zručnosti` ✅ · `brainstorming` ✅ · `architektúra` ✅ · `ladenie` ✅ |
-| 🌐**plný zásobník**| Vývojári webu a aplikácií |**5/5**| `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨**dizajn**| Dizajnové systémy a dostupnosť |**4/4**| `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `Audit dostupnosti` ✅ |
-| 🛡️**bezpečnosť**| Bezpečnostní inžinieri |**4/4**| `bezpečnostný-auditor` ✅ · `skener zraniteľnosti` ✅ · `reakcia na incidenty` ✅ · `modelovanie hrozieb` ✅ |
-| ⚙️**devops**| Platforma a infra |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `previerka pozorovateľnosti` ✅ · `release-engineering` ✅ |
-| 🤖**ai-inžinier**| Vývojári LLM a ML |**5/5**| `handrový inžinier` ✅ · `promptný inžinier` ✅ · `llm-vzory` ✅ · `eval-design` ✅ · `kontextové inžinierstvo` ✅ |
-| 🔧**oss-maintainer**| Správcovia OSS |**4/4**| `nájsť-zručnosti` ✅ · `vytvoriť-pr` ✅ · `zmeniť denník` ✅ · `dokumentáciu` ✅ |
+| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **5/5** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ · `design-token-governance` ✅ |
+| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
+| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **7/7** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ · `data-contracts` ✅ · `model-serving` ✅ |
+| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = Publikované a inštalovateľné---
+> ✅ = Published and installable
+
+---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- Chcete**spravovaný východiskový bod**pre doménu
-- Chcete nainštalovať plány, ktoré zostanú**spravované a špecifické pre doménu**
-- Chcete rýchly spôsob inštalácie kompletnej pracovnej sady pre rolu### 🎯 Use `--skill` instead when:
+- You want a **curated starting point** for a domain
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
-- Chcete**garantovanú minimálnu inštaláciu**
-- Už poznáte**presnú zručnosť**, ktorú potrebujete
-- Chcete**najmenšiu možnú pôdu**namiesto premyslenej pracovnej súpravy---
+### 🎯 Use `--skill` instead when:
+
+- You want a **guaranteed minimal install**
+- You already know the **exact skill** you need
+- You want the **smallest possible footprint** instead of a curated working set
+
+---
 
 ## 💡 Practical Recommendations
 
-| Cieľ | Príkaz |
+| Goal | Command |
 |:-----|:--------|
-| 🎯 Nainštalujte si konkrétnu zverejnenú zručnosť | `npx omni-skills --cursor --skill omni-figma` |
-| 📦 Plne zabezpečený štartovací balík | `npx omni-skills --cursor --bundle full-stack` |
-| 🎨 Balík dizajnových systémov | `npx omni-skills --cursor --bundle design` |
-| 🔧 Balík pracovných postupov OSS | `npx omni-skills --codex --bundle oss-maintainer` |
-| 🛡️ Balíček bezpečnostných pracovných postupov | `npx omni-skills --cursor --bundle security` |
-| ⚙️ Balíček DevOps | `npx omni-skills --cursor --bundle devops` |
-| 🤖 Balík inžinierov AI | `npx omni-skills --codex --bundle ai-engineer` |
-| 🔎 Pred rozhodnutím hľadajte | `npx omni-skills find figma` |
-| 📋 Zobraziť dostupnosť všetkých balíkov | `cat dist/bundles.json` |---
+| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Search before deciding | `npx omni-skills find figma` |
+| 📋 See all bundle availability | `cat dist/bundles.json` |
+
+---
 
 ## 🔍 Inspecting Bundles
 
@@ -77,7 +89,9 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-Použite nástroje `search_skills` alebo `preview_install` s parametrami balíka.### 📋 Check Install Plan
+Use the `search_skills` or `preview_install` tools with bundle parameters.
+
+### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

@@ -5,65 +5,85 @@
 ---
 
 ---
-ชื่อ: ชื่อทักษะของคุณ
-คำอธิบาย: "คำอธิบายบรรทัดเดียวว่าทักษะนี้ทำอะไรและควรใช้เมื่อใด"
-เวอร์ชัน: "0.1.3"
-หมวดหมู่: การพัฒนา
-แท็ก: [ตัวอย่างแท็ก-1 ตัวอย่างแท็ก-2]
-ความซับซ้อน: ระดับกลาง
-ความเสี่ยง: ปลอดภัย
-เครื่องมือ: [claude-code, เคอร์เซอร์, gemini-cli, ต้านแรงโน้มถ่วง]
-ที่มา: ชุมชน
-ผู้เขียน: "ชื่อของคุณ"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` จะสร้าง skills/<skill>/metadata.json ด้วย canonical
-อนุกรมวิธาน ระดับวุฒิภาวะ คะแนนแนวทางปฏิบัติที่ดีที่สุด คะแนนคุณภาพ และความปลอดภัย
-ผลการสแกน รูปแบบการสั่งการพร้อมท์ คำสั่งทำลายล้าง และสคริปต์ที่มีความเสี่ยง
-โครงสร้างจะถูกตั้งค่าสถานะโดยอัตโนมัติ
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-เวอร์ชันทักษะไม่ขึ้นอยู่กับเวอร์ชันแพ็คเกจ ใช้ความหมาย
-เวอร์ชันที่เหมาะสมกับทักษะนั้นเอง
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-หากต้องการทักษะการทำคะแนนสูงสุด โปรดอ่าน:
-- เอกสาร/ผู้มีส่วนร่วม/HIGH-SCORE-PLAYBOOK.md
-- เอกสาร/ผู้มีส่วนร่วม/QUALITY-BAR.md
+For a top-scoring skill, also read:
+- docs/contributors/HIGH-SCORE-PLAYBOOK.md
+- docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## ภาพรวม
 
-2-3 ประโยคอธิบายว่าทักษะนี้ทำอะไร ใครได้ประโยชน์ และเหตุใดจึงมีอยู่## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- ใช้เมื่อคุณต้องการ [สถานการณ์ที่ 1]
-- ใช้เมื่อคุณต้องการ [สถานการณ์ที่ 2]
-- ใช้เมื่อทำงานกับ [สถานการณ์ที่ 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-อธิบายแนวคิดหลักที่ตัวแทนต้องเข้าใจ### Concept 2
+Explain the key concept the agent needs to understand.
 
-อธิบายแนวคิดพื้นฐานอีกประการหนึ่ง## Workflow
+### Concept 2
 
-| เฟส | เอาท์พุท | ทำไมมันถึงสำคัญ |
+Explain another foundational concept.
+
+## Workflow
+
+| Phase | Output | Why it matters |
 |:------|:-------|:---------------|
-| วางกรอบเป้าหมาย | วัตถุประสงค์ที่ชัดเจน | ป้องกันคำแนะนำที่คลุมเครือ |
-| ดำเนินการตามขั้นตอน | เวิร์กโฟลว์พร้อมสำหรับตัวแทน | ทำให้ทักษะสามารถดำเนินการได้ |
-| ตรวจสอบผลลัพธ์ | สัญญาณการยอมรับ | เพิ่มความมั่นใจ |
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-1. ขั้นตอนแรกในกระบวนการทำงาน
-2. ขั้นตอนที่สองในขั้นตอนการทำงาน
-3. ขั้นตอนที่สามในขั้นตอนการทำงาน### 1. First Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-คำแนะนำโดยละเอียดสำหรับขั้นตอนแรก### 2. Second Step
+### 1. First Step
 
-คำแนะนำโดยละเอียดสำหรับขั้นตอนที่สอง### 3. Third Step
+Detailed instructions for the first step.
 
-คำแนะนำโดยละเอียดสำหรับขั้นตอนที่สาม## Examples
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ testing-security, documentation, content-media, communication, uncategorized.
 Example prompt or code here
 ```
 
-**คำอธิบาย:**ตัวอย่างนี้แสดงให้เห็นอะไร### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**คำอธิบาย:**ตัวอย่างนี้แสดงให้เห็นอะไร## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**ทำ:**ปฏิบัติตามข้อปฏิบัติที่ดีนี้
-- ✅**ทำ:**ปฏิบัติตามข้อปฏิบัตินี้ด้วย
-- ❌**อย่า:**หลีกเลี่ยงรูปแบบนี้
-- ❌**อย่า:**อย่าทำเช่นนี้## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**อาการ:**คุณจะรู้ได้อย่างไรว่านี่คือปัญหา
-**วิธีแก้ไข:**วิธีแก้ไข## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@ related-skill-1` — เมื่อใดจึงควรใช้สิ่งนี้แทน
-- `@ related-skill-2` — สิ่งนี้ช่วยเสริมทักษะของคุณได้อย่างไร## Additional Resources
+## Related Skills
 
-- [รายการตรวจสอบ](references/checklist.md)
-- [ตัวอย่างการทำงาน](examples/example.md)
-- [สคริปต์ตัวช่วย](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

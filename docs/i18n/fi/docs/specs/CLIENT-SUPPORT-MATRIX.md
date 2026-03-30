@@ -5,131 +5,147 @@
 ---
 
 
-Tämä asiakirja seuraa Omni Skillsin käytännöllistä asiakastilaa kolmen syötteen kautta:
+This document tracks the practical client surface for Omni Skills across three inputs:
 
-1. "9router" hallintapaneelin mainosjakauma kohteessa "/home/diegosouzapw/dev/proxys/9router"
-2. nykyinen Omni Skills MCP -sivuvaunutoteutus
-3. kunkin asiakkaan tai IDE:n nykyiset viralliset asiakirjat
+1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
+2. the current Omni Skills MCP sidecar implementation
+3. current official documentation for each client or IDE
 
-Se on toimiva totuuden lähde päätettäessä, mitkä asiakkaat saavat ensiluokkaista "config-mcp"-tukea, mitkä pysyvät vain manuaalisina ja mitkä ovat vain ehdokkaita.---
+It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
+
+---
 
 ## Scope
 
-Tämä matriisi koskee**MCP:n**asiakasmäärityksiä.
+This matrix is about **client configuration for MCP**.
 
-Se ei ole sama kuin:
+It is not the same as:
 
-- ammattitaitoinen asennustuki
-- API-yhteensopivuus
-- A2A tuki
-- ACP tai muut ei-MCP-protokollat
+- skill installation support
+- API compatibility
+- A2A support
+- ACP or other non-MCP protocols
 
-Jotkut matriisin tuotteet kuluttavat MCP:tä, mutta niillä**ei**ole merkityksellistä "taitohakemistoa", joten ne saavat vain konfigurointikohdetuen.---
+Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
+
+---
 
 ## 9router Inventory
 
-"9router"-koontinäyttö ryhmittelee tällä hetkellä nämä CLI-työkalut tai IDE-asiakkaat:
+The `9router` dashboard currently groups these CLI tools or IDE clients:
 
 - Claude Code
 - OpenAI Codex
-- Tehdasdroidi
+- Factory Droid
 - OpenClaw
-- Kursori
+- Cursor
 - Cline
-- kilokoodi
-- Jatka
-- Antigravitaatio
+- Kilo Code
+- Continue
+- Antigravity
 - GitHub Copilot
 - OpenCode
 - Kiro AI
 
-Paikalliset lähteet:
+Local sources:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
 - [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)---
+- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
+
+---
 
 ## First-Class Support
 
-Näillä asiakkailla on nyt vakaa, selkeä tarina Omni Skillsissa `config-mcp --target...` kautta.
+These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
 
-Tämänhetkinen toteutussummat:
+Current implementation totals:
 
--**7 asennuskykyistä asiakasta**
--**16 konfigurointikykyistä asiakasta**
--**33 ensiluokkaista määrityskohdetta**
--**19 konfigurointiprofiilia**
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 first-class config targets**
+- **19 config profiles**
 
-| Asiakas | Tila | Config Targets | Huomautuksia |
-|:-------|:--------|:----------------|:-------|
-| Claude Code | ✅ Ensiluokkainen | "työtila", "claude-projekti", "claude-user-settings", "claude-user", "claude-user-legacy", "claude-desktop" | Kirjoitettu "mcpServers"-määritys Claude-kohtaisilla salli-/kielto-ohjaimilla |
-| Kursori | ✅ Ensiluokkainen | `kursori-työtila`, `kursori-käyttäjä` | JSON "mcpServers" -kohteet |
-| VS-koodi | ✅ Ensiluokkainen | "vscode", "vscode-user", "vscode-insiders-user", "devcontainer" | Käyttää palvelinjuurta |
-| Gemini CLI | ✅ Ensiluokkainen | "gemini-user", "gemini-workspace" | JSON-asetukset + yleiset MCP:n sallivat/poissulkevat ohjaimet |
-| Antigravitaatio | ✅ Ensiluokkainen | "antigravitaatiokäyttäjä" | JSON "mcpServers" kohde |
-| Kiro | ✅ Ensiluokkainen | "kiro-user", "kiro-työtila", "kiro-user-legacy" | Kiro-kohtaiset pois käytöstä/automaattisesti hyväksytyt kentät |
-| Codex CLI | ✅ Ensiluokkainen | `codex-käyttäjä` | TOML mcp_servers -taulukot |
-| Jatka | ✅ Ensiluokkainen | "jatka-työtila" | YAML-palvelinasiakirja |
-| Purjelautailu | ✅ Ensiluokkainen | "purjelautailija" | JSON "mcpServers" kohde "serverUrl"-merkinnöillä |
-| OpenCode | ✅ Ensiluokkainen | `opencode-workspace`, `opencode-user` | Virallinen `opencode.json` / user config käyttäen ylätason `mcp` |
-| Cline | ✅ Ensiluokkainen | `klinikan käyttäjä` | "cline_mcp_settings.json" ja "mcpServers" |
-| GitHub Copilot CLI | ✅ Ensiluokkainen | "copilot-user", "copilot-repo" | "mcp-config.json" tai reposcoped ".github/mcp.json" |
-| Kilo-koodi | ✅ Ensiluokkainen | "kilo-käyttäjä", "kilo-projekti", "kilo-työtila" | Kilo CLI käyttää `kilo.json'; työtilan integrointi käyttää koodia `.kilocode/mcp.json` |
-| Zed | ✅ Ensiluokkainen | "zed-workspace" | ".zed/settings.json" ja "context_servers" |
-| Junie | ✅ Ensiluokkainen | "junie-project", "junie-user" | ".junie/mcp/mcp.json" tai "~/.junie/mcp/mcp.json" käyttämällä "mcpServers"-komentoa |
-| Hanhi | ✅ Ensiluokkainen | "hanhikäyttäjä" | `~/.config/goose/config.yaml` käyttämällä huipputason `extensions`-objektia pysyviä MCP-laajennuksia varten |---
+| Client | Status | Config Targets | Notes |
+|:-------|:-------|:---------------|:------|
+| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
+| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
+| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
+| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
+| Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
+| Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
+| Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
+| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
+| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
+| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
+| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
+| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
+| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
+| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
+| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
+| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
+
+---
 
 ## Current Gaps
 
-Nämä `9routerin` asiakkaat**eivät**ole vielä ensiluokkaisia kirjoittajien kohteita Omni Skillsissa:
+These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
 
-| Asiakas | Nykyinen tila | Miksi |
-|:-------|:---------------|:----|
-| Tehdasdroidi | ⚠️ Manuaalinen/vain mukautettu | Ensisijaisista asiakirjoista ei löytynyt vakaata julkista MCP-konfiguraatiomuotoa tämän passin aikana |
-| OpenClaw | ⚠️ Manuaalinen/vain mukautettu | Sama ongelma kuin Factory Droid |
+| Client | Current State | Why |
+|:-------|:--------------|:----|
+| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
+| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
 
-Sivuvaunua voidaan edelleen käyttää "--file"- tai mukautettujen polkujen kanssa edistyneille käyttäjille, mutta Omni Skillsin ei pitäisi keksiä ensiluokkaisia ​​kirjoittajia ilman vakaita julkisia konfigurointidokumentteja.
+The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
 
-Kaksi vierekkäistä tuotetta on nyt ymmärretty paremmin, mutta silti tarkoituksella jäävät väliin ensiluokkaisista automaattisista kirjoittajista:
+Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
 
-| Asiakas | Nykyinen tila | Miksi |
-|:-------|:---------------|:----|
-| JetBrains AI Assistant | 🟡 Manuaali/katkelma | Virallinen MCP-tuki on olemassa, mutta dokumentoitu työnkulku on käyttöliittymä-/tuontiohjattu vakaan julkisen tiedoston kohteen sijaan |
-| Postimies | 🟡 Manuaali/katkelma | Virallinen MCP-tuki on olemassa, mutta määritystä hallitaan tuotteen UX:n sisällä vakaan julkisen tiedostokohteen sijaan |
-| Roo Code | 🟡 Ehdokas | Julkisia MCP-dokumentteja on olemassa, mutta vahva useiden alustojen välinen tiedostopolkusopimus vaatii vielä vahvistuksen ennen kirjoittajan lisäämistä |---
+| Client | Current State | Why |
+|:-------|:--------------|:----|
+| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
+| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
+| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
+
+---
 
 ## Support Policy
 
-Omni Skills noudattaa nyt tätä sääntöä:
+Omni Skills now follows this rule set:
 
-1.**Asennuskelpoinen**, jos vakaa osaamishakemisto on olemassa.
-2.**Config-capable**, jos vakaa julkinen MCP-määritystiedostomuoto on olemassa.
-3.**Manuaalinen/vain katkelma**, jos tuote tukee MCP:tä, mutta julkinen sopimus on UI-ensin, tuonti-ensin tai liian epävakaa.
+1. **Install-capable** if a stable skills directory exists.
+2. **Config-capable** if a stable public MCP config file format exists.
+3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
 
-Tämä on myös käytännöllinen vastaus yhteen aiemmista arkkitehtuurikysymyksistä: hankkeen tulisi jatkaa ensiluokkaisten kirjoittajien kasvattamista vain siellä, missä on vakaa julkinen muoto, ja muuten tukeutua pienempään joukkoon kanonisia vientiperheitä sekä reseptejä ja katkelmia.### Canonical config families already in use
+This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
 
-- JSON "mcpServers".
-- JSON "palvelimet".
-- JSON "context_servers".
-- YAML "mcpServers".
-- TOML `[mcp_servers]`### Additional candidates worth watching
+### Canonical config families already in use
 
-| Asiakas / IDE | Suositus | Syy |
-|:-------------|:----------------|:--------|
-| JetBrains AI Assistant | 🟡 Säilytä käyttöohje/katkelma toistaiseksi | Virallinen tuki on todellista, mutta käyttöliittymä on edelleen tuotehallittu eikä tiedostosopimus ensin |
-| Postimies | 🟡 Säilytä käyttöohje/katkelma toistaiseksi | Virallinen asennus on UI-first ja työtilan hallinnassa eikä tiedostosopimus-first |
-| Roo Code | 🟡 Tutki seuraavaksi | Lupaava MCP-tuki, mutta kirjoittajan turvallisuus riippuu vahvemmasta konfigurointipolun vahvistuksesta |
-| VS Code Copilot Chat | 🟢 Käsitelty jo epäsuorasti | Taustalla olevat VS Coden MCP-tiedostojen sijainnit ovat jo tuettuja |
-| Zed ACP / agenttipalvelimet | 🟡 Erillinen rata | Tämä on ACP/agent-server-alue, ei vain MCP-asetusten kirjoittaminen |---
+- JSON `mcpServers`
+- JSON `servers`
+- JSON `context_servers`
+- YAML `mcpServers`
+- TOML `[mcp_servers]`
+
+### Additional candidates worth watching
+
+| Client / IDE | Recommendation | Reason |
+|:-------------|:---------------|:-------|
+| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
+| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
+| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
+| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
+| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
+
+---
 
 ## Official Sources Used
 
-Yllä olevat päätökset on tarkistettu nykyisiin ensisijaisiin lähteisiin verrattuna:
+The decisions above were checked against current primary sources:
 
 - [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
 - [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
 - [Cursor MCP](https://docs.cursor.com/tools)
-- [Jatka MCP:tä](https://docs.continue.dev/customize/tools)
+- [Continue MCP](https://docs.continue.dev/customize/tools)
 - [Kiro MCP](https://kiro.dev/docs/mcp)
 - [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
 - [Cline MCP](https://docs.cline.bot/mcp)
@@ -140,23 +156,25 @@ Yllä olevat päätökset on tarkistettu nykyisiin ensisijaisiin lähteisiin ver
 - [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
 - [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
 - [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Postman MCP:n asennus](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
 - [Roo Code MCP](https://docs.roocode.com/features/mcp)
-- [VS Coden MCP-laajennusopas](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Virallinen MCP-rekisteri](https://prod.registry.modelcontextprotocol.io/)---
+- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
+
+---
 
 ## Implementation Notes
 
-Nykyinen Omni Skills -sivuvaunu erottaa tarkoituksella kolme tukitasoa:
+The current Omni Skills sidecar intentionally distinguishes three support levels:
 
--**asennuskykyiset asiakkaat**
-  - sinulla on tunnettu taitohakemisto ja osaa käyttää "install_skills".
--**konfigurointikykyiset asiakkaat**
-  - niillä on vakaa konfigurointikohde ja ne voivat käyttää `configure_client_mcp`
--**manuaaliset/katkelmat**
-  - dokumentoitu, mutta ilman turvallista ensiluokkaista tiedostokirjoitinta
+- **install-capable clients**
+  - have a known skills directory and can use `install_skills`
+- **config-capable clients**
+  - have a stable config target and can use `configure_client_mcp`
+- **manual/snippet clients**
+  - documented, but without a safe first-class file writer yet
 
-Tämä erottelu pitää tuotteen rehellisenä.
+That separation keeps the product honest.
 
-Jokaista MCP-yhteensopivaa tuotetta ei pidä käsitellä taitojen asennuskohteena.
-Laajennusvaiheen katsotaan toistaiseksi päättyneen: tulevien lisäysten pitäisi laskeutua vain, jos ne tyhjentävät saman julkisen sopimuksen baarin, jonka Goose, Junie, Continue ja Windsurf nyt tyhjentävät.
+Not every MCP-capable product should be treated as a skill-install target.
+The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.

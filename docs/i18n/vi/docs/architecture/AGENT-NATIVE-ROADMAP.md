@@ -5,89 +5,108 @@
 ---
 
 
->**Kế hoạch phát triển kiến ​​trúc cho Omni Skills: từ kho lưu trữ ưu tiên trình cài đặt đến thời gian chạy danh mục dùng chung hỗ trợ CLI, API, MCP và A2A mà không cần logic trùng lặp.**---
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+
+---
 
 ## 📊 Current Platform Areas
 
-| Giai đoạn | Tên | Trạng thái |
-|:------|:------|:-------|
-| 1️⃣ | Hợp đồng và hiện vật | ✅ Hiện tại |
-| 2️⃣ | API danh mục chỉ đọc | ✅ Hiện tại |
-| 3️⃣ | Bề mặt khám phá MCP | ✅ Hiện tại |
-| 4️⃣ | Bề mặt cài đặt và cấu hình cục bộ | ✅ Hiện tại |
-| 5️⃣ | Dàn nhạc A2A | ✅ Hiện tại |### ✅ What Exists Today
+| Phase | Name | Status |
+|:------|:-----|:-------|
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-- các tạo phẩm danh mục có thể đọc được bằng máy trong `dist/`
-- API HTTP chỉ đọc với phạm vi điểm cuối để tìm kiếm, gói, so sánh, lập kế hoạch cài đặt và tải xuống
-- Máy chủ MCP với `stdio`, truyền tải HTTP và SSE có thể phát trực tuyến
-- sidecar cục bộ với các luồng ghi và `config-mcp` được đưa vào danh sách cho phép
-- 7 máy khách có khả năng cài đặt, 16 máy khách có khả năng cấu hình, 33 mục tiêu cấu hình MCP và 19 cấu hình cấu hình
-- chuyên môn hóa gói sâu hơn bên trong `full-stack`, `security`, `devops` và `ai-engineer` thông qua `auth-flows`, `deat-modeling`, `release-engineering` và `context-engineering`
-- kho lưu trữ theo kỹ năng (`zip`, `tar.gz`) với tổng kiểm tra SHA-256 và chữ ký tách rời trên thẻ phát hành
-- Đường cơ sở quản trị API: xác thực không ghi tên/khóa API, xác thực thời gian chạy của quản trị viên, giới hạn tốc độ, ghi nhật ký kiểm tra, danh sách cho phép CORS/IP, proxy tin cậy, chế độ bảo trì và ID yêu cầu
-- Thời gian chạy A2A với vòng đời tác vụ, độ bền JSON/SQLite, tiếp tục khởi động lại, phát trực tuyến SSE, hủy, thông báo đẩy, trình thực thi quy trình tùy chọn và phối hợp thuê tham gia### 🔭 Future Expansion Areas
+### ✅ What Exists Today
 
-Lộ trình cốt lõi hiện mô tả phạm vi nền tảng hiện tại. Các hạng mục còn lại là các khu vực mở rộng trong tương lai, không phải các khoảng trống nền tảng:
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
+- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-- chỉ những bổ sung MCP có tính chọn lọc cao từ thời điểm này trở đi và chỉ khi các tài liệu công cộng chính thức giúp người viết an toàn có thể thực hiện được
-- gói tham khảo sâu hơn và tính điểm ngữ nghĩa nhiều hơn để bộ phân loại tiếp tục tách các kỹ năng đặc biệt khỏi các kỹ năng đơn thuần được trau chuốt
-- quản trị do doanh nghiệp lưu trữ vượt quá mức cơ sở hiện tại trong quy trình, nếu sau này dự án cần tích hợp cổng hoặc IdP
-- chuyên môn hóa sâu hơn trên các phần `design`, `tools`, `data-ai` và `machine-learning` mới được kích hoạt
-- tiếp tục hoàn thiện hoạt động xung quanh bộ tăng cường riêng trong khi vẫn giữ mô hình hoạt động chính thức của nó: OmniRouter được ghim vào `cx/gpt-5.4`, được lưu trữ trên đám mây ở chế độ `mô phỏng` hoặc ánh sáng sơ bộ đã xuống cấp và `trực tiếp` đáng tin cậy trên mạng LAN hoặc thực thi tự lưu trữ
-- tiếp tục phát hành và tăng cường quy trình làm việc chỉ như công việc về chất lượng dịch vụ chứ không phải vì thiếu nền tảng## Future Catalog Expansion Track
+### 🔭 Future Expansion Areas
 
-Hai làn sóng mở rộng danh mục công khai đầu tiên hiện đã có mặt:
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
 
-- `design` → `design-systems-ops`, `accessibility-aud`, `design-token-governance`
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
+
+## Future Catalog Expansion Track
+
+The first two public category-expansion waves are now landed:
+
+- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
 - `tools` → `mcp-server-authoring`
-- `data-ai` → `data-contract`
-- `học máy` → `phục vụ mô hình`
+- `data-ai` → `data-contracts`
+- `machine-learning` → `model-serving`
 
-Bước được đề xuất tiếp theo không còn là kích hoạt danh mục vì mục đích riêng của nó nữa. Mục đích là đào sâu các dấu vết gốc mã mới hoạt động này để chúng có cảm giác giống như bề mặt sản phẩm bền vững hơn là chỗ đứng dành cho một kỹ năng.
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
 
-Hướng đề xuất:
+Recommended direction:
 
-1. đào sâu `thiết kế` với nhiều quy trình làm việc của hệ thống thiết kế vận hành hơn
-2. đào sâu thêm `công cụ` với các kỹ năng soạn thảo và định hướng plugin
-3. đào sâu `data-ai` với các kỹ năng về thiết bị và quy trình triển khai đầu tiên
-4. đào sâu thêm `machine-learning` với các kỹ năng vận hành phục vụ, đào tạo và đánh giá
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
-Các danh mục được trì hoãn có chủ ý trừ khi xuất hiện các đề xuất gốc mã mạnh:
+Categories intentionally deferred unless strong code-native proposals appear:
 
-- `kinh doanh`
-- `nội dung-phương tiện`
+- `business`
+- `content-media`
 
-Lịch sử mở rộng đó hiện được theo dõi trong:
+That expansion history now lives in the mainline runtime docs rather than a separate public task backlog:
 
-- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
+- [Codebase Analysis](CODEBASE-ANALYSIS.md)
+- [Catalog](../CATALOG.md)
+
+---
 
 ## 🎯 Goals
 
-- ✅ Duy trì quy trình làm việc `npx omni-skills` hiện tại
-- ✅ Giới thiệu nguồn chân lý có thể đọc được bằng máy cho các kỹ năng
-- ✅ Hỗ trợ các đại lý tìm kiếm, đề xuất, lập kế hoạch cài đặt
-- ✅ Tách biệt các mối quan tâm về danh mục từ xa khỏi việc ghi hệ thống tệp cục bộ
-- ✅ Tái sử dụng cùng một siêu dữ liệu trên CLI, API, MCP và A2A---
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
+
+---
 
 ## 🚫 Non-Goals
 
-- ❌ Cài đặt từ xa trên máy người dùng từ máy chủ được lưu trữ
-- ❌ Thay thế `SKILL.md` làm định dạng tác giả chuẩn
-- ❌ Yêu cầu cộng tác viên viết bảng kê khai bằng tay
-- ❌ Mặc định biến dự án thành nền tảng xếp hàng được lưu trữ nặng---
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
+
+---
 
 ## 🏗️ Target Architecture
 
-Một**lõi danh mục**với ba bề mặt giao thức:
+One **catalog core** with three protocol surfaces:
 
-| Bề mặt | Tốt nhất cho | Chế độ |
-|:--------|:----------|:------|
-| 🌐**API nghỉ ngơi**| Truy cập sổ đăng ký, tích hợp giao diện người dùng, người tiêu dùng bên thứ ba | Chỉ đọc |
-| 🔌**MCP**| Khám phá tác nhân, xem trước cài đặt, viết cấu hình, công thức ứng dụng khách | Chỉ đọc + ghi cục bộ |
-| 🤖**A2A**| Điều phối giữa các tác nhân và chuyển giao kế hoạch cài đặt | Vòng đời nhiệm vụ với độ bền cục bộ đơn giản đầu tiên |### ⚙️ Core Principle
+| Surface | Best For | Mode |
+|:--------|:---------|:-----|
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
->**Tất cả các giao thức đều sử dụng cùng một họ tạo tác được tạo.**```text
+### ⚙️ Core Principle
+
+> **All protocols consume the same generated artifact family.**
+
+```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -97,144 +116,178 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-Bản kê khai vẫn là hợp đồng chung. Các kho lưu trữ là các tạo phẩm phân phối được xếp chồng lên trên hợp đồng đó, không phải là sự thay thế cho hợp đồng đó.---
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
+
+---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Được sử dụng bởi API được lưu trữ và máy chủ MCP từ xa.
+Used by hosted API and remote MCP servers.
 
-| ✅ Được phép | ❌ Không được phép |
-|:----------|:---------------|
-| Kỹ năng tìm kiếm | Ghi vào hệ thống tập tin của người gọi |
-| Tìm nạp bảng kê khai | Thay đổi cấu hình máy khách cục bộ |
-| So sánh kỹ năng | Suy ra trạng thái máy tùy ý |
-| Đề xuất gói | — |
-| Xây dựng kế hoạch cài đặt | — |### 2️⃣ Local Installer Mode
+| ✅ Allowed | ❌ Not Allowed |
+|:-----------|:---------------|
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-Được sử dụng bởi CLI và xe sidecar MCP.
+### 2️⃣ Local Installer Mode
 
-| ✅ Được phép |
-|:----------|
-| Phát hiện ứng dụng khách AI cục bộ |
-| Kiểm tra các kỹ năng đã cài đặt |
-| Xem trước thao tác tập tin |
-| Cài đặt hoặc xóa thư mục kỹ năng |
-| Viết cấu hình MCP cục bộ sau khi xem trước |
+Used by the CLI and the MCP sidecar.
 
-> Đây vẫn là chế độ duy nhất diễn ra quá trình ghi hệ điều hành thực sự.---
+| ✅ Allowed |
+|:-----------|
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
+
+> 📌 This remains the only mode where real OS writes happen.
+
+---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Tốt nhất để truy cập sổ đăng ký, tìm kiếm, so sánh, tải xuống theo phiên bản và lập kế hoạch cài đặt.
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**Điểm cuối**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`### 🔌 MCP
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-Tốt nhất để khám phá dựa trên công cụ, đề xuất kịp thời, xem trước cài đặt và thiết lập MCP dành riêng cho khách hàng.
+### 🔌 MCP
 
-**Công cụ chỉ đọc**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
-**Công cụ cục bộ**: ` detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-Tốt nhất cho quá trình chuyển giao khám phá, quy trình lập kế hoạch cài đặt và thực thi tác vụ tác nhân có thể tiếp tục.
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-**Hoạt động hiện tại**: `discover-skills` · `recommend-stack` · `prepare-install-plan`---
+### 🤖 A2A
+
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
+
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+
+---
 
 ## 🛡️ Security Model
 
-| Nguyên tắc | Thực hiện |
+| Principle | Implementation |
 |:----------|:---------------|
-| 🔒 Dịch vụ được lưu trữ ở chế độ chỉ đọc | API và MCP từ xa không ghi vào hệ thống tệp người gọi |
-| 📂 Viết ở địa phương | Chỉ xe sidecar CLI và MCP |
-| 👁️ Xem trước trước khi viết | Mặc định chạy thử đối với các đột biến cục bộ |
-| 🔑 Tính chính trực rõ ràng | Tổng kiểm tra SHA-256 cho các tạo phẩm được tạo |
-| ✍️ Giải phóng niềm tin rõ ràng | Chữ ký tách rời được thi hành trên thẻ phát hành |
-| ⚠️ Rủi ro lộ diện | Siêu dữ liệu về rủi ro và bảo mật được truyền đến mọi bề mặt thời gian chạy |---
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
+
+---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- kiến trúc mục tiêu được ghi lại
-- lược đồ kê khai được xác định
-- siêu dữ liệu, danh mục, bảng kê khai, gói và kho lưu trữ được tạo### Phase 2: Catalog Service
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
-- API HTTP chỉ đọc với Express 5
-- tìm kiếm, lọc, tra cứu bảng kê khai, liệt kê gói, so sánh và tải xuống
-- cơ sở quản trị được lưu trữ trên máy chủ dựa trên môi trường### Phase 3: MCP Discovery
+### Phase 2: Catalog Service
 
-- tích hợp `@modelcontextprotocol/sdk` chính thức
-- `stdio`, truyền tải HTTP và SSE có thể phát trực tuyến
-- các công cụ, tài nguyên và lời nhắc chỉ đọc được hỗ trợ bởi danh mục được chia sẻ### Phase 4: Local Install and Config Surface
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
-- sidecar cục bộ có ghi vào danh sách cho phép
-- phát hiện 7 máy khách có khả năng cài đặt
-- viết cấu hình cho 16 máy khách có khả năng cấu hình trên 33 mục tiêu và 19 cấu hình cấu hình
-- các luồng `config-mcp` được hướng dẫn trong CLI và shell trực quan
-- hỗ trợ ổn định cho Claude, Cursor, VS Code, Gemini, AntiGravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose và Dev Container### Phase 5: A2A Orchestration
+### Phase 3: MCP Discovery
 
-- thẻ đại lý tại `/.well-known/agent.json`
-- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, và các phương thức cấu hình thông báo đẩy
-- Kiên trì JSON và SQLite với khả năng khôi phục khởi động lại
-- tùy chọn thực thi quy trình bên ngoài
-- chọn tham gia thực thi cho thuê giữa các công nhân để có SQLite và phối hợp Redis nâng cao tùy chọn
-- các giá trị mặc định đơn giản đầu tiên được lưu giữ trên bộ nhớ, JSON hoặc SQLite mà không có sự phụ thuộc bên ngoài### Current Enhancer Operating Decision
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-Mô hình `live` được hỗ trợ của trình tăng cường riêng tư hiện đã rõ ràng:
+### Phase 4: Local Install and Config Surface
 
-- tự động hóa PR được lưu trữ chạy thử `trực tiếp` được kiểm soát trước
-- nếu cổng OmniRoute công cộng bị chặn hoặc không ổn định, PR sẽ được đánh dấu `bị chặn` với lý do liên quan đến nhà điều hành thay vì thất bại một cách mờ ám
-- đường dẫn `trực tiếp' đáng tin cậy theo chuẩn vẫn là mạng LAN hoặc thực thi dịch vụ cục bộ
-- GitHub riêng tư được lên lịch chạy ở trạng thái `giả lập` theo mặc định trừ khi người vận hành yêu cầu rõ ràng `trực tiếp`---
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
+
+### Phase 5: A2A Orchestration
+
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
+
+### Current Enhancer Operating Decision
+
+The private enhancer's supported `live` model is now explicit:
+
+- hosted PR automation runs a preflight-gated `live` attempt
+- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
+- the canonical reliable `live` path remains LAN or local service execution
+- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
+
+---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Quyết định**: giữ bản kê khai dưới dạng hợp đồng chung và giữ các bản lưu trữ đã ký cho mỗi kỹ năng làm bề mặt phân phối.
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
 
-**Tại sao**:
-- CLI, API, MCP và A2A đã sử dụng hình dạng tệp kê khai chuẩn hóa
-- kho lưu trữ lý tưởng để tải xuống và xác minh, nhưng kém vì là hợp đồng khám phá duy nhất
-- điều này giúp cho việc soạn thảo trở nên đơn giản và việc phân phối có thể được kiểm chứng### 2. Private or Premium Catalogs
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
 
-**Quyết định**: sử dụng lại cùng một định dạng danh mục và bảng kê khai cũng như lớp xác thực hoặc chính sách bên ngoài.
+### 2. Private or Premium Catalogs
 
-**Tại sao**:
-- nó tránh làm giả mô hình dữ liệu
-- nó phù hợp với phương pháp quản trị API/MCP hiện tại
-- nó vẫn tương thích với định hướng hệ sinh thái MCP xung quanh thông tin xác thực ứng dụng khách OAuth và ủy quyền do doanh nghiệp quản lý### 3. Client Writer Strategy
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
 
-**Quyết định**: hội tụ một nhóm nhỏ các họ xuất khẩu chuẩn mực và chỉ giữ lại những người viết riêng khi tài liệu khách hàng chính thức yêu cầu.
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
 
-**Các dòng kinh điển hiện đang được sử dụng**:
+### 3. Client Writer Strategy
+
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
 - JSON `mcpServers`
-- `máy chủ` JSON
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Tại sao**:
-- nó giữ cho việc thực hiện có thể duy trì được
-- nó vẫn hỗ trợ các nhu cầu cụ thể của khách hàng như cài đặt Claude, Tiếp tục YAML, Zed `context_servers` và Codex TOML
-- nó tránh phát minh ra các trình soạn thảo mỏng manh cho các máy khách không có tài liệu cấu hình công khai ổn định---
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-Các quyết định hiện tại đã được kiểm tra dựa trên các tài liệu hệ sinh thái chính thức:
+The current decisions were checked against official ecosystem docs:
 
-- hệ sinh thái MCP hiện ghi lại các tiện ích mở rộng tùy chọn như thông tin xác thực ứng dụng khách OAuth và ủy quyền do doanh nghiệp quản lý, hỗ trợ xác thực được lưu trữ bên ngoài thay vì giả mạo định dạng danh mục
-- OpenAI ghi lại máy chủ MCP tài liệu công cộng và các mẫu cấu hình Codex MCP phù hợp với bảng kê khai được chia sẻ cộng với chiến lược máy khách-người viết
-- VS Code ghi lại hỗ trợ MCP hạng nhất và hướng dẫn mở rộng, giúp củng cố việc duy trì trình soạn thảo dựa trên `máy chủ` chuyên dụng của nó
-- Trợ lý AI JetBrains ghi lại quá trình thiết lập MCP thông qua trải nghiệm người dùng của sản phẩm thay vì hợp đồng tệp ổn định trên nhiều nền tảng, hiện hỗ trợ giữ nó trong lãnh thổ thủ công/đoạn mã---
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
 
 ## 🔮 Longer-Term Decision Points
 
-Chỉ có một số câu hỏi chiến lược vẫn còn thực sự mở:
+Only a few strategic questions remain genuinely open:
 
-1. Liệu bất kỳ khách hàng nào ngoài ma trận hiện tại có thực sự vượt qua được rào cản đối với việc viết hạng nhất hay liệu các sản phẩm còn lại có nên ở chế độ thủ công/đoạn trích hay không
-2. Khi nào, nếu có, quản trị được lưu trữ nên chuyển sang cổng bên ngoài hoặc IdP doanh nghiệp thay vì đường cơ sở trong quá trình hiện tại?
-3. Người chấm điểm nên đi xa đến mức nào trong việc đánh giá độ sâu của gói tham chiếu và chất lượng hoạt động trước khi nó trở nên quá quan trọng đối với những người đóng góp?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

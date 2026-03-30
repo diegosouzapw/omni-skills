@@ -5,42 +5,50 @@
 ---
 
 
->**تحتوي Omni Skills على كتالوج المهارات وأسطح وقت التشغيل المبنية فوق هذا الكتالوج.**
-> يمكن أن تستهدف المساهمات أيًا من المنطقتين، ولكن يجب أن يظل كلاهما متوافقًا مع العناصر التي تم إنشاؤها وسلوك واجهة سطر الأوامر (CLI) الحالي.---
+> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
+
+---
 
 ## 📊 Repository Baseline
 
-| متري | القيمة |
-|:-------|:-----|
-| 📦 نسخة الحزمة | `0.1.3` |
-| 🧠 المهارات المنشورة | `32` |
-| 📦 الحزم المدعومة بالكامل | `7` |
-| 🖥️ عملاء قادرون على التثبيت | `7` |
-| 🔌 عملاء قادرون على تكوين MCP | `16` |
-| 🔄 إطلاقات تلقائية | ممكّن على "الرئيسي" |---
+| Metric | Value |
+|:-------|:------|
+| 📦 Package version | `0.1.3` |
+| 🧠 Published skills | `32` |
+| 📦 Fully backed bundles | `7` |
+| 🖥️ Install-capable clients | `7` |
+| 🔌 MCP config-capable clients | `16` |
+| 🔄 Automatic releases | Enabled on `main` |
+
+---
 
 ## مهم
 
-| ماذا | أين |
-|:-----|:-----|
-| 🧠 المهارات مؤلفة في | `skills/<skill-name>/SKILL.md` |
-| 📖 قوالب المساهمة وإرشادات | `المستندات/المساهمين/` |
-| 🧾 تدفق العلاقات العامة الكنسي للمهارات الجديدة | [سير عمل العلاقات العامة في المهارات](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 المهارات الواردة الأصلية تقع تحت | `المهارات/` (أي لغة) |
-| ✨ المشتقات المحسنة المنسقة | `skills_omni/` (الإنجليزية فقط، آليًا) |
-| 🚫 `skills_omni/` محمي | غير مفتوح للمساهمة العامة المباشرة |
-| 📖 وثائق وقت التشغيل والهندسة المعمارية | `المستندات/` |
-| 📄 ملفات المجتمع | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |---
+| What | Where |
+|:-----|:------|
+| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
+| 📖 Contributor templates and guidance | `docs/contributors/` |
+| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Native incoming skills land under | `skills/` (any language) |
+| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
+| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 📖 Runtime and architecture docs | `docs/` |
+| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
+
+---
 
 ## 🎯 Common Contribution Types
 
-| اكتب | المنطقة |
+| Type | Area |
 |:-----|:-----|
-| 🧠 إضافة مهارة أو تحسينها | `مهارات/` |
-| 📖 تحديث توجيهات المساهم | `المستندات/المساهمين/` |
-| 🖥️ تحسين واجهة سطر الأوامر أو المثبت أو البرامج النصية | `أدوات/` |
-| 📦 تحسين وقت تشغيل الكتالوج أو حزم البروتوكول | `الحزم/` |
-| 🧪 تشديد الاختبارات أو فحص الدخان أو إصدار المستندات | متنوع |---
+| 🧠 Add or improve a skill | `skills/` |
+| 📖 Update contributor guidance | `docs/contributors/` |
+| 🖥️ Improve CLI, installer, or scripts | `tools/` |
+| 📦 Improve catalog runtime or protocol packages | `packages/` |
+| 🧪 Tighten tests, smoke checks, or release docs | Various |
+
+---
 
 ## بداية سريعة
 
@@ -65,18 +73,22 @@ npm test
 npm run smoke
 ```
 
->**📝 افتح العلاقات العامة مع تمكين `السماح بالتعديلات من المشرفين`.**---
+> **📝 Open the PR with `Allow edits from maintainers` enabled.**
+
+---
 
 ## التوثيق
 
-يجب أن تكون المهارة الواردة الأصلية جيدة:
+A good native incoming skill should:
 
-- ✅ حل مشكلة محددة بشكل نظيف
-- ✅ تكون قابلة لإعادة الاستخدام عبر المشاريع
-- ✅ قم بتضمين التعليمات التي يمكن للوكيل اتباعها بالفعل
-- ✅ تجنب المحتوى الغامض أو الزائد عن الحاجة
-- ✅ قم بالإعلان عن البيانات الوصفية الدقيقة للواجهة الأمامية والتوافق عند توفرها
-- ✅ الأرض مع عناصر تصنيف `metadata.json` التي تم إنشاؤها بعد تشغيل الأتمتة### 📁 Minimal Structure
+- ✅ Solve a specific problem cleanly
+- ✅ Be reusable across projects
+- ✅ Include instructions an agent can actually follow
+- ✅ Avoid vague or redundant content
+- ✅ Declare accurate frontmatter and compatibility metadata when available
+- ✅ Land with generated `metadata.json` classification artifacts after automation runs
+
+### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -95,67 +107,83 @@ skills/my-skill/
 └── scripts/
 ```
 
->**💡 نصيحة:**يجب أن تتضمن حزم مهارات مستوى الإصدار "الوكلاء/"، و"المراجع/"، و"الأمثلة/"، و"النصوص البرمجية/". لكن سطح السحب يكون متساهلًا عمدًا — يُسمح بحد أدنى من المهارات الواردة الأصلية، ويولد خط أنابيب المحسن المشتق الأقوى.### 🌐 Language Policy
+> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
 
-| السطح | اللغات المقبولة |
+### 🌐 Language Policy
+
+| Surface | Accepted Languages |
 |:--------|:-------------------|
-| 📥 `المهارات/` (المتناول الأصلي) | البرتغالية، الإنجليزية، أو أي لغة |
-| ✨ `skills_omni/` (إخراج منسق) | الإنجليزية فقط |
+| 📥 `skills/` (native intake) | Portuguese, English, or any language |
+| ✨ `skills_omni/` (curated output) | English only |
 
-> يحافظ المُحسِّن الخاص على المصدر الأصلي كما تم إرساله ويعيد كتابة المشتق المنسق باللغة الإنجليزية.
+> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
 
-📖 للحصول على الفرع الكامل والتحقق من الصحة وتسلسل مراجعة المحسن، استخدم [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).---
+📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
+
+---
 
 ## ✅ Required Validation
 
-قم بتشغيل هذا قبل فتح العلاقات العامة:```bash
+Run this before opening a PR:
+
+```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<التفاصيل>
-<summary>📋 <strong>ما <code>التحقق من صحة تشغيل npm</code> الذي يتم تجديده</strong></summary>
+<details>
+<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
 
-- `بيانات التعريف.json`
+- `metadata.json`
 - `skills/<skill>/metadata.json`
-- رسم خرائط التصنيف الكنسي
-- النضج وأفضل الممارسات والجودة وعشرات الأمان
-- نتائج أمنية ثابتة
-- حالة الماسح الضوئي ClamAV وVirusTotal الاختيارية (عند تكوينها)</details>
+- Canonical taxonomy mapping
+- Maturity, best practices, quality, and security scores
+- Static security findings
+- Optional ClamAV and VirusTotal scanner status (when configured)
 
->**⚠️ هام:**التحقق من الصحة هو العقد المستخدم من قبل CLI وAPI وMCP وA2A والبيانات والأرشيفات وأتمتة الإصدار. تعامل مع البيانات الوصفية التي تم إنشاؤها كجزء من سطح المراجعة، وليس كمخرجات يمكن التخلص منها.### 📥 Intake Policy
+</details>
 
-| الحالة | السلوك |
-|:---------|:--------|
-| المادة الأمامية مفقودة/غير مكتملة | ⚠️ تحذيرات (لا يحجب) |
-| نتائج أمنية حرجة | 🚫 تناول الكتل |
-| أخطاء التحقق من الصحة الصعبة | 🚫 تناول الكتل |
-| معيار تحريري أكثر صرامة | يتم فرضه في التدفق المشتق المعزز، وليس عند المدخول الأصلي |### 🧪 Release-Grade Preflight
+> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+### 📥 Intake Policy
+
+| Condition | Behavior |
+|:----------|:---------|
+| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
+| Critical security findings | 🚫 Blocks intake |
+| Hard validation errors | 🚫 Blocks intake |
+| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
+
+### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<التفاصيل>
-<summary>📋 <strong>ما الذي يؤكده ممر الدخان</strong></summary>
+<details>
+<summary>📋 <strong>What the smoke pass validates</strong></summary>
 
-- ✅ التحقق من صحة المهارة
-- ✅ إنشاء الكتالوج
-- ✅ إنشاء كتالوج المستندات
-- ✅ جناح الاختبار
-- ✅ `حزمة npm --dry-run`
-- ✅ تمهيد API
-- ✅ تشغيل MCP في "stdio" و"stream" و"sse".
-- ✅ التمهيد A2A
-- ✅ التحقق من الأرشيف وتغليف التوقعات</details>
+- ✅ Skill validation
+- ✅ Catalog generation
+- ✅ Docs catalog generation
+- ✅ Test suite
+- ✅ `npm pack --dry-run`
+- ✅ API boot
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot
+- ✅ Archive verification and packaging expectations
+
+</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-ينصح بشدة Frontmatter. استخدم [قالب المهارات](docs/contributors/SKILL-TEMPLATE.md) كخط أساسي.```yaml
+Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
+
+```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -172,88 +200,104 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<التفاصيل>
-<summary>🏷️ <strong>فئات التصنيف الأساسية</strong></summary>
+<details>
+<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
 
-| الفئة | الفئة |
-|:---------|:--------|
-| `التنمية` | "الواجهة الأمامية" |
-| `الخلفية` | `الويب الكامل` |
-| `الأدوات` | `أتمتة cli` |
-| `الأعمال` | `المنتج` |
-| `التصميم` | `بيانات-AI` |
-| `ai-agents` | `التعلم الآلي` |
-| `المطورين` | `الاختبار الأمني` |
-| `التوثيق` | `محتوى الوسائط` |
-| `الاتصالات` | `غير مصنف` |</details>
+| Category | Category |
+|:---------|:---------|
+| `development` | `frontend` |
+| `backend` | `fullstack-web` |
+| `tools` | `cli-automation` |
+| `business` | `product` |
+| `design` | `data-ai` |
+| `ai-agents` | `machine-learning` |
+| `devops` | `testing-security` |
+| `documentation` | `content-media` |
+| `communication` | `uncategorized` |
 
->**ℹ️**إصدار المهارة مستقل عن إصدار حزمة npm. إذا لم تكن للمهارة الواردة الأصلية أهمية أساسية بعد، فسيتم قبولها مع تحذيرات واستخلاص بيانات التعريف المؤقتة من الدليل والعنوان والنص الأساسي.---
+</details>
+
+> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
+
+---
 
 ## ⚙️ Runtime Contributions
 
-إذا لمست "الحزم/"، أو "الأدوات/bin/"، أو "الأدوات/lib/"، أو قمت بإنشاء نصوص برمجية:
+If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 
-- 📦 حافظ على توافق `dist/` والمستندات مع التنفيذ
-- 🔄 فضل إعادة استخدام "الحزم/الكتالوج الأساسي" بدلاً من تكرار منطق الكتالوج
-- 🔒 حافظ على سلوك الكتابة المحلية خلف المعاينة أو الإعدادات الافتراضية للتشغيل الجاف
-- 🔌 حافظ على انضباط كتّاب MCP - أضف فقط كتّاب تكوين من الدرجة الأولى عندما يكون لدى العميل عقد تكوين عام مستقر
-- 🛡️ التعامل مع تحذيرات الماسح الضوئي الأمني كجزء من شريط المراجعة
-- 🧪 تحديث الاختبارات عند تغيير أوامر CLI أو أوضاع النقل أو نقاط النهاية العامة### 🚧 Important Boundary
+- 📦 Keep `dist/` and docs aligned with the implementation
+- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
+- 🔒 Keep local-write behavior behind preview or dry-run defaults
+- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
+- 🛡️ Treat security scanner warnings as part of the review bar
+- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
 
-| افعل هذا ✅ | لا تفعل هذا 🚫 |
+### 🚧 Important Boundary
+
+| Do this ✅ | Don't do this 🚫 |
 |:-----------|:-----------------|
-| أرسل العمل الأصلي ضمن `skills/` | افتح العلاقات العامة اليدوية التي تقوم بتحرير `skills_omni/` |
-| دع الأتمتة تتعامل مع تشغيل المحسن | أضف المحتوى المنسق مباشرة |
-| التركيز على جودة المهارات المشروعة | تجاوز تدفق العلاقات العامة المصاحب الآلي |
+| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
+| Let automation handle the enhancer run | Add curated content directly |
+| Focus on legitimate skill quality | Bypass the automated companion PR flow |
 
->**ℹ️**عندما يتم تحديث مهارة أصلية في `skills/`، يقوم المُحسِّن الخاص بإعادة معالجتها وتحديث خط الأساس المحسن.---
+> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
+
+---
 
 ## 🔄 Enhancer Outcome States
 
-خلال عمليات العلاقات العامة العامة للمهارات الأصلية، يُبلغ المُحسِّن عن إحدى الحالات الأربع التالية:
+During public native-skill PRs, the enhancer reports one of four states:
 
-| الدولة | معنى |
+| State | Meaning |
 |:------|:--------|
-| ✅`مكتمل` | تم إنشاء المشتقة المحسنة بشكل نظيف، وهي مؤهلة للحصول على `skills_omni/` |
-| ⚠️`المتحللة` | مكتمل بحركة احتياطية أو أضعف - افحص بعناية أكبر |
-| 🚫 `محجوب` | تم إيقافه لأسباب تتعلق بالبنية الأساسية أو التحقق من الصحة — يمنع النشر التلقائي |
-| ❌ `فشل` | خطأ غير متوقع — يتطلب تحقيق المشرف |
+| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
+| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
+| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
+| ❌ `failed` | Unexpected error — requires maintainer investigation |
 
->**📝 لا يحتاج المساهمون**إلى إصلاح مشكلات البنية الأساسية للمُحسِّن. وتتمثل المسؤولية في تقديم مهارة أصلية مشروعة والحفاظ على الريبو الأخضر.---
+> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
+
+---
 
 ## 🔄 Automatic Release Policy
 
-عندما يصل التغيير إلى "الرئيسي" ويتضمن:
+When a change lands on `main` and includes:
 
-- `المهارات/**`
+- `skills/**`
 - `skills_omni/**`
-- `البيانات/الحزم.json`
+- `data/bundles.json`
 
-…يُصدر المستودع**إصدار الحزمة تلقائيًا**.### 📋 Version Bump Rule
+…the repository issues a **package release automatically**.
 
-| من | إلى | القاعدة |
-|:----|:---|:-----|
-| `0.1.0` | `0.1.1` | التصحيح +1 |
-| `0.1.9` | `0.1.10` | التصحيح +1 |
-| `0.1.10` | `0.2.0` | انتقل إلى التالي، قم بإعادة تعيين التصحيح |
+### 📋 Version Bump Rule
 
-> يعمل تدفق الإصدار على إعادة إنشاء الكتالوج/الأرشيفات، وتنفيذ تحسين الإصدار، ووضع علامات على الإصدار، ونشر npm، وإنشاء إصدار GitHub تلقائيًا.---
+| From | To | Rule |
+|:-----|:---|:-----|
+| `0.1.0` | `0.1.1` | Patch +1 |
+| `0.1.9` | `0.1.10` | Patch +1 |
+| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
+
+> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
+
+---
 
 ## 📝 Commit Conventions
 
-| البادئة | استخدم لـ |
-|:-------|:-------|
-| `الفذ:` | مهارة أو ميزة جديدة |
-| `الإصلاح:` | إصلاح الخلل |
-| `المستندات:` | تغييرات التوثيق |
-| `إعادة البناء:` | تنظيف التعليمات البرمجية أو تغييرات الهيكل |
-| `اختبار:` | تغييرات الاختبار |
-| `العمل الرتيب:` | صيانة |---
+| Prefix | Use For |
+|:-------|:--------|
+| `feat:` | New skill or feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `refactor:` | Code cleanup or structure changes |
+| `test:` | Test changes |
+| `chore:` | Maintenance |
+
+---
 
 ## ❓ Need Help?
 
-| قناة | الرابط |
+| Channel | Link |
 |:--------|:-----|
-| 💬 أسئلة | [افتح مناقشة](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 البق | [افتح مشكلة](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 ردود فعل مبكرة | [افتح مسودة علاقات عامة](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |

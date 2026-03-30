@@ -5,44 +5,50 @@
 ---
 
 
->**Suojaustarkistus, arkiston luominen, valinnainen allekirjoitus ja jakelupakkaus jokaiselle julkaistulle taidolle.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| Ominaisuus | valtio |
+| Feature | State |
 |:--------|:------|
-| ✅ Staattinen turvaskanneri | Aina käytössä |
-| ✅ Taitokohtainen metatietojen luokitus | Toteutettu |
-| ✅ Taitokohtaiset arkistot (zip/tar.gz) | Toteutettu |
-| ✅ SHA-256-tarkistussummaluettelot | Toteutettu |
-| ✅ CI-skannerin portti vapautuslappuissa | Toteutettu |
-| ✅ npm julkaise työnkulku vahvistetusta tarballista | Toteutettu |
-| ⚙️ ClamAV-skannaus | Valinnainen rikastin |
-| ⚙️ VirusTotal hash-haku | Valinnainen rikastin |
-| ✅ Erillinen signeeraus | Toteutettu |
-| ✅ CI-valtuutettu allekirjoitus | Toteutettu julkaisutunnisteisiin |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Tarkistaa jokaisen taidon validoinnin aikana:
+Scans every skill during validation:
 
-| Kohde | Mitä skannataan |
-|:-------|:-------------------|
-| 📝 `SKILL.md` | Päätaidon sisältö |
-| 📄 Merkintä/tekstitiedostot | Pakatut viitteet ja asiakirjat |
-| ⚙️ Käsikirjoitukset | Pakatut automaatiokomentosarjat |
+| Target | What Gets Scanned |
+|:-------|:-----------------|
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**Sääntöperheet:**
+**Rule families:**
 
-| Sääntö | Esimerkkejä |
-|:-----|:----------|
-| 🎭**Nopea injektio**| Suodatuskuviot, ohjeiden ohitukset |
-| 💣**Tuhoavat komennot**| "rm -rf", "muoto", "del /s" |
-| 🔑**Etuoikeuksien eskalaatio**| `sudo`, `chmod 777`, setuid kuviot |
-| 📂**Epäilyttävät polut**| `/etc/shadow`, `~/.ssh`, tunnistetiedostot |
-| ⚠️**Riskialttiit primitiivit**| "shell=True", "pickle.load", "eval", "extractall" |---
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@ Tarkistaa jokaisen taidon validoinnin aikana:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Vaatii clamscanin PATH:ssa
-- Tarkistaa pakatut tiedostot tunnettujen haittaohjelmien varalta
-- Tulokset kirjataan taitojen metatietoihin---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**Vain hash-haku**— ei tiedostoa ladata normaalin vahvistuksen aikana
-- Tuntemattomat tiedostot pysyvät vain paikallisina
-- Pitää koontiversion**deterministisenä**ja CI-riippumattomana### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Tiukka vapautusportti:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-Tämä vaihe lukee luodut "skills/*/metadata.json" ja epäonnistuu, jos vaaditut skannerit eivät suorittaneet tai raportoineet havainnoista.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-Tietoturvatiedot lähetetään jokaisen taidon metatiedoissa:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ Tietoturvatiedot lähetetään jokaisen taidon metatiedoissa:```json
 }
 ```
 
-> Tämä lohko levitetään luettelo- ja luettelonäkymiin, mikä mahdollistaa CLI:n, API:n ja MCP:n**suodattamisen ja järjestyksen suojauspisteiden mukaan**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-Jokainen julkaistu taito tuottaa:
+Each published skill generates:
 
-| Tiedosto | Muoto |
+| File | Format |
 |:-----|:-------|
-| `dist/archives/<taito>.zip` | ZIP-arkisto |
-| `dist/archives/<taito>.tar.gz` | Tarball-arkisto |
-| `dist/archives/<taito>.checksums.txt` | SHA-256-tarkistussummaluettelo |### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actionsin julkaisutunnisteet (`v*`) nyt:
+GitHub Actions release tags (`v*`) now:
 
-1. Varmista, että git-tunniste vastaa pakettia.json
-2. asenna ja päivitä ClamAV
-3. purkaa julkaisun allekirjoitusavain GitHub-salaisuuksista
-4. Suorita `npm run release:verify'
-5. pakkaa tarball `npm pack`:lla
-6. julkaise tämä tarkka tarball npm:lle lähteen kanssa
-7. Luo GitHub-julkaisu mukautetuilla huomautuksilla ja liitteenä olevalla vahvistussisällöllä---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Jos julkista avainta ei ole annettu, koontiversio johtaa sellaisen, jossa on "openssl" ja sijoittaa sen kansioon "dist/signing/".
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-Kun tämä on käytössä, .sig-tiedostot lähetetään arkiston ja tarkistussummaluettelon viereen.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-CI:ssä julkaisutunnisteet edellyttävät nyt allekirjoittamista:
+In CI, release tags now require signing through:
 
-- OMNI_SKILLS_SIGN_PRIVATE_KEY_B64 tai OMNI_SKILLS_SIGN_PRIVATE_KEY
-- valinnainen "OMNI_SKILLS_SIGN_PUBLIC_KEY_B64" tai "OMNI_SKILLS_SIGN_PUBLIC_KEY"---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| Rajoitus | Tila |
+| Limitation | Status |
 |:-----------|:-------|
-| VirusTotal-lataus | Tarkoituksellisesti suljettu pois oletustarkistuksesta |
-| Allekirjoituksen täytäntöönpano | Pakotettu julkaisutunnisteisiin; paikalliset koontiversiot saattavat silti toimia allekirjoittamattomina |
-| Isännöity hallinto | Sisäänrakennettu todennus, järjestelmänvalvojan suoritusaika, CORS/IP-sallitut luettelot, ylläpitotila ja tarkastusloki ovat käytössä. ulkoiset yhdyskäytävät ovat valinnaisia ​​|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

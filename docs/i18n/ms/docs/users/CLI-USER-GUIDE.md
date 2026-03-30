@@ -5,33 +5,39 @@
 ---
 
 
->**Permukaan CLI awam penuh dihantar oleh `kemahiran omni`.**
+> **The full public CLI surface shipped by `omni-skills`.**
 
-Gunakan panduan ini apabila anda ingin:
+Use this guide when you want to:
 
-| Matlamat | Kawasan Perintah |
+| Goal | Command Area |
 |:-----|:-------------|
-| 📥 Pasang kemahiran atau himpunan | [Install Flows](#3️⃣-install-flows) |
-| 🔎 Cari katalog | [Penemuan Katalog](#4️⃣-catalog-penemuan) |
-| 🔌 Konfigurasikan pelanggan MCP | [Konfigurasi Pelanggan MCP](#5️⃣-mcp-client-config) |
-| 🖥️ Mulakan perkhidmatan MCP, API atau A2A | [Pelayan MCP](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 Gunakan cangkerang terminal visual | [Visual Shell](#9️⃣-visual-shell) |
-| 🧪 Jalankan diagnostik atau prapenerbangan | [Diagnostik](#🔟-diagnostik-dan-preflight) |---
+| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
+
+---
 
 ## 1️⃣ Install and Entry Modes
 
-Pasang dengan `npx`:```bash
+Install with `npx`:
+
+```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| Konteks | Apa Berlaku |
+| Context | What Happens |
 |:--------|:------------|
-| 🖥️ TTY + tiada hujah | Membuka aliran**pemasangan berpandu**|
-| ⚙️ Bukan TTY + tiada hujah | Pemasangan tidak interaktif ke `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Berjenama**Ink visual shell**|
-| 📝 `npx omni-skills ui --text` | Baris baca**teks sandaran**UI |---
+| 🖥️ TTY + no arguments | Opens the **guided install** flow |
+| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+
+---
 
 ## 2️⃣ Core Commands
 
@@ -39,20 +45,22 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| Perintah | Penerangan |
+| Command | Description |
 |:--------|:-----------|
-| `ui` | 🎨 Hab terminal visual |
-| `cari [pertanyaan]` | 🔎 Penemuan katalog |
-| `mengkategorikan semula` | 🏷️ Pengurusan taksonomi |
-| `pasang [bendera]` | 📥 Kemahiran / pemasangan bundle |
-| `config-mcp` | 🔌 Konfigurasi pelanggan MCP |
-| `mcp <stdio\|strim\|sse>` | 🔌 Mod pelayan MCP |
-| `api` | 🌐 API Katalog |
-| `a2a` | 🤖 A2A masa jalan |
-| `asap` | 🧪 Keluarkan prapenerbangan |
-| `semak-terbitkan` | 📦 Semakan penerbitan pakej |
-| `doktor` | 🩺 Diagnostik persekitaran |
-| `membantu` | ❓ Rujukan arahan |---
+| `ui` | 🎨 Visual terminal hub |
+| `find [query]` | 🔎 Catalog discovery |
+| `recategorize` | 🏷️ Taxonomy management |
+| `install [flags]` | 📥 Skill/bundle install |
+| `config-mcp` | 🔌 MCP client configuration |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| `api` | 🌐 Catalog API |
+| `a2a` | 🤖 A2A runtime |
+| `smoke` | 🧪 Release preflight |
+| `publish-check` | 📦 Package publication check |
+| `doctor` | 🩺 Environment diagnostics |
+| `help` | ❓ Command reference |
+
+---
 
 ## 3️⃣ Install Flows
 
@@ -63,7 +71,9 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> Aliran berpandu membolehkan anda memilih:**klien sasaran**→**himpunan atau kemahiran**→**laluan tersuai**→**pratonton sebelum pelaksanaan**### 🎯 Single Skill
+> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
+
+### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -80,17 +90,19 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| Benderakan | Pelanggan |
+| Flag | Client |
 |:-----|:-------|
-| `--antigraviti` | 🟣 Antigraviti *(lalai)* |
-| `--claude` | 🟢 Kod Claude |
-| `--kursor` | 🔵 Kursor |
+| `--antigravity` | 🟣 Antigravity *(default)* |
+| `--claude` | 🟢 Claude Code |
+| `--cursor` | 🔵 Cursor |
 | `--codex` | 🔴 Codex CLI |
 | `--gemini` | 🟡 Gemini CLI |
 | `--kiro` | 🟠 Kiro |
-| `--opencode` | ⚪ Kod Terbuka |
+| `--opencode` | ⚪ OpenCode |
 
-> Sasaran pemasangan lalai (tidak interaktif): `~/.gemini/antigravity/skills`---
+> Default install target (non-interactive): `~/.gemini/antigravity/skills`
+
+---
 
 ## 4️⃣ Catalog Discovery
 
@@ -111,23 +123,27 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| Benderakan | Tujuan |
+| Flag | Purpose |
 |:-----|:--------|
-| `--kategori` | Tapis mengikut kategori taksonomi |
-| `--alat` | Tapis mengikut alat yang disokong |
-| `--risiko` | Tapis mengikut tahap risiko |
-| `--sort` | Isih hasil (cth., `kualiti`) |
-| `--pesanan` | Susun urutan |
-| `--kualiti min` | Skor kualiti minimum |
-| `--min-amalan-terbaik` | Skor amalan terbaik minimum |
-| `--tahap min` | Tahap kematangan minimum |
-| `--min-security` | Markah keselamatan minimum |
-| `--status-pengesahan` | Tapis mengikut keadaan pengesahan |
-| `--status-keselamatan` | Tapis mengikut keadaan keselamatan |---
+| `--category` | Filter by taxonomy category |
+| `--tool` | Filter by supported tool |
+| `--risk` | Filter by risk level |
+| `--sort` | Sort results (e.g., `quality`) |
+| `--order` | Sort order |
+| `--min-quality` | Minimum quality score |
+| `--min-best-practices` | Minimum best-practices score |
+| `--min-level` | Minimum maturity level |
+| `--min-security` | Minimum security score |
+| `--validation-status` | Filter by validation state |
+| `--security-status` | Filter by security state |
+
+---
 
 ## 5️⃣ MCP Client Config
 
-Gunakan `config-mcp` untuk pratonton atau menulis konfigurasi MCP yang menyedari klien.### 📋 List Targets
+Use `config-mcp` to preview or write client-aware MCP configuration.
+
+### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -152,26 +168,28 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<butiran>
+<details>
 <summary>🔌 <strong>Config-capable client surface</strong></summary>
 
-| Pelanggan | Sasaran |
+| Client | Targets |
 |:-------|:--------|
-| Claude | Tetapan dan sasaran desktop |
-| Kursor | Pengguna dan ruang kerja |
-| Codex | Konfigurasi TOML |
-| Gemini | Pengguna dan ruang kerja |
-| Antigraviti | Konfigurasi pengguna |
-| OpenCode | Pengguna dan ruang kerja |
-| Cline | Sasaran kelas pertama |
-| GitHub Copilot CLI | Pengguna dan repo |
-| Kod Kilo | Pengguna, projek dan ruang kerja |
-| Kiro | Pengguna dan ruang kerja |
-| Zed | Ruang kerja |
-| Kod VS | Pengguna, ruang kerja dan Bekas Dev |
-| Teruskan | Ruang kerja YAML |
-| Junie | Projek dan pengguna |
-| Luncur Angin | Konfigurasi pengguna |</details>
+| Claude | Settings and desktop targets |
+| Cursor | User and workspace |
+| Codex | TOML config |
+| Gemini | User and workspace |
+| Antigravity | User config |
+| OpenCode | User and workspace |
+| Cline | First-class target |
+| GitHub Copilot CLI | User and repo |
+| Kilo Code | User, project, and workspace |
+| Kiro | User and workspace |
+| Zed | Workspace |
+| VS Code | User, workspace, and Dev Container |
+| Continue | Workspace YAML |
+| Junie | Project and user |
+| Windsurf | User config |
+
+</details>
 
 ---
 
@@ -192,7 +210,9 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
->**Kereta sampingan tempatan**menambah: pengesanan pelanggan, pasang pratonton, pasang/alih keluar aliran dan penulisan konfigurasi MCP.---
+> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
+
+---
 
 ## 7️⃣ Catalog API
 
@@ -202,15 +222,17 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| Laluan | Tujuan |
+| Route | Purpose |
 |:------|:--------|
-| `DAPATKAN /healthz` | Pemeriksaan kesihatan |
-| `DAPATKAN /openapi.json` | Spesifikasi OpenAPI |
-| `DAPATKAN /v1/kemahiran` | Senaraikan semua kemahiran |
-| `DAPATKAN /v1/carian` | Cari katalog |
-| `DAPATKAN /v1/kemahiran/:id/archives` | Senaraikan arkib untuk kemahiran |
-| `DAPATKAN /v1/kemahiran/:id/download/archive?format=zip` | Muat turun arkib kemahiran |
-| `DAPATKAN /v1/kemahiran/:id/download/archive/checksums` | Muat turun jumlah semak |---
+| `GET /healthz` | Health check |
+| `GET /openapi.json` | OpenAPI spec |
+| `GET /v1/skills` | List all skills |
+| `GET /v1/search` | Search the catalog |
+| `GET /v1/skills/:id/archives` | List archives for a skill |
+| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
+| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
+
+---
 
 ## 8️⃣ A2A Runtime
 
@@ -220,15 +242,17 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| Ciri | Status |
+| Feature | Status |
 |:--------|:-------|
-| 🔎 Penemuan sedar tugas | ✅ |
-| 📋 Penyerahan pelan pemasangan | ✅ |
-| 🔄 Undian | ✅ |
-| 📡 Penstriman | ✅ |
-| ❌ Pembatalan | ✅ |
-| 🔔 Konfigurasi pemberitahuan tolak | ✅ |
-| 💾 Kegigihan | Memori, JSON dan SQLite |---
+| 🔎 Task-aware discovery | ✅ |
+| 📋 Install-plan handoff | ✅ |
+| 🔄 Polling | ✅ |
+| 📡 Streaming | ✅ |
+| ❌ Cancelation | ✅ |
+| 🔔 Push-notification config | ✅ |
+| 💾 Persistence | Memory, JSON, and SQLite |
+
+---
 
 ## 9️⃣ Visual Shell
 
@@ -238,17 +262,19 @@ npx omni-skills ui
 
 ### Ciri-ciri
 
-| Ciri | Penerangan |
+| Feature | Description |
 |:--------|:-----------|
-| 🧭 Pemasangan berpandu | Pilih pelanggan atau laluan tersuai |
-| 🔎 Cari + pasang | Tiada hafalan bendera diperlukan |
-| 🔌 Konfigurasi MCP | Pratonton dan tulis aliran |
-| 🖥️ Pelancaran perkhidmatan | Permulaan berpandu MCP, API dan A2A |
-| 🕐 Terkini | Pemasangan baru-baru ini dan pelancaran semula perkhidmatan |
-| ⭐ Kegemaran | Kemahiran dan berkas yang disimpan |
-| 💾 Pratetap | Pratetap pemasangan dan perkhidmatan dinamakan |
+| 🧭 Guided install | Choose client or custom path |
+| 🔎 Search + install | No flag memorization needed |
+| 🔌 MCP config | Preview and write flows |
+| 🖥️ Service launch | MCP, API, and A2A guided startup |
+| 🕐 Recents | Recent installs and service relaunches |
+| ⭐ Favorites | Saved skills and bundles |
+| 💾 Presets | Named install and service presets |
 
->**Laluan negeri:**`~/.omni-skills/state/ui-state.json`---
+> **State path:** `~/.omni-skills/state/ui-state.json`
+
+---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -258,14 +284,18 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> Memeriksa: keadaan repo, keadaan pemasangan setempat, ketersediaan masa jalan dan isu persekitaran.### 🧪 Release Preflight
+> Inspects: repo state, local install state, runtime availability, and environment issues.
+
+### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> Mengesahkan: binaan, ujian, keluaran pakej, but perkhidmatan, liputan pengimbas dan pembungkusan keluaran.---
+> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
+
+---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -278,20 +308,22 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 Persona | Perintah | Tujuan |
+| 🎯 Persona | Command | Purpose |
 |:-----------|:--------|:--------|
-| 🆕 Pengguna baharu | `npx omni-skills` | Pemasangan kali pertama berpandu |
-| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Konfigurasikan MCP tempatan |
-| 🔧 Operator | `npx omni-skills mcp stream --local` | Mulakan kereta sampingan tempatan |
-| 📦 Penyelenggara | `npx omni-skills smoke` | Sahkan keluaran |
-| 🔍 Pengguna kuasa | `npx omni-skills find security --sort quality --min-quality 95` | Cari kemahiran terbaik dahulu |---
+| 🆕 New user | `npx omni-skills` | Guided first-time install |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
+| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
+| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
+
+---
 
 ## 📖 Related Documents
 
-| Doc | Apa yang Dicakupinya |
+| Doc | What It Covers |
 |:----|:--------------|
-| 🚀 [Bermula](./MULA-MULA.md) | Pasang dan sahkan dalam masa kurang dari 2 minit |
-| 📗 [Panduan Penggunaan](./USAGE.md) | Semua arahan, corak dan mod CLI |
-| 📦 [Bundles](./BUNDLES.md) | Koleksi kemahiran dipilih susun |
-| 🔧 [Buku Jalanan Sistem](../operations/RUNBOOK.md) | Rujukan operasi |
-| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Alat sistem fail dan penulisan konfigurasi |
+| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
+| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
+| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |

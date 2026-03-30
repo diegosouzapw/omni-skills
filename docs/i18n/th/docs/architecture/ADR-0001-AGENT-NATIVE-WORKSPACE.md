@@ -5,69 +5,83 @@
 ---
 
 
->**การตัดสินใจทางสถาปัตยกรรมที่สำคัญซึ่งกำหนดรูปแบบโครงสร้างพื้นที่ทำงาน monorepo**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**ยอมรับแล้ว**— ทิศทางพื้นที่ทำงานปัจจุบันและรูปร่างของพื้นที่เก็บข้อมูลที่ใช้งานอยู่---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills เริ่มต้นจากพื้นที่เก็บข้อมูล**ผู้ติดตั้งต้องมาก่อน**นั่นก็เพียงพอแล้วสำหรับการเผยแพร่เนื้อหา `SKILL.md` แต่ไม่เพียงพอที่จะเปิดเผยแค็ตตาล็อกแก่ตัวแทนผ่านแพลตฟอร์มแบบเนทิฟโปรโตคอล
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-เราต้องการรากฐานที่สามารถรองรับ:
+We needed a foundation that could support:
 
-| ข้อกำหนด | โปรโตคอล |
+| Requirement | Protocol |
 |:------------|:---------|
-| 🌐 API แค็ตตาล็อก HTTP แบบอ่านอย่างเดียว | ส่วนที่เหลือ |
-| 🔌 เซิร์ฟเวอร์ MCP แบบอ่านอย่างเดียว | โปรโตคอลบริบทของโมเดล |
-| 🤖 พื้นผิว A2A ที่หันหน้าเข้าหาตัวแทน | ตัวแทนต่อตัวแทน |
-| 📂 รถเทียมข้างรถจักรยานยนต์ติดตั้งในพื้นที่ | เครื่องมือระบบไฟล์ |
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**ข้อจำกัดที่สำคัญ**: หลีกเลี่ยงการแยกวิเคราะห์ไฟล์ repo อย่างเป็นอิสระในบริการใหม่แต่ละรายการ---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-นำ**monorepo ที่มุ่งเน้นพื้นที่ทำงาน**มาใช้ด้วยแกนแค็ตตาล็อกที่ใช้ร่วมกันและแพ็คเกจเฉพาะโปรโตคอล:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| แพ็คเกจ | วัตถุประสงค์ |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `ทักษะ omni` (รูท) | ตัวติดตั้ง CLI และสคริปต์ repo |
-| 🧠 `@omni-skills/catalog-core` | การโหลดร่วมกัน ค้นหา การเปรียบเทียบ รวมกลุ่ม ติดตั้งแผน |
-| 🌐 `@omni-skills/server-api` | REST API แบบอ่านอย่างเดียว |
-| 🔌 `@omni-skills/server-mcp` | MCP พร้อม stdio/stream/sse + โหมดไซด์คาร์ในเครื่อง |
-| 🤖 `@omni-skills/server-a2a` | รันไทม์งาน A2A พร้อม Agent Card, การโพล, SSE และ push config |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-แกนแค็ตตาล็อกอ่านอาร์ติแฟกต์ที่สร้างขึ้นจาก:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
-- `dist/manifests/<ทักษะ>.json`
-- `ทักษะ_ดัชนี.json`---
+- `dist/manifests/<skill>.json`
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| ผลลัพธ์ | ผลกระทบ |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**สัญญาข้อมูลที่ใช้ร่วมกัน**| API, MCP และ A2A ใช้อาร์ติแฟกต์เดียวกัน |
-| 🖥️**Unified CLI**| ไบนารีหนึ่งรายการเปิดเผยการติดตั้ง, เชลล์ UI, API, MCP, A2A, การวินิจฉัย และควัน |
-| 🧩**การแยกโปรโตคอล**| พื้นผิวใหม่ทำซ้ำโดยไม่ต้องเชื่อมต่อกับภายในตัวติดตั้ง |
-| 🔌**รถเทียมข้างถิ่น**| การทำงานโหมด MCP ที่สามารถเขียนได้เบื้องหลังรายการที่อนุญาต พร้อมด้วยสูตรอาหารที่ไคลเอ็นต์ทราบ |
-| 📦**รันไทม์แพ็คเกจเดียว**| แพ็คเกจ npm ที่เผยแพร่ประกอบด้วยพื้นผิวโปรโตคอล เครื่องมือตรวจสอบ และส่วนที่สร้างขึ้นร่วมกัน---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| การแลกเปลี่ยน | การบรรเทาผลกระทบ |
+| Tradeoff | Mitigation |
 |:---------|:-----------|
-| 🔄**การทำสำเนาข้อมูลเมตา**| Python build + รันไทม์ JavaScript → รวม |
-| 🏗️**ความซับซ้อน A2A**| ขณะนี้มีวงจรการใช้งานที่คงทนแล้ว แต่อะแดปเตอร์ประสานงานเพิ่มความลึกในการปฏิบัติงาน |
-| 📦**การจัดวางแคตตาล็อก**| การติดตั้งแบบเลือกต้องใช้คำสั่ง รายการ และเอกสารเพื่อให้ข้อมูลตรงกัน |
-| 📋**ช่องว่างเมตาดาต้ามัดรวม**| บันเดิลสามารถแซงหน้าทักษะที่เผยแพร่ โดยต้องมีคำเตือนสมาชิกที่ขาดหายไปอย่างชัดแจ้ง |---
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | การกระทำ | สถานะ |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | การรับรองความถูกต้อง MCP ระยะไกลและการจำกัดอัตรา ✅ เรียบร้อย |
-| 2️⃣ | ปรับปรุงการเขียนการกำหนดค่า MCP เฉพาะไคลเอนต์ | ✅ นำเสนอวันนี้สำหรับ Claude, Cursor, Codex, Gemini, Kiro, VS Code และ Dev Containers |
-| 3️⃣ | อาร์ติแฟกต์การเผยแพร่ที่ลงนามหรือเอกสารสำคัญต่อทักษะ ✅ นำเสนอวันนี้ด้วยการบังคับใช้ CI บนแท็กปล่อย |
-| 4️⃣ | รันไทม์ของงาน A2A → การประสานที่คงทน | ✅ นำเสนอวันนี้ด้วยความคงอยู่ของ JSON/SQLite ผู้ดำเนินการภายนอก การประสานงานการเช่าแบบเลือกใช้ และการประสานงาน Redis ขั้นสูงที่เป็นตัวเลือก |
-| 5️⃣ | ขยายแคตตาล็อกที่เผยแพร่เพื่อให้ครอบคลุมกลุ่มที่กว้างขึ้น | ✅ นำเสนอวันนี้สำหรับชุดเริ่มต้นเจ็ดชุดในปัจจุบัน |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

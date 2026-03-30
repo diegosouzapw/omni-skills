@@ -5,15 +5,19 @@
 ---
 
 
->**バンドルは、カタログの最上位に階層化された精選されたスキル セレクターです。**7 つのスターター バンドルはすべて、公開されたスキルによって完全にサポートされるようになりました。---
+> **Bundles are curated skill selectors layered on top of the catalog.** All seven starter bundles are now fully backed by currently cataloged skills.
+
+---
 
 ## ⚙️ How Bundles Work
 
-`--bundle` は特別なパッケージをインストールしません**。それ：
+`--bundle` does **not** install a special package. It:
 
-1. 📋 選択したバンドル定義を展開します
-2. ✅ 現在カタログで利用可能なメンバーのみをインストールします
-3. ✅ 公開されたバンドルメンバーから具体的なインストール計画を構築します。```bash
+1. 📋 Expands the selected bundle definition
+2. ✅ Installs only the members currently available in the catalog
+3. ✅ Builds a concrete install plan from published bundle members
+
+```bash
 npx omni-skills --cursor --bundle full-stack
 ```
 
@@ -21,45 +25,53 @@ npx omni-skills --cursor --bundle full-stack
 
 ## 📊 Current Availability
 
-現在生成されたカタログ (「dist/bundles.json」) に基づいて:
+Based on the current generated catalog (`dist/bundles.json`):
 
-|バンドル |対象 |利用可能 |メンバー |
-|:------|:-----------|:----------|:----------|
-| 🧰**必需品**|すべての開発者 |**4/4**| `スキルの検索` ✅ · `ブレーンストーミング` ✅ · `アーキテクチャ` ✅ · `デバッグ` ✅ |
-| 🌐**フルスタック**|ウェブおよびアプリ開発者 |**5/5**| `フロントエンド デザイン` ✅ · `api デザイン` ✅ · `データベース デザイン` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
-| 🎨**デザイン**|デザインシステムとアクセシビリティ |**4/4**| `フロントエンドデザイン` ✅ · `オムニフィグマ` ✅ · `デザインシステムオペレーション` ✅ · `アクセシビリティ監査` ✅ |
-| 🛡️**セキュリティ**|セキュリティエンジニア |**4/4**| `セキュリティ監査` ✅ · `脆弱性スキャナ` ✅ · `インシデント対応` ✅ · `脅威モデリング` ✅ |
-| ⚙️**devops**|プラットフォームとインフラ |**5/5**| `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
-| 🤖**AI エンジニア**| LLM および ML 開発者 |**5/5**| `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ |
-| 🔧**oss-メンテナ**| OSS メンテナー |**4/4**| `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
+| Bundle | Intended For | Available | Members |
+|:-------|:------------|:----------|:--------|
+| 🧰 **essentials** | Every developer | **4/4** | `find-skills` ✅ · `brainstorming` ✅ · `architecture` ✅ · `debugging` ✅ |
+| 🌐 **full-stack** | Web & app devs | **5/5** | `frontend-design` ✅ · `api-design` ✅ · `database-design` ✅ · `omni-figma` ✅ · `auth-flows` ✅ |
+| 🎨 **design** | Design systems & accessibility | **5/5** | `frontend-design` ✅ · `omni-figma` ✅ · `design-systems-ops` ✅ · `accessibility-audit` ✅ · `design-token-governance` ✅ |
+| 🛡️ **security** | Security engineers | **4/4** | `security-auditor` ✅ · `vulnerability-scanner` ✅ · `incident-response` ✅ · `threat-modeling` ✅ |
+| ⚙️ **devops** | Platform & infra | **5/5** | `docker-expert` ✅ · `kubernetes` ✅ · `terraform` ✅ · `observability-review` ✅ · `release-engineering` ✅ |
+| 🤖 **ai-engineer** | LLM & ML devs | **7/7** | `rag-engineer` ✅ · `prompt-engineer` ✅ · `llm-patterns` ✅ · `eval-design` ✅ · `context-engineering` ✅ · `data-contracts` ✅ · `model-serving` ✅ |
+| 🔧 **oss-maintainer** | OSS maintainers | **4/4** | `find-skills` ✅ · `create-pr` ✅ · `changelog` ✅ · `documentation` ✅ |
 
-> ✅ = 公開され、インストール可能---
+> ✅ = Published and installable
+
+---
 
 ## 🎯 When to Use Bundles
 
 ### ✅ Use a bundle when:
 
-- ドメインの**厳選された開始点**が必要です
--**厳選されたドメイン固有**のインストール プランが必要である
-- ロールの完全なワーキング セットをすばやくインストールする方法が必要な場合### 🎯 Use `--skill` instead when:
+- You want a **curated starting point** for a domain
+- You want install plans that stay **curated and domain-specific**
+- You want a fast way to install a complete working set for a role
 
--**保証された最小限のインストール**が必要な場合
-- 必要な**正確なスキル**はすでにわかっています
-- 厳選されたワーキング セットではなく、**可能な限り最小のフットプリント**が必要です---
+### 🎯 Use `--skill` instead when:
+
+- You want a **guaranteed minimal install**
+- You already know the **exact skill** you need
+- You want the **smallest possible footprint** instead of a curated working set
+
+---
 
 ## 💡 Practical Recommendations
 
-|目標 |コマンド |
-|:-----|:----------|
-| 🎯 特定の公開スキルをインストールする | `npx オムニスキル --cursor --スキルオムニフィグマ` |
-| 📦 完全にバックアップされたスターター バンドル | `npxomni-skills --cursor --bundle full-stack` |
-| 🎨 デザインシステムバンドル | `npxomni-skills --cursor --bundle design` |
-| 🔧 OSS ワークフロー バンドル | `npxomni-skills --codex --bundle oss-maintainer` |
-| 🛡️ セキュリティ ワークフロー バンドル | `npxomni-skills --cursor --bundle security` |
-| ⚙️ DevOps バンドル | `npxomni-skills --cursor --bundle devops` |
-| 🤖 AI エンジニア バンドル | `npxomni-skills --codex --bundle ai-engineer` |
-| 🔎 決める前に検索 | `npx オムニスキル find figma` |
-| 📋 すべてのバンドルの在庫状況を表示 | `cat dist/bundles.json` |---
+| Goal | Command |
+|:-----|:--------|
+| 🎯 Install a specific published skill | `npx omni-skills --cursor --skill omni-figma` |
+| 📦 Fully backed starter bundle | `npx omni-skills --cursor --bundle full-stack` |
+| 🎨 Design systems bundle | `npx omni-skills --cursor --bundle design` |
+| 🔧 OSS workflow bundle | `npx omni-skills --codex --bundle oss-maintainer` |
+| 🛡️ Security workflow bundle | `npx omni-skills --cursor --bundle security` |
+| ⚙️ DevOps bundle | `npx omni-skills --cursor --bundle devops` |
+| 🤖 AI engineer bundle | `npx omni-skills --codex --bundle ai-engineer` |
+| 🔎 Search before deciding | `npx omni-skills find figma` |
+| 📋 See all bundle availability | `cat dist/bundles.json` |
+
+---
 
 ## 🔍 Inspecting Bundles
 
@@ -77,7 +89,9 @@ curl http://127.0.0.1:3333/v1/bundles
 
 ### 🔌 Query via MCP
 
-バンドル パラメーターを指定して「search_skills」または「preview_install」ツールを使用します。### 📋 Check Install Plan
+Use the `search_skills` or `preview_install` tools with bundle parameters.
+
+### 📋 Check Install Plan
 
 ```bash
 # See what would be installed

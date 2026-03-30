@@ -5,149 +5,175 @@
 ---
 
 
->**Beteendekontrakt för det bläckbaserade terminalgränssnittet exponerat av "omni-skills ui".**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Det visuella skalet är en styrd produktyta ovanpå den befintliga CLI- och installationsmotorn.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Den ersätter inte:
+It does not replace:
 
-- expertflaggabaserad CLI-användning
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- det guidade textinstallationsflödet
-- API-, MCP- eller A2A-körningsbeteende
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Den definierar:
+It defines:
 
-- beteendet hos `omni-skills ui`
-- reservkontraktet för `omni-skills ui --text`
-- lokal stat och förinställd uthållighet
-- guidade förhandsvisningar av tjänstlansering
-- Repeterbarhet för senaste installationer och servicekörningar---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` lanserar det bläckbaserade visuella skalet.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Det visuella skalet är den primära terminalupplevelsen som inte är expert för:
+The visual shell is the primary non-expert terminal experience for:
 
-- installera flöden
-- katalog-första upptäckt och installation
-- MCP-start
-- API-start
-- A2A uppstart
-- läkare och rök handoff### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` startar det readline-baserade reservgränssnittet.
+### 2.2 Text Fallback
 
-Detta är fortfarande användbart när:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- en terminal kan inte göra det rikare skalet korrekt
-- Raw-mode beteende är begränsat
-- en minimal återgång av text är att föredra### 2.3 Handoff Rule
+This remains useful when:
 
-Det visuella skalet omimplementerar inte tjänstens körtider eller installationsskrivningar direkt.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Efter förhandsgranskning och bekräftelse avslutas den rent och överlämnar körningen till den befintliga CLI-ingångspunkten med motsvarande argument och miljövariabler.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Hemskärmen måste visa:
+The home screen must expose:
 
-- installera färdigheter
-- hitta och installera
-- Upprepa de senaste installationerna när de finns
-- kör sparade installationsförinställningar när de finns
-- starta en tjänst
-- upprepa de senaste tjänsterna när de är närvarande
-- kör sparade tjänstförinställningar när de finns
-- läkare
-- rök
-- utgång
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-Hemskärmen bör också dyka upp:
+The home screen should also surface:
 
-- aktuellt publicerat paket tillgängligt
-- lokal stat räknas för senaste, förinställningar och favoriter---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Det visuella skalinstallationsflödet måste stödja:
+The visual shell install flow must support:
 
-- Val av kända klientmål
-- anpassad vägval
-- komplett biblioteksinstallation
-- en färdig installation
-- installation i ett paket
-- sök-sedan-installera
-- förhandsgranska innan du skriver
-- förinställd lagring
-- favoritfärdighet eller buntväxling
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Förhandsgranskningen måste visa:
+Preview must show:
 
-- löst måletikett
-- löst väg
-- installera omfattning
-- vald färdighet eller paket när det är tillämpligt
-- motsvarande CLI-kommando---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Det visuella skalet måste vägleda start för:### 5.1 MCP
+The visual shell must guide startup for:
+
+### 5.1 MCP
 
 - transport: `stdio`, `stream`, `sse`
-- läge: "skrivskyddad" eller "lokal".
-- Värd/portkonfiguration för nätverkstransporter
-- explicit kommandoförhandsgranskning### 5.2 API
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- värd
-- hamn
-- grundprofil eller härdad profil
-- härdad bärare eller API-nyckelauth
-- härdade hastighetsgränsparametrar
-- Aktivering av revisionslogg
-- explicit kommandoförhandsgranskning### 5.3 A2A
+### 5.2 API
 
-- värd
-- hamn
-- butikstyp: `minne`, `json`, `sqlite`
-- lagra sökväg för hållbara lägen
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
 - executor: `inline`, `process`
-- köaktiverat SQLite-läge
-- undersökningsintervall och hyresperiod för delat hyresläge
-- explicit kommandoförhandsgranskning---
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Det visuella skalet kvarstår endast lokalt i:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Staten inkluderar för närvarande:
+State currently includes:
 
-- senaste installationer
-- nyligen lanserade tjänster
-- namngivna installationsförinställningar
-- namngivna tjänstförinställningar
-- favoritkunskaper
-- favoritbuntar
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Skalet måste stödja:
+The shell must support:
 
-- spela upp senaste installationer
-- återuppspelning av senaste tjänstelanseringar
-- återanvändning av namngivna installationsförinställningar
-- återanvändning av namngivna tjänstförinställningar---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Det visuella skalet är additivt.
+The visual shell is additive.
 
-Dessa flöden måste förbli giltiga och stabila:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
@@ -157,16 +183,18 @@ Dessa flöden måste förbli giltiga och stabila:
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-Det visuella skalet får aldrig tvinga sig in i explicita expertkommandovägar.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Det visuella skalet ska göra tillstånd och skriver explicit.
+The visual shell should make state and writes explicit.
 
-Det måste:
+It must:
 
-- Förhandsgranska installationer före skrivning
-- Förhandsgranska tjänstestartkommandon före exekvering
-- Håll hemligt material borta från förhandsvisningar av klartextkommandon där det är praktiskt
-- kvarstår endast lokalt
-- bevara icke-interaktivt CLI-beteende utanför det visuella skalet
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

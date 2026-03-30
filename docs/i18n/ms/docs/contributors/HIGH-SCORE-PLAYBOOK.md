@@ -5,71 +5,83 @@
 ---
 
 
->**Kemahiran Omni `SKILL.md` perlukan dalam amalan untuk mencapai kematangan yang tinggi, amalan terbaik, kualiti dan markah keselamatan.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-Panduan ini menerangkan cara pengelas repositori sebenarnya memberi ganjaran kepada kemahiran.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Gunakannya apabila anda mahu:
+Use it when you want to:
 
-- mengarang kemahiran baharu yang berada dalam kumpulan pemarkahan teratas
-- meningkatkan kemahiran sedia ada yang tersekat pada `baik` atau rendah `cemerlang`
-- faham mengapa kemahiran dengan pemformatan yang baik masih tidak mendapat markah seperti aset operasi yang luar biasa
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Ini ialah rakan yang berhadapan dengan penyumbang kepada:
+This is the contributor-facing companion to:
 
-- [Bar Kualiti](QUALITY-BAR.md)
-- [Anatomi Kemahiran](ANATOMI-KEMAHIRAN.md)
-- [Klasifikasi Kemahiran](../specs/KEMAHIRAN-KLASIFIKASI.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Penanda aras semasa untuk katalog langsung:
+Current benchmark for the live native catalog:
 
-- 32 kemahiran diterbitkan
-- sebaran kualiti semasa: `94, 95, 96, 97, 100`
-- penyebaran amalan terbaik semasa: `98, 99, 100`
-- hujung atas semasa: `omni-figma` pada kualiti `100/100` dan amalan terbaik `100/100`---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-Pengelas**tidak**memberi ganjaran penurunan harga yang cantik sahaja.
+The classifier does **not** reward pretty markdown alone.
 
-Kemahiran skor tinggi ialah kemahiran yang:
+High-scoring skills are skills that are:
 
--**boleh ditemui**: penerangan dengan jelas menyatakan perkara yang dilakukan oleh kemahiran itu dan bila hendak menggunakannya
--**operasi**: kemahiran termasuk skrip tempatan, rujukan dan contoh boleh jalan
--**diagnostik**: ia membantu ejen pulih apabila berlaku masalah
--**khusus**: ia tertumpu pada satu aliran kerja, bukan nasihat umum
--**selamat**: ia mengelakkan corak berisiko dan menghantar keluaran pengimbas bersih
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-Dalam amalan, kemahiran terkuat bertindak lebih seperti**kit aliran kerja berpakej kecil**daripada nota penurunan harga biasa.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Gunakan sasaran ini semasa mengarang:
+Use these targets when authoring:
 
-| Dimensi | Sasaran Kuat | Sasaran Luar Biasa |
+| Dimension | Strong Target | Exceptional Target |
 |:----------|:--------------|:-------------------|
-| 🎯 Kematangan | `L3` | `L3` dengan pelbagai sumber sokongan |
-| 📋 Amalan Terbaik | `90+` | `96+` |
-| ⭐ Kualiti | `85+` | `90+` |
-| 🛡️ Keselamatan | `95+` | `95+` dengan sifar dapatan |---
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Orang hadapan anda seharusnya menjadikan kemahiran itu mudah dikelaskan dan mudah ditemui:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `nama` sepadan dengan direktori dengan tepat
-- `penerangan` menerangkan kedua-dua**apa**dan**bila**
-- `kategori`, `tag`, `alat`, `kerumitan`, `risiko`, `sumber`, `pengarang` dan tarikh semuanya ada
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Bentuk penerangan yang baik:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Bentuk perihalan buruk:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-Kemahiran terkuat secara konsisten termasuk bahagian ini:
+The strongest skills consistently include these sections:
 
-- `## Gambaran Keseluruhan`
-- `## Bila Menggunakan Kemahiran Ini`
-- `## Aliran Kerja`
-- `## Contoh`
-- `## Amalan Terbaik`
-- `## Penyelesaian masalah`
-- `## Sumber Tambahan`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Jika salah satu daripada ini tiada, markah masih boleh bagus, tetapi menjadi lebih sukar untuk kelihatan luar biasa.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-Kemahiran mendapat markah tertinggi biasanya termasuk:
+Top-scoring skills usually include:
 
-- `rujukan/senarai semak.md`
-- satu atau lebih skrip pembantu dalam `skrip/`
-- sekurang-kurangnya satu contoh yang berfungsi dalam `contoh/`
-- `ejen/openai.yaml` apabila kemahiran itu bertujuan untuk permohonan ejen langsung
-- pautan terus dari `SKILL.md` ke fail tempatan tersebut
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Ini penting kerana pengelas menganggap kemahiran dengan**bahan sokongan yang digabungkan**sebagai lebih boleh diambil tindakan daripada kemahiran yang hanya menunjuk ke luar.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Minimum yang disyorkan:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Contoh skor tinggi ialah:
+High-scoring examples are:
 
-- konkrit
-- ditaip dengan pagar sebenar seperti `bash` atau `python`
-- terikat pada skrip tempatan atau arahan yang boleh diulang
-- wakil aliran kerja
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-baik:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-lemah:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-Penjaring memberi ganjaran penyelesaian masalah yang membantu ejen pulih, bukan hanya mengenali masalah.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Format pilihan:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Ini lebih kuat daripada nota samar-samar seperti:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-Pengelas kini membezakan antara kemahiran yang lengkap dengan kemahiran yang benar-benar mendalam.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Isyarat yang membantu:
+Signals that help:
 
-- pelbagai contoh konkrit
-- berbilang kes penyelesaian masalah
-- bimbingan kemahiran berkaitan
-- pek rujukan yang lebih kaya
-- bahagian `## Aliran Kerja` yang boleh dilihat dengan langkah bernombor yang boleh dikira secara langsung oleh penjaring
-- sekurang-kurangnya satu jadual operasi atau peta pelaksanaan di mana ia menjelaskan aliran kerja
-- lebih daripada satu direktori sokongan atau jenis aset
-- bahagian aliran kerja dengan langkah yang mencukupi untuk membimbing pelaksanaan
-- aset keputusan seperti senarai semak, rubrik, matriks, paket atau buku permainan
-- kepelbagaian pek sokongan yang lebih kukuh merentas `rujukan/`, `skrip/`, `ejen/`, `contoh/` atau `aset/`
-- fail sokongan boleh guna semula yang mencukupi untuk kelihatan seperti kit, tiada seorang pun pembantu yang terselip di sebelah markdown
-- lebih daripada satu fail pembantu apabila aliran kerja cukup kompleks untuk mewajarkan pek sokongan
-- kedalaman badan yang mencukupi untuk menampung pertukaran dan mod kegagalan
-- panduan operasi yang lebih padat, kerana penjaring kini membezakan pemformatan yang digilap daripada kedalaman aliran kerja yang boleh diguna semula yang benar
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Isyarat yang**tidak**banyak membantu:
+Signals that do **not** help much:
 
-- mengulang arahan yang sama dalam perkataan yang berbeza
-- teks pengisi generik
-- menambah tajuk tanpa menambah bahan di bawahnya---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Gunakan senarai semak ini sebelum menjalankan pengesahan:
+Use this checklist before running validation:
 
-- keterangan menyatakan**apa**dan**bila**
-- kemahiran tertumpu pada satu aliran kerja
-- `## Aliran Kerja` wujud dan mengandungi langkah bernombor atau bertitik tumpu
-- sekurang-kurangnya satu contoh boleh jalan wujud
-- `rujukan/`, `skrip/` dan idealnya `contoh/` dipautkan daripada `SKILL.md`
-- `ejen/openai.yaml` wujud apabila kemahiran itu dimaksudkan untuk permohonan terus dalam pelanggan ejen
-- penyelesaian masalah menggunakan `Simptom` dan `Penyelesaian`
-- kemahiran boleh dikelaskan secara munasabah sebagai `L3`
-- tiada arahan berisiko atau laluan yang mencurigakan hadir
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Kemudian jalankan:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- huraian betul tetapi terlalu generik
-- penurunan harga mempunyai bahagian tetapi tiada kedalaman operasi
-- contoh tidak menunjuk kepada pembantu tempatan
-- penyelesaian masalah wujud tetapi bukan diagnostik
-- terdapat terlalu sedikit teg atau pengecam alat
-- kemahiran itu selamat dan bersih tetapi masih terlalu cetek untuk dikira sebagai luar biasa---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Jika kemahiran anda terasa seperti:
+If your skill feels like:
 
--**templat**: ia mungkin lulus
--**panduan**: ia mungkin mendapat markah yang baik
--**pakej aliran kerja**: ia lebih berkemungkinan mendapat markah di bahagian atas
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

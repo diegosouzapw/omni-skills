@@ -5,168 +5,196 @@
 ---
 
 
->**Behaviorálna zmluva pre používateľské rozhranie terminálu založeného na atramente odhalené pomocou `omni-skills ui`.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-Vizuálny plášť je navádzaný povrch produktu na vrchu existujúceho CLI a inštalačného motora.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Nenahrádza:
+It does not replace:
 
-- expertné používanie CLI založené na príznakoch
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- postup inštalácie so sprievodcom
-- Správanie API, MCP alebo A2A za behu
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Definuje:
+It defines:
 
-- správanie `omni-skills ui`
-- záložný kontrakt pre `omni-skills ui --text`
-- lokálny stav a prednastavená perzistencia
-- ukážky spustenia služby so sprievodcom
-- opakovateľnosť pre nedávne inštalácie a spustenia služieb---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-`omni-skills ui` spúšťa vizuálny shell založený na atramente.
+`omni-skills ui` launches the Ink-based visual shell.
 
-Vizuálny shell je primárny neodborný terminálový zážitok pre:
+The visual shell is the primary non-expert terminal experience for:
 
-- inštalovať toky
-- objavenie a inštalácia podľa prvého katalógu
-- Spustenie MCP
-- Spustenie API
-- Spustenie A2A
-- lekár a fajčenie odovzdanie### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-`omni-skills ui --text` spustí záložné rozhranie založené na readline.
+### 2.2 Text Fallback
 
-Toto zostane užitočné, keď:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- terminál nedokáže správne vykresliť bohatší shell
-- správanie v surovom režime je obmedzené
-- uprednostňuje sa minimálna spätná väzba textu### 2.3 Handoff Rule
+This remains useful when:
 
-Vizuálny shell priamo neimplementuje runtime služby ani inštalačné zápisy.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Po náhľade a potvrdení sa čisto ukončí a odovzdá spustenie existujúcemu vstupnému bodu CLI s ekvivalentnými argumentmi a premennými prostredia.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-Domovská obrazovka musí odhaľovať:
+The home screen must expose:
 
-- zručnosti inštalácie
-- nájsť a nainštalovať
-- opakovať nedávne inštalácie, ak sú prítomné
-- spustiť uložené predvoľby inštalácie, ak sú k dispozícii
-- spustiť službu
-- opakovať nedávne služby, ak sú prítomné
-- spustiť uložené predvoľby služby, ak sú k dispozícii
-- lekár
-- fajčiť
-- výstup
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-Domovská obrazovka by sa mala tiež zobraziť:
+The home screen should also surface:
 
-- aktuálna dostupnosť zverejneného balíka
-- miestne stavové počty pre posledné, prednastavené a obľúbené položky---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-Inštalačný postup vizuálneho prostredia musí podporovať:
+The visual shell install flow must support:
 
-- známy výber cieľového klienta
-- vlastný výber cesty
-- úplná inštalácia knižnice
-- inštalácia s jednou zručnosťou
-- inštalácia jedného balíka
-- vyhľadajte a potom nainštalujte
-- náhľad pred zápisom
-- prednastavené ukladanie
-- obľúbená zručnosť alebo prepínanie zväzkov
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Ukážka musí zobrazovať:
+Preview must show:
 
-- vyriešený cieľový štítok
-- vyriešená cesta
-- inštalovať rozsah
-- zvolená zručnosť alebo balík, ak je to vhodné
-- ekvivalentný príkaz CLI---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-Vizuálny shell musí viesť spustenie pre:### 5.1 MCP
+The visual shell must guide startup for:
+
+### 5.1 MCP
 
 - transport: `stdio`, `stream`, `sse`
-- režim: „iba na čítanie“ alebo „miestne“.
-- konfigurácia hostiteľa/portu pre sieťové prenosy
-- explicitný náhľad príkazu### 5.2 API
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- hostiteľ
-- prístav
-- základný alebo kalený profil
-- tvrdený nosič alebo overenie kľúča API
-- kalené rýchlostné parametre
-- povolenie protokolu auditu
-- explicitný náhľad príkazu### 5.3 A2A
+### 5.2 API
 
-- hostiteľ
-- prístav
-- typ obchodu: `memory`, `json`, `sqlite`
-- uložiť cestu pre trvalé režimy
-- vykonávateľ: ,inline‘, ,proces‘
-- režim SQLite s podporou frontu
-- interval výziev a trvanie prenájmu pre režim zdieľaného prenájmu
-- explicitný náhľad príkazu---
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
+- executor: `inline`, `process`
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-Vizuálny shell pretrváva iba lokálny stav v:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Štát v súčasnosti zahŕňa:
+State currently includes:
 
-- nedávne inštalácie
-- nedávne spustenie služby
-- pomenované predvoľby inštalácie
-- predvoľby pomenovaných služieb
-- obľúbené zručnosti
-- obľúbené zväzky
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-Plášť musí podporovať:
+The shell must support:
 
-- opakované prehrávanie nedávnych inštalácií
-- prehrávanie nedávnych spustení služby
-- opätovné použitie pomenovaných predvolieb inštalácie
-- opätovné použitie predvolieb pomenovaných služieb---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-Vizuálny obal je aditívny.
+The visual shell is additive.
 
-Tieto toky musia zostať platné a stabilné:
+These flows must remain valid and stable:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills install --guided`
-- `npx omni-skills nájdu figma --tool kurzor --install --yes`
+- `npx omni-skills find figma --tool cursor --install --yes`
 - `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-Vizuálny shell sa nikdy nesmie nútiť do explicitných ciest expertných príkazov.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-Vizuálny shell by mal dávať stav a zápisy explicitné.
+The visual shell should make state and writes explicit.
 
-Musí:
+It must:
 
-- ukážka inštalácie pred odovzdaním zápisu
-- ukážte príkazy na spustenie služby pred vykonaním
-- ak je to praktické, uchovávajte tajný materiál mimo náhľadov príkazov s čistým textom
-- pretrvávajúci stav iba lokálne
-- zachovať neinteraktívne správanie CLI mimo vizuálneho prostredia
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

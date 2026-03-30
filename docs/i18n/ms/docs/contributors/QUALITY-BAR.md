@@ -5,54 +5,63 @@
 ---
 
 
->**Keperluan dan pengesyoran minimum untuk kemahiran diterima ke dalam repositori Kemahiran Omni.**
+> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
 
-Untuk panduan mengarang yang ditujukan secara khusus pada skor jalur teratas, lihat [Buku Main Skor Tinggi](BUKU Main Skor Tinggi.md).
+For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-Penanda aras semasa untuk katalog yang diterbitkan:
+Current benchmark for the native catalog:
 
-- 32 kemahiran diterbitkan
-- purata skor kualiti `96.3`
-- purata skor amalan terbaik `98.7`
-- purata skor keselamatan `95.0`---
+- 48 published native skills
+- average quality score `87.5`
+- average best-practices score `85.2`
+- average security score `90.6`
+- validation mix `40` passed, `8` warn, `0` failed
+
+---
 
 ## 🔒 Required (Must Pass)
 
-| # | Keperluan | Cara Mengesahkan |
+| # | Requirement | How to Verify |
 |:--|:------------|:--------------|
-| 1️⃣ |**Materi depan yang sah**| `python3 tools/scripts/validate_skills.py` |
-| 2️⃣ |**Huraian yang jelas**| Satu pelapik mesti menerangkan apa yang dilakukan oleh kemahiran (10+ aksara) |
-| 3️⃣ |**Direktori padanan nama**| Medan `name:` ​​sepadan dengan nama folder tepat |
-| 4️⃣ |**Bahagian gambaran keseluruhan**| Penjelasan ringkas tentang tujuan dalam badan penurunan harga |
-| 5️⃣ |**Bila Menggunakan bahagian**| Sekurang-kurangnya 2 senario penggunaan khusus |
-| 6️⃣ |**Arahan boleh bertindak**| Kandungan langkah demi langkah ejen AI boleh melaksanakan |
-| 7️⃣ |**Metadata dijana**| Pengesah mengeluarkan `kemahiran/<kemahiran>/metadata.json` berjaya |---
+| 1️⃣ | **Valid frontmatter** | `python3 tools/scripts/validate_skills.py` |
+| 2️⃣ | **Clear description** | One-liner must explain what the skill does (10+ chars) |
+| 3️⃣ | **Name matches directory** | `name:` field matches the folder name exactly |
+| 4️⃣ | **Overview section** | Brief explanation of purpose in the markdown body |
+| 5️⃣ | **When to Use section** | At least 2 specific usage scenarios |
+| 6️⃣ | **Actionable instructions** | Step-by-step content an AI agent can execute |
+| 7️⃣ | **Generated metadata** | Validator emits `skills/<skill>/metadata.json` successfully |
+
+---
 
 ## ⭐ Recommended (Improves Score)
 
-| # | Pengesyoran | Kesan Skor |
-|:--|:-----------------|:-------------|
-| 8️⃣ |**Contoh**— sekurang-kurangnya satu contoh konkrit dengan output yang dijangkakan | 📈 Kualiti +10-15 |
-| 9️⃣ |**Amalan terbaik**— ✅ Lakukan / ❌ Jangan bimbingan | 📈 Amalan Terbaik +5 |
-| 🔟 |**Diuji dengan alat**— disahkan dengan sekurang-kurangnya seorang pembantu pengekodan AI | 📈 Kualiti +5 |
-| 1️⃣1️⃣ |**Tag**— teg boleh dicari yang berkaitan untuk penemuan | 📈 Amalan Terbaik +10 |
-| 1️⃣2️⃣ |**Kategori**— diperuntukkan kepada satu kategori kanonik | 📈 Amalan Terbaik +10 |
-| 1️⃣3️⃣ |**Penyelesaian masalah**— panduan `Gejala` dan `Penyelesaian` konkrit | 📈 Amalan Terbaik +5-10 |
-| 1️⃣4️⃣ |**Aset sokongan tempatan**— `rujukan/`, `skrip/` dan idealnya `contoh/` dipautkan daripada kemahiran | 📈 Amalan Terbaik +10 |
-| 1️⃣5️⃣ |**Klasifikasi sihat**— kematangan L3, kualiti 85+, amalan terbaik 90+ | 📈 Peringkat keseluruhan |
-| 1️⃣6️⃣ |**Tiada penemuan keselamatan kritikal**— pengimbas statik lulus bersih | 🛡️ Keselamatan 100 |---
+| # | Recommendation | Score Impact |
+|:--|:---------------|:-------------|
+| 8️⃣ | **Examples** — at least one concrete example with expected output | 📈 Quality +10-15 |
+| 9️⃣ | **Best practices** — ✅ Do / ❌ Don't guidance | 📈 Best Practices +5 |
+| 🔟 | **Tested with a tool** — verified with at least one AI coding assistant | 📈 Quality +5 |
+| 1️⃣1️⃣ | **Tags** — relevant searchable tags for discovery | 📈 Best Practices +10 |
+| 1️⃣2️⃣ | **Category** — assigned to one canonical category | 📈 Best Practices +10 |
+| 1️⃣3️⃣ | **Troubleshooting** — concrete `Symptoms` and `Solution` guidance | 📈 Best Practices +5-10 |
+| 1️⃣4️⃣ | **Local support assets** — `references/`, `scripts/`, and ideally `examples/` linked from the skill | 📈 Best Practices +10 |
+| 1️⃣5️⃣ | **Healthy classification** — maturity L3, quality 85+, best practices 90+ | 📈 Overall tier |
+| 1️⃣6️⃣ | **No critical security findings** — static scanner passes clean | 🛡️ Security 100 |
+
+---
 
 ## ❌ Reasons for Rejection
 
-| Isu | Mengapa |
+| Issue | Why |
 |:------|:----|
-| ❌ Perkara hadapan tiada atau tidak sah | Memecahkan saluran paip pengesahan |
-| ❌ Nama tidak sepadan dengan direktori | Memecahkan penjanaan katalog |
-| ❌ Penerangan kosong atau ringkas | Pengguna tidak dapat menemui kemahiran |
-| ❌ Tiada kandungan yang boleh diambil tindakan (hanya pautan atau stub) | Ejen tidak boleh melaksanakan apa-apa |
-| ❌ Pendua tanpa peningkatan yang jelas | Tambah nilai, jangan klon |
-| ❌ Kandungan menyinggung tanpa teg `risiko: menyinggung` | Keselamatan dan pematuhan |
-| ❌ Penemuan keselamatan kritikal | Eksfiltrasi segera, arahan yang merosakkan, dsb. |---
+| ❌ Missing or invalid frontmatter | Breaks validation pipeline |
+| ❌ Name doesn't match directory | Breaks catalog generation |
+| ❌ Empty or trivially short description | Users can't discover the skill |
+| ❌ No actionable content (just links or stubs) | Agents can't execute anything |
+| ❌ Duplicate without clear improvement | Add value, don't clone |
+| ❌ Offensive content without `risk: offensive` tag | Safety and compliance |
+| ❌ Critical security findings | Prompt exfiltration, destructive commands, etc. |
+
+---
 
 ## 🧪 Verify Locally
 
@@ -72,25 +81,27 @@ npm run smoke
 
 ## 📊 Score Reference
 
-| Dimensi | Cemerlang | Baik | Memerlukan Kerja |
+| Dimension | Excellent | Good | Needs Work |
 |:----------|:----------|:-----|:-----------|
-| ⭐**Kualiti**| 80+ (platinum) | 60-79 (emas/perak) | <60 (gangsa/pemula) |
-| 📋**Amalan Terbaik**| 90+ (cemerlang) | 70-89 (baik) | <70 (adil/keperluan-kerja) |
-| 🛡️**Keselamatan**| 95+ (keras) | 80-94 (selamat) | <80 (semakan diperlukan) |
-| 🎯**Kematangan**| L3 (skrip+ujian) | L2 (arahan) | L1 (metadata sahaja) |---
+| ⭐ **Quality** | 80+ (platinum) | 60-79 (gold/silver) | <60 (bronze/starter) |
+| 📋 **Best Practices** | 90+ (excellent) | 70-89 (good) | <70 (fair/needs-work) |
+| 🛡️ **Security** | 95+ (hardened) | 80-94 (secure) | <80 (review needed) |
+| 🎯 **Maturity** | L3 (scripts+tests) | L2 (instructions) | L1 (metadata only) |
+
+---
 
 ## 🧭 What High Scores Require
 
-Untuk mencapai band teratas secara konsisten, kemahiran harus termasuk:
+To reach the top band consistently, a skill should include:
 
-- huraian frontmatter yang kukuh yang menerangkan kedua-dua**apa**kemahiran itu dan**bila**ia harus digunakan
-- bahagian eksplisit untuk `Bila Penggunaan`, `Aliran Kerja`, `Contoh`, `Amalan Terbaik`, `Penyelesaian Masalah` dan `Sumber Tambahan`
-- bahan sokongan setempat di bawah `rujukan/`, `skrip/` dan idealnya `contoh/`, dipautkan terus daripada `SKILL.md`
-- metadata ejen di bawah `ejen/openai.yaml` apabila kemahiran itu dimaksudkan untuk digunakan terus dalam pelanggan ejen
-- jadual operasi kecil atau peta pelaksanaan yang setara apabila aliran kerja mendapat manfaat daripadanya
-- sekurang-kurangnya satu contoh boleh dijalankan yang menunjuk kepada skrip pembantu tempatan atau arahan boleh diulang
-- penyelesaian masalah ditulis sebagai `Simptom` ditambah `Penyelesaian`, bukan amaran generik
-- kedalaman yang cukup untuk melayakkan diri sebagai `L3`, bukan hanya prosa yang diformat dengan baik
-- kedalaman aliran kerja yang lebih kukuh, aset keputusan dan kepelbagaian pek sokongan jika anda inginkan kualiti jalur teratas
-- pek sokongan yang cukup dalam untuk berasa boleh diguna semula, bukan hanya hadir untuk liputan kotak pilihan
-- sekurang-kurangnya 4 keluarga sokongan yang bermakna atau kedalaman yang setara dalam fail boleh guna semula jika anda mahu jalur teratas secara konsisten
+- a strong frontmatter description that explains both **what** the skill does and **when** it should be used
+- explicit sections for `When to Use`, `Workflow`, `Examples`, `Best Practices`, `Troubleshooting`, and `Additional Resources`
+- local support material under `references/`, `scripts/`, and ideally `examples/`, linked directly from `SKILL.md`
+- agent metadata under `agents/openai.yaml` when the skill is meant to be invoked directly in agent clients
+- a small operational table or equivalent execution map when the workflow benefits from it
+- at least one runnable example that points to a local helper script or repeatable command
+- troubleshooting written as `Symptoms` plus `Solution`, not generic warnings
+- enough depth to qualify as `L3`, not just well-formatted prose
+- stronger workflow depth, decision assets, and support-pack diversity if you want top-band quality
+- a support pack that is deep enough to feel reusable, not just present for checkbox coverage
+- at least 4 meaningful support families or the equivalent depth in reusable files if you want the top band consistently

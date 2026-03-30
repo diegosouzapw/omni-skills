@@ -5,44 +5,50 @@
 ---
 
 
->**Verificação de segurança, geração de arquivos, assinatura opcional e pacote de distribuição para cada habilidade publicada.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| Recurso | Estado |
+| Feature | State |
 |:--------|:------|
-| ✅ Scanner de segurança estática | Sempre ativado |
-| ✅ Classificação de metadados por habilidade | Implementado |
-| ✅ Arquivos por habilidade (zip/tar.gz) | Implementado |
-| ✅ Manifestos de soma de verificação SHA-256 | Implementado |
-| ✅ Porta do scanner CI nas etiquetas de liberação | Implementado |
-| ✅ fluxo de trabalho de publicação npm de tarball verificado | Implementado |
-| ⚙️ Digitalização ClamAV | Enriquecedor opcional |
-| ⚙️ Pesquisa de hash do VirusTotal | Enriquecedor opcional |
-| ✅ Assinatura individual | Implementado |
-| ✅ Assinatura imposta por CI | Implementado em tags de lançamento |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Verifica todas as habilidades durante a validação:
+Scans every skill during validation:
 
-| Alvo | O que é verificado |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Conteúdo de habilidade principal |
-| 📄 Markdown/arquivos de texto | Referências e documentos empacotados |
-| ⚙️ Roteiros | Scripts de automação empacotados |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**Famílias de regras:**
+**Rule families:**
 
-| Regra | Exemplos |
+| Rule | Examples |
 |:-----|:---------|
-| 🎭**Injeção imediata**| Padrões de exfiltração, substituições de instruções |
-| 💣**Comandos destrutivos**| `rm -rf`, `formato`, `del /s` |
-| 🔑**Escalonamento de privilégios**| `sudo`, `chmod 777`, padrões setuid |
-| 📂**Caminhos suspeitos**| `/etc/shadow`, `~/.ssh`, arquivos de credenciais |
-| ⚠️**Primitivos arriscados**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@ Verifica todas as habilidades durante a validação:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Requer `clamscan` em `PATH`
-- Verifica arquivos compactados em busca de malware conhecido
-- Resultados registrados em metadados de habilidades---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**Somente pesquisa de hash**— nenhum upload de arquivo durante a validação normal
-- Arquivos desconhecidos permanecem apenas locais
-- Mantém a construção**determinística**e independente de CI### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Portão de liberação estrito:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-Esta etapa lê `skills/*/metadata.json` gerado e falha se os scanners necessários não executarem ou relatarem detecções.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-Os dados de segurança são emitidos nos metadados de cada habilidade:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ Os dados de segurança são emitidos nos metadados de cada habilidade:```json
 }
 ```
 
-> Este bloco é propagado em manifestos e visualizações de catálogo, permitindo que CLI, API e MCP**filtrem e classifiquem por pontuação de segurança**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-Cada habilidade publicada gera:
+Each published skill generates:
 
-| Arquivo | Formato |
+| File | Format |
 |:-----|:-------|
-| `dist/archives/<habilidade>.zip` | Arquivo ZIP |
-| `dist/archives/<habilidade>.tar.gz` | Arquivo Tarball |
-| `dist/archives/<habilidade>.checksums.txt` | Manifesto de soma de verificação SHA-256 |### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-Tags de lançamento do GitHub Actions (`v*`) agora:
+GitHub Actions release tags (`v*`) now:
 
-1. verifique se a tag git corresponde a `package.json`
-2. instale e atualize o ClamAV
-3. decodifique a chave de assinatura de lançamento dos segredos do GitHub
-4. execute `npm run release:verify`
-5. empacotar o tarball com `npm pack`
-6. publique esse tarball exato no npm com proveniência
-7. crie uma versão do GitHub com notas personalizadas e ativos de verificação anexados---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Se nenhuma chave pública for fornecida, a compilação deriva uma com `openssl` e a coloca em `dist/signing/`.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-Quando habilitado, os arquivos `.sig` são emitidos ao lado dos arquivos e do manifesto da soma de verificação.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-No CI, as tags de lançamento agora exigem assinatura por meio de:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` ou `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- opcional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` ou `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| Limitação | Estado |
+| Limitation | Status |
 |:-----------|:-------|
-| Envio de upload do VirusTotal | Excluído intencionalmente da validação padrão |
-| Execução de assinatura | Aplicado em tags de lançamento; compilações locais ainda podem ser executadas sem assinatura |
-| Governança hospedada | Autenticação integrada, tempo de execução de administrador, listas de permissões CORS/IP, modo de manutenção e registro de auditoria estão em vigor; gateways externos permanecem opcionais |
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

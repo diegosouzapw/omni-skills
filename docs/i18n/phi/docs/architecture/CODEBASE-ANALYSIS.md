@@ -5,40 +5,47 @@
 ---
 
 
->**Komprehensibong teknikal na pagsusuri ng kasalukuyang arkitektura ng Omni Skills, runtime surface, at build pipeline.**
-> Huling nasuri: 2026-03-28---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| Katangian | Halaga |
+| Attribute | Value |
 |:----------|:------|
-|**Pangalan**| `omni-skills` |
-|**Bersyon ng package**| `0.1.3` |
-|**Mga bersyon ng kasanayan**| Per-skill at independiyente mula sa bersyon ng package. Maraming naka-publish na kasanayan ay `0.0.1` pa rin habang ang package ay `0.1.2`. |
-|**Lisensya**| MIT (code) + CC BY 4.0 (nilalaman) |
-|**NPM**| `npx omni-skills` |
-|**Na-publish na mga kasanayan**| 32 |
-|**Mga tinukoy na bundle**| 7, lahat ay ganap na sinusuportahan ng nai-publish na mga kasanayan |
-|**Mga kategorya ng aktibong catalog**| 15 aktibong bucket sa 18 mga kategorya ng canonical taxonomy |
-|**Pangunahing runtime/build LOC na na-sample sa ibaba**| 13,600+ |
-|**Mga dependency sa produksyon**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-Kasalukuyang snapshot ng pag-uuri sa antas ng repositoryo mula sa `metadata.json`:
+Current repository-level classification snapshot from `metadata.json`:
 
-- average na marka ng kalidad: `96.3`
-- average na marka ng pinakamahusay na kasanayan: `98.7`
-- average na marka ng seguridad: `95.0`
-- lahat ng 32 nai-publish na kasanayan ay napapatunayan bilang `L3.'
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-Kasalukuyang release baseline:
+Current release baseline:
 
-- paglabas ng pampublikong repositoryo: `v0.1.2`
-- paglabas ng pribadong enhancer: `v0.0.1`
-- parehong aktibo at berde ang public release automation at private release automation---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-Ang repository ay sumusunod sa isang**workspace monorepo**pattern na may isang nakabahaging catalog core at maraming runtime surface.```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,53 +71,59 @@ Ang repository ay sumusunod sa isang**workspace monorepo**pattern na may isang n
 └────────────────────────────────────────────────────────────┘
 ```
 
-Ang disenyo ay sadyang**artifact-driven**:
+The design is intentionally **artifact-driven**:
 
-1. ang mga kasanayan ay isinulat bilang `SKILL.md` kasama ang mga lokal na support pack
-2. pinapatunayan, inuuri, ina-archive, at ginagawang normal ng build ang mga ito
-3. ang mga nabuong artifact ay naging kontrata para sa CLI, API, MCP, at A2A---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4,500+ LOC na pinagsama**— ang pangunahing pampublikong interface para sa parehong eksperto at may gabay na paggamit.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| Utos | Function |
+| Command | Function |
 |:--------|:---------|
-| 🔎 `hanapin ang [query]` | Paghahanap ng katalogo ng buong teksto na may mga filter na nakakaalam ng marka |
-| 📦 `i-install` | Ginagabayan o nakabatay sa flag na pag-install sa mga kilalang kliyente o mga custom na path |
-| 🧾 `config-mcp` | I-preview o isulat ang client-aware na MCP config |
-| 🔌 `mcp <transport>` | Sinisimulan ang MCP server sa `stdio`, `stream`, o `sse` |
-| 🌐 `api` | Sinisimulan ang catalog API |
-| 🤖 `a2a` | Sinisimulan ang A2A runtime |
-| 🧪 `usok` | Ilabas ang pagpapatunay bago ang paglipad |
-| 🩺 `doktor` | Mga lokal na diagnostic |
-| 🖥️ `ui` | Ink visual shell na may install, discovery, config, at service hub |
-| 🏷️ `recategorize` | Taxonomy drift inspeksyon at muling pagsulat |
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-Ang CLI ay hindi na isang installer lamang. Ito ang tool sa pampublikong pagpapatakbo para sa buong platform.## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-Ang pampublikong runtime ay hindi na naka-block sa foundational work, at ang pangalawang kategorya na wave ay nakarating na. Ang susunod na kapaki-pakinabang na catalog work ay depth, hindi higit na category-count chasing.
+## 🧭 Future Expansion Direction
 
-Ang mga bagong na-activate na code-native na track ay nasa catalog na ngayon:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- `design` sa pamamagitan ng `design-systems-ops`, `accessibility-audit`, at `design-token-governance`
-- `mga tool` sa pamamagitan ng `mcp-server-authoring`
-- `data-ai` sa pamamagitan ng `data-contracts`
-- `machine-learning` sa pamamagitan ng `model-serving`
+Newly activated code-native tracks now in the catalog:
 
-Inirerekomenda ang susunod na direksyon:
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-1. palalimin ang `design`, `tools`, `data-ai`, at `machine-learning`
-2. panatilihing ipagpaliban ang `negosyo` at `content-media` maliban kung may lalabas na malinaw na code-native na panukala
-3. pangalagaan ang kasalukuyang kalidad na palapag sa halip na muling buksan ang pressure sa activation ng kategorya
+Recommended next direction:
 
-Ang expansion wave na iyon ay naitala na ngayon sa [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
->**403 LOC**— nag-i-install ng mga kasanayan sa 7 katulong na may kakayahang mag-install.
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
-| Bandila | Target | Default na Path |
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+
+> **403 LOC** — installs skills into 7 install-capable assistants.
+
+| Flag | Target | Default Path |
 |:-----|:-------|:-------------|
 | `--claude` | Claude Code | `~/.claude/skills` |
 | `--cursor` | Cursor | `~/.cursor/skills` |
@@ -120,46 +133,50 @@ Ang expansion wave na iyon ay naitala na ngayon sa [../tasks/TASK-08-SECOND-CATE
 | `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
 | `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
-Sinusuportahan nito ang:
+It supports:
 
-- full-library install
-- mga piling pag-install ayon sa `--skill`
-- na-curate na mga pag-install ng `--bundle`
-- may gabay na TTY at visual na daloy ng UI
-- mga custom na target na landas### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
->**828 LOC**— nakabahaging runtime layer para sa CLI, API, MCP, at A2A.
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-| I-export | Paglalarawan |
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
+
+| Export | Description |
 |:-------|:------------|
-| 🔎 `Mga Kasanayan sa Paghahanap()` | Maghanap gamit ang weighted text matching at filter support |
-| 📋 `listSkills()` | Multi-axis na pag-filter ayon sa kalidad, pinakamahusay na kagawian, antas, seguridad, panganib, tool, at kategorya |
-| 📌 `getSkill()` | Manifest resolution at mga pinayamang pampublikong URL |
-| ⚖️ `compareSkills()` | Magkatabing paghahambing |
-| 💡 `recommendSkills()` | Rekomendasyon na batay sa layunin |
-| 📦 `buildInstallPlan()` | I-install ang pagbuo ng plano na may mga babala at gabay na alam ng kliyente |
-| 🗂️ `listBundles()` | Na-curate na listahan ng bundle na may availability |
-| 📁 `listSkillArchives()` | Pag-archive at resolution ng lagda |
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
-Ito ang tunay na pinagmumulan ng runtime truth pagkatapos ng henerasyon.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+This is the real single source of runtime truth after generation.
 
->**812 LOC**— buong pagpapatupad ng MCP gamit ang opisyal na SDK.
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
 
-**Mga Transportasyon**
+> **812 LOC** — full MCP implementation using the official SDK.
+
+**Transports**
 
 - `stdio`
 - streamable HTTP
 - SSE
 
-**Mga tool na laging naka-read-only**
+**Always-on read-only tools**
 
-- `kasanayan_sa paghahanap`
-- `Kumuha ng_kasanayan`
+- `search_skills`
+- `get_skill`
 - `compare_skills`
 - `recommend_skills`
 - `preview_install`
 
-**Mga tool sa lokal na mode**
+**Local-mode tools**
 
 - `detect_clients`
 - `list_installed_skills`
@@ -167,21 +184,23 @@ Ito ang tunay na pinagmumulan ng runtime truth pagkatapos ng henerasyon.### 4️
 - `remove_skills`
 - `configure_client_mcp`
 
-Ang ibabaw ng MCP ay sadyang nahati sa pagitan ng:
+The MCP surface is deliberately split between:
 
-- remote/read-only na paggamit ng catalog
-- paggamit ng sidecar na lokal/may kakayahang sumulat### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1,943 LOC**— filesystem-aware na layer ng MCP para sa pag-detect ng kliyente, pamamahala ng kasanayan, at pagsulat ng MCP config.
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-Kasalukuyang praktikal na suporta:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 kliyenteng may kakayahang mag-install**
--**16 na kliyenteng may kakayahang mag-config**
--**33 config target**
--**19 config profile**
+Current practical support:
 
-Mga kliyenteng may kakayahang mag-install:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
+
+Install-capable clients:
 
 - Claude Code
 - Cursor
@@ -191,34 +210,36 @@ Mga kliyenteng may kakayahang mag-install:
 - Antigravity
 - OpenCode
 
-Kasama sa mga kliyente at target na may kakayahang i-configure ang:
+Config-capable clients and targets include:
 
-- Mga setting ng Claude, Claude Desktop, at config ng proyekto ni Claude
-- Cursor user at workspace config
-- VS Code workspace, user, insider, at config ng Dev Container
-- Mga setting ng user at workspace ng Gemini
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
 - Antigravity user config
-- Kiro user, workspace, at mga legacy path
+- Kiro user, workspace, and legacy paths
 - Codex CLI TOML config
-- OpenCode user at workspace config
-- Mga setting ng cline
-- GitHub Copilot CLI user at repo config
-- Kilo user, proyekto, at workspace config
-- Ipagpatuloy ang workspace YAML
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
 - Windsurf user config
 - Zed workspace config
-- Kumpig ng gumagamit ng gansa
+- Goose user config
 
-Ang sidecar ay sadyang tapat tungkol sa mga hangganan:
+The sidecar is intentionally honest about boundaries:
 
-- nagsusulat lamang ito sa loob ng isang allowlist
-- nag-preview ito bilang default
-- pinapanatili nito ang mga unang-class na manunulat lamang kung saan inilalantad ng mga opisyal na doc ang isang matatag na format
-- hindi ito nagpapanggap na ang bawat produkto na may kakayahang MCP ay isa ring target na pag-install ng kasanayan### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
->**715 LOC na pinagsama**— read-only na registry API at middleware ng pamamahala.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-Mahahalagang endpoint:
+> **715 LOC combined** — read-only registry API plus governance middleware.
+
+Important endpoints:
 
 - `/healthz`
 - `/openapi.json`
@@ -227,95 +248,109 @@ Mahahalagang endpoint:
 - `/v1/skills/:id`
 - `/v1/search`
 - `/v1/compare`
-- `/v1/mga bundle`
+- `/v1/bundles`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Naipatupad na ang baseline ng pamamahala:
+Governance baseline already implemented:
 
-- tagapagdala ng token auth
+- bearer token auth
 - API-key auth
-- pagpapatunay ng token ng admin
-- in-process na paglilimita sa rate
-- humiling ng mga ID
-- pag-log ng audit
-- Mga pinapayagang listahan ng CORS
-- Mga IP allowlist
-- magtiwala sa pangangasiwa ng proxy
-- mode ng pagpapanatili### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**1,857 LOC na pinagsama-sama sa pangunahing server, runtime, at mga file ng coordinator**— JSON-RPC 2.0 task lifecycle para sa mga daloy ng trabaho ng agent-to-agent.
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-Mga sinusuportahang pamamaraan:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `mensahe/ipadala`
-- `mensahe/stream`
-- `mga gawain / makuha`
-- `mga gawain/kansela`
-- `mga gawain/resubscribe`
+Supported methods:
+
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
 - `tasks/pushNotificationConfig/*`
 
-Mga kasalukuyang operasyon:
+Current operations:
 
 - `discover-skills`
 - `recommend-stack`
 - `prepare-install-plan`
 
-Modelo ng tibay at koordinasyon:
+Durability and coordination model:
 
-- memorya, JSON, o SQLite lokal na pagtitiyaga
-- i-restart ang resume
-- opsyonal na panlabas na tagapagpatupad ng proseso
-- opt-in na naupahan na koordinasyon ng pila para sa mga shared SQLite na manggagawa
-- opsyonal na redis-backed na koordinasyon bilang advanced na naka-host na landas
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
 
-Ang pangunahing pagpipiliang arkitektura dito ay**simple-first local operation**. Ang Redis ay umiiral bilang isang advanced na opsyon, ngunit ang default na path ng produkto ay nananatiling lokal at dependency-light.---
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| Script | Wika | Layunin |
+| Script | Language | Purpose |
 |:-------|:---------|:--------|
-| 📊 `skill_metadata.py` | Python | Pagpapatunay, taxonomy, pagmamarka, at static na pag-scan sa seguridad |
-| ✅ `validate_skills.py` | Python | Pagbuo ng metadata bawat kasanayan at para sa buod ng ugat |
-| 📑 `generate_index.py` | Python | Index ng mga kasanayan, manifest, archive, lagda, at checksum |
-| 🏗️ `build_catalog.js` | Node.js | Panghuling `dist/catalog.json` at `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Pag-audit at muling pagsulat ng kategoryang kanonikal |
-| 🔍 `verify_archives.py` | Python | Pag-verify ng archive at lagda |
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-Dalawang detalye ang mahalaga sa pagpapatakbo:
+Two details matter operationally:
 
-1. Ang `dist/` ay bahagi ng runtime contract at sadyang ginawa
-2. sapat na deterministiko ang build para suportahan ang pag-verify ng CI at pagpirma ng release---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-Ang kasalukuyang pampublikong catalog ay sumasaklaw sa 32 kasanayan:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**Pagtuklas at pagpaplano**: `find-skills`, `brainstorming`, `architecture`, `debugging`
--**Mga design system at accessibility**: `design-systems-ops`, `accessibility-audit`
--**Paghahatid ng produkto at full-stack**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
--**Seguridad**: `security-auditor`, `vulnerability-scanner`, `incident-response`, `threat-modeling`
--**OSS maintainer workflows**: `documentation`, `changelog`, `create-pr`
--**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
--**AI engineering**: `rag-engineer`, `prompt-engineer`, `llm-patterns`, `eval-design`, `context-engineering`
+Current native category distribution from `metadata.json`:
 
-Ang lahat ng pitong bundle ay ganap na naka-back:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- `mahahalaga` → `4/4`
+This broader intake surface is intentional:
+
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
+
+All seven bundles are fully backed:
+
+- `essentials` → `4/4`
 - `full-stack` → `5/5`
-- `design` → `4/4`
-- `seguridad` → `4/4`
+- `design` → `5/5`
+- `security` → `4/4`
 - `devops` → `5/5`
-- `ai-engineer` → `5/5`
+- `ai-engineer` → `7/7`
 - `oss-maintainer` → `4/4`
 
-Kasalukuyang pagkalat ng marka mula sa nabuong katalogo:
+Current score spread from the generated native catalog:
 
-- mga marka ng kalidad: `94, 95, 96, 97, 100`
-- mga marka ng pinakamahusay na kasanayan: `98, 99, 100`
-- marka ng seguridad: lahat ng nai-publish na kasanayan sa kasalukuyan ay `95`
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-High end ng kinatawan:
+Representative high end:
 
 - `omni-figma` → `quality 100`, `best_practices 100`
 - `accessibility-audit` → `quality 99`, `best_practices 100`
@@ -325,36 +360,44 @@ High end ng kinatawan:
 - `threat-modeling` → `quality 97`, `best_practices 99`
 - `context-engineering` → `quality 97`, `best_practices 99`
 
-Kinatawan sa ibabang dulo sa loob ng kasalukuyang nangungunang banda:
+Representative warning-grade native intake:
 
-- `architecture` → `quality 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `quality 95`, `best_practices 98`
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
 
-Ito ay sinadya. Tinutukoy na ngayon ng scorer ang "mahusay" mula sa "katangi-tangi" sa halip na i-flatte ang buong catalog sa itaas.---
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**Artifact-unang disenyo**
-   Ang bawat runtime surface ay gumagamit ng parehong nabuong catalog at mga manifest.
-2.**Malawak na saklaw ng protocol**
-   Ang CLI, API, MCP, at A2A ay magkakasamang nabubuhay nang hindi hinahati ang modelo ng data.
-3.**Malakas na lokal na produkto na ergonomya**
-   Ang guided install, visual shell, `config-mcp`, at dry-run default ay ginagawang magagamit ang proyekto nang higit sa mga power user.
-4.**Tapat na postura ng seguridad**
-   Ang mga pinahihintulutang lokal na pagsusulat, static na pag-scan, pag-sign, mga checksum, at pag-verify ng release ay tahasan lahat.
-5.**Healthy MCP reach**
-   Sinusuportahan na ngayon ng proyekto ang malawak na hanay ng mga kasalukuyang kliyenteng may kakayahang MCP nang hindi nagpapanggap na matatag ang mga hindi dokumentadong target.---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**Mas malalim na saklaw ng bundle**
-   Ang susunod na hakbang ay ang pagdadalubhasa sa loob ng mga umiiral nang bundle, hindi lamang malawak na saklaw.
-2.**Mas mayamang scorer semantics**
-   Mayroon pa ring puwang upang suriin ang lalim ng reference-pack at kalidad ng daloy ng trabaho nang mas semantically.
-3.**Higit pang mga kliyenteng manunulat lamang kung saan makatwiran**
-   Ang pagpapalawak ay dapat manatiling disiplinado at nakatali sa matatag na opisyal na mga dokumento.
-4.**Pagbubulok ng Validator**
-   Ang `skill_metadata.py` ay isa pa ring malaking module at makikinabang sa internal decomposition sa paglipas ng panahon.
-5.**Pagtaas ng naka-host na pamamahala**
-   Ang kasalukuyang in-process na baseline ay sapat na para sa self-hosting, ngunit ang pag-deploy ng enterprise ay sa kalaunan ay gusto ng external na gateway at pagsasama ng pagkakakilanlan.
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

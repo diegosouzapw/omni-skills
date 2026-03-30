@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-نحن كأعضاء ومساهمين ومشرفين نتعهد بجعل المشاركة في هذا المشروع والمجتمع**تجربة خالية من التحرش للجميع**، بغض النظر عن العمر أو حجم الجسم أو الإعاقة المرئية أو غير المرئية أو العرق أو الخصائص الجنسية أو الهوية الجنسية والتعبير، أو مستوى الخبرة، أو التعليم، أو الحالة الاجتماعية والاقتصادية، أو الجنسية، أو المظهر الشخصي، أو العرق، أو الطبقة الاجتماعية، أو اللون، أو الدين، أو الهوية والتوجه الجنسي.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| السلوك | مثال |
-|:---------|:-------|
-| 💬 لغة ترحيبية | أن تكون شاملاً ومحترمًا في التواصل |
-| 🤝 احترام الاختلافات | تثمين وجهات النظر والتجارب المختلفة |
-| 📝 النقد البناء | قبول وإعطاء الملاحظات بأمان |
-| 🎯 التركيز على المجتمع | تحديد الأولويات لما هو أفضل للمشروع والمجتمع |
-| ❤️ التعاطف | إظهار التعاطف تجاه أفراد المجتمع الآخرين |### 🔴 Unacceptable Behaviors
+| Behavior | Example |
+|:---------|:--------|
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| السلوك |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 اللغة أو الصور الجنسية والاهتمام أو الإيلاج الجنسي |
-| 🚫 التصيد أو التعليقات المهينة أو المهينة |
-| 🚫 هجمات شخصية أو سياسية |
-| 🚫التحرش العام أو الخاص |
-| 🚫 نشر المعلومات الخاصة بشخص آخر دون إذن صريح |
-| 🚫 سلوك آخر يعتبر بشكل معقول غير لائق في بيئة مهنية |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-يمكن الإبلاغ عن حالات السلوك المسيء أو المضايق أو غير المقبول إلى المشرفين من خلال:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| قناة | كيف |
+| Channel | How |
 |:--------|:----|
-| 🔒 قنوات جيثب الخاصة | اتصل عبر GitHub Security أو المناقشة |
-| 📧 إتصال مباشر | تواصل مع المشرفين مباشرة |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**ستتم مراجعة جميع التقارير والتحقيق فيها بسرعة وبشكل عادل.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-تم تعديل قواعد السلوك هذه من [ميثاق المساهمين](https://www.contributor-covenant.org)، الإصدار 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

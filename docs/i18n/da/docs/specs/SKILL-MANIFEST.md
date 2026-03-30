@@ -5,66 +5,78 @@
 ---
 
 
->**Det maskinlæsbare JSON-manifest genereret fra hver `SKILL.md` under build-pipeline - den enkelte datakontrakt, der forbruges af alle runtime-overflader.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Funktion | Stat |
+| Feature | State |
 |:--------|:------|
-| ✅ Autogenereret fra SKILL.md | Implementeret |
-| ✅ Forbruges af CLI, API, MCP, A2A | Implementeret |
-| ✅ Arkiver med kontrolsummer | Implementeret |
-| ✅ Sikkerhedsklassificering | Implementeret |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Vigtigt**: Manifestet er en**bygningsartefakt**. Bidragyders forfatter `SKILL.md` — pipelinen udleder JSON-manifestet automatisk.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-Manifestet eksisterer således, at**alle runtime-overflader**bruger den samme normaliserede form:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Overflade | Hvordan det bruger manifester |
+| Surface | How It Uses Manifests |
 |:--------|:---------------------|
-| 🖥️**CLI**| Søg, installationsplanlægning, lægediagnostik |
-| 🌐**API**| Slutpunktsvar, filtrering, downloadlinks |
-| 🔌**MCP**| Værktøjssvar, ressourceindhold |
-| 🤖**A2A**| Nyttelast for opdagelse og anbefalinger |---
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Artefakt | Sti |
+| Artifact | Path |
 |:---------|:-----|
-| 📊 Rodmetadata | `metadata.json` |
-| 📊 Metadata pr. færdighed | `skills/<skill>/metadata.json` |
-| 📋 Indeks for færdigheder | `skills_index.json` |
-| 📚 Udgivet katalog | `dist/catalog.json` |
-| 📌 Manifest pr. færdighed | `dist/manifests/<skill>.json` |
-| 📦 Zip-arkiv | `dist/archives/<skill>.zip` |
-| 📦 Tarball-arkiv | `dist/archives/<skill>.tar.gz` |
-| 🔒 Kontrolsummanifest | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Felt | Beskrivelse |
+| Field | Description |
 |:------|:------------|
-| `skema_version` | Version af manifestskemaet |
-| `id` | Stabil færdigheds-id fra `navn`-feltet |
-| `snegl` | Directory slug under `færdigheder/` |
-| `visningsnavn` | Menneskelæselig titel fra første overskrift |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Felt | Beskrivelse |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `beskrivelse` | Kort resumé fra frontmatter |
-| `version` | Skill-version, uafhængig af npm-pakkeversionen |
-| `kategori` | Kanonisk kategori (normaliseret) |
-| `råkategori` | Original kategori fra frontmatter |
-| `taksonomi` | Fuld taksonomi metadata med udledt fallback |
-| `tags` | Søgbare tags |
-| `kompleksitet` | `begynder` · `mellemliggende` · `avanceret` · `ekspert` |
-| `risiko` | `sikker` · `caution` · `offensiv` · `kritisk` |
-| `kilde` | `omni-team` · `community` · `officielt` |
-| `forfatter` | Attributionsstreng |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@ Manifestet eksisterer således, at**alle runtime-overflader**bruger den samme no
 
 ### 📂 Paths
 
-| Felt | Beskrivelse |
+| Field | Description |
 |:------|:------------|
-| `indgangspunkt` | Kanonisk `SKILL.md`-sti |
-| `stier.rod` | Færdighedsmappe inde i repo |
-| `stier.manifest` | Genereret manifeststi i `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Felt | Beskrivelse |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `værktøjer` | Værktøjsidentifikatorer fra frontmatter |
-| `install_mål` | Metadata pr. værktøjsinstallation |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Hvert installationsmål inkluderer: "værktøj", "omfang", "default_path", "installer_flag", "aktuel_installationsadfærd", "invocation".### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Felt | Beskrivelse |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `underressourcer` | Færdighedsunderkataloger (`referencer`, `agenter`, `aktiver`) |
-| `artifacts_count` | Samlet antal filer i færdighedspakken |
-| `referencetal` | Referencedokumentantal |
-| `agenter_antal` | Agentkonfigurationsantal |
-| `aktiver_antal` | Antal aktiver |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@ Hvert installationsmål inkluderer: "værktøj", "omfang", "default_path", "inst
 
 ### 📦 Install
 
-| Felt | Beskrivelse |
+| Field | Description |
 |:------|:------------|
-| `strategi` | Installationsstrategi (f.eks. `copy-skill-directory`) |
-| `current_installer` | Menneskelæselig installationsadfærd |
-| `opskrifter` | Per-klient installation opskrifter |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Afsnit | Felter |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯 `modenhed` | `skill_level`, `skill_level_label` |
-| 📋 `bedste_praksis` | `score` (0-100) |
-| ⭐ `kvalitet` | `score` (0-100) |
-| 🛡️ `sikkerhed` | `score`, `status` |
-| ✅ `validering` | `status` |### 📝 Content
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Afledte signaler: "body_length", "content_length", "body_lines", "word_count" plus strukturelle flag for eksempler, fejlfindingssektioner osv.### 📁 Artifacts
+### 📝 Content
 
-Array af hver fil, der sendes inde i færdighedsmappen:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@ Array af hver fil, der sendes inde i færdighedsmappen:```json
 }
 ```
 
-**Artefakttyper**: `entrypoint` · `reference` · `agent` · `asset` · `licens` · `support`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@ Array af hver fil, der sendes inde i færdighedsmappen:```json
 
 ### 🔒 Checksums
 
-| Felt | Beskrivelse |
+| Field | Description |
 |:------|:------------|
-| `entrypoint_sha256` | Hash af SKILL.md |
-| `pakke_sha256` | Deterministisk digest fra ordnet artefaktliste |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@ Array af hver fil, der sendes inde i færdighedsmappen:```json
 }
 ```
 
-> 📌 Repository-pakkeversion og færdighedsversion er forskellige bekymringer. Pakken er i øjeblikket '0.1.3', mens individuelle færdigheder har deres egne semantiske versioner.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Regel | Begrundelse |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Skal forblive afledt fra repo | Ingen manuel manifestforfattelse påkrævet |
-| ✅ Nye valgfrie felter kan tilføjes | Fremadrettet kompatibilitet |
-| ⚠️ Eksisterende felter skal forblive stabile | Bagudkompatibilitet |
-| 🚫 Ingen håndskrevne manifester | Byggetidsafledning er kilden til sandhed |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-सदस्य, योगदानकर्ता और अनुरक्षक के रूप में हम उम्र, शरीर के आकार, दृश्य या अदृश्य विकलांगता, जातीयता, लिंग विशेषताओं, लिंग पहचान और अभिव्यक्ति, अनुभव के स्तर, शिक्षा, सामाजिक-आर्थिक स्थिति, राष्ट्रीयता, व्यक्तिगत उपस्थिति, नस्ल, जाति, रंग, धर्म, या यौन पहचान और अभिविन्यास की परवाह किए बिना इस परियोजना और समुदाय में भागीदारी को**हर किसी के लिए उत्पीड़न-मुक्त अनुभव**बनाने की प्रतिज्ञा करते हैं।---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| व्यवहार | उदाहरण |
-|:------|:-------|
-| 💬 स्वागत योग्य भाषा | संचार में समावेशी और सम्मानजनक होना |
-| 🤝 मतभेदों का सम्मान | भिन्न-भिन्न दृष्टिकोणों और अनुभवों को महत्व देना |
-| 📝रचनात्मक आलोचना | शालीनता से स्वीकार करना और प्रतिक्रिया देना |
-| 🎯सामुदायिक फोकस | परियोजना और समुदाय के लिए जो सर्वोत्तम है उसे प्राथमिकता देना |
-| ❤️ सहानुभूति | समुदाय के अन्य सदस्यों के प्रति सहानुभूति दिखाना |### 🔴 Unacceptable Behaviors
+| Behavior | Example |
+|:---------|:--------|
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| व्यवहार |
-|:------|
-| 🚫 कामुक भाषा या कल्पना, और यौन ध्यान या प्रगति |
-| 🚫ट्रोलिंग, अपमानजनक, या अपमानजनक टिप्पणियाँ |
-| 🚫व्यक्तिगत या राजनीतिक हमले |
-| 🚫सार्वजनिक या निजी उत्पीड़न |
-| 🚫 स्पष्ट अनुमति के बिना किसी और की निजी जानकारी प्रकाशित करना |
-| 🚫 पेशेवर सेटिंग में उचित रूप से अनुचित माने जाने वाले अन्य आचरण |---
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
+|:---------|
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-अपमानजनक, परेशान करने वाले, या अन्यथा अस्वीकार्य व्यवहार के मामलों की सूचना अनुरक्षकों को इस माध्यम से दी जा सकती है:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| चैनल | कैसे |
+| Channel | How |
 |:--------|:----|
-| 🔒 GitHub निजी चैनल | GitHub सुरक्षा या चर्चा के माध्यम से संपर्क करें |
-| 📧 सीधा संपर्क | सीधे अनुरक्षकों तक पहुंचें |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**सभी रिपोर्टों की समीक्षा और जांच तुरंत और निष्पक्षता से की जाएगी।**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-यह आचार संहिता [योगदानकर्ता अनुबंध](https://www.contributor-covenant.org), संस्करण 2.1 से अनुकूलित है।
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

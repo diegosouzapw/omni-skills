@@ -5,69 +5,83 @@
 ---
 
 
->**Quyết định kiến ​​trúc quan trọng đã định hình cấu trúc không gian làm việc monorepo.**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**Được chấp nhận**— hướng không gian làm việc hiện tại và hình dạng kho lưu trữ đang hoạt động.---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills bắt đầu như một kho lưu trữ**ưu tiên trình cài đặt**. Điều đó đủ để phân phối nội dung `SKILL.md`, nhưng không đủ để hiển thị danh mục cho các tác nhân thông qua các bề mặt gốc giao thức.
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-Chúng tôi cần một nền tảng có thể hỗ trợ:
+We needed a foundation that could support:
 
-| Yêu cầu | Giao thức |
-|:----------||:----------|
-| 🌐 API danh mục HTTP chỉ đọc | NGHỈ LẠI |
-| 🔌 Máy chủ MCP chỉ đọc | Giao thức bối cảnh mô hình |
-| 🤖 Bề mặt A2A hướng về tác nhân | Đại lý đến Đại lý |
-| 📂 Xe sidecar lắp đặt cục bộ | Công cụ hệ thống tập tin |
+| Requirement | Protocol |
+|:------------|:---------|
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**Ràng buộc nghiêm trọng**: Tránh phân tích lại các tệp repo một cách độc lập trong mỗi dịch vụ mới.---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-Áp dụng**monorepo hướng không gian làm việc**với lõi danh mục dùng chung và các gói dành riêng cho giao thức:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| Trọn gói | Mục đích |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `omni-skills` (root) | Trình cài đặt CLI và tập lệnh repo |
-| 🧠 `@omni-skills/catalog-core` | Tải chia sẻ, tìm kiếm, so sánh, gói, gói cài đặt |
-| 🌐 `@omni-skills/server-api` | API REST chỉ đọc |
-| 🔌 `@omni-skills/server-mcp` | MCP với chế độ stdio/stream/sse + sidecar cục bộ |
-| 🤖 `@omni-skills/server-a2a` | Thời gian chạy tác vụ A2A với Thẻ đại lý, bỏ phiếu, SSE và cấu hình đẩy |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-Lõi danh mục đọc các tạo phẩm được tạo từ:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
 - `dist/manifests/<skill>.json`
-- `skills_index.json`---
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| Kết quả | Tác động |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**Hợp đồng chia sẻ dữ liệu**| API, MCP và A2A sử dụng cùng một thành phần |
-| 🖥️**CLI hợp nhất**| Một tệp nhị phân hiển thị cài đặt, giao diện người dùng, API, MCP, A2A, chẩn đoán và khói |
-| 🧩**Cách ly giao thức**| Các bề mặt mới lặp đi lặp lại mà không cần khớp nối với các bộ phận bên trong của trình cài đặt |
-| 🔌**Xe sidecar địa phương**| Chế độ MCP có khả năng ghi hoạt động sau danh sách cho phép, với các công thức nhận biết khách hàng |
-| 📦**Thời gian chạy một gói**| Gói npm đã xuất bản mang các bề mặt giao thức, công cụ xác thực và các tạo phẩm được tạo cùng nhau |---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| Đánh đổi | Giảm thiểu |
-|:----------|:----------|
-| 🔄**Sao chép siêu dữ liệu**| Bản dựng Python + thời gian chạy JavaScript → cuối cùng hợp nhất |
-| 🏗️**Độ phức tạp A2A**| Hiện đã tồn tại vòng đời bền vững nhưng bộ điều hợp phối hợp bổ sung thêm chiều sâu hoạt động |
-| 📦**Căn chỉnh danh mục**| Cài đặt có chọn lọc yêu cầu các lệnh, bảng kê khai và tài liệu luôn được đồng bộ hóa |
-| 📋**Gói các khoảng trống siêu dữ liệu**| Các gói có thể vượt xa các kỹ năng đã xuất bản, yêu cầu cảnh báo thiếu thành viên rõ ràng |---
+| Tradeoff | Mitigation |
+|:---------|:-----------|
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | Hành động | Trạng thái |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Xác thực MCP từ xa và giới hạn tốc độ | ✅ Xong |
-| 2️⃣ | Cải thiện việc ghi cấu hình MCP dành riêng cho khách hàng | ✅ Có mặt hôm nay dành cho Claude, Cursor, Codex, Gemini, Kiro, VS Code và Dev Container |
-| 3️⃣ | Các tạo phẩm phát hành có chữ ký hoặc kho lưu trữ theo kỹ năng | ✅ Trình bày hôm nay với việc thực thi CI trên thẻ phát hành |
-| 4️⃣ | Thời gian chạy tác vụ A2A → phối hợp bền vững | ✅ Trình bày hôm nay với tính năng lưu trữ JSON/SQLite, trình thực thi bên ngoài, phối hợp cho thuê chọn tham gia và phối hợp Redis nâng cao tùy chọn |
-| 5️⃣ | Mở rộng danh mục đã xuất bản để có phạm vi bao phủ gói rộng hơn | ✅ Hôm nay có mặt bảy gói khởi đầu được tuyển chọn hiện tại |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

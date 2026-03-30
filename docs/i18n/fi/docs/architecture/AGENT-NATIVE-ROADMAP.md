@@ -5,89 +5,108 @@
 ---
 
 
->**Omni Skillsin arkkitehtuurin kehityssuunnitelma: asentaja-ensimmäisestä arkistosta jaettuun luetteloon, joka toimii CLI:n, API:n, MCP:n ja A2A:n avulla ilman päällekkäistä logiikkaa.**---
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+
+---
 
 ## 📊 Current Platform Areas
 
-| Vaihe | Nimi | Tila |
+| Phase | Name | Status |
 |:------|:-----|:-------|
-| 1️⃣ | Sopimukset ja esineet | ✅ Nykyinen |
-| 2️⃣ | Read-Only Catalog API | ✅ Nykyinen |
-| 3️⃣ | MCP Discovery Surface | ✅ Nykyinen |
-| 4️⃣ | Paikallinen asennus- ja määrityspinta | ✅ Nykyinen |
-| 5️⃣ | A2A Orkesteri | ✅ Nykyinen |### ✅ What Exists Today
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-- koneellisesti luettavat luettelon artefaktit hakemistossa "dist/".
-- Vain luku -muotoinen HTTP API päätepisteen kattavuudella hakua, paketteja, vertailua, asennussuunnittelua ja latauksia varten
-- MCP-palvelin, jossa on "stdio", suoratoistokelpoinen HTTP- ja SSE-siirto
-- paikallinen sivuvaunu sallittujen kirjoitusten ja "config-mcp" -virtojen kanssa
-- 7 asennuskykyistä asiakasta, 16 konfigurointikykyistä asiakasta, 33 MCP-määrityskohdetta ja 19 konfigurointiprofiilia
-- syvemmälle nipun erikoistuminen "full-stack", "security", "devops" ja "ai-engineer" sisällä "auth-flows", "threat-modeling", "release-engineering" ja "context-engineering" kautta
-- taitokohtaiset arkistot ("zip", "tar.gz"), joissa on SHA-256-tarkistussummat ja irrotetut allekirjoitukset julkaisutunnisteissa
-- API-hallinnan perustaso: siirtotie/API-avaimen todennus, järjestelmänvalvojan ajonaikainen todennus, nopeuden rajoitus, tarkastusloki, CORS/IP-sallitut luettelot, luottamusvälityspalvelin, ylläpitotila ja pyyntötunnukset
-- A2A-ajoaika tehtävän elinkaarella, JSON/SQLite-kestävyys, uudelleenkäynnistyksen jatkaminen, SSE-suoratoisto, peruutus, push-ilmoitukset, valinnainen prosessin suorittaja ja valinnainen vuokrattu koordinointi### 🔭 Future Expansion Areas
+### ✅ What Exists Today
 
-Ydinsuunnitelmassa kuvataan nyt nykyisen alustan laajuus. Loput kohteet ovat tulevaisuuden laajennusalueita, eivät perustavanlaatuisia aukkoja:
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
+- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-- vain erittäin valikoivia MCP-lisäyksiä tästä eteenpäin ja vain silloin, kun viralliset julkiset asiakirjat mahdollistavat turvallisen kirjoittamisen
-- syvemmät referenssipaketit ja semanttinen pisteytys, jotta luokitin erottaa poikkeukselliset taidot pelkistä hiottuista
-- yrityksen isännöimä hallinto ylittää nykyisen prosessin perustason, jos projekti tarvitsee myöhemmin yhdyskäytävän tai IDP-integroinnin
-- syvempää erikoistumista äskettäin aktivoiduille "design", "tools", "data-ai" ja "koneoppimisen" raiteille
-- yksityisen tehostimen jatkuva toiminnallinen hiominen säilyttäen samalla sen muodollisen toimintamallin: OmniRouter kiinnitetty `cx/gpt-5.4':ään, isännöity pilvi 'pilkkuna' tai huononnetussa esitarkastuksessa ja luotettava 'live' lähiverkossa tai itseisännöity suoritus.
-- jatkuva julkaisu ja työnkulun karkaisu vain palvelun laatutyönä, ei puuttuvana alustan perustana## Future Catalog Expansion Track
+### 🔭 Future Expansion Areas
 
-Kaksi ensimmäistä julkista luokkalaajennusaaltoa on nyt laskettu:
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
 
-- "design" → "design-systems-ops", "accessibility-audit", "design-token-governance"
-- "työkalut" → "mcp-server-authoring".
-- "data-ai" → "data-sopimukset".
-- "koneoppiminen" → "mallin käyttö".
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
 
-Seuraava suositeltava vaihe ei ole enää luokan aktivointi sen itsensä vuoksi. Tarkoituksena on syventää näitä äskettäin aktiivisia koodinatiiviraitoja, jotta ne tuntuvat kestäviltä tuotepinnoilta yhden taidon jalansijalta.
+## Future Catalog Expansion Track
 
-Suositeltu suunta:
+The first two public category-expansion waves are now landed:
 
-1. syventää "suunnittelua" toimivammilla suunnittelujärjestelmän työnkuluilla
-2. syventää "työkaluja" luonti- ja laajennussuuntautuneilla taidoilla
-3. syventää "data-ai" käyttöönotto-ensimmäisen putkilinjan ja instrumentointitaitojen avulla
-4. syventää "koneoppimista" palvelu-, koulutus- ja arviointitoimintojen taitojen avulla
+- `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
+- `tools` → `mcp-server-authoring`
+- `data-ai` → `data-contracts`
+- `machine-learning` → `model-serving`
 
-Luokat tarkoituksella lykätty, ellei vahvoja koodinatiiviehdotuksia näy:
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
 
-- "liiketoiminta".
-- "sisältömedia".
+Recommended direction:
 
-Tätä laajennushistoriaa seurataan nyt:
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
-- [../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md](../tasks/TASK-07-CATALOG-SPECIALIZATION-AND-CATEGORY-EXPANSION.md)
-- [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md)---
+Categories intentionally deferred unless strong code-native proposals appear:
+
+- `business`
+- `content-media`
+
+That expansion history now lives in the mainline runtime docs rather than a separate public task backlog:
+
+- [Codebase Analysis](CODEBASE-ANALYSIS.md)
+- [Catalog](../CATALOG.md)
+
+---
 
 ## 🎯 Goals
 
-- ✅ Pidä nykyinen npx omni-skills -työnkulku toiminnassa
-- ✅ Esittele taitojen koneellisesti luettava totuuden lähde
-- ✅ Tukee agenttien löytämistä, suosittelemista ja asennussuunnittelua
-- ✅ Erota etäluetteloon liittyvät huolet paikallisista tiedostojärjestelmän kirjoituksista
-- ✅ Käytä uudelleen samoja metatietoja CLI:ssä, API:ssa, MCP:ssä ja A2A:ssa---
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
+
+---
 
 ## 🚫 Non-Goals
 
-- ❌ Etäasennus käyttäjän koneelle isännöidyltä palvelimelta
-- ❌ Korvaa `SKILL.md` ensisijaiseksi luontimuodoksi
-- ❌ Vaadi osallistujia kirjoittamaan manifestit käsin
-- ❌ Muuta projekti raskaaksi isännöidyksi jonoalustaksi oletuksena---
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
+
+---
 
 ## 🏗️ Target Architecture
 
-Yksi**katalogiydin**, jossa on kolme protokollapintaa:
+One **catalog core** with three protocol surfaces:
 
-| Pinta | Paras | Tila |
+| Surface | Best For | Mode |
 |:--------|:---------|:-----|
-| 🌐**REST API**| Rekisterin käyttöoikeus, käyttöliittymäintegraatiot, kolmannen osapuolen kuluttajat | Vain luku |
-| 🔌**MCP**| Agentin etsintä, asennuksen esikatselut, asetusten kirjoittaminen, asiakasreseptit | Vain luku + paikallinen kirjoitus |
-| 🤖**A2A**| Agenttien välinen orkestrointi ja asennussuunnitelman vaihto | Tehtävän elinkaari yksinkertaisella ensin paikallisella kestävyydellä |### ⚙️ Core Principle
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
->**Kaikki protokollat ​​käyttävät samaa luotua artefaktiperhettä.**```text
+### ⚙️ Core Principle
+
+> **All protocols consume the same generated artifact family.**
+
+```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -97,144 +116,178 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-Manifesti pysyy yhteisenä sopimuksena. Arkistot ovat tämän sopimuksen päälle kerrostettuja jakeluesineitä, eivät sen korvikkeita.---
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
+
+---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Isännöity API ja etä-MCP-palvelimet käyttävät.
+Used by hosted API and remote MCP servers.
 
-| ✅ Sallittu | ❌ Ei sallittu |
-|:-----------|:----------------|
-| Hakutaidot | Kirjoita soittajan tiedostojärjestelmään |
-| Hae luettelot | Muuta paikallisen asiakkaan konfiguraatiota |
-| Vertaile taitoja | Päättele mielivaltainen koneen tila |
-| Suosittele paketteja | — |
-| Rakenna asennussuunnitelmat | — |### 2️⃣ Local Installer Mode
+| ✅ Allowed | ❌ Not Allowed |
+|:-----------|:---------------|
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-Käytetään CLI:ssä ja MCP-sivuvaunussa.
+### 2️⃣ Local Installer Mode
 
-| ✅ Sallittu |
-|:------------|
-| Tunnista paikalliset tekoälyasiakkaat |
-| Tarkista asennetut taidot |
-| Esikatsele tiedostotoiminnot |
-| Asenna tai poista taitohakemistot |
-| Kirjoita paikallinen MCP-asetus esikatselun jälkeen |
+Used by the CLI and the MCP sidecar.
 
-> 📌 Tämä on edelleen ainoa tila, jossa todellista käyttöjärjestelmäkirjoitusta tapahtuu.---
+| ✅ Allowed |
+|:-----------|
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
+
+> 📌 This remains the only mode where real OS writes happen.
+
+---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Paras pääsy rekisteriin, haku, vertailu, versioitetut lataukset ja asennussuunnittelu.
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**Päätepisteet**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/vertaa` · `GET /v1/bundles` · `LÄHETÄ /v1/install/plan` · `GET /healthz`### 🔌 MCP
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-Paras työkalupohjaiseen etsintään, kehotettaviin suosituksiin, asennuksen esikatseluun ja asiakaskohtaiseen MCP-asennukseen.
+### 🔌 MCP
 
-**Vain luku -työkalut**: "search_skills" · "get_skill" · "compare_skills" · "recommend_skills" · "preview_install"
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
-**Paikalliset työkalut**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-Paras hakujen vaihtoon, asennussuunnitelman työnkulkuihin ja jatkuvien agenttien tehtävien suorittamiseen.
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-**Nykyiset toiminnot**: `löydä-taidot` · `recommend-stack` · `prepare-install-plan---
+### 🤖 A2A
+
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
+
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+
+---
 
 ## 🛡️ Security Model
 
-| Periaate | Toteutus |
-|:----------|:----------------|
-| 🔒 Isännöidyt palvelut ovat vain luku -tilassa | API ja etä-MCP eivät kirjoita soittajan tiedostojärjestelmään |
-| 📂 Kirjoitukset pysy paikallisesti | Vain CLI- ja MCP-sivuvaunu |
-| 👁️ Esikatselu ennen kirjoittamista | Kuiva-ajon oletusarvot paikallisille mutaatioille |
-| 🔑 Rehellisyys on selvä | SHA-256-tarkistussummat luoduille artefakteille |
-| ✍️ Vapauta luottamus on selvä | Julkaisutunnisteisiin pakotetut irrotetut allekirjoitukset |
-| ⚠️ Riski on noussut esiin | Riskien ja turvallisuuden metatiedot leviävät jokaiselle ajonaikaiselle pinnalle |---
+| Principle | Implementation |
+|:----------|:---------------|
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
+
+---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- dokumentoitu kohdearkkitehtuuri
-- määritelty manifestiskeema
-- luotu metatiedot, luettelo, luettelot, niput ja arkistot### Phase 2: Catalog Service
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
-- Vain luku -muotoinen HTTP API Express 5:llä
-- haku, suodatus, luettelohaku, nippuluettelo, vertailu ja lataukset
-- ympäristölähtöinen isännöidyn hallinnon perustaso### Phase 3: MCP Discovery
+### Phase 2: Catalog Service
 
-- virallinen @modelcontextprotocol/sdk-integraatio
-- "stdio", suoratoistettavat HTTP- ja SSE-siirrot
-- Jaetun luettelon tukemat vain luku -työkalut, resurssit ja kehotteet### Phase 4: Local Install and Config Surface
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
-- paikallinen sivuvaunu sallittujen kirjoitusten kanssa
-- tunnistus 7 asennuskykyiselle asiakkaalle
-- asetusten kirjoittaminen 16 konfigurointikykyiselle asiakkaalle 33 kohteen ja 19 konfigurointiprofiilin välillä
-- ohjatut "config-mcp"-virrat CLI:ssä ja visuaalisessa kuoressa
-- vakaa tuki Claudelle, Cursorille, VS Codelle, Geminille, Antigravitylle, Kirolle, Codexille, Continuelle, Windsurfille, OpenCodelle, Clinelle, GitHub Copilot CLI:lle, Kilo Codelle, Zedille, Gooselle ja Dev Containersille### Phase 5: A2A Orchestration
+### Phase 3: MCP Discovery
 
-- agenttikortti osoitteessa `/.well-known/agent.json'
-- "message/send", "message/stream", "tasks/get", "tehtävät/peruuta", "tehtävät/uudelleentilaus" ja push-ilmoitusten määritystavat
-- JSON- ja SQLite-pysyvyys uudelleenkäynnistyksen kanssa
-- valinnainen ulkoinen prosessin suorittaja
-- Opt-in vuokrattu toteutus työntekijöiden kesken SQLite- ja valinnainen edistynyt Redis-koordinointi
-- Yksinkertaiset ensin oletusasetukset säilytetään muistissa, JSONissa tai SQLitessa ilman ulkoisia riippuvuuksia### Current Enhancer Operating Decision
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-Yksityisen tehostajan tuettu "live"-malli on nyt selkeä:
+### Phase 4: Local Install and Config Surface
 
-- Isännöity PR-automaatio suorittaa preflight-ported "live" yritys
-- jos julkinen OmniRoute-yhdyskäytävä on estetty tai epävakaa, PR on merkitty "estetty" operaattoriin päin olevan syyn avulla sen sijaan, että se epäonnistuisi läpinäkymättömästi
-- Kanoninen luotettava "live" polku pysyy LAN- tai paikallisen palvelun suorittamisena
-- ajoitetut yksityiset GitHub-ajot pysyvät oletuksena "mock"-tilassa, ellei operaattori nimenomaisesti pyydä "liveä"---
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
+
+### Phase 5: A2A Orchestration
+
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
+
+### Current Enhancer Operating Decision
+
+The private enhancer's supported `live` model is now explicit:
+
+- hosted PR automation runs a preflight-gated `live` attempt
+- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
+- the canonical reliable `live` path remains LAN or local service execution
+- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
+
+---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Päätös**: pidä manifesti yhteisenä sopimuksena ja säilytä allekirjoitetut taitokohtaiset arkistot jakelualustana.
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
 
-**Miksi**:
-- CLI, API, MCP ja A2A käyttävät jo normalisoitua luettelomuotoa
-- Arkistot ovat ihanteellisia lataamiseen ja tarkistamiseen, mutta huonoina ainoana löytösopimuksena
-- Tämä pitää kirjoittamisen yksinkertaisena ja jakelun tarkistettavissa### 2. Private or Premium Catalogs
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
 
-**Päätös**: käytä uudelleen samaa luettelo- ja luettelomuotoa ja kerro todennus tai käytäntö ulkoisesti.
+### 2. Private or Premium Catalogs
 
-**Miksi**:
-- se välttää tietomallin haaroittamisen
-- Se vastaa nykyistä API/MCP-hallintatapaa
-- se on edelleen yhteensopiva MCP-ekosysteemisuunnan kanssa OAuth-asiakastunnistetietojen ja yrityksen hallinnoiman valtuutuksen ympärillä### 3. Client Writer Strategy
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
 
-**Päätös**: yhdistä pieni joukko ensisijaisia ​​vientiperheitä ja pidä räätälöityjä kirjoittajia vain silloin, kun viralliset asiakasasiakirjat sitä edellyttävät.
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
 
-**Kanoniset perheet nyt käytössä**:
-- JSON "mcpServers".
-- JSON "palvelimet".
-- JSON "context_servers".
-- YAML "mcpServers".
+### 3. Client Writer Strategy
+
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
+- JSON `mcpServers`
+- JSON `servers`
+- JSON `context_servers`
+- YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Miksi**:
-- Se pitää toteutuksen ylläpidettävänä
-- Se tukee edelleen asiakaskohtaisia tarpeita, kuten Claude-asetukset, Continue YAML, Zed "context_servers" ja Codex TOML
-- Se välttää hauraiden kirjoittajien keksimisen asiakkaille, joilla ei ole vakaita julkisia konfigurointidokumentteja---
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-Nykyiset päätökset tarkistettiin virallisiin ekosysteemidokumentteihin:
+The current decisions were checked against official ecosystem docs:
 
-- MCP-ekosysteemi dokumentoi nyt valinnaiset laajennukset, kuten OAuth-asiakastunnistetiedot ja yrityksen hallinnoiman valtuutuksen, joka tukee isännöidyn todennuksen ulkoistamista luettelomuodon haaroittamisen sijaan
-- OpenAI dokumentoi julkisen asiakirjan MCP-palvelimen ja Codex MCP -määritysmallit, jotka ovat yhdenmukaisia jaetun luettelon ja asiakas-kirjoitusstrategian kanssa
-- VS Code dokumentoi ensiluokkaisen MCP-tuen ja laajennusoppaan, joka vahvistaa sen omistetun "palvelinpohjaisen kirjoittajan" ylläpitämistä
-- JetBrains AI Assistant dokumentoi MCP:n asennuksen tuotteen UX:n kautta vakaan alustojen välisen tiedostosopimuksen sijaan, mikä tukee sen pitämistä manuaalisen/katkelman alueella toistaiseksi---
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
 
 ## 🔮 Longer-Term Decision Points
 
-Vain muutama strateginen kysymys on aidosti avoinna:
+Only a few strategic questions remain genuinely open:
 
-1. Tyhjentääkö joku nykyisen matriisin ulkopuolella oleva asiakas todella ensimmäisen luokan kirjoittamisen riman vai pitäisikö muiden tuotteiden olla manuaalisia tai vain katkelmia
-2. Milloin, jos koskaan, isännöidyn hallinnon tulisi siirtyä ulkoisen yhdyskäytävän tai yrityksen IDP:n taakse nykyisen prosessissa olevan perustilan sijaan?
-3. Kuinka pitkälle arvioijan tulisi mennä arvioidessaan viitepaketin syvyyttä ja toiminnan laatua, ennen kuin siitä tulee liian mielivaltaista tekijöille?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

@@ -5,65 +5,85 @@
 ---
 
 ---
-tên: tên-kỹ năng của bạn
-description: "Mô tả một dòng về chức năng của kỹ năng này và khi nào nên sử dụng nó"
-phiên bản: "0.1.3"
-Thể loại:Phát triển
-thẻ: [ví dụ-thẻ-1, ví dụ-thẻ-2]
-độ phức tạp: trung bình
-rủi ro: an toàn
-công cụ: [mã claude, con trỏ, gemini-cli, phản trọng lực]
-nguồn: cộng đồng
-tác giả: "Tên của bạn"
-date_add: "2026-01-01"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
+date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run xác thực` sẽ tạo ra các kỹ năng/<skill>/metadata.json với chuẩn
-phân loại, mức độ trưởng thành, điểm thực hành tốt nhất, điểm chất lượng và bảo mật
-kết quả quét. Mô hình tiêm nhắc, lệnh phá hoại và tập lệnh rủi ro
-các cấu trúc sẽ được gắn cờ tự động.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-Phiên bản kỹ năng độc lập với phiên bản gói. Sử dụng ngữ nghĩa
-phiên bản có ý nghĩa đối với chính kỹ năng đó.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Để có kỹ năng ghi điểm cao nhất, hãy đọc thêm:
-- docs/người đóng góp/ĐIỂM CAO-PLAYBOOK.md
-- docs/cộng tác viên/QUALITY-BAR.md
+For a top-scoring skill, also read:
+- docs/contributors/HIGH-SCORE-PLAYBOOK.md
+- docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Tổng quan
 
-2-3 câu giải thích kỹ năng này làm gì, ai được hưởng lợi từ nó và tại sao nó tồn tại.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Sử dụng khi bạn cần [kịch bản 1]
-- Sử dụng khi bạn muốn [kịch bản 2]
-- Sử dụng khi làm việc với [kịch bản 3]## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Giải thích khái niệm chính mà nhân viên cần hiểu.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Giải thích một khái niệm cơ bản khác.## Workflow
+### Concept 2
 
-| Giai đoạn | Đầu ra | Tại sao nó quan trọng |
-|:------|:-------|:--------------|
-| Đóng khung mục tiêu | Mục tiêu rõ ràng | Ngăn chặn hướng dẫn mơ hồ |
-| Thực hiện các bước | Quy trình làm việc sẵn sàng cho đại lý | Làm cho kỹ năng có thể thực hiện được |
-| Xác thực đầu ra | Tín hiệu chấp nhận | Tăng sự tự tin |
+Explain another foundational concept.
 
-1. Bước đầu tiên trong quy trình làm việc
-2. Bước thứ hai trong quy trình làm việc
-3. Bước thứ ba trong quy trình làm việc### 1. First Step
+## Workflow
 
-Hướng dẫn chi tiết cho bước đầu tiên.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-Hướng dẫn chi tiết cho bước thứ hai.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Hướng dẫn chi tiết cho bước thứ ba.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Hướng dẫn chi tiết cho bước thứ ba.## Examples
 Example prompt or code here
 ```
 
-**Giải thích:**Ví dụ này chứng tỏ điều gì.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Giải thích:**Ví dụ này chứng tỏ điều gì.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Nên:**Hãy làm theo cách làm tốt này
-- ✅**Nên:**Cũng làm theo cách này
-- ❌**Không:**Tránh phản mẫu này
-- ❌**Không:**Đừng bao giờ làm điều này## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Triệu chứng:**Làm sao bạn biết đây là vấn đề.
-**Giải pháp:**Cách khắc phục.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@ có liên quan-skill-1` — Khi nào nên sử dụng cái này thay thế
-- `@ có liên quan-skill-2` — Điều này bổ sung cho kỹ năng của bạn như thế nào## Additional Resources
+## Related Skills
 
-- [Danh sách kiểm tra](references/checklist.md)
-- [Ví dụ đã làm được](examples/example.md)
-- [Tập lệnh trợ giúp](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

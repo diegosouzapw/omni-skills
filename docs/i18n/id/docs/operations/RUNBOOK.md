@@ -5,7 +5,9 @@
 ---
 
 
->**Panduan operasional lengkap untuk membangun, memvalidasi, menyajikan, mengamankan, dan memecahkan masalah Omni Skills.**---
+> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
+
+---
 
 ## 1️⃣ Local Development Cycle
 
@@ -25,36 +27,44 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-| Perintah | Apa Fungsinya |
+| Command | What It Does |
 |:--------|:-------------|
-| `npm jalankan validasi` | Memvalidasi `SKILL.md`, membuat ulang `metadata.json`, menghitung taksonomi/kematangan/kualitas/keamanan |
-| `npm jalankan taksonomi:laporan` | Menampilkan saran penyimpangan kategori tanpa menulis ulang file |
-| `npm jalankan verifikasi: pemindai` | Mengonfirmasi cakupan pemindai yang dicatat dalam metadata keterampilan yang dihasilkan |
-| `npm jalankan rilis:catatan` | Menghasilkan catatan rilis khusus dari metadata, bundel, dan riwayat git |
-| `npm jalankan build` | Membuat ulang katalog/manifest/arsip/checksum, memverifikasi cakupan dan arsip pemindai, membangun kembali `docs/CATALOG.md` |
-| `tes npm` | Rangkaian asap lengkap di seluruh CLI, API, MCP, sespan, dan aliran arsip |---
+| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
+| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
+| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
+| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
+| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
+
+---
 
 ## 🖥️ Visual Shell
 
-CLI yang diterbitkan sekarang menyertakan shell operator berbasis Tinta:```bash
+The published CLI now includes an Ink-based operator shell:
+
+```bash
 npx omni-skills ui
 ```
 
-Kemampuan saat ini:
+Current capabilities:
 
-- instalasi terpandu untuk klien yang dikenal dan jalur khusus
-- alur pencarian-lalu-instal
-- Panduan peluncuran MCP
-- Panduan peluncuran API
-- Panduan peluncuran A2A
-- pemasangan terkini dan peluncuran kembali layanan
-- bernama instalasi dan preset layanan
+- guided install for known clients and custom paths
+- search-then-install flow
+- MCP launch wizard
+- API launch wizard
+- A2A launch wizard
+- recent installs and service relaunches
+- named install and service presets
 
-Jalur negara bagian lokal:```text
+Local state path:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Pengganti:```bash
+Fallback:
+
+```bash
 npx omni-skills ui --text
 ```
 
@@ -90,32 +100,40 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-Pemindai statis memeriksa semua keterampilan secara otomatis:
+The static scanner checks all skills automatically:
 
-| Keluarga Aturan | Contoh |
+| Rule Family | Examples |
 |:------------|:---------|
-| 🎭 Injeksi segera | Pola eksfiltrasi, penggantian instruksi |
-| 💣 Perintah yang merusak | `rm -rf`, `format`, `mkfs` |
-| 🔑 Jalur mencurigakan | `/etc/shadow`, `~/.ssh`, file kredensial |
-| ⚠️ Primitif berisiko | `shell=True`, `pickle.load`, `eval`, `extractall` |### 🦠 Optional ClamAV
+| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
+| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
+| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> Memerlukan `clamscan` di `PATH`.### 🔒 Optional VirusTotal
+> Requires `clamscan` in `PATH`.
+
+### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> Hanya pencarian hash — file yang tidak dikenal**tidak diunggah**secara default.### ✅ Verify Scanner Coverage
+> Hash lookup only — unknown files are **not uploaded** by default.
+
+### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-Gerbang pelepasan yang ketat:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -127,15 +145,17 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-Arsip dihasilkan secara otomatis oleh `npm run build`:
+Archives are produced automatically by `npm run build`:
 
-| Keluaran | Jalur |
+| Output | Path |
 |:-------|:-----|
-| 📦 ZIP | `dist/arsip/<keterampilan>.zip` |
-| 📦 Bola Tar | `dist/arsip/<keterampilan>.tar.gz` |
-| 🔒 Checksum | `dist/arsip/<keterampilan>.checksums.txt` |
+| 📦 ZIP | `dist/archives/<skill>.zip` |
+| 📦 Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` dilakukan dengan sengaja di repositori ini. Katalog, manifes, bundel, dan arsip yang dihasilkan adalah input runtime untuk alur instalasi CLI, platform download API, pratinjau MCP, penyerahan tugas A2A, pengujian asap, dan verifikasi rilis.### ✅ Verify Archives
+`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -147,35 +167,43 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Penggantian kunci publik opsional:```bash
+Optional public key override:
+
+```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Jika tidak ada kunci publik yang diberikan, build akan mengambilnya melalui `openssl` ke `dist/signing/`.### 🔁 Compute the Next Package Version
+> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
+
+### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-Kebijakan versi:
+Version policy:
 
-- peningkatan patch hingga `.10`
-- setelah `.10`, rilis berikutnya menjadi minor dan menyetel ulang patch ke `.0`
+- patch increments until `.10`
+- after `.10`, the next release rolls minor and resets patch to `.0`
 
-Contoh:
+Examples:
 
 - `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`---
+- `0.1.10 -> 0.2.0`
+
+---
 
 ## 5️⃣ Installation Flows
 
-| Skenario | Perintah |
+| Scenario | Command |
 |:---------|:--------|
-| 📥 Pemasangan bawaan (Antigravitasi) | `npx keterampilan omni` |
-| 🎯 Keahlian khusus + klien | `npx keterampilan omni --kursor --keterampilan omni-figma` |
-| 🔎 Penemuan → instal | `npx omni-skills temukan figma --tool kursor --install --yes` |
-| 📦 Pemasangan bundel | `npx omni-skills --cursor --bundle essentials` |
-| 🩺 Verifikasi pemasangan | `npx dokter keterampilan omni` |---
+| 📥 Default install (Antigravity) | `npx omni-skills` |
+| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verify install | `npx omni-skills doctor` |
+
+---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -188,19 +216,21 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-| menyaring | Bendera | Contoh |
+| Filter | Flag | Example |
 |:-------|:-----|:--------|
-| 📂 Kategori | `--kategori` | `--pengembangan kategori` |
-| 🖥️ Alat | `--alat` | `--kursor alat` |
-| ⚠️ Risiko | `--risiko` | `--risiko aman` |
-| 📊 Urutkan | `--sortir` | `--urutkan kualitas\|praktik terbaik\|tingkat\|keamanan\|nama` |
-| 🔄 Pesan | `--pesanan` | `--pesan asc\|desc` |
-| ⭐ Kualitas minimal | `--kualitas minimum` | `--kualitas minimum 80` |
-| 📋 Minimal BP | `--min-praktik terbaik` | `--min-praktik terbaik 60` |
-| 🎯 Tingkat minimum | `--tingkat minimum` | `--tingkat minimum 2` |
-| 🛡️ Keamanan minimum | `--min-keamanan` | `--keamanan minimum 90` |
-| ✅ Validasi | `--status-validasi` | `--status validasi berlalu` |
-| 🛡️ Keamanan | `--status-keamanan` | `--status keamanan berlalu` |---
+| 📂 Category | `--category` | `--category development` |
+| 🖥️ Tool | `--tool` | `--tool cursor` |
+| ⚠️ Risk | `--risk` | `--risk safe` |
+| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Order | `--order` | `--order asc\|desc` |
+| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
+| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
+| 🎯 Min level | `--min-level` | `--min-level 2` |
+| 🛡️ Min security | `--min-security` | `--min-security 90` |
+| ✅ Validation | `--validation-status` | `--validation-status passed` |
+| 🛡️ Security | `--security-status` | `--security-status passed` |
+
+---
 
 ## 7️⃣ API Operations
 
@@ -212,29 +242,33 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-| Metode | Titik akhir | Tujuan |
+| Method | Endpoint | Purpose |
 |:-------|:---------|:--------|
-| `DAPATKAN` | `/kesehatan` | Pemeriksaan kesehatan |
-| `DAPATKAN` | `/openapi.json` | Spesifikasi OpenAPI 3.1 |
-| `DAPATKAN` | `/v1/keterampilan` | Daftar dengan filter |
-| `DAPATKAN` | `/v1/pencarian` | Pencarian teks lengkap |
-| `DAPATKAN` | `/v1/skills/:id/arsip` | Daftar arsip |
-| `DAPATKAN` | `/v1/skills/:id/download/archive?format=zip` | Unduh arsip |
-| `DAPATKAN` | `/v1/skills/:id/download/archive/checksums` | Manifes checksum |### 🔐 Hosted API Hardening
+| `GET` | `/healthz` | Health check |
+| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
+| `GET` | `/v1/skills` | List with filters |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/skills/:id/archives` | Archive listing |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
 
-| Fitur | Perintah |
+### 🔐 Hosted API Hardening
+
+| Feature | Command |
 |:--------|:--------|
-| 🔑 Pembawa autentikasi | `OMNI_SKILLS_HTTP_BEARER_TOKEN=ganti-saya npx omni-skills api` |
-| 🗝️ Otentikasi kunci API | `OMNI_SKILLS_HTTP_API_KEYS=kunci-a,kunci-b npx omni-skill api` |
-| 🛂 Autentikasi waktu proses admin | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-rahasia npx omni-skills api` |
-| 🚦 Pembatasan tarif | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx api omni-skills` |
-| 📝 Pencatatan audit | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx api keterampilan omni` |
-| 🌍 Daftar yang diizinkan CORS | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx api omni-skills` |
-| 🧱 Daftar IP yang diizinkan | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx api keterampilan omni` |
-| 🚧 Mode pemeliharaan | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx api keterampilan omni` |
-| 🔁 Proksi tepercaya | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx api omni-skills` |
+| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
+| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
+| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
+| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
+| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` tetap terbuka karena desainnya; rute katalog memerlukan autentikasi saat diaktifkan. `GET /admin/runtime` memerlukan token admin saat dikonfigurasi dan mengembalikan snapshot tata kelola langsung.---
+> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
+
+---
 
 ## 8️⃣ MCP Operations
 
@@ -254,29 +288,33 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-Sidecar sekarang dapat mempratinjau atau menulis konfigurasi MCP untuk:
+The sidecar can now preview or write MCP config for:
 
-- Pengguna Claude dan pengaturan proyek
-- Konfigurasi Desktop Claude
-- Konfigurasi pengguna Cline
-- Pengguna GitHub Copilot CLI dan konfigurasi repositori
-- Pengguna kursor dan konfigurasi ruang kerja
-- Konfigurasi Codex TOML
-- Pengguna Gemini dan pengaturan proyek
-- Pengguna Kilo CLI dan konfigurasi proyek
-- Konfigurasi ruang kerja Kilo
-- Pengguna Kiro dan pengaturan proyek
-- Konfigurasi pengguna dan ruang kerja OpenCode
-- Lanjutkan konfigurasi YAML ruang kerja
-- Konfigurasi pengguna selancar angin
-- Konfigurasi ruang kerja Zed
-- ruang kerja `.mcp.json`
-- Ruang kerja VS Code dan konfigurasi pengguna
-- Konfigurasi Kontainer Pengembang
+- Claude user and project settings
+- Claude Desktop config
+- Cline user config
+- GitHub Copilot CLI user and repository config
+- Cursor user and workspace config
+- Codex TOML config
+- Gemini user and project settings
+- Kilo CLI user and project config
+- Kilo workspace config
+- Kiro user and project settings
+- OpenCode user and workspace config
+- Continue workspace YAML config
+- Windsurf user config
+- Zed workspace config
+- workspace `.mcp.json`
+- VS Code workspace and user config
+- Dev Container config
 
-`configure_client_mcp` juga mengembalikan `resep` per klien sehingga operator mendapatkan CLI yang setara atau langkah-langkah penyiapan manual bersama dengan pratinjau.### 🧾 MCP Config Preview and Write Flow
+`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
 
-Gunakan CLI terpadu bila Anda ingin pembuatan konfigurasi tanpa memanggil alat MCP secara langsung:```bash
+### 🧾 MCP Config Preview and Write Flow
+
+Use the unified CLI when you want config generation without calling the MCP tool directly:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -285,15 +323,19 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Shell visual memperlihatkan alur kerja yang sama melalui:
+The visual shell exposes the same workflow through:
 
-- `npx keterampilan omni ui`
-- `Layanan`
-- `Konfigurasi klien MCP`
+- `npx omni-skills ui`
+- `Services`
+- `Configure MCP client`
 
-Perintah tetap dalam mode pratinjau kecuali `--write` diteruskan.### 🔐 Hosted MCP Hardening
+The command stays in preview mode unless `--write` is passed.
 
-Vars env yang sama dengan API:```bash
+### 🔐 Hosted MCP Hardening
+
+Same env vars as the API:
+
+```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -303,9 +345,11 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**Rute yang dilindungi**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
 
-> 🟢 `/healthz` tetap terbuka.---
+> 🟢 `/healthz` remains open.
+
+---
 
 ## 9️⃣ A2A Operations
 
@@ -324,13 +368,17 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-Jalur lokal default tetap sederhana:
+The default local path stays simple-first:
 
-- Persistensi `json` atau `sqlite` dapat dijalankan dengan polling antrian dinonaktifkan
-- setel `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` hanya jika Anda ingin klaim multi-pekerja dan failover sewa
-- pertahankan koordinasi Redis sebagai opsi host tingkat lanjut, bukan sebagai dasar### 🧱 Multi-Worker Lease Setup
+- `json` or `sqlite` persistence can run with queue polling disabled
+- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
+- keep Redis coordination as an advanced hosted option, not the baseline
 
-Jalankan lebih dari satu node A2A pada penyimpanan SQLite yang sama untuk mendapatkan failover berbasis sewa:```bash
+### 🧱 Multi-Worker Lease Setup
+
+Run more than one A2A node against the same SQLite store to get lease-based failover:
+
+```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -350,9 +398,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Jika seorang pekerja meninggal saat suatu tugas sedang `berfungsi`, pekerja lain dapat mengambilnya kembali setelah masa sewa berakhir dan melanjutkan eksekusi.### 🟥 Redis Coordination
+If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
 
-Untuk penerapan yang dihosting atau multi-node yang tidak ingin koordinasi antrean dikaitkan dengan penyimpanan SQLite bersama, alihkan koordinator ke Redis:```bash
+### 🟥 Redis Coordination
+
+For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
+
+```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -364,40 +416,48 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Dalam mode ini:
+In this mode:
 
-- ketekunan masih ada di JSON atau SQLite
-- tugas mengklaim dan memindahkan kepemilikan sewa ke Redis
-- beberapa node A2A dapat berbagi antrian tanpa bergantung pada koordinasi tingkat baris SQLite### 📡 Endpoints
+- persistence still lives in JSON or SQLite
+- task claiming and lease ownership move to Redis
+- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
 
-| Metode | Jalur | Tujuan |
+### 📡 Endpoints
+
+| Method | Path | Purpose |
 |:-------|:-----|:--------|
-| `DAPATKAN` | `/kesehatan` | Pemeriksaan kesehatan |
-| `DAPATKAN` | `/.well-known/agent.json` | Kartu Agen (penemuan A2A) |
-| `POSTING` | `/a2a` | Titik akhir JSON-RPC untuk tugas dan streaming |### 🧭 Supported JSON-RPC Methods
+| `GET` | `/healthz` | Health check |
+| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
+| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
 
-| Metode | Tujuan |
+### 🧭 Supported JSON-RPC Methods
+
+| Method | Purpose |
 |:-------|:--------|
-| `pesan/kirim` | Memulai atau melanjutkan tugas |
-| `pesan/aliran` | Mulai tugas dan streaming pembaruan SSE |
-| `tugas/dapatkan` | Jajak pendapat cuplikan tugas |
-| `tugas/batal` | Membatalkan tugas aktif |
-| `tugas/berlangganan kembali` | Lanjutkan pembaruan SSE untuk tugas yang sudah ada |
-| `tugas/pushNotificationConfig/set` | Daftarkan webhook push |
-| `tugas/pushNotificationConfig/dapatkan` | Baca konfigurasi push |
-| `tugas/pushNotificationConfig/daftar` | Daftar konfigurasi push untuk suatu tugas |
-| `tugas/pushNotificationConfig/hapus` | Hapus konfigurasi push |### 📡 Task Lifecycle
+| `message/send` | Start or continue a task |
+| `message/stream` | Start a task and stream SSE updates |
+| `tasks/get` | Poll a task snapshot |
+| `tasks/cancel` | Cancel an active task |
+| `tasks/resubscribe` | Resume SSE updates for an existing task |
+| `tasks/pushNotificationConfig/set` | Register a push webhook |
+| `tasks/pushNotificationConfig/get` | Read a push config |
+| `tasks/pushNotificationConfig/list` | List push configs for a task |
+| `tasks/pushNotificationConfig/delete` | Remove a push config |
 
-Runtime saat ini mendukung status tugas berikut:
+### 📡 Task Lifecycle
 
-- `dikirim`
-- `bekerja`
-- `diperlukan masukan`
-- `selesai`
-- `dibatalkan`
-- `gagal`
+The current runtime supports these task states:
 
-Tugas disimpan pada file JSON atau penyimpanan SQLite dan dimuat ulang saat dimulai ulang. Tugas yang sudah selesai dan terputus tetap tersedia. Tugas yang masih `dikirim` atau `berfungsi` selama pematian dipulihkan dengan metadata mulai ulang secara eksplisit dan dilanjutkan secara otomatis secara default.### 🧪 Example: Start a Task
+- `submitted`
+- `working`
+- `input-required`
+- `completed`
+- `canceled`
+- `failed`
+
+Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
+
+### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -463,12 +523,14 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-Repositori sekarang memiliki dua alur kerja:
+The repository now has two workflows:
 
-| Alur Kerja | Pemicu | Tujuan |
+| Workflow | Trigger | Purpose |
 |:---------|:--------|:--------|
-| `validasi.yml` | Dorong/PR ke `utama` | Bangun, uji, dan konfirmasi artefak yang dihasilkan telah dikomit |
-| `rilis.yml` | Tag push `v*` atau pengiriman manual | Jalankan pemindai tingkat rilis, verifikasi tag versi, tanda tangani artefak, kemas tarball, publikasikan ke npm, dan buat GitHub Release |### 🔖 Tag a Release
+| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
+| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
+
+### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -477,73 +539,79 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-| Rahasia | Digunakan Oleh | Tujuan |
+| Secret | Used By | Purpose |
 |:-------|:--------|:--------|
-| `VT_API_KEY` atau `VIRUSTOTAL` | `rilis.yml` | Memerlukan pencarian hash VirusTotal dalam versi rilis |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` atau `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `rilis.yml` | Kunci pribadi yang diperlukan untuk penandatanganan arsip terpisah di CI |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` atau `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `rilis.yml` | Penggantian kunci publik opsional; jika tidak, berasal dari kunci pribadi |
-| `NPM_TOKEN` | pekerjaan `terbitkan-npm` | Otentikasi `npm publikasikan` untuk rilis tag |### 🦠 Release Scanner Policy
+| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
+| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
 
-`release.yml` mengatur atau mempersiapkan:
+### 🦠 Release Scanner Policy
+
+`release.yml` sets or prepares:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
-- `VT_API_KEY=${{ rahasia.VT_API_KEY || rahasia.VIRUSTOTAL }}`
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` dari penyimpanan sementara runner
+- `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
 
-Artinya, setiap rilis berbasis tag harus:
+That means every tag-based release must:
 
-- instal dan segarkan ClamAV di runner
-- membuat ulang metadata dengan ClamAV diaktifkan
-- membuat ulang metadata dengan VirusTotal diaktifkan
-- memecahkan kode materi kunci penandatanganan CI ke dalam penyimpanan sementara pelari
-- lewati `npm jalankan verifikasi: pemindai: ketat`
-- lewati `npm jalankan verifikasi:arsip:ketat`
-- lulus tes dan verifikasi paket sebelum npm dipublikasikan
-- menghasilkan catatan rilis khusus dari metadata katalog dan riwayat git
-- buat Rilis GitHub dengan aset rilis terlampir setelah dipublikasikan---
+- install and refresh ClamAV on the runner
+- regenerate metadata with ClamAV enabled
+- regenerate metadata with VirusTotal enabled
+- decode CI signing key material into runner temp storage
+- pass `npm run verify:scanners:strict`
+- pass `npm run verify:archives:strict`
+- pass tests and package verification before npm publish
+- generate custom release notes from catalog metadata and git history
+- create a GitHub Release with attached release assets after publish
+
+---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-| Variabel | Tujuan | Bawaan |
+| Variable | Purpose | Default |
 |:---------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` | Ganti jalur akar katalog | Terdeteksi otomatis |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Jalur tulis ekstra yang diizinkan | Akar klien yang dikenal |
-| `OMNI_SKILLS_MCP_MODE` | Setel ke `lokal` untuk sespan | Jarak Jauh |
-| `OMNI_SKILLS_MCP_LOCAL_MODE` | Bendera Alt untuk mode lokal | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | URL API Publik untuk MCP | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` | URL basis publik | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Token autentikasi pembawa | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Kunci API yang dipisahkan koma | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Token autentikasi waktu proses admin | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Permintaan maksimal per jendela | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Jendela batas kecepatan (md) | — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Aktifkan pencatatan audit | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | keluaran audit `json` atau `teks` | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Jalur file log audit opsional | stdout |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Daftar asal CORS yang dipisahkan koma | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Daftar IP atau CIDR yang diizinkan | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Pengaturan proxy kepercayaan ekspres | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Aktifkan respons pemeliharaan | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Pemeliharaan `Coba Lagi-Setelah` detik | `300` |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Penundaan tugas async yang disimulasikan | `80` |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | Penyimpanan tugas `json`, `sqlite`, atau `memori` | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` | File penyimpanan tugas A2A khusus | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Aktifkan polling antrean bersama untuk pekerja yang sadar sewa | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | Koordinator `store`, `sqlite`, `local`, atau `redis` | `toko` |
-| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL untuk koordinasi eksternal | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Awalan kunci redis untuk metadata antrean | `keterampilan omni:a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Interval pemungutan suara antrian untuk pekerja sewaan | `250` |
-| `OMNI_SKILLS_A2A_LEASE_MS` | Durasi sewa sebelum pekerja lain dapat mengambil kembali tugas | `4000` |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` | Pengidentifikasi pekerja yang stabil untuk kepemilikan sewa dan diagnostik | Nama host + PID + akhiran acak |
-| `OMNI_SKILLS_A2A_EXECUTOR` | pelaksana tugas `inline` atau `proses` | `sebaris` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Ganti perintah pekerja eksternal | Biner simpul |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` | Array JSON dari argumen pekerja eksternal | `["paket/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Lanjutkan tugas yang dikirimkan/dikerjakan saat boot | `1` |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Izinkan webhook non-HTTPS di luar localhost | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` | Aktifkan pemindaian ClamAV | `0` |
-| `VT_API_KEY` | Kunci API VirusTotal | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Kunci pribadi untuk penandatanganan | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Penggantian kunci publik | Turunan otomatis |---
+| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
+| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
+| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
+| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
+| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
+
+---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -561,46 +629,66 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. Bangun kembali dengan `npm run build`
-2. Jalankan kembali `npm run verifikasi: arsip`
-3. Jika penandatanganan diaktifkan, konfirmasikan kunci publik dan ketersediaan `openssl`### 🦠 Release Workflow Fails on Scanner Coverage
+1. Rebuild with `npm run build`
+2. Rerun `npm run verify:archives`
+3. If signing is enabled, confirm the public key and `openssl` availability
 
-- Konfirmasikan `VT_API_KEY` ada dalam rahasia repositori
-- Konfirmasikan `freshclam` berhasil pada pelari
-- Bangun kembali secara lokal dengan `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
-- Jalankan kembali `npm jalankan verifikasi: pemindai: ketat`### 📦 npm Publish Fails in CI
+### 🦠 Release Workflow Fails on Scanner Coverage
 
-- Konfirmasikan `NPM_TOKEN` ada dalam rahasia repositori
-- Konfirmasikan tag Git sama persis dengan versi `package.json`
-- Periksa apakah tarball yang diunggah oleh `release-verify` ada di artefak alur kerja### ✍️ Release Signing Fails in CI
+- Confirm `VT_API_KEY` exists in repository secrets
+- Confirm `freshclam` succeeded on the runner
+- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Rerun `npm run verify:scanners:strict`
 
-- Konfirmasikan `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` atau `OMNI_SKILLS_SIGN_PRIVATE_KEY` ada dalam rahasia repositori
-- Jika Anda memberikan rahasia kunci publik, pastikan rahasia tersebut cocok dengan kunci pribadi
-- Konfirmasikan `openssl` tersedia dan kunci pribadi berformat PEM
-- Bangun kembali secara lokal dengan `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
-- Jalankan kembali `npm jalankan verifikasi:arsip:ketat`### 🔒 API/MCP Returns `401 Unauthorized`
+### 📦 npm Publish Fails in CI
 
-- Verifikasi `OMNI_SKILLS_HTTP_BEARER_TOKEN` atau `OMNI_SKILLS_HTTP_API_KEYS`
-- Sertakan `Otorisasi: Header <token>` atau `x-api-key`### 🚦 API/MCP Returns `429 Too Many Requests`
+- Confirm `NPM_TOKEN` exists in repository secrets
+- Confirm the Git tag matches `package.json` version exactly
+- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
 
-- Tingkatkan `OMNI_SKILLS_RATE_LIMIT_MAX`
-- Perluas `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- Mengurangi lalu lintas burst dari klien atau probe### 🛂 API/MCP Admin Runtime Returns `401`
+### ✍️ Release Signing Fails in CI
 
-- Verifikasi `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
-- Kirim `x-admin-token: <token>` atau `Otorisasi: Pembawa <admin-token>`### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
+- If you provide a public key secret, confirm it matches the private key
+- Confirm `openssl` is available and the private key is PEM-formatted
+- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Rerun `npm run verify:archives:strict`
 
-- Nonaktifkan `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- Gunakan `/healthz` untuk pemeriksaan keaktifan selama pemeliharaan
-- Gunakan `/admin/runtime` dengan token admin untuk diagnostik operator### 🌍 Browser Requests Fail CORS Validation
+### 🔒 API/MCP Returns `401 Unauthorized`
 
-- Verifikasi `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
-- Sertakan skema dan host yang tepat, misalnya `https://app.example.com`### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
+- Include `Authorization: Bearer <token>` or `x-api-key` header
 
-- Verifikasi `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
-- Verifikasi `OMNI_SKILLS_A2A_REDIS_URL`
-- Periksa konektivitas Redis dari setiap node
-- Periksa `/healthz` untuk snapshot `koordinasi`### 🩺 General Diagnostics
+### 🚦 API/MCP Returns `429 Too Many Requests`
+
+- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduce burst traffic from clients or probes
+
+### 🛂 API/MCP Admin Runtime Returns `401`
+
+- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
+- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
+
+### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+
+- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
+- Use `/healthz` for liveness probes during maintenance
+- Use `/admin/runtime` with the admin token for operator diagnostics
+
+### 🌍 Browser Requests Fail CORS Validation
+
+- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
+- Include the exact scheme and host, for example `https://app.example.com`
+
+### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+
+- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
+- Verify `OMNI_SKILLS_A2A_REDIS_URL`
+- Check Redis connectivity from every node
+- Inspect `/healthz` for the `coordination` snapshot
+
+### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

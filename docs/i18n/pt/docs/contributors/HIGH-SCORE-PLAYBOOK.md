@@ -5,71 +5,83 @@
 ---
 
 
->**O que um Omni Skills `SKILL.md` precisa na prática para atingir altas pontuações de maturidade, práticas recomendadas, qualidade e segurança.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-Este guia explica como o classificador do repositório realmente recompensa uma habilidade.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Use-o quando quiser:
+Use it when you want to:
 
-- crie uma nova habilidade que chegue às faixas de maior pontuação
-- melhorar uma habilidade existente que está presa em “bom” ou baixo “excelente”
-- entender por que uma habilidade com formatação decente ainda não está sendo pontuada como um ativo operacional excepcional
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Este é o complemento voltado para o colaborador para:
+This is the contributor-facing companion to:
 
-- [Barra de qualidade](QUALITY-BAR.md)
-- [Anatomia da habilidade](SKILL-ANATOMY.md)
-- [Classificação de habilidades](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Referência atual para o catálogo ativo:
+Current benchmark for the live native catalog:
 
-- 32 habilidades publicadas
-- spread de qualidade atual: `94, 95, 96, 97, 100`
-- spread atual das melhores práticas: `98, 99, 100`
-- topo de linha atual: `omni-fiigma` com qualidade `100/100` e melhores práticas `100/100`---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-O classificador**não**recompensa apenas descontos consideráveis.
+The classifier does **not** reward pretty markdown alone.
 
-Habilidades de alta pontuação são habilidades que são:
+High-scoring skills are skills that are:
 
--**detectável**: a descrição diz claramente o que a habilidade faz e quando usá-la
--**operacional**: a habilidade inclui scripts locais, referências e exemplos executáveis
--**diagnóstico**: ajuda o agente a se recuperar quando algo dá errado
--**específico**: concentra-se em um fluxo de trabalho, não em conselhos amplos
--**seguro**: evita padrões arriscados e fornece saída limpa do scanner
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-Na prática, as habilidades mais fortes se comportam mais como um**pequeno kit de fluxo de trabalho**do que como uma simples nota de desconto.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Use estes destinos ao criar:
+Use these targets when authoring:
 
-| Dimensão | Alvo Forte | Alvo Excepcional |
-|:----------|:-------------|:----------------------|
-| 🎯Maturidade | `L3` | `L3` com múltiplos recursos de suporte |
-| 📋 Melhores Práticas | `90+` | `96+` |
-| ⭐ Qualidade | `85+` | `90+` |
-| 🛡️ Segurança | `95+` | `95+` com zero descobertas |---
+| Dimension | Strong Target | Exceptional Target |
+|:----------|:--------------|:-------------------|
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Seu frontmatter deve tornar a habilidade fácil de classificar e descobrir:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `name` corresponde exatamente ao diretório
-- `descrição` explica**o que**e**quando**
-- `categoria`, `tags`, `ferramentas`, `complexidade`, `risco`, `fonte`, `autor` e datas estão todos presentes
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Boa forma de descrição:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Formato de descrição incorreto:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-As habilidades mais fortes incluem consistentemente estas seções:
+The strongest skills consistently include these sections:
 
-- `## Visão geral`
-- `## Quando usar esta habilidade`
-- `## Fluxo de trabalho`
-- `## Exemplos`
-- `## Melhores Práticas`
-- `## Solução de problemas`
-- `## Recursos Adicionais`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Se um deles estiver faltando, a pontuação ainda pode ser boa, mas fica mais difícil parecer excepcional.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-As habilidades de maior pontuação geralmente incluem:
+Top-scoring skills usually include:
 
-- `referências/checklist.md`
-- um ou mais scripts auxiliares em `scripts/`
-- pelo menos um exemplo trabalhado em `examples/`
-- `agents/openai.yaml` quando a habilidade é destinada à invocação direta do agente
-- links diretos de `SKILL.md` para esses arquivos locais
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Isso é importante porque o classificador trata uma habilidade com**material de suporte agrupado**como mais acionável do que aquela que apenas aponta para fora.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Mínimo recomendado:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Exemplos de pontuação alta são:
+High-scoring examples are:
 
-- concreto
-- digitado com uma cerca real, como `bash` ou `python`
-- vinculado a um script local ou comando repetível
-- representante do fluxo de trabalho
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-Bom:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Fraco:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-O marcador recompensa a solução de problemas que ajuda um agente a se recuperar, e não apenas a reconhecer um problema.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Formato preferido:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Isso é mais forte do que uma nota vaga como:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-O classificador agora distingue entre uma habilidade meramente completa e outra genuinamente profunda.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Sinais que ajudam:
+Signals that help:
 
-- vários exemplos concretos
-- vários casos de solução de problemas
-- orientação de habilidades relacionadas
-- pacotes de referência mais ricos
-- uma seção `## Workflow` visível com etapas numeradas que o marcador pode contar diretamente
-- pelo menos uma tabela operacional ou mapa de execução onde esclarece o fluxo de trabalho
-- mais de um diretório de suporte ou tipo de ativo
-- seções de fluxo de trabalho com etapas suficientes para orientar a execução
-- ativos de decisão, como listas de verificação, rubricas, matrizes, pacotes ou manuais
-- maior diversidade de pacotes de suporte em `references/`, `scripts/`, `agents/`, `examples/` ou `assets/`
-- arquivos de suporte reutilizáveis suficientes para parecer um kit, nem um único auxiliar colocado ao lado da redução
-- mais de um único arquivo auxiliar quando o fluxo de trabalho é complexo o suficiente para justificar um pacote de suporte
-- profundidade corporal suficiente para cobrir compensações e modos de falha
-- orientação operacional mais densa, porque o marcador agora distingue a formatação refinada da profundidade do fluxo de trabalho genuinamente reutilizável
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Sinais que**não**ajudam muito:
+Signals that do **not** help much:
 
-- repetir a mesma instrução com palavras diferentes
-- texto de preenchimento genérico
-- adicionar títulos sem adicionar substância abaixo deles---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Use esta lista de verificação antes de executar a validação:
+Use this checklist before running validation:
 
-- a descrição diz**o que**e**quando**
-- a habilidade está focada em um fluxo de trabalho
-- `## Workflow` existe e contém etapas numeradas ou com marcadores
-- existe pelo menos um exemplo executável
-- `references/`, `scripts/` e, idealmente, `examples/` estão vinculados a `SKILL.md`
-- `agents/openai.yaml` existe quando a habilidade se destina à invocação direta em clientes agentes
-- a solução de problemas usa `Sintomas` e `Solução`
-- a habilidade pode ser razoavelmente classificada como `L3`
-- nenhum comando arriscado ou caminhos suspeitos estão presentes
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Então execute:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- a descrição está correta, mas muito genérica
-- a marcação tem seções, mas não tem profundidade operacional
-- os exemplos não apontam para ajudantes locais
-- a solução de problemas existe, mas não é diagnóstica
-- há poucas tags ou identificadores de ferramentas
-- a habilidade é segura e limpa, mas ainda muito superficial para ser considerada excepcional---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Se sua habilidade parece:
+If your skill feels like:
 
-- um**modelo**: pode passar
-- um**guia**: pode ter uma boa pontuação
-- um**pacote de fluxo de trabalho**: é muito mais provável que você obtenha uma pontuação no topo
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

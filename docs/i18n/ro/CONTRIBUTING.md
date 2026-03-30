@@ -5,42 +5,50 @@
 ---
 
 
->**Omni Skills conține atât un catalog de abilități, cât și suprafețele de rulare construite deasupra acelui catalog.**
-> Contribuțiile pot viza oricare dintre zone, dar ambele trebuie să rămână aliniate cu artefactele generate și cu comportamentul curent CLI.---
+> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
+
+---
 
 ## 📊 Repository Baseline
 
-| Metric | Valoare |
+| Metric | Value |
 |:-------|:------|
-| 📦 Versiune pachet | `0.1.3` |
-| 🧠 Abilități publicate | `32` |
-| 📦 Pachete susținute complet | `7` |
-| 🖥️ Clienți capabili de instalare | `7` |
-| 🔌 Clienți capabili de configurare MCP | `16` |
-| 🔄 Lansări automate | Activat pe `principal` |---
+| 📦 Package version | `0.1.3` |
+| 🧠 Published skills | `32` |
+| 📦 Fully backed bundles | `7` |
+| 🖥️ Install-capable clients | `7` |
+| 🔌 MCP config-capable clients | `16` |
+| 🔄 Automatic releases | Enabled on `main` |
+
+---
 
 ## Important
 
-| Ce | Unde |
+| What | Where |
 |:-----|:------|
-| 🧠 Abilitățile sunt create în | `skills/<skill-name>/SKILL.md` |
-| 📖 Șabloane și îndrumări pentru colaboratori | `docs/contributors/` |
-| 🧾 Flux canonic de PR pentru noi competențe | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 Abilitățile native incoming ajung sub | `skills/` (orice limbă) |
-| ✨ Derivate îmbunătățite curatate | `skills_omni/` (numai în engleză, automat) |
-| 🚫 `skills_omni/` este protejat | Nu este deschis pentru contribuție publică directă |
-| 📖 Documente despre runtime și arhitectură | `docs/` |
-| 📄 Fișiere comunitare | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |---
+| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
+| 📖 Contributor templates and guidance | `docs/contributors/` |
+| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Native incoming skills land under | `skills/` (any language) |
+| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
+| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 📖 Runtime and architecture docs | `docs/` |
+| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
+
+---
 
 ## 🎯 Common Contribution Types
 
-| Tip | Zona |
+| Type | Area |
 |:-----|:-----|
-| 🧠 Adăugați sau îmbunătățiți o abilitate | `deprinderi/` |
-| 📖 Actualizați ghidul pentru colaboratori | `docs/contributors/` |
-| 🖥️ Îmbunătățiți CLI, programul de instalare sau scripturile | `instrumente/` |
-| 📦 Îmbunătățiți durata de execuție a catalogului sau pachetele de protocol | `pachete/` |
-| 🧪 Strângeți testele, controalele de fum sau eliberați documente | Diverse |---
+| 🧠 Add or improve a skill | `skills/` |
+| 📖 Update contributor guidance | `docs/contributors/` |
+| 🖥️ Improve CLI, installer, or scripts | `tools/` |
+| 📦 Improve catalog runtime or protocol packages | `packages/` |
+| 🧪 Tighten tests, smoke checks, or release docs | Various |
+
+---
 
 ## Pornire rapidă
 
@@ -65,18 +73,22 @@ npm test
 npm run smoke
 ```
 
->**📝 Deschideți PR cu `Permite modificări de la menținători` activat.**---
+> **📝 Open the PR with `Allow edits from maintainers` enabled.**
+
+---
 
 ## Documentație
 
-O bună abilitate nativă incoming ar trebui:
+A good native incoming skill should:
 
-- ✅ Rezolvați o problemă specifică în mod curat
-- ✅ Fii reutilizabil în toate proiectele
-- ✅ Includeți instrucțiuni pe care un agent le poate urma cu adevărat
-- ✅ Evitați conținutul vag sau redundant
-- ✅ Declarați metadate exacte de frontmatter și compatibilitate atunci când sunt disponibile
-- ✅ Teren cu artefacte de clasificare `metadata.json` generate după rularea automatizării### 📁 Minimal Structure
+- ✅ Solve a specific problem cleanly
+- ✅ Be reusable across projects
+- ✅ Include instructions an agent can actually follow
+- ✅ Avoid vague or redundant content
+- ✅ Declare accurate frontmatter and compatibility metadata when available
+- ✅ Land with generated `metadata.json` classification artifacts after automation runs
+
+### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -95,67 +107,83 @@ skills/my-skill/
 └── scripts/
 ```
 
->**💡 Sfat:**Pachetele de abilități de nivel de lansare ar trebui să includă `agenți/`, `referințe/`, `exemple/` și `scripturi/`. Dar suprafața de admisie este permisivă în mod intenționat - este permisă o abilitate minimă de intrare nativă, iar conducta de amplificator generează derivatul mai puternic.### 🌐 Language Policy
+> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
 
-| Suprafata | Limbi acceptate |
-|:--------|:--------------------|
-| 📥 `skills/` (aport nativ) | Portugheză, engleză sau orice limbă |
-| ✨ `skills_omni/` (ieșire organizată) | Numai în engleză |
+### 🌐 Language Policy
 
-> Amplificatorul privat păstrează sursa nativă așa cum a fost trimisă și rescrie derivatul curatat în engleză.
+| Surface | Accepted Languages |
+|:--------|:-------------------|
+| 📥 `skills/` (native intake) | Portuguese, English, or any language |
+| ✨ `skills_omni/` (curated output) | English only |
 
-📖 Pentru secvența completă de ramificare, validare și revizuire a îmbunătățitorului, utilizați [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).---
+> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
+
+📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
+
+---
 
 ## ✅ Required Validation
 
-Rulați acest lucru înainte de a deschide un PR:```bash
+Run this before opening a PR:
+
+```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<detalii>
-<summary>📋 <strong>Ce regenerează <code>npm run validate</code></strong></summary>
+<details>
+<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
 
 - `metadata.json`
 - `skills/<skill>/metadata.json`
-- Cartografierea taxonomiei canonice
-- Scoruri de maturitate, bune practici, calitate și securitate
-- Constatări de securitate statică
-- Stare opțională a scanerului ClamAV și VirusTotal (când este configurat)</details>
+- Canonical taxonomy mapping
+- Maturity, best practices, quality, and security scores
+- Static security findings
+- Optional ClamAV and VirusTotal scanner status (when configured)
 
->**⚠️ Important:**Validarea este contractul utilizat de CLI, API, MCP, A2A, manifeste, arhive și automatizarea lansărilor. Tratați metadatele generate ca parte a suprafeței de examinare, nu rezultate de unică folosință.### 📥 Intake Policy
+</details>
 
-| Stare | Comportament |
+> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+### 📥 Intake Policy
+
+| Condition | Behavior |
 |:----------|:---------|
-| Lipsă/incompletă subiect principal | ⚠️ Avertismente (nu blocheaza) |
-| Constatări critice de securitate | 🚫 Blochează aportul |
-| Erori de validare hard | 🚫 Blochează aportul |
-| Standard editorial mai strict | Aplicat în fluxul derivat îmbunătățit, nu la aportul nativ |### 🧪 Release-Grade Preflight
+| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
+| Critical security findings | 🚫 Blocks intake |
+| Hard validation errors | 🚫 Blocks intake |
+| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
+
+### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<detalii>
-<summary>📋 <strong>Ce validează permisul de fum</strong></summary>
+<details>
+<summary>📋 <strong>What the smoke pass validates</strong></summary>
 
-- ✅ Validarea aptitudinilor
-- ✅ Generare catalog
-- ✅ Generarea catalogului de documente
-- ✅ Suită de teste
+- ✅ Skill validation
+- ✅ Catalog generation
+- ✅ Docs catalog generation
+- ✅ Test suite
 - ✅ `npm pack --dry-run`
-- ✅ Boot API
-- ✅ Pornire MCP în `stdio`, `stream` și `sse`
-- ✅ Cizma A2A
-- ✅ Verificarea arhivei și așteptările de ambalare</details>
+- ✅ API boot
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot
+- ✅ Archive verification and packaging expectations
+
+</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-Frontmatter este foarte recomandat. Utilizați [Șablon de aptitudini](docs/contributors/SKILL-TEMPLATE.md) ca bază.```yaml
+Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
+
+```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -172,88 +200,104 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<detalii>
-<summary>🏷️ <strong>Categorii taxonomie canonice</strong></summary>
+<details>
+<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
 
-| Categoria | Categoria |
+| Category | Category |
 |:---------|:---------|
-| `dezvoltare` | `frontend` |
+| `development` | `frontend` |
 | `backend` | `fullstack-web` |
-| `instrumente` | `cli-automatizare` |
-| `afaceri` | „produs” |
+| `tools` | `cli-automation` |
+| `business` | `product` |
 | `design` | `data-ai` |
-| `ai-agenti` | `învățare automată` |
-| `devops` | `testare-securitate` |
-| `documentație` | `conținut-media` |
-| `comunicare` | `necategorizat` |</details>
+| `ai-agents` | `machine-learning` |
+| `devops` | `testing-security` |
+| `documentation` | `content-media` |
+| `communication` | `uncategorized` |
 
->**ℹ️**Versiunea Skill este independentă de versiunea pachetului npm. Dacă o abilitate nativă primită nu are încă frontmatter, va fi acceptată cu avertismente și va obține metadate temporare din director, titlu și textul corpului.---
+</details>
+
+> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
+
+---
 
 ## ⚙️ Runtime Contributions
 
-Dacă atingeți `packages/`, `tools/bin/`, `tools/lib/` sau construiți scripturi:
+If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 
-- 📦 Păstrați `dist/` și documentele aliniate cu implementarea
-- 🔄 Prefer să reutilizați `pachete/catalog-core` în loc să duplicați logica catalogului
-- 🔒 Păstrați comportamentul de scriere locală în spatele setărilor implicite de previzualizare sau de rulare uscată
-- 🔌 Păstrați-i pe scriitorii MCP disciplinați - adăugați scriitori de configurare de primă clasă numai atunci când clientul are un contract public stabil de configurare
-- 🛡️ Tratați avertismentele scanerelor de securitate ca parte a barei de recenzii
-- 🧪 Actualizați testele atunci când schimbați comenzile CLI, modurile de transport sau punctele finale publice### 🚧 Important Boundary
+- 📦 Keep `dist/` and docs aligned with the implementation
+- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
+- 🔒 Keep local-write behavior behind preview or dry-run defaults
+- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
+- 🛡️ Treat security scanner warnings as part of the review bar
+- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
 
-| Fă asta ✅ | Nu face asta 🚫 |
-|:------------|:------------------|
-| Trimiteți lucrarea nativă sub `skills/` | Deschideți PR-uri manuale care editează `skills_omni/` |
-| Lasă automatizarea să se ocupe de rularea amplificatorului | Adăugați direct conținut organizat |
-| Concentrați-vă pe calitatea competențelor legitime | Ocoliți fluxul automat de PR însoțitor |
+### 🚧 Important Boundary
 
->**ℹ️**Când o abilitate nativă din `skills/` este actualizată, amplificatorul privat o reprocesează și reîmprospătează linia de bază îmbunătățită.---
+| Do this ✅ | Don't do this 🚫 |
+|:-----------|:-----------------|
+| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
+| Let automation handle the enhancer run | Add curated content directly |
+| Focus on legitimate skill quality | Bypass the automated companion PR flow |
+
+> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
+
+---
 
 ## 🔄 Enhancer Outcome States
 
-În timpul PR-urilor publice de competențe native, intensificatorul raportează una dintre cele patru stări:
+During public native-skill PRs, the enhancer reports one of four states:
 
-| Stat | Înțeles |
+| State | Meaning |
 |:------|:--------|
-| ✅ `terminat` | Derivat îmbunătățit generat în mod curat, eligibil pentru `skills_omni/` |
-| ⚠️ `degradat` | Completat cu mișcare de rezervă sau scor mai slab — inspectați mai atent |
-| 🚫 `blocat` | Oprit din motive de infrastructură sau de validare — împiedică publicarea automată |
-| ❌ `eșuat` | Eroare neașteptată — necesită investigarea întreținătorului |
+| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
+| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
+| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
+| ❌ `failed` | Unexpected error — requires maintainer investigation |
 
->**📝 Colaboratorii**nu trebuie să remedieze problemele legate de infrastructura amplificatorului. Responsabilitatea este de a trimite o abilitate nativă legitimă și de a păstra repo-ul verde.---
+> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
+
+---
 
 ## 🔄 Automatic Release Policy
 
-Când o modificare ajunge pe „principal” și include:
+When a change lands on `main` and includes:
 
-- `deprinderi/**`
+- `skills/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-…depozitul emite o**eliberare automată a pachetului**.### 📋 Version Bump Rule
+…the repository issues a **package release automatically**.
 
-| Din | Pentru | Regula |
+### 📋 Version Bump Rule
+
+| From | To | Rule |
 |:-----|:---|:-----|
 | `0.1.0` | `0.1.1` | Patch +1 |
 | `0.1.9` | `0.1.10` | Patch +1 |
-| `0.1.10` | `0.2.0` | Treceți la următorul minor, resetați patch-ul |
+| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
 
-> Fluxul de lansare regenerează catalogul/arhivele, comite versiunea actualizată, etichetează versiunea, publică npm și creează versiunea GitHub automat.---
+> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
+
+---
 
 ## 📝 Commit Conventions
 
-| Prefix | Utilizare pentru |
+| Prefix | Use For |
 |:-------|:--------|
-| `feat:` | Abilitate sau caracteristică nouă |
-| `fix:` | Remediere erori |
-| `docs:` | Modificări ale documentației |
-| `refactor:` | Curățarea codului sau modificările structurii |
-| `test:` | Testare modificări |
-| `chore:` | Întreținere |---
+| `feat:` | New skill or feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `refactor:` | Code cleanup or structure changes |
+| `test:` | Test changes |
+| `chore:` | Maintenance |
+
+---
 
 ## ❓ Need Help?
 
-| Canal | Link |
+| Channel | Link |
 |:--------|:-----|
-| 💬 Întrebări | [Deschide o discuție](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Bug-uri | [Deschideți o problemă](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Feedback timpuriu | [Deschide o schiță de PR](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |

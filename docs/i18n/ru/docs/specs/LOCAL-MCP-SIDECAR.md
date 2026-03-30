@@ -5,47 +5,55 @@
 ---
 
 
->**Дополнительное расширение локального режима для `@omni-skills/server-mcp`, которое добавляет инструменты с поддержкой файловой системы для обнаружения клиентов, управления навыками и создания конфигурации MCP.**---
+> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
+
+---
 
 ## 📊 Status
 
-| Особенность | Государство |
+| Feature | State |
 |:--------|:------|
-| ✅ Инструменты каталога, доступные только для чтения | Реализовано |
-| ✅ Локальные инструменты с поддержкой файловой системы | Реализовано |
-| ✅ 3 транспорта (stdio/stream/sse) | Реализовано |
-| ✅ Внесенные в белый список записи | Реализовано |
-| ✅ Предварительный просмотр перед записью по умолчанию | Реализовано |
-| ✅ Написание конфигурации MCP с учетом клиента | Реализовано |
-| ✅ HTTP-аутентификация + ограничение скорости | Реализовано |
-| ✅ Подписи и контрольные суммы времени выпуска | Реализовано для сгенерированных архивов и отображается с помощью API/MCP |
-| 🟡 Локальное требование подписи времени записи | Еще не применяется; локальный режим предварительного просмотра и записи из доверенной локальной кассы |
-| 🟢 Текущий охват клиентов | 7 клиентов с возможностью установки, 16 клиентов с возможностью настройки, 33 цели конфигурации, 19 профилей конфигурации |---
+| ✅ Read-only catalog tools | Implemented |
+| ✅ Filesystem-aware local tools | Implemented |
+| ✅ 3 transports (stdio/stream/sse) | Implemented |
+| ✅ Allowlisted writes | Implemented |
+| ✅ Preview-before-write defaults | Implemented |
+| ✅ Client-aware MCP config writing | Implemented |
+| ✅ HTTP auth + rate limiting | Implemented |
+| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
+| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
+| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
+
+---
 
 ## 🎯 Purpose
 
-Локальный режим добавляет**инструменты с поддержкой файловой системы**поверх существующей поверхности каталога MCP, доступной только для чтения. Используйте его, когда агенту необходимо:
+Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
 
-- 🕵️ Обнаружение совместимых локальных клиентов AI.
-- 📋 Проверить установленные навыки
-- 👁️ Предварительный просмотр установки или удаления навыка (пробный запуск)
-- 📦 Применить установку или удаление локального навыка
-- ⚙️ Запишите локальный файл конфигурации MCP после предварительного просмотра.
+- 🕵️ Detect compatible local AI clients
+- 📋 Inspect installed skills
+- 👁️ Preview skill installation or removal (dry-run)
+- 📦 Apply local skill installation or removal
+- ⚙️ Write a local MCP config file after preview
 
-Он намеренно разделяет две проблемы:
+It deliberately separates two concerns:
 
--**цели установки навыков**
-  клиенты со стабильным каталогом навыков, которые могут использовать `install_skills`
--**Цели конфигурации MCP**
-  клиенты или IDE со стабильным документированным форматом конфигурации MCP, даже если у них нет каталога навыков---
+- **skill installation targets**
+  clients with a stable skills directory that can use `install_skills`
+- **MCP config targets**
+  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
+
+---
 
 ## 🔌 Transports
 
-| Транспорт | Протокол | Вариант использования |
+| Transport | Protocol | Use Case |
 |:----------|:---------|:---------|
-| `стдио` | Труба | Прямая интеграция с клиентами |
-| `поток` | Потоковое HTTP | Современные HTTP-клиенты |
-| `ссе` | События, отправленные сервером | Устаревшие клиенты |---
+| `stdio` | Pipe | Direct client integration |
+| `stream` | Streamable HTTP | Modern HTTP clients |
+| `sse` | Server-Sent Events | Legacy clients |
+
+---
 
 ## 🚀 Enable Local Mode
 
@@ -81,130 +89,144 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
-> Все команды автоматически устанавливают `OMNI_SKILLS_MCP_MODE=local`.---
+> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
+
+---
 
 ## 🛠️ Local Tools
 
-Когда включен локальный режим, становятся доступны следующие дополнительные инструменты:
+When local mode is enabled, these extra tools become available:
 
-| Инструмент | Описание | По умолчанию |
+| Tool | Description | Default |
 |:-----|:------------|:--------|
-| 🕵️ `detect_clients` | Сканирование клиентов AI и их путей к навыкам/конфигурациям | — |
-| 📋 `list_installed_skills` | Проверка установленных навыков для конкретного клиента | — |
-| 📦 `install_skills` | Установить навыки в каталог навыков клиента | 🔍 сухой пробег |
-| 🗑️ `remove_skills` | Удалить установленные навыки у клиента | 🔍 сухой пробег |
-| ⚙️ `configure_client_mcp` | Написать конфигурацию MCP для конкретного клиента | 🔍 сухой пробег |
+| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
+| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
+| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
+| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
+| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
 
-> ⚠️ `install_skills`, `remove_skills` и `configure_client_mcp` по умолчанию имеют значение**dry-run**, если `dry_run` опущен.---
+> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
+
+---
 
 ## 🎯 Supported Targets
 
 ### 📂 Skills Directories
 
-| Клиент | Путь |
+| Client | Path |
 |:-------|:-----|
-| 🔵 Код Клода | `~/.claude/skills` |
-| 🔵 Курсор | `~/.cursor/skills` |
+| 🔵 Claude Code | `~/.claude/skills` |
+| 🔵 Cursor | `~/.cursor/skills` |
 | 🟡 Gemini CLI | `~/.gemini/skills` |
-| 🟣 Антигравитация | `~/.gemini/антигравитация/навыки` |
-| 🟢 Киро | `~/.kiro/skills` |
-| 🔴 Интерфейс командной строки Кодекса | `~/.codex/skills` или `$CODEX_HOME/skills` |
-| ⚪ Открытый код | `<рабочая область>/.opencode/skills` |
+| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
+| 🟢 Kiro | `~/.kiro/skills` |
+| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
+| ⚪ OpenCode | `<workspace>/.opencode/skills` |
 
-Эти 7 целей на сегодняшний день являются единственными первоклассными местами установки.### ⚙️ MCP Config Files
+These 7 targets are the only first-class install destinations today.
 
-| Цель | Формат |
+### ⚙️ MCP Config Files
+
+| Target | Format |
 |:-------|:-------|
-| `~/.claude/settings.json` | Настройки кода Клода JSON |
-| `<рабочая область>/.claude/settings.json` | Настройки проекта Клода JSON |
-| `~/.claude.json` | Устаревший Клод JSON (`mcpServers`) |
-| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (зависит от ОС) |
+| `~/.claude/settings.json` | Claude Code settings JSON |
+| `<workspace>/.claude/settings.json` | Claude project settings JSON |
+| `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
+| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
 | `~/.cursor/mcp.json` | JSON (`mcpServers`) |
-| `<рабочая область>/.cursor/mcp.json` | Рабочая область курсора JSON (`mcpServers`) |
-| `~/.gemini/settings.json` | Пользователь Gemini JSON (`mcpServers`) |
-| `<рабочая область>/.gemini/settings.json` | Проект Gemini JSON (`mcpServers`) |
-| `~/.gemini/antigravity/mcp.json` | Антигравитационный JSON (`mcpServers`) |
-| `~/.kiro/settings/mcp.json` | Пользователь Киро JSON (`mcpServers`) |
-| `<рабочая область>/.kiro/settings/mcp.json` | Проект Киро JSON (`mcpServers`) |
+| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
+| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
+| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
+| `~/.gemini/antigravity/mcp.json` | Antigravity JSON (`mcpServers`) |
+| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
+| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
-| `<рабочая область>/.mcp.json` | JSON (`mcpServers`) |
-| `<рабочая область>/opencode.json` | Рабочая область OpenCode JSON (`mcp`) |
-| `~/.config/opencode/opencode.json` | Пользователь OpenCode JSON (`mcp`) |
-| `~/.cline/data/settings/cline_mcp_settings.json` | Клайн JSON (`mcpServers`) |
+| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
+| `<workspace>/opencode.json` | OpenCode workspace JSON (`mcp`) |
+| `~/.config/opencode/opencode.json` | OpenCode user JSON (`mcp`) |
+| `~/.cline/data/settings/cline_mcp_settings.json` | Cline JSON (`mcpServers`) |
 | `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON (`mcpServers`) |
-| `<рабочая область>/.github/mcp.json` | Репозиторий GitHub Copilot JSON (`mcpServers`) |
-| `~/.config/kilo/kilo.json` | Пользователь Kilo CLI JSON (`mcp`) |
-| `<рабочая область>/kilo.json` | Проект Kilo CLI JSON (`mcp`) |
-| `<рабочая область>/.kilocode/mcp.json` | Рабочая область Kilo Code JSON (`mcpServers`) |
-| `<рабочая область>/.continue/mcpServers/omni-skills.yaml` | Продолжить рабочую область YAML (`mcpServers`) |
-| `<рабочая область>/.junie/mcp/mcp.json` | Проект Junie JSON (`mcpServers`) |
-| `~/.junie/mcp/mcp.json` | Пользователь Junie JSON (`mcpServers`) |
-| `~/.codeium/windsurf/mcp_config.json` | Виндсерфинг JSON (`mcpServers`) |
-| `~/.config/goose/config.yaml` | Гусь YAML («расширения») |
-| `<рабочая область>/.zed/settings.json` | Рабочая область Zed JSON (`context_servers`) |
-| `<рабочая область>/.vscode/mcp.json` | JSON («серверы») |
-| `~/.config/Code/User/mcp.json` | Пользователь VS Code JSON («серверы») |
-| `~/.config/Code - Insiders/User/mcp.json` | Пользователь VS Code Insiders JSON («серверы») |
-| `<рабочая область>/.devcontainer/devcontainer.json` | Вложенный контейнер разработки JSON (`customizations.vscode.mcp.servers`) |
-| Корневой клиент `mcp.json` | JSON (формат для каждого клиента) |
+| `<workspace>/.github/mcp.json` | GitHub Copilot repository JSON (`mcpServers`) |
+| `~/.config/kilo/kilo.json` | Kilo CLI user JSON (`mcp`) |
+| `<workspace>/kilo.json` | Kilo CLI project JSON (`mcp`) |
+| `<workspace>/.kilocode/mcp.json` | Kilo Code workspace JSON (`mcpServers`) |
+| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
+| `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
+| `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
+| `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
+| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
+| `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
+| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
+| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
+| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
+| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
+| Client root `mcp.json` | JSON (per-client format) |
 
-Это дает коляске:
+That gives the sidecar:
 
--**16 клиентов или IDE с возможностью настройки**
--**33 первоклассных целевых маршрута**
--**19 профилей формата**
+- **16 config-capable clients or IDEs**
+- **33 first-class target paths**
+- **19 format profiles**
 
-Текущий охват первоклассных конфигураций:
+Current first-class config coverage spans:
 
-- Клод Код и Клод Десктоп
-- Курсор
-- Код VS и контейнеры разработки
-- интерфейс командной строки Близнецов
-- Антигравитация
-- Киро
-- Интерфейс командной строки Кодекса
-- Продолжить
-- Джуни
-- Виндсерфинг
-- Гусь
-- Открытый код
-- Клайн
-- Интерфейс командной строки GitHub Copilot
-- Код килограмма
-- Зед
+- Claude Code and Claude Desktop
+- Cursor
+- VS Code and Dev Containers
+- Gemini CLI
+- Antigravity
+- Kiro
+- Codex CLI
+- Continue
+- Junie
+- Windsurf
+- Goose
+- OpenCode
+- Cline
+- GitHub Copilot CLI
+- Kilo Code
+- Zed
 
-Кандидаты, использующие только вручную или только фрагменты, по-прежнему намеренно находятся за пределами первоклассного набора авторов, пока их контракты общедоступной конфигурации не станут достаточно стабильными.### 🧭 Expansion Policy
+Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
 
-Omni Skills теперь рассматривает поддержку клиентов как трехуровневую модель:
+### 🧭 Expansion Policy
 
-1.**возможность установки**
-   Существует стабильный каталог навыков, поэтому CLI и Sidecar могут устанавливать навыки напрямую.
-2.**с возможностью настройки**
-   Существует стабильный, документированный формат конфигурации MCP, поэтому `config-mcp` может просмотреть и записать первоклассный файл.
-3.**только вручную или фрагмент**
-   Продукт явно поддерживает MCP в той или иной форме, но общедоступные документы пока не оправдывают использование безопасной автоматической записи.
+Omni Skills now treats client support as a three-level model:
 
-Вот почему такие клиенты, как JetBrains AI Assistant, остаются только для ручного управления/фрагментов, в то время как Roo Code и Postman остаются за пределами первоклассного набора авторов до тех пор, пока их безопасная история автоматического слияния не станет достаточно сильной для этого проекта.---
+1. **install-capable**
+   A stable skills directory exists, so the CLI and sidecar can install skills directly.
+2. **config-capable**
+   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
+3. **manual or snippet-only**
+   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
+
+This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
+
+---
 
 ## 🔒 Allowlist Model
 
-Локальная коляска записывает только в**явный список разрешений**.### 🟢 Default allowlist:
+The local sidecar only writes under an **explicit allowlist**.
 
-- Известные корни клиентов в `$HOME`
-- `~/.codeium` для пользовательской конфигурации Windsurf
-- `~/.copilot` для GitHub Copilot CLI
-- `~/.cline` для Cline CLI
-- `~/.config/goose` для конфигурации Goose
-- `~/.config/kilo` и `~/.config/opencode` для конфигурации Kilo/OpenCode CLI
-- `$CODEX_HOME` (или `~/.codex`, если не установлено)
-- Текущий корень рабочей области
-- `<рабочая область>/.агенты`
-- `<рабочая область>/.github`
-- `<рабочая область>/.kilocode`
-- `<рабочая область>/.opencode`
-- `<рабочая область>/.zed`
-- `<рабочая область>/.continue`
-- `<рабочая область>/.vscode`### ➕ Extend the allowlist:
+### 🟢 Default allowlist:
+
+- Known client roots under `$HOME`
+- `~/.codeium` for Windsurf user config
+- `~/.copilot` for GitHub Copilot CLI
+- `~/.cline` for Cline CLI
+- `~/.config/goose` for Goose config
+- `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
+- `$CODEX_HOME` (or `~/.codex` if unset)
+- Current workspace root
+- `<workspace>/.agents`
+- `<workspace>/.github`
+- `<workspace>/.kilocode`
+- `<workspace>/.opencode`
+- `<workspace>/.zed`
+- `<workspace>/.continue`
+- `<workspace>/.vscode`
+
+### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
@@ -359,7 +381,9 @@ mcpServers:
 
 ### 🧭 CLI Contract
 
-Оболочка CLI с поддержкой боковой панели обеспечивает доступность генерации конфигурации MCP без прямых вызовов JSON-RPC:```bash
+The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -369,7 +393,9 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Поведение по умолчанию доступно только для предварительного просмотра. `--write` применяет конфигурацию к разрешенному целевому пути в белом списке.### 🌊 Windsurf
+Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
+
+### 🌊 Windsurf
 
 ```json
 {
@@ -458,92 +484,102 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-Инструмент `configure_client_mcp` также может записывать настройки, специфичные для Claude, когда вы передаете:
+The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
 
 - `allowed_mcp_servers`
 - `denied_mcp_servers`
 - `permissions_deny`
-- `enable_all_project_mcp_servers`### 💜 VS Code sandboxing
+- `enable_all_project_mcp_servers`
 
-Для целей VS Code и Dev Container `configure_client_mcp` также может писать:
+### 💜 VS Code sandboxing
 
-- `песочница включена`
+For VS Code and Dev Container targets, `configure_client_mcp` can also write:
+
+- `sandboxEnabled`
 - `sandbox.filesystem.allowWrite`
 - `sandbox.network.allowHosts`
 - `dev.watch`
 - `dev.debug.type`
 
-Это соответствует текущему руководству VS Code по изолированной программной среде локальных серверов MCP stdio.### 🧰 Cross-Client Entry Options
+This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
 
-`configure_client_mcp` теперь поддерживает более расширенные метаданные записей для поддерживаемых профилей:
+### 🧰 Cross-Client Entry Options
 
-- `заголовки`
-- `окр`
+`configure_client_mcp` now supports richer entry metadata across supported profiles:
+
+- `headers`
+- `env`
 - `env_file`
-- `квд`
+- `cwd`
 - `timeout_ms`
-- `описание`
+- `description`
 - `include_tools`
 - `exclude_tools`
-- `инвалид`
-- «доверие»
+- `disabled`
+- `trust`
 
-Опции для конкретного профиля:
+Profile-specific options:
 
-- Клод: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
-- Близнецы: `mcp_allowed_servers`, `mcp_excluded_servers`
-- Киро: `disabled_tools`, `auto_approve`
-— Код VS и контейнеры разработки: `dev_watch`, `dev_debug_type`### 📋 Generated Recipes
+- Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
+- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- Kiro: `disabled_tools`, `auto_approve`
+- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
 
-`configure_client_mcp` возвращает `рецепты` вместе с предварительным просмотром или примененной конфигурацией.
+### 📋 Generated Recipes
 
-Эти рецепты представляют собой блоки инструкций, ориентированные на клиента, например:
+`configure_client_mcp` returns `recipes` alongside the preview or applied config.
+
+These recipes are client-aware guidance blocks, for example:
 
 - `claude mcp add ... --scope user|project`
 - `gemini mcp add ... --scope user|project`
-- `codex mcp добавить ...`
-- рецепты ручного редактирования файлов для Cursor, VS Code, Kiro и Claude Desktop.
+- `codex mcp add ...`
+- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
 
-Общая стратегия теперь намеренно консервативна:
+The overall strategy is now intentionally conservative:
 
-- повторно использовать небольшой набор канонических семейств конфигураций, где это возможно.
-- нанимайте писателей на заказ только в том случае, если официальные документы требуют четкой формы
-- избегайте изобретения автоматических писателей для недокументированных целей---
+- reuse a small set of canonical config families where possible
+- keep bespoke writers only when official docs require a distinct shape
+- avoid inventing automatic writers for undocumented targets
+
+---
 
 ## 🔐 Hosted HTTP Hardening
 
-Транспорты HTTP поддерживают те же элементы управления, управляемые средой, что и API каталога:
+The HTTP transports support the same env-driven controls as the catalog API:
 
-| Переменная | Цель |
+| Variable | Purpose |
 |:---------|:--------|
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Аутентификация токена на предъявителя |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Ключи API, разделенные запятыми |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Самоанализ среды выполнения только для администратора |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Максимальное количество запросов на окно |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Окно ограничения скорости в мс |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Включить ведение журнала аудита |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Записать журнал аудита в файл |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Ограничить происхождение браузера |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Ограничить разрешенные исходные IP-адреса |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Возвращает `503` для неадминистративных и неработоспособных маршрутов |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
 
-> 🟢 `/healthz` остается открытым. `/mcp`, `/sse` и `/messages` требуют аутентификации, если они включены. `/admin/runtime` требует наличия токена администратора при настройке.---
+> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
+
+---
 
 ## 🌍 Official Docs That Shape Support Decisions
 
-Текущий набор средств записи и границы, доступные только вручную, были проверены на соответствие официальной документации продукта, в том числе:
+The current writer set and manual-only boundaries were checked against official product docs, including:
 
-- Антропный код Клода MCP
-- Интерфейс командной строки OpenAI Codex и документация OpenAI MCP.
-- Документы MCP курсора
-- Продолжить документацию MCP
-- Документы Киро MCP
-- Документация OpenCode MCP
-- Документы Cline MCP
-- Документация Kilo Code MCP
-- Документация GitHub Copilot CLI
-- Документация Zed MCP
-- Документация VS Code MCP
-- Документация JetBrains AI Assistant MCP
+- Anthropic Claude Code MCP
+- OpenAI Codex CLI and OpenAI Docs MCP
+- Cursor MCP docs
+- Continue MCP docs
+- Kiro MCP docs
+- OpenCode MCP docs
+- Cline MCP docs
+- Kilo Code MCP docs
+- GitHub Copilot CLI docs
+- Zed MCP docs
+- VS Code MCP docs
+- JetBrains AI Assistant MCP docs
 
-Благодаря этим документам некоторые клиенты получают первоклассные средства автоматической записи, в то время как другие пока остаются только сниппетами.
+Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.

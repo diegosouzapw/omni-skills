@@ -5,33 +5,39 @@
 ---
 
 
->**พื้นผิว CLI สาธารณะเต็มรูปแบบจัดส่งโดย `omni-skills`**
+> **The full public CLI surface shipped by `omni-skills`.**
 
-ใช้คู่มือนี้เมื่อคุณต้องการ:
+Use this guide when you want to:
 
-| เป้าหมาย | พื้นที่บัญชาการ |
+| Goal | Command Area |
 |:-----|:-------------|
-| 📥 ติดตั้งทักษะหรือบันเดิล | [ขั้นตอนการติดตั้ง](#3️⃣-การติดตั้ง-โฟลว์) |
-| 🔎 ค้นหาแคตตาล็อก | [การค้นพบแคตตาล็อก](#4️⃣-catalog-discovery) |
-| 🔌 กำหนดค่าไคลเอนต์ MCP | [การกำหนดค่าไคลเอนต์ MCP](#5️⃣-mcp-client-config) |
-| 🖥️ เริ่มบริการ MCP, API หรือ A2A | [เซิร์ฟเวอร์ MCP](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
-| 🎨 ใช้วิชวลเทอร์มินัลเชลล์ | [วิชวลเชลล์](#9️⃣-วิชวลเชลล์) |
-| 🧪 เรียกใช้การวินิจฉัยหรือ preflight | [การวินิจฉัย](#🔟-diagnostics-and-preflight) |---
+| 📥 Install skills or bundles | [Install Flows](#3️⃣-install-flows) |
+| 🔎 Search the catalog | [Catalog Discovery](#4️⃣-catalog-discovery) |
+| 🔌 Configure MCP clients | [MCP Client Config](#5️⃣-mcp-client-config) |
+| 🖥️ Start MCP, API, or A2A services | [MCP Server](#6️⃣-mcp-server) · [API](#7️⃣-catalog-api) · [A2A](#8️⃣-a2a-runtime) |
+| 🎨 Use the visual terminal shell | [Visual Shell](#9️⃣-visual-shell) |
+| 🧪 Run diagnostics or preflight | [Diagnostics](#🔟-diagnostics-and-preflight) |
+
+---
 
 ## 1️⃣ Install and Entry Modes
 
-ติดตั้งด้วย `npx`:```bash
+Install with `npx`:
+
+```bash
 npx omni-skills
 ```
 
 ### 🎭 Entry Behavior
 
-| บริบท | เกิดอะไรขึ้น |
+| Context | What Happens |
 |:--------|:------------|
-| 🖥️ TTY + ไม่มีข้อโต้แย้ง | เปิดโฟลว์**การติดตั้งที่แนะนำ**|
-| ⚙️ ไม่ใช่ TTY + ไม่มีข้อโต้แย้ง | การติดตั้งแบบไม่โต้ตอบกับ `~/.gemini/antigravity/skills` |
-| 🎨 `npx ทักษะรอบด้าน ui` | ตรา**หมึกวิชวลเชลล์**|
-| แปลก `npx ทักษะ omni ui --text` | Readline**ข้อความสำรอง**UI |---
+| 🖥️ TTY + no arguments | Opens the **guided install** flow |
+| ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
+| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+
+---
 
 ## 2️⃣ Core Commands
 
@@ -39,20 +45,22 @@ npx omni-skills
 npx omni-skills help
 ```
 
-| คำสั่ง | คำอธิบาย |
+| Command | Description |
 |:--------|:-----------|
-| `อุย` | 🎨 ฮับเทอร์มินัลภาพ |
-| `ค้นหา [คำค้นหา]` | 🔎 การค้นพบแคตตาล็อก |
-| `จัดหมวดหมู่ใหม่` | 🏷️ การจัดการอนุกรมวิธาน |
-| `ติดตั้ง [แฟล็ก]` | 📥 การติดตั้งทักษะ/บันเดิล |
-| `config-mcp` | 🔌 การกำหนดค่าไคลเอนต์ MCP |
-| `mcp <stdio\|สตรีม\|sse>` | 🔌 โหมดเซิร์ฟเวอร์ MCP |
-| `เอพี` | 🌐 API แคตตาล็อก |
-| `a2a` | 🤖 รันไทม์ A2A |
-| `ควัน` | 🧪 ปล่อยพรีไฟลท์ |
-| `เผยแพร่ตรวจสอบ` | 📦 ตรวจสอบการเผยแพร่แพ็กเกจ |
-| `หมอ` | 🩺 การวินิจฉัยสภาพแวดล้อม |
-| `ช่วยด้วย` | ❓ อ้างอิงคำสั่ง |---
+| `ui` | 🎨 Visual terminal hub |
+| `find [query]` | 🔎 Catalog discovery |
+| `recategorize` | 🏷️ Taxonomy management |
+| `install [flags]` | 📥 Skill/bundle install |
+| `config-mcp` | 🔌 MCP client configuration |
+| `mcp <stdio\|stream\|sse>` | 🔌 MCP server modes |
+| `api` | 🌐 Catalog API |
+| `a2a` | 🤖 A2A runtime |
+| `smoke` | 🧪 Release preflight |
+| `publish-check` | 📦 Package publication check |
+| `doctor` | 🩺 Environment diagnostics |
+| `help` | ❓ Command reference |
+
+---
 
 ## 3️⃣ Install Flows
 
@@ -63,7 +71,9 @@ npx omni-skills
 npx omni-skills install --guided
 ```
 
-> ขั้นตอนที่แนะนำให้คุณเลือก:**ลูกค้าเป้าหมาย**→**บันเดิลหรือทักษะ**→**เส้นทางที่กำหนดเอง**→**ดูตัวอย่างก่อนดำเนินการ**### 🎯 Single Skill
+> The guided flow lets you choose: **target client** → **bundle or skill** → **custom path** → **preview before execution**
+
+### 🎯 Single Skill
 
 ```bash
 npx omni-skills --skill api-design
@@ -80,17 +90,19 @@ npx omni-skills --codex --bundle full-stack
 
 ### 🖥️ Supported Client Flags
 
-| ตั้งค่าสถานะ | ลูกค้า |
+| Flag | Client |
 |:-----|:-------|
-| `--ต้านแรงโน้มถ่วง` | 🟣 ต้านแรงโน้มถ่วง *(ค่าเริ่มต้น)* |
-| `--คล็อด` | 🟢 รหัสคลอด |
-| `--เคอร์เซอร์` | 🔵 เคอร์เซอร์ |
-| `--โคเด็กซ์` | 🔴 Codex CLI |
-| `--ราศีเมถุน` | 🟡 ราศีเมถุน CLI |
-| `--คิโระ` | 🟠 คิโระ |
-| `--opencode` | ⚪ โอเพนโค้ด |
+| `--antigravity` | 🟣 Antigravity *(default)* |
+| `--claude` | 🟢 Claude Code |
+| `--cursor` | 🔵 Cursor |
+| `--codex` | 🔴 Codex CLI |
+| `--gemini` | 🟡 Gemini CLI |
+| `--kiro` | 🟠 Kiro |
+| `--opencode` | ⚪ OpenCode |
 
-> เป้าหมายการติดตั้งเริ่มต้น (ไม่โต้ตอบ): `~/.gemini/antigravity/skills`---
+> Default install target (non-interactive): `~/.gemini/antigravity/skills`
+
+---
 
 ## 4️⃣ Catalog Discovery
 
@@ -111,23 +123,27 @@ npx omni-skills find foundation --bundle essentials --install --yes
 
 ### 🎛️ Filter Flags
 
-| ตั้งค่าสถานะ | วัตถุประสงค์ |
+| Flag | Purpose |
 |:-----|:--------|
-| `--หมวดหมู่` | กรองตามหมวดหมู่อนุกรมวิธาน |
-| `--เครื่องมือ` | กรองตามเครื่องมือที่รองรับ |
-| `--ความเสี่ยง` | กรองตามระดับความเสี่ยง |
-| `--เรียงลำดับ` | จัดเรียงผลลัพธ์ (เช่น `คุณภาพ`) |
-| `--สั่งซื้อ` | เรียงลำดับ |
-| `--คุณภาพขั้นต่ำ` | คะแนนคุณภาพขั้นต่ำ |
-| `--แนวทางปฏิบัติที่ดีที่สุดขั้นต่ำ` | คะแนนแนวทางปฏิบัติที่ดีที่สุดขั้นต่ำ |
-| `--ระดับนาที` | ระดับวุฒิภาวะขั้นต่ำ |
-| `--นาทีความปลอดภัย` | คะแนนความปลอดภัยขั้นต่ำ |
-| `--สถานะการตรวจสอบความถูกต้อง` | กรองตามสถานะการตรวจสอบ |
-| `--สถานะความปลอดภัย` | กรองตามสถานะความปลอดภัย |---
+| `--category` | Filter by taxonomy category |
+| `--tool` | Filter by supported tool |
+| `--risk` | Filter by risk level |
+| `--sort` | Sort results (e.g., `quality`) |
+| `--order` | Sort order |
+| `--min-quality` | Minimum quality score |
+| `--min-best-practices` | Minimum best-practices score |
+| `--min-level` | Minimum maturity level |
+| `--min-security` | Minimum security score |
+| `--validation-status` | Filter by validation state |
+| `--security-status` | Filter by security state |
+
+---
 
 ## 5️⃣ MCP Client Config
 
-ใช้ `config-mcp` เพื่อดูตัวอย่างหรือเขียนการกำหนดค่า MCP ที่ทราบไคลเอ็นต์### 📋 List Targets
+Use `config-mcp` to preview or write client-aware MCP configuration.
+
+### 📋 List Targets
 
 ```bash
 npx omni-skills config-mcp --list-targets
@@ -152,26 +168,28 @@ npx omni-skills config-mcp \
   --write
 ```
 
-<รายละเอียด>
-<summary>🔌 <strong>พื้นผิวไคลเอนต์ที่สามารถกำหนดค่าได้</strong></summary>
+<details>
+<summary>🔌 <strong>Config-capable client surface</strong></summary>
 
-| ลูกค้า | เป้าหมาย |
+| Client | Targets |
 |:-------|:--------|
-| คลอดด์ | การตั้งค่าและเป้าหมายเดสก์ท็อป |
-| เคอร์เซอร์ | ผู้ใช้และพื้นที่ทำงาน |
-| โคเด็กซ์ | การกำหนดค่า TOML |
-| ราศีเมถุน | ผู้ใช้และพื้นที่ทำงาน |
-| ต้านแรงโน้มถ่วง | การกำหนดค่าผู้ใช้ |
-| โอเพ่นโค้ด | ผู้ใช้และพื้นที่ทำงาน |
-| ไคลน์ | เป้าหมายระดับเฟิร์สคลาส |
-| GitHub Copilot CLI | ผู้ใช้และ repo |
-| รหัสกิโล | ผู้ใช้ โปรเจ็กต์ และพื้นที่ทำงาน |
-| คิโระ | ผู้ใช้และพื้นที่ทำงาน |
-| เซด | พื้นที่ทำงาน |
-| รหัส VS | ผู้ใช้ พื้นที่ทำงาน และ Dev Container |
-| ดำเนินการต่อ | พื้นที่ทำงาน YAML |
-| จูนี่ | โครงการและผู้ใช้ |
-| วินด์เซิร์ฟ | การกำหนดค่าผู้ใช้ |</details>
+| Claude | Settings and desktop targets |
+| Cursor | User and workspace |
+| Codex | TOML config |
+| Gemini | User and workspace |
+| Antigravity | User config |
+| OpenCode | User and workspace |
+| Cline | First-class target |
+| GitHub Copilot CLI | User and repo |
+| Kilo Code | User, project, and workspace |
+| Kiro | User and workspace |
+| Zed | Workspace |
+| VS Code | User, workspace, and Dev Container |
+| Continue | Workspace YAML |
+| Junie | Project and user |
+| Windsurf | User config |
+
+</details>
 
 ---
 
@@ -192,7 +210,9 @@ npx omni-skills mcp stream --local
 npx omni-skills mcp sse --local
 ```
 
->**อุปกรณ์เสริมในตัว**เพิ่ม: การตรวจหาไคลเอ็นต์ การแสดงตัวอย่างการติดตั้ง ติดตั้ง/ลบโฟลว์ และการเขียนการกำหนดค่า MCP---
+> **Local sidecar** adds: client detection, install preview, install/remove flows, and MCP config writing.
+
+---
 
 ## 7️⃣ Catalog API
 
@@ -202,15 +222,17 @@ npx omni-skills api --port 3333
 
 ### 🌐 Key Routes
 
-| เส้นทาง | วัตถุประสงค์ |
+| Route | Purpose |
 |:------|:--------|
-| `GET /healthz` | ตรวจสุขภาพ |
-| `รับ /openapi.json` | ข้อมูลจำเพาะ OpenAPI |
-| `GET /v1/ทักษะ` | รายการทักษะทั้งหมด |
-| `GET /v1/ค้นหา` | ค้นหาแคตตาล็อก |
-| `GET /v1/skills/:id/archives` | แสดงรายการเอกสารสำคัญสำหรับทักษะ |
-| `GET /v1/skills/:id/download/archive?format=zip` | ดาวน์โหลดเอกสารทักษะ |
-| `GET /v1/skills/:id/download/archive/checksums` | ดาวน์โหลดเช็คซัม |---
+| `GET /healthz` | Health check |
+| `GET /openapi.json` | OpenAPI spec |
+| `GET /v1/skills` | List all skills |
+| `GET /v1/search` | Search the catalog |
+| `GET /v1/skills/:id/archives` | List archives for a skill |
+| `GET /v1/skills/:id/download/archive?format=zip` | Download skill archive |
+| `GET /v1/skills/:id/download/archive/checksums` | Download checksums |
+
+---
 
 ## 8️⃣ A2A Runtime
 
@@ -220,15 +242,17 @@ npx omni-skills a2a --port 3335
 
 ### 🤖 Capabilities
 
-| คุณสมบัติ | สถานะ |
+| Feature | Status |
 |:--------|:-------|
-| 🔎 การค้นพบที่คำนึงถึงงาน | ✅ |
-| 📋 แฮนด์ออฟแผนการติดตั้ง | ✅ |
-| 🔄 การเลือกตั้ง | ✅ |
-| 📡 สตรีมมิ่ง | ✅ |
-| ❌ การยกเลิก | ✅ |
-| 🔔 การกำหนดค่าการแจ้งเตือนแบบพุช | ✅ |
-| 💾 ความพากเพียร | หน่วยความจำ, JSON และ SQLite |---
+| 🔎 Task-aware discovery | ✅ |
+| 📋 Install-plan handoff | ✅ |
+| 🔄 Polling | ✅ |
+| 📡 Streaming | ✅ |
+| ❌ Cancelation | ✅ |
+| 🔔 Push-notification config | ✅ |
+| 💾 Persistence | Memory, JSON, and SQLite |
+
+---
 
 ## 9️⃣ Visual Shell
 
@@ -238,17 +262,19 @@ npx omni-skills ui
 
 ### คุณสมบัติ
 
-| คุณสมบัติ | คำอธิบาย |
+| Feature | Description |
 |:--------|:-----------|
-| 🧭 แนะนำการติดตั้ง | เลือกไคลเอนต์หรือเส้นทางที่กำหนดเอง |
-| 🔎 ค้นหา + ติดตั้ง | ไม่จำเป็นต้องท่องจำแฟล็ก |
-| 🔌 การกำหนดค่า MCP | ดูตัวอย่างและเขียนโฟลว์ |
-| 🖥️ เปิดตัวบริการ | การเริ่มต้นที่แนะนำ MCP, API และ A2A |
-| 🕐 ล่าสุด | การติดตั้งล่าสุดและการเปิดตัวบริการใหม่ |
-| ⭐ รายการโปรด | ทักษะและบันเดิลที่บันทึกไว้ |
-| 💾 ค่าที่ตั้งล่วงหน้า | ชื่อการติดตั้งและบริการที่ตั้งไว้ล่วงหน้า |
+| 🧭 Guided install | Choose client or custom path |
+| 🔎 Search + install | No flag memorization needed |
+| 🔌 MCP config | Preview and write flows |
+| 🖥️ Service launch | MCP, API, and A2A guided startup |
+| 🕐 Recents | Recent installs and service relaunches |
+| ⭐ Favorites | Saved skills and bundles |
+| 💾 Presets | Named install and service presets |
 
->**เส้นทางสถานะ:**`~/.omni-skills/state/ui-state.json`---
+> **State path:** `~/.omni-skills/state/ui-state.json`
+
+---
 
 ## 🔟 Diagnostics and Preflight
 
@@ -258,14 +284,18 @@ npx omni-skills ui
 npx omni-skills doctor
 ```
 
-> ตรวจสอบ: สถานะ repo สถานะการติดตั้งในเครื่อง ความพร้อมใช้งานรันไทม์ และปัญหาสภาพแวดล้อม### 🧪 Release Preflight
+> Inspects: repo state, local install state, runtime availability, and environment issues.
+
+### 🧪 Release Preflight
 
 ```bash
 npx omni-skills smoke
 npx omni-skills publish-check
 ```
 
-> ตรวจสอบ: การสร้าง การทดสอบ ผลลัพธ์ของแพ็คเกจ การบูตบริการ ความครอบคลุมของสแกนเนอร์ และการปล่อยบรรจุภัณฑ์---
+> Validates: build, tests, package output, service boot, scanner coverage, and release packaging.
+
+---
 
 ## 1️⃣1️⃣ Taxonomy and Metadata Tools
 
@@ -278,20 +308,22 @@ npx omni-skills recategorize --write  # ✍️ Apply canonical categories
 
 ## 1️⃣2️⃣ Recommended Usage Patterns
 
-| 🎯 เพอร์โซน่า | คำสั่ง | วัตถุประสงค์ |
-|:----------|:--------|:--------|
-| 🆕 ผู้ใช้ใหม่ | `npx ทักษะรอบด้าน` | แนะนำการติดตั้งครั้งแรก |
-| ???? โอเปอเรเตอร์ | `npx omni-ทักษะ config-mcp --list-targets` | กำหนดค่า MCP ในเครื่อง |
-| ???? โอเปอเรเตอร์ | `npx omni-ทักษะ mcp สตรีม --local` | เริ่มรถเทียมข้างรถจักรยานยนต์ท้องถิ่น |
-| 📦 ผู้ดูแล | `npx ทักษะรอบด้าน ควัน ` | ตรวจสอบการเผยแพร่ |
-| 🔍 ผู้ใช้ระดับสูง | `ทักษะรอบด้านของ npx ค้นหาความปลอดภัย --เรียงลำดับคุณภาพ --คุณภาพขั้นต่ำ 95` | ค้นหาทักษะที่ดีที่สุดก่อน |---
+| 🎯 Persona | Command | Purpose |
+|:-----------|:--------|:--------|
+| 🆕 New user | `npx omni-skills` | Guided first-time install |
+| 🔧 Operator | `npx omni-skills config-mcp --list-targets` | Configure local MCP |
+| 🔧 Operator | `npx omni-skills mcp stream --local` | Start local sidecar |
+| 📦 Maintainer | `npx omni-skills smoke` | Validate a release |
+| 🔍 Power user | `npx omni-skills find security --sort quality --min-quality 95` | Find the best skill first |
+
+---
 
 ## 📖 Related Documents
 
-| หมอ | ครอบคลุมอะไรบ้าง |
+| Doc | What It Covers |
 |:----|:--------------|
-| 🚀 [เริ่มต้นใช้งาน](./GETTING-STARTED.md) | ติดตั้งและตรวจสอบภายในไม่เกิน 2 นาที |
-| 📗 [คู่มือการใช้งาน](./USAGE.md) | คำสั่ง รูปแบบ และโหมดของ CLI ทั้งหมด
-| 📦 [บันเดิล](./BUNDLES.md) | คอลเลกชันทักษะที่คัดสรรแล้ว |
-| ดำเนินการ [รันบุ๊คระบบ](../operations/RUNBOOK.md) | อ้างอิงการดำเนินงาน |
-| 🔌 [รถเทียมข้างรถจักรยานยนต์ MCP ในพื้นที่](../specs/LOCAL-MCP-SIDECAR.md) | เครื่องมือระบบไฟล์และการเขียนการกำหนดค่า |
+| 🚀 [Getting Started](./GETTING-STARTED.md) | Install and verify in under 2 minutes |
+| 📗 [Usage Guide](./USAGE.md) | All CLI commands, patterns, and modes |
+| 📦 [Bundles](./BUNDLES.md) | Curated skill collections |
+| 🔧 [System Runbook](../operations/RUNBOOK.md) | Operational reference |
+| 🔌 [Local MCP Sidecar](../specs/LOCAL-MCP-SIDECAR.md) | Filesystem tools and config writing |

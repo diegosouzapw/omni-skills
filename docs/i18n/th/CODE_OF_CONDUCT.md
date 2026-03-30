@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-เราในฐานะสมาชิก ผู้มีส่วนร่วม และผู้ดูแลให้คำมั่นที่จะทำให้การมีส่วนร่วมในโครงการนี้และชุมชน**ประสบการณ์ที่ปราศจากการคุกคาม**สำหรับทุกคน โดยไม่คำนึงถึงอายุ ขนาดร่างกาย ความพิการที่มองเห็นหรือมองไม่เห็น ชาติพันธุ์ ลักษณะทางเพศ อัตลักษณ์และการแสดงออกทางเพศ ระดับประสบการณ์ การศึกษา สถานะทางเศรษฐกิจและสังคม สัญชาติ รูปลักษณ์ส่วนบุคคล เชื้อชาติ วรรณะ สีผิว ศาสนา หรืออัตลักษณ์และรสนิยมทางเพศ---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| พฤติกรรม | ตัวอย่าง |
+| Behavior | Example |
 |:---------|:--------|
-| 💌 ภาษาต้อนรับ | การมีส่วนร่วมและให้ความเคารพในการสื่อสาร |
-| 🤝 การเคารพในความแตกต่าง | การเห็นคุณค่ามุมมองและประสบการณ์ที่แตกต่าง |
-| ⏩ วิจารณ์เชิงสร้างสรรค์ | การยอมรับและให้ข้อเสนอแนะอย่างสง่างาม |
-| 🎯 เน้นชุมชน | จัดลำดับความสำคัญสิ่งที่ดีที่สุดสำหรับโครงการและชุมชน |
-| ❤️ความเห็นอกเห็นใจ | แสดงความเห็นอกเห็นใจต่อสมาชิกชุมชนคนอื่นๆ |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| พฤติกรรม |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 ภาษาหรือภาพทางเพศ และความสนใจหรือความก้าวหน้าทางเพศ |
-| 🚫 ความคิดเห็นที่ล้อเลียน ดูถูก หรือวิจารณ์ในทางเสื่อมเสีย |
-| 🚫 การโจมตีส่วนตัวหรือการเมือง |
-| 🚫 การคุกคามต่อสาธารณะหรือส่วนตัว |
-| 🚫 การเผยแพร่ข้อมูลส่วนตัวของผู้อื่นโดยไม่ได้รับอนุญาตอย่างชัดแจ้ง |
-| 🚫 พฤติกรรมอื่น ๆ ที่ถือว่าไม่เหมาะสมในระดับวิชาชีพ |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-กรณีของพฤติกรรมที่ไม่เหมาะสม คุกคาม หรือยอมรับไม่ได้อาจถูกรายงานไปยังผู้ดูแลผ่าน:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| ช่อง | อย่างไร |
+| Channel | How |
 |:--------|:----|
-| 🔒 ช่องส่วนตัว GitHub | ติดต่อผ่าน GitHub Security หรือ Discussion |
-| 📧 ติดต่อโดยตรง | ติดต่อผู้ดูแลโดยตรง |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**รายงานทั้งหมดจะได้รับการตรวจสอบและตรวจสอบอย่างรวดเร็วและยุติธรรม**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-หลักปฏิบัตินี้ดัดแปลงมาจาก [Contributor Covenant](https://www.contributor-covenant.org) เวอร์ชัน 2.1
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

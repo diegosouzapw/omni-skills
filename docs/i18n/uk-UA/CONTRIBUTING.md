@@ -5,42 +5,50 @@
 ---
 
 
->**Omni Skills містить як каталог навичок, так і робочі поверхні, створені на основі цього каталогу.**
-> Внески можуть бути спрямовані на будь-яку область, але обидві мають узгоджуватися зі згенерованими артефактами та поточною поведінкою CLI.---
+> **Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
+
+---
 
 ## 📊 Repository Baseline
 
-| Метричний | Значення |
+| Metric | Value |
 |:-------|:------|
-| 📦 Версія пакета | `0.1.3` |
-| 🧠 Опубліковані навички | `32` |
-| 📦 Пакети з повною підтримкою | `7` |
-| 🖥️ Клієнти з можливістю встановлення | `7` |
-| 🔌 Клієнти з можливістю конфігурації MCP | `16` |
-| 🔄 Автоматичні випуски | Увімкнено на `main` |---
+| 📦 Package version | `0.1.3` |
+| 🧠 Published skills | `32` |
+| 📦 Fully backed bundles | `7` |
+| 🖥️ Install-capable clients | `7` |
+| 🔌 MCP config-capable clients | `16` |
+| 🔄 Automatic releases | Enabled on `main` |
+
+---
 
 ## Важливо
 
-| Що | Де |
+| What | Where |
 |:-----|:------|
-| 🧠 Навички розроблено в | `skills/<skill-name>/SKILL.md` |
-| 📖 Шаблони та вказівки для співавторів | `docs/contributors/` |
-| 🧾 Канонічний PR-потік для нових навичок | [Робочий процес Skill PR](docs/contributors/SKILL-PR-WORKFLOW.md) |
-| 📥 Рідні вхідні навички знаходяться під | `skills/` (будь-яка мова) |
-| ✨ Підібрані покращені похідні | `skills_omni/` (тільки англійською, автоматизовано) |
-| 🚫 `skills_omni/` захищено | Не відкрито для прямого внеску громадськості |
-| 📖 Документи щодо середовища виконання та архітектури | `docs/` |
-| 📄 Файли спільноти | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |---
+| 🧠 Skills are authored in | `skills/<skill-name>/SKILL.md` |
+| 📖 Contributor templates and guidance | `docs/contributors/` |
+| 🧾 Canonical PR flow for new skills | [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) |
+| 📥 Native incoming skills land under | `skills/` (any language) |
+| ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
+| 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 📖 Runtime and architecture docs | `docs/` |
+| 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
+
+---
 
 ## 🎯 Common Contribution Types
 
-| Тип | Площа |
+| Type | Area |
 |:-----|:-----|
-| 🧠 Додати або покращити навик | `навички/` |
-| 📖 Оновити вказівки для співавторів | `docs/contributors/` |
-| 🖥️ Покращте CLI, програму встановлення чи сценарії | `інструменти/` |
-| 📦 Покращте час виконання каталогу або пакети протоколів | `пакети/` |
-| 🧪 Зробіть жорсткіші тести, виключіть перевірку або опублікуйте документи | Різні |---
+| 🧠 Add or improve a skill | `skills/` |
+| 📖 Update contributor guidance | `docs/contributors/` |
+| 🖥️ Improve CLI, installer, or scripts | `tools/` |
+| 📦 Improve catalog runtime or protocol packages | `packages/` |
+| 🧪 Tighten tests, smoke checks, or release docs | Various |
+
+---
 
 ## Швидкий старт
 
@@ -65,18 +73,22 @@ npm test
 npm run smoke
 ```
 
->**📝 Відкрийте PR, увімкнувши «Дозволити редагування супроводжуючим».**---
+> **📝 Open the PR with `Allow edits from maintainers` enabled.**
+
+---
 
 ## Документація
 
-Хороша рідна вхідна навичка повинна:
+A good native incoming skill should:
 
-- ✅ Вирішіть конкретну проблему чисто
-- ✅ Можливість багаторазового використання в проектах
-- ✅ Додайте інструкції, яких агент може фактично виконувати
-- ✅ Уникайте нечіткого або зайвого вмісту
-- ✅ Декларуйте точні передні матеріали та метадані сумісності, якщо вони доступні
-- ✅ Земля зі згенерованими артефактами класифікації `metadata.json` після запуску автоматизації### 📁 Minimal Structure
+- ✅ Solve a specific problem cleanly
+- ✅ Be reusable across projects
+- ✅ Include instructions an agent can actually follow
+- ✅ Avoid vague or redundant content
+- ✅ Declare accurate frontmatter and compatibility metadata when available
+- ✅ Land with generated `metadata.json` classification artifacts after automation runs
+
+### 📁 Minimal Structure
 
 ```text
 skills/my-skill/
@@ -95,67 +107,83 @@ skills/my-skill/
 └── scripts/
 ```
 
->**💡 Порада.**Пакети навичок випуску мають містити `агенти/`, `посилання/`, `приклади/` та `сценарії/`. Але впускна поверхня навмисно допускає — допускається мінімальний нативний вхідний навик, а конвеєр покращувача генерує сильнішу похідну.### 🌐 Language Policy
+> **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
 
-| Поверхня | Прийнятні мови |
-|:--------|:------------------|
-| 📥 `skills/` (рідне споживання) | Португальська, англійська чи будь-яка інша мова |
-| ✨ `skills_omni/` (підібраний результат) | Лише англійською |
+### 🌐 Language Policy
 
-> Приватний розширювач зберігає рідне джерело в тому вигляді, в якому він надійшов, і переписує підібрану похідну англійською мовою.
+| Surface | Accepted Languages |
+|:--------|:-------------------|
+| 📥 `skills/` (native intake) | Portuguese, English, or any language |
+| ✨ `skills_omni/` (curated output) | English only |
 
-📖 Щоб отримати повну послідовність розгалужень, перевірки та перевірки покращувачів, використовуйте [Робочий процес Skill PR](docs/contributors/SKILL-PR-WORKFLOW.md).---
+> The private enhancer preserves native source as submitted and rewrites the curated derivative in English.
+
+📖 For the full branch, validation, and enhancer-review sequence, use [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md).
+
+---
 
 ## ✅ Required Validation
 
-Запустіть це перед відкриттям PR:```bash
+Run this before opening a PR:
+
+```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
 
-<подробиці>
-<summary>📋 <strong>Що <code>npm run validate</code> відновлює</strong></summary>
+<details>
+<summary>📋 <strong>What <code>npm run validate</code> regenerates</strong></summary>
 
 - `metadata.json`
 - `skills/<skill>/metadata.json`
-- Відображення канонічної таксономії
-- Оцінки зрілості, передового досвіду, якості та безпеки
-- Статичні висновки безпеки
-- Додатковий статус сканера ClamAV і VirusTotal (якщо налаштовано)</details>
+- Canonical taxonomy mapping
+- Maturity, best practices, quality, and security scores
+- Static security findings
+- Optional ClamAV and VirusTotal scanner status (when configured)
 
->**⚠️ Важливо:**Перевірка — це контракт, який використовується CLI, API, MCP, A2A, маніфестами, архівами та автоматизацією випусків. Розглядайте створені метадані як частину поверхні перегляду, а не як одноразовий вихід.### 📥 Intake Policy
+</details>
 
-| Умова | Поведінка |
+> **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+### 📥 Intake Policy
+
+| Condition | Behavior |
 |:----------|:---------|
-| Відсутній/неповний передній матеріал | ⚠️ Попередження (не блокує) |
-| Критичні висновки безпеки | 🚫 Блокує прийом |
-| Жорсткі помилки перевірки | 🚫 Блокує прийом |
-| Суворіший редакційний стандарт | Застосовується в розширеному похідному потоці, а не при природному споживанні |### 🧪 Release-Grade Preflight
+| Missing/incomplete frontmatter | ⚠️ Warnings (does not block) |
+| Critical security findings | 🚫 Blocks intake |
+| Hard validation errors | 🚫 Blocks intake |
+| Stricter editorial standard | Enforced in enhanced derivative flow, not at native intake |
+
+### 🧪 Release-Grade Preflight
 
 ```bash
 npm run smoke
 ```
 
-<подробиці>
-<summary>📋 <strong>Що підтверджує пропуск диму</strong></summary>
+<details>
+<summary>📋 <strong>What the smoke pass validates</strong></summary>
 
-- ✅ Підтвердження навичок
-- ✅ Формування каталогу
-- ✅ Створення каталогу документів
-- ✅ Набір тестів
+- ✅ Skill validation
+- ✅ Catalog generation
+- ✅ Docs catalog generation
+- ✅ Test suite
 - ✅ `npm pack --dry-run`
-- ✅ Завантаження API
-- ✅ MCP завантажується в `stdio`, `stream` і `sse`
-- ✅ Завантаження A2A
-- ✅ Перевірка архіву та очікування від упаковки</details>
+- ✅ API boot
+- ✅ MCP boot in `stdio`, `stream`, and `sse`
+- ✅ A2A boot
+- ✅ Archive verification and packaging expectations
+
+</details>
 
 ---
 
 ## 📋 Skill Frontmatter
 
-Frontmatter настійно рекомендується. Використовуйте [Шаблон навичок](docs/contributors/SKILL-TEMPLATE.md) як базовий рівень.```yaml
+Frontmatter is strongly recommended. Use [Skill Template](docs/contributors/SKILL-TEMPLATE.md) as the baseline.
+
+```yaml
 ---
 name: my-skill-name
 description: "What it does"
@@ -172,88 +200,104 @@ date_updated: "2026-03-26"
 ---
 ```
 
-<подробиці>
-<summary>🏷️ <strong>Канонічні таксономічні категорії</strong></summary>
+<details>
+<summary>🏷️ <strong>Canonical taxonomy categories</strong></summary>
 
-| Категорія | Категорія |
+| Category | Category |
 |:---------|:---------|
-| `розвиток` | `інтерфейс` |
+| `development` | `frontend` |
 | `backend` | `fullstack-web` |
-| `інструменти` | `cli-automation` |
-| `бізнес` | `продукт` |
-| `дизайн` | `data-ai` |
-| `ai-агенти` | `машинне навчання` |
+| `tools` | `cli-automation` |
+| `business` | `product` |
+| `design` | `data-ai` |
+| `ai-agents` | `machine-learning` |
 | `devops` | `testing-security` |
-| `документація` | `content-media` |
-| `спілкування` | `без категорії` |</details>
+| `documentation` | `content-media` |
+| `communication` | `uncategorized` |
 
->**ℹ️**Версія Skill не залежить від версії пакета npm. Якщо нативна вхідна навичка ще не має переднього матеріалу, вона буде прийнята з попередженнями та отримає тимчасові метадані з каталогу, заголовка та основного тексту.---
+</details>
+
+> **ℹ️** Skill version is independent from npm package version. If a native incoming skill doesn't have frontmatter yet, it will be accepted with warnings and derive temporary metadata from directory, title, and body text.
+
+---
 
 ## ⚙️ Runtime Contributions
 
-Якщо ви торкнетеся `packages/`, `tools/bin/`, `tools/lib/` або скриптів збірки:
+If you touch `packages/`, `tools/bin/`, `tools/lib/`, or build scripts:
 
-- 📦 Тримайте `dist/` і документи у відповідності з реалізацією
-- 🔄 Надавайте перевагу повторному використанню `packages/catalog-core` замість дублювання логіки каталогу
-- 🔒 Зберігайте поведінку локального запису за умовчанням попереднього перегляду або сухого запуску
-- 🔌 Слідкуйте за дисципліною авторів MCP — додавайте першокласних авторів конфігурації лише тоді, коли клієнт має стабільний публічний контракт конфігурації.
-- 🛡️ Розглядайте попередження сканера безпеки як частину панелі перегляду
-- 🧪 Оновлення тестів під час зміни команд CLI, режимів транспортування або публічних кінцевих точок### 🚧 Important Boundary
+- 📦 Keep `dist/` and docs aligned with the implementation
+- 🔄 Prefer reusing `packages/catalog-core` instead of duplicating catalog logic
+- 🔒 Keep local-write behavior behind preview or dry-run defaults
+- 🔌 Keep MCP writers disciplined — only add first-class config writers when the client has a stable public config contract
+- 🛡️ Treat security scanner warnings as part of the review bar
+- 🧪 Update tests when changing CLI commands, transport modes, or public endpoints
 
-| Зробіть це ✅ | Не робіть цього 🚫 |
+### 🚧 Important Boundary
+
+| Do this ✅ | Don't do this 🚫 |
 |:-----------|:-----------------|
-| Надішліть рідну роботу в розділі `skills/` | Відкрийте ручні PR, які редагують `skills_omni/` |
-| Дозвольте автоматизації керувати запуском покращувача | Додайте підібраний вміст безпосередньо |
-| Зосередьтеся на законній якості навичок | Обійти автоматизований супутній PR-потік |
+| Submit native work under `skills/` | Open manual PRs that edit `skills_omni/` |
+| Let automation handle the enhancer run | Add curated content directly |
+| Focus on legitimate skill quality | Bypass the automated companion PR flow |
 
->**ℹ️**Коли власний навик у `skills/` оновлюється, приватний покращувач повторно обробляє його та оновлює розширену базову лінію.---
+> **ℹ️** When a native skill in `skills/` is updated, the private enhancer reprocesses it and refreshes the enhanced baseline.
+
+---
 
 ## 🔄 Enhancer Outcome States
 
-Під час публічних PR-повідомлень про рідні навички енхансер повідомляє про один із чотирьох станів:
+During public native-skill PRs, the enhancer reports one of four states:
 
-| Держава | Значення |
+| State | Meaning |
 |:------|:--------|
-| ✅ `завершено` | Покращена похідна створена чітко, придатна для `skills_omni/` |
-| ⚠️ `деградував` | Завершено з резервним або слабшим рухом оцінки — оглядайте уважніше |
-| 🚫 `заблоковано` | Зупинено через причини інфраструктури чи перевірки — запобігає автоматичній публікації |
-| ❌ `не вдалося` | Неочікувана помилка — вимагає розслідування |
+| ✅ `completed` | Enhanced derivative generated cleanly, eligible for `skills_omni/` |
+| ⚠️ `degraded` | Completed with fallback or weaker score movement — inspect more carefully |
+| 🚫 `blocked` | Stopped for infrastructure or validation reasons — prevents auto-publication |
+| ❌ `failed` | Unexpected error — requires maintainer investigation |
 
->**📝 Учасникам**не потрібно вирішувати проблеми інфраструктури покращувача. Відповідальність полягає в тому, щоб надати законний нативний навик і підтримувати репо зеленим.---
+> **📝 Contributors** don't need to fix enhancer infrastructure issues. The responsibility is to submit a legitimate native skill and keep the repo green.
+
+---
 
 ## 🔄 Automatic Release Policy
 
-Коли зміна потрапляє на `main` і включає:
+When a change lands on `main` and includes:
 
-- `навички/**`
+- `skills/**`
 - `skills_omni/**`
 - `data/bundles.json`
 
-…репозиторій видає**випуск пакета автоматично**.### 📋 Version Bump Rule
+…the repository issues a **package release automatically**.
 
-| Від | До | Правило |
+### 📋 Version Bump Rule
+
+| From | To | Rule |
 |:-----|:---|:-----|
-| `0.1.0` | `0.1.1` | Патч +1 |
-| `0.1.9` | `0.1.10` | Патч +1 |
-| `0.1.10` | `0.2.0` | Перейти до наступного мінору, скинути патч |
+| `0.1.0` | `0.1.1` | Patch +1 |
+| `0.1.9` | `0.1.10` | Patch +1 |
+| `0.1.10` | `0.2.0` | Roll to next minor, reset patch |
 
-> Потік випуску регенерує каталог/архіви, фіксує оновлення версії, додає теги до випуску, публікує npm і автоматично створює випуск GitHub.---
+> The release flow regenerates catalog/archives, commits the version bump, tags the release, publishes npm, and creates the GitHub release automatically.
+
+---
 
 ## 📝 Commit Conventions
 
-| Префікс | Використовувати для |
+| Prefix | Use For |
 |:-------|:--------|
-| `подвиг:` | Нова навичка або функція |
-| `виправити:` | Виправлення помилок |
-| `документи:` | Зміни документації |
-| `refactor:` | Очищення коду або зміни структури |
-| `тест:` | Перевірка змін |
-| `домашня робота:` | Технічне обслуговування |---
+| `feat:` | New skill or feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `refactor:` | Code cleanup or structure changes |
+| `test:` | Test changes |
+| `chore:` | Maintenance |
+
+---
 
 ## ❓ Need Help?
 
-| Канал | Посилання |
+| Channel | Link |
 |:--------|:-----|
-| 💬 Питання | [Відкрити обговорення](https://github.com/diegosouzapw/omni-skills/discussions) |
-| 🐛 Помилки | [Відкрити проблему](https://github.com/diegosouzapw/omni-skills/issues) |
-| 📝 Перший відгук | [Відкрити чернетку PR](https://github.com/diegosouzapw/omni-skills/pulls) |
+| 💬 Questions | [Open a Discussion](https://github.com/diegosouzapw/omni-skills/discussions) |
+| 🐛 Bugs | [Open an Issue](https://github.com/diegosouzapw/omni-skills/issues) |
+| 📝 Early feedback | [Open a Draft PR](https://github.com/diegosouzapw/omni-skills/pulls) |

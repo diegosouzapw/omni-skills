@@ -5,71 +5,83 @@
 ---
 
 
->**Що потрібно Omni Skills `SKILL.md` на практиці, щоб досягти високої зрілості, найкращих практик, якості та показників безпеки.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-У цьому посібнику пояснюється, як класифікатор сховища насправді винагороджує навички.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Використовуйте його, коли хочете:
+Use it when you want to:
 
-- створити нову навичку, яка потрапляє в найкращі результати
-- покращити наявну навичку, яка застрягла на «добре» або низькому «відмінно».
-- зрозуміти, чому навичка з гідним форматуванням все ще не зараховується як винятковий операційний актив
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Це компаньйон для учасників:
+This is the contributor-facing companion to:
 
-- [Індикатор якості](QUALITY-BAR.md)
-- [Анатомія навичок](SKILL-ANATOMY.md)
-- [Класифікація навичок](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Поточний контрольний показник для живого каталогу:
+Current benchmark for the live native catalog:
 
-- 32 опубліковані навички
-- поточний розкид якості: `94, 95, 96, 97, 100`
-- поточний розкид найкращих практик: `98, 99, 100`
-- поточний верхній рівень: `omni-figma` з якістю `100/100` і найкращі практики `100/100`---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-Класифікатор**не**винагороджує лише значну уцінку.
+The classifier does **not** reward pretty markdown alone.
 
-Навички, які приносять високу оцінку, — це такі навички, як:
+High-scoring skills are skills that are:
 
--**доступний**: в описі чітко вказано, що робить навик і коли його використовувати
--**операційний**: навичка включає локальні сценарії, посилання та приклади для виконання
--**діагностика**: допомагає агенту відновитися, коли щось пішло не так
--**специфічний**: він зосереджений на одному робочому процесі, а не на широких порадах
--**безпечний**: він уникає ризикованих шаблонів і забезпечує чистий вихід сканера
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-На практиці найсильніші навички більше схожі на**маленький упакований комплект робочих процесів**, ніж на звичайну нотатку.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Використовуйте ці цілі під час створення:
+Use these targets when authoring:
 
-| Розмір | Сильна ціль | Виняткова ціль |
+| Dimension | Strong Target | Exceptional Target |
 |:----------|:--------------|:-------------------|
-| 🎯 Зрілість | `L3` | `L3` з кількома ресурсами підтримки |
-| 📋 Найкращі практики | `90+` | `96+` |
-| ⭐ Якість | `85+` | `90+` |
-| 🛡️ Безпека | `95+` | `95+` з нульовими висновками |---
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Ваша передова частина повинна полегшити класифікацію та виявлення навичок:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `name` точно відповідає каталогу
-- `опис` пояснює як**що**, так і**коли**
-- присутні `категорія`, `теги`, `інструменти`, `складність`, `ризик`, `джерело`, `автор` і дати
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Гарна форма опису:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Погана форма опису:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-Найсильніші навички постійно включають такі розділи:
+The strongest skills consistently include these sections:
 
-- `## Огляд`
-- `## Коли використовувати цей навик`
-- `## Робочий процес`
-- `## Приклади`
-- `## Кращі практики`
-- `## Усунення несправностей`
-- `## Додаткові ресурси`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Якщо одного з них не вистачає, оцінка все ще може бути хорошою, але стає важче виглядати винятково.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-Найкращі результативні навички зазвичай включають:
+Top-scoring skills usually include:
 
 - `references/checklist.md`
-- один або декілька допоміжних скриптів у `scripts/`
-- принаймні один робочий приклад у `examples/`
-- `agents/openai.yaml`, коли навичка призначена для прямого виклику агента
-- прямі посилання з `SKILL.md` на ці локальні файли
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Це важливо, тому що класифікатор розглядає навик із**укомплектованим допоміжним матеріалом**як більш дієвий, ніж той, який лише вказує назовні.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Рекомендований мінімум:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Приклади з високими результатами:
+High-scoring examples are:
 
-- бетонні
-- введений за допомогою справжнього паркану, такого як `bash` або `python`
-- прив'язаний до локального сценарію або повторюваної команди
-- представник робочого процесу
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-Добре:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Слабкий:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-Секретар винагороджує усунення несправностей, яке допомагає агенту відновитися, а не просто розпізнати проблему.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Бажаний формат:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Це сильніше, ніж розпливчаста замітка на зразок:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-Класифікатор тепер розрізняє навик, який є просто завершеним, і той, який є справді глибоким.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Сигнали, які допомагають:
+Signals that help:
 
-- безліч конкретних прикладів
-- кілька випадків усунення несправностей
-- керівництво відповідними навичками
-- багатші довідкові пакети
-- видимий розділ `## Workflow` з пронумерованими кроками, які секретар може рахувати безпосередньо
-- принаймні одна робоча таблиця або карта виконання, де це пояснює робочий процес
-- більше ніж один каталог підтримки або тип ресурсу
-- розділи робочого процесу з достатньою кількістю кроків для керівництва виконанням
-- активи прийняття рішень, такі як контрольні списки, рубрики, матриці, пакети або ігри
-- більша різноманітність пакетів підтримки для `посилань/`, `сценаріїв/`, `агентів/`, `прикладів/` або `активів/`
-- достатня кількість файлів підтримки для багаторазового використання, щоб виглядати як набір, а не один допоміжний файл, притиснутий до уцінки
-- більше одного допоміжного файлу, якщо робочий процес досить складний, щоб виправдати пакет підтримки
-- достатня глибина корпусу для покриття компромісів і режимів відмови
-- більш щільні операційні інструкції, тому що система оцінювання тепер відрізняє відшліфоване форматування від справжньої багаторазової глибини робочого процесу
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Сигнали, які**мало**допомагають:
+Signals that do **not** help much:
 
-- повторення однієї і тієї ж інструкції різними словами
-- загальний текст-заповнювач
-- додавання заголовків без додавання змісту під ними---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Скористайтеся цим контрольним списком перед запуском перевірки:
+Use this checklist before running validation:
 
-- опис говорить**що**і**коли**
-- навичка зосереджена на одному робочому процесі
-- `## Workflow` існує та містить пронумеровані або маркіровані кроки
-- існує принаймні один виконуваний приклад
-- `references/`, `scripts/` і в ідеалі `examples/` посилаються з `SKILL.md`
-- `agents/openai.yaml` існує, коли навичка призначена для прямого виклику в агентських клієнтах
-- для усунення несправностей використовуються `Симптоми` та `Рішення`
-- навичку можна обґрунтовано класифікувати як «L3».
-- немає ризикованих команд або підозрілих шляхів
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Потім запустіть:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- опис правильний, але надто загальний
-- уцінка має розділи, але не має робочої глибини
-- приклади не вказують на місцевих помічників
-- усунення несправностей існує, але не є діагностикою
-- занадто мало тегів або ідентифікаторів інструментів
-- навик безпечний і чистий, але все ще занадто дрібний, щоб вважати його винятковим---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Якщо ваша майстерність відчувається як:
+If your skill feels like:
 
--**шаблон**: він може пройти
--**довідник**: він може отримати хороші оцінки
--**пакет робочого процесу**: він має набагато більше шансів отримати найкращі результати
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

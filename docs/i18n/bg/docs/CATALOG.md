@@ -5,103 +5,151 @@
 ---
 
 
-> Автоматично генерирано от `skills_index.json` — 32 умения в 15 категории.
+> Auto-generated from `skills_index.json` — 48 skills across 15 categories.
 
-Генерирано: 2026-03-28T00:00:00+00:00---
+Generated: 2026-03-30T00:00:00+00:00
+
+---
 
 ## Table of Contents
 
-- [🧠 Ai агенти (5)](#ai-agents)
+- [🧠 Ai Agents (16)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Комуникация (1)](#комуникация)
-- [🤖 Данни Ai (1)](#data-ai)
-- [🎨 Дизайн (3)](#дизайн)
-- [💻 развитие (3)](#развитие)
+- [💬 Communication (1)](#communication)
+- [🤖 Data Ai (1)](#data-ai)
+- [🎨 Design (3)](#design)
+- [💻 Development (6)](#development)
 - [☁️ Devops (5)](#devops)
-- [📝 Документация (2)](#документация)
+- [📝 Documentation (2)](#documentation)
 - [🖼️ Frontend (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Машинно обучение (1)](#machine-learning)
-- [🧭 Продукт (1)](#продукт)
-- [🛡️ Тестване на сигурността (4)](#testing-security)
-- [🧰 Инструменти (1)](#инструменти)---
+- [🌐 Fullstack Web (2)](#fullstack-web)
+- [📈 Machine Learning (1)](#machine-learning)
+- [🧭 Product (2)](#product)
+- [🛡️ Testing Security (4)](#testing-security)
+- [🧰 Tools (1)](#tools)
+
+---
 
 ## 🧠 Ai Agents
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`контекстно инженерство`](../skills/context-engineering/SKILL.md) | Умение за контекстно инженерство на работния процес. Използвайте това умение, когато потребителят трябва да оформи подкани, контекст за извличане, памет и | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Умение за проектиране на работен процес за оценка. Използвайте това умение, когато потребител се нуждае от планове за оценяване на LLM, пакети за регресия, рубрики за оценяване, o | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | Умение за работен поток на приложението LLM. Използвайте това умение, когато потребителят се нуждае от стабилни модели за използване на инструменти, структурирани изходи, fallb | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Умение за бърз инженерен работен процес. Използвайте това умение, когато потребителят се нуждае от по-ясни инструкции за задача, примери, декомпозиция, | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`парца-инженер`](../skills/раг-инженер/SKILL.md) | Умение за работен процес на RAG. Използвайте това умение, когато потребителят се нуждае от канали за извличане, групиране, класиране, цитати и оценка f | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## 🗄️ Backend
+| [`building-agents`](../skills/building-agents/SKILL.md) | Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or confi | L2 instructions | 19/100 | 42/100 | 40/100 warn |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`cookiy`](../skills/cookiy/SKILL.md) | Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, suppo | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`creating-inline-actions`](../skills/creating-inline-actions/SKILL.md) | Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection o | L2 instructions | 20/100 | 44/100 | 30/100 warn |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`handling-attachments`](../skills/handling-attachments/SKILL.md) | File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachmen | L2 instructions | 16/100 | 38/100 | 60/100 warn |
+| [`handling-commands`](../skills/handling-commands/SKILL.md) | Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash com | L2 instructions | 7/100 | 37/100 | 100/100 passed |
+| [`handling-transactions`](../skills/handling-transactions/SKILL.md) | Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or hand | L2 instructions | 20/100 | 46/100 | 100/100 passed |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`managing-groups`](../skills/managing-groups/SKILL.md) | Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sendi | L2 instructions | 16/100 | 38/100 | 90/100 warn |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`recce-mcp-dev`](../skills/recce-mcp-dev/SKILL.md) | Recce MCP Server Development workflow skill. Use this skill when the user needs modifying recce/mcp_server.py, MCP tool  | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`recce-mcp-e2e`](../skills/recce-mcp-e2e/SKILL.md) | MCP E2E Verification workflow skill. Use this skill when the user needs MCP server code is modified and needs full E2E v | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`sending-reactions`](../skills/sending-reactions/SKILL.md) | Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing sta | L2 instructions | 16/100 | 38/100 | 100/100 passed |
+| [`synthesize-research-report`](../skills/synthesize-research-report/SKILL.md) | Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative res | L3 resources | 100/100 | 98/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`api-дизайн`](../skills/api-design/SKILL.md) | Умение за работен процес за проектиране на API. Използвайте това умение, когато потребителят се нуждае от ясен HTTP или договор за услуга преди внедряването. | L3 ресурси | 100/100 | 95/100 | 95/100 премина |
-| [`database-design`](../skills/database-design/SKILL.md) | Умение за работен процес за проектиране на база данни. Използвайте това умение, когато потребителят се нуждае от устойчива схема, индексиране и дизайн за мигриране преди i | L3 ресурси | 98/100 | 94/100 | 95/100 премина |## ⚙️ Cli Automation
+## 🗄️ Backend
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Умение за работен процес за откриване на каталог. Използвайте това умение, когато потребител поиска възможност, работен процес или специфичен за домейн помощник | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## 💬 Communication
+| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
+| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Умение за работен процес на заявка за изтегляне. Използвайте това умение, когато потребителят се нуждае от чист разказ за рецензията, рамкиране на риска и ръководство за рецензент | L3 ресурси | 98/100 | 95/100 | 95/100 премина |## 🤖 Data Ai
+## ⚙️ Cli Automation
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`договори за данни`](../skills/data-contracts/SKILL.md) | Умение за работен процес на договори за данни. Използвайте това умение, когато екип трябва да дефинира, прегледа или наложи договори между производителите | L3 ресурси | 97/100 | 95/100 | 95/100 премина |## 🎨 Design
+| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Умение за одит на работния процес на достъпност. Използвайте това умение, когато потребителят се нуждае от клавиатура, семантика, фокус, контраст, движение или като | L3 ресурси | 100/100 | 99/100 | 95/100 премина |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Умение за работен процес на проектиране на системи. Използвайте това умение, когато потребителят се нуждае от управление на токени, контрол на отклонението на компонентите, повторно | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Проектиране на умения за управление на работния процес на токени. Използвайте това умение, когато екип трябва да въведе, преименува, отхвърли или прегледа desi | L3 ресурси | 97/100 | 95/100 | 95/100 премина |## 💻 Development
+## 💬 Communication
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`архитектура`](../skills/architecture/SKILL.md) | Умение за работен процес на архитектура. Използвайте това умение, когато потребителят се нуждае от системни граници, компромиси или поетапно внедряване p | L3 ресурси | 98/100 | 94/100 | 95/100 премина |
-| [`отстраняване на грешки`](../skills/debugging/SKILL.md) | Умение за отстраняване на грешки в работния процес. Използвайте това умение, когато потребителят се нуждае от дисциплинирано възпроизвеждане, изолиране и проверка на корекции | L3 ресурси | 98/100 | 94/100 | 95/100 премина |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Умение за работен процес на Figma. Използвайте това умение, когато потребителят се нуждае от внедряване от дизайн към код, проверка на Figma, търсене на токен, Co | L3 ресурси | 100/100 | 100/100 | 95/100 премина |## ☁️ Devops
+| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Умение за работен процес на Docker. Използвайте това умение, когато потребител се нуждае от Dockerfiles, стратегия за изграждане на изображение, защита по време на изпълнение или съдържа | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Умение за работен процес на Kubernetes. Използвайте това умение, когато потребител се нуждае от манифести на работното натоварване, стратегия за внедряване, излагане на услуга или c | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Умение за наблюдение на работния процес. Използвайте това умение, когато потребител се нуждае от регистрационни файлове, показатели, проследявания, сигнали или SLO преглед преди изпращане | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Освободете умението за инженерен работен процес. Използвайте това умение, когато потребител се нуждае от по-безопасен план за пускане, политика за промоция, връщане назад pa | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`terraform`](../skills/terraform/SKILL.md) | Умение за работен процес Terraform. Използвайте това умение, когато потребител се нуждае от инфраструктура като структура на код, модули, стратегия за състояние или | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## Документация
+## 🤖 Data Ai
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`дневник на промените`](../skills/changelog/SKILL.md) | Умение за работен процес за бележки към изданието. Използвайте това умение, когато потребител се нуждае от записи в регистъра на промените, бележки за надграждане или сбито издание на | L3 ресурси | 98/100 | 94/100 | 95/100 премина |
-| [`документация`](../skills/documentation/SKILL.md) | Умение за работен процес на документация. Използвайте това умение, когато потребителят се нуждае от точно въвеждане, оперативно ръководство или освобождаване | L3 ресурси | 99/100 | 96/100 | 95/100 премина |## 🖼️ Frontend
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Умение за работен процес за проектиране на интерфейса. Използвайте това умение, когато потребителят се нуждае от структура на потребителския интерфейс, състояния и модели на взаимодействие преди i | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## 🌐 Fullstack Web
+## 🎨 Design
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Умение за автентификация и оторизация на работния процес. Използвайте това умение, когато потребител се нуждае от влизане, сесия, токен, роля или разрешение | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## 📈 Machine Learning
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`model-serving`](../skills/model-serving/SKILL.md) | Умение за работен процес на моделиране. Използвайте това умение, когато екип трябва да проектира, прегледа или затвърди онлайн извод, batch infe | L3 ресурси | 97/100 | 95/100 | 95/100 премина |## 🧭 Product
+## 💻 Development
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`мозъчна атака`](../skills/brainstorming/SKILL.md) | Умение за мозъчна атака на работния процес. Използвайте това умение, когато потребител проучва проблем и се нуждае от опции, компромиси и възстановяване | L3 ресурси | 99/100 | 96/100 | 95/100 премина |## 🛡️ Testing Security
+| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`claude-code-review`](../skills/claude-code-review/SKILL.md) | Claude Code Review workflow skill. Use this skill when the user needs asked to review a PR, or when /review is invoked w | L3 resources | 100/100 | 98/100 | 95/100 passed |
+| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`linear-deep-dive`](../skills/linear-deep-dive/SKILL.md) | Linear Deep Dive workflow skill. Use this skill when the user needs given a Linear issue ID, URL, identifier, or project | L3 resources | 100/100 | 96/100 | 95/100 passed |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`pm-research`](../skills/pm-research/SKILL.md) | PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packa | L3 resources | 100/100 | 100/100 | 95/100 passed |
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
-| :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`отговор при инцидент`](../skills/incident-response/SKILL.md) | Умение за работен процес за реакция при инциденти. Използвайте това умение, когато потребител се нуждае от сортиране на прекъсвания, последователност за смекчаване, заинтересовани страни com | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Умение за одит на сигурността на работния процес. Използвайте това умение, когато потребителят се нуждае от фокусиран преглед на конкретни рискове за сигурността вместо | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`моделиране на заплахи`](../skills/threat-modeling/SKILL.md) | Умение за моделиране на работния процес на заплахи. Използвайте това умение, когато потребителят се нуждае от граници на доверие, цели на нападателя, случаи на злоупотреба или смекчаване | L3 ресурси | 99/100 | 97/100 | 95/100 премина |
-| [`уязвимост-скенер`](../skills/vulnerability-scanner/SKILL.md) | Умение за работен процес за сканиране на уязвимости. Използвайте това умение, когато потребител се нуждае от повтарящо се покритие за известни уязвимости, u | L3 ресурси | 99/100 | 97/100 | 95/100 премина |## 🧰 Tools
+## ☁️ Devops
 
-| Умение | Описание | Ниво | Най-добри практики | Качество | Сигурност |
+| Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | Умение за създаване на работен поток на MCP сървър. Използвайте това умение, когато екип трябва да проектира, внедри, валидира или документира Mode | L3 ресурси | 97/100 | 95/100 | 95/100 премина |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## Документация
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+
+## 🖼️ Frontend
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## 🌐 Fullstack Web
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`resolving-domains`](../skills/resolving-domains/SKILL.md) | ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farc | L2 instructions | 20/100 | 45/100 | 30/100 warn |
+
+## 📈 Machine Learning
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+
+## 🧭 Product
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`qualitative-research-planner`](../skills/qualitative-research-planner/SKILL.md) | Qualitative Research Planner workflow skill. Use this skill when the user needs > and the operator should rely on the pa | L3 resources | 100/100 | 100/100 | 95/100 passed |
+
+## 🛡️ Testing Security
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## 🧰 Tools
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |

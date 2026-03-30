@@ -5,110 +5,126 @@
 ---
 
 
->**Структура та очікування щодо якості для Omni Skills `SKILL.md` — авторського формату, на якому працює весь каталог.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Кожен `SKILL.md` складається з двох окремих розділів:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Машиночитані метадані між роздільниками `---`. Він забезпечує:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 Індекс навичок і створення каталогу
-- 🔎 Пошук і фільтрація CLI
-- ✅ Перевірка та оцінка якості
-- 📊 Згенеровані артефакти класифікації `metadata.json`
-- 📋 Кожна навичка проявляється в `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Інструкції, зрозумілі людині (і агенту). Напишіть це так, ніби ви**інструктуєте старшого розробника**про те, як виконати завдання — достатньо конкретне, щоб агент ШІ міг стежити за ним, не здогадуючись.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Поле | Необхідно | Тип | Опис |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `ім'я` | ✅ | рядок | Має відповідати назві каталогу, з малими літерами дефісів |
-| `опис` | ✅ | рядок | Однорядковий опис (10-200 символів) |
-| `версія` | ⚡ | рядок | Семантична версія для самої навички (наприклад, `"0.1.1") |
-| `категорія` | ⚡ | рядок | Одна канонічна категорія з таксономії репо |
-| `теги` | ⚡ | рядок[] | Пошукові теги для виявлення |
-| `складність` | ⚡ | рядок | `початківець` · `середній` · `просунутий` · `експерт` |
-| `ризик` | ⚡ | рядок | `безпечно` · `обережно` · `образливо` · `критично` |
-| `інструменти` | ⚡ | рядок[] | Перевірені помічники кодування ШІ |
-| `джерело` | ⚡ | рядок | `омні-команда` · `спільнота` · `офіційний` |
-| `автор` | ⚡ | рядок | Атрибуція |
-| `дата_додавання` | ⚡ | рядок | Дата ISO |
-| `date_updated` | ⚡ | рядок | Дата ISO |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Завжди потрібно · ⚡ = Необхідно в суворому режимі
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Версія навичок не залежить від версії пакета npm. Пакунок наразі `0.1.3`, але наявні навички можуть залишатися у власній семантичній версії.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-Таксономія репо наразі визначає**18 канонічних категорій**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Категорія | Домен |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `розвиток` | Загальна розробка програмного забезпечення |
-| 🎨 `інтерфейс` | Фронтенд-фреймворки та UI |
-| 🔧 `сервер` | Сервіси та API |
-| 🌐 `fullstack-web` | Наскрізна веб-розробка |
-| 🛠️ `інструменти` | Інструменти та утиліти розробника |
-| ⚙️ `cli-automation` | Інструменти CLI та сценарії автоматизації |
-| 📊 `бізнес` | Бізнес процеси та стратегія |
-| 📐 `продукт` | Управління та дизайн продукції |
-| 🎯 `дизайн` | Візуальний та UX дизайн |
-| 🤖 `data-ai` | Інженерія даних та застосування ШІ |
-| 🧠 `ai-агенти` | Розробка агента ШІ та шаблони |
-| 📈 `машинне навчання` | Моделі ML і навчання |
-| 🔌 `devops` | Інфраструктура та розгортання |
-| 🛡️ `тестування-безпека` | Тестування та методи безпеки |
-| 📖 `документація` | Формування та ведення документації |
-| 🎬 `content-media` | Створення контенту та медіа |
-| 💬 `спілкування` | Комунікаційні засоби та робочі процеси |
-| ❓ `без категорії` | За замовчуванням, коли збігів не знайдено |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Застарілі мітки, такі як `робочий процес`, `архітектура`, `інфраструктура`, `безпека` та `тестування`, автоматично нормалізуються за допомогою зіставлення псевдонімів.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Добре написане тіло навичок дотримується такої ієрархії:
+A well-written skill body follows this hierarchy:
 
-### 📌 Огляд (обов’язково)
-2-3 речення про те,**що**робить навик і**чому**він існує.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Коли використовувати (обов’язково)
-Список**специфічних сценаріїв**, у яких застосовується цей навик.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Основні інструкції (обов’язково)
-**Покроковий процес**, якому повинен слідувати агент. Будьте явними. Будьте конкретними. Агенти найкраще працюють із чіткими, недвозначними інструкціями.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Приклади (рекомендовано)
-Конкретні підказки, блоки коду або очікувані результати.**Чим конкретніше, тим краще.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Найкращі методи (рекомендовано)
-Використовуйте ✅ Робити / ❌ Не форматувати для швидкого сканування.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Усунення несправностей (необов'язково)
-Поширені проблеми та їх вирішення.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Пов’язані навички (необов’язково)
-Перехресні посилання на додаткові навички.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Зосереджено на**одному конкретному**робочому процесі або домені
-- 📌 Інструкції**досить зрозумілі, щоб штучний інтелект**міг виконувати їх без людського тлумачення
-- 💡 Включає**конкретні приклади**з очікуваною поведінкою
-- 🛡️ Має належні вказівки щодо**обробки помилок**
-- 📊 Створює здорові метадані: канонічна категорія, зрілість L2+, якість 70+
-- 🧰 Доставляє багаторазовий пакет підтримки, а не лише прозу, в ідеалі через `посилання/`, `сценарії/`, `приклади/` та `агенти/`, де це доречно
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Щоб ознайомитись із сильнішими моделями підрахунку очок, які підвищують навички до найвищих діапазонів, див. [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Загальні поради, які можна застосувати до будь-чого
-- 🤷 Розпливчасті інструкції, як-от "напишіть хороший код"
-- 🚫 Без прикладів чи блоків коду
-- ⚠️ Відсутні поля передньої матерії
-- 📉 Низький показник якості (менше 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

@@ -5,71 +5,83 @@
 ---
 
 
->**オムニ スキル「SKILL.md」が高い成熟度、ベスト プラクティス、品質、セキュリティ スコアを達成するために実際に必要なもの。**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-このガイドでは、リポジトリの分類子が実際にスキルにどのように報酬を与えるかについて説明します。
+This guide explains how the repository's classifier actually rewards a skill.
 
-次のような場合に使用します。
+Use it when you want to:
 
-- 上位スコアバンドに入る新しいスキルを作成します
-- 「良い」または低い「優れた」に留まっている既存のスキルを改善します。
-- きちんとした書式設定を備えたスキルが依然として優れた運用資産として評価されない理由を理解する
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-これは、寄稿者向けの次のコンパニオンです。
+This is the contributor-facing companion to:
 
-- [品質バー](QUALITY-BAR.md)
-- [スキルアナトミー](SKILL-ANATOMY.md)
-- [スキル分類](../specs/SKILL-CLASSIFICATION.md)
+- [Quality Bar](QUALITY-BAR.md)
+- [Skill Anatomy](SKILL-ANATOMY.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-ライブ カタログの現在のベンチマーク:
+Current benchmark for the live native catalog:
 
-- 32 の公開スキル
-- 現在の品質スプレッド: `94、95、96、97、100`
-- 現在のベスト プラクティスの範囲: `98、99、100`
-- 現在のトップエンド: 「100/100」品質の「omni-figma」と「100/100」ベストプラクティス---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-分類子は、かなりのマークダウンだけを報酬として与える**わけではありません**。
+The classifier does **not** reward pretty markdown alone.
 
-高得点のスキルとは、次のようなスキルです。
+High-scoring skills are skills that are:
 
--**発見可能**: 説明には、スキルが何をするのか、いつ使用するのかが明確に記載されています
--**操作可能**: スキルにはローカル スクリプト、リファレンス、実行可能なサンプルが含まれています
--**診断**: 問題が発生した場合にエージェントが回復するのに役立ちます
--**具体的**: 広範なアドバイスではなく、1 つのワークフローに焦点を当てています。
--**安全**: 危険なパターンを回避し、クリーンなスキャナー出力を出荷します。
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-実際には、最も強力なスキルは、単純なマークダウン ノートというよりも、**小さなパッケージ化されたワークフロー キット**のように動作します。---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-オーサリング時に次のターゲットを使用します。
+Use these targets when authoring:
 
-|寸法 |強力なターゲット |例外的なターゲット |
-|:----------|:--------------|:--------|
-| 🎯 成熟度 | `L3` |複数のサポート リソースを備えた「L3」 |
-| 📋 ベストプラクティス | `90+` | `96+` |
-| ⭐品質 | `85+` | `90+` |
-| 🛡️ セキュリティ | `95+` | 「95+」で所見ゼロ |---
+| Dimension | Strong Target | Exceptional Target |
+|:----------|:--------------|:-------------------|
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-フロントマターは、スキルを分類しやすく、発見しやすいものにする必要があります。
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `name` はディレクトリと正確に一致します
-- 「説明」では**何を**と**いつ**の両方を説明します
-- 「カテゴリ」、「タグ」、「ツール」、「複雑さ」、「リスク」、「ソース」、「作成者」、および日付がすべて存在します。
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-適切な説明の形状:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-不適切な説明の形状:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-最も強力なスキルには、一貫して次のセクションが含まれます。
+The strongest skills consistently include these sections:
 
-- 「## 概要」
-- `## このスキルをいつ使用するか`
-- 「## ワークフロー」
-- `## 例`
-- 「## ベストプラクティス」
-- 「## トラブルシューティング」
-- `## 追加リソース`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-これらのいずれかが欠けている場合でも、スコアは良好である可能性がありますが、優れているように見えることが難しくなります。---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-通常、最高得点のスキルには次のものが含まれます。
+Top-scoring skills usually include:
 
 - `references/checklist.md`
-- `scripts/` 内の 1 つ以上のヘルパー スクリプト
-- `examples/` に少なくとも 1 つの実際に動作するサンプル
-- スキルがエージェントの直接呼び出しを目的としている場合は、「agents/openai.yaml」
-- `SKILL.md` からそれらのローカル ファイルへの直接リンク
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-これは、分類子が**バンドルされたサポート資料**を含むスキルを、外側のみを指すスキルよりも実用的なものとして扱うため、重要です。
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-推奨される最小値:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-高得点の例は次のとおりです。
+High-scoring examples are:
 
-- コンクリート
-- `bash` や `python` などの実際のフェンスを使用して入力
-- ローカル スクリプトまたは反復可能なコマンドに関連付けられている
-- ワークフローの代表者
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-良い:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-弱い：```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-スコアラーは、問題を認識するだけでなく、エージェントの回復に役立つトラブルシューティングに報酬を与えます。
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-推奨される形式:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-これは、次のような漠然としたメモよりも強力です。```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-分類器は、単に完成したスキルと本当に深いスキルを区別するようになりました。
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-役立つシグナル:
+Signals that help:
 
-- 複数の具体例
-- 複数のトラブルシューティングケース
-- 関連スキルの指導
-- より豊富なリファレンスパック
-- スコアラーが直接カウントできる番号付きステップを含む表示可能な「## ワークフロー」セクション
-- ワークフローを明確にする少なくとも 1 つの操作テーブルまたは実行マップ
-- 複数のサポート ディレクトリまたはアセット タイプ
-- 実行をガイドするのに十分なステップを含むワークフローセクション
-- チェックリスト、ルーブリック、マトリックス、パケット、プレイブックなどの意思決定資産
-- `references/`、`scripts/`、`agents/`、`examples/`、または `assets/` にわたるサポート パックの多様性の強化
-- マークダウンの隣にヘルパーが 1 つも隠れていない、キットのように見えるのに十分な再利用可能なサポート ファイル
-- ワークフローがサポート パックを正当化するほど複雑な場合は、複数のヘルパー ファイル
-- トレードオフと故障モードをカバーするのに十分なボディの深さ
-- スコアラーが洗練された書式設定と真に再利用可能なワークフローの深さを区別するようになったため、より緻密な操作ガイダンス
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-**あまり役に立たない**シグナル:
+Signals that do **not** help much:
 
-- 同じ指示を別の言葉で繰り返す
-- 一般的なフィラーテキスト
-- その下に内容を追加せずに見出しを追加します---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-検証を実行する前に、このチェックリストを使用してください。
+Use this checklist before running validation:
 
-- 説明には**何を**、**いつ**と記載されています
-- スキルは 1 つのワークフローに焦点を当てています
-- 「## ワークフロー」が存在し、番号付きまたは箇条書きのステップが含まれています
-- 実行可能なサンプルが少なくとも 1 つ存在します
-- `references/`、`scripts/`、および理想的には `examples/` は `SKILL.md` からリンクされます。
-- スキルがエージェント クライアントでの直接呼び出しを目的としている場合、「agents/openai.yaml」が存在します。
-- トラブルシューティングでは「症状」と「解決策」を使用します。
-- スキルは合理的に「L3」に分類できます。
-- 危険なコマンドや疑わしいパスは存在しません
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-次に、次を実行します。```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- 説明は正しいですが、一般的すぎます
-- マークダウンにはセクションがありますが、操作の深さはありません
-- 例はローカル ヘルパーを指していません
-- トラブルシューティングは存在しますが、診断ではありません
-- タグまたはツール識別子が少なすぎます
-- スキルは安全でクリーンですが、例外的なものとしてカウントするにはまだ浅すぎます---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-あなたのスキルが次のように感じられる場合:
+If your skill feels like:
 
--**テンプレート**: 合格する可能性があります
--**ガイド**: 良いスコアが得られる可能性があります
--**ワークフロー パッケージ**: トップのスコアを獲得する可能性が非常に高くなります。
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

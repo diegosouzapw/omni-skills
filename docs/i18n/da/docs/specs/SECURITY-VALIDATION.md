@@ -5,44 +5,50 @@
 ---
 
 
->**Sikkerhedsscanning, arkivgenerering, valgfri signering og distributionsemballage for hver publiceret færdighed.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| Funktion | Stat |
+| Feature | State |
 |:--------|:------|
-| ✅ Statisk sikkerhedsscanner | Altid aktiveret |
-| ✅ Klassificering af metadata pr. færdighed | Implementeret |
-| ✅ Per-skill arkiver (zip/tar.gz) | Implementeret |
-| ✅ SHA-256 kontrolsummanifester | Implementeret |
-| ✅ CI-scannerport på frigivelsesmærker | Implementeret |
-| ✅ npm udgiver arbejdsgang fra verificeret tarball | Implementeret |
-| ⚙️ ClamAV-scanning | Valgfri beriger |
-| ⚙️ VirusTotal hash opslag | Valgfri beriger |
-| ✅ Fritliggende signering | Implementeret |
-| ✅ CI-håndhævet signering | Implementeret på release tags |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scanner alle færdigheder under validering:
+Scans every skill during validation:
 
-| Mål | Hvad bliver scannet |
-|:-------|:------------------------|
-| 📝 `SKILL.md` | Vigtigste færdighedsindhold |
-| 📄 Markdown/tekstfiler | Pakkede referencer og dokumenter |
-| ⚙️ Scripts | Pakkede automatiseringsscripts |
+| Target | What Gets Scanned |
+|:-------|:-----------------|
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**Regelfamilier:**
+**Rule families:**
 
-| Regel | Eksempler |
-|:-----|:--------|
-| 🎭**Prompt indsprøjtning**| Eksfiltrationsmønstre, instruktionstilsidesættelser |
-| 💣**Destruktive kommandoer**| `rm -rf`, `format`, `del /s` |
-| 🔑**Privilegeeskalering**| `sudo`, `chmod 777`, setuid mønstre |
-| 📂**Suspekte stier**| `/etc/shadow`, `~/.ssh`, legitimationsfiler |
-| ⚠️**Risikable primitiver**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@ Scanner alle færdigheder under validering:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Kræver "clamscan" i "PATH".
-- Scanner pakkede filer for kendt malware
-- Resultater registreret i færdighedsmetadata---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**Kun Hash-opslag**- ingen filupload under normal validering
-- Ukendte filer forbliver kun lokale
-- Holder bygningen**deterministisk**og CI-uafhængig### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strenge frigivelsesåbning:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-Dette trin læser genererede `skills/*/metadata.json` og mislykkes, hvis påkrævede scannere ikke udførte eller rapporterede detektioner.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-Sikkerhedsdata udsendes i hver færdigheds metadata:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ Sikkerhedsdata udsendes i hver færdigheds metadata:```json
 }
 ```
 
-> Denne blok udbredes til manifester og katalogvisninger, hvilket gør det muligt for CLI, API og MCP at**filtrere og rangere efter sikkerhedsscore**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-Hver offentliggjort færdighed genererer:
+Each published skill generates:
 
-| Fil | Format |
+| File | Format |
 |:-----|:-------|
-| `dist/archives/<skill>.zip` | ZIP-arkiv |
-| `dist/archives/<skill>.tar.gz` | Tarball arkiv |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 kontrolsummanifest |### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions frigiver tags (`v*`) nu:
+GitHub Actions release tags (`v*`) now:
 
-1. bekræft, at git-tagget matcher `package.json`
-2. Installer og opdater ClamAV
-3. afkode frigivelsessigneringsnøglen fra GitHub-hemmeligheder
-4. kør `npm run release:verify`
-5. pak tarballen med `npm pack`
-6. offentliggør den nøjagtige tarball til npm med herkomst
-7. Opret en GitHub-udgivelse med brugerdefinerede noter og vedhæftede bekræftelsesaktiver---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Hvis der ikke er angivet en offentlig nøgle, udleder buildet en med `openssl` og placerer den i `dist/signing/`.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-Når det er aktiveret, udsendes `.sig`-filer ved siden af ​​arkiverne og kontrolsummanifestet.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-I CI kræver udgivelsestags nu at logge ind:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` eller `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- valgfri `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` eller `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| Begrænsning | Status |
+| Limitation | Status |
 |:-----------|:-------|
-| VirusTotal upload indsendelse | Med vilje udelukket fra standardvalidering |
-| Underskriftshåndhævelse | Håndhæves på frigivelsesmærker; lokale builds kan stadig køre usigneret |
-| Hosted governance | Indbygget godkendelse, admin runtime, CORS/IP-tilladelseslister, vedligeholdelsestilstand og revisionslogning er på plads; eksterne gateways forbliver valgfrie |
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

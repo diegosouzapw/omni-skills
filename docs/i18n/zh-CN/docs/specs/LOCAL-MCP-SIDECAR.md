@@ -5,47 +5,55 @@
 ---
 
 
->**“@omni-skills/server-mcp”的可选本地模式扩展，添加了用于客户端检测、技能管理和 MCP 配置生成的文件系统感知工具。**---
+> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
+
+---
 
 ## 📊 Status
 
-|特色|状态|
+| Feature | State |
 |:--------|:------|
-| ✅ 只读目录工具 |已实施 |
-| ✅ 文件系统感知的本地工具 |已实施 |
-| ✅ 3 种传输方式（stdio/stream/sse）|已实施 |
-| ✅ 列入白名单的写入 |已实施 |
-| ✅ 写入前预览默认值 |已实施 |
-| ✅ 客户端感知的 MCP 配置编写 |已实施 |
-| ✅ HTTP 身份验证 + 速率限制 |已实施 |
-| ✅ 发布时签名和校验和 |针对生成的档案实施并由 API/MCP 呈现 |
-| 🟡 本地写入时签名强制执行 |尚未强制执行；本地模式从受信任的本地结帐预览和写入|
-| 🟢 当前客户覆盖范围 | 7 个可安装的客户端、16 个可配置的客户端、33 个配置目标、19 个配置文件 |---
+| ✅ Read-only catalog tools | Implemented |
+| ✅ Filesystem-aware local tools | Implemented |
+| ✅ 3 transports (stdio/stream/sse) | Implemented |
+| ✅ Allowlisted writes | Implemented |
+| ✅ Preview-before-write defaults | Implemented |
+| ✅ Client-aware MCP config writing | Implemented |
+| ✅ HTTP auth + rate limiting | Implemented |
+| ✅ Release-time signatures and checksums | Implemented for generated archives and surfaced by API/MCP |
+| 🟡 Local write-time signature enforcement | Not enforced yet; local mode previews and writes from the trusted local checkout |
+| 🟢 Current client coverage | 7 install-capable clients, 16 config-capable clients, 33 config targets, 19 config profiles |
+
+---
 
 ## 🎯 Purpose
 
-本地模式在现有只读 MCP 目录表面之上添加了**文件系统感知工具**。当代理需要执行以下操作时使用它：
+Local mode adds **filesystem-aware tools** on top of the existing read-only MCP catalog surface. Use it when an agent needs to:
 
-- 🕵️检测兼容的本地AI客户端
-- 📋检查已安装的技能
-- 👁️预览技能安装或删除（试运行）
-- 📦应用本地技能安装或删除
-- ⚙️预览后写入本地MCP配置文件
+- 🕵️ Detect compatible local AI clients
+- 📋 Inspect installed skills
+- 👁️ Preview skill installation or removal (dry-run)
+- 📦 Apply local skill installation or removal
+- ⚙️ Write a local MCP config file after preview
 
-它故意区分了两个问题：
+It deliberately separates two concerns:
 
--**技能安装目标**
-  具有可以使用“install_skills”的稳定技能目录的客户端
--**MCP 配置目标**
-  具有稳定记录的 MCP 配置格式的客户端或 IDE，即使它们没有技能目录---
+- **skill installation targets**
+  clients with a stable skills directory that can use `install_skills`
+- **MCP config targets**
+  clients or IDEs with a stable documented MCP config format, even if they do not have a skills directory
+
+---
 
 ## 🔌 Transports
 
-|交通 |协议|使用案例|
+| Transport | Protocol | Use Case |
 |:----------|:---------|:---------|
-| `stdio` |管材|直接客户端集成 |
-| `流` |流式 HTTP |现代 HTTP 客户端 |
-| `sse` |服务器发送的事件 |旧客户 |---
+| `stdio` | Pipe | Direct client integration |
+| `stream` | Streamable HTTP | Modern HTTP clients |
+| `sse` | Server-Sent Events | Legacy clients |
+
+---
 
 ## 🚀 Enable Local Mode
 
@@ -81,130 +89,144 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
-> 所有命令都会自动设置 `OMNI_SKILLS_MCP_MODE=local`。---
+> All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
+
+---
 
 ## 🛠️ Local Tools
 
-启用本地模式后，这些额外的工具将可用：
+When local mode is enabled, these extra tools become available:
 
-|工具|描述 |默认 |
+| Tool | Description | Default |
 |:-----|:------------|:--------|
-| 🕵️ `检测客户端` |扫描 AI 客户端及其技能/配置路径 | — |
-| 📋 `list_installed_skills` |检查特定客户已安装的技能 | — |
-| 📦 `安装技能` |将技能安装到客户的技能目录中 | 🔍 试运行 |
-| 🗑️ `remove_skills` |删除客户端已安装的技能 | 🔍 试运行 |
-| ⚙️ `configure_client_mcp` |为特定客户端编写 MCP 配置 | 🔍 试运行 |
+| 🕵️ `detect_clients` | Scan for AI clients and their skill/config paths | — |
+| 📋 `list_installed_skills` | Inspect installed skills for a specific client | — |
+| 📦 `install_skills` | Install skills into a client's skills directory | 🔍 dry-run |
+| 🗑️ `remove_skills` | Remove installed skills from a client | 🔍 dry-run |
+| ⚙️ `configure_client_mcp` | Write MCP config for a specific client | 🔍 dry-run |
 
-> ⚠️ 当省略 `dry_run` 时，`install_skills`、`remove_skills` 和 `configure_client_mcp` 默认为**dry-run**。---
+> ⚠️ `install_skills`, `remove_skills`, and `configure_client_mcp` default to **dry-run** when `dry_run` is omitted.
+
+---
 
 ## 🎯 Supported Targets
 
 ### 📂 Skills Directories
 
-|客户|路径|
-|:--------|:-----|
-| 🔵 克劳德代码 | `~/.claude/技能` |
-| 🔵 光标 | `~/.cursor/skills` |
+| Client | Path |
+|:-------|:-----|
+| 🔵 Claude Code | `~/.claude/skills` |
+| 🔵 Cursor | `~/.cursor/skills` |
 | 🟡 Gemini CLI | `~/.gemini/skills` |
-| 🟣 反重力 | `~/.gemini/反重力/技能` |
-| 🟢 基罗 | `~/.kiro/skills` |
-| 🔴 Codex CLI | `~/.codex/skills` 或 `$CODEX_HOME/skills` |
-| ⚪ 开放代码 | `<工作空间>/.opencode/skills` |
+| 🟣 Antigravity | `~/.gemini/antigravity/skills` |
+| 🟢 Kiro | `~/.kiro/skills` |
+| 🔴 Codex CLI | `~/.codex/skills` or `$CODEX_HOME/skills` |
+| ⚪ OpenCode | `<workspace>/.opencode/skills` |
 
-这 7 个目标是当今唯一一流的安装目的地。### ⚙️ MCP Config Files
+These 7 targets are the only first-class install destinations today.
 
-|目标|格式|
-|:--------|:--------|
-| `~/.claude/settings.json` |克劳德代码设置 JSON |
-| `<工作空间>/.claude/settings.json` | Claude 项目设置 JSON |
-| `~/.claude.json` |旧版 Claude JSON (`mcpServers`) |
-| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude 桌面 JSON（特定于操作系统）|
+### ⚙️ MCP Config Files
+
+| Target | Format |
+|:-------|:-------|
+| `~/.claude/settings.json` | Claude Code settings JSON |
+| `<workspace>/.claude/settings.json` | Claude project settings JSON |
+| `~/.claude.json` | Legacy Claude JSON (`mcpServers`) |
+| `~/Library/Application Support/Claude/claude_desktop_config.json` | Claude Desktop JSON (OS-specific) |
 | `~/.cursor/mcp.json` | JSON (`mcpServers`) |
-| `<工作空间>/.cursor/mcp.json` |光标工作区 JSON (`mcpServers`) |
-| `~/.gemini/settings.json` | Gemini 用户 JSON (`mcpServers`) |
-| `<工作空间>/.gemini/settings.json` | Gemini 项目 JSON (`mcpServers`) |
-| `~/.gemini/antigravity/mcp.json` |反重力 JSON (`mcpServers`) |
-| `~/.kiro/settings/mcp.json` | Kiro 用户 JSON (`mcpServers`) |
-| `<工作空间>/.kiro/settings/mcp.json` | Kiro 项目 JSON (`mcpServers`) |
+| `<workspace>/.cursor/mcp.json` | Cursor workspace JSON (`mcpServers`) |
+| `~/.gemini/settings.json` | Gemini user JSON (`mcpServers`) |
+| `<workspace>/.gemini/settings.json` | Gemini project JSON (`mcpServers`) |
+| `~/.gemini/antigravity/mcp.json` | Antigravity JSON (`mcpServers`) |
+| `~/.kiro/settings/mcp.json` | Kiro user JSON (`mcpServers`) |
+| `<workspace>/.kiro/settings/mcp.json` | Kiro project JSON (`mcpServers`) |
 | `~/.codex/config.toml` | TOML (`[mcp_servers]`) |
-| `<工作空间>/.mcp.json` | JSON (`mcpServers`) |
-| `<工作空间>/opencode.json` | OpenCode 工作区 JSON (`mcp`) |
-| `~/.config/opencode/opencode.json` | OpenCode 用户 JSON (`mcp`) |
+| `<workspace>/.mcp.json` | JSON (`mcpServers`) |
+| `<workspace>/opencode.json` | OpenCode workspace JSON (`mcp`) |
+| `~/.config/opencode/opencode.json` | OpenCode user JSON (`mcp`) |
 | `~/.cline/data/settings/cline_mcp_settings.json` | Cline JSON (`mcpServers`) |
-| `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON（`mcpServers`）|
-| `<工作空间>/.github/mcp.json` | GitHub Copilot 存储库 JSON (`mcpServers`) |
-| `~/.config/kilo/kilo.json` | Kilo CLI 用户 JSON (`mcp`) |
-| `<工作空间>/kilo.json` | Kilo CLI 项目 JSON (`mcp`) |
-| `<工作空间>/.kilocode/mcp.json` | Kilo 代码工作区 JSON (`mcpServers`) |
-| `<工作空间>/.continue/mcpServers/omni-skills.yaml` |继续工作区 YAML (`mcpServers`) |
-| `<工作空间>/.junie/mcp/mcp.json` | Junie 项目 JSON (`mcpServers`) |
-| `~/.junie/mcp/mcp.json` | Junie 用户 JSON (`mcpServers`) |
+| `~/.copilot/mcp-config.json` | GitHub Copilot CLI JSON (`mcpServers`) |
+| `<workspace>/.github/mcp.json` | GitHub Copilot repository JSON (`mcpServers`) |
+| `~/.config/kilo/kilo.json` | Kilo CLI user JSON (`mcp`) |
+| `<workspace>/kilo.json` | Kilo CLI project JSON (`mcp`) |
+| `<workspace>/.kilocode/mcp.json` | Kilo Code workspace JSON (`mcpServers`) |
+| `<workspace>/.continue/mcpServers/omni-skills.yaml` | Continue workspace YAML (`mcpServers`) |
+| `<workspace>/.junie/mcp/mcp.json` | Junie project JSON (`mcpServers`) |
+| `~/.junie/mcp/mcp.json` | Junie user JSON (`mcpServers`) |
 | `~/.codeium/windsurf/mcp_config.json` | Windsurf JSON (`mcpServers`) |
-| `~/.config/goose/config.yaml` | Goose YAML（`扩展`）|
-| `<工作空间>/.zed/settings.json` | Zed 工作区 JSON (`context_servers`) |
-| `<工作空间>/.vscode/mcp.json` | JSON（`服务器`）|
-| `~/.config/Code/User/mcp.json` | VS Code 用户 JSON（`服务器`）|
-| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insider 用户 JSON（`服务器`）|
-| `<工作空间>/.devcontainer/devcontainer.json` |嵌套开发容器 JSON (`customizations.vscode.mcp.servers`) |
-|客户端根 `mcp.json` | JSON（每个客户端格式）|
+| `~/.config/goose/config.yaml` | Goose YAML (`extensions`) |
+| `<workspace>/.zed/settings.json` | Zed workspace JSON (`context_servers`) |
+| `<workspace>/.vscode/mcp.json` | JSON (`servers`) |
+| `~/.config/Code/User/mcp.json` | VS Code user JSON (`servers`) |
+| `~/.config/Code - Insiders/User/mcp.json` | VS Code Insiders user JSON (`servers`) |
+| `<workspace>/.devcontainer/devcontainer.json` | Nested Dev Container JSON (`customizations.vscode.mcp.servers`) |
+| Client root `mcp.json` | JSON (per-client format) |
 
-这给出了边车：
+That gives the sidecar:
 
--**16 个可配置的客户端或 IDE**
--**33条一流目标路径**
--**19 种格式配置文件**
+- **16 config-capable clients or IDEs**
+- **33 first-class target paths**
+- **19 format profiles**
 
-当前一流的配置覆盖范围：
+Current first-class config coverage spans:
 
-- 克劳德代码和克劳德桌面
-- 光标
-- VS Code 和开发容器
-- 双子座 CLI
-- 反重力
-- 基罗
-- 法典 CLI
-- 继续
-- 朱妮
-- 风帆冲浪
-- 鹅
-- 开放代码
-——克莱恩
-- GitHub 副驾驶 CLI
-- 基洛代码
-- 泽德
+- Claude Code and Claude Desktop
+- Cursor
+- VS Code and Dev Containers
+- Gemini CLI
+- Antigravity
+- Kiro
+- Codex CLI
+- Continue
+- Junie
+- Windsurf
+- Goose
+- OpenCode
+- Cline
+- GitHub Copilot CLI
+- Kilo Code
+- Zed
 
-手动或仅片段候选者仍然有意地处于一流编写者集之外，直到他们的公共配置合同足够稳定。### 🧭 Expansion Policy
+Manual or snippet-only candidates are still intentionally outside the first-class writer set until their public config contracts are stable enough.
 
-Omni Skills 现在将客户支持视为三级模型：
+### 🧭 Expansion Policy
 
-1.**可安装**
-   存在稳定的技能目录，因此 CLI 和 sidecar 可以直接安装技能。
-2.**可配置**
-   存在稳定的、有记录的 MCP 配置格式，因此“config-mcp”可以预览和写入一流的文件。
-3.**仅手册或片段**
-   该产品显然以某种形式支持 MCP，但公共文档尚未证明安全的自动编写器是合理的。
+Omni Skills now treats client support as a three-level model:
 
-这就是为什么 JetBrains AI Assistant 之类的客户端仍然仅使用手动/片段，而 Roo Code 和 Postman 则处于一流编写器之外，直到它们的安全自动合并故事足够强大以支持该项目。---
+1. **install-capable**
+   A stable skills directory exists, so the CLI and sidecar can install skills directly.
+2. **config-capable**
+   A stable, documented MCP config format exists, so `config-mcp` can preview and write a first-class file.
+3. **manual or snippet-only**
+   The product clearly supports MCP in some form, but the public docs do not justify a safe automatic writer yet.
+
+This is why clients such as JetBrains AI Assistant remain manual/snippet-only, while Roo Code and Postman stay outside the first-class writer set until their safe automatic merge story is strong enough for this project.
+
+---
 
 ## 🔒 Allowlist Model
 
-本地 sidecar 仅在**显式允许列表**下写入。### 🟢 Default allowlist:
+The local sidecar only writes under an **explicit allowlist**.
 
-- `$HOME` 下的已知客户端根目录
-- Windsurf 用户配置的 `~/.codeium`
-- GitHub Copilot CLI 的“~/.copilot”
-- Cline CLI 的“~/.cline”
-- Goose 配置的 `~/.config/goose`
-- Kilo/OpenCode CLI 配置的 `~/.config/kilo` 和 `~/.config/opencode`
-- `$CODEX_HOME` （或 `~/.codex` 如果未设置）
-- 当前工作空间根目录
-- `<工作空间>/.agents`
-- `<工作空间>/.github`
-- `<工作空间>/.kilocode`
-- `<工作空间>/.opencode`
-- `<工作空间>/.zed`
-- `<工作空间>/.继续`
-- `<工作空间>/.vscode`### ➕ Extend the allowlist:
+### 🟢 Default allowlist:
+
+- Known client roots under `$HOME`
+- `~/.codeium` for Windsurf user config
+- `~/.copilot` for GitHub Copilot CLI
+- `~/.cline` for Cline CLI
+- `~/.config/goose` for Goose config
+- `~/.config/kilo` and `~/.config/opencode` for Kilo/OpenCode CLI config
+- `$CODEX_HOME` (or `~/.codex` if unset)
+- Current workspace root
+- `<workspace>/.agents`
+- `<workspace>/.github`
+- `<workspace>/.kilocode`
+- `<workspace>/.opencode`
+- `<workspace>/.zed`
+- `<workspace>/.continue`
+- `<workspace>/.vscode`
+
+### ➕ Extend the allowlist:
 
 ```bash
 export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
@@ -359,7 +381,9 @@ mcpServers:
 
 ### 🧭 CLI Contract
 
-sidecar 支持的 CLI 包装器使 MCP 配置生成可访问，无需直接 JSON-RPC 调用：```bash
+The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -369,7 +393,9 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-默认行为仅限预览。 `--write` 将配置应用于白名单下已解析的目标路径。### 🌊 Windsurf
+Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.
+
+### 🌊 Windsurf
 
 ```json
 {
@@ -458,92 +484,102 @@ url = "http://127.0.0.1:3334/mcp"
 
 ### 🔵 Claude allow/deny lists
 
-`configure_client_mcp` 工具还可以在您通过时写入 Claude 特定的设置：
+The `configure_client_mcp` tool can also write Claude-specific settings when you pass:
 
 - `allowed_mcp_servers`
 - `denied_mcp_servers`
 - `permissions_deny`
-- `enable_all_project_mcp_servers`### 💜 VS Code sandboxing
+- `enable_all_project_mcp_servers`
 
-对于 VS Code 和 Dev Container 目标，`configure_client_mcp` 还可以编写：
+### 💜 VS Code sandboxing
 
-- `沙盒已启用`
+For VS Code and Dev Container targets, `configure_client_mcp` can also write:
+
+- `sandboxEnabled`
 - `sandbox.filesystem.allowWrite`
 - `sandbox.network.allowHosts`
-- `开发观察`
+- `dev.watch`
 - `dev.debug.type`
 
-这映射到当前 VS Code 对本地 stdio MCP 服务器进行沙箱处理的指南。### 🧰 Cross-Client Entry Options
+This maps to the current VS Code guidance for sandboxing local stdio MCP servers.
 
-`configure_client_mcp` 现在支持跨支持的配置文件更丰富的条目元数据：
+### 🧰 Cross-Client Entry Options
 
-- `标题`
+`configure_client_mcp` now supports richer entry metadata across supported profiles:
+
+- `headers`
 - `env`
 - `env_file`
 - `cwd`
 - `timeout_ms`
-- `描述`
+- `description`
 - `include_tools`
-- `排除工具`
-- `禁用`
-- `信任`
+- `exclude_tools`
+- `disabled`
+- `trust`
 
-特定于配置文件的选项：
+Profile-specific options:
 
-- 克劳德：`allowed_mcp_servers`、`denied_mcp_servers`、`permissions_deny`、`enable_all_project_mcp_servers`
-- 双子座：`mcp_allowed_servers`、`mcp_excluded_servers`
-- Kiro：`disabled_tools`、`auto_approve`
-- VS Code 和开发容器：`dev_watch`、`dev_debug_type`### 📋 Generated Recipes
+- Claude: `allowed_mcp_servers`, `denied_mcp_servers`, `permissions_deny`, `enable_all_project_mcp_servers`
+- Gemini: `mcp_allowed_servers`, `mcp_excluded_servers`
+- Kiro: `disabled_tools`, `auto_approve`
+- VS Code and Dev Containers: `dev_watch`, `dev_debug_type`
 
-`configure_client_mcp` 在预览或应用的配置旁边返回 `recipes`。
+### 📋 Generated Recipes
 
-这些食谱是客户感知的指导块，例如：
+`configure_client_mcp` returns `recipes` alongside the preview or applied config.
+
+These recipes are client-aware guidance blocks, for example:
 
 - `claude mcp add ... --scope user|project`
 - `gemini mcp add ... --scope user|project`
-- `codex mcp 添加...`
-- Cursor、VS Code、Kiro 和 Claude Desktop 的手动文件编辑方法
+- `codex mcp add ...`
+- manual file-edit recipes for Cursor, VS Code, Kiro, and Claude Desktop
 
-现在的总体策略是有意保守的：
+The overall strategy is now intentionally conservative:
 
-- 尽可能重用一小组规范配置系列
-- 仅当官方文档需要独特的形状时才保留定制作家
-- 避免为无证目标发明自动编写器---
+- reuse a small set of canonical config families where possible
+- keep bespoke writers only when official docs require a distinct shape
+- avoid inventing automatic writers for undocumented targets
+
+---
 
 ## 🔐 Hosted HTTP Hardening
 
-HTTP 传输支持与目录 API 相同的环境驱动控件：
+The HTTP transports support the same env-driven controls as the catalog API:
 
-|变量|目的|
+| Variable | Purpose |
 |:---------|:--------|
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` |不记名令牌身份验证 |
-| `OMNI_SKILLS_HTTP_API_KEYS` |以逗号分隔的 API 密钥 |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` |仅限管理员运行时自省 |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` |每个窗口的最大请求数 |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` |速率限制窗口（以毫秒为单位）|
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` |启用审核日志记录 |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` |将审核日志写入文件 |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` |限制浏览器来源 |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` |限制允许的源IP |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` |对于非管理、非健康路线返回“503” |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer token auth |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin-only runtime introspection |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window in ms |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Write audit log to a file |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Restrict browser origins |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Restrict allowed source IPs |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Return `503` for non-admin, non-health routes |
 
-> 🟢 `/healthz` 保持开放。 “/mcp”、“/sse”和“/messages”在启用时需要身份验证。配置时“/admin/runtime”需要管理令牌。---
+> 🟢 `/healthz` remains open. `/mcp`, `/sse`, and `/messages` require auth when enabled. `/admin/runtime` requires the admin token when configured.
+
+---
 
 ## 🌍 Official Docs That Shape Support Decisions
 
-当前的编写器集和仅手动边界已根据官方产品文档进行检查，包括：
+The current writer set and manual-only boundaries were checked against official product docs, including:
 
-- 人类克劳德代码 MCP
-- OpenAI Codex CLI 和 OpenAI Docs MCP
-- 光标 MCP 文档
-- 继续 MCP 文档
-- Kiro MCP 文档
-- OpenCode MCP 文档
-- 克莱恩 MCP 文档
-- Kilo 代码 MCP 文档
-- GitHub Copilot CLI 文档
-- Zed MCP 文档
-- VS Code MCP 文档
-- JetBrains AI Assistant MCP 文档
+- Anthropic Claude Code MCP
+- OpenAI Codex CLI and OpenAI Docs MCP
+- Cursor MCP docs
+- Continue MCP docs
+- Kiro MCP docs
+- OpenCode MCP docs
+- Cline MCP docs
+- Kilo Code MCP docs
+- GitHub Copilot CLI docs
+- Zed MCP docs
+- VS Code MCP docs
+- JetBrains AI Assistant MCP docs
 
-这些文档就是为什么一些客户获得一流的自动编写器，而另一些客户目前仍仅使用片段的原因。
+Those docs are why some clients receive first-class automatic writers while others remain snippet-only for now.

@@ -5,65 +5,85 @@
 ---
 
 ---
-नाम: आपका-कौशल-नाम
-विवरण: "यह कौशल क्या करता है और इसका उपयोग कब करना है इसका एक-पंक्ति विवरण"
-संस्करण: "0.1.3"
-श्रेणी: विकास
-टैग: [उदाहरण-टैग-1, उदाहरण-टैग-2]
-जटिलता: मध्यवर्ती
-जोखिम: सुरक्षित
-उपकरण: [क्लाउड-कोड, कर्सर, जेमिनी-सीएलआई, एंटीग्रेविटी]
-स्रोत: समुदाय
-लेखक: "आपका नाम"
-दिनांक_जोड़ा गया: "2026-01-01"
-दिनांक_अद्यतन: "2026-01-01"
----<!--
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
+date_added: "2026-01-01"
+date_updated: "2026-01-01"
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`एनपीएम रन वैलिडेट` कैनोनिकल के साथ कौशल/<skill>/metadata.json उत्पन्न करेगा
-वर्गीकरण, परिपक्वता स्तर, सर्वोत्तम अभ्यास स्कोर, गुणवत्ता स्कोर और सुरक्षा
-परिणाम स्कैन करें. प्रॉम्प्ट-इंजेक्शन पैटर्न, विनाशकारी आदेश और जोखिम भरी स्क्रिप्ट
-निर्माणों को स्वचालित रूप से चिह्नित किया जाएगा।
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-कौशल संस्करण पैकेज संस्करण से स्वतंत्र है। शब्दार्थ का प्रयोग करें
-ऐसा संस्करण जो कौशल के लिए ही अर्थपूर्ण हो।
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-सर्वोच्च स्कोरिंग कौशल के लिए, यह भी पढ़ें:
-- दस्तावेज़/योगदानकर्ता/हाई-स्कोर-प्लेबुक.एमडी
-- दस्तावेज़/योगदानकर्ता/गुणवत्ता-BAR.md
+For a top-scoring skill, also read:
+- docs/contributors/HIGH-SCORE-PLAYBOOK.md
+- docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## अवलोकन
 
-2-3 वाक्य बताते हैं कि यह कौशल क्या करता है, इससे किसे लाभ होता है और यह क्यों मौजूद है।## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- जब आपको आवश्यकता हो तब उपयोग करें [परिदृश्य 1]
-- जब चाहें तब उपयोग करें [परिदृश्य 2]
-- [परिदृश्य 3] के साथ काम करते समय उपयोग करें## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-उस मुख्य अवधारणा की व्याख्या करें जिसे एजेंट को समझने की आवश्यकता है।### Concept 2
+Explain the key concept the agent needs to understand.
 
-एक अन्य मूलभूत अवधारणा की व्याख्या करें।## Workflow
+### Concept 2
 
-| चरण | आउटपुट | यह क्यों मायने रखता है |
-|:------|:------|:------------|
-| लक्ष्य निर्धारित करें | स्पष्ट उद्देश्य | अस्पष्ट मार्गदर्शन को रोकता है |
-| चरणों को निष्पादित करें | एजेंट-तैयार वर्कफ़्लो | कौशल को क्रियाशील बनाता है |
-| आउटपुट सत्यापित करें | स्वीकृति संकेत | आत्मविश्वास बढ़ाता है |
+Explain another foundational concept.
 
-1. वर्कफ़्लो में पहला कदम
-2. कार्यप्रवाह में दूसरा चरण
-3. कार्यप्रवाह में तीसरा चरण### 1. First Step
+## Workflow
 
-पहले चरण के लिए विस्तृत निर्देश.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-दूसरे चरण के लिए विस्तृत निर्देश.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-तीसरे चरण के लिए विस्तृत निर्देश.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ testing-security, documentation, content-media, communication, uncategorized.
 Example prompt or code here
 ```
 
-**स्पष्टीकरण:**यह उदाहरण क्या दर्शाता है।### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**स्पष्टीकरण:**यह उदाहरण क्या दर्शाता है।## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**करें:**इस अच्छी प्रथा का पालन करें
-- ✅**करें:**इस अभ्यास का भी पालन करें
-- ❌**नहीं करें:**इस विरोधाभासी पैटर्न से बचें
-- ❌**नहीं करें:**ऐसा कभी न करें## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**लक्षण:**आप कैसे जानते हैं कि यह समस्या है।
-**समाधान:**इसे कैसे ठीक करें।## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@संबंधित-कौशल-1` - इसके बजाय इसका उपयोग कब करें
-- `@संबंधित-कौशल-2` - यह आपके कौशल को कैसे पूरक बनाता है## Additional Resources
+## Related Skills
 
-- [चेकलिस्ट](संदर्भ/चेकलिस्ट.एमडी)
-- [कार्य उदाहरण](उदाहरण/example.md)
-- [सहायक स्क्रिप्ट](स्क्रिप्ट/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

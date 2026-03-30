@@ -5,66 +5,78 @@
 ---
 
 
->**在构建管道期间从每个“SKILL.md”生成的机器可读的 JSON 清单 - 所有运行时表面消耗的单个数据契约。**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-|特色|状态|
+| Feature | State |
 |:--------|:------|
-| ✅ 从 SKILL.md 自动生成 |已实施 |
-| ✅ 由 CLI、API、MCP、A2A 使用 |已实施 |
-| ✅ 带有校验和的档案 |已实施 |
-| ✅ 安全等级 |已实施 |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**重要**：清单是一个**构建工件**。贡献者作者“SKILL.md”——管道自动派生 JSON 清单。---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-清单的存在使得**所有运行时表面**使用相同的标准化形状：
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-|表面|它如何使用清单 |
-|:--------|:----------|
-| 🖥️**CLI**|搜索、安装规划、医生诊断|
-| 🌐**API**|端点响应、过滤、下载链接 |
-| 🔌**MCP**|工具响应、资源内容 |
-| 🤖**A2A**|发现和推荐有效负载 |---
+| Surface | How It Uses Manifests |
+|:--------|:---------------------|
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-|神器|路径|
+| Artifact | Path |
 |:---------|:-----|
-| 📊 根元数据 | `元数据.json` |
-| 📊 每个技能元数据 | `技能/<技能>/metadata.json` |
-| 📋 技能指数 | `skills_index.json` |
-| 📚 已发布目录 | `dist/catalog.json` |
-| 📌 每项技能清单 | `dist/manifests/<skill>.json` |
-| 📦 压缩存档 | `dist/archives/<skill>.zip` |
-| 📦 压缩包存档 | `dist/archives/<skill>.tar.gz` |
-| 🔒 校验和清单 | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-|领域 |描述 |
+| Field | Description |
 |:------|:------------|
-| `schema_version` |清单架构的版本 |
-| `id` |来自“名称”字段的稳定技能标识符 |
-| `蛞蝓` | `skills/` 下的目录 slug |
-| `显示名称` |第一个标题中的人类可读标题 |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-|领域 |描述 |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `描述` | frontmatter 的简短摘要 |
-| `版本` | Skill版本，独立于npm包版本 |
-| `类别` |规范类别（标准化） |
-| `原始类别` |来自 frontmatter 的原始类别 |
-| `分类法` |带有推断后备的完整分类元数据 |
-| `标签` |可搜索标签 |
-| `复杂性` | `初级` · `中级` · `高级` · `专家` |
-| `风险` | “安全”·“注意”·“冒犯”·“严重”|
-| `来源` | `全能团队` · `社区` · `官方` |
-| `作者` |归属字符串 |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@
 
 ### 📂 Paths
 
-|领域 |描述 |
+| Field | Description |
 |:------|:------------|
-| `入口点` |规范的“SKILL.md”路径|
-| `paths.root` |仓库内的技能目录 |
-| `paths.manifest` |在 `dist/` 中生成清单路径 |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-|领域 |描述 |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `工具` |来自 frontmatter 的工具标识符 |
-| `安装目标` |每个工具安装元数据 |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-每个安装目标包括：“工具”、“范围”、“默认路径”、“安装程序标志”、“当前安装程序行为”、“调用”### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-|领域 |描述 |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `子资源` |技能子目录（“参考”、“代理”、“资产”）|
-| `artifacts_count` |技能包中的文件总数 |
-| `引用计数` |参考文档计数 |
-| `agents_count` |代理配置计数 |
-| `资产数量` |资产文件数量 |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@
 
 ### 📦 Install
 
-|领域 |描述 |
+| Field | Description |
 |:------|:------------|
-| `策略` |安装策略（例如“复制技能目录”）|
-| `当前安装程序` |人类可读的安装行为 |
-| `食谱` |每个客户端安装食谱 |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-|部分|领域 |
-|:--------|:--------|
-| 🎯 `成熟` | `技能级别`、`技能级别标签` |
-| 📋`最佳实践` | `分数` (0-100) |
-| ⭐ `品质` | `分数` (0-100) |
-| 🛡️`安全` | `分数`、`状态` |
-| ✅ `验证` | `状态` |### 📝 Content
+### 📊 Classification
 
-派生信号：“body_length”、“content_length”、“body_lines”、“word_count”，以及示例、故障排除部分等的结构标志。### 📁 Artifacts
+| Section | Fields |
+|:--------|:-------|
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-技能目录中传送的每个文件的数组：```json
+### 📝 Content
+
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@
 }
 ```
 
-**工件种类**：`入口点` · `参考` · `代理` · `资产` · `许可证` · `支持`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@
 
 ### 🔒 Checksums
 
-|领域 |描述 |
+| Field | Description |
 |:------|:------------|
-| `entrypoint_sha256` | SKILL.md 的哈希值 |
-| `package_sha256` |来自有序工件列表的确定性摘要 |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@
 }
 ```
 
-> 📌 仓库包版本和技能版本是不同的关注点。该软件包当前为“0.1.3”，而各个技能都有自己的语义版本。---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-|规则|理由|
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ 必须保持可从仓库派生 |无需手动清单创作 |
-| ✅ 可以添加新的可选字段 |向前兼容性 |
-| ⚠️现有领域必须保持稳定 |向后兼容性 |
-| 🚫 没有手写清单 |构建时推导是真理之源 |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

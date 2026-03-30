@@ -5,55 +5,69 @@
 ---
 
 
-Dette er den kanoniske depotflyten for pull-forespørsler som legger til eller vesentlig oppgraderer én eller flere innfødte ferdigheter.
+This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
 
-Bruk den når:
+Use it when:
 
-- legge til en ny ferdighet under `ferdigheter/`
-- å utdype en bunt med nye domeneferdigheter
-- sender en større utvidelse av støttepakken
-- validere en filial med den private forsterkeren før vedlikeholdere slår den sammen## Target Outcome
+- adding a new skill under `skills/`
+- deepening a bundle with new domain skills
+- shipping a larger support-pack expansion
+- validating a branch with the private enhancer before maintainers merge it
 
-En sterk innfødt ferdighet PR lander med:
+## Target Outcome
 
-- en innfødt ferdighet under `ferdigheter/`
-- nok innhold til at den offentlige validatoren kan klassifisere og indeksere det
-- bestå offentlig validering og tester
-- automatisk forsterkerbehandling under PR
-- en oppfølging av `skills_omni/` PR når forbedrede derivater publiseres
-- native inntak bevart på originalspråket ved behov
-- kuratert forbedret utgang skrevet om til engelsk
-- en enveis native-to-kuratert flyt som ikke mater `skills_omni/` tilbake til native enhancer-inntaket## Enhancer Outcome States
+A strong native skill PR lands with:
 
-Den offentlige PR-forsterkeren rapporterer nå fire vedlikeholder-synlige tilstander:
+- a native skill under `skills/`
+- enough content for the public validator to classify and index it
+- passing public validation and tests
+- automatic enhancer processing during the PR
+- a follow-up `skills_omni/` PR when enhanced derivatives are published
+- native intake preserved in its original language when needed
+- curated enhanced output rewritten into English
+- a one-way native-to-curated flow that does not feed `skills_omni/` back into native enhancer intake
 
-- `fullført`
-  Den forbedrede derivativet ble generert rent og er kvalifisert for ledsagende `skills_omni/`-publisering.
-- `degradert`
-  Forsterkeren ble ferdig, men den brukte en reservebane eller ga advarsler. Vedlikeholdsvurdering forventes fortsatt før derivatet behandles som sunt.
-- `blokkert`
-  Kjøringen ble stoppet av infrastruktur- eller valideringsproblemer, for eksempel hosted OmniRoute preflight-feil eller en kandidatvalideringsfeil som skulle forhindre publisering.
-- 'mislyktes'
-  Forsterkeren traff en uventet kjøretidsfeil og trenger vedlikeholdsundersøkelse.## Recommended Branch Shape
+## Enhancer Outcome States
 
-Lag en fokusert gren:```bash
+The public PR enhancer now reports four maintainer-visible states:
+
+- `completed`
+  The enhanced derivative was generated cleanly and is eligible for companion `skills_omni/` publication.
+- `degraded`
+  The enhancer finished, but it used a fallback path or produced warnings. Maintainer review is still expected before treating the derivative as healthy.
+- `blocked`
+  The run was stopped by infrastructure or validation issues, such as hosted OmniRoute preflight failure or a candidate validation failure that should prevent publication.
+- `failed`
+  The enhancer hit an unexpected runtime error and needs maintainer investigation.
+
+## Recommended Branch Shape
+
+Create a focused branch:
+
+```bash
 git checkout -b feat/<short-skill-theme>
 ```
 
-Eksempler:
+Examples:
 
-- `feat/hendelse-observasjons-evaler`
+- `feat/incident-observability-evals`
 - `feat/devops-skill-pack`
-- `feat/security-skill-pack`## Native Intake Rules
+- `feat/security-skill-pack`
 
-Den offentlige inntaksflaten er bevisst tillatt.
+## Native Intake Rules
 
-Minimum:```text
+The public intake surface is intentionally permissive.
+
+Minimum:
+
+```text
 skills/<skill>/
 └── SKILL.md
 ```
 
-Anbefalt, men ikke lenger nødvendig for inntak:```text
+Recommended but no longer required for intake:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/openai.yaml
@@ -63,125 +77,143 @@ skills/<skill>/
 └── scripts/render_<artifact>.py
 ```
 
-Det innfødte bidraget kan være grovt, ufullstendig eller utenfor den vanlige støttepakkestandarden. Det er bevisst. `ferdigheter/` er den opprinnelige inntaksoverflaten, ikke den kurerte avledede overflaten.
+The native contribution can be rough, incomplete, or outside the normal support-pack standard. That is deliberate. `skills/` is the native intake surface, not the curated derivative surface.
 
-Språkpolicy:
+Language policy:
 
-- innfødt inntak under `ferdigheter/` kan skrives på alle språk
-- Forsterkeren beholder det opprinnelige øyeblikksbildet slik det er sendt inn for herkomst
-- den kurerte avledningen under `skills_omni/` må alltid skrives på engelsk
+- native intake under `skills/` may be written in any language
+- the enhancer keeps the native snapshot as submitted for provenance
+- the curated derivative under `skills_omni/` must always be written in English
 
-Den strengere redaksjonelle linjen gjelder nå for:
+The stricter editorial bar now applies to:
 
-- de genererte metadataene og sikkerhetskontrollene
-- vurderingen av den private forsterkeren
-- det oppfølgingskuraterte derivatet under `skills_omni/`## Authoring Sequence
+- the generated metadata and security checks
+- the private enhancer review
+- the follow-up curated derivative under `skills_omni/`
 
-1. Opprett `skills/<skill>/SKILL.md`.
-2. Legg til frontmatter hvis du kan, men manglende eller ufullstendig frontmatter blokkerer ikke lenger naturlig inntak av seg selv.
-3. Legg til `agenter/`, `referanser/`, `examples/` og `scripts/` når du allerede har dem.
-4. Oppdater `data/bundles.json` hvis ferdigheten utdyper en eksisterende bunt.
-5. Åpne PR. Repo-automatiseringen gjør nå resten.## Validation Sequence
+## Authoring Sequence
 
-Bidragsytere kan kjøre denne nøyaktige sekvensen før de åpner PR:```bash
+1. Create `skills/<skill>/SKILL.md`.
+2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
+3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
+4. Update `data/bundles.json` if the skill deepens an existing bundle.
+5. Open the PR. The repo automation now does the rest.
+
+## Validation Sequence
+
+Contributors can run this exact sequence before opening the PR:
+
+```bash
 npm run validate
 npm run build
 npm test
 git diff --check
 ```
 
-Hvis endringen også påvirker kjøretid eller pakkeatferd, kjør også:```bash
+If the change also affects runtime or packaging behavior, also run:
+
+```bash
 npm run smoke
 ```
 
 ## What Happens Automatically During the PR
 
-Når en PR åpnes eller synkroniseres og den bare berører native ferdighetsinntaksfiler under `skills/` pluss valgfri `data/bundles.json`, utløser den offentlige repoen nå den private forsterkeren automatisk.
+When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
 
-Nåværende automatisert flyt:
+Current automated flow:
 
-1. Den offentlige arbeidsflyten "Validate Skills" kjører på PR og sjekker validering, build, genererte artefakter og tester.
-2. Den offentlige arbeidsflyten "Enhance PR Skills" starter parallelt og behandler de endrede innfødte ferdighetene en etter en i "live"-modus.
-3. Forsterkeren leser den opprinnelige ferdigheten fra `skills/`, undersøker gjeldende beste praksis og skriver en anmeldt forbedret kandidat i det private arbeidsområdet.
-4. Forsterkeren beholder øyeblikksbildet av oppstrøms inntak på originalspråket når det er nødvendig, men omskriver den kurerte utgangen på engelsk.
-5. Forsterkerens innlegg går tilbake til kilde-PR.
-6. Forsterkeren oppdaterer PR-statuskommentaren etter hver behandlet ferdighet med batchtotaler og siste tilstand.
-7. Når den er ferdig, materialiserer den den forbedrede derivaten til `skills_omni/` og åpner eller oppdaterer en følgesvenn-PR i den offentlige repoen kun for `fullførte` og `degraderte` utganger.
-8. Etter at PR-en er slått sammen til "main", behandler den private repo-bevisste poller eventuelle endrede opprinnelige ferdigheter, oppdaterer "workspace/enhanced/skills/<skill>/", og holder den private forbedrede grunnlinjen på linje med den siste offentlige opprinnelige kilden.
-9. Etter sammenslåingen støter arbeidsflyten for offentlig utgivelse npm-pakkeversjonen, regenererer katalogartefakter, publiserer en utgivelse og merker den nye versjonen automatisk.
+1. The public `Validate Skills` workflow runs on the PR and checks validation, build, generated artifacts, and tests.
+2. The public `Enhance PR Skills` workflow starts in parallel and processes the changed native skills one by one in `live` mode.
+3. The enhancer reads the native skill from `skills/`, researches current best practices, and writes a reviewed enhanced candidate in the private workspace.
+4. The enhancer keeps the upstream intake snapshot in its original language when needed, but rewrites the curated output in English.
+5. The enhancer posts progress back to the source PR.
+6. The enhancer updates the PR status comment after each processed skill with batch totals and the latest state.
+7. When it finishes, it materializes the enhanced derivative into `skills_omni/` and opens or updates a companion PR in the public repo for `completed` and `degraded` outputs only.
+8. After the PR is merged into `main`, the private repo-aware poller reprocesses any changed native skills, refreshes `workspace/enhanced/skills/<skill>/`, and keeps the private enhanced baseline aligned with the latest public native source.
+9. After the merge, the public release workflow bumps the npm package version, regenerates catalog artifacts, publishes a release, and tags the new version automatically.
 
-Satsgrense:
+Rate limit:
 
-- PR-forsterkeren behandler for øyeblikket**1 ferdighet per minutt**
-- en PR med 40 innfødte nye ferdigheter kan derfor holde seg i enhancer-køen i omtrent 40 minutter
-- PR viser at det fungerer som et pågående CI-løp pluss en fremdriftskommentar som fremmer ferdighet for ferdighet
+- the PR enhancer currently processes **1 skill per minute**
+- a PR with 40 native new skills can therefore stay in the enhancer queue for about 40 minutes
+- the PR shows that work as an in-progress CI run plus a progress comment that advances skill by skill
 
-Bidragsyteren trenger ikke å kjøre forsterkeren manuelt.## No-Loop Rule For `skills_omni/`
+The contributor does not need to run the enhancer manually.
 
-Den kurerte overflaten er med hensikt enveis:
+## No-Loop Rule For `skills_omni/`
 
-- innfødte inndata kommer inn gjennom `ferdigheter/`
-- den private forsterkeren vurderer den innfødte input
-- kurert utgang foreslås i `skills_omni/`
-- `skills_omni/` blir aldri behandlet som naturlig inntak igjen
-- senere native oppdateringer kommer fortsatt inn igjen gjennom `skills/` og erstatter den private forbedrede grunnlinjen etter reprosessering
+The curated surface is intentionally one-way:
 
-Depotet håndhever nå denne grensen:
+- native input enters through `skills/`
+- the private enhancer reviews that native input
+- curated output is proposed into `skills_omni/`
+- `skills_omni/` is never treated as native intake again
+- later native updates still re-enter through `skills/` and replace the private enhanced baseline after reprocessing
 
-- direkte offentlige PR-er som endrer `skills_omni/`, avvises
-- bare automasjonsforfattede ledsager-PR-er fra `skills-omni/pr-*`-grenfamilien aksepteres der
-- blandede PR-er som prøver å endre både "ferdigheter/" og "ferdigheter_omni/" på en gang, blir avvist## Automatic Versioning After Merge
+The repository now enforces that boundary:
 
-Ferdighetsbærende smelter sammen til "hoved" og utløser nå arbeidsflyten for utgivelsen av depotet automatisk.
+- direct public PRs that modify `skills_omni/` are rejected
+- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
 
-Gjeldende pakkeversjonspolicy:
+## Automatic Versioning After Merge
 
-- Patch øker med `+1` for hver kvalifiserende sammenslåing
+Skill-bearing merges to `main` now trigger the repository release workflow automatically.
+
+Current package version policy:
+
+- patch increments by `+1` for each qualifying merge
 - `0.0.1` → `0.0.2` → ... → `0.0.10`
-- etter `.10` ruller pakken til neste mindre og tilbakestiller patchen
+- after `.10`, the package rolls to the next minor and resets patch
 - `0.0.10` → `0.1.0`
 - `0.1.10` → `0.2.0`
 
-Utløserbaner for nåværende utgivelse:
+Current release trigger paths:
 
-- `ferdigheter/**`
-- `ferdigheter_omni/**`
+- `skills/**`
+- `skills_omni/**`
 - `data/bundles.json`
 
-Den automatiske utgivelsesjobben:
+That automatic release job:
 
-1. beregner neste pakkeversjon fra `package.json`
-2. bumper `package.json` og `package-lock.json`
-3. regenererer `metadata.json`, `skills_index.json`, `dist/` og `docs/CATALOG.md`
-4. kjører pipeline for streng utgivelsesbekreftelse
-5. setter versjonsbump tilbake til "main".
-6. oppretter en Git-tag for den nye versjonen
-7. publiserer npm og GitHub Release-artefakter
+1. computes the next package version from `package.json`
+2. bumps `package.json` and `package-lock.json`
+3. regenerates `metadata.json`, `skills_index.json`, `dist/`, and `docs/CATALOG.md`
+4. runs the strict release verification pipeline
+5. commits the version bump back to `main`
+6. creates a Git tag for the new version
+7. publishes npm and GitHub Release artifacts
 
-Viktig utrullingsmerknad:
+Important rollout note:
 
-- GitHub registrerer bare en ny arbeidsflytfil som en aktiv arkivarbeidsflyt etter at filen når standardgrenen.
-- Inntil `Enhance PR Skills` lander på `main`, kan bidragsytere lese den dokumenterte prosessen, men GitHub vil ikke kjøre den arbeidsflyten automatisk på offentlige PR-er ennå.
-- Etter at arbeidsflyten er slått sammen til "main", blir oppførselen beskrevet ovenfor standard inntaksvei for fremtidige innfødte ferdighets-PR-er.## Native vs Enhanced
+- GitHub only registers a new workflow file as an active repository workflow after that file reaches the default branch.
+- Until `Enhance PR Skills` lands on `main`, contributors can read the documented process, but GitHub will not execute that workflow automatically on public PRs yet.
+- After the workflow is merged into `main`, the behavior described above becomes the default intake path for future native skill PRs.
 
-Denne repoen har nå to distinkte overflater:
+## Native vs Enhanced
 
-- `ferdigheter/`
-  Native inntak. Dette bevarer det opprinnelige bidraget slik det er sendt inn.
-- `ferdigheter_omni/`
-  Omni-forbedret derivatutgang foreslått av automatisering og vedlikeholdt av Omni Skills Team.
+This repo now has two distinct surfaces:
 
-Attribusjonsregler for `skills_omni/`:
+- `skills/`
+  Native intake. This preserves the original contribution as submitted.
+- `skills_omni/`
+  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
 
-- den forbedrede derivativet blir Omni-vedlikeholdt
-- den opprinnelige bidragsyteren og oppstrøms opprinnelige ferdigheter forblir kreditert
-- hver forbedrede katalog beholder en `ATTRIBUTION.md`-fil med oppstrømsbanen, PR, forfatter og kildekontekst
-- hver forbedrede katalog er kun kuratert utdata og må ikke sendes inn på nytt til den opprinnelige enhancer-inntaksbanen
-- Hver forbedret katalog forventes å være engelskspråklig utdata selv når oppstrøms opprinnelige kilde ikke var det## Manual Maintainer Commands
+Attribution rules for `skills_omni/`:
 
-Automatiseringen dekker normalt PR-inntak, men vedlikeholdere kan fortsatt kjøre den private forsterkeren manuelt ved behov.
+- the enhanced derivative becomes Omni-maintained
+- the original contributor and upstream native skill remain credited
+- each enhanced directory keeps an `ATTRIBUTION.md` file with the upstream path, PR, author, and source context
+- each enhanced directory is curated output only and must not be resubmitted into the native enhancer intake path
+- each enhanced directory is expected to be English-language output even when the upstream native source was not
 
-Batch mot en grendiff:```bash
+## Manual Maintainer Commands
+
+The automation covers normal PR intake, but maintainers can still run the private enhancer manually when needed.
+
+Batch against a branch diff:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --repo-root /path/to/omni-skills \
   --base-ref main \
@@ -191,7 +223,9 @@ python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
   --no-update-state
 ```
 
-Enkeltferdighetsanmeldelse:```bash
+Single-skill review:
+
+```bash
 python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --skill <skill-id> \
   --mode live \
@@ -199,9 +233,9 @@ python3 /path/to/omni-skills-private/scripts/run_enhancer.py \
   --source-ref HEAD
 ```
 
-Forventede forbedringsutganger per ferdighet:
+Expected enhancer outputs per skill:
 
-- `arbeidsområde/innkommende/original/<run-id>/<ferdighet>/`
+- `workspace/incoming/original/<run-id>/<skill>/`
 - `workspace/enhanced-candidates/<run-id>/<skill>/`
 - `workspace/reports/<run-id>/research.json`
 - `workspace/reports/<run-id>/rewrite.json`
@@ -209,28 +243,34 @@ Forventede forbedringsutganger per ferdighet:
 - `workspace/reports/<run-id>/score-delta.json`
 - `workspace/reports/<run-id>/review.md`
 - `workspace/reports/<run-id>/research-prompt.md`
-- `workspace/reports/<run-id>/rewrite-prompt.md`## PR Body Expectations
+- `workspace/reports/<run-id>/rewrite-prompt.md`
 
-PR-organet bør opplyse:
+## PR Body Expectations
 
-- hvilke ferdigheter som ble lagt til eller oppgradert
-- hvilke bunter eller arbeidsflyter de utdyper
-- hvilken validering kjørte
-- om den automatiske forsterkeren kjørte
-- om den åpnet eller oppdaterte en `skills_omni/`-kompanjong-PR
-- eventuelle eksepsjonelle vedlikeholdsnotater om attribusjon eller oppfølgingsopprydding## Reviewer Checklist
+The PR body should state:
 
-- innfødt inntak er legitimt og ikke-ondsinnet
-- genererte metadata og manifester ble oppdatert
-- pakkeoppdateringer er tilsiktet
-- Offentlig validering og byggeresultater er grønne
-- Forsterkerstatuskommentaren samsvarer med de faktiske endrede ferdighetene og sluttresultatet
-- enhver `skills_omni/` følgesvenn-PR bevarer attribusjonen riktig## Example PR Scope
+- what skills were added or upgraded
+- which bundles or workflows they deepen
+- what validation ran
+- whether the automated enhancer ran
+- whether it opened or updated a `skills_omni/` companion PR
+- any exceptional maintainer notes about attribution or follow-up cleanup
 
-Et sterkt eksempel på PR kan legge til et tematisk sett som:
+## Reviewer Checklist
 
-- én observerbarhet eller DevOps-ferdighet
-- én hendelse eller sikkerhetsferdighet
-- én AI-evaluering eller oppfordringsevne
+- native intake is legitimate and non-malicious
+- generated metadata and manifests were refreshed
+- bundle updates are intentional
+- public validation and build outputs are green
+- the enhancer status comment matches the actual changed skills and final outcome state
+- any `skills_omni/` companion PR preserves attribution correctly
 
-Det er stort nok til å trene målscoreren, den automatiske forsterkeren, «skills_omni/»-publiseringsflyten, bunter og attribusjonsmodellen uten å gjøre PR til en fullstendig katalogomskriving.
+## Example PR Scope
+
+A strong example PR can add a thematic set such as:
+
+- one observability or DevOps skill
+- one incident or security skill
+- one AI evaluation or prompting skill
+
+That is large enough to exercise the scorer, automatic enhancer, `skills_omni/` publishing flow, bundles, and attribution model without turning the PR into a full catalog rewrite.

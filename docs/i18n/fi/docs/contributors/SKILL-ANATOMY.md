@@ -5,110 +5,126 @@
 ---
 
 
->**Omni Skills `SKILL.md`:n rakenne- ja laatuodotukset – koko luettelon luomismuoto.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Jokainen "SKILL.md" koostuu kahdesta erillisestä osasta:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Koneluettava metatiedot `---` erottimien välissä. Se tehoaa:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 Osaamisindeksi ja luetteloiden sukupolvi
-- 🔎 CLI-haku ja suodatus
-- ✅ Validointi ja laatupisteytys
-- 📊 Luodut "metadata.json"-luokitusartefaktit
-- 📋 Taitokohtaiset ilmenemismuodot kohdassa "dist/manifests/".### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Ihmisen luettavat (ja agenttien luettavat) ohjeet. Kirjoita se ikään kuin**opastaisit vanhemmalle kehittäjälle**, kuinka tehtävä tulee suorittaa – tarpeeksi tarkkaa, jotta tekoälyagentti voi seurata sitä arvaamatta.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Kenttä | Pakollinen | Tyyppi | Kuvaus |
-|:------|:----------|:-----|:-------------|
-| `nimi` | ✅ | merkkijono | Hakemiston nimen on vastattava pieniä kirjaimia ja tavumerkkejä |
-| "kuvaus" | ✅ | merkkijono | Yksirivinen kuvaus (10-200 merkkiä) |
-| "versio" | ⚡ | merkkijono | Itse taidon semanttinen versio (esim. `"0.1.1"`) |
-| "luokka" | ⚡ | merkkijono | Yksi kanoninen luokka repo-taksonomiasta |
-| "tunnisteet" | ⚡ | merkkijono[] | Haettavat tunnisteet löytöjä varten |
-| "monimutkaisuus" | ⚡ | merkkijono | "aloittelija" · "keskitaso" · "edennyt" · "asiantuntija" |
-| "riski" | ⚡ | merkkijono | "turvallinen" · "varoitus" · "loukkaava" · "kriittinen" |
-| "työkalut" | ⚡ | merkkijono[] | Testatut AI-koodausavustajat |
-| "lähde" ​​| ⚡ | merkkijono | `omni-team` · `yhteisö` · `virallinen` |
-| "tekijä" | ⚡ | merkkijono | Nimeä |
-| `lisäyspäivä` | ⚡ | merkkijono | ISO-päivämäärä |
-| `date_updated` | ⚡ | merkkijono | ISO-päivämäärä |
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------|
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Vaaditaan aina · ⚡ = Vaaditaan tiukassa tilassa
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Taitoversio on riippumaton npm-pakettiversiosta. Paketti on tällä hetkellä `0.1.3`, mutta olemassa olevat taidot voivat pätevästi pysyä omassa semanttisessa versiossaan.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-Repo- taksonomia määrittelee tällä hetkellä**18 kanonista luokkaa**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Luokka | Verkkotunnus |
-|:---------|:--------|
-| 💻 `kehitys` | Yleinen ohjelmistokehitys |
-| 🎨 `etuosa` | Käyttöliittymäkehykset ja käyttöliittymä |
-| 🔧 `backend` | Taustapalvelut ja API:t |
-| 🌐 "fullstack-web" | Päästä päähän web-kehitys |
-| 🛠️ `työkalut` | Kehittäjätyökalut ja apuohjelmat |
-| ⚙️ `kli-automaatio` | CLI-työkalut ja automaatiokomentosarjat |
-| 📊 `liiketoiminta` | Liiketoimintaprosessit ja strategia |
-| 📐 `tuote` | Tuotehallinta ja suunnittelu |
-| 🎯 `design` | Visuaalinen ja UX-suunnittelu |
-| 🤖 `data-ai` | Tietotekniikka ja tekoälysovellukset |
-| 🧠 `ai-agents` | Tekoälyagentin kehittäminen ja mallit |
-| 📈 `koneoppiminen` | ML-mallit ja koulutus |
-| 🔌 `devops` | Infrastruktuuri ja käyttöönotto |
-| 🛡️ `testaus-turvallisuus` | Testaus ja turvallisuuskäytännöt |
-| 📖 `dokumentaatio` | Dokumentaation luominen ja hallinta |
-| 🎬 `sisältö-media` | Sisällöntuotanto ja media |
-| 💬 `viestintä` | Viestintätyökalut ja työnkulut |
-| ❓ "luokittamaton" | Oletus, kun vastaavuutta ei löydy |
+| Category | Domain |
+|:---------|:-------|
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Vanhat tunnisteet, kuten "työnkulku", "arkkitehtuuri", "infrastruktuuri", "turvallisuus" ja "testaus" normalisoidaan automaattisesti aliaskartoituksen avulla.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Hyvin kirjoitettu taitokappale noudattaa tätä hierarkiaa:
+A well-written skill body follows this hierarchy:
 
-### 📌 Yleiskatsaus (pakollinen)
-2-3 lausetta**mitä**taito tekee ja**miksi**se on olemassa.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Milloin käyttää (pakollinen)
-Luettelo**tietyistä skenaarioista**, joissa tämä taito pätee.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Perusohjeet (pakollinen)
-Agentin tulee noudattaa**vaiheittaista prosessia**. Ole selkeä. Ole täsmällinen. Agentit toimivat parhaiten selkeillä ja yksiselitteisillä ohjeilla.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Esimerkkejä (suositus)
-Konkreettiset kehotteet, koodilohkot tai odotetut tulosteet.**Mitä tarkempi, sen parempi.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Parhaat käytännöt (suositus)
-Käytä ✅ Tee / ❌ Älä alusta pikaskannaukseen.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Vianetsintä (valinnainen)
-Yleisiä ongelmia ja niiden ratkaisuja.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Aiheeseen liittyvät taidot (valinnainen)
-Ristiviittaukset täydentäviin taitoihin.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Keskittyy**yhteen tiettyyn**työnkulkuun tai verkkotunnukseen
-- 📌 Ohjeet ovat**riittävän selkeitä, jotta tekoäly**voi seurata niitä ilman ihmisen tulkintaa
-- 💡 Sisältää**konkreettisia esimerkkejä**odotetulla käyttäytymisellä
-- 🛡️ On asianmukainen**virheenkäsittely**opastus
-- 📊 Tuottaa terveellisiä metatietoja: ensisijainen luokka, maturiteetti L2+, laatu 70+
-- 🧰 Toimittaa uudelleen käytettävän tukipaketin, ei vain proosaa, mieluiten "viitteet/", "käsikirjoitukset/", "esimerkit/" ja "agentit/" tarvittaessa
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Katso [High-score Playbook](HIGH-SCORE-PLAYBOOK.md) vahvemmista pisteytyskuvioista, jotka nostavat taitoja korkeimmalle alueelle.### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Yleinen neuvo, joka voi päteä mihin tahansa
-- 🤷 Epämääräiset ohjeet, kuten "kirjoita hyvä koodi"
-- 🚫 Ei esimerkkejä tai koodilohkoja
-- ⚠️ Puuttuvat eturintamat
-- 📉 Huono laatupiste (alle 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

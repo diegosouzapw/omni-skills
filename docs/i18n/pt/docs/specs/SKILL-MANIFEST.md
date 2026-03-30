@@ -5,66 +5,78 @@
 ---
 
 
->**O manifesto JSON legível por máquina gerado a partir de cada `SKILL.md` durante o pipeline de construção — o contrato de dados único consumido por todas as superfícies de tempo de execução.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Recurso | Estado |
+| Feature | State |
 |:--------|:------|
-| ✅ Gerado automaticamente em SKILL.md | Implementado |
-| ✅ Consumido por CLI, API, MCP, A2A | Implementado |
-| ✅ Arquivos com somas de verificação | Implementado |
-| ✅ Classificação de segurança | Implementado |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Importante**: o manifesto é um**artefato de compilação**. Autor colaborador `SKILL.md` — o pipeline deriva o manifesto JSON automaticamente.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-O manifesto existe para que**todas as superfícies de tempo de execução**consumam a mesma forma normalizada:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Superfície | Como usa manifestos |
+| Surface | How It Uses Manifests |
 |:--------|:---------------------|
-| 🖥️**CLI**| Pesquisa, planejamento de instalação, diagnóstico médico |
-| 🌐**API**| Respostas de endpoint, filtragem, links para download |
-| 🔌**MCP**| Respostas de ferramentas, conteúdo de recursos |
-| 🤖**A2A**| Cargas úteis de descoberta e recomendação |---
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Artefato | Caminho |
-|:--------|:-----|
-| 📊 Metadados raiz | `metadados.json` |
-| 📊 Metadados por habilidade | `habilidades/<habilidade>/metadata.json` |
-| 📋 Índice de competências | `skills_index.json` |
-| 📚 Catálogo publicado | `dist/catalog.json` |
-| 📌 Manifesto por habilidade | `dist/manifests/<habilidade>.json` |
-| 📦 Arquivo zip | `dist/archives/<habilidade>.zip` |
-| 📦 Arquivo Tarball | `dist/archives/<habilidade>.tar.gz` |
-| 🔒 Manifesto de soma de verificação | `dist/archives/<habilidade>.checksums.txt` |---
+| Artifact | Path |
+|:---------|:-----|
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Campo | Descrição |
+| Field | Description |
 |:------|:------------|
-| `versão_esquema` | Versão do esquema de manifesto |
-| `id` | Identificador de habilidade estável do campo `nome` |
-| `lesma` | Slug de diretório em `skills/` |
-| `nome_exibição` | Título legível do primeiro título |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Campo | Descrição |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `descrição` | Breve resumo do frontmatter |
-| `versão` | Versão Skill, independente da versão do pacote npm |
-| `categoria` | Categoria canônica (normalizada) |
-| `categoria_raw` | Categoria original do frontmatter |
-| `taxonomia` | Metadados completos de taxonomia com substituto inferido |
-| `etiquetas` | Tags pesquisáveis ​​|
-| `complexidade` | `iniciante` · `intermediário` · `avançado` · `especialista` |
-| `risco` | `seguro` · `cuidado` · `ofensivo` · `crítico` |
-| `fonte` | `omni-team` · `comunidade` · `oficial` |
-| `autor` | Sequência de atribuição |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@ O manifesto existe para que**todas as superfícies de tempo de execução**consu
 
 ### 📂 Paths
 
-| Campo | Descrição |
+| Field | Description |
 |:------|:------------|
-| `ponto de entrada` | Caminho canônico `SKILL.md` |
-| `caminhos.root` | Diretório de habilidades dentro do repositório |
-| `paths.manifest` | Caminho do manifesto gerado em `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Campo | Descrição |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `ferramentas` | Identificadores de ferramentas do frontmatter |
-| `install_targets` | Metadados de instalação por ferramenta |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Cada destino de instalação inclui: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Campo | Descrição |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `sub_recursos` | Subdiretórios de habilidades (`referências`, `agentes`, `ativos`) |
-| `contagem_artefatos` | Contagem total de arquivos no pacote de habilidades |
-| `referências_contagem` | Contagem de documentos de referência |
-| `contagem_agentes` | Contagem de configuração do agente |
-| `contagem_ativos` | Contagem de arquivos de ativos |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@ Cada destino de instalação inclui: `tool`, `scope`, `default_path`, `installer
 
 ### 📦 Install
 
-| Campo | Descrição |
+| Field | Description |
 |:------|:------------|
-| `estratégia` | Estratégia de instalação (por exemplo, `copy-skill-directory`) |
-| `instalador_atual` | Comportamento de instalação legível por humanos |
-| `receitas` | Receitas de instalação por cliente |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Seção | Campos |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯 `maturidade` | `nível_de_habilidade`, `rótulo_de_nível_de_habilidade` |
-| 📋 `melhores_práticas` | `pontuação` (0-100) |
-| ⭐ `qualidade` | `pontuação` (0-100) |
-| 🛡️ `segurança` | `pontuação`, `status` |
-| ✅ `validação` | `estado` |### 📝 Content
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Sinais derivados: `body_length`, `content_length`, `body_lines`, `word_count`, além de sinalizadores estruturais para exemplos, seções de solução de problemas, etc.### 📁 Artifacts
+### 📝 Content
 
-Array de cada arquivo enviado dentro do diretório de habilidades:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@ Array de cada arquivo enviado dentro do diretório de habilidades:```json
 }
 ```
 
-**Tipos de artefato**: `ponto de entrada` · `referência` · `agente` · `ativo` · `licença` · `suporte`### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@ Array de cada arquivo enviado dentro do diretório de habilidades:```json
 
 ### 🔒 Checksums
 
-| Campo | Descrição |
+| Field | Description |
 |:------|:------------|
-| `ponto de entrada_sha256` | Hash de SKILL.md |
-| `pacote_sha256` | Resumo determinístico da lista ordenada de artefatos |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@ Array de cada arquivo enviado dentro do diretório de habilidades:```json
 }
 ```
 
-> 📌 A versão do pacote de repositório e a versão da habilidade são preocupações diferentes. O pacote é atualmente `0.1.3`, enquanto as habilidades individuais carregam suas próprias versões semânticas.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Regra | Justificativa |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Deve permanecer derivável do repo | Não é necessária criação manual de manifesto |
-| ✅ Novos campos opcionais podem ser adicionados | Compatibilidade futura |
-| ⚠️ Os campos existentes devem permanecer estáveis ​​| Compatibilidade com versões anteriores |
-| 🚫 Sem manifestos manuscritos | A derivação em tempo de construção é a fonte da verdade |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

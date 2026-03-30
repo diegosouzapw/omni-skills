@@ -5,453 +5,557 @@
 ---
 
 
->**Продуктова пътна карта за развитие на Omni Skills от първостепенна инсталационна програма в управлявано терминално изживяване както за опитни, така и за не-експертни потребители.**
-> Обхват: пакет npm, изживяване при инсталиране на CLI, потребителски интерфейс на терминала, потоци за стартиране на услугата и визуално включване.---
+> **The product roadmap for evolving Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
+> Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
+
+---
 
 ## 1. Problem Statement
 
-Текущата основа на времето за изпълнение е силна, но опитът за влизане все още е оптимизиран за потребители, които вече разбират:
+The current runtime foundation is strong, but the entry experience is still optimized for users who already understand:
 
-- към кой клиент искат да се насочат
-- кой инсталационен селектор искат да използват
-- как да преведете целите в `--skill`, `--bundle` или `find`
-- когато се нуждаят от инсталиране само с CLI в сравнение с MCP, API или A2A услуги
+- which client they want to target
+- which installation selector they want to use
+- how to translate goals into `--skill`, `--bundle`, or `find`
+- when they need CLI-only install versus MCP, API, or A2A services
 
-Днес:
+Today:
 
-- `npx omni-skills` по подразбиране е Antigravity
-- това е технически валидно и обратно съвместимо
-- но не е идеален за потребители за първи път или за по-малко технически оператори
+- `npx omni-skills` defaults to Antigravity
+- this is technically valid and backwards-compatible
+- but it is not ideal for first-time users or less technical operators
 
-CLI вече има основен интерактивен режим, но той все още е по-близък до помощна програма за разработчици, отколкото до ръководена продуктова повърхност.
+The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.
 
-Тази пътна карта определя пътя към по-силен публичен UX, без да нарушава текущия базиран на флаг интерфейс.---
+This roadmap defines the path to a stronger public UX without breaking the current flag-based interface.
+
+---
 
 ## 1.1 Delivery Status
 
-Пътната карта вече е до голяма степен внедрена в текущото състояние на хранилището.
+The roadmap is now largely implemented in the current repository state.
 
-Завършено:
+Completed:
 
-- Фаза 1: Насочван избор на входна точка
-- Фаза 2: Насочван съветник за инсталиране
-- Фаза 3: Visual Terminal Shell
-- Фаза 4: Visual Service Hub
-- Фаза 5: Запазени профили и повторяемост
-- Фаза 6: Втвърдяване, тестове и документация---
+- Phase 1: Guided Entrypoint Selection
+- Phase 2: Guided Install Wizard
+- Phase 3: Visual Terminal Shell
+- Phase 4: Visual Service Hub
+- Phase 5: Saved Profiles and Repeatability
+- Phase 6: Hardening, Tests, and Documentation
+
+---
 
 ## 2. Goals
 
-- Запазване на текущите експертни CLI работни процеси
-- Направете входната точка без аргументи безопасна и разбираема за потребители за първи път
-- Заменете тихите настройки по подразбиране в интерактивни контексти с направляван избор
-- Поддръжка на известни AI клиенти и произволни потребителски пътища за инсталиране
-- Превърнете инсталирането, откриването и стартирането на услугата в съгласувано потребителско пътуване
-- Осигурете визуален потребителски интерфейс на терминала, който се усеща като продукт, а не просто като скрипт
-- Съхранявайте системата за инсталиране, каталога и времето за изпълнение на услугата за многократна употреба под потребителския интерфейс---
+- Preserve the current expert CLI workflows
+- Make the no-argument entrypoint safe and understandable for first-time users
+- Replace silent defaults in interactive contexts with guided selection
+- Support known AI clients and arbitrary custom install paths
+- Turn install, discovery, and service boot into a coherent user journey
+- Provide a visual terminal UI that feels like a product, not just a script
+- Keep the install engine, catalog, and service runtime reusable under the UI
+
+---
 
 ## 3. Non-Goals
 
-- Замяна на текущия базиран на флаг CLI
-- Премахване на Antigravity като поддържана цел по подразбиране
-- Изпращане на уеб интерфейс като основен режим на доставка
-- Рефакторинг на самите API, MCP или A2A протоколи като част от тази UX работа
-- Замяна на авторството на `SKILL.md` с административен панел, поддържан от база данни---
+- Replacing the current flag-based CLI
+- Removing Antigravity as a supported default target
+- Shipping a web UI as the primary delivery mode
+- Refactoring API, MCP, or A2A protocols themselves as part of this UX work
+- Replacing `SKILL.md` authoring with a database-backed admin panel
+
+---
 
 ## 4. Design Principles
 
 ### 4.1 Backward Compatibility First
 
-Тези команди трябва да продължат да работят точно както днес:
+These commands must continue to work exactly as they do today:
 
 - `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills find figma --tool cursor --install --yes`
-- `npx omni-skills mcp поток --local`
+- `npx omni-skills mcp stream --local`
 - `npx omni-skills api --port 3333`
-- `npx omni-skills a2a --port 3335`### 4.2 Guided by Default in TTY, Explicit by Default in Automation
+- `npx omni-skills a2a --port 3335`
 
-- Интерактивна терминална сесия без аргументи: отворено ръководено изживяване
-- Неинтерактивно извикване без аргументи: запазване на текущото поведение по подразбиране при инсталиране
-- Изричните команди и флагове винаги печелят над извода на потребителския интерфейс### 4.3 Reuse One Engine Across Modes
+### 4.2 Guided by Default in TTY, Explicit by Default in Automation
 
-Следното трябва да споделя същата вътрешна логика:
+- Interactive terminal session with no arguments: open guided experience
+- Non-interactive invocation with no arguments: preserve current install default behavior
+- Explicit commands and flags always win over UI inference
 
-- флаг-първи CLI
-- управляван текстов режим CLI
-- потребителски интерфейс на визуален терминал
+### 4.3 Reuse One Engine Across Modes
 
-Това означава, че UX слоят не трябва да притежава бизнес логика. Той трябва да организира действия за многократна употреба.### 4.4 Preview Before Write
+The following should share the same internal logic:
 
-Всички управлявани потоци, които причиняват записи, трябва да показват:
+- flag-first CLI
+- guided text-mode CLI
+- visual terminal UI
 
-- разрешена цел
-- разрешен път
-- избрани умения или пакети
-- еквивалентна CLI команда
-- подкана за потвърждение### 4.5 Visual Does Not Mean Implicit
+That means the UX layer must not own business logic. It should orchestrate reusable actions.
 
-Дори в по-богатия потребителски интерфейс системата все още трябва да прави състоянието и действията изрични:
+### 4.4 Preview Before Write
 
-- къде отива инсталацията
-- какво ще се пише
-- кой транспорт или пристанище ще използва дадена услуга
-- дали потокът е само за четене или с възможност за локален запис---
+All guided flows that cause writes should display:
+
+- resolved target
+- resolved path
+- selected skills or bundles
+- equivalent CLI command
+- confirmation prompt
+
+### 4.5 Visual Does Not Mean Implicit
+
+Even in the richer UI, the system should still make state and actions explicit:
+
+- where the install is going
+- what will be written
+- which transport or port a service will use
+- whether a flow is read-only or local-write-capable
+
+---
 
 ## 5. User Personas
 
 ### 5.1 Expert CLI User
 
-Нужди:
+Needs:
 
-- бързи команди
-- без принудителни подкани
-- стабилни знамена
-- сценарийност### 5.2 Guided Product User
+- fast commands
+- no forced prompts
+- stable flags
+- scriptability
 
-Нужди:
+### 5.2 Guided Product User
 
-- ясни избори
-- няма предположение, че антигравитацията е желана
-- поддръжка за инсталиране по персонализиран път
-- разбираем инсталационен преглед
-- видимо разграничение между действията за инсталиране и изпълнение на сървъра### 5.3 Operator / Platform User
+Needs:
 
-Нужди:
+- clear choices
+- no assumption that Antigravity is desired
+- support for custom path installs
+- understandable install preview
+- visible distinction between install and server runtime actions
 
-- възможност за визуално стартиране на MCP, API и A2A
-- разумни настройки по подразбиране
-- опционална настройка на портове, транспорт, постоянство, режим на изпълнител, удостоверяване и локален режим---
+### 5.3 Operator / Platform User
+
+Needs:
+
+- ability to launch MCP, API, and A2A visually
+- sane defaults
+- optional tuning of ports, transport, persistence, executor mode, auth, and local mode
+
+---
 
 ## 6. Target UX Model
 
-Продуктът трябва да изложи три слоя:### 6.1 Expert Mode
+The product should expose three layers:
 
-Директни команди и флагове.
+### 6.1 Expert Mode
 
-Примери:
+Direct commands and flags.
+
+Examples:
 
 - `npx omni-skills --cursor --skill omni-figma`
-- `npx omni-skills mcp поток --local`
-- `npx omni-skills a2a --port 3335`### 6.2 Guided Install Mode
+- `npx omni-skills mcp stream --local`
+- `npx omni-skills a2a --port 3335`
 
-Задейства се, когато:
+### 6.2 Guided Install Mode
 
-- потребителят изпълнява `npx omni-skills` в TTY без аргументи
-- потребителят изпълнява `npx omni-skills install` без конкретни селектори
-- потребителят изрично избира насочван режим
+Triggered when:
 
-Насочваният поток на инсталиране трябва да премине през:
+- the user runs `npx omni-skills` in a TTY with no args
+- the user runs `npx omni-skills install` with no concrete selectors
+- the user explicitly opts into guided mode
 
-1. целеви клиент или потребителски път
-2. тип инсталиране
-3. избор на умение или пакет
-4. предварителен преглед
-5. потвърждение
-6. изпълнение
-7. следващи стъпки### 6.3 Visual Operations Hub
+The guided install flow should walk through:
 
-Задействан от:
+1. target client or custom path
+2. install type
+3. skill or bundle selection
+4. preview
+5. confirmation
+6. execution
+7. next steps
+
+### 6.3 Visual Operations Hub
+
+Triggered by:
 
 - `npx omni-skills ui`
 
-Това трябва да се превърне в „начален екран“ за потребители и оператори, които не са експерти.
+This should become the “home screen” for non-expert users and operators.
 
-Основни действия:
+Core actions:
 
-- умения за инсталиране
-- открийте умения
-- стартирайте MCP
-- стартирайте API
-- стартирайте A2A
-- тичам доктор
-- изпълнете димни проверки---
+- install skills
+- discover skills
+- start MCP
+- start API
+- start A2A
+- run doctor
+- run smoke checks
+
+---
 
 ## 7. Phased Delivery Plan
 
 ### Phase 1: Guided Entrypoint Selection
 
-Резултат:
+Outcome:
 
-- `npx omni-skills` в TTY вече не приема безшумно Антигравитация
-- потребителите са подканени да изберат клиент или потребителски път
+- `npx omni-skills` in TTY no longer silently assumes Antigravity
+- users are prompted to choose a client or custom path
 
-Изисквания:
+Requirements:
 
-- запазване на поведението при инсталиране по подразбиране без TTY
-- добавяне на целеви селектор
-- поддържа персонализирано улавяне на пътя### Phase 2: Guided Install Wizard
+- preserve non-TTY default install behavior
+- add target selector
+- support custom path capture
 
-Резултат:
+### Phase 2: Guided Install Wizard
 
-- инсталацията се превръща в пълен направляван поток
+Outcome:
 
-Изисквания:
+- installation becomes a full guided flow
 
-- избор на режим на инсталиране:
-  - пълна библиотека
-  - едно умение
-  - един пакет
-  - потърсете и след това инсталирайте
-- инсталационен преглед
-- еквивалентно изобразяване на команди
-- потвърждение и изпълнение### Phase 3: Visual Terminal Shell
+Requirements:
 
-Резултат:
+- install mode selection:
+  - full library
+  - one skill
+  - one bundle
+  - search then install
+- install preview
+- equivalent command rendering
+- confirmation and execution
 
-- текущият основен текстов потребителски интерфейс става марково терминално приложение
+### Phase 3: Visual Terminal Shell
 
-Изисквания:
+Outcome:
 
-- по-богато оформление
-- брандиране и лого на проекта
-- по-добър степер и карти
-- навигация с клавиатура
-- Терминална реализация на React чрез Ink### Phase 4: Visual Service Hub
+- the current basic text UI becomes a branded terminal application
 
-Резултат:
+Requirements:
 
-- MCP, API и A2A могат да се стартират от визуалния потребителски интерфейс
+- richer layout
+- project branding and logo
+- better stepper and cards
+- keyboard-driven navigation
+- React terminal implementation via Ink
 
-Изисквания:
+### Phase 4: Visual Service Hub
 
-- управляван MCP поток
-- направляван API поток
-- направляван A2A поток
-- видим режим и визуализации на конфигурацията### Phase 5: Saved Profiles and Repeatability
+Outcome:
 
-Резултат:
+- MCP, API, and A2A are startable from the visual UI
 
-- общи предварителни настройки за инсталиране или обслужване могат да се използват повторно
+Requirements:
 
-Изисквания:
+- guided MCP flow
+- guided API flow
+- guided A2A flow
+- visible mode and config previews
 
-- запомнете последните цели
-- запазени предварително зададени услуги
-- скорошни команди
-- любими пакети или умения### Phase 6: Hardening, Tests, and Documentation
+### Phase 5: Saved Profiles and Repeatability
 
-Резултат:
+Outcome:
 
-- UX се превръща в поддържан публичен интерфейс, а не в ad hoc удобство
+- common install or service presets can be reused
 
-Изисквания:
+Requirements:
 
-- покритие от дим
-- регресионни тестове
-- актуализации на документи
-- ръководство на оператора
-- преглед на съвместимостта на пакета---
+- remember recent targets
+- saved service presets
+- recent commands
+- favorite bundles or skills
+
+### Phase 6: Hardening, Tests, and Documentation
+
+Outcome:
+
+- the UX becomes a maintained public interface, not an ad hoc convenience
+
+Requirements:
+
+- smoke coverage
+- regression tests
+- doc updates
+- operator guidance
+- package compatibility review
+
+---
 
 ## 8. Proposed Command Model
 
 ### Stable Commands
 
-- `омни-умения`
+- `omni-skills`
 - `omni-skills install`
-- „намиране на всички умения“.
+- `omni-skills find`
 - `omni-skills ui`
 - `omni-skills mcp`
-- `api за всички умения`
+- `omni-skills api`
 - `omni-skills a2a`
-- „лекар с всички умения“.
-- `omni-skills smoke`### Recommended Behavior
+- `omni-skills doctor`
+- `omni-skills smoke`
 
-| Извикване | Поведение |
+### Recommended Behavior
+
+| Invocation | Behavior |
 |:-----------|:---------|
-| `omni-skills` в TTY, без аргументи | Вписване при инсталация с напътствия |
-| `omni-skills` в не-TTY, без аргументи | Текуща инсталация по подразбиране на Antigravity |
-| `omni-skills install` в TTY, без селектори | Съветник за инсталация с напътствия |
-| `omni-skills install --guided` | Принудително направляван поток на инсталиране |
-| `omni-skills ui` | Отворете центъра за визуални операции |
-| изрични флагове | Изпълнете директно, без да се отклонявате от направлявания поток |---
+| `omni-skills` in TTY, no args | Guided install entry |
+| `omni-skills` in non-TTY, no args | Current Antigravity default install |
+| `omni-skills install` in TTY, no selectors | Guided install wizard |
+| `omni-skills install --guided` | Force guided install flow |
+| `omni-skills ui` | Open the visual operations hub |
+| explicit flags | Execute directly without detouring into the guided flow |
+
+---
 
 ## 9. Information Architecture for the Guided Install Flow
 
 ### Step 1: Choose Destination
 
-Опции:
+Options:
 
-- Клод Код
-- Курсор
+- Claude Code
+- Cursor
 - Gemini CLI
 - Codex CLI
-- Киро
-- Антигравитация
+- Kiro
+- Antigravity
 - OpenCode
-- Персонализиран път
+- Custom path
 
-Изход:
+Output:
 
-- избрана известна цел ИЛИ потребителски път към файловата система### Step 2: Choose Install Type
+- selected known target OR custom filesystem path
 
-Опции:
+### Step 2: Choose Install Type
 
-- пълна библиотека
-- едно публикувано умение
-- един пакет
-- потърсете и след това инсталирайте
+Options:
 
-Изход:
+- full library
+- one published skill
+- one bundle
+- search then install
 
-- обхват на инсталиране### Step 3: Resolve Selection
+Output:
 
-В зависимост от вида на инсталацията:
+- install scope
 
-- пълна библиотека: без допълнителен селектор
-- умение: избройте или изберете умение
-- пакет: избройте или изберете пакет
-- търсене: подкана за заявка, показване на съвпадащи умения и пакети### Step 4: Preview
+### Step 3: Resolve Selection
 
-Дисплей:
+Depending on install type:
 
-- избрана цел
-- разрешен път
-- избрано умение или пакет
-- еквивалентна CLI команда
-- дали потокът е селективен или пълен монтаж### Step 5: Confirm
+- full library: no additional selector
+- skill: list or choose a skill
+- bundle: list or choose a bundle
+- search: prompt for query, show matching skills and bundles
 
-Потребителят потвърждава:
+### Step 4: Preview
 
-- да → изпълни
-- не → прекъсване или връщане назад### Step 6: Result
+Display:
 
-Дисплей:
+- selected target
+- resolved path
+- selected skill or bundle
+- equivalent CLI command
+- whether the flow is selective or full install
 
-- успех/неуспех
-- дестинационен път
-- предложение за следваща стъпка---
+### Step 5: Confirm
+
+User confirms:
+
+- yes → execute
+- no → abort or go back
+
+### Step 6: Result
+
+Display:
+
+- success/failure
+- destination path
+- next step suggestion
+
+---
 
 ## 10. Information Architecture for the Visual Operations Hub
 
-Оперативният център трябва да разкрива:### 10.1 Install
+The operations hub should expose:
 
-- управляван процес на инсталиране
-- търсене на умения или пакети
-- потребителски път### 10.2 Discover
+### 10.1 Install
 
-- търсене по каталог
-- филтри
-- преглед на метаданни
-- инсталирайте handoff### 10.3 MCP
+- guided install flow
+- skill or bundle search
+- custom path
 
-Опции:
+### 10.2 Discover
 
-- транспорт: stdio, stream, sse
-- локален режим включване/изключване
-- домакин
-- порт### 10.4 API
+- catalog search
+- filters
+- preview metadata
+- install handoff
 
-Опции:
+### 10.3 MCP
 
-- домакин
-- порт
-- незадължително удостоверяване
-- опционален лимит на скоростта### 10.5 A2A
+Options:
 
-Опции:
+- transport: stdio, stream, sse
+- local mode on/off
+- host
+- port
 
-- домакин
-- порт
-- тип магазин: памет, json, sqlite
-- изпълнител: вграден, процес
-- опции за лизинг, когато sqlite опашката е активирана### 10.6 Diagnostics
+### 10.4 API
 
-- лекар
-- дим---
+Options:
+
+- host
+- port
+- optional auth
+- optional rate limit
+
+### 10.5 A2A
+
+Options:
+
+- host
+- port
+- store type: memory, json, sqlite
+- executor: inline, process
+- lease options when sqlite queue is enabled
+
+### 10.6 Diagnostics
+
+- doctor
+- smoke
+
+---
 
 ## 11. Architecture Changes Needed
 
 ### 11.1 Extract CLI Action Layer
 
-Текущите смеси от `tools/bin/cli.js`:
+The current `tools/bin/cli.js` mixes:
 
-- разбор на команди
-- презентация
-- интерактивни подкани
-- оркестрация на действието
-- сервизно зареждане
+- command parsing
+- presentation
+- interactive prompts
+- action orchestration
+- service boot
 
-Новата структура трябва да премести логиката за многократна употреба в:
+The new structure should move reusable logic into:
 
 - `tools/lib/cli-actions/`
 - `tools/lib/install-flow/`
 - `tools/lib/service-flow/`
-- `tools/lib/ui-models/`### 11.2 Keep Installer Engine Separate
+- `tools/lib/ui-models/`
 
-`tools/bin/install.js` трябва да остане задната част с възможност за запис.
+### 11.2 Keep Installer Engine Separate
 
-Насочваният потребителски интерфейс трябва да извиква съществуващия бекенд на инсталатора, вместо да дублира инсталационната логика.### 11.3 Keep Find/Search Reusable
+`tools/bin/install.js` should remain the write-capable backend.
 
-Съветникът за насочено инсталиране трябва да използва повторно същото ядро на каталога и логика за търсене на CLI, която вече захранва:
+The guided UI should call the existing installer backend rather than duplicating installation logic.
 
-- „намери“.
-- инсталиране на визуализации
-- резолюция на пакета### 11.4 Prepare for Ink Without Forcing It Early
+### 11.3 Keep Find/Search Reusable
 
-Първата доставка може да остане в подканите в текстов режим.
+The guided install wizard should reuse the same catalog-core and CLI search logic already powering:
 
-Но архитектурата трябва да поддържа ясен шев, така че текстовият поток да може по-късно да бъде изобразен чрез Ink.---
+- `find`
+- install previews
+- bundle resolution
+
+### 11.4 Prepare for Ink Without Forcing It Early
+
+The first delivery can stay in text-mode prompts.
+
+But the architecture should keep a clear seam so the text flow can later be rendered via Ink.
+
+---
 
 ## 12. Risks
 
 ### 12.1 Breaking Existing Automation
 
-Смекчаване:
+Mitigation:
 
-- отваряйте автоматично насочван потребителски интерфейс само в TTY
-- запазване на текущата подразбиране в не-TTY
-- запазване на изрични потоци на флагове### 12.2 Letting UI Own Business Logic
+- only open guided UI automatically in TTY
+- preserve current default in non-TTY
+- preserve explicit flag flows
 
-Смекчаване:
+### 12.2 Letting UI Own Business Logic
 
-- преместете оркестрацията към модули за действие за многократна употреба
-- поддържайте логиката за зареждане на инсталатора и услугата под слоя на потребителския интерфейс### 12.3 Ink Migration Too Early
+Mitigation:
 
-Смекчаване:
+- move orchestration to reusable action modules
+- keep installer and service boot logic below the UI layer
 
-- първо изпратете направлявания поток в текущия терминален стек на възел
-- след това мигрирайте към Ink, след като семантиката на потока е стабилна### 12.4 Incomplete Service UX
+### 12.3 Ink Migration Too Early
 
-Смекчаване:
+Mitigation:
 
-- първо кораб съветник за инсталиране
-- след това стартиране на управлявана по слоеве услуга---
+- first ship the guided flow in current Node terminal stack
+- then migrate to Ink once flow semantics are stable
+
+### 12.4 Incomplete Service UX
+
+Mitigation:
+
+- ship install wizard first
+- then layer guided service launch
+
+---
 
 ## 13. Acceptance Criteria by Phase
 
 ### Phase 1
 
-- `npx omni-skills` в TTY вече не се инсталира веднага
-- потребителят може да избере целеви клиент или потребителски път
-- не-TTY no-arg извикване все още работи както преди### Phase 2
+- `npx omni-skills` in TTY no longer installs immediately
+- user can choose target client or custom path
+- non-TTY no-arg invocation still works as before
 
-- насочената инсталация поддържа пълна библиотека, умения, пакети и търсене след това инсталиране
-- визуализацията винаги се показва преди запис
-- показва се еквивалент на командата### Phase 3
+### Phase 2
 
-- съществува брандиран потребителски интерфейс на терминала
-- потребителският интерфейс е по-визуално структуриран от обикновените менюта за четене
-- навигацията е удобна за клавиатурата### Phase 4
+- guided install supports full library, skill, bundle, and search-then-install
+- preview is always shown before write
+- command equivalent is displayed
 
-- потребителите могат да стартират MCP, API и A2A от визуалния център
-- основните опции за изпълнение могат да се конфигурират в направлявана форма### Phase 5
+### Phase 3
 
-- последните или запазени предпочитания могат да се използват повторно
-- повтарящите се потоци отнемат по-малко подкани### Phase 6
+- branded terminal UI exists
+- the UI is more visually structured than plain readline menus
+- navigation is keyboard-friendly
 
-- димното покритие отразява новите UX входни точки
-- документите описват ръководен режим и поведение на съветника за услуги---
+### Phase 4
+
+- users can start MCP, API, and A2A from the visual hub
+- major runtime options are configurable in guided form
+
+### Phase 5
+
+- recent or saved preferences are reusable
+- repeat flows take fewer prompts
+
+### Phase 6
+
+- smoke coverage reflects the new UX entrypoints
+- docs describe guided mode and service wizard behavior
+
+---
 
 ## 14. Execution Order
 
-Тази пътна карта трябва да бъде изпълнена в следния ред:
+This roadmap must be implemented in this order:
 
-1. Насочван избор на входна точка
-2. Помощник за насочвано инсталиране
-3. Визуална терминална обвивка
-4. Център за визуална услуга
-5. Запазени профили и повторяемост
-6. Втвърдяване, тестове и полиране на документи
+1. Guided entrypoint selection
+2. Guided install wizard
+3. Visual terminal shell
+4. Visual service hub
+5. Saved profiles and repeatability
+6. Hardening, tests, and docs polish
 
-Работата по внедряването трябва да прочете съответния файл на задачата, преди да започне всяка задача, така че CLI работата да остане в съответствие с плана и да не се отклонява.
+The implementation work should read the relevant task file before starting each task so the CLI work stays aligned with the plan and does not drift.

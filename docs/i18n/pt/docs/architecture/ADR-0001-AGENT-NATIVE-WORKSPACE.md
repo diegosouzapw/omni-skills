@@ -5,69 +5,83 @@
 ---
 
 
->**A principal decisão arquitetônica que moldou a estrutura do espaço de trabalho monorepo.**---
+> **The key architectural decision that shaped the monorepo workspace structure.**
+
+---
 
 ## 📊 Status
 
-✅**Aceito**— direção atual do espaço de trabalho e formato do repositório ativo.---
+✅ **Accepted** — current workspace direction and active repository shape.
+
+---
 
 ## 🔍 Context
 
-Omni Skills começou como um repositório**instalador primeiro**. Isso foi suficiente para distribuir o conteúdo `SKILL.md`, mas não o suficiente para expor o catálogo aos agentes por meio de superfícies nativas de protocolo.
+Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
-Precisávamos de uma base que pudesse apoiar:
+We needed a foundation that could support:
 
-| Requisito | Protocolo |
-|:------------|:--------|
-| 🌐 API de catálogo HTTP somente leitura | REST |
-| 🔌 Servidor MCP somente leitura | Protocolo de Contexto do Modelo |
-| 🤖 Superfície A2A voltada para o agente | Agente para Agente |
-| 📂 Sidecars de instalação local | Ferramentas de sistema de arquivos |
+| Requirement | Protocol |
+|:------------|:---------|
+| 🌐 Read-only HTTP catalog API | REST |
+| 🔌 Read-only MCP server | Model Context Protocol |
+| 🤖 Agent-facing A2A surface | Agent-to-Agent |
+| 📂 Local install sidecars | Filesystem tools |
 
-**Restrição crítica**: evite analisar novamente os arquivos repo de forma independente em cada novo serviço.---
+**Critical constraint**: Avoid reparsing repo files independently in each new service.
+
+---
 
 ## ✅ Decision
 
-Adote um**monorepo orientado ao espaço de trabalho**com um núcleo de catálogo compartilhado e pacotes específicos de protocolo:
+Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-specific packages:
 
-| Pacote | Finalidade |
+| Package | Purpose |
 |:--------|:--------|
-| 📦 `omni-habilidades` (raiz) | Instalador CLI e scripts de repositório |
-| 🧠 `@omni-skills/catalog-core` | Carregamento compartilhado, pesquisa, comparação, pacotes, planos de instalação |
-| 🌐 `@omni-skills/server-api` | API REST somente leitura |
-| 🔌 `@omni-skills/server-mcp` | MCP com stdio/stream/sse + modo sidecar local |
-| 🤖 `@omni-skills/server-a2a` | Tempo de execução de tarefa A2A com placa de agente, polling, SSE e configuração push |### 📁 Shared Data Sources
+| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
+| 🌐 `@omni-skills/server-api` | Read-only REST API |
+| 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |
+| 🤖 `@omni-skills/server-a2a` | A2A task runtime with Agent Card, polling, SSE, and push config |
 
-O núcleo do catálogo lê artefatos gerados de:
+### 📁 Shared Data Sources
+
+The catalog core reads generated artifacts from:
 - `dist/catalog.json`
-- `dist/manifests/<habilidade>.json`
-- `skills_index.json`---
+- `dist/manifests/<skill>.json`
+- `skills_index.json`
+
+---
 
 ## ✅ Positive Consequences
 
-| Resultado | Impacto |
+| Outcome | Impact |
 |:--------|:-------|
-| 🔗**Contrato de dados compartilhados**| API, MCP e A2A consomem os mesmos artefatos |
-| 🖥️**CLI unificado**| Um binário expõe instalação, shell de UI, API, MCP, A2A, diagnóstico e fumaça |
-| 🧩**Isolamento de protocolo**| Novas superfícies iteram sem acoplamento às partes internas do instalador |
-| 🔌**Carro lateral local**| Trabalhando no modo MCP com capacidade de gravação atrás de uma lista de permissões, com receitas conscientes do cliente |
-| 📦**Tempo de execução de pacote único**| O pacote npm publicado reúne as superfícies do protocolo, as ferramentas de validação e os artefatos gerados |---
+| 🔗 **Shared data contract** | API, MCP, and A2A consume the same artifacts |
+| 🖥️ **Unified CLI** | One binary exposes install, UI shell, API, MCP, A2A, diagnostics, and smoke |
+| 🧩 **Protocol isolation** | New surfaces iterate without coupling to installer internals |
+| 🔌 **Local sidecar** | Working write-capable MCP mode behind an allowlist, with client-aware recipes |
+| 📦 **Single-package runtime** | The published npm package carries the protocol surfaces, validation tooling, and generated artifacts together |
+
+---
 
 ## ⚠️ Negative Consequences
 
-| Troca | Mitigação |
-|:--------|:-----------|
-| 🔄**Duplicação de metadados**| Construção Python + tempo de execução JavaScript → eventualmente consolidar |
-| 🏗️**Complexidade A2A**| Agora existe um ciclo de vida durável, mas os adaptadores de coordenação acrescentam profundidade operacional |
-| 📦**Alinhamento de catálogo**| A instalação seletiva requer comandos, manifestos e documentos para permanecerem sincronizados |
-| 📋**Agrupar lacunas de metadados**| Os pacotes podem ultrapassar as habilidades publicadas, exigindo avisos explícitos de membros ausentes |---
+| Tradeoff | Mitigation |
+|:---------|:-----------|
+| 🔄 **Metadata duplication** | Python build + JavaScript runtime → eventually consolidate |
+| 🏗️ **A2A complexity** | Durable lifecycle now exists, but coordination adapters add operational depth |
+| 📦 **Catalog alignment** | Selective install requires commands, manifests, and docs to stay synchronized |
+| 📋 **Bundle metadata gaps** | Bundles can outpace published skills, requiring explicit missing-member warnings |
+
+---
 
 ## ➡️ Follow-Up Items
 
-| # | Ação | Estado |
+| # | Action | Status |
 |:--|:-------|:-------|
-| 1️⃣ | Autenticação MCP remota e limitação de taxa | ✅ Concluído |
-| 2️⃣ | Gravação de configuração MCP específica do cliente aprimorada | ✅ Presente hoje para Claude, Cursor, Codex, Gemini, Kiro, VS Code e Dev Containers |
-| 3️⃣ | Artefatos de liberação assinados ou arquivos por habilidade | ✅ Presente hoje com aplicação de CI em tags de lançamento |
-| 4️⃣ | Tempo de execução de tarefa A2A → orquestração durável | ✅ Presente hoje com persistência JSON/SQLite, executores externos, coordenação de locação opcional e coordenação Redis avançada opcional |
-| 5️⃣ | Expanda o catálogo publicado para uma cobertura mais ampla de pacotes | ✅ Apresente hoje os atuais sete pacotes iniciais com curadoria |
+| 1️⃣ | Remote MCP authentication and rate limiting | ✅ Done |
+| 2️⃣ | Improved client-specific MCP config writing | ✅ Present today for Claude, Cursor, Codex, Gemini, Kiro, VS Code, and Dev Containers |
+| 3️⃣ | Signed release artifacts or per-skill archives | ✅ Present today with CI enforcement on release tags |
+| 4️⃣ | A2A task runtime → durable orchestration | ✅ Present today with JSON/SQLite persistence, external executors, opt-in lease coordination, and optional advanced Redis coordination |
+| 5️⃣ | Expand published catalog for broader bundle coverage | ✅ Present today for the current seven curated starter bundles |

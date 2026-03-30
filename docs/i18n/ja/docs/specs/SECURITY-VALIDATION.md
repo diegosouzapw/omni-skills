@@ -5,44 +5,50 @@
 ---
 
 
->**公開されたすべてのスキルのセキュリティ スキャン、アーカイブ生成、オプションの署名、および配布パッケージ。**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-|特集 |状態 |
+| Feature | State |
 |:--------|:------|
-| ✅ 静的セキュリティスキャナ |常に有効 |
-| ✅ スキルごとのメタデータ分類 |実装済み |
-| ✅ スキルごとのアーカイブ (zip/tar.gz) |実装済み |
-| ✅ SHA-256 チェックサム マニフェスト |実装済み |
-| ✅ CI スキャナーゲートオンリリースタグ |実装済み |
-| ✅ 検証済み tarball からの npm パブリッシュワークフロー |実装済み |
-| ⚙️ ClamAV スキャン |オプションのエンリッチャー |
-| ⚙️ VirusTotal ハッシュ ルックアップ |オプションのエンリッチャー |
-| ✅ 独立した署名 |実装済み |
-| ✅ CI 強制署名 |リリースタグに実装 |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-検証中にすべてのスキルをスキャンします。
+Scans every skill during validation:
 
-|ターゲット |何がスキャンされるのか |
-|:------|:------|
-| 📝 `スキル.md` |主なスキル内容 |
-| 📄 マークダウン/テキスト ファイル |パッケージ化された参考資料とドキュメント |
-| ⚙️ スクリプト |パッケージ化された自動化スクリプト |
+| Target | What Gets Scanned |
+|:-------|:-----------------|
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**ルールファミリー:**
+**Rule families:**
 
-|ルール |例 |
-|:-----|:----------|
-| 🎭**即時注射**|漏洩パターン、指示のオーバーライド |
-| 💣**破壊的なコマンド**| `rm -rf`、`format`、`del /s` |
-| 🔑**権限昇格**| `sudo`、`chmod 777`、setuid パターン |
-| 📂**不審なパス**| `/etc/shadow`、`~/.ssh`、認証情報ファイル |
-| ⚠️**危険なプリミティブ**| `shell=True`、`pickle.load`、`eval`、`extractall` |---
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- `PATH` に `clamscan` が必要です
-- パッケージ化されたファイルをスキャンして既知のマルウェアを検出します
-- 結果はスキルメタデータに記録されます---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**ハッシュ ルックアップのみ**- 通常の検証中にファイルはアップロードされません
-- 不明なファイルはローカルのみに残ります
-- ビルドを**決定論的**かつ CI に依存しないようにします### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-厳格なリリースゲート:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-このステップは、生成された `skills/*/metadata.json` を読み取り、必要なスキャナーが実行されなかったり、検出が報告されなかった場合は失敗します。---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-セキュリティ データはすべてのスキルのメタデータで出力されます。```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ npm run verify:scanners:strict
 }
 ```
 
-> このブロックはマニフェストとカタログ ビューに伝播され、CLI、API、MCP で**セキュリティ スコアによるフィルタリングとランク付け**が可能になります。---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-公開された各スキルは以下を生成します。
+Each published skill generates:
 
-|ファイル |フォーマット |
-|:-----|:----------|
-| `dist/archives/<スキル>.zip` | ZIPアーカイブ |
-| `dist/archives/<スキル>.tar.gz` | Tarball アーカイブ |
-| `dist/archives/<スキル>.checksums.txt` | SHA-256 チェックサム マニフェスト |### ✅ Verify Archives
+| File | Format |
+|:-----|:-------|
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions でタグ (`v*`) がリリースされるようになりました。
+GitHub Actions release tags (`v*`) now:
 
-1. git タグが「package.json」と一致することを確認します。
-2. ClamAV をインストールして更新します
-3. GitHub シークレットからリリース署名キーをデコードします。
-4.「npm run release:verify」を実行します。
-5. `npm Pack` を使用して tarball をパッケージ化します。
-6. その正確な tarball を出所とともに npm に公開します
-7. カスタム メモと検証アセットを添付した GitHub リリースを作成します---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> 公開鍵が指定されていない場合、ビルドは `openssl` を使用して公開鍵を派生し、それを `dist/signing/` に配置します。
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-有効にすると、「.sig」ファイルがアーカイブとチェックサム マニフェストの横に出力されます。
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-CI では、リリース タグに次の署名が必要になりました。
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` または `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- オプションの「OMNI_SKILLS_SIGN_PUBLIC_KEY_B64」または「OMNI_SKILLS_SIGN_PUBLIC_KEY」---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-|制限 |ステータス |
-|:-----------|:------|
-| VirusTotal アップロードの提出 |デフォルトの検証から意図的に除外されています |
-|署名の実施 |リリースタグに適用されます。ローカル ビルドは署名なしで実行される可能性があります。
-|ホスト型ガバナンス |組み込みの認証、管理ランタイム、CORS/IP ホワイトリスト、メンテナンス モード、監査ログが用意されています。外部ゲートウェイは引き続きオプションです。
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

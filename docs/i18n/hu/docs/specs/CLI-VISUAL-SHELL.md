@@ -5,151 +5,177 @@
 ---
 
 
->**Viselkedési szerződés az „omni-skills ui” által közzétett tintaalapú terminál felhasználói felületére.**---
+> **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
+
+---
 
 ## 1. Scope
 
-A vizuális héj egy irányított termékfelület a meglévő CLI és telepítőmotor tetején.
+The visual shell is a guided product surface on top of the existing CLI and installer engine.
 
-Nem helyettesíti:
+It does not replace:
 
-- szakértői zászló alapú CLI használat
+- expert flag-based CLI usage
 - `tools/bin/install.js`
-- az irányított szöveges telepítési folyamat
-- API, MCP vagy A2A futásidejű viselkedés
+- the guided text install flow
+- API, MCP, or A2A runtime behavior
 
-Meghatározza:
+It defines:
 
-- a "minden készségek ui" viselkedése
-- a tartalék szerződés az "omni-skills ui --text"-re
-- helyi állapot és előre beállított kitartás
-- irányított szolgáltatásindítási előnézetek
-- Megismételhetőség a legutóbbi telepítésekhez és szolgáltatásfuttatásokhoz---
+- the behavior of `omni-skills ui`
+- the fallback contract for `omni-skills ui --text`
+- local state and preset persistence
+- guided service launch previews
+- repeatability for recent installs and service runs
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Visual Mode
 
-Az `omni-skills ui` elindítja az Ink alapú vizuális shellt.
+`omni-skills ui` launches the Ink-based visual shell.
 
-A vizuális shell az elsődleges nem szakértői terminál élmény:
+The visual shell is the primary non-expert terminal experience for:
 
-- áramlások telepítése
-- katalógus-első felfedezés és telepítés
-- MCP indítás
-- API indítás
-- A2A indítás
-- orvos és füst átadás### 2.2 Text Fallback
+- install flows
+- catalog-first discovery and install
+- MCP startup
+- API startup
+- A2A startup
+- doctor and smoke handoff
 
-Az `omni-skills ui --text` elindítja az readline alapú tartalék felületet.
+### 2.2 Text Fallback
 
-Ez akkor marad hasznos, ha:
+`omni-skills ui --text` launches the readline-based fallback interface.
 
-- egy terminál nem tudja megfelelően renderelni a gazdagabb shellt
-- A nyers mód viselkedése korlátozott
-- előnyben részesítjük a minimális szöveges tartalékot### 2.3 Handoff Rule
+This remains useful when:
 
-A vizuális shell nem valósítja meg újra a szolgáltatás futtatókörnyezetét vagy a telepítési írásokat közvetlenül.
+- a terminal cannot render the richer shell correctly
+- raw-mode behavior is constrained
+- a minimal text fallback is preferred
 
-Az előnézet és a megerősítés után tisztán kilép, és a végrehajtást átadja a meglévő CLI belépési pontnak az egyenértékű argumentumokkal és környezeti változókkal.---
+### 2.3 Handoff Rule
+
+The visual shell does not reimplement service runtimes or installation writes directly.
+
+After preview and confirmation, it exits cleanly and hands execution to the existing CLI entrypoint with the equivalent arguments and environment variables.
+
+---
 
 ## 3. Home Screen Contract
 
-A kezdőképernyőnek meg kell jelennie:
+The home screen must expose:
 
-- telepítési készségek
-- megkeresni és telepíteni
-- ismételje meg a legutóbbi telepítéseket, ha vannak
-- futtassa a mentett telepítési beállításokat, ha vannak
-- szolgáltatást indítani
-- ismételje meg a legutóbbi szolgáltatásokat, ha jelen vannak
-- mentett szolgáltatás-előbeállítások futtatása, ha vannak
-- orvos
-- füst
-- kilépés
+- install skills
+- find and install
+- repeat recent installs when present
+- run saved install presets when present
+- start a service
+- repeat recent services when present
+- run saved service presets when present
+- doctor
+- smoke
+- exit
 
-A kezdőképernyőnek is megjelennie kell:
+The home screen should also surface:
 
-- a csomag aktuális közzétett elérhetősége
-- helyi állam számít a legutóbbi, előre beállított és kedvencek számára---
+- current published bundle availability
+- local state counts for recents, presets, and favorites
+
+---
 
 ## 4. Install Flow Contract
 
-A vizuális shell telepítési folyamatának támogatnia kell:
+The visual shell install flow must support:
 
-- ismert ügyfélcél kiválasztása
-- egyéni útvonalválasztás
-- teljes könyvtár telepítése
-- egy készséges telepítés
-- egy köteges telepítés
-- keresés-majd telepítés
-- előnézet írás előtt
-- előre beállított mentés
-- kedvenc készség vagy csomagváltás
+- known client target selection
+- custom path selection
+- full library install
+- one-skill install
+- one-bundle install
+- search-then-install
+- preview before write
+- preset saving
+- favorite skill or bundle toggling
 
-Az előnézetnek meg kell jelennie:
+Preview must show:
 
-- megoldott célcímke
-- megoldott út
-- telepíteni hatókört
-- adott esetben kiválasztott készség vagy csomag
-- egyenértékű CLI parancs---
+- resolved target label
+- resolved path
+- install scope
+- selected skill or bundle when applicable
+- equivalent CLI command
+
+---
 
 ## 5. Service Flow Contract
 
-A vizuális shellnek az indítást kell irányítania:### 5.1 MCP
+The visual shell must guide startup for:
 
-- szállítás: "stdio", "folyam", "sse".
-- mód: "csak olvasható" vagy "helyi".
-- hoszt/port konfiguráció a hálózati átvitelhez
-- explicit parancs előnézet### 5.2 API
+### 5.1 MCP
 
-- házigazda
-- kikötő
-- alap vagy edzett profil
-- keményített hordozó vagy API kulcs hitelesítés
-- edzett sebességhatár paraméterek
-- auditnapló engedélyezése
-- explicit parancs előnézet### 5.3 A2A
+- transport: `stdio`, `stream`, `sse`
+- mode: `read-only` or `local`
+- host/port configuration for network transports
+- explicit command preview
 
-- házigazda
-- kikötő
-- tároló típusa: "memory", "json", "sqlite".
-- tárolási útvonal a tartós módokhoz
-- végrehajtó: `inline`, `process`
-- sor-engedélyezett SQLite mód
-- lekérdezési időköz és kölcsönzés időtartama megosztott bérlet módban
-- explicit parancs előnézet---
+### 5.2 API
+
+- host
+- port
+- basic or hardened profile
+- hardened bearer or API key auth
+- hardened rate-limit parameters
+- audit log enablement
+- explicit command preview
+
+### 5.3 A2A
+
+- host
+- port
+- store type: `memory`, `json`, `sqlite`
+- store path for durable modes
+- executor: `inline`, `process`
+- queue-enabled SQLite mode
+- poll interval and lease duration for shared-lease mode
+- explicit command preview
+
+---
 
 ## 6. Local State Contract
 
-A vizuális shell csak helyi állapotú marad a következő esetekben:```text
+The visual shell persists local-only state in:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Az állam jelenleg a következőket tartalmazza:
+State currently includes:
 
-- legutóbbi telepítések
-- a legutóbbi szolgáltatásindítások
-- nevű telepítési előbeállítások
-- elnevezett szolgáltatási beállítások
-- kedvenc készségek
-- kedvenc kötegek
+- recent installs
+- recent service launches
+- named install presets
+- named service presets
+- favorite skills
+- favorite bundles
 
-A héjnak támogatnia kell:
+The shell must support:
 
-- a legutóbbi telepítések újrajátszása
-- a legutóbbi szolgáltatásindítások újrajátszása
-- a megnevezett telepítési beállítások újrafelhasználása
-- elnevezett szolgáltatási beállítások újrafelhasználása---
+- replaying recent installs
+- replaying recent service launches
+- reusing named install presets
+- reusing named service presets
+
+---
 
 ## 7. Compatibility Contract
 
-A vizuális héj additív.
+The visual shell is additive.
 
-Ezeknek az áramlásoknak érvényesnek és stabilnak kell maradniuk:
+These flows must remain valid and stable:
 
-- `npx omni-skills --kurzor --skill omni-figma`
+- `npx omni-skills --cursor --skill omni-figma`
 - `npx omni-skills --bundle devops`
 - `npx omni-skills install --guided`
 - `npx omni-skills find figma --tool cursor --install --yes`
@@ -157,16 +183,18 @@ Ezeknek az áramlásoknak érvényesnek és stabilnak kell maradniuk:
 - `npx omni-skills api --port 3333`
 - `npx omni-skills a2a --port 3335`
 
-A vizuális shell soha nem kényszerítheti magát explicit szakértői parancsutakra.---
+The visual shell must never force itself into explicit expert command paths.
+
+---
 
 ## 8. Safety Contract
 
-A vizuális shellnek explicit állapotot és írást kell adnia.
+The visual shell should make state and writes explicit.
 
-A következőket kell tennie:
+It must:
 
-- a telepítések előnézete az átadás-átvétel előtt
-- a szolgáltatásindítási parancsok előnézete végrehajtás előtt
-- ahol ez praktikus, tartsa távol a titkos anyagokat az egyértelmű szöveges parancs-előnézetekből
-- csak helyben fennmaradó állapot
-- megőrzi a nem interaktív CLI viselkedést a vizuális héjon kívül
+- preview installs before write handoff
+- preview service launch commands before execution
+- keep secret material out of clear-text command previews where practical
+- persist state locally only
+- preserve non-interactive CLI behavior outside the visual shell

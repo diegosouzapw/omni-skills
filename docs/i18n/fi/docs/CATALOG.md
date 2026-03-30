@@ -5,103 +5,151 @@
 ---
 
 
-> Luotu automaattisesti skills_index.json-tiedostosta – 32 taitoa 15 kategoriassa.
+> Auto-generated from `skills_index.json` — 48 skills across 15 categories.
 
-Luotu: 2026-03-28T00:00:00+00:00---
+Generated: 2026-03-30T00:00:00+00:00
+
+---
 
 ## Table of Contents
 
-- [🧠 Ai Agents (5)](#ai-agents)
+- [🧠 Ai Agents (16)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
 - [⚙️ Cli Automation (1)](#cli-automation)
-- [💬 Viestintä (1)](#viestintä)
+- [💬 Communication (1)](#communication)
 - [🤖 Data Ai (1)](#data-ai)
-- [🎨 Suunnittelu (3)](#design)
-- [💻 Kehitys (3)](#kehitys)
+- [🎨 Design (3)](#design)
+- [💻 Development (6)](#development)
 - [☁️ Devops (5)](#devops)
-- [📝 Dokumentaatio (2)](#documentation)
-- [🖼️ Käyttöliittymä (1)](#frontend)
-- [🌐 Fullstack Web (1)](#fullstack-web)
-- [📈 Koneoppiminen (1)](#koneoppiminen)
-- [🧭 Tuote (1)](#tuote)
+- [📝 Documentation (2)](#documentation)
+- [🖼️ Frontend (1)](#frontend)
+- [🌐 Fullstack Web (2)](#fullstack-web)
+- [📈 Machine Learning (1)](#machine-learning)
+- [🧭 Product (2)](#product)
 - [🛡️ Testing Security (4)](#testing-security)
-- [🧰 Työkalut (1)](#työkalut)---
+- [🧰 Tools (1)](#tools)
+
+---
 
 ## 🧠 Ai Agents
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`context-engineering`](../skills/context-engineering/SKILL.md) | Kontekstisuunnittelun työnkulkutaito. Käytä tätä taitoa, kun käyttäjän on muokattava kehotteita, hakukontekstia, muistia ja | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`eval-design`](../skills/eval-design/SKILL.md) | Arviointisuunnittelun työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee LLM eval -suunnitelmia, regressiopaketteja, pisteytysrubriikkeja, o | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM-sovellusten työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee vankat mallit työkalun käyttöön, strukturoidut tulosteet, fallb | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Nopeaa insinöörityötaitoa. Käytä tätä taitoa, kun käyttäjä tarvitsee selkeämpiä tehtäväohjeita, esimerkkejä, hajotusta, | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`rag-insinööri`](../skills/rag-engineer/SKILL.md) | RAG-työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee hakuputkia, ryhmittelyä, sijoitusta, lainauksia ja arviointia f | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## 🗄️ Backend
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`building-agents`](../skills/building-agents/SKILL.md) | Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or confi | L2 instructions | 19/100 | 42/100 | 40/100 warn |
+| [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`cookiy`](../skills/cookiy/SKILL.md) | Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, suppo | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`creating-inline-actions`](../skills/creating-inline-actions/SKILL.md) | Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection o | L2 instructions | 20/100 | 44/100 | 30/100 warn |
+| [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`handling-attachments`](../skills/handling-attachments/SKILL.md) | File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachmen | L2 instructions | 16/100 | 38/100 | 60/100 warn |
+| [`handling-commands`](../skills/handling-commands/SKILL.md) | Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash com | L2 instructions | 7/100 | 37/100 | 100/100 passed |
+| [`handling-transactions`](../skills/handling-transactions/SKILL.md) | Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or hand | L2 instructions | 20/100 | 46/100 | 100/100 passed |
+| [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`managing-groups`](../skills/managing-groups/SKILL.md) | Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sendi | L2 instructions | 16/100 | 38/100 | 90/100 warn |
+| [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`recce-mcp-dev`](../skills/recce-mcp-dev/SKILL.md) | Recce MCP Server Development workflow skill. Use this skill when the user needs modifying recce/mcp_server.py, MCP tool  | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`recce-mcp-e2e`](../skills/recce-mcp-e2e/SKILL.md) | MCP E2E Verification workflow skill. Use this skill when the user needs MCP server code is modified and needs full E2E v | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`sending-reactions`](../skills/sending-reactions/SKILL.md) | Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing sta | L2 instructions | 16/100 | 38/100 | 100/100 passed |
+| [`synthesize-research-report`](../skills/synthesize-research-report/SKILL.md) | Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative res | L3 resources | 100/100 | 98/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`api-design`](../skills/api-design/SKILL.md) | API-suunnittelun työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee selkeän HTTP- tai palvelusopimuksen ennen käyttöönottoa. | L3-resurssit | 100/100 | 95/100 | 95/100 hyväksytty |
-| [`database-design`](../skills/database-design/SKILL.md) | Tietokannan suunnittelun työnkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee kestävän skeeman, indeksoinnin ja siirtosuunnittelun ennen i | L3-resurssit | 98/100 | 94/100 | 95/100 hyväksytty |## ⚙️ Cli Automation
+## 🗄️ Backend
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`find-skills`](../skills/find-skills/SKILL.md) | Katalogien löytämisen työnkulkutaito. Käytä tätä taitoa, kun käyttäjä pyytää ominaisuutta, työnkulkua tai toimialuekohtaista apuohjelmaa | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## 💬 Communication
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`api-design`](../skills/api-design/SKILL.md) | API design workflow skill. Use this skill when a user needs a clear HTTP or service contract before implementation. | L3 resources | 100/100 | 95/100 | 95/100 passed |
+| [`database-design`](../skills/database-design/SKILL.md) | Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before i | L3 resources | 98/100 | 94/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee puhtaan arvostelukerran, riskin muotoilun ja arvioijan oppaan | L3-resurssit | 98/100 | 95/100 | 95/100 hyväksytty |## 🤖 Data Ai
+## ⚙️ Cli Automation
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`data-contracts`](../skills/data-contracts/SKILL.md) | Datasopimusten työnkulkutaito. Käytä tätä taitoa, kun tiimin on määriteltävä, tarkistettava tai valvottava tuottajien välisiä sopimuksia | L3-resurssit | 97/100 | 95/100 | 95/100 hyväksytty |## 🎨 Design
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Esteettömyystarkastuksen työnkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee näppäimistöä, semantiikkaa, tarkennusta, kontrastia, liikettä tai | L3-resurssit | 100/100 | 99/100 | 95/100 hyväksytty |
-| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Suunnittelujärjestelmäoperaatioiden työnkulkutaitoa. Käytä tätä taitoa, kun käyttäjä tarvitsee tunnuksen hallintaa, komponenttien ajautumisen hallintaa, uudelleen | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Suunnittele token-hallintatyönkulkutaito. Käytä tätä taitoa, kun tiimin on esiteltävä, nimettävä uudelleen, poistettava käytöstä tai tarkistettava desi | L3-resurssit | 97/100 | 95/100 | 95/100 hyväksytty |## 💻 Development
+## 💬 Communication
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`arkkitehtuuri`](../skills/architecture/SKILL.md) | Arkkitehtuurin työnkulkutaitoja. Käytä tätä taitoa, kun käyttäjä tarvitsee järjestelmärajoja, kompromisseja tai vaiheittaista toteutusta p | L3-resurssit | 98/100 | 94/100 | 95/100 hyväksytty |
-| [`debugging`](../skills/debugging/SKILL.md) | Työnkulun virheenkorjaustaito. Käytä tätä taitoa, kun käyttäjä tarvitsee kurinalaista kopiointia, eristämistä ja korjausvarmennusta | L3-resurssit | 98/100 | 94/100 | 95/100 hyväksytty |
-| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma-työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee suunnittelusta koodiin -toteutusta, Figma-tarkastusta, tunnuksen hakua, Co | L3-resurssit | 100/100 | 100/100 | 95/100 hyväksytty |## ☁️ Devops
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`create-pr`](../skills/create-pr/SKILL.md) | Pull-request workflow skill. Use this skill when a user needs a clean review narrative, risk framing, and reviewer guida | L3 resources | 98/100 | 95/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker-työnkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee Docker-tiedostoja, kuvanmuodostusstrategiaa, ajonaikaista vahvistusta tai sisältää | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes-työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee työkuormitusluetteloita, käyttöönottostrategiaa, palvelun esittelyä tai c | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`observability-review`](../skills/observability-review/SKILL.md) | Havainnoitavuuden työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee lokeja, mittareita, jälkiä, hälytyksiä tai SLO-tarkistuksia ennen toimitusta | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`release-engineering`](../skills/release-engineering/SKILL.md) | Vapauta suunnittelutyönkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee turvallisemman julkaisusuunnitelman, promootiokäytännön tai palautussuunnitelman L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`terraform`](../skills/terraform/SKILL.md) | Terraform työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee infrastruktuuria koodirakenteena, moduuleina, tilastrategiana tai | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## Dokumentaatio
+## 🤖 Data Ai
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`changelog`](../skills/changelog/SKILL.md) | Julkaisutiedot-työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee muutoslokimerkintöjä, päivitysmuistiinpanoja tai tiiviin julkaisun na | L3-resurssit | 98/100 | 94/100 | 95/100 hyväksytty |
-| [`dokumentaatio`](../skills/documentation/SKILL.md) | Dokumentoinnin työnkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee tarkkaa käyttöönottoa, käyttöopastusta tai vapauta | L3-resurssit | 99/100 | 96/100 | 95/100 hyväksytty |## 🖼️ Frontend
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`data-contracts`](../skills/data-contracts/SKILL.md) | Data contracts workflow skill. Use this skill when a team needs to define, review, or enforce contracts across producers | L3 resources | 97/100 | 95/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend-työnkulun suunnittelutaidot. Käytä tätä taitoa, kun käyttäjä tarvitsee käyttöliittymän rakennetta, tiloja ja vuorovaikutusmalleja ennen i | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## 🌐 Fullstack Web
+## 🎨 Design
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`auth-flows`](../skills/auth-flows/SKILL.md) | Todennus- ja valtuutustyönkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee kirjautumisen, istunnon, tunnuksen, roolin tai luvan | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## 📈 Machine Learning
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`mallin palveleminen`](../skills/model-serving/SKILL.md) | Mallipalvelutyönkulkutaito. Käytä tätä taitoa, kun tiimin on suunniteltava, tarkistettava tai vahvistettava online-päätelmiä, eräinfe | L3-resurssit | 97/100 | 95/100 | 95/100 hyväksytty |## 🧭 Product
+## 💻 Development
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`aivoriihi`](../skills/brainstorming/SKILL.md) | Aivoriihen työnkulkutaito. Käytä tätä taitoa, kun käyttäjä tutkii ongelmaa ja tarvitsee vaihtoehtoja, kompromisseja ja palautusta | L3-resurssit | 99/100 | 96/100 | 95/100 hyväksytty |## 🛡️ Testing Security
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`claude-code-review`](../skills/claude-code-review/SKILL.md) | Claude Code Review workflow skill. Use this skill when the user needs asked to review a PR, or when /review is invoked w | L3 resources | 100/100 | 98/100 | 95/100 passed |
+| [`debugging`](../skills/debugging/SKILL.md) | Debugging workflow skill. Use this skill when a user needs disciplined reproduction, isolation, and fix verification ins | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`linear-deep-dive`](../skills/linear-deep-dive/SKILL.md) | Linear Deep Dive workflow skill. Use this skill when the user needs given a Linear issue ID, URL, identifier, or project | L3 resources | 100/100 | 96/100 | 95/100 passed |
+| [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`pm-research`](../skills/pm-research/SKILL.md) | PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packa | L3 resources | 100/100 | 100/100 | 95/100 passed |
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`incident-response`](../skills/incident-response/SKILL.md) | Tapahtumien reagointityönkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee katkoksia, lievennysjaksoja, sidosryhmien com | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`security-auditor`](../skills/security-auditor/SKILL.md) | Tietoturvatarkastuksen työnkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee tarkennetun tarkastelun konkreettisista turvallisuusriskeistä | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Uhkamallinnustyönkulkutaito. Käytä tätä taitoa, kun käyttäjä tarvitsee luottamusrajoja, hyökkääjän tavoitteita, väärinkäyttötapauksia tai lieventäviä | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |
-| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Haavoittuvuuksien skannaustyönkulun taito. Käytä tätä taitoa, kun käyttäjä tarvitsee toistettavan suojan tunnetuille haavoittuvuuksille, u | L3-resurssit | 99/100 | 97/100 | 95/100 hyväksytty |## 🧰 Tools
+## ☁️ Devops
 
-| Taito | Kuvaus | Taso | Parhaat käytännöt | Laatu | Turvallisuus |
-| :---- | :---------- | :---- | :-------------- | :------ | :------- |
-| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP-palvelimen luontityönkulun taito. Käytä tätä taitoa, kun tiimin on suunniteltava, toteutettava, validoitava tai dokumentoitava Mode | L3-resurssit | 97/100 | 95/100 | 95/100 hyväksytty |
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`release-engineering`](../skills/release-engineering/SKILL.md) | Release engineering workflow skill. Use this skill when a user needs a safer release plan, promotion policy, rollback pa | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`terraform`](../skills/terraform/SKILL.md) | Terraform workflow skill. Use this skill when a user needs infrastructure as code structure, modules, state strategy, or | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## Dokumentaatio
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`changelog`](../skills/changelog/SKILL.md) | Release-notes workflow skill. Use this skill when a user needs changelog entries, upgrade notes, or a concise release na | L3 resources | 98/100 | 94/100 | 95/100 passed |
+| [`documentation`](../skills/documentation/SKILL.md) | Documentation workflow skill. Use this skill when a user needs accurate onboarding, operational guidance, or release-rea | L3 resources | 99/100 | 96/100 | 95/100 passed |
+
+## 🖼️ Frontend
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## 🌐 Fullstack Web
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`resolving-domains`](../skills/resolving-domains/SKILL.md) | ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farc | L2 instructions | 20/100 | 45/100 | 30/100 warn |
+
+## 📈 Machine Learning
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`model-serving`](../skills/model-serving/SKILL.md) | Model serving workflow skill. Use this skill when a team needs to design, review, or harden online inference, batch infe | L3 resources | 97/100 | 95/100 | 95/100 passed |
+
+## 🧭 Product
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
+| [`qualitative-research-planner`](../skills/qualitative-research-planner/SKILL.md) | Qualitative Research Planner workflow skill. Use this skill when the user needs > and the operator should rely on the pa | L3 resources | 100/100 | 100/100 | 95/100 passed |
+
+## 🛡️ Testing Security
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`incident-response`](../skills/incident-response/SKILL.md) | Incident response workflow skill. Use this skill when a user needs outage triage, mitigation sequencing, stakeholder com | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`security-auditor`](../skills/security-auditor/SKILL.md) | Security audit workflow skill. Use this skill when a user needs a focused review of concrete security risks instead of a | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`threat-modeling`](../skills/threat-modeling/SKILL.md) | Threat modeling workflow skill. Use this skill when a user needs trust boundaries, attacker goals, abuse cases, or mitig | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`vulnerability-scanner`](../skills/vulnerability-scanner/SKILL.md) | Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, u | L3 resources | 99/100 | 97/100 | 95/100 passed |
+
+## 🧰 Tools
+
+| Skill | Description | Level | Best Practices | Quality | Security |
+| :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`mcp-server-authoring`](../skills/mcp-server-authoring/SKILL.md) | MCP server authoring workflow skill. Use this skill when a team needs to design, implement, validate, or document a Mode | L3 resources | 97/100 | 95/100 | 95/100 passed |

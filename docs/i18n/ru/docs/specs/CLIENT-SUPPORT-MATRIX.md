@@ -5,158 +5,176 @@
 ---
 
 
-В этом документе отслеживается практическая поверхность клиента для Omni Skills по трем направлениям:
+This document tracks the practical client surface for Omni Skills across three inputs:
 
-1. инвентарь информационной панели `9router` в `/home/diegosouzapw/dev/proxys/9router`
-2. текущая реализация коляски Omni Skills MCP.
-3. текущая официальная документация для каждого клиента или IDE.
+1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
+2. the current Omni Skills MCP sidecar implementation
+3. current official documentation for each client or IDE
 
-Это рабочий источник истины для принятия решения о том, какие клиенты получат первоклассную поддержку config-mcp, какие остаются только вручную, а какие являются лишь кандидатами.---
+It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
+
+---
 
 ## Scope
 
-Эта матрица посвящена**конфигурации клиента для MCP**.
+This matrix is about **client configuration for MCP**.
 
-Это не то же самое, что:
+It is not the same as:
 
-- поддержка установки навыков
-- Совместимость с API
-- Поддержка А2А
-- ACP или другие протоколы, отличные от MCP
+- skill installation support
+- API compatibility
+- A2A support
+- ACP or other non-MCP protocols
 
-Некоторые продукты в матрице используют MCP, но не имеют значимого «каталога навыков», поэтому они получают только поддержку config-target.---
+Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
+
+---
 
 ## 9router Inventory
 
-Панель управления 9router в настоящее время группирует следующие инструменты CLI или клиенты IDE:
+The `9router` dashboard currently groups these CLI tools or IDE clients:
 
-- Клод Код
-- Кодекс OpenAI
-- Заводской дроид
-- ОпенКлоу
-- Курсор
-- Клайн
-- Код килограмма
-- Продолжить
-- Антигравитация
-— второй пилот GitHub
-- Открытый код
-- Киро А.И.
+- Claude Code
+- OpenAI Codex
+- Factory Droid
+- OpenClaw
+- Cursor
+- Cline
+- Kilo Code
+- Continue
+- Antigravity
+- GitHub Copilot
+- OpenCode
+- Kiro AI
 
-Местные источники:
+Local sources:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
 - [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)---
+- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
+
+---
 
 ## First-Class Support
 
-Теперь у этих клиентов есть стабильная и явная история в Omni Skills через `config-mcp --target ...`.
+These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
 
-Текущие итоги реализации:
+Current implementation totals:
 
--**7 клиентов с возможностью установки**
--**16 клиентов с возможностью настройки**
--**33 первоклассные цели конфигурации**
--**19 профилей конфигурации**
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 first-class config targets**
+- **19 config profiles**
 
-| Клиент | Статус | Цели конфигурации | Заметки |
+| Client | Status | Config Targets | Notes |
 |:-------|:-------|:---------------|:------|
-| Клод Код | ✅ Первоклассный | `рабочее пространство`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Введена конфигурация `mcpServers` с элементами управления разрешением/запретом, специфичными для Claude |
-| Курсор | ✅ Первоклассный | `курсор-рабочее пространство`, `курсор-пользователь` | Цели JSON `mcpServers` |
-| Код VS | ✅ Первоклассный | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Использует корень `servers` |
-| Близнецы CLI | ✅ Первоклассный | `gemini-пользователь`, `gemini-workspace` | Настройки JSON + глобальные элементы управления разрешением/исключением MCP |
-| Антигравитация | ✅ Первоклассный | `пользователь антигравитации` | Цель JSON `mcpServers` |
-| Киро | ✅ Первоклассный | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Поля отключения/автоматического одобрения, специфичные для Kiro |
-| Интерфейс командной строки Кодекса | ✅ Первоклассный | `пользователь-кодекса` | Таблицы TOML `mcp_servers` |
-| Продолжить | ✅ Первоклассный | `продолжить-рабочую область` | Документ выделенного сервера YAML |
-| Виндсерфинг | ✅ Первоклассный | `пользователь виндсерфинга` | Цель JSON `mcpServers` с записями `serverUrl` |
-| Открытый код | ✅ Первоклассный | `opencode-workspace`, `opencode-user` | Официальная `opencode.json` / пользовательская конфигурация с использованием `mcp` верхнего уровня |
-| Клайн | ✅ Первоклассный | `клиент-пользователь` | `cline_mcp_settings.json` с `mcpServers` |
-| GitHub Copilot CLI | ✅ Первоклассный | `второй пилот-пользователь`, `второй пилот-репо` | `mcp-config.json` или `.github/mcp.json` в пределах репозитория |
-| Код килограмма | ✅ Первоклассный | `кило-пользователь`, `кило-проект`, `кило-рабочее пространство` | Kilo CLI использует `kilo.json`; интеграция рабочей области использует `.kilocode/mcp.json` |
-| Зед | ✅ Первоклассный | `zed-рабочее пространство` | `.zed/settings.json` с `context_servers` |
-| Джуни | ✅ Первоклассный | `junie-проект`, `junie-пользователь` | `.junie/mcp/mcp.json` или `~/.junie/mcp/mcp.json` с использованием `mcpServers` |
-| Гусь | ✅ Первоклассный | `гусь-пользователь` | `~/.config/goose/config.yaml` с использованием объекта `extensions` верхнего уровня для постоянных расширений MCP |---
+| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
+| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
+| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
+| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
+| Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
+| Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
+| Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
+| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
+| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
+| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
+| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
+| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
+| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
+| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
+| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
+| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
+
+---
 
 ## Current Gaps
 
-Эти клиенты из `9router`**еще не являются**первоклассными объектами записи в Omni Skills:
+These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
 
-| Клиент | Текущее состояние | Почему |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| Заводской дроид | ⚠️ Только вручную/по индивидуальному заказу | Во время этого прохода в основных документах не обнаружено стабильной общедоступной формы конфигурации MCP |
-| OpenClaw | ⚠️ Только вручную/по индивидуальному заказу | Та же проблема, что и у Factory Droid |
+| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
+| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
 
-Дополнительную программу по-прежнему можно использовать с `--file` или пользовательскими путями для опытных пользователей, но Omni Skills не следует изобретать первоклассные средства записи без стабильной общедоступной документации по конфигурации.
+The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
 
-Два смежных продукта теперь лучше изучены, но по-прежнему намеренно не дотягивают до первоклассных автоматических записывающих устройств:
+Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
 
-| Клиент | Текущее состояние | Почему |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| JetBrains AI-помощник | 🟡 Руководство/фрагмент | Официальная поддержка MCP существует, но документированный рабочий процесс основан на пользовательском интерфейсе/импорте, а не на стабильном общедоступном целевом файле |
-| Почтальон | 🟡 Руководство/фрагмент | Официальная поддержка MCP существует, но конфигурация управляется внутри пользовательского интерфейса продукта, а не через стабильный общедоступный целевой файл |
-| Кодекс Ру | 🟡 Кандидат | Публичная документация MCP существует, но надежный межплатформенный контракт о путях к файлам по-прежнему требует подтверждения перед добавлением автора |---
+| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
+| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
+| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
+
+---
 
 ## Support Policy
 
-Omni Skills теперь следует этому набору правил:
+Omni Skills now follows this rule set:
 
-1.**Возможна установка**, если существует стабильный каталог навыков.
-2.**С поддержкой конфигурации**, если существует стабильный общедоступный формат файла конфигурации MCP.
-3.**Только вручную/фрагмент**, если продукт поддерживает MCP, но общедоступный контракт ориентирован на пользовательский интерфейс, импорт или все еще слишком нестабильен.
+1. **Install-capable** if a stable skills directory exists.
+2. **Config-capable** if a stable public MCP config file format exists.
+3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
 
-Это также практический ответ на один из предыдущих вопросов архитектуры: проект должен продолжать выращивать первоклассных авторов только там, где существует стабильный общедоступный формат, а в остальном опираться на меньший набор канонических экспортных семейств плюс рецепты и фрагменты.### Canonical config families already in use
+This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
+
+### Canonical config families already in use
 
 - JSON `mcpServers`
-- JSON `серверы`
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
-- TOML `[mcp_servers]`### Additional candidates worth watching
+- TOML `[mcp_servers]`
 
-| Клиент/IDE | Рекомендация | Причина |
+### Additional candidates worth watching
+
+| Client / IDE | Recommendation | Reason |
 |:-------------|:---------------|:-------|
-| JetBrains AI-помощник | 🟡 Пока сохраните руководство/фрагмент | Официальная поддержка реальна, но UX по-прежнему управляется продуктом, а не файловым контрактом |
-| Почтальон | 🟡 Пока сохраните руководство/фрагмент | Официальная установка ориентирована на пользовательский интерфейс и управление рабочей областью, а не на основе файлового контракта |
-| Кодекс Ру | 🟡 Следующее расследование | Многообещающая поддержка MCP, но безопасность записи зависит от более строгого подтверждения пути конфигурации |
-| Чат второго пилота VS Code | 🟢 Косвенно уже рассмотрено | Базовые местоположения файлов VS Code MCP уже поддерживаются |
-| Zed ACP / Серверы агентов | 🟡 Отдельный трек | Это территория ACP/агент-сервера, а не просто написание конфигурации MCP |---
+| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
+| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
+| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
+| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
+| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
+
+---
 
 ## Official Sources Used
 
-Приведенные выше решения были проверены на соответствие текущим первоисточникам:
+The decisions above were checked against current primary sources:
 
-- [Антропный код Клода MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
+- [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
 - [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
-- [Курсор MCP](https://docs.cursor.com/tools)
-- [Продолжить MCP](https://docs.continue.dev/customize/tools)
-- [Киро MCP](https://kiro.dev/docs/mcp)
+- [Cursor MCP](https://docs.cursor.com/tools)
+- [Continue MCP](https://docs.continue.dev/customize/tools)
+- [Kiro MCP](https://kiro.dev/docs/mcp)
 - [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
-- [Клайн MCP](https://docs.cline.bot/mcp)
-- [Код килограмма MCP](https://kilo.ai/docs/automate/mcp/using-in-kilo-code)
+- [Cline MCP](https://docs.cline.bot/mcp)
+- [Kilo Code MCP](https://kilo.ai/docs/automate/mcp/using-in-kilo-code)
 - [GitHub Copilot CLI MCP](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/cli-command-reference)
 - [Zed MCP](https://zed.dev/docs/ai/mcp)
 - [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
-- [Джуни MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
-- [Файлы конфигурации Goose](https://block.github.io/goose/docs/guides/config-files/)
-- [Расширения сеансов Goose](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Настройка Postman MCP](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
-- [Код Руо MCP](https://docs.roocode.com/features/mcp)
-- [Руководство по расширению VS Code MCP](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Официальный реестр MCP](https://prod.registry.modelcontextprotocol.io/)---
+- [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
+- [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
+- [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
+- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [Roo Code MCP](https://docs.roocode.com/features/mcp)
+- [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
+- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
+
+---
 
 ## Implementation Notes
 
-Текущая коляска Omni Skills намеренно различает три уровня поддержки:
+The current Omni Skills sidecar intentionally distinguishes three support levels:
 
--**клиенты с возможностью установки**
-  - иметь известный каталог навыков и можете использовать `install_skills`
--**клиенты с возможностью настройки**
-  - иметь стабильную цель конфигурации и использовать `configure_client_mcp`
--**клиенты вручную/фрагменты**
-  - задокументировано, но пока без безопасного первоклассного средства записи файлов
+- **install-capable clients**
+  - have a known skills directory and can use `install_skills`
+- **config-capable clients**
+  - have a stable config target and can use `configure_client_mcp`
+- **manual/snippet clients**
+  - documented, but without a safe first-class file writer yet
 
-Такое разделение сохраняет честность продукта.
+That separation keeps the product honest.
 
-Не каждый продукт с поддержкой MCP следует рассматривать как цель внедрения навыков.
-Фаза расширения на данный момент считается завершенной: будущие дополнения должны появиться только в том случае, если они преодолеют ту же планку государственного контракта, которую сейчас очищают Goose, Junie, Continue и Windsurf.
+Not every MCP-capable product should be treated as a skill-install target.
+The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.

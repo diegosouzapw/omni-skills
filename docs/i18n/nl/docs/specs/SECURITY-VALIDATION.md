@@ -5,44 +5,50 @@
 ---
 
 
->**Beveiligingsscannen, archief genereren, optionele ondertekening en distributiepakket voor elke gepubliceerde vaardigheid.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| Kenmerk | Staat |
+| Feature | State |
 |:--------|:------|
-| ✅ Statische beveiligingsscanner | Altijd ingeschakeld |
-| ✅ Metagegevensclassificatie per vaardigheid | Geïmplementeerd |
-| ✅ Archieven per vaardigheid (zip/tar.gz) | Geïmplementeerd |
-| ✅ SHA-256 checksum-manifesten | Geïmplementeerd |
-| ✅ CI-scannerpoort op release-tags | Geïmplementeerd |
-| ✅ npm publicatieworkflow van geverifieerde tarball | Geïmplementeerd |
-| ⚙️ClamAV-scannen | Optionele verrijker |
-| ⚙️ VirusTotal hash opzoeken | Optionele verrijker |
-| ✅ Vrijstaande signeersessie | Geïmplementeerd |
-| ✅ CI-afgedwongen ondertekening | Geïmplementeerd op releasetags |---
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-Scant elke vaardigheid tijdens validatie:
+Scans every skill during validation:
 
-| Doel | Wat wordt gescand |
+| Target | What Gets Scanned |
 |:-------|:-----------------|
-| 📝 `SKILL.md` | Belangrijkste vaardigheidsinhoud |
-| 📄 Markdown/tekstbestanden | Verpakte referenties en documenten |
-| ⚙️Scripties | Verpakte automatiseringsscripts |
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**Regelfamilies:**
+**Rule families:**
 
-| Regel | Voorbeelden |
+| Rule | Examples |
 |:-----|:---------|
-| 🎭**Snelle injectie**| Exfiltratiepatronen, instructieoverschrijvingen |
-| 💣**Destructieve commando's**| `rm -rf`, `format`, `del /s` |
-| 🔑**Escalatie van privileges**| `sudo`, `chmod 777`, setuid-patronen |
-| 📂**Verdachte paden**| `/etc/shadow`, `~/.ssh`, referentiebestanden |
-| ⚠️**Risicovolle primitieven**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@ Scant elke vaardigheid tijdens validatie:
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- Vereist `clamscan` in `PATH`
-- Scant verpakte bestanden op bekende malware
-- Resultaten vastgelegd in metadata van vaardigheden---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**Alleen hash opzoeken**— geen bestandsupload tijdens normale validatie
-- Onbekende bestanden blijven alleen lokaal
-- Houdt de build**deterministisch**en CI-onafhankelijk### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-Strikte vrijgavepoort:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-Deze stap leest de gegenereerde `skills/*/metadata.json` en mislukt als de vereiste scanners geen detecties hebben uitgevoerd of gerapporteerd.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-Beveiligingsgegevens worden verzonden in de metadata van elke vaardigheid:```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ Beveiligingsgegevens worden verzonden in de metadata van elke vaardigheid:```jso
 }
 ```
 
-> Dit blok wordt doorgevoerd in manifesten en catalogusweergaven, waardoor CLI, API en MCP kunnen**filteren en rangschikken op beveiligingsscore**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-Elke gepubliceerde vaardigheid genereert:
+Each published skill generates:
 
-| Bestand | Formaat |
+| File | Format |
 |:-----|:-------|
-| `dist/archives/<vaardigheid>.zip` | ZIP-archief |
-| `dist/archives/<skill>.tar.gz` | Tarball-archief |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum-manifest |### ✅ Verify Archives
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-GitHub Actions geeft nu tags (`v*`) vrij:
+GitHub Actions release tags (`v*`) now:
 
-1. Controleer of de git-tag overeenkomt met `package.json`
-2. installeer en vernieuw ClamAV
-3. decodeer de release-ondertekeningssleutel uit GitHub-geheimen
-4. voer `npm run release:verify` uit
-5. verpak de tarball met `npm pack`
-6. publiceer dat exacte tarball naar npm met herkomst
-7. maak een GitHub-release met aangepaste notities en bijgevoegde verificatiemiddelen---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Als er geen publieke sleutel is opgegeven, leidt de build er een af ​​met `openssl` en plaatst deze in `dist/signing/`.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-Wanneer ingeschakeld, worden `.sig`-bestanden verzonden naast de archieven en het checksum-manifest.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-In CI vereisen releasetags nu ondertekening:
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` of `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- optioneel `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` of `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| Beperking | Staat |
+| Limitation | Status |
 |:-----------|:-------|
-| VirusTotal uploadinzending | Opzettelijk uitgesloten van standaardvalidatie |
-| Handhaving ondertekenen | Afgedwongen op release-tags; lokale builds kunnen nog steeds niet-ondertekend worden uitgevoerd |
-| Gehost bestuur | Ingebouwde authenticatie, admin runtime, CORS/IP-toelatingslijsten, onderhoudsmodus en auditlogboekregistratie zijn aanwezig; externe gateways blijven optioneel |
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

@@ -25,11 +25,11 @@ This is the contributor-facing companion to:
 - [Skill Anatomy](SKILL-ANATOMY.md)
 - [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Current benchmark for the live catalog:
+Current benchmark for the live native catalog:
 
-- 32 published skills
-- current quality spread: `94, 95, 96, 97, 100`
-- current best-practices spread: `98, 99, 100`
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
 - current top end: `omni-figma` at `100/100` quality and `100/100` best practices
 
 ---

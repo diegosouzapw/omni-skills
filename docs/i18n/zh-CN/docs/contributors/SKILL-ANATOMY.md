@@ -5,110 +5,126 @@
 ---
 
 
->**对 Omni Skills `SKILL.md` 的结构和质量期望 — 为整个目录提供支持的创作格式。**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-每个“SKILL.md”都由两个不同的部分组成：### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-`---` 分隔符之间的机器可读元数据。它的力量：
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 技能索引和目录生成
-- 🔎 CLI 搜索和过滤
-- ✅ 验证和质量评分
-- 📊生成`metadata.json`分类工件
-- 📋 每项技能在 `dist/manifests/` 中体现### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-人类可读（和代理可读）的指令。编写它就好像您正在**向高级开发人员简要介绍如何执行任务一样 — 足够具体，以便人工智能代理可以在不猜测的情况下遵循它。---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-|领域 |必填|类型 |描述 |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `名称` | ✅ |字符串|必须匹配目录名称，小写连字符 |
-| `描述` | ✅ |字符串|一行描述（10-200 个字符）|
-| `版本` | ⚡ |字符串|技能本身的语义版本（例如“0.1.1”）|
-| `类别` | ⚡ |字符串|回购分类中的一个规范类别 |
-| `标签` | ⚡ |字符串[] |用于发现的可搜索标签 |
-| `复杂性` | ⚡ |字符串| `初级` · `中级` · `高级` · `专家` |
-| `风险` | ⚡ |字符串| “安全”·“注意”·“冒犯”·“严重”|
-| `工具` | ⚡ |字符串[] |经过测试的人工智能编码助手 |
-| `来源` | ⚡ |字符串| `全能团队` · `社区` · `官方` |
-| `作者` | ⚡ |字符串|归因 |
-| `添加日期` | ⚡ |字符串| ISO 日期 |
-| `更新日期` | ⚡ |字符串| ISO 日期 |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = 始终需要 · ⚡ = 严格模式下需要
+> ✅ = Always required · ⚡ = Required in strict mode
 
-Skill 版本独立于 npm 包版本。该软件包当前为“0.1.3”，但现有技能可以有效地保留在自己的语义版本上。---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-存储库分类法当前定义了**18 个规范类别**：
+The repo taxonomy currently defines **18 canonical categories**:
 
-|类别 |域名 |
-|:--------|:--------|
-| 💻`发展` |通用软件开发 |
-| 🎨 `前端` |前端框架和 UI |
-| 🔧 `后端` |后端服务和 API |
-| 🌐 `全栈网络` |端到端网络开发 |
-| 🛠️`工具` |开发人员工具和实用程序 |
-| ⚙️ `cli 自动化` | CLI 工具和自动化脚本 |
-| 📊 `业务` |业务流程和策略|
-| 📐`产品` |产品管理与设计|
-| 🎯`设计` |视觉和用户体验设计 |
-| 🤖 `数据人工智能` |数据工程和人工智能应用|
-| 🧠 `人工智能代理` | AI代理开发和模式|
-| 📈 `机器学习` |机器学习模型和训练 |
-| 🔌 `devops` |基础设施和部署|
-| 🛡️ `测试安全` |测试和安全实践|
-| 📖 `文档` |文档生成和管理 |
-| 🎬 `内容媒体` |内容创作和媒体 |
-| 💬`沟通` |通讯工具和工作流程 |
-| ❓`未分类` |未找到匹配项时默认 |
+| Category | Domain |
+|:---------|:-------|
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> “工作流”、“架构”、“基础设施”、“安全性”和“测试”等旧标签会通过别名映射自动规范化。---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-编写良好的技能体遵循以下层次结构：
+A well-written skill body follows this hierarchy:
 
-### 📌 概述（必填）
-2-3 句话说明该技能的**用途**以及**为什么**存在。
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 何时使用（必填）
-适用此技能的**特定场景**的项目符号列表。
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 核心说明（必填）
-代理应遵循的**分步流程**。明确一点。具体一点。代理在明确、明确的指示下工作效果最佳。
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 示例（推荐）
-具体提示、代码块或预期输出。**越具体越好。**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ 最佳实践（推荐）
-使用 ✅ Do / ❌ Don't 格式进行快速扫描。
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 故障排除（可选）
-常见问题及其解决方案。
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 相关技能（可选）
-互补技能的交叉引用。---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 专注于**一个特定**工作流程或领域
-- 📌 指令**足够清晰，人工智能**无需人工解释即可遵循
-- 💡 包括具有预期行为的**具体示例**
-- 🛡️ 有适当的**错误处理**指导
-- 📊 生成健康的元数据：规范类别、成熟度 L2+、质量 70+
-- 🧰 提供可重复使用的支持包，而不仅仅是散文，最好在适当的情况下跨“引用/”、“脚本/”、“示例/”和“代理/”
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-有关将技能推向最高等级的更强的评分模式，请参阅[高分手册](HIGH-SCORE-PLAYBOOK.md)。### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️适用于任何事物的通用建议
-- 🤷 模糊的指令，例如“编写好的代码”
-- 🚫 没有示例或代码块
-- ⚠️ 缺少 frontmatter 字段
-- 📉 质量分数低（低于 50）
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

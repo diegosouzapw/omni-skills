@@ -5,7 +5,9 @@
 ---
 
 
->**Le guide opérationnel complet pour créer, valider, servir, sécuriser et dépanner Omni Skills.**---
+> **The complete operational guide for building, validating, serving, securing, and troubleshooting Omni Skills.**
+
+---
 
 ## 1️⃣ Local Development Cycle
 
@@ -25,36 +27,44 @@ npm test                # Smoke suite: CLI, API, MCP, sidecar, archives
 npx omni-skills ui      # Visual shell for install and service launch
 ```
 
-| Commande | Ce qu'il fait |
+| Command | What It Does |
 |:--------|:-------------|
-| `npm run valider` | Valide `SKILL.md`, régénère `metadata.json`, calcule la taxonomie/maturité/qualité/sécurité |
-| `npm run taxonomy:report` | Affiche les suggestions de dérive de catégorie sans réécrire les fichiers |
-| `npm run verify:scanners` | Confirme la couverture du scanner enregistrée dans les métadonnées de compétences générées |
-| `npm run release:notes` | Génère des notes de version personnalisées à partir des métadonnées, des bundles et de l'historique git |
-| `npm exécuter build` | Régénère le catalogue/manifestes/archives/sommes de contrôle, vérifie la couverture du scanner et les archives, reconstruit `docs/CATALOG.md` |
-| `test npm` | Suite Smoke complète pour les flux CLI, API, MCP, side-car et archive |---
+| `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
+| `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
+| `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
+| `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
+| `npm test` | Full smoke suite across CLI, API, MCP, sidecar, and archive flows |
+
+---
 
 ## 🖥️ Visual Shell
 
-La CLI publiée inclut désormais un shell d'opérateur basé sur Ink :```bash
+The published CLI now includes an Ink-based operator shell:
+
+```bash
 npx omni-skills ui
 ```
 
-Capacités actuelles :
+Current capabilities:
 
-- installation guidée pour les clients connus et les chemins personnalisés
-- flux de recherche puis d'installation
-- Assistant de lancement MCP
-- Assistant de lancement d'API
-- Assistant de lancement A2A
-- installations récentes et relances de services
-- préréglages d'installation et de service nommés
+- guided install for known clients and custom paths
+- search-then-install flow
+- MCP launch wizard
+- API launch wizard
+- A2A launch wizard
+- recent installs and service relaunches
+- named install and service presets
 
-Chemin d'accès de l'état local :```text
+Local state path:
+
+```text
 ~/.omni-skills/state/ui-state.json
 ```
 
-Retomber:```bash
+Fallback:
+
+```bash
 npx omni-skills ui --text
 ```
 
@@ -90,32 +100,40 @@ cat skills/my-skill/metadata.json | jq '.quality, .best_practices, .security'
 
 ### 🔍 Default Static Scanning (Always Enabled)
 
-Le scanner statique vérifie automatiquement toutes les compétences :
+The static scanner checks all skills automatically:
 
-| Famille de règles | Exemples |
+| Rule Family | Examples |
 |:------------|:---------|
-| 🎭 Injection rapide | Modèles d'exfiltration, remplacements d'instructions |
-| 💣 Commandes destructrices | `rm -rf`, `format`, `mkfs` |
-| 🔑 Chemins suspects | `/etc/shadow`, `~/.ssh`, fichiers d'informations d'identification |
-| ⚠️ Primitives risquées | `shell=True`, `pickle.load`, `eval`, `extractall` |### 🦠 Optional ClamAV
+| 🎭 Prompt injection | Exfiltration patterns, instruction overrides |
+| 💣 Destructive commands | `rm -rf`, `format`, `mkfs` |
+| 🔑 Suspicious paths | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ Risky primitives | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+### 🦠 Optional ClamAV
 
 ```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-> Nécessite `clamscan` dans `PATH`.### 🔒 Optional VirusTotal
+> Requires `clamscan` in `PATH`.
+
+### 🔒 Optional VirusTotal
 
 ```bash
 VT_API_KEY=your-key npm run validate
 ```
 
-> Recherche de hachage uniquement : les fichiers inconnus ne sont**pas téléchargés**par défaut.### ✅ Verify Scanner Coverage
+> Hash lookup only — unknown files are **not uploaded** by default.
+
+### ✅ Verify Scanner Coverage
 
 ```bash
 npm run verify:scanners
 ```
 
-Porte de libération stricte :```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -127,15 +145,17 @@ npm run verify:scanners:strict
 
 ### 📦 Generate Archives
 
-Les archives sont produites automatiquement par `npm run build` :
+Archives are produced automatically by `npm run build`:
 
-| Sortie | Chemin |
+| Output | Path |
 |:-------|:-----|
-| 📦ZIP | `dist/archives/<compétence>.zip` |
-| 📦 Tarball | `dist/archives/<compétence>.tar.gz` |
-| 🔒 Sommes de contrôle | `dist/archives/<compétence>.checksums.txt` |
+| 📦 ZIP | `dist/archives/<skill>.zip` |
+| 📦 Tarball | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksums | `dist/archives/<skill>.checksums.txt` |
 
-`dist/` est intentionnellement validé dans ce référentiel. Le catalogue, les manifestes, les bundles et les archives générés sont des entrées d'exécution pour les flux d'installation CLI, les surfaces de téléchargement d'API, les aperçus MCP, le transfert de tâches A2A, les tests de fumée et la vérification des versions.### ✅ Verify Archives
+`dist/` is committed intentionally in this repository. The generated catalog, manifests, bundles, and archives are runtime inputs for CLI install flows, API download surfaces, MCP previews, A2A task handoff, smoke tests, and release verification.
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -147,35 +167,43 @@ npm run verify:archives
 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 ```
 
-Remplacement de clé publique facultatif :```bash
+Optional public key override:
+
+```bash
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> Si aucune clé publique n'est fournie, la construction en dérive une via `openssl` dans `dist/signing/`.### 🔁 Compute the Next Package Version
+> If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
+
+### 🔁 Compute the Next Package Version
 
 ```bash
 npm run release:next-version
 ```
 
-Politique de version :
+Version policy:
 
-- le patch s'incrémente jusqu'à `.10`
-- après `.10`, la prochaine version devient mineure et réinitialise le patch à `.0`
+- patch increments until `.10`
+- after `.10`, the next release rolls minor and resets patch to `.0`
 
-Exemples :
+Examples:
 
 - `0.1.0 -> 0.1.1`
-- `0.1.10 -> 0.2.0`---
+- `0.1.10 -> 0.2.0`
+
+---
 
 ## 5️⃣ Installation Flows
 
-| Scénario | Commande |
-|:--------|:--------|
-| 📥 Installation par défaut (Antigravity) | `npx omni-compétences` |
-| 🎯 Compétence spécifique + client | `npx omni-skills --cursor --skill omni-figma` |
-| 🔎 Découverte → installer | `npx omni-skills trouver figma --tool curseur --install --yes` |
-| 📦 Installation groupée | `npx omni-skills --cursor --bundle essentials` |
-| 🩺 Vérifier l'installation | `médecin omni-compétences npx` |---
+| Scenario | Command |
+|:---------|:--------|
+| 📥 Default install (Antigravity) | `npx omni-skills` |
+| 🎯 Specific skill + client | `npx omni-skills --cursor --skill omni-figma` |
+| 🔎 Discovery → install | `npx omni-skills find figma --tool cursor --install --yes` |
+| 📦 Bundle install | `npx omni-skills --cursor --bundle essentials` |
+| 🩺 Verify install | `npx omni-skills doctor` |
+
+---
 
 ## 6️⃣ Catalog & Discovery
 
@@ -188,19 +216,21 @@ npx omni-skills find mcp --sort quality --min-quality 80 --min-security 90
 
 ### 🎛️ Available Filters
 
-| Filtrer | Drapeau | Exemple |
+| Filter | Flag | Example |
 |:-------|:-----|:--------|
-| 📂 Catégorie | `--catégorie` | `--développement de catégories` |
-| 🖥️ Outil | `--outil` | `--curseur outil` |
-| ⚠️ Risque | `--risque` | `--risque sûr` |
-| 📊 Trier | `--trier` | `--qualité de tri\|meilleures pratiques\|niveau\|sécurité\|nom` |
-| 🔄 Commande | `--commande` | `--order asc\|desc` |
-| ⭐ Qualité minimale | `--qualité-min` | `--qualité min 80` |
-| 📋 BP min | `--min-meilleures-pratiques` | `--min-meilleures-pratiques 60` |
-| 🎯 Niveau minimum | `--niveau-min` | `--min-niveau 2` |
-| 🛡️ Sécurité minimale | `--min-sécurité` | `--min-sécurité 90` |
-| ✅Validation | `--statut-de-validation` | `--statut de validation réussi` |
-| 🛡️ Sécurité | `--état-de-sécurité` | `--statut de sécurité réussi` |---
+| 📂 Category | `--category` | `--category development` |
+| 🖥️ Tool | `--tool` | `--tool cursor` |
+| ⚠️ Risk | `--risk` | `--risk safe` |
+| 📊 Sort | `--sort` | `--sort quality\|best-practices\|level\|security\|name` |
+| 🔄 Order | `--order` | `--order asc\|desc` |
+| ⭐ Min quality | `--min-quality` | `--min-quality 80` |
+| 📋 Min BP | `--min-best-practices` | `--min-best-practices 60` |
+| 🎯 Min level | `--min-level` | `--min-level 2` |
+| 🛡️ Min security | `--min-security` | `--min-security 90` |
+| ✅ Validation | `--validation-status` | `--validation-status passed` |
+| 🛡️ Security | `--security-status` | `--security-status passed` |
+
+---
 
 ## 7️⃣ API Operations
 
@@ -212,29 +242,33 @@ npx omni-skills api --port 3333
 
 ### 📡 Key Routes
 
-| Méthode | Point de terminaison | Objectif |
-|:-------|:--------|:--------|
-| `OBTENIR` | `/santé` | Bilan de santé |
-| `OBTENIR` | `/openapi.json` | Spécification OpenAPI 3.1 |
-| `OBTENIR` | `/v1/compétences` | Liste avec filtres |
-| `OBTENIR` | `/v1/recherche` | Recherche en texte intégral |
-| `OBTENIR` | `/v1/skills/:id/archives` | Liste des archives |
-| `OBTENIR` | `/v1/skills/:id/download/archive?format=zip` | Télécharger les archives |
-| `OBTENIR` | `/v1/skills/:id/download/archive/checksums` | Manifeste de somme de contrôle |### 🔐 Hosted API Hardening
+| Method | Endpoint | Purpose |
+|:-------|:---------|:--------|
+| `GET` | `/healthz` | Health check |
+| `GET` | `/openapi.json` | OpenAPI 3.1 spec |
+| `GET` | `/v1/skills` | List with filters |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/skills/:id/archives` | Archive listing |
+| `GET` | `/v1/skills/:id/download/archive?format=zip` | Download archive |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | Checksum manifest |
 
-| Fonctionnalité | Commande |
+### 🔐 Hosted API Hardening
+
+| Feature | Command |
 |:--------|:--------|
-| 🔑 Authentification au porteur | `OMNI_SKILLS_HTTP_BEARER_TOKEN=remplacez-moi npx omni-skills api` |
-| 🗝️ Authentification par clé API | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
-| 🛂 Authentification de l'exécution de l'administrateur | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=API admin-secret npx omni-skills` |
-| 🚦 Limitation du taux | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx API omni-compétences` |
-| 📝 Journalisation d'audit | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 API omni-compétences npx` |
-| 🌍Liste autorisée CORS | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com API omni-skills npx` |
-| 🧱 Liste blanche IP | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 API omni-compétences npx` |
-| 🚧 Mode maintenance | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 API omni-compétences npx` |
-| 🔁 Proxy de confiance | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
+| 🔑 Bearer auth | `OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me npx omni-skills api` |
+| 🗝️ API key auth | `OMNI_SKILLS_HTTP_API_KEYS=key-a,key-b npx omni-skills api` |
+| 🛂 Admin runtime auth | `OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret npx omni-skills api` |
+| 🚦 Rate limiting | `OMNI_SKILLS_RATE_LIMIT_MAX=60 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 npx omni-skills api` |
+| 📝 Audit logging | `OMNI_SKILLS_HTTP_AUDIT_LOG=1 npx omni-skills api` |
+| 🌍 CORS allowlist | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com npx omni-skills api` |
+| 🧱 IP allowlist | `OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 npx omni-skills api` |
+| 🚧 Maintenance mode | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE=1 npx omni-skills api` |
+| 🔁 Trusted proxy | `OMNI_SKILLS_HTTP_TRUST_PROXY=loopback npx omni-skills api` |
 
-> 🟢 `/healthz` reste ouvert de par sa conception ; Les itinéraires du catalogue nécessitent une authentification lorsqu'ils sont activés. `GET /admin/runtime` nécessite le jeton d'administrateur une fois configuré et renvoie l'instantané de gouvernance en direct.---
+> 🟢 `/healthz` stays open by design; catalog routes require auth when enabled. `GET /admin/runtime` requires the admin token when configured and returns the live governance snapshot.
+
+---
 
 ## 8️⃣ MCP Operations
 
@@ -254,29 +288,33 @@ npx omni-skills mcp stream --local    # All transports support --local
 
 ### ⚙️ Client-Aware Config Targets
 
-Le side-car peut désormais prévisualiser ou écrire la configuration MCP pour :
+The sidecar can now preview or write MCP config for:
 
-- Paramètres utilisateur et projet Claude
-- Configuration du bureau Claude
-- Cline la configuration utilisateur
-- Configuration de l'utilisateur et du référentiel GitHub Copilot CLI
-- Configuration de l'utilisateur et de l'espace de travail du curseur
-- Configuration du Codex TOML
-- Paramètres utilisateur et projet Gemini
-- Configuration utilisateur et projet Kilo CLI
-- Configuration de l'espace de travail Kilo
-- Paramètres utilisateur et projet Kiro
-- Configuration des utilisateurs et de l'espace de travail OpenCode
-- Continuer la configuration YAML de l'espace de travail
-- Configuration utilisateur Windsurf
-- Configuration de l'espace de travail Zed
-- espace de travail `.mcp.json`
-- Espace de travail VS Code et configuration utilisateur
-- Configuration du conteneur de développement
+- Claude user and project settings
+- Claude Desktop config
+- Cline user config
+- GitHub Copilot CLI user and repository config
+- Cursor user and workspace config
+- Codex TOML config
+- Gemini user and project settings
+- Kilo CLI user and project config
+- Kilo workspace config
+- Kiro user and project settings
+- OpenCode user and workspace config
+- Continue workspace YAML config
+- Windsurf user config
+- Zed workspace config
+- workspace `.mcp.json`
+- VS Code workspace and user config
+- Dev Container config
 
-`configure_client_mcp` renvoie également des `recettes` par client afin que les opérateurs obtiennent les étapes de configuration CLI ou manuelles équivalentes avec l'aperçu.### 🧾 MCP Config Preview and Write Flow
+`configure_client_mcp` also returns per-client `recipes` so operators get the equivalent CLI or manual setup steps together with the preview.
 
-Utilisez la CLI unifiée lorsque vous souhaitez générer une configuration sans appeler directement l'outil MCP :```bash
+### 🧾 MCP Config Preview and Write Flow
+
+Use the unified CLI when you want config generation without calling the MCP tool directly:
+
+```bash
 npx omni-skills config-mcp --list-targets
 npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
 npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
@@ -285,15 +323,19 @@ npx omni-skills config-mcp --target junie-project --transport stream --url http:
 npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
-Le shell visuel expose le même flux de travail via :
+The visual shell exposes the same workflow through:
 
-- `interface utilisateur omni-compétences npx`
-- 'Prestations'
-- `Configurer le client MCP`
+- `npx omni-skills ui`
+- `Services`
+- `Configure MCP client`
 
-La commande reste en mode aperçu à moins que `--write` soit passé.### 🔐 Hosted MCP Hardening
+The command stays in preview mode unless `--write` is passed.
 
-Mêmes variables d'environnement que l'API :```bash
+### 🔐 Hosted MCP Hardening
+
+Same env vars as the API:
+
+```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
 OMNI_SKILLS_RATE_LIMIT_MAX=120 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
@@ -303,9 +345,11 @@ OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 npx omni-skills mcp stream
 ```
 
-**Routes protégées** : `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
+**Protected routes**: `POST /mcp` · `GET /sse` · `POST /messages` · `GET /admin/runtime`
 
-> 🟢 `/healthz` reste ouvert.---
+> 🟢 `/healthz` remains open.
+
+---
 
 ## 9️⃣ A2A Operations
 
@@ -324,13 +368,17 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a --port 3335
 ```
 
-Le chemin local par défaut reste simple :
+The default local path stays simple-first:
 
-- La persistance `json` ou `sqlite` peut s'exécuter avec l'interrogation de la file d'attente désactivée
-- définissez `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` uniquement lorsque vous souhaitez une réclamation multi-travailleurs et un basculement de bail
-- conserver la coordination Redis en tant qu'option hébergée avancée, et non en tant que référence### 🧱 Multi-Worker Lease Setup
+- `json` or `sqlite` persistence can run with queue polling disabled
+- set `OMNI_SKILLS_A2A_QUEUE_ENABLED=1` only when you want multi-worker claim and lease failover
+- keep Redis coordination as an advanced hosted option, not the baseline
 
-Exécutez plusieurs nœuds A2A sur le même magasin SQLite pour obtenir un basculement basé sur le bail :```bash
+### 🧱 Multi-Worker Lease Setup
+
+Run more than one A2A node against the same SQLite store to get lease-based failover:
+
+```bash
 # Worker A
 PORT=3335 \
 OMNI_SKILLS_A2A_INSTANCE_ID=worker-a \
@@ -350,9 +398,13 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Si un travailleur décède alors qu'une tâche est en cours, un autre travailleur peut la récupérer après l'expiration du bail et poursuivre son exécution.### 🟥 Redis Coordination
+If a worker dies while a task is `working`, another worker can reclaim it after the lease expires and continue execution.
 
-Pour les déploiements hébergés ou multi-nœuds qui ne souhaitent pas que la coordination de file d'attente soit liée au magasin SQLite partagé, basculez le coordinateur sur Redis :```bash
+### 🟥 Redis Coordination
+
+For hosted or multi-node deployments that do not want queue coordination tied to the shared SQLite store, switch the coordinator to Redis:
+
+```bash
 PORT=3335 \
 OMNI_SKILLS_A2A_STORE_TYPE=sqlite \
 OMNI_SKILLS_A2A_STORE_PATH=/var/lib/omni-skills/a2a-tasks.sqlite \
@@ -364,40 +416,48 @@ OMNI_SKILLS_A2A_EXECUTOR=process \
 npx omni-skills a2a
 ```
 
-Dans ce mode :
+In this mode:
 
-- la persistance existe toujours en JSON ou SQLite
-- la revendication de tâches et la propriété du bail sont transférées vers Redis
-- plusieurs nœuds A2A peuvent partager une file d'attente sans dépendre de la coordination au niveau des lignes SQLite### 📡 Endpoints
+- persistence still lives in JSON or SQLite
+- task claiming and lease ownership move to Redis
+- multiple A2A nodes can share a queue without relying on SQLite row-level coordination
 
-| Méthode | Chemin | Objectif |
+### 📡 Endpoints
+
+| Method | Path | Purpose |
 |:-------|:-----|:--------|
-| `OBTENIR` | `/santé` | Bilan de santé |
-| `OBTENIR` | `/.well-known/agent.json` | Carte d'agent (découverte A2A) |
-| `POST` | `/a2a` | Point de terminaison JSON-RPC pour les tâches et le streaming |### 🧭 Supported JSON-RPC Methods
+| `GET` | `/healthz` | Health check |
+| `GET` | `/.well-known/agent.json` | Agent Card (A2A discovery) |
+| `POST` | `/a2a` | JSON-RPC endpoint for tasks and streaming |
 
-| Méthode | Objectif |
+### 🧭 Supported JSON-RPC Methods
+
+| Method | Purpose |
 |:-------|:--------|
-| `message/envoyer` | Démarrer ou continuer une tâche |
-| `message/flux` | Démarrer une tâche et diffuser les mises à jour SSE |
-| `tâches/obtenir` | Interroger un instantané de tâche |
-| `tâches/annuler` | Annuler une tâche active |
-| `tâches/réabonnement` | Reprendre les mises à jour SSE pour une tâche existante |
-| `tâches/pushNotificationConfig/set` | Enregistrer un webhook push |
-| `tâches/pushNotificationConfig/get` | Lire une configuration push |
-| `tâches/pushNotificationConfig/list` | Liste des configurations push pour une tâche |
-| `tâches/pushNotificationConfig/delete` | Supprimer une configuration push |### 📡 Task Lifecycle
+| `message/send` | Start or continue a task |
+| `message/stream` | Start a task and stream SSE updates |
+| `tasks/get` | Poll a task snapshot |
+| `tasks/cancel` | Cancel an active task |
+| `tasks/resubscribe` | Resume SSE updates for an existing task |
+| `tasks/pushNotificationConfig/set` | Register a push webhook |
+| `tasks/pushNotificationConfig/get` | Read a push config |
+| `tasks/pushNotificationConfig/list` | List push configs for a task |
+| `tasks/pushNotificationConfig/delete` | Remove a push config |
 
-Le runtime actuel prend en charge ces états de tâches :
+### 📡 Task Lifecycle
 
-- `soumis`
-- 'travailler'
-- `entrée requise`
-- 'terminé'
-- 'annulé'
-- 'échoué'
+The current runtime supports these task states:
 
-Les tâches sont conservées dans un fichier JSON ou dans un magasin SQLite et rechargées au redémarrage. Les tâches terminées et interrompues restent disponibles. Les tâches qui étaient encore « soumises » ou « en cours de travail » lors de l'arrêt sont récupérées avec des métadonnées de redémarrage explicites et sont reprises automatiquement par défaut.### 🧪 Example: Start a Task
+- `submitted`
+- `working`
+- `input-required`
+- `completed`
+- `canceled`
+- `failed`
+
+Tasks are persisted to either a JSON file or a SQLite store and reloaded on restart. Completed and interrupted tasks remain available. Tasks that were still `submitted` or `working` during shutdown are recovered with explicit restart metadata and are resumed automatically by default.
+
+### 🧪 Example: Start a Task
 
 ```bash
 curl -X POST http://127.0.0.1:3335/a2a \
@@ -463,12 +523,14 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-Le référentiel dispose désormais de deux workflows :
+The repository now has two workflows:
 
-| Flux de travail | Déclencheur | Objectif |
-|:--------|:--------|:--------|
-| `valider.yml` | Push/PR vers « principal » | Créer, tester et confirmer que les artefacts générés sont validés |
-| `version.yml` | Tag push `v*` ou envoi manuel | Exécutez des analyseurs de niveau version, vérifiez la balise de version, signez les artefacts, emballez l'archive tar, publiez sur npm et créez la version GitHub |### 🔖 Tag a Release
+| Workflow | Trigger | Purpose |
+|:---------|:--------|:--------|
+| `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
+| `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
+
+### 🔖 Tag a Release
 
 ```bash
 npm version patch
@@ -477,73 +539,79 @@ git push origin main --follow-tags
 
 ### 🔐 Required GitHub Secrets
 
-| Secrets | Utilisé par | Objectif |
+| Secret | Used By | Purpose |
 |:-------|:--------|:--------|
-| `VT_API_KEY` ou `VIRUSTOTAL` | `version.yml` | Exiger des recherches de hachage VirusTotal dans les versions |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` ou `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `version.yml` | Clé privée requise pour la signature des archives détachées dans CI |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` ou `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `version.yml` | Remplacement de clé publique en option ; autrement dérivé de la clé privée |
-| `NPM_TOKEN` | Travail `publier-npm` | Authentifier `npm submit` pour les versions de balises |### 🦠 Release Scanner Policy
+| `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
+| `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
 
-`release.yml` définit ou prépare :
+### 🦠 Release Scanner Policy
+
+`release.yml` sets or prepares:
 
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
 - `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` du stockage temporaire du coureur
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
 
-Cela signifie que chaque version basée sur des balises doit :
+That means every tag-based release must:
 
-- installer et actualiser ClamAV sur le runner
-- régénérer les métadonnées avec ClamAV activé
-- régénérer les métadonnées avec VirusTotal activé
-- décoder le matériel de clé de signature CI dans le stockage temporaire du coureur
-- passez `npm run verify:scanners:strict`
-- passez `npm run verify:archives:strict`
-- réussir les tests et la vérification des packages avant la publication npm
-- générer des notes de version personnalisées à partir des métadonnées du catalogue et de l'historique git
-- créer une version GitHub avec les ressources de version attachées après la publication---
+- install and refresh ClamAV on the runner
+- regenerate metadata with ClamAV enabled
+- regenerate metadata with VirusTotal enabled
+- decode CI signing key material into runner temp storage
+- pass `npm run verify:scanners:strict`
+- pass `npm run verify:archives:strict`
+- pass tests and package verification before npm publish
+- generate custom release notes from catalog metadata and git history
+- create a GitHub Release with attached release assets after publish
+
+---
 
 ## 1️⃣1️⃣ Environment Variables Reference
 
-| Variables | Objectif | Par défaut |
-|:--------|:--------|:--------|
-| `OMNI_SKILLS_ROOT` | Remplacer le chemin racine du catalogue | Détecté automatiquement |
-| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Chemins d'écriture supplémentaires autorisés | Racines de clients connues |
-| `OMNI_SKILLS_MCP_MODE` | Défini sur « local » pour le side-car | À distance |
-| `OMNI_SKILLS_MCP_LOCAL_MODE` | Indicateur Alt pour le mode local | `0` |
-| `OMNI_SKILLS_API_BASE_URL` | URL de l'API publique pour MCP | — |
-| `OMNI_SKILLS_PUBLIC_BASE_URL` | URL de base publique | — |
-| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Jeton d'authentification du porteur | — |
-| `OMNI_SKILLS_HTTP_API_KEYS` | Clés API séparées par des virgules | — |
-| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Jeton d'authentification d'exécution de l'administrateur | — |
-| `OMNI_SKILLS_RATE_LIMIT_MAX` | Nombre maximum de requêtes par fenêtre | — |
-| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Fenêtre de limite de débit (ms) | — |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Activer la journalisation d'audit | `0` |
-| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | Sortie d'audit `json` ou `text` | `json` |
-| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Chemin du fichier journal d'audit facultatif | sortie standard |
-| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Liste autorisée d'origine CORS séparée par des virgules | — |
-| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Liste blanche d'adresses IP ou CIDR séparées par des virgules | — |
-| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Paramètre de proxy de confiance express | — |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Activer les réponses de maintenance | `0` |
-| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Réessayer-Après` secondes | '300' |
-| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Délai de tâche asynchrone simulé | '80' |
-| `OMNI_SKILLS_A2A_STORE_TYPE` | Magasin de tâches `json`, `sqlite` ou `memory` | `json` |
-| `OMNI_SKILLS_A2A_STORE_PATH` | Fichier de magasin de tâches A2A personnalisé | `~/.omni-skills/state/a2a-tasks.json` |
-| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Activer l'interrogation de la file d'attente partagée pour les travailleurs prenant en charge le bail | `0` |
-| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | coordinateur `store`, `sqlite`, `local` ou `redis` | `magasin` |
-| `OMNI_SKILLS_A2A_REDIS_URL` | URL Redis pour la coordination externe | — |
-| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Préfixe de clé Redis pour les métadonnées de la file d'attente | `omni-compétences :a2a` |
-| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Intervalle d'interrogation de la file d'attente pour les travailleurs loués | '250' |
-| `OMNI_SKILLS_A2A_LEASE_MS` | Durée du bail avant qu'un autre travailleur puisse récupérer une tâche | '4000' |
-| `OMNI_SKILLS_A2A_INSTANCE_ID` | Identifiant de travailleur stable pour la propriété du bail et les diagnostics | Nom d'hôte + PID + suffixe aléatoire |
-| `OMNI_SKILLS_A2A_EXECUTOR` | Exécuteur de tâches `inline` ou `process` | `en ligne` |
-| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Remplacer la commande du travailleur externe | Nœud binaire |
-| `OMNI_SKILLS_A2A_WORKER_ARGS` | Tableau JSON d’arguments de travailleurs externes | `["packages/server-a2a/src/worker.js"]` |
-| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Reprendre les tâches soumises/de travail récupérées au démarrage | '1' |
-| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Autoriser les webhooks non HTTPS en dehors de localhost | `0` |
-| `OMNI_SKILLS_ENABLE_CLAMAV` | Activer l'analyse ClamAV | `0` |
-| `VT_API_KEY` | Clé API VirusTotal | — |
-| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Clé privée pour signer | — |
-| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Remplacement de clé publique | Dérivé automatiquement |---
+| Variable | Purpose | Default |
+|:---------|:--------|:--------|
+| `OMNI_SKILLS_ROOT` | Override catalog root path | Auto-detected |
+| `OMNI_SKILLS_LOCAL_ALLOWLIST` | Extra allowed write paths | Known client roots |
+| `OMNI_SKILLS_MCP_MODE` | Set to `local` for sidecar | Remote |
+| `OMNI_SKILLS_MCP_LOCAL_MODE` | Alt flag for local mode | `0` |
+| `OMNI_SKILLS_API_BASE_URL` | Public API URL for MCP | — |
+| `OMNI_SKILLS_PUBLIC_BASE_URL` | Public base URL | — |
+| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | Bearer auth token | — |
+| `OMNI_SKILLS_HTTP_API_KEYS` | Comma-separated API keys | — |
+| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | Admin runtime auth token | — |
+| `OMNI_SKILLS_RATE_LIMIT_MAX` | Max requests per window | — |
+| `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS` | Rate limit window (ms) | — |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG` | Enable audit logging | `0` |
+| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` audit output | `json` |
+| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | Optional audit log file path | stdout |
+| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | Comma-separated CORS origin allowlist | — |
+| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | Comma-separated IP or CIDR allowlist | — |
+| `OMNI_SKILLS_HTTP_TRUST_PROXY` | Express trust proxy setting | — |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | Enable maintenance responses | `0` |
+| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | Maintenance `Retry-After` seconds | `300` |
+| `OMNI_SKILLS_A2A_PROCESSING_DELAY_MS` | Simulated async task delay | `80` |
+| `OMNI_SKILLS_A2A_STORE_TYPE` | `json`, `sqlite`, or `memory` task store | `json` |
+| `OMNI_SKILLS_A2A_STORE_PATH` | Custom A2A task store file | `~/.omni-skills/state/a2a-tasks.json` |
+| `OMNI_SKILLS_A2A_QUEUE_ENABLED` | Enable shared queue polling for lease-aware workers | `0` |
+| `OMNI_SKILLS_A2A_COORDINATION_TYPE` | `store`, `sqlite`, `local`, or `redis` coordinator | `store` |
+| `OMNI_SKILLS_A2A_REDIS_URL` | Redis URL for external coordination | — |
+| `OMNI_SKILLS_A2A_COORDINATION_PREFIX` | Redis key prefix for queue metadata | `omni-skills:a2a` |
+| `OMNI_SKILLS_A2A_WORKER_POLL_MS` | Queue polling interval for lease workers | `250` |
+| `OMNI_SKILLS_A2A_LEASE_MS` | Lease duration before another worker may reclaim a task | `4000` |
+| `OMNI_SKILLS_A2A_INSTANCE_ID` | Stable worker identifier for lease ownership and diagnostics | Hostname + PID + random suffix |
+| `OMNI_SKILLS_A2A_EXECUTOR` | `inline` or `process` task executor | `inline` |
+| `OMNI_SKILLS_A2A_WORKER_COMMAND` | Override external worker command | Node binary |
+| `OMNI_SKILLS_A2A_WORKER_ARGS` | JSON array of external worker args | `["packages/server-a2a/src/worker.js"]` |
+| `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
+| `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
+| `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
+| `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
+
+---
 
 ## 1️⃣2️⃣ Troubleshooting
 
@@ -561,46 +629,66 @@ npx omni-skills recategorize
 
 ### 📦 Archive Verification Fails
 
-1. Reconstruire avec `npm run build`
-2. Réexécutez `npm run verify:archives`
-3. Si la signature est activée, confirmez la clé publique et la disponibilité d'openssl### 🦠 Release Workflow Fails on Scanner Coverage
+1. Rebuild with `npm run build`
+2. Rerun `npm run verify:archives`
+3. If signing is enabled, confirm the public key and `openssl` availability
 
-- Confirmez que `VT_API_KEY` existe dans les secrets du référentiel
-- Confirmer que `freshclam` a réussi sur le coureur
-- Reconstruire localement avec `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
-- Réexécutez `npm run verify:scanners:strict`### 📦 npm Publish Fails in CI
+### 🦠 Release Workflow Fails on Scanner Coverage
 
-- Confirmez que `NPM_TOKEN` existe dans les secrets du référentiel
-- Confirmez que la balise Git correspond exactement à la version `package.json`
-- Vérifiez que l'archive téléchargée par `release-verify` existe dans les artefacts du workflow### ✍️ Release Signing Fails in CI
+- Confirm `VT_API_KEY` exists in repository secrets
+- Confirm `freshclam` succeeded on the runner
+- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Rerun `npm run verify:scanners:strict`
 
-- Confirmez que `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` ou `OMNI_SKILLS_SIGN_PRIVATE_KEY` existe dans les secrets du référentiel
-- Si vous fournissez une clé publique secrète, confirmez qu'elle correspond à la clé privée
-- Confirmez que « openssl » est disponible et que la clé privée est au format PEM
-- Reconstruire localement avec `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
-- Réexécutez `npm run verify:archives:strict`### 🔒 API/MCP Returns `401 Unauthorized`
+### 📦 npm Publish Fails in CI
 
-- Vérifiez `OMNI_SKILLS_HTTP_BEARER_TOKEN` ou `OMNI_SKILLS_HTTP_API_KEYS`
-- Inclure l'en-tête `Authorization: Bearer <token>` ou `x-api-key`### 🚦 API/MCP Returns `429 Too Many Requests`
+- Confirm `NPM_TOKEN` exists in repository secrets
+- Confirm the Git tag matches `package.json` version exactly
+- Check that the tarball uploaded by `release-verify` exists in the workflow artifacts
 
-- Augmenter `OMNI_SKILLS_RATE_LIMIT_MAX`
-- Élargir `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
-- Réduire le trafic en rafale des clients ou des sondes### 🛂 API/MCP Admin Runtime Returns `401`
+### ✍️ Release Signing Fails in CI
 
-- Vérifiez `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
-- Envoyer `x-admin-token : <token>` ou `Authorization : Bearer <admin-token>`### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+- Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
+- If you provide a public key secret, confirm it matches the private key
+- Confirm `openssl` is available and the private key is PEM-formatted
+- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Rerun `npm run verify:archives:strict`
 
-- Désactiver `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
-- Utilisez `/healthz` pour les sondes de vivacité pendant la maintenance
-- Utilisez `/admin/runtime` avec le jeton d'administrateur pour les diagnostics de l'opérateur### 🌍 Browser Requests Fail CORS Validation
+### 🔒 API/MCP Returns `401 Unauthorized`
 
-- Vérifiez `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
-- Incluez le schéma et l'hôte exacts, par exemple `https://app.example.com`### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+- Verify `OMNI_SKILLS_HTTP_BEARER_TOKEN` or `OMNI_SKILLS_HTTP_API_KEYS`
+- Include `Authorization: Bearer <token>` or `x-api-key` header
 
-- Vérifiez `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
-- Vérifiez `OMNI_SKILLS_A2A_REDIS_URL`
-- Vérifiez la connectivité Redis à partir de chaque nœud
-- Inspectez `/healthz` pour l'instantané `coordination`### 🩺 General Diagnostics
+### 🚦 API/MCP Returns `429 Too Many Requests`
+
+- Increase `OMNI_SKILLS_RATE_LIMIT_MAX`
+- Widen `OMNI_SKILLS_RATE_LIMIT_WINDOW_MS`
+- Reduce burst traffic from clients or probes
+
+### 🛂 API/MCP Admin Runtime Returns `401`
+
+- Verify `OMNI_SKILLS_HTTP_ADMIN_TOKEN`
+- Send `x-admin-token: <token>` or `Authorization: Bearer <admin-token>`
+
+### 🚧 API/MCP Returns `503 Maintenance mode enabled`
+
+- Disable `OMNI_SKILLS_HTTP_MAINTENANCE_MODE`
+- Use `/healthz` for liveness probes during maintenance
+- Use `/admin/runtime` with the admin token for operator diagnostics
+
+### 🌍 Browser Requests Fail CORS Validation
+
+- Verify `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS`
+- Include the exact scheme and host, for example `https://app.example.com`
+
+### 🟥 Redis-Coordinated A2A Workers Do Not Claim Tasks
+
+- Verify `OMNI_SKILLS_A2A_COORDINATION_TYPE=redis`
+- Verify `OMNI_SKILLS_A2A_REDIS_URL`
+- Check Redis connectivity from every node
+- Inspect `/healthz` for the `coordination` snapshot
+
+### 🩺 General Diagnostics
 
 ```bash
 npx omni-skills doctor   # Check repo, targets, catalog state

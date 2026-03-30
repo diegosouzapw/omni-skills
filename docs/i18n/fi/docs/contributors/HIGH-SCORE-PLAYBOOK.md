@@ -5,71 +5,83 @@
 ---
 
 
->**Mitä Omni Skills `SKILL.md` tarvitsee käytännössä saavuttaakseen korkeat kypsyysasteet, parhaat käytännöt, laatu- ja turvallisuuspisteet.**---
+> **What an Omni Skills `SKILL.md` needs in practice to reach high maturity, best-practices, quality, and security scores.**
+
+---
 
 ## 🎯 Purpose
 
-Tämä opas selittää, kuinka arkiston luokitin itse asiassa palkitsee taidon.
+This guide explains how the repository's classifier actually rewards a skill.
 
-Käytä sitä, kun haluat:
+Use it when you want to:
 
-- Luo uusi taito, joka päätyy parhaimpiin maalintekijöihin
-- parantaa olemassa olevaa taitoa, joka on juuttunut arvoon "hyvä" tai matala "erinomainen".
-- ymmärtää, miksi taito kunnollisella muotoilulla ei silti ole pisteytetty kuin poikkeuksellinen toiminnallinen voimavara
+- author a new skill that lands in the top scoring bands
+- improve an existing skill that is stuck in `good` or low `excellent`
+- understand why a skill with decent formatting still is not scoring like an exceptional operational asset
 
-Tämä on avustajalle suunnattu kumppani:
+This is the contributor-facing companion to:
 
-- [Laatupalkki](QUALITY-BAR.md)
+- [Quality Bar](QUALITY-BAR.md)
 - [Skill Anatomy](SKILL-ANATOMY.md)
-- [Taitoluokitus](../specs/SKILL-CLASSIFICATION.md)
+- [Skill Classification](../specs/SKILL-CLASSIFICATION.md)
 
-Nykyinen vertailukohta live-luettelolle:
+Current benchmark for the live native catalog:
 
-- 32 julkaistua taitoa
-- nykyinen laadun hajonta: "94, 95, 96, 97, 100".
-- nykyiset parhaat käytännöt: "98, 99, 100".
-- nykyinen huippu: "omni-figma" laadulla "100/100" ja "100/100" parhaat käytännöt---
+- 48 published native skills, with 32 curated English derivatives in `skills_omni/`
+- native quality spread: `37` to `100`
+- native best-practices spread: `7` to `100`
+- current top end: `omni-figma` at `100/100` quality and `100/100` best practices
+
+---
 
 ## 🧱 What High Scores Really Mean
 
-Luokitin**ei**palkitse melkoista merkintää yksinään.
+The classifier does **not** reward pretty markdown alone.
 
-Huippupisteiset taidot ovat taitoja, jotka ovat:
+High-scoring skills are skills that are:
 
--**löydettävä**: kuvaus kertoo selvästi, mitä taito tekee ja milloin sitä tulee käyttää
--**toiminnallinen**: taito sisältää paikallisia komentosarjoja, viittauksia ja suoritettavia esimerkkejä
--**diagnostiikka**: se auttaa agenttia toipumaan, kun asiat menevät pieleen
--**erityinen**: se keskittyy yhteen työnkulkuun, ei laajoihin neuvoihin
--**turvallinen**: se välttää riskialttiit kuviot ja toimittaa puhtaan skannerin tulosteen
+- **discoverable**: the description clearly says what the skill does and when to use it
+- **operational**: the skill includes local scripts, references, and runnable examples
+- **diagnostic**: it helps the agent recover when things go wrong
+- **specific**: it is focused on one workflow, not broad advice
+- **safe**: it avoids risky patterns and ships clean scanner output
 
-Käytännössä vahvimmat taidot toimivat enemmän kuin**pieni pakattu työnkulkupaketti**kuin pelkkä alaskirjaus.---
+In practice, the strongest skills behave more like a **small packaged workflow kit** than a plain markdown note.
+
+---
 
 ## 📋 Score Targets
 
-Käytä näitä tavoitteita luodessasi:
+Use these targets when authoring:
 
-| Mitat | Vahva tavoite | Poikkeuksellinen tavoite |
-|:----------|:--------------|:--------------------|
-| 🎯 Maturiteetti | "L3" | "L3", jossa on useita tukiresursseja |
-| 📋 Parhaat käytännöt | `90+` | `96+` |
-| ⭐ Laatu | `85+` | `90+` |
-| 🛡️ Turvallisuus | "95+" | `95+` nolla löydöstä |---
+| Dimension | Strong Target | Exceptional Target |
+|:----------|:--------------|:-------------------|
+| 🎯 Maturity | `L3` | `L3` with multiple support resources |
+| 📋 Best Practices | `90+` | `96+` |
+| ⭐ Quality | `85+` | `90+` |
+| 🛡️ Security | `95+` | `95+` with zero findings |
+
+---
 
 ## ✅ What Exceptional Skills Usually Have
 
 ### 1. Strong Frontmatter
 
-Frontmatterisi pitäisi tehdä taidosta helposti luokiteltavissa ja helposti löydettävissä:
+Your frontmatter should make the skill easy to classify and easy to discover:
 
-- `nimi` vastaa täsmälleen hakemistoa
-- "kuvaus" selittää sekä**mitä**että**milloin**
-- "luokka", "tunnisteet", "työkalut", "monimutkaisuus", "riski", "lähde", "tekijä" ja päivämäärät ovat kaikki mukana
+- `name` matches the directory exactly
+- `description` explains both **what** and **when**
+- `category`, `tags`, `tools`, `complexity`, `risk`, `source`, `author`, and dates are all present
 
-Hyvä kuvausmuoto:```yaml
+Good description shape:
+
+```yaml
 description: "Database design workflow skill. Use this skill when a user needs durable schema, indexing, and migration design before implementation."
 ```
 
-Huono kuvausmuoto:```yaml
+Bad description shape:
+
+```yaml
 description: "Helps with databases."
 ```
 
@@ -77,31 +89,35 @@ description: "Helps with databases."
 
 ### 2. Mandatory Structural Coverage
 
-Vahvimpia taitoja ovat jatkuvasti seuraavat osat:
+The strongest skills consistently include these sections:
 
-- "## Yleiskatsaus".
-- `## Milloin tätä taitoa tulee käyttää`
-- ## Työnkulku
-- "## Esimerkkejä".
-- "## parhaat käytännöt".
-- "## Vianetsintä".
-- `## Lisäresurssit`
+- `## Overview`
+- `## When to Use This Skill`
+- `## Workflow`
+- `## Examples`
+- `## Best Practices`
+- `## Troubleshooting`
+- `## Additional Resources`
 
-Jos jokin näistä puuttuu, tulos voi silti olla hyvä, mutta on vaikeampaa näyttää poikkeukselliselta.---
+If one of these is missing, the score can still be good, but it becomes harder to look exceptional.
+
+---
 
 ### 3. Runnable Local Support
 
-Parhaat pisteet taidot sisältävät yleensä:
+Top-scoring skills usually include:
 
-- `viitteet/tarkistuslista.md`
-- yksi tai useampi apuohjelma komentosarjassa `scripts/`
-- vähintään yksi toimiva esimerkki kohdassa "examples/".
-- "agents/openai.yaml", kun taito on tarkoitettu suoraan agentin kutsumiseen
-- suorat linkit SKILL.md:stä näihin paikallisiin tiedostoihin
+- `references/checklist.md`
+- one or more helper scripts in `scripts/`
+- at least one worked example in `examples/`
+- `agents/openai.yaml` when the skill is intended for direct agent invocation
+- direct links from `SKILL.md` to those local files
 
-Tällä on merkitystä, koska luokittelija pitää taitoa, jossa on**pakettimateriaalia**, toimivampina kuin vain ulospäin osoittavaa taitoa.
+This matters because the classifier treats a skill with **bundled support material** as more actionable than one that only points outward.
 
-Suositeltu minimi:```text
+Recommended minimum:
+
+```text
 skills/<skill>/
 ├── SKILL.md
 ├── agents/
@@ -118,18 +134,22 @@ skills/<skill>/
 
 ### 4. Examples That Actually Help
 
-Parhaita pisteitä saavia esimerkkejä ovat:
+High-scoring examples are:
 
--betoni
-- kirjoitettu oikealla aidalla, kuten "bash" tai "python".
-- sidottu paikalliseen komentosarjaan tai toistettavaan komentoon
-- työnkulkua edustava
+- concrete
+- typed with a real fence such as `bash` or `python`
+- tied to a local script or repeatable command
+- representative of the workflow
 
-Hyvä:```bash
+Good:
+
+```bash
 python3 scripts/render_brief.py --service billing --format markdown
 ```
 
-Heikko:```text
+Weak:
+
+```text
 Ask the agent to help with your API.
 ```
 
@@ -137,16 +157,20 @@ Ask the agent to help with your API.
 
 ### 5. Troubleshooting With Recovery Guidance
 
-Pisteentekijä palkitsee vianetsinnän, joka auttaa agenttia toipumaan, ei vain tunnista ongelmaa.
+The scorer rewards troubleshooting that helps an agent recover, not just recognize a problem.
 
-Suositeltu muoto:```md
+Preferred format:
+
+```md
 ### Problem: The API proposal is too vague
 
 **Symptoms:** The draft omits versioning, error shapes, or auth boundaries.
 **Solution:** Re-run the workflow with explicit constraints for versioning, auth, and error contracts.
 ```
 
-Tämä on vahvempi kuin epämääräinen huomautus, kuten:```md
+This is stronger than a vague note like:
+
+```md
 If the result is bad, add more detail.
 ```
 
@@ -154,46 +178,50 @@ If the result is bad, add more detail.
 
 ### 6. Depth, Not Padding
 
-Luokitin erottaa nyt vain täydellisen taidon ja aidosti syvän taidon.
+The classifier now distinguishes between a skill that is merely complete and one that is genuinely deep.
 
-Signaalit, jotka auttavat:
+Signals that help:
 
-- useita konkreettisia esimerkkejä
-- useita vianetsintätapauksia
-- liittyviin taitoihin liittyvä ohjaus
-- rikkaammat viitepaketit
-- näkyvä "## Workflow" -osio, jossa on numeroidut askeleet, jotka maalintekijä voi laskea suoraan
-- vähintään yksi toimintataulukko tai suorituskartta, jossa se selventää työnkulkua
-- Useampi kuin yksi tukihakemisto tai omaisuustyyppi
-- työnkulun osat, joissa on tarpeeksi vaiheita ohjaamaan suorittamista
-- päätösresurssit, kuten tarkistuslistat, rubriikit, matriisit, paketit tai pelikirjat
-- vahvempi tukipakettien monimuotoisuus "viitteet/", "skriptit/", "agentit/", "esimerkit/" tai "resurssit/"
-- tarpeeksi uudelleenkäytettäviä tukitiedostoja, jotta ne näyttäisivät paketilta, ei ainuttakaan apulaista merkinnän viereen
-- enemmän kuin yksi aputiedosto, kun työnkulku on tarpeeksi monimutkainen oikeuttaakseen tukipaketin
-- Riittävä rungon syvyys kattamaan kompromissit ja vikatilat
-- Tiheämpi käyttöopastus, koska pisteytyslaite erottaa nyt kiillotetun muotoilun aidosti uudelleen käytettävästä työnkulun syvyydestä
+- multiple concrete examples
+- multiple troubleshooting cases
+- related-skill guidance
+- richer reference packs
+- a visible `## Workflow` section with numbered steps the scorer can count directly
+- at least one operational table or execution map where it clarifies the workflow
+- more than one support directory or asset type
+- workflow sections with enough steps to guide execution
+- decision assets such as checklists, rubrics, matrices, packets, or playbooks
+- stronger support-pack diversity across `references/`, `scripts/`, `agents/`, `examples/`, or `assets/`
+- enough reusable support files to look like a kit, not a single helper tucked next to the markdown
+- more than a single helper file when the workflow is complex enough to justify a support pack
+- enough body depth to cover tradeoffs and failure modes
+- denser operational guidance, because the scorer now distinguishes polished formatting from genuinely reusable workflow depth
 
-Signaalit, jotka**ei**auta paljon:
+Signals that do **not** help much:
 
-- saman käskyn toistaminen eri sanoilla
-- yleinen täyteteksti
-- otsikoiden lisääminen lisäämättä niiden alle sisältöä---
+- repeating the same instruction in different words
+- generic filler text
+- adding headings without adding substance underneath them
+
+---
 
 ## 🧪 Fast Checklist Before You Commit
 
-Käytä tätä tarkistuslistaa ennen validoinnin suorittamista:
+Use this checklist before running validation:
 
-- kuvaus sanoo**mitä**ja**milloin**
-- taito keskittyy yhteen työnkulkuun
-- ## Työnkulku on olemassa ja sisältää numeroidut tai luettelomerkityt vaiheet
-- ainakin yksi suoritettava esimerkki on olemassa
-- "viitteet/", "skriptit/" ja mieluiten "esimerkit/" on linkitetty tiedostosta "SKILL.md"
-- "agents/openai.yaml" on olemassa, kun taito on tarkoitettu suoraan kutsumiseen agenttiasiakkaissa
-- Vianetsintä käyttää "Oireet" ja "Ratkaisu".
-- taito voidaan kohtuudella luokitella "L3".
-- vaarallisia komentoja tai epäilyttäviä polkuja ei ole
+- description says **what** and **when**
+- the skill is focused on one workflow
+- `## Workflow` exists and contains numbered or bulleted steps
+- at least one runnable example exists
+- `references/`, `scripts/`, and ideally `examples/` are linked from `SKILL.md`
+- `agents/openai.yaml` exists when the skill is meant for direct invocation in agent clients
+- troubleshooting uses `Symptoms` and `Solution`
+- the skill can reasonably be classified as `L3`
+- no risky commands or suspicious paths are present
 
-Aja sitten:```bash
+Then run:
+
+```bash
 npm run validate
 cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality, .security'
 ```
@@ -202,17 +230,19 @@ cat skills/<your-skill>/metadata.json | jq '.maturity, .best_practices, .quality
 
 ## ❌ Common Reasons a Skill Stalls Below the Top Band
 
-- kuvaus on oikea, mutta liian yleinen
-- Alennuksessa on osia, mutta ei käyttösyvyyttä
-- esimerkit eivät viittaa paikallisiin auttajiin
-- Vianmääritys on olemassa, mutta se ei ole diagnostinen
-- tunnisteita tai työkalutunnisteita on liian vähän
-- taito on turvallinen ja puhdas, mutta silti liian matala, jotta sitä voitaisiin pitää poikkeuksellisena---
+- the description is correct but too generic
+- the markdown has sections but no operational depth
+- examples do not point to local helpers
+- troubleshooting exists but is not diagnostic
+- there are too few tags or tool identifiers
+- the skill is safe and clean but still too shallow to count as exceptional
+
+---
 
 ## 🧭 Practical Rule
 
-Jos taitosi tuntuu:
+If your skill feels like:
 
--**malli**: se voi mennä läpi
--**opas**: se voi saada hyvän tuloksen
--**työnkulkupaketti**: se saa paljon todennäköisemmin pisteet huipulla
+- a **template**: it may pass
+- a **guide**: it may score well
+- a **workflow package**: it is much more likely to score at the top

@@ -5,110 +5,126 @@
 ---
 
 
->**Structuur- en kwaliteitsverwachtingen voor een Omni Skills `SKILL.md` — het auteursformaat dat de hele catalogus aanstuurt.**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-Elke `SKILL.md` bestaat uit twee afzonderlijke secties:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-Machineleesbare metagegevens tussen `---` scheidingstekens. Het bevoegdheden:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 De vaardighedenindex en het genereren van catalogi
-- 🔎 CLI zoeken en filteren
-- ✅ Validatie en kwaliteitsscore
-- 📊 Gegenereerde 'metadata.json'-classificatieartefacten
-- 📋 Per vaardigheid manifesteert zich in `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-Voor mensen leesbare (en voor agenten leesbare) instructies. Schrijf het alsof je**een senior ontwikkelaar**informeert over hoe een taak moet worden uitgevoerd – specifiek genoeg zodat een AI-agent deze kan volgen zonder te raden.---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| Veld | Vereist | Typ | Beschrijving |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `naam` | ✅ | tekenreeks | Moet overeenkomen met de mapnaam, met kleine letters en afgebroken |
-| `beschrijving` | ✅ | tekenreeks | Beschrijving van één regel (10-200 tekens) |
-| `versie` | ⚡ | tekenreeks | Semantische versie voor de vaardigheid zelf (bijvoorbeeld `"0.1.1"`) |
-| `categorie` | ⚡ | tekenreeks | Eén canonieke categorie uit de repo-taxonomie |
-| `labels` | ⚡ | tekenreeks[] | Doorzoekbare tags voor ontdekking |
-| `complexiteit` | ⚡ | tekenreeks | `beginner` · `gemiddeld` · `gevorderd` · `expert` |
-| `risico` | ⚡ | tekenreeks | `veilig` · `voorzichtig` · `aanstootgevend` · `kritisch` |
-| `gereedschap` | ⚡ | tekenreeks[] | Geteste AI-codeerassistenten |
-| `bron` | ⚡ | tekenreeks | `omni-team` · `gemeenschap` · `officieel` |
-| `auteur` | ⚡ | tekenreeks | Naamsvermelding |
-| `datum_toegevoegd` | ⚡ | tekenreeks | ISO-datum |
-| `datum_bijgewerkt` | ⚡ | tekenreeks | ISO-datum |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = Altijd vereist · ⚡ = Vereist in strikte modus
+> ✅ = Always required · ⚡ = Required in strict mode
 
-De vaardigheidsversie is onafhankelijk van de npm-pakketversie. Het pakket is momenteel '0.1.3', maar bestaande vaardigheden kunnen op hun eigen semantische versie blijven staan.---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-De repo-taxonomie definieert momenteel**18 canonieke categorieën**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| Categorie | Domein |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `ontwikkeling` | Algemene softwareontwikkeling |
-| 🎨`frontend` | Frontend-frameworks en gebruikersinterface |
-| 🔧 `backend` | Backend-services en API's |
-| 🌐 `fullstack-web` | End-to-end webontwikkeling |
-| 🛠️`gereedschap` | Tools en hulpprogramma's voor ontwikkelaars |
-| ⚙️ `cli-automatisering` | CLI-tools en automatiseringsscripts |
-| 📊 `zakelijk` | Bedrijfsprocessen en strategie |
-| 📐 `product` | Productbeheer en ontwerp |
-| 🎯 `ontwerp` | Visueel en UX-design |
-| 🤖 `data-ai` | Data-engineering en AI-toepassingen |
-| 🧠`ai-agenten` | Ontwikkeling en patronen van AI-agenten |
-| 📈 `machine-leren` | ML-modellen en training |
-| 🔌`devops` | Infrastructuur en implementatie |
-| 🛡️ `test-beveiliging` | Test- en beveiligingspraktijken |
-| 📖 `documentatie` | Documentatie genereren en beheren |
-| 🎬 `inhoud-media` | Contentcreatie en media |
-| 💬 `communicatie` | Communicatiemiddelen en workflows |
-| ❓ `ongecategoriseerd` | Standaard wanneer er geen overeenkomst is gevonden |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> Oudere labels zoals 'workflow', 'architectuur', 'infrastructuur', 'beveiliging' en 'testen' worden automatisch genormaliseerd via aliastoewijzing.---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-Een goed geschreven vaardigheidslichaam volgt deze hiërarchie:
+A well-written skill body follows this hierarchy:
 
-### 📌 Overzicht (verplicht)
-2-3 zinnen over**wat**de vaardigheid doet en**waarom**deze bestaat.
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 Wanneer te gebruiken (vereist)
-Lijst met opsommingen van**specifieke scenario's**waarin deze vaardigheid van toepassing is.
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 Kerninstructies (vereist)
-Het**stapsgewijze proces**dat de agent moet volgen. Wees expliciet. Wees specifiek. Agenten werken het beste met duidelijke, ondubbelzinnige instructies.
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 Voorbeelden (aanbevolen)
-Concrete aanwijzingen, codeblokken of verwachte resultaten.**Hoe specifieker, hoe beter.**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ Beste praktijken (aanbevolen)
-Gebruik de formattering ✅ Wel/❌ Niet voor snel scannen.
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🔧 Probleemoplossing (optioneel)
-Veelvoorkomende problemen en hun oplossingen.
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 Gerelateerde vaardigheden (optioneel)
-Kruisverwijzingen naar complementaire vaardigheden.---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 Gericht op**één specifieke**workflow of domein
-- 📌 Instructies zijn**duidelijk genoeg voor een AI**om te volgen zonder menselijke interpretatie
-- 💡 Inclusief**concrete voorbeelden**met verwacht gedrag
-- 🛡️ Heeft goede**foutafhandeling**begeleiding
-- 📊 Produceert gezonde metadata: canonieke categorie, volwassenheid L2+, kwaliteit 70+
-- 🧰 Verzendt een herbruikbaar ondersteuningspakket, niet alleen proza, idealiter via `references/`, `scripts/`, `examples/` en `agents/` waar van toepassing
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-Voor de sterkere scorepatronen die vaardigheden naar de hoogste niveaus duwen, zie [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ Generiek advies dat op alles van toepassing kan zijn
-- 🤷 Vage instructies zoals "schrijf goede code"
-- 🚫 Geen voorbeelden of codeblokken
-- ⚠️ Ontbrekende frontmaterievelden
-- 📉 Lage kwaliteitsscore (lager dan 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

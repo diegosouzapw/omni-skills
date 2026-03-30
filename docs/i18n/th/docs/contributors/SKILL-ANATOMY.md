@@ -5,110 +5,126 @@
 ---
 
 
->**ความคาดหวังด้านโครงสร้างและคุณภาพสำหรับทักษะ Omni `SKILL.md` — รูปแบบการเขียนที่ขับเคลื่อนแคตตาล็อกทั้งหมด**---
+> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+
+---
 
 ## 📐 The Two Parts
 
-`SKILL.md` ทุกรายการประกอบด้วยสองส่วนที่แตกต่างกัน:### 1️⃣ Frontmatter (YAML Metadata)
+Every `SKILL.md` is composed of two distinct sections:
 
-ข้อมูลเมตาที่เครื่องอ่านได้ระหว่างตัวคั่น `---` มันให้อำนาจ:
+### 1️⃣ Frontmatter (YAML Metadata)
 
-- 📚 ดัชนีทักษะและการสร้างแคตตาล็อก
-- 🔎 ค้นหาและกรอง CLI
-- ✅ การตรวจสอบและการให้คะแนนคุณภาพ
-- 📊 สร้างสิ่งประดิษฐ์การจัดหมวดหมู่ `metadata.json`
-- 📋 การแสดงทักษะต่อทักษะอยู่ใน `dist/manifests/`### 2️⃣ Body (Markdown Instructions)
+Machine-readable metadata between `---` delimiters. It powers:
 
-คำแนะนำที่มนุษย์สามารถอ่านได้ (และเอเจนต์สามารถอ่านได้) เขียนราวกับว่าคุณกำลัง**บรรยายสรุปให้กับนักพัฒนาอาวุโส**เกี่ยวกับวิธีการปฏิบัติงาน โดยเจาะจงเพียงพอที่ตัวแทน AI สามารถติดตามได้โดยไม่ต้องเดา---
+- 📚 The skills index and catalog generation
+- 🔎 CLI search and filtering
+- ✅ Validation and quality scoring
+- 📊 Generated `metadata.json` classification artifacts
+- 📋 Per-skill manifests in `dist/manifests/`
+
+### 2️⃣ Body (Markdown Instructions)
+
+Human-readable (and agent-readable) instructions. Write it as if you're **briefing a senior developer** on how to perform a task — specific enough that an AI agent can follow it without guessing.
+
+---
 
 ## 📋 Frontmatter Reference
 
-| สนาม | จำเป็น | พิมพ์ | คำอธิบาย |
+| Field | Required | Type | Description |
 |:------|:---------|:-----|:------------|
-| `ชื่อ` | ✅ | สตริง | ต้องตรงกับชื่อไดเรกทอรี โดยมีเครื่องหมายขีดคั่นด้วยตัวพิมพ์เล็ก |
-| `คำอธิบาย` | ✅ | สตริง | คำอธิบายบรรทัดเดียว (10-200 ตัวอักษร) |
-| `เวอร์ชัน` | ⚡ | สตริง | เวอร์ชันความหมายสำหรับทักษะนั้น (เช่น `"0.1.1"`) |
-| `หมวดหมู่` | ⚡ | สตริง | หมวดหมู่ที่ยอมรับได้หนึ่งหมวดหมู่จากอนุกรมวิธาน repo |
-| `แท็ก` | ⚡ | สตริง[] | แท็กที่ค้นหาได้สำหรับการค้นพบ |
-| `ความซับซ้อน` | ⚡ | สตริง | `ผู้เริ่มต้น` · `ระดับกลาง` · `ขั้นสูง` · `ผู้เชี่ยวชาญ` |
-| `ความเสี่ยง` | ⚡ | สตริง | `ปลอดภัย` · `ข้อควรระวัง` · `น่ารังเกียจ` · `วิพากษ์วิจารณ์` |
-| `เครื่องมือ` | ⚡ | สตริง[] | ทดสอบผู้ช่วยเขียนโค้ด AI แล้ว |
-| `แหล่งที่มา` | ⚡ | สตริง | `ทีม Omni` · `ชุมชน` · `อย่างเป็นทางการ` |
-| `ผู้เขียน` | ⚡ | สตริง | การแสดงที่มา |
-| `date_added` | ⚡ | สตริง | วันที่ ISO |
-| `date_updated` | ⚡ | สตริง | วันที่ ISO |
+| `name` | ✅ | string | Must match directory name, lowercase-hyphenated |
+| `description` | ✅ | string | One-line description (10-200 chars) |
+| `version` | ⚡ | string | Semantic version for the skill itself (e.g., `"0.1.1"`) |
+| `category` | ⚡ | string | One canonical category from the repo taxonomy |
+| `tags` | ⚡ | string[] | Searchable tags for discovery |
+| `complexity` | ⚡ | string | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | ⚡ | string | `safe` · `caution` · `offensive` · `critical` |
+| `tools` | ⚡ | string[] | Tested AI coding assistants |
+| `source` | ⚡ | string | `omni-team` · `community` · `official` |
+| `author` | ⚡ | string | Attribution |
+| `date_added` | ⚡ | string | ISO date |
+| `date_updated` | ⚡ | string | ISO date |
 
-> ✅ = จำเป็นเสมอ · ⚡ = จำเป็นในโหมดเข้มงวด
+> ✅ = Always required · ⚡ = Required in strict mode
 
-เวอร์ชันทักษะไม่ขึ้นอยู่กับเวอร์ชันแพ็คเกจ npm ปัจจุบันแพ็คเกจเป็น `0.1.3` แต่ทักษะที่มีอยู่สามารถคงอยู่ในเวอร์ชันความหมายของตนเองได้---
+The skill version is independent from the npm package version. The package is currently `0.1.3`, but existing skills can validly remain on their own semantic version.
+
+---
 
 ## 🏷️ Canonical Categories
 
-อนุกรมวิธาน Repo ในปัจจุบันกำหนด**หมวดหมู่ตามรูปแบบบัญญัติ 18 หมวดหมู่**:
+The repo taxonomy currently defines **18 canonical categories**:
 
-| หมวดหมู่ | โดเมน |
+| Category | Domain |
 |:---------|:-------|
-| 💻 `การพัฒนา` | การพัฒนาซอฟต์แวร์ทั่วไป |
-| 🎨 `ส่วนหน้า` | เฟรมเวิร์กส่วนหน้าและ UI |
-| 🔧 `แบ็กเอนด์` | บริการแบ็กเอนด์และ API |
-| 🌐 `เว็บเต็มสแต็ค` | การพัฒนาเว็บไซต์แบบครบวงจร |
-| 🛠️ `เครื่องมือ` | เครื่องมือและยูทิลิตี้สำหรับนักพัฒนา |
-| ⚙️ `cli-อัตโนมัติ` | เครื่องมือ CLI และสคริปต์อัตโนมัติ |
-| 📊 `ธุรกิจ` | กระบวนการและกลยุทธ์ทางธุรกิจ |
-| 📐 `ผลิตภัณฑ์` | การจัดการผลิตภัณฑ์และการออกแบบ |
-| 🎯 `การออกแบบ` | การออกแบบภาพและ UX |
-| 🤖 `data-ai` | วิศวกรรมข้อมูลและแอปพลิเคชัน AI |
-| 🧠 `ai-ตัวแทน` | การพัฒนาและรูปแบบของตัวแทน AI |
-| 📈 `แมชชีนเลิร์นนิง` | โมเดล ML และการฝึกอบรม |
-| 🔌 `devops` | โครงสร้างพื้นฐานและการปรับใช้ |
-| 🛡️ `การทดสอบความปลอดภัย` | แนวทางปฏิบัติในการทดสอบและความปลอดภัย |
-| 📖 `เอกสาร` | การสร้างและการจัดการเอกสาร |
-| 🎬 `เนื้อหา-สื่อ` | การสร้างเนื้อหาและสื่อ |
-| 💌 `การสื่อสาร` | เครื่องมือสื่อสารและขั้นตอนการทำงาน |
-| ❓ `ไม่มีหมวดหมู่` | ค่าเริ่มต้นเมื่อไม่พบรายการที่ตรงกัน |
+| 💻 `development` | General software development |
+| 🎨 `frontend` | Frontend frameworks and UI |
+| 🔧 `backend` | Backend services and APIs |
+| 🌐 `fullstack-web` | End-to-end web development |
+| 🛠️ `tools` | Developer tooling and utilities |
+| ⚙️ `cli-automation` | CLI tools and automation scripts |
+| 📊 `business` | Business processes and strategy |
+| 📐 `product` | Product management and design |
+| 🎯 `design` | Visual and UX design |
+| 🤖 `data-ai` | Data engineering and AI applications |
+| 🧠 `ai-agents` | AI agent development and patterns |
+| 📈 `machine-learning` | ML models and training |
+| 🔌 `devops` | Infrastructure and deployment |
+| 🛡️ `testing-security` | Testing and security practices |
+| 📖 `documentation` | Documentation generation and management |
+| 🎬 `content-media` | Content creation and media |
+| 💬 `communication` | Communication tools and workflows |
+| ❓ `uncategorized` | Default when no match is found |
 
-> ป้ายกำกับแบบเดิม เช่น `เวิร์กโฟลว์` `สถาปัตยกรรม` `โครงสร้างพื้นฐาน` `ความปลอดภัย` และ `การทดสอบ` จะถูกทำให้เป็นมาตรฐานโดยอัตโนมัติผ่านการแมปนามแฝง---
+> Legacy labels like `workflow`, `architecture`, `infrastructure`, `security`, and `testing` are automatically normalized through alias mapping.
+
+---
 
 ## 📝 Body Structure
 
-เนื้อหาทักษะที่เขียนมาอย่างดีมีลำดับชั้นนี้:
+A well-written skill body follows this hierarchy:
 
-### 📌 ภาพรวม (จำเป็น)
-2-3 ประโยคว่าทักษะนี้ทำอะไร**และทำไม**ถึงมีอยู่
+### 📌 Overview (Required)
+2-3 sentences on **what** the skill does and **why** it exists.
 
-### 🎯 ควรใช้เมื่อใด (จำเป็น)
-รายการหัวข้อย่อยของ**สถานการณ์เฉพาะ**ที่ใช้ทักษะนี้
+### 🎯 When to Use (Required)
+Bullet list of **specific scenarios** where this skill applies.
 
-### 📋 คำแนะนำหลัก (จำเป็น)
-**กระบวนการทีละขั้นตอน**ที่ตัวแทนควรปฏิบัติตาม มีความชัดเจน มีความเฉพาะเจาะจง เจ้าหน้าที่ทำงานได้ดีที่สุดโดยมีคำแนะนำที่ชัดเจนและไม่คลุมเครือ
+### 📋 Core Instructions (Required)
+The **step-by-step process** the agent should follow. Be explicit. Be specific. Agents work best with clear, unambiguous instructions.
 
-### 💡 ตัวอย่าง (แนะนำ)
-พรอมต์ที่เป็นรูปธรรม บล็อกโค้ด หรือเอาต์พุตที่คาดหวัง**ยิ่งเจาะจงยิ่งดี**
+### 💡 Examples (Recommended)
+Concrete prompts, code blocks, or expected outputs. **The more specific, the better.**
 
-### ✅ แนวทางปฏิบัติที่ดีที่สุด (แนะนำ)
-ใช้ปุ่ม ✅ Do / ❌ อย่าฟอร์แมต เพื่อการสแกนอย่างรวดเร็ว
+### ✅ Best Practices (Recommended)
+Use the ✅ Do / ❌ Don't format for quick scanning.
 
-### 🏽 การแก้ไขปัญหา (ไม่บังคับ)
-ปัญหาทั่วไปและแนวทางแก้ไข
+### 🔧 Troubleshooting (Optional)
+Common issues and their solutions.
 
-### 🔗 ทักษะที่เกี่ยวข้อง (ไม่บังคับ)
-การอ้างอิงโยงทักษะเสริม---
+### 🔗 Related Skills (Optional)
+Cross-references to complementary skills.
+
+---
 
 ## ⭐ Quality Signals
 
 ### ✅ Good Skill
 
-- 🎯 มุ่งเน้นไปที่เวิร์กโฟลว์หรือโดเมน**เฉพาะเจาะจงหนึ่งรายการ**
-- 📌 คำแนะนำ**ชัดเจนเพียงพอสำหรับ AI**ที่จะปฏิบัติตามโดยไม่ต้องมีการตีความโดยมนุษย์
-- 💡 รวม**ตัวอย่างที่เป็นรูปธรรม**พร้อมพฤติกรรมที่คาดหวัง
-- 🛡️ มีคำแนะนำ**การจัดการข้อผิดพลาด**ที่เหมาะสม
-- 📊 สร้างข้อมูลเมตาที่ดี: หมวดหมู่มาตรฐาน, อายุ L2+, คุณภาพ 70+
-- 🧰 จัดส่งชุดสนับสนุนที่นำมาใช้ซ้ำได้ ไม่เพียงแต่ร้อยแก้วเท่านั้น แต่ยังรวมถึง `ข้อมูลอ้างอิง/`, `สคริปต์/`, `ตัวอย่าง/` และ `ตัวแทน/` ตามความเหมาะสม
+- 🎯 Focused on **one specific** workflow or domain
+- 📌 Instructions are **clear enough for an AI** to follow without human interpretation
+- 💡 Includes **concrete examples** with expected behavior
+- 🛡️ Has proper **error handling** guidance
+- 📊 Produces healthy metadata: canonical category, maturity L2+, quality 70+
+- 🧰 Ships a reusable support pack, not only prose, ideally across `references/`, `scripts/`, `examples/`, and `agents/` where appropriate
 
-สำหรับรูปแบบการให้คะแนนที่แข็งแกร่งขึ้นซึ่งผลักดันทักษะไปสู่วงดนตรีสูงสุด โปรดดู [คู่มือคะแนนสูง](HIGH-SCORE-PLAYBOOK.md)### ❌ Bad Skill
+For the stronger scoring patterns that push skills into the highest bands, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
-- 🌫️ คำแนะนำทั่วไปที่สามารถใช้ได้กับทุกสิ่ง
-- 🙋 คำแนะนำที่คลุมเครือ เช่น "เขียนโค้ดที่ดี"
-- 🚫 ไม่มีตัวอย่างหรือบล็อคโค้ด
-- ⚠️ ไม่มีช่อง frontmatter
-- 📉 คะแนนคุณภาพต่ำ (ต่ำกว่า 50)
+### ❌ Bad Skill
+
+- 🌫️ Generic advice that could apply to anything
+- 🤷 Vague instructions like "write good code"
+- 🚫 No examples or code blocks
+- ⚠️ Missing frontmatter fields
+- 📉 Low quality score (below 50)

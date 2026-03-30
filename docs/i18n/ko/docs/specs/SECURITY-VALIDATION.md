@@ -5,44 +5,50 @@
 ---
 
 
->**공개된 모든 기술에 대한 보안 검색, 아카이브 생성, 선택적 서명 및 배포 패키징.**---
+> **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
+
+---
 
 ## 📊 Status
 
-| 기능 | 상태 |
-|:---------|:------|
-| ✅ 정적 보안 스캐너 | 항상 활성화됨 |
-| ✅ 스킬별 메타데이터 분류 | 구현 |
-| ✅ 스킬별 아카이브(zip/tar.gz) | 구현 |
-| ✅ SHA-256 체크섬 매니페스트 | 구현 |
-| ✅ 릴리스 태그의 CI 스캐너 게이트 | 구현 |
-| ✅ 검증된 tarball의 npm 게시 작업 흐름 | 구현 |
-| ⚙️ ClamAV 스캐닝 | 선택적 농축기 |
-| ⚙️ VirusTotal 해시 조회 | 선택적 농축기 |
-| ✅ 분리된 서명 | 구현 |
-| ✅ CI 시행 서명 | 릴리스 태그에 구현됨 |---
+| Feature | State |
+|:--------|:------|
+| ✅ Static security scanner | Always enabled |
+| ✅ Per-skill metadata classification | Implemented |
+| ✅ Per-skill archives (zip/tar.gz) | Implemented |
+| ✅ SHA-256 checksum manifests | Implemented |
+| ✅ CI scanner gate on release tags | Implemented |
+| ✅ npm publish workflow from verified tarball | Implemented |
+| ⚙️ ClamAV scanning | Optional enricher |
+| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ Detached signing | Implemented |
+| ✅ CI-enforced signing | Implemented on release tags |
+
+---
 
 ## 🔍 Security Scanners
 
 ### 1️⃣ Static Scanner (Always Enabled)
 
-검증 중에 모든 기술을 검사합니다.
+Scans every skill during validation:
 
-| 대상 | 스캔 대상 |
-|:-------|:----|
-| 📝`SKILL.md` | 주요 스킬 내용 |
-| 📄 마크다운/텍스트 파일 | 패키지된 참조 및 문서 |
-| ⚙️ 스크립트 | 패키지된 자동화 스크립트 |
+| Target | What Gets Scanned |
+|:-------|:-----------------|
+| 📝 `SKILL.md` | Main skill content |
+| 📄 Markdown/text files | Packaged references and docs |
+| ⚙️ Scripts | Packaged automation scripts |
 
-**규칙 계열:**
+**Rule families:**
 
-| 규칙 | 예 |
-|:------|:---------|
-| 🎭**즉시 주입**| 유출 패턴, 지침 재정의 |
-| 💣**파괴적인 명령**| `rm -rf`, `format`, `del /s` |
-| 🔑**권한 에스컬레이션**| `sudo`, `chmod 777`, setuid 패턴 |
-| 📂**의심스러운 경로**| `/etc/shadow`, `~/.ssh`, 자격 증명 파일 |
-| ⚠️**위험한 원시생물**| `shell=True`, `pickle.load`, `eval`, `extractall` |---
+| Rule | Examples |
+|:-----|:---------|
+| 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
+| 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
+| 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+---
 
 ### 2️⃣ ClamAV (Optional)
 
@@ -50,9 +56,11 @@
 OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 ```
 
-- `PATH`에 `clamscan`이 필요합니다.
-- 알려진 악성 코드가 있는지 패키지 파일을 검사합니다.
-- 스킬 메타데이터에 기록된 결과---
+- Requires `clamscan` in `PATH`
+- Scans packaged files for known malware
+- Results recorded in skill metadata
+
+---
 
 ### 3️⃣ VirusTotal (Optional)
 
@@ -60,25 +68,33 @@ OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
 VT_API_KEY=your-key npm run validate
 ```
 
--**해시 조회만**— 일반 검증 중에는 파일을 업로드하지 않습니다.
-- 알 수 없는 파일은 로컬에만 남아 있습니다.
-- 빌드를**결정적**및 CI 독립적으로 유지합니다.### 4️⃣ Scanner Coverage Verification
+- **Hash lookup only** — no file upload during normal validation
+- Unknown files remain local-only
+- Keeps the build **deterministic** and CI-independent
+
+### 4️⃣ Scanner Coverage Verification
 
 ```bash
 npm run verify:scanners
 ```
 
-엄격한 릴리스 게이트:```bash
+Strict release gate:
+
+```bash
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
 ```
 
-이 단계는 생성된 `skills/*/metadata.json`을 읽고 필요한 스캐너가 감지를 실행하지 않거나 보고하지 않은 경우 실패합니다.---
+This step reads generated `skills/*/metadata.json` and fails if required scanners did not execute or reported detections.
+
+---
 
 ## 📊 Security Output Shape
 
-보안 데이터는 모든 기술의 메타데이터에서 내보내집니다.```json
+Security data is emitted in every skill's metadata:
+
+```json
 {
   "security": {
     "score": 100,
@@ -100,17 +116,21 @@ npm run verify:scanners:strict
 }
 ```
 
-> 이 블록은 매니페스트 및 카탈로그 보기로 전파되어 CLI, API 및 MCP가**보안 점수별로 필터링하고 순위를 매길 수 있습니다**.---
+> This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+
+---
 
 ## 📦 Archive Outputs
 
-게시된 각 기술은 다음을 생성합니다.
+Each published skill generates:
 
-| 파일 | 형식 |
-|:------|:---------|
-| `dist/archives/<skill>.zip` | ZIP 아카이브 |
-| `dist/archives/<skill>.tar.gz` | 타르볼 아카이브 |
-| `dist/archives/<skill>.checksums.txt` | SHA-256 체크섬 매니페스트 |### ✅ Verify Archives
+| File | Format |
+|:-----|:-------|
+| `dist/archives/<skill>.zip` | ZIP archive |
+| `dist/archives/<skill>.tar.gz` | Tarball archive |
+| `dist/archives/<skill>.checksums.txt` | SHA-256 checksum manifest |
+
+### ✅ Verify Archives
 
 ```bash
 npm run verify:archives
@@ -118,15 +138,17 @@ npm run verify:archives
 
 ### 🚢 Release Publishing
 
-이제 GitHub Actions 릴리스 태그(`v*`)가 제공됩니다.
+GitHub Actions release tags (`v*`) now:
 
-1. git 태그가 `package.json`과 일치하는지 확인하세요.
-2. ClamAV 설치 및 새로 고침
-3. GitHub 비밀에서 릴리스 서명 키를 디코딩합니다.
-4. `npm run release:verify`를 실행하세요.
-5. `npm pack`으로 타르볼을 패키징합니다.
-6. 출처와 함께 정확한 tarball을 npm에 게시합니다.
-7. 사용자 정의 메모와 첨부된 검증 자산을 사용하여 GitHub 릴리스를 생성합니다.---
+1. verify the git tag matches `package.json`
+2. install and refresh ClamAV
+3. decode the release signing key from GitHub secrets
+4. run `npm run release:verify`
+5. package the tarball with `npm pack`
+6. publish that exact tarball to npm with provenance
+7. create a GitHub Release with custom notes and attached verification assets
+
+---
 
 ## ✍️ Optional Signing
 
@@ -142,19 +164,21 @@ OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
 OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
 ```
 
-> 공개 키가 제공되지 않으면 빌드는 `openssl`을 사용하여 공개 키를 파생시켜 `dist/signing/`에 배치합니다.
+> If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
 
-활성화되면 '.sig' 파일이 아카이브 및 체크섬 매니페스트 옆에 표시됩니다.
+When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 
-CI에서는 이제 릴리스 태그에 다음을 통한 서명이 필요합니다.
+In CI, release tags now require signing through:
 
-- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` 또는 `OMNI_SKILLS_SIGN_PRIVATE_KEY`
-- 선택사항 `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` 또는 `OMNI_SKILLS_SIGN_PUBLIC_KEY`---
+- `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY`
+- optional `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY`
+
+---
 
 ## ⚠️ Current Limitations
 
-| 제한사항 | 상태 |
-|:------------|:-------|
-| VirusTotal 업로드 제출 | 기본 유효성 검사에서 의도적으로 제외됨 |
-| 서명 시행 | 릴리스 태그에 적용됩니다. 로컬 빌드는 여전히 서명되지 않은 상태로 실행될 수 있습니다 |
-| 호스팅된 거버넌스 | 내장된 인증, 관리 런타임, CORS/IP 허용 목록, 유지 관리 모드 및 감사 로깅이 마련되어 있습니다. 외부 게이트웨이는 선택 사항으로 남아 있습니다 |
+| Limitation | Status |
+|:-----------|:-------|
+| VirusTotal upload submission | Intentionally excluded from default validation |
+| Signing enforcement | Enforced on release tags; local builds may still run unsigned |
+| Hosted governance | Built-in auth, admin runtime, CORS/IP allowlists, maintenance mode, and audit logging are in place; external gateways remain optional |

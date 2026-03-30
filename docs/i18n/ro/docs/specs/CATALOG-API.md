@@ -5,40 +5,46 @@
 ---
 
 
->**Interfața API HTTP numai în citire pentru descoperirea de aptitudini, căutarea, compararea, planificarea instalării și descărcarea de artefacte.**---
+> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
+
+---
 
 ## 📊 Status
 
-| Caracteristica | Stat |
+| Feature | State |
 |:--------|:------|
-| ✅ Catalog de puncte finale | Implementat |
-| ✅ Auth (purtător + cheie API) | Implementat |
-| ✅ Admin runtime auth | Implementat |
-| ✅ Limitarea ratei | Implementat |
-| ✅ Jurnal de audit | Implementat |
-| ✅ Liste permise CORS și IP | Implementat |
-| ✅ Mod de întreținere | Implementat |
-| ✅ Descărcări de arhivă | Implementat |
-| ✅ Specificații OpenAPI | Implementat |
-| ⚠️ Backend de guvernare | Linie de bază bazată pe mediu, în proces; gateway extern sau IdP încă opțional |---
+| ✅ Catalog endpoints | Implemented |
+| ✅ Auth (bearer + API key) | Implemented |
+| ✅ Admin runtime auth | Implemented |
+| ✅ Rate limiting | Implemented |
+| ✅ Audit logging | Implemented |
+| ✅ CORS and IP allowlists | Implemented |
+| ✅ Maintenance mode | Implemented |
+| ✅ Archive downloads | Implemented |
+| ✅ OpenAPI spec | Implemented |
+| ⚠️ Governance backend | Env-driven, in-process baseline; external gateway or IdP still optional |
+
+---
 
 ## 🎯 Purpose
 
-API-ul oferă o suprafață în stil registry pentru:
+The API provides a registry-style surface for:
 
-- 📋 Listarea și filtrarea abilităților după calitate, securitate, categorie, risc și multe altele
-- 📌 Preluarea manifestelor de aptitudini individuale
-- 🔎 Căutare integrală și comparare cu mai multe aptitudini
-- 📦 Listare pachet cu disponibilitate
-- 📐 Generarea planului de instalare doar în citire
-- 📥 Descărcarea artefactelor generate, a arhivelor și a manifestelor de sumă de control
+- 📋 Listing and filtering skills by quality, security, category, risk, and more
+- 📌 Fetching individual skill manifests
+- 🔎 Full-text search and multi-skill comparison
+- 📦 Bundle listing with availability
+- 📐 Read-only install plan generation
+- 📥 Downloading generated artifacts, archives, and checksum manifests
 
-Același catalog și suprafață de manifest este, de asemenea, baza pentru:
+This same catalog and manifest surface is also the basis for:
 
-- planificarea instalării CLI local
-- Răspunsuri de descoperire MCP numai în citire
-- Descoperirea A2A și transferul planului de instalare
-- potențiale cataloage private cu autorizare externă stratificată deasupra---
+- local CLI install planning
+- MCP read-only discovery responses
+- A2A discovery and install-plan handoff
+- potential private catalogs with external auth layered on top
+
+---
 
 ## Pornire rapidă
 
@@ -60,42 +66,48 @@ npx omni-skills api --port 3333
 HOST=0.0.0.0 PORT=3333 npm run api
 ```
 
-**Valori implicite**: `127.0.0.1:3333`---
+**Defaults**: `127.0.0.1:3333`
+
+---
 
 ## 🔐 Security Controls
 
-Toate controalele de securitate sunt bazate pe env și sunt opționale:
+All security controls are env-driven and optional:
 
-| Control | Variabila | Exemplu |
+| Control | Variable | Example |
 |:--------|:---------|:--------|
-| 🔑**Autentificare purtător**| `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `inlocuieste-ma` |
-| 🗝️**Autentificare cheie API**| `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
-| 🛂**Autentificare admin**| `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
-| 🚦**Limitarea ratei**| `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
-| 📝**Înregistrare de audit**| `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
-| 🗂️**Format de audit**| `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` sau `text` |
-| 📄**Fișier de audit**| `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
-| 🌍**Lista de permise CORS**| `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
-| 🧱**Listă IP permisă**| `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
-| 🔁**Proxy de încredere**| `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
-| 🚧**Mod de întreținere**| `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
-| ⏱️**Reîncercați după**| `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
+| 🔑 **Bearer auth** | `OMNI_SKILLS_HTTP_BEARER_TOKEN` | `replace-me` |
+| 🗝️ **API key auth** | `OMNI_SKILLS_HTTP_API_KEYS` | `key-a,key-b` |
+| 🛂 **Admin auth** | `OMNI_SKILLS_HTTP_ADMIN_TOKEN` | `admin-secret` |
+| 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
+| 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
+| 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
+| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
+| 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
+| 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
+| 🚧 **Maintenance mode** | `OMNI_SKILLS_HTTP_MAINTENANCE_MODE` | `1` |
+| ⏱️ **Retry after** | `OMNI_SKILLS_HTTP_MAINTENANCE_RETRY_AFTER_SECONDS` | `300` |
 
-**Comportament:**
-- 🟢 `/healthz` rămâne**întotdeauna neautentificat**
-- 🔒 Toate celelalte rute necesită autentificare atunci când autentificarea este activată
-- 🛂 `/admin/runtime` necesită indicativul de administrator atunci când este activat
-- 🚦 Limitarea ratei este în proces cu anteturile de răspuns `X-RateLimit-*`
-- 🧾 Fiecare răspuns poartă `X-Request-Id`
-- 🚧 Modul de întreținere returnează `503` pentru rutele care nu sunt de sănătate, non-admin.### ✅ Current governance decision
+**Behavior:**
+- 🟢 `/healthz` remains **always unauthenticated**
+- 🔒 All other routes require auth when auth is enabled
+- 🛂 `/admin/runtime` requires the admin token when enabled
+- 🚦 Rate limiting is in-process with `X-RateLimit-*` response headers
+- 🧾 Every response carries `X-Request-Id`
+- 🚧 Maintenance mode returns `503` for non-health, non-admin routes
 
-Direcția actuală a proiectului este de a**reutiliza același format de catalog pentru implementări publice sau private**și de a stabili autentificarea externă atunci când este necesar.
+### ✅ Current governance decision
 
-Asta înseamnă:
+The current project direction is to **reuse the same catalog format for public or private deployments** and layer auth externally when needed.
 
-- manifestul și forma API rămân partajate
-- implementările auto-găzduite și locale pot rămâne pe linia de bază în proces
-- guvernanța găzduită mai avansată se poate muta ulterior la un gateway extern sau la un strat de autentificare a întreprinderii, fără a deforma modelul de date### 🔐 Full hardened example:
+That means:
+
+- the manifest and API shape stay shared
+- self-hosted and local deployments can stay on the in-process baseline
+- more advanced hosted governance can move to an external gateway or enterprise auth layer later without forking the data model
+
+### 🔐 Full hardened example:
 
 ```bash
 OMNI_SKILLS_HTTP_BEARER_TOKEN=replace-me \
@@ -117,34 +129,40 @@ npx omni-skills api --port 3333
 
 ### 🏥 Health & Schema
 
-| Metoda | Calea | Descriere |
-|:-------|:-----|:-------------|
-| `GET` | `/healthz` | Verificare de sănătate (neautentificată) |
-| `GET` | `/openapi.json` | Specificație dinamică OpenAPI 3.1 |
-| `GET` | `/admin/runtime` | Instantaneu guvernanță și runtime (autentificare admin când este activat) |### 📚 Catalog & Skills
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/healthz` | Health check (unauthenticated) |
+| `GET` | `/openapi.json` | Dynamic OpenAPI 3.1 specification |
+| `GET` | `/admin/runtime` | Governance and runtime snapshot (admin auth when enabled) |
 
-| Metoda | Calea | Descriere |
-|:-------|:-----|:-------------|
-| `GET` | `/v1/skills` | Listează abilitățile cu filtre |
-| `GET` | `/v1/skills/:id` | Obțineți manifestul de abilități individuale |
-| `GET` | `/v1/search` | Căutare integrală |
-| `GET` | `/v1/compare?ids=id1,id2` | Comparați mai multe abilități |
-| `GET` | `/v1/bundle` | Lista pachete cu disponibilitate |
-| `POST` | `/v1/install/plan` | Generați un plan de instalare |### 🔎 List/Search Filters
+### 📚 Catalog & Skills
 
-| Filtru | Exemplu |
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/skills` | List skills with filters |
+| `GET` | `/v1/skills/:id` | Get individual skill manifest |
+| `GET` | `/v1/search` | Full-text search |
+| `GET` | `/v1/compare?ids=id1,id2` | Compare multiple skills |
+| `GET` | `/v1/bundles` | List bundles with availability |
+| `POST` | `/v1/install/plan` | Generate an install plan |
+
+### 🔎 List/Search Filters
+
+| Filter | Example |
 |:-------|:--------|
-| `categorie` | `?category=dezvoltare` |
-| `instrument` | `?tool=cursor` |
-| `risc` | `?risc=sigur` |
-| `sort` | `?sort=quality\|cele mai bune practici\|nivel\|securitate\|nume` |
-| `comanda` | `?order=asc\|desc` |
-| `calitate_min` | `?min_quality=80` |
+| `category` | `?category=development` |
+| `tool` | `?tool=cursor` |
+| `risk` | `?risk=safe` |
+| `sort` | `?sort=quality\|best-practices\|level\|security\|name` |
+| `order` | `?order=asc\|desc` |
+| `min_quality` | `?min_quality=80` |
 | `min_best_practices` | `?min_best_practices=60` |
-| `nivel_min` | `?min_level=2` |
+| `min_level` | `?min_level=2` |
 | `min_security` | `?min_security=90` |
-| `starea_validării` | `?validation_status=passed` |
-| `starea_securității` | `?security_status=passed` |### 📦 Install Plan Body
+| `validation_status` | `?validation_status=passed` |
+| `security_status` | `?security_status=passed` |
+
+### 📦 Install Plan Body
 
 ```json
 {
@@ -158,51 +176,61 @@ npx omni-skills api --port 3333
 
 ### 📥 Artifact Downloads
 
-| Metoda | Calea | Descriere |
-|:-------|:-----|:-------------|
-| `GET` | `/v1/catalog/download` | Descărcare catalog complet |
-| `GET` | `/v1/skills/:id/artefacts` | Lista artefacte de calificare |
-| `GET` | `/v1/skills/:id/archives` | Listați arhivele de abilități |
-| `GET` | `/v1/skills/:id/downloads` | Toate linkurile de descărcare disponibile |
+| Method | Path | Description |
+|:-------|:-----|:------------|
+| `GET` | `/v1/catalog/download` | Full catalog download |
+| `GET` | `/v1/skills/:id/artifacts` | List skill artifacts |
+| `GET` | `/v1/skills/:id/archives` | List skill archives |
+| `GET` | `/v1/skills/:id/downloads` | All available download links |
 | `GET` | `/v1/skills/:id/download/manifest` | Skill manifest JSON |
 | `GET` | `/v1/skills/:id/download/entrypoint` | Skill SKILL.md |
-| `GET` | `/v1/skills/:id/download/artefact?path=<cale>` | Artefact specific |
-| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Arhiva de aptitudini |
-| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Semnătură detașată |
-| `GET` | `/v1/skills/:id/download/archive/checksums` | Sume de control SHA-256 |---
+| `GET` | `/v1/skills/:id/download/artifact?path=<path>` | Specific artifact |
+| `GET` | `/v1/skills/:id/download/archive?format=zip\|tar.gz` | Skill archive |
+| `GET` | `/v1/skills/:id/download/archive/signature?format=zip\|tar.gz` | Detached signature |
+| `GET` | `/v1/skills/:id/download/archive/checksums` | SHA-256 checksums |
+
+---
 
 ## 🔗 Link Enrichment
 
-Când solicitările sunt gestionate prin API, serverul**îmbogătește automat**manifestele, listele de artefacte și planurile de instalare cu adrese URL absolute derivate din originea cererii primite. Aceasta este îmbogățirea timpului de execuție, nu inclusă în „dist/manifests/*.json”.---
+When requests are handled through the API, the server **automatically enriches** manifests, artifact listings, and install plans with absolute URLs derived from the incoming request origin. This is runtime enrichment, not baked into `dist/manifests/*.json`.
+
+---
 
 ## 📋 Install Plan Notes
 
-> ⚠️**Planurile de instalare sunt previzualizări, nu scrieri de la distanță.**
+> ⚠️ **Install plans are previews, not remote writes.**
 
-API-ul nu se instalează niciodată pe computerul apelantului. Se intoarce:
-- 📌 Metadatele abilităților selectate
-- ⚠️ Avertismente pentru membrii pachetului lipsă
-- 🖥️ Comenzi CLI concrete pentru a rula local
-- 🔗 Adrese URL de descărcare publice atunci când originea solicitării este disponibilă---
+The API never installs onto the caller's machine. It returns:
+- 📌 Selected skill metadata
+- ⚠️ Warnings for missing bundle members
+- 🖥️ Concrete CLI commands to run locally
+- 🔗 Public download URLs when request origin is available
+
+---
 
 ## 🔌 Relationship to MCP
 
-Serverul MCP reutiliza aceleași adrese URL publice API atunci când este configurat:```bash
+The MCP server reuses the same public API URLs when configured:
+
+```bash
 OMNI_SKILLS_API_BASE_URL=http://127.0.0.1:3333 npm run mcp:http
 ```
 
-Acest lucru permite previzualizărilor de instalare MCP să returneze adrese URL de manifest și artefacte concrete, în loc de doar căi de depozit locale.---
+This allows MCP install previews to return concrete manifest and artifact URLs instead of only local repo paths.
+
+---
 
 ## 🧭 Admin Runtime Snapshot
 
-`GET /admin/runtime` returnează un instantaneu de guvernare util pentru diagnosticarea găzduită:
+`GET /admin/runtime` returns a governance snapshot useful for hosted diagnostics:
 
-- metode de autentificare activă
-- starea admin-auth
-- fereastra de limitare a ratei și max
-- Lista de permise CORS
-- Lista permisă pentru IP
-- starea modului de întreținere
-- destinația și formatul auditului
-- totalurile curente de catalog
-- solicitați ecou ID-ul pentru trasabilitate
+- active auth methods
+- admin-auth status
+- rate-limit window and max
+- CORS allowlist
+- IP allowlist
+- maintenance mode state
+- audit destination and format
+- current catalog totals
+- request ID echoing for traceability

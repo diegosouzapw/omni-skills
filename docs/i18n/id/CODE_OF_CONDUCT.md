@@ -9,40 +9,48 @@
 
 ## 🌟 Our Pledge
 
-Kami sebagai anggota, kontributor, dan pengelola berjanji untuk membuat partisipasi dalam proyek dan komunitas ini menjadi**pengalaman bebas pelecehan bagi semua orang**, tanpa memandang usia, ukuran tubuh, disabilitas yang terlihat atau tidak terlihat, etnis, karakteristik jenis kelamin, identitas dan ekspresi gender, tingkat pengalaman, pendidikan, status sosial ekonomi, kebangsaan, penampilan pribadi, ras, kasta, warna kulit, agama, atau identitas dan orientasi seksual.---
+We as members, contributors, and maintainers pledge to make participation in this project and community a **harassment-free experience for everyone**, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+---
 
 ## ✅ Our Standards
 
 ### 🟢 Positive Behaviors
 
-| Perilaku | Contoh |
+| Behavior | Example |
 |:---------|:--------|
-| 💬 Bahasa penyambutan | Bersikap inklusif dan hormat dalam komunikasi |
-| 🤝 Menghargai perbedaan | Menghargai sudut pandang dan pengalaman yang berbeda |
-| 📝 Kritik yang membangun | Menerima dan memberi masukan dengan baik hati |
-| 🎯 Fokus komunitas | Memprioritaskan yang terbaik untuk proyek dan komunitas |
-| ❤️ Empati | Menunjukkan empati terhadap anggota komunitas lainnya |### 🔴 Unacceptable Behaviors
+| 💬 Welcoming language | Being inclusive and respectful in communication |
+| 🤝 Respect for differences | Valuing differing viewpoints and experiences |
+| 📝 Constructive criticism | Accepting and giving feedback gracefully |
+| 🎯 Community focus | Prioritizing what is best for the project and community |
+| ❤️ Empathy | Showing empathy toward other community members |
 
-| Perilaku |
+### 🔴 Unacceptable Behaviors
+
+| Behavior |
 |:---------|
-| 🚫 Bahasa atau gambaran seksual, dan perhatian atau rayuan seksual |
-| 🚫 Komentar yang mengejek, menghina, atau menghina |
-| 🚫 Serangan pribadi atau politik |
-| 🚫 Pelecehan publik atau pribadi |
-| 🚫 Memublikasikan informasi pribadi orang lain tanpa izin tertulis |
-| 🚫 Perilaku lain yang dianggap tidak pantas dalam lingkungan profesional |---
+| 🚫 Sexualized language or imagery, and sexual attention or advances |
+| 🚫 Trolling, insulting, or derogatory comments |
+| 🚫 Personal or political attacks |
+| 🚫 Public or private harassment |
+| 🚫 Publishing someone else's private information without explicit permission |
+| 🚫 Other conduct reasonably considered inappropriate in a professional setting |
+
+---
 
 ## ⚖️ Enforcement
 
-Contoh perilaku yang kasar, melecehkan, atau tidak dapat diterima dapat dilaporkan kepada pengelola melalui:
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers through:
 
-| Saluran | Bagaimana |
+| Channel | How |
 |:--------|:----|
-| 🔒 Saluran pribadi GitHub | Hubungi melalui Keamanan atau Diskusi GitHub |
-| 📧 Kontak langsung | Hubungi pengelola secara langsung |
+| 🔒 GitHub private channels | Contact via GitHub Security or Discussion |
+| 📧 Direct contact | Reach out to the maintainers directly |
 
->**Semua laporan akan ditinjau dan diselidiki dengan segera dan adil.**---
+> **All reports will be reviewed and investigated promptly and fairly.**
+
+---
 
 ## 📜 Attribution
 
-Kode Etik ini diadaptasi dari [Perjanjian Kontributor](https://www.contributor-covenant.org), versi 2.1.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.

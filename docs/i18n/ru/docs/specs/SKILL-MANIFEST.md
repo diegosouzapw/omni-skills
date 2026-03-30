@@ -5,66 +5,78 @@
 ---
 
 
->**Машиночитаемый манифест JSON, создаваемый из каждого `SKILL.md` во время конвейера сборки — единый контракт данных, используемый всеми поверхностями среды выполнения.**---
+> **The machine-readable JSON manifest generated from each `SKILL.md` during the build pipeline — the single data contract consumed by all runtime surfaces.**
+
+---
 
 ## 📊 Status
 
-| Особенность | Государство |
+| Feature | State |
 |:--------|:------|
-| ✅ Автоматически генерируется из SKILL.md | Реализовано |
-| ✅ Используется CLI, API, MCP, A2A | Реализовано |
-| ✅ Архивы с контрольными суммами | Реализовано |
-| ✅ Классификация безопасности | Реализовано |
+| ✅ Auto-generated from SKILL.md | Implemented |
+| ✅ Consumed by CLI, API, MCP, A2A | Implemented |
+| ✅ Archives with checksums | Implemented |
+| ✅ Security classification | Implemented |
 
->**Важно**: манифест представляет собой**артефакт сборки**. Автор участников `SKILL.md` — конвейер автоматически извлекает манифест JSON.---
+> **Important**: The manifest is a **build artifact**. Contributors author `SKILL.md` — the pipeline derives the JSON manifest automatically.
+
+---
 
 ## 🎯 Purpose
 
-Манифест существует для того, чтобы**все поверхности времени выполнения**имели одну и ту же нормализованную форму:
+The manifest exists so that **all runtime surfaces** consume the same normalized shape:
 
-| Поверхность | Как он использует манифесты |
+| Surface | How It Uses Manifests |
 |:--------|:---------------------|
-| 🖥️**CLI**| Поиск, планирование установки, диагностика врача |
-| 🌐**API**| Ответы конечных точек, фильтрация, ссылки для скачивания |
-| 🔌**MCP**| Ответы на инструмент, содержание ресурса |
-| 🤖**A2A**| Полезные данные для обнаружения и рекомендаций |---
+| 🖥️ **CLI** | Search, install planning, doctor diagnostics |
+| 🌐 **API** | Endpoint responses, filtering, download links |
+| 🔌 **MCP** | Tool responses, resource contents |
+| 🤖 **A2A** | Discovery and recommendation payloads |
+
+---
 
 ## 📁 Output Locations
 
-| Артефакт | Путь |
+| Artifact | Path |
 |:---------|:-----|
-| 📊 Корневые метаданные | `метаданные.json` |
-| 📊 Метаданные по навыкам | `skills/<skill>/metadata.json` |
-| 📋 Индекс навыков | `skills_index.json` |
-| 📚 Издан каталог | `dist/catalog.json` |
-| 📌 Манифест каждого навыка | `dist/manifests/<skill>.json` |
-| 📦 Zip-архив | `dist/archives/<skill>.zip` |
-| 📦 Архив Tarball | `dist/archives/<skill>.tar.gz` |
-| 🔒 Манифест контрольной суммы | `dist/archives/<skill>.checksums.txt` |---
+| 📊 Root metadata | `metadata.json` |
+| 📊 Per-skill metadata | `skills/<skill>/metadata.json` |
+| 📋 Skills index | `skills_index.json` |
+| 📚 Published catalog | `dist/catalog.json` |
+| 📌 Per-skill manifest | `dist/manifests/<skill>.json` |
+| 📦 Zip archive | `dist/archives/<skill>.zip` |
+| 📦 Tarball archive | `dist/archives/<skill>.tar.gz` |
+| 🔒 Checksum manifest | `dist/archives/<skill>.checksums.txt` |
+
+---
 
 ## 📐 Manifest Shape
 
 ### 🆔 Identity
 
-| Поле | Описание |
+| Field | Description |
 |:------|:------------|
-| `версия_схемы` | Версия схемы манифеста |
-| `идентификатор` | Стабильный идентификатор навыка из поля `name` |
-| `слизняк` | Пустой каталог под `skills/` |
-| `отображаемое_имя` | Читабельный заголовок из первого заголовка |### 📝 Metadata
+| `schema_version` | Version of the manifest schema |
+| `id` | Stable skill identifier from `name` field |
+| `slug` | Directory slug under `skills/` |
+| `display_name` | Human-readable title from first heading |
 
-| Поле | Описание |
+### 📝 Metadata
+
+| Field | Description |
 |:------|:------------|
-| `описание` | Краткое резюме из темы |
-| `версия` | Версия навыка, независимая от версии пакета npm |
-| `категория` | Каноническая категория (нормализованная) |
-| `raw_category` | Оригинальная категория из фронтмена |
-| `таксономия` | Полные метаданные таксономии с предполагаемым резервным вариантом |
-| `теги` | Теги с возможностью поиска |
-| `сложность` | `начинающий` · `средний` · `продвинутый` · `эксперт` |
-| `риск` | `безопасный` · `осторожно` · `наступательный` · `критический` |
-| `источник` | `омни-команда` · `сообщество` · `официальный` |
-| `автор` | Строка атрибуции |### 📅 Dates
+| `description` | Short summary from frontmatter |
+| `version` | Skill version, independent from the npm package version |
+| `category` | Canonical category (normalized) |
+| `raw_category` | Original category from frontmatter |
+| `taxonomy` | Full taxonomy metadata with inferred fallback |
+| `tags` | Searchable tags |
+| `complexity` | `beginner` · `intermediate` · `advanced` · `expert` |
+| `risk` | `safe` · `caution` · `offensive` · `critical` |
+| `source` | `omni-team` · `community` · `official` |
+| `author` | Attribution string |
+
+### 📅 Dates
 
 ```json
 { "added": "2026-03-26", "updated": "2026-03-26" }
@@ -72,26 +84,32 @@
 
 ### 📂 Paths
 
-| Поле | Описание |
+| Field | Description |
 |:------|:------------|
-| `точка входа` | Канонический путь `SKILL.md` |
-| `paths.root` | Каталог навыков внутри репо |
-| `paths.manifest` | Сгенерированный путь манифеста в `dist/` |### 🖥️ Compatibility
+| `entrypoint` | Canonical `SKILL.md` path |
+| `paths.root` | Skill directory inside repo |
+| `paths.manifest` | Generated manifest path in `dist/` |
 
-| Поле | Описание |
+### 🖥️ Compatibility
+
+| Field | Description |
 |:------|:------------|
-| `инструменты` | Идентификаторы инструментов из заголовка |
-| `install_targets` | Метаданные установки для каждого инструмента |
+| `tools` | Tool identifiers from frontmatter |
+| `install_targets` | Per-tool install metadata |
 
-Каждая цель установки включает в себя: «инструмент», «область», «путь_по умолчанию», «флаг_установщика», «текущее_установочное_поведение», «вызов».### 📦 Resources
+Each install target includes: `tool`, `scope`, `default_path`, `installer_flag`, `current_installer_behavior`, `invocation`
 
-| Поле | Описание |
+### 📦 Resources
+
+| Field | Description |
 |:------|:------------|
-| `sub_resources` | Подкаталоги навыков («ссылки», «агенты», «активы») |
-| `артефакты_количество` | Общее количество файлов в пакете навыков |
-| `references_count` | Количество справочных документов |
-| `agents_count` | Количество конфигураций агента |
-| `assets_count` | Количество файлов активов |### 🔗 Dependencies (Reserved)
+| `sub_resources` | Skill subdirs (`references`, `agents`, `assets`) |
+| `artifacts_count` | Total file count in the skill package |
+| `references_count` | Reference doc count |
+| `agents_count` | Agent config count |
+| `assets_count` | Asset file count |
+
+### 🔗 Dependencies (Reserved)
 
 ```json
 { "skills": [], "external": [] }
@@ -99,23 +117,31 @@
 
 ### 📦 Install
 
-| Поле | Описание |
+| Field | Description |
 |:------|:------------|
-| `стратегия` | Стратегия установки (например, `copy-skill-directory`) |
-| `текущий_установщик` | Удобочитаемое поведение при установке |
-| `рецепты` | Рецепты установки для каждого клиента |### 📊 Classification
+| `strategy` | Install strategy (e.g., `copy-skill-directory`) |
+| `current_installer` | Human-readable install behavior |
+| `recipes` | Per-client install recipes |
 
-| Раздел | Поля |
+### 📊 Classification
+
+| Section | Fields |
 |:--------|:-------|
-| 🎯 `зрелость` | `skill_level`, `skill_level_label` |
-| 📋 `лучшие_практики` | `счет` (0-100) |
-| ⭐ `качество` | `счет` (0-100) |
-| 🛡️ `безопасность` | `оценка`, `статус` |
-| ✅ `проверка` | `статус` |### 📝 Content
+| 🎯 `maturity` | `skill_level`, `skill_level_label` |
+| 📋 `best_practices` | `score` (0-100) |
+| ⭐ `quality` | `score` (0-100) |
+| 🛡️ `security` | `score`, `status` |
+| ✅ `validation` | `status` |
 
-Производные сигналы: «body_length», «content_length», «body_lines», «word_count», а также структурные флаги для примеров, разделов по устранению неполадок и т. д.### 📁 Artifacts
+### 📝 Content
 
-Массив всех файлов, находящихся в каталоге навыков:```json
+Derived signals: `body_length`, `content_length`, `body_lines`, `word_count`, plus structural flags for examples, troubleshooting sections, etc.
+
+### 📁 Artifacts
+
+Array of every file shipped inside the skill directory:
+
+```json
 {
   "path": "skills/omni-figma/references/mcp-setup.md",
   "kind": "reference",
@@ -124,7 +150,9 @@
 }
 ```
 
-**Виды артефактов**: «точка входа» · «ссылка» · «агент» · «актив» · «лицензия» · «поддержка»### 📦 Archives
+**Artifact kinds**: `entrypoint` · `reference` · `agent` · `asset` · `license` · `support`
+
+### 📦 Archives
 
 ```json
 {
@@ -139,10 +167,12 @@
 
 ### 🔒 Checksums
 
-| Поле | Описание |
+| Field | Description |
 |:------|:------------|
-| `entrypoint_sha256` | Хэш SKILL.md |
-| `package_sha256` | Детерминированный дайджест из упорядоченного списка артефактов |---
+| `entrypoint_sha256` | Hash of SKILL.md |
+| `package_sha256` | Deterministic digest from ordered artifact list |
+
+---
 
 ## 📋 Example Manifest
 
@@ -183,13 +213,15 @@
 }
 ```
 
-> 📌 Версия пакета репозитория и версия навыка — это разные вещи. В настоящее время пакет имеет версию 0.1.3, а отдельные навыки имеют свои собственные семантические версии.---
+> 📌 Repository package version and skill version are different concerns. The package is currently `0.1.3`, while individual skills carry their own semantic versions.
+
+---
 
 ## ⚠️ Compatibility Notes
 
-| Правило | Обоснование |
+| Rule | Rationale |
 |:-----|:----------|
-| ✅ Должно оставаться производным от репо | Создание манифеста вручную не требуется |
-| ✅ Можно добавить новые необязательные поля | Прямая совместимость |
-| ⚠️Существующие месторождения должны оставаться стабильными | Обратная совместимость |
-| 🚫 Никаких рукописных манифестов | Вывод во время сборки — источник истины |
+| ✅ Must stay derivable from repo | No manual manifest authoring required |
+| ✅ New optional fields can be added | Forward compatibility |
+| ⚠️ Existing fields must remain stable | Backward compatibility |
+| 🚫 No handwritten manifests | Build-time derivation is the source of truth |

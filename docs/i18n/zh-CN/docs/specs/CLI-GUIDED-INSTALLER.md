@@ -5,137 +5,169 @@
 ---
 
 
->**Omni Skills CLI 中指导安装体验的行为合同。**---
+> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
+
+---
 
 ## 1. Scope
 
-该规范定义了位于现有安装程序后端之上的引导安装行为。
+This spec defines the guided install behavior that sits on top of the existing installer backend.
 
-它不会取代：
+It does not replace:
 
--`工具/bin/install.js`
-- 当前专家标志流
-- 选择性安装清单
+- `tools/bin/install.js`
+- current expert flag flows
+- selective install manifests
 
-它定义：
+It defines:
 
-- 如何进入引导模式
-- 如何选择目的地
-- 如何选择安装范围
-- 必须显示哪些预览信息
-- 确认和执行如何工作---
+- how guided mode is entered
+- how destinations are chosen
+- how install scope is chosen
+- what preview information must be displayed
+- how confirmation and execution work
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-在以下情况下，CLI 应进入引导安装模式：
+The CLI should enter guided install mode when:
 
-- 用户在 TTY 中运行不带参数的“omni-skills”
-- 用户在 TTY 中运行“omni-skills install”，但没有选择器### 2.2 Forced Guided Entry
+- the user runs `omni-skills` with no args in a TTY
+- the user runs `omni-skills install` with no selectors in a TTY
 
-CLI 还应通过专用选项支持显式引导模式，例如：
+### 2.2 Forced Guided Entry
 
-- `全能技能安装 --guided`
+The CLI should also support explicit guided mode through a dedicated option, such as:
 
-只要标准输入可用，即使输入通过管道传输且未连接到 TTY，此模式也应该起作用。### 2.3 Non-Interactive Safety Rule
+- `omni-skills install --guided`
 
-在没有 TTY 且没有明确请求引导模式的情况下调用时：
+This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
 
-- 保留当前的默认行为
-- 不要阻塞等待提示---
+### 2.3 Non-Interactive Safety Rule
+
+When invoked without a TTY and without guided mode explicitly requested:
+
+- preserve the current default behavior
+- do not block waiting for prompts
+
+---
 
 ## 3. Destination Model
 
-引导安装必须支持两个目标类别：### 3.1 Known Client Target
+Guided install must support two destination classes:
 
-每个已知目标都解析为：
+### 3.1 Known Client Target
 
-- 人类可读的标签
-- 内部工具ID
-- 安装标志
-- 解析路径
+Each known target resolves to:
 
-所需的已知目标：
+- human-readable label
+- internal tool id
+- install flag
+- resolved path
 
-——克劳德·代码
-- 光标
-- 双子座 CLI
-- 法典 CLI
-- 基罗
-- 反重力
-- 开放代码### 3.2 Custom Path Target
+Required known targets:
 
-自定义路径模式必须：
+- Claude Code
+- Cursor
+- Gemini CLI
+- Codex CLI
+- Kiro
+- Antigravity
+- OpenCode
 
-- 提示输入路径
-- 解析`~`
-- 标准化为绝对路径
-- 在预览中显示解析的路径---
+### 3.2 Custom Path Target
+
+Custom path mode must:
+
+- prompt for a path
+- resolve `~`
+- normalize to absolute path
+- show the resolved path in preview
+
+---
 
 ## 4. Install Scope Model
 
-引导式安装必须支持：### 4.1 Full Library
+Guided install must support:
 
-相当于当前安装，没有“--skill”或“--bundle”。### 4.2 Single Skill
+### 4.1 Full Library
 
-允许用户选择一项已发布的技能。### 4.3 Single Bundle
+Equivalent to current install with no `--skill` or `--bundle`.
 
-允许用户选择一个精选的捆绑包并解析已发布的成员。### 4.4 Search Then Install
+### 4.2 Single Skill
 
-让用户：
+Lets the user select one published skill.
 
-- 输入搜索查询
-- 检查结果
-- 选择一项技能或组合
-- 继续进入安装预览---
+### 4.3 Single Bundle
+
+Lets the user select one curated bundle and resolves published members.
+
+### 4.4 Search Then Install
+
+Lets the user:
+
+- enter a search query
+- inspect results
+- choose a skill or bundle
+- continue into install preview
+
+---
 
 ## 5. Preview Contract
 
-在执行之前，引导安装必须显示：
+Before execution, guided install must display:
 
-- 目的地标签
-- 目的地路径
-- 安装范围
-- 选定的技能或组合（如果适用）
-- 等效的 CLI 命令
+- destination label
+- destination path
+- install scope
+- selected skill or bundle if applicable
+- equivalent CLI command
 
-可选但推荐：
+Optional but recommended:
 
-- 所选技能元数据摘要
-- 捆绑包可用性摘要---
+- selected skill metadata summary
+- bundle availability summary
+
+---
 
 ## 6. Execution Contract
 
-确认后：
+After confirmation:
 
-- 引导安装委托到现有安装程序后端
-- 它不会重新实现文件写入本身
+- guided install delegates to the existing installer backend
+- it does not reimplement file writes itself
 
-命令预览和实际委托安装程序参数必须完全匹配。---
+The command preview and the actual delegated installer args must match exactly.
+
+---
 
 ## 7. Result Contract
 
-成功执行后，引导安装结果应显示：
+After successful execution, the guided install result should show:
 
-- 成功指标
-- 最终目的地路径
-- 执行的命令
-- 下一步建议的行动
+- success indicator
+- final destination path
+- command that was executed
+- next recommended action
 
-接下来的操作示例：
+Example next actions:
 
-- 在选定的客户中使用该技能
-- 运行“医生”
-- 运行`mcp流--local`---
+- use the skill in the selected client
+- run `doctor`
+- run `mcp stream --local`
+
+---
 
 ## 8. Compatibility Contract
 
-以下内容仍然有效且未更改：
+The following remain valid and unchanged:
 
--`全能技能--光标--技能全能figma`
+- `omni-skills --cursor --skill omni-figma`
 - `omni-skills --bundle full-stack`
-- `全能技能 --path ./skills`
-- `全能技能 find Figma --tool 光标 --install --yes`
+- `omni-skills --path ./skills`
+- `omni-skills find figma --tool cursor --install --yes`
 
-引导模式添加了行为。它不会删除现有的行为。
+Guided mode adds behavior. It does not remove existing behavior.

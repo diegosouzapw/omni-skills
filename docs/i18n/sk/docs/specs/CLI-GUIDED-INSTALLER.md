@@ -5,137 +5,169 @@
 ---
 
 
->**Behaviorálna zmluva o skúsenostiach s riadenou inštaláciou v Omni Skills CLI.**---
+> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
+
+---
 
 ## 1. Scope
 
-Táto špecifikácia definuje správanie pri inštalácii so sprievodcom, ktoré je umiestnené nad existujúcim backendom inštalačného programu.
+This spec defines the guided install behavior that sits on top of the existing installer backend.
 
-Nenahrádza:
+It does not replace:
 
 - `tools/bin/install.js`
-- prúdy aktuálnej expertnej vlajky
-- manifesty selektívnej inštalácie
+- current expert flag flows
+- selective install manifests
 
-Definuje:
+It defines:
 
-- ako sa vstúpi do režimu so sprievodcom
-- ako sa vyberajú destinácie
-- ako sa volí rozsah inštalácie
-- aké informácie o náhľade sa musia zobraziť
-- ako funguje potvrdenie a vykonanie---
+- how guided mode is entered
+- how destinations are chosen
+- how install scope is chosen
+- what preview information must be displayed
+- how confirmation and execution work
+
+---
 
 ## 2. Entry Rules
 
 ### 2.1 Automatic Guided Entry
 
-CLI by malo prejsť do režimu riadenej inštalácie, keď:
+The CLI should enter guided install mode when:
 
-- používateľ používa `omni-skills` bez argumentov v TTY
-- používateľ spustí `omni-skills install` bez selektorov v TTY### 2.2 Forced Guided Entry
+- the user runs `omni-skills` with no args in a TTY
+- the user runs `omni-skills install` with no selectors in a TTY
 
-CLI by tiež malo podporovať explicitný režim so sprievodcom prostredníctvom vyhradenej možnosti, ako napríklad:
+### 2.2 Forced Guided Entry
 
-- `inštalácia omni-skills --guided`
+The CLI should also support explicit guided mode through a dedicated option, such as:
 
-Tento režim by mal fungovať aj vtedy, keď je vstup prepojený a nie je pripojený k TTY, pokiaľ je k dispozícii štandardný vstup.### 2.3 Non-Interactive Safety Rule
+- `omni-skills install --guided`
 
-Pri vyvolaní bez TTY a bez výslovne požadovaného režimu so sprievodcom:
+This mode should work even when input is piped and not attached to a TTY, as long as standard input is available.
 
-- zachovať aktuálne predvolené správanie
-- neblokujte čakanie na výzvy---
+### 2.3 Non-Interactive Safety Rule
+
+When invoked without a TTY and without guided mode explicitly requested:
+
+- preserve the current default behavior
+- do not block waiting for prompts
+
+---
 
 ## 3. Destination Model
 
-Riadená inštalácia musí podporovať dve cieľové triedy:### 3.1 Known Client Target
+Guided install must support two destination classes:
 
-Každý známy cieľ rieši:
+### 3.1 Known Client Target
 
-- ľudsky čitateľný štítok
-- interné ID nástroja
-- nainštalovať príznak
-- vyriešená cesta
+Each known target resolves to:
 
-Požadované známe ciele:
+- human-readable label
+- internal tool id
+- install flag
+- resolved path
+
+Required known targets:
 
 - Claude Code
-- Kurzor
+- Cursor
 - Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitácia
-- OpenCode### 3.2 Custom Path Target
+- Antigravity
+- OpenCode
 
-Režim vlastnej cesty musí:
+### 3.2 Custom Path Target
 
-- výzva na zadanie cesty
-- vyriešiť „~“.
-- normalizovať na absolútnu cestu
-- zobraziť vyriešenú cestu v náhľade---
+Custom path mode must:
+
+- prompt for a path
+- resolve `~`
+- normalize to absolute path
+- show the resolved path in preview
+
+---
 
 ## 4. Install Scope Model
 
-Riadená inštalácia musí podporovať:### 4.1 Full Library
+Guided install must support:
 
-Ekvivalent k aktuálnej inštalácii bez „--skill“ alebo „--bundle“.### 4.2 Single Skill
+### 4.1 Full Library
 
-Umožňuje používateľovi vybrať jednu zverejnenú zručnosť.### 4.3 Single Bundle
+Equivalent to current install with no `--skill` or `--bundle`.
 
-Umožňuje používateľovi vybrať jeden spravovaný balík a vyriešiť zverejnené členy.### 4.4 Search Then Install
+### 4.2 Single Skill
 
-Umožňuje používateľovi:
+Lets the user select one published skill.
 
-- zadajte vyhľadávací dopyt
-- kontrolovať výsledky
-- vyberte si zručnosť alebo balík
-- pokračovať do ukážky inštalácie---
+### 4.3 Single Bundle
+
+Lets the user select one curated bundle and resolves published members.
+
+### 4.4 Search Then Install
+
+Lets the user:
+
+- enter a search query
+- inspect results
+- choose a skill or bundle
+- continue into install preview
+
+---
 
 ## 5. Preview Contract
 
-Pred spustením musí riadená inštalácia zobraziť:
+Before execution, guided install must display:
 
-- cieľový štítok
-- cieľová cesta
-- inštalovať rozsah
-- zvolená zručnosť alebo balík, ak je to vhodné
-- ekvivalentný príkaz CLI
+- destination label
+- destination path
+- install scope
+- selected skill or bundle if applicable
+- equivalent CLI command
 
-Voliteľné, ale odporúčané:
+Optional but recommended:
 
-- zhrnutie metadát vybraných zručností
-- súhrn dostupnosti balíka---
+- selected skill metadata summary
+- bundle availability summary
+
+---
 
 ## 6. Execution Contract
 
-Po potvrdení:
+After confirmation:
 
-- riadení delegáti inštalácie na existujúci backend inštalačného programu
-- neimplementuje sa samotné zapísanie súboru
+- guided install delegates to the existing installer backend
+- it does not reimplement file writes itself
 
-Ukážka príkazu a skutočné argumenty delegovaného inštalátora sa musia presne zhodovať.---
+The command preview and the actual delegated installer args must match exactly.
+
+---
 
 ## 7. Result Contract
 
-Po úspešnom spustení by mal výsledok inštalácie so sprievodcom zobrazovať:
+After successful execution, the guided install result should show:
 
-- ukazovateľ úspechu
-- konečná cieľová cesta
-- príkaz, ktorý bol vykonaný
-- ďalšia odporúčaná akcia
+- success indicator
+- final destination path
+- command that was executed
+- next recommended action
 
-Príklad ďalších akcií:
+Example next actions:
 
-- využiť zručnosť u vybraného klienta
-- spustiť "doktor".
-- spustite `mcp stream --local`---
+- use the skill in the selected client
+- run `doctor`
+- run `mcp stream --local`
+
+---
 
 ## 8. Compatibility Contract
 
-Nasledujúce ostávajú v platnosti a nezmenené:
+The following remain valid and unchanged:
 
-- `všetko-zručnosti --kurzor --zručnosť omni-figma`
-- „všetko-zručnosti – celý balík“.
-- `všetko-zručnosti --cesta ./zručnosti`
-- `omni-skills find figma --tool kurzor --install --yes`
+- `omni-skills --cursor --skill omni-figma`
+- `omni-skills --bundle full-stack`
+- `omni-skills --path ./skills`
+- `omni-skills find figma --tool cursor --install --yes`
 
-Riadený režim pridáva správanie. Neodstraňuje existujúce správanie.
+Guided mode adds behavior. It does not remove existing behavior.

@@ -5,40 +5,47 @@
 ---
 
 
->**Analiză tehnică cuprinzătoare a arhitecturii actuale Omni Skills, a suprafețelor de rulare și a conductei de construcție.**
-> Ultima analiză: 28-03-2026---
+> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> Last analyzed: 2026-03-30
+
+---
 
 ## 📊 Project Overview
 
-| Atribut | Valoare |
+| Attribute | Value |
 |:----------|:------|
-|**Nume**| `omni-deprinderi` |
-|**Versiune pachet**| `0.1.3` |
-|**Versiuni de aptitudini**| Per-aptitudine și independent de versiunea pachetului. Multe abilități publicate sunt încă `0.0.1`, în timp ce pachetul este `0.1.2`. |
-|**Licență**| MIT (cod) + CC BY 4.0 (conținut) |
-|**NPM**| `npx omni-skills` |
-|**Abilități publicate**| 32 |
-|**Pachete definite**| 7, toate susținute pe deplin de competențe publicate |
-|**Categorii de catalog activ**| 15 găleți active din 18 categorii de taxonomie canonice |
-|**Loc primar de rulare/build eșantionat mai jos**| 13.600+ |
-|**Dependențe de producție**| 7 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `zod`) |
+| **Name** | `omni-skills` |
+| **Package version** | `0.1.3` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **License** | MIT (code) + CC BY 4.0 (content) |
+| **NPM** | `npx omni-skills` |
+| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **Defined bundles** | 7, all fully backed by published skills |
+| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Primary runtime/build LOC sampled below** | 13,600+ |
+| **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 
-Instantaneu actual de clasificare la nivel de depozit de la `metadata.json`:
+Current repository-level classification snapshot from `metadata.json`:
 
-- scor mediu de calitate: `96,3`
-- scor mediu la cele mai bune practici: `98,7`
-- scor mediu de securitate: `95.0`
-- toate cele 32 de abilități publicate sunt valide ca „L3”.
+- average quality score: `87.5`
+- average best-practices score: `85.2`
+- average security score: `90.6`
+- maturity mix: `40` `L3` skills and `8` `L2` skills
+- validation mix: `40` passed, `8` warn, `0` failed
 
-Linia de referință curentă pentru lansarea:
+Current release baseline:
 
-- lansarea depozitului public: `v0.1.2`
-- lansare de îmbunătățire privată: `v0.0.1`
-- automatizarea lansării publice și automatizarea lansărilor private sunt atât active, cât și ecologice---
+- public repository release: `v0.1.3`
+- private enhancer release: `v1.0.0`
+- public release automation and private release automation are both active and green
+
+---
 
 ## 🏗️ Architecture Overview
 
-Depozitul urmează un model de**spațiu de lucru monorepo**cu un nucleu de catalog partajat și mai multe suprafețe de rulare.```text
+The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+
+```text
 ┌────────────────────────────────────────────────────────────┐
 │                        CLI Layer                           │
 │  cli.js (1939 LOC) · ui.mjs (2190 LOC) · install.js (403) │
@@ -64,161 +71,175 @@ Depozitul urmează un model de**spațiu de lucru monorepo**cu un nucleu de catal
 └────────────────────────────────────────────────────────────┘
 ```
 
-Designul este în mod intenționat**condus de artefacte**:
+The design is intentionally **artifact-driven**:
 
-1. abilitățile sunt create ca `SKILL.md` plus pachete de asistență locală
-2. build-ul le validează, clasifică, arhivează și normalizează
-3. artefactele generate devin contractul pentru CLI, API, MCP și A2A---
+1. skills are authored as `SKILL.md` plus local support packs
+2. the build validates, classifies, archives, and normalizes them
+3. the generated artifacts become the contract for CLI, API, MCP, and A2A
+
+---
 
 ## 🧩 Component Breakdown
 
 ### 1️⃣ Unified CLI — `tools/bin/cli.js` + `tools/bin/ui.mjs`
 
->**4.500+ LOC combinate**— interfața publică principală atât pentru utilizare expertă, cât și pentru utilizare ghidată.
+> **4,500+ LOC combined** — the main public interface for both expert and guided usage.
 
-| Comanda | Funcția |
+| Command | Function |
 |:--------|:---------|
-| 🔎 `găsește [interogare]` | Căutare în catalog cu text integral cu filtre care țin cont de scor |
-| 📦 `instalați` | Instalare ghidată sau bazată pe semnalizare în clienți cunoscuți sau în căi personalizate |
-| 🧾 `config-mcp` | Previzualizați sau scrieți configurația MCP conștientă de client |
-| 🔌 `mcp <transport>` | Pornește serverul MCP în `stdio`, `stream` sau `sse` |
-| 🌐 `api` | Pornește API-ul catalog |
-| 🤖 `a2a` | Pornește runtime A2A |
-| 🧪 `fum` | Lansare validare preflight |
-| 🩺 `doctor` | Diagnosticare locală |
-| 🖥️ `ui` | Ink visual shell cu instalare, descoperire, configurare și hub de service |
-| 🏷️ `recategorizează` | Inspecția și rescrierea derivei taxonomiei |
+| 🔎 `find [query]` | Full-text catalog search with score-aware filters |
+| 📦 `install` | Guided or flag-based install into known clients or custom paths |
+| 🧾 `config-mcp` | Preview or write client-aware MCP config |
+| 🔌 `mcp <transport>` | Starts the MCP server in `stdio`, `stream`, or `sse` |
+| 🌐 `api` | Starts the catalog API |
+| 🤖 `a2a` | Starts the A2A runtime |
+| 🧪 `smoke` | Release preflight validation |
+| 🩺 `doctor` | Local diagnostics |
+| 🖥️ `ui` | Ink visual shell with install, discovery, config, and service hub |
+| 🏷️ `recategorize` | Taxonomy drift inspection and rewrite |
 
-CLI nu mai este doar un program de instalare. Este instrumentul de operațiuni publice pentru întreaga platformă.## 🧭 Future Expansion Direction
+The CLI is no longer just an installer. It is the public operations tool for the whole platform.
 
-Timpul public de rulare nu mai este blocat la lucrările de fundație, iar valul de categoria a doua este deja aterizat. Următoarea lucrare de catalog utilă este profunzimea, nu urmărirea mai multor categorii.
+## 🧭 Future Expansion Direction
 
-Melodii native de cod nou activate acum în catalog:
+The public runtime is no longer blocked on foundational work, and the second category wave is already landed. The next useful catalog work is depth, not more category-count chasing.
 
-- `design` prin `design-systems-ops`, `accessibility-audit` și `design-token-governance`
-- `instrumente` prin `mcp-server-authoring`
-- `data-ai` prin `data-contracts`
-- `învățare automată` prin `servirea modelelor`
+Newly activated code-native tracks now in the catalog:
 
-Următoarea direcție recomandată:
+- `design` via `design-systems-ops`, `accessibility-audit`, and `design-token-governance`
+- `tools` via `mcp-server-authoring`
+- `data-ai` via `data-contracts`
+- `machine-learning` via `model-serving`
 
-1. aprofundați „design”, „instrumente”, „data-ai” și „învățare automată”
-2. păstrați „afaceri” și „conținut-media” amânate, cu excepția cazului în care apare o propunere clar nativă de cod
-3. păstrați podeaua de calitate actuală în loc să redeschideți presiunea de activare a categoriei
+Recommended next direction:
 
-Valul respectiv de expansiune este acum înregistrat în [../tasks/TASK-08-SECOND-CATEGORY-WAVE.md](../tasks/TASK-08-SECOND-CATEGORY-WAVE.md).### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+1. deepen `design`, `tools`, `data-ai`, and `machine-learning`
+2. keep `business` and `content-media` deferred unless a clearly code-native proposal appears
+3. preserve the current quality floor instead of reopening category activation pressure
 
->**403 LOC**— instalează abilități în 7 asistenți capabili de instalare.
+That expansion wave is now reflected directly in [../CATALOG.md](../CATALOG.md) and the current roadmap, rather than a separate public task file.
 
-| Steagul | Țintă | Cale implicită |
-|:-----|:--------|:--------------|
-| `--claude` | Claude Cod | `~/.claude/skills` |
+### 2️⃣ Multi-Target Installer — `tools/bin/install.js`
+
+> **403 LOC** — installs skills into 7 install-capable assistants.
+
+| Flag | Target | Default Path |
+|:-----|:-------|:-------------|
+| `--claude` | Claude Code | `~/.claude/skills` |
 | `--cursor` | Cursor | `~/.cursor/skills` |
-| `--gemeni` | Gemeni CLI | `~/.gemeni/skills` |
+| `--gemini` | Gemini CLI | `~/.gemini/skills` |
 | `--codex` | Codex CLI | `~/.codex/skills` |
 | `--kiro` | Kiro | `~/.kiro/skills` |
-| `--antigravitație` | Antigravitație | `~/.gemeni/antigravitație/deprinderi` |
+| `--antigravity` | Antigravity | `~/.gemini/antigravity/skills` |
 | `--opencode` | OpenCode | `<workspace>/.opencode/skills` |
 
-Acesta suportă:
+It supports:
 
-- instalări cu bibliotecă completă
-- instalări selective prin `--skill`
-- instalări organizate de `--bundle`
-- fluxuri TTY și UI vizuale ghidate
-- căi țintă personalizate### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
+- full-library installs
+- selective installs by `--skill`
+- curated installs by `--bundle`
+- guided TTY and visual UI flows
+- custom target paths
 
->**828 LOC**— strat de rulare partajat pentru CLI, API, MCP și A2A.
+### 3️⃣ Catalog Core Engine — `packages/catalog-core/src/index.js`
 
-| Export | Descriere |
-|:-------|:-------------|
-| 🔎 `searchSkills()` | Căutați cu potrivire ponderată a textului și suport pentru filtre |
-| 📋 `listSkills()` | Filtrarea pe mai multe axe după calitate, bune practici, nivel, securitate, risc, instrument și categorie |
-| 📌 `getSkill()` | Rezoluția manifestului plus adrese URL publice îmbogățite |
-| ⚖️ `compareSkills()` | Comparație alăturată |
-| 💡 `recomendSkills()` | Recomandare bazată pe obiectiv |
-| 📦 `buildInstallPlan()` | Instalați generarea planului cu avertismente și îndrumări informate pentru client |
-| 🗂️ `listBundles()` | Lista de pachet organizată cu disponibilitate |
-| 📁 `listSkillArchives()` | Arhivă și rezoluție semnături |
+> **828 LOC** — shared runtime layer for CLI, API, MCP, and A2A.
 
-Aceasta este adevărata sursă unică a adevărului de rulare după generație.### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+| Export | Description |
+|:-------|:------------|
+| 🔎 `searchSkills()` | Search with weighted text matching and filter support |
+| 📋 `listSkills()` | Multi-axis filtering by quality, best practices, level, security, risk, tool, and category |
+| 📌 `getSkill()` | Manifest resolution plus enriched public URLs |
+| ⚖️ `compareSkills()` | Side-by-side comparison |
+| 💡 `recommendSkills()` | Goal-driven recommendation |
+| 📦 `buildInstallPlan()` | Install plan generation with warnings and client-aware guidance |
+| 🗂️ `listBundles()` | Curated bundle listing with availability |
+| 📁 `listSkillArchives()` | Archive and signature resolution |
 
->**812 LOC**— implementare MCP completă folosind SDK-ul oficial.
+This is the real single source of runtime truth after generation.
 
-**Transporturi**
+### 4️⃣ MCP Server — `packages/server-mcp/src/server.js`
+
+> **812 LOC** — full MCP implementation using the official SDK.
+
+**Transports**
 
 - `stdio`
-- HTTP care poate fi transmis în flux
+- streamable HTTP
 - SSE
 
-**Instrumente mereu activate numai pentru citire**
+**Always-on read-only tools**
 
-- `aptitudini_de_căutare`
+- `search_skills`
 - `get_skill`
-- `compara_aptitudini`
-- `recomand_skills`
+- `compare_skills`
+- `recommend_skills`
 - `preview_install`
 
-**Instrumente în modul local**
+**Local-mode tools**
 
-- `detecta_clienti`
-- `liste_instalate_skills`
+- `detect_clients`
+- `list_installed_skills`
 - `install_skills`
 - `remove_skills`
 - `configure_client_mcp`
 
-Suprafața MCP este împărțită în mod deliberat între:
+The MCP surface is deliberately split between:
 
-- utilizarea catalogului de la distanță/numai citire
-- utilizarea sidecar-ului local/capabil de scriere### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
+- remote/read-only catalog use
+- local/write-capable sidecar use
 
->**1.943 LOC**— strat MCP care știe sistemul de fișiere pentru detectarea clienților, managementul abilităților și scrierea configurației MCP.
+### 5️⃣ Local Sidecar — `packages/server-mcp/src/local-sidecar.js`
 
-Suport practic actual:
+> **1,943 LOC** — filesystem-aware MCP layer for client detection, skill management, and MCP config writing.
 
--**7 clienți capabili de instalare**
--**16 clienți capabili de configurare**
--**33 ținte de configurare**
--**19 profiluri de configurare**
+Current practical support:
 
-Clienți capabili de instalare:
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 config targets**
+- **19 config profiles**
+
+Install-capable clients:
 
 - Claude Code
 - Cursor
-- Gemeni CLI
+- Gemini CLI
 - Codex CLI
 - Kiro
-- Antigravitație
+- Antigravity
 - OpenCode
 
-Clienții și ținte capabili de configurare includ:
+Config-capable clients and targets include:
 
-- Setări Claude, desktop Claude și configurație proiect Claude
-- Utilizatorul cursorului și configurația spațiului de lucru
-- spațiu de lucru VS Code, utilizator, persoane din interior și configurație Dev Container
-- Setări pentru utilizator și spațiu de lucru Gemini
-- Configurare utilizator antigravitație
-- Utilizator Kiro, spațiu de lucru și căi vechi
-- Configurare Codex CLI TOML
-- Configurare utilizator și spațiu de lucru OpenCode
-- Setări de linie
-- Utilizator GitHub Copilot CLI și configurație repo
-- Config utilizator, proiect și spațiu de lucru Kilo
-- Continuați spațiul de lucru YAML
-- Configurare utilizator Windsurf
-- Configurarea spațiului de lucru Zed
-- Configurare utilizator Goose
+- Claude settings, Claude Desktop, and Claude project config
+- Cursor user and workspace config
+- VS Code workspace, user, insiders, and Dev Container config
+- Gemini user and workspace settings
+- Antigravity user config
+- Kiro user, workspace, and legacy paths
+- Codex CLI TOML config
+- OpenCode user and workspace config
+- Cline settings
+- GitHub Copilot CLI user and repo config
+- Kilo user, project, and workspace config
+- Continue workspace YAML
+- Windsurf user config
+- Zed workspace config
+- Goose user config
 
-Vehiculul este în mod intenționat sincer în privința limitelor:
+The sidecar is intentionally honest about boundaries:
 
-- scrie numai în interiorul unei liste de permise
-- previzualizează implicit
-- păstrează scriitorii de primă clasă numai acolo unde documentele oficiale expun un format stabil
-- nu pretinde că fiecare produs compatibil MCP este, de asemenea, o țintă de instalare a competențelor### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
+- it writes only inside an allowlist
+- it previews by default
+- it keeps first-class writers only where official docs expose a stable format
+- it does not pretend every MCP-capable product is also a skill-install target
 
->**715 LOC combinat**— API de registru numai pentru citire plus middleware de guvernare.
+### 6️⃣ HTTP API — `packages/server-api/src/server.js` + `packages/server-api/src/http-runtime.js`
 
-Puncte finale importante:
+> **715 LOC combined** — read-only registry API plus governance middleware.
+
+Important endpoints:
 
 - `/healthz`
 - `/openapi.json`
@@ -227,134 +248,156 @@ Puncte finale importante:
 - `/v1/skills/:id`
 - `/v1/search`
 - `/v1/compare`
-- `/v1/bundle`
+- `/v1/bundles`
 - `/v1/install/plan`
 - `/v1/skills/:id/download/*`
 
-Linia de referință pentru guvernare deja implementată:
+Governance baseline already implemented:
 
-- auth
-- Autentificare cheie API
-- auth token admin
-- limitarea ratei în proces
-- solicitați ID-uri
-- jurnal de audit
-- Liste de permise CORS
-- Liste permise IP
-- încredere în manipularea proxy
-- modul de întreținere### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
+- bearer token auth
+- API-key auth
+- admin token auth
+- in-process rate limiting
+- request IDs
+- audit logging
+- CORS allowlists
+- IP allowlists
+- trust proxy handling
+- maintenance mode
 
->**1.857 LOC combinate pe serverul principal, runtime și fișierele coordonator**— Ciclul de viață al sarcinilor JSON-RPC 2.0 pentru fluxurile de lucru de la agent la agent.
+### 7️⃣ A2A Server — `packages/server-a2a/src/server.js` + runtime modules
 
-Metode acceptate:
+> **1,857 LOC combined across the main server, runtime, and coordinator files** — JSON-RPC 2.0 task lifecycle for agent-to-agent workflows.
 
-- `mesaj/trimite`
-- `mesaj/flux`
-- `sarcini/obține`
-- `sarcini/anulare`
-- `sarcini/reabonare`
+Supported methods:
+
+- `message/send`
+- `message/stream`
+- `tasks/get`
+- `tasks/cancel`
+- `tasks/resubscribe`
 - `tasks/pushNotificationConfig/*`
 
-Operațiuni curente:
+Current operations:
 
-- `descoperirea-deprinderi`
-- `recomand-stack`
-- `pregătiți-plan-instalare`
+- `discover-skills`
+- `recommend-stack`
+- `prepare-install-plan`
 
-Durabilitate și model de coordonare:
+Durability and coordination model:
 
-- memorie, JSON sau persistență locală SQLite
-- reporniți reluarea
-- executor de proces extern optional
-- Coordonarea cozii închiriate de înscriere pentru lucrătorii SQLite partajați
-- coordonare opțională susținută de Redis ca cale avansată găzduită
+- memory, JSON, or SQLite local persistence
+- restart resume
+- optional external process executor
+- opt-in leased queue coordination for shared SQLite workers
+- optional Redis-backed coordination as an advanced hosted path
 
-Alegerea arhitecturală cheie aici este**simple-prima operațiune locală**. Redis există ca o opțiune avansată, dar calea implicită a produsului rămâne locală și ușoară.---
+The key architectural choice here is **simple-first local operation**. Redis exists as an advanced option, but the default product path remains local and dependency-light.
+
+---
 
 ## ⚙️ Build Pipeline
 
-| Script | Limba | Scop |
-|:-------|:---------|:---------|
-| 📊 `skill_metadata.py` | Python | Validare, taxonomie, scor și scanare statică de securitate |
-| ✅ `validate_skills.py` | Python | Generarea de metadate pe abilitate și pentru rezumatul rădăcină |
-| 📑 `generate_index.py` | Python | Index de aptitudini, manifeste, arhive, semnături și sume de control |
-| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` și `dist/bundles.json` |
-| 🏷️ `recategorize_skills.py` | Python | Audit și rescriere de categorie canonică |
-| 🔍 `verify_archives.py` | Python | Arhiva și verificarea semnăturii |
+| Script | Language | Purpose |
+|:-------|:---------|:--------|
+| 📊 `skill_metadata.py` | Python | Validation, taxonomy, scoring, and static security scanning |
+| ✅ `validate_skills.py` | Python | Metadata generation per skill and for the root summary |
+| 📑 `generate_index.py` | Python | Skills index, manifests, archives, signatures, and checksums |
+| 🏗️ `build_catalog.js` | Node.js | Final `dist/catalog.json` and `dist/bundles.json` |
+| 🏷️ `recategorize_skills.py` | Python | Canonical category audit and rewrite |
+| 🔍 `verify_archives.py` | Python | Archive and signature verification |
 
-Două detalii contează operațional:
+Two details matter operationally:
 
-1. `dist/` face parte din contractul de rulare și este angajat în mod intenționat
-2. build-ul este suficient de determinist pentru a sprijini verificarea CI și semnarea lansării---
+1. `dist/` is part of the runtime contract and intentionally committed
+2. the build is deterministic enough to support CI verification and release signing
+
+---
 
 ## 📦 Published Catalog
 
-Catalogul public actual cuprinde 32 de abilități:
+The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
 
--**Descoperire și planificare**: `găsește abilități`, `brainstorming`, `arhitectură`, `depanare`
--**Sisteme de proiectare și accesibilitate**: `design-systems-ops`, `accessibility-audit`
--**Livrare produs și full-stack**: `frontend-design`, `api-design`, `database-design`, `omni-figma`, `auth-flows`
--**Securitate**: `auditor de securitate`, `scaner de vulnerabilitate`, `răspuns la incident`, `modelare amenințărilor`
--**Fluxuri de lucru pentru întreținerea OSS**: `documentație`, `jurnal de modificări`, `create-pr`
--**DevOps**: `docker-expert`, `kubernetes`, `terraform`, `observability-review`, `release-engineering`
--**Inginerie AI**: `rag-inginer`, `prompt-inginer`, `llm-patterns`, `eval-design`, `context-engineering`
+Current native category distribution from `metadata.json`:
 
-Toate cele șapte pachete sunt susținute integral:
+- `ai-agents` → `16`
+- `development` → `6`
+- `devops` → `5`
+- `testing-security` → `4`
+- `design` → `3`
+- `backend`, `documentation`, `fullstack-web`, and `product` → `2` each
+- `cli-automation`, `communication`, `data-ai`, `frontend`, `machine-learning`, and `tools` → `1` each
 
-- `esențiale` → `4/4`
+This broader intake surface is intentional:
+
+- `skills/` is the permissive native intake surface and now includes imported upstream material with warning-grade metadata where appropriate
+- `skills_omni/` remains the curated English-only derivative surface with a higher editorial floor
+
+All seven bundles are fully backed:
+
+- `essentials` → `4/4`
 - `full-stack` → `5/5`
-- `design` → `4/4`
-- `securitate` → `4/4`
+- `design` → `5/5`
+- `security` → `4/4`
 - `devops` → `5/5`
-- `ai-inginer` → `5/5`
+- `ai-engineer` → `7/7`
 - `oss-maintainer` → `4/4`
 
-Scorul curent repartizat din catalogul generat:
+Current score spread from the generated native catalog:
 
-- scoruri de calitate: `94, 95, 96, 97, 100`
-- scoruri la cele mai bune practici: `98, 99, 100`
-- scor de securitate: toate abilitățile publicate în prezent `95`
+- quality scores range from `37` to `100`
+- best-practices scores range from `7` to `100`
+- security scores range from `30` to `100`
+- the spread is now intentionally broader because permissive native intake and imported external sources share the same public catalog
 
-Reprezentant de vârf:
+Representative high end:
 
-- `omni-figma` → `calitate 100`, `best_practices 100`
-- `accessibility-audit` → `calitate 99`, `best_practices 100`
+- `omni-figma` → `quality 100`, `best_practices 100`
+- `accessibility-audit` → `quality 99`, `best_practices 100`
 - `auth-flows` → `quality 97`, `best_practices 99`
 - `design-systems-ops` → `quality 97`, `best_practices 99`
-- `release-engineering` → `calitate 97`, `best_practices 99`
-- `modelarea amenințărilor` → `calitate 97`, `best_practices 99`
-- `context-ingineria` → `calitate 97`, `best_practices 99`
+- `release-engineering` → `quality 97`, `best_practices 99`
+- `threat-modeling` → `quality 97`, `best_practices 99`
+- `context-engineering` → `quality 97`, `best_practices 99`
 
-Capătul inferior reprezentativ în interiorul benzii superioare actuale:
+Representative warning-grade native intake:
 
-- `arhitectură` → `calitate 94`, `best_practices 98`
-- `changelog` → `quality 94`, `best_practices 98`
-- `create-pr` → `calitate 95`, `best_practices 98`
+- `handling-commands` → `quality 37`, `best_practices 7`, `security 100`
+- `handling-attachments` → `quality 38`, `best_practices 16`, `security 60`
+- `building-agents` → `quality 42`, `best_practices 19`, `security 40`
 
-Acest lucru este intenționat. Marcatorul distinge acum „excelent” de „excepțional” în loc să aplatizeze întregul catalog în partea de sus.---
+This is also intentional. The scorer now distinguishes three realities cleanly:
+
+- first-party or fully enhanced top-band skills
+- healthy native intake that passes validation without issue
+- permissive imported native intake that remains searchable and attributable even while warning-grade
+
+---
 
 ## 🌟 Strengths
 
-1.**Artefact primul design**
-   Fiecare suprafață de rulare consumă același catalog generat și se manifestă.
-2.**Acoperire largă a protocolului**
-   CLI, API, MCP și A2A coexistă fără a fragmenta modelul de date.
-3.**Ergonomie puternică a produselor locale**
-   Instalarea ghidată, shell-ul vizual, `config-mcp` și setările implicite de rulare în uscat fac ca proiectul să fie utilizabil dincolo de utilizatorii cu putere.
-4.**Poziție de securitate cinstită**
-   Scrierile locale permise, scanarea statică, semnarea, sumele de verificare și verificarea lansării sunt toate explicite.
-5.**Acoperire MCP sănătoasă**
-   Proiectul acceptă acum un set larg de clienți actuali capabili de MCP, fără a pretinde că țintele nedocumentate sunt stabile.---
+1. **Artifact-first design**
+   Every runtime surface consumes the same generated catalog and manifests.
+2. **Broad protocol coverage**
+   CLI, API, MCP, and A2A coexist without fragmenting the data model.
+3. **Strong local-product ergonomics**
+   Guided install, visual shell, `config-mcp`, and dry-run defaults make the project usable beyond power users.
+4. **Honest security posture**
+   Allowlisted local writes, static scanning, signing, checksums, and release verification are all explicit.
+5. **Healthy MCP reach**
+   The project now supports a broad set of current MCP-capable clients without pretending undocumented targets are stable.
+
+---
 
 ## 🔮 Opportunities
 
-1.**Acoperire mai profundă a pachetului**
-   Următorul pas este specializarea în cadrul pachetelor existente, nu doar o acoperire largă.
-2.**Semantică mai bogată a marcatorului**
-   Există încă loc pentru a evalua profunzimea pachetului de referință și calitatea fluxului de lucru mai semantic.
-3.**Mai mulți scriitori clienți numai acolo unde este justificat**
-   Extinderea ar trebui să rămână disciplinată și legată de documente oficiale stabile.
-4.**Descompunerea validatorului**
-   `skill_metadata.py` este încă un modul mare și ar beneficia în timp de descompunerea internă.
-5.**Escaladarea guvernanței găzduite**
-   Linia de bază actuală în proces este suficientă pentru auto-găzduire, dar implementarea întreprinderii ar dori în cele din urmă integrarea gateway-ului extern și a identității.
+1. **Deeper bundle coverage**
+   The next step is specialization inside the existing bundles, not just broad coverage.
+2. **Richer scorer semantics**
+   There is still room to evaluate reference-pack depth and workflow quality more semantically.
+3. **More client writers only where justified**
+   Expansion should stay disciplined and tied to stable official docs.
+4. **Validator decomposition**
+   `skill_metadata.py` is still a large module and would benefit from internal decomposition over time.
+5. **Hosted governance escalation**
+   The current in-process baseline is enough for self-hosting, but enterprise deployment would eventually want external gateway and identity integration.

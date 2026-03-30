@@ -16,8 +16,10 @@ For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUID
 
 | Status | Details |
 |:-------|:--------|
-| ✅ **Available now** | 32 published skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
+| ✅ **Available now** | 48 native catalog skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
+| ✨ **Curated surface** | 32 English-only Omni-maintained derivatives in `skills_omni/` |
 | 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
+| 🧪 **Validation mix** | 40 native skills pass cleanly today, and 8 remain intentionally warning-grade in the permissive intake surface |
 | 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
 | 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
 
@@ -111,7 +113,7 @@ npx omni-skills recategorize --write  # Apply canonical categories
 > - In an interactive terminal, `npx omni-skills` now opens a guided install flow
 > - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
 > - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
-> - Outside a TTY, full install is still the default when no selector is provided
+> - Outside a TTY, a full-library install to the Antigravity path is still the default when no selector is provided
 > - `--skill` installs only the selected published skills
 > - `--bundle` expands the bundle and installs the published members declared in the curated bundle
 > - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more

@@ -5,89 +5,108 @@
 ---
 
 
->**Pelan evolusi seni bina untuk Kemahiran Omni: daripada repositori pertama pemasang kepada masa jalan katalog kongsi yang menjanakan CLI, API, MCP dan A2A tanpa logik pendua.**---
+> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+
+---
 
 ## 📊 Current Platform Areas
 
-| Fasa | Nama | Status |
+| Phase | Name | Status |
 |:------|:-----|:-------|
-| 1️⃣ | Kontrak dan Artifak | ✅ Semasa |
-| 2️⃣ | API Katalog Baca Sahaja | ✅ Semasa |
-| 3️⃣ | Permukaan Penemuan MCP | ✅ Semasa |
-| 4️⃣ | Pasang Setempat dan Permukaan Konfigurasi | ✅ Semasa |
-| 5️⃣ | Orkestrasi A2A | ✅ Semasa |### ✅ What Exists Today
+| 1️⃣ | Contracts and Artifacts | ✅ Current |
+| 2️⃣ | Read-Only Catalog API | ✅ Current |
+| 3️⃣ | MCP Discovery Surface | ✅ Current |
+| 4️⃣ | Local Install and Config Surface | ✅ Current |
+| 5️⃣ | A2A Orchestration | ✅ Current |
 
-- artifak katalog yang boleh dibaca mesin dalam `dist/`
-- API HTTP baca sahaja dengan liputan titik akhir untuk carian, himpunan, membandingkan, memasang perancangan dan muat turun
-- Pelayan MCP dengan pengangkutan `stdio`, HTTP boleh strim dan SSE
-- kereta sampingan tempatan dengan tulisan yang disenaraikan dibenarkan dan aliran `config-mcp`
-- 7 pelanggan berkebolehan memasang, 16 pelanggan berkemampuan konfigurasi, 33 sasaran konfigurasi MCP dan 19 profil konfigurasi
-- pengkhususan bundle yang lebih mendalam di dalam `full-stack`, `security`, `devops` dan `ai-engineer` melalui `auth-flows`, `threat-modeling`, `release-engineering` dan `context-engineering`
-- arkib setiap kemahiran (`zip`, `tar.gz`) dengan jumlah semak SHA-256 dan tandatangan tertanggal pada tag keluaran
-- Garis dasar tadbir urus API: pengesahan pembawa/kunci API, pengesahan masa jalan pentadbir, pengehadan kadar, pengelogan audit, senarai kebenaran CORS/IP, proksi amanah, mod penyelenggaraan dan ID permintaan
-- Masa jalan A2A dengan kitaran hayat tugas, ketahanan JSON/SQLite, mulakan semula resume, penstriman SSE, pembatalan, pemberitahuan tolak, pelaksana proses pilihan dan penyelarasan pajakan ikut serta### 🔭 Future Expansion Areas
+### ✅ What Exists Today
 
-Pelan hala tuju teras kini menerangkan skop platform semasa. Item selebihnya ialah kawasan pengembangan masa hadapan, bukan jurang asas:
+- machine-readable catalog artifacts in `dist/`
+- read-only HTTP API with endpoint coverage for search, bundles, compare, install planning, and downloads
+- MCP server with `stdio`, streamable HTTP, and SSE transports
+- local sidecar with allowlisted writes and `config-mcp` flows
+- 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
+- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
+- per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
+- API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
+- A2A runtime with task lifecycle, JSON/SQLite durability, restart resume, SSE streaming, cancelation, push notifications, optional process executor, and opt-in leased coordination
 
-- hanya penambahan MCP yang sangat terpilih dari masa ini dan hanya apabila dokumen awam rasmi membolehkan penulis selamat
-- pek rujukan yang lebih mendalam dan pemarkahan yang lebih semantik supaya pengelas terus mengasingkan kemahiran luar biasa daripada kemahiran yang digilap semata-mata
-- tadbir urus yang dihoskan perusahaan melebihi garis dasar dalam proses semasa, jika projek itu kemudiannya memerlukan penyepaduan get laluan atau IdP
-- pengkhususan yang lebih mendalam merentas trek `reka bentuk`, `alat`, `data-ai` dan `pembelajaran mesin` yang baru diaktifkan
-- penggilap operasi berterusan di sekitar penambah peribadi sambil mengekalkan model pengendalian rasminya: OmniRouter disematkan pada `cx/gpt-5.4`, awan dihoskan dalam `mock` atau pra-penerbangan terdegradasi dan `live` yang boleh dipercayai pada LAN atau pelaksanaan yang dihoskan sendiri
-- pelepasan berterusan dan pengerasan aliran kerja hanya sebagai kerja kualiti perkhidmatan, bukan sebagai asas platform yang hilang## Future Catalog Expansion Track
+### 🔭 Future Expansion Areas
 
-Dua gelombang pengembangan kategori awam yang pertama kini mendarat:
+The core roadmap now describes the current platform scope. The remaining items are future expansion areas, not foundational gaps:
+
+- only highly selective MCP additions from this point forward, and only where official public docs make a safe writer possible
+- deeper reference packs and more semantic scoring so the classifier keeps separating exceptional skills from merely polished ones
+- enterprise-hosted governance beyond the current in-process baseline, if the project later needs gateway or IdP integration
+- deeper specialization across the newly activated `design`, `tools`, `data-ai`, and `machine-learning` tracks
+- continued operational polish around the private enhancer while keeping its formal operating model: OmniRouter pinned to `cx/gpt-5.4`, hosted cloud in `mock` or degraded preflight, and reliable `live` on LAN or self-hosted execution
+- continued release and workflow hardening only as quality-of-service work, not as missing platform foundation
+
+## Future Catalog Expansion Track
+
+The first two public category-expansion waves are now landed:
 
 - `design` → `design-systems-ops`, `accessibility-audit`, `design-token-governance`
 - `tools` → `mcp-server-authoring`
 - `data-ai` → `data-contracts`
-- `pembelajaran mesin` → `servis model`
+- `machine-learning` → `model-serving`
 
-Langkah yang disyorkan seterusnya bukan lagi pengaktifan kategori untuk kepentingannya sendiri. Ia adalah untuk memperdalam trek asli kod yang baru aktif ini supaya ia berasa seperti permukaan produk yang tahan lama dan bukannya pijakan kemahiran tunggal.
+The next recommended step is no longer category activation for its own sake. It is to deepen these newly active code-native tracks so they feel like durable product surfaces rather than single-skill footholds.
 
-Arahan yang disyorkan:
+Recommended direction:
 
-1. mendalami `reka bentuk` dengan aliran kerja sistem reka bentuk yang lebih beroperasi
-2. mendalami `alat` dengan kemahiran mengarang dan berorientasikan pemalam
-3. mendalami `data-ai` dengan perlaksanaan-pertama saluran paip dan kemahiran instrumentasi
-4. mendalami `pembelajaran mesin` dengan kemahiran operasi servis, latihan dan penilaian
+1. deepen `design` with more operational design-system workflows
+2. deepen `tools` with authoring and plugin-oriented skills
+3. deepen `data-ai` with implementation-first pipeline and instrumentation skills
+4. deepen `machine-learning` with serving, training, and evaluation operations skills
 
-Kategori sengaja ditangguhkan melainkan cadangan kod asli yang kukuh muncul:
+Categories intentionally deferred unless strong code-native proposals appear:
 
-- `perniagaan`
-- `media kandungan`
+- `business`
+- `content-media`
 
-Sejarah pengembangan itu kini dijejaki dalam:
+That expansion history now lives in the mainline runtime docs rather than a separate public task backlog:
 
-- [../tugasan/TUGASAN-07-KATALOG-PENGHUBATAN-DAN-KATEGORI-PELUASAN.md](../tugas/TUGASAN-07-KATALOG-Pengkhususan-DAN-KATEGORI-PELUASAN.md)
-- [../tugas/TUGASAN-08-KATEGORI-KEDUA-GELOMBANG.md](../tugas/TUGASAN-08-KATEGORI-KEDUA-GELOMBANG.md)---
+- [Codebase Analysis](CODEBASE-ANALYSIS.md)
+- [Catalog](../CATALOG.md)
+
+---
 
 ## 🎯 Goals
 
-- ✅ Pastikan aliran kerja `npx omni-skills` semasa berfungsi
-- ✅ Memperkenalkan sumber kebenaran yang boleh dibaca mesin untuk kemahiran
-- ✅ Menyokong penemuan, pengesyoran dan perancangan pemasangan oleh ejen
-- ✅ Asingkan kebimbangan katalog jauh daripada penulisan sistem fail tempatan
-- ✅ Gunakan semula metadata yang sama merentas CLI, API, MCP dan A2A---
+- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Introduce a machine-readable source of truth for skills
+- ✅ Support discovery, recommendation, and install planning by agents
+- ✅ Separate remote catalog concerns from local filesystem writes
+- ✅ Reuse the same metadata across CLI, API, MCP, and A2A
+
+---
 
 ## 🚫 Non-Goals
 
-- ❌ Pemasangan jauh pada mesin pengguna daripada pelayan yang dihoskan
-- ❌ Gantikan `SKILL.md` sebagai format pengarangan kanonik
-- ❌ Memerlukan penyumbang untuk menulis manifes dengan tangan
-- ❌ Tukar projek menjadi platform baris gilir yang dihoskan berat secara lalai---
+- ❌ Remote install-on-user-machine from a hosted server
+- ❌ Replace `SKILL.md` as the canonical authoring format
+- ❌ Require contributors to write manifests by hand
+- ❌ Turn the project into a heavy hosted queue platform by default
+
+---
 
 ## 🏗️ Target Architecture
 
-Satu**teras katalog**dengan tiga permukaan protokol:
+One **catalog core** with three protocol surfaces:
 
-| Permukaan | Terbaik Untuk | Mod |
+| Surface | Best For | Mode |
 |:--------|:---------|:-----|
-| 🌐**REHAT API**| Akses pendaftaran, integrasi UI, pengguna pihak ketiga | Baca sahaja |
-| 🔌**MCP**| Penemuan ejen, pasang pratonton, penulisan konfigurasi, resipi pelanggan | Baca sahaja + tulisan tempatan |
-| 🤖**A2A**| Orkestra ejen kepada ejen dan penyerahan pelan pemasangan | Kitaran hayat tugas dengan ketahanan tempatan yang mudah dahulu |### ⚙️ Core Principle
+| 🌐 **REST API** | Registry access, UI integrations, third-party consumers | Read-only |
+| 🔌 **MCP** | Agent discovery, install previews, config writing, client recipes | Read-only + local writes |
+| 🤖 **A2A** | Agent-to-agent orchestration and install-plan handoff | Task lifecycle with simple-first local durability |
 
->**Semua protokol menggunakan keluarga artifak yang dijana yang sama.**```text
+### ⚙️ Core Principle
+
+> **All protocols consume the same generated artifact family.**
+
+```text
 SKILL.md + support pack
         ↓
 validate + classify + archive
@@ -97,144 +116,178 @@ metadata.json + dist/catalog.json + manifests + archives
 CLI / API / MCP / A2A
 ```
 
-Manifes kekal sebagai kontrak bersama. Arkib ialah artifak pengedaran berlapis di atas kontrak itu, bukan pengganti untuknya.---
+The manifest stays the shared contract. Archives are distribution artifacts layered on top of that contract, not a replacement for it.
+
+---
 
 ## 🔀 Delivery Modes
 
 ### 1️⃣ Remote Catalog Mode
 
-Digunakan oleh API yang dihoskan dan pelayan MCP jauh.
+Used by hosted API and remote MCP servers.
 
-| ✅ Dibenarkan | ❌ Tidak Dibenarkan |
-|:-----------|:----------------|
-| Kemahiran mencari | Tulis kepada sistem fail pemanggil |
-| Ambil manifes | Mutasi konfigurasi pelanggan tempatan |
-| Bandingkan kemahiran | Buat kesimpulan keadaan mesin sewenang-wenangnya |
-| Syorkan berkas | — |
-| Bina rancangan pemasangan | — |### 2️⃣ Local Installer Mode
+| ✅ Allowed | ❌ Not Allowed |
+|:-----------|:---------------|
+| Search skills | Write to the caller's filesystem |
+| Fetch manifests | Mutate local client config |
+| Compare skills | Infer arbitrary machine state |
+| Recommend bundles | — |
+| Build install plans | — |
 
-Digunakan oleh CLI dan sidecar MCP.
+### 2️⃣ Local Installer Mode
 
-| ✅ Dibenarkan |
+Used by the CLI and the MCP sidecar.
+
+| ✅ Allowed |
 |:-----------|
-| Kesan pelanggan AI tempatan |
-| Periksa kemahiran yang dipasang |
-| Pratonton operasi fail |
-| Pasang atau alih keluar direktori kemahiran |
-| Tulis konfigurasi MCP setempat selepas pratonton |
+| Detect local AI clients |
+| Inspect installed skills |
+| Preview file operations |
+| Install or remove skill directories |
+| Write local MCP config after preview |
 
-> 📌 Ini kekal sebagai satu-satunya mod di mana penulisan OS sebenar berlaku.---
+> 📌 This remains the only mode where real OS writes happen.
+
+---
 
 ## 📐 Protocol Split
 
 ### 🌐 REST API
 
-Terbaik untuk akses pendaftaran, carian, perbandingan, muat turun versi dan perancangan pemasangan.
+Best for registry access, search, comparison, versioned downloads, and install planning.
 
-**Titik Akhir**: `DAPATKAN /v1/kemahiran` · `DAPATKAN /v1/kemahiran/:id` · `DAPATKAN /v1/carian` · `DAPATKAN /v1/bandingkan` · `DAPATKAN /v1/himpunan` · `POST /v1/pasang/pelan` · `DAPATKAN /healthz`### 🔌 MCP
+**Endpoints**: `GET /v1/skills` · `GET /v1/skills/:id` · `GET /v1/search` · `GET /v1/compare` · `GET /v1/bundles` · `POST /v1/install/plan` · `GET /healthz`
 
-Terbaik untuk penemuan berasaskan alat, pengesyoran pantas, pratonton pemasangan dan persediaan MCP khusus pelanggan.
+### 🔌 MCP
 
-**Alat baca sahaja**: `kemahiran_cari` · `dapat_kemahiran` · `compare_skills` · `mensyor_kemahiran` · `pratonton_pasang`
+Best for tool-based discovery, promptable recommendations, install previews, and client-specific MCP setup.
 
-**Alat setempat**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`### 🤖 A2A
+**Read-only tools**: `search_skills` · `get_skill` · `compare_skills` · `recommend_skills` · `preview_install`
 
-Terbaik untuk penyerahan penemuan, aliran kerja pelan pemasangan dan pelaksanaan tugas ejen boleh disambung semula.
+**Local tools**: `detect_clients` · `list_installed_skills` · `install_skills` · `remove_skills` · `configure_client_mcp`
 
-**Operasi semasa**: `discover-skills` · `recommend-stack` · `prepare-install-plan`---
+### 🤖 A2A
+
+Best for discovery handoff, install-plan workflows, and resumable agent task execution.
+
+**Current operations**: `discover-skills` · `recommend-stack` · `prepare-install-plan`
+
+---
 
 ## 🛡️ Security Model
 
-| Prinsip | Pelaksanaan |
-|:----------|:----------------|
-| 🔒 Perkhidmatan yang dihoskan adalah baca sahaja | API dan MCP jauh tidak menulis kepada sistem fail pemanggil |
-| 📂 Menulis kekal tempatan | CLI dan MCP sidecar sahaja |
-| 👁️ Pratonton sebelum menulis | Lalai larian kering pada mutasi tempatan |
-| 🔑 Integriti adalah jelas | SHA-256 checksum untuk artifak yang dijana |
-| ✍️ Melepaskan kepercayaan adalah jelas | Tandatangan terpisah dikuatkuasakan pada tag keluaran |
-| ⚠️ Risiko timbul | Metadata risiko dan keselamatan menyebar ke setiap permukaan masa jalan |---
+| Principle | Implementation |
+|:----------|:---------------|
+| 🔒 Hosted services are read-only | API and remote MCP do not write to the caller filesystem |
+| 📂 Writes stay local | CLI and MCP sidecar only |
+| 👁️ Preview before write | Dry-run defaults on local mutations |
+| 🔑 Integrity is explicit | SHA-256 checksums for generated artifacts |
+| ✍️ Release trust is explicit | Detached signatures enforced on release tags |
+| ⚠️ Risk is surfaced | Risk and security metadata propagate to every runtime surface |
+
+---
 
 ## 📋 Platform Details
 
 ### Phase 1: Contracts and Artifacts
 
-- seni bina sasaran yang didokumenkan
-- skema nyata yang ditentukan
-- metadata, katalog, manifes, himpunan dan arkib yang dihasilkan### Phase 2: Catalog Service
+- documented target architecture
+- defined manifest schema
+- generated metadata, catalog, manifests, bundles, and archives
 
-- API HTTP baca sahaja dengan Express 5
-- carian, penapisan, carian manifes, penyenaraian himpunan, perbandingan dan muat turun
-- garis dasar tadbir urus yang dihoskan oleh env### Phase 3: MCP Discovery
+### Phase 2: Catalog Service
 
-- integrasi `@modelcontextprotocol/sdk` rasmi
-- Pengangkutan `stdio`, HTTP boleh strim dan SSE
-- alatan baca sahaja, sumber dan gesaan yang disokong oleh katalog kongsi### Phase 4: Local Install and Config Surface
+- read-only HTTP API with Express 5
+- search, filtering, manifest lookup, bundle listing, comparison, and downloads
+- env-driven hosted governance baseline
 
-- kereta sampingan tempatan dengan tulisan yang disenaraikan dibenarkan
-- pengesanan untuk 7 pelanggan yang mampu memasang
-- penulisan konfigurasi untuk 16 pelanggan berkemampuan konfigurasi merentas 33 sasaran dan 19 profil konfigurasi
-- `config-mcp` berpandu mengalir dalam CLI dan shell visual
-- sokongan stabil untuk Claude, Kursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose dan Dev Containers### Phase 5: A2A Orchestration
+### Phase 3: MCP Discovery
 
-- kad ejen di `/.well-known/agent.json`
-- `mesej/hantar`, `mesej/strim`, `tugas/dapat`, `tugas/batal`, `tugas/langgan semula` dan kaedah konfigurasi pemberitahuan tolak
-- Kegigihan JSON dan SQLite dengan memulakan semula pemulihan
-- pelaksana proses luaran pilihan
-- ikut serta pelaksanaan pajakan merentas pekerja untuk SQLite dan penyelarasan Redis lanjutan pilihan
-- lalai mudah-pertama disimpan pada memori, JSON atau SQLite tanpa kebergantungan luaran### Current Enhancer Operating Decision
+- official `@modelcontextprotocol/sdk` integration
+- `stdio`, streamable HTTP, and SSE transports
+- read-only tools, resources, and prompts backed by the shared catalog
 
-Model `langsung` yang disokong oleh penambah peribadi kini jelas:
+### Phase 4: Local Install and Config Surface
 
-- automasi PR yang dihoskan menjalankan percubaan `langsung` berpagar sebelum penerbangan
-- jika get laluan OmniRoute awam disekat atau tidak stabil, PR ditandakan `disekat` dengan alasan yang dihadapi oleh operator dan bukannya gagal secara legap
-- laluan `live` boleh dipercayai berkanun kekal LAN atau pelaksanaan perkhidmatan tempatan
-- GitHub peribadi berjadual menjalankan stay `mock` secara lalai melainkan pengendali secara eksplisit meminta `live`---
+- local sidecar with allowlisted writes
+- detection for 7 install-capable clients
+- config writing for 16 config-capable clients across 33 targets and 19 config profiles
+- guided `config-mcp` flows in the CLI and visual shell
+- stable support for Claude, Cursor, VS Code, Gemini, Antigravity, Kiro, Codex, Continue, Windsurf, OpenCode, Cline, GitHub Copilot CLI, Kilo Code, Zed, Goose, and Dev Containers
+
+### Phase 5: A2A Orchestration
+
+- agent card at `/.well-known/agent.json`
+- `message/send`, `message/stream`, `tasks/get`, `tasks/cancel`, `tasks/resubscribe`, and push-notification config methods
+- JSON and SQLite persistence with restart recovery
+- optional external process executor
+- opt-in leased execution across workers for SQLite and optional advanced Redis coordination
+- simple-first defaults kept on memory, JSON, or SQLite without external dependencies
+
+### Current Enhancer Operating Decision
+
+The private enhancer's supported `live` model is now explicit:
+
+- hosted PR automation runs a preflight-gated `live` attempt
+- if the public OmniRoute gateway is blocked or unstable, the PR is marked `blocked` with an operator-facing reason instead of failing opaquely
+- the canonical reliable `live` path remains LAN or local service execution
+- scheduled private GitHub runs stay `mock` by default unless an operator explicitly requests `live`
+
+---
 
 ## ✅ Decisions Closed in 0.1.x
 
 ### 1. Distribution Strategy
 
-**Keputusan**: simpan manifes sebagai kontrak kongsi dan simpan arkib setiap kemahiran yang ditandatangani sebagai permukaan pengedaran.
+**Decision**: keep the manifest as the shared contract and keep signed per-skill archives as the distribution surface.
 
-**Mengapa**:
-- CLI, API, MCP dan A2A sudah menggunakan bentuk manifes yang dinormalkan
-- arkib adalah sesuai untuk muat turun dan pengesahan, tetapi lemah sebagai satu-satunya kontrak penemuan
-- ini menjadikan pengarangan mudah dan pengedaran boleh disahkan### 2. Private or Premium Catalogs
+**Why**:
+- CLI, API, MCP, and A2A already consume the normalized manifest shape
+- archives are ideal for download and verification, but poor as the only discovery contract
+- this keeps authoring simple and distribution verifiable
 
-**Keputusan**: gunakan semula format manifes dan katalog yang sama serta pengesahan lapisan atau dasar secara luaran.
+### 2. Private or Premium Catalogs
 
-**Mengapa**:
-- ia mengelakkan forking model data
-- ia sepadan dengan pendekatan tadbir urus API/MCP semasa
-- ia kekal serasi dengan hala tuju ekosistem MCP sekitar bukti kelayakan pelanggan OAuth dan kebenaran diurus perusahaan### 3. Client Writer Strategy
+**Decision**: reuse the same manifest and catalog format, and layer auth or policy externally.
 
-**Keputusan**: berkumpul pada set kecil keluarga eksport berkanun dan hanya simpan penulis yang dipesan lebih dahulu apabila dokumen pelanggan rasmi memerlukannya.
+**Why**:
+- it avoids forking the data model
+- it matches the current API/MCP governance approach
+- it remains compatible with MCP ecosystem direction around OAuth client credentials and enterprise-managed authorization
 
-**Keluarga kanonik kini digunakan**:
+### 3. Client Writer Strategy
+
+**Decision**: converge on a small set of canonical export families and only keep bespoke writers where official client docs require it.
+
+**Canonical families now in use**:
 - JSON `mcpServers`
-- `pelayan` JSON
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
 - TOML `[mcp_servers]`
 
-**Mengapa**:
-- ia memastikan pelaksanaan dapat dikekalkan
-- ia masih menyokong keperluan khusus pelanggan seperti tetapan Claude, Teruskan YAML, Zed `context_servers` dan Codex TOML
-- ia mengelakkan mencipta penulis yang rapuh untuk pelanggan tanpa dokumen konfigurasi awam yang stabil---
+**Why**:
+- it keeps the implementation maintainable
+- it still supports client-specific needs such as Claude settings, Continue YAML, Zed `context_servers`, and Codex TOML
+- it avoids inventing fragile writers for clients without stable public config docs
+
+---
 
 ## 🌍 Research Notes Behind Those Decisions
 
-Keputusan semasa telah disemak berdasarkan dokumen ekosistem rasmi:
+The current decisions were checked against official ecosystem docs:
 
-- ekosistem MCP kini mendokumentasikan sambungan pilihan seperti bukti kelayakan klien OAuth dan kebenaran diurus perusahaan, yang menyokong luaran pengesahan dihoskan dan bukannya membatalkan format katalog
-- OpenAI mendokumenkan pelayan MCP dokumen awam dan corak konfigurasi MCP Codex yang sejajar dengan manifes dikongsi serta strategi penulis pelanggan
-- Kod VS mendokumenkan sokongan MCP kelas pertama dan panduan sambungan, yang mengukuhkan pengekalan penulis berasaskan `pelayan` yang berdedikasi
-- JetBrains AI Assistant mendokumentasikan persediaan MCP melalui UX produk dan bukannya kontrak fail merentas platform yang stabil, yang menyokong mengekalkannya dalam wilayah manual/coretan buat masa ini---
+- the MCP ecosystem now documents optional extensions such as OAuth client credentials and enterprise-managed authorization, which supports externalizing hosted auth instead of forking the catalog format
+- OpenAI documents a public docs MCP server and Codex MCP configuration patterns that align with the shared manifest plus client-writer strategy
+- VS Code documents first-class MCP support and an extension guide, which reinforces maintaining its dedicated `servers`-based writer
+- JetBrains AI Assistant documents MCP setup through product UX rather than a stable cross-platform file contract, which supports keeping it in manual/snippet territory for now
+
+---
 
 ## 🔮 Longer-Term Decision Points
 
-Hanya beberapa soalan strategik yang masih terbuka:
+Only a few strategic questions remain genuinely open:
 
-1. Sama ada mana-mana pelanggan di luar matriks semasa benar-benar mengosongkan bar untuk penulisan kelas pertama, atau sama ada produk yang selebihnya harus kekal manual/coretan sahaja
-2. Bilakah, jika pernah, tadbir urus yang dihoskan harus bergerak di belakang gerbang luar atau IdP perusahaan dan bukannya garis dasar dalam proses semasa?
-3. Sejauh manakah penjaring harus pergi dalam menilai kedalaman pek rujukan dan kualiti operasi sebelum ia menjadi terlalu pendapat untuk penyumbang?
+1. Whether any client beyond the current matrix truly clears the bar for first-class writing, or whether the remaining products should stay manual/snippet-only
+2. When, if ever, should hosted governance move behind an external gateway or enterprise IdP instead of the current in-process baseline?
+3. How far should the scorer go in evaluating reference-pack depth and operational quality before it becomes too opinionated for contributors?

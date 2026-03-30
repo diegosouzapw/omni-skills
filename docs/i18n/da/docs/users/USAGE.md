@@ -5,34 +5,42 @@
 ---
 
 
->**Alt hvad du har brug for for at påkalde færdigheder, køre tjenester og drive Omni Skills runtime.**
+> **Everything you need to invoke skills, run services, and operate the Omni Skills runtime.**
 
-For fuldstændige operationelle arbejdsgange, se [🔧 System Runbook](../operations/RUNBOOK.md).
-Se [🧭 CLI-brugervejledningen](./CLI-USER-GUIDE.md) for det fulde slutbrugerkommandokort.---
+For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
+For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).
+
+---
 
 ## 📊 Current Catalog Reality
 
-| Status | Detaljer |
+| Status | Details |
 |:-------|:--------|
-| ✅**Tilgængelig nu**| 32 offentliggjorte færdigheder på tværs af design, arkitektur, fejlretning, docs, OSS, sikkerhed, DevOps, AI-engineering, data, værktøjer og arbejdsgange til maskinlæring |
-| 📦**Bundter**| `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer` og `oss-maintainer` er fuldt understøttet i dag |
-| 🔌**MCP rækkevidde**| 7 installationskompatible klienter, 16 konfigurationskompatible klienter, 33 førsteklasses konfigurationsmål, 19 konfigurationsprofiler |
-| 🤖**A2A holdbarhed**| Hukommelse, JSON eller SQLite lokal holdbarhed, genstart CV, valgfri proces eksekvering og opt-in leaset koordinering for delte arbejdere |---
+| ✅ **Available now** | 48 native catalog skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
+| ✨ **Curated surface** | 32 English-only Omni-maintained derivatives in `skills_omni/` |
+| 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
+| 🧪 **Validation mix** | 40 native skills pass cleanly today, and 8 remain intentionally warning-grade in the permissive intake surface |
+| 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |
+| 🤖 **A2A durability** | Memory, JSON, or SQLite local durability, restart resume, optional process executor, and opt-in leased coordination for shared workers |
+
+---
 
 ## 🖥️ Invocation by Client
 
-| Kunde | Sådan påberåbes | Færdighedssti |
-|:-------|:-------------|:-----------|
-| 🔵**Claude-kode**| `>> /færdighedsnavn hjælp mig...` | `~/.claude/skills/` |
-| 🟡**Gemini CLI**| `Brug @skill-name til at...` | `~/.gemini/skills/` |
-| 🔴**Codex CLI**| `Brug @skill-name til at...` | `~/.codex/skills/` |
-|**Kiro**| Færdigheder auto-load on demand | `~/.kiro/skills/` |
-| 🟣**Antigravity**| `Brug @skill-name til at...` | `~/.gemini/antigravity/skills/` |
-| 🔵**Markør**| `@skill-name` i chat | `~/.cursor/færdigheder/` |
-| ⚪**OpenCode**| `opencode run @skill-name` | `.opencode/skills/` |
-| ⬛**Copilot**| Indsæt færdighedsindhold manuelt | N/A |
+| Client | How to Invoke | Skills Path |
+|:-------|:-------------|:------------|
+| 🔵 **Claude Code** | `>> /skill-name help me...` | `~/.claude/skills/` |
+| 🟡 **Gemini CLI** | `Use @skill-name to...` | `~/.gemini/skills/` |
+| 🔴 **Codex CLI** | `Use @skill-name to...` | `~/.codex/skills/` |
+| 🟢 **Kiro** | Skills auto-load on demand | `~/.kiro/skills/` |
+| 🟣 **Antigravity** | `Use @skill-name to...` | `~/.gemini/antigravity/skills/` |
+| 🔵 **Cursor** | `@skill-name` in chat | `~/.cursor/skills/` |
+| ⚪ **OpenCode** | `opencode run @skill-name` | `.opencode/skills/` |
+| ⬛ **Copilot** | Paste skill content manually | N/A |
 
-Klienter som Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline og Kilo Code bruger primært 'config-mcp'-flowet frem for en færdighedsmappe.---
+Clients such as Continue, Junie, Windsurf, Zed, VS Code, GitHub Copilot CLI, Cline, and Kilo Code primarily use the `config-mcp` flow rather than a skills directory.
+
+---
 
 ## 💬 Prompt Patterns
 
@@ -101,33 +109,39 @@ npx omni-skills recategorize          # Preview category drift
 npx omni-skills recategorize --write  # Apply canonical categories
 ```
 
->**📌 Bemærkninger:**
-> - I en interaktiv terminal åbner `npx omni-skills` nu et guidet installationsflow
-> - `npx omni-skills ui` åbner den visuelle blæk-skal med installations-, opdagelses- og servicestarthandlinger
-> - den visuelle skal fortsætter med nylige installationer, seneste servicelanceringer, favoritter og navngivne forudindstillinger i `~/.omni-skills/state/ui-state.json`
-> - Uden for en TTY er fuld installation stadig standard, når der ikke er en vælger
-> - `--skill` installerer kun de valgte publicerede færdigheder
-> - `--bundle` udvider bundtet og installerer de offentliggjorte medlemmer, der er erklæret i det kurerede bundt
-> - `find` understøtter mere end 12 filterflag: `kvalitet`, `best_practices`, `færdighedsniveau`, `sikkerhed`, `kategori`, `værktøj`, `risiko` og mere
-> - `config-mcp` er den rigtige vej for MCP-kompatible produkter, der ikke har en førsteklasses færdighedsmappe---
+> **📌 Notes:**
+> - In an interactive terminal, `npx omni-skills` now opens a guided install flow
+> - `npx omni-skills ui` opens the visual Ink shell with install, discovery, and service launch actions
+> - the visual shell persists recent installs, recent service launches, favorites, and named presets in `~/.omni-skills/state/ui-state.json`
+> - Outside a TTY, a full-library install to the Antigravity path is still the default when no selector is provided
+> - `--skill` installs only the selected published skills
+> - `--bundle` expands the bundle and installs the published members declared in the curated bundle
+> - `find` supports 12+ filter flags: `quality`, `best_practices`, `skill_level`, `security`, `category`, `tool`, `risk`, and more
+> - `config-mcp` is the right path for MCP-capable products that do not have a first-class skills directory
+
+---
 
 ## 🔌 Runtime Commands
 
-CLI er et samlet driftsværktøj, ikke kun et installationsprogram.### 🖥️ Visual Shell
+The CLI is a unified operations tool, not just an installer.
+
+### 🖥️ Visual Shell
 
 ```bash
 npx omni-skills ui
 ```
 
-Den visuelle skal understøtter:
+The visual shell supports:
 
-- guidet installation med kendt klient eller brugerdefineret stivalg
-- søg-så-installer uden at huske flag
-- guidet MCP-klientkonfigurations-preview og skrive-flows
-- MCP, API og A2A guidet opstart
-- seneste installationer og servicerelanceringer
-- gemte installations- og serviceforudindstillinger
-- yndlingsfærdigheder og bundter### 🩺 Diagnostics
+- guided install with known client or custom path selection
+- search-then-install without memorizing flags
+- guided MCP client config preview and write flows
+- MCP, API, and A2A guided startup
+- recent installs and service relaunches
+- saved install and service presets
+- favorite skills and bundles
+
+### 🩺 Diagnostics
 
 ```bash
 npx omni-skills doctor                 # Show repo and local install diagnostics
@@ -224,10 +238,10 @@ npx omni-skills publish-check         # Alias for smoke
 
 | # | Tip |
 |:--|:----|
-| 1️⃣ | Henvis til færdigheden ved navn i din prompt |
-| 2️⃣ | Angiv den nøjagtige artefakt, kode eller designkontekst, som agenten har brug for |
-| 3️⃣ | Foretrækker `--færdighed` for et minimalt installationsfodaftryk |
-| 4️⃣ | Brug 'læge' og 'røg' før fejlretning af emballage eller køretidsproblemer |
-| 5️⃣ | Brug bundter som kuraterede domæneinstallationer nu, hvor alle syv startpakker er fuldt understøttet |
-| 6️⃣ | Brug `find --install --yes` til opdagelse + installation i ét flow |
-| 7️⃣ | Se [runbook](../operations/RUNBOOK.md) for godkendelse, hastighedsgrænser, signering og verifikation env vars |
+| 1️⃣ | Reference the skill by name in your prompt |
+| 2️⃣ | Provide the exact artifact, code, or design context the agent needs |
+| 3️⃣ | Prefer `--skill` for a minimal install footprint |
+| 4️⃣ | Use `doctor` and `smoke` before debugging packaging or runtime issues |
+| 5️⃣ | Use bundles as curated domain installs now that all seven starter bundles are fully backed |
+| 6️⃣ | Use `find --install --yes` for discovery + installation in one flow |
+| 7️⃣ | See the [runbook](../operations/RUNBOOK.md) for auth, rate limits, signing, and verification env vars |

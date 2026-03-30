@@ -5,65 +5,85 @@
 ---
 
 ---
-nimi: taitosi-nimi
-kuvaus: "Yksirivinen kuvaus siitä, mitä tämä taito tekee ja milloin sitä tulee käyttää"
-versio: "0.1.3"
-luokka: kehitys
-tunnisteet: [example-tag-1, example-tag-2]
-monimutkaisuus: keskitasoa
-riski: turvallinen
-työkalut: [claude-koodi, kohdistin, gemini-cli, antigravitaatio]
-lähde: Community
-kirjoittaja: "Sinun nimesi"
+name: your-skill-name
+description: "One-line description of what this skill does and when to use it"
+version: "0.1.3"
+category: development
+tags: [example-tag-1, example-tag-2]
+complexity: intermediate
+risk: safe
+tools: [claude-code, cursor, gemini-cli, antigravity]
+source: community
+author: "Your Name"
 date_added: "2026-01-01"
 date_updated: "2026-01-01"
----<!--
+---
+
+<!--
 Use a canonical category such as:
 development, frontend, backend, fullstack-web, tools, cli-automation,
 business, product, design, data-ai, ai-agents, machine-learning, devops,
 testing-security, documentation, content-media, communication, uncategorized.
 
-`npm run validate` luo taidot/<skill>/metadata.json kanonisella
-taksonomia, kypsyysaste, parhaiden käytäntöjen pisteet, laatupisteet ja turvallisuus
-skannaustulokset. Pikaruiskutusmallit, tuhoavat komennot ja riskialtis komentosarja
-rakenteet merkitään automaattisesti.
+`npm run validate` will generate skills/<skill>/metadata.json with canonical
+taxonomy, maturity level, best practices score, quality score, and security
+scan results. Prompt-injection patterns, destructive commands, and risky script
+constructs will be flagged automatically.
 
-Taitoversio on riippumaton pakettiversiosta. Käytä semantiikkaa
-versio, joka on järkevä itse taidon kannalta.
+The skill version is independent from the package version. Use the semantic
+version that makes sense for the skill itself.
 
-Lue myös parhaat maalintekotaidot:
+For a top-scoring skill, also read:
 - docs/contributors/HIGH-SCORE-PLAYBOOK.md
 - docs/contributors/QUALITY-BAR.md
 -->
+
+
 ## Yleiskatsaus
 
-2-3 lausetta, joissa selitetään, mitä tämä taito tekee, kuka siitä hyötyy ja miksi se on olemassa.## When to Use This Skill
+2-3 sentences explaining what this skill does, who benefits from it, and why it exists.
 
-- Käytä, kun tarvitset [skenaario 1]
-- Käytä, kun haluat [skenaario 2]
-- Käytä työskennellessäsi [skenaario 3] kanssa## Core Concepts
+## When to Use This Skill
+
+- Use when you need to [scenario 1]
+- Use when you want to [scenario 2]
+- Use when working with [scenario 3]
+
+## Core Concepts
 
 ### Concept 1
 
-Selitä keskeinen käsite, joka edustajan on ymmärrettävä.### Concept 2
+Explain the key concept the agent needs to understand.
 
-Selitä toinen peruskäsite.## Workflow
+### Concept 2
 
-| Vaihe | Tuotos | Miksi sillä on merkitystä |
-|:------|:--------|:----------------|
-| Kehystä maali | Selkeä tavoite | Estää epämääräisen ohjauksen |
-| Suorita vaiheet | Agenttivalmis työnkulku | Tekee taidosta käyttökelpoisen |
-| Vahvista tulos | Hyväksyntäsignaali | Nostaa luottamusta |
+Explain another foundational concept.
 
-1. Ensimmäinen askel työnkulussa
-2. Toinen vaihe työnkulussa
-3. Työnkulun kolmas vaihe### 1. First Step
+## Workflow
 
-Yksityiskohtaiset ohjeet ensimmäiseen vaiheeseen.### 2. Second Step
+| Phase | Output | Why it matters |
+|:------|:-------|:---------------|
+| Frame the goal | Clear objective | Prevents vague guidance |
+| Execute the steps | Agent-ready workflow | Makes the skill actionable |
+| Validate the output | Acceptance signal | Raises confidence |
 
-Yksityiskohtaiset ohjeet toista vaihetta varten.### 3. Third Step
+1. First step in the workflow
+2. Second step in the workflow
+3. Third step in the workflow
 
-Yksityiskohtaiset ohjeet kolmanteen vaiheeseen.## Examples
+### 1. First Step
+
+Detailed instructions for the first step.
+
+### 2. Second Step
+
+Detailed instructions for the second step.
+
+### 3. Third Step
+
+Detailed instructions for the third step.
+
+## Examples
 
 ### Example 1: Common Use Case
 
@@ -71,27 +91,37 @@ Yksityiskohtaiset ohjeet kolmanteen vaiheeseen.## Examples
 Example prompt or code here
 ```
 
-**Selitys:**Mitä tämä esimerkki osoittaa.### Example 2: Advanced Use Case
+**Explanation:** What this example demonstrates.
+
+### Example 2: Advanced Use Case
 
 ```
 More advanced example
 ```
 
-**Selitys:**Mitä tämä esimerkki osoittaa.## Best Practices
+**Explanation:** What this example demonstrates.
 
-- ✅**Tee:**Noudata tätä hyvää käytäntöä
-- ✅**Tee:**Noudata myös tätä käytäntöä
-- ❌**Älä:**Vältä tätä anti-kuviota
-- ❌**Älä:**Älä koskaan tee tätä## Troubleshooting
+## Best Practices
+
+- ✅ **Do:** Follow this good practice
+- ✅ **Do:** Also follow this practice
+- ❌ **Don't:** Avoid this antipattern
+- ❌ **Don't:** Never do this
+
+## Troubleshooting
 
 ### Problem: Common Issue
 
-**Oireet:**Mistä tiedät, että tämä on ongelma.
-**Ratkaisu:**Kuinka korjata se.## Related Skills
+**Symptoms:** How you know this is the problem.
+**Solution:** How to fix it.
 
-- `@related-skill-1` — Milloin tätä kannattaa käyttää
-- `@related-skill-2` — Kuinka tämä täydentää taitojasi## Additional Resources
+## Related Skills
 
-- [Tarkistuslista](viitteet/tarkistuslista.md)
-- [Toimitettu esimerkki](examples/example.md)
-- [Apuohjelma](scripts/render_example.py)
+- `@related-skill-1` — When to use this instead
+- `@related-skill-2` — How this complements your skill
+
+## Additional Resources
+
+- [Checklist](references/checklist.md)
+- [Worked example](examples/example.md)
+- [Helper script](scripts/render_example.py)

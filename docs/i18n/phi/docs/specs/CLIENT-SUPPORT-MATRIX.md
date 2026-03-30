@@ -5,30 +5,34 @@
 ---
 
 
-Sinusubaybayan ng dokumentong ito ang praktikal na client surface para sa Omni Skills sa tatlong input:
+This document tracks the practical client surface for Omni Skills across three inputs:
 
-1. ang imbentaryo ng dashboard ng `9router` sa `/home/diegosouzapw/dev/proxys/9router`
-2. ang kasalukuyang pagpapatupad ng sidecar ng Omni Skills MCP
-3. kasalukuyang opisyal na dokumentasyon para sa bawat kliyente o IDE
+1. the `9router` dashboard inventory in `/home/diegosouzapw/dev/proxys/9router`
+2. the current Omni Skills MCP sidecar implementation
+3. current official documentation for each client or IDE
 
-Ito ang gumaganang pinagmumulan ng katotohanan para sa pagpapasya kung aling mga kliyente ang makakakuha ng first-class na suporta sa `config-mcp`, alin ang mananatiling manual-only, at alin ang mga kandidato lamang.---
+It is the working source of truth for deciding which clients get first-class `config-mcp` support, which ones stay manual-only, and which ones are only candidates.
+
+---
 
 ## Scope
 
-Ang matrix na ito ay tungkol sa**client configuration para sa MCP**.
+This matrix is about **client configuration for MCP**.
 
-Ito ay hindi katulad ng:
+It is not the same as:
 
-- suporta sa pag-install ng kasanayan
-- Pagkatugma sa API
-- Suporta sa A2A
-- ACP o iba pang hindi MCP protocol
+- skill installation support
+- API compatibility
+- A2A support
+- ACP or other non-MCP protocols
 
-Ang ilang produkto sa matrix ay gumagamit ng MCP ngunit**walang**may makabuluhang "direktoryo ng mga kasanayan", kaya tumatanggap lang sila ng suporta sa config-target.---
+Some products in the matrix consume MCP but do **not** have a meaningful “skills directory”, so they only receive config-target support.
+
+---
 
 ## 9router Inventory
 
-Kasalukuyang pinapangkat ng dashboard ng `9router` ang mga CLI tool o IDE client na ito:
+The `9router` dashboard currently groups these CLI tools or IDE clients:
 
 - Claude Code
 - OpenAI Codex
@@ -37,99 +41,111 @@ Kasalukuyang pinapangkat ng dashboard ng `9router` ang mga CLI tool o IDE client
 - Cursor
 - Cline
 - Kilo Code
-- Magpatuloy
+- Continue
 - Antigravity
 - GitHub Copilot
 - OpenCode
 - Kiro AI
 
-Mga lokal na mapagkukunan:
+Local sources:
 
 - [`9router/app/docs/CLI-TOOLS.md`](/home/diegosouzapw/dev/proxys/9router/app/docs/CLI-TOOLS.md)
 - [`9router/src/shared/constants/cliTools.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliTools.ts)
-- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)---
+- [`9router/src/shared/constants/cliCompatProviders.ts`](/home/diegosouzapw/dev/proxys/9router/src/shared/constants/cliCompatProviders.ts)
+
+---
 
 ## First-Class Support
 
-Ang mga kliyenteng ito ay mayroon na ngayong matatag, tahasang kuwento sa Omni Skills sa pamamagitan ng `config-mcp --target ...`.
+These clients now have a stable, explicit story in Omni Skills via `config-mcp --target ...`.
 
-Kasalukuyang mga kabuuan ng pagpapatupad:
+Current implementation totals:
 
--**7 kliyenteng may kakayahang mag-install**
--**16 na kliyenteng may kakayahang mag-config**
--**33 first-class na config target**
--**19 config profile**
+- **7 install-capable clients**
+- **16 config-capable clients**
+- **33 first-class config targets**
+- **19 config profiles**
 
-| Kliyente | Katayuan | Mga Config Target | Mga Tala |
-|:-------|:-------|:----------------|:------|
-| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Nag-type ng config ng `mcpServers` na may mga kontrol na payagan/deny na partikular sa Claude |
-| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | Mga target na `mcpServers` ng JSON |
-| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Gumagamit ng `servers` root |
-| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | Mga setting ng JSON + global MCP allow/exclude controls |
+| Client | Status | Config Targets | Notes |
+|:-------|:-------|:---------------|:------|
+| Claude Code | ✅ First-class | `workspace`, `claude-project`, `claude-user-settings`, `claude-user`, `claude-user-legacy`, `claude-desktop` | Typed `mcpServers` config with Claude-specific allow/deny controls |
+| Cursor | ✅ First-class | `cursor-workspace`, `cursor-user` | JSON `mcpServers` targets |
+| VS Code | ✅ First-class | `vscode`, `vscode-user`, `vscode-insiders-user`, `devcontainer` | Uses `servers` root |
+| Gemini CLI | ✅ First-class | `gemini-user`, `gemini-workspace` | JSON settings + global MCP allow/exclude controls |
 | Antigravity | ✅ First-class | `antigravity-user` | JSON `mcpServers` target |
 | Kiro | ✅ First-class | `kiro-user`, `kiro-workspace`, `kiro-user-legacy` | Kiro-specific disabled/auto-approve fields |
 | Codex CLI | ✅ First-class | `codex-user` | TOML `mcp_servers` tables |
-| Magpatuloy | ✅ First-class | `tuloy-workspace` | Nakatuon na dokumento ng server ng YAML |
-| Windsurf | ✅ First-class | `windsurf-user` | Target ng `mcpServers` ng JSON na may mga entry na `serverUrl` |
-| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Opisyal na `opencode.json` / user config gamit ang top-level na `mcp` |
-| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` na may `mcpServers` |
-| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` o repo-scoped `.github/mcp.json` |
-| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Gumagamit ang Kilo CLI ng `kilo.json`; Gumagamit ang pagsasama ng workspace ng `.kilocode/mcp.json` |
-| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` na may `context_servers` |
-| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` o `~/.junie/mcp/mcp.json` gamit ang `mcpServers` |
-| Gansa | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` gamit ang isang top-level na `extensions` object para sa patuloy na mga extension ng MCP |---
+| Continue | ✅ First-class | `continue-workspace` | Dedicated YAML server document |
+| Windsurf | ✅ First-class | `windsurf-user` | JSON `mcpServers` target with `serverUrl` entries |
+| OpenCode | ✅ First-class | `opencode-workspace`, `opencode-user` | Official `opencode.json` / user config using top-level `mcp` |
+| Cline | ✅ First-class | `cline-user` | `cline_mcp_settings.json` with `mcpServers` |
+| GitHub Copilot CLI | ✅ First-class | `copilot-user`, `copilot-repo` | `mcp-config.json` or repo-scoped `.github/mcp.json` |
+| Kilo Code | ✅ First-class | `kilo-user`, `kilo-project`, `kilo-workspace` | Kilo CLI uses `kilo.json`; workspace integration uses `.kilocode/mcp.json` |
+| Zed | ✅ First-class | `zed-workspace` | `.zed/settings.json` with `context_servers` |
+| Junie | ✅ First-class | `junie-project`, `junie-user` | `.junie/mcp/mcp.json` or `~/.junie/mcp/mcp.json` using `mcpServers` |
+| Goose | ✅ First-class | `goose-user` | `~/.config/goose/config.yaml` using a top-level `extensions` object for persistent MCP extensions |
+
+---
 
 ## Current Gaps
 
-Ang mga kliyenteng ito mula sa `9router` ay**hindi pa**mga target ng manunulat sa unang klase sa Omni Skills:
+These clients from `9router` are **not** yet first-class writer targets in Omni Skills:
 
-| Kliyente | Kasalukuyang Estado | Bakit |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| Factory Droid | ⚠️ Manual/custom lang | Walang nakitang matatag na pampublikong MCP config na hugis sa mga pangunahing doc sa panahon ng pass na ito |
-| OpenClaw | ⚠️ Manual/custom lang | Parehong isyu sa Factory Droid |
+| Factory Droid | ⚠️ Manual/custom only | No stable public MCP config shape found in primary docs during this pass |
+| OpenClaw | ⚠️ Manual/custom only | Same issue as Factory Droid |
 
-Magagamit pa rin ang sidecar sa `--file` o mga custom na path para sa mga advanced na user, ngunit hindi dapat mag-imbento ng mga first-class na manunulat ang Omni Skills na walang mga stable na pampublikong config doc.
+The sidecar can still be used with `--file` or custom paths for advanced users, but Omni Skills should not invent first-class writers without stable public config docs.
 
-Ang dalawang magkatabing produkto ay mas nauunawaan na ngayon, ngunit sinasadya pa rin na huminto sa mga unang-class na awtomatikong manunulat:
+Two adjacent products are now better understood, but still intentionally stop short of first-class automatic writers:
 
-| Kliyente | Kasalukuyang Estado | Bakit |
+| Client | Current State | Why |
 |:-------|:--------------|:----|
-| JetBrains AI Assistant | 🟡 Manwal/snippet | Umiiral ang opisyal na suporta sa MCP, ngunit ang nakadokumentong daloy ng trabaho ay UI-driven/import-driven sa halip na isang stable na pampublikong target ng file |
-| Postman | 🟡 Manwal/snippet | Umiiral ang opisyal na suporta sa MCP, ngunit pinamamahalaan ang configuration sa loob ng UX ng produkto sa halip na isang matatag na target ng pampublikong file |
-| Roo Code | 🟡 Kandidato | Ang mga pampublikong MCP doc ay umiiral, ngunit ang isang malakas na cross-platform na file-path na kontrata ay nangangailangan pa rin ng kumpirmasyon bago magdagdag ng isang manunulat |---
+| JetBrains AI Assistant | 🟡 Manual/snippet | Official MCP support exists, but the documented workflow is UI-driven/import-driven rather than a stable public file target |
+| Postman | 🟡 Manual/snippet | Official MCP support exists, but configuration is managed inside product UX rather than a stable public file target |
+| Roo Code | 🟡 Candidate | Public MCP docs exist, but a strong cross-platform file-path contract still needs confirmation before adding a writer |
+
+---
 
 ## Support Policy
 
-Sinusunod na ngayon ng Omni Skills ang set ng panuntunang ito:
+Omni Skills now follows this rule set:
 
-1.**Install-capable**kung mayroong isang matatag na direktoryo ng mga kasanayan.
-2.**Config-capable**kung mayroong isang matatag na pampublikong MCP config file format.
-3.**Manual/snippet-only**kung sinusuportahan ng produkto ang MCP ngunit ang pampublikong kontrata ay UI-first, import-first, o masyadong hindi matatag.
+1. **Install-capable** if a stable skills directory exists.
+2. **Config-capable** if a stable public MCP config file format exists.
+3. **Manual/snippet-only** if the product supports MCP but the public contract is UI-first, import-first, or still too unstable.
 
-Ito rin ang praktikal na sagot sa isa sa mga naunang tanong sa arkitektura: ang proyekto ay dapat na patuloy na lumaki ang mga first-class na manunulat lamang kung saan umiiral ang isang matatag na pampublikong format, at kung hindi man ay sumandal sa isang mas maliit na hanay ng mga canonical export na pamilya kasama ang mga recipe at snippet.### Canonical config families already in use
+This is also the practical answer to one of the earlier architecture questions: the project should keep growing first-class writers only where a stable public format exists, and otherwise lean on a smaller set of canonical export families plus recipes and snippets.
+
+### Canonical config families already in use
 
 - JSON `mcpServers`
-- JSON `mga server`
+- JSON `servers`
 - JSON `context_servers`
 - YAML `mcpServers`
-- TOML `[mcp_servers]`### Additional candidates worth watching
+- TOML `[mcp_servers]`
 
-| Kliyente / IDE | Rekomendasyon | Dahilan |
-|:-------------|:-----------------|:-------|
-| JetBrains AI Assistant | 🟡 Panatilihin ang manual/snippet sa ngayon | Ang opisyal na suporta ay totoo, ngunit ang UX ay pinamamahalaan pa rin ng produkto kaysa sa file-contract-first |
-| Postman | 🟡 Panatilihin ang manual/snippet sa ngayon | Ang opisyal na setup ay UI-first at workspace-managed sa halip na file-contract-first |
-| Roo Code | 🟡 Susunod na siyasatin | Nangangako ng suporta sa MCP, ngunit ang kaligtasan ng manunulat ay nakasalalay sa mas malakas na kumpirmasyon ng config-path |
-| VS Code Copilot Chat | 🟢 Nasasakupan na nang hindi direktang | Ang pinagbabatayan na mga lokasyon ng file ng VS Code MCP ay suportado na |
-| Zed ACP / Mga Server ng Ahente | 🟡 Hiwalay na track | Ito ay ACP/agent-server territory, hindi lang MCP config writing |---
+### Additional candidates worth watching
+
+| Client / IDE | Recommendation | Reason |
+|:-------------|:---------------|:-------|
+| JetBrains AI Assistant | 🟡 Keep manual/snippet for now | Official support is real, but the UX is still product-managed rather than file-contract-first |
+| Postman | 🟡 Keep manual/snippet for now | Official setup is UI-first and workspace-managed rather than file-contract-first |
+| Roo Code | 🟡 Investigate next | Promising MCP support, but writer safety depends on stronger config-path confirmation |
+| VS Code Copilot Chat | 🟢 Already covered indirectly | The underlying VS Code MCP file locations are already supported |
+| Zed ACP / Agent Servers | 🟡 Separate track | This is ACP/agent-server territory, not just MCP config writing |
+
+---
 
 ## Official Sources Used
 
-Ang mga desisyon sa itaas ay sinuri laban sa kasalukuyang mga pangunahing mapagkukunan:
+The decisions above were checked against current primary sources:
 
 - [Anthropic Claude Code MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
 - [OpenAI Codex CLI MCP](https://platform.openai.com/docs/codex/cli)
 - [Cursor MCP](https://docs.cursor.com/tools)
-- [Magpatuloy sa MCP](https://docs.continue.dev/customize/tools)
+- [Continue MCP](https://docs.continue.dev/customize/tools)
 - [Kiro MCP](https://kiro.dev/docs/mcp)
 - [OpenCode MCP](https://opencode.ai/docs/mcp-servers/)
 - [Cline MCP](https://docs.cline.bot/mcp)
@@ -139,24 +155,26 @@ Ang mga desisyon sa itaas ay sinuri laban sa kasalukuyang mga pangunahing mapagk
 - [JetBrains AI Assistant MCP](https://www.jetbrains.com/help/ai-assistant/configure-an-mcp-server.html)
 - [Junie MCP](https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html)
 - [Goose Configuration Files](https://block.github.io/goose/docs/guides/config-files/)
-- [Mga Extension ng Goose Session](https://block.github.io/goose/docs/guides/session-extensions/)
-- [Pag-set up ng Postman MCP](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
+- [Goose Session Extensions](https://block.github.io/goose/docs/guides/session-extensions/)
+- [Postman MCP setup](https://learning.postman.com/docs/postman-ai/ai-requests/add-mcp-servers/)
 - [Roo Code MCP](https://docs.roocode.com/features/mcp)
 - [VS Code MCP Extension Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp)
-- [Opisyal na Registry ng MCP](https://prod.registry.modelcontextprotocol.io/)---
+- [Official MCP Registry](https://prod.registry.modelcontextprotocol.io/)
+
+---
 
 ## Implementation Notes
 
-Ang kasalukuyang sidecar ng Omni Skills ay sadyang nakikilala ang tatlong antas ng suporta:
+The current Omni Skills sidecar intentionally distinguishes three support levels:
 
--**mga kliyenteng may kakayahang mag-install**
-  - may kilalang direktoryo ng mga kasanayan at maaaring gumamit ng `install_skills`
--**mga kliyenteng may kakayahang mag-config**
-  - magkaroon ng isang matatag na target ng config at maaaring gumamit ng `configure_client_mcp`
--**manual/snippet client**
-  - dokumentado, ngunit wala pang ligtas na first-class na file writer
+- **install-capable clients**
+  - have a known skills directory and can use `install_skills`
+- **config-capable clients**
+  - have a stable config target and can use `configure_client_mcp`
+- **manual/snippet clients**
+  - documented, but without a safe first-class file writer yet
 
-Ang paghihiwalay na iyon ay nagpapanatili sa produkto na tapat.
+That separation keeps the product honest.
 
-Hindi lahat ng produkto na may kakayahang MCP ay dapat ituring bilang target sa pag-install ng kasanayan.
-Itinuturing na kumpleto ang yugto ng pagpapalawak sa ngayon: ang mga pagdaragdag sa hinaharap ay dapat lang dumarating kung na-clear nila ang parehong pampublikong-contract bar na naalis na ngayon ng Goose, Junie, Continue, at Windsurf.
+Not every MCP-capable product should be treated as a skill-install target.
+The expansion phase is considered complete for now: future additions should only land if they clear the same public-contract bar that Goose, Junie, Continue, and Windsurf now clear.
