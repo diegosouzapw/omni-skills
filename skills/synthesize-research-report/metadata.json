@@ -1,0 +1,233 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-30T00:00:00+00:00",
+  "id": "synthesize-research-report",
+  "slug": "synthesize-research-report",
+  "display_name": "Synthesize Research Report",
+  "description": "Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative research report from raw interview materials (transcripts, notes, summaries). Handles 50+ interviews via batched sub-agents, builds codebooks iteratively, constructs data-driven personas, and produces prioritized findings with outcome-oriented opportunities. Use when you have completed qualitative interviews and need to turn raw data into a structured, evidence-backed research report and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "ai-agents",
+  "canonical_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "synthesize-research-report",
+    "synthesize",
+    "comprehensive",
+    "qualitative",
+    "research",
+    "report",
+    "raw",
+    "interview"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "cookiy-ai",
+  "dates": {
+    "added": "2026-03-30",
+    "updated": "2026-03-30",
+    "file_mtime": "2026-03-30T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/synthesize-research-report",
+    "entrypoint": "skills/synthesize-research-report/SKILL.md",
+    "metadata": "skills/synthesize-research-report/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "phases",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "phase1-familiarization.md",
+      "phase2-coding.md",
+      "phase3-themes.md",
+      "phase4-synthesis.md",
+      "phase5-report.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 18,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "content": {
+    "body_length": 21678,
+    "content_length": 22740,
+    "body_lines": 429,
+    "word_count": 2792,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 6,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 2569,
+      "when_to_use_section_length": 872,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1348,
+      "resources_items_count": 44,
+      "resources_section_length": 12059,
+      "examples_section_length": 1335,
+      "examples_code_blocks_count": 10,
+      "related_skills_section_length": 547,
+      "decision_assets_count": 55,
+      "table_count": 74,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.51
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 2569,
+      "when_to_use_section_length": 872,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1348,
+      "resources_items_count": 44,
+      "resources_section_length": 12059,
+      "examples_section_length": 1335,
+      "examples_code_blocks_count": 10,
+      "related_skills_section_length": 547,
+      "decision_assets_count": 55,
+      "table_count": 74,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.51
+    }
+  },
+  "quality": {
+    "score": 98,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 18,
+      "script_files": 2,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}
