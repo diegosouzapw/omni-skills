@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.3; skills=32; updated_at=2026-03-28 -->
+<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
 
 <div align="center">
 
@@ -10,6 +10,8 @@
 
 **The skill catalog that installs itself.**<br/>
 CLI · API · MCP · A2A — all from a single `npx` command.
+
+> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
 
 <br/>
 
@@ -72,19 +74,20 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 | | Metric | Value |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `32` across 15 active categories |
+| 📦 | **Published Skills** | `48` native skills across 15 active categories |
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients |
 | 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 📋 | **Current Release** | `v0.1.2` |
+| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 📋 | **Current Release** | `v0.1.3` |
 
 ---
 
 ## 🚀 New Here? Start Here
 
-> **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
-> You're in the right place.
+> 🔍 **Searched for AI coding skills, Claude Code skills, Cursor skills, Codex CLI skills, Gemini CLI skills, Antigravity skills, or installable `SKILL.md` libraries?**
+> **You're in the right place.** 👇
 
 ### 1️⃣ What is this?
 
@@ -350,7 +353,7 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 | Metric | Count |
 |:-------|:------|
-| 🧠 Published skills | **32** |
+| 🧠 Native intake skills | **48** |
 | 📂 Active categories | **15** |
 | 📦 Fully backed bundles | **7** |
 | ✨ Curated derivatives | **32** in `skills_omni/` |
@@ -520,5 +523,7 @@ Omni Skills accepts native upstream skill intake under `skills/`.
 **Made with 🧠 by the Omni Skills Team**
 
 [⭐ Star this repo](https://github.com/diegosouzapw/omni-skills) · [🐛 Report a bug](https://github.com/diegosouzapw/omni-skills/issues) · [💬 Discussions](https://github.com/diegosouzapw/omni-skills/discussions)
+
+*If Omni Skills helps you build faster, consider giving it a ⭐ — it helps others discover the project!*
 
 </div>
