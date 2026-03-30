@@ -1,0 +1,17 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "cookiy",
+  "public_skill_path": "skills/cookiy",
+  "source_repository_url": "https://github.com/cookiy-ai/cookiy-skill.git",
+  "source_branch": "main",
+  "source_commit": "1a2425cc223ca6ec4f178852b609c2924173d7a7",
+  "source_skill_path": "skills/cookiy",
+  "upstream_files": [
+    "references/ai-interview.md",
+    "references/guide-editing.md",
+    "references/recruitment.md",
+    "references/report-insights.md",
+    "references/study-creation.md",
+    "references/tool-contract.md"
+  ]
+}

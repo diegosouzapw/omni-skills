@@ -7,13 +7,13 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 44,
-    "passed": 36,
+    "total_skills": 48,
+    "passed": 40,
     "warnings": 8,
     "errors": 0,
-    "average_quality_score": 86.5,
-    "average_best_practices_score": 83.9,
-    "average_security_score": 90.2
+    "average_quality_score": 87.5,
+    "average_best_practices_score": 85.2,
+    "average_security_score": 90.6
   },
   "taxonomy": {
     "canonical_categories": [
@@ -37,19 +37,19 @@
       "uncategorized"
     ],
     "counts": {
-      "ai-agents": 14,
+      "ai-agents": 16,
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
       "data-ai": 1,
       "design": 3,
-      "development": 5,
+      "development": 6,
       "devops": 5,
       "documentation": 2,
       "frontend": 1,
       "fullstack-web": 2,
       "machine-learning": 1,
-      "product": 1,
+      "product": 2,
       "testing-security": 4,
       "tools": 1
     }
@@ -58,26 +58,26 @@
     "skill_levels": {
       "l1": 0,
       "l2": 8,
-      "l3": 36
+      "l3": 40
     },
     "quality_tiers": {
       "bronze": 4,
-      "platinum": 36,
+      "platinum": 40,
       "starter": 4
     },
     "security_tiers": {
       "blocked": 3,
       "hardened": 3,
-      "review": 37,
+      "review": 41,
       "risky": 1
     },
     "security_status": {
-      "passed": 39,
+      "passed": 43,
       "warn": 5,
       "failed": 0
     },
     "validation_status": {
-      "passed": 36,
+      "passed": 40,
       "warn": 8,
       "failed": 0
     }
@@ -253,6 +253,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/context-engineering/metadata.json",
       "entrypoint": "skills/context-engineering/SKILL.md"
+    },
+    {
+      "id": "cookiy",
+      "display_name": "Cookiy",
+      "description": "Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/cookiy/metadata.json",
+      "entrypoint": "skills/cookiy/SKILL.md"
     },
     {
       "id": "create-pr",
@@ -711,6 +730,25 @@
       "entrypoint": "skills/omni-figma/SKILL.md"
     },
     {
+      "id": "pm-research",
+      "display_name": "PM / UXR Research Toolkit",
+      "description": "PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "development",
+      "canonical_category": "development",
+      "quality_score": 100,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/pm-research/metadata.json",
+      "entrypoint": "skills/pm-research/SKILL.md"
+    },
+    {
       "id": "prompt-engineer",
       "display_name": "Prompt Engineer",
       "description": "Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition, or evaluation for LLM behavior.",
@@ -728,6 +766,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/prompt-engineer/metadata.json",
       "entrypoint": "skills/prompt-engineer/SKILL.md"
+    },
+    {
+      "id": "qualitative-research-planner",
+      "display_name": "Qualitative Research Planner",
+      "description": "Qualitative Research Planner workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "product",
+      "canonical_category": "product",
+      "quality_score": 100,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/qualitative-research-planner/metadata.json",
+      "entrypoint": "skills/qualitative-research-planner/SKILL.md"
     },
     {
       "id": "rag-engineer",
@@ -861,6 +918,25 @@
       "validation_status": "warn",
       "metadata_path": "skills/sending-reactions/metadata.json",
       "entrypoint": "skills/sending-reactions/SKILL.md"
+    },
+    {
+      "id": "synthesize-research-report",
+      "display_name": "Synthesize Research Report",
+      "description": "Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative research report from raw interview materials (transcripts, notes, summaries). Handles 50+ interviews via batched sub-agents, builds codebooks iteratively, constructs data-driven personas, and produces prioritized findings with outcome-oriented opportunities. Use when you have completed qualitative interviews and need to turn raw data into a structured, evidence-backed research report and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 98,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/synthesize-research-report/metadata.json",
+      "entrypoint": "skills/synthesize-research-report/SKILL.md"
     },
     {
       "id": "terraform",

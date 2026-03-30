@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/cookiy-ai/cookiy-skill.git",
+  "source_repository_owner": "cookiy-ai",
+  "source_repository_name": "cookiy-skill",
+  "source_branch": "main",
+  "source_commit": "1a2425cc223ca6ec4f178852b609c2924173d7a7",
+  "source_skills_path": "skills",
+  "source_skill_path": "skills/qualitative-research-planner",
+  "source_skill_name": "qualitative-research-planner",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "qualitative-research-planner",
+  "lineage_id": 11,
+  "sync_run_id": "20260330T104412.794391+0000-cookiy-ai-cookiy-skill-rebase-from-remote-main",
+  "imported_at": "2026-03-30T10:44:15.057610+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "qualitative-research-planner",
+    "description": ">"
+  }
+}

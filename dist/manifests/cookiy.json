@@ -1,0 +1,469 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "cookiy",
+  "slug": "cookiy",
+  "display_name": "Cookiy",
+  "description": "Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "cookiy",
+    "ai-agents",
+    "agents",
+    "assets",
+    "examples",
+    "references",
+    "scripts"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "cookiy-ai",
+  "dates": {
+    "added": "2026-03-30",
+    "updated": "2026-03-30"
+  },
+  "entrypoint": "skills/cookiy/SKILL.md",
+  "paths": {
+    "root": "skills/cookiy",
+    "manifest": "dist/manifests/cookiy.json",
+    "metadata": "skills/cookiy/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 20,
+    "references_count": 10,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 52,
+        "workflow_section_length": 10931,
+        "when_to_use_section_length": 654,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1328,
+        "resources_items_count": 8,
+        "resources_section_length": 1352,
+        "examples_section_length": 1159,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 567,
+        "decision_assets_count": 49,
+        "table_count": 39,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 10,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 7,
+        "body_density": 7.77
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 19,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 18644,
+    "content_length": 19207,
+    "body_lines": 337,
+    "word_count": 2620,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 52,
+      "workflow_section_length": 10931,
+      "when_to_use_section_length": 654,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1328,
+      "resources_items_count": 8,
+      "resources_section_length": 1352,
+      "examples_section_length": 1159,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 567,
+      "decision_assets_count": 49,
+      "table_count": 39,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 10,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 7,
+      "body_density": 7.77
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/cookiy/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 756,
+      "sha256": "72ce33a4ea6c98e2f6abe70be7d872e20517dd04ed170f48a5decc8502a1a9d0"
+    },
+    {
+      "path": "skills/cookiy/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 648,
+      "sha256": "14e52ffc0778055d1a53c530a474fe5d0453886f717782723940f9607a47e02b"
+    },
+    {
+      "path": "skills/cookiy/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 19247,
+      "sha256": "156f65ea823e89fb48d42d05908bda5fc7585ac389215c1eb2d9770904327ebf"
+    },
+    {
+      "path": "skills/cookiy/metadata.json",
+      "kind": "support",
+      "size_bytes": 6230,
+      "sha256": "d16a4e403fa61be686e21a8e8d3533f1ba34e86e47cdf9a9a1060b13a032b05d"
+    },
+    {
+      "path": "skills/cookiy/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/cookiy/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 550,
+      "sha256": "375948f6170ebe1016ba9e0de20490efd8f4e9bd02df1be7379bdef87d09238c"
+    },
+    {
+      "path": "skills/cookiy/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/cookiy/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 217,
+      "sha256": "c874dc7462496009607f7f058c3ae4b44cde50c89d0d1e5ffe304392c62f55de"
+    },
+    {
+      "path": "skills/cookiy/references/ai-interview.md",
+      "kind": "reference",
+      "size_bytes": 3713,
+      "sha256": "b034968fdf0f04a687c1dd3a018910b0d723d46af36fe1528535c2100eceb9d7"
+    },
+    {
+      "path": "skills/cookiy/references/guide-editing.md",
+      "kind": "reference",
+      "size_bytes": 3885,
+      "sha256": "3169add49ec91d3ade4fc68edcfbe846bca7bb4616a8771f13d898549402f3db"
+    },
+    {
+      "path": "skills/cookiy/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/cookiy/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/cookiy/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/cookiy/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 500,
+      "sha256": "44ec82e0bd32e257f5c1368ca8ebf61f8ebaecfdadb08f9656f9f7cbb8ef57f5"
+    },
+    {
+      "path": "skills/cookiy/references/recruitment.md",
+      "kind": "reference",
+      "size_bytes": 8471,
+      "sha256": "f924dbac4cb8dc32e08b9dc808d60dc39d6560d3ed44148c0338595cd79affec"
+    },
+    {
+      "path": "skills/cookiy/references/report-insights.md",
+      "kind": "reference",
+      "size_bytes": 4990,
+      "sha256": "287caee1d815bf0658bf5a890562411bbddd3f07ee746b60fdc79b7003896b48"
+    },
+    {
+      "path": "skills/cookiy/references/study-creation.md",
+      "kind": "reference",
+      "size_bytes": 3447,
+      "sha256": "22c32a6fe431e2213bcea09d09b4c404cd4ccfffe96be81cb11b15b4cc077744"
+    },
+    {
+      "path": "skills/cookiy/references/tool-contract.md",
+      "kind": "reference",
+      "size_bytes": 12073,
+      "sha256": "d48f600bcc61c6cc32161e50007abd3e525e3ca0ea919dce025dd9b12cb60790"
+    },
+    {
+      "path": "skills/cookiy/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/cookiy/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/cookiy.zip",
+      "file_name": "cookiy.zip",
+      "size_bytes": 70719,
+      "sha256": "063751e2852cf33b5868a2d25cd35e454d3f0b4a6554c5d76d7d1706529de9a7",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/cookiy.tar.gz",
+      "file_name": "cookiy.tar.gz",
+      "size_bytes": 92193,
+      "sha256": "8c239181130cba88e70d694fc2bcce23f966e4024750e21e293681ab9165b733",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/cookiy.checksums.txt",
+    "file_name": "cookiy.checksums.txt",
+    "sha256": "001986070c539eb1c9bbfd4909f6647083d5311c5729a0f3dd6b0d979ad3da64",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "156f65ea823e89fb48d42d05908bda5fc7585ac389215c1eb2d9770904327ebf",
+    "package_sha256": "c79f99848168e29417c5db97b362453f0f5577fd504d1c86cae3366849599aba"
+  }
+}

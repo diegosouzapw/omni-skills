@@ -1,0 +1,22 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/cookiy-ai/cookiy-skill.git",
+  "source_repository_owner": "cookiy-ai",
+  "source_repository_name": "cookiy-skill",
+  "source_branch": "main",
+  "source_commit": "1a2425cc223ca6ec4f178852b609c2924173d7a7",
+  "source_skills_path": "skills",
+  "source_skill_path": "skills/synthesize-research-report",
+  "source_skill_name": "synthesize-research-report",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "synthesize-research-report",
+  "lineage_id": 12,
+  "sync_run_id": "20260330T104412.794391+0000-cookiy-ai-cookiy-skill-rebase-from-remote-main",
+  "imported_at": "2026-03-30T10:44:15.089145+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "synthesize-research-report",
+    "description": "Synthesize a comprehensive qualitative research report from raw interview materials (transcripts, notes, summaries). Handles 50+ interviews via batched sub-agents, builds codebooks iteratively, constructs data-driven personas, and produces prioritized findings with outcome-oriented opportunities. Use when you have completed qualitative interviews and need to turn raw data into a structured, evidence-backed research report.",
+    "argument-hint": "<research topic, question, or path to research materials>"
+  }
+}

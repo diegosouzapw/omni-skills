@@ -2,21 +2,21 @@
   "schema_version": "2026-03-26",
   "version": "1.2.0",
   "generated_at": "2026-03-30T00:00:00+00:00",
-  "total_skills": 44,
+  "total_skills": 48,
   "categories": {
-    "ai-agents": 14,
+    "ai-agents": 16,
     "backend": 2,
     "cli-automation": 1,
     "communication": 1,
     "data-ai": 1,
     "design": 3,
-    "development": 5,
+    "development": 6,
     "devops": 5,
     "documentation": 2,
     "frontend": 1,
     "fullstack-web": 2,
     "machine-learning": 1,
-    "product": 1,
+    "product": 2,
     "testing-security": 4,
     "tools": 1
   },
@@ -995,6 +995,116 @@
       "best_practices_score": 99,
       "best_practices_tier": "excellent",
       "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "cookiy",
+      "name": "cookiy",
+      "display_name": "Cookiy",
+      "description": "Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "cookiy",
+        "ai-agents",
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "complexity": "advanced",
+      "risk": "caution",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "cookiy-ai",
+      "date_added": "2026-03-30",
+      "date_updated": "2026-03-30",
+      "path": "skills/cookiy",
+      "entrypoint_path": "skills/cookiy/SKILL.md",
+      "manifest_path": "dist/manifests/cookiy.json",
+      "metadata_path": "skills/cookiy/metadata.json",
+      "content_length": 19207,
+      "body_length": 18644,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 20,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "156f65ea823e89fb48d42d05908bda5fc7585ac389215c1eb2d9770904327ebf",
+        "package_sha256": "c79f99848168e29417c5db97b362453f0f5577fd504d1c86cae3366849599aba"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
       "quality_tier": "platinum",
       "security_score": 95,
       "security_tier": "review",
@@ -3456,6 +3566,116 @@
       "validation_status": "passed"
     },
     {
+      "id": "pm-research",
+      "name": "pm-research",
+      "display_name": "PM / UXR Research Toolkit",
+      "description": "PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "development",
+      "raw_category": "development",
+      "taxonomy": {
+        "raw_category": "development",
+        "canonical_category": "development",
+        "inferred_category": "development",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "pm-research",
+        "development",
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "complexity": "advanced",
+      "risk": "caution",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "cookiy-ai",
+      "date_added": "2026-03-30",
+      "date_updated": "2026-03-30",
+      "path": "skills/pm-research",
+      "entrypoint_path": "skills/pm-research/SKILL.md",
+      "manifest_path": "dist/manifests/pm-research.json",
+      "metadata_path": "skills/pm-research/metadata.json",
+      "content_length": 11376,
+      "body_length": 10780,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 15,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "43dad85b5576772332b72a76fc3f708a8aad1c8aba1ace4b42f2124a209c6e5c",
+        "package_sha256": "a098e3c192f03c49e53cd9c53eacd2079def892f764ef40c3a44f5fae6fd4f90"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 100,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
       "id": "prompt-engineer",
       "name": "prompt-engineer",
       "display_name": "Prompt Engineer",
@@ -3566,6 +3786,116 @@
       "best_practices_score": 99,
       "best_practices_tier": "excellent",
       "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "qualitative-research-planner",
+      "name": "qualitative-research-planner",
+      "display_name": "Qualitative Research Planner",
+      "description": "Qualitative Research Planner workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "product",
+      "raw_category": "product",
+      "taxonomy": {
+        "raw_category": "product",
+        "canonical_category": "product",
+        "inferred_category": "product",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "qualitative-research-planner",
+        "product",
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "complexity": "advanced",
+      "risk": "caution",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "cookiy-ai",
+      "date_added": "2026-03-30",
+      "date_updated": "2026-03-30",
+      "path": "skills/qualitative-research-planner",
+      "entrypoint_path": "skills/qualitative-research-planner/SKILL.md",
+      "manifest_path": "dist/manifests/qualitative-research-planner.json",
+      "metadata_path": "skills/qualitative-research-planner/metadata.json",
+      "content_length": 26463,
+      "body_length": 25838,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 14,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "b7a8b7fb0a23df3b21df84c5452afded181477caef18c4303b6bc38731e97c4e",
+        "package_sha256": "4452f09067b5d6f1c8c56c05563a5a82262b68fe1d743c3ed87ecd9f076489e4"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 100,
       "quality_tier": "platinum",
       "security_score": 95,
       "security_tier": "review",
@@ -4245,6 +4575,118 @@
       "security_tier": "hardened",
       "security_status": "passed",
       "validation_status": "warn"
+    },
+    {
+      "id": "synthesize-research-report",
+      "name": "synthesize-research-report",
+      "display_name": "Synthesize Research Report",
+      "description": "Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative research report from raw interview materials (transcripts, notes, summaries). Handles 50+ interviews via batched sub-agents, builds codebooks iteratively, constructs data-driven personas, and produces prioritized findings with outcome-oriented opportunities. Use when you have completed qualitative interviews and need to turn raw data into a structured, evidence-backed research report and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "ai-agents",
+      "raw_category": "ai-agents",
+      "taxonomy": {
+        "raw_category": "ai-agents",
+        "canonical_category": "ai-agents",
+        "inferred_category": "ai-agents",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "synthesize-research-report",
+        "synthesize",
+        "comprehensive",
+        "qualitative",
+        "research",
+        "report",
+        "raw",
+        "interview"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "cookiy-ai",
+      "date_added": "2026-03-30",
+      "date_updated": "2026-03-30",
+      "path": "skills/synthesize-research-report",
+      "entrypoint_path": "skills/synthesize-research-report/SKILL.md",
+      "manifest_path": "dist/manifests/synthesize-research-report.json",
+      "metadata_path": "skills/synthesize-research-report/metadata.json",
+      "content_length": 22740,
+      "body_length": 21678,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "phases",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 19,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "7ccde535977decd3d74401fd5a0cbc4b384571483a5c03d9ec22a56fcc6e4032",
+        "package_sha256": "08526fbc55d6bb2278e3c5e9e0dc9b0828a67fa3eb71854e69b22967eb52d1f0"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 98,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
     },
     {
       "id": "terraform",
