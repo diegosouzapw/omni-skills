@@ -1,0 +1,2 @@
+2afe12a6781331f42bc17fd65edb9f315325a7e79fe5fe039e7f4c55d5d76011  synthesize-research-report.zip
+5629225eff134a5d3b5cb10d307ff2a97f5fc082a61c25eefabde3e40e1180ac  synthesize-research-report.tar.gz

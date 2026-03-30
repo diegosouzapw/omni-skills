@@ -12,6 +12,6 @@ This native intake skill was imported automatically from an external repository.
 - Imported public skill id: `qualitative-research-planner`
 - Source license: `MIT`
 - License status: `compatible`
-- Sync run id: `20260330T032405.275448+0000-cookiy-ai-cookiy-skill-editorial-fix`
+- Sync run id: `20260330T032652.380534+0000-cookiy-ai-cookiy-skill-editorial-artifacts`
 
 The original source identity is preserved for review and attribution.
