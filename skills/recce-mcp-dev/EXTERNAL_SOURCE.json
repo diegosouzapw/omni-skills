@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/DataRecce/recce.git",
+  "source_repository_owner": "DataRecce",
+  "source_repository_name": "recce",
+  "source_branch": "main",
+  "source_commit": "5f43268dcaba76f0d5d98fedecff509ec44c7979",
+  "source_skills_path": ".claude/skills",
+  "source_skill_path": ".claude/skills/recce-mcp-dev",
+  "source_skill_name": "recce-mcp-dev",
+  "source_license_spdx": "Apache-2.0",
+  "license_status": "compatible",
+  "imported_public_skill_id": "recce-mcp-dev",
+  "lineage_id": 15,
+  "sync_run_id": "20260330T001825.105676+0000-datarecce-recce-manual",
+  "imported_at": "2026-03-30T00:18:26.820912+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "recce-mcp-dev",
+    "description": "Use when modifying recce/mcp_server.py, MCP tool handlers, error classification, or MCP-related tests. Also use when adding new MCP tools or changing tool response formats."
+  }
+}

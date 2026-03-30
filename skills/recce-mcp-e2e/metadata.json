@@ -1,0 +1,188 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-01-01T00:00:00+00:00",
+  "id": "recce-mcp-e2e",
+  "slug": "recce-mcp-e2e",
+  "display_name": "MCP E2E Verification",
+  "description": "Use when MCP server code is modified and needs full E2E verification against a real dbt project. Triggers after changes to recce/mcp_server.py, MCP tool handlers, single-env logic, or error classification. Also use before merging MCP PRs.",
+  "version": "",
+  "raw_category": "ai-agents",
+  "canonical_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [],
+  "tools": [],
+  "complexity": "",
+  "risk": "unknown",
+  "source": "",
+  "author": "",
+  "dates": {
+    "added": "",
+    "updated": "",
+    "file_mtime": "2026-01-01T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/recce-mcp-e2e",
+    "entrypoint": "skills/recce-mcp-e2e/SKILL.md",
+    "metadata": "skills/recce-mcp-e2e/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "SKILL.md",
+      "test_mcp_e2e_template.py"
+    ],
+    "files_count": 4,
+    "references_count": 0,
+    "agents_count": 0,
+    "assets_count": 0
+  },
+  "content": {
+    "body_length": 2896,
+    "content_length": 3197,
+    "body_lines": 63,
+    "word_count": 356,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 0,
+    "has_examples_section": true,
+    "example_count": 0,
+    "has_workflow_section": false,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": false,
+    "has_troubleshooting_section": false,
+    "problem_count": 0,
+    "troubleshooting_pairs_count": 0,
+    "has_additional_resources_section": false,
+    "has_related_skills_section": false,
+    "related_skills_count": 0,
+    "has_local_support_links": false,
+    "local_support_links_count": 0,
+    "has_local_script_example": false,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 235,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 286,
+      "examples_code_blocks_count": 0,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 16,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 5.65
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 20,
+    "tier": "needs-work",
+    "signals": {
+      "workflow_steps_count": 0,
+      "workflow_section_length": 0,
+      "when_to_use_section_length": 235,
+      "best_practices_items_count": 0,
+      "best_practices_section_length": 0,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 0,
+      "resources_items_count": 0,
+      "resources_section_length": 0,
+      "examples_section_length": 286,
+      "examples_code_blocks_count": 0,
+      "related_skills_section_length": 0,
+      "decision_assets_count": 0,
+      "table_count": 16,
+      "linked_resource_families_count": 0,
+      "linked_resource_families": [],
+      "support_links_count": 0,
+      "support_files_count": 0,
+      "references_files_count": 0,
+      "scripts_files_count": 0,
+      "examples_files_count": 0,
+      "agents_files_count": 0,
+      "assets_files_count": 0,
+      "tools_count": 0,
+      "tags_count": 0,
+      "body_density": 5.65
+    }
+  },
+  "quality": {
+    "score": 46,
+    "tier": "bronze",
+    "breakdown": {
+      "body": 14,
+      "description": 10,
+      "metadata": 1,
+      "recency": 7,
+      "resources": 10,
+      "best_practices": 0,
+      "semantic_depth": 1,
+      "operational_depth": 3,
+      "support_pack": 0
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 4,
+      "script_files": 1,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "tags are empty",
+      "tools are empty"
+    ],
+    "status": "warn"
+  }
+}

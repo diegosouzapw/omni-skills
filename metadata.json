@@ -7,13 +7,13 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 40,
+    "total_skills": 44,
     "passed": 32,
-    "warnings": 8,
+    "warnings": 12,
     "errors": 0,
-    "average_quality_score": 85.3,
-    "average_best_practices_score": 82.3,
-    "average_security_score": 89.8
+    "average_quality_score": 81.5,
+    "average_best_practices_score": 76.3,
+    "average_security_score": 90.6
   },
   "taxonomy": {
     "canonical_categories": [
@@ -37,13 +37,13 @@
       "uncategorized"
     ],
     "counts": {
-      "ai-agents": 12,
+      "ai-agents": 14,
       "backend": 2,
       "cli-automation": 1,
       "communication": 1,
       "data-ai": 1,
       "design": 3,
-      "development": 3,
+      "development": 5,
       "devops": 5,
       "documentation": 2,
       "frontend": 1,
@@ -57,28 +57,28 @@
   "distribution": {
     "skill_levels": {
       "l1": 0,
-      "l2": 8,
-      "l3": 32
+      "l2": 11,
+      "l3": 33
     },
     "quality_tiers": {
-      "bronze": 4,
+      "bronze": 8,
       "platinum": 32,
       "starter": 4
     },
     "security_tiers": {
       "blocked": 3,
-      "hardened": 3,
-      "review": 33,
+      "hardened": 6,
+      "review": 34,
       "risky": 1
     },
     "security_status": {
-      "passed": 35,
+      "passed": 39,
       "warn": 5,
       "failed": 0
     },
     "validation_status": {
       "passed": 32,
-      "warn": 8,
+      "warn": 12,
       "failed": 0
     }
   },
@@ -215,6 +215,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/changelog/metadata.json",
       "entrypoint": "skills/changelog/SKILL.md"
+    },
+    {
+      "id": "claude-code-review",
+      "display_name": "Claude Code Review",
+      "description": "Use when asked to review a PR, or when /review is invoked with a PR number or URL. Performs a focused code review checking for bugs, security, performance, and test gaps, then posts findings as a PR comment and formal GitHub review.",
+      "raw_category": "development",
+      "canonical_category": "development",
+      "quality_score": 41,
+      "quality_tier": "bronze",
+      "best_practices_score": 7,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/claude-code-review/metadata.json",
+      "entrypoint": "skills/claude-code-review/SKILL.md"
     },
     {
       "id": "context-engineering",
@@ -559,6 +578,25 @@
       "entrypoint": "skills/kubernetes/SKILL.md"
     },
     {
+      "id": "linear-deep-dive",
+      "display_name": "Linear Deep Dive",
+      "description": "Use when given a Linear issue ID, URL, identifier, or project name/URL to analyze and plan work. For issues, fetches the issue, classifies it, explores relevant code, proposes an approach, and orchestrates the right skills. For projects, fetches the project with milestones and issues, builds a prioritized execution plan, and systematically works through issues respecting project structure and dependencies.",
+      "raw_category": "development",
+      "canonical_category": "development",
+      "quality_score": 42,
+      "quality_tier": "bronze",
+      "best_practices_score": 17,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/linear-deep-dive/metadata.json",
+      "entrypoint": "skills/linear-deep-dive/SKILL.md"
+    },
+    {
       "id": "llm-patterns",
       "display_name": "LLM Patterns",
       "description": "LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallback paths, or agent behavior.",
@@ -709,6 +747,44 @@
       "validation_status": "passed",
       "metadata_path": "skills/rag-engineer/metadata.json",
       "entrypoint": "skills/rag-engineer/SKILL.md"
+    },
+    {
+      "id": "recce-mcp-dev",
+      "display_name": "Recce MCP Server Development",
+      "description": "Use when modifying recce/mcp_server.py, MCP tool handlers, error classification, or MCP-related tests. Also use when adding new MCP tools or changing tool response formats.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 47,
+      "quality_tier": "bronze",
+      "best_practices_score": 22,
+      "best_practices_tier": "needs-work",
+      "security_score": 100,
+      "security_tier": "hardened",
+      "security_status": "passed",
+      "skill_level": 2,
+      "skill_level_label": "instructions",
+      "validation_status": "warn",
+      "metadata_path": "skills/recce-mcp-dev/metadata.json",
+      "entrypoint": "skills/recce-mcp-dev/SKILL.md"
+    },
+    {
+      "id": "recce-mcp-e2e",
+      "display_name": "MCP E2E Verification",
+      "description": "Use when MCP server code is modified and needs full E2E verification against a real dbt project. Triggers after changes to recce/mcp_server.py, MCP tool handlers, single-env logic, or error classification. Also use before merging MCP PRs.",
+      "raw_category": "ai-agents",
+      "canonical_category": "ai-agents",
+      "quality_score": 46,
+      "quality_tier": "bronze",
+      "best_practices_score": 20,
+      "best_practices_tier": "needs-work",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "warn",
+      "metadata_path": "skills/recce-mcp-e2e/metadata.json",
+      "entrypoint": "skills/recce-mcp-e2e/SKILL.md"
     },
     {
       "id": "release-engineering",
