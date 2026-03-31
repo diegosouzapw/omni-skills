@@ -74,14 +74,44 @@ jobs:
           skill_ids = []
           seen = set()
           disallowed_paths = []
+          shared_generated_paths = {
+              "metadata.json",
+              "skills_index.json",
+              "docs/CATALOG.md",
+              "dist/catalog.json",
+              "dist/bundles.json",
+          }
+          archive_suffixes = (
+              ".checksums.txt",
+              ".tar.gz.sig",
+              ".zip.sig",
+              ".tar.gz",
+              ".zip",
+              ".sig",
+          )
+
           for changed in changed_paths:
               parts = changed.split("/")
               if len(parts) >= 2 and parts[0] == "skills":
                   if parts[1] not in seen:
                       seen.add(parts[1])
                       skill_ids.append(parts[1])
+
+          generated_skill_paths = set()
+          for skill_id in skill_ids:
+              generated_skill_paths.add(f"dist/manifests/{skill_id}.json")
+              for suffix in archive_suffixes:
+                  generated_skill_paths.add(f"dist/archives/{skill_id}{suffix}")
+
+          for changed in changed_paths:
+              parts = changed.split("/")
+              if len(parts) >= 2 and parts[0] == "skills":
                   continue
               if changed == "data/bundles.json":
+                  continue
+              if changed in shared_generated_paths:
+                  continue
+              if changed in generated_skill_paths:
                   continue
               disallowed_paths.append(changed)
           safe_to_enhance = "true" if skill_ids and not disallowed_paths else "false"
@@ -135,7 +165,7 @@ jobs:
               echo
               echo "- Status: skipped"
               echo "- Reason: this PR changes files outside the native auto-enhance scope."
-              echo "- Allowed scope: \`skills/**\` and optional \`data/bundles.json\`"
+              echo "- Allowed scope: \`skills/**\`, optional \`data/bundles.json\`, and generated catalog artifacts derived from those skill changes."
               echo "- Non-skill paths: \`${DISALLOWED_PATHS:-none}\`"
             } >> "$GITHUB_STEP_SUMMARY"
           fi

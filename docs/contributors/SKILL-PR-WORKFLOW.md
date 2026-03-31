@@ -127,7 +127,7 @@ npm run smoke
 
 ## What Happens Automatically During the PR
 
-When a PR opens or syncs and it only touches native skill intake files under `skills/` plus optional `data/bundles.json`, the public repo now triggers the private enhancer automatically.
+When a PR opens or syncs and it only touches native skill intake files under `skills/`, optional `data/bundles.json`, and the generated catalog artifacts derived from those skill changes, the public repo now triggers the private enhancer automatically.
 
 Current automated flow:
 
