@@ -483,22 +483,18 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
   assert.ok(fullStackBundle, "full-stack bundle should exist");
   assert.ok(securityBundle, "security bundle should exist");
   assert.ok(ossMaintainerBundle, "oss-maintainer bundle should exist");
-  assert.ok(
-    essentialsBundle.available_skill_ids.length === 4,
-    "essentials bundle should be fully backed by published skills",
-  );
-  assert.ok(
-    fullStackBundle.available_skill_ids.length === 5,
-    "full-stack bundle should be fully backed by published skills",
-  );
-  assert.ok(
-    securityBundle.available_skill_ids.length === 4,
-    "security bundle should be fully backed by published skills",
-  );
-  assert.ok(
-    ossMaintainerBundle.available_skill_ids.length === 4,
-    "oss-maintainer bundle should be fully backed by published skills",
-  );
+  for (const bundle of [essentialsBundle, fullStackBundle, securityBundle, ossMaintainerBundle]) {
+    assert.equal(
+      bundle.available_skill_ids.length,
+      bundle.skill_ids.length,
+      `${bundle.id} bundle should be fully backed by published skills`,
+    );
+    assert.equal(
+      bundle.missing_skill_ids.length,
+      0,
+      `${bundle.id} bundle should not report missing published skills`,
+    );
+  }
 
   const cliHelp = childProcess.execFileSync(
     process.execPath,
