@@ -12,7 +12,7 @@ For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUID
 | Status | Details |
 |:-------|:--------|
 | ✅ **Available now** | 55 native catalog skills across design, architecture, debugging, docs, OSS, security, DevOps, AI-engineering, data, tools, and machine-learning workflows |
-| ✨ **Curated surface** | 32 English-only Omni-maintained derivatives in `skills_omni/` |
+| ✨ **Curated surface** | 38 English-only Omni-maintained derivatives in `skills_omni/` |
 | 📦 **Bundles** | `essentials`, `full-stack`, `design`, `security`, `devops`, `ai-engineer`, and `oss-maintainer` are fully backed today |
 | 🧪 **Validation mix** | 45 native skills pass cleanly today, and 10 remain intentionally warning-grade in the permissive intake surface |
 | 🔌 **MCP reach** | 7 install-capable clients, 16 config-capable clients, 33 first-class config targets, 19 config profiles |

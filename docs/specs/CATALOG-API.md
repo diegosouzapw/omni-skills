@@ -1,6 +1,6 @@
 # 🌐 Catalog API Surface
 
-> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads.**
+> **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads across the same catalog used by the public skill repository and curated derivative surfaces.**
 
 ---
 
@@ -52,7 +52,7 @@ npm run api
 ### 📦 From published package:
 
 ```bash
-npx omni-skills api --port 3333
+npx awesome-omni-skills api --port 3333
 ```
 
 ### ⚙️ Custom host and port:
@@ -77,7 +77,7 @@ All security controls are env-driven and optional:
 | 🚦 **Rate limiting** | `OMNI_SKILLS_RATE_LIMIT_MAX` + `_WINDOW_MS` | `60` / `60000` |
 | 📝 **Audit logging** | `OMNI_SKILLS_HTTP_AUDIT_LOG` | `1` |
 | 🗂️ **Audit format** | `OMNI_SKILLS_HTTP_AUDIT_FORMAT` | `json` or `text` |
-| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/omni-skills/audit.log` |
+| 📄 **Audit file** | `OMNI_SKILLS_HTTP_AUDIT_LOG_PATH` | `/var/log/awesome-omni-skills/audit.log` |
 | 🌍 **CORS allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_ORIGINS` | `https://app.example.com,https://*.example.org` |
 | 🧱 **IP allowlist** | `OMNI_SKILLS_HTTP_ALLOWED_IPS` | `127.0.0.1/32,10.0.0.0/8` |
 | 🔁 **Trusted proxy** | `OMNI_SKILLS_HTTP_TRUST_PROXY` | `loopback` |
@@ -111,11 +111,11 @@ OMNI_SKILLS_HTTP_ADMIN_TOKEN=admin-secret \
 OMNI_SKILLS_RATE_LIMIT_MAX=60 \
 OMNI_SKILLS_RATE_LIMIT_WINDOW_MS=60000 \
 OMNI_SKILLS_HTTP_AUDIT_LOG=1 \
-OMNI_SKILLS_HTTP_AUDIT_LOG_PATH=/var/log/omni-skills/audit.log \
+OMNI_SKILLS_HTTP_AUDIT_LOG_PATH=/var/log/awesome-omni-skills/audit.log \
 OMNI_SKILLS_HTTP_ALLOWED_ORIGINS=https://app.example.com \
 OMNI_SKILLS_HTTP_ALLOWED_IPS=127.0.0.1/32 \
 OMNI_SKILLS_HTTP_TRUST_PROXY=loopback \
-npx omni-skills api --port 3333
+npx awesome-omni-skills api --port 3333
 ```
 
 ---

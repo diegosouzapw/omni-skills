@@ -1,6 +1,6 @@
 # 🧩 CLI Guided Installer Specification
 
-> **Behavioral contract for the guided installation experience in the Omni Skills CLI.**
+> **Behavioral contract for the guided installation experience in the Awesome Omni Skills CLI.**
 
 ---
 

@@ -1,6 +1,6 @@
 # 🔬 Anatomy of a Well-Written Skill
 
-> **Structure and quality expectations for an Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
+> **Structure and quality expectations for an Awesome Omni Skills `SKILL.md` — the authoring format that powers the entire catalog.**
 
 ---
 

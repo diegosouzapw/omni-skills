@@ -1,6 +1,6 @@
 # 🔬 Codebase Deep Analysis
 
-> **Comprehensive technical analysis of the current Omni Skills architecture, runtime surfaces, and build pipeline.**
+> **Comprehensive technical analysis of the current Awesome Omni Skills architecture, its public skill surfaces, and its build/runtime pipeline.**
 > Last analyzed: 2026-03-30
 
 ---
@@ -9,12 +9,12 @@
 
 | Attribute | Value |
 |:----------|:------|
-| **Name** | `omni-skills` |
+| **Name** | `awesome-omni-skills` |
 | **Package version** | `0.1.5` |
-| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.5`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
-| **NPM** | `npx omni-skills` |
-| **Published skills** | 48 native skills in `skills/` plus 32 curated derivatives in `skills_omni/` |
+| **NPM** | `npx awesome-omni-skills` |
+| **Published skills** | 55 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
 | **Defined bundles** | 7, all fully backed by published skills |
 | **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
@@ -22,11 +22,10 @@
 
 Current repository-level classification snapshot from `metadata.json`:
 
-- average quality score: `87.5`
-- average best-practices score: `85.2`
-- average security score: `90.6`
-- maturity mix: `40` `L3` skills and `8` `L2` skills
-- validation mix: `40` passed, `8` warn, `0` failed
+- average quality score: `88.9`
+- average best-practices score: `87.1`
+- average security score: `88.6`
+- validation mix: `45` passed, `10` warn, `0` failed
 
 Current release baseline:
 
@@ -38,7 +37,7 @@ Current release baseline:
 
 ## 🏗️ Architecture Overview
 
-The repository follows a **workspace monorepo** pattern with one shared catalog core and multiple runtime surfaces.
+The repository follows a **workspace monorepo** pattern with one public native skill repository, one curated derivative surface, one shared catalog core, and multiple runtime surfaces.
 
 ```text
 ┌────────────────────────────────────────────────────────────┐
@@ -311,7 +310,7 @@ Two details matter operationally:
 
 ## 📦 Published Catalog
 
-The current public catalog spans 48 native skills in `skills/` and 32 curated English derivatives in `skills_omni/`.
+The current public catalog spans 55 native skills in `skills/` and 38 curated English derivatives in `skills_omni/`.
 
 Current native category distribution from `metadata.json`:
 

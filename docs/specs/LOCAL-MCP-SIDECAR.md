@@ -1,6 +1,6 @@
 # 🔌 Local MCP Sidecar
 
-> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation.**
+> **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation around the Awesome Omni Skills catalog.**
 
 ---
 
@@ -75,13 +75,13 @@ npm run cli -- config-mcp --target goose-user --transport stream --url http://12
 ### 📦 From published package:
 
 ```bash
-npx omni-skills mcp stdio --local
-npx omni-skills mcp stream --local
-npx omni-skills mcp sse --local
-npx omni-skills config-mcp --list-targets
-npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
-npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
-npx omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
+npx awesome-omni-skills mcp stdio --local
+npx awesome-omni-skills mcp stream --local
+npx awesome-omni-skills mcp sse --local
+npx awesome-omni-skills config-mcp --list-targets
+npx awesome-omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
+npx awesome-omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+npx awesome-omni-skills config-mcp --target goose-user --transport stream --url http://127.0.0.1:3334/mcp --write
 ```
 
 > All commands set `OMNI_SKILLS_MCP_MODE=local` automatically.
@@ -186,7 +186,7 @@ Manual or snippet-only candidates are still intentionally outside the first-clas
 
 ### 🧭 Expansion Policy
 
-Omni Skills now treats client support as a three-level model:
+Awesome Omni Skills now treats client support as a three-level model:
 
 1. **install-capable**
    A stable skills directory exists, so the CLI and sidecar can install skills directly.
@@ -364,7 +364,7 @@ export OMNI_SKILLS_LOCAL_ALLOWLIST=/absolute/path/one:/absolute/path/two
 ### 🟢 Continue
 
 ```yaml
-name: 'Omni Skills'
+name: 'Awesome Omni Skills'
 version: '0.1.5'
 schema: 'v1'
 mcpServers:
@@ -379,13 +379,13 @@ mcpServers:
 The sidecar-backed CLI wrapper keeps MCP config generation accessible without direct JSON-RPC calls:
 
 ```bash
-npx omni-skills config-mcp --list-targets
-npx omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
-npx omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
-npx omni-skills config-mcp --target zed-workspace --transport sse --url http://127.0.0.1:3335/sse
-npx omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
-npx omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
-npx omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
+npx awesome-omni-skills config-mcp --list-targets
+npx awesome-omni-skills config-mcp --target cline-user --transport stream --url http://127.0.0.1:3334/mcp
+npx awesome-omni-skills config-mcp --target copilot-user --transport stream --url http://127.0.0.1:3334/mcp
+npx awesome-omni-skills config-mcp --target zed-workspace --transport sse --url http://127.0.0.1:3335/sse
+npx awesome-omni-skills config-mcp --target continue-workspace --transport stream --url http://127.0.0.1:3334/mcp
+npx awesome-omni-skills config-mcp --target junie-project --transport stream --url http://127.0.0.1:3334/mcp
+npx awesome-omni-skills config-mcp --target windsurf-user --transport sse --url http://127.0.0.1:3335/sse --write
 ```
 
 Default behavior is preview-only. `--write` applies the config to the resolved target path under the allowlist.

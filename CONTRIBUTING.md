@@ -1,6 +1,6 @@
 # 🤝 Contributing to Awesome Omni Skills
 
-> **Awesome Omni Skills contains both a skill catalog and the runtime surfaces built on top of that catalog.**
+> **Awesome Omni Skills is a public repository of skills, a curated repository of improved best-practice derivatives, and the runtime surfaces built on top of that catalog.**
 > Contributions can target either area, but both must stay aligned with the generated artifacts and the current CLI behavior.
 
 ---
@@ -28,6 +28,7 @@
 | 📥 Native incoming skills land under | `skills/` (any language) |
 | ✨ Curated enhanced derivatives | `skills_omni/` (English only, automated) |
 | 🚫 `skills_omni/` is protected | Not open for direct public contribution |
+| 🔁 Repository-based intake | Maintainer-operated external imports still land under `skills/` and follow the same review standard |
 | 📖 Runtime and architecture docs | `docs/` |
 | 📄 Community files | `README.md` · `CONTRIBUTING.md` · `SECURITY.md` · `CODE_OF_CONDUCT.md` |
 
@@ -38,6 +39,7 @@
 | Type | Area |
 |:-----|:-----|
 | 🧠 Add or improve a skill | `skills/` |
+| 📥 Review a repository-based intake PR | `external-import/<source>` branches targeting `skills/` |
 | 📖 Update contributor guidance | `docs/contributors/` |
 | 🖥️ Improve CLI, installer, or scripts | `tools/` |
 | 📦 Improve catalog runtime or protocol packages | `packages/` |
@@ -103,6 +105,17 @@ skills/my-skill/
 ```
 
 > **💡 Tip:** Release-grade skill packs should include `agents/`, `references/`, `examples/`, and `scripts/`. But the intake surface is intentionally permissive — a minimal native incoming skill is allowed, and the enhancer pipeline generates the stronger derivative.
+
+### 🔀 Two Native Intake Paths
+
+The public repository accepts native skills through two operational paths:
+
+| Path | How it arrives | Review expectation |
+|:-----|:---------------|:-------------------|
+| 👤 Direct contributor PR | A human branch edits `skills/` directly | Validate the skill, generated artifacts, and bundle impact |
+| 📥 Repository-based external intake | Maintainer-operated `external-import/<source>` PR imports skills from another reviewed repository | Validate the skill plus provenance, upstream ownership, and license notes |
+
+Both paths land in `skills/`, both trigger the same public validator, and both can produce a curated `skills_omni/` companion PR.
 
 ### 🌐 Language Policy
 

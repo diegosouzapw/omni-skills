@@ -12,7 +12,7 @@
 
 ## 🔍 Context
 
-Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
+Awesome Omni Skills started as an **installer-first** repository. That was enough to distribute `SKILL.md` content, but not enough to expose the catalog to agents through protocol-native surfaces.
 
 We needed a foundation that could support:
 
@@ -33,7 +33,7 @@ Adopt a **workspace-oriented monorepo** with a shared catalog core and protocol-
 
 | Package | Purpose |
 |:--------|:--------|
-| 📦 `omni-skills` (root) | CLI installer and repo scripts |
+| 📦 `awesome-omni-skills` (root) | CLI installer and repo scripts |
 | 🧠 `@omni-skills/catalog-core` | Shared loading, search, comparison, bundles, install plans |
 | 🌐 `@omni-skills/server-api` | Read-only REST API |
 | 🔌 `@omni-skills/server-mcp` | MCP with stdio/stream/sse + local sidecar mode |

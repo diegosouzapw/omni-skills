@@ -1,16 +1,16 @@
 # ✅ Quality Bar
 
-> **Minimum requirements and recommendations for a skill to be accepted into the Omni Skills repository.**
+> **Minimum requirements and recommendations for a skill to be accepted into the Awesome Omni Skills repository.**
 
 For authoring guidance aimed specifically at top-band scores, see [High-Score Playbook](HIGH-SCORE-PLAYBOOK.md).
 
 Current benchmark for the native catalog:
 
-- 48 published native skills
-- average quality score `87.5`
-- average best-practices score `85.2`
-- average security score `90.6`
-- validation mix `40` passed, `8` warn, `0` failed
+- 55 published native skills, plus 38 curated English derivatives in `skills_omni/`
+- average quality score `88.9`
+- average best-practices score `87.1`
+- average security score `88.6`
+- validation mix `45` passed, `10` warn, `0` failed
 
 ---
 

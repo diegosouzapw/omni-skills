@@ -8,8 +8,8 @@
 
 | Metric | Value |
 |:-------|:------|
-| Native catalog | **48** skills across 15 active categories, including architecture, design, security, DevOps, AI-engineering, and imported native intake |
-| Curated output | **32** enhanced English derivatives in `skills_omni/` |
+| Native catalog | **55** skills across 15 active categories, including architecture, design, security, DevOps, AI-engineering, and imported native intake |
+| Curated output | **38** enhanced English derivatives in `skills_omni/` |
 | Defined bundles | **7** (all fully backed by published catalog skills) |
 | Install-capable clients | **7** (Claude Code, Cursor, Gemini CLI, Codex CLI, Kiro, Antigravity, OpenCode) |
 | MCP config-capable clients | **16** across 33 first-class MCP config targets |

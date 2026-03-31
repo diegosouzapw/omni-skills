@@ -1,6 +1,6 @@
 # 🗺️ Agent-Native Roadmap
 
-> **The architecture evolution plan for Omni Skills: from installer-first repository to shared catalog runtime powering CLI, API, MCP, and A2A without duplicating logic.**
+> **The architecture evolution plan for Awesome Omni Skills: from installer-first repository to a public skill catalog, curated derivative surface, and shared runtime powering CLI, API, MCP, and A2A without duplicating logic.**
 
 ---
 
@@ -21,7 +21,7 @@
 - MCP server with `stdio`, streamable HTTP, and SSE transports
 - local sidecar with allowlisted writes and `config-mcp` flows
 - 7 install-capable clients, 16 config-capable clients, 33 MCP config targets, and 19 config profiles
-- 48 native catalog skills across 15 active categories, plus 32 curated English derivatives under `skills_omni/`
+- 55 native catalog skills across 15 active categories, plus 38 curated English derivatives under `skills_omni/`
 - deeper bundle specialization inside `full-stack`, `security`, `devops`, and `ai-engineer` via `auth-flows`, `threat-modeling`, `release-engineering`, and `context-engineering`
 - per-skill archives (`zip`, `tar.gz`) with SHA-256 checksums and detached signatures on release tags
 - API governance baseline: bearer/API-key auth, admin runtime auth, rate limiting, audit logging, CORS/IP allowlists, trust proxy, maintenance mode, and request IDs
@@ -70,7 +70,7 @@ That expansion history now lives in the mainline runtime docs rather than a sepa
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx omni-skills` workflow working
+- ✅ Keep the current `npx awesome-omni-skills` workflow working while preserving the legacy `npx omni-skills` alias during migration
 - ✅ Introduce a machine-readable source of truth for skills
 - ✅ Support discovery, recommendation, and install planning by agents
 - ✅ Separate remote catalog concerns from local filesystem writes

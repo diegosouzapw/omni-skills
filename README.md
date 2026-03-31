@@ -4,7 +4,7 @@
 
 # 🧠 Awesome Omni Skills
 
-### Public Skill Repository · Curated Best-Practice Skills · Runtime Surfaces
+### Public Skill Repository · Curated Improved Best-Practice Skills · Runtime Surfaces
 
 <br/>
 
@@ -78,7 +78,7 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients |
-| 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
+| 🔐 | **Curated Output** | `38` enhanced English derivatives in `skills_omni/` |
 | 🧪 | **Validation Mix** | `45` passed · `10` warn · `0` errors |
 | 📋 | **Current Release** | `v0.1.5` |
 
@@ -91,14 +91,16 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 ### 1️⃣ What is this?
 
-Awesome Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it's a public repository of reusable `SKILL.md` playbooks, curated enhanced best-practice derivatives, and the runtime surfaces that distribute and operate that catalog.
+Awesome Omni Skills is an **installable skill catalog and runtime** for AI coding assistants. At its core, it is a public repository of reusable `SKILL.md` playbooks, a curated repository of improved best-practice derivatives, and the CLI, API, MCP, and A2A runtime surfaces that distribute and operate the same catalog.
+
+Native intake enters `skills/` in two ways: direct contributor PRs and reviewed repository-based external-import PRs. Curated English-only derivatives are then proposed separately into `skills_omni/` by the private enhancement pipeline.
 
 <details>
 <summary>📋 <strong>What's included</strong></summary>
 
 | Component | Description |
 |:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants, including native intake from direct contributor PRs and automated external-import PRs |
+| 🧠 **Skills** | Reusable `SKILL.md`-based playbooks for AI assistants, including native intake from direct contributor PRs and reviewed repository-based external-import PRs |
 | 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
 | 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
 | 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
@@ -164,6 +166,7 @@ Before comparing bundles or picking an install path, understanding these five bu
 > - `skills/` accepts native upstream intake in any language, whether submitted directly or proposed by the private external-sync runtime
 > - `skills_omni/` is always curated and published in English
 > - `skills_omni/` is a one-way surface and does not loop back into native intake
+> - direct contributor PRs and repository-based external intake share the same validator, metadata refresh, and enhancer path
 
 ---
 
@@ -358,7 +361,7 @@ npx awesome-omni-skills config-mcp --target windsurf-user --transport sse --url 
 | 🧠 Native intake skills | **55** |
 | 📂 Active categories | **15** |
 | 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **32** in `skills_omni/` |
+| ✨ Curated derivatives | **38** in `skills_omni/` |
 
 ### 📦 Bundle Availability
 
@@ -479,7 +482,7 @@ Doc-only changes **do not** trigger package publication.
 
 | Path | Purpose |
 |:-----|:--------|
-| 📂 `skills/` | Canonical authored skills and native intake |
+| 📂 `skills/` | Canonical authored skills and native intake from direct PRs or reviewed repository-based imports |
 | ✨ `skills_omni/` | Curated Omni-maintained enhanced derivatives |
 | 📖 `docs/` | User, contributor, architecture, operations, and spec documentation |
 | 📦 `dist/` | Generated manifests, bundles, catalog, and archives |
@@ -502,7 +505,7 @@ Awesome Omni Skills accepts native upstream skill intake under `skills/`.
 
 | Rule | Details |
 |:-----|:--------|
-| 📥 Native intake | May be rough, authored in any language |
+| 📥 Native intake | May be rough, authored in any language, and can arrive from direct PRs or reviewed external-import branches |
 | ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
 | 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
 | 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |

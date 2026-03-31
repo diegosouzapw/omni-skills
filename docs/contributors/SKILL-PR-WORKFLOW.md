@@ -2,6 +2,11 @@
 
 This is the canonical repository flow for pull requests that add or substantially upgrade one or more native skills.
 
+It covers both public intake paths:
+
+- direct contributor PRs that edit `skills/`
+- reviewed repository-based external-import PRs proposed by the private sync runtime
+
 Use it when:
 
 - adding a new skill under `skills/`
@@ -14,6 +19,7 @@ Use it when:
 A strong native skill PR lands with:
 
 - a native skill under `skills/`
+- intake through either a direct contributor branch or an `external-import/<source>` branch
 - enough content for the public validator to classify and index it
 - passing public validation and tests
 - automatic enhancer processing during the PR
@@ -102,7 +108,7 @@ For maintainers, the review standard stays the same: verify that the skill is le
 
 ## Authoring Sequence
 
-1. Create `skills/<skill>/SKILL.md`.
+1. Create `skills/<skill>/SKILL.md` or review an equivalent imported native skill proposed into `skills/` by an `external-import/<source>` PR.
 2. Add frontmatter if you can, but missing or incomplete frontmatter no longer blocks native intake by itself.
 3. Add `agents/`, `references/`, `examples/`, and `scripts/` when you already have them.
 4. Update `data/bundles.json` if the skill deepens an existing bundle.
@@ -205,9 +211,9 @@ Important rollout note:
 This repo now has two distinct surfaces:
 
 - `skills/`
-  Native intake. This preserves the original contribution as submitted.
+  Native intake. This preserves the original contribution as submitted, whether it came from a direct contributor branch or a reviewed repository-based import.
 - `skills_omni/`
-  Omni-enhanced derivative output proposed by automation and maintained by Omni Skills Team.
+  Awesome Omni Skills-enhanced derivative output proposed by automation and maintained by the project team.
 
 Attribution rules for `skills_omni/`:
 
@@ -225,7 +231,7 @@ Batch against a branch diff:
 
 ```bash
 python3 /path/to/omni-skills-private/scripts/enhance_repo_changes.py \
-  --repo-root /path/to/omni-skills \
+  --repo-root /path/to/awesome-omni-skills \
   --base-ref main \
   --head-ref HEAD \
   --mode live \
