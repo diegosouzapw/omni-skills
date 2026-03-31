@@ -43,6 +43,7 @@
 |:-----|:-----|
 | 🧠 Add or improve a skill | `skills/` |
 | 📥 Review a repository-based intake PR | `external-import/<source>` branches targeting `skills/` |
+| 🌍 Propose a new upstream repository | `REPOSITORY-SOURCES.md` |
 | 📖 Update contributor guidance | `docs/contributors/` |
 | 🖥️ Improve CLI, installer, or scripts | `tools/` |
 | 📦 Improve catalog runtime or protocol packages | `packages/` |
@@ -119,6 +120,8 @@ The public repository accepts native skills through two operational paths:
 | 📥 Repository-based external intake | Maintainer-operated `external-import/<source>` PR imports skills from another reviewed repository | Validate the skill plus provenance, upstream ownership, and license notes |
 
 Both paths land in `skills/`, both trigger the same public validator, and both can produce a curated `skills_omni/` companion PR.
+
+If you want to propose an upstream repository instead of sending a skill directly, edit [REPOSITORY-SOURCES.md](REPOSITORY-SOURCES.md). Merge there is a public review gate, not an automatic sync trigger.
 
 ### 🌐 Language Policy
 

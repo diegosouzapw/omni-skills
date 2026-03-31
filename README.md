@@ -515,10 +515,11 @@ Awesome Omni Skills accepts native upstream skill intake under `skills/`.
 |:-----|:--------|
 | 📥 Native intake | May be rough, authored in any language, and can arrive from direct PRs or reviewed external-import branches |
 | ✨ Curated output | `skills_omni/` reserved for automation-authored Omni derivatives |
+| 🌍 Upstream repo proposals | Add or update one row in [REPOSITORY-SOURCES.md](REPOSITORY-SOURCES.md) to nominate a repository for operator review |
 | 🚫 Manual edits | Public manual edits to `skills_omni/` are rejected |
 | 🔄 Reprocessing | Private enhancer reprocesses native changes and refreshes curated baseline |
 
-> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md)
+> 📖 **Start with:** [Contributing Guide](CONTRIBUTING.md) · [Skill PR Workflow](docs/contributors/SKILL-PR-WORKFLOW.md) · [Repository Sources](REPOSITORY-SOURCES.md)
 
 ---
 
