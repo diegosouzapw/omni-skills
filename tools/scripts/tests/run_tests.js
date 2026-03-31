@@ -258,8 +258,41 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
         pull_request: {
           title: "enhance: promote curated skills_omni candidates for #42",
           user: { login: "github-actions[bot]" },
+          body: "## Summary\n\nThis PR was generated automatically from source PR #42.\n",
           head: {
             ref: "skills-omni/pr-42",
+            repo: { full_name: "diegosouzapw/omni-skills" },
+          },
+        },
+      },
+      null,
+      2,
+    ),
+    "utf-8",
+  );
+  childProcess.execFileSync(
+    "python3",
+    [
+      path.resolve(__dirname, "../validate_contribution_scope.py"),
+      "--repository",
+      "diegosouzapw/omni-skills",
+      "--event-path",
+      contributionScopeEvent,
+      "--changed-path",
+      "skills_omni/example/SKILL.md",
+    ],
+    { encoding: "utf-8" },
+  );
+  fs.writeFileSync(
+    contributionScopeEvent,
+    JSON.stringify(
+      {
+        pull_request: {
+          title: "enhance: promote curated skills_omni candidates for #43",
+          user: { login: "diegosouzapw" },
+          body: "## Summary\n\nThis PR was generated automatically from source PR #43.\n",
+          head: {
+            ref: "skills-omni/pr-43",
             repo: { full_name: "diegosouzapw/omni-skills" },
           },
         },

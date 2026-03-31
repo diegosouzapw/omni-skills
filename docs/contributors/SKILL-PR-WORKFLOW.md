@@ -162,7 +162,8 @@ The curated surface is intentionally one-way:
 The repository now enforces that boundary:
 
 - direct public PRs that modify `skills_omni/` are rejected
-- only automation-authored companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- only automation-pattern companion PRs from the `skills-omni/pr-*` branch family are accepted there
+- accepted companion PRs must use the generated title/body contract from the private enhancer; this covers both the GitHub-hosted path and the LAN/local fallback that opens the same PR shape under a repository-owned branch
 - mixed PRs that try to change both `skills/` and `skills_omni/` at once are rejected
 
 ## Automatic Versioning After Merge
