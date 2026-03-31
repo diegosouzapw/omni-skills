@@ -2,18 +2,18 @@
   "schema_version": "2026-03-26",
   "version": "1.2.0",
   "generated_at": "2026-03-31T00:00:00+00:00",
-  "total_skills": 49,
+  "total_skills": 55,
   "categories": {
     "ai-agents": 16,
     "backend": 2,
-    "cli-automation": 1,
+    "cli-automation": 2,
     "communication": 1,
     "data-ai": 1,
-    "design": 3,
-    "development": 7,
-    "devops": 5,
+    "design": 4,
+    "development": 8,
+    "devops": 6,
     "documentation": 2,
-    "frontend": 1,
+    "frontend": 3,
     "fullstack-web": 2,
     "machine-learning": 1,
     "product": 2,
@@ -1737,6 +1737,118 @@
       "security_tier": "review",
       "security_status": "passed",
       "validation_status": "passed"
+    },
+    {
+      "id": "deploy-to-vercel",
+      "name": "deploy-to-vercel",
+      "display_name": "Deploy to Vercel",
+      "description": "Deploy to Vercel workflow skill. Use this skill when the user needs Deploy applications and websites to Vercel. Use when the user requests deployment actions like \\\"deploy my app\\\", \\\"deploy and give me the link\\\", \\\"push this live\\\", or \\\"create a preview deployment\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "devops",
+      "raw_category": "devops",
+      "taxonomy": {
+        "raw_category": "devops",
+        "canonical_category": "devops",
+        "inferred_category": "devops",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "deploy-to-vercel",
+        "deploy",
+        "applications",
+        "and",
+        "websites",
+        "vercel",
+        "use",
+        "the"
+      ],
+      "complexity": "advanced",
+      "risk": "caution",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/deploy-to-vercel",
+      "entrypoint_path": "skills/deploy-to-vercel/SKILL.md",
+      "manifest_path": "dist/manifests/deploy-to-vercel.json",
+      "metadata_path": "skills/deploy-to-vercel/metadata.json",
+      "content_length": 21283,
+      "body_length": 20497,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "resources",
+        "scripts"
+      ],
+      "artifacts_count": 17,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "07879e55468ba75fd85f65a172a51562aad350fbdc6997f354d11645db6d0203",
+        "package_sha256": "31f337151adcd770f81d07d81e4043d8dfc8ecb99eea14481cd71ddc347ba228"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 48,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "validation_status": "warn"
     },
     {
       "id": "design-systems-ops",
@@ -5034,6 +5146,453 @@
       "validation_status": "passed"
     },
     {
+      "id": "vercel-cli-with-tokens",
+      "name": "vercel-cli-with-tokens",
+      "display_name": "Vercel CLI with Tokens",
+      "description": "Vercel CLI with Tokens workflow skill. Use this skill when the user needs Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login \\u2014 e.g. \\\"deploy to vercel\\\", \\\"set up vercel\\\", \\\"add environment variables to vercel\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "cli-automation",
+      "raw_category": "cli-automation",
+      "taxonomy": {
+        "raw_category": "cli-automation",
+        "canonical_category": "cli-automation",
+        "inferred_category": "cli-automation",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "vercel-cli-with-tokens",
+        "deploy",
+        "and",
+        "manage",
+        "projects",
+        "vercel",
+        "using",
+        "token-based"
+      ],
+      "complexity": "advanced",
+      "risk": "caution",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/vercel-cli-with-tokens",
+      "entrypoint_path": "skills/vercel-cli-with-tokens/SKILL.md",
+      "manifest_path": "dist/manifests/vercel-cli-with-tokens.json",
+      "metadata_path": "skills/vercel-cli-with-tokens/metadata.json",
+      "content_length": 19295,
+      "body_length": 18434,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 14,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "a696760a356791abf4fc37f303b969fa72d536d3a3ba373886275948c10c291c",
+        "package_sha256": "cfefb3d6ddd90a205a8fe9fa95973e98d6813e10e6496463e4339723fc738966"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 96,
+      "quality_tier": "platinum",
+      "security_score": 0,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "validation_status": "warn"
+    },
+    {
+      "id": "vercel-composition-patterns",
+      "name": "vercel-composition-patterns",
+      "display_name": "React Composition Patterns",
+      "description": "React Composition Patterns workflow skill. Use this skill when the user needs Composition patterns for building flexible, maintainable React components. Avoid boolean prop proliferation by using compound components, lifting state, and composing internals. These patterns make codebases easier for both humans and AI agents to work with as they scale and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "development",
+      "raw_category": "development",
+      "taxonomy": {
+        "raw_category": "development",
+        "canonical_category": "development",
+        "inferred_category": "development",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "vercel-composition-patterns",
+        "composition",
+        "patterns",
+        "for",
+        "building",
+        "flexible",
+        "maintainable",
+        "react"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/vercel-composition-patterns",
+      "entrypoint_path": "skills/vercel-composition-patterns/SKILL.md",
+      "manifest_path": "dist/manifests/vercel-composition-patterns.json",
+      "metadata_path": "skills/vercel-composition-patterns/metadata.json",
+      "content_length": 11839,
+      "body_length": 10935,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "rules",
+        "scripts"
+      ],
+      "artifacts_count": 26,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "d9fca9b4bb2cac67d5be33f44fbf71dbcb1fbdf12568babfb8ab50491e5e080d",
+        "package_sha256": "c037422a5d46a69a222bbb49214d6f5d116e0c8d82a1c20fbe9bfa406b85a1f4"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "vercel-react-best-practices",
+      "name": "vercel-react-best-practices",
+      "display_name": "Vercel React Best Practices",
+      "description": "Vercel React Best Practices workflow skill. Use this skill when the user needs React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "frontend",
+      "raw_category": "frontend",
+      "taxonomy": {
+        "raw_category": "frontend",
+        "canonical_category": "frontend",
+        "inferred_category": "frontend",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "vercel-react-best-practices",
+        "react",
+        "and",
+        "next",
+        "performance",
+        "optimization",
+        "guidelines",
+        "vercel"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/vercel-react-best-practices",
+      "entrypoint_path": "skills/vercel-react-best-practices/SKILL.md",
+      "manifest_path": "dist/manifests/vercel-react-best-practices.json",
+      "metadata_path": "skills/vercel-react-best-practices/metadata.json",
+      "content_length": 15850,
+      "body_length": 14895,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "rules",
+        "scripts"
+      ],
+      "artifacts_count": 85,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "4d5f97589f1bfd1a8cf510eaa00fe97efe5752c3e0b90d8e534bce156274626b",
+        "package_sha256": "ad58374d562848e019f0d3025ffb0d5c0e62860ec72b15cae5eb6d45acfa02be"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "vercel-react-native-skills",
+      "name": "vercel-react-native-skills",
+      "display_name": "React Native Skills",
+      "description": "React Native Skills workflow skill. Use this skill when the user needs Comprehensive best practices for React Native and Expo applications. Contains rules across multiple categories covering performance, animations, UI patterns, and platform-specific optimizations and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "frontend",
+      "raw_category": "frontend",
+      "taxonomy": {
+        "raw_category": "frontend",
+        "canonical_category": "frontend",
+        "inferred_category": "frontend",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "vercel-react-native-skills",
+        "comprehensive",
+        "best",
+        "practices",
+        "for",
+        "react",
+        "native",
+        "and"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/vercel-react-native-skills",
+      "entrypoint_path": "skills/vercel-react-native-skills/SKILL.md",
+      "manifest_path": "dist/manifests/vercel-react-native-skills.json",
+      "metadata_path": "skills/vercel-react-native-skills/metadata.json",
+      "content_length": 12844,
+      "body_length": 12042,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "rules",
+        "scripts"
+      ],
+      "artifacts_count": 54,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "fdc3946c9775d21b958a299db06d8ca742a9d2bde027e6703689f89004768b15",
+        "package_sha256": "770de893a37fbc7a49860069db757aac9be89a0e9780dcee9edfc978e81a545d"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 98,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
       "id": "vulnerability-scanner",
       "name": "vulnerability-scanner",
       "display_name": "Vulnerability Scanner",
@@ -5144,6 +5703,117 @@
       "best_practices_score": 99,
       "best_practices_tier": "excellent",
       "quality_score": 97,
+      "quality_tier": "platinum",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "validation_status": "passed"
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "web-design-guidelines",
+      "display_name": "Web Interface Guidelines",
+      "description": "Web Interface Guidelines workflow skill. Use this skill when the user needs Review UI code for Web Interface Guidelines compliance. Use when asked to \\\"review my UI\\\", \\\"check accessibility\\\", \\\"audit design\\\", \\\"review UX\\\", or \\\"check my site against best practices\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "version": "0.0.1",
+      "category": "design",
+      "raw_category": "design",
+      "taxonomy": {
+        "raw_category": "design",
+        "canonical_category": "design",
+        "inferred_category": "design",
+        "category_source": "frontmatter"
+      },
+      "tags": [
+        "web-design-guidelines",
+        "review",
+        "for",
+        "web",
+        "interface",
+        "guidelines",
+        "compliance",
+        "use"
+      ],
+      "complexity": "advanced",
+      "risk": "safe",
+      "tools": [
+        "codex-cli",
+        "claude-code",
+        "cursor",
+        "gemini-cli",
+        "opencode"
+      ],
+      "source": "community",
+      "author": "vercel",
+      "date_added": "2026-03-31",
+      "date_updated": "2026-03-31",
+      "path": "skills/web-design-guidelines",
+      "entrypoint_path": "skills/web-design-guidelines/SKILL.md",
+      "manifest_path": "dist/manifests/web-design-guidelines.json",
+      "metadata_path": "skills/web-design-guidelines/metadata.json",
+      "content_length": 10907,
+      "body_length": 10111,
+      "sub_resources": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "artifacts_count": 14,
+      "install_targets": [
+        {
+          "tool": "codex-cli",
+          "scope": "user-global",
+          "default_path": "~/.codex/skills",
+          "installer_flag": "--codex",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "claude-code",
+          "scope": "user-global",
+          "default_path": "~/.claude/skills",
+          "installer_flag": "--claude",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": ">> /skill-name help me..."
+        },
+        {
+          "tool": "cursor",
+          "scope": "user-global",
+          "default_path": "~/.cursor/skills",
+          "installer_flag": "--cursor",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "@skill-name"
+        },
+        {
+          "tool": "gemini-cli",
+          "scope": "user-global",
+          "default_path": "~/.gemini/skills",
+          "installer_flag": "--gemini",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "Use @skill-name to..."
+        },
+        {
+          "tool": "opencode",
+          "scope": "project-local",
+          "default_path": ".opencode/skills",
+          "installer_flag": "--opencode",
+          "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+          "invocation": "opencode run @skill-name"
+        }
+      ],
+      "checksums": {
+        "entrypoint_sha256": "46c9d3faad3f5b73d1b415736226bde6b9187d43846b488a5b0463cd5f7f3920",
+        "package_sha256": "5938f0b65dd358a81503470aee9e043e8e82cb480ab71f57841108dcf591d618"
+      },
+      "archives_count": 2,
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true,
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "quality_score": 100,
       "quality_tier": "platinum",
       "security_score": 95,
       "security_tier": "review",

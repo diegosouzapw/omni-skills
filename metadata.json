@@ -7,13 +7,13 @@
     "metadata_path": "metadata.json"
   },
   "summary": {
-    "total_skills": 49,
-    "passed": 41,
-    "warnings": 8,
+    "total_skills": 55,
+    "passed": 45,
+    "warnings": 10,
     "errors": 0,
-    "average_quality_score": 87.8,
-    "average_best_practices_score": 85.6,
-    "average_security_score": 90.7
+    "average_quality_score": 88.9,
+    "average_best_practices_score": 87.1,
+    "average_security_score": 88.6
   },
   "taxonomy": {
     "canonical_categories": [
@@ -39,14 +39,14 @@
     "counts": {
       "ai-agents": 16,
       "backend": 2,
-      "cli-automation": 1,
+      "cli-automation": 2,
       "communication": 1,
       "data-ai": 1,
-      "design": 3,
-      "development": 7,
-      "devops": 5,
+      "design": 4,
+      "development": 8,
+      "devops": 6,
       "documentation": 2,
-      "frontend": 1,
+      "frontend": 3,
       "fullstack-web": 2,
       "machine-learning": 1,
       "product": 2,
@@ -58,27 +58,27 @@
     "skill_levels": {
       "l1": 0,
       "l2": 8,
-      "l3": 41
+      "l3": 47
     },
     "quality_tiers": {
       "bronze": 4,
-      "platinum": 41,
+      "platinum": 47,
       "starter": 4
     },
     "security_tiers": {
-      "blocked": 3,
+      "blocked": 5,
       "hardened": 3,
-      "review": 42,
+      "review": 46,
       "risky": 1
     },
     "security_status": {
-      "passed": 44,
-      "warn": 5,
+      "passed": 48,
+      "warn": 7,
       "failed": 0
     },
     "validation_status": {
-      "passed": 41,
-      "warn": 8,
+      "passed": 45,
+      "warn": 10,
       "failed": 0
     }
   },
@@ -386,6 +386,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/debugging/metadata.json",
       "entrypoint": "skills/debugging/SKILL.md"
+    },
+    {
+      "id": "deploy-to-vercel",
+      "display_name": "Deploy to Vercel",
+      "description": "Deploy to Vercel workflow skill. Use this skill when the user needs Deploy applications and websites to Vercel. Use when the user requests deployment actions like \\\"deploy my app\\\", \\\"deploy and give me the link\\\", \\\"push this live\\\", or \\\"create a preview deployment\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "devops",
+      "canonical_category": "devops",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 48,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "warn",
+      "metadata_path": "skills/deploy-to-vercel/metadata.json",
+      "entrypoint": "skills/deploy-to-vercel/SKILL.md"
     },
     {
       "id": "design-systems-ops",
@@ -996,6 +1015,82 @@
       "entrypoint": "skills/threat-modeling/SKILL.md"
     },
     {
+      "id": "vercel-cli-with-tokens",
+      "display_name": "Vercel CLI with Tokens",
+      "description": "Vercel CLI with Tokens workflow skill. Use this skill when the user needs Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login \\u2014 e.g. \\\"deploy to vercel\\\", \\\"set up vercel\\\", \\\"add environment variables to vercel\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "cli-automation",
+      "canonical_category": "cli-automation",
+      "quality_score": 96,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 0,
+      "security_tier": "blocked",
+      "security_status": "warn",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "warn",
+      "metadata_path": "skills/vercel-cli-with-tokens/metadata.json",
+      "entrypoint": "skills/vercel-cli-with-tokens/SKILL.md"
+    },
+    {
+      "id": "vercel-composition-patterns",
+      "display_name": "React Composition Patterns",
+      "description": "React Composition Patterns workflow skill. Use this skill when the user needs Composition patterns for building flexible, maintainable React components. Avoid boolean prop proliferation by using compound components, lifting state, and composing internals. These patterns make codebases easier for both humans and AI agents to work with as they scale and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "development",
+      "canonical_category": "development",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/vercel-composition-patterns/metadata.json",
+      "entrypoint": "skills/vercel-composition-patterns/SKILL.md"
+    },
+    {
+      "id": "vercel-react-best-practices",
+      "display_name": "Vercel React Best Practices",
+      "description": "Vercel React Best Practices workflow skill. Use this skill when the user needs React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "frontend",
+      "canonical_category": "frontend",
+      "quality_score": 99,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/vercel-react-best-practices/metadata.json",
+      "entrypoint": "skills/vercel-react-best-practices/SKILL.md"
+    },
+    {
+      "id": "vercel-react-native-skills",
+      "display_name": "React Native Skills",
+      "description": "React Native Skills workflow skill. Use this skill when the user needs Comprehensive best practices for React Native and Expo applications. Contains rules across multiple categories covering performance, animations, UI patterns, and platform-specific optimizations and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "frontend",
+      "canonical_category": "frontend",
+      "quality_score": 98,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/vercel-react-native-skills/metadata.json",
+      "entrypoint": "skills/vercel-react-native-skills/SKILL.md"
+    },
+    {
       "id": "vulnerability-scanner",
       "display_name": "Vulnerability Scanner",
       "description": "Vulnerability scanning workflow skill. Use this skill when a user needs repeatable coverage for known vulnerabilities, unsafe patterns, or release hygiene.",
@@ -1013,6 +1108,25 @@
       "validation_status": "passed",
       "metadata_path": "skills/vulnerability-scanner/metadata.json",
       "entrypoint": "skills/vulnerability-scanner/SKILL.md"
+    },
+    {
+      "id": "web-design-guidelines",
+      "display_name": "Web Interface Guidelines",
+      "description": "Web Interface Guidelines workflow skill. Use this skill when the user needs Review UI code for Web Interface Guidelines compliance. Use when asked to \\\"review my UI\\\", \\\"check accessibility\\\", \\\"audit design\\\", \\\"review UX\\\", or \\\"check my site against best practices\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+      "raw_category": "design",
+      "canonical_category": "design",
+      "quality_score": 100,
+      "quality_tier": "platinum",
+      "best_practices_score": 100,
+      "best_practices_tier": "excellent",
+      "security_score": 95,
+      "security_tier": "review",
+      "security_status": "passed",
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "validation_status": "passed",
+      "metadata_path": "skills/web-design-guidelines/metadata.json",
+      "entrypoint": "skills/web-design-guidelines/SKILL.md"
     }
   ]
 }

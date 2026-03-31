@@ -1,0 +1,2 @@
+16fa2b8c0ac1bb42d9aadf6f2ba716af2722ca1e2524209204e4096757b845da  vercel-cli-with-tokens.zip
+f9d3f4206a5828dd34abe09a9221f6faa9ccac678a6cd7923815147eb67277cb  vercel-cli-with-tokens.tar.gz

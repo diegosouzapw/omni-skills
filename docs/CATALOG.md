@@ -1,6 +1,6 @@
 # 📚 Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 49 skills across 15 categories.
+> Auto-generated from `skills_index.json` — 55 skills across 15 categories.
 
 Generated: 2026-03-31T00:00:00+00:00
 
@@ -10,14 +10,14 @@ Generated: 2026-03-31T00:00:00+00:00
 
 - [🧠 Ai Agents (16)](#ai-agents)
 - [🗄️ Backend (2)](#backend)
-- [⚙️ Cli Automation (1)](#cli-automation)
+- [⚙️ Cli Automation (2)](#cli-automation)
 - [💬 Communication (1)](#communication)
 - [🤖 Data Ai (1)](#data-ai)
-- [🎨 Design (3)](#design)
-- [💻 Development (7)](#development)
-- [☁️ Devops (5)](#devops)
+- [🎨 Design (4)](#design)
+- [💻 Development (8)](#development)
+- [☁️ Devops (6)](#devops)
 - [📝 Documentation (2)](#documentation)
-- [🖼️ Frontend (1)](#frontend)
+- [🖼️ Frontend (3)](#frontend)
 - [🌐 Fullstack Web (2)](#fullstack-web)
 - [📈 Machine Learning (1)](#machine-learning)
 - [🧭 Product (2)](#product)
@@ -59,6 +59,7 @@ Generated: 2026-03-31T00:00:00+00:00
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`find-skills`](../skills/find-skills/SKILL.md) | Catalog discovery workflow skill. Use this skill when a user asks for a capability, workflow, or domain-specific helper  | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`vercel-cli-with-tokens`](../skills/vercel-cli-with-tokens/SKILL.md) | Vercel CLI with Tokens workflow skill. Use this skill when the user needs Deploy and manage projects on Vercel using tok | L3 resources | 100/100 | 96/100 | 0/100 warn |
 
 ## 💬 Communication
 
@@ -79,6 +80,7 @@ Generated: 2026-03-31T00:00:00+00:00
 | [`accessibility-audit`](../skills/accessibility-audit/SKILL.md) | Accessibility audit workflow skill. Use this skill when a user needs keyboard, semantics, focus, contrast, motion, or as | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`design-systems-ops`](../skills/design-systems-ops/SKILL.md) | Design systems operations workflow skill. Use this skill when a user needs token governance, component drift control, re | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`design-token-governance`](../skills/design-token-governance/SKILL.md) | Design token governance workflow skill. Use this skill when a team needs to introduce, rename, deprecate, or review desi | L3 resources | 97/100 | 95/100 | 95/100 passed |
+| [`web-design-guidelines`](../skills/web-design-guidelines/SKILL.md) | Web Interface Guidelines workflow skill. Use this skill when the user needs Review UI code for Web Interface Guidelines  | L3 resources | 100/100 | 100/100 | 95/100 passed |
 
 ## 💻 Development
 
@@ -91,11 +93,13 @@ Generated: 2026-03-31T00:00:00+00:00
 | [`linear-deep-dive`](../skills/linear-deep-dive/SKILL.md) | Linear Deep Dive workflow skill. Use this skill when the user needs given a Linear issue ID, URL, identifier, or project | L3 resources | 100/100 | 96/100 | 95/100 passed |
 | [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`pm-research`](../skills/pm-research/SKILL.md) | PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packa | L3 resources | 100/100 | 100/100 | 95/100 passed |
+| [`vercel-composition-patterns`](../skills/vercel-composition-patterns/SKILL.md) | React Composition Patterns workflow skill. Use this skill when the user needs Composition patterns for building flexible | L3 resources | 100/100 | 99/100 | 95/100 passed |
 
 ## ☁️ Devops
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
+| [`deploy-to-vercel`](../skills/deploy-to-vercel/SKILL.md) | Deploy to Vercel workflow skill. Use this skill when the user needs Deploy applications and websites to Vercel. Use when | L3 resources | 100/100 | 99/100 | 48/100 warn |
 | [`docker-expert`](../skills/docker-expert/SKILL.md) | Docker workflow skill. Use this skill when a user needs Dockerfiles, image build strategy, runtime hardening, or contain | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`kubernetes`](../skills/kubernetes/SKILL.md) | Kubernetes workflow skill. Use this skill when a user needs workload manifests, rollout strategy, service exposure, or c | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`observability-review`](../skills/observability-review/SKILL.md) | Observability workflow skill. Use this skill when a user needs logs, metrics, traces, alerts, or SLO review before shipp | L3 resources | 99/100 | 97/100 | 95/100 passed |
@@ -114,6 +118,8 @@ Generated: 2026-03-31T00:00:00+00:00
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`frontend-design`](../skills/frontend-design/SKILL.md) | Frontend design workflow skill. Use this skill when a user needs UI structure, states, and interaction patterns before i | L3 resources | 99/100 | 97/100 | 95/100 passed |
+| [`vercel-react-best-practices`](../skills/vercel-react-best-practices/SKILL.md) | Vercel React Best Practices workflow skill. Use this skill when the user needs React and Next.js performance optimizatio | L3 resources | 100/100 | 99/100 | 95/100 passed |
+| [`vercel-react-native-skills`](../skills/vercel-react-native-skills/SKILL.md) | React Native Skills workflow skill. Use this skill when the user needs Comprehensive best practices for React Native and | L3 resources | 100/100 | 98/100 | 95/100 passed |
 
 ## 🌐 Fullstack Web
 

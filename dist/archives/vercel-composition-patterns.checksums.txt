@@ -1,0 +1,2 @@
+0d3b85cb970f49a14a589f62853a658ef4c776822e91a554ef732b89f1305f5f  vercel-composition-patterns.zip
+68d9cffeabf4fe8eb91c3c4a79c4daa0c83e50c2d6169c71e3a483f2828fccbb  vercel-composition-patterns.tar.gz

@@ -1,0 +1,675 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "vercel-react-native-skills",
+  "slug": "vercel-react-native-skills",
+  "display_name": "React Native Skills",
+  "description": "React Native Skills workflow skill. Use this skill when the user needs Comprehensive best practices for React Native and Expo applications. Contains rules across multiple categories covering performance, animations, UI patterns, and platform-specific optimizations and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "vercel-react-native-skills",
+    "comprehensive",
+    "best",
+    "practices",
+    "for",
+    "react",
+    "native",
+    "and"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "vercel",
+  "dates": {
+    "added": "2026-03-31",
+    "updated": "2026-03-31"
+  },
+  "entrypoint": "skills/vercel-react-native-skills/SKILL.md",
+  "paths": {
+    "root": "skills/vercel-react-native-skills",
+    "manifest": "dist/manifests/vercel-react-native-skills.json",
+    "metadata": "skills/vercel-react-native-skills/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "rules",
+      "scripts"
+    ],
+    "artifacts_count": 54,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 11,
+        "workflow_section_length": 1372,
+        "when_to_use_section_length": 408,
+        "best_practices_items_count": 7,
+        "best_practices_section_length": 1246,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1341,
+        "resources_items_count": 41,
+        "resources_section_length": 3874,
+        "examples_section_length": 1239,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 575,
+        "decision_assets_count": 45,
+        "table_count": 24,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 10,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 6.69
+      }
+    },
+    "quality": {
+      "score": 98,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 53,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 12042,
+    "content_length": 12844,
+    "body_lines": 239,
+    "word_count": 1599,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 11,
+      "workflow_section_length": 1372,
+      "when_to_use_section_length": 408,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 1246,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1341,
+      "resources_items_count": 41,
+      "resources_section_length": 3874,
+      "examples_section_length": 1239,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 575,
+      "decision_assets_count": 45,
+      "table_count": 24,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.69
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/vercel-react-native-skills/AGENTS.md",
+      "kind": "support",
+      "size_bytes": 73771,
+      "sha256": "72996343b8260800fbeb9af63ddaed91f14b65dc547e0922f9f8e9bd72076cbf"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 925,
+      "sha256": "f338e1157a71ddc4a063b7ac0aff888c905e13659345d1d269c44ea2eb0ffc10"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 707,
+      "sha256": "17a7524b5e70ed2b5e5a3fab0e0f65308e15dc9aef8e532dedf7c0497bf2fcb2"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/README.md",
+      "kind": "support",
+      "size_bytes": 5064,
+      "sha256": "d60d7623005a833b928be6a109ed9d14dea43d7217fb534e8f2e4de5fc1f0ddf"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12844,
+      "sha256": "fdc3946c9775d21b958a299db06d8ca742a9d2bde027e6703689f89004768b15"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/metadata.json",
+      "kind": "support",
+      "size_bytes": 7829,
+      "sha256": "cefdab9e3dafe2e6a73e644c64afc3865b419295a4a26bf31b5d3a9c95b853eb"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1973,
+      "sha256": "bcc252b841d8b05d717a292e0fd96188a711ccea227382a1e12f4d0c987d456d"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "20f90492410f0fd64db90e20f6c81a912e5dfff17f97b93f06ef1067d17d4565"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 1045,
+      "sha256": "f12f2b520f20a7c00735f1b46f09668651f95335611c5698b0200592fd96544f"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/_sections.md",
+      "kind": "support",
+      "size_bytes": 2228,
+      "sha256": "21d7445e92bd7d393b420118c3fb9ebbf30aaf123a15143afb6c0b1b562cfdfd"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/_template.md",
+      "kind": "support",
+      "size_bytes": 631,
+      "sha256": "99df2a3ea088c6c22de2484ddc7e964d0e9923846f44c63380343ecc64455442"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/animation-derived-value.md",
+      "kind": "support",
+      "size_bytes": 1373,
+      "sha256": "689228e9d59227934f296563963951aa9368be0afb2a188f650de161203b1862"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/animation-gesture-detector-press.md",
+      "kind": "support",
+      "size_bytes": 2559,
+      "sha256": "69408d4be669e74689d865c5f50a22fc3a802d521fe493371761abd20526e58e"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/animation-gpu-properties.md",
+      "kind": "support",
+      "size_bytes": 2059,
+      "sha256": "f885e4179445da27cbc225e0a4aa3ed9016fc3507ca6f864392ba7a9d0bd7516"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/design-system-compound-components.md",
+      "kind": "support",
+      "size_bytes": 1625,
+      "sha256": "dcb10900a58fcf57cca2e27c062d02df2325a7949e08fb45e9e05cc2b132b1a6"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/fonts-config-plugin.md",
+      "kind": "support",
+      "size_bytes": 1393,
+      "sha256": "b92568774064a604e7a479d4c8d7263aed5609740e9161d2f2764bfff761905d"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/imports-design-system-folder.md",
+      "kind": "support",
+      "size_bytes": 1418,
+      "sha256": "aa6337f7f2869a46a9141ec65e02c3da5c3bf051023899b82e0f0aef5bff8423"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/js-hoist-intl.md",
+      "kind": "support",
+      "size_bytes": 1645,
+      "sha256": "b4b08622465ffcd5e5961878eb8c6d7359aa242d16c990b59941c9111962fe46"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-callbacks.md",
+      "kind": "support",
+      "size_bytes": 1059,
+      "sha256": "db800e9dfe0080eb4954b96e2a362ee8344d08e08b1ed06bc8059450f3e6f0dd"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-function-references.md",
+      "kind": "support",
+      "size_bytes": 4133,
+      "sha256": "b54470e41d578b207ee3223f6853efb7fbf8e5f83d9aecf8da16989072f99544"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-images.md",
+      "kind": "support",
+      "size_bytes": 1417,
+      "sha256": "e88f16ac113c29230d674b7aa2c66c31d5772a74b1ea378d48a97b1143fe6c19"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-inline-objects.md",
+      "kind": "support",
+      "size_bytes": 2308,
+      "sha256": "e2a80aac0f29c6abaf0163c1cc273d09cc8a0030ec077ca2022bbf5c309e4625"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-item-expensive.md",
+      "kind": "support",
+      "size_bytes": 2466,
+      "sha256": "a68cc8ec5dba3c55761bd5df9dfd3d98485f63076868d3e03af15f1e58907ce3"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-item-memo.md",
+      "kind": "support",
+      "size_bytes": 2250,
+      "sha256": "38ec1d149ee485434d11c2b9e2101dfc914afadae4a0738ca905f26b05f708c1"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-item-types.md",
+      "kind": "support",
+      "size_bytes": 2749,
+      "sha256": "eed225f4e9e504bfa7db01f5395d1402545cc47de8adf1829a9408cd5d158cf6"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/list-performance-virtualize.md",
+      "kind": "support",
+      "size_bytes": 1742,
+      "sha256": "98cad308118acb4d6e8e975c0168ce56e2d48ca52ed47f23bc9a30667c066ada"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/monorepo-native-deps-in-app.md",
+      "kind": "support",
+      "size_bytes": 1091,
+      "sha256": "8368b109027fcec1b8a81bfb99718aef2b64edaba77107f73d7c465cc5a14217"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/monorepo-single-dependency-versions.md",
+      "kind": "support",
+      "size_bytes": 1351,
+      "sha256": "61c01b9eaab1e319bf078204231fb573bdfea3c43a6eb99e7ef73ee95d474ccc"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/navigation-native-navigators.md",
+      "kind": "support",
+      "size_bytes": 4941,
+      "sha256": "6642dedb57e72f0b56df5fbc3d5b8aaa91fc4456932c12712cfd076d393f32c6"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/react-compiler-destructure-functions.md",
+      "kind": "support",
+      "size_bytes": 1274,
+      "sha256": "8048926a4fa3fbd28fc0ecf4ba4c383a2f0ed06c2fd7330dd4a15d7f4e548044"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/react-compiler-reanimated-shared-values.md",
+      "kind": "support",
+      "size_bytes": 1268,
+      "sha256": "3174303a72b6849ff0eda5cd9f9650f26baa5f31ed28d35a75076af714fb2ffc"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/react-state-dispatcher.md",
+      "kind": "support",
+      "size_bytes": 2255,
+      "sha256": "7ec5b653e3ff8d9ca97d8d66981cce5590c0e49fa79ab708fd6324542b588870"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/react-state-fallback.md",
+      "kind": "support",
+      "size_bytes": 1735,
+      "sha256": "eb76e386d71680bfdfc0ab64dba1221f4d3d0fdcb4980bb4a871381d58e9e58b"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/react-state-minimize.md",
+      "kind": "support",
+      "size_bytes": 1740,
+      "sha256": "31b989de61defda1c61d8578c4700efd64a427218c3f3dbb7062a1666e1cbe43"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/rendering-no-falsy-and.md",
+      "kind": "support",
+      "size_bytes": 1812,
+      "sha256": "7300fa45ac3a4968db144727a21052421bc62de9b5e9f6f59e28bd16d2fff001"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/rendering-text-in-text-component.md",
+      "kind": "support",
+      "size_bytes": 697,
+      "sha256": "fc67897b6126b6b5574f4d284a6c5b2282528fe89de8ec08e6cfd2a86ab5b235"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/scroll-position-no-state.md",
+      "kind": "support",
+      "size_bytes": 1936,
+      "sha256": "70aa1ee679e755556d7b01b326431fe898d3c23ddba40d0da6bdac23c87a1525"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/state-ground-truth.md",
+      "kind": "support",
+      "size_bytes": 2172,
+      "sha256": "9f3efc73d2e66a5deb3199c9774f42524cd6a0f69784af38301946be5d747cb5"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-expo-image.md",
+      "kind": "support",
+      "size_bytes": 1648,
+      "sha256": "c3c13cce3dd2cc7f8a9b4861e5743af98f62e28f5699f72f492e79a335cfae55"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-image-gallery.md",
+      "kind": "support",
+      "size_bytes": 2546,
+      "sha256": "b34d1ba03710ed9622187716541ae618968e7d03bc28895c2ac918d3cc5853f1"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-measure-views.md",
+      "kind": "support",
+      "size_bytes": 2232,
+      "sha256": "170d058abc4900ea9e851e54f5e8b437ffffc2c9d3847ae35e30a515c8990c3d"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-menus.md",
+      "kind": "support",
+      "size_bytes": 4598,
+      "sha256": "5964adbecfe9aeb28d736a4eaacec6469a1c4ca3f48779d243eb38b6d181cfe9"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-native-modals.md",
+      "kind": "support",
+      "size_bytes": 1859,
+      "sha256": "d803493b3046ad31cbb2c189f1fffb948fd0055050e3c322589bd548421e23a8"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-pressable.md",
+      "kind": "support",
+      "size_bytes": 1534,
+      "sha256": "52cdbad127d713d7d32c59ef74ab1bbd6dca211edc9b25993453f7f4545e79fa"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-safe-area-scroll.md",
+      "kind": "support",
+      "size_bytes": 1579,
+      "sha256": "3dd776caef2344d73529010940b50042861d06d31a192122a4df64bc06aed0e8"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-scrollview-content-inset.md",
+      "kind": "support",
+      "size_bytes": 1317,
+      "sha256": "89e4bbe5e9a602660f4155e9d4c0dee09db1adf21c73f47213cd67ec896e5a13"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/rules/ui-styling.md",
+      "kind": "support",
+      "size_bytes": 2212,
+      "sha256": "cdef4d8b1a097b844e5992ab78e66a2dc604faf1e90f8d325a0eb116e8ef6a7e"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/vercel-react-native-skills/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/vercel-react-native-skills.zip",
+      "file_name": "vercel-react-native-skills.zip",
+      "size_bytes": 192609,
+      "sha256": "6a4be769898750536605300779a27028d292c5d8df1610cf6deedcfcb49112fd",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/vercel-react-native-skills.tar.gz",
+      "file_name": "vercel-react-native-skills.tar.gz",
+      "size_bytes": 225328,
+      "sha256": "be39861889264d16635135091b3c7137b6b5ead51da49791f9f5f7c466efa6d7",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/vercel-react-native-skills.checksums.txt",
+    "file_name": "vercel-react-native-skills.checksums.txt",
+    "sha256": "a7154cc5aefe2001ed0865b849e23c7a8d0d7f0254d1cd952b7ac6cf916526f1",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "fdc3946c9775d21b958a299db06d8ca742a9d2bde027e6703689f89004768b15",
+    "package_sha256": "770de893a37fbc7a49860069db757aac9be89a0e9780dcee9edfc978e81a545d"
+  }
+}

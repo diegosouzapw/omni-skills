@@ -1,0 +1,566 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "vercel-cli-with-tokens",
+  "slug": "vercel-cli-with-tokens",
+  "display_name": "Vercel CLI with Tokens",
+  "description": "Vercel CLI with Tokens workflow skill. Use this skill when the user needs Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login \\u2014 e.g. \\\"deploy to vercel\\\", \\\"set up vercel\\\", \\\"add environment variables to vercel\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "cli-automation",
+  "raw_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "vercel-cli-with-tokens",
+    "deploy",
+    "and",
+    "manage",
+    "projects",
+    "vercel",
+    "using",
+    "token-based"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "vercel",
+  "dates": {
+    "added": "2026-03-31",
+    "updated": "2026-03-31"
+  },
+  "entrypoint": "skills/vercel-cli-with-tokens/SKILL.md",
+  "paths": {
+    "root": "skills/vercel-cli-with-tokens",
+    "manifest": "dist/manifests/vercel-cli-with-tokens.json",
+    "metadata": "skills/vercel-cli-with-tokens/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 14,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 16,
+        "workflow_section_length": 7488,
+        "when_to_use_section_length": 870,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 6,
+        "troubleshooting_section_length": 2342,
+        "resources_items_count": 16,
+        "resources_section_length": 3068,
+        "examples_section_length": 1223,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 579,
+        "decision_assets_count": 50,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 10,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 5.78
+      }
+    },
+    "quality": {
+      "score": 96,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 0,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 13,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "3. ### B) Token is in a .env file under VERCELTOKEN bash grep '^VERCELTOKEN=' .env 2>/dev/null If found, export it: b...",
+          "line": 56
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "### B) Token is in a `.env` file under `VERCEL_TOKEN`",
+          "line": 76
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "grep '^VERCEL_TOKEN=' .env 2>/dev/null",
+          "line": 79
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "export VERCEL_TOKEN=$(grep '^VERCEL_TOKEN=' .env | cut -d= -f2-)",
+          "line": 85
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "### C) Token is in a `.env` file under a different name",
+          "line": 88
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "grep -i 'vercel' .env 2>/dev/null",
+          "line": 93
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "export VERCEL_TOKEN=$(grep '^<VARIABLE_NAME>=' .env | cut -d= -f2-)",
+          "line": 99
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "# Or check .env",
+          "line": 128
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "grep -i 'vercel' .env 2>/dev/null",
+          "line": 129
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "Check the environment and any `.env` files present:",
+          "line": 355
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "grep -i vercel .env 2>/dev/null",
+          "line": 359
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "# Pull env vars to local .env file",
+          "line": 438
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/vercel-cli-with-tokens/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "- **Check the environment for tokens before asking the user.** Look in the current env and `.env` files first.",
+          "line": 471
+        }
+      ],
+      "signals": {
+        "scanned_files": 13,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 18434,
+    "content_length": 19295,
+    "body_lines": 462,
+    "word_count": 2671,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 33,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 7488,
+      "when_to_use_section_length": 870,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 6,
+      "troubleshooting_section_length": 2342,
+      "resources_items_count": 16,
+      "resources_section_length": 3068,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 579,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.78
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/vercel-cli-with-tokens/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1138,
+      "sha256": "4625c017562dc0c287abdc6fe27848ca92f7616c80070ae80cb0a7f176b8db97"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 702,
+      "sha256": "db0a353d0f0cba2e0dd3d8dae1c60c4738228a2bc030b8d938a331e9de7c9a59"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 19337,
+      "sha256": "a696760a356791abf4fc37f303b969fa72d536d3a3ba373886275948c10c291c"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/metadata.json",
+      "kind": "support",
+      "size_bytes": 12428,
+      "sha256": "ef6a196fe6dc97dc81695c8631b8e59dbaaa0b24fc7c2439d580dc1836957f44"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 388,
+      "sha256": "be500804ce4f54942bd19d3e8cec5283cacd3d0beff22103f00c5bda95ee2b90"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 233,
+      "sha256": "86e4603ce4ee118f4875097e6172a9be5649cc906f42c034bda240c2f34e3215"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 351,
+      "sha256": "e9265795d7408b1a2f76cd543dbb2f9aa0608cd537dbb42c6ccd2a505dccfd51"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/vercel-cli-with-tokens/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/vercel-cli-with-tokens.zip",
+      "file_name": "vercel-cli-with-tokens.zip",
+      "size_bytes": 40153,
+      "sha256": "16fa2b8c0ac1bb42d9aadf6f2ba716af2722ca1e2524209204e4096757b845da",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/vercel-cli-with-tokens.tar.gz",
+      "file_name": "vercel-cli-with-tokens.tar.gz",
+      "size_bytes": 51228,
+      "sha256": "f9d3f4206a5828dd34abe09a9221f6faa9ccac678a6cd7923815147eb67277cb",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/vercel-cli-with-tokens.checksums.txt",
+    "file_name": "vercel-cli-with-tokens.checksums.txt",
+    "sha256": "aecc6d400d2b396d45d641b4686c3a1322db9defafa5287f6be41c0847ca7f1e",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "a696760a356791abf4fc37f303b969fa72d536d3a3ba373886275948c10c291c",
+    "package_sha256": "cfefb3d6ddd90a205a8fe9fa95973e98d6813e10e6496463e4339723fc738966"
+  }
+}
