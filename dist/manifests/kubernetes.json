@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/kubernetes/scripts/render_manifest_review.py",
-              "sha256": "71003566ee4894620bf4c9a749920188a29bff680084b52c7fb2498e79f583b3",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/kubernetes/metadata.json",
       "kind": "support",
-      "size_bytes": 5997,
-      "sha256": "a4e01f24ccc88e6f2223f269220aa5283b8cf0553e93331d579786d702ed5e49"
+      "size_bytes": 5815,
+      "sha256": "54e11c9c7acd9b0695166bc605186ed7a733c2926d7aee3b774e4da96dce6fb4"
     },
     {
       "path": "skills/kubernetes/agents/openai.yaml",
@@ -375,15 +365,14 @@
       "format": "zip",
       "path": "dist/archives/kubernetes.zip",
       "file_name": "kubernetes.zip",
-      "size_bytes": 17282,
-      "sha256": "c18a4a4cfac5f9edd609ec2b20aeca300e8aa46eee893f89ba01c520ff15e4c8",
+      "size_bytes": 17100,
+      "sha256": "0e17e9026fd055b49b299b65910c2c52f7e6be8dedbcd5ea889144a9dc9c19a0",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/kubernetes.zip.sig",
-        "sha256": "9790a9aaf3d3ece276e60a8574c7b22bf18fc232d6a2191ba78c8ac7ad425658",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.zip.sig dist/archives/kubernetes.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -391,32 +380,30 @@
       "path": "dist/archives/kubernetes.tar.gz",
       "file_name": "kubernetes.tar.gz",
       "size_bytes": 30743,
-      "sha256": "3719d24a963978303d718111ab0fd96bcf202e12e31430421ea0737f1db611eb",
+      "sha256": "128fbadab854eb96803722fa02015c988969c5253f42a71d1d91801246e716bc",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/kubernetes.tar.gz.sig",
-        "sha256": "e81961829a8ee0ae4522c617827384723384dc2b211c61ec8828052b54e79d9d",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.tar.gz.sig dist/archives/kubernetes.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/kubernetes.checksums.txt",
     "file_name": "kubernetes.checksums.txt",
-    "sha256": "53b2c2fba3308239b4bcd5f5e17c0bd8e49d11e6426afa8af7f755ddd72a7b08",
+    "sha256": "8597fa403363bd127e671ba7a40e2af076b51c804b777a38f92e904f10ae3ced",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/kubernetes.checksums.txt.sig",
-      "sha256": "4e5d091c78ae22ab2abd77054c3c2b8c065b5ceb8f4bb535cc9bfb54187487f7",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/kubernetes.checksums.txt.sig dist/archives/kubernetes.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "83811baa90634eee059fe25428b1611d24301700405db8a77d3637238a8da458",
-    "package_sha256": "ad638826eca98a7fde01c279e59faef2f0fa55cb180ab2fcb3ef96cab31febe4"
+    "package_sha256": "803fb40cd1089e6d85648062c57f1f861053b5848d5fc69e770c8268ca78fbef"
   }
 }

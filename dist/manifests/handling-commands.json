@@ -121,20 +121,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -220,8 +216,8 @@
     {
       "path": "skills/handling-commands/metadata.json",
       "kind": "support",
-      "size_bytes": 5413,
-      "sha256": "0fd44e8c767e96e34457552deb00f6843f98b7a53fc6ca290fe62e6d62fb3a6b"
+      "size_bytes": 5463,
+      "sha256": "2d6fbaca5b83ae43ab27c7ae4a7b626eebd47550b0e5e70ea7387ccc752446b3"
     },
     {
       "path": "skills/handling-commands/rules/filters-message-types.md",
@@ -247,15 +243,14 @@
       "format": "zip",
       "path": "dist/archives/handling-commands.zip",
       "file_name": "handling-commands.zip",
-      "size_bytes": 13052,
-      "sha256": "f68e06f97b1d4eef33c3fc6bde4611973299fbbfe595d3e50226c19cc60d2262",
+      "size_bytes": 13102,
+      "sha256": "5238cc79f05bb1bb95d1edd932b5aa81e0ef3e43577bfdbe04a85b39945ff94d",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-commands.zip.sig",
-        "sha256": "9bf654661a51ad2122c8634cdb86fb194188d69e86ca3982bdc84419e3bf1933",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.zip.sig dist/archives/handling-commands.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -263,32 +258,30 @@
       "path": "dist/archives/handling-commands.tar.gz",
       "file_name": "handling-commands.tar.gz",
       "size_bytes": 20503,
-      "sha256": "238bf3ea08ccfdfa231ee903dfadac6818db413da9b3d1bd2a5cceb435b965b2",
+      "sha256": "f5cab287df140c90c05dadc05cdae8bccf9c5aa6f63a98c1500212ca0448e94b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-commands.tar.gz.sig",
-        "sha256": "1d343d7ce58fe6c9f663db79d1b3df95c653e3343f35a005850c39747a74b6cc",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.tar.gz.sig dist/archives/handling-commands.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/handling-commands.checksums.txt",
     "file_name": "handling-commands.checksums.txt",
-    "sha256": "b9ff3129971cebd76c67016823726e6a648d601d2fe3937c79bc29db47c9e76b",
+    "sha256": "3b6b373123469806340994efc2c8ab0ea51638db14e3db87e348d9b4aa2c9108",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/handling-commands.checksums.txt.sig",
-      "sha256": "13814a3ecaa2dd4a6c058e1637c00c71a1bbf2dab64d869f75bd1fd390d6e41e",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.checksums.txt.sig dist/archives/handling-commands.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "5149c5493458e3ea6e2aabe9df5ac00fa64b73fb149a5d9a1199d84fc5b4c19c",
-    "package_sha256": "8697fe870a8dbf6b6802868f79fb8510bed2305dca5182a5ef84c6fe53f9e3c2"
+    "package_sha256": "77bef50554dd0b3fed522a772a9068e4538e8cdbe8f25acf68a139ffe99eb4c4"
   }
 }

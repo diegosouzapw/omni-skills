@@ -1,2 +1,2 @@
-078aa74bf3ec93dc7f5144b4d73de21b8db3fbf84ed4c211955e37316d3135d8  vercel-react-best-practices.zip
-1109c9e7fff0bff5e4bca9a4e7705bf63a5c3b6827bb40db11754ea97bf75bd5  vercel-react-best-practices.tar.gz
+41a85b1a710323b65303b30a06b48f2144d6508ec8d0b3c357eb7e0941f2fb6d  vercel-react-best-practices.zip
+5b46c0b95b02b94051e88ae4d134835e6a7bcad39315aff2ec3ad7eaf0e183a4  vercel-react-best-practices.tar.gz

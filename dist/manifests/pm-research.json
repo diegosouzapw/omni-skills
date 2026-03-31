@@ -222,31 +222,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 2,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/pm-research/scripts/omni_import_list_support_pack.py",
-              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
-              "status": "not_found"
-            },
-            {
-              "path": "skills/pm-research/scripts/omni_import_print_origin.py",
-              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -335,8 +320,8 @@
     {
       "path": "skills/pm-research/metadata.json",
       "kind": "support",
-      "size_bytes": 6683,
-      "sha256": "7667881fc01576042abf95b04ad3bb01ca8cfda7eebdadf819c0d4a7e382f6fa"
+      "size_bytes": 6266,
+      "sha256": "a548ce2ab3bbadda67e884cff8fcbb4fd33cb04332b964812cf2b294254be13d"
     },
     {
       "path": "skills/pm-research/agents/omni-import-router.md",
@@ -410,15 +395,14 @@
       "format": "zip",
       "path": "dist/archives/pm-research.zip",
       "file_name": "pm-research.zip",
-      "size_bytes": 27841,
-      "sha256": "980787d3c10eedaa4f5cd12ef5c11c8d6d50dd838434bf120d50c0864ee7db92",
+      "size_bytes": 27424,
+      "sha256": "48afec4da4ff2d1c740fbbe49c773ee7584430b2e4a0dfd37ddfa03ec5f56f88",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/pm-research.zip.sig",
-        "sha256": "d1e9d88d1ee12614b00bb8572c8ed3cecb0af3f57018934fbe029cb1a8cf1d14",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/pm-research.zip.sig dist/archives/pm-research.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -426,32 +410,30 @@
       "path": "dist/archives/pm-research.tar.gz",
       "file_name": "pm-research.tar.gz",
       "size_bytes": 40988,
-      "sha256": "ee4e313928ba7f38a5d2844e6688a05d2dfcf9ea910ca374bfab7660db0c37be",
+      "sha256": "144e0102da625f1011b825919ef3e8811465f22259802cfa07a8bb95d328478a",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/pm-research.tar.gz.sig",
-        "sha256": "f90621076dcb8804dd6062f11f986bdaa6384007b6a8779a77427f5249acf686",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/pm-research.tar.gz.sig dist/archives/pm-research.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/pm-research.checksums.txt",
     "file_name": "pm-research.checksums.txt",
-    "sha256": "ccbe6105f404f8ced2274a7899bf09e88bda08cb3a497c78586d5cb19eecaed8",
+    "sha256": "8ac4f4aeda38884e221407c80f7f529603957b69aad72027322659dfc7574a41",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/pm-research.checksums.txt.sig",
-      "sha256": "2f956b18d9ad5b60dd3f2c68114ccaee51dc22b4ba2d51b1dd892d3271e3d1df",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/pm-research.checksums.txt.sig dist/archives/pm-research.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "43dad85b5576772332b72a76fc3f708a8aad1c8aba1ace4b42f2124a209c6e5c",
-    "package_sha256": "a93e0fca0e403cb3f283b718859b827dc95d8534d4ed69061db8edff193a0681"
+    "package_sha256": "62ede41db91ec6c6c381f05196c8a4233e6fcfbd834a25a74012789d5ceb009a"
   }
 }

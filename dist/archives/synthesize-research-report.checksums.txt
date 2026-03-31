@@ -1,2 +1,2 @@
-15b5a21738fdfdcb2e30bb0155288dd5149e56ee59b5e33a5d136d08eed485d3  synthesize-research-report.zip
-fda40e454a50bf82ae2aa597ee76760eea43da3ff13bd4fb42b25925fd23a30c  synthesize-research-report.tar.gz
+4173c8d41a85526f72e1b7d6bcaec78b00bdbf1725119cdca21ce4e678549350  synthesize-research-report.zip
+2b67a1f497a2fea6802eb438576acfc4b408ddb5490c5cc77f1161a630c9933a  synthesize-research-report.tar.gz

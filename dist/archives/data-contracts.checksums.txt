@@ -1,2 +1,2 @@
-df62ac3ded71b08c96cd8ee23bffb52c22a3132190829e3a336055af2190a8d4  data-contracts.zip
-adc665c2bbae5136981ed56d08186c7fd0c00ec3a82971e6006c6168eb9d6ba0  data-contracts.tar.gz
+d85c9004cf49c0bdf786a827ddd9dca41f63415759ce64b4f1063b20f719073a  data-contracts.zip
+4fc1510e1f14fcc52b615dba7de9f0fa0a5ccb9cde1ddbec9c8a727b544fcacb  data-contracts.tar.gz

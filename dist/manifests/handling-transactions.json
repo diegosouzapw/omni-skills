@@ -121,20 +121,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -220,8 +216,8 @@
     {
       "path": "skills/handling-transactions/metadata.json",
       "kind": "support",
-      "size_bytes": 5437,
-      "sha256": "ea2075430c175e514296fce38b8e51069ecf72ab2a77d12b46dce576bcdef258"
+      "size_bytes": 5487,
+      "sha256": "7b740be19d5f36ecee49b0332f941028fa42f405b4cebba927600eee425cd599"
     },
     {
       "path": "skills/handling-transactions/rules/balance-check.md",
@@ -247,15 +243,14 @@
       "format": "zip",
       "path": "dist/archives/handling-transactions.zip",
       "file_name": "handling-transactions.zip",
-      "size_bytes": 17634,
-      "sha256": "34303656360305eaa5e1227e16e3ebaa08b47e08a036fdcaf6bfb2dcc720b5d0",
+      "size_bytes": 17684,
+      "sha256": "ec344c0471b2a8c5b335f42805daaa4888b1cc8201815d4323dd9020123a1a72",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-transactions.zip.sig",
-        "sha256": "54797f69e1c8a69fdf2b6d63d6e64bf7a8be82bd051af53869dee9d82d3266c4",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-transactions.zip.sig dist/archives/handling-transactions.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -263,32 +258,30 @@
       "path": "dist/archives/handling-transactions.tar.gz",
       "file_name": "handling-transactions.tar.gz",
       "size_bytes": 30743,
-      "sha256": "8a63374c4056720b8662b955aa48341bcb3e7cc43bf508cd9c250a150a49bd9f",
+      "sha256": "44a698649eba0fb55f8434617f23cb03ab3331e2b1eea77daca3b877dc0ab27d",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-transactions.tar.gz.sig",
-        "sha256": "98540d33f83e2650e8a6fea3763edb4fdf55e08e27dc61474c7a7a800724561e",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-transactions.tar.gz.sig dist/archives/handling-transactions.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/handling-transactions.checksums.txt",
     "file_name": "handling-transactions.checksums.txt",
-    "sha256": "3415bc1c438908976b46c821763f6f6d3b40a5b4f50b0020edae8bef57216d79",
+    "sha256": "cb7df25323af9a6f1de544e876f01a04a5fe57214e7da8ecf6203a960dab625b",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/handling-transactions.checksums.txt.sig",
-      "sha256": "674136a8bc9a7d8b12599ff5696d579930cd273a1aee526455ea4767bcfa52c8",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-transactions.checksums.txt.sig dist/archives/handling-transactions.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "31599069ee7ce29f78f0051537936e65db7b008efc76bc6c023ef719a781a9c3",
-    "package_sha256": "0026e9919339cc9aa46ded1da3b5bf37fd37778746c3ba7eaf766b78486fbde7"
+    "package_sha256": "0cef9a709288d9b644b75885fee00857e53df9f9eaa8dbc55290a4c4781d3e47"
   }
 }

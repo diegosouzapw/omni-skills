@@ -196,26 +196,16 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "clamav",
-        "detections": [],
-        "infected_files": 0
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
       },
       "virustotal": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "virustotal",
-        "lookups": 1,
-        "positives": 0,
-        "results": [
-          {
-            "path": "skills/docker-expert/scripts/render_container_plan.py",
-            "sha256": "a5df006659c7e0f58f7be610334c47f6a0a21494b4337e11a2f916ba05e4276c",
-            "status": "not_found"
-          }
-        ],
-        "details": "Hash lookups only. Unknown files are not uploaded during validation."
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
       }
     }
   },

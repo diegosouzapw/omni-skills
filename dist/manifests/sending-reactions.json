@@ -121,20 +121,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -220,8 +216,8 @@
     {
       "path": "skills/sending-reactions/metadata.json",
       "kind": "support",
-      "size_bytes": 5399,
-      "sha256": "9a7509ee375ce681756de7ce9df2559c8fb8e7de4a605c48beac20d21e2f644a"
+      "size_bytes": 5449,
+      "sha256": "0040a60396d4191ec205e718cadf71f270d2ecd67e919c2bc527cba3eedd82f5"
     },
     {
       "path": "skills/sending-reactions/rules/patterns-thinking.md",
@@ -247,15 +243,14 @@
       "format": "zip",
       "path": "dist/archives/sending-reactions.zip",
       "file_name": "sending-reactions.zip",
-      "size_bytes": 13999,
-      "sha256": "08ea716a7391d9ecd26d1b8d0ad3faab9ee5f072d34e27c93da2c502a545d5b1",
+      "size_bytes": 14049,
+      "sha256": "1bb54705eca40eec44df4ec3b6c7e33674a452a9857c1540367006ef2bb3f802",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/sending-reactions.zip.sig",
-        "sha256": "653f9e047e00ab894238e5fc4f83c3d85b744bd1e09ee98c26ae4f370f425b38",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.zip.sig dist/archives/sending-reactions.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -263,32 +258,30 @@
       "path": "dist/archives/sending-reactions.tar.gz",
       "file_name": "sending-reactions.tar.gz",
       "size_bytes": 20503,
-      "sha256": "9faeebcb73eabbddad4d5f4694bbff052651eb1526a5ef106c28e00ce667dbd4",
+      "sha256": "34d8dee57213825f62e84c97d254e48afcaf882404823f39e0e40e58a84020a8",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/sending-reactions.tar.gz.sig",
-        "sha256": "ec26be89879237c98b421c152c4ebfac71d0156f6bac07116e9ab76f5b13849b",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.tar.gz.sig dist/archives/sending-reactions.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/sending-reactions.checksums.txt",
     "file_name": "sending-reactions.checksums.txt",
-    "sha256": "e395c1d27bc1d6a44dfab5ac254f0cafb9118cec5156834f5e51b65bbffef760",
+    "sha256": "ebbe96b736abc1ea73bf6fd095474237f72e77eaf1126e6167f1a193a33d1044",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/sending-reactions.checksums.txt.sig",
-      "sha256": "f9369a65ce73d41aae59072427debef41b320e9e88cf0d645ba4c7102c6ed3d9",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.checksums.txt.sig dist/archives/sending-reactions.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "71cbf63d8d6eb1b589b6b02eb2c9d018d896a1762af79bbac91237c976b672f8",
-    "package_sha256": "0d66f42517a80a6183e0090f47003e2be2761cfdb68b59c855a98c6a1fb40aaa"
+    "package_sha256": "91ec7d5868730439424df46b1793457535cc72fd7d73a90a533d980fa47aad30"
   }
 }

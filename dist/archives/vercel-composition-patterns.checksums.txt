@@ -1,2 +1,2 @@
-bf0579eb21fd4a843a9934e2e88076842de4eee83d6b0edeeb56c34ced55ae9b  vercel-composition-patterns.zip
-7c115dfbc24125f8fb533feb0e0ec5a31719933c71898eaf51762014293268d9  vercel-composition-patterns.tar.gz
+b5f45e54cdd43aa53afbe5bf246837f3f13c59d6605ce77567e2af6e043e178e  vercel-composition-patterns.zip
+a431931438eac67b3fc4ae6ca06c41bce93e10823e50a10d8dfb89fdbf709e07  vercel-composition-patterns.tar.gz

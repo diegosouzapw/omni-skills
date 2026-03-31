@@ -224,31 +224,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 2,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/vercel-composition-patterns/scripts/omni_import_list_support_pack.py",
-              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
-              "status": "not_found"
-            },
-            {
-              "path": "skills/vercel-composition-patterns/scripts/omni_import_print_origin.py",
-              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -349,8 +334,8 @@
     {
       "path": "skills/vercel-composition-patterns/metadata.json",
       "kind": "support",
-      "size_bytes": 7483,
-      "sha256": "b83bcba9256906afcd2e3769e3994b6514c9628dd958172c9aa46b0add7dc077"
+      "size_bytes": 7034,
+      "sha256": "f2c83e21cfcfff409d33b43e2fd4d4809ccd9433e0a056026a0cf36aa395fe2d"
     },
     {
       "path": "skills/vercel-composition-patterns/agents/omni-import-router.md",
@@ -478,15 +463,14 @@
       "format": "zip",
       "path": "dist/archives/vercel-composition-patterns.zip",
       "file_name": "vercel-composition-patterns.zip",
-      "size_bytes": 77725,
-      "sha256": "bf0579eb21fd4a843a9934e2e88076842de4eee83d6b0edeeb56c34ced55ae9b",
+      "size_bytes": 77276,
+      "sha256": "b5f45e54cdd43aa53afbe5bf246837f3f13c59d6605ce77567e2af6e043e178e",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/vercel-composition-patterns.zip.sig",
-        "sha256": "a425e36cd8503d41b501b6c38e527e7957fb0bb0051301e656054eae8e5efb6c",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-composition-patterns.zip.sig dist/archives/vercel-composition-patterns.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -494,32 +478,30 @@
       "path": "dist/archives/vercel-composition-patterns.tar.gz",
       "file_name": "vercel-composition-patterns.tar.gz",
       "size_bytes": 102433,
-      "sha256": "7c115dfbc24125f8fb533feb0e0ec5a31719933c71898eaf51762014293268d9",
+      "sha256": "a431931438eac67b3fc4ae6ca06c41bce93e10823e50a10d8dfb89fdbf709e07",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/vercel-composition-patterns.tar.gz.sig",
-        "sha256": "1f1c1e614b7ff551f03909ca4a7cfa8cff1fb0e1621d76db84148914c3f4d7e8",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-composition-patterns.tar.gz.sig dist/archives/vercel-composition-patterns.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/vercel-composition-patterns.checksums.txt",
     "file_name": "vercel-composition-patterns.checksums.txt",
-    "sha256": "5fa15d458e3592253571a530dbc66e7e2c0fe3754944ce372e01f8f8fa86b5d1",
+    "sha256": "6830025680bf23fac3fe93c30f89375a87e36ec381de05a65942a62678cba182",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/vercel-composition-patterns.checksums.txt.sig",
-      "sha256": "9498d1370ac0d6ea0c811e041a973a889c731ef55114d1f74fed4f7e00872a78",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-composition-patterns.checksums.txt.sig dist/archives/vercel-composition-patterns.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "d9fca9b4bb2cac67d5be33f44fbf71dbcb1fbdf12568babfb8ab50491e5e080d",
-    "package_sha256": "d062471d9c4dcde7dd68fb564cb8b918e094ba1cb34519f394fab579963b8524"
+    "package_sha256": "abc42a81988c77d01f6995780f26d810eb3544bf80a146893fe36fa5b8dbf7ad"
   }
 }

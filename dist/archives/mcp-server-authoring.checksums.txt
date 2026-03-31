@@ -1,2 +1,2 @@
-7b66bd8336de82940e10c3b485c9260a8f52c3a3962ff80c5075b65011781f35  mcp-server-authoring.zip
-7c094a864c4944c3f4ebf9f0a4b53689a08e3efa5ada4ea47b8fcca98bbba836  mcp-server-authoring.tar.gz
+99485747becab6ac28c1e74bf27df42a49df11d97c2f4a11d50b78d639aa3ca4  mcp-server-authoring.zip
+f07d404f6ef3ab2eb6e46a53c96f6826184c036ad0463b27d8657bfaa43e79a7  mcp-server-authoring.tar.gz

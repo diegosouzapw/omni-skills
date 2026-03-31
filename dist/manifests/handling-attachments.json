@@ -158,20 +158,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -261,8 +257,8 @@
     {
       "path": "skills/handling-attachments/metadata.json",
       "kind": "support",
-      "size_bytes": 7290,
-      "sha256": "16937781c8fbb91956dfe88fc39f23d87ad24d6de331a6f20789d8df2500c392"
+      "size_bytes": 7340,
+      "sha256": "b91be5e6099b2128770d600fccce66d57ad19f8c076856fa12617a3476d63775"
     },
     {
       "path": "skills/handling-attachments/rules/receive-attachment.md",
@@ -288,15 +284,14 @@
       "format": "zip",
       "path": "dist/archives/handling-attachments.zip",
       "file_name": "handling-attachments.zip",
-      "size_bytes": 16046,
-      "sha256": "251919ae9cd76d600b43bd485252358e4aa490e6b2e6af5d5e43429e240a7778",
+      "size_bytes": 16096,
+      "sha256": "35de9fa64371377f8e9f6d0365e9dabe4e23e1ff9f9d74db8d270be358dc47fb",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-attachments.zip.sig",
-        "sha256": "f085f21b103c749e4eafb3408652e903f66c8eac34b53a5bc51ac023269d923a",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-attachments.zip.sig dist/archives/handling-attachments.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -304,32 +299,30 @@
       "path": "dist/archives/handling-attachments.tar.gz",
       "file_name": "handling-attachments.tar.gz",
       "size_bytes": 30743,
-      "sha256": "6fb0eb71c6d5af86ddcbb83a4e18f31fd6ccbcb3b397766bf9ac0381e0f76e96",
+      "sha256": "7773b37e2a92c92de52e933afa2c8e23cc64bc86ec241ffbf4a09077e90cf075",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/handling-attachments.tar.gz.sig",
-        "sha256": "4b38c977d737252f3a3b79feec99146d836aa6530d94bd389671082760b25d9b",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-attachments.tar.gz.sig dist/archives/handling-attachments.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/handling-attachments.checksums.txt",
     "file_name": "handling-attachments.checksums.txt",
-    "sha256": "97005851d188335017c9b15a7cf47054d2cd1a770b07fe14bbbf7c6a6e9b38ab",
+    "sha256": "611b937b4ec97dcfad7b3deced23dd6e2c2151418846cf3ab8d5fb1ddb3b8451",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/handling-attachments.checksums.txt.sig",
-      "sha256": "ca953555e5b3b53b8bd9aa016b60f5e6379d931bb1272cd49a03e2da2400c8c4",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-attachments.checksums.txt.sig dist/archives/handling-attachments.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "17bea955bd78d4d364c2857011f5d05ba384493d04f369904d289639280c06c4",
-    "package_sha256": "648ab3776214901f1fa006d3e4e2099c3b739bbc43d1f44e8943bd44a4955058"
+    "package_sha256": "e7506cd0ab5da78a5b968eafc1c69dc5fe74c07e92c1b03367ac5185dd5078b3"
   }
 }

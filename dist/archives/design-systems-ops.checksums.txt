@@ -1,2 +1,2 @@
-20f81b92a17f3afca572d862f59c1e237e383d84c54001b2bd37c705f32f3bc1  design-systems-ops.zip
-45756ee94cb4da0b8eba931fb26dfbd6b93d88b87177bebfd4ede46f87107d0c  design-systems-ops.tar.gz
+debf396cfd89e3b96c705cf857e387e58cede827d869198f7a28eb2968b7023c  design-systems-ops.zip
+6e0168a46e97a3217b39e290334fb22567d9fcc7603e84e72e9fad9057f6b46b  design-systems-ops.tar.gz

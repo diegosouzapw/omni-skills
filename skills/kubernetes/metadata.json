@@ -196,26 +196,16 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "clamav",
-        "detections": [],
-        "infected_files": 0
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
       },
       "virustotal": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "virustotal",
-        "lookups": 1,
-        "positives": 0,
-        "results": [
-          {
-            "path": "skills/kubernetes/scripts/render_manifest_review.py",
-            "sha256": "71003566ee4894620bf4c9a749920188a29bff680084b52c7fb2498e79f583b3",
-            "status": "not_found"
-          }
-        ],
-        "details": "Hash lookups only. Unknown files are not uploaded during validation."
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
       }
     }
   },
