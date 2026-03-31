@@ -59,12 +59,12 @@ def is_allowed_curated_pr(event: dict, repository: str) -> bool:
     head_repo = ((head.get("repo") or {}).get("full_name")) or ""
     head_ref = head.get("ref") or ""
     title = pr.get("title") or ""
-    author = (pr.get("user") or {}).get("login") or ""
+    body = pr.get("body") or ""
     return (
         head_repo == repository
         and head_ref.startswith("skills-omni/pr-")
         and title.startswith("enhance: promote curated skills_omni candidates for #")
-        and author == "github-actions[bot]"
+        and "This PR was generated automatically from source PR #" in body
     )
 
 
