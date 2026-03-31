@@ -897,6 +897,15 @@ def run_clamscan(file_paths: List[str]) -> Dict[str, Any]:
     }
 
 
+def canonical_clamav_status() -> Dict[str, Any]:
+    return {
+        "enabled": False,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results.",
+    }
+
+
 def virustotal_headers(api_key: str) -> Dict[str, str]:
     return {
         "accept": "application/json",
@@ -974,6 +983,19 @@ def run_virustotal_lookup(scan_targets: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+def canonical_virustotal_status() -> Dict[str, Any]:
+    return {
+        "enabled": False,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups.",
+    }
+
+
+def embed_optional_security_results() -> bool:
+    return os.getenv("OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS", "").lower() in {"1", "true", "yes"}
+
+
 def scan_skill_security(
     skill_dir: str,
     repo_root: str,
@@ -1010,43 +1032,47 @@ def scan_skill_security(
                     }
                 )
 
-    clamav = run_clamscan(file_paths)
-    if clamav.get("infected_files", 0) > 0:
-        for detection in clamav.get("detections", []):
-            add_security_finding(
-                findings,
-                finding_id="clamav-detection",
-                kind="malware",
-                severity="critical",
-                rel_path=detection["path"],
-                message="ClamAV reported a positive detection.",
-                evidence=detection["result"],
-            )
+    if embed_optional_security_results():
+        clamav = run_clamscan(file_paths)
+        if clamav.get("infected_files", 0) > 0:
+            for detection in clamav.get("detections", []):
+                add_security_finding(
+                    findings,
+                    finding_id="clamav-detection",
+                    kind="malware",
+                    severity="critical",
+                    rel_path=detection["path"],
+                    message="ClamAV reported a positive detection.",
+                    evidence=detection["result"],
+                )
 
-    virustotal = run_virustotal_lookup(scan_targets)
-    for result in virustotal.get("results", []):
-        if result.get("status") != "completed":
-            continue
-        if result.get("malicious", 0) > 0:
-            add_security_finding(
-                findings,
-                finding_id="virustotal-malicious",
-                kind="malware",
-                severity="critical",
-                rel_path=result["path"],
-                message="VirusTotal hash lookup reported malicious detections.",
-                evidence=f"malicious={result.get('malicious', 0)} suspicious={result.get('suspicious', 0)}",
-            )
-        elif result.get("suspicious", 0) > 0:
-            add_security_finding(
-                findings,
-                finding_id="virustotal-suspicious",
-                kind="malware",
-                severity="high",
-                rel_path=result["path"],
-                message="VirusTotal hash lookup reported suspicious detections.",
-                evidence=f"malicious={result.get('malicious', 0)} suspicious={result.get('suspicious', 0)}",
-            )
+        virustotal = run_virustotal_lookup(scan_targets)
+        for result in virustotal.get("results", []):
+            if result.get("status") != "completed":
+                continue
+            if result.get("malicious", 0) > 0:
+                add_security_finding(
+                    findings,
+                    finding_id="virustotal-malicious",
+                    kind="malware",
+                    severity="critical",
+                    rel_path=result["path"],
+                    message="VirusTotal hash lookup reported malicious detections.",
+                    evidence=f"malicious={result.get('malicious', 0)} suspicious={result.get('suspicious', 0)}",
+                )
+            elif result.get("suspicious", 0) > 0:
+                add_security_finding(
+                    findings,
+                    finding_id="virustotal-suspicious",
+                    kind="malware",
+                    severity="high",
+                    rel_path=result["path"],
+                    message="VirusTotal hash lookup reported suspicious detections.",
+                    evidence=f"malicious={result.get('malicious', 0)} suspicious={result.get('suspicious', 0)}",
+                )
+    else:
+        clamav = canonical_clamav_status()
+        virustotal = canonical_virustotal_status()
 
     findings.sort(
         key=lambda item: (

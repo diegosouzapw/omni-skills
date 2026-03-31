@@ -119,9 +119,33 @@ def ensure_directory(directory_path):
     return directory_path
 
 
+def remove_file_if_exists(file_path):
+    try:
+        os.remove(file_path)
+    except FileNotFoundError:
+        return
+
+
+def remove_dir_if_empty(directory_path):
+    try:
+        os.rmdir(directory_path)
+    except FileNotFoundError:
+        return
+    except OSError:
+        return
+
+
+def embed_signatures():
+    return os.getenv("OMNI_SKILLS_EMBED_SIGNATURES", "").lower() in {"1", "true", "yes"}
+
+
 def prepare_signing_material(dist_dir):
+    signing_dir = os.path.join(dist_dir, "signing")
+    public_key_output = os.path.join(signing_dir, "omni-skills-public.pem")
     private_key = os.getenv("OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH") or os.getenv("OMNI_SKILLS_SIGN_KEY_PATH") or ""
-    if not private_key:
+    if not embed_signatures() or not private_key:
+        remove_file_if_exists(public_key_output)
+        remove_dir_if_empty(signing_dir)
         return {
             "enabled": False,
             "status": "disabled",
@@ -139,9 +163,8 @@ def prepare_signing_material(dist_dir):
             "details": "openssl not found in PATH",
         }
 
-    signing_dir = ensure_directory(os.path.join(dist_dir, "signing"))
+    signing_dir = ensure_directory(signing_dir)
     public_key_input = os.getenv("OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH") or ""
-    public_key_output = os.path.join(signing_dir, "omni-skills-public.pem")
 
     try:
         if public_key_input and os.path.isfile(public_key_input):
@@ -172,8 +195,13 @@ def prepare_signing_material(dist_dir):
     }
 
 
+def cleanup_signature_sidecar(file_path):
+    remove_file_if_exists(f"{file_path}.sig")
+
+
 def sign_file(file_path, repo_root, signing_material):
     if not signing_material.get("enabled"):
+        cleanup_signature_sidecar(file_path)
         return {
             "status": "unsigned",
             "path": None,
@@ -183,6 +211,7 @@ def sign_file(file_path, repo_root, signing_material):
         }
 
     if signing_material.get("status") != "ready":
+        cleanup_signature_sidecar(file_path)
         return {
             "status": signing_material.get("status", "error"),
             "path": None,
@@ -210,6 +239,7 @@ def sign_file(file_path, repo_root, signing_material):
             text=True,
         )
     except (OSError, subprocess.CalledProcessError) as error:
+        cleanup_signature_sidecar(file_path)
         return {
             "status": "error",
             "path": None,

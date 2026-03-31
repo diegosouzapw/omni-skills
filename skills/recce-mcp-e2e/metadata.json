@@ -207,36 +207,16 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "clamav",
-        "detections": [],
-        "infected_files": 0
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
       },
       "virustotal": {
-        "enabled": true,
-        "status": "completed",
+        "enabled": false,
+        "status": "disabled",
         "provider": "virustotal",
-        "lookups": 3,
-        "positives": 0,
-        "results": [
-          {
-            "path": "skills/recce-mcp-e2e/test_mcp_e2e_template.py",
-            "sha256": "e6b2b4eefa65a4a6b01cb6462dc6e7e2ef0a9a75f864ab387c6ec3c35d5e5031",
-            "status": "not_found"
-          },
-          {
-            "path": "skills/recce-mcp-e2e/scripts/omni_import_list_support_pack.py",
-            "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
-            "status": "not_found"
-          },
-          {
-            "path": "skills/recce-mcp-e2e/scripts/omni_import_print_origin.py",
-            "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
-            "status": "not_found"
-          }
-        ],
-        "details": "Hash lookups only. Unknown files are not uploaded during validation."
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
       }
     }
   },

@@ -107,15 +107,20 @@ The static scanner checks all skills automatically:
 ### 🦠 Optional ClamAV
 
 ```bash
-OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
+OMNI_SKILLS_ENABLE_CLAMAV=1 \
+npm run validate
 ```
 
 > Requires `clamscan` in `PATH`.
+> Canonical tracked metadata stays deterministic by default. Set `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1` only when you intentionally want to embed live scanner output into generated metadata.
 
 ### 🔒 Optional VirusTotal
 
 ```bash
-VT_API_KEY=your-key npm run validate
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
+VT_API_KEY=your-key \
+npm run validate
 ```
 
 > Hash lookup only — unknown files are **not uploaded** by default.
@@ -129,6 +134,7 @@ npm run verify:scanners
 Strict release gate:
 
 ```bash
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -159,16 +165,21 @@ npm run verify:archives
 ### ✍️ Enable Detached Signing
 
 ```bash
-OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
+OMNI_SKILLS_EMBED_SIGNATURES=1 \
+OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem \
+npm run index
 ```
 
 Optional public key override:
 
 ```bash
-OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
+OMNI_SKILLS_EMBED_SIGNATURES=1 \
+OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem \
+npm run index
 ```
 
 > If no public key is supplied, the build derives one via `openssl` into `dist/signing/`.
+> Canonical tracked manifests stay unsigned by default. Set `OMNI_SKILLS_EMBED_SIGNATURES=1` only for explicit signing runs.
 
 ### 🔁 Compute the Next Package Version
 
@@ -545,8 +556,10 @@ git push origin main --follow-tags
 
 `release.yml` sets or prepares:
 
+- `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1`
 - `OMNI_SKILLS_ENABLE_CLAMAV=1`
 - `VT_API_KEY=${{ secrets.VT_API_KEY || secrets.VIRUSTOTAL }}`
+- `OMNI_SKILLS_EMBED_SIGNATURES=1`
 - `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` from runner temp storage
 
 That means every tag-based release must:
@@ -602,7 +615,9 @@ That means every tag-based release must:
 | `OMNI_SKILLS_A2A_RESUME_INTERRUPTED_TASKS` | Resume recovered submitted/working tasks on boot | `1` |
 | `OMNI_SKILLS_A2A_ALLOW_INSECURE_WEBHOOKS` | Allow non-HTTPS webhooks outside localhost | `0` |
 | `OMNI_SKILLS_ENABLE_CLAMAV` | Enable ClamAV scanning | `0` |
+| `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS` | Persist live optional scanner results into metadata/manifests | `0` |
 | `VT_API_KEY` | VirusTotal API key | — |
+| `OMNI_SKILLS_EMBED_SIGNATURES` | Persist detached archive signatures into committed manifests | `0` |
 | `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH` | Private key for signing | — |
 | `OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH` | Public key override | Auto-derived |
 
@@ -632,7 +647,7 @@ npx omni-skills recategorize
 
 - Confirm `VT_API_KEY` exists in repository secrets
 - Confirm `freshclam` succeeded on the runner
-- Rebuild locally with `OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
+- Rebuild locally with `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 OMNI_SKILLS_ENABLE_CLAMAV=1 VT_API_KEY=... npm run build`
 - Rerun `npm run verify:scanners:strict`
 
 ### 📦 npm Publish Fails in CI
@@ -646,7 +661,7 @@ npx omni-skills recategorize
 - Confirm `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` exists in repository secrets
 - If you provide a public key secret, confirm it matches the private key
 - Confirm `openssl` is available and the private key is PEM-formatted
-- Rebuild locally with `OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
+- Rebuild locally with `OMNI_SKILLS_EMBED_SIGNATURES=1 OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run build`
 - Rerun `npm run verify:archives:strict`
 
 ### 🔒 API/MCP Returns `401 Unauthorized`

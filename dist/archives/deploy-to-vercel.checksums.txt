@@ -1,2 +1,2 @@
-a0d9d841f63279a7a6da992b73231b6fd7f3237f0a0ae2396247b76da1424633  deploy-to-vercel.zip
-f413d0e78dfcdbb161ed439da7106139673c8a2bb52cb4479f8f032343b96c8f  deploy-to-vercel.tar.gz
+df51e4e332dd411ad13124f95f4820cd7e20e5abb0b0dabf5cbd10df13d2fcba  deploy-to-vercel.zip
+f91acad0d8673e8650c55d065abaf3a772d57f279d5b2f64177ed2a7c2200bb4  deploy-to-vercel.tar.gz

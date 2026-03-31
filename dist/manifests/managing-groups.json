@@ -131,20 +131,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -231,8 +227,8 @@
     {
       "path": "skills/managing-groups/metadata.json",
       "kind": "support",
-      "size_bytes": 5957,
-      "sha256": "3759e6beb483adbe9a12475950b24378895c92fcec408adf473d1dbf4303271b"
+      "size_bytes": 6007,
+      "sha256": "b5ad87752690deffe1d6b0a8bdd358da15ed240ed47bca0f231e1e33086f4994"
     },
     {
       "path": "skills/managing-groups/rules/create-group.md",
@@ -264,15 +260,14 @@
       "format": "zip",
       "path": "dist/archives/managing-groups.zip",
       "file_name": "managing-groups.zip",
-      "size_bytes": 17198,
-      "sha256": "a50a5b332ac843c45d9375a992ebcd52d42ecb76d6de3c9ed9f0ed36c8b714b5",
+      "size_bytes": 17248,
+      "sha256": "48deabd2c1a95ac162f210479e4459be5a37f46abfccb5ce6aeaca8b356208bb",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/managing-groups.zip.sig",
-        "sha256": "83ead5ae1c39e240ba86fe1e86c4a43aa7b8084061d932adab7b3b15f429b4b6",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/managing-groups.zip.sig dist/archives/managing-groups.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -280,32 +275,30 @@
       "path": "dist/archives/managing-groups.tar.gz",
       "file_name": "managing-groups.tar.gz",
       "size_bytes": 30743,
-      "sha256": "afca8b4629188351a199a3c867da3a0182df6ceaec0008608c37cb58376c14bc",
+      "sha256": "f9396bdc644fadfb25ffec3e5bc7ef4ba7440198544d79acbec7c054fd539ae5",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/managing-groups.tar.gz.sig",
-        "sha256": "e280d7298f769adecf10e8273c4fb98a91f92a999c8481374783c34afebbc94f",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/managing-groups.tar.gz.sig dist/archives/managing-groups.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/managing-groups.checksums.txt",
     "file_name": "managing-groups.checksums.txt",
-    "sha256": "10820633ceed4a08aae4cc04dd54f23080547514c6b385cacecb8d69125b0e29",
+    "sha256": "1b9d94ea364268cfbcf87cc3ea6ce23a5f79aeb12572c226de75b1a2bba4d0af",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/managing-groups.checksums.txt.sig",
-      "sha256": "40531f006bab158ccfd0805f8bf636c64883b8a25cf2c6b8d7894da36e0e2f1c",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/managing-groups.checksums.txt.sig dist/archives/managing-groups.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "96610452fbc690ce4a74dde526d1ada793758d616d471e24045fb33dfea59639",
-    "package_sha256": "7395ea1ffed75c68e6694c532b5145d4339c9d60dabb9a6be1c3dc6dd3ef0b0b"
+    "package_sha256": "7c8d52e33bb10e01aa0fbef2448361d7c8029b74307d12f53203a6d89ee9e5db"
   }
 }

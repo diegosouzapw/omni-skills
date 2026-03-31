@@ -235,26 +235,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/design-token-governance/scripts/render_token_governance_packet.py",
-              "sha256": "babcf17fa25ce984449b08c68fdc9b57c52771601b143f6ccb33000bffffc4bb",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -330,8 +320,8 @@
     {
       "path": "skills/design-token-governance/metadata.json",
       "kind": "support",
-      "size_bytes": 6129,
-      "sha256": "8482120c20437ca3a544e987bfefefc0e80a1a2d389d28d73d56d8415cf7bcae"
+      "size_bytes": 5926,
+      "sha256": "fb05803c5955ed0e8ad49d373fc273bc344063a5fa6731a6af53e62556f8b83d"
     },
     {
       "path": "skills/design-token-governance/agents/openai.yaml",
@@ -369,15 +359,14 @@
       "format": "zip",
       "path": "dist/archives/design-token-governance.zip",
       "file_name": "design-token-governance.zip",
-      "size_bytes": 16764,
-      "sha256": "687e851620ea707c628d9df92f3132cfe17ae925145da710a43b04db9ba30f79",
+      "size_bytes": 16561,
+      "sha256": "f56b0befa1f98d7da982c6e9f59e96597338fc1906a08cf26180738ffe9b6f09",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/design-token-governance.zip.sig",
-        "sha256": "5a21d3715e144a51494e2404d900b1c5d3a4ac32ccd6c00cfb0658644adda62d",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/design-token-governance.zip.sig dist/archives/design-token-governance.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -385,32 +374,30 @@
       "path": "dist/archives/design-token-governance.tar.gz",
       "file_name": "design-token-governance.tar.gz",
       "size_bytes": 30743,
-      "sha256": "734e1ff479294924e2640ce7f1ea7f41c4d4279d44b6e9687d97287a2d4481ae",
+      "sha256": "2748a8d480ea34f77597e8c9482e6905cab3f8e87a3cbf4c2fffbd5ea1d6a268",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/design-token-governance.tar.gz.sig",
-        "sha256": "f283a9e4e564d349040724b9d744a3b3906913c785da59404455b9f64b128d8e",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/design-token-governance.tar.gz.sig dist/archives/design-token-governance.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/design-token-governance.checksums.txt",
     "file_name": "design-token-governance.checksums.txt",
-    "sha256": "d36184bda26be24111273fca6b29b45fe314da1a95c29bdd2317457f0b01057a",
+    "sha256": "2b2eda66c41a1e5b12674e32828aa4bb9346d48b0c275968c0bcdf37dc282f65",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/design-token-governance.checksums.txt.sig",
-      "sha256": "d3cf4b17e9915a241219160f5b27b0520173c47f65028fea841c50d314b12f0a",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/design-token-governance.checksums.txt.sig dist/archives/design-token-governance.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "1a744779b4773327035ae88764d54975782f5429a1f9dd7604fae69deab39022",
-    "package_sha256": "36109c2e31c7c1353c4fcdf75b47864d154ecdf5b5977a5e12bd422e4436ea98"
+    "package_sha256": "8033bddf7c9f89335cda527013da7d2779dc0ea7eb4d3c7b0ec54235a963edbd"
   }
 }
