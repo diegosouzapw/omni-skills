@@ -86,6 +86,20 @@ The stricter editorial bar now applies to:
 - the private enhancer review
 - the follow-up curated derivative under `skills_omni/`
 
+## Automated External Intake PRs
+
+Some native intake PRs now come from the private external-sync runtime instead of from a human contributor branch.
+
+Those PRs use the same public intake surface and the same validation contract:
+
+- they still target `skills/`, not `skills_omni/`
+- they usually arrive on `external-import/<source-slug>` branches
+- they preserve provenance with `EXTERNAL_SOURCE.json` and `ORIGIN.md`
+- they still go through the public validator, generated artifacts refresh, and enhancer automation
+- they may require explicit reviewer attention for provenance, licensing, and upstream ownership before merge
+
+For maintainers, the review standard stays the same: verify that the skill is legitimate, that the generated artifacts are coherent, and that the provenance files accurately describe the upstream source.
+
 ## Authoring Sequence
 
 1. Create `skills/<skill>/SKILL.md`.
@@ -258,6 +272,8 @@ The PR body should state:
 - bundle updates are intentional
 - public validation and build outputs are green
 - the enhancer status comment matches the actual changed skills and final outcome state
+- for `external-import/*` PRs, provenance files such as `EXTERNAL_SOURCE.json` and `ORIGIN.md` are present and accurate
+- for `external-import/*` PRs, source ownership and any license review notes were checked before merge
 - any `skills_omni/` companion PR preserves attribution correctly
 
 ## Example PR Scope

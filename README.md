@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
+<!-- omni-skills: version=0.1.3; skills=49; updated_at=2026-03-31 -->
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 **The skill catalog that installs itself.**<br/>
 CLI · API · MCP · A2A — all from a single `npx` command.
 
-> 🚀 *48 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
+> 🚀 *49 skills · 7 bundles · 7 install clients · 16 MCP clients · 4 runtime surfaces*
 
 <br/>
 
@@ -74,12 +74,12 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 
 | | Metric | Value |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `48` native skills across 15 active categories |
+| 📦 | **Published Skills** | `49` native skills across 15 active categories |
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients |
 | 🔐 | **Curated Output** | `32` enhanced English derivatives in `skills_omni/` |
-| 🧪 | **Validation Mix** | `40` passed · `8` warn · `0` errors |
+| 🧪 | **Validation Mix** | `41` passed · `8` warn · `0` errors |
 | 📋 | **Current Release** | `v0.1.3` |
 
 ---
@@ -98,7 +98,7 @@ Omni Skills is an **installable skill catalog and runtime** for AI coding assist
 
 | Component | Description |
 |:----------|:-----------|
-| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants |
+| 🧠 **Skills** | Curated `SKILL.md`-based playbooks for AI assistants, including native intake from direct contributor PRs and automated external-import PRs |
 | 📦 **Manifests** | Generated JSON manifests, bundles, and archives |
 | 🧭 **Guided Install** | Interactive TTY and visual terminal install flows |
 | 🌐 **Catalog API** | Read-only HTTP API for search, discovery, and downloads |
@@ -159,7 +159,7 @@ Before comparing bundles or picking an install path, understanding these five bu
 | ✨ **Curated Output** | `skills_omni/` — the Omni-maintained enhanced surface, separate from native upstream intake |
 
 > **📝 Native/Curated policy:**
-> - `skills/` accepts native upstream intake in any language
+> - `skills/` accepts native upstream intake in any language, whether submitted directly or proposed by the private external-sync runtime
 > - `skills_omni/` is always curated and published in English
 > - `skills_omni/` is a one-way surface and does not loop back into native intake
 
@@ -353,7 +353,7 @@ npx omni-skills config-mcp --target windsurf-user --transport sse --url http://1
 
 | Metric | Count |
 |:-------|:------|
-| 🧠 Native intake skills | **48** |
+| 🧠 Native intake skills | **49** |
 | 📂 Active categories | **15** |
 | 📦 Fully backed bundles | **7** |
 | ✨ Curated derivatives | **32** in `skills_omni/` |

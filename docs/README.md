@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.3; skills=48; updated_at=2026-03-30 -->
+<!-- omni-skills: version=0.1.3; skills=49; updated_at=2026-03-31 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
@@ -13,7 +13,7 @@ Standard community files live in the repository root:
 | Area | State | Details |
 |:-----|:------|:--------|
 | 🏗️ **Runtime** | ✅ Current | Unified CLI, Ink visual shell, API, MCP, and A2A all ship from the same package |
-| 📦 **Catalog** | 📌 48 skills | 48 native catalog skills across 15 active categories, with 32 curated English derivatives in `skills_omni/` and 7 fully backed bundles |
+| 📦 **Catalog** | 📌 49 skills | 49 native catalog skills across 15 active categories, with 32 curated English derivatives in `skills_omni/` and 7 fully backed bundles |
 | 🎯 **Install** | ✅ Current | Guided TTY install, selective `--skill` and `--bundle`, custom path support, and discovery-driven install |
 | 🌐 **API** | ✅ Current | Read-only registry API with auth, admin runtime, rate limiting, CORS/IP allowlists, maintenance mode, and downloads |
 | 🔌 **MCP** | ✅ Current | `stdio` · `stream` · `sse`, local sidecar mode, 7 install-capable clients, 16 config-capable clients, 33 config targets, and 19 config profiles |
@@ -22,16 +22,17 @@ Standard community files live in the repository root:
 | 📋 **Classification** | ✅ Current | Canonical taxonomy, maturity, semantic quality spread, best-practices spread, and security scoring |
 | 📁 **Archives** | ✅ Current | Per-skill `.zip` and `.tar.gz` archives with SHA-256 checksum manifests |
 | 🔐 **Signing** | ✅ Current | Detached signatures enforced on release tags; local install flows consume the same manifest and checksum metadata |
-| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/`; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
+| 🧬 **Intake Flow** | ✅ Current | Native skills land under `skills/` through direct contributor PRs and automated external-import PRs; PR automation reviews them and proposes Omni-enhanced derivatives under `skills_omni/` |
 
 ## 🔭 Current Project State
 
 The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
 
 - public `v0.1.3` and private `v1.0.0` are the current stable release floor
-- the catalog now covers 48 native skills across 15 active categories, with 40 passing validation cleanly and 8 currently in warning-grade native intake
+- the catalog now covers 49 native skills across 15 active categories, with 41 passing validation cleanly and 8 currently in warning-grade native intake
 - curated `skills_omni/` output remains a maintained English-only surface with 32 automation-managed derivatives
 - protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap
+- the private external-sync runtime is now actively proposing native intake through `external-import/*` PRs, using the same public validator and enhancer path as human-submitted native PRs
 
 Future expansion stays deliberate:
 
