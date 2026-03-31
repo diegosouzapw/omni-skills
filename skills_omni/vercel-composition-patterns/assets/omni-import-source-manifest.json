@@ -1,0 +1,24 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "vercel-composition-patterns",
+  "public_skill_path": "skills/vercel-composition-patterns",
+  "source_repository_url": "https://github.com/vercel-labs/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "6f3fa3191d089d7810e332a562ad2a0ff5f7f239",
+  "source_skill_path": "skills/composition-patterns",
+  "upstream_files": [
+    "AGENTS.md",
+    "README.md",
+    "metadata.json",
+    "rules/_sections.md",
+    "rules/_template.md",
+    "rules/architecture-avoid-boolean-props.md",
+    "rules/architecture-compound-components.md",
+    "rules/patterns-children-over-render-props.md",
+    "rules/patterns-explicit-variants.md",
+    "rules/react19-no-forwardref.md",
+    "rules/state-context-interface.md",
+    "rules/state-decouple-implementation.md",
+    "rules/state-lift-state.md"
+  ]
+}

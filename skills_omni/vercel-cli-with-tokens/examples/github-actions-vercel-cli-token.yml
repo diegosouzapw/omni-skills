@@ -1,0 +1,33 @@
+name: vercel-preview-deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify CLI
+        run: npx vercel@latest --version
+
+      - name: Verify auth
+        run: vercel whoami
+
+      - name: Deploy preview
+        run: vercel deploy -y --no-wait

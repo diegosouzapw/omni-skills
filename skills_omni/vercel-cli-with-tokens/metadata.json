@@ -1,0 +1,359 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-03-31T00:00:00+00:00",
+  "id": "vercel-cli-with-tokens",
+  "slug": "vercel-cli-with-tokens",
+  "display_name": "Vercel CLI with Tokens",
+  "description": "Vercel CLI with Tokens workflow skill. Use this skill when the user needs Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login \\u2014 e.g. \\\"deploy to vercel\\\", \\\"set up vercel\\\", \\\"add environment variables to vercel\\\" and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "cli-automation",
+  "canonical_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "vercel-cli-with-tokens",
+    "deploy",
+    "and",
+    "manage",
+    "projects",
+    "vercel",
+    "using",
+    "token-based"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "vercel",
+  "dates": {
+    "added": "2026-03-31",
+    "updated": "2026-03-31",
+    "file_mtime": "2026-03-31T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/vercel-cli-with-tokens",
+    "entrypoint": "skills/vercel-cli-with-tokens/SKILL.md",
+    "metadata": "skills/vercel-cli-with-tokens/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 13,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "content": {
+    "body_length": 18434,
+    "content_length": 19295,
+    "body_lines": 462,
+    "word_count": 2671,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 33,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 7488,
+      "when_to_use_section_length": 870,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 6,
+      "troubleshooting_section_length": 2342,
+      "resources_items_count": 16,
+      "resources_section_length": 3068,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 579,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.78
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 7488,
+      "when_to_use_section_length": 870,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 6,
+      "troubleshooting_section_length": 2342,
+      "resources_items_count": 16,
+      "resources_section_length": 3068,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 579,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.78
+    }
+  },
+  "quality": {
+    "score": 96,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 0,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 13,
+    "findings": [
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "3. ### B) Token is in a .env file under VERCELTOKEN bash grep '^VERCELTOKEN=' .env 2>/dev/null If found, export it: b...",
+        "line": 56
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "### B) Token is in a `.env` file under `VERCEL_TOKEN`",
+        "line": 76
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "grep '^VERCEL_TOKEN=' .env 2>/dev/null",
+        "line": 79
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "export VERCEL_TOKEN=$(grep '^VERCEL_TOKEN=' .env | cut -d= -f2-)",
+        "line": 85
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "### C) Token is in a `.env` file under a different name",
+        "line": 88
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "grep -i 'vercel' .env 2>/dev/null",
+        "line": 93
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "export VERCEL_TOKEN=$(grep '^<VARIABLE_NAME>=' .env | cut -d= -f2-)",
+        "line": 99
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "# Or check .env",
+        "line": 128
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "grep -i 'vercel' .env 2>/dev/null",
+        "line": 129
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "Check the environment and any `.env` files present:",
+        "line": 355
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "grep -i vercel .env 2>/dev/null",
+        "line": 359
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "# Pull env vars to local .env file",
+        "line": 438
+      },
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/vercel-cli-with-tokens/SKILL.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "- **Check the environment for tokens before asking the user.** Look in the current env and `.env` files first.",
+        "line": 471
+      }
+    ],
+    "signals": {
+      "scanned_files": 13,
+      "script_files": 2,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]",
+      "security medium: Sensitive OS or credential path referenced. [skills/vercel-cli-with-tokens/SKILL.md]"
+    ],
+    "status": "warn"
+  }
+}
