@@ -256,16 +256,44 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": false,
-        "status": "disabled",
+        "enabled": true,
+        "status": "completed",
         "provider": "clamav",
-        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        "detections": [],
+        "infected_files": 0
       },
       "virustotal": {
-        "enabled": false,
-        "status": "disabled",
+        "enabled": true,
+        "status": "completed",
         "provider": "virustotal",
-        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        "lookups": 3,
+        "positives": 0,
+        "results": [
+          {
+            "path": "skills/deploy-to-vercel/resources/deploy-codex.sh",
+            "sha256": "18b411e2bfe07778bca11d7f0e1ec9c95e5764011dd2e3838f51066728646855",
+            "status": "completed",
+            "malicious": 0,
+            "suspicious": 0,
+            "harmless": 0,
+            "undetected": 62
+          },
+          {
+            "path": "skills/deploy-to-vercel/resources/deploy.sh",
+            "sha256": "418da6ff48c582790799d850a88fd83ca00f2ee00502665caf8dbb06d4dab8b9",
+            "status": "completed",
+            "malicious": 0,
+            "suspicious": 0,
+            "harmless": 0,
+            "undetected": 62
+          },
+          {
+            "path": "skills/deploy-to-vercel/scripts/omni_import_list_support_pack.py",
+            "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
+            "status": "not_found"
+          }
+        ],
+        "details": "Hash lookups only. Unknown files are not uploaded during validation."
       }
     }
   },

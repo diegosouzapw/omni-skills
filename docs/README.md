@@ -1,4 +1,4 @@
-<!-- omni-skills: version=0.1.3; skills=49; updated_at=2026-03-31 -->
+<!-- omni-skills: version=0.1.4; skills=49; updated_at=2026-03-31 -->
 # 📖 Omni Skills — Documentation Hub
 
 > **The central reference for using, operating, extending, and understanding the current Omni Skills platform.**
@@ -28,7 +28,7 @@ Standard community files live in the repository root:
 
 The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
 
-- public `v0.1.3` and private `v1.0.0` are the current stable release floor
+- public `v0.1.4` and private `v1.0.0` are the current stable release floor
 - the catalog now covers 49 native skills across 15 active categories, with 41 passing validation cleanly and 8 currently in warning-grade native intake
 - curated `skills_omni/` output remains a maintained English-only surface with 32 automation-managed derivatives
 - protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap

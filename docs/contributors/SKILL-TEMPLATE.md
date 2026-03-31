@@ -1,7 +1,7 @@
 ---
 name: your-skill-name
 description: "One-line description of what this skill does and when to use it"
-version: "0.1.3"
+version: "0.1.4"
 category: development
 tags: [example-tag-1, example-tag-2]
 complexity: intermediate

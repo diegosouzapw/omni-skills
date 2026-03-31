@@ -185,16 +185,20 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 0,
+          "positives": 0,
+          "results": [],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -287,8 +291,8 @@
     {
       "path": "skills/resolving-domains/metadata.json",
       "kind": "support",
-      "size_bytes": 8884,
-      "sha256": "4535e7520b8e6a46bbd7734d4fe24914113a422c225f414848a06eec0c9c76c6"
+      "size_bytes": 8923,
+      "sha256": "9073b3bae9391ddd50426079af8aad2270e56822e6b35bd8caf2d89626eb8de2"
     },
     {
       "path": "skills/resolving-domains/rules/extract-mentions.md",
@@ -314,14 +318,15 @@
       "format": "zip",
       "path": "dist/archives/resolving-domains.zip",
       "file_name": "resolving-domains.zip",
-      "size_bytes": 19941,
-      "sha256": "71c5d48c2383207344c750d846292456724ee53c4501092b73e01fbe3c0f38b1",
+      "size_bytes": 19980,
+      "sha256": "95d909b4223ae255df6deaa2592f3f9d38fe4f53f473ce556ada5c7b1cab1b02",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/resolving-domains.zip.sig",
+        "sha256": "feacff4d6c65de75641437a2174cc28226b72689e9b7dc6af1a025c141bd9140",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/resolving-domains.zip.sig dist/archives/resolving-domains.zip"
       }
     },
     {
@@ -329,30 +334,32 @@
       "path": "dist/archives/resolving-domains.tar.gz",
       "file_name": "resolving-domains.tar.gz",
       "size_bytes": 30743,
-      "sha256": "46157adb7ca60b8b050ae773a43c63b62c689282476d6322e9dc44d8903ebc83",
+      "sha256": "c856f9d2d89e2efaa8a5e79707cb6e1145e4e1c04f35bbf8fb667e55343a808f",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/resolving-domains.tar.gz.sig",
+        "sha256": "4b327dc1218df0bea6cfdea30bef6fae158ef99ab32ee3103fb607ae5571c412",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/resolving-domains.tar.gz.sig dist/archives/resolving-domains.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/resolving-domains.checksums.txt",
     "file_name": "resolving-domains.checksums.txt",
-    "sha256": "075101d297f92c6f6d9132d94353122a5d5fa0dc4c5691ec2b8522c04e2f1684",
+    "sha256": "e7e95e58b089d3c7d792ee302bed33597285f9876d498bf3322635fea56af2b3",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/resolving-domains.checksums.txt.sig",
+      "sha256": "33fffbede0f3eaa8e4f64be8d735f7dd14788534d465d1953a843f9404477947",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/resolving-domains.checksums.txt.sig dist/archives/resolving-domains.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "77e246a11ae50b1ea2897234879c91684c973b5760498268f7341b662e6b8a33",
-    "package_sha256": "c604b1338d266d2234f8ec7b73ed9360bee0308700660344db6488b87be98338"
+    "package_sha256": "fca5fca2a704f41c6da48375c7a52e3bf6fb0b480795d0aa459a908df5627e81"
   }
 }

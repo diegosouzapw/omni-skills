@@ -235,16 +235,26 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 1,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/release-engineering/scripts/render_release_packet.py",
+              "sha256": "683fc26391635333a3735cd482f589ddc2d9716454a3e71331822561f8035282",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -320,8 +330,8 @@
     {
       "path": "skills/release-engineering/metadata.json",
       "kind": "support",
-      "size_bytes": 5809,
-      "sha256": "4420fca48c52348e873a45d05061b597e849ced9b876fc6adc9e747f4e16b247"
+      "size_bytes": 6088,
+      "sha256": "1ea24af4455ba732b3cf0cccdb8db3a50cdeb71086de2d0617b1d48ef36109ab"
     },
     {
       "path": "skills/release-engineering/agents/openai.yaml",
@@ -365,14 +375,15 @@
       "format": "zip",
       "path": "dist/archives/release-engineering.zip",
       "file_name": "release-engineering.zip",
-      "size_bytes": 18585,
-      "sha256": "03b43dc9568e6a92933610faacd7338f15eb32555c275a4e05237f2eb80b02bc",
+      "size_bytes": 18864,
+      "sha256": "2dfb12d3ac8f23297e7609eaa769aa718967771f6e5ed41683b54fe1813782b7",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/release-engineering.zip.sig",
+        "sha256": "1541286b9c1e997377da946303d68ca4b86e0c6318aed7d3a520a0aac5d7cac5",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/release-engineering.zip.sig dist/archives/release-engineering.zip"
       }
     },
     {
@@ -380,30 +391,32 @@
       "path": "dist/archives/release-engineering.tar.gz",
       "file_name": "release-engineering.tar.gz",
       "size_bytes": 30743,
-      "sha256": "5940daa8426a1fff383a5b7d82e4268d5a56365c01dcbef494736c87e6106f66",
+      "sha256": "96627f90661ca1db47f89000c579a445dbc55c1148c374ecf7f638b4d47af511",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/release-engineering.tar.gz.sig",
+        "sha256": "ea40cf6612da5fe3bea0e3e5a0b271a3d2bdda718c1f15cba3f88cc5569e18d8",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/release-engineering.tar.gz.sig dist/archives/release-engineering.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/release-engineering.checksums.txt",
     "file_name": "release-engineering.checksums.txt",
-    "sha256": "fa343c755f607503342056460b0a2eb81b1c89494ba03b86f4bdd0790ef661bd",
+    "sha256": "0ad41af0dea55237a4e61961773b0f69de22068a1dea7efd97890199abceafc8",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/release-engineering.checksums.txt.sig",
+      "sha256": "74cc0e3e95d32eeb1fe88f64b52165e4028429e3bbb113f0bde856049b191610",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/release-engineering.checksums.txt.sig dist/archives/release-engineering.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "4d0ffe4d6f1e60898d21cc625a96a5c5dff1e19915ce583d3cda00ade7c4ec4e",
-    "package_sha256": "6179aacb695bb4e932b29e25d69b6973cbf27138a57949642cc66df86ad58e8e"
+    "package_sha256": "840fd81a2287074f8aad47a0479b1f8833b0d6642fe09fa6c3c3bf5e1d66170f"
   }
 }

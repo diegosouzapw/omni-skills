@@ -121,16 +121,20 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 0,
+          "positives": 0,
+          "results": [],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -216,8 +220,8 @@
     {
       "path": "skills/sending-reactions/metadata.json",
       "kind": "support",
-      "size_bytes": 5360,
-      "sha256": "e6e0077e3016af76a71353a968729cc69ea78a6714d37371dd172bb88b77c31e"
+      "size_bytes": 5399,
+      "sha256": "9a7509ee375ce681756de7ce9df2559c8fb8e7de4a605c48beac20d21e2f644a"
     },
     {
       "path": "skills/sending-reactions/rules/patterns-thinking.md",
@@ -243,14 +247,15 @@
       "format": "zip",
       "path": "dist/archives/sending-reactions.zip",
       "file_name": "sending-reactions.zip",
-      "size_bytes": 13960,
-      "sha256": "5b1c9df88fa6dce1691efcd10d49ea94caad5008399182f9f486905bb132adc6",
+      "size_bytes": 13999,
+      "sha256": "08ea716a7391d9ecd26d1b8d0ad3faab9ee5f072d34e27c93da2c502a545d5b1",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/sending-reactions.zip.sig",
+        "sha256": "653f9e047e00ab894238e5fc4f83c3d85b744bd1e09ee98c26ae4f370f425b38",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.zip.sig dist/archives/sending-reactions.zip"
       }
     },
     {
@@ -258,30 +263,32 @@
       "path": "dist/archives/sending-reactions.tar.gz",
       "file_name": "sending-reactions.tar.gz",
       "size_bytes": 20503,
-      "sha256": "2a9ed45010444d5951c0fecb383ef605da26709ec63dc9eb477e009ef1d5282c",
+      "sha256": "9faeebcb73eabbddad4d5f4694bbff052651eb1526a5ef106c28e00ce667dbd4",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/sending-reactions.tar.gz.sig",
+        "sha256": "ec26be89879237c98b421c152c4ebfac71d0156f6bac07116e9ab76f5b13849b",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.tar.gz.sig dist/archives/sending-reactions.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/sending-reactions.checksums.txt",
     "file_name": "sending-reactions.checksums.txt",
-    "sha256": "710816fc2ffc74454036682b14d98cf23918ee5f3d3e464fdfdc8e997441cc50",
+    "sha256": "e395c1d27bc1d6a44dfab5ac254f0cafb9118cec5156834f5e51b65bbffef760",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/sending-reactions.checksums.txt.sig",
+      "sha256": "f9369a65ce73d41aae59072427debef41b320e9e88cf0d645ba4c7102c6ed3d9",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/sending-reactions.checksums.txt.sig dist/archives/sending-reactions.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "71cbf63d8d6eb1b589b6b02eb2c9d018d896a1762af79bbac91237c976b672f8",
-    "package_sha256": "64fc5c8951349fffb48100e5bff85c7ffdbbc29013e73dc2aee0fb70cec87dbb"
+    "package_sha256": "0d66f42517a80a6183e0090f47003e2be2761cfdb68b59c855a98c6a1fb40aaa"
   }
 }

@@ -9,7 +9,7 @@
 
 | Metric | Value |
 |:-------|:------|
-| 📦 Package version | `0.1.3` |
+| 📦 Package version | `0.1.4` |
 | 🧠 Published skills | `32` |
 | 📦 Fully backed bundles | `7` |
 | 🖥️ Install-capable clients | `7` |

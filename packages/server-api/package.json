@@ -1,6 +1,6 @@
 {
   "name": "@omni-skills/server-api",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Read-only Omni Skills catalog API.",
   "type": "module",
   "private": true,
@@ -8,7 +8,7 @@
     "start": "node src/server.js"
   },
   "dependencies": {
-    "@omni-skills/catalog-core": "0.1.3",
+    "@omni-skills/catalog-core": "0.1.4",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   }

@@ -121,16 +121,20 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 0,
+          "positives": 0,
+          "results": [],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -216,8 +220,8 @@
     {
       "path": "skills/handling-commands/metadata.json",
       "kind": "support",
-      "size_bytes": 5374,
-      "sha256": "541faeb94b4cb006117282efb007dcd1f423af3be9d45364d3e0c009ed62243b"
+      "size_bytes": 5413,
+      "sha256": "0fd44e8c767e96e34457552deb00f6843f98b7a53fc6ca290fe62e6d62fb3a6b"
     },
     {
       "path": "skills/handling-commands/rules/filters-message-types.md",
@@ -243,14 +247,15 @@
       "format": "zip",
       "path": "dist/archives/handling-commands.zip",
       "file_name": "handling-commands.zip",
-      "size_bytes": 13013,
-      "sha256": "76404569ac99c5b0042d23246d71590677f7801bde40f3e631964e3ff443636e",
+      "size_bytes": 13052,
+      "sha256": "f68e06f97b1d4eef33c3fc6bde4611973299fbbfe595d3e50226c19cc60d2262",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/handling-commands.zip.sig",
+        "sha256": "9bf654661a51ad2122c8634cdb86fb194188d69e86ca3982bdc84419e3bf1933",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.zip.sig dist/archives/handling-commands.zip"
       }
     },
     {
@@ -258,30 +263,32 @@
       "path": "dist/archives/handling-commands.tar.gz",
       "file_name": "handling-commands.tar.gz",
       "size_bytes": 20503,
-      "sha256": "6a5fd87214ec1eb807af5b0552ec2aa1ba7739a7e9ea82ccbf25ede09b7eb090",
+      "sha256": "238bf3ea08ccfdfa231ee903dfadac6818db413da9b3d1bd2a5cceb435b965b2",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/handling-commands.tar.gz.sig",
+        "sha256": "1d343d7ce58fe6c9f663db79d1b3df95c653e3343f35a005850c39747a74b6cc",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.tar.gz.sig dist/archives/handling-commands.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/handling-commands.checksums.txt",
     "file_name": "handling-commands.checksums.txt",
-    "sha256": "792349b978e8da4133f720a1cd6655d02e5fb10f39531b76385682cdc5806290",
+    "sha256": "b9ff3129971cebd76c67016823726e6a648d601d2fe3937c79bc29db47c9e76b",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/handling-commands.checksums.txt.sig",
+      "sha256": "13814a3ecaa2dd4a6c058e1637c00c71a1bbf2dab64d869f75bd1fd390d6e41e",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/handling-commands.checksums.txt.sig dist/archives/handling-commands.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "5149c5493458e3ea6e2aabe9df5ac00fa64b73fb149a5d9a1199d84fc5b4c19c",
-    "package_sha256": "350e33ef0d9b88bbb49a5c5475c8b86b9e4a4af72e6539e272f2281d5c19d25f"
+    "package_sha256": "8697fe870a8dbf6b6802868f79fb8510bed2305dca5182a5ef84c6fe53f9e3c2"
   }
 }

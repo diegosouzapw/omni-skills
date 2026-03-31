@@ -1,2 +1,2 @@
-6a4be769898750536605300779a27028d292c5d8df1610cf6deedcfcb49112fd  vercel-react-native-skills.zip
-be39861889264d16635135091b3c7137b6b5ead51da49791f9f5f7c466efa6d7  vercel-react-native-skills.tar.gz
+8d4d1db54d74c1eafcdfa811df29b989f9153c4ae435f2fd2e25e9a27e5c3483  vercel-react-native-skills.zip
+0c4d412db55b15e27390292ef353147444c0d4805319ebf19e7a84ee1c108841  vercel-react-native-skills.tar.gz

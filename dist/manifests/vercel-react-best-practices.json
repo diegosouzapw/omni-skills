@@ -224,16 +224,31 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 2,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/vercel-react-best-practices/scripts/omni_import_list_support_pack.py",
+              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
+              "status": "not_found"
+            },
+            {
+              "path": "skills/vercel-react-best-practices/scripts/omni_import_print_origin.py",
+              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -334,8 +349,8 @@
     {
       "path": "skills/vercel-react-best-practices/metadata.json",
       "kind": "support",
-      "size_bytes": 9057,
-      "sha256": "b0ed96501caf29b93df6a64fc570bf9020374f60d7f1202e94b41258f1c33858"
+      "size_bytes": 9595,
+      "sha256": "7a50af8f07bfc2387cd3f8d6eb53535dbb956797733ca621f5f271a470b30d70"
     },
     {
       "path": "skills/vercel-react-best-practices/agents/omni-import-router.md",
@@ -817,14 +832,15 @@
       "format": "zip",
       "path": "dist/archives/vercel-react-best-practices.zip",
       "file_name": "vercel-react-best-practices.zip",
-      "size_bytes": 260892,
-      "sha256": "611272b77de4ca77a69a978bb6781976a91a8e17282d02942d279b56f454f2a9",
+      "size_bytes": 261430,
+      "sha256": "078aa74bf3ec93dc7f5144b4d73de21b8db3fbf84ed4c211955e37316d3135d8",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/vercel-react-best-practices.zip.sig",
+        "sha256": "10bd4b754067d8000f5706110c11ec95c5883c8dd7b164cf8397cd40aa9ff393",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-react-best-practices.zip.sig dist/archives/vercel-react-best-practices.zip"
       }
     },
     {
@@ -832,30 +848,32 @@
       "path": "dist/archives/vercel-react-best-practices.tar.gz",
       "file_name": "vercel-react-best-practices.tar.gz",
       "size_bytes": 317498,
-      "sha256": "51a7dfccfd79081227ba2f3e9377f5159de1a34348e6306dec43dde8c302193c",
+      "sha256": "1109c9e7fff0bff5e4bca9a4e7705bf63a5c3b6827bb40db11754ea97bf75bd5",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/vercel-react-best-practices.tar.gz.sig",
+        "sha256": "7954cc88bf0cab7eda267118f384bf4c14b556ce4a67ad626a154e5538e416c2",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-react-best-practices.tar.gz.sig dist/archives/vercel-react-best-practices.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/vercel-react-best-practices.checksums.txt",
     "file_name": "vercel-react-best-practices.checksums.txt",
-    "sha256": "ebaeb1433d0d23b350f380d2385d9433352f5c3ce7ba5e45fecc57a971a78ce5",
+    "sha256": "697ff3e32a5068422c07c1ea45cc50705f8cbd9bfb7518c20d9088673639365f",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/vercel-react-best-practices.checksums.txt.sig",
+      "sha256": "5721ee2c554bd538932c33075d0799721db2c865e4b50736bc6dcd298782376e",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/vercel-react-best-practices.checksums.txt.sig dist/archives/vercel-react-best-practices.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "4d5f97589f1bfd1a8cf510eaa00fe97efe5752c3e0b90d8e534bce156274626b",
-    "package_sha256": "ad58374d562848e019f0d3025ffb0d5c0e62860ec72b15cae5eb6d45acfa02be"
+    "package_sha256": "1f676f1f9f0f5cfd27938d8728ffe298274f45f830b00b85d13f4500235474d9"
   }
 }

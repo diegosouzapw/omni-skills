@@ -1,2 +1,2 @@
-76404569ac99c5b0042d23246d71590677f7801bde40f3e631964e3ff443636e  handling-commands.zip
-6a5fd87214ec1eb807af5b0552ec2aa1ba7739a7e9ea82ccbf25ede09b7eb090  handling-commands.tar.gz
+f68e06f97b1d4eef33c3fc6bde4611973299fbbfe595d3e50226c19cc60d2262  handling-commands.zip
+238bf3ea08ccfdfa231ee903dfadac6818db413da9b3d1bd2a5cceb435b965b2  handling-commands.tar.gz

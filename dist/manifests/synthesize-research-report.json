@@ -224,16 +224,31 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 2,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/synthesize-research-report/scripts/omni_import_list_support_pack.py",
+              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
+              "status": "not_found"
+            },
+            {
+              "path": "skills/synthesize-research-report/scripts/omni_import_print_origin.py",
+              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -322,8 +337,8 @@
     {
       "path": "skills/synthesize-research-report/metadata.json",
       "kind": "support",
-      "size_bytes": 6836,
-      "sha256": "dafc50dd724e09cc03b0ec883fd14b1a10f5f5e14dca54706eccaa939d5008ee"
+      "size_bytes": 7372,
+      "sha256": "f1748407fc06e73722d222dd866ce939eaeb57732f6fd53ad9c06d723de8fed2"
     },
     {
       "path": "skills/synthesize-research-report/agents/omni-import-router.md",
@@ -421,14 +436,15 @@
       "format": "zip",
       "path": "dist/archives/synthesize-research-report.zip",
       "file_name": "synthesize-research-report.zip",
-      "size_bytes": 106246,
-      "sha256": "172f6da5219baef507f8b162b0db039e42b2de9634e62e91af822d18d370b91d",
+      "size_bytes": 106782,
+      "sha256": "15b5a21738fdfdcb2e30bb0155288dd5149e56ee59b5e33a5d136d08eed485d3",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/synthesize-research-report.zip.sig",
+        "sha256": "d0952656917cd93a37cd6062ceb847a33781b8077891b4fb3d4a36fb1de5ad0a",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/synthesize-research-report.zip.sig dist/archives/synthesize-research-report.zip"
       }
     },
     {
@@ -436,30 +452,32 @@
       "path": "dist/archives/synthesize-research-report.tar.gz",
       "file_name": "synthesize-research-report.tar.gz",
       "size_bytes": 122918,
-      "sha256": "acaefcd7fa1801effd3c70c301d21ebc2a110a3179874aee0075014c59c4bb04",
+      "sha256": "fda40e454a50bf82ae2aa597ee76760eea43da3ff13bd4fb42b25925fd23a30c",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/synthesize-research-report.tar.gz.sig",
+        "sha256": "27adb587b04017e0b956475e1a9b37b1e883736b5415179d4c26dd83c5fee341",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/synthesize-research-report.tar.gz.sig dist/archives/synthesize-research-report.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/synthesize-research-report.checksums.txt",
     "file_name": "synthesize-research-report.checksums.txt",
-    "sha256": "dbc59b66b496ca9054e1be28d7f04dc8667662a09b0c1eac41ff74f864c2e967",
+    "sha256": "af339f8c1bd942bd50fbd3f3752d9321079dabcc39b5b329d5653f06a0340c57",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/synthesize-research-report.checksums.txt.sig",
+      "sha256": "0165a0584fb4ca1fc44e58f375a084ff67032bef888d3fcda1cf2c612fa96f2b",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/synthesize-research-report.checksums.txt.sig dist/archives/synthesize-research-report.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "7ccde535977decd3d74401fd5a0cbc4b384571483a5c03d9ec22a56fcc6e4032",
-    "package_sha256": "08526fbc55d6bb2278e3c5e9e0dc9b0828a67fa3eb71854e69b22967eb52d1f0"
+    "package_sha256": "6d2fe26bae485249e59fb7972079eea0680bf84357749e0fb96a056d96c06f02"
   }
 }

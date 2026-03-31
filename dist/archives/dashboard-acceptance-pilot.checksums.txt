@@ -1,2 +1,2 @@
-08db7a1bd8fadf989bebfeb1f24fd7e57917c12e6b8f0dca8a0ee69a0f7060a6  dashboard-acceptance-pilot.zip
-bd712d14229a6f9feb7fcd03406db56c8127bc6b2b565afe0a5748bb195242e9  dashboard-acceptance-pilot.tar.gz
+3ae8644abf809922eb9480510fc8c663a3c25d587d22c18c1e2a1aed745b778c  dashboard-acceptance-pilot.zip
+825bdaa3b826634648bb9f11cd77ca474ff417dd0a2b3d49328b99ace6a7017f  dashboard-acceptance-pilot.tar.gz

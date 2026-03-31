@@ -1,2 +1,2 @@
-71c5d48c2383207344c750d846292456724ee53c4501092b73e01fbe3c0f38b1  resolving-domains.zip
-46157adb7ca60b8b050ae773a43c63b62c689282476d6322e9dc44d8903ebc83  resolving-domains.tar.gz
+95d909b4223ae255df6deaa2592f3f9d38fe4f53f473ce556ada5c7b1cab1b02  resolving-domains.zip
+c856f9d2d89e2efaa8a5e79707cb6e1145e4e1c04f35bbf8fb667e55343a808f  resolving-domains.tar.gz

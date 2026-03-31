@@ -70,7 +70,7 @@ app.get("/openapi.json", (req, res) => {
     openapi: "3.1.0",
     info: {
       title: "Omni Skills Catalog API",
-      version: "0.1.3",
+      version: "0.1.4",
       description: "Read-only API for skill discovery, manifests, bundles, and install planning.",
     },
     servers: [{ url: origin }],

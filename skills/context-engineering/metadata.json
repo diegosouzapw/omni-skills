@@ -196,16 +196,26 @@
         "status": "completed"
       },
       "clamav": {
-        "enabled": false,
-        "status": "disabled",
+        "enabled": true,
+        "status": "completed",
         "provider": "clamav",
-        "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+        "detections": [],
+        "infected_files": 0
       },
       "virustotal": {
-        "enabled": false,
-        "status": "disabled",
+        "enabled": true,
+        "status": "completed",
         "provider": "virustotal",
-        "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+        "lookups": 1,
+        "positives": 0,
+        "results": [
+          {
+            "path": "skills/context-engineering/scripts/render_context_packet.py",
+            "sha256": "aed8ed7c043aec4d95198d4d6718ab6bf991bcee3a47a5cc0a41f80f3bb495cd",
+            "status": "not_found"
+          }
+        ],
+        "details": "Hash lookups only. Unknown files are not uploaded during validation."
       }
     }
   },

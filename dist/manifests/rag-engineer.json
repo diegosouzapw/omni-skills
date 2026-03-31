@@ -235,16 +235,26 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 1,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/rag-engineer/scripts/render_rag_review.py",
+              "sha256": "26b4f49155f5bc02998c2d18b142695a1183903170b8c9a6247c585e7301ec18",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -320,8 +330,8 @@
     {
       "path": "skills/rag-engineer/metadata.json",
       "kind": "support",
-      "size_bytes": 5752,
-      "sha256": "247285c389dffa543d039f4f23bfe53c1ec7d52088407b0af84ef703446c7abe"
+      "size_bytes": 6020,
+      "sha256": "8eac10f972b7eaa7d18573a20f0ef1f93ed7ff470da8fcb1cb4510deb1406fc4"
     },
     {
       "path": "skills/rag-engineer/agents/openai.yaml",
@@ -365,14 +375,15 @@
       "format": "zip",
       "path": "dist/archives/rag-engineer.zip",
       "file_name": "rag-engineer.zip",
-      "size_bytes": 16871,
-      "sha256": "178bcfad6844c492ba6fae4184ff0c7183617024e34cdcdb8a6ee2c1d880f8d4",
+      "size_bytes": 17139,
+      "sha256": "aee5ab4ee705ebb4109ad05fea7c4061cd1045f7577d935a99be4ce8a3c28a2f",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/rag-engineer.zip.sig",
+        "sha256": "72764c2a2bf51af51694fc4a07beb8b170359eec20dbf6d38e2bc9cffe20a6f8",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.zip.sig dist/archives/rag-engineer.zip"
       }
     },
     {
@@ -380,30 +391,32 @@
       "path": "dist/archives/rag-engineer.tar.gz",
       "file_name": "rag-engineer.tar.gz",
       "size_bytes": 30743,
-      "sha256": "7dcd2db48021788343a9e62d1fadd9ec0ff90313b6b060facd760c642bf01d08",
+      "sha256": "f73ae518e82ce60030c38a4fc52ac4ecfa472fede2a739e1555802546ecf7ef6",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/rag-engineer.tar.gz.sig",
+        "sha256": "eee5e95e1760bd11477cf2294ea3f5422f7aa76763394a80130d1e8723832a80",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.tar.gz.sig dist/archives/rag-engineer.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/rag-engineer.checksums.txt",
     "file_name": "rag-engineer.checksums.txt",
-    "sha256": "09014470e6c1b6075207951f6fd8db52710497bf29a1fbf8aad706a8e5b112ac",
+    "sha256": "3fc5fbfd5d8e9c9568d4e560ad69b83635acbc54dc878fa4b797a0dbd42e89f8",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/rag-engineer.checksums.txt.sig",
+      "sha256": "4da06d0ee0eeb909930366a49eb17c4d33e01e60926a07d608cae1d46684c297",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/rag-engineer.checksums.txt.sig dist/archives/rag-engineer.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "552bd8a89603398bea716ed95bfbf0883812e2bd8a33e9722c7527af07f41957",
-    "package_sha256": "aeafcfd00eee011325a423928d3cb6e5e1ac3f380009074ed3ea25c445f40d06"
+    "package_sha256": "7f87f0fd7356281c482322158aa18e9389fdb1ad64abac30398f4c78fd8addd1"
   }
 }

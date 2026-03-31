@@ -10,7 +10,7 @@
 | Attribute | Value |
 |:----------|:------|
 | **Name** | `omni-skills` |
-| **Package version** | `0.1.3` |
+| **Package version** | `0.1.4` |
 | **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.3`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx omni-skills` |
@@ -30,7 +30,7 @@ Current repository-level classification snapshot from `metadata.json`:
 
 Current release baseline:
 
-- public repository release: `v0.1.3`
+- public repository release: `v0.1.4`
 - private enhancer release: `v1.0.0`
 - public release automation and private release automation are both active and green
 

@@ -223,16 +223,36 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 3,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/recce-mcp-e2e/test_mcp_e2e_template.py",
+              "sha256": "e6b2b4eefa65a4a6b01cb6462dc6e7e2ef0a9a75f864ab387c6ec3c35d5e5031",
+              "status": "not_found"
+            },
+            {
+              "path": "skills/recce-mcp-e2e/scripts/omni_import_list_support_pack.py",
+              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
+              "status": "not_found"
+            },
+            {
+              "path": "skills/recce-mcp-e2e/scripts/omni_import_print_origin.py",
+              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -321,8 +341,8 @@
     {
       "path": "skills/recce-mcp-e2e/metadata.json",
       "kind": "support",
-      "size_bytes": 6401,
-      "sha256": "6f4b389864affb13b3925a1ea044d66c688a9129607746bbc52bb021afe1b2c8"
+      "size_bytes": 7129,
+      "sha256": "a53baf6af551c9aeecd0dc3b5b63346387034c25b401a663251698cc29a97629"
     },
     {
       "path": "skills/recce-mcp-e2e/test_mcp_e2e_template.py",
@@ -396,45 +416,48 @@
       "format": "zip",
       "path": "dist/archives/recce-mcp-e2e.zip",
       "file_name": "recce-mcp-e2e.zip",
-      "size_bytes": 31340,
-      "sha256": "4db96cb8589f9950bd208703e22fc4f6b953767b6cb1c3cb37e831c890cff7a5",
+      "size_bytes": 32068,
+      "sha256": "71278419b4af35a3a0771e734263e9872508c1ce01006c816cfbc3aebedabff7",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/recce-mcp-e2e.zip.sig",
+        "sha256": "abb1d8a1967082bb4f91dceacbf0a024d437105147d0639692c9ffc816bee3c9",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/recce-mcp-e2e.zip.sig dist/archives/recce-mcp-e2e.zip"
       }
     },
     {
       "format": "tar.gz",
       "path": "dist/archives/recce-mcp-e2e.tar.gz",
       "file_name": "recce-mcp-e2e.tar.gz",
-      "size_bytes": 40988,
-      "sha256": "034d5507c7d99a18a75f7d42e9c82037bfabf24013ee6752e867b622ce546ac3",
+      "size_bytes": 51228,
+      "sha256": "c439ac66f5d28c6557cdf06121e2a92f82da21213f89007f08898128e50475bd",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/recce-mcp-e2e.tar.gz.sig",
+        "sha256": "5b9b4943a56b2e08cfbaf336fb27a09d90a7cd39a566b69b7014a3d551d61bbd",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/recce-mcp-e2e.tar.gz.sig dist/archives/recce-mcp-e2e.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/recce-mcp-e2e.checksums.txt",
     "file_name": "recce-mcp-e2e.checksums.txt",
-    "sha256": "b8723fc383fef04dfdece5ac1a1f01e321aa4e8edba8dfaed226cc7854bb67ba",
+    "sha256": "e9e91b346ab5b21e2fba5c07b15988a7db93949423ac1ea15ff6edd66c649912",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/recce-mcp-e2e.checksums.txt.sig",
+      "sha256": "9d8be7b981788f331f7db972c459dd7df542cfc6f8bc58785173f1ee74e3699a",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/recce-mcp-e2e.checksums.txt.sig dist/archives/recce-mcp-e2e.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "ae10feeea069ef52c9f58ea0364cfa025a870ba744f647629ed2881a483e5250",
-    "package_sha256": "57998f6e12dc86eec9d2adc17241e49045a153b5a06bf567d354ed885c0daae1"
+    "package_sha256": "f444062fbe62c2e8e16cbc2ba26d055802d65f9a95bbdf58dc025c8ece1e1cf8"
   }
 }

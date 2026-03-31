@@ -222,16 +222,31 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "clamav",
-          "details": "Set OMNI_SKILLS_ENABLE_CLAMAV=1 to enable local clamscan when installed."
+          "detections": [],
+          "infected_files": 0
         },
         "virustotal": {
-          "enabled": false,
-          "status": "disabled",
+          "enabled": true,
+          "status": "completed",
           "provider": "virustotal",
-          "details": "Set VT_API_KEY to enable optional VirusTotal hash lookups."
+          "lookups": 2,
+          "positives": 0,
+          "results": [
+            {
+              "path": "skills/qualitative-research-planner/scripts/omni_import_list_support_pack.py",
+              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
+              "status": "not_found"
+            },
+            {
+              "path": "skills/qualitative-research-planner/scripts/omni_import_print_origin.py",
+              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
+              "status": "not_found"
+            }
+          ],
+          "details": "Hash lookups only. Unknown files are not uploaded during validation."
         }
       }
     },
@@ -320,8 +335,8 @@
     {
       "path": "skills/qualitative-research-planner/metadata.json",
       "kind": "support",
-      "size_bytes": 6238,
-      "sha256": "a9821bca769b7334b0bd8d65d5d3940d2b0362416a1b8f6682655b186813c18b"
+      "size_bytes": 6778,
+      "sha256": "9d4b652b0bc535a02773d9c14d02e937a5ab38e6593fc98fcb19769578c1bc2c"
     },
     {
       "path": "skills/qualitative-research-planner/agents/omni-import-router.md",
@@ -389,14 +404,15 @@
       "format": "zip",
       "path": "dist/archives/qualitative-research-planner.zip",
       "file_name": "qualitative-research-planner.zip",
-      "size_bytes": 41054,
-      "sha256": "bb98717a9fafa363b553339e754341ad4618fc569f76e225b66463cfa9981ea6",
+      "size_bytes": 41594,
+      "sha256": "6f84cc7be480af749228fe5e6013077dc3b37e866271978457ef8e89b1b5ed8a",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/qualitative-research-planner.zip.sig",
+        "sha256": "2f290dbc017e342b67ce9f2b17024a3259daac2d668a6054ce75475ede15f7fb",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/qualitative-research-planner.zip.sig dist/archives/qualitative-research-planner.zip"
       }
     },
     {
@@ -404,30 +420,32 @@
       "path": "dist/archives/qualitative-research-planner.tar.gz",
       "file_name": "qualitative-research-planner.tar.gz",
       "size_bytes": 51228,
-      "sha256": "8a2c98ba09ffc2c0357ac8c98fc20c783dc605c7d83b6c8c2b3fb573412b335b",
+      "sha256": "1f2d92d91c60e8db38cf67e924f11dc79adb0e989c496ba877ea7f717b216410",
       "signature": {
-        "status": "unsigned",
-        "path": null,
-        "sha256": null,
-        "public_key_path": null,
-        "algorithm": "sha256"
+        "status": "signed",
+        "path": "dist/archives/qualitative-research-planner.tar.gz.sig",
+        "sha256": "8a11847fde014369d5a0024a0d375469340ec8c4b16220d9052c57bd7c0f9df9",
+        "public_key_path": "dist/signing/omni-skills-public.pem",
+        "algorithm": "sha256",
+        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/qualitative-research-planner.tar.gz.sig dist/archives/qualitative-research-planner.tar.gz"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/qualitative-research-planner.checksums.txt",
     "file_name": "qualitative-research-planner.checksums.txt",
-    "sha256": "bb80824450099d946895d1ad9596ef7f24b5f6c9190b367e67bcc3d3705e377a",
+    "sha256": "11ff2c2762ae50ea6347bc1ff524c498cfe9d63618ef944268f185b0a03b65de",
     "signature": {
-      "status": "unsigned",
-      "path": null,
-      "sha256": null,
-      "public_key_path": null,
-      "algorithm": "sha256"
+      "status": "signed",
+      "path": "dist/archives/qualitative-research-planner.checksums.txt.sig",
+      "sha256": "4b9aa74cb281848b55ecebc1164ef185cd7df051847546517d6f7cf14bd57737",
+      "public_key_path": "dist/signing/omni-skills-public.pem",
+      "algorithm": "sha256",
+      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/qualitative-research-planner.checksums.txt.sig dist/archives/qualitative-research-planner.checksums.txt"
     }
   },
   "checksums": {
     "entrypoint_sha256": "b7a8b7fb0a23df3b21df84c5452afded181477caef18c4303b6bc38731e97c4e",
-    "package_sha256": "4452f09067b5d6f1c8c56c05563a5a82262b68fe1d743c3ed87ecd9f076489e4"
+    "package_sha256": "4690ecc348bfb932a06e272b53266c6429fb91ab8d55e622dd19f61532ca1dc5"
   }
 }
