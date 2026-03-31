@@ -1,0 +1,11 @@
+{
+  "schema_version": "2026-03-28",
+  "skill_id": "vercel-react-best-practices",
+  "curation_surface": "skills_omni",
+  "enhanced_origin": "omni-skills-private",
+  "loop_prevention_rule": "curated-output-only",
+  "source_pr_number": 10,
+  "source_pr_author": "diegosouzapw",
+  "source_pr_repo": "diegosouzapw/omni-skills",
+  "source_pr_head_sha": "6694282a8c80060989f27612505ced763d291b76"
+}

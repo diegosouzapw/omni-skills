@@ -1,0 +1,10 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "web-design-guidelines",
+  "public_skill_path": "skills/web-design-guidelines",
+  "source_repository_url": "https://github.com/vercel-labs/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "6f3fa3191d089d7810e332a562ad2a0ff5f7f239",
+  "source_skill_path": "skills/web-design-guidelines",
+  "upstream_files": []
+}
