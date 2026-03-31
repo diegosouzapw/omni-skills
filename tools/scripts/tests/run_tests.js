@@ -222,10 +222,21 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
     packageMetadata.version,
     "project status should stay aligned with package.json version",
   );
+  assert.equal(
+    packageMetadata.description,
+    projectIdentity.npm_description,
+    "package.json description should stay aligned with project_identity npm_description",
+  );
   assert.notEqual(
     projectStatus.generated_at,
     "2026-01-01T00:00:00+00:00",
     "project status should no longer fall back to the static placeholder generated_at",
+  );
+  assert.ok(
+    Array.isArray(projectIdentity.github_topics) &&
+      projectIdentity.github_topics.includes(projectIdentity.repo_slug) &&
+      projectIdentity.github_topics.includes("mcp"),
+    "project identity should keep a reusable GitHub topics contract for repo metadata automation",
   );
   assert.ok(
     i18nIndex.includes(`Multilingual Documentation — ${projectIdentity.display_name}`),

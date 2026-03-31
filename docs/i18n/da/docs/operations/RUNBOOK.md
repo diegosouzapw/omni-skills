@@ -25,6 +25,7 @@ npm install
 ### 🔄 Recommended Development Loop
 
 ```bash
+npm run identity:check   # Verify package/repo identity contract
 npm run validate        # Validate skills + regenerate metadata
 npm run taxonomy:report # Show category drift (read-only)
 npm run build           # Generate catalog, manifests, archives, CATALOG.md
@@ -34,8 +35,10 @@ npx awesome-omni-skills ui      # Visual shell for install and service launch
 
 | Command | What It Does |
 |:--------|:-------------|
+| `npm run identity:check` | Verifies `package.json`, README branding, CLI aliases, and source-controlled repo identity stay aligned |
 | `npm run validate` | Validates `SKILL.md`, regenerates `metadata.json`, computes taxonomy/maturity/quality/security |
 | `npm run taxonomy:report` | Shows category drift suggestions without rewriting files |
+| `npm run repo:metadata:print` | Prints the desired GitHub description, homepage, and topics derived from `data/project_identity.json` |
 | `npm run verify:scanners` | Confirms scanner coverage recorded in generated skill metadata |
 | `npm run release:notes` | Generates custom release notes from metadata, bundles, and git history |
 | `npm run build` | Regenerates catalog/manifests/archives/checksums, verifies scanner coverage and archives, rebuilds `docs/CATALOG.md` |
@@ -540,12 +543,18 @@ git diff --check           # 📋 Whitespace/formatting
 
 ### 🚢 GitHub Actions Release Flow
 
-The repository now has two workflows:
+The repository now has distinct validation and release workflows:
 
 | Workflow | Trigger | Purpose |
 |:---------|:--------|:--------|
 | `validate.yml` | Push/PR to `main` | Build, test, and confirm generated artifacts are committed |
 | `release.yml` | Tag push `v*` or manual dispatch | Run release-grade scanners, verify the version tag, sign artifacts, package the tarball, publish to npm, and create the GitHub Release |
+
+Repository header metadata is now managed separately:
+
+| Workflow | Trigger | Purpose |
+|:---------|:--------|:--------|
+| `sync-repository-metadata.yml` | Pushes touching `data/project_identity.json` or manual dispatch | Check or apply GitHub description, homepage, and topics from source-controlled metadata |
 
 ### 🔖 Tag a Release
 
@@ -561,6 +570,7 @@ git push origin main --follow-tags
 | `VT_API_KEY` or `VIRUSTOTAL` | `release.yml` | Require VirusTotal hash lookups in release builds |
 | `OMNI_SKILLS_SIGN_PRIVATE_KEY_B64` or `OMNI_SKILLS_SIGN_PRIVATE_KEY` | `release.yml` | Required private key for detached archive signing in CI |
 | `OMNI_SKILLS_SIGN_PUBLIC_KEY_B64` or `OMNI_SKILLS_SIGN_PUBLIC_KEY` | `release.yml` | Optional public key override; otherwise derived from the private key |
+| `OMNI_SKILLS_REPO_ADMIN_TOKEN` | `sync-repository-metadata.yml` apply mode | Optional PAT with repo-admin rights to update description, homepage, and topics automatically |
 | `NPM_TOKEN` | `publish-npm` job | Authenticate `npm publish` for tag releases |
 
 ### 🦠 Release Scanner Policy

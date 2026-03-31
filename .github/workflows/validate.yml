@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify project identity contract
+        run: npm run identity:check
+
       - name: Validate contribution scope
         if: github.event_name == 'pull_request'
         run: |

@@ -1,0 +1,59 @@
+name: Sync Repository Metadata
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/project_identity.json"
+      - "tools/scripts/verify_project_identity.py"
+      - "tools/scripts/sync_github_repo_metadata.py"
+      - ".github/workflows/sync-repository-metadata.yml"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Use check to report drift, or apply to push repository settings to GitHub."
+        required: true
+        default: "check"
+        type: choice
+        options:
+          - check
+          - apply
+
+permissions:
+  contents: read
+
+jobs:
+  repository-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify project identity contract
+        run: python3 tools/scripts/verify_project_identity.py
+
+      - name: Resolve metadata sync mode
+        id: mode
+        env:
+          REPO_ADMIN_TOKEN: ${{ secrets.OMNI_SKILLS_REPO_ADMIN_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MODE="${{ github.event.inputs.mode }}"
+          elif [ -n "${REPO_ADMIN_TOKEN:-}" ]; then
+            MODE="apply"
+          else
+            MODE="check"
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+
+      - name: Check or apply GitHub repository metadata
+        env:
+          GH_TOKEN: ${{ secrets.OMNI_SKILLS_REPO_ADMIN_TOKEN || github.token }}
+        run: python3 tools/scripts/sync_github_repo_metadata.py "${{ steps.mode.outputs.mode }}"

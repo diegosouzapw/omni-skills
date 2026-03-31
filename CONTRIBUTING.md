@@ -143,6 +143,7 @@ Run this before opening a PR:
 ```bash
 npm run validate          # Validates and regenerates metadata
 npm run taxonomy:report   # Preview taxonomy changes
+npm run identity:check    # Verifies package/repo identity stays aligned with project manifests
 npm run build             # Full build pipeline
 npm test                  # Automated tests
 ```
@@ -160,6 +161,14 @@ npm test                  # Automated tests
 </details>
 
 > **⚠️ Important:** Validation is the contract used by CLI, API, MCP, A2A, manifests, archives, and release automation. Treat generated metadata as part of the review surface, not disposable output.
+
+If you touch branding, package metadata, repo URLs, or repository header copy, also run:
+
+```bash
+npm run repo:metadata:print
+```
+
+That command prints the source-controlled GitHub description, homepage, and topics contract derived from `data/project_identity.json`.
 
 ### 📥 Intake Policy
 
