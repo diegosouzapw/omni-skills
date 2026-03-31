@@ -223,31 +223,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 2,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/web-design-guidelines/scripts/omni_import_list_support_pack.py",
-              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
-              "status": "not_found"
-            },
-            {
-              "path": "skills/web-design-guidelines/scripts/omni_import_print_origin.py",
-              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -336,8 +321,8 @@
     {
       "path": "skills/web-design-guidelines/metadata.json",
       "kind": "support",
-      "size_bytes": 6921,
-      "sha256": "8e8d4ad12f57b963a5fce7d7ac70da660745cbacf97c824fa9f58b6c091aecfc"
+      "size_bytes": 6484,
+      "sha256": "f871925fb2007a0bfc997039c956b3dd1b63bdafac0b39584b2c2064605f7a91"
     },
     {
       "path": "skills/web-design-guidelines/agents/omni-import-router.md",
@@ -405,15 +390,14 @@
       "format": "zip",
       "path": "dist/archives/web-design-guidelines.zip",
       "file_name": "web-design-guidelines.zip",
-      "size_bytes": 26167,
-      "sha256": "4d4b995ea7b7999c5d37771d322c4d077c67246893b6412dea379cdcce153a44",
+      "size_bytes": 25730,
+      "sha256": "820a6b3d3b7ccb7c760f208b6e0f580deb254bd6b7d1fc6695ef1964f5d297a9",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/web-design-guidelines.zip.sig",
-        "sha256": "e2b18b0681182951237349c9f52bb8b20efe5dca888376f39be682e993c70e70",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/web-design-guidelines.zip.sig dist/archives/web-design-guidelines.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -421,32 +405,30 @@
       "path": "dist/archives/web-design-guidelines.tar.gz",
       "file_name": "web-design-guidelines.tar.gz",
       "size_bytes": 40988,
-      "sha256": "97ee574fea5cdcf2c3697b0f3e6b06eb4855a135b92661e1b5e1030dae82372c",
+      "sha256": "37820a0f5aa73dd9aacd145c432dd2526a6f508b3d87600d83898eef3edc2121",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/web-design-guidelines.tar.gz.sig",
-        "sha256": "ab7a6e2cbf46a59b22c82389dbe1c445fcefd05402c74183c907a72c57653dff",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/web-design-guidelines.tar.gz.sig dist/archives/web-design-guidelines.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/web-design-guidelines.checksums.txt",
     "file_name": "web-design-guidelines.checksums.txt",
-    "sha256": "a0c488bc1d8fc1acda43b492ac9286340153eb48a702f2fd416379f475d616c6",
+    "sha256": "500f6c14d61699b23b6af2615c56a1163eac70e0cb6f8e15f250701b24758b57",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/web-design-guidelines.checksums.txt.sig",
-      "sha256": "abf7ef45e062fec384c948b1ccf027ad0260f55077a45e29af39ceede1975080",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/web-design-guidelines.checksums.txt.sig dist/archives/web-design-guidelines.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "46c9d3faad3f5b73d1b415736226bde6b9187d43846b488a5b0463cd5f7f3920",
-    "package_sha256": "49bd356531f0c64fde8df77c850c55eb53c3cb1ce2dc89e42a6393b97a22a757"
+    "package_sha256": "60b779af34fb93c20b858b3b53b4e7063397d09177478b78081ad5a81458630d"
   }
 }

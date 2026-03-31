@@ -1,2 +1,2 @@
-8d88256510dd0781af4aa5c371b4deebe04c6bcf862ff5e254355f3c4a2f03a7  model-serving.zip
-132ae30320f78de8a6bd26f6b078ca0159be6ebc0019b26e0f0f2393a7006c3b  model-serving.tar.gz
+11b5f1af713b5d416db411ef4134fe0a001d642f5a229eac7adfbb1d29d63e68  model-serving.zip
+760f85d2ae40c6a0f6b7667e90a4d888fab08ff74aa1e495dcdd0d080d2c78bf  model-serving.tar.gz

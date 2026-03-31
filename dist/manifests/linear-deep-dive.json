@@ -223,31 +223,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 2,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/linear-deep-dive/scripts/omni_import_list_support_pack.py",
-              "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34",
-              "status": "not_found"
-            },
-            {
-              "path": "skills/linear-deep-dive/scripts/omni_import_print_origin.py",
-              "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -336,8 +321,8 @@
     {
       "path": "skills/linear-deep-dive/metadata.json",
       "kind": "support",
-      "size_bytes": 7115,
-      "sha256": "65bebf1a48e604e1cbc4086bb0fc0f4cf28dfc1dfb3c7765afa67ded0240d262"
+      "size_bytes": 6688,
+      "sha256": "00f489dfa643e2ca8c5d4a54dea6b306fed55b698a423c4aa29c91c5ef24b360"
     },
     {
       "path": "skills/linear-deep-dive/agents/omni-import-router.md",
@@ -411,15 +396,14 @@
       "format": "zip",
       "path": "dist/archives/linear-deep-dive.zip",
       "file_name": "linear-deep-dive.zip",
-      "size_bytes": 48577,
-      "sha256": "bd6cc07a8e7c13bf77de793d3bc385d9a6c33d23fbdd3a57be3ebf0c7066a36b",
+      "size_bytes": 48150,
+      "sha256": "1c70d322698190c22ae889d7af55ea5c11161ca837460d9cffd0e1b04b537c5b",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/linear-deep-dive.zip.sig",
-        "sha256": "600bffdfcd2b434c02231a7089315387bc9a0339d6fa68e47b73ff1bb8dba88a",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/linear-deep-dive.zip.sig dist/archives/linear-deep-dive.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -427,32 +411,30 @@
       "path": "dist/archives/linear-deep-dive.tar.gz",
       "file_name": "linear-deep-dive.tar.gz",
       "size_bytes": 61468,
-      "sha256": "ee8f0cf4e4af1c78761db44326a63e2c0dd0331b74975b7fba35f8169143664b",
+      "sha256": "35684cfdb61e1c2444034eff848f286837abcfc03b42fe5f55ffdac46063663f",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/linear-deep-dive.tar.gz.sig",
-        "sha256": "932004bf3b4b31022464ca6a12460350df13b6bb941435bb09bddb18a3364b41",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/linear-deep-dive.tar.gz.sig dist/archives/linear-deep-dive.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/linear-deep-dive.checksums.txt",
     "file_name": "linear-deep-dive.checksums.txt",
-    "sha256": "481ec519c63fcd1647364671b39f09fbde5d2c59f610f3dc547830d74e2a180f",
+    "sha256": "7126fab83fbaefefcc8da08302615a8463690caaf18619bb505bf1c64a0f8c8c",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/linear-deep-dive.checksums.txt.sig",
-      "sha256": "9550a736a7354d04f9706bbcdb7c663cbf12866576fd73b65a6d07cf0939db9b",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/linear-deep-dive.checksums.txt.sig dist/archives/linear-deep-dive.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "2539379e6725da7b56536b91bf333a0b73469d3d0e4f5c7a812d9e06ed3344c2",
-    "package_sha256": "8ba58a08e15334381e49e06b054794183681202df354449b564baa9966b0834b"
+    "package_sha256": "c8491d2ccfc872298b7f82f778ff4415fa97d9e62fa702bc02bca5f1e88d4282"
   }
 }

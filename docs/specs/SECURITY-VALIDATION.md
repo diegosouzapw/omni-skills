@@ -48,24 +48,28 @@ Scans every skill during validation:
 ### 2️⃣ ClamAV (Optional)
 
 ```bash
-OMNI_SKILLS_ENABLE_CLAMAV=1 npm run validate
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
+OMNI_SKILLS_ENABLE_CLAMAV=1 \
+npm run validate
 ```
 
 - Requires `clamscan` in `PATH`
 - Scans packaged files for known malware
-- Results recorded in skill metadata
+- Results are recorded in skill metadata only when `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1` is set
 
 ---
 
 ### 3️⃣ VirusTotal (Optional)
 
 ```bash
-VT_API_KEY=your-key npm run validate
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
+VT_API_KEY=your-key \
+npm run validate
 ```
 
 - **Hash lookup only** — no file upload during normal validation
 - Unknown files remain local-only
-- Keeps the build **deterministic** and CI-independent
+- Canonical tracked metadata stays deterministic by default because optional network results are not embedded unless explicitly requested
 
 ### 4️⃣ Scanner Coverage Verification
 
@@ -76,6 +80,7 @@ npm run verify:scanners
 Strict release gate:
 
 ```bash
+OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
 OMNI_SKILLS_ENABLE_CLAMAV=1 \
 VT_API_KEY=your-key \
 npm run verify:scanners:strict
@@ -112,6 +117,7 @@ Security data is emitted in every skill's metadata:
 ```
 
 > This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
+> Optional ClamAV and VirusTotal results are embedded only when `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1` is present during generation.
 
 ---
 
@@ -150,16 +156,21 @@ GitHub Actions release tags (`v*`) now:
 ### 🔑 Enable Detached Signatures
 
 ```bash
-OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem npm run index
+OMNI_SKILLS_EMBED_SIGNATURES=1 \
+OMNI_SKILLS_SIGN_PRIVATE_KEY_PATH=/path/to/private.pem \
+npm run index
 ```
 
 ### 🔓 Optional Public Key Override
 
 ```bash
-OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem npm run index
+OMNI_SKILLS_EMBED_SIGNATURES=1 \
+OMNI_SKILLS_SIGN_PUBLIC_KEY_PATH=/path/to/public.pem \
+npm run index
 ```
 
 > If no public key is provided, the build derives one with `openssl` and places it in `dist/signing/`.
+> Canonical tracked manifests stay unsigned by default. Detached signatures are embedded only when `OMNI_SKILLS_EMBED_SIGNATURES=1` is set.
 
 When enabled, `.sig` files are emitted beside the archives and checksum manifest.
 

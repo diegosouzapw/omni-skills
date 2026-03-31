@@ -205,26 +205,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 1,
-          "positives": 0,
-          "results": [
-            {
-              "path": "skills/omni-figma/scripts/render_implementation_packet.py",
-              "sha256": "cc7111f9cde43735c6db7efb0cdfd6e97bdf9555e81f1e1f3198a5a630a54ca9",
-              "status": "not_found"
-            }
-          ],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -307,8 +297,8 @@
     {
       "path": "skills/omni-figma/metadata.json",
       "kind": "support",
-      "size_bytes": 6280,
-      "sha256": "bf277ba74aa8976eb7e4fa0189214c3aa099264a321232209762191041da0a0e"
+      "size_bytes": 6092,
+      "sha256": "c825e9c92ef623fe7d71cda744a58b7d2f3e9c4e18fd4d23af20c42eb34a1fc0"
     },
     {
       "path": "skills/omni-figma/agents/openai.yaml",
@@ -382,15 +372,14 @@
       "format": "zip",
       "path": "dist/archives/omni-figma.zip",
       "file_name": "omni-figma.zip",
-      "size_bytes": 36609,
-      "sha256": "30b6fa215cde14f30b81814937e6035e4deaee4d25326fc2834917cded878d78",
+      "size_bytes": 36421,
+      "sha256": "d847b0bb7abb57fbf6a17bfa7d101534b45039409445a02982660b23346b24b9",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/omni-figma.zip.sig",
-        "sha256": "6b0afe8445715299a30f069115c41bbc52e08c2b1cb27b994c5be40049008b8d",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.zip.sig dist/archives/omni-figma.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -398,32 +387,30 @@
       "path": "dist/archives/omni-figma.tar.gz",
       "file_name": "omni-figma.tar.gz",
       "size_bytes": 51228,
-      "sha256": "3de2202b32281b9acaa8775232d9404c79faed84c129d68784724f255b2d12d4",
+      "sha256": "317f974f8c1f2a5abcaf4e338fe1efdbb28551572a67b901947259cd1ad4c4cf",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/omni-figma.tar.gz.sig",
-        "sha256": "607a6f4056afe838f592584deb3a72b35909e6db36ac991ebd1e5fd5eafbe66f",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.tar.gz.sig dist/archives/omni-figma.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/omni-figma.checksums.txt",
     "file_name": "omni-figma.checksums.txt",
-    "sha256": "aae7182f723355e0ee9e32bd874a7f7b77d8ac78c19ce4da5f0fa7bc2ea37be3",
+    "sha256": "f512cf863143f78bf4bb9ec5379c085eb250e6e1f494e7fb74fc13c310f3d612",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/omni-figma.checksums.txt.sig",
-      "sha256": "b0b4b2d787d7123ad4a12130399fcbae2d9c54ec90ebccd4a0b385116777f0b6",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/omni-figma.checksums.txt.sig dist/archives/omni-figma.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "8b4e941770c889dc5dd2c47fd302b455c64a37ceb4af5de95f7cfe7fd1a9ae76",
-    "package_sha256": "2ff9a7b7607a8b03cfaef0e2d4c78d3f6929f0a39bb12a91908c67e1f803453e"
+    "package_sha256": "da6ce7ab7f5ee236fae729a13f0c544c9be23e57ecb14d929c16dad490f4b189"
   }
 }

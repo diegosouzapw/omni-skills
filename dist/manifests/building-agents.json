@@ -176,20 +176,16 @@
           "status": "completed"
         },
         "clamav": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "clamav",
-          "detections": [],
-          "infected_files": 0
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
         },
         "virustotal": {
-          "enabled": true,
-          "status": "completed",
+          "enabled": false,
+          "status": "disabled",
           "provider": "virustotal",
-          "lookups": 0,
-          "positives": 0,
-          "results": [],
-          "details": "Hash lookups only. Unknown files are not uploaded during validation."
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
         }
       }
     },
@@ -281,8 +277,8 @@
     {
       "path": "skills/building-agents/metadata.json",
       "kind": "support",
-      "size_bytes": 8319,
-      "sha256": "8bcda229cdfc1afae448d07691ecc1e77e2be52e384c8a28ccdd1ad5a49657cf"
+      "size_bytes": 8369,
+      "sha256": "194b1de008a4594b7c5fdacdd72a6652fb4f70efb5a14c88bf08aa29861f5e33"
     },
     {
       "path": "skills/building-agents/rules/events-lifecycle.md",
@@ -326,15 +322,14 @@
       "format": "zip",
       "path": "dist/archives/building-agents.zip",
       "file_name": "building-agents.zip",
-      "size_bytes": 20633,
-      "sha256": "de1167fe5121ec07d6bd7f6c139af07ba6fabf09b4904aa2f2c08c6837f6ec6a",
+      "size_bytes": 20683,
+      "sha256": "a4c4524da5f5d06ba2dedfb974457e8fc46a8cc038e70991dd57f8d1af1c5761",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/building-agents.zip.sig",
-        "sha256": "1491726e0e2568ac5f251e3c546567d79ccf1f334d45356c9a790a399e3f7a57",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/building-agents.zip.sig dist/archives/building-agents.zip"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     },
     {
@@ -342,32 +337,30 @@
       "path": "dist/archives/building-agents.tar.gz",
       "file_name": "building-agents.tar.gz",
       "size_bytes": 30743,
-      "sha256": "cd967a77206c9351b3c0043e4f0554ad9c9f65175ac9d032451b5200cbe6ad66",
+      "sha256": "da6a53fe4a6cc5ca91e9a7b5e87356974aba4537e79ae989bf827a0446b1d563",
       "signature": {
-        "status": "signed",
-        "path": "dist/archives/building-agents.tar.gz.sig",
-        "sha256": "3e84b193a9f9324eb483416cebdec7cad6c8cd1891860f300b8d9ea44f496eda",
-        "public_key_path": "dist/signing/omni-skills-public.pem",
-        "algorithm": "sha256",
-        "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/building-agents.tar.gz.sig dist/archives/building-agents.tar.gz"
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
       }
     }
   ],
   "archive_checksums": {
     "path": "dist/archives/building-agents.checksums.txt",
     "file_name": "building-agents.checksums.txt",
-    "sha256": "8bbd2074ee13d82263898494a715176c401d387b6c5c83e2f247218044a77060",
+    "sha256": "3207e9537561fbfce83276b39757c8e520f7333a5f161cb9af1744084338d634",
     "signature": {
-      "status": "signed",
-      "path": "dist/archives/building-agents.checksums.txt.sig",
-      "sha256": "ed7fa8d8b10f7b459c36e38376c3d80ca90948c171a385e4f47b9e30874a1109",
-      "public_key_path": "dist/signing/omni-skills-public.pem",
-      "algorithm": "sha256",
-      "verify_command": "openssl dgst -sha256 -verify dist/signing/omni-skills-public.pem -signature dist/archives/building-agents.checksums.txt.sig dist/archives/building-agents.checksums.txt"
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
     }
   },
   "checksums": {
     "entrypoint_sha256": "443df2b988bd90727c4669f0d98dd6056301e6be726df7ad323ad9639dda5708",
-    "package_sha256": "568e431741ca1a456aff01f13232ec61db0e1527b8b3232d1391bfc236dba6d1"
+    "package_sha256": "a56178dd8db2bcb5afc67b62979a9bc1510da598175c6626235195ded8dbc822"
   }
 }
