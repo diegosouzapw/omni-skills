@@ -734,9 +734,31 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
     [path.resolve(__dirname, "../../bin/cli.js"), "find", "figma"],
     { encoding: "utf-8" },
   );
+  const cliFindJson = JSON.parse(
+    childProcess.execFileSync(
+      process.execPath,
+      [path.resolve(__dirname, "../../bin/cli.js"), "find", "figma", "--json"],
+      { encoding: "utf-8" },
+    ),
+  );
   assert.ok(cliFind.includes("omni-figma"), "repo CLI find should surface matching skills");
   assert.ok(
-    cliFind.includes("Results (1/1)"),
+    Array.isArray(cliFindJson.results) &&
+      cliFindJson.results.length >= 1 &&
+      cliFindJson.results.every((skill) => {
+        const haystack = [
+          skill.id,
+          skill.display_name,
+          skill.description,
+          ...(skill.tags || []),
+          skill.category,
+          skill.raw_category,
+          skill.canonical_category,
+        ]
+          .join(" ")
+          .toLowerCase();
+        return haystack.includes("figma");
+      }),
     "repo CLI find should require a real text match instead of only matching on filters",
   );
   assert.ok(

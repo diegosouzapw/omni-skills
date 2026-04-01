@@ -59,8 +59,17 @@ The repository relies on the following security controls:
 |:--------|:-----------|
 | 🏷️ Risk field | Skill metadata includes a declared `risk` level |
 | 📊 Scoring | Validation computes maturity, best-practices, quality, and security scores |
-| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts |
-| 🦠 Optional scanners | ClamAV and VirusTotal hash lookup (when configured) |
+| 🔍 Static scanner | Inspects `SKILL.md`, packaged files, and helper scripts, and blocks critical findings from entering the public catalog |
+| 🦠 Release malware verification | Published releases are verified with both ClamAV and VirusTotal before publication |
+
+### 🚫 Hard Content Blocks
+
+The public repository does not accept skills that trip the critical security gate. Current hard blockers include:
+
+- remote content piped directly into shell execution
+- instructions that attempt to reveal prompts, secrets, or hidden runtime context
+
+When the validator finds one of those patterns, the skill does not enter the public catalog. In external-repository intake, valid siblings may still continue while the blocked skills are excluded and reported separately.
 
 ### 🖥️ Runtime Controls
 
@@ -78,6 +87,7 @@ The repository relies on the following security controls:
 |:--------|:-----------|
 | ✅ Checksum manifests | SHA-256 checksums for generated archives |
 | ✍️ Signatures | Detached signature verification in CI before publication |
+| 🦠 Dual scanner gate | ClamAV and VirusTotal both required to complete cleanly for release publication |
 | 🧪 Smoke checks | Exercise shipped runtime surfaces before release |
 
 ---

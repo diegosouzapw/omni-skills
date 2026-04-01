@@ -14,8 +14,8 @@
 | ✅ SHA-256 checksum manifests | Implemented |
 | ✅ CI scanner gate on release tags | Implemented |
 | ✅ npm publish workflow from verified tarball | Implemented |
-| ⚙️ ClamAV scanning | Optional enricher |
-| ⚙️ VirusTotal hash lookup | Optional enricher |
+| ✅ ClamAV scanning | Required for published releases; optional for local ad hoc builds |
+| ✅ VirusTotal hash lookup | Required for published releases; optional for local ad hoc builds |
 | ✅ Detached signing | Implemented |
 | ✅ CI-enforced signing | Implemented on release tags |
 
@@ -38,14 +38,18 @@ Scans every skill during validation:
 | Rule | Examples |
 |:-----|:---------|
 | 🎭 **Prompt injection** | Exfiltration patterns, instruction overrides |
+| 🚫 **Hidden-context exfiltration** | Attempts to reveal prompts, secrets, or hidden runtime context |
 | 💣 **Destructive commands** | `rm -rf`, `format`, `del /s` |
 | 🔑 **Privilege escalation** | `sudo`, `chmod 777`, setuid patterns |
 | 📂 **Suspicious paths** | `/etc/shadow`, `~/.ssh`, credential files |
+| 🌐 **Remote shell piping** | `curl ... | sh`, `wget ... | bash`, or equivalent |
 | ⚠️ **Risky primitives** | `shell=True`, `pickle.load`, `eval`, `extractall` |
+
+Critical findings in these families block a skill from entering the public catalog. During external-repository intake, the importer can now filter only the blocked skills out of a mixed batch and keep the valid skills moving to PR review.
 
 ---
 
-### 2️⃣ ClamAV (Optional)
+### 2️⃣ ClamAV (Release-Required, Optional Locally)
 
 ```bash
 OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
@@ -60,7 +64,7 @@ npm run validate
 
 ---
 
-### 3️⃣ VirusTotal (Optional)
+### 3️⃣ VirusTotal (Release-Required, Optional Locally)
 
 ```bash
 OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 \
@@ -119,7 +123,7 @@ Security data is emitted in every skill's metadata:
 ```
 
 > This block is propagated into manifests and catalog views, enabling CLI, API, and MCP to **filter and rank by security score**.
-> Optional ClamAV and VirusTotal results stay opt-in for local builds. Release workflows now inject `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1`, so published release artifacts include those results by default.
+> Optional ClamAV and VirusTotal results stay opt-in for local builds. Release workflows now inject `OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1`, require both scanners to complete cleanly, and publish artifacts that already carry that evidence by default.
 
 ---
 
@@ -145,11 +149,12 @@ GitHub Actions release tags (`v*`) now:
 
 1. verify the git tag matches `package.json`
 2. install and refresh ClamAV
-3. decode the release signing key from GitHub secrets
-4. run `npm run release:verify`
-5. package the tarball with `npm pack`
-6. publish that exact tarball to npm with provenance
-7. create a GitHub Release with custom notes and attached verification assets
+3. require VirusTotal hash lookup credentials
+4. decode the release signing key from GitHub secrets
+5. run `npm run release:verify`
+6. package the tarball with `npm pack`
+7. publish that exact tarball to npm with provenance
+8. create a GitHub Release with custom notes and attached verification assets
 
 ---
 

@@ -193,7 +193,8 @@ Before comparing bundles or picking an install path, understanding these five bu
 | Search and compare skills | Browse markdown manually | Generated catalog, filtering, bundle planning, search, compare, and recommendation |
 | Use the same data across tools | Separate logic per tool | Shared manifests and catalog for CLI, API, MCP, and A2A |
 | Configure MCP clients | Hand-edit files | `config-mcp`, local sidecar previews, generated recipes, and allowlisted writes |
-| Trust releases | Best-effort packaging | Checksums, signed archives, scanner verification, release CI, and publish preflight |
+| Trust repository content | Minimal or ad hoc linting | Critical static security gate blocks unsafe patterns such as remote content piped into shell or instructions that try to expose prompts, secrets, or hidden context |
+| Trust releases | Best-effort packaging | Checksums, signed archives, ClamAV + VirusTotal verified release CI, and publish preflight |
 | Curate community intake | Whatever lands stays as-is | Native intake in `skills/`, curated English derivatives in `skills_omni/` with attribution |
 
 ---
@@ -419,6 +420,7 @@ npm run smoke            # Full release preflight
 <summary>📋 <strong>What the pipeline validates</strong></summary>
 
 - ✅ Skill validation and metadata generation
+- ✅ Critical security gating on native intake before PR merge
 - ✅ Taxonomy normalization and recategorization tooling
 - ✅ Catalog and archive generation
 - ✅ Automated tests
@@ -436,7 +438,7 @@ npm run smoke            # Full release preflight
 | 🔒 SHA-256 checksums | Checksum manifests for all archives |
 | ✍️ Signed artifacts | Detached signatures on release artifacts |
 | 🤖 CI-enforced | Release verification in CI before publication |
-| 🦠 Scanner gates | ClamAV and VirusTotal-gated release flow |
+| 🦠 Scanner gates | ClamAV and VirusTotal both required in release verification before publish |
 | 📦 GitHub Release | Automated GitHub Release generation |
 | 📋 npm publication | From verified tarball only |
 | 🔄 Auto release | On qualifying skill merges to `main` |
@@ -447,6 +449,24 @@ npm run smoke            # Full release preflight
 - `data/bundles.json`
 
 Doc-only changes **do not** trigger package publication.
+
+</details>
+
+<details>
+<summary>🛡️ <strong>Repository safety contract</strong></summary>
+
+- Native intake does not accept skills with critical security findings.
+- The static validator blocks high-risk patterns before a skill can merge into the public catalog.
+- The current hard blockers include:
+  - remote content piped directly into shell execution
+  - instructions that try to reveal prompts, secrets, or hidden runtime context
+- Published releases go through a stricter second layer:
+  - ClamAV scanning
+  - VirusTotal hash lookup
+  - archive checksum verification
+  - detached signature verification in release CI
+
+This is a user-facing benefit, not just build plumbing: the catalog favors installable skills that already passed the same restrictive security gate the project uses internally.
 
 </details>
 
