@@ -1159,11 +1159,24 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
       }
       return taskState.payload.result;
     }, 15000, 100);
+    const discoverDataArtifacts = (completedDiscoverTask.artifacts || []).flatMap((artifact) =>
+      (artifact.parts || []).filter((part) => part.kind === "data" && Array.isArray(part.data?.results)),
+    );
     assert.ok(
-      completedDiscoverTask.artifacts[0].parts.some(
-        (part) => part.kind === "data" && part.data.results.some((skill) => skill.id === "omni-figma"),
+      discoverDataArtifacts.some((part) =>
+        part.data.results.some((skill) => {
+          const haystack = [
+            skill.id,
+            skill.display_name,
+            skill.description,
+            ...(skill.tags || []),
+          ]
+            .join(" ")
+            .toLowerCase();
+          return haystack.includes("figma") && (skill.tools || []).includes("cursor");
+        }),
       ),
-      "completed discover task should include omni-figma in the data artifact",
+      "completed discover task should include a real figma match for the requested tool in the data artifact",
     );
     assert.ok(
       Array.isArray(completedDiscoverTask.history) && completedDiscoverTask.history.length > 0,
