@@ -227,7 +227,11 @@ function matchKnownIds(text, knownIds) {
   const normalizedText = ` ${normalizeText(text)} `;
   return knownIds.filter((id) => {
     const normalizedId = normalizeText(id);
-    return normalizedText.includes(` ${normalizedId} `) || normalizedText.includes(normalizedId.replace(/-/g, " "));
+    const spacedId = normalizedId.replace(/-/g, " ");
+    return (
+      normalizedText.includes(` ${normalizedId} `) ||
+      normalizedText.includes(` ${spacedId} `)
+    );
   });
 }
 
