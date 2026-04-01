@@ -42,6 +42,16 @@ class RepositorySource:
     license: str
     notes: str
 
+    @property
+    def normalized_branch(self) -> str:
+        normalized = self.branch.strip()
+        return "" if normalized.lower() == "auto" else normalized
+
+    @property
+    def normalized_skills_path(self) -> str:
+        normalized = self.skills_path.strip().strip("/")
+        return "" if normalized.lower() == "auto" else normalized
+
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -73,10 +83,19 @@ def is_valid_repo_url(value: str) -> bool:
     )
 
 
+def normalize_branch_value(value: str) -> str:
+    normalized = str(value or "").strip()
+    if normalized.lower() == "auto":
+        return ""
+    return normalized
+
+
 def is_valid_skills_path(value: str) -> bool:
-    normalized = value.strip().strip("/")
+    normalized = str(value or "").strip().strip("/")
+    if normalized.lower() == "auto":
+        return True
     if not normalized:
-        return False
+        return True
     candidate = Path(normalized)
     if candidate.is_absolute():
         return False
@@ -88,7 +107,8 @@ def validate_record(record: RepositorySource) -> None:
         raise ValueError(f"Invalid repository source slug: {record.slug}")
     if not is_valid_repo_url(record.repo_url):
         raise ValueError(f"Invalid repository source repo_url: {record.repo_url}")
-    if not record.branch or any(ch.isspace() for ch in record.branch):
+    normalized_branch = normalize_branch_value(record.branch)
+    if any(ch.isspace() for ch in normalized_branch):
         raise ValueError(f"Invalid repository source branch: {record.branch!r}")
     if not is_valid_skills_path(record.skills_path):
         raise ValueError(f"Invalid repository source skills_path: {record.skills_path}")
@@ -131,13 +151,13 @@ def load_registry_rows(path: Path) -> list[RepositorySource]:
             raise ValueError(f"Repository registry row has {len(cells)} cells, expected {len(EXPECTED_COLUMNS)}: {line}")
         record = RepositorySource(**dict(zip(EXPECTED_COLUMNS, cells, strict=True)))
         validate_record(record)
-        target_key = (record.repo_url, record.branch, record.skills_path)
+        target_key = (record.repo_url, record.normalized_branch, record.normalized_skills_path)
         if record.slug in seen_slugs:
             raise ValueError(f"Duplicate repository source slug: {record.slug}")
         if target_key in seen_targets:
             raise ValueError(
                 "Duplicate repository source target tuple: "
-                f"{record.repo_url} @ {record.branch} :: {record.skills_path}"
+                f"{record.repo_url} @ {record.branch or 'auto'} :: {record.skills_path or 'auto'}"
             )
         seen_slugs.add(record.slug)
         seen_targets.add(target_key)
@@ -148,8 +168,15 @@ def load_registry_rows(path: Path) -> list[RepositorySource]:
 
 def render_status_block(rows: list[RepositorySource]) -> str:
     counts = Counter(row.status for row in rows)
-    default_path_count = sum(1 for row in rows if row.skills_path.strip("/") == "skills")
-    custom_path_count = len(rows) - default_path_count
+    auto_branch_count = sum(1 for row in rows if not row.normalized_branch)
+    explicit_branch_count = len(rows) - auto_branch_count
+    auto_path_count = sum(1 for row in rows if not row.normalized_skills_path)
+    default_path_count = sum(1 for row in rows if row.normalized_skills_path == "skills")
+    custom_path_count = sum(
+        1
+        for row in rows
+        if row.normalized_skills_path and row.normalized_skills_path != "skills"
+    )
     return "\n".join(
         [
             "| Metric | Value |",
@@ -158,6 +185,9 @@ def render_status_block(rows: list[RepositorySource]) -> str:
             f"| ✅ Tracked upstream repositories | `{counts.get('tracked', 0)}` |",
             f"| 🧪 Candidate upstream repositories | `{counts.get('candidate', 0)}` |",
             f"| ⏸️ Disabled rows | `{counts.get('disabled', 0)}` |",
+            f"| 🌿 Auto branch rows | `{auto_branch_count}` |",
+            f"| 🌿 Explicit branch rows | `{explicit_branch_count}` |",
+            f"| 🔎 Auto-detect skills path rows | `{auto_path_count}` |",
             f"| 📁 Default `skills/` path rows | `{default_path_count}` |",
             f"| 🧭 Custom skills path rows | `{custom_path_count}` |",
             "| 🔒 Operator gate | Merge here does not auto-sync. The private dashboard still imports and enables rows explicitly. |",

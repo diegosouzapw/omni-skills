@@ -121,7 +121,7 @@ Those decisions align with current official MCP and client documentation, includ
 | Doc | What You'll Learn |
 |:----|:------------------|
 | 📝 [Contributing Guide](../CONTRIBUTING.md) | Repo workflow and pull request expectations |
-| 🌍 [Repository Sources](../REPOSITORY-SOURCES.md) | How to propose an upstream repository through a normal public PR |
+| 🌍 [Repository Sources](../REPOSITORY-SOURCES.md) | How to propose an upstream repository through a normal public PR, now with repo-first `auto` branch and path support |
 | 🧾 [Skill PR Workflow](contributors/SKILL-PR-WORKFLOW.md) | Native intake, automatic enhancer processing, `skills_omni/` publishing, and reviewer expectations |
 | 📄 [Skill Template](contributors/SKILL-TEMPLATE.md) | Starter `SKILL.md` with current frontmatter and structure |
 | 🔬 [Skill Anatomy](contributors/SKILL-ANATOMY.md) | Structure and quality expectations for a skill |

@@ -131,7 +131,13 @@ The public repository accepts native skills through two operational paths:
 
 Both paths land in `skills/`, both trigger the same public validator, and both can produce a curated `skills_omni/` companion PR.
 
-If you want to propose an upstream repository instead of sending a skill directly, edit [REPOSITORY-SOURCES.md](REPOSITORY-SOURCES.md). Merge there is a public review gate, not an automatic sync trigger.
+If you want to propose an upstream repository instead of sending a skill directly, edit [REPOSITORY-SOURCES.md](REPOSITORY-SOURCES.md). The normal proposal is now repo-first:
+
+- provide `repo_url`
+- leave `branch` as `auto` unless you need a non-default branch
+- leave `skills_path` as `auto` unless you know the exact root
+
+Merge there is still a public review gate, not an automatic sync trigger.
 
 ### 🌐 Language Policy
 
