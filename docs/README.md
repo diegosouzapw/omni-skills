@@ -35,7 +35,7 @@ Standard community files live in the repository root:
 The foundation track now lives in the active project state, and the second category-expansion wave is already in the catalog. The project should now be read as a working baseline with optional future expansion tracks:
 
 <!-- generated:docs-readme-current-project-state:start -->
-- public `v0.1.5` and private `v1.0.0` are the current stable release floor
+- public `v0.9.0` and private `v1.0.0` are the current stable release floor
 - the catalog now covers 55 native skills across 15 active categories, with 45 passing validation cleanly and 10 currently in warning-grade native intake
 - curated `skills_omni/` output remains a maintained English-only surface with 38 automation-managed derivatives
 - protocol surfaces, release automation, and private enhancement automation are in service, not in bootstrap

@@ -35,7 +35,7 @@ Current repository-level classification snapshot from `metadata.json`:
 Current release baseline:
 
 <!-- generated:codebase-analysis-release-baseline:start -->
-- public repository release: `v0.1.5`
+- public repository release: `v0.9.0`
 - private enhancer release: `v1.0.0`
 - public release automation and private release automation are both active and green
 <!-- generated:codebase-analysis-release-baseline:end -->

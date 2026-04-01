@@ -2,7 +2,7 @@
   "schema_version": "2026-03-31",
   "generated_at": "2026-03-31T00:00:00+00:00",
   "package_version": "0.9.0",
-  "latest_release": "v0.1.5",
+  "latest_release": "v0.9.0",
   "native_skill_count": 55,
   "curated_skill_count": 38,
   "bundle_count": 7,

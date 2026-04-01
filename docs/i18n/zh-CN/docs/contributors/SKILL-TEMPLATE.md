@@ -2,17 +2,17 @@
 
 🌐 **Languages:** 🇺🇸 [English](../../../../../docs/contributors/SKILL-TEMPLATE.md) · 🇪🇸 [es](../../../es/docs/contributors/SKILL-TEMPLATE.md) · 🇫🇷 [fr](../../../fr/docs/contributors/SKILL-TEMPLATE.md) · 🇩🇪 [de](../../../de/docs/contributors/SKILL-TEMPLATE.md) · 🇮🇹 [it](../../../it/docs/contributors/SKILL-TEMPLATE.md) · 🇷🇺 [ru](../../../ru/docs/contributors/SKILL-TEMPLATE.md) · 🇨🇳 [zh-CN](../../../zh-CN/docs/contributors/SKILL-TEMPLATE.md) · 🇯🇵 [ja](../../../ja/docs/contributors/SKILL-TEMPLATE.md) · 🇰🇷 [ko](../../../ko/docs/contributors/SKILL-TEMPLATE.md) · 🇸🇦 [ar](../../../ar/docs/contributors/SKILL-TEMPLATE.md) · 🇮🇳 [in](../../../in/docs/contributors/SKILL-TEMPLATE.md) · 🇹🇭 [th](../../../th/docs/contributors/SKILL-TEMPLATE.md) · 🇻🇳 [vi](../../../vi/docs/contributors/SKILL-TEMPLATE.md) · 🇮🇩 [id](../../../id/docs/contributors/SKILL-TEMPLATE.md) · 🇲🇾 [ms](../../../ms/docs/contributors/SKILL-TEMPLATE.md) · 🇳🇱 [nl](../../../nl/docs/contributors/SKILL-TEMPLATE.md) · 🇵🇱 [pl](../../../pl/docs/contributors/SKILL-TEMPLATE.md) · 🇸🇪 [sv](../../../sv/docs/contributors/SKILL-TEMPLATE.md) · 🇳🇴 [no](../../../no/docs/contributors/SKILL-TEMPLATE.md) · 🇩🇰 [da](../../../da/docs/contributors/SKILL-TEMPLATE.md) · 🇫🇮 [fi](../../../fi/docs/contributors/SKILL-TEMPLATE.md) · 🇵🇹 [pt](../../../pt/docs/contributors/SKILL-TEMPLATE.md) · 🇷🇴 [ro](../../../ro/docs/contributors/SKILL-TEMPLATE.md) · 🇭🇺 [hu](../../../hu/docs/contributors/SKILL-TEMPLATE.md) · 🇧🇬 [bg](../../../bg/docs/contributors/SKILL-TEMPLATE.md) · 🇸🇰 [sk](../../../sk/docs/contributors/SKILL-TEMPLATE.md) · 🇺🇦 [uk-UA](../../../uk-UA/docs/contributors/SKILL-TEMPLATE.md) · 🇮🇱 [he](../../../he/docs/contributors/SKILL-TEMPLATE.md) · 🇵🇭 [phi](../../../phi/docs/contributors/SKILL-TEMPLATE.md) · 🇧🇷 [pt-BR](../../../pt-BR/docs/contributors/SKILL-TEMPLATE.md)
 
-> Translation snapshot for **Awesome Omni Skills** `v0.1.5`.
+> Translation snapshot for **Awesome Omni Skills** `v0.9.0`.
 > Source: `docs/contributors/SKILL-TEMPLATE.md`. Regenerate after English docs are rendered from generated manifests.
 > Do not edit translated files directly; update the English source and rerun `npm run i18n:render`.
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/contributors/SKILL-TEMPLATE.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/contributors/SKILL-TEMPLATE.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-03-31T00:00:00+00:00 -->
 ---
 name: your-skill-name
 description: "One-line description of what this skill does and when to use it"
-version: "0.1.5"
+version: "0.1.0"
 category: development
 tags: [example-tag-1, example-tag-2]
 complexity: intermediate
