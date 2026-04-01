@@ -1,0 +1,446 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "gh-fix-ci",
+  "slug": "gh-fix-ci",
+  "display_name": "Gh Pr Checks Plan Fix",
+  "description": "Gh Pr Checks Plan Fix workflow skill. Use this skill when the user needs a user asks to debug or fix failing GitHub PR checks that run in GitHub Actions. Uses gh to inspect checks and logs, summarize failure context, draft a fix plan, and implement only after explicit approval. Treats external providers (for example Buildkite) as out of scope and reports only the details URL. Do NOT use for addressing PR review comments (use gh-address-comments) or general CI outside GitHub Actions and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "devops",
+  "raw_category": "devops",
+  "taxonomy": {
+    "raw_category": "devops",
+    "canonical_category": "devops",
+    "inferred_category": "devops",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "gh-fix-ci",
+    "user",
+    "asks",
+    "debug",
+    "fix",
+    "failing",
+    "github",
+    "checks"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "github.com/openai/skills",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/gh-fix-ci/SKILL.md",
+  "paths": {
+    "root": "skills/gh-fix-ci",
+    "manifest": "dist/manifests/gh-fix-ci.json",
+    "metadata": "skills/gh-fix-ci/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 16,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 41,
+        "workflow_section_length": 3220,
+        "when_to_use_section_length": 868,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1365,
+        "resources_items_count": 11,
+        "resources_section_length": 1915,
+        "examples_section_length": 1388,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 50,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 11,
+        "references_files_count": 4,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.29
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 15,
+        "script_files": 3,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 11948,
+    "content_length": 12949,
+    "body_lines": 209,
+    "word_count": 1733,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 41,
+      "workflow_section_length": 3220,
+      "when_to_use_section_length": 868,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1365,
+      "resources_items_count": 11,
+      "resources_section_length": 1915,
+      "examples_section_length": 1388,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 11,
+      "references_files_count": 4,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.29
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/gh-fix-ci/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1338,
+      "sha256": "22127441c1b2f12a361bb74305a522cf065833b44b259b0e3151f42c6e6c5826"
+    },
+    {
+      "path": "skills/gh-fix-ci/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/gh-fix-ci/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 716,
+      "sha256": "c6a1e0f8721d573d59d9a2bace83343b583bf9d54b3d5090ad258803b995d183"
+    },
+    {
+      "path": "skills/gh-fix-ci/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12949,
+      "sha256": "ffb3827cccdf2937e737eb0699cd9904f079c311c010c1a88f11157a850b8113"
+    },
+    {
+      "path": "skills/gh-fix-ci/metadata.json",
+      "kind": "support",
+      "size_bytes": 6669,
+      "sha256": "a157df9c3b8aba448bf023874eb4517cdc15711c6d2c04dd680f6a10c3fa5679"
+    },
+    {
+      "path": "skills/gh-fix-ci/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/gh-fix-ci/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 444,
+      "sha256": "09204456c98380a10d59fb81b6552e56869081ad8eb87f19f95e8823e3663704"
+    },
+    {
+      "path": "skills/gh-fix-ci/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/gh-fix-ci/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 220,
+      "sha256": "1040eae106e9c647ef18d2d6638b9c4c03e6fbdcaed88225845f45008207cab0"
+    },
+    {
+      "path": "skills/gh-fix-ci/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/gh-fix-ci/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/gh-fix-ci/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/gh-fix-ci/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 403,
+      "sha256": "fe0681cae8fec308c8901421a094844f9d1bc785e7611db513a5c12a1ef0d741"
+    },
+    {
+      "path": "skills/gh-fix-ci/scripts/inspect_pr_checks.py",
+      "kind": "support",
+      "size_bytes": 15222,
+      "sha256": "9459e5b03f86785d184a83e5cd8d621b832e918ec04158a2962d867785812c6c"
+    },
+    {
+      "path": "skills/gh-fix-ci/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/gh-fix-ci/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/gh-fix-ci.zip",
+      "file_name": "gh-fix-ci.zip",
+      "size_bytes": 54219,
+      "sha256": "5b15d85e3b76d131222aa8c1d145bf3f7b5256f3c4f7d1ed27c32d4d3bc27163",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/gh-fix-ci.tar.gz",
+      "file_name": "gh-fix-ci.tar.gz",
+      "size_bytes": 71713,
+      "sha256": "4e2b88b19b71faff7854b90adb1d12f450f48511a1792ca5b7bfee3ef14b9ae6",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/gh-fix-ci.checksums.txt",
+    "file_name": "gh-fix-ci.checksums.txt",
+    "sha256": "0d6b6b87d639d18269a002fdccaa2ca59e83ecb2aa51f246650a5f6c89b83af2",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "ffb3827cccdf2937e737eb0699cd9904f079c311c010c1a88f11157a850b8113",
+    "package_sha256": "7cec13fabf161eacde38f40bf253d6aa06978ddf39f9d335bc08d3dd21880906"
+  }
+}

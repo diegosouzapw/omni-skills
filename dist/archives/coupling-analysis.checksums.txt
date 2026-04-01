@@ -1,0 +1,2 @@
+859fbd964b56bc34b27e3c2e9832b51ab89d0ebe96da9dd3f6bb6295f07e405d  coupling-analysis.zip
+bc5a95a0bff97e1acc42b4c8a0c737154c050e694e38a90109b633aa31fc8548  coupling-analysis.tar.gz

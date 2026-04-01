@@ -1,0 +1,2 @@
+cbf34d01715644d352e99850a9498b1b0de0a41ae2c7b45b64281517d69d54b4  skill-architect.zip
+76e14a9423c8adda470360633dea1eb9eda7b57b44ba0cb1a806929a2472bba1  skill-architect.tar.gz

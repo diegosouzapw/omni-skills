@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/ADR-0001-AGENT-NATIVE-WORKSPACE.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
 
 > **The key architectural decision that shaped the monorepo workspace structure.**
 

@@ -1,0 +1,2 @@
+f8f5f8f8833b039bd0f574ea19b55bd88f896f7c2a2c076c6fa75f451e762ff2  docs-writer.zip
+24a2869fdf1a62fbda13a36a1b10960dae37ae652a3419f28746d0e8a6bd5343  docs-writer.tar.gz

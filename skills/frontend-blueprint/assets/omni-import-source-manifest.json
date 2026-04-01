@@ -1,0 +1,14 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "frontend-blueprint",
+  "public_skill_path": "skills/frontend-blueprint",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(architecture)/frontend-blueprint",
+  "upstream_files": [
+    "references/collection-guide.md",
+    "references/design-principles.md",
+    "references/stitch-integration.md"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "gtm-engineering",
+  "public_skill_path": "skills/gtm-engineering",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(gtm)/gtm-engineering",
+  "upstream_files": [
+    "references/implementation-guide.md",
+    "references/quick-reference.md"
+  ]
+}

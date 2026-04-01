@@ -1,0 +1,446 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "ai-pricing",
+  "slug": "ai-pricing",
+  "display_name": "AI Pricing Skill",
+  "description": "AI Pricing Skill workflow skill. Use this skill when the user needs When the user wants to price an AI product, choose a charge metric, design pricing tiers, or optimize margins. Also use when the user mentions 'AI pricing,' 'usage-based pricing,' 'consumption pricing,' 'outcome pricing,' 'BYOK,' 'bring your own key,' 'per-seat pricing,' 'pricing tiers,' 'AI margins,' 'cost per token,' or 'pricing model.' This skill covers pricing strategy, packaging, and margin management for AI-native products. Do NOT use for technical implementation, code review, or software architecture and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "ai-pricing",
+    "the",
+    "user",
+    "wants",
+    "price",
+    "product",
+    "choose",
+    "charge"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "tech-leads-club",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/ai-pricing/SKILL.md",
+  "paths": {
+    "root": "skills/ai-pricing",
+    "manifest": "dist/manifests/ai-pricing.json",
+    "metadata": "skills/ai-pricing/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 16,
+    "references_count": 6,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 15,
+        "workflow_section_length": 1804,
+        "when_to_use_section_length": 867,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 3,
+        "troubleshooting_section_length": 2188,
+        "resources_items_count": 30,
+        "resources_section_length": 11791,
+        "examples_section_length": 1977,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 524,
+        "decision_assets_count": 57,
+        "table_count": 80,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 12,
+        "references_files_count": 6,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.4
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 15,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 22341,
+    "content_length": 23435,
+    "body_lines": 373,
+    "word_count": 3134,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 15,
+      "workflow_section_length": 1804,
+      "when_to_use_section_length": 867,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 3,
+      "troubleshooting_section_length": 2188,
+      "resources_items_count": 30,
+      "resources_section_length": 11791,
+      "examples_section_length": 1977,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 524,
+      "decision_assets_count": 57,
+      "table_count": 80,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 12,
+      "references_files_count": 6,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.4
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/ai-pricing/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1563,
+      "sha256": "e1646f5c37c97d7db6a272b58f0622d2de34feb8cca26c22a06e790671b9194a"
+    },
+    {
+      "path": "skills/ai-pricing/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 715,
+      "sha256": "4a216b99328929f041d3d502ab68a4898a4810a1ff606453e4c10353649d4a83"
+    },
+    {
+      "path": "skills/ai-pricing/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 23449,
+      "sha256": "ce8132fb0b7e75dd56a0a63252638360f8953cf5d151b745976de7610a6a9c3c"
+    },
+    {
+      "path": "skills/ai-pricing/metadata.json",
+      "kind": "support",
+      "size_bytes": 6791,
+      "sha256": "7343e5576b777da9c298fcc5d982c34da766aa162ac6115d47345b1beba0d383"
+    },
+    {
+      "path": "skills/ai-pricing/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/ai-pricing/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 467,
+      "sha256": "56e9ff98c4dba003aea40154d132c9cdffc7fed29084352793c84c0b4d048650"
+    },
+    {
+      "path": "skills/ai-pricing/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/ai-pricing/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 221,
+      "sha256": "5adca86b977a84be4bcc86fc3c1256aaeb1c45f5c9cef06eb99fb6354226bb3b"
+    },
+    {
+      "path": "skills/ai-pricing/references/implementation-guide.md",
+      "kind": "reference",
+      "size_bytes": 17299,
+      "sha256": "c709f1ec4584de5ce62d87497123f5968d48b2eb8a3598302d4baf7ccbbc0853"
+    },
+    {
+      "path": "skills/ai-pricing/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/ai-pricing/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/ai-pricing/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/ai-pricing/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 425,
+      "sha256": "fa7e1587f38d23d01e69a09b66d07975a8be82f1b1392c915ca5b1fb76fe17d8"
+    },
+    {
+      "path": "skills/ai-pricing/references/quick-reference.md",
+      "kind": "reference",
+      "size_bytes": 2490,
+      "sha256": "3cb819f0ce562e73cc23b55604cb7444dd8e58afb6678b90fed899443c5f493a"
+    },
+    {
+      "path": "skills/ai-pricing/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/ai-pricing/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/ai-pricing.zip",
+      "file_name": "ai-pricing.zip",
+      "size_bytes": 58982,
+      "sha256": "56183e9f73ce91fe9b7e72abef15d7fc919f0840e328469cc4573f17ee8e246f",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/ai-pricing.tar.gz",
+      "file_name": "ai-pricing.tar.gz",
+      "size_bytes": 71713,
+      "sha256": "1b87f7fe4f0302441c5d686cd398a594d4772fd734a8b3422f7422fa9fa0eab5",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/ai-pricing.checksums.txt",
+    "file_name": "ai-pricing.checksums.txt",
+    "sha256": "a698bccf1279aaeac67de219c7621f11dce3e9af6babeaf16188c1c0c99b7e72",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "ce8132fb0b7e75dd56a0a63252638360f8953cf5d151b745976de7610a6a9c3c",
+    "package_sha256": "de864ba1cf8d07c0d3f36962d156e61a524ff353282c1b3f4e6687dc75f509c4"
+  }
+}

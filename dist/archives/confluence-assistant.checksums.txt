@@ -1,0 +1,2 @@
+8e57326baadc9f8cbc44fd1b78b557aed508090cc928fd56fe7e6ddcc9d691a8  confluence-assistant.zip
+8cec3e42206fcee2329cd1c0587d0c43ff7ee5a47c2168551c480c10d2db849a  confluence-assistant.tar.gz

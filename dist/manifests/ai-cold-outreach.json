@@ -1,0 +1,446 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "ai-cold-outreach",
+  "slug": "ai-cold-outreach",
+  "display_name": "AI Cold Outreach",
+  "description": "AI Cold Outreach workflow skill. Use this skill when the user needs When the user wants to build an AI-powered outreach system, write cold emails, improve deliverability, or scale personalized outreach. Also use when the user mentions 'cold email,' 'cold outreach,' 'outreach automation,' 'Instantly,' 'Smartlead,' 'Clay,' 'email sequences,' 'deliverability,' 'personalization at scale,' 'reply rate,' or 'outreach stack.' This skill covers the complete AI cold outreach system from signal detection through conversion. Do NOT use for technical implementation, code review, or software architecture and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "ai-cold-outreach",
+    "the",
+    "user",
+    "wants",
+    "build",
+    "ai-powered",
+    "outreach",
+    "system"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "tech-leads-club",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/ai-cold-outreach/SKILL.md",
+  "paths": {
+    "root": "skills/ai-cold-outreach",
+    "manifest": "dist/manifests/ai-cold-outreach.json",
+    "metadata": "skills/ai-cold-outreach/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 16,
+    "references_count": 6,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 15,
+        "workflow_section_length": 1898,
+        "when_to_use_section_length": 863,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 3,
+        "troubleshooting_section_length": 2246,
+        "resources_items_count": 47,
+        "resources_section_length": 19467,
+        "examples_section_length": 1946,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 518,
+        "decision_assets_count": 55,
+        "table_count": 123,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 12,
+        "references_files_count": 6,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 6.99
+      }
+    },
+    "quality": {
+      "score": 98,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 15,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 30079,
+    "content_length": 31208,
+    "body_lines": 590,
+    "word_count": 4124,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 15,
+      "workflow_section_length": 1898,
+      "when_to_use_section_length": 863,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 3,
+      "troubleshooting_section_length": 2246,
+      "resources_items_count": 47,
+      "resources_section_length": 19467,
+      "examples_section_length": 1946,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 518,
+      "decision_assets_count": 55,
+      "table_count": 123,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 12,
+      "references_files_count": 6,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.99
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/ai-cold-outreach/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1605,
+      "sha256": "d5c909c082eac35d830d78e663ddee80b3efd6941a8e42ed8874ae2db5a551a9"
+    },
+    {
+      "path": "skills/ai-cold-outreach/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 733,
+      "sha256": "959b8e63dcf491632774638afa970701d112a3298656d17f51c3bdaa3556038d"
+    },
+    {
+      "path": "skills/ai-cold-outreach/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 31234,
+      "sha256": "71236c530457f49d33f2b115c3821c6c6e7a53f0981aff8ed51913edfef3b821"
+    },
+    {
+      "path": "skills/ai-cold-outreach/metadata.json",
+      "kind": "support",
+      "size_bytes": 6866,
+      "sha256": "3d504dfdb9a87d1c6eee32f33d46f9f526790e94c0325dea4f9809cd167cb27c"
+    },
+    {
+      "path": "skills/ai-cold-outreach/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/ai-cold-outreach/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 498,
+      "sha256": "272c891148b6ebd460de0d760902a698bc5af7a9ab9202e048da8a9a7187a074"
+    },
+    {
+      "path": "skills/ai-cold-outreach/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/ai-cold-outreach/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 227,
+      "sha256": "f85f342e9e1cecd9e2d7a3cb014686d62b7b6dce680cba507e2d738e9eaf6f2d"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/benchmarks-deliverability-tactics.md",
+      "kind": "reference",
+      "size_bytes": 9654,
+      "sha256": "86f580eedc2e2f65c812c3beb9fdbcab9e0b4d775997758ce0ecf9ca45da387f"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 450,
+      "sha256": "2aa811a5415c98949f93cac307c6ebfe080fa65e245d29c633c7a2c985b225b7"
+    },
+    {
+      "path": "skills/ai-cold-outreach/references/quick-reference.md",
+      "kind": "reference",
+      "size_bytes": 1660,
+      "sha256": "26ffef9f79c532950e812233128b42a1e1daf31082486ff8656211c488513067"
+    },
+    {
+      "path": "skills/ai-cold-outreach/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/ai-cold-outreach/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/ai-cold-outreach.zip",
+      "file_name": "ai-cold-outreach.zip",
+      "size_bytes": 58707,
+      "sha256": "c645a1ca0441226e96bf82404ce5afe76d5294a4c240117609922a6911a11542",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/ai-cold-outreach.tar.gz",
+      "file_name": "ai-cold-outreach.tar.gz",
+      "size_bytes": 71708,
+      "sha256": "46d633b5d27db9cf4fdf0520ab8896ac8f9c040fbec9a33d19d3c07f652d9816",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/ai-cold-outreach.checksums.txt",
+    "file_name": "ai-cold-outreach.checksums.txt",
+    "sha256": "b4e6969d22eee3f0258857d937405233720e8185af1c98930169ceefa9d611c2",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "71236c530457f49d33f2b115c3821c6c6e7a53f0981aff8ed51913edfef3b821",
+    "package_sha256": "9efc0809cc1f4575123af0c33109eef437453a0d42609ffd1a71cc61643d5593"
+  }
+}

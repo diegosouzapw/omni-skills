@@ -1,0 +1,2 @@
+ee27ec76232251b17397a3fc76de2dbbb6adc2aa723d3d6228a869e39abb1a7b  figma-implement-design.zip
+bb1bf342cd5888bf3931c864f2f17bcea09ef5ac21e96509ec4db5f33fb7cc74  figma-implement-design.tar.gz

@@ -8,9 +8,9 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=README.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=README.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
 <!-- generated:project-meta:start -->
-<!-- awesome-omni-skills: version=0.9.0; native_skills=55; curated_skills=38; updated_at=2026-03-31 -->
+<!-- awesome-omni-skills: version=0.9.0; native_skills=129; curated_skills=38; updated_at=2026-04-01 -->
 <!-- generated:project-meta:end -->
 
 <div align="center">
@@ -87,12 +87,12 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 <!-- generated:readme-project-at-a-glance:start -->
 | | Metric | Value |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `55` native skills across 15 active categories |
+| 📦 | **Published Skills** | `129` native skills across 16 active categories |
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients across `33` first-class targets |
 | 🔐 | **Curated Output** | `38` enhanced English derivatives in `skills_omni` |
-| 🧪 | **Validation Mix** | `45` passed · `10` warn · `0` errors |
+| 🧪 | **Validation Mix** | `103` passed · `26` warn · `0` errors |
 | 📋 | **Current Release** | `v0.9.0` |
 <!-- generated:readme-project-at-a-glance:end -->
 
@@ -372,11 +372,11 @@ npx awesome-omni-skills config-mcp --target windsurf-user --transport sse --url 
 <!-- generated:readme-published-catalog-snapshot:start -->
 | Metric | Current State |
 |:-------|:--------------|
-| 🧠 Native intake skills | **55** |
-| 📂 Active categories | **15** |
+| 🧠 Native intake skills | **129** |
+| 📂 Active categories | **16** |
 | 📦 Fully backed bundles | **7** |
 | ✨ Curated derivatives | **38** in `skills_omni` |
-| 🧪 Validation | **45 passed / 10 warn / 0 errors** |
+| 🧪 Validation | **103 passed / 26 warn / 0 errors** |
 | 📋 Release | **v0.9.0** |
 <!-- generated:readme-published-catalog-snapshot:end -->
 

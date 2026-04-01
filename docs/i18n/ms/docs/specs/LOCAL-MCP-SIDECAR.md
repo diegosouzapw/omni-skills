@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/LOCAL-MCP-SIDECAR.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/LOCAL-MCP-SIDECAR.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
 
 > **Optional local-mode extension for `@omni-skills/server-mcp` that adds filesystem-aware tools for client detection, skill management, and MCP config generation around the Awesome Omni Skills catalog.**
 

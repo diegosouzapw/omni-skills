@@ -1,0 +1,2 @@
+2b58b3cd60f7ec0733972644537000861aaf2070d584304afdcfc02634757b57  excalidraw-studio.zip
+dbaed691bec31594be36d5eebeff14ab5d7888103e9d80169505a40629ee3f90  excalidraw-studio.tar.gz
