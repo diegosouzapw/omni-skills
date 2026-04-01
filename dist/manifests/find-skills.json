@@ -180,7 +180,7 @@
         "troubleshooting_section_length": 837,
         "resources_items_count": 5,
         "resources_section_length": 351,
-        "examples_section_length": 429,
+        "examples_section_length": 437,
         "examples_code_blocks_count": 6,
         "related_skills_section_length": 341,
         "decision_assets_count": 12,
@@ -201,7 +201,7 @@
         "assets_files_count": 0,
         "tools_count": 6,
         "tags_count": 7,
-        "body_density": 6.01
+        "body_density": 6.06
       }
     },
     "quality": {
@@ -256,10 +256,10 @@
     }
   },
   "content": {
-    "body_length": 5929,
-    "content_length": 6451,
+    "body_length": 5985,
+    "content_length": 6507,
     "body_lines": 147,
-    "word_count": 884,
+    "word_count": 891,
     "has_code_blocks": true,
     "typed_code_blocks_count": 2,
     "has_examples_section": true,
@@ -287,7 +287,7 @@
       "troubleshooting_section_length": 837,
       "resources_items_count": 5,
       "resources_section_length": 351,
-      "examples_section_length": 429,
+      "examples_section_length": 437,
       "examples_code_blocks_count": 6,
       "related_skills_section_length": 341,
       "decision_assets_count": 12,
@@ -308,21 +308,21 @@
       "assets_files_count": 0,
       "tools_count": 6,
       "tags_count": 7,
-      "body_density": 6.01
+      "body_density": 6.06
     }
   },
   "artifacts": [
     {
       "path": "skills/find-skills/SKILL.md",
       "kind": "entrypoint",
-      "size_bytes": 6457,
-      "sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e"
+      "size_bytes": 6513,
+      "sha256": "b068a868f0916b5b708976accdee1c6e1e223bbb1022272a163960effe3e9968"
     },
     {
       "path": "skills/find-skills/metadata.json",
       "kind": "support",
       "size_bytes": 5906,
-      "sha256": "b595eae8a0c4439b2a04b430554583246250db3d381cc3c46cbe0554a0b3d1b3"
+      "sha256": "00e48792bfe4e4779760d2459880658c37374a3d8f7e33df7f6eed65d6fbb50b"
     },
     {
       "path": "skills/find-skills/agents/openai.yaml",
@@ -366,8 +366,8 @@
       "format": "zip",
       "path": "dist/archives/find-skills.zip",
       "file_name": "find-skills.zip",
-      "size_bytes": 16033,
-      "sha256": "1f5360cce53d41a46f86961b402b22b0a2e3bc4121a84c9726b70a5c7802e926",
+      "size_bytes": 16089,
+      "sha256": "bd567dd03d1bfeb126e26c23a126ceaf2c9561ddeb7df93d25b8606627e560ad",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -381,7 +381,7 @@
       "path": "dist/archives/find-skills.tar.gz",
       "file_name": "find-skills.tar.gz",
       "size_bytes": 30743,
-      "sha256": "dc2199ed734294da141ccfe3790b50a4667ee96e2a179e8aea5cb17a97909c0c",
+      "sha256": "ad5a85ee65d2c77718c9420b16a32d0efb34a33ae9006adbd456bc280495223b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -394,7 +394,7 @@
   "archive_checksums": {
     "path": "dist/archives/find-skills.checksums.txt",
     "file_name": "find-skills.checksums.txt",
-    "sha256": "949b4eb468073a54e0ee5f3800bd09ef07ef6a8bb497b98143cc70f7e1917c02",
+    "sha256": "4f71e4986ce4e2df19c189bb78b923249e8b404a17eabf1b81114de7a3a4f55c",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -404,7 +404,7 @@
     }
   },
   "checksums": {
-    "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
-    "package_sha256": "8a62ee55862e771fa8d0d020d41cd14b54ec4b60b60fd549d9908bf712dcd071"
+    "entrypoint_sha256": "b068a868f0916b5b708976accdee1c6e1e223bbb1022272a163960effe3e9968",
+    "package_sha256": "f3a6145157f3ae3210c98185d932e8447450b4d7f042950ed8d3d89f0046dc20"
   }
 }

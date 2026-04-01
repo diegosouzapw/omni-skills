@@ -66,8 +66,6 @@ def build_report(repo_root: Path) -> dict[str, Any]:
         errors.append("project_identity.homepage_url does not match github_url")
     if identity["primary_npx_command"] != f"npx {identity['npm_package']}":
         errors.append("project_identity.primary_npx_command does not match npm_package")
-    if identity["legacy_npx_command"] != f"npx {identity['legacy_npm_package']}":
-        errors.append("project_identity.legacy_npx_command does not match legacy_npm_package")
 
     errors.extend(validate_topics(identity.get("github_topics", [])))
 
@@ -86,12 +84,14 @@ def build_report(repo_root: Path) -> dict[str, Any]:
     bins = package.get("bin", {})
     if bins.get(identity["primary_cli_command"]) != "tools/bin/cli.js":
         errors.append("primary CLI bin alias is missing from package.json")
-    if bins.get(identity["legacy_cli_command"]) != "tools/bin/cli.js":
-        errors.append("legacy CLI bin alias is missing from package.json")
     if bins.get(f"{identity['primary_cli_command']}-install") != "tools/bin/install.js":
         errors.append("primary install bin alias is missing from package.json")
-    if bins.get(f"{identity['legacy_cli_command']}-install") != "tools/bin/install.js":
-        errors.append("legacy install bin alias is missing from package.json")
+    expected_bins = {
+        identity["primary_cli_command"]: "tools/bin/cli.js",
+        f"{identity['primary_cli_command']}-install": "tools/bin/install.js",
+    }
+    if bins != expected_bins:
+        errors.append("package.json bin map must only expose the canonical Awesome Omni Skills commands")
 
     if f"# 🧠 {identity['display_name']}" not in readme:
         errors.append("README.md hero title does not match project_identity.display_name")

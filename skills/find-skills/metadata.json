@@ -67,10 +67,10 @@
     "assets_count": 0
   },
   "content": {
-    "body_length": 5929,
-    "content_length": 6451,
+    "body_length": 5985,
+    "content_length": 6507,
     "body_lines": 147,
-    "word_count": 884,
+    "word_count": 891,
     "has_code_blocks": true,
     "typed_code_blocks_count": 2,
     "has_examples_section": true,
@@ -98,7 +98,7 @@
       "troubleshooting_section_length": 837,
       "resources_items_count": 5,
       "resources_section_length": 351,
-      "examples_section_length": 429,
+      "examples_section_length": 437,
       "examples_code_blocks_count": 6,
       "related_skills_section_length": 341,
       "decision_assets_count": 12,
@@ -119,7 +119,7 @@
       "assets_files_count": 0,
       "tools_count": 6,
       "tags_count": 7,
-      "body_density": 6.01
+      "body_density": 6.06
     }
   },
   "maturity": {
@@ -141,7 +141,7 @@
       "troubleshooting_section_length": 837,
       "resources_items_count": 5,
       "resources_section_length": 351,
-      "examples_section_length": 429,
+      "examples_section_length": 437,
       "examples_code_blocks_count": 6,
       "related_skills_section_length": 341,
       "decision_assets_count": 12,
@@ -162,7 +162,7 @@
       "assets_files_count": 0,
       "tools_count": 6,
       "tags_count": 7,
-      "body_density": 6.01
+      "body_density": 6.06
     }
   },
   "quality": {

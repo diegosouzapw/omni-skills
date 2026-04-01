@@ -75,8 +75,8 @@ Prefer the local catalog and repo-native tooling before claiming a skill exists.
 
 Useful entrypoints:
 
-- `npx omni-skills find <query>`
-- `npx omni-skills find <query> --tool <tool-id>`
+- `npx awesome-omni-skills find <query>`
+- `npx awesome-omni-skills find <query> --tool <tool-id>`
 - `GET /v1/search?q=<query>`
 - MCP `search_skills`
 - MCP `recommend_skills`
@@ -107,10 +107,10 @@ Check:
 Examples:
 
 ```bash
-npx omni-skills --cursor --skill omni-figma
-npx omni-skills --codex --bundle full-stack
-npx omni-skills mcp stream --local
-npx omni-skills api --port 3333
+npx awesome-omni-skills --cursor --skill omni-figma
+npx awesome-omni-skills --codex --bundle full-stack
+npx awesome-omni-skills mcp stream --local
+npx awesome-omni-skills api --port 3333
 ```
 
 ## Examples
@@ -124,7 +124,7 @@ Find the best published skill for reviewing security issues in a release pipelin
 ### Example 2: Discovery plus install
 
 ```bash
-npx omni-skills find security --tool codex-cli --install --yes
+npx awesome-omni-skills find security --tool codex-cli --install --yes
 ```
 
 ## Best Practices

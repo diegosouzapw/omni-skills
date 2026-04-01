@@ -70,7 +70,7 @@ That expansion history now lives in the mainline runtime docs rather than a sepa
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx awesome-omni-skills` workflow working while preserving the legacy `npx omni-skills` alias during migration
+- ✅ Keep the current `npx awesome-omni-skills` workflow stable as the single public CLI path
 - ✅ Introduce a machine-readable source of truth for skills
 - ✅ Support discovery, recommendation, and install planning by agents
 - ✅ Separate remote catalog concerns from local filesystem writes

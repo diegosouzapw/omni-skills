@@ -2476,8 +2476,8 @@
       "entrypoint_path": "skills/find-skills/SKILL.md",
       "manifest_path": "dist/manifests/find-skills.json",
       "metadata_path": "skills/find-skills/metadata.json",
-      "content_length": 6451,
-      "body_length": 5929,
+      "content_length": 6507,
+      "body_length": 5985,
       "sub_resources": [
         "agents",
         "examples",
@@ -2536,8 +2536,8 @@
         }
       ],
       "checksums": {
-        "entrypoint_sha256": "41776e1eb987251cba40d0c995be0cba9d9ef6f763cdfb814787e644ff37dc2e",
-        "package_sha256": "8a62ee55862e771fa8d0d020d41cd14b54ec4b60b60fd549d9908bf712dcd071"
+        "entrypoint_sha256": "b068a868f0916b5b708976accdee1c6e1e223bbb1022272a163960effe3e9968",
+        "package_sha256": "f3a6145157f3ae3210c98185d932e8447450b4d7f042950ed8d3d89f0046dc20"
       },
       "archives_count": 2,
       "skill_level": 3,

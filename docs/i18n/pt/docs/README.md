@@ -8,9 +8,9 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/README.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/README.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 <!-- generated:project-meta:start -->
-<!-- awesome-omni-skills: version=0.1.5; native_skills=55; curated_skills=38; updated_at=2026-03-31 -->
+<!-- awesome-omni-skills: version=0.9.0; native_skills=55; curated_skills=38; updated_at=2026-03-31 -->
 <!-- generated:project-meta:end -->
 
 > **The central reference for using, contributing to, and operating Awesome Omni Skills as a public skill repository, a curated best-practice derivative surface, and a shared runtime platform.**
@@ -18,7 +18,7 @@
 Standard community files live in the repository root:
 [`README.md`](../README.md) · [`CONTRIBUTING.md`](../CONTRIBUTING.md) · [`SECURITY.md`](../SECURITY.md) · [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)
 
-> **Migration note:** the repository is already branded **Awesome Omni Skills**, but as of **March 31, 2026** the published npm package is still `omni-skills@0.1.5`. Until `awesome-omni-skills` is published on npm, replace `awesome-omni-skills` with `omni-skills` in CLI examples. Full status: [Awesome Omni Skills Rollout](operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
+> The npm package, GitHub repository, generated docs, and runtime entrypoints are now aligned on **Awesome Omni Skills**. Current rollout state: [Awesome Omni Skills Rollout](operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
 ---
 
@@ -145,13 +145,11 @@ Those decisions align with current official MCP and client documentation, includ
 ### 🖥️ CLI
 
 ```bash
-npx omni-skills                       # Guided install in TTY
-npx omni-skills install --guided      # Forced guided install
-npx omni-skills ui                    # Ink visual shell
-npx omni-skills ui --text             # Text fallback UI
+npx awesome-omni-skills                       # Guided install in TTY
+npx awesome-omni-skills install --guided      # Forced guided install
+npx awesome-omni-skills ui                    # Ink visual shell
+npx awesome-omni-skills ui --text             # Text fallback UI
 ```
-
-The canonical package and binary name in source control is `awesome-omni-skills`, but as of March 31, 2026 the published npm package is still `omni-skills@0.1.5`. Use the migration note above and substitute `omni-skills` in runnable commands until the renamed package is published.
 
 ```bash
 # 🔎 Discovery

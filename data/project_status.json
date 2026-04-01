@@ -1,7 +1,7 @@
 {
   "schema_version": "2026-03-31",
   "generated_at": "2026-03-31T00:00:00+00:00",
-  "package_version": "0.1.5",
+  "package_version": "0.9.0",
   "latest_release": "v0.1.5",
   "native_skill_count": 55,
   "curated_skill_count": 38,
@@ -77,7 +77,7 @@
   ],
   "paired_private_release_floor": "v1.0.0",
   "production_dependency_count": 8,
-  "catalog_hash": "a996f7e5249bb469a29a2f40e122a661874872563fe446314652a2ef20a1594e",
+  "catalog_hash": "1151f00fa5fbc6071497942cc3f75ebbc0943a15bb3889f4f056cd9695890e74",
   "generated_from": {
     "identity_path": "data/project_identity.json",
     "metadata_path": "metadata.json",

@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/AGENT-NATIVE-ROADMAP.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/AGENT-NATIVE-ROADMAP.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **The architecture evolution plan for Awesome Omni Skills: from installer-first repository to a public skill catalog, curated derivative surface, and shared runtime powering CLI, API, MCP, and A2A without duplicating logic.**
 
@@ -80,7 +80,7 @@ That expansion history now lives in the mainline runtime docs rather than a sepa
 
 ## 🎯 Goals
 
-- ✅ Keep the current `npx awesome-omni-skills` workflow working while preserving the legacy `npx omni-skills` alias during migration
+- ✅ Keep the current `npx awesome-omni-skills` workflow stable as the single public CLI path
 - ✅ Introduce a machine-readable source of truth for skills
 - ✅ Support discovery, recommendation, and install planning by agents
 - ✅ Separate remote catalog concerns from local filesystem writes

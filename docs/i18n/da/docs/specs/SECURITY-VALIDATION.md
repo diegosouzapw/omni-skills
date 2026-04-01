@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/SECURITY-VALIDATION.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/SECURITY-VALIDATION.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **Security scanning, archive generation, optional signing, and distribution packaging for every published skill.**
 

@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/CLI-VISUAL-SHELL.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/CLI-VISUAL-SHELL.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **Behavioral contract for the Ink-based terminal UI exposed by `omni-skills ui`.**
 
@@ -187,8 +187,6 @@ These flows must remain valid and stable:
 - `npx awesome-omni-skills mcp stream --local`
 - `npx awesome-omni-skills api --port 3333`
 - `npx awesome-omni-skills a2a --port 3335`
-
-The legacy alias `npx omni-skills` must continue to resolve during the migration window.
 
 The visual shell must never force itself into explicit expert command paths.
 

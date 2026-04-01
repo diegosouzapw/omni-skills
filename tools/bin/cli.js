@@ -22,7 +22,6 @@ const A2A_SERVER = path.join(ROOT, "packages", "server-a2a", "src", "server.js")
 const VISUAL_UI = path.join(ROOT, "tools", "bin", "ui.mjs");
 const CATALOG = path.join(ROOT, "dist", "catalog.json");
 const PRIMARY_NPX_COMMAND = "npx awesome-omni-skills";
-const LEGACY_NPX_COMMAND = "npx omni-skills";
 
 const COLOR = {
   reset: "\x1b[0m",
@@ -178,8 +177,7 @@ function printHelp() {
       `  node tools/bin/cli.js <command> [options]\n` +
       `  npm run cli -- <command> [options]\n\n` +
       `${style(COLOR.bold, "Primary Command")}\n` +
-      `  ${PRIMARY_NPX_COMMAND}\n` +
-      `  legacy alias: ${LEGACY_NPX_COMMAND}\n\n` +
+      `  ${PRIMARY_NPX_COMMAND}\n\n` +
       `${style(COLOR.bold, "Entry Behavior")}\n` +
       `  no args in TTY             Opens the guided install flow\n` +
       `  no args outside TTY        Preserves the current default Antigravity install\n` +

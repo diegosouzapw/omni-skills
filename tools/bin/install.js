@@ -35,7 +35,6 @@ const { resolveSafeRealPath } = require("../lib/symlink-safety");
 const { DEFAULT_REF, fetchBundles, fetchManifest, writeRelativeFile } = require("../lib/catalog-client");
 
 const PRIMARY_NPX_COMMAND = "npx awesome-omni-skills";
-const LEGACY_NPX_COMMAND = "npx omni-skills";
 const REPO = "https://github.com/diegosouzapw/awesome-omni-skills.git";
 const HOME = process.env.HOME || process.env.USERPROFILE || "";
 const SELECTIVE_DOC_PATHS = [
@@ -143,9 +142,6 @@ Examples:
   ${PRIMARY_NPX_COMMAND} --cursor --gemini      # Multiple targets
   ${PRIMARY_NPX_COMMAND} --path ./my-skills     # Custom path
   ${PRIMARY_NPX_COMMAND} --version 0.0.1        # Specific version
-
-Legacy alias:
-  ${LEGACY_NPX_COMMAND}
 `);
 }
 

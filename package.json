@@ -1,6 +1,6 @@
 {
   "name": "awesome-omni-skills",
-  "version": "0.1.5",
+  "version": "0.9.0",
   "description": "Public repository of AI coding skills, curated improved best-practice skills, and runtime surfaces for CLI, API, MCP, and A2A. Install with npx awesome-omni-skills.",
   "license": "MIT",
   "engines": {
@@ -62,9 +62,7 @@
   },
   "bin": {
     "awesome-omni-skills": "tools/bin/cli.js",
-    "awesome-omni-skills-install": "tools/bin/install.js",
-    "omni-skills": "tools/bin/cli.js",
-    "omni-skills-install": "tools/bin/install.js"
+    "awesome-omni-skills-install": "tools/bin/install.js"
   },
   "files": [
     "tools/bin",

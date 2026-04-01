@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CLI-UX-ROADMAP.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CLI-UX-ROADMAP.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **The product roadmap for evolving Awesome Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
 > Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.
@@ -26,8 +26,8 @@ The current runtime foundation is strong, but the entry experience is still opti
 
 Today:
 
-- `npx awesome-omni-skills` defaults to Antigravity outside TTY, while the legacy `npx omni-skills` alias still resolves during migration
-- this is technically valid and backwards-compatible
+- `npx awesome-omni-skills` defaults to Antigravity outside TTY
+- this is technically valid and consistent with the published package
 - but it is not ideal for first-time users or less technical operators
 
 The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.

@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **Comprehensive technical analysis of the current Awesome Omni Skills architecture, its public skill surfaces, and its build/runtime pipeline.**
 > Last analyzed: 2026-03-30
@@ -21,8 +21,8 @@
 | Attribute | Value |
 |:----------|:------|
 | **Name** | `awesome-omni-skills` |
-| **Package version** | `0.1.5` |
-| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.1.5`. |
+| **Package version** | `0.9.0` |
+| **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.9.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx awesome-omni-skills` |
 | **Published skills** | 55 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |

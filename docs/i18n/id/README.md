@@ -8,9 +8,9 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=README.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=README.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 <!-- generated:project-meta:start -->
-<!-- awesome-omni-skills: version=0.1.5; native_skills=55; curated_skills=38; updated_at=2026-03-31 -->
+<!-- awesome-omni-skills: version=0.9.0; native_skills=55; curated_skills=38; updated_at=2026-03-31 -->
 <!-- generated:project-meta:end -->
 
 <div align="center">
@@ -128,13 +128,11 @@ Native intake enters `skills/` in two ways: direct contributor PRs and reviewed 
 
 ```bash
 # Install with guided flow
-npx omni-skills
+npx awesome-omni-skills
 
 # Or install directly for Antigravity (default outside TTY)
-npx omni-skills install --guided
+npx awesome-omni-skills install --guided
 ```
-
-> **Migration note:** the GitHub repository and next package release are branded **Awesome Omni Skills**, but as of **March 31, 2026** the published npm package is still `omni-skills@0.1.5` and `awesome-omni-skills` is not yet on npm. Use `npx omni-skills` today, or replace `awesome-omni-skills` with `omni-skills` in command examples until the renamed package is published. See [rollout and migration status](docs/operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
 ### 3️⃣ Verify
 

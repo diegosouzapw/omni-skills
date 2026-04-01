@@ -6,15 +6,15 @@ This document closes `TASK-01` of the rebrand plan.
 
 It records:
 
-- the current brand surfaces that still use `omni-skills`
+- the public brand surfaces that were audited during the rebrand
 - the migration decision for each surface
-- the compatibility contract that must hold while the project moves to `awesome-omni-skills`
+- the compatibility contract that governed the move to `awesome-omni-skills`
 
 ## Snapshot
 
 Inventory snapshot collected on `2026-03-31` from the public repository source tree.
 
-Current scan findings:
+Current scan findings at the time `TASK-01` was closed:
 
 - `26` user-facing source files outside `docs/i18n/*` still contain live `omni-skills` branding
 - `30` runtime and workspace source files still contain live `omni-skills` branding
@@ -33,8 +33,8 @@ Important note:
 | :------ | :------- | :------- | :-- |
 | GitHub repository slug and URLs | [package.json](/home/diegosouzapw/dev/ai/omni-skills/package.json), [README.md](/home/diegosouzapw/dev/ai/omni-skills/README.md), [SECURITY.md](/home/diegosouzapw/dev/ai/omni-skills/SECURITY.md), [tools/lib/catalog-client.js](/home/diegosouzapw/dev/ai/omni-skills/tools/lib/catalog-client.js) | `rename-now` | External identity must be coherent immediately. Source-controlled URLs should not keep depending on GitHub redirects. |
 | Public npm package name | [package.json](/home/diegosouzapw/dev/ai/omni-skills/package.json) | `rename-now-with-legacy-package-plan` | The npm entry point is one of the main public identities. |
-| Public CLI command examples | [README.md](/home/diegosouzapw/dev/ai/omni-skills/README.md), [docs/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/README.md), [docs/users/GETTING-STARTED.md](/home/diegosouzapw/dev/ai/omni-skills/docs/users/GETTING-STARTED.md), [docs/users/USAGE.md](/home/diegosouzapw/dev/ai/omni-skills/docs/users/USAGE.md), [docs/operations/RUNBOOK.md](/home/diegosouzapw/dev/ai/omni-skills/docs/operations/RUNBOOK.md) | `rename-now-with-alias` | Docs should lead with `npx awesome-omni-skills`, but installed users must not break. |
-| Bin names | [package.json](/home/diegosouzapw/dev/ai/omni-skills/package.json), [tools/bin/cli.js](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/cli.js), [tools/bin/install.js](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/install.js), [tools/bin/ui.mjs](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/ui.mjs) | `rename-now-with-alias` | The new binary should become primary, but `omni-skills` should remain as a compatibility alias during migration. |
+| Public CLI command examples | [README.md](/home/diegosouzapw/dev/ai/omni-skills/README.md), [docs/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/README.md), [docs/users/GETTING-STARTED.md](/home/diegosouzapw/dev/ai/omni-skills/docs/users/GETTING-STARTED.md), [docs/users/USAGE.md](/home/diegosouzapw/dev/ai/omni-skills/docs/users/USAGE.md), [docs/operations/RUNBOOK.md](/home/diegosouzapw/dev/ai/omni-skills/docs/operations/RUNBOOK.md) | `rename-now` | Docs should lead only with `npx awesome-omni-skills` once the renamed package is live. |
+| Bin names | [package.json](/home/diegosouzapw/dev/ai/omni-skills/package.json), [tools/bin/cli.js](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/cli.js), [tools/bin/install.js](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/install.js), [tools/bin/ui.mjs](/home/diegosouzapw/dev/ai/omni-skills/tools/bin/ui.mjs) | `rename-now` | The public package should expose only the canonical Awesome Omni Skills commands once the publish is complete. |
 | Project display name and copy | [README.md](/home/diegosouzapw/dev/ai/omni-skills/README.md), [docs/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/README.md), [CONTRIBUTING.md](/home/diegosouzapw/dev/ai/omni-skills/CONTRIBUTING.md), [docs/architecture/CODEBASE-ANALYSIS.md](/home/diegosouzapw/dev/ai/omni-skills/docs/architecture/CODEBASE-ANALYSIS.md) | `rename-now` | Top-level messaging is a direct public surface and must align with the new positioning immediately. |
 | Generated README/doc metadata markers | [README.md](/home/diegosouzapw/dev/ai/omni-skills/README.md), [docs/README.md](/home/diegosouzapw/dev/ai/omni-skills/docs/README.md), [tools/scripts/sync_repo_version.py](/home/diegosouzapw/dev/ai/omni-skills/tools/scripts/sync_repo_version.py) | `replace-during-doc-automation` | These markers are currently version-only helpers and should be folded into the new identity/status render flow. |
 | Workspace package scope | [packages/catalog-core/package.json](/home/diegosouzapw/dev/ai/omni-skills/packages/catalog-core/package.json), [packages/server-api/package.json](/home/diegosouzapw/dev/ai/omni-skills/packages/server-api/package.json), [packages/server-mcp/package.json](/home/diegosouzapw/dev/ai/omni-skills/packages/server-mcp/package.json), [packages/server-a2a/package.json](/home/diegosouzapw/dev/ai/omni-skills/packages/server-a2a/package.json) | `defer` | Internal workspace scope rename is high churn and not required for the first public rebrand wave. |
@@ -55,17 +55,15 @@ Important note:
 The migration must preserve the following:
 
 1. `npx awesome-omni-skills` becomes the primary documented command.
-2. `npx omni-skills` continues to work for at least two stable public releases after the rename lands.
-3. If the npm package name changes immediately, the old package name must either:
-   - remain published as a shim, or
-   - continue to resolve to the same installer entry point during the migration window.
+2. The public package should publish under `awesome-omni-skills`.
+3. The old npm package name may remain only as a deprecated record, not as a primary public contract.
 
 ### Documentation Contract
 
 The docs must follow this sequence:
 
 1. switch the primary name in README, docs hub, and top-level user docs
-2. keep one explicit migration note for legacy invocations
+2. remove temporary migration notes once the renamed npm package is live
 3. stop duplicating counts and release numbers manually before or at the same time as the rebrand copy refresh
 
 ### GitHub Contract
@@ -101,18 +99,15 @@ Rule:
 
 ## Migration Window
 
-Recommended migration window:
+Recommended migration window outcome:
 
-1. Release N:
+1. Release `v0.9.0`:
    - public repo and package move to `awesome-omni-skills`
    - docs switch primary command to `npx awesome-omni-skills`
-   - legacy `omni-skills` invocation still works
-2. Release N+1:
-   - keep both new and legacy command paths operational
-   - keep explicit deprecation notice for the legacy path
-3. Release N+2 or later:
-   - evaluate whether the legacy package alias can be retired
-   - do not retire the legacy command until the public/private automation and release flows have been stable for at least two release cycles
+   - the old npm package name becomes deprecated history, not a public command alias
+2. Post-release:
+   - keep only controlled deprecation messaging for the old package name
+   - keep private automation aligned to the canonical slug and package identity
 
 ## Execution Notes For TASK-02
 

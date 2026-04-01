@@ -2,11 +2,11 @@
 
 ## Plan Status
 
-Implementation is complete for tasks `01` through `09` as of **March 31, 2026**, with one rollout item intentionally left operationally pending:
+Implementation is complete for tasks `01` through `09` as of **March 31, 2026**.
 
-- GitHub, docs, generated status blocks, repository metadata sync, public repository-source intake, and private runtime integration are complete
-- the published npm package is still `omni-skills@0.1.5`
-- the renamed npm package `awesome-omni-skills` has not been published yet
+- GitHub, docs, generated status blocks, repository metadata sync, public repository-source intake, private runtime integration, and npm publication are complete
+- the canonical public package is now `awesome-omni-skills@0.9.0`
+- the historical package `omni-skills@0.1.5` remains only for deprecation messaging
 
 For the live acceptance snapshot and migration checklist, see [Awesome Omni Skills Rollout](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
@@ -47,18 +47,18 @@ The private repository already has:
 - weekly sync automation
 - curated PR handling
 
-The weak spots today are mostly operational rollout details:
+The weak spots today are mostly deeper operational follow-through:
 
-- the renamed npm package has not yet been published, so runnable docs still need migration notes
-- some compatibility examples intentionally keep the legacy `npx omni-skills` command until npm publication catches up
-- future cleanup can still reduce remaining legacy references in deeper operational surfaces after the npm rollout is complete
+- internal runtime contracts such as `OMNI_SKILLS_*`, `~/.omni-skills`, and internal service labels still intentionally keep the historical prefix
+- historical planning docs and provenance records may mention the old package or repo name as part of migration history
+- future cleanup can still reduce remaining legacy references in non-canonical operational surfaces without changing public contracts
 
 ## Guiding Principles
 
 1. One public identity, one canonical project description.
 2. One generated status manifest for counts, release number, timestamps, and surface metrics.
 3. One explicit machine-readable contract for public repository submissions.
-4. Backward compatibility first for installed commands and automated consumers.
+4. Public surfaces should be canonical first; backward compatibility belongs in controlled deprecation layers, not in the main docs.
 5. Generated documentation should use markers and a renderer, not regex-only scattered replacements.
 6. Public markdown can remain human-friendly, but automation must parse only bounded sections with stable markers.
 
@@ -80,7 +80,7 @@ The weak spots today are mostly operational rollout details:
 - renaming `skills/` or `skills_omni/`
 - renaming every `OMNI_SKILLS_*` environment variable immediately
 - renaming every internal storage path such as `~/.omni-skills` in the same rollout
-- removing the legacy `omni-skills` command on day one
+- renaming every deferred internal `OMNI_SKILLS_*` contract in the same wave
 
 Those items can be evaluated later, but they should not block the rebrand and doc-automation wave.
 
@@ -91,7 +91,7 @@ When this plan is complete, the project should look like this:
 - GitHub repository name: `awesome-omni-skills`
 - npm primary package: `awesome-omni-skills`
 - primary install command in docs: `npx awesome-omni-skills`
-- compatibility path: legacy `npx omni-skills` still works for at least one migration window
+- public CLI path is `npx awesome-omni-skills`
 - root messaging makes three things explicit:
   - this is a public repository of installable skills
   - this repository also curates improved best-practice derivatives
@@ -113,11 +113,8 @@ Suggested fields:
 - `display_name`
 - `short_name`
 - `repo_slug`
-- `legacy_repo_slug`
 - `npm_package`
-- `legacy_npm_package`
 - `primary_cli_command`
-- `legacy_cli_command`
 - `github_url`
 - `issues_url`
 - `discussions_url`

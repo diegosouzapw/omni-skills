@@ -9,8 +9,8 @@
 - Date validated: **March 31, 2026**
 - Canonical GitHub repo: `diegosouzapw/awesome-omni-skills`
 - Canonical repo package name in source control: `awesome-omni-skills`
-- Published npm package currently available: `omni-skills@0.1.5`
-- Published npm package not yet available: `awesome-omni-skills`
+- Canonical npm package: `awesome-omni-skills@0.9.0`
+- Legacy npm package retained only for deprecation messaging: `omni-skills@0.1.5`
 - Private operations repo: `diegosouzapw/omni-skills-private`
 - Current public catalog state: **55** native skills and **38** curated derivatives
 
@@ -22,13 +22,13 @@
 |:-----|:-------|:------|
 | GitHub repository rename | ✅ Complete | Canonical repo slug is now `awesome-omni-skills` |
 | Root package rename in source control | ✅ Complete | `package.json` now uses `awesome-omni-skills` |
-| Legacy CLI alias contract | ✅ Complete | `omni-skills` bin remains in `package.json` |
+| Legacy CLI alias retirement | ✅ Complete | Source control, docs, and package bins now expose only `awesome-omni-skills` |
 | Project identity automation | ✅ Complete | `data/project_identity.json`, `verify_project_identity.py`, and repo metadata sync are active |
 | GitHub description, homepage, and topics sync | ✅ Complete | Repository header now matches source-controlled metadata |
 | Generated doc drift checks | ✅ Complete | `build`, CI validation, registry checks, and i18n checks all enforce current state |
 | Public repository-sources intake | ✅ Complete | `REPOSITORY-SOURCES.md` is rendered, linted, and consumed by the private runtime |
 | Private dashboard visibility after rename | ✅ Complete | Dashboard and source registry still operate after the public repo rename |
-| NPM publication of renamed package | ⏳ Pending credentials/release | `awesome-omni-skills` is not yet published to npm as of March 31, 2026 |
+| NPM publication of renamed package | ✅ Complete | `awesome-omni-skills@0.9.0` is the canonical public package |
 
 ---
 
@@ -40,17 +40,16 @@
 - The canonical GitHub repository is `diegosouzapw/awesome-omni-skills`.
 - Source-controlled package metadata, repo header metadata, docs identity, and generated status manifests all use the new name.
 
-### What is still in migration
+### What remains as historical compatibility only
 
-- The npm registry still serves `omni-skills@0.1.5`.
-- `awesome-omni-skills` does **not** exist on npm yet.
-- Until the renamed package is published, all runnable install examples should use `npx omni-skills`.
+- The old package name `omni-skills` remains only as a deprecated npm record for migration messaging.
+- The canonical runnable command is now `npx awesome-omni-skills`.
+- Living docs, builds, generated artifacts, and package bins no longer advertise the legacy alias.
 
 ### How to read current command examples
 
-- If a doc shows `npx omni-skills`, that is runnable against the currently published package.
-- If a doc still shows `awesome-omni-skills` deeper in the command surface, substitute `omni-skills` until the first renamed npm publish lands.
-- The legacy alias should remain available for at least one migration window after the renamed package is published.
+- `npx awesome-omni-skills` is now the canonical install and runtime entrypoint.
+- Any remaining `npx omni-skills` references should be treated as stale documentation drift or historical record, not supported public guidance.
 
 ---
 
@@ -88,12 +87,11 @@ Validated live state on March 31, 2026:
 
 ### NPM migration verification
 
-Validated on March 31, 2026:
+Validated on March 31, 2026 after the `v0.9.0` release:
 
-- `npm view awesome-omni-skills version` returned **404 Not Found**
+- `npm view awesome-omni-skills version` returned **0.9.0**
 - `npm view omni-skills version` returned **0.1.5**
-
-That means the repository rename is live, but the npm rename is still a staged rollout item rather than a completed publication.
+- the public npm entrypoint is now the renamed package
 
 ### Private runtime acceptance
 
@@ -118,12 +116,12 @@ The dashboard still surfaced the accepted rollout state after the rename, includ
 
 ---
 
-## Next Release Action
+## Current Rollout State
 
-To finish the npm side of the migration:
+The rebrand rollout is now **GitHub/docs/runtime/npm complete**.
 
-1. publish the renamed package `awesome-omni-skills`
-2. keep `omni-skills` as the documented compatibility alias for the migration window
-3. after the renamed package is live, remove the temporary “replace with omni-skills” notes from user docs
+The remaining operational work is normal release maintenance:
 
-Until that publish happens, the rollout should be treated as **GitHub/docs/runtime complete, npm publication pending**.
+1. keep generated docs and `docs/i18n/*` in sync with current catalog state
+2. keep the private dashboard/runtime aligned to the public slug and package identity
+3. maintain deprecation messaging for the retired `omni-skills` npm package until it is no longer needed

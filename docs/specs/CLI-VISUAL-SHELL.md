@@ -178,8 +178,6 @@ These flows must remain valid and stable:
 - `npx awesome-omni-skills api --port 3333`
 - `npx awesome-omni-skills a2a --port 3335`
 
-The legacy alias `npx omni-skills` must continue to resolve during the migration window.
-
 The visual shell must never force itself into explicit expert command paths.
 
 ---

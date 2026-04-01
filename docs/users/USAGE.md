@@ -2,7 +2,7 @@
 
 > **Everything you need to invoke skills, run services, and operate the Awesome Omni Skills runtime.**
 
-> **Migration note:** as of **March 31, 2026**, the published npm package is still `omni-skills@0.1.5`. Replace `awesome-omni-skills` with `omni-skills` in runnable examples until the renamed npm package is published. See [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
+> **Package status:** runtime commands, docs, and npm publication are aligned on `awesome-omni-skills`. Release details live in [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
 For full operational workflows, see the [🔧 System Runbook](../operations/RUNBOOK.md).
 For the full end-user command map, see the [🧭 CLI User Guide](./CLI-USER-GUIDE.md).

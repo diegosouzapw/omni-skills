@@ -16,8 +16,8 @@ The current runtime foundation is strong, but the entry experience is still opti
 
 Today:
 
-- `npx awesome-omni-skills` defaults to Antigravity outside TTY, while the legacy `npx omni-skills` alias still resolves during migration
-- this is technically valid and backwards-compatible
+- `npx awesome-omni-skills` defaults to Antigravity outside TTY
+- this is technically valid and consistent with the published package
 - but it is not ideal for first-time users or less technical operators
 
 The CLI already has a basic interactive mode, but it is still closer to a developer utility than a guided product surface.

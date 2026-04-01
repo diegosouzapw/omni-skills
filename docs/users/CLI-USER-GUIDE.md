@@ -1,8 +1,8 @@
 # 🧭 Awesome Omni Skills CLI User Guide
 
-> **The full public CLI surface shipped by `awesome-omni-skills`, with the legacy `omni-skills` alias still supported during migration.**
+> **The full public CLI surface shipped by `awesome-omni-skills`.**
 
-> **Migration note:** the repo and next package release are branded **Awesome Omni Skills**, but the currently published npm package is still `omni-skills@0.1.5` on **March 31, 2026**. Use `npx omni-skills` today, or substitute `omni-skills` for `awesome-omni-skills` in the examples below until the renamed package is published. See [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
+> **Package status:** the public CLI, npm package, and documentation now use the same canonical command surface. See [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
 Use this guide when you want to:
 
@@ -22,7 +22,7 @@ Use this guide when you want to:
 Install with `npx`:
 
 ```bash
-npx omni-skills
+npx awesome-omni-skills
 ```
 
 ### 🎭 Entry Behavior
@@ -31,8 +31,8 @@ npx omni-skills
 |:--------|:------------|
 | 🖥️ TTY + no arguments | Opens the **guided install** flow |
 | ⚙️ Non-TTY + no arguments | Non-interactive install to `~/.gemini/antigravity/skills` |
-| 🎨 `npx omni-skills ui` | Branded **Ink visual shell** |
-| 📝 `npx omni-skills ui --text` | Readline **text fallback** UI |
+| 🎨 `npx awesome-omni-skills ui` | Branded **Ink visual shell** |
+| 📝 `npx awesome-omni-skills ui --text` | Readline **text fallback** UI |
 
 ---
 

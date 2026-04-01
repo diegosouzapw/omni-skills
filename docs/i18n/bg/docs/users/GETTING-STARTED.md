@@ -8,11 +8,11 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/users/GETTING-STARTED.md; version=0.1.5; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/users/GETTING-STARTED.md; version=0.9.0; release=v0.1.5; english_snapshot=2026-03-31T00:00:00+00:00 -->
 
 > **Install skills, verify the setup, and invoke your first AI skill in under 2 minutes.**
 
-> **Migration note:** as of **March 31, 2026**, the published npm package is still `omni-skills@0.1.5`. Use `npx omni-skills` for live installs until `awesome-omni-skills` is published on npm. See [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
+> **Package status:** the canonical public package is now `awesome-omni-skills`. For release and rollout details, see [rollout and migration status](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 
 ---
 
@@ -35,7 +35,7 @@
 ### Бърз старт
 
 ```bash
-npx omni-skills
+npx awesome-omni-skills
 ```
 
 In an interactive terminal, this now opens the guided installer instead of silently assuming a client.
@@ -43,7 +43,7 @@ In an interactive terminal, this now opens the guided installer instead of silen
 ### 🖥️ Visual Shell
 
 ```bash
-npx omni-skills ui
+npx awesome-omni-skills ui
 ```
 
 This opens the branded terminal hub for install, discovery, MCP, API, and A2A startup.
