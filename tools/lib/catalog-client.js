@@ -7,7 +7,6 @@ const https = require("https");
 
 const DEFAULT_REF = "main";
 const DEFAULT_RAW_BASE = "https://raw.githubusercontent.com/diegosouzapw/awesome-omni-skills";
-const DEFAULT_FALLBACK_RAW_BASE = "https://raw.githubusercontent.com/diegosouzapw/omni-skills";
 
 function resolveSourceRoot() {
   const sourceRoot = process.env.OMNI_SKILLS_SOURCE_ROOT;
@@ -20,10 +19,7 @@ function resolveRawBase() {
 
 function buildRawCandidates(relativePath, ref = DEFAULT_REF) {
   const normalizedRef = encodeURIComponent(ref).replace(/%2F/g, "/");
-  return [
-    `${resolveRawBase()}/${normalizedRef}/${relativePath}`,
-    `${DEFAULT_FALLBACK_RAW_BASE}/${normalizedRef}/${relativePath}`,
-  ];
+  return [`${resolveRawBase()}/${normalizedRef}/${relativePath}`];
 }
 
 function fetchBuffer(url, redirects = 4) {

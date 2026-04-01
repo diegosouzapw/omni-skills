@@ -6,7 +6,7 @@ Implementation is complete for tasks `01` through `09` as of **March 31, 2026**.
 
 - GitHub, docs, generated status blocks, repository metadata sync, public repository-source intake, private runtime integration, and npm publication are complete
 - the canonical public package is now `awesome-omni-skills@0.9.0`
-- the historical package `omni-skills@0.1.5` remains only for deprecation messaging
+- the historical package `omni-skills@0.1.5` is now deprecated on npm and points users to `awesome-omni-skills`
 
 For the live acceptance snapshot and migration checklist, see [Awesome Omni Skills Rollout](../operations/AWESOME-OMNI-SKILLS-ROLLOUT.md).
 

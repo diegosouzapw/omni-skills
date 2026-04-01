@@ -35,7 +35,7 @@ Completed on 2026-03-31.
 ## Outcome
 
 - added a rollout and migration status runbook at `docs/operations/AWESOME-OMNI-SKILLS-ROLLOUT.md`
-- documented the live rollout reality that GitHub/docs/runtime are rebranded while npm still publishes `omni-skills@0.1.5`
+- completed npm publication for `awesome-omni-skills@0.9.0` and deprecated the historical `omni-skills@0.1.5` package
 - updated public user docs to show runnable migration notes and kept generated i18n mirrors aligned through the build path
 - updated the private runtime, dashboard title, env examples, and repo references to the renamed public slug `diegosouzapw/awesome-omni-skills`
 - added dashboard-side canonicalization for stale stored PR URLs that still referenced the old public slug
