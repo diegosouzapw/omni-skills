@@ -1,0 +1,2 @@
+c8d7df5f90f8718518e5a0687dfb451ffd2ba68a2870dab1df7cacedfcb5792d  nx-generate.zip
+f04db48b35ad38efeac86fe70694307d756b2fbb95e2de5784399b4e36001e4c  nx-generate.tar.gz

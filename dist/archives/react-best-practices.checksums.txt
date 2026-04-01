@@ -1,0 +1,2 @@
+de8f3f838ac0ba1f82f1f3a376c1990cf53f01343f2d8144a5d78f24b57bbea4  react-best-practices.zip
+d51ba183d70994838cd51190af95a838b2365e1818c74183404f419a5e96d7f3  react-best-practices.tar.gz

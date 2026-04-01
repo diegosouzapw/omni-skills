@@ -1,0 +1,2 @@
+97af277a555abcd4b31baf8f34fa51428b95d86115f021ce1c8a371c434ae093  playwright-skill.zip
+f60750c4e4f236f362941c3820b9f9eeeb82feff8820d5c657c5b64f6e62d447  playwright-skill.tar.gz

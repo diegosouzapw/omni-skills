@@ -1,0 +1,2 @@
+9a05250abe0d5e9476e37372a0b04e0be06146f533799bb9e607ca392a2a9aeb  frontend-blueprint.zip
+de696faba6aed296f4ad7c1b019955c3022071788ee5ce8e22a0d7dc76e0ed9d  frontend-blueprint.tar.gz

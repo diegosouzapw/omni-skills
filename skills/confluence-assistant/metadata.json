@@ -1,0 +1,227 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-01T00:00:00+00:00",
+  "id": "confluence-assistant",
+  "slug": "confluence-assistant",
+  "display_name": "Confluence Assistant",
+  "description": "Confluence Assistant workflow skill. Use this skill when the user needs Expert in Confluence operations using Atlassian MCP. Use when the user says \\\"search Confluence\\\", \\\"create a Confluence page\\\", \\\"update a page\\\", \\\"find documentation in Confluence\\\", \\\"list spaces\\\", or \\\"add a comment to a page\\\". Do NOT use for Jira issues, general web search, or local file creation and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "ai-agents",
+  "canonical_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "confluence-assistant",
+    "expert",
+    "confluence",
+    "operations",
+    "using",
+    "atlassian",
+    "mcp",
+    "use"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "Waldemar Neto - github.com/waldemarnt",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01",
+    "file_mtime": "2026-04-01T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/confluence-assistant",
+    "entrypoint": "skills/confluence-assistant/SKILL.md",
+    "metadata": "skills/confluence-assistant/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 13,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "content": {
+    "body_length": 12499,
+    "content_length": 13437,
+    "body_lines": 318,
+    "word_count": 1715,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 7,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 25,
+      "workflow_section_length": 2629,
+      "when_to_use_section_length": 369,
+      "best_practices_items_count": 18,
+      "best_practices_section_length": 1200,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1380,
+      "resources_items_count": 20,
+      "resources_section_length": 2131,
+      "examples_section_length": 2318,
+      "examples_code_blocks_count": 14,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 42,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.39
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 25,
+      "workflow_section_length": 2629,
+      "when_to_use_section_length": 369,
+      "best_practices_items_count": 18,
+      "best_practices_section_length": 1200,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1380,
+      "resources_items_count": 20,
+      "resources_section_length": 2131,
+      "examples_section_length": 2318,
+      "examples_code_blocks_count": 14,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 42,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.39
+    }
+  },
+  "quality": {
+    "score": 95,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 13,
+      "script_files": 2,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

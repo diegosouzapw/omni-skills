@@ -1,0 +1,2 @@
+fc6e8857a624c0459cd00993cb63adca142eee616ec1422f250dad5b25c94325  cursor-subagent-creator.zip
+010a2ebeb9c51b85eda72964970d22649a06af34ff63c2c36999d419897d0ac2  cursor-subagent-creator.tar.gz

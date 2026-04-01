@@ -1,0 +1,548 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "mermaid-studio",
+  "slug": "mermaid-studio",
+  "display_name": "Mermaid Studio",
+  "description": "Mermaid Studio workflow skill. Use this skill when the user needs Expert Mermaid diagram creation, validation, and rendering with dual-engine output (SVG/PNG/ASCII). Supports all 20+ diagram types including C4 architecture, AWS architecture-beta with service icons, flowcharts, sequence, ERD, state, class, mindmap, timeline, git graph, sankey, and more. Features code-to-diagram analysis, batch rendering, 15+ themes, and syntax validation. Use when users ask to create diagrams, visualize architecture, render mermaid files, generate ASCII diagrams, document system flows, model databases, draw AWS infrastructure, analyze code structure, or anything involving \\\"mermaid\\\", \\\"diagram\\\", \\\"flowchart\\\", \\\"architecture diagram\\\", \\\"sequence diagram\\\", \\\"ERD\\\", \\\"C4\\\", \\\"ASCII diagram\\\". Do NOT use for non-Mermaid image generation, data plotting with chart libraries, or general documentation writing and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "devops",
+  "raw_category": "devops",
+  "taxonomy": {
+    "raw_category": "devops",
+    "canonical_category": "devops",
+    "inferred_category": "devops",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "mermaid-studio",
+    "expert",
+    "mermaid",
+    "diagram",
+    "creation",
+    "validation",
+    "and",
+    "rendering"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "Felipe Rodrigues - github.com/felipfr",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/mermaid-studio/SKILL.md",
+  "paths": {
+    "root": "skills/mermaid-studio",
+    "manifest": "dist/manifests/mermaid-studio.json",
+    "metadata": "skills/mermaid-studio/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 26,
+    "references_count": 10,
+    "agents_count": 1,
+    "assets_count": 2
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 34,
+        "workflow_section_length": 10953,
+        "when_to_use_section_length": 476,
+        "best_practices_items_count": 20,
+        "best_practices_section_length": 3453,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 2673,
+        "resources_items_count": 19,
+        "resources_section_length": 3954,
+        "examples_section_length": 1191,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 49,
+        "table_count": 64,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 22,
+        "references_files_count": 10,
+        "scripts_files_count": 7,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 2,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 6.23
+      }
+    },
+    "quality": {
+      "score": 97,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 60,
+      "tier": "risky",
+      "status": "warn",
+      "findings_count": 4,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/mermaid-studio/scripts/batch.mjs",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "env: { ...process.env },",
+          "line": 129
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/mermaid-studio/scripts/render-ascii.mjs",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const DEPS_DIR = process.env.MERMAID_STUDIO_DIR || resolve(SKILL_DIR, \".deps\");",
+          "line": 23
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/mermaid-studio/scripts/render.mjs",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const DEPS_DIR = process.env.MERMAID_STUDIO_DIR || resolve(SKILL_DIR, \".deps\");",
+          "line": 26
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/mermaid-studio/scripts/validate.mjs",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const DEPS_DIR = process.env.MERMAID_STUDIO_DIR || resolve(SKILL_DIR, \".deps\");",
+          "line": 28
+        }
+      ],
+      "signals": {
+        "scanned_files": 25,
+        "script_files": 7,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Sensitive OS or credential path referenced. [skills/mermaid-studio/scripts/batch.mjs]",
+        "security medium: Sensitive OS or credential path referenced. [skills/mermaid-studio/scripts/render-ascii.mjs]",
+        "security medium: Sensitive OS or credential path referenced. [skills/mermaid-studio/scripts/render.mjs]",
+        "security medium: Sensitive OS or credential path referenced. [skills/mermaid-studio/scripts/validate.mjs]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 25295,
+    "content_length": 26746,
+    "body_lines": 503,
+    "word_count": 3135,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 6,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 34,
+      "workflow_section_length": 10953,
+      "when_to_use_section_length": 476,
+      "best_practices_items_count": 20,
+      "best_practices_section_length": 3453,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 2673,
+      "resources_items_count": 19,
+      "resources_section_length": 3954,
+      "examples_section_length": 1191,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 49,
+      "table_count": 64,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 22,
+      "references_files_count": 10,
+      "scripts_files_count": 7,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 2,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.23
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/mermaid-studio/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1810,
+      "sha256": "8a1fbb296ef613b8b985e57e16048c6527fb6e9e463f42d50c3f67f3192ca6dc"
+    },
+    {
+      "path": "skills/mermaid-studio/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 731,
+      "sha256": "166e15ae128dd938e920d15ce8a42634faf92023258aca9cb1a0ea5b38030fdc"
+    },
+    {
+      "path": "skills/mermaid-studio/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 26854,
+      "sha256": "d24a7c157648faa52626d5b9c4633c07c5fca0efc89b25018863e861273497a9"
+    },
+    {
+      "path": "skills/mermaid-studio/metadata.json",
+      "kind": "support",
+      "size_bytes": 9324,
+      "sha256": "f4d8afb94c4385d1f8a584f770528fada50542b50e8da6bd761b94a424d20e4b"
+    },
+    {
+      "path": "skills/mermaid-studio/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/mermaid-studio/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 787,
+      "sha256": "7664c99c539d7a7258ca71da6ffa0dda9c8c065cf6299285f77bf5649fbced07"
+    },
+    {
+      "path": "skills/mermaid-studio/assets/puppeteer-config.json",
+      "kind": "asset",
+      "size_bytes": 167,
+      "sha256": "6c7543a9be6885e1b975fde094b3e9565a83343ac648220551823f809ffd4ac2"
+    },
+    {
+      "path": "skills/mermaid-studio/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/mermaid-studio/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 225,
+      "sha256": "6f2be7aa9f100c004ff0924b8d9b7fcd5471922f460194a616a31a4947e9816c"
+    },
+    {
+      "path": "skills/mermaid-studio/references/aws-architecture.md",
+      "kind": "reference",
+      "size_bytes": 14574,
+      "sha256": "22874dac1f2226ed4d8743c9af999f8506e267df0ef4b1a937344898b661460c"
+    },
+    {
+      "path": "skills/mermaid-studio/references/c4-architecture.md",
+      "kind": "reference",
+      "size_bytes": 19375,
+      "sha256": "14bc79c43a51fe7a69e4f14db4d4650ae85f56ff78766b9c7809565f1ce6f97a"
+    },
+    {
+      "path": "skills/mermaid-studio/references/code-to-diagram.md",
+      "kind": "reference",
+      "size_bytes": 8104,
+      "sha256": "68df9f62099d0fa08b1e11a0ccab605512ecae957a9e9952f14d4eaf120ce6c9"
+    },
+    {
+      "path": "skills/mermaid-studio/references/diagram-types.md",
+      "kind": "reference",
+      "size_bytes": 14758,
+      "sha256": "35b999290977d5f9933fbc63d880a0fa643c71bdfefca415a8563d7b417105ff"
+    },
+    {
+      "path": "skills/mermaid-studio/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/mermaid-studio/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/mermaid-studio/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/mermaid-studio/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 712,
+      "sha256": "6e58a98448fe9b565f6a1e181e5fc835ed80791515d38c75091b4d42f128aacc"
+    },
+    {
+      "path": "skills/mermaid-studio/references/themes.md",
+      "kind": "reference",
+      "size_bytes": 13908,
+      "sha256": "86d26d72f53476ecdeace9d6680feca38e0854efb21077bc51b19e5775340f98"
+    },
+    {
+      "path": "skills/mermaid-studio/references/troubleshooting.md",
+      "kind": "reference",
+      "size_bytes": 12907,
+      "sha256": "71ebf168c0947c472ef4bbd6415eac3c0f88ad4cba3c1806146dcc8e4514b162"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/batch.mjs",
+      "kind": "support",
+      "size_bytes": 6731,
+      "sha256": "2fb34cc0b0ec5e5aab6bda864adf855aa54387521c9d3202c01c0c5892432cc9"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/render-ascii.mjs",
+      "kind": "support",
+      "size_bytes": 5415,
+      "sha256": "32caf69ac63255ce458fadd720f906b550446969bf082f1d1fcf3c28d7011100"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/render.mjs",
+      "kind": "support",
+      "size_bytes": 18980,
+      "sha256": "258d69aa199fca3ddaa72a60279e5fcb8bfb060dd915d8a256c5ee055bf8ca1b"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/setup.sh",
+      "kind": "support",
+      "size_bytes": 3253,
+      "sha256": "9e190f4ad3893b183764cc263a63baad2adfeb08cd8789d803d742a96b8beae7"
+    },
+    {
+      "path": "skills/mermaid-studio/scripts/validate.mjs",
+      "kind": "support",
+      "size_bytes": 9299,
+      "sha256": "0d6cb480865a7bc77f1df45effceec366465f8e51d41f85c221bdd2a056c8df6"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/mermaid-studio.zip",
+      "file_name": "mermaid-studio.zip",
+      "size_bytes": 175112,
+      "sha256": "7bf0b401b10e3e952c5ae705685c1bb0e14b76bf67c26c8baff7a5b70c12c067",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/mermaid-studio.tar.gz",
+      "file_name": "mermaid-studio.tar.gz",
+      "size_bytes": 194603,
+      "sha256": "acbcc74ab3ed18ff5e8a53a779086ce44d45fbfe2aee31fd8cd2725e36c46c8c",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/mermaid-studio.checksums.txt",
+    "file_name": "mermaid-studio.checksums.txt",
+    "sha256": "00c3481d408e6484008056598649e43e0ce0676410a3685c37420c38603593f8",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "d24a7c157648faa52626d5b9c4633c07c5fca0efc89b25018863e861273497a9",
+    "package_sha256": "28ed6d2318cedd8a57ac25aad7cf42820019f7f23c7a710d9a37a67a5a746ebc"
+  }
+}
