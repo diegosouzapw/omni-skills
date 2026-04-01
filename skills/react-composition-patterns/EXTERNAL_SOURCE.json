@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "react-composition-patterns",
   "lineage_id": 33,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:56.874639+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.035524+00:00",
   "original_frontmatter_snapshot": {
     "name": "react-composition-patterns",
     "description": "React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building flexible component libraries, or designing reusable APIs. Triggers on tasks involving compound components, render props, context providers, or component architecture. Includes React 19 API changes. Do NOT use for React/Next.js performance optimization (use react-best-practices instead).",

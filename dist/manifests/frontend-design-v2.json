@@ -304,13 +304,13 @@
       "path": "skills/frontend-design-v2/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1372,
-      "sha256": "5b4c13f2711047c4a1349f0f32829f40c3d18f8a5d0b3d329f041e2996c0e58e"
+      "sha256": "564d9500664e3d4ec363506cea6b9a8761a68f0cbdfafaba0b179322a4c6704b"
     },
     {
       "path": "skills/frontend-design-v2/ORIGIN.md",
       "kind": "support",
       "size_bytes": 739,
-      "sha256": "358c4a546a1b144f3b794362e5426762854ddb4ee901c05777c311f2f3dc48db"
+      "sha256": "24cbf97598f44391111bb8dfafdeb9aa9581d174f343656987815917e2b5c98b"
     },
     {
       "path": "skills/frontend-design-v2/SKILL.md",
@@ -433,7 +433,7 @@
       "path": "dist/archives/frontend-design-v2.zip",
       "file_name": "frontend-design-v2.zip",
       "size_bytes": 68744,
-      "sha256": "8695e16933b5faa2fe46ec93c51e9a668e3969f6f11ed56573073999769aeabf",
+      "sha256": "8751007030a607f29998e73379a72fb379b1becd8892ad6f3e388a6f16aeb38a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -447,7 +447,7 @@
       "path": "dist/archives/frontend-design-v2.tar.gz",
       "file_name": "frontend-design-v2.tar.gz",
       "size_bytes": 92188,
-      "sha256": "e8ee6debfd9a84db3c45071b0cd8accb4a7d64c207032316c3e5c2c66844ed61",
+      "sha256": "12c204195ab1bbdd47753fd6054326d7e9067b4d0819241c13be7f7f1d037667",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -460,7 +460,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-design-v2.checksums.txt",
     "file_name": "frontend-design-v2.checksums.txt",
-    "sha256": "c5e24a39fdfed536fd4aa52c15df82c350fc61c0f62adc033c321e12a2c116c7",
+    "sha256": "f937028515ca0d63aae966622feb61a94d2f030c28c33b45379c436581ce07d6",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -471,6 +471,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "160fdd508cfdde4087f424a32219098de333ae2f958c49167ccc5c0120e141b7",
-    "package_sha256": "3c486fc1b9f19446133eb72dc2dd76dc49749be67e7e9d1f92835e2300c7f5b2"
+    "package_sha256": "480a755d3363383a9e10e1143fe4725d6cf2306f5bc77295a4a757d3dd2f0540"
   }
 }

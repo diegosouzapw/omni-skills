@@ -304,7 +304,7 @@
       "path": "skills/gh-address-comments/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1393,
-      "sha256": "3a47563d039efee845bf33d7a1e4c17da9addc198a9e95e88ca064304f3d2d6f"
+      "sha256": "879fedd2658053bf297de789216977b1df5f49affdcca6c7fbc18586232af613"
     },
     {
       "path": "skills/gh-address-comments/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/gh-address-comments/ORIGIN.md",
       "kind": "support",
       "size_bytes": 750,
-      "sha256": "e9453171ff58df4337f3b6fd1a8afe941f9bfec201566d268f394c07bce8e8a3"
+      "sha256": "f9f3f46e3bee456c76318afeb63efc8cad984f16a64cb18e7a991d3e0073f331"
     },
     {
       "path": "skills/gh-address-comments/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/gh-address-comments.zip",
       "file_name": "gh-address-comments.zip",
       "size_bytes": 44700,
-      "sha256": "a1ede7639a6be45b3a6ba3afa82e394c64a1808ff14129001c5e4337300a95f2",
+      "sha256": "e6a985a48b776963b19618573f6fed08de81116cb66b7fbd7701bc09fee0fa9d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/gh-address-comments.tar.gz",
       "file_name": "gh-address-comments.tar.gz",
       "size_bytes": 61468,
-      "sha256": "e6e0fc21586ff10c86ad7d6dab57f55b12b39c94d8b48e38eb7b87feb491d8a5",
+      "sha256": "dff497816ca6790eceb9c2971303299e00132d6d52e628ee939a9024504d9fab",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/gh-address-comments.checksums.txt",
     "file_name": "gh-address-comments.checksums.txt",
-    "sha256": "e7451e99358b9074276fef7d51d3156b1dba6e22c4c9ee045af1699333d5226f",
+    "sha256": "1fe87de24902fc63ba0b79ea2e6e9b97895fa3cacb03eb09cec58cd769fb749e",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "a5f8cede658fb86e80bde3456ec3e32bf404ccaaf4b8d6fcc1127d5833d9eb8c",
-    "package_sha256": "ac0aedbc147dff7fbd170a3364c7e403db0633e55be0aec9aaee297f293a45b7"
+    "package_sha256": "a292a5ecb40dc736351216b88d3c1414d668a7d7bbfeb73deecc85a4ed9beb60"
   }
 }

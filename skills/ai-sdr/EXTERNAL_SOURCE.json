@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "ai-sdr",
   "lineage_id": 62,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.529808+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.931682+00:00",
   "original_frontmatter_snapshot": {
     "name": "ai-sdr",
     "description": "When the user wants to deploy AI sales development reps, automate sales qualification, build signal-to-action routing, or design AI agent architecture for sales. Also use when the user mentions 'AI SDR,' 'AI sales agent,' 'automated qualification,' 'signal routing,' 'sales automation,' '11x,' 'Artisan,' 'AiSDR,' 'AI BDR,' or 'autonomous sales.' This skill covers AI SDR deployment, qualification automation, and agent architecture for sales development. Do NOT use for technical implementation, code review, or software architecture.",

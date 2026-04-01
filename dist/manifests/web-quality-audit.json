@@ -356,13 +356,13 @@
       "path": "skills/web-quality-audit/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1409,
-      "sha256": "c8d714e12d7dbc92bb82e6aa9cfd6009ec7d67a1e67fdcee28d7fde8037ec335"
+      "sha256": "8614b7eaddf725aff2d8d67269ea78adee44e2cd8544e46b259743a6bc3d2541"
     },
     {
       "path": "skills/web-quality-audit/ORIGIN.md",
       "kind": "support",
       "size_bytes": 740,
-      "sha256": "25a9f4547d1122f6404c74e6df645c3cc8ad90e7a91516f72223f57b82054c29"
+      "sha256": "e8d3ad4faed7f5ce4a073e210586ffd062bb1a6b8165bb6e4126ca835b63544a"
     },
     {
       "path": "skills/web-quality-audit/SKILL.md",
@@ -449,7 +449,7 @@
       "path": "dist/archives/web-quality-audit.zip",
       "file_name": "web-quality-audit.zip",
       "size_bytes": 36652,
-      "sha256": "67c6ae0d434f48ba6de83d979ffc9eb9359ddac6931049576b9fa7a7d65a0827",
+      "sha256": "95aa81215572b51054d1b8f0c55b1bdf37e3d428c3b4735684f311c934bf4e5f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -463,7 +463,7 @@
       "path": "dist/archives/web-quality-audit.tar.gz",
       "file_name": "web-quality-audit.tar.gz",
       "size_bytes": 51228,
-      "sha256": "988a0eadeaa54baefa26549c5e42ab8c314ebfdde5484ce5aa70c3702a4fe75c",
+      "sha256": "12be6fb46a05d82a255472c7301904f4adde7bbe5b7a888d61acd59f6631c5e3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -476,7 +476,7 @@
   "archive_checksums": {
     "path": "dist/archives/web-quality-audit.checksums.txt",
     "file_name": "web-quality-audit.checksums.txt",
-    "sha256": "93524b5980d233d36473b901c8e9194fce75a2ad1bded5666f2f641bf3c9636b",
+    "sha256": "63eb7a34674b32dd0341200e7db6604c63071627a767adcb6e953a0455ba4381",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -487,6 +487,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "6a0db9c8324b52efebacb6787e1c22ca290e51119c2059a057cfed3a0feb38db",
-    "package_sha256": "9ea1141b6d6e43658c84b793e8ffaa86202481d425382e7f2b249871d1fb47d2"
+    "package_sha256": "c0b8eacb5da4373e5d7ee161e40f59ea65a27a86e103104aa703a26dc5dd61f4"
   }
 }

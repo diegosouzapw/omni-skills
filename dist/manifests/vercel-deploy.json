@@ -326,7 +326,7 @@
       "path": "skills/vercel-deploy/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1219,
-      "sha256": "c105bc6a0548bdfe45e3fa0061e9008e174560dc5fdd799849f516b7cd034dde"
+      "sha256": "fd210f435c414c09e6f288471533f9d522ec14327ac184c1c779411a5437d111"
     },
     {
       "path": "skills/vercel-deploy/LICENSE.txt",
@@ -338,7 +338,7 @@
       "path": "skills/vercel-deploy/ORIGIN.md",
       "kind": "support",
       "size_bytes": 726,
-      "sha256": "c0b238b39f049f3e7d097935aae3a32b03b2edb352e1fb85d6ed6eab027eeab1"
+      "sha256": "1f781db8429011d9e8032d8947def9267d2f5d8ff5a847afe91fa6ddedafdd0c"
     },
     {
       "path": "skills/vercel-deploy/SKILL.md",
@@ -425,7 +425,7 @@
       "path": "dist/archives/vercel-deploy.zip",
       "file_name": "vercel-deploy.zip",
       "size_bytes": 37935,
-      "sha256": "bcd0bf015bfb268613261880196f3861a8c7cfc869d9b7aed961c7b52456c513",
+      "sha256": "54c1abc25f471cf6bfad180519c7241a74b5da19013c9d5e3924fb6519a9d408",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -439,7 +439,7 @@
       "path": "dist/archives/vercel-deploy.tar.gz",
       "file_name": "vercel-deploy.tar.gz",
       "size_bytes": 51228,
-      "sha256": "698b651916e2b19f1fcac00eb60fbca41331ebc31d920fa15cf287244fda21ed",
+      "sha256": "7c18d30988536676e33df4bc9dfb08d543590cbb9359ec95beef8b54b63a6086",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -452,7 +452,7 @@
   "archive_checksums": {
     "path": "dist/archives/vercel-deploy.checksums.txt",
     "file_name": "vercel-deploy.checksums.txt",
-    "sha256": "a245f193f8c9b6a6be37e8d211097c1cbab323b1c10d4aa02c6449cd10199315",
+    "sha256": "0e303b2580a160c32e52ebb4e61dc3f272de791d3d22a81f47bf0e2b240d335b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -463,6 +463,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "4b10356bf3efeb4ae6f493ecf5b53b8df4590264cbc3c87cff465154850515c9",
-    "package_sha256": "3813bda284c12505da90b965c61fd22ed48cbff36b80a02f53f04d1003834f4c"
+    "package_sha256": "314a1362acc1748014aabffddeeb09af1944d8cf968aad21c6e4c7c851a2c82c"
   }
 }

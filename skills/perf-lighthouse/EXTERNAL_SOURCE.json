@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "perf-lighthouse",
   "lineage_id": 82,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:58.018852+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:31.712080+00:00",
   "original_frontmatter_snapshot": {
     "name": "perf-lighthouse",
     "description": "Run Lighthouse audits locally via CLI or Node API, parse and interpret reports, and set performance budgets. Use when measuring site performance, understanding Lighthouse scores, setting up budgets, or integrating audits into CI. Triggers on: lighthouse, run lighthouse, lighthouse score, performance audit, performance budget. Do NOT use for fixing specific performance issues (use perf-web-optimization or core-web-vitals) or Astro-specific optimization (use perf-astro)."

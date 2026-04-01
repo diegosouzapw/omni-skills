@@ -1,2 +1,2 @@
-a7e193334089f6df3e96567fdc3ad9a44657966b8cecf43d82aefa184f9368c2  ai-pricing.zip
-746daff8558aee06ad707a1dd6cba73ebf3e8d73309bdc9b1dc0c8ebb73f89f3  ai-pricing.tar.gz
+56183e9f73ce91fe9b7e72abef15d7fc919f0840e328469cc4573f17ee8e246f  ai-pricing.zip
+1b87f7fe4f0302441c5d686cd398a594d4772fd734a8b3422f7422fa9fa0eab5  ai-pricing.tar.gz

@@ -316,13 +316,13 @@
       "path": "skills/component-common-domain-detection/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1336,
-      "sha256": "82cea689f024d54c98fbddad3719e8bcce6c2a01242891eb1c36a48850353a94"
+      "sha256": "f31ded8fa153b22349b9749dcffe05122f534107bce3217d2b1501c5259a33e6"
     },
     {
       "path": "skills/component-common-domain-detection/ORIGIN.md",
       "kind": "support",
       "size_bytes": 793,
-      "sha256": "b1dd9984984a195a55df6355e84a7826e005a3d9304b71cc9f41ba9a4effcd36"
+      "sha256": "1ce4d199406ba17447242f4aaf4a54e479b4de703213540cb41b3505280e998f"
     },
     {
       "path": "skills/component-common-domain-detection/QUICK-REFERENCE.md",
@@ -415,7 +415,7 @@
       "path": "dist/archives/component-common-domain-detection.zip",
       "file_name": "component-common-domain-detection.zip",
       "size_bytes": 64359,
-      "sha256": "5a8294e705ead0f4790aa4a29d711ec6bf723673579d7489b242bf3a8de9e362",
+      "sha256": "41e4a7d8c67c0a513f97c025882400940e928218d2415f6c6c51da2029d45edb",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -429,7 +429,7 @@
       "path": "dist/archives/component-common-domain-detection.tar.gz",
       "file_name": "component-common-domain-detection.tar.gz",
       "size_bytes": 81948,
-      "sha256": "b4dd82548bf75b5a6ccd805cf1c4a629e515557600568b3b1f1cd68f89a7867e",
+      "sha256": "51933d7744050c032a3a7f20a5aef19e503db26cd6359121e453a8ffa3e22978",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -442,7 +442,7 @@
   "archive_checksums": {
     "path": "dist/archives/component-common-domain-detection.checksums.txt",
     "file_name": "component-common-domain-detection.checksums.txt",
-    "sha256": "7d30c797d6f70530ad6dec90d9bb965f4bb71b30dd2ebfb65ff0192431089604",
+    "sha256": "cb78a94376511bfa05ad60bec4f6c7b04933ac5bbdbcd051b19251636cc0a792",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -453,6 +453,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "157be424fc190029ef6c57769f0bf13ba30d3edbfb3ac27e2b6d4e6c54e4581c",
-    "package_sha256": "e0d0a71907466894c27b93ccb57b7756b59d13f1ad8dc33bcaad9a040adef1e5"
+    "package_sha256": "ed3e7457fa34dde089fd42dd3b66082be7d97e2b9b523f98193aac92ee42ce67"
   }
 }

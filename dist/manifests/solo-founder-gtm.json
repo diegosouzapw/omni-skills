@@ -304,13 +304,13 @@
       "path": "skills/solo-founder-gtm/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1705,
-      "sha256": "bdfaecc520b62e11e18743088abc1bb0e967f3b385915f17845caef39b8dcf66"
+      "sha256": "09a00cdcf3b2d9bffa95843ac0c2d5bd8004bac4798793b9c599143e61de84eb"
     },
     {
       "path": "skills/solo-founder-gtm/ORIGIN.md",
       "kind": "support",
       "size_bytes": 733,
-      "sha256": "e271b2fbc2ae1a20f49056a1b72ed657d1b98cea9f98fd7b989b66296b146800"
+      "sha256": "9001c02e4ba534c0d59c1939dc78e20c3cdabc4f4eb65472f314eaaedc839f4a"
     },
     {
       "path": "skills/solo-founder-gtm/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/solo-founder-gtm.zip",
       "file_name": "solo-founder-gtm.zip",
       "size_bytes": 46349,
-      "sha256": "2e36ae82c86b18f48f843f9ccc192761fa5401c3676dcc9839893c0e37e6e113",
+      "sha256": "a95c20baa93a3660286262dd9432debb412aeaff107b4d69a20605fdb63d773d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/solo-founder-gtm.tar.gz",
       "file_name": "solo-founder-gtm.tar.gz",
       "size_bytes": 61468,
-      "sha256": "aad711e34b6cee13e50ea23cd47734aa83462da97c03bf73644965c5b5e4aa7b",
+      "sha256": "59bc3655622a552d3a9f8003c43dcd0c142ea55f5b116eba7038114fb0bec1a7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/solo-founder-gtm.checksums.txt",
     "file_name": "solo-founder-gtm.checksums.txt",
-    "sha256": "73bcbcf73c1f88cf170664eae834702d66e23dd752c6816dee0acb2b7ed8a622",
+    "sha256": "fbf880433fadbbd893d8e0cbe136ce5574f646554644173913d54fdeaa6bab3b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "a5f441045acfbd202ea2ab2729c6d5c6af6878784bf7fbfe9d452c33db52ea9c",
-    "package_sha256": "64587265d074af8ed2fb9507313c495ec2afd1bb16e1953878aa229db7fe8e28"
+    "package_sha256": "750d5df524ac920fe0459694f60b58c465f4ac89f8b7cd75292780cfe07d0732"
   }
 }

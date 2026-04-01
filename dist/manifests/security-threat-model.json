@@ -304,7 +304,7 @@
       "path": "skills/security-threat-model/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1408,
-      "sha256": "3885bf0707bdc30ba053ce42921e70ed939a284375ae92afbcab380661725878"
+      "sha256": "a7d91cda206260ceb8a3f58083f8f28114c7f6636d40684cafbdd3ede48c9394"
     },
     {
       "path": "skills/security-threat-model/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/security-threat-model/ORIGIN.md",
       "kind": "support",
       "size_bytes": 753,
-      "sha256": "6b2136e11f1ce1d9bcc0ae96c2b0b3a5e645307badcfc11a6013a151ada457c1"
+      "sha256": "f48384617f015505092df73d800f6cddce6cfd5b8c055fd6f82c99c6d20058b3"
     },
     {
       "path": "skills/security-threat-model/SKILL.md",
@@ -409,7 +409,7 @@
       "path": "dist/archives/security-threat-model.zip",
       "file_name": "security-threat-model.zip",
       "size_bytes": 56756,
-      "sha256": "d030b85de2328c495409fbf995b1609754907f304a3c97041c10de78564fb47e",
+      "sha256": "176b3a6641c3232661fc9f5bca0fb11a98e170eed1ed2684117db4e3f1809fae",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -423,7 +423,7 @@
       "path": "dist/archives/security-threat-model.tar.gz",
       "file_name": "security-threat-model.tar.gz",
       "size_bytes": 71713,
-      "sha256": "c1a79cf61ad4666ead62513a9ca5a99afc854a4533430768a0497905ed7d94d4",
+      "sha256": "43fcfa39118e9ffe636e8743b2decdada15159337c1f8b868cee7c97697d7031",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -436,7 +436,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-threat-model.checksums.txt",
     "file_name": "security-threat-model.checksums.txt",
-    "sha256": "782fa86dcd1a74ca2f24ff381dab91e125e129b24a38cc212c848f6178132a34",
+    "sha256": "330a2efc35a97d2bc7b788596a9a7a07f5e165f35136ab0acb681478178fb96c",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -447,6 +447,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "388d761c7a2dc4a87fa0ac9b35cf52169d1c495ee8cf840c897354763199f738",
-    "package_sha256": "920b670e0a353ca9cf758e6cfd72602abdef76ba653ad52651e42e9231006b0d"
+    "package_sha256": "86b589c19ffd92e9bde4a3420b50ac993eb3ab893d3dcdd0960c16f9cfd045a7"
   }
 }

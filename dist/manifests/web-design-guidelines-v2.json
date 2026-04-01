@@ -304,13 +304,13 @@
       "path": "skills/web-design-guidelines-v2/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1358,
-      "sha256": "ac5528bab60dd400ea86c02c6d2cc254c9e913a9b3a9145762064f2f3358cc4b"
+      "sha256": "c2885d0637171465144028ea4c6759770820d9efa4487c25a051de298b7c214d"
     },
     {
       "path": "skills/web-design-guidelines-v2/ORIGIN.md",
       "kind": "support",
       "size_bytes": 757,
-      "sha256": "3e97f03940b8d669b76113dc8be8e1e95e82e733cccf858452b2924c3784605d"
+      "sha256": "33106eb9c3ed46e4ed35e718826a37d9ff1c84b55230d178393cc0b7fc6588d4"
     },
     {
       "path": "skills/web-design-guidelines-v2/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/web-design-guidelines-v2.zip",
       "file_name": "web-design-guidelines-v2.zip",
       "size_bytes": 33844,
-      "sha256": "d6d09cbcdfdeb6a793866cedf541054ca7948b53950eeb2f1aef4c08bef884cb",
+      "sha256": "eb081f84d64dbfd2060ecd9295d425feb59b88ffea638764cb3ee0fcfaa007ed",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/web-design-guidelines-v2.tar.gz",
       "file_name": "web-design-guidelines-v2.tar.gz",
       "size_bytes": 51228,
-      "sha256": "4c79332abed242c610a34dd45fc725f937456ca85ee09bf266e74e406832aa84",
+      "sha256": "87cb9f4adb4a4eb6c6d3ab42266729acfcb0f782aa35ab1491f09495b648be93",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/web-design-guidelines-v2.checksums.txt",
     "file_name": "web-design-guidelines-v2.checksums.txt",
-    "sha256": "ccb911dba0c19a5fec1fc7d4efb7fec5236df932244a1a2eecb21e5a3f6de253",
+    "sha256": "52b3c40d8983325d2e42d9fe20eead392975ef17f519524aa577f49d621bd175",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f28cc1c67701776405964cef65e3208d7ae9edd9cac7448aeba29db068031864",
-    "package_sha256": "9174d26d00a078755b0f9cbd3f8629a46f6e649ccc5975d6d9148956005111af"
+    "package_sha256": "cb38236816423edf1649a8ae798a2bead42f9ecbeac92de9fe310c1682c5c114"
   }
 }

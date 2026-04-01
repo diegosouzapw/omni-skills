@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "ai-ugc-ads",
   "lineage_id": 64,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.572901+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:31.013165+00:00",
   "original_frontmatter_snapshot": {
     "name": "ai-ugc-ads",
     "description": "When the user wants to create UGC ad campaigns, recruit UGC creators, generate AI UGC content, or scale with user-generated content. Also use when the user mentions 'UGC,' 'user-generated content,' 'creator ads,' 'Spark Ads,' 'whitelisting,' 'AI UGC,' 'Arcads,' 'Creatify,' 'creator brief,' or 'UGC testing.' This skill covers the UGC growth framework from creator recruitment through AI-powered scaling. Do NOT use for technical implementation, code review, or software architecture.",

@@ -1,2 +1,2 @@
-6109d38e7706fc8d12e1352419a456c6ac8f32c65d0af5466640320533136b80  mermaid-studio.zip
-5089082182b10dbfe81c167447aae987d8ee69eb78f90a0a7a6cf04468a5b18c  mermaid-studio.tar.gz
+7bf0b401b10e3e952c5ae705685c1bb0e14b76bf67c26c8baff7a5b70c12c067  mermaid-studio.zip
+acbcc74ab3ed18ff5e8a53a779086ce44d45fbfe2aee31fd8cd2725e36c46c8c  mermaid-studio.tar.gz

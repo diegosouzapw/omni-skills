@@ -311,13 +311,13 @@
       "path": "skills/react-composition-patterns/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1390,
-      "sha256": "e8f3fc134f91a2d331d7be448121f09b0e392c428e37df64190a65c0536fdaaa"
+      "sha256": "5542f89c2c21131b9981802c24c6ebb8c55803b4245706bdb5db4a9b6c734595"
     },
     {
       "path": "skills/react-composition-patterns/ORIGIN.md",
       "kind": "support",
       "size_bytes": 772,
-      "sha256": "09064f1404edc9064654462cf3b79a860e0b572cc7239840e77a38ef8f2c5b07"
+      "sha256": "e4a4145a36db93db8e50fd4f2fac9bbd025b1520c188bbfa888e01387243277d"
     },
     {
       "path": "skills/react-composition-patterns/README.md",
@@ -464,7 +464,7 @@
       "path": "dist/archives/react-composition-patterns.zip",
       "file_name": "react-composition-patterns.zip",
       "size_bytes": 78079,
-      "sha256": "8ce601c5d39110904bc7cea0be1b39840eca34b6f91a86927697d2c1ed20a378",
+      "sha256": "71b7b5fcb7152e4ca2d0b3864436e95ec8ec75c83a3ae83d889088aefcf356a9",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -478,7 +478,7 @@
       "path": "dist/archives/react-composition-patterns.tar.gz",
       "file_name": "react-composition-patterns.tar.gz",
       "size_bytes": 102433,
-      "sha256": "2b2efebbfda17c4caf1403190994e497c19b541a027592c3362b7f9267c66ac0",
+      "sha256": "1a9278248e90a846240142da87b4480aa3b19a257d792ff46d14851aa501cd6e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -491,7 +491,7 @@
   "archive_checksums": {
     "path": "dist/archives/react-composition-patterns.checksums.txt",
     "file_name": "react-composition-patterns.checksums.txt",
-    "sha256": "6eaf46f61d7991f7e14541b1b13bbf31021c7d3cce2a86eaf4244b9138782711",
+    "sha256": "014c4eacf6c248090621f30e74775e065b5c53c726eaaa8bb3c7fde11d495e7a",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -502,6 +502,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "9e5d44a2178f0e0873986664a4cf10fa4964767c51c317e194c2d7ef70f59281",
-    "package_sha256": "21b81e10a0cabdf37bdafad9c0d648e0ad7d240c4090646ad1850cdc3da8a027"
+    "package_sha256": "38b2430d401d96d30218c70eb4181b63fd35863796b881b64bcc278c5e2a4b5d"
   }
 }

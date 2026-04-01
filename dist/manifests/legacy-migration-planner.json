@@ -304,13 +304,13 @@
       "path": "skills/legacy-migration-planner/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1462,
-      "sha256": "3a74a9e51469f3a116340e07b1f80c7fda26b5589926df25ead0d31168a0fe8a"
+      "sha256": "dc25fe038082794e0a0066c22e1e25c9a2e2e31689600545d9142a518e1581ca"
     },
     {
       "path": "skills/legacy-migration-planner/ORIGIN.md",
       "kind": "support",
       "size_bytes": 766,
-      "sha256": "4fe641043b998e29fe666c38de7ae53f5c0a8aca1921b324c012591c4fd5ed51"
+      "sha256": "e0f22cde55e831d9fa0fb7621de9a1a930f97f6da44639cbf703466dcc6d8a42"
     },
     {
       "path": "skills/legacy-migration-planner/SKILL.md",
@@ -427,7 +427,7 @@
       "path": "dist/archives/legacy-migration-planner.zip",
       "file_name": "legacy-migration-planner.zip",
       "size_bytes": 94112,
-      "sha256": "d9bd4f3ce1b50b80cfddf91b3e0a945e54f16136b4c10bd4b7bc7657fcfd83e6",
+      "sha256": "79684e5d1092924940df430248b6bc7cee87b49ba882765f0f626e73d9b66e5f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -441,7 +441,7 @@
       "path": "dist/archives/legacy-migration-planner.tar.gz",
       "file_name": "legacy-migration-planner.tar.gz",
       "size_bytes": 112673,
-      "sha256": "4549490295419410974ed753a335d08d00a76c323397c71f6e45baee1bfe451d",
+      "sha256": "0373d2cb98d94172975d8a42fa41e0ce4228cb0dbf6fd542727919a3cc49f34f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -454,7 +454,7 @@
   "archive_checksums": {
     "path": "dist/archives/legacy-migration-planner.checksums.txt",
     "file_name": "legacy-migration-planner.checksums.txt",
-    "sha256": "6977aec0a69aca4c81c9c1dbbda45438caa72afa35b74f120f4defec3a6fbd20",
+    "sha256": "d372a1417fcb7219bde3baea9b79cc413e0000ffa83d085e1778b3a70ef8d769",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -465,6 +465,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "de13c7bd028b047d8d48055d4911178b6a80a3d905ad2c0c686b9f4f2f9c8998",
-    "package_sha256": "36cec57942cdc90713b469adcd93d1920cbb4140be140172477d06211b34d29a"
+    "package_sha256": "6049874a76a6f93069c787e124d1cae1c6fe8da1bda204170e5037e1877bdddb"
   }
 }

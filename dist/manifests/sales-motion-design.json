@@ -304,13 +304,13 @@
       "path": "skills/sales-motion-design/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1620,
-      "sha256": "344ed2b8d7d7f57b3b12def23bed997619384764a6ecdecbd090fe2f77444fb9"
+      "sha256": "171c2756fb322f705cd7142195bed504dab4bac67b7924f7b28a6b811c834bb6"
     },
     {
       "path": "skills/sales-motion-design/ORIGIN.md",
       "kind": "support",
       "size_bytes": 742,
-      "sha256": "ecee0d5f18db112e70cc3e841c449fa475eb1a2b72330c863d81dc4e265eb0fb"
+      "sha256": "0d882e64260cdbe44770dfecda31a5decb4d92e79f1949c82ebd98cb97cbc9b2"
     },
     {
       "path": "skills/sales-motion-design/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/sales-motion-design.zip",
       "file_name": "sales-motion-design.zip",
       "size_bytes": 50069,
-      "sha256": "1200b8d7213fd6b6e50495231e4a20f18147ed66350681d89b62bad3a3bbfc7f",
+      "sha256": "3464587715a3c35f65f8209346b4cffd9b0abf48240d9e0de44cb96c14c4cc8a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/sales-motion-design.tar.gz",
       "file_name": "sales-motion-design.tar.gz",
       "size_bytes": 61468,
-      "sha256": "00fc7b391218d3ded1706634b8e968bd71b4afd6be319b5bdd8094015aff5927",
+      "sha256": "e75a24e1a7332a4e2a8d05670156b0bed956c37012c4ce664727f8acb2e70374",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/sales-motion-design.checksums.txt",
     "file_name": "sales-motion-design.checksums.txt",
-    "sha256": "d59a43d3c94dace7c49d67986d32f360ea32cc1672dd14fe9bcd45c97de0af46",
+    "sha256": "2d0e1aafeb4ef919731c0b2c652ad16935004900b69cc69521476d701dc005a6",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "cd2fb10f5c90c86849d869ad012e5675229e6e6e2d4f914adc01b4d952101987",
-    "package_sha256": "e8e631948084d1550df96301e4670a8a3e46b314b1a180e67217dd88e09f2a24"
+    "package_sha256": "d1340ca837d4d6d4847041ab3731a1ebbc6df4f4cd57119add35fa3564ff7c0e"
   }
 }

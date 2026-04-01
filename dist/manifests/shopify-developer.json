@@ -426,13 +426,13 @@
       "path": "skills/shopify-developer/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1440,
-      "sha256": "a6272692c3081096b9f73c28b82c41a5f0839b6d4bf04372e6e5b8c5f969ae59"
+      "sha256": "0c15609b6d9855542887c3a4fe7f8f3b07eafe522b457b4f59ca5d5427a63bc8"
     },
     {
       "path": "skills/shopify-developer/ORIGIN.md",
       "kind": "support",
       "size_bytes": 744,
-      "sha256": "452858799b67b5fe96c6b74af6eba21ab159425e4dc122ec755d99af86e96732"
+      "sha256": "8fac1e6b1a15c3e1d41d1ae77a198ef546ba01bdd35a80e91caa73ca5f385b0d"
     },
     {
       "path": "skills/shopify-developer/SKILL.md",
@@ -579,7 +579,7 @@
       "path": "dist/archives/shopify-developer.zip",
       "file_name": "shopify-developer.zip",
       "size_bytes": 190569,
-      "sha256": "0fded1d2d9f58e7261652ca1d345a7f568c4143aafed972bb323d74c4f966ddf",
+      "sha256": "a90f8a5a018b033ceec9548cab33e90396e5e4e7c77350f33693155fd398bc57",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -593,7 +593,7 @@
       "path": "dist/archives/shopify-developer.tar.gz",
       "file_name": "shopify-developer.tar.gz",
       "size_bytes": 215088,
-      "sha256": "5f1004152e548b7cd6c67f2bf4ef8d492bdaedb679bb4539e8ceef27984f9dd9",
+      "sha256": "330354f5676a0bb0dcd9dfe9c0d72fbf01eb540352af19d810a8b878e74574c6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -606,7 +606,7 @@
   "archive_checksums": {
     "path": "dist/archives/shopify-developer.checksums.txt",
     "file_name": "shopify-developer.checksums.txt",
-    "sha256": "9b62310c4b0cf78d8610920c318b61433f8b5b707cd68238c6e8d5080740ac14",
+    "sha256": "7d676e8da1de7a7da9bded81f8b564b8eea943dc091d7da0cb75e9539be37f62",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -617,6 +617,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "8c5852b9370d4416b8ea4e0e637fc4f8dd7ee4166c66a399d4fd633754b90287",
-    "package_sha256": "31170308f275f1ae4567f5ef2c17832f2391327ec631acafdf49ccaa6a8cf83d"
+    "package_sha256": "6046ad146863c07a852b421367988835f1bd979fd343e2b3b3f1c1c6679d4102"
   }
 }

@@ -316,13 +316,13 @@
       "path": "skills/excalidraw-studio/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1703,
-      "sha256": "5748f910b6db0eaf2eb2be37a05395be246ee980673ab244a58f2bac5a170af5"
+      "sha256": "56372314745fff010c90a4da1a783dc04af610a7af998f5e9d749cf372e7684f"
     },
     {
       "path": "skills/excalidraw-studio/ORIGIN.md",
       "kind": "support",
       "size_bytes": 740,
-      "sha256": "308d6f108669e7434f876e210c618ee9e0cfc48d823c9d35eb5b6944092566d7"
+      "sha256": "c873dab241eb6071d96e47dae0f7941d289dbfdc5eaee6b704ee86f3e1740f1e"
     },
     {
       "path": "skills/excalidraw-studio/SKILL.md",
@@ -493,7 +493,7 @@
       "path": "dist/archives/excalidraw-studio.zip",
       "file_name": "excalidraw-studio.zip",
       "size_bytes": 248423,
-      "sha256": "031e6537a94720f1ffb50cabef7df84c1164e777b9e56275e68f7bd4f2373930",
+      "sha256": "2b58b3cd60f7ec0733972644537000861aaf2070d584304afdcfc02634757b57",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -507,7 +507,7 @@
       "path": "dist/archives/excalidraw-studio.tar.gz",
       "file_name": "excalidraw-studio.tar.gz",
       "size_bytes": 266293,
-      "sha256": "e9324ab10f7c7b2fc1c8392edd9ac02c8c760829538ca7920f9877e6330658b9",
+      "sha256": "dbaed691bec31594be36d5eebeff14ab5d7888103e9d80169505a40629ee3f90",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -520,7 +520,7 @@
   "archive_checksums": {
     "path": "dist/archives/excalidraw-studio.checksums.txt",
     "file_name": "excalidraw-studio.checksums.txt",
-    "sha256": "ebcf8ea21b22863e9a060756c1da9b6c6079ebd80cdc03606ed096a1e903b1f9",
+    "sha256": "6a7ddb769276fab5dedd24d1e3db18e50570f1b5c97cf2249169bc7b69a109d3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -531,6 +531,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "bf8b410165efe8357354785fb95cecbd4d45e5c423d98d6501c42c6ecddf8d4f",
-    "package_sha256": "a935c22d259002c6e6756b5b7ddaf1267b3f3eb25b82070e59892d2f79b47476"
+    "package_sha256": "588b25faa173c19e418e2000e20f471c7c8e3e400f02ad3d9503815b5db3d2ac"
   }
 }

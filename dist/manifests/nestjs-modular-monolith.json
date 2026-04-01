@@ -516,13 +516,13 @@
       "path": "skills/nestjs-modular-monolith/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1582,
-      "sha256": "dc789511d2ff4cc5b2846ff1b826a314f0d0605079e174b062031859470e6021"
+      "sha256": "d3537fad165e9dba32d1fabaf3fdcc5db18c66b339c7d6edbe173b0ea361ffdb"
     },
     {
       "path": "skills/nestjs-modular-monolith/ORIGIN.md",
       "kind": "support",
       "size_bytes": 762,
-      "sha256": "a787c9b5a50e67a36a2981262b71e2ac1130f65e0908ce77b356ac699e33f9c7"
+      "sha256": "46d41d1b82523b7475d675ad923e2ebb8ab81675934ecdfcd1a0632c9746968e"
     },
     {
       "path": "skills/nestjs-modular-monolith/SKILL.md",
@@ -645,7 +645,7 @@
       "path": "dist/archives/nestjs-modular-monolith.zip",
       "file_name": "nestjs-modular-monolith.zip",
       "size_bytes": 124073,
-      "sha256": "72b4b46bafb641e096e23b996301dbdeaeadc459452f74681c383c3ca9c233d0",
+      "sha256": "5ee234f474e380c7dbce16ce362786368430b94b4870abaf44e14d74a24b7768",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -659,7 +659,7 @@
       "path": "dist/archives/nestjs-modular-monolith.tar.gz",
       "file_name": "nestjs-modular-monolith.tar.gz",
       "size_bytes": 143398,
-      "sha256": "83a93e0634446373fbcc37972a130bf9422ae6c763e815151e9d81cfa44481d9",
+      "sha256": "1202953d55f1268aaba3c64470355511bcd9c908a2aa9f2745261841f55ff6fc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -672,7 +672,7 @@
   "archive_checksums": {
     "path": "dist/archives/nestjs-modular-monolith.checksums.txt",
     "file_name": "nestjs-modular-monolith.checksums.txt",
-    "sha256": "9222517a2bded5d0c67152bcd7db26b9abdce09ec6aac14da30ca1548686c53b",
+    "sha256": "31b82b627b9734dee6746243ad26b105aa751cbdb7797c490eaed23bee941212",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -683,6 +683,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f24b66f9e0ef1ff6a0de9b3626249bbc5dc8894d67d9ce522ca2b8ff360b42a7",
-    "package_sha256": "dcea5978dbddc74bd688e17febe586dbb5be69361d0e39103632f5342e725ae1"
+    "package_sha256": "aad7a677c50400095c432a6db7bdb39e26a4c351a5b05ef023553471e706e59b"
   }
 }

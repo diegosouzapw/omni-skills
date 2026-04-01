@@ -304,13 +304,13 @@
       "path": "skills/the-fool/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1276,
-      "sha256": "c4d0612d30e85242cdf858674409a54b678ba4924affa59dddea2839214818d0"
+      "sha256": "7bbf971b1239ec6f09bdf59a629569167495fbc85a1289273b6ab33bb5cbaf43"
     },
     {
       "path": "skills/the-fool/ORIGIN.md",
       "kind": "support",
       "size_bytes": 721,
-      "sha256": "04f70bae1159acd6cf3f3de7016412ca578a3815a956ff81f6d495b1cd3f207f"
+      "sha256": "a2d95209ddfdb8fc1b3855087c7e6a0f59b607500d6216939d30cced15d9fb46"
     },
     {
       "path": "skills/the-fool/SKILL.md",
@@ -433,7 +433,7 @@
       "path": "dist/archives/the-fool.zip",
       "file_name": "the-fool.zip",
       "size_bytes": 90229,
-      "sha256": "56511cb57025a101a97e6efed378a1e48c92d1c9e67c7b274629593cc73e7cff",
+      "sha256": "0c2635b6836b3accda576a4c29005a299cd27a7e5f0c6d65296c875c6ac1c0cc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -447,7 +447,7 @@
       "path": "dist/archives/the-fool.tar.gz",
       "file_name": "the-fool.tar.gz",
       "size_bytes": 112673,
-      "sha256": "fb07274cd7ecaeb00b2589368fa65c20131f42f3cdb0237f26fb686ad3da1fec",
+      "sha256": "f5ea6fe2862ec32e994d38856e07536842e3d3b2377547da98019b975b6ea9dc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -460,7 +460,7 @@
   "archive_checksums": {
     "path": "dist/archives/the-fool.checksums.txt",
     "file_name": "the-fool.checksums.txt",
-    "sha256": "31ee32700d98df0522905a2c72caab48a88ecc942f06e7827cd503991728eb95",
+    "sha256": "07dc72118b6bb1594345ae33e2745eef3791ece89a026ae902614a1b5525a711",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -471,6 +471,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "1980758fca94729b6256c572d86c9df7f8167eb887ff1101973a1a74c63463d8",
-    "package_sha256": "d51fc58ef3a096220be8e0b03fd3c56d129e14f400e27df17daa236c9468e5bc"
+    "package_sha256": "ae96c4b1c2c3ba3bbafbbf307f0588b5d7030ffc5ce810e36672176eaeec88b6"
   }
 }

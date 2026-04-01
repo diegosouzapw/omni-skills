@@ -304,13 +304,13 @@
       "path": "skills/ai-pricing/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1563,
-      "sha256": "9724d75e86e9aaafcb9b96b0661d4343c076f8866a190edc5484e0c3c79d9e32"
+      "sha256": "e1646f5c37c97d7db6a272b58f0622d2de34feb8cca26c22a06e790671b9194a"
     },
     {
       "path": "skills/ai-pricing/ORIGIN.md",
       "kind": "support",
       "size_bytes": 715,
-      "sha256": "42c2c6425f3ce3d9e3e2eec04526d61b082f6a8c5e2c70a8def796f77c2cf0c9"
+      "sha256": "4a216b99328929f041d3d502ab68a4898a4810a1ff606453e4c10353649d4a83"
     },
     {
       "path": "skills/ai-pricing/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/ai-pricing.zip",
       "file_name": "ai-pricing.zip",
       "size_bytes": 58982,
-      "sha256": "a7e193334089f6df3e96567fdc3ad9a44657966b8cecf43d82aefa184f9368c2",
+      "sha256": "56183e9f73ce91fe9b7e72abef15d7fc919f0840e328469cc4573f17ee8e246f",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/ai-pricing.tar.gz",
       "file_name": "ai-pricing.tar.gz",
       "size_bytes": 71713,
-      "sha256": "746daff8558aee06ad707a1dd6cba73ebf3e8d73309bdc9b1dc0c8ebb73f89f3",
+      "sha256": "1b87f7fe4f0302441c5d686cd398a594d4772fd734a8b3422f7422fa9fa0eab5",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/ai-pricing.checksums.txt",
     "file_name": "ai-pricing.checksums.txt",
-    "sha256": "afa0b50f223b1eb313b317ea6c0b0c1a0331483f7766bff9081466617f45a9d5",
+    "sha256": "a698bccf1279aaeac67de219c7621f11dce3e9af6babeaf16188c1c0c99b7e72",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ce8132fb0b7e75dd56a0a63252638360f8953cf5d151b745976de7610a6a9c3c",
-    "package_sha256": "5f769863570df69c8452f323c7cbba7274006ca498e5e25837fbbf80c355b935"
+    "package_sha256": "de864ba1cf8d07c0d3f36962d156e61a524ff353282c1b3f4e6687dc75f509c4"
   }
 }

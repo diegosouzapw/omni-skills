@@ -304,13 +304,13 @@
       "path": "skills/subagent-creator/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1328,
-      "sha256": "1fc099cdf7c4e3fd2cf207d23fae428ee68a44e1d5511146ae70d65f17119949"
+      "sha256": "32e1238d57e52f0899386af689f77ce878549a89441696641d4bae2675d7f42d"
     },
     {
       "path": "skills/subagent-creator/ORIGIN.md",
       "kind": "support",
       "size_bytes": 738,
-      "sha256": "3fbdc5bacdd299c58ffe61417f3c50ca16152555fc01767b4ab0687ff63584b3"
+      "sha256": "5e9e7196b6fa70b8985113d8773b953609ff841fc87bc9b7726bf419f691b324"
     },
     {
       "path": "skills/subagent-creator/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/subagent-creator.zip",
       "file_name": "subagent-creator.zip",
       "size_bytes": 31521,
-      "sha256": "cfe69ff38ac4ced08c120ed075c3afe3d41a90e25b397de4aa71163bf8794677",
+      "sha256": "d2e28449af82515f9c758fc08ccbce910810f3eb2f186381c6fd42154792919e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/subagent-creator.tar.gz",
       "file_name": "subagent-creator.tar.gz",
       "size_bytes": 40988,
-      "sha256": "098e1cb19ee67eba6f677888c72185abb66c10bbad57f8da747928c84c30bb18",
+      "sha256": "b7dccade3b8f5723b0a9ed553145e9f58fecb07019a19610723f4059b4fdd919",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/subagent-creator.checksums.txt",
     "file_name": "subagent-creator.checksums.txt",
-    "sha256": "f7f58fff0082ddf97093e374942529fca4154c5d596634ca322722c7b66772bc",
+    "sha256": "df698f9a5ae03ae61458738b4aef514032f866cc894735e6286aeb6b687076b9",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ed4eae386b0bd3d743165df15e4ac3230a3dfa94d66094d8abfd8cba8f4c4ef0",
-    "package_sha256": "5a0d7e82389b64f5928edaeb0dd7844294a569669d71bcc8ec8e8078c6489443"
+    "package_sha256": "55c0865a98b7b0fb568edbcde0ad96c4e406612f16225ffbbd6574f98a12c4ee"
   }
 }

@@ -304,13 +304,13 @@
       "path": "skills/positioning-icp/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1629,
-      "sha256": "0d5de6902415b0d7212cd4cfd06865c1c368ca067eb0bcaea60771a3dec760e7"
+      "sha256": "09d054cd73ef30adf84dcc4977c26723088163dbeef0043ba53be149f5441bbd"
     },
     {
       "path": "skills/positioning-icp/ORIGIN.md",
       "kind": "support",
       "size_bytes": 730,
-      "sha256": "74e3361dbdfdbecb9d4c665a49bac6e9b8bca6e952dc4fbadac01d2295204439"
+      "sha256": "6175a913bdeb0d849bdc65f0e962b9b7707ff83b6cf157f419ac3750e48bd339"
     },
     {
       "path": "skills/positioning-icp/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/positioning-icp.zip",
       "file_name": "positioning-icp.zip",
       "size_bytes": 54511,
-      "sha256": "f79364a0bbcef5b5df3e5d29fe1f24d2fcc6db4e14c7b1ebe747990d47b1f8ac",
+      "sha256": "b809c1c8ff1e4bae6b88a1d65bd6d162172a5e6f7bb4cedc2cb6b1bf20521fc4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/positioning-icp.tar.gz",
       "file_name": "positioning-icp.tar.gz",
       "size_bytes": 71708,
-      "sha256": "a570db9da17b0f4e7a4bc9f1e7ff4abac09cc646347169d25d980d36fcc13f2b",
+      "sha256": "bd75f7a14f8a872a2155bfe71e9a540a49d4b84813303221a9f98ecae0980b93",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/positioning-icp.checksums.txt",
     "file_name": "positioning-icp.checksums.txt",
-    "sha256": "2b945f6a7020b34e2504c5de67e57e0a70b0f9edca54264147c0bc2db63cf50a",
+    "sha256": "272f040dc9f2878b4ecc87204c965e75f8d134db549f11b8431974edf52266b9",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "d346e9c04cffcf9d47f13eb0dddb691b608f4a2bca6ab09ae8c633efbec693a2",
-    "package_sha256": "8dea68f79f2afe1ecc2b675f39f33a6725993dd24059a2a4bbb84309ddfb6f4c"
+    "package_sha256": "a635ffd3e952d4ef81252e6bd85c8b67f6c1079b2ea683cd370ca548bc9cc7c8"
   }
 }

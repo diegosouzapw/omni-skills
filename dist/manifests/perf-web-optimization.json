@@ -316,13 +316,13 @@
       "path": "skills/perf-web-optimization/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1354,
-      "sha256": "a7162add073e94fe60786eb4ab0272a9a8e1781a81ea1fb4ea7b8fb2becbd937"
+      "sha256": "62c5205dfc2e5e0f725dff185a09cac569e6f4b84291225605f5bc179704073d"
     },
     {
       "path": "skills/perf-web-optimization/ORIGIN.md",
       "kind": "support",
       "size_bytes": 756,
-      "sha256": "48d9f81257642b7296a2df5d4d1814879d7198ae5b10e3de0216a6c6e1f786e2"
+      "sha256": "69b74766d70790aca6fc6daffb7fc2df33fad107bb23fadbf9f36ec4536472a1"
     },
     {
       "path": "skills/perf-web-optimization/SKILL.md",
@@ -421,7 +421,7 @@
       "path": "dist/archives/perf-web-optimization.zip",
       "file_name": "perf-web-optimization.zip",
       "size_bytes": 40775,
-      "sha256": "897b30235d768e8a22fa331f7a259f68a745b159eaad1c7ac2f66aa823f7b395",
+      "sha256": "eecab29903dd074958261ab56544233c43eaefcccfee3a7b7175da24061195e9",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -435,7 +435,7 @@
       "path": "dist/archives/perf-web-optimization.tar.gz",
       "file_name": "perf-web-optimization.tar.gz",
       "size_bytes": 61468,
-      "sha256": "c49206e144dead3c713c302faee5c62f04b5a8cd4135fc5605df819671c49749",
+      "sha256": "6d0f47b60212828e595d2ef4903272be628d32b3d95af4cc96baffc3efc789e0",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -448,7 +448,7 @@
   "archive_checksums": {
     "path": "dist/archives/perf-web-optimization.checksums.txt",
     "file_name": "perf-web-optimization.checksums.txt",
-    "sha256": "bc1fa52ad4e171061199f214015710e386208751a01f7e3cd9fa92e7d0da9f85",
+    "sha256": "db832f7695ff45f61e33c50b08d149ff5acf86b9ed34f9d52ffdbc132f06141a",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -459,6 +459,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ef116cf40ce0928d4cdbe67048cf1f5c6f2397a9038de8abb0fd17a00456c987",
-    "package_sha256": "30b04d904afba1ac7a7b0429e7f0f9de28dff2942cd31b2d7fb67a69e5de62b8"
+    "package_sha256": "f54193b72ef53237e60747ed92a90c418a1d7261be96b69eb2cb622544335e40"
   }
 }

@@ -336,13 +336,13 @@
       "path": "skills/seo/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1285,
-      "sha256": "60920db3d57cc1754c403384021fd97c0687a81eff2c6f2a49a337715d9001e9"
+      "sha256": "02365a018da1e910dea7f69df7f04b0477b6d5d769da58dd760d7067d28350db"
     },
     {
       "path": "skills/seo/ORIGIN.md",
       "kind": "support",
       "size_bytes": 698,
-      "sha256": "74f2362279de56fe8506f007565fcb0a2223c8270d2f411505514d06baa38b51"
+      "sha256": "c3174a7571c43940c43cc59670c54dd9318de5ab26864d3dac32340f65b8b2b5"
     },
     {
       "path": "skills/seo/SKILL.md",
@@ -423,7 +423,7 @@
       "path": "dist/archives/seo.zip",
       "file_name": "seo.zip",
       "size_bytes": 37779,
-      "sha256": "67e08ac43db9d22a95b7b64525f9fbb0829cc7127e2d99746a1362cc3d41bccd",
+      "sha256": "1b3ecdc073060578559a9120a25f34dc1b854607ea22075642cc27cf90bbfe7c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -437,7 +437,7 @@
       "path": "dist/archives/seo.tar.gz",
       "file_name": "seo.tar.gz",
       "size_bytes": 51228,
-      "sha256": "03505b66199814e89617f19e91c3e49f64ab6a99257d3ea33bdbfbaf916f0d12",
+      "sha256": "69b60ed205bf2aea767aeaf65afe3b6dd01b6a65211c5454990a34c8724657bd",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -450,7 +450,7 @@
   "archive_checksums": {
     "path": "dist/archives/seo.checksums.txt",
     "file_name": "seo.checksums.txt",
-    "sha256": "6e55fa96a43dd745a176cd2c7fc4db38139dde795f4b998bb5d5972fa31c0bf3",
+    "sha256": "5b258d280f3b9a1fe0aebd6535b3cc6ccabeef889ea4bda2912810ac615cdef1",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -461,6 +461,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "efae8a1131fb1d6bca564c6f37418e8b2da55c7fdaaf9c10ae1092e942d52dc6",
-    "package_sha256": "8eea547abf56662b124d42cf801c2d81ee9cec25d0303d676576cab3faf1fcd3"
+    "package_sha256": "14c401f94798b656729b9077675588562eaf751f09c9f0dc034ae8e23f613097"
   }
 }

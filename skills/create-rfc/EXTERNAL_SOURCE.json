@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "create-rfc",
   "lineage_id": 40,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:56.986614+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.195799+00:00",
   "original_frontmatter_snapshot": {
     "name": "create-rfc",
     "description": "Creates structured Request for Comments (RFC) documents for proposing and deciding on significant changes. Use when the user says \"write an RFC\", \"create a proposal\", \"I need to propose a change\", \"draft an RFC\", \"document a decision\", or needs stakeholder alignment before making a major technical or process decision. Do NOT use for TDDs/implementation docs (use technical-design-doc-creator instead), README files, or general documentation.",

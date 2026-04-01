@@ -1,2 +1,2 @@
-1200b8d7213fd6b6e50495231e4a20f18147ed66350681d89b62bad3a3bbfc7f  sales-motion-design.zip
-00fc7b391218d3ded1706634b8e968bd71b4afd6be319b5bdd8094015aff5927  sales-motion-design.tar.gz
+3464587715a3c35f65f8209346b4cffd9b0abf48240d9e0de44cb96c14c4cc8a  sales-motion-design.zip
+e75a24e1a7332a4e2a8d05670156b0bed956c37012c4ce664727f8acb2e70374  sales-motion-design.tar.gz

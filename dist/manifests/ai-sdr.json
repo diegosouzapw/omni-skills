@@ -304,13 +304,13 @@
       "path": "skills/ai-sdr/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1569,
-      "sha256": "5ca3fbe9609f95ae26d4e25e9d1c350dd63311a76cbf8d9f97176a1f6abbc95c"
+      "sha256": "31791735bbf0198a7cbff8d634809496e1e95909cf2d6ee2bfc3f7650e68091f"
     },
     {
       "path": "skills/ai-sdr/ORIGIN.md",
       "kind": "support",
       "size_bytes": 703,
-      "sha256": "f951ff4bd2d9c8fac177f8e8ec26d29a125d3bf0c488095832005e17986b65bb"
+      "sha256": "3108972c3addc1d211bfc42efd388d1ab70a4cb5e2bc53ab6ff59243c0dbc0fc"
     },
     {
       "path": "skills/ai-sdr/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/ai-sdr.zip",
       "file_name": "ai-sdr.zip",
       "size_bytes": 62455,
-      "sha256": "eb1a06d263f7ed43fbb0bc38a7b7cc8446792c73826c7b2df474c936d6058afb",
+      "sha256": "d1fc6481cddcf6be22fc4daedd03000a3bbeae57246d4b5eea6304816244e007",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/ai-sdr.tar.gz",
       "file_name": "ai-sdr.tar.gz",
       "size_bytes": 81953,
-      "sha256": "fc9ccdfe467b1edf5d37c088cf47ccd51df40e4904983afb46e0e44a5638970b",
+      "sha256": "3c12091249bc70215fc0c9702e578280dd94da168a50f1a703060504fe967d77",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/ai-sdr.checksums.txt",
     "file_name": "ai-sdr.checksums.txt",
-    "sha256": "1606e375d23ba597cebd6b9a9829504ec8f2502848ad1d65e3e011943a099c50",
+    "sha256": "2acff007917f1ed75262e7e342b64d34ab819386caca938cfc53e7f777a44f10",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "bbcc51472981be8197775ca65c835fc7c47ffe2eeebce37b20d182f051035f6f",
-    "package_sha256": "aeb5dc4d21f02a74e1171a3a39ae5941329f9706211a275e6b95355d4e8a440e"
+    "package_sha256": "849a995f96feab273777b58c5e702f3531a7020ad1d06ae4a0ca1a445973e805"
   }
 }

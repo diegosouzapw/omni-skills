@@ -304,13 +304,13 @@
       "path": "skills/ai-seo/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1583,
-      "sha256": "96df3d2f1e37608eba22ff211240ddec4885899f01d850cdbcbf0f341ae002c4"
+      "sha256": "69ea165c2c7ae21f7737cbdf3456b2f494d1fc85b3841e0f747258cb9f5ce3b4"
     },
     {
       "path": "skills/ai-seo/ORIGIN.md",
       "kind": "support",
       "size_bytes": 703,
-      "sha256": "cf8ec020da13613d000e9e562655b9056edf0e3734a8faa53d58a8a30acc94c5"
+      "sha256": "cabdcdf100e4e5a501b1a2e2a54480e92789ec23bc0847915f95f9096f2a7142"
     },
     {
       "path": "skills/ai-seo/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/ai-seo.zip",
       "file_name": "ai-seo.zip",
       "size_bytes": 46163,
-      "sha256": "843c283a716a211ec2c2971cff2f7b05c200cf5e06ce8d1ac5d3304d86188224",
+      "sha256": "609144abc8712b7462c5827fa8a8ea53582941101279866ba05a2573a264c717",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/ai-seo.tar.gz",
       "file_name": "ai-seo.tar.gz",
       "size_bytes": 61468,
-      "sha256": "6014e65f2a36710bbf58c6bc9da3b330ace3d41910b9708bbfa32e264c40a2c1",
+      "sha256": "8924878e3179935aaf62d0833aa4a5f9d3e1235faee894dacfd6c890c7566dda",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/ai-seo.checksums.txt",
     "file_name": "ai-seo.checksums.txt",
-    "sha256": "4ab014a051bb216e3d4df0b9dabf150b50631d6f2ce21f8124540afecc3df36d",
+    "sha256": "19dd8241814f8c0931f304190d74e76d00d3b9af26d0e3bb2d3776391c8712d2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "e3b0a3b0065c9749886b9594dbe2f779272c2939599645995b5d12132eab0b53",
-    "package_sha256": "5118c77e147af63048aa2f61e4c42cf6fd98a9f4b8f58bcb0780f18716286663"
+    "package_sha256": "dad461fb71f579f93cb76a902287ee8ac8226be5eb1604ad8de79a21d76bebc6"
   }
 }

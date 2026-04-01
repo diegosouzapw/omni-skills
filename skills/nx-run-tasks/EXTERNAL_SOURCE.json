@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "nx-run-tasks",
   "lineage_id": 98,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:58.403841+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:32.305927+00:00",
   "original_frontmatter_snapshot": {
     "name": "nx-run-tasks",
     "description": "Execute build, test, lint, serve, and other tasks in an Nx workspace using single runs, run-many, and affected commands. Use when user says \"run tests\", \"build my app\", \"lint affected\", \"serve the project\", \"run all tasks\", or \"nx affected\". Do NOT use for code generation (use nx-generate) or workspace configuration (use nx-workspace)."

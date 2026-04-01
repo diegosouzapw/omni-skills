@@ -304,13 +304,13 @@
       "path": "skills/create-adr/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1525,
-      "sha256": "12eebf024b9b9c539c0f41fd0fc775ecfbace027ce0dc7f95edd1023fb4af8c8"
+      "sha256": "2875d652ca049ca98dcaa7ceac1cd774116d98770f000203c742bde1e3847553"
     },
     {
       "path": "skills/create-adr/ORIGIN.md",
       "kind": "support",
       "size_bytes": 720,
-      "sha256": "baf3638dfad479f7ae335c446f6b31089d20bdfc816c08ca636c97e727bfd8c5"
+      "sha256": "b1ae89cb2e35d4016021b553037b80ea2b2d351a281b3839077eb70dacb74813"
     },
     {
       "path": "skills/create-adr/README.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/create-adr.zip",
       "file_name": "create-adr.zip",
       "size_bytes": 45963,
-      "sha256": "8a9482095a68bd93506662f6bd92012574c9f5e33383df148a0385835deab963",
+      "sha256": "3abc7ebbea5bf35e8e9643172601f4c6286af6771a5bb9af2d26803cd60118de",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/create-adr.tar.gz",
       "file_name": "create-adr.tar.gz",
       "size_bytes": 61468,
-      "sha256": "05ed4f4db638a5c12ffd642bd16e45c299eee89ae811392510bf699c48c8f129",
+      "sha256": "77db17c832f4991262414330fc1488364e8367c0ceb821dc37b95149109c5ee0",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/create-adr.checksums.txt",
     "file_name": "create-adr.checksums.txt",
-    "sha256": "f21877eed9ab3c9d0b6af75b30c197cce922b7dd552bef82eb4e0d56c84c36d0",
+    "sha256": "0e28067ce1e014cf22f70c551515482025b47ed1ed5750dcfdd7cbbcccd11ee3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "17862325e6810ec5349d3fd49dad1c800f2127d92184f072d4654f10f048bc56",
-    "package_sha256": "4388620bfa40b5cf830785cf1a7a3309949daaf7a900e366a301f569f324b95c"
+    "package_sha256": "037b0f56a8efb911f68319eac230b9e761fd77500c49c7ef19a28bbf9084fdd7"
   }
 }

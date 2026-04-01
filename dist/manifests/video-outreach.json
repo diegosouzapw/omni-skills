@@ -304,13 +304,13 @@
       "path": "skills/video-outreach/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1601,
-      "sha256": "d436ff4c358095b6dbe326ba039f5141bc801634e10e8c4e40778deef0c34015"
+      "sha256": "d3225f237339eff819e822ef884a5c7c1ad42e191880d85949175211e5c0a149"
     },
     {
       "path": "skills/video-outreach/ORIGIN.md",
       "kind": "support",
       "size_bytes": 727,
-      "sha256": "9a25433a37a3ad0315d164efb9f167c5c804286473cd367c21766f509d7fca0f"
+      "sha256": "107a0f124a74618959aab855a715b85d61e24335c36704b3b380c0916b91f412"
     },
     {
       "path": "skills/video-outreach/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/video-outreach.zip",
       "file_name": "video-outreach.zip",
       "size_bytes": 51158,
-      "sha256": "8a8ceda31e66b069a466b912121362833b7e3b7cc1497ef1deea6d77adabf8e6",
+      "sha256": "792d62fb1dc9f4d721404f8ad2e4156aabab41500620dc156a50389ef652ad83",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/video-outreach.tar.gz",
       "file_name": "video-outreach.tar.gz",
       "size_bytes": 61468,
-      "sha256": "1f5da05d3078130fa359081a643e3356ce6d71e38f6134b09da85bb39d96ebee",
+      "sha256": "937a1c0fc91d17a0edbf40f915147b0c1211a93bb1cb1221ae8103ca9fa4bdc7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/video-outreach.checksums.txt",
     "file_name": "video-outreach.checksums.txt",
-    "sha256": "eaaa1c887025aee0b354c765919f26f127dfd210a03f94983f1dc847233fa0c8",
+    "sha256": "185c9a82148be619a0aa1d26955f15c1f07f1e0441742d81619f40547e6c2ba7",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "d5148f2d58c55ba1530d631d64a41385a4fe4c62c5d8aca3a34597427739acd7",
-    "package_sha256": "de2dd301b8af8572a5fe3ed9e1e9a1201585f58375a613ae5f773845f604cf4b"
+    "package_sha256": "826d8d430483ab5a5063a372aaf258c431385ce601e4382224f5ad4a837b3f90"
   }
 }

@@ -304,13 +304,13 @@
       "path": "skills/perf-lighthouse/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1328,
-      "sha256": "fa18964201d0e2c8572f598821c7acc7ba2c8a38186657ff54e6c61f1c3c2c2a"
+      "sha256": "901f04468c16a9dd9151814db2d90066a22fad20057c1b2b46080d5cb8be4982"
     },
     {
       "path": "skills/perf-lighthouse/ORIGIN.md",
       "kind": "support",
       "size_bytes": 738,
-      "sha256": "d441626b031315642bb268f80c836360e7ecf89703f3bfa7c67db7aa5cb10483"
+      "sha256": "71e790be34fe2efd15a527719f47ca5dee4b52b5954c16fa32a9ac4e39c16d73"
     },
     {
       "path": "skills/perf-lighthouse/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/perf-lighthouse.zip",
       "file_name": "perf-lighthouse.zip",
       "size_bytes": 31387,
-      "sha256": "558ad5d3a35adb683ee40afc63c9c95bf7c30fc1382e0c50fde36f1b86a5ad75",
+      "sha256": "f71ea6795ef16540cb02cbbd20d5a43d0735bec93bff1f721d8ac2e4f4c31795",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/perf-lighthouse.tar.gz",
       "file_name": "perf-lighthouse.tar.gz",
       "size_bytes": 40988,
-      "sha256": "5dd0bd9bad5cd582da3a8acc6482b1f3191d51f510bf579f1be1f7284a05f625",
+      "sha256": "a33f2895810e98c674692ae9657d281c584c7bec94dd5d0659daeeb81486d908",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/perf-lighthouse.checksums.txt",
     "file_name": "perf-lighthouse.checksums.txt",
-    "sha256": "c25cd964a4fc68058a1a4f6f6d5c188248da287939c9dc3b4bccd5eeb0d2e31f",
+    "sha256": "a3999db0c8841c2575452705d963305a95523f411e7e68f5d8982900c956e42f",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "93417dcae6eec70ee2662bd035d41b4240b00c513a5da2506ee4ce2146d35d30",
-    "package_sha256": "3df4cddac0902ff292b37c1a02334e1c405aab5593db3a8218fbd941e12787f7"
+    "package_sha256": "d27bfceb07c94f7d30a7d5650bf5dfe91a1007c66e2beedbc577a543b97b5e45"
   }
 }

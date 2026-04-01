@@ -304,13 +304,13 @@
       "path": "skills/technical-design-doc-creator/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1322,
-      "sha256": "b35bf03d3a4a58c6bb6f4882951887eb412e978ef9eeacfaf06d8be82bc146dd"
+      "sha256": "2f70c630dbd6f25c68d45d0e6793263da36457f0cb8a5ebd47373debea6356d1"
     },
     {
       "path": "skills/technical-design-doc-creator/ORIGIN.md",
       "kind": "support",
       "size_bytes": 773,
-      "sha256": "a9642e216d02daf3b77f309101309924eced2ed1a43294b30eeba4a4a24a4069"
+      "sha256": "5175397e06cba34ffb3b4191dcba87169b3589c83a5b77a15c72f16b61f59a5f"
     },
     {
       "path": "skills/technical-design-doc-creator/README.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/technical-design-doc-creator.zip",
       "file_name": "technical-design-doc-creator.zip",
       "size_bytes": 86178,
-      "sha256": "288e4ce298083a7e6ffdcd0831605a4b3f9a4026db2f27b6230faefca277b23f",
+      "sha256": "6c29dd7626e95e6d8ac1c5114b92eff6be68d52b65c230c896627f833815431d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/technical-design-doc-creator.tar.gz",
       "file_name": "technical-design-doc-creator.tar.gz",
       "size_bytes": 102433,
-      "sha256": "d52f647167ccb8d5dfcef8f2648a1b7f13daf2d766f6f65f65e5ee1d278d08cb",
+      "sha256": "d5f0ec51c7df0d57e6dc3c129396184c91073c115d4cd64474f9c06ebbfe4600",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/technical-design-doc-creator.checksums.txt",
     "file_name": "technical-design-doc-creator.checksums.txt",
-    "sha256": "8b5b97437c107fe71e6f16337f72d2f3a2ec6ba78282b84bbf1e7bc9880a1b37",
+    "sha256": "436210409d3a645cd572ec1fc44d37771c6d9560f45ef216ff09bfe040b1f4dd",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "a26bff8a2f6a545e9bb5fb88e39a68dc9ab727ae7117d999900de8349a0024a7",
-    "package_sha256": "571e5d973495fb00883d5fd6ab1dc341596e9b78368d157595a4660abb3d1843"
+    "package_sha256": "cc953f41d84587b0cc22ed89d7d61d9575e392c22cc4c4ff9c00f4e4516a6d0a"
   }
 }

@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "component-identification-sizing",
   "lineage_id": 26,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:56.691098+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:29.793350+00:00",
   "original_frontmatter_snapshot": {
     "name": "component-identification-sizing",
     "description": "Maps architectural components in a codebase and measures their size to identify what should be extracted first. Use when asking \"how big is each module?\", \"what components do I have?\", \"which service is too large?\", \"analyze codebase structure\", \"size my monolith\", or planning where to start decomposing. Do NOT use for runtime performance sizing or infrastructure capacity planning."

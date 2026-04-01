@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "mermaid-studio",
   "lineage_id": 95,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:58.340158+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:32.207461+00:00",
   "original_frontmatter_snapshot": {
     "name": "mermaid-studio",
     "description": "Expert Mermaid diagram creation, validation, and rendering with dual-engine output (SVG/PNG/ASCII). Supports all 20+ diagram types including C4 architecture, AWS architecture-beta with service icons, flowcharts, sequence, ERD, state, class, mindmap, timeline, git graph, sankey, and more. Features code-to-diagram analysis, batch rendering, 15+ themes, and syntax validation. Use when users ask to create diagrams, visualize architecture, render mermaid files, generate ASCII diagrams, document system flows, model databases, draw AWS infrastructure, analyze code structure, or anything involving \"mermaid\", \"diagram\", \"flowchart\", \"architecture diagram\", \"sequence diagram\", \"ERD\", \"C4\", \"ASCII diagram\". Do NOT use for non-Mermaid image generation, data plotting with chart libraries, or general documentation writing.",

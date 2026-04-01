@@ -304,13 +304,13 @@
       "path": "skills/chrome-devtools/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1209,
-      "sha256": "4244762c8b5f0eb006a97b34266fb2181c4b2cf318d7b47a0f3154a153a9e1fc"
+      "sha256": "2079c9b4c72e98ad946aa9cb46e60f44295ba7af9e5d508c680fc0a6efad948b"
     },
     {
       "path": "skills/chrome-devtools/ORIGIN.md",
       "kind": "support",
       "size_bytes": 734,
-      "sha256": "8c11b12f6dabeb78bcf7a1fe3ccb437f1da2d4dfe1a1f4a70b2851ea2724b295"
+      "sha256": "09fe53a974dde2fa017e456792e638d9d7507c65eb5a4fbf40c0b6a804d3fca5"
     },
     {
       "path": "skills/chrome-devtools/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/chrome-devtools.zip",
       "file_name": "chrome-devtools.zip",
       "size_bytes": 29134,
-      "sha256": "46a440aa6b31936c02b9bd4831bb0ebd8af57cedd669714a1314a2bffc3f5f1c",
+      "sha256": "ed49e89f7a8d713cc7d809bc5afd3eb6631b8ef24536dc0bb64e7fcc30fcecc8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/chrome-devtools.tar.gz",
       "file_name": "chrome-devtools.tar.gz",
       "size_bytes": 40988,
-      "sha256": "fd0d2e362031306163e76de42c8f28bd88b2b65f59554dd169cee387f712c82d",
+      "sha256": "63b86d43057a132ab429f7c1ec7d711d686a0ecd5948bc302ee2f75f52e59251",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/chrome-devtools.checksums.txt",
     "file_name": "chrome-devtools.checksums.txt",
-    "sha256": "9f7e1d0708b936454fc6cf11766fd8221e2ad672d8b9e4a5614aff8c3f88492c",
+    "sha256": "da0d4fd610d49742ccb3c2917151e25dca849ce06d38f2545fbfb838abdb82dd",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "da041b511755dcc48ac947eb9e64d02e6562a4bf6631dcac2feedd4e14a8fa98",
-    "package_sha256": "801af0d03cf68513ca1eb97afc34ba8b7b8e2ab63a597e4a947eefa6b7f0bb9e"
+    "package_sha256": "8698bb49d0a5164a2aeaa4af3fcb4def47ba1bcd1082004202334873431b93d8"
   }
 }

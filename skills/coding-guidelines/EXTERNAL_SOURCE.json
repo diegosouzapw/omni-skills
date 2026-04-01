@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "coding-guidelines",
   "lineage_id": 51,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.243204+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.544180+00:00",
   "original_frontmatter_snapshot": {
     "name": "coding-guidelines",
     "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, modifying, or reviewing code — implementation tasks, code changes, refactoring, bug fixes, or feature development. Do NOT use for architecture design, documentation, or non-code tasks.",

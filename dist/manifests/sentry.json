@@ -304,7 +304,7 @@
       "path": "skills/sentry/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1276,
-      "sha256": "3444cdb4815ad19fc09b2c4f9e0c49fca07075705bb4bca9cdd8d5b5860d6c90"
+      "sha256": "1948dde22046ea075206e7bd2f2fbb8c6311af137f62ca36bf8ccd031a450c15"
     },
     {
       "path": "skills/sentry/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/sentry/ORIGIN.md",
       "kind": "support",
       "size_bytes": 710,
-      "sha256": "e931f88e9d3d1b4137e9f9a9735d700c7c04fa0b9c99784c6c07aa5da38ea72a"
+      "sha256": "9d5a7bccceffadc14acb5bfb74bbad3e18ff94166c8a18e84da50979d9e400de"
     },
     {
       "path": "skills/sentry/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/sentry.zip",
       "file_name": "sentry.zip",
       "size_bytes": 46785,
-      "sha256": "05fc4c93ea9efd619b12d0e07cd54e5ac67da8b17620bd729ad258e05312b37f",
+      "sha256": "c576fba770ccf61e43ce25384b9374240f3994eb33348f64d617b5471e49530d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/sentry.tar.gz",
       "file_name": "sentry.tar.gz",
       "size_bytes": 61468,
-      "sha256": "02461ca5ab276c885ba8d42873a6eba057b312a3bd37c5751b4ec4001dfbb2c6",
+      "sha256": "fdf63dacb126ecc8fff3d6ad10e1669f64404cad2eeeadb0380b17f23e95fa3b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/sentry.checksums.txt",
     "file_name": "sentry.checksums.txt",
-    "sha256": "9ecca8b35cfb1cd907753f9c9b1ad20bb12762728d93bf1235fb88eeb3f49475",
+    "sha256": "f9bc810431de580c613b4f075a1d71c3467e40103b515153ad0b4029e4a0e15c",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5ddf79ba9e02062432b4514aaebe73ccc43b218340730b962df8289871f07dc3",
-    "package_sha256": "c75e9147ba64357cdac3b4fe528bbd89bad04bbc7b83487f7758f0cc30ea5035"
+    "package_sha256": "288858ceb96e894302bf89d43a0dfbda049c43f21b3026739e22ed10b487f996"
   }
 }

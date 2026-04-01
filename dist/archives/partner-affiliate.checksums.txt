@@ -1,2 +1,2 @@
-6eed97eab57a57fdfd918312165fa2af65b145e2dc18c8984575c47caf2ad3cb  partner-affiliate.zip
-fdd5ce02a6f6a73706ceddae1a8d6aff5b07dd3a6f340717228b3ca9ce95b587  partner-affiliate.tar.gz
+5f9bd43dadf6a41405b51dbb027e8c5b7d8f612a2cb5ab8cc43b0a8783332ec7  partner-affiliate.zip
+74b1355296dcfcda31be13a91b66bd8242294bf10bd31a11f9a40ccf22a031ec  partner-affiliate.tar.gz

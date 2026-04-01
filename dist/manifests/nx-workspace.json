@@ -317,13 +317,13 @@
       "path": "skills/nx-workspace/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1252,
-      "sha256": "bbc15e0b7d5aef2db1eef3645e28eb8be7e063e26ceaf52a33c5f10bc96c388b"
+      "sha256": "dda5684f825ca9c8b9ef6d1551ca8cf5067eab37eae57e1ca920d9f6b6d74279"
     },
     {
       "path": "skills/nx-workspace/ORIGIN.md",
       "kind": "support",
       "size_bytes": 725,
-      "sha256": "d2ef905b188bc4951cbb80f395260f623fb80f5051684a7b3f9ce15d15753b40"
+      "sha256": "51e261f10a5d9e67c7b0589176cdfdd55e6e89be45d8423b26c39689a3258755"
     },
     {
       "path": "skills/nx-workspace/SKILL.md",
@@ -428,7 +428,7 @@
       "path": "dist/archives/nx-workspace.zip",
       "file_name": "nx-workspace.zip",
       "size_bytes": 57215,
-      "sha256": "d68990166c31bd8f3c27b754230bf130a41d4964e7f768b4f9bfa4bb6f474aad",
+      "sha256": "d627ab35dcdc1e81ecacaf4ea5e8114f0907917057123770393552c76a24ac14",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -442,7 +442,7 @@
       "path": "dist/archives/nx-workspace.tar.gz",
       "file_name": "nx-workspace.tar.gz",
       "size_bytes": 71708,
-      "sha256": "adfefbefb0adccb85d41dbbe1f29d52a63ed629e80dd3b02f32ecda27866a6ad",
+      "sha256": "6544d80284be472fb6011c420d327b0b6d292b087f3613ef63aa08cf18317391",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -455,7 +455,7 @@
   "archive_checksums": {
     "path": "dist/archives/nx-workspace.checksums.txt",
     "file_name": "nx-workspace.checksums.txt",
-    "sha256": "a60aee537551415ca2200a93ca2039482fe78129e47648182c74647fdb9d229e",
+    "sha256": "b02f7d1f21486d05ea6d36bd3f071f1eb9ad013bf346fd8862d6499445b6ac65",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -466,6 +466,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "f9cafe4239788baf3103dbf20f411e3b1358b7a538f5aabaacf686ccb8e6ece6",
-    "package_sha256": "6c0a99e7fa7355ee6f247111bfd5e498078f1438b623cc7c79410659589d1c3b"
+    "package_sha256": "1e4eb1b6597810860d3f8a987c888bbed09284e0f41461a442245802b0817256"
   }
 }

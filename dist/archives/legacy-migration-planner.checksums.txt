@@ -1,2 +1,2 @@
-d9bd4f3ce1b50b80cfddf91b3e0a945e54f16136b4c10bd4b7bc7657fcfd83e6  legacy-migration-planner.zip
-4549490295419410974ed753a335d08d00a76c323397c71f6e45baee1bfe451d  legacy-migration-planner.tar.gz
+79684e5d1092924940df430248b6bc7cee87b49ba882765f0f626e73d9b66e5f  legacy-migration-planner.zip
+0373d2cb98d94172975d8a42fa41e0ce4228cb0dbf6fd542727919a3cc49f34f  legacy-migration-planner.tar.gz

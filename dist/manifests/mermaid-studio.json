@@ -346,13 +346,13 @@
       "path": "skills/mermaid-studio/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1810,
-      "sha256": "b560de7610f7a717a06c7f62f85860b23342b784555d47455daaf717545e1595"
+      "sha256": "8a1fbb296ef613b8b985e57e16048c6527fb6e9e463f42d50c3f67f3192ca6dc"
     },
     {
       "path": "skills/mermaid-studio/ORIGIN.md",
       "kind": "support",
       "size_bytes": 731,
-      "sha256": "2801039690d8d5d5816a00547d65e055db9f3a5670b4e8ac0f21d596491d12c0"
+      "sha256": "166e15ae128dd938e920d15ce8a42634faf92023258aca9cb1a0ea5b38030fdc"
     },
     {
       "path": "skills/mermaid-studio/SKILL.md",
@@ -505,7 +505,7 @@
       "path": "dist/archives/mermaid-studio.zip",
       "file_name": "mermaid-studio.zip",
       "size_bytes": 175112,
-      "sha256": "6109d38e7706fc8d12e1352419a456c6ac8f32c65d0af5466640320533136b80",
+      "sha256": "7bf0b401b10e3e952c5ae705685c1bb0e14b76bf67c26c8baff7a5b70c12c067",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -519,7 +519,7 @@
       "path": "dist/archives/mermaid-studio.tar.gz",
       "file_name": "mermaid-studio.tar.gz",
       "size_bytes": 194603,
-      "sha256": "5089082182b10dbfe81c167447aae987d8ee69eb78f90a0a7a6cf04468a5b18c",
+      "sha256": "acbcc74ab3ed18ff5e8a53a779086ce44d45fbfe2aee31fd8cd2725e36c46c8c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -532,7 +532,7 @@
   "archive_checksums": {
     "path": "dist/archives/mermaid-studio.checksums.txt",
     "file_name": "mermaid-studio.checksums.txt",
-    "sha256": "7ffeab5ed752e6bcd625859eb7fb3a8a082dfc314734092f0d2311987b81e7aa",
+    "sha256": "00c3481d408e6484008056598649e43e0ce0676410a3685c37420c38603593f8",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -543,6 +543,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "d24a7c157648faa52626d5b9c4633c07c5fca0efc89b25018863e861273497a9",
-    "package_sha256": "2df9154c37c86ada967881990a29196389497bbcef657d2dbd38e2c45337daad"
+    "package_sha256": "28ed6d2318cedd8a57ac25aad7cf42820019f7f23c7a710d9a37a67a5a746ebc"
   }
 }

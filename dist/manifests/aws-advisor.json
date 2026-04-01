@@ -304,13 +304,13 @@
       "path": "skills/aws-advisor/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1478,
-      "sha256": "f78817469044d25c2ac5e1a297b55ab8db1b59df26df0660e818ab2be55da5a5"
+      "sha256": "3cd5507e20785b069d831441881ad7d5fedd3cdfdbbb38c4fdb60fd665d56775"
     },
     {
       "path": "skills/aws-advisor/ORIGIN.md",
       "kind": "support",
       "size_bytes": 720,
-      "sha256": "58e20f4c17b827e67b22105342615a3b4af614576fd00fd8d105320ee2fbebde"
+      "sha256": "5363a7d9e5b3e8fe48f125665d5b53d27d8bbb1c8877ed238f4adec904fda4fe"
     },
     {
       "path": "skills/aws-advisor/SKILL.md",
@@ -439,7 +439,7 @@
       "path": "dist/archives/aws-advisor.zip",
       "file_name": "aws-advisor.zip",
       "size_bytes": 120457,
-      "sha256": "4543f9e765ea6393a37c8c11a99999996973d91e50fa76d240d009ea7ce9a0b6",
+      "sha256": "58552030b51d92031f207b547f289e1f1669e13b115595f541ba1b3aa59c5bc1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -453,7 +453,7 @@
       "path": "dist/archives/aws-advisor.tar.gz",
       "file_name": "aws-advisor.tar.gz",
       "size_bytes": 143398,
-      "sha256": "6dda908481fa76b40204e4b553b83f4b2905af5809428be4ab1924c5a0834293",
+      "sha256": "801854113c40cec4ee4ba68d23c0589d6d277a9e8e3e2a2adaa6a354cf582564",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -466,7 +466,7 @@
   "archive_checksums": {
     "path": "dist/archives/aws-advisor.checksums.txt",
     "file_name": "aws-advisor.checksums.txt",
-    "sha256": "62e318ecab78a9eb21070c292875616437dd448318c628c46731fdd045cda73a",
+    "sha256": "2c98040364483a061fc85969091a9f84e21b7935c15da2ea9a43442adcb5db36",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -477,6 +477,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "86d08148f65901b214ec93f1c620f0cc81aa7b8e3bf091aa44c5baea3df504cb",
-    "package_sha256": "284d16f18fe8bbae52b6287f831b3f3b403f015408a8d75b0b1ed5bf9d1047d4"
+    "package_sha256": "11b07fee1639971a71ddca39a50442b604918629e249c803092a4e035f1ddd16"
   }
 }

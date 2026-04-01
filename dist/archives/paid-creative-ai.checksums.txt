@@ -1,2 +1,2 @@
-4dae6bb7eb3650e645895bb812e34a0cdeed92b9177fb44e4cd972e2b89b043d  paid-creative-ai.zip
-a33c6b444c1a29d8f9437eb5a3a1718abee42e573f84a73c1bf337fd70b0db3f  paid-creative-ai.tar.gz
+83198836b3c5b9894ae762c651916df9c570a8256da5982c22875dad728c02d4  paid-creative-ai.zip
+87e3258079d01ca45d3759ed87b3661c3b638ac64f6f0ded4e539e90f767a7a2  paid-creative-ai.tar.gz

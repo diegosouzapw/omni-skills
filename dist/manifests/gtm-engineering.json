@@ -304,13 +304,13 @@
       "path": "skills/gtm-engineering/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1612,
-      "sha256": "51ea53051352e38ae4f84defc7847daf5d6fac43aaec9ab6da241c33bc54a44a"
+      "sha256": "e02ec5f95dfc064b5442783e7534ea169bcec7afdfeeec57c00ebdc15657f724"
     },
     {
       "path": "skills/gtm-engineering/ORIGIN.md",
       "kind": "support",
       "size_bytes": 730,
-      "sha256": "37949cbd7f4020c614e1388756d1015d7c431839bbab8d7ecbe82df5fd20f23c"
+      "sha256": "045961a70d17d31c66c0bc28a5deb5e942b05b7aae801389c600a930efaa63d3"
     },
     {
       "path": "skills/gtm-engineering/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/gtm-engineering.zip",
       "file_name": "gtm-engineering.zip",
       "size_bytes": 72480,
-      "sha256": "2be7c9d24c35224298fa6c7e7e9a83c6f2861bed78c6ebe01b53a305cc94d721",
+      "sha256": "2ab9746691286621e092aa84dbdb1e08ec8563c66ebbe6851dc223a06d3ab7ff",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/gtm-engineering.tar.gz",
       "file_name": "gtm-engineering.tar.gz",
       "size_bytes": 92193,
-      "sha256": "6c4cd1b98ea76e8d1b24982cd9382fad24dc6a562ae55ee2286b8c38aa2a3468",
+      "sha256": "9b778e014cf526efb9fb1f4f70e8fef889b07c2de38e61c4892d040b275dffd1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/gtm-engineering.checksums.txt",
     "file_name": "gtm-engineering.checksums.txt",
-    "sha256": "8beffe1c9ef67af27e2d6cebe3a40d41f9708623a8250949a2df7ed32dec9d92",
+    "sha256": "24f3dbe399fa364cfd2d215161e6b4524ab4b5937dc24e0bdfa38f657bb01a29",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "55bc4a68e88b19b5586a6e04416457bd13f97bd84ad6348b2e05ed9a9cdb1753",
-    "package_sha256": "2de356dc4f178096e008858233d165880c7aaa19769fbd98f3953839ecfc6274"
+    "package_sha256": "64e09a2fb2e22c9c101d591bf2297c1a4bfcd05bd050abf0a24ab7cd7577b1c0"
   }
 }

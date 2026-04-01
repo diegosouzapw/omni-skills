@@ -50,19 +50,52 @@ def load_latest_release_tag(repo_root: Path, package_version: str) -> str:
     return f"v{package_version}"
 
 
+def load_local_sidecar_support_snapshot_fallback(repo_root: Path) -> dict:
+    existing_status_path = repo_root / "data" / "project_status.json"
+    if existing_status_path.exists():
+        try:
+            existing_status = load_json(existing_status_path)
+        except Exception:
+            existing_status = {}
+        if isinstance(existing_status, dict):
+            install_count = int(existing_status.get("install_client_count", 0) or 0)
+            mcp_client_count = int(existing_status.get("mcp_client_count", 0) or 0)
+            config_target_count = int(existing_status.get("mcp_config_target_count", 0) or 0)
+            config_profile_count = int(existing_status.get("mcp_config_profile_count", 0) or 0)
+            if install_count and mcp_client_count and config_target_count and config_profile_count:
+                return {
+                    "install_capable_client_count": install_count,
+                    "config_capable_client_count": mcp_client_count,
+                    "config_target_count": config_target_count,
+                    "config_profile_count": config_profile_count,
+                }
+    return {
+        "install_capable_client_count": 0,
+        "config_capable_client_count": 0,
+        "config_target_count": 0,
+        "config_profile_count": 0,
+    }
+
+
 def load_local_sidecar_support_snapshot(repo_root: Path) -> dict:
     node_code = """
 import { getLocalSidecarSupportSnapshot } from "./packages/server-mcp/src/local-sidecar.js";
 console.log(JSON.stringify(getLocalSidecarSupportSnapshot()));
 """
-    result = subprocess.run(
-        ["node", "--input-type=module", "-e", node_code],
-        cwd=repo_root,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return json.loads(result.stdout)
+    try:
+        result = subprocess.run(
+            ["node", "--input-type=module", "-e", node_code],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return load_local_sidecar_support_snapshot_fallback(repo_root)
+    try:
+        return json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return load_local_sidecar_support_snapshot_fallback(repo_root)
 
 
 def compute_catalog_hash(paths: list[Path]) -> str:

@@ -304,13 +304,13 @@
       "path": "skills/social-selling/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1608,
-      "sha256": "d6cf09fcd061885ea9bd1ec3208d12bbf1843472f0bece27584bdde89be08fdd"
+      "sha256": "f20e7872b458a81d6c910639d08c0196577c61df56bbe051d587a61a254e89ac"
     },
     {
       "path": "skills/social-selling/ORIGIN.md",
       "kind": "support",
       "size_bytes": 727,
-      "sha256": "3fe6edfd946dc2e315a8200cbda85ce53ef2ece5c241d445245cdaf1f78c50f7"
+      "sha256": "f7986b18cbb5b1042885d71ec1003b3ec917f055358ba8305784526647b4c0cc"
     },
     {
       "path": "skills/social-selling/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/social-selling.zip",
       "file_name": "social-selling.zip",
       "size_bytes": 44307,
-      "sha256": "b9d05c656cc12a3430584331336dab67196247a8f699d3c750f10a551f1e81f5",
+      "sha256": "e0cba8b157bd6b0fe6bfe6fd751018d61f1470f1d37ef6c56df2d98c14cda6f3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/social-selling.tar.gz",
       "file_name": "social-selling.tar.gz",
       "size_bytes": 61468,
-      "sha256": "2e6fcdfd5ad8d8e4dd1ab1c097a22e5a724f308c6782ec4bf60aa2387f537b08",
+      "sha256": "6b64b1b8dee82138957f0718e0b11fcc0f2e8b7695d23824f4722a292c3ef5cc",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/social-selling.checksums.txt",
     "file_name": "social-selling.checksums.txt",
-    "sha256": "49fd2e72e220148e39757e006e01510f94e0f849307ba8dca2adb06525d688a7",
+    "sha256": "96c5674c3a4814722b7c0751153d617c5671b3429a971eab0f330a44ca0d7b8e",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "e96610c66147cc1c1ed359125c38ccc936ccb9e091e688e185d0171db5089540",
-    "package_sha256": "5b78856083c7d20ded1fe51b3ae44d9ef329b3c2f49bb9d5a93e56fdb7a9b87f"
+    "package_sha256": "ddbb82e9f3d6bde6ba08c292a8404314cc0c016824e34c13d4f28d7c0d9c9895"
   }
 }

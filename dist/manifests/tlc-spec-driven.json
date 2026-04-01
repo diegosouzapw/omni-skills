@@ -304,13 +304,13 @@
       "path": "skills/tlc-spec-driven/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 2033,
-      "sha256": "67afdee8c2663d123f16734699d7886b21677077c7694780027c9ba43eaae709"
+      "sha256": "b9565a1debe4aaebdab03e4d25ac9db0caff34e5b67429555a3b42a5ae5582ec"
     },
     {
       "path": "skills/tlc-spec-driven/ORIGIN.md",
       "kind": "support",
       "size_bytes": 738,
-      "sha256": "73abd9f874ed4d1fbd95cb55c508ca280739b01fe34c51805f51572bcbfc959e"
+      "sha256": "4d5b5044c5d9c116019e98f9537f562716f718953767aa28f331f8de858d5866"
     },
     {
       "path": "skills/tlc-spec-driven/README.md",
@@ -493,7 +493,7 @@
       "path": "dist/archives/tlc-spec-driven.zip",
       "file_name": "tlc-spec-driven.zip",
       "size_bytes": 144170,
-      "sha256": "563ee4e6e6eeb1d52da476ab5520408589118424399677bcc57af616b6d57c6d",
+      "sha256": "c628168c93c1eef7f53d691f145ae7d79aedc33fd01798273eab5d44d7093c4b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -507,7 +507,7 @@
       "path": "dist/archives/tlc-spec-driven.tar.gz",
       "file_name": "tlc-spec-driven.tar.gz",
       "size_bytes": 163883,
-      "sha256": "336b5addf668591bee18810233193eebf013cd7034052d01f396fb47af54fc29",
+      "sha256": "73bb2166f3b2d34388b58e23724d71b3fcae3ac8f2584352e7203f05fa3d559a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -520,7 +520,7 @@
   "archive_checksums": {
     "path": "dist/archives/tlc-spec-driven.checksums.txt",
     "file_name": "tlc-spec-driven.checksums.txt",
-    "sha256": "38726b45f344e48e74ebb4c51a59968a4d7710db36e82e66389be64b33ef162f",
+    "sha256": "e66cddea12269ba975b8fa5f783a05fd9ef06418e81aa74ed686e51d8a4d02fa",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -531,6 +531,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "16ace25fd2ce7ddd80ccca96994be05f5bacadc90078c9be4dbb1ba59a53c8f8",
-    "package_sha256": "905dcd2600938127d98603dff88594875cbf0b4df3152746a19138bcd73ae81f"
+    "package_sha256": "feb352caa4fd3f911f3d7e3e24c73ff0865a430e22bdc420a8464614847928e3"
   }
 }

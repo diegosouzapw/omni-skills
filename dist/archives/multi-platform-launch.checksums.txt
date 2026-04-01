@@ -1,2 +1,2 @@
-62d91a9824ffaf92b9e0dd9cc67c086d3d4a7c16238020be32b683ce9cd98011  multi-platform-launch.zip
-c90fbd9853116d2afdbb08e9a1210f1ec2dd82d9081e732e9d62408d5516d06c  multi-platform-launch.tar.gz
+6e985304608b9836ad12c604a3d6b8fab8615c2f7a7ecb0c366f664761b0c7df  multi-platform-launch.zip
+bb37cfca1a073ce570a945c336b63f275eba3549b40067fe47928abd1dbb06eb  multi-platform-launch.tar.gz

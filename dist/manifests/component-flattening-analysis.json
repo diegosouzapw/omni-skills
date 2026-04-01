@@ -304,13 +304,13 @@
       "path": "skills/component-flattening-analysis/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1356,
-      "sha256": "9d09e9864b054c2673cc268672e3d831e9608ea3093d497a2eb39ad7cc56bcb3"
+      "sha256": "2fd1883ae425e5b62760fa7236f7045bb8e2b754d63079d4356ae873b2198f63"
     },
     {
       "path": "skills/component-flattening-analysis/ORIGIN.md",
       "kind": "support",
       "size_bytes": 781,
-      "sha256": "a6a58f7cd2842163e0a71b1bac6250046739b05dd40abc9d88bbc138647ab039"
+      "sha256": "fb020fdd13a8aebacddda5610571770ebeba7ae2644c3e0f66a4fff125cd1074"
     },
     {
       "path": "skills/component-flattening-analysis/QUICK-REFERENCE.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/component-flattening-analysis.zip",
       "file_name": "component-flattening-analysis.zip",
       "size_bytes": 63257,
-      "sha256": "a2222b5ca7beaecfca5f00752746c4db29962b88ad30379493cff7c11c994eec",
+      "sha256": "88c09488bc851b0239a2ccd108e0aabce7531d47dc2c64b2285a7f1cfad215a9",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/component-flattening-analysis.tar.gz",
       "file_name": "component-flattening-analysis.tar.gz",
       "size_bytes": 81948,
-      "sha256": "ef115def9060b973d5fac77dfecda4d7302674cb6849b649b059e0dbcd985fcd",
+      "sha256": "1e72a860949ecb7568fa3fc11ca06c7f130c810d5739107f68681f033dcf3881",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/component-flattening-analysis.checksums.txt",
     "file_name": "component-flattening-analysis.checksums.txt",
-    "sha256": "d82f8d88a31c57eb2ed487fe6b35789ac0801dc4f197630d8f5c436fbf6ccc3d",
+    "sha256": "15b6fc74c4e1b50617d243c591dd4d2bc12d56eb32f0c039ab7d998067758272",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "08378a0f53a0fc9546912d7bfeca2b6e53b6c5252199bd713b4dd4d172ed569b",
-    "package_sha256": "c1fde82fa38e759ae9ed6f13bac109683fedd49c76480d2f3733fcfbbaaf50ec"
+    "package_sha256": "634761066d4477ea2dc5bb93daff428096f669f26dba239d21380ccaaac05d48"
   }
 }

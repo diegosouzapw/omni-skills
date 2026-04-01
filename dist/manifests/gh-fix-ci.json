@@ -304,7 +304,7 @@
       "path": "skills/gh-fix-ci/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1338,
-      "sha256": "72cf008e1a0402411a98cc422cff31984eb1c4f0bf069bded4ef35c839546201"
+      "sha256": "22127441c1b2f12a361bb74305a522cf065833b44b259b0e3151f42c6e6c5826"
     },
     {
       "path": "skills/gh-fix-ci/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/gh-fix-ci/ORIGIN.md",
       "kind": "support",
       "size_bytes": 716,
-      "sha256": "ecb2cf8167c691310aebe50e9c2089c20c7b7f125f11ed27b5071ef4b8e13a20"
+      "sha256": "c6a1e0f8721d573d59d9a2bace83343b583bf9d54b3d5090ad258803b995d183"
     },
     {
       "path": "skills/gh-fix-ci/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/gh-fix-ci.zip",
       "file_name": "gh-fix-ci.zip",
       "size_bytes": 54219,
-      "sha256": "31583c178d9e4b9153a159f4c2d33616c46ee1ab3ffcdebfafe3bc98f30d4ee9",
+      "sha256": "5b15d85e3b76d131222aa8c1d145bf3f7b5256f3c4f7d1ed27c32d4d3bc27163",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/gh-fix-ci.tar.gz",
       "file_name": "gh-fix-ci.tar.gz",
       "size_bytes": 71713,
-      "sha256": "0e2b67405a5d5d8944e33d73c697e58ddc354d046fe8c4795880e2ab744d7048",
+      "sha256": "4e2b88b19b71faff7854b90adb1d12f450f48511a1792ca5b7bfee3ef14b9ae6",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/gh-fix-ci.checksums.txt",
     "file_name": "gh-fix-ci.checksums.txt",
-    "sha256": "0d3e46a163c3a56dafa6b8e43f1b63ed2de02e92182f6cc8de122085a0787b05",
+    "sha256": "0d6b6b87d639d18269a002fdccaa2ca59e83ecb2aa51f246650a5f6c89b83af2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "ffb3827cccdf2937e737eb0699cd9904f079c311c010c1a88f11157a850b8113",
-    "package_sha256": "377c93bf1f0d58e6d1736890cfd73607fc8643852651ee34871a6e27c534133f"
+    "package_sha256": "7cec13fabf161eacde38f40bf253d6aa06978ddf39f9d335bc08d3dd21880906"
   }
 }

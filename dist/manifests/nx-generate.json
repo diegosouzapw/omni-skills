@@ -304,13 +304,13 @@
       "path": "skills/nx-generate/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1358,
-      "sha256": "058039a0f03f7e9744df731b7de283fb9763f58acd4fba5218b601248a125435"
+      "sha256": "2a5a44121ffff4657a50e06b6575668e4de8bcbe1ba2a3b057a5ba1792d4f4c1"
     },
     {
       "path": "skills/nx-generate/ORIGIN.md",
       "kind": "support",
       "size_bytes": 722,
-      "sha256": "0313345e334646f0df472624f15fc99e2862880a0e28f65fba76d5a78653f74b"
+      "sha256": "efdb052e5ff526b40b266e93c9689ad7a9f535edad01548e44ce268fbeb8abe5"
     },
     {
       "path": "skills/nx-generate/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/nx-generate.zip",
       "file_name": "nx-generate.zip",
       "size_bytes": 33744,
-      "sha256": "f3a84c493066d7b5f12580df3a7b9aca4010d115a5c4a5d972c27868b625173b",
+      "sha256": "c8d7df5f90f8718518e5a0687dfb451ffd2ba68a2870dab1df7cacedfcb5792d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/nx-generate.tar.gz",
       "file_name": "nx-generate.tar.gz",
       "size_bytes": 51228,
-      "sha256": "0bcd293f1d0e7e4bf71272520d1a36ef819fa822d25dd2161c39ff92e412d660",
+      "sha256": "f04db48b35ad38efeac86fe70694307d756b2fbb95e2de5784399b4e36001e4c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/nx-generate.checksums.txt",
     "file_name": "nx-generate.checksums.txt",
-    "sha256": "28272bc3e8b9dc9b2ccbbd4ebf48f5f4962ecbc3820c64d72f0b8d79bc20433f",
+    "sha256": "561855b1ac0b55643cd60e454c229d1c342d6792d0d75077f1649c9c3f007c43",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "2303b3898b9babddf52fedbbb5fc4ec8c850bcdce3a78ac0efedc34f7a3521de",
-    "package_sha256": "70c06fd1707fd5a10a334ebae15565f303fa20e587548bd3c22dacf268b1c7ab"
+    "package_sha256": "909116ce4fedb0c740b9219e42589516bf077a6bffc3a9b70a2fcff5e5868413"
   }
 }

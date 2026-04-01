@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "tlc-spec-driven",
   "lineage_id": 59,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.458945+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.831471+00:00",
   "original_frontmatter_snapshot": {
     "name": "tlc-spec-driven",
     "description": "Project and feature planning with 4 adaptive phases - Specify, Design, Tasks, Execute. Auto-sizes depth by complexity. Creates atomic tasks with verification criteria, atomic git commits, requirement traceability, and persistent memory across sessions. Stack-agnostic. Use when (1) Starting new projects (initialize vision, goals, roadmap), (2) Working with existing codebases (map stack, architecture, conventions), (3) Planning features (requirements, design, task breakdown), (4) Implementing with verification and atomic commits, (5) Quick ad-hoc tasks (bug fixes, config changes), (6) Tracking decisions/blockers/deferred ideas across sessions, (7) Pausing/resuming work. Triggers on \"initialize project\", \"map codebase\", \"specify feature\", \"discuss feature\", \"design\", \"tasks\", \"implement\", \"validate\", \"verify work\", \"UAT\", \"quick fix\", \"quick task\", \"pause work\", \"resume work\". Do NOT use for architecture decomposition analysis (use architecture skills) or technical design docs (use create-technical-design-doc).",

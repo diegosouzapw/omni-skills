@@ -1,2 +1,2 @@
-0fded1d2d9f58e7261652ca1d345a7f568c4143aafed972bb323d74c4f966ddf  shopify-developer.zip
-5f1004152e548b7cd6c67f2bf4ef8d492bdaedb679bb4539e8ceef27984f9dd9  shopify-developer.tar.gz
+a90f8a5a018b033ceec9548cab33e90396e5e4e7c77350f33693155fd398bc57  shopify-developer.zip
+330354f5676a0bb0dcd9dfe9c0d72fbf01eb540352af19d810a8b878e74574c6  shopify-developer.tar.gz

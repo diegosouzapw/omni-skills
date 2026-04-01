@@ -336,7 +336,7 @@
       "path": "skills/netlify-deploy/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1212,
-      "sha256": "a7aee01fabc6703a7aef2d236908feb519c946e4e5f51d1c97080765b1cca221"
+      "sha256": "f9441d0475ac8abe33e7c7d1261cb07fc3bb4f264a6b9040aaed6eaf71b56c6c"
     },
     {
       "path": "skills/netlify-deploy/LICENSE.txt",
@@ -348,7 +348,7 @@
       "path": "skills/netlify-deploy/ORIGIN.md",
       "kind": "support",
       "size_bytes": 729,
-      "sha256": "a09ef39f6ae689185173504329765a12f9ec7f9dfdcce1ec57628295245d7eac"
+      "sha256": "3dc17b05709aab82540450efe6c0b2c5c6b099f9e5e877932c374889191d578f"
     },
     {
       "path": "skills/netlify-deploy/SKILL.md",
@@ -447,7 +447,7 @@
       "path": "dist/archives/netlify-deploy.zip",
       "file_name": "netlify-deploy.zip",
       "size_bytes": 57762,
-      "sha256": "e7bfc39a0cc31a538b40bc990d7031f6898caac155babb58756d9038a3b50ca1",
+      "sha256": "5096de884d6de843b6f435beed2e5bdcd39387ae19f31cab196f7841ea741b51",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -461,7 +461,7 @@
       "path": "dist/archives/netlify-deploy.tar.gz",
       "file_name": "netlify-deploy.tar.gz",
       "size_bytes": 71713,
-      "sha256": "9ff2227d880c3fbf3020f62d3ae936cf2b193b13b15231e9eb3084d7c3b54d4d",
+      "sha256": "5fceb4402b6d843b0e6b29f9e45fdfb83b4da1da81ad69a3d6247cb97c7b8858",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -474,7 +474,7 @@
   "archive_checksums": {
     "path": "dist/archives/netlify-deploy.checksums.txt",
     "file_name": "netlify-deploy.checksums.txt",
-    "sha256": "e774f944b8f8fc27e16050c0e877140ef6db8c89bf375bcf863bf906a431a66d",
+    "sha256": "c256b4f25596875d4e759c04c545c9a8131e7c742d7128fc9d69ce3bb203deb1",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -485,6 +485,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c31feb16bd3761ce18ebc2c2655920565977e4b48dee664ecffe6231a2b45bfa",
-    "package_sha256": "15e83df58394a39a5267e1fe8084433d3f6054e71867272b99e1c013c66ba498"
+    "package_sha256": "befdc27937c6788a2d3301aa1e89deeda55c9d9fb6213ff3c69245962543e9a3"
   }
 }

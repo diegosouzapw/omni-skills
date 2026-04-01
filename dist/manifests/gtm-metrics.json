@@ -304,13 +304,13 @@
       "path": "skills/gtm-metrics/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1693,
-      "sha256": "e54e69f9b4bdfd3d9ab84ded10431b40597ec00772075ecb80e8ce10d62a61ab"
+      "sha256": "e64e1e0362eea876a0400c02173b229974018ea4623a2fd3910d88d9ac494cf6"
     },
     {
       "path": "skills/gtm-metrics/ORIGIN.md",
       "kind": "support",
       "size_bytes": 718,
-      "sha256": "9081fdd3c84ce3fbc2b6e4fd71dfc7d6d505f5dee7518261075d1de33155aab4"
+      "sha256": "30af71e3639ec6ce98beeb3df48496f7b95d7544273e856d7f5a8d95fd0fbd45"
     },
     {
       "path": "skills/gtm-metrics/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/gtm-metrics.zip",
       "file_name": "gtm-metrics.zip",
       "size_bytes": 45399,
-      "sha256": "0ccc521314a2a2fe6c20757f7963b5fdb37a1dad8e335360d3c6ee177a951ee3",
+      "sha256": "41a03363f5994266b24206e2cb5347a81e6280f646f0282ea6801e27d135affe",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/gtm-metrics.tar.gz",
       "file_name": "gtm-metrics.tar.gz",
       "size_bytes": 61468,
-      "sha256": "974b0bde2d797e0f94284204d1915ef064fa4c16fc6ca0c5442bfba3e40ea156",
+      "sha256": "2b7bdbfb75cf93a781e03e3d667fd048e41223962724ee7763027a73500d42e3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/gtm-metrics.checksums.txt",
     "file_name": "gtm-metrics.checksums.txt",
-    "sha256": "7d3fe3818123165874eb93004a15d526a2125a32bc003247db788ba8eff48bc1",
+    "sha256": "651a514448b3967781416660e27096061cc64aea5d93dc75aaccbf012a7f41b4",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "aa4b30ff979289b10a0b9d17593e13158d7aa4825748750a40b609119e883d8c",
-    "package_sha256": "f03026d98bf56a05164350324128dd1e9d44c92121c1215bee647480fd189801"
+    "package_sha256": "f4ab82f702fc4c000c9dac4c68f642d2d9731096f65112d55d8d2b4c3b3db152"
   }
 }

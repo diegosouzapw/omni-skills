@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "domain-identification-grouping",
   "lineage_id": 30,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:56.794142+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:29.926994+00:00",
   "original_frontmatter_snapshot": {
     "name": "domain-identification-grouping",
     "description": "Groups existing components into logical business domains to plan service-based architecture. Use when asking \"which components belong together?\", \"group these into services\", \"organize by domain\", \"component-to-domain mapping\", or planning service extraction from an existing codebase. Do NOT use for identifying new domains from scratch (use domain-analysis) or analyzing coupling (use coupling-analysis)."

@@ -304,13 +304,13 @@
       "path": "skills/learning-opportunities/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1586,
-      "sha256": "c4e06e6c04e2a2cda7c9700184b84fc0b1335ca4d8dac7283ba9f1f0c86a7036"
+      "sha256": "eec9707913e14864b9a56117a1e7456b8b338c4a0b6a09d2b2d713a208407314"
     },
     {
       "path": "skills/learning-opportunities/ORIGIN.md",
       "kind": "support",
       "size_bytes": 756,
-      "sha256": "fda9e436e2c3521b46bb57cc813b5266a72f563bec2df6af13c6244906771b2e"
+      "sha256": "a674e6b41d5f670afd77a8af462f2546212a2d14e903fdf62b4db499609234d3"
     },
     {
       "path": "skills/learning-opportunities/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/learning-opportunities.zip",
       "file_name": "learning-opportunities.zip",
       "size_bytes": 32023,
-      "sha256": "e8e1bf7f662c0933ff7b0b086420f44a90a18a1af654ae0da171d1bb5b4bffdc",
+      "sha256": "1a8033baa52a3724a91dbe4056ec76c8d9950b55acc7723707225bb10685e081",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/learning-opportunities.tar.gz",
       "file_name": "learning-opportunities.tar.gz",
       "size_bytes": 51228,
-      "sha256": "ccda632cf50f372b224e23cffaf9b3c06be4a8aff5c4061098cf0fb42d558060",
+      "sha256": "11b85681672422b2d61406756514b7639fff27983d29471717742eff7db36296",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/learning-opportunities.checksums.txt",
     "file_name": "learning-opportunities.checksums.txt",
-    "sha256": "74273d0fe6be8f04c7b67a5cccdf11151ee99d3cda5c5e1c86e2fa52293cf3cc",
+    "sha256": "0a8f0e5a69b41d17155c8a589384ac1c4b78d4abc357e4e26a94232015647b90",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "cfa71ed3bd101f3e6a0e095a04272c54941b54d7ba6bfc6c6a79f42774c0b557",
-    "package_sha256": "64032094b91ffec3e28eae02dca1a1af397b74a707b0e3c552a9990a3b01ee99"
+    "package_sha256": "cbada0e60f4696fc2b0375d7b43ff3b3478635c53ab959863cc2a9cf11eb042e"
   }
 }

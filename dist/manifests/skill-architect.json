@@ -304,13 +304,13 @@
       "path": "skills/skill-architect/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1561,
-      "sha256": "5dd229648eaed4afb47d04ba4b63bcc11ee3e131850f2e9fd28ed641f7400f6d"
+      "sha256": "8b44bfbded79fa2f28c46e837a95f5fe27095c88b57bb6eb76093c9a13c972d3"
     },
     {
       "path": "skills/skill-architect/ORIGIN.md",
       "kind": "support",
       "size_bytes": 735,
-      "sha256": "bfde59e4b29c6e875a0f546fd3e20723d263245b60b4e527518f9243db49b529"
+      "sha256": "92754320ebbd5b5ca4ced6a3b6419c87adaee5503b0072bc016b72a05e5bb4fb"
     },
     {
       "path": "skills/skill-architect/SKILL.md",
@@ -415,7 +415,7 @@
       "path": "dist/archives/skill-architect.zip",
       "file_name": "skill-architect.zip",
       "size_bytes": 77637,
-      "sha256": "db49c66e052c169b29a152c244869f0415aa7d602f13ab39fe1f1b1de342ad2e",
+      "sha256": "cbf34d01715644d352e99850a9498b1b0de0a41ae2c7b45b64281517d69d54b4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -429,7 +429,7 @@
       "path": "dist/archives/skill-architect.tar.gz",
       "file_name": "skill-architect.tar.gz",
       "size_bytes": 92193,
-      "sha256": "6e43331c6501f05b1d3da5d86935c02041eafcf65e5918274cd69c22769707a3",
+      "sha256": "76e14a9423c8adda470360633dea1eb9eda7b57b44ba0cb1a806929a2472bba1",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -442,7 +442,7 @@
   "archive_checksums": {
     "path": "dist/archives/skill-architect.checksums.txt",
     "file_name": "skill-architect.checksums.txt",
-    "sha256": "7f8a8fd5caa932eb4239339b7dd70038a772d32c560d1a778e7a5eab862ac478",
+    "sha256": "8a2f642da505e7c770b8e7d386829137c3c91e8770568679bfe286845bf69cb2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -453,6 +453,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "9418b05c5264763b41c133667d22a032377c2b57280685a761d2a6c4cba34715",
-    "package_sha256": "699c1d4f46a05eb69d32f5defc13dd03a6f62083d08063ea4469c30bc8ebfea2"
+    "package_sha256": "b816d2b498fbeb51cabaebe89fe8b6687ed24fb72cf7e8f745c5a95206cb1628"
   }
 }

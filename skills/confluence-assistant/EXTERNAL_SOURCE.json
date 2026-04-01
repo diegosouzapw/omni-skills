@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "confluence-assistant",
   "lineage_id": 52,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.270599+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.573314+00:00",
   "original_frontmatter_snapshot": {
     "name": "confluence-assistant",
     "description": "Expert in Confluence operations using Atlassian MCP. Use when the user says \"search Confluence\", \"create a Confluence page\", \"update a page\", \"find documentation in Confluence\", \"list spaces\", or \"add a comment to a page\". Do NOT use for Jira issues, general web search, or local file creation.",

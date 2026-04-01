@@ -304,13 +304,13 @@
       "path": "skills/nx-ci-monitor/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1168,
-      "sha256": "86ae7abe8481320e47596a6d7fe54bc2bc2caa6131e6744183d4c4631a008b81"
+      "sha256": "676f31bf8a55c0f505970054237f5ededafd74cc33cc47d2b5b2fb67d9505193"
     },
     {
       "path": "skills/nx-ci-monitor/ORIGIN.md",
       "kind": "support",
       "size_bytes": 728,
-      "sha256": "54fc2714116970ef7555a70397323a94903957c4d2e731ab29c32c9024c541cf"
+      "sha256": "fa31f15d7cd9fd5b14f4061d06507ea20b3900390c240bf95a1ef35dc309862a"
     },
     {
       "path": "skills/nx-ci-monitor/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/nx-ci-monitor.zip",
       "file_name": "nx-ci-monitor.zip",
       "size_bytes": 45809,
-      "sha256": "c4bfb317bf57edb7a5d965be0d979c0db08bc626f573a0529db904586214e664",
+      "sha256": "dd95da0040cb2df506ef9e6b60416591417b28227a5872308792eabb8391cb85",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/nx-ci-monitor.tar.gz",
       "file_name": "nx-ci-monitor.tar.gz",
       "size_bytes": 61468,
-      "sha256": "46547e7c84535ba94e46cb45de378b28c2279c094df68a94945e3e7d3d3ecf55",
+      "sha256": "736017e07ec53bf33c054821ddd2e45dc56df1119d944cd1daf3411623e8ea33",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/nx-ci-monitor.checksums.txt",
     "file_name": "nx-ci-monitor.checksums.txt",
-    "sha256": "bfc83c0fc67eac176c2a5950d16ba48c996e49117d99a3a8ba51cbea3c129b79",
+    "sha256": "77f55457b7073b71cce704e9e4d6afec01473dce700bed6547489070b53eed87",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "60bdad9ec0713a53ccf7998640f83811a35d78eabf3282cc67adb25ea9fb580d",
-    "package_sha256": "739654c8dee4779e78a4a713c817f0707cd755dad307f7a60b0a02210537536f"
+    "package_sha256": "d6fe6d5ce6a05211e198863fd0d56d29c8652b824e4a6c14c04699eaa48f7485"
   }
 }

@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-03-31T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
 
 > **Comprehensive technical analysis of the current Awesome Omni Skills architecture, its public skill surfaces, and its build/runtime pipeline.**
 > Last analyzed: 2026-03-30
@@ -25,9 +25,9 @@
 | **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.9.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx awesome-omni-skills` |
-| **Published skills** | 55 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
+| **Published skills** | 129 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
 | **Defined bundles** | 7, all fully backed by published skills |
-| **Active catalog categories** | 15 active buckets out of 18 canonical taxonomy categories |
+| **Active catalog categories** | 16 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
 | **Production dependencies** | 8 (`@modelcontextprotocol/sdk`, `cors`, `express`, `ioredis`, `ink`, `react`, `yaml`, `zod`) |
 <!-- generated:codebase-analysis-project-overview:end -->
@@ -35,11 +35,11 @@
 Current repository-level classification snapshot from `metadata.json`:
 
 <!-- generated:codebase-analysis-classification-snapshot:start -->
-- average quality score: `88.9`
-- average best-practices score: `87.1`
-- average security score: `88.6`
-- maturity mix: `47` `L3` skills and `8` `L2` skills
-- validation mix: `45` passed, `10` warn, `0` failed
+- average quality score: `93.8`
+- average best-practices score: `94.5`
+- average security score: `88.5`
+- maturity mix: `121` `L3` skills and `8` `L2` skills
+- validation mix: `103` passed, `26` warn, `0` failed
 <!-- generated:codebase-analysis-classification-snapshot:end -->
 
 Current release baseline:

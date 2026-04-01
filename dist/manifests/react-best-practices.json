@@ -311,13 +311,13 @@
       "path": "skills/react-best-practices/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1376,
-      "sha256": "544c2b3475ce99ff34cba6708c9a43a0744203ff12ed77e3cadfecc7a5a5d741"
+      "sha256": "67fcaf8856f421c32a502dd01bc01f2bf758a0fa90ef8f792bd5fbb6e1945d9b"
     },
     {
       "path": "skills/react-best-practices/ORIGIN.md",
       "kind": "support",
       "size_bytes": 749,
-      "sha256": "d0ca93b5c520da4bb7b440cd39d3b440621b9a1586b0bdd5858395f1bfec5310"
+      "sha256": "a33e379c7b4c81561aa7327c84306b82e935ada73b248ac4c5bd52c14fc0f441"
     },
     {
       "path": "skills/react-best-practices/README.md",
@@ -758,7 +758,7 @@
       "path": "dist/archives/react-best-practices.zip",
       "file_name": "react-best-practices.zip",
       "size_bytes": 214760,
-      "sha256": "bb8b6d6b81257e01c2527f8d2f1960b6eedb355283061379373ccd222b6fbbc1",
+      "sha256": "de8f3f838ac0ba1f82f1f3a376c1990cf53f01343f2d8144a5d78f24b57bbea4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -772,7 +772,7 @@
       "path": "dist/archives/react-best-practices.tar.gz",
       "file_name": "react-best-practices.tar.gz",
       "size_bytes": 266293,
-      "sha256": "78e817a1fa071ecd9fbab5c327ded71f10f35291cc678c24e15f196e3c7cc4db",
+      "sha256": "d51ba183d70994838cd51190af95a838b2365e1818c74183404f419a5e96d7f3",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -785,7 +785,7 @@
   "archive_checksums": {
     "path": "dist/archives/react-best-practices.checksums.txt",
     "file_name": "react-best-practices.checksums.txt",
-    "sha256": "ed15d17e2319e6680918060aca03bf76b52b1a91b143d51ce7fa4231a1675a79",
+    "sha256": "067ffeb8fcfb90355ae9239c64742c9ecf538d9e2be3df5f7b6bed0ef463c613",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -796,6 +796,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "6d51d38a8d938cc06e2f624780e5cecb552705b4fdf3b491bace97f0bb2c91c1",
-    "package_sha256": "d8fd6ab6759349b31cc216ad4a404f9e128c43f533f3f8d2bdd518b42c9fda43"
+    "package_sha256": "facce3fe48d02b8cdfb0f3fdae9fd5600b2c5812bf47edf52719bda6a28c4f0f"
   }
 }

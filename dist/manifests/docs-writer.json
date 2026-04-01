@@ -304,13 +304,13 @@
       "path": "skills/docs-writer/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1240,
-      "sha256": "ce5e711dd3ca328f0c6b7e681f27e63e8f283620ca6f7a31c156548e0a298165"
+      "sha256": "bd8f6e7f14cf49cc4e42e580a00609df3b487ae14805d49643934589cf3bd44d"
     },
     {
       "path": "skills/docs-writer/ORIGIN.md",
       "kind": "support",
       "size_bytes": 726,
-      "sha256": "e5aa598ca6fb6c92e1a4b288aba9e6bba819ded0ae3ac09a1ea5fe958f8894ea"
+      "sha256": "9bcb9aef1cc7bd1cb978dda10972e4647a01f29aa36d6be90f392668c40fae10"
     },
     {
       "path": "skills/docs-writer/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/docs-writer.zip",
       "file_name": "docs-writer.zip",
       "size_bytes": 32181,
-      "sha256": "d22530c79c6c464b480b29042b4441c5be692ed47f3574798598223b76c791aa",
+      "sha256": "f8f5f8f8833b039bd0f574ea19b55bd88f896f7c2a2c076c6fa75f451e762ff2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/docs-writer.tar.gz",
       "file_name": "docs-writer.tar.gz",
       "size_bytes": 51228,
-      "sha256": "4ebff194388d58d4bc11b91c8acf2fd6119ae54a976b7b8c4e429f5e05aac3ad",
+      "sha256": "24a2869fdf1a62fbda13a36a1b10960dae37ae652a3419f28746d0e8a6bd5343",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/docs-writer.checksums.txt",
     "file_name": "docs-writer.checksums.txt",
-    "sha256": "71a55509704d0b8fbb3ec8055ca7b99f1e78977b3aa29fe5ac55ed7550869e75",
+    "sha256": "4bfabfbc8bdaa28823c9585b8f6f52fb91ed7970bc38cc2727ffb0a5111a167f",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "6e243ee2440817d7707d044b11a4a0db9be42ad852c97e568d57ec337ec2c7e3",
-    "package_sha256": "3de20eee94a0a7822b08396f6422c191c0fb51c3160af3ecd64895ca5cf5e621"
+    "package_sha256": "ae266e1b5a513ce088f22f998cd552fc6e2a83fa9bb37da8f4ff0f8882d182d1"
   }
 }

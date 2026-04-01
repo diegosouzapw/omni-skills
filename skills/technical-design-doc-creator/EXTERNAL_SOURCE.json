@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "technical-design-doc-creator",
   "lineage_id": 41,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.015476+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.230371+00:00",
   "original_frontmatter_snapshot": {
     "description": "Creates comprehensive Technical Design Documents (TDD) with mandatory and optional sections through interactive discovery. Use when user asks to \"write a design doc\", \"create a TDD\", \"technical spec\", \"architecture document\", \"RFC\", \"design proposal\", or needs to document a technical decision before implementation. Do NOT use for README files, API docs, or general documentation (use docs-writer instead).",
     "name": "technical-design-doc-creator"

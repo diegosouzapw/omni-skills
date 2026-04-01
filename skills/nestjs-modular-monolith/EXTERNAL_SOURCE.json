@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "nestjs-modular-monolith",
   "lineage_id": 56,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.368445+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.712871+00:00",
   "original_frontmatter_snapshot": {
     "name": "nestjs-modular-monolith",
     "description": "Specialist in designing and implementing scalable modular monolith architectures using NestJS with DDD, Clean Architecture, and CQRS patterns. Use when building modular monolith backends, designing bounded contexts, creating domain modules, implementing event-driven module communication, or when user mentions \"modular monolith\", \"bounded contexts\", \"module boundaries\", \"DDD\", \"CQRS\", \"clean architecture NestJS\", or \"monolith to microservices\". Do NOT use for simple CRUD APIs, frontend work, or general NestJS questions without architectural context.",

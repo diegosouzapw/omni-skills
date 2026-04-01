@@ -304,7 +304,7 @@
       "path": "skills/figma-implement-design/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1422,
-      "sha256": "fd42ceb7a593aa0ffb3e0c76413619a025441fc8b2092d9d48e1652c4020c41b"
+      "sha256": "502d390189c087ac73ec2a8917a0349ba430cb19c2632e33179d19624d62f516"
     },
     {
       "path": "skills/figma-implement-design/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/figma-implement-design/ORIGIN.md",
       "kind": "support",
       "size_bytes": 754,
-      "sha256": "9ad8e01fa0fced5f0b0a04080a74466296ee3d7e0e7c9c872bd0e2d03be32819"
+      "sha256": "ac0531da12850048554bab458c6c7e205bd78a71ffb7d4227181d523babe07a1"
     },
     {
       "path": "skills/figma-implement-design/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/figma-implement-design.zip",
       "file_name": "figma-implement-design.zip",
       "size_bytes": 47995,
-      "sha256": "f99f75aefd7070b7e42c23684c20d3300b613c805c962d32b6739318974f01bb",
+      "sha256": "ee27ec76232251b17397a3fc76de2dbbb6adc2aa723d3d6228a869e39abb1a7b",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/figma-implement-design.tar.gz",
       "file_name": "figma-implement-design.tar.gz",
       "size_bytes": 61468,
-      "sha256": "9dadcc462d55a1b658de33d9c90ef3cb2f28ce172af65fb8fb72677488946b68",
+      "sha256": "bb1bf342cd5888bf3931c864f2f17bcea09ef5ac21e96509ec4db5f33fb7cc74",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/figma-implement-design.checksums.txt",
     "file_name": "figma-implement-design.checksums.txt",
-    "sha256": "e94824133a06c19e5dc4beeced5a4d9cc145d73b9e1c2bc40b9722571ae0cc76",
+    "sha256": "356cd89cc170389a5d00009d9124978c17c16d57883dc54ed1cb971573b63361",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "fe27b80f3ad9fa5b4f151bea26fbb98227b270b1c06edbf4c506925095954485",
-    "package_sha256": "ea1c67a93fc6c5c51d13d9c0e18c794e3070bd91024f3a3cf04932c502f13315"
+    "package_sha256": "1d56902bf8cec8f90b017b7a89926f136e3edc1d0399da4ffcc6584b309db110"
   }
 }

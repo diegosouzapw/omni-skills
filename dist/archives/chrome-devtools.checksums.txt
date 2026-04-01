@@ -1,2 +1,2 @@
-46a440aa6b31936c02b9bd4831bb0ebd8af57cedd669714a1314a2bffc3f5f1c  chrome-devtools.zip
-fd0d2e362031306163e76de42c8f28bd88b2b65f59554dd169cee387f712c82d  chrome-devtools.tar.gz
+ed49e89f7a8d713cc7d809bc5afd3eb6631b8ef24536dc0bb64e7fcc30fcecc8  chrome-devtools.zip
+63b86d43057a132ab429f7c1ec7d711d686a0ecd5948bc302ee2f75f52e59251  chrome-devtools.tar.gz

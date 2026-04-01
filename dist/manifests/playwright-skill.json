@@ -433,13 +433,13 @@
       "path": "skills/playwright-skill/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1330,
-      "sha256": "035e1fa38ac6e6fe7ca1ae9edbe504df33949487844679709f69734e01cd7e3f"
+      "sha256": "841b51c2f53b4e522c4e740ad3d4aabfa4bc75784c67c7e6df2eb065337a64e7"
     },
     {
       "path": "skills/playwright-skill/ORIGIN.md",
       "kind": "support",
       "size_bytes": 744,
-      "sha256": "ba8e1b044dd2cd493fc958b8aaf292590c22b945d7436ab55e2cfea69d37908a"
+      "sha256": "98ac7b74b39bc0ef6aa10bfcaa796ed9a73f0a4bc56ba3091ea8a64d81518444"
     },
     {
       "path": "skills/playwright-skill/SKILL.md",
@@ -538,7 +538,7 @@
       "path": "dist/archives/playwright-skill.zip",
       "file_name": "playwright-skill.zip",
       "size_bytes": 81155,
-      "sha256": "b3ce5d180fe1dbcdb0826e4492620d5e6446d4d9a13880bd5e3c75254a0f04b1",
+      "sha256": "97af277a555abcd4b31baf8f34fa51428b95d86115f021ce1c8a371c434ae093",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -552,7 +552,7 @@
       "path": "dist/archives/playwright-skill.tar.gz",
       "file_name": "playwright-skill.tar.gz",
       "size_bytes": 92193,
-      "sha256": "025ea1f1508ec7503aca7b01068fd1c5a99c424b47fcbda925c01c56734e903e",
+      "sha256": "f60750c4e4f236f362941c3820b9f9eeeb82feff8820d5c657c5b64f6e62d447",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -565,7 +565,7 @@
   "archive_checksums": {
     "path": "dist/archives/playwright-skill.checksums.txt",
     "file_name": "playwright-skill.checksums.txt",
-    "sha256": "40016384494872c2ec52bb35322dba65e09f2c435738327045d0f0d237662458",
+    "sha256": "222587946b0802adc83ed53a4facd3a7ff71279c9533e362332b010c2ff5efea",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -576,6 +576,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5049893e1a629ea6c960b4836d568ac2415e2e1d36b5e1576cb0191190099a38",
-    "package_sha256": "bb03a4d5056714dd94568c92ec3ab37ecfb040a815cb9e8c410a10e3080a4ef1"
+    "package_sha256": "e4c69e18e22cbd7e6bdadd75db27365799040fd1807cf8486458fd62a7f3af44"
   }
 }

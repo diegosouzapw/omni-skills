@@ -304,13 +304,13 @@
       "path": "skills/lead-enrichment/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1599,
-      "sha256": "4f9ac9ba737701a8e804bdd2927ff5034339681650acc3a8234c0b0f5808d7f8"
+      "sha256": "76420e7a66a4c36052274063fecc689db0ec09e14bfe93ca91657403c94fb112"
     },
     {
       "path": "skills/lead-enrichment/ORIGIN.md",
       "kind": "support",
       "size_bytes": 730,
-      "sha256": "f7754ff1b78faf11b3efd91eb7e3829f68fd6270265ee9dafec0ee14353b76b7"
+      "sha256": "83e29dac03af402aac789f5d8e2dbbf193e192a55305e5638f59f74e94640576"
     },
     {
       "path": "skills/lead-enrichment/SKILL.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/lead-enrichment.zip",
       "file_name": "lead-enrichment.zip",
       "size_bytes": 48274,
-      "sha256": "9293bbd0ff81497a988b2671ecfe5f605dba9a8ee1f3a98d6da7bcbca5ae259b",
+      "sha256": "1dbae02666795dc01a181f96eb5cfaa574427fb79ff6119cd63a2162fee47f59",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/lead-enrichment.tar.gz",
       "file_name": "lead-enrichment.tar.gz",
       "size_bytes": 61468,
-      "sha256": "475ce74a6114b7892b7e0e958acc5620c698ba24476101d25677785ca2ce915d",
+      "sha256": "b2652df8566cec9182c8d12eddca4aa49558bc66ffd90cca7cdcb35ae312692c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/lead-enrichment.checksums.txt",
     "file_name": "lead-enrichment.checksums.txt",
-    "sha256": "be9cceaa0aaf130288975596f46c8cfd13987d20982ba344c5f31c9d9a1e41e3",
+    "sha256": "4d7bd95f1c39c81bb811ceec7c59eab4f67784db6f1b3be7e5355b31b479eae2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "9a35012f93959431691d1d38b0cb2c13bd5932a7eeee93269ebcd074e063e47c",
-    "package_sha256": "472ffc43ad664ca0a7b8bc91c94fafc4532787d7b8dd3c260eb033626f8f9b72"
+    "package_sha256": "764c8ec153812f9d2a848dd29e1d649833fe4fa01d3702787b129a6301826b84"
   }
 }

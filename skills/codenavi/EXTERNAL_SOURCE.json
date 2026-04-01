@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "codenavi",
   "lineage_id": 50,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.224640+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.518400+00:00",
   "original_frontmatter_snapshot": {
     "name": "codenavi",
     "description": "Your pathfinder for navigating unknown codebases. Investigates with precision, implements surgically, and never assumes — if it doesn't know, it says so. Maintains a .notebook/ knowledge base that grows across sessions, turning every discovery into lasting intelligence. Summons available skills, MCPs, and docs when the mission demands. Use when fixing bugs, implementing features, refactoring, investigating flows, or any development task in unfamiliar territory. Triggers on \"fix this\", \"implement this\", \"how does this work\", \"investigate this flow\", \"help me with this code\". Do NOT use for greenfield scaffolding, CI/CD, or infrastructure provisioning.",

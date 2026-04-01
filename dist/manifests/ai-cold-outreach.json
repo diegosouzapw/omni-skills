@@ -304,13 +304,13 @@
       "path": "skills/ai-cold-outreach/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1605,
-      "sha256": "ccfd6c39cfaf0ecd22de277bcbbe4f044ee6bb357f23107d9e8c7d42f4910d17"
+      "sha256": "d5c909c082eac35d830d78e663ddee80b3efd6941a8e42ed8874ae2db5a551a9"
     },
     {
       "path": "skills/ai-cold-outreach/ORIGIN.md",
       "kind": "support",
       "size_bytes": 733,
-      "sha256": "872ced1ea0e52498f13bb38959bee7a4e6136e6701532fb96001237eeee189e8"
+      "sha256": "959b8e63dcf491632774638afa970701d112a3298656d17f51c3bdaa3556038d"
     },
     {
       "path": "skills/ai-cold-outreach/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/ai-cold-outreach.zip",
       "file_name": "ai-cold-outreach.zip",
       "size_bytes": 58707,
-      "sha256": "a1eff6c747191619e0076fed4b028f75547fad581178e152068771ebc191ce79",
+      "sha256": "c645a1ca0441226e96bf82404ce5afe76d5294a4c240117609922a6911a11542",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/ai-cold-outreach.tar.gz",
       "file_name": "ai-cold-outreach.tar.gz",
       "size_bytes": 71708,
-      "sha256": "a5c7cd520a3f1725b1cfd2f1d40d33b350fddfbd2f953a6513f9cf83a2985acf",
+      "sha256": "46d633b5d27db9cf4fdf0520ab8896ac8f9c040fbec9a33d19d3c07f652d9816",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/ai-cold-outreach.checksums.txt",
     "file_name": "ai-cold-outreach.checksums.txt",
-    "sha256": "103e0ca7f3d7ebf0f4efea6f4d6d5539955c97991c9cd7888512170e20ff2055",
+    "sha256": "b4e6969d22eee3f0258857d937405233720e8185af1c98930169ceefa9d611c2",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "71236c530457f49d33f2b115c3821c6c6e7a53f0981aff8ed51913edfef3b821",
-    "package_sha256": "525678a1d8badaee4dc27669819e42223fcaa05ff17843736bcd6e4598ffe790"
+    "package_sha256": "9efc0809cc1f4575123af0c33109eef437453a0d42609ffd1a71cc61643d5593"
   }
 }

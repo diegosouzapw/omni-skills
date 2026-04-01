@@ -304,13 +304,13 @@
       "path": "skills/multi-platform-launch/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1618,
-      "sha256": "71a30033976dcdcf07935266d516c40ec5b1306110aae86186daf5c65cd50a79"
+      "sha256": "c6f87bc32b7ca8bf016161ccef2efe73b4651539603c98fe915213463b6cbfbf"
     },
     {
       "path": "skills/multi-platform-launch/ORIGIN.md",
       "kind": "support",
       "size_bytes": 748,
-      "sha256": "45fb9e003655a30da7443744eb176b4381cb2e274ba6b8800e7b66e6442640d7"
+      "sha256": "57429fc49e67d48d6f125503e17d27570ac07212cc828a260dcb2fa61c136f81"
     },
     {
       "path": "skills/multi-platform-launch/SKILL.md",
@@ -403,7 +403,7 @@
       "path": "dist/archives/multi-platform-launch.zip",
       "file_name": "multi-platform-launch.zip",
       "size_bytes": 51996,
-      "sha256": "62d91a9824ffaf92b9e0dd9cc67c086d3d4a7c16238020be32b683ce9cd98011",
+      "sha256": "6e985304608b9836ad12c604a3d6b8fab8615c2f7a7ecb0c366f664761b0c7df",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -417,7 +417,7 @@
       "path": "dist/archives/multi-platform-launch.tar.gz",
       "file_name": "multi-platform-launch.tar.gz",
       "size_bytes": 71713,
-      "sha256": "c90fbd9853116d2afdbb08e9a1210f1ec2dd82d9081e732e9d62408d5516d06c",
+      "sha256": "bb37cfca1a073ce570a945c336b63f275eba3549b40067fe47928abd1dbb06eb",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -430,7 +430,7 @@
   "archive_checksums": {
     "path": "dist/archives/multi-platform-launch.checksums.txt",
     "file_name": "multi-platform-launch.checksums.txt",
-    "sha256": "47bd6299f0ffcba095d2ff93c9fcdf52249a38866eaa9de0b19ca62d65762b24",
+    "sha256": "c1bcfd7f61f0c5feb7112c0116688137246255bd2b2d6ed1a30bd85b51233ec3",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -441,6 +441,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "653481f8afecc345ba3d7a0aadf0fcd41c0d94337af6e473b00819476138d836",
-    "package_sha256": "6c3bcc68b6990ac6628ff13a0c4edf37fd70bd0ce009ab8380a218027b6f4037"
+    "package_sha256": "66bded7a596264203c54c7dea426e3560f3a9c583877372b8eb2a0fa07088bcd"
   }
 }

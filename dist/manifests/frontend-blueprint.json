@@ -304,13 +304,13 @@
       "path": "skills/frontend-blueprint/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1814,
-      "sha256": "f3965c657214b60a45e71c123feb1b5cce1a553de933497d98fb69a847a7b407"
+      "sha256": "0c6add33ef489639300f64d9aa68f8280a8d9a559f481067316e14c1f7691f02"
     },
     {
       "path": "skills/frontend-blueprint/ORIGIN.md",
       "kind": "support",
       "size_bytes": 748,
-      "sha256": "cdaf1ac2ac94d22c2135ef07002502a8e1734032b41b7a02ccf46656fcc59d8a"
+      "sha256": "8785d9739840f23447c2a912a7c5812ac5ec4a115eb69f93771944fef358ead9"
     },
     {
       "path": "skills/frontend-blueprint/SKILL.md",
@@ -409,7 +409,7 @@
       "path": "dist/archives/frontend-blueprint.zip",
       "file_name": "frontend-blueprint.zip",
       "size_bytes": 92205,
-      "sha256": "af40047ece63705f043d0098407fa84a26147446936727c65a6e80c1c876aba4",
+      "sha256": "9a05250abe0d5e9476e37372a0b04e0be06146f533799bb9e607ca392a2a9aeb",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -423,7 +423,7 @@
       "path": "dist/archives/frontend-blueprint.tar.gz",
       "file_name": "frontend-blueprint.tar.gz",
       "size_bytes": 112673,
-      "sha256": "a1c5846f3b0163914d715fd1f187bc85a0652730b0425913542890f717c97882",
+      "sha256": "de696faba6aed296f4ad7c1b019955c3022071788ee5ce8e22a0d7dc76e0ed9d",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -436,7 +436,7 @@
   "archive_checksums": {
     "path": "dist/archives/frontend-blueprint.checksums.txt",
     "file_name": "frontend-blueprint.checksums.txt",
-    "sha256": "74ff852f0a2f66f701ff2db4d1ac7433e3a9f69a602571004ff043eaea833577",
+    "sha256": "49cf72d80050c8fc6cfd59b0a452c25b36852449d132d1489798f6b3a3a5df83",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -447,6 +447,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "eb4d5001c0ac213bcc3621545ca53790cb06f7535038103718e6422886f32122",
-    "package_sha256": "bb2205f9c4b068d7ab037cdc29549a8c0fcf9db9bc13e7b0db83526b8b0e8b30"
+    "package_sha256": "03024f846bb1145e905b856672b90b8a4830c395917426f678c969772f62e68d"
   }
 }

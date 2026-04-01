@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "sentry",
   "lineage_id": 79,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:57.951408+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:31.618048+00:00",
   "original_frontmatter_snapshot": {
     "name": "sentry",
     "description": "Inspect Sentry issues, summarize production errors, and pull health data via the Sentry API (read-only). Use when user says \"check Sentry\", \"what errors in production?\", \"summarize Sentry issues\", \"recent crashes\", or \"production error report\". Requires SENTRY_AUTH_TOKEN. Do NOT use for setting up Sentry SDK, configuring alerts, or non-Sentry error monitoring.",

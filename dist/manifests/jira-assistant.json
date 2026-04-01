@@ -304,13 +304,13 @@
       "path": "skills/jira-assistant/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1219,
-      "sha256": "23c3042c872d263b97d8c52cc7ec89073429f5472a38b627bc63e6b45d7a1743"
+      "sha256": "181fd345702fa88b99da1d24a09dc6d4153a7849a84753927541a5e22a82b24f"
     },
     {
       "path": "skills/jira-assistant/ORIGIN.md",
       "kind": "support",
       "size_bytes": 735,
-      "sha256": "a8246077e2fa8bc462e49ca214703d11489ab2c0778f9910c2a5d9a90015defa"
+      "sha256": "9f84609af9d8477ec9e43dfd50e7f6ff460ecf1179e40ebb5431aadb90af266e"
     },
     {
       "path": "skills/jira-assistant/README.md",
@@ -397,7 +397,7 @@
       "path": "dist/archives/jira-assistant.zip",
       "file_name": "jira-assistant.zip",
       "size_bytes": 36809,
-      "sha256": "030cec4650ee6dfcb59498b8e25d56c3d61bfeca59db81569f483ca1189c592b",
+      "sha256": "1ab667473ca39310deea9aff775503c3090608366529e4995969dffca763c320",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -411,7 +411,7 @@
       "path": "dist/archives/jira-assistant.tar.gz",
       "file_name": "jira-assistant.tar.gz",
       "size_bytes": 51228,
-      "sha256": "3d64644f683b13e7e95eb7b206489d8bc24ab3c2108e049dcf185143061fc0fd",
+      "sha256": "9a51909e410198bd0afeb10644e363d7e7be7bd518086081341a59d7bbf95e29",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -424,7 +424,7 @@
   "archive_checksums": {
     "path": "dist/archives/jira-assistant.checksums.txt",
     "file_name": "jira-assistant.checksums.txt",
-    "sha256": "0bb1c3fc1174bd52ffedec972353f07e277ce21e9777fd20ad1a65e4549582d9",
+    "sha256": "2ea18755d594b34027cce366e8da32055ab675da97303be9c6852051c038b71c",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -435,6 +435,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5b6eb855ff7e9d818fb237f344dd9676a821862138f31962eb6066d84c3790f4",
-    "package_sha256": "9cd5fb446b46aede5489c92bfc67cb7fd2505692a1c6b769701bbc6c9010b6f7"
+    "package_sha256": "6d343fcbb02e44f36494de09f1dd8539725b6c049d9afeaa321b2e83b8dc1002"
   }
 }

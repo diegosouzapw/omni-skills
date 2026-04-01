@@ -304,13 +304,13 @@
       "path": "skills/confluence-assistant/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1308,
-      "sha256": "97cf4697380a568b56c234d3813093c7e1849b470d2ccb0a44cbc1feef5bd315"
+      "sha256": "acb6f0aaee1ac8e4406042b62fd8dd8c41e09dc1b762f4c5b4fcf9995119671a"
     },
     {
       "path": "skills/confluence-assistant/ORIGIN.md",
       "kind": "support",
       "size_bytes": 753,
-      "sha256": "a285416da3f0b954bf6c18a949ba09162f42bb50c2cfcc6af957b2cff79c1b36"
+      "sha256": "189eacbcb9fa900313eb9101e103aba81eb6427c13cdc824b2fef3afc8085e76"
     },
     {
       "path": "skills/confluence-assistant/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/confluence-assistant.zip",
       "file_name": "confluence-assistant.zip",
       "size_bytes": 28721,
-      "sha256": "0a645ac97eb59d390ad91ee0f830d7758dc052f1ce2ab115874df6830182f773",
+      "sha256": "8e57326baadc9f8cbc44fd1b78b557aed508090cc928fd56fe7e6ddcc9d691a8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/confluence-assistant.tar.gz",
       "file_name": "confluence-assistant.tar.gz",
       "size_bytes": 40988,
-      "sha256": "0e90572d9aeffdcfce7ab9905ebd1901e0563655d332b740990eb4db051d8ab5",
+      "sha256": "8cec3e42206fcee2329cd1c0587d0c43ff7ee5a47c2168551c480c10d2db849a",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/confluence-assistant.checksums.txt",
     "file_name": "confluence-assistant.checksums.txt",
-    "sha256": "a69dd7962ec9b2c1c9b3587306b4d721b47ed39766a82db40ff341d39cba65ab",
+    "sha256": "ed5ff549a1993091cfd11c0d35024cb19d5f73652a0b6ceebbe00a92aac568e1",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5513e188afcf782762d70d25d4777deca536a772ae665885013aaf17ce651089",
-    "package_sha256": "4f84e064d3eed9b80194faacdb4e731613d7da3001ee484918933f958697226d"
+    "package_sha256": "77ff97b6c29e20ae3900f5a8634d7ff818e786824b7aa48e194e5b200bf5b4af"
   }
 }

@@ -12,8 +12,8 @@
   "license_status": "compatible",
   "imported_public_skill_id": "frontend-blueprint",
   "lineage_id": 31,
-  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
-  "imported_at": "2026-04-01T18:08:56.825338+00:00",
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:29.967628+00:00",
   "original_frontmatter_snapshot": {
     "name": "frontend-blueprint",
     "description": "AI frontend specialist and design consultant that guides users through a structured discovery process before generating any code. Collects visual references, design tokens, typography, icons, layout preferences, and brand guidelines to ensure the final output matches the user's vision with high fidelity. Use when the user asks to build, design, create, or improve any frontend interface — websites, landing pages, dashboards, components, apps, emails, forms, modals, or any UI element. Also triggers on \"build me a UI\", \"design a page\", \"create a component\", \"improve this layout\", \"make this look better\", \"frontend\", \"interface\", \"redesign\", or when the user provides mockups, screenshots, or design references. Do NOT use for backend logic, API design, database schemas, or non-visual code tasks.",

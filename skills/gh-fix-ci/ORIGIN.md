@@ -12,6 +12,6 @@ This native intake skill was imported automatically from an external repository.
 - Imported public skill id: `gh-fix-ci`
 - Source license: `MIT`
 - License status: `compatible`
-- Sync run id: `20260401T180834.349641+0000-tech-leads-club-agent-skills-manual`
+- Sync run id: `20260401T184100.280394+0000-tech-leads-club-agent-skills-manual`
 
 The original source identity is preserved for review and attribution.

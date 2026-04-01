@@ -304,7 +304,7 @@
       "path": "skills/security-ownership-map/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1531,
-      "sha256": "cd871142359d122cba99326cb65763f34a94ae6949f1a0a787612c5cd01bcffa"
+      "sha256": "e339805d752f5b6dff3115ff98f3ed822461689ae959a1ffb9232b2a6a4cbeb2"
     },
     {
       "path": "skills/security-ownership-map/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/security-ownership-map/ORIGIN.md",
       "kind": "support",
       "size_bytes": 756,
-      "sha256": "c7f640e34d632bce88682b968e1a8d6530c9b2bc78f68e57dceadf4581859f02"
+      "sha256": "958c214a40609b6cb4ef7f15bf8fe5233af017e315e9af8fc9d9661ad1ba2693"
     },
     {
       "path": "skills/security-ownership-map/SKILL.md",
@@ -427,7 +427,7 @@
       "path": "dist/archives/security-ownership-map.zip",
       "file_name": "security-ownership-map.zip",
       "size_bytes": 125594,
-      "sha256": "91016dbd05ee7812b5897fe108acb42886dc9dff16a6ccc9ac4dae42eef041d4",
+      "sha256": "ddaa3e1c8d1004d2b46e15fcc26a5adbdec76a903c6f07c9cc235e0eae92a471",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -441,7 +441,7 @@
       "path": "dist/archives/security-ownership-map.tar.gz",
       "file_name": "security-ownership-map.tar.gz",
       "size_bytes": 143398,
-      "sha256": "7afe4f056fdfc00f4ba16a5ac25024863c7c8fdff53abec35cbcefe7f8c8e772",
+      "sha256": "23960ad24e3be200ddc3fe5a79e60bfeed9663ed66312b54825adf27803ac116",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -454,7 +454,7 @@
   "archive_checksums": {
     "path": "dist/archives/security-ownership-map.checksums.txt",
     "file_name": "security-ownership-map.checksums.txt",
-    "sha256": "fd6edc4505651d2aeab163a9d6ed1c0e8362115d49fb0669c4e815db75fe3105",
+    "sha256": "4f91b471899d031cbb490914de88b60f2fe3f7639136e4eea98bdb72015339c4",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -465,6 +465,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "69968cf73481ac43df544d17e0af75fb3213dfb2ec2740408ecc580a76649b82",
-    "package_sha256": "3d69c679420ad6e0c89cd62dd7176b306e1e71e4ec52c853f59b877a94cbe223"
+    "package_sha256": "531c7ef975df6b2377fc0aab1cd9070830d6ee08559c3e273b0b61449f8f0b37"
   }
 }

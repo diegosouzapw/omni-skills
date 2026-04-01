@@ -304,7 +304,7 @@
       "path": "skills/figma/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1346,
-      "sha256": "5e90d13833abd756bdb6fe4d0f689fcaec9106203dd7956373e283f6e4fe7f1f"
+      "sha256": "3bb3c95580453a53675d6f22800a80fa5e66bb433acf5eff24da9875b54482c1"
     },
     {
       "path": "skills/figma/LICENSE.txt",
@@ -316,7 +316,7 @@
       "path": "skills/figma/ORIGIN.md",
       "kind": "support",
       "size_bytes": 703,
-      "sha256": "4db8299093bbdbcb944a6b8c499d08447215524f06a00db6fdeb07654f9d6e8b"
+      "sha256": "64790766f0b4672cb4876457d5a49d00834fed588f8c46df3f5d52ade7fdcc89"
     },
     {
       "path": "skills/figma/SKILL.md",
@@ -409,7 +409,7 @@
       "path": "dist/archives/figma.zip",
       "file_name": "figma.zip",
       "size_bytes": 44767,
-      "sha256": "5e229e47ce1119b53c91b9939ebe5725982352cb2cef2b40365ffd0c7b5bbb05",
+      "sha256": "666fe49da1516bd2906e992e2967f4f8220205e11d2aa59a972463ad4e927a2e",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -423,7 +423,7 @@
       "path": "dist/archives/figma.tar.gz",
       "file_name": "figma.tar.gz",
       "size_bytes": 61468,
-      "sha256": "a32d9ed26ce41a608a5b581ba6ca0691605a9e332470f261007b999b99f2b03a",
+      "sha256": "69ad4bbdbf609a0349f07523aa08f40b97b74a762b66fc8a953d43cd87501a3c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -436,7 +436,7 @@
   "archive_checksums": {
     "path": "dist/archives/figma.checksums.txt",
     "file_name": "figma.checksums.txt",
-    "sha256": "cf62e06c045b8e9ec159340e2354ea92fb802226ba1040a2a46b79f0ab1bc6c3",
+    "sha256": "dafad54d2cfe1a7f80bdf1ffe66107313a2c9d2eb38ad2fd6ae659c859e3564e",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -447,6 +447,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "a27227931cc9c221434865b508c11123f4b52700927ece78a65322a1d874bc1f",
-    "package_sha256": "f82ae0fa27af3686a2c1c77b2962381a5f11b57f36d6d0606a25510c1f62a0ca"
+    "package_sha256": "31775821fa9aa5d32bfd9c2ac82b140ae31ddf1d119c0dbc0594d73fcc633d6b"
   }
 }

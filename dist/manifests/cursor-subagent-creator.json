@@ -304,13 +304,13 @@
       "path": "skills/cursor-subagent-creator/EXTERNAL_SOURCE.json",
       "kind": "support",
       "size_bytes": 1238,
-      "sha256": "45b3cc1419194679ab8eea939736f63d35cfd7867d4aa016c75bb80899272899"
+      "sha256": "48418060af19529feda4f17c7a40c15d3fba2d56df6d255b2037fd706a2a1664"
     },
     {
       "path": "skills/cursor-subagent-creator/ORIGIN.md",
       "kind": "support",
       "size_bytes": 759,
-      "sha256": "fe4edfec2f8a9ee5ab87ed7fd8e2f86e48991bc180b28467a408bbcdad4a249b"
+      "sha256": "2c63b9dce56946a57bf576950c0856050033af0ad5cf73be9baf1c6a7ea8d450"
     },
     {
       "path": "skills/cursor-subagent-creator/SKILL.md",
@@ -391,7 +391,7 @@
       "path": "dist/archives/cursor-subagent-creator.zip",
       "file_name": "cursor-subagent-creator.zip",
       "size_bytes": 43416,
-      "sha256": "1b4fd1b29037e4fd4e00e381398b7d1ef1a93940fa56e3a521d2afec1eee0c98",
+      "sha256": "fc6e8857a624c0459cd00993cb63adca142eee616ec1422f250dad5b25c94325",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -405,7 +405,7 @@
       "path": "dist/archives/cursor-subagent-creator.tar.gz",
       "file_name": "cursor-subagent-creator.tar.gz",
       "size_bytes": 61468,
-      "sha256": "29b857758810fb1d94e6dd9fc54b8e891bc7329cbec432be4c840ca6ff994c17",
+      "sha256": "010a2ebeb9c51b85eda72964970d22649a06af34ff63c2c36999d419897d0ac2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -418,7 +418,7 @@
   "archive_checksums": {
     "path": "dist/archives/cursor-subagent-creator.checksums.txt",
     "file_name": "cursor-subagent-creator.checksums.txt",
-    "sha256": "66265a66c4e86bb3fb5ec7c0af1e7017a9d31863be23c34a835190bfd4b637b1",
+    "sha256": "5a44b0c3d3e9f729af92b23e36acad544efcced16f95269c556d743d72c4c060",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -429,6 +429,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "4dde7ce8a2d401144f2d319cbe4fa9c2645b9ada8a1ff13d140a6c69d9b46c34",
-    "package_sha256": "2bd338d6f59c968333c39fcbb67ffe2b2286303cfe8c6ef9c13f350c3f22eb9b"
+    "package_sha256": "da4d6d82b6b7d3fe0082dcb6decee86878bbe6cbb95bd6267fa06b8205397e7c"
   }
 }
