@@ -1,0 +1,2 @@
+72b4b46bafb641e096e23b996301dbdeaeadc459452f74681c383c3ca9c233d0  nestjs-modular-monolith.zip
+83a93e0634446373fbcc37972a130bf9422ae6c763e815151e9d81cfa44481d9  nestjs-modular-monolith.tar.gz

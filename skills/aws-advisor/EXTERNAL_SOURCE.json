@@ -1,0 +1,25 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_repository_owner": "tech-leads-club",
+  "source_repository_name": "agent-skills",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skills_path": "packages/skills-catalog/skills",
+  "source_skill_path": "packages/skills-catalog/skills/(cloud)/aws-advisor",
+  "source_skill_name": "aws-advisor",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "aws-advisor",
+  "lineage_id": 34,
+  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:08:56.900445+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "aws-advisor",
+    "description": "Expert AWS Cloud Advisor for architecture design, security review, and implementation guidance. Leverages AWS MCP tools for accurate, documentation-backed answers. Use when user asks about AWS architecture, security, service selection, migrations, troubleshooting, or learning AWS. Triggers on AWS, Lambda, S3, EC2, ECS, EKS, DynamoDB, RDS, CloudFormation, CDK, Terraform, Serverless, SAM, IAM, VPC, API Gateway, or any AWS service. Do NOT use for non-AWS cloud providers or general infrastructure without AWS context.",
+    "license": "CC-BY-4.0",
+    "metadata": [],
+    "author": "Felipe Rodrigues - github.com/felipfr",
+    "version": "1.0.0"
+  }
+}

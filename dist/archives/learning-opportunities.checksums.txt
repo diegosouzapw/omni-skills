@@ -1,0 +1,2 @@
+e8e1bf7f662c0933ff7b0b086420f44a90a18a1af654ae0da171d1bb5b4bffdc  learning-opportunities.zip
+ccda632cf50f372b224e23cffaf9b3c06be4a8aff5c4061098cf0fb42d558060  learning-opportunities.tar.gz

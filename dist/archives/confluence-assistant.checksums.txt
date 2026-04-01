@@ -1,0 +1,2 @@
+0a645ac97eb59d390ad91ee0f830d7758dc052f1ce2ab115874df6830182f773  confluence-assistant.zip
+0e90572d9aeffdcfce7ab9905ebd1901e0563655d332b740990eb4db051d8ab5  confluence-assistant.tar.gz

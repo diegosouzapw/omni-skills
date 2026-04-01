@@ -1,0 +1,2 @@
+5a8294e705ead0f4790aa4a29d711ec6bf723673579d7489b242bf3a8de9e362  component-common-domain-detection.zip
+b4dd82548bf75b5a6ccd805cf1c4a629e515557600568b3b1f1cd68f89a7867e  component-common-domain-detection.tar.gz

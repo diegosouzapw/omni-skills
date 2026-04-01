@@ -1,0 +1,14 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "perf-web-optimization",
+  "public_skill_path": "skills/perf-web-optimization",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(performance)/perf-web-optimization",
+  "upstream_files": [
+    "references/bundle-optimization.md",
+    "references/core-web-vitals.md",
+    "references/image-optimization.md"
+  ]
+}

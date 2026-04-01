@@ -1,0 +1,446 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "decomposition-planning-roadmap",
+  "slug": "decomposition-planning-roadmap",
+  "display_name": "Decomposition Planning and Roadmap",
+  "description": "Decomposition Planning and Roadmap workflow skill. Use this skill when the user needs Creates step-by-step decomposition plans and migration roadmaps for breaking apart monolithic applications. Use when asking \\\"what order should I extract services?\\\", \\\"plan my migration\\\", \\\"create a decomposition roadmap\\\", \\\"prioritize what to split\\\", \\\"monolith to microservices strategy\\\", or tracking decomposition progress. Do NOT use for domain analysis (use domain-analysis) or component sizing (use component-identification-sizing) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "product",
+  "raw_category": "product",
+  "taxonomy": {
+    "raw_category": "product",
+    "canonical_category": "product",
+    "inferred_category": "product",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "decomposition-planning-roadmap",
+    "creates",
+    "step-by-step",
+    "decomposition",
+    "plans",
+    "and",
+    "migration",
+    "roadmaps"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "tech-leads-club",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/decomposition-planning-roadmap/SKILL.md",
+  "paths": {
+    "root": "skills/decomposition-planning-roadmap",
+    "manifest": "dist/manifests/decomposition-planning-roadmap.json",
+    "metadata": "skills/decomposition-planning-roadmap/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 16,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 135,
+        "workflow_section_length": 7238,
+        "when_to_use_section_length": 437,
+        "best_practices_items_count": 21,
+        "best_practices_section_length": 1157,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1391,
+        "resources_items_count": 146,
+        "resources_section_length": 10301,
+        "examples_section_length": 1255,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 46,
+        "table_count": 22,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 10,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 3.97
+      }
+    },
+    "quality": {
+      "score": 94,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 15,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 24458,
+    "content_length": 25557,
+    "body_lines": 770,
+    "word_count": 3058,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 135,
+      "workflow_section_length": 7238,
+      "when_to_use_section_length": 437,
+      "best_practices_items_count": 21,
+      "best_practices_section_length": 1157,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1391,
+      "resources_items_count": 146,
+      "resources_section_length": 10301,
+      "examples_section_length": 1255,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 46,
+      "table_count": 22,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 3.97
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/decomposition-planning-roadmap/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1359,
+      "sha256": "9f204b15c59bce053ae4e8ec753f6f70f7fbcae7f1ed9372f0c2aab7feeca82c"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 784,
+      "sha256": "af12b1ebb13e96c1d8c5a2eadcedb53cf47029e953ece3346694b4f69f4383d6"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/QUICK-REFERENCE.md",
+      "kind": "support",
+      "size_bytes": 4130,
+      "sha256": "647b7a26560ab1e97bde69e47199bb6573fdde736deb45b8f6a07b95f4646c9f"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/README.md",
+      "kind": "support",
+      "size_bytes": 13467,
+      "sha256": "c8deca3dd0fda581768b10a63910fdcb4ac0e8ac886cb7c0f8109456f13da923"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 25698,
+      "sha256": "653be0275980c9fe98c2c8b8b57cc936e07a1e22df4ac7b073b6d98e7d95c1ac"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/metadata.json",
+      "kind": "support",
+      "size_bytes": 6893,
+      "sha256": "091708a257b8802038d35fd2ea702ef56d36f6aa81fdec95e03b7c33d6c5e197"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 500,
+      "sha256": "420b9eb326afc26236b7324f74159e23c8c99f8e44baa1322e982c45a6b82d93"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 241,
+      "sha256": "e0364ac244ee6d2d8163475505b8c51da56e4793479d0f927d7d37e10378de23"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 438,
+      "sha256": "df41963311b50c7d13cc3a7846bd49f44addadd09c6e86718823ea05740b5aef"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/decomposition-planning-roadmap/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/decomposition-planning-roadmap.zip",
+      "file_name": "decomposition-planning-roadmap.zip",
+      "size_bytes": 59640,
+      "sha256": "7e455e45393650fa7cc04d0ae7b55d76a10580e72eb52fc867db2fc657c8291b",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/decomposition-planning-roadmap.tar.gz",
+      "file_name": "decomposition-planning-roadmap.tar.gz",
+      "size_bytes": 71708,
+      "sha256": "68458176e0a977603e7f7785615ebe4ca1308ea392988e2e088c3d74767417f4",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/decomposition-planning-roadmap.checksums.txt",
+    "file_name": "decomposition-planning-roadmap.checksums.txt",
+    "sha256": "2aa364ac358783f91bc2f386ecfd153f376fd872f107f7bb660a03dc09337927",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "653be0275980c9fe98c2c8b8b57cc936e07a1e22df4ac7b073b6d98e7d95c1ac",
+    "package_sha256": "c2762f7cccdc289b541ccd57277daaf8df9c1ba320113436c56a6a5e5ca6d5cd"
+  }
+}

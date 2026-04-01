@@ -1,0 +1,464 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "react-native-expert",
+  "slug": "react-native-expert",
+  "display_name": "React Native Expert",
+  "description": "React Native Expert workflow skill. Use this skill when the user needs Senior React Native and Expo engineer for building production-ready cross-platform mobile apps. Use when building React Native components, implementing navigation with Expo Router, optimizing list and scroll performance, working with animations via Reanimated, handling platform-specific code (iOS/Android), integrating native modules, or structuring Expo projects. Triggers on React Native, Expo, mobile app, iOS app, Android app, cross-platform, native module, FlatList, FlashList, LegendList, Reanimated, Expo Router, mobile performance, app store. Do NOT use for Flutter, web-only React, or backend Node.js tasks and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "fullstack-web",
+  "raw_category": "fullstack-web",
+  "taxonomy": {
+    "raw_category": "fullstack-web",
+    "canonical_category": "fullstack-web",
+    "inferred_category": "fullstack-web",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "react-native-expert",
+    "senior",
+    "react",
+    "native",
+    "and",
+    "expo",
+    "engineer",
+    "for"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "Felipe Rodrigues - github.com/felipfr",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/react-native-expert/SKILL.md",
+  "paths": {
+    "root": "skills/react-native-expert",
+    "manifest": "dist/manifests/react-native-expert.json",
+    "metadata": "skills/react-native-expert/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 19,
+    "references_count": 9,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 27,
+        "workflow_section_length": 4259,
+        "when_to_use_section_length": 863,
+        "best_practices_items_count": 24,
+        "best_practices_section_length": 6941,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1379,
+        "resources_items_count": 33,
+        "resources_section_length": 4155,
+        "examples_section_length": 1211,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 45,
+        "table_count": 37,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 15,
+        "references_files_count": 9,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 6.8
+      }
+    },
+    "quality": {
+      "score": 98,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 18,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 21390,
+    "content_length": 22632,
+    "body_lines": 396,
+    "word_count": 2694,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 27,
+      "workflow_section_length": 4259,
+      "when_to_use_section_length": 863,
+      "best_practices_items_count": 24,
+      "best_practices_section_length": 6941,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1379,
+      "resources_items_count": 33,
+      "resources_section_length": 4155,
+      "examples_section_length": 1211,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 45,
+      "table_count": 37,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 15,
+      "references_files_count": 9,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.8
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/react-native-expert/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1615,
+      "sha256": "4276afcf3346d038f3fa759989e475ef220dc1e3179339dc05513baedea19574"
+    },
+    {
+      "path": "skills/react-native-expert/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 750,
+      "sha256": "3b31653609620a87376134efbef936a783bc840889d17503997483ed57194d6b"
+    },
+    {
+      "path": "skills/react-native-expert/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 22654,
+      "sha256": "f17fb4eac95809fd1c9bba4b5701481f5b5f19e78f00fb523909c04f8b055d3e"
+    },
+    {
+      "path": "skills/react-native-expert/metadata.json",
+      "kind": "support",
+      "size_bytes": 7069,
+      "sha256": "80d4bcf16bf7385be6d170ccb81d0ab064dadd49089dd0f16d4a8152dfa3bd9c"
+    },
+    {
+      "path": "skills/react-native-expert/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/react-native-expert/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 611,
+      "sha256": "310c27f8d0ae466dead711a6196014e95ad6925bd8a4420918ba1182ec9de938"
+    },
+    {
+      "path": "skills/react-native-expert/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/react-native-expert/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 230,
+      "sha256": "9546ea08f9f4bd7167d8fb7c0a2ea17a894bf34841afe89d8d8ea3384af0fa1a"
+    },
+    {
+      "path": "skills/react-native-expert/references/expo-router.md",
+      "kind": "reference",
+      "size_bytes": 5616,
+      "sha256": "e245611a731a0e132d1c228ecebbb3414ab62a364e073e1cdcd1200ab38d14ad"
+    },
+    {
+      "path": "skills/react-native-expert/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/react-native-expert/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/react-native-expert/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/react-native-expert/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 551,
+      "sha256": "e67224da3e8b672776eb3e03e29bbc02b8e8e8ff71042defdcfd18ced27f9a7c"
+    },
+    {
+      "path": "skills/react-native-expert/references/performance-rules.md",
+      "kind": "reference",
+      "size_bytes": 17449,
+      "sha256": "094ea8a7b288d1c1aa1d75522d54e67aa1490520e10a196518d9b9ed3a8f3f29"
+    },
+    {
+      "path": "skills/react-native-expert/references/platform-handling.md",
+      "kind": "reference",
+      "size_bytes": 4308,
+      "sha256": "9acb850f0e1ec794ee60c714aee456e9a4a647224c37afc85e329118bb00d405"
+    },
+    {
+      "path": "skills/react-native-expert/references/project-structure.md",
+      "kind": "reference",
+      "size_bytes": 5140,
+      "sha256": "81fe36424ea411e8eb75b28441e277d49f5953222561a5737c943c7cd4eced2c"
+    },
+    {
+      "path": "skills/react-native-expert/references/storage-patterns.md",
+      "kind": "reference",
+      "size_bytes": 6387,
+      "sha256": "9e5d4aefec5b25491b4b61a722aa60aed231b2975617c7a55ea1e34b3f739219"
+    },
+    {
+      "path": "skills/react-native-expert/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/react-native-expert/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/react-native-expert.zip",
+      "file_name": "react-native-expert.zip",
+      "size_bytes": 78748,
+      "sha256": "86d5b17e73d36d671eb243ae70ea7a67d51a2e3b96cef35663cb767f7177f8c1",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/react-native-expert.tar.gz",
+      "file_name": "react-native-expert.tar.gz",
+      "size_bytes": 92193,
+      "sha256": "4a5bda6e6b197866e42c19fcc5c56321e522146b742072330db0d53515756d27",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/react-native-expert.checksums.txt",
+    "file_name": "react-native-expert.checksums.txt",
+    "sha256": "4229de5fb98321f91907703867bfe2be800e22aeaabcb8aaf78f98642c6ff0ab",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "f17fb4eac95809fd1c9bba4b5701481f5b5f19e78f00fb523909c04f8b055d3e",
+    "package_sha256": "96e5001573e165c1ac896d4c3c172c7d2be49044bdc642716fe910b577a29c39"
+  }
+}

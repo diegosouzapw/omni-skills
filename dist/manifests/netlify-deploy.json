@@ -1,0 +1,490 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "netlify-deploy",
+  "slug": "netlify-deploy",
+  "display_name": "Netlify Deployment Skill",
+  "description": "Netlify Deployment Skill workflow skill. Use this skill when the user needs Deploy web projects to Netlify using the Netlify CLI (npx netlify). Use when the user asks to deploy, host, publish, or link a site/repo on Netlify, including preview and production deploys. Do NOT use for deploying to Vercel, Cloudflare, or Render (use their respective skills) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "devops",
+  "raw_category": "devops",
+  "taxonomy": {
+    "raw_category": "devops",
+    "canonical_category": "devops",
+    "inferred_category": "devops",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "netlify-deploy",
+    "deploy",
+    "web",
+    "projects",
+    "netlify",
+    "using",
+    "the",
+    "cli"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "github.com/openai/skills",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/netlify-deploy/SKILL.md",
+  "paths": {
+    "root": "skills/netlify-deploy",
+    "manifest": "dist/manifests/netlify-deploy.json",
+    "metadata": "skills/netlify-deploy/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 18,
+    "references_count": 7,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 32,
+        "workflow_section_length": 4408,
+        "when_to_use_section_length": 874,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1913,
+        "resources_items_count": 30,
+        "resources_section_length": 3788,
+        "examples_section_length": 1191,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 49,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 11,
+        "support_files_count": 13,
+        "references_files_count": 7,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 5.55
+      }
+    },
+    "quality": {
+      "score": 95,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 70,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 3,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/netlify-deploy/SKILL.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "3. Access in builds via `process.env.VARIABLE_NAME`",
+          "line": 401
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/netlify-deploy/references/cli-commands.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "npx netlify env:import .env",
+          "line": 95
+        },
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/netlify-deploy/references/deployment-patterns.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "3. Access in code: `process.env.API_KEY`",
+          "line": 160
+        }
+      ],
+      "signals": {
+        "scanned_files": 17,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Sensitive OS or credential path referenced. [skills/netlify-deploy/SKILL.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/netlify-deploy/references/cli-commands.md]",
+        "security medium: Sensitive OS or credential path referenced. [skills/netlify-deploy/references/deployment-patterns.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 15603,
+    "content_length": 16482,
+    "body_lines": 393,
+    "word_count": 2180,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 11,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 9,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 32,
+      "workflow_section_length": 4408,
+      "when_to_use_section_length": 874,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1913,
+      "resources_items_count": 30,
+      "resources_section_length": 3788,
+      "examples_section_length": 1191,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 49,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 11,
+      "support_files_count": 13,
+      "references_files_count": 7,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.55
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/netlify-deploy/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1212,
+      "sha256": "a7aee01fabc6703a7aef2d236908feb519c946e4e5f51d1c97080765b1cca221"
+    },
+    {
+      "path": "skills/netlify-deploy/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/netlify-deploy/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 729,
+      "sha256": "a09ef39f6ae689185173504329765a12f9ec7f9dfdcce1ec57628295245d7eac"
+    },
+    {
+      "path": "skills/netlify-deploy/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 16510,
+      "sha256": "c31feb16bd3761ce18ebc2c2655920565977e4b48dee664ecffe6231a2b45bfa"
+    },
+    {
+      "path": "skills/netlify-deploy/metadata.json",
+      "kind": "support",
+      "size_bytes": 7992,
+      "sha256": "37cbd5a19163a227864292a8558aefb8600c4370b1999c6389172a88928bc585"
+    },
+    {
+      "path": "skills/netlify-deploy/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/netlify-deploy/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 530,
+      "sha256": "36cb911d9d301bcbd2065bd6a723349152d88a58cc8688191d33ea1f6a647292"
+    },
+    {
+      "path": "skills/netlify-deploy/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/netlify-deploy/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 225,
+      "sha256": "aa316d33af3ee6ba3bad32a6ef26edae9cd8cfa5586d27b29cfe475ce69a3d74"
+    },
+    {
+      "path": "skills/netlify-deploy/references/cli-commands.md",
+      "kind": "reference",
+      "size_bytes": 2652,
+      "sha256": "a24b08401b8c796e4a58933a71441b3341b61afc840d690d9127b27ab00cfe05"
+    },
+    {
+      "path": "skills/netlify-deploy/references/deployment-patterns.md",
+      "kind": "reference",
+      "size_bytes": 6718,
+      "sha256": "06f7266276e22521dace605e6f0242a178cb5498d419fb8f8f6ef68fbe8b016a"
+    },
+    {
+      "path": "skills/netlify-deploy/references/netlify-toml.md",
+      "kind": "reference",
+      "size_bytes": 3972,
+      "sha256": "436ea3c2e0ce04abb34895db993d91b8660423977d9c52a89f2dfa014cad0b9c"
+    },
+    {
+      "path": "skills/netlify-deploy/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/netlify-deploy/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/netlify-deploy/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/netlify-deploy/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 478,
+      "sha256": "8b985ff343f2a5e9648ed000e5729a4387dec9fd8051778fa498fcc406565d3b"
+    },
+    {
+      "path": "skills/netlify-deploy/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/netlify-deploy/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/netlify-deploy.zip",
+      "file_name": "netlify-deploy.zip",
+      "size_bytes": 57762,
+      "sha256": "e7bfc39a0cc31a538b40bc990d7031f6898caac155babb58756d9038a3b50ca1",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/netlify-deploy.tar.gz",
+      "file_name": "netlify-deploy.tar.gz",
+      "size_bytes": 71713,
+      "sha256": "9ff2227d880c3fbf3020f62d3ae936cf2b193b13b15231e9eb3084d7c3b54d4d",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/netlify-deploy.checksums.txt",
+    "file_name": "netlify-deploy.checksums.txt",
+    "sha256": "e774f944b8f8fc27e16050c0e877140ef6db8c89bf375bcf863bf906a431a66d",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "c31feb16bd3761ce18ebc2c2655920565977e4b48dee664ecffe6231a2b45bfa",
+    "package_sha256": "15e83df58394a39a5267e1fe8084433d3f6054e71867272b99e1c013c66ba498"
+  }
+}

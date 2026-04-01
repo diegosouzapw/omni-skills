@@ -1,0 +1,2 @@
+b16f35e192f60d6dc892d45da24f576dc20dc8ab5abe51fc76cacd25bece0262  coding-guidelines.zip
+f2f050fef025493454ce7aaf30fc916afb854573c7ccaf14d9ee0630e48c5fa5  coding-guidelines.tar.gz

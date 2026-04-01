@@ -1,0 +1,462 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "core-web-vitals",
+  "slug": "core-web-vitals",
+  "display_name": "Core Web Vitals optimization",
+  "description": "Core Web Vitals optimization workflow skill. Use this skill when the user needs Optimize Core Web Vitals (LCP, INP, CLS) for better page experience and search ranking. Use when asked to \\\"improve Core Web Vitals\\\", \\\"fix LCP\\\", \\\"reduce CLS\\\", \\\"optimize INP\\\", \\\"page experience optimization\\\", or \\\"fix layout shifts\\\". Focuses specifically on the three Core Web Vitals metrics. Do NOT use for general web performance (use perf-web-optimization), Lighthouse audits (use perf-lighthouse), or Astro-specific optimization (use perf-astro) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "core-web-vitals",
+    "optimize",
+    "core",
+    "web",
+    "vitals",
+    "lcp",
+    "inp",
+    "cls"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "web-quality-skills",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/core-web-vitals/SKILL.md",
+  "paths": {
+    "root": "skills/core-web-vitals",
+    "manifest": "dist/manifests/core-web-vitals.json",
+    "metadata": "skills/core-web-vitals/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 15,
+    "references_count": 5,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 7,
+        "workflow_section_length": 1478,
+        "when_to_use_section_length": 869,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1375,
+        "resources_items_count": 43,
+        "resources_section_length": 12201,
+        "examples_section_length": 1195,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 55,
+        "table_count": 24,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 11,
+        "references_files_count": 5,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 4.37
+      }
+    },
+    "quality": {
+      "score": 94,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 80,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 2,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/core-web-vitals/SKILL.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "- [Performance skill](../performance/SKILL.md)",
+          "line": 179
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/core-web-vitals/references/LCP.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import hero from '../assets/hero.jpg';",
+          "line": 178
+        }
+      ],
+      "signals": {
+        "scanned_files": 14,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/core-web-vitals/SKILL.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/core-web-vitals/references/LCP.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 20597,
+    "content_length": 21649,
+    "body_lines": 599,
+    "word_count": 2618,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 12,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 7,
+      "workflow_section_length": 1478,
+      "when_to_use_section_length": 869,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1375,
+      "resources_items_count": 43,
+      "resources_section_length": 12201,
+      "examples_section_length": 1195,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 55,
+      "table_count": 24,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 11,
+      "references_files_count": 5,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 4.37
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/core-web-vitals/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1413,
+      "sha256": "4c06ce3941d9f308c247868b609e8a83bae21bc589e9147d4927a3248935d39b"
+    },
+    {
+      "path": "skills/core-web-vitals/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 738,
+      "sha256": "6fd919601a078c27517c8ecc1393cb1e3053a0ca0ca7f4c3b7f1788fb6237a9a"
+    },
+    {
+      "path": "skills/core-web-vitals/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 21730,
+      "sha256": "b9292f5254ebbbb8b93fa4e1d924ebbecc420dee7b3a43ab583d097d7016076d"
+    },
+    {
+      "path": "skills/core-web-vitals/metadata.json",
+      "kind": "support",
+      "size_bytes": 7696,
+      "sha256": "ea38a1f79f43e0d2e9ef3eec348baec112c00bd5c2f854d2b5cb5d95d54f3ec6"
+    },
+    {
+      "path": "skills/core-web-vitals/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/core-web-vitals/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 436,
+      "sha256": "f5b836435da8785b160355e8bfdba7f76a02b45f3f1c9d05f082940f1fa11700"
+    },
+    {
+      "path": "skills/core-web-vitals/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/core-web-vitals/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 226,
+      "sha256": "147c5302e90c58a230a83e0e0abc69417290c05b96c3449491f777253df6e0eb"
+    },
+    {
+      "path": "skills/core-web-vitals/references/LCP.md",
+      "kind": "reference",
+      "size_bytes": 4567,
+      "sha256": "166c4afb16e54d0218005850d4c1c9fcb07c7cfa044fc34539f7977367a072f4"
+    },
+    {
+      "path": "skills/core-web-vitals/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/core-web-vitals/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/core-web-vitals/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/core-web-vitals/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 392,
+      "sha256": "8ade8116f8f13de2d09c22c73f884d9e3219a8a9548347404eff0c1f96cbdc24"
+    },
+    {
+      "path": "skills/core-web-vitals/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/core-web-vitals/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/core-web-vitals.zip",
+      "file_name": "core-web-vitals.zip",
+      "size_bytes": 42720,
+      "sha256": "9fe8c68024c8dbd549038ca7b445cd5bfeb87ea3854ef1ae9b518b2e52fa695f",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/core-web-vitals.tar.gz",
+      "file_name": "core-web-vitals.tar.gz",
+      "size_bytes": 61468,
+      "sha256": "7b8fb8664de398550e98458896b9436bcbbf40a0d86a91b084db6d3e3824e5c3",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/core-web-vitals.checksums.txt",
+    "file_name": "core-web-vitals.checksums.txt",
+    "sha256": "2015c88d4a8d9eb3975d4fe5697321cf07d72c84063044953c1f1147a8997406",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "b9292f5254ebbbb8b93fa4e1d924ebbecc420dee7b3a43ab583d097d7016076d",
+    "package_sha256": "7137b1b864a0460d7a45b0156e7f9241dfbba84e3fd40e03f078f7c68571b628"
+  }
+}

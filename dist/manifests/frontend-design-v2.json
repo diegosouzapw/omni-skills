@@ -1,0 +1,476 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "frontend-design-v2",
+  "slug": "frontend-design-v2",
+  "display_name": "frontend-design",
+  "description": "frontend-design workflow skill. Use this skill when the user needs Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications. Generates creative, polished code that avoids generic AI aesthetics. Do NOT use for design review or audit (use web-design-guidelines or web-quality-audit) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "frontend-design-v2",
+    "frontend-design",
+    "create",
+    "distinctive",
+    "production-grade",
+    "frontend",
+    "interfaces",
+    "high"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "Impeccable (Paul Bakaus), based on Anthropic frontend-design",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/frontend-design-v2/SKILL.md",
+  "paths": {
+    "root": "skills/frontend-design-v2",
+    "manifest": "dist/manifests/frontend-design-v2.json",
+    "metadata": "skills/frontend-design-v2/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 21,
+    "references_count": 11,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 15,
+        "workflow_section_length": 2051,
+        "when_to_use_section_length": 870,
+        "best_practices_items_count": 7,
+        "best_practices_section_length": 8092,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1370,
+        "resources_items_count": 8,
+        "resources_section_length": 1778,
+        "examples_section_length": 2703,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 51,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 15,
+        "support_files_count": 17,
+        "references_files_count": 11,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 9.8
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 20,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 19408,
+    "content_length": 20422,
+    "body_lines": 285,
+    "word_count": 2792,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 7,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 13,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 15,
+      "workflow_section_length": 2051,
+      "when_to_use_section_length": 870,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 8092,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1370,
+      "resources_items_count": 8,
+      "resources_section_length": 1778,
+      "examples_section_length": 2703,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 51,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 15,
+      "support_files_count": 17,
+      "references_files_count": 11,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 9.8
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/frontend-design-v2/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1372,
+      "sha256": "5b4c13f2711047c4a1349f0f32829f40c3d18f8a5d0b3d329f041e2996c0e58e"
+    },
+    {
+      "path": "skills/frontend-design-v2/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 739,
+      "sha256": "358c4a546a1b144f3b794362e5426762854ddb4ee901c05777c311f2f3dc48db"
+    },
+    {
+      "path": "skills/frontend-design-v2/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 20525,
+      "sha256": "160fdd508cfdde4087f424a32219098de333ae2f958c49167ccc5c0120e141b7"
+    },
+    {
+      "path": "skills/frontend-design-v2/metadata.json",
+      "kind": "support",
+      "size_bytes": 6864,
+      "sha256": "e3bba550934c6da82cf7cfe978207722892e6859973f97de57f3c9f3e2e69daf"
+    },
+    {
+      "path": "skills/frontend-design-v2/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/frontend-design-v2/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 666,
+      "sha256": "747605f30e371efd3f126a29efd08b0751691e2778037b4bb75d2d7ebdd26e83"
+    },
+    {
+      "path": "skills/frontend-design-v2/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/frontend-design-v2/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 229,
+      "sha256": "778ef6d089c1d65181cd66cf6bcebccb94eb03e0a31fb7ed09ce49183ba72990"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/color-and-contrast.md",
+      "kind": "reference",
+      "size_bytes": 5291,
+      "sha256": "be502ad08270cd60cabb6769a6e1ed517ecaeeb7d40f6e610f1802689ee78ddc"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/interaction-design.md",
+      "kind": "reference",
+      "size_bytes": 4204,
+      "sha256": "997d5e66ae54fcf8e59a0fcf0a2db49982ffe7b9b6cc091bcf64a3b3e0828ed7"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/motion-design.md",
+      "kind": "reference",
+      "size_bytes": 4753,
+      "sha256": "c35a59b5f795721c914cfccf9b470e89a5010c563cd85ab46a67031531678f3f"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 601,
+      "sha256": "8e5d6e096d853050ef259466657c9dab237e30367aab22bed75cd64a4c4e7fd7"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/responsive-design.md",
+      "kind": "reference",
+      "size_bytes": 3464,
+      "sha256": "5add44195a42cf7fa82aecadaad79b8875446b930e06d087d73f3722533fd95a"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/spatial-design.md",
+      "kind": "reference",
+      "size_bytes": 3545,
+      "sha256": "10c743ee8245fc1be9e8af2b79dd08b0dae19fcde33d46c9730c000d7e13b7cd"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/typography.md",
+      "kind": "reference",
+      "size_bytes": 5503,
+      "sha256": "71c2e62adf8dff3e3a6f57c37c72e5ca6c1e2902b906915c74d3cc04ab72c3c1"
+    },
+    {
+      "path": "skills/frontend-design-v2/references/ux-writing.md",
+      "kind": "reference",
+      "size_bytes": 4330,
+      "sha256": "0cd5e958d92be6e2331cb199d6ed5d98597aa20ec4922d4c3df56e7753cfc00c"
+    },
+    {
+      "path": "skills/frontend-design-v2/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/frontend-design-v2/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/frontend-design-v2.zip",
+      "file_name": "frontend-design-v2.zip",
+      "size_bytes": 68744,
+      "sha256": "8695e16933b5faa2fe46ec93c51e9a668e3969f6f11ed56573073999769aeabf",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/frontend-design-v2.tar.gz",
+      "file_name": "frontend-design-v2.tar.gz",
+      "size_bytes": 92188,
+      "sha256": "e8ee6debfd9a84db3c45071b0cd8accb4a7d64c207032316c3e5c2c66844ed61",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/frontend-design-v2.checksums.txt",
+    "file_name": "frontend-design-v2.checksums.txt",
+    "sha256": "c5e24a39fdfed536fd4aa52c15df82c350fc61c0f62adc033c321e12a2c116c7",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "160fdd508cfdde4087f424a32219098de333ae2f958c49167ccc5c0120e141b7",
+    "package_sha256": "3c486fc1b9f19446133eb72dc2dd76dc49749be67e7e9d1f92835e2300c7f5b2"
+  }
+}

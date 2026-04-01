@@ -1,0 +1,464 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "perf-web-optimization",
+  "slug": "perf-web-optimization",
+  "display_name": "Web Performance Optimization",
+  "description": "Web Performance Optimization workflow skill. Use this skill when the user needs Optimize web performance: bundle size, images, caching, lazy loading, and overall page speed. Use when site is slow, reducing bundle size, fixing layout shifts, improving Time to Interactive, or optimizing for Lighthouse scores. Triggers on: web performance, bundle size, page speed, slow site, lazy loading. Do NOT use for Core Web Vitals-specific fixes (use core-web-vitals), running Lighthouse audits (use perf-lighthouse), or Astro-specific optimization (use perf-astro) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "perf-web-optimization",
+    "optimize",
+    "web",
+    "performance",
+    "bundle",
+    "size",
+    "images",
+    "caching"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "tech-leads-club",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/perf-web-optimization/SKILL.md",
+  "paths": {
+    "root": "skills/perf-web-optimization",
+    "manifest": "dist/manifests/perf-web-optimization.json",
+    "metadata": "skills/perf-web-optimization/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 17,
+    "references_count": 7,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 7,
+        "workflow_section_length": 1305,
+        "when_to_use_section_length": 865,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1381,
+        "resources_items_count": 25,
+        "resources_section_length": 4319,
+        "examples_section_length": 1637,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 53,
+        "table_count": 20,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 11,
+        "support_files_count": 13,
+        "references_files_count": 7,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 5.83
+      }
+    },
+    "quality": {
+      "score": 96,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 90,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/perf-web-optimization/references/image-optimization.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "import hero from '../assets/hero.png';",
+          "line": 152
+        }
+      ],
+      "signals": {
+        "scanned_files": 16,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/perf-web-optimization/references/image-optimization.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 12896,
+    "content_length": 13989,
+    "body_lines": 300,
+    "word_count": 1750,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 9,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 7,
+      "workflow_section_length": 1305,
+      "when_to_use_section_length": 865,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1381,
+      "resources_items_count": 25,
+      "resources_section_length": 4319,
+      "examples_section_length": 1637,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 53,
+      "table_count": 20,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 11,
+      "support_files_count": 13,
+      "references_files_count": 7,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.83
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/perf-web-optimization/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1354,
+      "sha256": "a7162add073e94fe60786eb4ab0272a9a8e1781a81ea1fb4ea7b8fb2becbd937"
+    },
+    {
+      "path": "skills/perf-web-optimization/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 756,
+      "sha256": "48d9f81257642b7296a2df5d4d1814879d7198ae5b10e3de0216a6c6e1f786e2"
+    },
+    {
+      "path": "skills/perf-web-optimization/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 14001,
+      "sha256": "ef116cf40ce0928d4cdbe67048cf1f5c6f2397a9038de8abb0fd17a00456c987"
+    },
+    {
+      "path": "skills/perf-web-optimization/metadata.json",
+      "kind": "support",
+      "size_bytes": 7386,
+      "sha256": "30d94ad3038c42983a54af847438a40a413155a6d5d81e2631b6e24f1dc9df0c"
+    },
+    {
+      "path": "skills/perf-web-optimization/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/perf-web-optimization/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 547,
+      "sha256": "5947c8db9ff5b8edeb2bf882630ea858c1e26128aafcb406a32093949114a059"
+    },
+    {
+      "path": "skills/perf-web-optimization/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/perf-web-optimization/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 232,
+      "sha256": "8ccefdc245e06e1eb4f473994fb7158888b04ad1da5439f990b366be45ab2dce"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/bundle-optimization.md",
+      "kind": "reference",
+      "size_bytes": 3362,
+      "sha256": "4ba7ba7f1eb4e79aec129cd760f744a0d4524056cc6355e56c544040f91fa161"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/core-web-vitals.md",
+      "kind": "reference",
+      "size_bytes": 3157,
+      "sha256": "2835fef4a9dfd0a1f1cac7635440e4c30f30346ad9e4055a1df77197690b68bc"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/image-optimization.md",
+      "kind": "reference",
+      "size_bytes": 3393,
+      "sha256": "34bf22c31b1bcdc5bc04a552e5fd938f1e31a10991f0934e8baee3dd5a679444"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/perf-web-optimization/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 491,
+      "sha256": "50df1495ac86f58b92b844b0e00fe74e5829a7fe89b776d10b65bfffab9045b8"
+    },
+    {
+      "path": "skills/perf-web-optimization/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/perf-web-optimization/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/perf-web-optimization.zip",
+      "file_name": "perf-web-optimization.zip",
+      "size_bytes": 40775,
+      "sha256": "897b30235d768e8a22fa331f7a259f68a745b159eaad1c7ac2f66aa823f7b395",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/perf-web-optimization.tar.gz",
+      "file_name": "perf-web-optimization.tar.gz",
+      "size_bytes": 61468,
+      "sha256": "c49206e144dead3c713c302faee5c62f04b5a8cd4135fc5605df819671c49749",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/perf-web-optimization.checksums.txt",
+    "file_name": "perf-web-optimization.checksums.txt",
+    "sha256": "bc1fa52ad4e171061199f214015710e386208751a01f7e3cd9fa92e7d0da9f85",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "ef116cf40ce0928d4cdbe67048cf1f5c6f2397a9038de8abb0fd17a00456c987",
+    "package_sha256": "30b04d904afba1ac7a7b0429e7f0f9de28dff2942cd31b2d7fb67a69e5de62b8"
+  }
+}

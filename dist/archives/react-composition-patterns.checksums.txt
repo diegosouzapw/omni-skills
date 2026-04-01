@@ -1,0 +1,2 @@
+8ce601c5d39110904bc7cea0be1b39840eca34b6f91a86927697d2c1ed20a378  react-composition-patterns.zip
+2b2efebbfda17c4caf1403190994e497c19b541a027592c3362b7f9267c66ac0  react-composition-patterns.tar.gz

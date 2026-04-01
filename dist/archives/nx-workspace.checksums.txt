@@ -1,0 +1,2 @@
+d68990166c31bd8f3c27b754230bf130a41d4964e7f768b4f9bfa4bb6f474aad  nx-workspace.zip
+adfefbefb0adccb85d41dbbe1f29d52a63ed629e80dd3b02f32ecda27866a6ad  nx-workspace.tar.gz

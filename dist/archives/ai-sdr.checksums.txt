@@ -1,0 +1,2 @@
+eb1a06d263f7ed43fbb0bc38a7b7cc8446792c73826c7b2df474c936d6058afb  ai-sdr.zip
+fc9ccdfe467b1edf5d37c088cf47ccd51df40e4904983afb46e0e44a5638970b  ai-sdr.tar.gz

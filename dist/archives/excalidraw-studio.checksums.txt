@@ -1,0 +1,2 @@
+031e6537a94720f1ffb50cabef7df84c1164e777b9e56275e68f7bd4f2373930  excalidraw-studio.zip
+e9324ab10f7c7b2fc1c8392edd9ac02c8c760829538ca7920f9877e6330658b9  excalidraw-studio.tar.gz

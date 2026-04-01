@@ -1,0 +1,2 @@
+56511cb57025a101a97e6efed378a1e48c92d1c9e67c7b274629593cc73e7cff  the-fool.zip
+fb07274cd7ecaeb00b2589368fa65c20131f42f3cdb0237f26fb686ad3da1fec  the-fool.tar.gz

@@ -1,0 +1,2 @@
+cfe69ff38ac4ced08c120ed075c3afe3d41a90e25b397de4aa71163bf8794677  subagent-creator.zip
+098e1cb19ee67eba6f677888c72185abb66c10bbad57f8da747928c84c30bb18  subagent-creator.tar.gz

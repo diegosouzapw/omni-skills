@@ -1,0 +1,2 @@
+578d11732703a772f66c3a427e63ef10012665c73a72a271cff8c1773fe62550  component-identification-sizing.zip
+85286057e068a7f845957d0ba4f58e07a115f8d4bd5342dd4b556a1ae277388a  component-identification-sizing.tar.gz

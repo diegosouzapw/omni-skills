@@ -1,0 +1,25 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_repository_owner": "tech-leads-club",
+  "source_repository_name": "agent-skills",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skills_path": "packages/skills-catalog/skills",
+  "source_skill_path": "packages/skills-catalog/skills/(quality)/web-quality-audit",
+  "source_skill_name": "web-quality-audit",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "web-quality-audit",
+  "lineage_id": 88,
+  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:08:58.178804+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "web-quality-audit",
+    "description": "Comprehensive web quality audit covering performance, accessibility, SEO, and best practices in a single review. Use when asked to \"audit my site\", \"review web quality\", \"run lighthouse audit\", \"check page quality\", or \"optimize my website\" across multiple areas at once. Orchestrates specialized skills for depth. Do NOT use for single-area audits — prefer core-web-vitals, web-accessibility, seo, or web-best-practices for focused work.",
+    "license": "MIT",
+    "metadata": [],
+    "author": "web-quality-skills",
+    "version": "1.0"
+  }
+}

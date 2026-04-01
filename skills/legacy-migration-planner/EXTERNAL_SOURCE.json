@@ -1,0 +1,25 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_repository_owner": "tech-leads-club",
+  "source_repository_name": "agent-skills",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skills_path": "packages/skills-catalog/skills",
+  "source_skill_path": "packages/skills-catalog/skills/(architecture)/legacy-migration-planner",
+  "source_skill_name": "legacy-migration-planner",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "legacy-migration-planner",
+  "lineage_id": 32,
+  "sync_run_id": "20260401T180834.349641+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:08:56.849736+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "legacy-migration-planner",
+    "description": "Use when planning legacy system migrations, codebase modernization, monolith decomposition, microservices consolidation, cross-language rewrites, or framework upgrades. Invoke for strangler fig pattern, incremental migration strategy, or refactoring roadmaps. Do NOT use for domain analysis (use domain-analysis), component sizing (use component-identification-sizing), or step-by-step decomposition plans (use decomposition-planning-roadmap).",
+    "license": "CC-BY-4.0",
+    "metadata": [],
+    "author": "Felipe Rodrigues - github.com/felipfr",
+    "version": "1.0.0"
+  }
+}

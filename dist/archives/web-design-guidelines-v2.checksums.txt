@@ -1,0 +1,2 @@
+d6d09cbcdfdeb6a793866cedf541054ca7948b53950eeb2f1aef4c08bef884cb  web-design-guidelines-v2.zip
+4c79332abed242c610a34dd45fc725f937456ca85ee09bf266e74e406832aa84  web-design-guidelines-v2.tar.gz

@@ -1,0 +1,2 @@
+8695e16933b5faa2fe46ec93c51e9a668e3969f6f11ed56573073999769aeabf  frontend-design-v2.zip
+e8ee6debfd9a84db3c45071b0cd8accb4a7d64c207032316c3e5c2c66844ed61  frontend-design-v2.tar.gz

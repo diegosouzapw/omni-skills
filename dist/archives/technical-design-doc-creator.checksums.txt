@@ -1,0 +1,2 @@
+288e4ce298083a7e6ffdcd0831605a4b3f9a4026db2f27b6230faefca277b23f  technical-design-doc-creator.zip
+d52f647167ccb8d5dfcef8f2648a1b7f13daf2d766f6f65f65e5ee1d278d08cb  technical-design-doc-creator.tar.gz

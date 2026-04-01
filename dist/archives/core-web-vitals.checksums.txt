@@ -1,0 +1,2 @@
+9fe8c68024c8dbd549038ca7b445cd5bfeb87ea3854ef1ae9b518b2e52fa695f  core-web-vitals.zip
+7b8fb8664de398550e98458896b9436bcbbf40a0d86a91b084db6d3e3824e5c3  core-web-vitals.tar.gz

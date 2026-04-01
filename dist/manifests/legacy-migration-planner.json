@@ -1,0 +1,470 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "legacy-migration-planner",
+  "slug": "legacy-migration-planner",
+  "display_name": "Legacy Migration Planner",
+  "description": "Legacy Migration Planner workflow skill. Use this skill when the user needs planning legacy system migrations, codebase modernization, monolith decomposition, microservices consolidation, cross-language rewrites, or framework upgrades. Invoke for strangler fig pattern, incremental migration strategy, or refactoring roadmaps. Do NOT use for domain analysis (use domain-analysis), component sizing (use component-identification-sizing), or step-by-step decomposition plans (use decomposition-planning-roadmap) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "legacy-migration-planner",
+    "planning",
+    "legacy",
+    "system",
+    "migrations",
+    "codebase",
+    "modernization",
+    "monolith"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "Felipe Rodrigues - github.com/felipfr",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01"
+  },
+  "entrypoint": "skills/legacy-migration-planner/SKILL.md",
+  "paths": {
+    "root": "skills/legacy-migration-planner",
+    "manifest": "dist/manifests/legacy-migration-planner.json",
+    "metadata": "skills/legacy-migration-planner/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 20,
+    "references_count": 10,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 15,
+        "workflow_section_length": 4866,
+        "when_to_use_section_length": 871,
+        "best_practices_items_count": 12,
+        "best_practices_section_length": 2714,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1385,
+        "resources_items_count": 22,
+        "resources_section_length": 3538,
+        "examples_section_length": 1231,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 528,
+        "decision_assets_count": 48,
+        "table_count": 22,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 10,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 1,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 9.48
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 19,
+        "script_files": 2,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 17201,
+    "content_length": 18297,
+    "body_lines": 241,
+    "word_count": 2285,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 15,
+      "workflow_section_length": 4866,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 12,
+      "best_practices_section_length": 2714,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1385,
+      "resources_items_count": 22,
+      "resources_section_length": 3538,
+      "examples_section_length": 1231,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 48,
+      "table_count": 22,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 10,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 9.48
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/legacy-migration-planner/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1462,
+      "sha256": "3a74a9e51469f3a116340e07b1f80c7fda26b5589926df25ead0d31168a0fe8a"
+    },
+    {
+      "path": "skills/legacy-migration-planner/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 766,
+      "sha256": "4fe641043b998e29fe666c38de7ae53f5c0a8aca1921b324c012591c4fd5ed51"
+    },
+    {
+      "path": "skills/legacy-migration-planner/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 18449,
+      "sha256": "de13c7bd028b047d8d48055d4911178b6a80a3d905ad2c0c686b9f4f2f9c8998"
+    },
+    {
+      "path": "skills/legacy-migration-planner/metadata.json",
+      "kind": "support",
+      "size_bytes": 6993,
+      "sha256": "70e5698581d3799cff168232ba724acff5ca1af12602b87b803747714697c973"
+    },
+    {
+      "path": "skills/legacy-migration-planner/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/legacy-migration-planner/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 683,
+      "sha256": "74c08b433c6b29f0bb749be15113954938b08665bb784309cb276671cb03a2f9"
+    },
+    {
+      "path": "skills/legacy-migration-planner/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/legacy-migration-planner/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 235,
+      "sha256": "9775eb181a454a7dd1055a9ec968418f14d0f685dc157cc0992d350d9a5c3794"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/assessment-framework.md",
+      "kind": "reference",
+      "size_bytes": 7984,
+      "sha256": "31926852b858248a87050c5ae89c5b53d9c39a716cddf7fe336be4940c4a4dc1"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/frontend-backend-strategies.md",
+      "kind": "reference",
+      "size_bytes": 12147,
+      "sha256": "3be065b18f3c6799c724023fda9be8043cbd1985008e9b6ea6a6dca8fd5abc2e"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 615,
+      "sha256": "42ff9f9ef1f79b26f4581221c558cc6fc9bd08cb3228f409ef8e2bd3a6206cd8"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/plan-phase.md",
+      "kind": "reference",
+      "size_bytes": 8841,
+      "sha256": "4cf3c70041d433c63c68c98018532ff005203092861c86b7ca198874fef70238"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/research-phase.md",
+      "kind": "reference",
+      "size_bytes": 8259,
+      "sha256": "2a91015174ff3f52aef0cb1f54d0a5915a93507ff9d303f0e34ac5f7cb98e834"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/strangler-fig-patterns.md",
+      "kind": "reference",
+      "size_bytes": 10624,
+      "sha256": "11274ebd5a12cf66117788d094108e91aa051818d8af82b394bfb67d3f1d42c6"
+    },
+    {
+      "path": "skills/legacy-migration-planner/references/testing-safety-nets.md",
+      "kind": "reference",
+      "size_bytes": 10274,
+      "sha256": "0217d2e3236aec864c611826804428514a312b500f30bcdd382a18be15705c95"
+    },
+    {
+      "path": "skills/legacy-migration-planner/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/legacy-migration-planner/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/legacy-migration-planner.zip",
+      "file_name": "legacy-migration-planner.zip",
+      "size_bytes": 94112,
+      "sha256": "d9bd4f3ce1b50b80cfddf91b3e0a945e54f16136b4c10bd4b7bc7657fcfd83e6",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/legacy-migration-planner.tar.gz",
+      "file_name": "legacy-migration-planner.tar.gz",
+      "size_bytes": 112673,
+      "sha256": "4549490295419410974ed753a335d08d00a76c323397c71f6e45baee1bfe451d",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/legacy-migration-planner.checksums.txt",
+    "file_name": "legacy-migration-planner.checksums.txt",
+    "sha256": "6977aec0a69aca4c81c9c1dbbda45438caa72afa35b74f120f4defec3a6fbd20",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "de13c7bd028b047d8d48055d4911178b6a80a3d905ad2c0c686b9f4f2f9c8998",
+    "package_sha256": "36cec57942cdc90713b469adcd93d1920cbb4140be140172477d06211b34d29a"
+  }
+}
