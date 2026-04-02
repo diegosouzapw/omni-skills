@@ -1,0 +1,241 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-01T00:00:00+00:00",
+  "id": "component-common-domain-detection",
+  "slug": "component-common-domain-detection",
+  "display_name": "Common Domain Component Detection",
+  "description": "Common Domain Component Detection workflow skill. Use this skill when the user needs Finds duplicate business logic spread across multiple components and suggests consolidation. Use when asking \\\"where is this logic duplicated?\\\", \\\"find common code between services\\\", \\\"what can be consolidated?\\\", \\\"detect shared domain logic\\\", or analyzing component overlap before refactoring. Do NOT use for code-level duplication detection (use linters) or dependency analysis (use coupling-analysis) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "development",
+  "canonical_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "component-common-domain-detection",
+    "finds",
+    "duplicate",
+    "business",
+    "logic",
+    "spread",
+    "across",
+    "multiple"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "tech-leads-club",
+  "dates": {
+    "added": "2026-04-01",
+    "updated": "2026-04-01",
+    "file_mtime": "2026-04-01T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/component-common-domain-detection",
+    "entrypoint": "skills/component-common-domain-detection/SKILL.md",
+    "metadata": "skills/component-common-domain-detection/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "ORIGIN.md",
+      "QUICK-REFERENCE.md",
+      "README.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 15,
+    "references_count": 4,
+    "agents_count": 1,
+    "assets_count": 1
+  },
+  "content": {
+    "body_length": 24998,
+    "content_length": 26061,
+    "body_lines": 741,
+    "word_count": 2944,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 6,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 42,
+      "workflow_section_length": 3340,
+      "when_to_use_section_length": 451,
+      "best_practices_items_count": 19,
+      "best_practices_section_length": 1368,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1394,
+      "resources_items_count": 158,
+      "resources_section_length": 14489,
+      "examples_section_length": 1267,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 43,
+      "table_count": 19,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 3.97
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 42,
+      "workflow_section_length": 3340,
+      "when_to_use_section_length": 451,
+      "best_practices_items_count": 19,
+      "best_practices_section_length": 1368,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1394,
+      "resources_items_count": 158,
+      "resources_section_length": 14489,
+      "examples_section_length": 1267,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 528,
+      "decision_assets_count": 43,
+      "table_count": 19,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 10,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 1,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 3.97
+    }
+  },
+  "quality": {
+    "score": 94,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 90,
+    "tier": "review",
+    "status": "warn",
+    "findings_count": 1,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/component-common-domain-detection/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- Example: `const SMTPConnection = require('../shared/SMTPConnection')`",
+        "line": 620
+      }
+    ],
+    "signals": {
+      "scanned_files": 15,
+      "script_files": 2,
+      "binary_like_files": 0
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/component-common-domain-detection/SKILL.md]"
+    ],
+    "status": "warn"
+  }
+}

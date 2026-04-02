@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Example Company",
+  "url": "https://example.com",
+  "logo": "https://example.com/images/logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/example",
+    "https://x.com/example"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "telephone": "+1-555-123-4567"
+  }
+}

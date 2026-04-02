@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.jpg';
+---
+
+<section class="hero">
+  <Image
+    src={hero}
+    alt="Product hero"
+    widths={[640, 960, 1280]}
+    sizes="(max-width: 768px) 100vw, 1280px"
+    format="webp"
+    width={1280}
+    height={720}
+    fetchpriority="high"
+  />
+  <h1>Ship faster with Astro</h1>
+  <p>Optimized media, less JS, and better Core Web Vitals.</p>
+</section>
+
+<!-- Use high priority only when this image is the actual LCP element. -->

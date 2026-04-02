@@ -1,0 +1,27 @@
+name: nx-affected
+
+on:
+  pull_request:
+
+jobs:
+  affected:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Show affected projects
+        run: npx nx show projects --affected --base=origin/main --head=HEAD
+
+      - name: Run affected lint
+        run: npx nx affected -t lint --base=origin/main --head=HEAD
