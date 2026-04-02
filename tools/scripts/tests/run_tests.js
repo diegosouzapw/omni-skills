@@ -447,8 +447,8 @@ print(json.dumps({"issues": issues, "metadata": metadata}))
     );
   }
 
-  const search = core.searchSkills({ query: "figma", limit: 5 });
-  assert.ok(search.results.some((skill) => skill.id === "omni-figma"), "search should find omni-figma");
+  const search = core.searchSkills({ query: "figma", limit: 25 });
+  assert.ok(search.results.some((skill) => skill.id === "omni-figma"), "search should find omni-figma even as the catalog grows");
 
   const discoverySearch = core.searchSkills({ query: "discover install catalog", limit: 5 });
   assert.ok(
