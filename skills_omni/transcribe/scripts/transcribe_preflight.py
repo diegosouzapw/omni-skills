@@ -27,8 +27,11 @@ def check_openai_package() -> tuple[bool, str]:
 
 
 def check_api_key() -> tuple[bool, str]:
-    return ("OPENAI_API_KEY" in os.environ and bool(os.environ.get("OPENAI_API_KEY")),
-            "OPENAI_API_KEY is set" if os.environ.get("OPENAI_API_KEY") else "OPENAI_API_KEY is missing")
+    # Only report whether the key is present; never include its value in logs.
+    api_key = os.environ.get("OPENAI_API_KEY")
+    has_api_key = bool(api_key)
+    message = "OPENAI_API_KEY is set" if has_api_key else "OPENAI_API_KEY is missing"
+    return has_api_key, message
 
 
 def check_file(path: Path) -> tuple[bool, str]:
