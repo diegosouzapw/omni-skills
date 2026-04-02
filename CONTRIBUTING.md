@@ -129,6 +129,8 @@ If you want to propose an upstream repository instead of sending a skill directl
 
 Merge there is still a public review gate, not an automatic sync trigger.
 
+If maintainers add a source first from the private dashboard, they should still merge the corresponding registry PR here. That keeps `REPOSITORY-SOURCES.md` transparent for contributors and reduces duplicate repository proposals.
+
 ### 🌐 Language Policy
 
 | Surface | Accepted Languages |
