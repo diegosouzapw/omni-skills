@@ -1,0 +1,734 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "figma-use",
+  "slug": "figma-use",
+  "display_name": "use_figma — Figma Plugin API Skill",
+  "description": "use_figma \\u2014 Figma Plugin API Skill workflow skill. Use this skill when the user needs MANDATORY prerequisite \\u2014 you MUST invoke this skill BEFORE every usefigma tool call. NEVER call usefigma directly without loading this skill first. Skipping it causes common, hard-to-debug failures. Trigger whenever the user wants to perform a write action or a unique read action that requires JavaScript execution in the Figma file context \\u2014 e.g. create/edit/delete nodes, set up variables or tokens, build components and variants, modify auto-layout or fills, bind variables to properties, or inspect file structure programmatically and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-use",
+    "mandatory",
+    "prerequisite",
+    "you",
+    "must",
+    "invoke",
+    "every",
+    "usefigma"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/figma-use/SKILL.md",
+  "paths": {
+    "root": "skills/figma-use",
+    "manifest": "dist/manifests/figma-use.json",
+    "metadata": "skills/figma-use/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 42,
+    "references_count": 26,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 17,
+        "workflow_section_length": 4038,
+        "when_to_use_section_length": 871,
+        "best_practices_items_count": 24,
+        "best_practices_section_length": 5896,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1340,
+        "resources_items_count": 33,
+        "resources_section_length": 9028,
+        "examples_section_length": 1540,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 47,
+        "table_count": 42,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 23,
+        "support_files_count": 36,
+        "references_files_count": 26,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 4,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 10.4
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 0,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 13,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/api-reference.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). What works and what doesn't in the `use_figma` environment.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/common-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). Working code examples for frequently used operations.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/component-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). How to correctly use the Plugin API for components, variants, and compo...",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/effect-style-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). How to create, apply, and inspect effect styles using the Plugin API.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/gotchas.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). Every known pitfall with WRONG/CORRECT code examples.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/plugin-api-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). Quick reference for common Figma Plugin API operations.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/text-style-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). How to create, apply, and inspect text styles using the Plugin API.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/validation-and-recovery.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). How to debug, validate, and recover from errors.",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/variable-patterns.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [use_figma skill](../SKILL.md). How to correctly create, bind, scope, and alias variables using the Plu...",
+          "line": 3
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/working-with-design-systems/wwds-components.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "For runnable code examples (creating, importing, discovering, inspecting components), see [component-patterns.md](../...",
+          "line": 50
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/working-with-design-systems/wwds-effect-styles.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "For runnable code examples (listing, creating, applying effect styles), see [effect-style-patterns.md](../effect-styl...",
+          "line": 52
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/working-with-design-systems/wwds-text-styles.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "For runnable code examples (listing, creating, probing fonts, type ramps, applying styles), see [text-style-patterns....",
+          "line": 90
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-use/references/working-with-design-systems/wwds-variables.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "For runnable code examples (creating collections, binding variables, scopes, aliasing, discovering existing variables...",
+          "line": 64
+        }
+      ],
+      "signals": {
+        "scanned_files": 38,
+        "script_files": 3,
+        "binary_like_files": 3
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/api-reference.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/common-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/component-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/effect-style-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/gotchas.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/plugin-api-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/text-style-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/validation-and-recovery.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/variable-patterns.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-components.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-effect-styles.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-text-styles.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-variables.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 26504,
+    "content_length": 27651,
+    "body_lines": 363,
+    "word_count": 3776,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 21,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 4038,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 24,
+      "best_practices_section_length": 5896,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1340,
+      "resources_items_count": 33,
+      "resources_section_length": 9028,
+      "examples_section_length": 1540,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 47,
+      "table_count": 42,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 23,
+      "support_files_count": 36,
+      "references_files_count": 26,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 10.4
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/figma-use/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1301,
+      "sha256": "f9187fe0bb50ba60696222a0ec93ecaa742b1e5b4416103d35b9913916e54674"
+    },
+    {
+      "path": "skills/figma-use/LICENSE.TXT",
+      "kind": "support",
+      "size_bytes": 440,
+      "sha256": "36bdad8e8a43a282ba3a5af4ac022d8b117c5826b8b473fe6a32622e83856ae3"
+    },
+    {
+      "path": "skills/figma-use/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 639,
+      "sha256": "66dbcb54d98b329385eb0064a9f1363cb61beb0af7138551fb9db4aa760dc848"
+    },
+    {
+      "path": "skills/figma-use/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 27749,
+      "sha256": "136aae4bc8662cbbf986d78085d9efc805c343faef7d838ea4be83ae96bd60f5"
+    },
+    {
+      "path": "skills/figma-use/maintainers.yml",
+      "kind": "support",
+      "size_bytes": 21,
+      "sha256": "9d6c60ca62ce0c759129bf4e36da3042f2665bb3c987cc73f0a1a7bd7362c513"
+    },
+    {
+      "path": "skills/figma-use/metadata.json",
+      "kind": "support",
+      "size_bytes": 15156,
+      "sha256": "7e3c30d98bd452c0b14955fb39df407262778168933abc146d87831f91552865"
+    },
+    {
+      "path": "skills/figma-use/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/figma-use/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 452,
+      "sha256": "53af842ae421708184226f81b01d0e48d0a9ca8a3a5bca3109733a03c9e5c648"
+    },
+    {
+      "path": "skills/figma-use/assets/figma-small.svg",
+      "kind": "asset",
+      "size_bytes": 818,
+      "sha256": "6a38267efbd872bbc215d0227a395eb0b0093bc6441c44a39a43f3210549e5e9"
+    },
+    {
+      "path": "skills/figma-use/assets/figma.png",
+      "kind": "asset",
+      "size_bytes": 1612,
+      "sha256": "4d16e1b19ae7bdac7d601d0b3bf3c0ea4a018a8cb0e38d19e5b00971968ecada"
+    },
+    {
+      "path": "skills/figma-use/assets/icon.svg",
+      "kind": "asset",
+      "size_bytes": 964,
+      "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/figma-use/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1643,
+      "sha256": "42c77d0d05c51cfcf726b93357fc7aef1fdf8210a916781bf01c26c5d1e09326"
+    },
+    {
+      "path": "skills/figma-use/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/figma-use/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 220,
+      "sha256": "1c030c80302737744673b63d10ea6e8b6180b60052b46d6770f4580d85cf0df2"
+    },
+    {
+      "path": "skills/figma-use/references/api-reference.md",
+      "kind": "reference",
+      "size_bytes": 11199,
+      "sha256": "3d51cdcda1808bf40d4b74e9face7c167bd447998d3684a57f9233e44103e3fd"
+    },
+    {
+      "path": "skills/figma-use/references/common-patterns.md",
+      "kind": "reference",
+      "size_bytes": 16111,
+      "sha256": "8069dcd68f4f47a9e71b1a4bccf9688f8566b2911a0772e780e605f3252c9734"
+    },
+    {
+      "path": "skills/figma-use/references/component-patterns.md",
+      "kind": "reference",
+      "size_bytes": 18511,
+      "sha256": "11fe8123490e1d26898872d5a39d41bfa2e58c398581022668f8547186b780fe"
+    },
+    {
+      "path": "skills/figma-use/references/effect-style-patterns.md",
+      "kind": "reference",
+      "size_bytes": 3097,
+      "sha256": "a751255dc4997b323c0deb490860d63ba23f89d1863c689abfdb149fc9719652"
+    },
+    {
+      "path": "skills/figma-use/references/gotchas.md",
+      "kind": "reference",
+      "size_bytes": 23528,
+      "sha256": "d65095e7ac5cb3b6a508349313889d1541e6a5245d06cc28918e3e68aa33518c"
+    },
+    {
+      "path": "skills/figma-use/references/maintainers.yml",
+      "kind": "reference",
+      "size_bytes": 418,
+      "sha256": "90651f82831e8a1f90941055eb966278da61aca110f7ebec9751a1a03f5f374f"
+    },
+    {
+      "path": "skills/figma-use/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/figma-use/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/figma-use/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/figma-use/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 1015,
+      "sha256": "6cf3c1fa1292c56d993bbca6134d7bf147df5312d27b725b1336eccecbb74ce6"
+    },
+    {
+      "path": "skills/figma-use/references/plugin-api-patterns.md",
+      "kind": "reference",
+      "size_bytes": 12369,
+      "sha256": "39d1f8ed5837fc6a98d0b817456ebdf621096d63901d6bfc8682bf2f3f2af9b1"
+    },
+    {
+      "path": "skills/figma-use/references/plugin-api-standalone.d.ts",
+      "kind": "reference",
+      "size_bytes": 450733,
+      "sha256": "a83f96eccfbf338f4d0adc6d83bf872a7d30150d66ccb2f6b2233cc22131fda4"
+    },
+    {
+      "path": "skills/figma-use/references/plugin-api-standalone.index.md",
+      "kind": "reference",
+      "size_bytes": 28598,
+      "sha256": "9cd3c229c7ea4c7a73139a800f66d61eb8b40c185e36d0742d3f4a3ce7773813"
+    },
+    {
+      "path": "skills/figma-use/references/text-style-patterns.md",
+      "kind": "reference",
+      "size_bytes": 6588,
+      "sha256": "d22ebefd9e2f9e5c3c1aacd144c225c4a333c043bb57b115c5c5a9477d3eaec7"
+    },
+    {
+      "path": "skills/figma-use/references/validation-and-recovery.md",
+      "kind": "reference",
+      "size_bytes": 5785,
+      "sha256": "d579f5666a7b8fe48689063483f1f8767659b50cb0598ebfec758290e11d7f5a"
+    },
+    {
+      "path": "skills/figma-use/references/variable-patterns.md",
+      "kind": "reference",
+      "size_bytes": 12240,
+      "sha256": "8d0539a6c53cd534864fb5b49379b5024249445c0eb7728c7c3641e386fd9945"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/maintainers.yml",
+      "kind": "reference",
+      "size_bytes": 303,
+      "sha256": "441cf1ab85ca5b89fb835d807a934e3af78819f7f644604b318386e3a588468c"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-components--creating.md",
+      "kind": "reference",
+      "size_bytes": 2199,
+      "sha256": "f383ea109e48c335c5855a8c7be15402e0ba72d5313c34cde6cebf550a6443ff"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-components--using.md",
+      "kind": "reference",
+      "size_bytes": 2062,
+      "sha256": "e4e82a8492ec830f18a3120cae9755f389da92aabb2693ef87c396fd281af576"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-components.md",
+      "kind": "reference",
+      "size_bytes": 4067,
+      "sha256": "90c99d03e849b127b4144725d38b37ad5e456dd6e29c2e9c28690646dcc97b96"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-effect-styles.md",
+      "kind": "reference",
+      "size_bytes": 3268,
+      "sha256": "d0b9b409fda5e22a9095420c606224a2c9b166abbeda6e8b284a820b6d9d7907"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-text-styles.md",
+      "kind": "reference",
+      "size_bytes": 6012,
+      "sha256": "cc6ffcb39b0be488f01a0706001198e914c47bee83ad6a04a50cfc40f9bf6370"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-variables--creating.md",
+      "kind": "reference",
+      "size_bytes": 1559,
+      "sha256": "3a2f9796aac9d419705ca02b9fab29a46282f0921c4c0a01704cec7e43d8ccf2"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-variables--using.md",
+      "kind": "reference",
+      "size_bytes": 1908,
+      "sha256": "3a328d9f2a176a4086ee7c3e14ca83ee730f4d44b5c1b2276247481fdab6a5e7"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds-variables.md",
+      "kind": "reference",
+      "size_bytes": 4737,
+      "sha256": "95ca62876167a7afd87cc30c8f7e76d31fef1b253e4cd6dd20954a27d66066b1"
+    },
+    {
+      "path": "skills/figma-use/references/working-with-design-systems/wwds.md",
+      "kind": "reference",
+      "size_bytes": 5220,
+      "sha256": "e514da78a7eed6a55c95d6b52a600bd38252bb28ad1dde689a7c72f30c99a9f8"
+    },
+    {
+      "path": "skills/figma-use/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/figma-use/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/figma-use.zip",
+      "file_name": "figma-use.zip",
+      "size_bytes": 682582,
+      "sha256": "5b517ccd959002dd653432c744c43a0b8801fa687ab46f3e2418ed94b4d1cf36",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/figma-use.tar.gz",
+      "file_name": "figma-use.tar.gz",
+      "size_bytes": 716918,
+      "sha256": "89fbbfcea347a282db9934133af6c75655330a623eb5281cefcad1b5babdf715",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/figma-use.checksums.txt",
+    "file_name": "figma-use.checksums.txt",
+    "sha256": "67e4e08eda0c6e623c2faf00e9e86fdcc7c8905e57b39cf2bcbcf2d3be574378",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "136aae4bc8662cbbf986d78085d9efc805c343faef7d838ea4be83ae96bd60f5",
+    "package_sha256": "a65c7e2efaa62edf260221b413d8ef35c7860b71b762a9cae0f71bc991caf18c"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_repository_owner": "openai",
+  "source_repository_name": "skills",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skills_path": "skills",
+  "source_skill_path": "skills/.curated/figma-generate-design",
+  "source_skill_name": "figma-generate-design",
+  "source_license_spdx": "UNKNOWN",
+  "license_status": "review-required",
+  "imported_public_skill_id": "figma-generate-design",
+  "lineage_id": 110,
+  "sync_run_id": "20260402T020633.372407+0000-openai-skills-dashboard-sync",
+  "imported_at": "2026-04-02T02:07:01.538516+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "figma-generate-design",
+    "description": "Use this skill alongside figma-use when the task involves translating an application page, view, or multi-section layout into Figma. Triggers: 'write to Figma', 'create in Figma from code', 'push page to Figma', 'take this app/page and build it in Figma', 'create a screen', 'build a landing page in Figma', 'update the Figma screen to match code'. This is the preferred workflow skill whenever the user wants to build or update a full page, screen, or view in Figma from code or a description. Discovers design system components, variables, and styles via search_design_system, imports them, and assembles screens incrementally section-by-section using design system tokens instead of hardcoded values."
+  }
+}

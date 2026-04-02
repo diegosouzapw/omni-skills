@@ -137,13 +137,13 @@
     }
   },
   "quality": {
-    "score": 38,
+    "score": 36,
     "tier": "starter",
     "breakdown": {
       "body": 10,
       "description": 10,
       "metadata": 3,
-      "recency": 7,
+      "recency": 5,
       "resources": 5,
       "best_practices": 0,
       "semantic_depth": 1,

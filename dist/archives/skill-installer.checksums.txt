@@ -1,0 +1,2 @@
+1464a48520c0b3c8462ca125595c273da1b75d0b1c6247acf51e91794dc667d4  skill-installer.zip
+8311f8f6c801c2fee8c208fe90301a0e6f6251fd69e800b83e4cfbc79bcbbc3c  skill-installer.tar.gz

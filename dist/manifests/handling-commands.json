@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 37,
+      "score": 35,
       "tier": "starter",
       "breakdown": {
         "body": 10,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 0,
@@ -217,7 +217,7 @@
       "path": "skills/handling-commands/metadata.json",
       "kind": "support",
       "size_bytes": 5463,
-      "sha256": "2d6fbaca5b83ae43ab27c7ae4a7b626eebd47550b0e5e70ea7387ccc752446b3"
+      "sha256": "fc141694a94ae9fd297749e06c8665517812852b58fde6169efb22123608be85"
     },
     {
       "path": "skills/handling-commands/rules/filters-message-types.md",
@@ -244,7 +244,7 @@
       "path": "dist/archives/handling-commands.zip",
       "file_name": "handling-commands.zip",
       "size_bytes": 13102,
-      "sha256": "5238cc79f05bb1bb95d1edd932b5aa81e0ef3e43577bfdbe04a85b39945ff94d",
+      "sha256": "c1a0ab3da8a2c9bbbd8418cb678f61a63c5411d426d1f3896492ebb89ff0a7c8",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -258,7 +258,7 @@
       "path": "dist/archives/handling-commands.tar.gz",
       "file_name": "handling-commands.tar.gz",
       "size_bytes": 20503,
-      "sha256": "f5cab287df140c90c05dadc05cdae8bccf9c5aa6f63a98c1500212ca0448e94b",
+      "sha256": "e80af05e7bf8b508e0fbfceed8805c22720cdd9dd8b7404ae1b54ac468754cd7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -271,7 +271,7 @@
   "archive_checksums": {
     "path": "dist/archives/handling-commands.checksums.txt",
     "file_name": "handling-commands.checksums.txt",
-    "sha256": "3b6b373123469806340994efc2c8ab0ea51638db14e3db87e348d9b4aa2c9108",
+    "sha256": "efbb590ca81ef4f3238eeef0775de43c2689efa743a09c6e98a79f0cf84cb18b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -282,6 +282,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "5149c5493458e3ea6e2aabe9df5ac00fa64b73fb149a5d9a1199d84fc5b4c19c",
-    "package_sha256": "77bef50554dd0b3fed522a772a9068e4538e8cdbe8f25acf68a139ffe99eb4c4"
+    "package_sha256": "c6891cd2ad3ad11d4534c5067bbc0733f96b51785c61b51494c0f3ca24b39b23"
   }
 }

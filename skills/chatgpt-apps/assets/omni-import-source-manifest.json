@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "chatgpt-apps",
+  "public_skill_path": "skills/chatgpt-apps",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/chatgpt-apps",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "references/app-archetypes.md",
+    "references/apps-sdk-docs-workflow.md",
+    "references/interactive-state-sync-patterns.md",
+    "references/repo-contract-and-validation.md",
+    "references/search-fetch-standard.md",
+    "references/upstream-example-workflow.md",
+    "references/window-openai-patterns.md",
+    "scripts/scaffold_node_ext_apps.mjs"
+  ]
+}

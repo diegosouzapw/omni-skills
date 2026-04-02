@@ -1,0 +1,16 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "gh-address-comments-v2",
+  "public_skill_path": "skills/gh-address-comments-v2",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/gh-address-comments",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/github-small.svg",
+    "assets/github.png",
+    "scripts/fetch_comments.py"
+  ]
+}

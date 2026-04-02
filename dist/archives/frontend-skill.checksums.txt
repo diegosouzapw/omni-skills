@@ -1,0 +1,2 @@
+2d8c64844a74604a1a41288e6178beba8c0fad2f54d33bd1ddce3f7a0aaba333  frontend-skill.zip
+408cac88b10bddfb472c42e07b743612261a46cc68dbc28df6ea8a353762c77c  frontend-skill.tar.gz

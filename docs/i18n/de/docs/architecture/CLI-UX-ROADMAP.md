@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CLI-UX-ROADMAP.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CLI-UX-ROADMAP.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-02T00:00:00+00:00 -->
 
 > **The product roadmap for evolving Awesome Omni Skills from a flag-first installer into a guided terminal experience for both expert and non-expert users.**
 > Scope: npm package, CLI install experience, terminal UI, service launch flows, and visual onboarding.

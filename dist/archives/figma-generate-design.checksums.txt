@@ -1,0 +1,2 @@
+3488c60d6e5e10274d2b83d33a4f3f72d674171836c34cc745d33e0b3c5a3efa  figma-generate-design.zip
+e416a4d5663c2d542a03e153913b7cefeb3cce642a1eacfb16ae465bb06570c3  figma-generate-design.tar.gz

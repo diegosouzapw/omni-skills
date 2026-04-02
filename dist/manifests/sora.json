@@ -1,0 +1,512 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "sora",
+  "slug": "sora",
+  "display_name": "Sora Video Generation Skill",
+  "description": "Sora Video Generation Skill workflow skill. Use this skill when the user needs the user asks to generate, edit, extend, poll, list, download, or delete Sora videos, create reusable non-human Sora character references, or run local multi-video queues via the bundled CLI (scripts/sora.py); includes requests like: (i) generate AI video, (ii) edit this Sora clip, (iii) extend this video, (iv) create a character reference, (v) download video/thumbnail/spritesheet, and (vi) Sora batch planning; requires OPENAIAPIKEY and Sora API access and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "cli-automation",
+  "raw_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "sora",
+    "the",
+    "user",
+    "asks",
+    "generate",
+    "edit",
+    "extend",
+    "poll"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/sora/SKILL.md",
+  "paths": {
+    "root": "skills/sora",
+    "manifest": "dist/manifests/sora.json",
+    "metadata": "skills/sora/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 27,
+    "references_count": 12,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 23,
+        "workflow_section_length": 2858,
+        "when_to_use_section_length": 565,
+        "best_practices_items_count": 28,
+        "best_practices_section_length": 2434,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1335,
+        "resources_items_count": 57,
+        "resources_section_length": 6268,
+        "examples_section_length": 2052,
+        "examples_code_blocks_count": 14,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 44,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 22,
+        "references_files_count": 12,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.38
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 24,
+        "script_files": 3,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 18223,
+    "content_length": 19251,
+    "body_lines": 319,
+    "word_count": 2672,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 23,
+      "workflow_section_length": 2858,
+      "when_to_use_section_length": 565,
+      "best_practices_items_count": 28,
+      "best_practices_section_length": 2434,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1335,
+      "resources_items_count": 57,
+      "resources_section_length": 6268,
+      "examples_section_length": 2052,
+      "examples_code_blocks_count": 14,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 44,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 22,
+      "references_files_count": 12,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.38
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/sora/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1203,
+      "sha256": "db8ac63577721eb60aa79f370b84ea3df6ca99ee97ad2e665c887ae487e2b018"
+    },
+    {
+      "path": "skills/sora/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/sora/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 624,
+      "sha256": "baf3d6b1a86d3f846d46eb3b4e1cfa338f56bd7c4d8c842ff1c3db7f5288dc48"
+    },
+    {
+      "path": "skills/sora/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 19267,
+      "sha256": "a09bb460d036650100e34ef548ab85089f0b112bfbc028f75c3e092c5ee7ce03"
+    },
+    {
+      "path": "skills/sora/metadata.json",
+      "kind": "support",
+      "size_bytes": 6965,
+      "sha256": "65ab22a6c55a52bc870b5c6f5eaf55b70b1e7f9ab1224c7664bb80a6ac7f8d6f"
+    },
+    {
+      "path": "skills/sora/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/sora/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 350,
+      "sha256": "d9012cc092f961b0bb956e4fe2220caed1f7a7f8f654a4ef88af254ed8aef20b"
+    },
+    {
+      "path": "skills/sora/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 718,
+      "sha256": "ec9fc2b61a4634216253bd667bab1b27a48bef8799e1a4fa35947c266a68bd21"
+    },
+    {
+      "path": "skills/sora/assets/sora-small.svg",
+      "kind": "asset",
+      "size_bytes": 1784,
+      "sha256": "fecb5ef27b4b01028892a28a621c60d948595e9b38b542d47b5b97a3147d341d"
+    },
+    {
+      "path": "skills/sora/assets/sora.png",
+      "kind": "asset",
+      "size_bytes": 11731,
+      "sha256": "c0d8a1e9c9dce967f4aea9b6195b95aa1a8cd06bfd57b8da27542654a7b4ba43"
+    },
+    {
+      "path": "skills/sora/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/sora/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 215,
+      "sha256": "88b56da7cc8d64c79a84edf7b364eecc2ea670d9d3004dba78d36488b1f7ea13"
+    },
+    {
+      "path": "skills/sora/references/cinematic-shots.md",
+      "kind": "reference",
+      "size_bytes": 1655,
+      "sha256": "c7e827b1c03e01da7cc24c89f843a820b6151e250c67a51b06be75c42d186446"
+    },
+    {
+      "path": "skills/sora/references/cli.md",
+      "kind": "reference",
+      "size_bytes": 7199,
+      "sha256": "9926249d6cbc214ebb86665b5da0edf2974dc4d82b45105701d39259b6885b31"
+    },
+    {
+      "path": "skills/sora/references/codex-network.md",
+      "kind": "reference",
+      "size_bytes": 1146,
+      "sha256": "923fce6a135ea02b7119292418490ee4bf5764104fcb69aaabd89baa8fde57c4"
+    },
+    {
+      "path": "skills/sora/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/sora/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/sora/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/sora/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 650,
+      "sha256": "7c032452ccca24d527730ab8f66f267bfdce14a92d23add65eb5c1d4268d437c"
+    },
+    {
+      "path": "skills/sora/references/prompting.md",
+      "kind": "reference",
+      "size_bytes": 6239,
+      "sha256": "ed8cf86c87015e9bce62e0c894731ad85c10606b9d298d8ef4902f3d4a4b823e"
+    },
+    {
+      "path": "skills/sora/references/sample-prompts.md",
+      "kind": "reference",
+      "size_bytes": 5227,
+      "sha256": "b701351dd71256078ad39a037f895cf5c20ec49a68bf1da7f488672331a4d7d3"
+    },
+    {
+      "path": "skills/sora/references/social-ads.md",
+      "kind": "reference",
+      "size_bytes": 1464,
+      "sha256": "bc79e56ee044ccf676add6b5e879ec984a9c138a796b28d7df71f217beb1d7f7"
+    },
+    {
+      "path": "skills/sora/references/troubleshooting.md",
+      "kind": "reference",
+      "size_bytes": 3753,
+      "sha256": "38525a193d911320af42b87407986e10aa6d4466d38ba730afd2e794bfa3bdd8"
+    },
+    {
+      "path": "skills/sora/references/video-api.md",
+      "kind": "reference",
+      "size_bytes": 3743,
+      "sha256": "50a1ef1281b0272ec17615f06d6431bcd5001750fecb057562c6dd5de4ce2a90"
+    },
+    {
+      "path": "skills/sora/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/sora/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/sora/scripts/sora.py",
+      "kind": "support",
+      "size_bytes": 42980,
+      "sha256": "a5eeb0120d6b548cec244647ca76ecdc24cb38241b7d28fa25c479d0b8e4b5eb"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/sora.zip",
+      "file_name": "sora.zip",
+      "size_bytes": 134439,
+      "sha256": "fc1d0a297a71db166d0c7e4ae8595d1bc2b8f58f2d8f0f638c4fd2c01ebc2710",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/sora.tar.gz",
+      "file_name": "sora.tar.gz",
+      "size_bytes": 153638,
+      "sha256": "59122881c95e42f9bab7928dc54cc4795286eb4d455c2e77ceaf0dd83b43ba51",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/sora.checksums.txt",
+    "file_name": "sora.checksums.txt",
+    "sha256": "e798950e287e34914c92855fe942639e90ae0c31442944bb736b6d9373f3c04e",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "a09bb460d036650100e34ef548ab85089f0b112bfbc028f75c3e092c5ee7ce03",
+    "package_sha256": "c0f2e759177308768ff65605f2f190548f183ae8b5bd51269d93dc1e8ec786e4"
+  }
+}

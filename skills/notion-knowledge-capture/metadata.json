@@ -1,0 +1,258 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "notion-knowledge-capture",
+  "slug": "notion-knowledge-capture",
+  "display_name": "Knowledge Capture",
+  "description": "Knowledge Capture workflow skill. Use this skill when the user needs Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "documentation",
+  "canonical_category": "documentation",
+  "taxonomy": {
+    "raw_category": "documentation",
+    "canonical_category": "documentation",
+    "inferred_category": "documentation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "notion-knowledge-capture",
+    "capture",
+    "conversations",
+    "and",
+    "decisions",
+    "structured",
+    "notion",
+    "pages"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/notion-knowledge-capture",
+    "entrypoint": "skills/notion-knowledge-capture/SKILL.md",
+    "metadata": "skills/notion-knowledge-capture/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "evaluations",
+      "examples",
+      "reference",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.txt",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "openai.yaml",
+      "notion-small.svg",
+      "notion.png",
+      "omni-import-source-manifest.json",
+      "README.md",
+      "conversation-to-wiki.json",
+      "decision-record.json",
+      "conversation-to-faq.md",
+      "decision-capture.md",
+      "how-to-guide.md",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "database-best-practices.md",
+      "decision-log-database.md",
+      "documentation-database.md",
+      "faq-database.md",
+      "how-to-guide-database.md",
+      "learning-database.md",
+      "team-wiki-database.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 30,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "content": {
+    "body_length": 11350,
+    "content_length": 12132,
+    "body_lines": 190,
+    "word_count": 1628,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 27,
+      "workflow_section_length": 2474,
+      "when_to_use_section_length": 814,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1355,
+      "resources_items_count": 8,
+      "resources_section_length": 1337,
+      "examples_section_length": 2287,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 5,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.57
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 27,
+      "workflow_section_length": 2474,
+      "when_to_use_section_length": 814,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1355,
+      "resources_items_count": 8,
+      "resources_section_length": 1337,
+      "examples_section_length": 2287,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 5,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.57
+    }
+  },
+  "quality": {
+    "score": 100,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 88,
+    "tier": "review",
+    "status": "warn",
+    "findings_count": 1,
+    "findings": [
+      {
+        "id": "sensitive-path-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/notion-knowledge-capture/examples/conversation-to-faq.md",
+        "message": "Sensitive OS or credential path referenced.",
+        "evidence": "content: \"## Short Answer\\n\\nDatabase connection errors usually mean either the database isn't running, credentials a...",
+        "line": 91
+      }
+    ],
+    "signals": {
+      "scanned_files": 28,
+      "script_files": 2,
+      "binary_like_files": 2
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Sensitive OS or credential path referenced. [skills/notion-knowledge-capture/examples/conversation-to-faq.md]"
+    ],
+    "status": "warn"
+  }
+}

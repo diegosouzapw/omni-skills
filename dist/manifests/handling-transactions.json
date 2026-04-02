@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 46,
+      "score": 44,
       "tier": "bronze",
       "breakdown": {
         "body": 16,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -217,7 +217,7 @@
       "path": "skills/handling-transactions/metadata.json",
       "kind": "support",
       "size_bytes": 5487,
-      "sha256": "7b740be19d5f36ecee49b0332f941028fa42f405b4cebba927600eee425cd599"
+      "sha256": "84203bcf55d82fff79cdec6723b572eda57917081a3920a1f3f4a4da8e911834"
     },
     {
       "path": "skills/handling-transactions/rules/balance-check.md",
@@ -244,7 +244,7 @@
       "path": "dist/archives/handling-transactions.zip",
       "file_name": "handling-transactions.zip",
       "size_bytes": 17684,
-      "sha256": "ec344c0471b2a8c5b335f42805daaa4888b1cc8201815d4323dd9020123a1a72",
+      "sha256": "e98cdb1ad35d1624fe3cae4cd9b479365f2e0d1fa72141ade065e56f8482f3b2",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -258,7 +258,7 @@
       "path": "dist/archives/handling-transactions.tar.gz",
       "file_name": "handling-transactions.tar.gz",
       "size_bytes": 30743,
-      "sha256": "44a698649eba0fb55f8434617f23cb03ab3331e2b1eea77daca3b877dc0ab27d",
+      "sha256": "829e6fcf42941a986e33f734f6fc4af195456beaaba3c65c457e8f7ba668249c",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -271,7 +271,7 @@
   "archive_checksums": {
     "path": "dist/archives/handling-transactions.checksums.txt",
     "file_name": "handling-transactions.checksums.txt",
-    "sha256": "cb7df25323af9a6f1de544e876f01a04a5fe57214e7da8ecf6203a960dab625b",
+    "sha256": "81aaf0a3422c4b463ac751969b2d7008b6fd3ad770d9ae4eeb48bb9a3265891b",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -282,6 +282,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "31599069ee7ce29f78f0051537936e65db7b008efc76bc6c023ef719a781a9c3",
-    "package_sha256": "0cef9a709288d9b644b75885fee00857e53df9f9eaa8dbc55290a4c4781d3e47"
+    "package_sha256": "383d74524c7413302b7581e669abb8ce76664eb99f0e7fe056d3efe17e5356c0"
   }
 }

@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 38,
+      "score": 36,
       "tier": "starter",
       "breakdown": {
         "body": 10,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -228,7 +228,7 @@
       "path": "skills/managing-groups/metadata.json",
       "kind": "support",
       "size_bytes": 6007,
-      "sha256": "b5ad87752690deffe1d6b0a8bdd358da15ed240ed47bca0f231e1e33086f4994"
+      "sha256": "388fe27f69c14ed5925a266acf76dbd00adfd9df87902ea52bbb6a39b1f424e0"
     },
     {
       "path": "skills/managing-groups/rules/create-group.md",
@@ -261,7 +261,7 @@
       "path": "dist/archives/managing-groups.zip",
       "file_name": "managing-groups.zip",
       "size_bytes": 17248,
-      "sha256": "48deabd2c1a95ac162f210479e4459be5a37f46abfccb5ce6aeaca8b356208bb",
+      "sha256": "ec15d3bc3f2974907d7539652a1e5b149cbad59dfd2a26c41095db345b7f1080",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -275,7 +275,7 @@
       "path": "dist/archives/managing-groups.tar.gz",
       "file_name": "managing-groups.tar.gz",
       "size_bytes": 30743,
-      "sha256": "f9396bdc644fadfb25ffec3e5bc7ef4ba7440198544d79acbec7c054fd539ae5",
+      "sha256": "68dfadd318d0fee91bb8394737dda2106c00243b85c516f7dcb1041a2d7e6992",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -288,7 +288,7 @@
   "archive_checksums": {
     "path": "dist/archives/managing-groups.checksums.txt",
     "file_name": "managing-groups.checksums.txt",
-    "sha256": "1b9d94ea364268cfbcf87cc3ea6ce23a5f79aeb12572c226de75b1a2bba4d0af",
+    "sha256": "f37ad4da416b85fb8530b066d5e14d92c692ae3f23e5410c08050a65b2edc9b9",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -299,6 +299,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "96610452fbc690ce4a74dde526d1ada793758d616d471e24045fb33dfea59639",
-    "package_sha256": "7c8d52e33bb10e01aa0fbef2448361d7c8029b74307d12f53203a6d89ee9e5db"
+    "package_sha256": "46fb915363b37822c7f5198429624feee0f54eb8978c0cfe3f3bccc377e696cb"
   }
 }

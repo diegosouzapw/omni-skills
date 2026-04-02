@@ -1,0 +1,2 @@
+48f340bdeb0dc8b92929d948997f0c0c083fd28128e1dee768ee38a5946945f6  figma-generate-library.zip
+f34b9f9acaf8c2b70750ea4796e287d54d528b5427da1b8551e22921ffb45e5a  figma-generate-library.tar.gz

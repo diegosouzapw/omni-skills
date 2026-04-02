@@ -1,0 +1,29 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "notion-meeting-intelligence",
+  "public_skill_path": "skills/notion-meeting-intelligence",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/notion-meeting-intelligence",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/notion-small.svg",
+    "assets/notion.png",
+    "evaluations/README.md",
+    "evaluations/decision-meeting-prep.json",
+    "evaluations/status-meeting-prep.json",
+    "examples/customer-meeting.md",
+    "examples/executive-review.md",
+    "examples/project-decision.md",
+    "examples/sprint-planning.md",
+    "reference/brainstorming-template.md",
+    "reference/decision-meeting-template.md",
+    "reference/one-on-one-template.md",
+    "reference/retrospective-template.md",
+    "reference/sprint-planning-template.md",
+    "reference/status-update-template.md",
+    "reference/template-selection-guide.md"
+  ]
+}

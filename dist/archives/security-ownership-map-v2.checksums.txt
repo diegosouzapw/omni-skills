@@ -1,0 +1,2 @@
+8d968b145e5bde92401b31df086b089aa088e0b89ffe052af2850e394a8c1d2f  security-ownership-map-v2.zip
+1170cc9cb85db8d4b9e1c2cc985f2420023d817a007ac606d4324ec845ee2af8  security-ownership-map-v2.tar.gz

@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 42,
+      "score": 40,
       "tier": "bronze",
       "breakdown": {
         "body": 14,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -278,7 +278,7 @@
       "path": "skills/building-agents/metadata.json",
       "kind": "support",
       "size_bytes": 8369,
-      "sha256": "194b1de008a4594b7c5fdacdd72a6652fb4f70efb5a14c88bf08aa29861f5e33"
+      "sha256": "60301af6222b3299c89d73bb5b00aeabf2ca56590a85f5890e8c55e683c0a2f0"
     },
     {
       "path": "skills/building-agents/rules/events-lifecycle.md",
@@ -323,7 +323,7 @@
       "path": "dist/archives/building-agents.zip",
       "file_name": "building-agents.zip",
       "size_bytes": 20683,
-      "sha256": "a4c4524da5f5d06ba2dedfb974457e8fc46a8cc038e70991dd57f8d1af1c5761",
+      "sha256": "6aabd8a55b4365f20e11170f728f09d289041aa2e804af52a9455726fff4ebf7",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -337,7 +337,7 @@
       "path": "dist/archives/building-agents.tar.gz",
       "file_name": "building-agents.tar.gz",
       "size_bytes": 30743,
-      "sha256": "da6a53fe4a6cc5ca91e9a7b5e87356974aba4537e79ae989bf827a0446b1d563",
+      "sha256": "3b61b5e8cc1928b4f7b1a27dc793d1f8ca53369700566dbc8858274b6fb645fb",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -350,7 +350,7 @@
   "archive_checksums": {
     "path": "dist/archives/building-agents.checksums.txt",
     "file_name": "building-agents.checksums.txt",
-    "sha256": "3207e9537561fbfce83276b39757c8e520f7333a5f161cb9af1744084338d634",
+    "sha256": "41e7c45ee1481cfb1d81008bf6e076dad9c8f7220504a0b536e59db176f3bafc",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -361,6 +361,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "443df2b988bd90727c4669f0d98dd6056301e6be726df7ad323ad9639dda5708",
-    "package_sha256": "a56178dd8db2bcb5afc67b62979a9bc1510da598175c6626235195ded8dbc822"
+    "package_sha256": "ec26402853b9ba89c74dd1220d02aadb5cf787dd3009bbbcc8a161e6c104868a"
   }
 }

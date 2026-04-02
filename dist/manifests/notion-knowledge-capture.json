@@ -1,0 +1,550 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "notion-knowledge-capture",
+  "slug": "notion-knowledge-capture",
+  "display_name": "Knowledge Capture",
+  "description": "Knowledge Capture workflow skill. Use this skill when the user needs Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "documentation",
+  "raw_category": "documentation",
+  "taxonomy": {
+    "raw_category": "documentation",
+    "canonical_category": "documentation",
+    "inferred_category": "documentation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "notion-knowledge-capture",
+    "capture",
+    "conversations",
+    "and",
+    "decisions",
+    "structured",
+    "notion",
+    "pages"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/notion-knowledge-capture/SKILL.md",
+  "paths": {
+    "root": "skills/notion-knowledge-capture",
+    "manifest": "dist/manifests/notion-knowledge-capture.json",
+    "metadata": "skills/notion-knowledge-capture/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "evaluations",
+      "examples",
+      "reference",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 31,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 27,
+        "workflow_section_length": 2474,
+        "when_to_use_section_length": 814,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1355,
+        "resources_items_count": 8,
+        "resources_section_length": 1337,
+        "examples_section_length": 2287,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 50,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 5,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.57
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 88,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/notion-knowledge-capture/examples/conversation-to-faq.md",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "content: \"## Short Answer\\n\\nDatabase connection errors usually mean either the database isn't running, credentials a...",
+          "line": 91
+        }
+      ],
+      "signals": {
+        "scanned_files": 28,
+        "script_files": 2,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Sensitive OS or credential path referenced. [skills/notion-knowledge-capture/examples/conversation-to-faq.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 11350,
+    "content_length": 12132,
+    "body_lines": 190,
+    "word_count": 1628,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 27,
+      "workflow_section_length": 2474,
+      "when_to_use_section_length": 814,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1355,
+      "resources_items_count": 8,
+      "resources_section_length": 1337,
+      "examples_section_length": 2287,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 5,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.57
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/notion-knowledge-capture/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1072,
+      "sha256": "1f9e7c8a494e18a2aa8bc29232f97a2917aabff357e44fc6129bea846b0df85f"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 1057,
+      "sha256": "0f377d9b2a1db642e4b0531ffa126e96d9bc6c085f8d9441f220fb25f723c6f8"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 684,
+      "sha256": "c4f3096b1f9921cef614a2172166d301ee0bd1fa50e9e6c5d3eea1b9f4af0dc5"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12140,
+      "sha256": "cb2eb6561b82ce0b5b71e1c575f906926c2782c36f55ee836ba65cda626015fd"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/metadata.json",
+      "kind": "support",
+      "size_bytes": 7583,
+      "sha256": "6046fc9bc30673bf63baee5e0c7b2c70a6c36f434763fb6c55fb3416086c18f6"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 512,
+      "sha256": "549a8c26475f190cb1518c960312bab5c5cf43cc3b0693cd67268e82c5f42b3a"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/assets/notion-small.svg",
+      "kind": "asset",
+      "size_bytes": 15777,
+      "sha256": "00f5e4b758cc5c3e36e783dca2fabfafd05169c2f2175063e56d2e1fb6a55f81"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/assets/notion.png",
+      "kind": "asset",
+      "size_bytes": 8526,
+      "sha256": "5eef1e62d96a3d09bc9d18e4140486c22799145b017033bd0924c2c49d741cd4"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 997,
+      "sha256": "7e8d6deca0f9f64376f6763e1112212a1c2d89f5a73c126500f52a4f14267988"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/evaluations/README.md",
+      "kind": "support",
+      "size_bytes": 3487,
+      "sha256": "2d965e000d73b013a0a0ab50802fa53e81efb8a657dba49a3d79ec6562ab3d23"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/evaluations/conversation-to-wiki.json",
+      "kind": "support",
+      "size_bytes": 2035,
+      "sha256": "ff08f8d2b7c0634314b70e96cc2f7fa8aa757683dd0652d99d665c678c6c53ba"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/evaluations/decision-record.json",
+      "kind": "support",
+      "size_bytes": 2220,
+      "sha256": "9f7c3de9390cb57dde8278fa0537bd3f779b4e7066b9a17ec72ec7a108e7ba32"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/examples/conversation-to-faq.md",
+      "kind": "support",
+      "size_bytes": 16242,
+      "sha256": "2c78414d86d3d854ba51ff6c88ea5f1315268742816e2d3b13ee6848f1158a73"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/examples/decision-capture.md",
+      "kind": "support",
+      "size_bytes": 3568,
+      "sha256": "c6fc42d095d842ac55ab1a95322bab7d0146669089e0b0d470f791ad8477b586"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/examples/how-to-guide.md",
+      "kind": "support",
+      "size_bytes": 2838,
+      "sha256": "5c13ac240bf07a0575b1295a6c5d7f95d0112702652d92870a9858e3c74033e7"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 235,
+      "sha256": "c5fdad283430a5c8b938313c21c46f3dfc3ca9f7dee227f98c70defb03a20ab4"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/database-best-practices.md",
+      "kind": "support",
+      "size_bytes": 2876,
+      "sha256": "72190afe54894b8ef2566d6f6d60fdcfe39822f5a1db02e75c2186c6952ad83c"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/decision-log-database.md",
+      "kind": "support",
+      "size_bytes": 2033,
+      "sha256": "77d23a69b94cecaad520cb84f18b214994fa2c7873b88928f8d13da8b301c773"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/documentation-database.md",
+      "kind": "support",
+      "size_bytes": 2745,
+      "sha256": "727f6bb7a341e871ba8afe155f9b261fe6f5ecf7f5ca7a43db3ad646fee7244d"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/faq-database.md",
+      "kind": "support",
+      "size_bytes": 2037,
+      "sha256": "2fedbd91f02df20541fa14372661d82d19e04cb96d261a184a74aff5b90089be"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/how-to-guide-database.md",
+      "kind": "support",
+      "size_bytes": 1237,
+      "sha256": "a6002d032b0563e0234a4c225226ea6a207b120e69b0c839315c8402813b30e5"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/learning-database.md",
+      "kind": "support",
+      "size_bytes": 1322,
+      "sha256": "8ceaa72bc7ab944ce1084df6233001c05b65d06ee5913a23caf760f248236e83"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/reference/team-wiki-database.md",
+      "kind": "support",
+      "size_bytes": 927,
+      "sha256": "b08cfd417d2d61cda223c1d44c199b0a588e35c177f75328681c1b820b6450f8"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 897,
+      "sha256": "8e02f947bd8b00d8ca5dba005f9ac956529e9ba0e2d9a2d28cec71fd51fbc59e"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/notion-knowledge-capture/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/notion-knowledge-capture.zip",
+      "file_name": "notion-knowledge-capture.zip",
+      "size_bytes": 101755,
+      "sha256": "62f119968b8947b314be7ba3b55e63eee9812a2d5304ecbe26d95f37cea5ad5c",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/notion-knowledge-capture.tar.gz",
+      "file_name": "notion-knowledge-capture.tar.gz",
+      "size_bytes": 122913,
+      "sha256": "17aa3e9e86a664a2d8f5c60c06a71118cc6c63be0df6ea5d5f76219d0dbfc119",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/notion-knowledge-capture.checksums.txt",
+    "file_name": "notion-knowledge-capture.checksums.txt",
+    "sha256": "2206b6f17acd6467e02551c6fe8474a2381fe91323a86edd015ef40702c764d3",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "cb2eb6561b82ce0b5b71e1c575f906926c2782c36f55ee836ba65cda626015fd",
+    "package_sha256": "616082203d04a90298f498a283d51029b21fe571006846ef98ce80eee5cec1c5"
+  }
+}

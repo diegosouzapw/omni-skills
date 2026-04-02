@@ -1,0 +1,494 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "imagegen",
+  "slug": "imagegen",
+  "display_name": "Image Generation Skill",
+  "description": "Image Generation Skill workflow skill. Use this skill when the user needs Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "imagegen",
+    "generate",
+    "edit",
+    "raster",
+    "images",
+    "the",
+    "task",
+    "benefits"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/imagegen/SKILL.md",
+  "paths": {
+    "root": "skills/imagegen",
+    "manifest": "dist/manifests/imagegen.json",
+    "metadata": "skills/imagegen/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 24,
+    "references_count": 9,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 41,
+        "workflow_section_length": 4835,
+        "when_to_use_section_length": 751,
+        "best_practices_items_count": 30,
+        "best_practices_section_length": 3133,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1339,
+        "resources_items_count": 72,
+        "resources_section_length": 8784,
+        "examples_section_length": 1894,
+        "examples_code_blocks_count": 12,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 43,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 19,
+        "references_files_count": 9,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.35
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 21,
+        "script_files": 3,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 23336,
+    "content_length": 24480,
+    "body_lines": 410,
+    "word_count": 3423,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 41,
+      "workflow_section_length": 4835,
+      "when_to_use_section_length": 751,
+      "best_practices_items_count": 30,
+      "best_practices_section_length": 3133,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1339,
+      "resources_items_count": 72,
+      "resources_section_length": 8784,
+      "examples_section_length": 1894,
+      "examples_code_blocks_count": 12,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 43,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 19,
+      "references_files_count": 9,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.35
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/imagegen/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1317,
+      "sha256": "dc5577841a5d31d56c026027746dac039b4836c93fb599e7eee1cdbb93ee6453"
+    },
+    {
+      "path": "skills/imagegen/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/imagegen/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 636,
+      "sha256": "911d2156647885210887dd92ba0f0d2db7a0bc495df5a28f7bb45dcc30c98a63"
+    },
+    {
+      "path": "skills/imagegen/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 24514,
+      "sha256": "a479fed534be71a194c8fce11462ef50ce459657586c81d1d49e46c25343b550"
+    },
+    {
+      "path": "skills/imagegen/metadata.json",
+      "kind": "support",
+      "size_bytes": 6999,
+      "sha256": "facb4ddfde7ac7734788d0cf87535008b75e6d03367e6b84d5f94c8331cb3f59"
+    },
+    {
+      "path": "skills/imagegen/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/imagegen/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 918,
+      "sha256": "fafccbf7ded0d78be24c7dc1c0a2e0ac1bbf27bfd13a1fed969da643d973826a"
+    },
+    {
+      "path": "skills/imagegen/assets/imagegen-small.svg",
+      "kind": "asset",
+      "size_bytes": 2889,
+      "sha256": "cff5f34f57ff60b3ee92eaedd17b15e96dd4b9e776df3e78936c9e00d42be294"
+    },
+    {
+      "path": "skills/imagegen/assets/imagegen.png",
+      "kind": "asset",
+      "size_bytes": 1711,
+      "sha256": "95952f644064eb9e890f98d8db07216347186526e4c41ad66d3420629eb86e20"
+    },
+    {
+      "path": "skills/imagegen/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 637,
+      "sha256": "59ac465bd0e1897245500bbd49565679a9d3e2e3c1a0567d86eff908bf891a56"
+    },
+    {
+      "path": "skills/imagegen/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/imagegen/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 219,
+      "sha256": "32b5f8fdd4d0fc390ede40585f14f657f60744bb483e88c8f5e6d9080be8cc1e"
+    },
+    {
+      "path": "skills/imagegen/references/cli.md",
+      "kind": "reference",
+      "size_bytes": 6249,
+      "sha256": "6d7996f425d13a329fb1e0c10b2be55634a7c0fe4c2dbe076442d97ab00264c2"
+    },
+    {
+      "path": "skills/imagegen/references/codex-network.md",
+      "kind": "reference",
+      "size_bytes": 1620,
+      "sha256": "dd6e85cb3da3589cab0f65be15b2c8f9d19633d9490f0a4b0fef5fd243d0464c"
+    },
+    {
+      "path": "skills/imagegen/references/image-api.md",
+      "kind": "reference",
+      "size_bytes": 2500,
+      "sha256": "005d8db53d05223dda473f255b3576b95dff239d6dfbf544a454110e98aa87b5"
+    },
+    {
+      "path": "skills/imagegen/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/imagegen/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/imagegen/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/imagegen/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 574,
+      "sha256": "c4d553a2ec225323c7f55acad68576bb1adbb06ae919c10c3cd5b1f1377ebf4a"
+    },
+    {
+      "path": "skills/imagegen/references/prompting.md",
+      "kind": "reference",
+      "size_bytes": 6462,
+      "sha256": "e547ff9fe8e0de8e844c70a550e0b66e0f72323307e5acd0e562678f10eb0db2"
+    },
+    {
+      "path": "skills/imagegen/references/sample-prompts.md",
+      "kind": "reference",
+      "size_bytes": 14789,
+      "sha256": "82b0e14db9eace50fca0a4e728b535ded0f3661893538e6b15b18a9a82b71d5b"
+    },
+    {
+      "path": "skills/imagegen/scripts/image_gen.py",
+      "kind": "support",
+      "size_bytes": 31856,
+      "sha256": "eaffd8fe4cde5722d748cc35729a03438d6b8fda5e84edd46ea1ce521d41f58b"
+    },
+    {
+      "path": "skills/imagegen/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/imagegen/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/imagegen.zip",
+      "file_name": "imagegen.zip",
+      "size_bytes": 121212,
+      "sha256": "e5891be8009fee5f8be8c2cd961af453200327ea685860c74625d99a8b15fbac",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/imagegen.tar.gz",
+      "file_name": "imagegen.tar.gz",
+      "size_bytes": 143398,
+      "sha256": "8ce59edd5b6b1d7b918c38d228849becff76e10260b0d792197a898b46649937",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/imagegen.checksums.txt",
+    "file_name": "imagegen.checksums.txt",
+    "sha256": "3ee41a5135ad027965d215e5255b0503f03a1f979e209c9bf4165bf84bded200",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "a479fed534be71a194c8fce11462ef50ce459657586c81d1d49e46c25343b550",
+    "package_sha256": "1abd7ff796b660ed281c852976a88af67aefbc3edced147bc18371ad41307133"
+  }
+}

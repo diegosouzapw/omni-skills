@@ -1,0 +1,2 @@
+ac2634854f68f82c24ed5e05072885b793d0f5e89a8a54801bfa122016f21c1d  security-threat-model-v2.zip
+a1f59ae14e364169da531e3fd9307741e03ba841b37ac833c33da4167507b016  security-threat-model-v2.tar.gz

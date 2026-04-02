@@ -1,0 +1,530 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "aspnet-core",
+  "slug": "aspnet-core",
+  "display_name": "ASP.NET Core",
+  "description": "ASP.NET Core workflow skill. Use this skill when the user needs Build, review, refactor, or architect ASP.NET Core web applications using current official guidance for .NET web development. Use when working on Blazor Web Apps, Razor Pages, MVC, Minimal APIs, controller-based Web APIs, SignalR, gRPC, middleware, dependency injection, configuration, authentication, authorization, testing, performance, deployment, or ASP.NET Core upgrades and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "backend",
+  "raw_category": "backend",
+  "taxonomy": {
+    "raw_category": "backend",
+    "canonical_category": "backend",
+    "inferred_category": "backend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "aspnet-core",
+    "build",
+    "review",
+    "refactor",
+    "architect",
+    "asp",
+    "net",
+    "core"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/aspnet-core/SKILL.md",
+  "paths": {
+    "root": "skills/aspnet-core",
+    "manifest": "dist/manifests/aspnet-core.json",
+    "metadata": "skills/aspnet-core/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 30,
+    "references_count": 17,
+    "agents_count": 2,
+    "assets_count": 2
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 28,
+        "workflow_section_length": 3342,
+        "when_to_use_section_length": 871,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1342,
+        "resources_items_count": 24,
+        "resources_section_length": 3841,
+        "examples_section_length": 1179,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 543,
+        "decision_assets_count": 51,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 33,
+        "support_files_count": 25,
+        "references_files_count": 17,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 2,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 9.76
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 28,
+        "script_files": 2,
+        "binary_like_files": 1
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 13768,
+    "content_length": 14712,
+    "body_lines": 200,
+    "word_count": 1951,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 31,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 28,
+      "workflow_section_length": 3342,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1342,
+      "resources_items_count": 24,
+      "resources_section_length": 3841,
+      "examples_section_length": 1179,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 543,
+      "decision_assets_count": 51,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 33,
+      "support_files_count": 25,
+      "references_files_count": 17,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 2,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 9.76
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/aspnet-core/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1135,
+      "sha256": "c76c4b1eb377df955ab5dbec364bdbd9db84f06ac00c87082558254bac4dc038"
+    },
+    {
+      "path": "skills/aspnet-core/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "skills/aspnet-core/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 645,
+      "sha256": "375556aaa06ede493fbb094bf6a758337a1ce5d06fff97ca6de83f3fdc9b0f31"
+    },
+    {
+      "path": "skills/aspnet-core/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 14712,
+      "sha256": "919c56d66bf145d14324c1ed7682e2f2caf04c13c55d7696cb887b039447f889"
+    },
+    {
+      "path": "skills/aspnet-core/metadata.json",
+      "kind": "support",
+      "size_bytes": 7051,
+      "sha256": "dfc02ca3c12ecc93f56da6f8c99e5c562348870884c4f37ada2cac77618fcb39"
+    },
+    {
+      "path": "skills/aspnet-core/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/aspnet-core/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 222,
+      "sha256": "06a421ca2f92fc86d83dc7c02e31ad5c85da8193eebbe17aa883ef274e26011a"
+    },
+    {
+      "path": "skills/aspnet-core/assets/dotnet-logo.png",
+      "kind": "asset",
+      "size_bytes": 2270,
+      "sha256": "7f561a8f84ca88130803ecc8664914a4c619530836c705a4b9169704b4195d7c"
+    },
+    {
+      "path": "skills/aspnet-core/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 961,
+      "sha256": "2c382092ecfa563a4010c998b039f61b66ed08da8d6859a9db597365fef3b572"
+    },
+    {
+      "path": "skills/aspnet-core/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/aspnet-core/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 222,
+      "sha256": "0fb2dc789c6e74151aaaaa9d21b1bcda078e907219dd09eb3f24e3599aaec827"
+    },
+    {
+      "path": "skills/aspnet-core/references/_sections.md",
+      "kind": "reference",
+      "size_bytes": 2412,
+      "sha256": "eefa51074986d078dd108857ff1e376bf6b75935ee125ebdafef47ba53a57f19"
+    },
+    {
+      "path": "skills/aspnet-core/references/apis-minimal-and-controllers.md",
+      "kind": "reference",
+      "size_bytes": 3040,
+      "sha256": "156283486289a1765d0cad6f7c296bad2f8aa45ad24d730c8ed0b845713cfee1"
+    },
+    {
+      "path": "skills/aspnet-core/references/data-state-and-services.md",
+      "kind": "reference",
+      "size_bytes": 2422,
+      "sha256": "9b0f2253c77a9ade7ebd39103de8fdfe1ae0cd73f71a86936bb1f5ccde064ef4"
+    },
+    {
+      "path": "skills/aspnet-core/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/aspnet-core/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/aspnet-core/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/aspnet-core/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 877,
+      "sha256": "518580059934e9286988ec4b0ad781271c0f51f04c1480cb249a9f6b504d2854"
+    },
+    {
+      "path": "skills/aspnet-core/references/program-and-pipeline.md",
+      "kind": "reference",
+      "size_bytes": 4182,
+      "sha256": "375d4e4580ce43f72f5d3d01e7c26a292eec2f43dc63c03f0200a4e24dbcd543"
+    },
+    {
+      "path": "skills/aspnet-core/references/realtime-grpc-and-background-work.md",
+      "kind": "reference",
+      "size_bytes": 1896,
+      "sha256": "ba6cfd463620b608c33ed65bcc4d6b25c4ec921cc77bd2fb9379cb486a11a824"
+    },
+    {
+      "path": "skills/aspnet-core/references/security-and-identity.md",
+      "kind": "reference",
+      "size_bytes": 2941,
+      "sha256": "a661dc33dc64e44f9a389d08c20f4e89f1ed62970197a3d2df35036b07884f35"
+    },
+    {
+      "path": "skills/aspnet-core/references/source-map.md",
+      "kind": "reference",
+      "size_bytes": 2040,
+      "sha256": "21e11fee79253f9c0050a3fb207b91e0c44360572662b2c900a855d0a332fa93"
+    },
+    {
+      "path": "skills/aspnet-core/references/stack-selection.md",
+      "kind": "reference",
+      "size_bytes": 3700,
+      "sha256": "9de61ba6c4c1fbb9b4b68d2fb6a9f3ed475feb87d912999c8a1c81911f38c8a3"
+    },
+    {
+      "path": "skills/aspnet-core/references/testing-performance-and-operations.md",
+      "kind": "reference",
+      "size_bytes": 2698,
+      "sha256": "14fecd1e3f5c7a54de2e7ffdd51a91a52101da5765f1ccdfd1f6c6437dd6c8ec"
+    },
+    {
+      "path": "skills/aspnet-core/references/ui-blazor.md",
+      "kind": "reference",
+      "size_bytes": 2478,
+      "sha256": "37267429839b21d084b35749550e85fa96077e06e96fef4917d558b8602afdcc"
+    },
+    {
+      "path": "skills/aspnet-core/references/ui-mvc.md",
+      "kind": "reference",
+      "size_bytes": 1954,
+      "sha256": "25657bf06f9f485967cc07d9cd93b5631d4a49871cd63bd7b2ae982fb776e659"
+    },
+    {
+      "path": "skills/aspnet-core/references/ui-razor-pages.md",
+      "kind": "reference",
+      "size_bytes": 1937,
+      "sha256": "3f3e2dc6e47ce6202649f28fd3143087c067048e60cb997030f8f0bc17a09f1a"
+    },
+    {
+      "path": "skills/aspnet-core/references/versioning-and-upgrades.md",
+      "kind": "reference",
+      "size_bytes": 2085,
+      "sha256": "3a51900fb9046ea9c0aec738410389854ab2474950253ab0719909aaf709a840"
+    },
+    {
+      "path": "skills/aspnet-core/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/aspnet-core/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/aspnet-core.zip",
+      "file_name": "aspnet-core.zip",
+      "size_bytes": 81061,
+      "sha256": "60a41cfb6166f2b2b656bd397ce55ed0e12e0e24bd3ebc3734000159941bab67",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/aspnet-core.tar.gz",
+      "file_name": "aspnet-core.tar.gz",
+      "size_bytes": 102433,
+      "sha256": "d6d4844cc3c3d122754114687c76fa80405766d6aa65d6fafe556b392123cb00",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/aspnet-core.checksums.txt",
+    "file_name": "aspnet-core.checksums.txt",
+    "sha256": "6a03dd108478d63ac8a9d628d32fc3ba2f2e188263d1c16aa64040e64018a896",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "919c56d66bf145d14324c1ed7682e2f2caf04c13c55d7696cb887b039447f889",
+    "package_sha256": "96208f0c323dc26757a823a24454a51d799a4d6d4027f46f1f74e6c585471af0"
+  }
+}

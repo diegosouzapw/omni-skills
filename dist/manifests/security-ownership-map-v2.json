@@ -1,0 +1,476 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "security-ownership-map-v2",
+  "slug": "security-ownership-map-v2",
+  "display_name": "Security Ownership Map",
+  "description": "Security Ownership Map workflow skill. Use this skill when the user needs Analyze git repositories to build a security ownership topology (people-to-file), compute bus factor and sensitive-code ownership, and export CSV/JSON for graph databases and visualization. Trigger only when the user explicitly wants a security-oriented ownership or bus-factor analysis grounded in git history (for example: orphaned sensitive code, security maintainers, CODEOWNERS reality checks for risk, sensitive hotspots, or ownership clusters). Do not trigger for general maintainer lists or non-security ownership questions and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "testing-security",
+  "raw_category": "testing-security",
+  "taxonomy": {
+    "raw_category": "testing-security",
+    "canonical_category": "testing-security",
+    "inferred_category": "testing-security",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "security-ownership-map-v2",
+    "security-ownership-map",
+    "analyze",
+    "git",
+    "repositories",
+    "build",
+    "security",
+    "ownership"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/security-ownership-map-v2/SKILL.md",
+  "paths": {
+    "root": "skills/security-ownership-map-v2",
+    "manifest": "dist/manifests/security-ownership-map-v2.json",
+    "metadata": "skills/security-ownership-map-v2/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 21,
+    "references_count": 5,
+    "agents_count": 2,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 15,
+        "workflow_section_length": 2517,
+        "when_to_use_section_length": 872,
+        "best_practices_items_count": 7,
+        "best_practices_section_length": 1300,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1353,
+        "resources_items_count": 27,
+        "resources_section_length": 6818,
+        "examples_section_length": 2122,
+        "examples_code_blocks_count": 14,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 49,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 5,
+        "scripts_files_count": 6,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 6.99
+      }
+    },
+    "quality": {
+      "score": 98,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 20,
+        "script_files": 6,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 17368,
+    "content_length": 18543,
+    "body_lines": 346,
+    "word_count": 2417,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 10,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 15,
+      "workflow_section_length": 2517,
+      "when_to_use_section_length": 872,
+      "best_practices_items_count": 7,
+      "best_practices_section_length": 1300,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 27,
+      "resources_section_length": 6818,
+      "examples_section_length": 2122,
+      "examples_code_blocks_count": 14,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 49,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 5,
+      "scripts_files_count": 6,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 6.99
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/security-ownership-map-v2/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1338,
+      "sha256": "8ce914b60fde168d6c33bd99eef9694cd128d00daf819752526a3074fd37b079"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 684,
+      "sha256": "bc78769222531da189a2da8ccaee4a668793743c877a76c38d668893f9d49b29"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 18547,
+      "sha256": "4bb85978ecfe981b4fb6281e3c363ef37a5bdc8ae3e54f68a5162e8cc3df6f78"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/metadata.json",
+      "kind": "support",
+      "size_bytes": 7092,
+      "sha256": "25595f2f1a44e5e27f83b4a45389a42286ae3fa276f1bd455b19a8224c32431b"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 253,
+      "sha256": "40877a3cdb1753aa187fc85a83bc138a866a1edb74165e009c885cfb6a16e433"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 621,
+      "sha256": "c71a5dbf4c68f90366bde4fb7ded8187e99ed34ca8fa94abb80c85c1c90071fd"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 236,
+      "sha256": "3a8d826148b0c5a86a0233f7b8b2303478c47231d72b270213c218a82f478a4a"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/references/neo4j-import.md",
+      "kind": "reference",
+      "size_bytes": 2428,
+      "sha256": "176d0ef2ed3588530ed65ccda7cb30ae322e4cbec5c374dba5d1685e2bb9dd02"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 549,
+      "sha256": "048c401f97239c0b4da517262925a05204c209a638c1629180b1ea94e25e57e9"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/build_ownership_map.py",
+      "kind": "support",
+      "size_bytes": 34330,
+      "sha256": "c0454c47c7eb001b6e247cd7e473df1b28a3a148a2dca6b2fe88a74a7602cc9b"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/community_maintainers.py",
+      "kind": "support",
+      "size_bytes": 18122,
+      "sha256": "95adec5458cc85b41d0ae7965b0a17e4e8eaa6aaab274459324580d9a91cc3cc"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/query_ownership.py",
+      "kind": "support",
+      "size_bytes": 17991,
+      "sha256": "0f8d1a1ac3ef807a9b66939a8cdfd02564f4cda018489a3664d37f8c3a7b1b93"
+    },
+    {
+      "path": "skills/security-ownership-map-v2/scripts/run_ownership_map.py",
+      "kind": "support",
+      "size_bytes": 5890,
+      "sha256": "362b547d6133659eb5c4fe889b8b930bea790f31e412f3198671baae09eec692"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/security-ownership-map-v2.zip",
+      "file_name": "security-ownership-map-v2.zip",
+      "size_bytes": 125755,
+      "sha256": "8d968b145e5bde92401b31df086b089aa088e0b89ffe052af2850e394a8c1d2f",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/security-ownership-map-v2.tar.gz",
+      "file_name": "security-ownership-map-v2.tar.gz",
+      "size_bytes": 143398,
+      "sha256": "1170cc9cb85db8d4b9e1c2cc985f2420023d817a007ac606d4324ec845ee2af8",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/security-ownership-map-v2.checksums.txt",
+    "file_name": "security-ownership-map-v2.checksums.txt",
+    "sha256": "4c945e308ce3b4d6b428da92b6294140055eafc2000c09f25fd1a26db09cc4e0",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "4bb85978ecfe981b4fb6281e3c363ef37a5bdc8ae3e54f68a5162e8cc3df6f78",
+    "package_sha256": "3ace8c1a02ed97da4990fb6e227b6cc812e9d54baa670db088c97b45e2cd3038"
+  }
+}

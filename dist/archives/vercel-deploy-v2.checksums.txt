@@ -1,0 +1,2 @@
+29e0413540c07125c976c6b0d00bb2bd5b0c409fa74278d145123fdb5aaea6ed  vercel-deploy-v2.zip
+76931da327263493a4d1b356da96ecd740c8c08d23fb2dccc8783968c1832c0e  vercel-deploy-v2.tar.gz
