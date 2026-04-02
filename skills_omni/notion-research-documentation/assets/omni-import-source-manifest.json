@@ -1,0 +1,33 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "notion-research-documentation",
+  "public_skill_path": "skills/notion-research-documentation",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/notion-research-documentation",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/notion-small.svg",
+    "assets/notion.png",
+    "evaluations/README.md",
+    "evaluations/basic-research.json",
+    "evaluations/research-to-database.json",
+    "examples/competitor-analysis.md",
+    "examples/market-research.md",
+    "examples/technical-investigation.md",
+    "examples/trip-planning.md",
+    "reference/advanced-search.md",
+    "reference/citations.md",
+    "reference/comparison-format.md",
+    "reference/comparison-template.md",
+    "reference/comprehensive-report-format.md",
+    "reference/comprehensive-report-template.md",
+    "reference/format-selection-guide.md",
+    "reference/quick-brief-format.md",
+    "reference/quick-brief-template.md",
+    "reference/research-summary-format.md",
+    "reference/research-summary-template.md"
+  ]
+}

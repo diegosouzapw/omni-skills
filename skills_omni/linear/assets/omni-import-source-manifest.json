@@ -1,0 +1,15 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "linear",
+  "public_skill_path": "skills/linear",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/linear",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/linear-small.svg",
+    "assets/linear.png"
+  ]
+}

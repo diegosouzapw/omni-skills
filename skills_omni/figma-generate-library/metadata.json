@@ -1,0 +1,321 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "figma-generate-library",
+  "slug": "figma-generate-library",
+  "display_name": "Design System Builder — Figma MCP Skill",
+  "description": "Design System Builder \\u2014 Figma MCP Skill workflow skill. Use this skill when the user needs Build or update a professional-grade design system in Figma from a codebase. Use when the user wants to create variables/tokens, build component libraries, set up theming (light/dark modes), document foundations, or reconcile gaps between code and Figma. This skill teaches WHAT to build and in WHAT ORDER \\u2014 it complements the figma-use skill which teaches HOW to call the Plugin API. Both skills should be loaded together and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "design",
+  "canonical_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-generate-library",
+    "build",
+    "update",
+    "professional-grade",
+    "design",
+    "system",
+    "figma",
+    "codebase"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/figma-generate-library",
+    "entrypoint": "skills/figma-generate-library/SKILL.md",
+    "metadata": "skills/figma-generate-library/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.TXT",
+      "ORIGIN.md",
+      "SKILL.md",
+      "maintainers.yml",
+      "omni-import-router.md",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "code-connect-setup.md",
+      "component-creation.md",
+      "discovery-phase.md",
+      "documentation-creation.md",
+      "error-recovery.md",
+      "naming-conventions.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "token-creation.md",
+      "bindVariablesToComponent.js",
+      "cleanupOrphans.js",
+      "createComponentWithVariants.js",
+      "createDocumentationPage.js",
+      "createSemanticTokens.js",
+      "createVariableCollection.js",
+      "inspectFileStructure.js",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py",
+      "rehydrateState.js",
+      "validateCreation.js"
+    ],
+    "files_count": 35,
+    "references_count": 11,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "content": {
+    "body_length": 26276,
+    "content_length": 27338,
+    "body_lines": 446,
+    "word_count": 3519,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 24,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 7,
+      "workflow_section_length": 7241,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 29,
+      "best_practices_section_length": 4116,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 40,
+      "resources_section_length": 8374,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 49,
+      "table_count": 52,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 26,
+      "support_files_count": 30,
+      "references_files_count": 11,
+      "scripts_files_count": 11,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.89
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 7,
+      "workflow_section_length": 7241,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 29,
+      "best_practices_section_length": 4116,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 40,
+      "resources_section_length": 8374,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 49,
+      "table_count": 52,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 26,
+      "support_files_count": 30,
+      "references_files_count": 11,
+      "scripts_files_count": 11,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.89
+    }
+  },
+  "quality": {
+    "score": 99,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 28,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 7,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/code-connect-setup.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/component-creation.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/discovery-phase.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/documentation-creation.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/error-recovery.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/naming-conventions.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-library/references/token-creation.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+        "line": 1
+      }
+    ],
+    "signals": {
+      "scanned_files": 32,
+      "script_files": 11,
+      "binary_like_files": 3
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/code-connect-setup.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/component-creation.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/discovery-phase.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/documentation-creation.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/error-recovery.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/naming-conventions.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/token-creation.md]"
+    ],
+    "status": "warn"
+  }
+}

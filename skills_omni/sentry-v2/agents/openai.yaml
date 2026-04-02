@@ -1,0 +1,12 @@
+name: sentry-v2
+description: Read-only Sentry issue and event inspection workflow using authenticated API calls, explicit filters, safe summaries, and provenance.
+trigger:
+  - Inspect Sentry issues or events
+  - Summarize recent production errors from Sentry
+  - Drill from issue to related events
+instructions: |
+  Use this skill only for read-only Sentry observability tasks.
+  Require local SENTRY_AUTH_TOKEN configuration and never ask the user to paste secrets into chat.
+  Confirm org, project, environment, time range, and query scope before issuing API calls.
+  Prefer list-issues first when the target issue is not yet known.
+  Summarize the minimum necessary evidence and include provenance to the endpoint family used.

@@ -1,0 +1,19 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "spreadsheet",
+  "public_skill_path": "skills/spreadsheet",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/spreadsheet",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/spreadsheet-small.svg",
+    "assets/spreadsheet.png",
+    "references/examples/openpyxl/create_basic_spreadsheet.py",
+    "references/examples/openpyxl/create_spreadsheet_with_styling.py",
+    "references/examples/openpyxl/read_existing_spreadsheet.py",
+    "references/examples/openpyxl/styling_spreadsheet.py"
+  ]
+}

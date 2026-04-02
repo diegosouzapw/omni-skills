@@ -1,0 +1,23 @@
+name: speech
+description: Generate spoken audio from text with the bundled OpenAI Audio API CLI workflow.
+when_to_use:
+  - Text-to-speech narration or voiceover
+  - Accessibility reads
+  - IVR or audio prompt generation
+  - Batch speech rendering from structured input
+not_for:
+  - Speech-to-text or transcription
+  - Real-time voice agents
+  - Custom voice creation or cloning
+entrypoints:
+  - SKILL.md
+support_files:
+  - references/cli.md
+  - references/audio-api.md
+  - references/prompting.md
+  - references/voice-directions.md
+  - references/accessibility.md
+  - references/codex-network.md
+  - examples/single-clip.md
+  - examples/batch-jsonl.md
+  - examples/long-script-chunking.md

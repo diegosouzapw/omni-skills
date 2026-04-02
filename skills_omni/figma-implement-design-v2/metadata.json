@@ -1,0 +1,274 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "figma-implement-design-v2",
+  "slug": "figma-implement-design-v2",
+  "display_name": "Implement Design",
+  "description": "Implement Design workflow skill. Use this skill when the user needs Translates Figma designs into production-ready application code with 1:1 visual fidelity. Use when implementing UI code from Figma files, when user mentions \\\"implement design\\\", \\\"generate code\\\", \\\"implement component\\\", provides Figma URLs, or asks to build components matching Figma specs. For Figma canvas writes via use_figma, use figma-use and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "design",
+  "canonical_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-implement-design-v2",
+    "figma-implement-design",
+    "translates",
+    "figma",
+    "designs",
+    "production-ready",
+    "application",
+    "visual"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/figma-implement-design-v2",
+    "entrypoint": "skills/figma-implement-design-v2/SKILL.md",
+    "metadata": "skills/figma-implement-design-v2/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.txt",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 18,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "content": {
+    "body_length": 19840,
+    "content_length": 20825,
+    "body_lines": 398,
+    "word_count": 2807,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 6,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 46,
+      "workflow_section_length": 5921,
+      "when_to_use_section_length": 872,
+      "best_practices_items_count": 18,
+      "best_practices_section_length": 2187,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 17,
+      "resources_section_length": 4018,
+      "examples_section_length": 3116,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 47,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 14,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.05
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 46,
+      "workflow_section_length": 5921,
+      "when_to_use_section_length": 872,
+      "best_practices_items_count": 18,
+      "best_practices_section_length": 2187,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 17,
+      "resources_section_length": 4018,
+      "examples_section_length": 3116,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 47,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 14,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.05
+    }
+  },
+  "quality": {
+    "score": 99,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 58,
+    "tier": "risky",
+    "status": "warn",
+    "findings_count": 4,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-implement-design-v2/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user asks to create/edit/delete nodes inside Figma itself, switch to [figma-use](../figma-use/SKILL.md).",
+        "line": 183
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-implement-design-v2/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user asks to build or update a full-page screen in Figma from code or a description, switch to [figma-genera...",
+        "line": 184
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-implement-design-v2/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user asks only for Code Connect mappings, switch to [figma-code-connect-components](../figma-code-connect-co...",
+        "line": 185
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-implement-design-v2/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user asks to author reusable agent rules (`CLAUDE.md`/`AGENTS.md`), switch to [figma-create-design-system-ru...",
+        "line": 186
+      }
+    ],
+    "signals": {
+      "scanned_files": 15,
+      "script_files": 2,
+      "binary_like_files": 3
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-implement-design-v2/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-implement-design-v2/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-implement-design-v2/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-implement-design-v2/SKILL.md]"
+    ],
+    "status": "warn"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "sora",
+  "public_skill_path": "skills/sora",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/sora",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/sora-small.svg",
+    "assets/sora.png",
+    "references/cinematic-shots.md",
+    "references/cli.md",
+    "references/codex-network.md",
+    "references/prompting.md",
+    "references/sample-prompts.md",
+    "references/social-ads.md",
+    "references/troubleshooting.md",
+    "references/video-api.md",
+    "scripts/sora.py"
+  ]
+}

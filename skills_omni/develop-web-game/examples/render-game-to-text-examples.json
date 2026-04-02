@@ -1,0 +1,35 @@
+{
+  "platformer": {
+    "mode": "playing",
+    "player": { "x": 48, "y": 112, "vx": 2, "vy": 0, "hp": 3 },
+    "entities": [
+      { "id": "bat-1", "type": "enemy", "x": 160, "y": 80, "hp": 1 },
+      { "id": "key-1", "type": "pickup", "x": 220, "y": 112 }
+    ],
+    "score": 20,
+    "coordinate_system": { "origin": "top-left", "x_increases": "right", "y_increases": "down" }
+  },
+  "shooter": {
+    "mode": "playing",
+    "player": { "x": 320, "y": 420, "hp": 5, "ammo": 12 },
+    "enemies": [
+      { "id": "enemy-3", "x": 300, "y": 120, "hp": 2 }
+    ],
+    "projectiles": [
+      { "owner": "player", "x": 318, "y": 280 }
+    ],
+    "score": 900,
+    "coordinate_system": { "origin": "top-left", "x_increases": "right", "y_increases": "down" }
+  },
+  "puzzle": {
+    "mode": "paused",
+    "board": {
+      "rows": 6,
+      "cols": 6,
+      "selected": { "r": 2, "c": 3 }
+    },
+    "moves_remaining": 8,
+    "objective": "clear-gems",
+    "coordinate_system": { "origin": "top-left", "x_increases": "right", "y_increases": "down" }
+  }
+}

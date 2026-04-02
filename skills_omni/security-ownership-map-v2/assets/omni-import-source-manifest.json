@@ -1,0 +1,18 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "security-ownership-map-v2",
+  "public_skill_path": "skills/security-ownership-map-v2",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/security-ownership-map",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "references/neo4j-import.md",
+    "scripts/build_ownership_map.py",
+    "scripts/community_maintainers.py",
+    "scripts/query_ownership.py",
+    "scripts/run_ownership_map.py"
+  ]
+}

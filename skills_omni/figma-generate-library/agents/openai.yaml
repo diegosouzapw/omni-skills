@@ -1,0 +1,13 @@
+name: figma-generate-library
+description: Design-system workflow orchestration for building or updating a Figma library from code. Load together with figma-use for any mutating Figma action.
+entrypoint: SKILL.md
+instructions: |
+  Use this skill for phased design-system work in Figma: discovery, foundations, file structure, components, and QA.
+  Require figma-use for Plugin API execution details.
+  Do not perform writes before discovery approval.
+  Build components one at a time and stop at each checkpoint.
+  Use local references, examples, and scripts as execution support.
+tools:
+  - figma-use
+  - read_file
+  - search_files

@@ -1,0 +1,11 @@
+{
+  "schema_version": "2026-03-28",
+  "skill_id": "figma-generate-design",
+  "curation_surface": "skills_omni",
+  "enhanced_origin": "omni-skills-private",
+  "loop_prevention_rule": "curated-output-only",
+  "source_pr_number": 13,
+  "source_pr_author": "anonymous",
+  "source_pr_repo": "diegosouzapw/awesome-omni-skills",
+  "source_pr_head_sha": "c292e03c3b041d3986375359a4bcf256e02890c8"
+}

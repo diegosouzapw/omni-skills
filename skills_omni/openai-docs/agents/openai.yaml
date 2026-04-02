@@ -1,0 +1,24 @@
+name: openai-docs
+description: Docs-first OpenAI documentation lookup and citation workflow using OpenAI docs MCP first and official-domain fallback only when needed.
+entrypoint: SKILL.md
+recommended_when:
+  - The user needs current official OpenAI documentation with citations.
+  - The user asks for OpenAI model selection grounded in current docs.
+  - The user asks about Responses API, Agents, Tools, MCP, prompt upgrades, or GPT-5.4 upgrade guidance.
+input_contract:
+  - Clarify whether the request is docs lookup, model selection, migration choice, agent guidance, MCP recovery, or troubleshooting.
+behavior:
+  - Use OpenAI docs MCP tools first.
+  - Fetch exact sections before answering.
+  - Treat local references as helper context only.
+  - Restrict fallback browsing to official OpenAI domains.
+  - Stop instead of guessing when docs do not answer the request.
+output_contract:
+  - Concise answer with official citations.
+  - State selection criteria for model recommendations.
+  - Separate greenfield from migration-safe guidance when applicable.
+  - Include handoff evidence when the task shifts into implementation.
+safety:
+  - Do not cite unofficial OpenAI sources for fallback.
+  - Do not present undocumented behavior as fact.
+  - Do not ask the user to perform MCP installation before attempting constrained recovery.

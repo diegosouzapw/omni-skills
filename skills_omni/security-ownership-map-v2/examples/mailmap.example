@@ -1,0 +1,5 @@
+# Example .mailmap entries
+# Canonical Name <canonical@example.com> <alias@example.com>
+Alice Example <alice@corp.example> <alice@example.com>
+Alice Example <alice@corp.example> <alice@users.noreply.github.com>
+Bob Maintainer <bob@corp.example> Bob M. <bob.personal@example.com>

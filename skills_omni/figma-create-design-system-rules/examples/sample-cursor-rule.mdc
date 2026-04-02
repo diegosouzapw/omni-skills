@@ -1,0 +1,19 @@
+---
+description: Figma-to-code rules for the repository design system
+globs:
+  - src/components/**
+  - src/features/**
+alwaysApply: false
+---
+
+# Figma Design System Rules
+
+- Reuse existing UI primitives before creating new components.
+- Place new feature UI in the directories already used by the repository.
+- Use approved design tokens from the project's token source files.
+- IMPORTANT: Do not hardcode visual values when a token exists.
+- Prefer semantic tokens over raw palette tokens.
+- Run `get_design_context` before implementation and `get_screenshot` before final visual review.
+- Treat Figma MCP output as a reference that must be translated into repository conventions.
+- Preserve accessible names, keyboard support, visible focus, and relevant state semantics.
+- If token mapping is unclear, document the gap instead of guessing.

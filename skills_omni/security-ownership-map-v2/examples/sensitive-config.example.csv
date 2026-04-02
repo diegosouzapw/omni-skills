@@ -1,0 +1,10 @@
+# pattern,tag,weight
+**/auth/**,auth,1.0
+**/authentication/**,auth,1.0
+**/login/**,auth,0.8
+**/crypto/**,crypto,1.0
+**/tls/**,crypto,0.9
+**/*.pem,secrets,1.0
+**/*.key,secrets,1.0
+**/secrets/**,secrets,1.0
+**/certs/**,crypto,0.7

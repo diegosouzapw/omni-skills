@@ -1,0 +1,18 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "openai-docs",
+  "public_skill_path": "skills/openai-docs",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/openai-docs",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/openai-small.svg",
+    "assets/openai.png",
+    "references/gpt-5p4-prompting-guide.md",
+    "references/latest-model.md",
+    "references/upgrading-to-gpt-5p4.md"
+  ]
+}

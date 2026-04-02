@@ -1,0 +1,26 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "speech",
+  "public_skill_path": "skills/speech",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/speech",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/speech-small.svg",
+    "assets/speech.png",
+    "references/accessibility.md",
+    "references/audio-api.md",
+    "references/cli.md",
+    "references/codex-network.md",
+    "references/ivr.md",
+    "references/narration.md",
+    "references/prompting.md",
+    "references/sample-prompts.md",
+    "references/voice-directions.md",
+    "references/voiceover.md",
+    "scripts/text_to_speech.py"
+  ]
+}

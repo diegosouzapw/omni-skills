@@ -1,0 +1,6 @@
+name: linear
+description: Operate Linear safely through MCP using read-before-write checks, confirmed identifiers, bounded mutations, and concise handoff summaries.
+entrypoint: SKILL.md
+instructions: |
+  Activate this skill when the user needs work performed in Linear itself.
+  Default to read-first operations, confirm identifiers before writes, and summarize changes plus unresolved blockers.

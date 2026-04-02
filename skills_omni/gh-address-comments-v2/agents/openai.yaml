@@ -1,0 +1,24 @@
+version: 1
+skill: gh-address-comments-v2
+display_name: PR Comment Handler
+purpose: >-
+  Help an agent safely triage and address comments on the open GitHub PR for the
+  current branch using gh CLI, with explicit auth checks, PR discovery, numbered
+  comment selection, and clear closeout communication.
+when_to_use:
+  - The user asks to review or address comments on the open PR for the current branch.
+  - The environment supports approved gh network access to GitHub.
+  - The agent should ask which numbered comments to address before editing.
+constraints:
+  - Verify gh authentication first with gh auth status.
+  - Do not assume one endpoint returns all PR discussion state.
+  - Do not silently address all comments without user approval.
+  - Avoid destructive git operations.
+entrypoints:
+  - SKILL.md
+  - references/gh-pr-comment-handler-workflow.md
+  - scripts/check_gh_auth_and_pr.sh
+  - scripts/list_pr_comment_targets.sh
+handoff_guidance:
+  - Hand off to a git-focused skill for merge conflicts or history surgery.
+  - Hand off to debugging or testing skills when reviewer feedback exposes deeper defects.
