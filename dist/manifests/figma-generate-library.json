@@ -1,0 +1,638 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "figma-generate-library",
+  "slug": "figma-generate-library",
+  "display_name": "Design System Builder — Figma MCP Skill",
+  "description": "Design System Builder \\u2014 Figma MCP Skill workflow skill. Use this skill when the user needs Build or update a professional-grade design system in Figma from a codebase. Use when the user wants to create variables/tokens, build component libraries, set up theming (light/dark modes), document foundations, or reconcile gaps between code and Figma. This skill teaches WHAT to build and in WHAT ORDER \\u2014 it complements the figma-use skill which teaches HOW to call the Plugin API. Both skills should be loaded together and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "design",
+  "raw_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-generate-library",
+    "build",
+    "update",
+    "professional-grade",
+    "design",
+    "system",
+    "figma",
+    "codebase"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/figma-generate-library/SKILL.md",
+  "paths": {
+    "root": "skills/figma-generate-library",
+    "manifest": "dist/manifests/figma-generate-library.json",
+    "metadata": "skills/figma-generate-library/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 36,
+    "references_count": 11,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 7,
+        "workflow_section_length": 7241,
+        "when_to_use_section_length": 871,
+        "best_practices_items_count": 29,
+        "best_practices_section_length": 4116,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1353,
+        "resources_items_count": 40,
+        "resources_section_length": 8374,
+        "examples_section_length": 1223,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 49,
+        "table_count": 52,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 26,
+        "support_files_count": 30,
+        "references_files_count": 11,
+        "scripts_files_count": 11,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 4,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 7.89
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 28,
+      "tier": "blocked",
+      "status": "warn",
+      "findings_count": 7,
+      "findings": [
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/code-connect-setup.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/component-creation.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/discovery-phase.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/documentation-creation.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/error-recovery.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/naming-conventions.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        },
+        {
+          "id": "path-traversal-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/figma-generate-library/references/token-creation.md",
+          "message": "Relative parent traversal found in instructions or scripts.",
+          "evidence": "> Part of the [figma-generate-library skill](../SKILL.md).",
+          "line": 1
+        }
+      ],
+      "signals": {
+        "scanned_files": 32,
+        "script_files": 11,
+        "binary_like_files": 3
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/code-connect-setup.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/component-creation.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/discovery-phase.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/documentation-creation.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/error-recovery.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/naming-conventions.md]",
+        "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-library/references/token-creation.md]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 26276,
+    "content_length": 27338,
+    "body_lines": 446,
+    "word_count": 3519,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 24,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 7,
+      "workflow_section_length": 7241,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 29,
+      "best_practices_section_length": 4116,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1353,
+      "resources_items_count": 40,
+      "resources_section_length": 8374,
+      "examples_section_length": 1223,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 49,
+      "table_count": 52,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 26,
+      "support_files_count": 30,
+      "references_files_count": 11,
+      "scripts_files_count": 11,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.89
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/figma-generate-library/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1230,
+      "sha256": "3ab5d2e27a37c4500bd0af2d562e0c57944fb4519db20161a146f2b89c3a1448"
+    },
+    {
+      "path": "skills/figma-generate-library/LICENSE.TXT",
+      "kind": "support",
+      "size_bytes": 440,
+      "sha256": "36bdad8e8a43a282ba3a5af4ac022d8b117c5826b8b473fe6a32622e83856ae3"
+    },
+    {
+      "path": "skills/figma-generate-library/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 678,
+      "sha256": "fdb562cd97dfd75e256b3a25bcacc9650f6e952e8d0ab5e2aae660b27cd3f49b"
+    },
+    {
+      "path": "skills/figma-generate-library/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 27546,
+      "sha256": "5454dda8584279df9a9b9e3fa163fec83e8e050c26bd19bbfff093f3af535d40"
+    },
+    {
+      "path": "skills/figma-generate-library/maintainers.yml",
+      "kind": "support",
+      "size_bytes": 64,
+      "sha256": "9550d730f037a92bb18406bc3be48204e11d4695e6ad6d03f37325039cab9c5a"
+    },
+    {
+      "path": "skills/figma-generate-library/metadata.json",
+      "kind": "support",
+      "size_bytes": 11165,
+      "sha256": "8c0c88f3472c8701f2b7897afc7cee2b804678a6c1dbb2198115cdaef660419f"
+    },
+    {
+      "path": "skills/figma-generate-library/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/figma-generate-library/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 540,
+      "sha256": "959d1bd5bdd4f63c8ecd23698256f6032310abc1e578aef053e2dede08957a2d"
+    },
+    {
+      "path": "skills/figma-generate-library/assets/figma-small.svg",
+      "kind": "asset",
+      "size_bytes": 818,
+      "sha256": "6a38267efbd872bbc215d0227a395eb0b0093bc6441c44a39a43f3210549e5e9"
+    },
+    {
+      "path": "skills/figma-generate-library/assets/figma.png",
+      "kind": "asset",
+      "size_bytes": 1612,
+      "sha256": "4d16e1b19ae7bdac7d601d0b3bf3c0ea4a018a8cb0e38d19e5b00971968ecada"
+    },
+    {
+      "path": "skills/figma-generate-library/assets/icon.svg",
+      "kind": "asset",
+      "size_bytes": 964,
+      "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/figma-generate-library/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1159,
+      "sha256": "f4d57ce9df9e9c8d61f7c0167e203baaddaea2a977971da7df73b29d6457ff42"
+    },
+    {
+      "path": "skills/figma-generate-library/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/figma-generate-library/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 233,
+      "sha256": "9c1511a49a86bc350d28dbfb2e9399d1ce67b1fa6f54d891916f25ce542514a7"
+    },
+    {
+      "path": "skills/figma-generate-library/references/code-connect-setup.md",
+      "kind": "reference",
+      "size_bytes": 12111,
+      "sha256": "bd203852f84598c684b96aa2433d72c35cd77098858f3e2d94b9e830e9002aae"
+    },
+    {
+      "path": "skills/figma-generate-library/references/component-creation.md",
+      "kind": "reference",
+      "size_bytes": 41830,
+      "sha256": "aadd63c4aebad420a356e33d7e75fc6888093463dc1b70cad40a45a4c0ac1e37"
+    },
+    {
+      "path": "skills/figma-generate-library/references/discovery-phase.md",
+      "kind": "reference",
+      "size_bytes": 20138,
+      "sha256": "b327271febdca18d540d3bd93c3823d1bdb5727e67cd16367a6dad82b61ec669"
+    },
+    {
+      "path": "skills/figma-generate-library/references/documentation-creation.md",
+      "kind": "reference",
+      "size_bytes": 28944,
+      "sha256": "cdd191432b804418952ac844cb2200f1ea0e2f9833a87a239abcbc2a1065d74e"
+    },
+    {
+      "path": "skills/figma-generate-library/references/error-recovery.md",
+      "kind": "reference",
+      "size_bytes": 22659,
+      "sha256": "6a43f5ab77958ba083c7620bdb2e28e7a6ba07953200a7e44fd3c0034a0c5fda"
+    },
+    {
+      "path": "skills/figma-generate-library/references/naming-conventions.md",
+      "kind": "reference",
+      "size_bytes": 19003,
+      "sha256": "16810f87eab00ea93644035dca95e2d927b266b9fcbf5460c1712dab30638442"
+    },
+    {
+      "path": "skills/figma-generate-library/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/figma-generate-library/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/figma-generate-library/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/figma-generate-library/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 984,
+      "sha256": "dd13374952dc98fd18426d56a0554390c3e232971a3f1c6a52de0113624e6276"
+    },
+    {
+      "path": "skills/figma-generate-library/references/token-creation.md",
+      "kind": "reference",
+      "size_bytes": 38267,
+      "sha256": "ccfe860f37e76fcdc87b36731e47c4bfd58d1b9ddf7fdae24058f21dfb4b4dd0"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/bindVariablesToComponent.js",
+      "kind": "support",
+      "size_bytes": 3686,
+      "sha256": "6747268d3fec7114812497ba3dc99abc1eac1708bc6179029c542ae59e638c8d"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/cleanupOrphans.js",
+      "kind": "support",
+      "size_bytes": 3649,
+      "sha256": "ef7be49b74002a2e2fd5ae5a2c431603768c76b1eacfc8d274deb83629337edd"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/createComponentWithVariants.js",
+      "kind": "support",
+      "size_bytes": 4943,
+      "sha256": "bb49ab8921f239e4c0a188c83bf382f00dcfa877afb340a8d0ff473fed764777"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/createDocumentationPage.js",
+      "kind": "support",
+      "size_bytes": 4810,
+      "sha256": "19d531c9619cacd124fee59486369f9e95d25a420fc2e796fd1e5ce263016b2e"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/createSemanticTokens.js",
+      "kind": "support",
+      "size_bytes": 3891,
+      "sha256": "15682762708cbfcca1b2734c72fce8b981528c4b1131c8f1645b411edbc94b46"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/createVariableCollection.js",
+      "kind": "support",
+      "size_bytes": 1785,
+      "sha256": "27de8086b7e9cc2ed475d7ba5014d91e62527982a5216a8cfcda1c8bef14f117"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/inspectFileStructure.js",
+      "kind": "support",
+      "size_bytes": 3591,
+      "sha256": "0be61a233faf7fdfb1808d8222bf8b444a599735b9fd9dd222b2ad361f28b8ae"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/rehydrateState.js",
+      "kind": "support",
+      "size_bytes": 2967,
+      "sha256": "4d4ba10e209d239e07698467d8a9051f33b2ffd670972e8d5fd2bd0b9e572814"
+    },
+    {
+      "path": "skills/figma-generate-library/scripts/validateCreation.js",
+      "kind": "support",
+      "size_bytes": 2718,
+      "sha256": "dae970b4d80c4d0994f14c89ad01c04115604444b916a0b8fc342ed262fdfa97"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/figma-generate-library.zip",
+      "file_name": "figma-generate-library.zip",
+      "size_bytes": 271875,
+      "sha256": "48f340bdeb0dc8b92929d948997f0c0c083fd28128e1dee768ee38a5946945f6",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/figma-generate-library.tar.gz",
+      "file_name": "figma-generate-library.tar.gz",
+      "size_bytes": 297018,
+      "sha256": "f34b9f9acaf8c2b70750ea4796e287d54d528b5427da1b8551e22921ffb45e5a",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/figma-generate-library.checksums.txt",
+    "file_name": "figma-generate-library.checksums.txt",
+    "sha256": "84448426a559111aed9bcfebcc4351cd891a44526cab7b781b292b5fe3ffabd2",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "5454dda8584279df9a9b9e3fa163fec83e8e050c26bd19bbfff093f3af535d40",
+    "package_sha256": "e200d4c5831b488d7b1c06cab4bd82f15bee83792958fa5bc37638dd6a382edc"
+  }
+}

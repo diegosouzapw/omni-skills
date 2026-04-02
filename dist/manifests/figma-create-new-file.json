@@ -1,0 +1,470 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "figma-create-new-file",
+  "slug": "figma-create-new-file",
+  "display_name": "createnewfile — Create a New Figma File",
+  "description": "createnewfile \\u2014 Create a New Figma File workflow skill. Use this skill when the user needs Create a new blank Figma file. Use when the user wants to create a new Figma design or FigJam file, or when you need a new file before calling use_figma. Handles plan resolution via whoami if needed. Usage \\u2014 /figma-create-new-file [editorType] [fileName] (e.g. /figma-create-new-file figjam My Whiteboard) and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "design",
+  "raw_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-create-new-file",
+    "create",
+    "new",
+    "blank",
+    "figma",
+    "file",
+    "use",
+    "the"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/figma-create-new-file/SKILL.md",
+  "paths": {
+    "root": "skills/figma-create-new-file",
+    "manifest": "dist/manifests/figma-create-new-file.json",
+    "metadata": "skills/figma-create-new-file/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 20,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 18,
+        "workflow_section_length": 2718,
+        "when_to_use_section_length": 863,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1352,
+        "resources_items_count": 11,
+        "resources_section_length": 1627,
+        "examples_section_length": 1219,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 51,
+        "table_count": 19,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 14,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 4,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 7.87
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 16,
+        "script_files": 2,
+        "binary_like_files": 3
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 11178,
+    "content_length": 12096,
+    "body_lines": 205,
+    "word_count": 1614,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 3,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 18,
+      "workflow_section_length": 2718,
+      "when_to_use_section_length": 863,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1352,
+      "resources_items_count": 11,
+      "resources_section_length": 1627,
+      "examples_section_length": 1219,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 51,
+      "table_count": 19,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 14,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.87
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/figma-create-new-file/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1106,
+      "sha256": "1d3e98750ff37e9d0f6ce7dd08b691ca7b866b2352b7652f859e86e90a457067"
+    },
+    {
+      "path": "skills/figma-create-new-file/LICENSE.TXT",
+      "kind": "support",
+      "size_bytes": 440,
+      "sha256": "36bdad8e8a43a282ba3a5af4ac022d8b117c5826b8b473fe6a32622e83856ae3"
+    },
+    {
+      "path": "skills/figma-create-new-file/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 675,
+      "sha256": "eac0c3d114e6b463357b80923e813eb4efc6d9974570a89d0dbd5bf61306d98c"
+    },
+    {
+      "path": "skills/figma-create-new-file/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12120,
+      "sha256": "9db8472bf440e2fd65a2966e27c47db78434b35e1fe7ab914fd2ec1b3ab025f4"
+    },
+    {
+      "path": "skills/figma-create-new-file/maintainers.yml",
+      "kind": "support",
+      "size_bytes": 21,
+      "sha256": "9d6c60ca62ce0c759129bf4e36da3042f2665bb3c987cc73f0a1a7bd7362c513"
+    },
+    {
+      "path": "skills/figma-create-new-file/metadata.json",
+      "kind": "support",
+      "size_bytes": 6733,
+      "sha256": "04d256d3fe52ddd52a01bc6c91fcfcf930429a6c21f06c457c0df434707cd705"
+    },
+    {
+      "path": "skills/figma-create-new-file/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/figma-create-new-file/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 492,
+      "sha256": "b091557c0f88c70a493afbdaeef1f41814a06b61f3450e6c0bfcb27878c0314d"
+    },
+    {
+      "path": "skills/figma-create-new-file/assets/figma-small.svg",
+      "kind": "asset",
+      "size_bytes": 818,
+      "sha256": "6a38267efbd872bbc215d0227a395eb0b0093bc6441c44a39a43f3210549e5e9"
+    },
+    {
+      "path": "skills/figma-create-new-file/assets/figma.png",
+      "kind": "asset",
+      "size_bytes": 1612,
+      "sha256": "4d16e1b19ae7bdac7d601d0b3bf3c0ea4a018a8cb0e38d19e5b00971968ecada"
+    },
+    {
+      "path": "skills/figma-create-new-file/assets/icon.svg",
+      "kind": "asset",
+      "size_bytes": 964,
+      "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/figma-create-new-file/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 530,
+      "sha256": "abc2f97a1ec8652d9cce00ce9a42f1b2ba6c3f54d7e16918c1b60b0acbb61a49"
+    },
+    {
+      "path": "skills/figma-create-new-file/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/figma-create-new-file/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 232,
+      "sha256": "6afa565b9ee4b654a724bfe13201eca56078754aaeedaffa52ad1823e61450be"
+    },
+    {
+      "path": "skills/figma-create-new-file/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/figma-create-new-file/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/figma-create-new-file/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/figma-create-new-file/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 465,
+      "sha256": "d5af7ff7525ecc7f2463b0f355f9836eac092d82a8a2e9a42fd8f88bd70dfe2d"
+    },
+    {
+      "path": "skills/figma-create-new-file/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/figma-create-new-file/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/figma-create-new-file.zip",
+      "file_name": "figma-create-new-file.zip",
+      "size_bytes": 32670,
+      "sha256": "5266549a7ea7a1483fcd5f4df732c6454e7c2e8c4b2f468639159c16a8af20ec",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/figma-create-new-file.tar.gz",
+      "file_name": "figma-create-new-file.tar.gz",
+      "size_bytes": 51228,
+      "sha256": "16fbf61f2650996ae370b727404ffa27b1115d5b6a71a2fa181d8443931d7fbd",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/figma-create-new-file.checksums.txt",
+    "file_name": "figma-create-new-file.checksums.txt",
+    "sha256": "d88b614c34ef95c081d19878ec23d9df973362f753e5ff3267537bd269f809b0",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "9db8472bf440e2fd65a2966e27c47db78434b35e1fe7ab914fd2ec1b3ab025f4",
+    "package_sha256": "79d00e1e46be1fd5c83f522083154cb99c1086b07325e567af040525cd8b3fd0"
+  }
+}

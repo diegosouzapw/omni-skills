@@ -1,0 +1,2 @@
+4aff648c92455d2e32516f5aca32fb1485cbfbfad8ed676aad85c316a9bdef5f  skill-creator.zip
+e5b666da1f874f4e207f4534d057af717e3a358d70b0dae699c9311f5c7de0d1  skill-creator.tar.gz

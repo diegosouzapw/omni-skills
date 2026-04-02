@@ -1,0 +1,387 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "figma-use",
+  "slug": "figma-use",
+  "display_name": "use_figma — Figma Plugin API Skill",
+  "description": "use_figma \\u2014 Figma Plugin API Skill workflow skill. Use this skill when the user needs MANDATORY prerequisite \\u2014 you MUST invoke this skill BEFORE every usefigma tool call. NEVER call usefigma directly without loading this skill first. Skipping it causes common, hard-to-debug failures. Trigger whenever the user wants to perform a write action or a unique read action that requires JavaScript execution in the Figma file context \\u2014 e.g. create/edit/delete nodes, set up variables or tokens, build components and variants, modify auto-layout or fills, bind variables to properties, or inspect file structure programmatically and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "frontend",
+  "canonical_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-use",
+    "mandatory",
+    "prerequisite",
+    "you",
+    "must",
+    "invoke",
+    "every",
+    "usefigma"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/figma-use",
+    "entrypoint": "skills/figma-use/SKILL.md",
+    "metadata": "skills/figma-use/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.TXT",
+      "ORIGIN.md",
+      "SKILL.md",
+      "maintainers.yml",
+      "omni-import-router.md",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "api-reference.md",
+      "common-patterns.md",
+      "component-patterns.md",
+      "effect-style-patterns.md",
+      "gotchas.md",
+      "maintainers.yml",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "plugin-api-patterns.md",
+      "plugin-api-standalone.d.ts",
+      "plugin-api-standalone.index.md",
+      "text-style-patterns.md",
+      "validation-and-recovery.md",
+      "variable-patterns.md",
+      "maintainers.yml",
+      "wwds-components--creating.md",
+      "wwds-components--using.md",
+      "wwds-components.md",
+      "wwds-effect-styles.md",
+      "wwds-text-styles.md",
+      "wwds-variables--creating.md",
+      "wwds-variables--using.md",
+      "wwds-variables.md",
+      "wwds.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 41,
+    "references_count": 26,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "content": {
+    "body_length": 26504,
+    "content_length": 27651,
+    "body_lines": 363,
+    "word_count": 3776,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 21,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 4038,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 24,
+      "best_practices_section_length": 5896,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1340,
+      "resources_items_count": 33,
+      "resources_section_length": 9028,
+      "examples_section_length": 1540,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 47,
+      "table_count": 42,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 23,
+      "support_files_count": 36,
+      "references_files_count": 26,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 10.4
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 4038,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 24,
+      "best_practices_section_length": 5896,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1340,
+      "resources_items_count": 33,
+      "resources_section_length": 9028,
+      "examples_section_length": 1540,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 47,
+      "table_count": 42,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 23,
+      "support_files_count": 36,
+      "references_files_count": 26,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 10.4
+    }
+  },
+  "quality": {
+    "score": 100,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 0,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 13,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/api-reference.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). What works and what doesn't in the `use_figma` environment.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/common-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). Working code examples for frequently used operations.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/component-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). How to correctly use the Plugin API for components, variants, and compo...",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/effect-style-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). How to create, apply, and inspect effect styles using the Plugin API.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/gotchas.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). Every known pitfall with WRONG/CORRECT code examples.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/plugin-api-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). Quick reference for common Figma Plugin API operations.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/text-style-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). How to create, apply, and inspect text styles using the Plugin API.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/validation-and-recovery.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). How to debug, validate, and recover from errors.",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/variable-patterns.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "> Part of the [use_figma skill](../SKILL.md). How to correctly create, bind, scope, and alias variables using the Plu...",
+        "line": 3
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/working-with-design-systems/wwds-components.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "For runnable code examples (creating, importing, discovering, inspecting components), see [component-patterns.md](../...",
+        "line": 50
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/working-with-design-systems/wwds-effect-styles.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "For runnable code examples (listing, creating, applying effect styles), see [effect-style-patterns.md](../effect-styl...",
+        "line": 52
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/working-with-design-systems/wwds-text-styles.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "For runnable code examples (listing, creating, probing fonts, type ramps, applying styles), see [text-style-patterns....",
+        "line": 90
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-use/references/working-with-design-systems/wwds-variables.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "For runnable code examples (creating collections, binding variables, scopes, aliasing, discovering existing variables...",
+        "line": 64
+      }
+    ],
+    "signals": {
+      "scanned_files": 38,
+      "script_files": 3,
+      "binary_like_files": 3
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/api-reference.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/common-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/component-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/effect-style-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/gotchas.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/plugin-api-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/text-style-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/validation-and-recovery.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/variable-patterns.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-components.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-effect-styles.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-text-styles.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-use/references/working-with-design-systems/wwds-variables.md]"
+    ],
+    "status": "warn"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "yeet",
+  "public_skill_path": "skills/yeet",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/yeet",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/yeet-small.svg",
+    "assets/yeet.png"
+  ]
+}

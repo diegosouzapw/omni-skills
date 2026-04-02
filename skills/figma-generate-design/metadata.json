@@ -1,0 +1,365 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "figma-generate-design",
+  "slug": "figma-generate-design",
+  "display_name": "Build / Update Screens from Design System",
+  "description": "Build / Update Screens from Design System workflow skill. Use this skill when the user needs Use this skill alongside figma-use when the task involves translating an application page, view, or multi-section layout into Figma. Triggers: 'write to Figma', 'create in Figma from code', 'push page to Figma', 'take this app/page and build it in Figma', 'create a screen', 'build a landing page in Figma', 'update the Figma screen to match code'. This is the preferred workflow skill whenever the user wants to build or update a full page, screen, or view in Figma from code or a description. Discovers design system components, variables, and styles via searchdesignsystem, imports them, and assembles screens incrementally section-by-section using design system tokens instead of hardcoded values and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "design",
+  "canonical_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-generate-design",
+    "use",
+    "alongside",
+    "figma-use",
+    "the",
+    "task",
+    "involves",
+    "translating"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/figma-generate-design",
+    "entrypoint": "skills/figma-generate-design/SKILL.md",
+    "metadata": "skills/figma-generate-design/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.TXT",
+      "ORIGIN.md",
+      "SKILL.md",
+      "maintainers.yml",
+      "omni-import-router.md",
+      "openai.yaml",
+      "figma-small.svg",
+      "figma.png",
+      "icon.svg",
+      "omni-import-source-manifest.json",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 19,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "content": {
+    "body_length": 28900,
+    "content_length": 30226,
+    "body_lines": 475,
+    "word_count": 3963,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 38,
+      "workflow_section_length": 16432,
+      "when_to_use_section_length": 873,
+      "best_practices_items_count": 15,
+      "best_practices_section_length": 2445,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1352,
+      "resources_items_count": 24,
+      "resources_section_length": 3430,
+      "examples_section_length": 1219,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 46,
+      "table_count": 20,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 14,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.34
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 38,
+      "workflow_section_length": 16432,
+      "when_to_use_section_length": 873,
+      "best_practices_items_count": 15,
+      "best_practices_section_length": 2445,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1352,
+      "resources_items_count": 24,
+      "resources_section_length": 3430,
+      "examples_section_length": 1219,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 46,
+      "table_count": 20,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 14,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.34
+    }
+  },
+  "quality": {
+    "score": 100,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 0,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 13,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "See [variable-patterns.md](../figma-use/references/variable-patterns.md) for binding patterns.",
+        "line": 171
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "See [text-style-patterns.md](../figma-use/references/text-style-patterns.md) and [effect-style-patterns.md](../figma-...",
+        "line": 198
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "Component instances ship with placeholder text (\"Title\", \"Heading\", \"Button\"). Use the component property keys you di...",
+        "line": 277
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user wants to generate **code from a Figma design**, switch to [figma-implement-design](../figma-implement-d...",
+        "line": 347
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user wants to create **new reusable components or variants**, use [figma-use](../figma-use/SKILL.md) directly.",
+        "line": 348
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- If the user wants to write **Code Connect mappings**, switch to [figma-code-connect-components](../figma-code-conne...",
+        "line": 349
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "For detailed API patterns and gotchas, load these from the [figma-use](../figma-use/SKILL.md) references as needed:",
+        "line": 463
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- [component-patterns.md](../figma-use/references/component-patterns.md) — importing by key, finding variants, setPro...",
+        "line": 465
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- [variable-patterns.md](../figma-use/references/variable-patterns.md) — creating/binding variables, importing librar...",
+        "line": 466
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- [text-style-patterns.md](../figma-use/references/text-style-patterns.md) — creating/applying text styles, importing...",
+        "line": 467
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- [effect-style-patterns.md](../figma-use/references/effect-style-patterns.md) — creating/applying effect styles (sha...",
+        "line": 468
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- [gotchas.md](../figma-use/references/gotchas.md) — layout pitfalls (HUG/FILL interactions, counterAxisAlignItems, s...",
+        "line": 469
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/figma-generate-design/SKILL.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "Follow the error recovery process from [figma-use](../figma-use/SKILL.md#6-error-recovery--self-correction):",
+        "line": 482
+      }
+    ],
+    "signals": {
+      "scanned_files": 16,
+      "script_files": 2,
+      "binary_like_files": 3
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/figma-generate-design/SKILL.md]"
+    ],
+    "status": "warn"
+  }
+}

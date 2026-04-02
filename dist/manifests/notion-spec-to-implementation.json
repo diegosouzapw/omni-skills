@@ -1,0 +1,544 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "notion-spec-to-implementation",
+  "slug": "notion-spec-to-implementation",
+  "display_name": "Spec to Implementation",
+  "description": "Spec to Implementation workflow skill. Use this skill when the user needs Turn Notion specs into implementation plans, tasks, and progress tracking; use when implementing PRDs/feature specs and creating Notion plans + tasks from them and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "notion-spec-to-implementation",
+    "turn",
+    "notion",
+    "specs",
+    "implementation",
+    "plans",
+    "tasks",
+    "and"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/notion-spec-to-implementation/SKILL.md",
+  "paths": {
+    "root": "skills/notion-spec-to-implementation",
+    "manifest": "dist/manifests/notion-spec-to-implementation.json",
+    "metadata": "skills/notion-spec-to-implementation/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "evaluations",
+      "examples",
+      "reference",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 32,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 28,
+        "workflow_section_length": 2877,
+        "when_to_use_section_length": 812,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1360,
+        "resources_items_count": 8,
+        "resources_section_length": 1329,
+        "examples_section_length": 2069,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 53,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 5,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.65
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 29,
+        "script_files": 2,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 11549,
+    "content_length": 12331,
+    "body_lines": 191,
+    "word_count": 1653,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 28,
+      "workflow_section_length": 2877,
+      "when_to_use_section_length": 812,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1360,
+      "resources_items_count": 8,
+      "resources_section_length": 1329,
+      "examples_section_length": 2069,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 53,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 5,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.65
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/notion-spec-to-implementation/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1113,
+      "sha256": "436e6ea662a3a5e7805d4ed252130e73acf3efe5558e95797ecb565e3d08c3fe"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 1057,
+      "sha256": "0f377d9b2a1db642e4b0531ffa126e96d9bc6c085f8d9441f220fb25f723c6f8"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 699,
+      "sha256": "9a692373ce297518dd62be0028f13fd847eef6388bdcc7bc381e8501914ac124"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12353,
+      "sha256": "bc0a215df88f5aa741eb788a0b4a7f9011504359c7958aa94c7cd49f1be4cab8"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/metadata.json",
+      "kind": "support",
+      "size_bytes": 7064,
+      "sha256": "9dc064d1a1fd4107812c22b4cdf0a0c41cad4d13405d36fe4a2923f9c763720b"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 524,
+      "sha256": "1e4ba970e5e4b0e1fbbea6f1c3795a70e38d9c670c5a652c932b2d04982ca377"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/assets/notion-small.svg",
+      "kind": "asset",
+      "size_bytes": 15777,
+      "sha256": "00f5e4b758cc5c3e36e783dca2fabfafd05169c2f2175063e56d2e1fb6a55f81"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/assets/notion.png",
+      "kind": "asset",
+      "size_bytes": 8526,
+      "sha256": "5eef1e62d96a3d09bc9d18e4140486c22799145b017033bd0924c2c49d741cd4"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1063,
+      "sha256": "bb936ed425a16172669e5516caadd159b5db650565251f69fe21808a28846734"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/evaluations/README.md",
+      "kind": "support",
+      "size_bytes": 4427,
+      "sha256": "5fdf4830a9b4889b55f1636675d2d26161945530298b6a34a19f4c7f7fc9cc0f"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/evaluations/basic-spec-implementation.json",
+      "kind": "support",
+      "size_bytes": 2401,
+      "sha256": "0b1aa05f74e3e3503b4faaa0263cbbb1142d679140322682bc2dba6148648b50"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/evaluations/spec-to-tasks.json",
+      "kind": "support",
+      "size_bytes": 2561,
+      "sha256": "fea35f66e20c8f1f918815ef13d77f8ee85a3a86d8902c0d0b7d1cfbdb19cf45"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/examples/api-feature.md",
+      "kind": "support",
+      "size_bytes": 13579,
+      "sha256": "5ac3e41507ad34c1a18d3c964a431c464fdaa1593bda96e5cf00b169a4ee46c6"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/examples/database-migration.md",
+      "kind": "support",
+      "size_bytes": 2443,
+      "sha256": "575ef697c6c9c55add54b43714460adb3bfa8aa2bec3ecbebd7e16757be511d3"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 240,
+      "sha256": "fba17c7e32a0fe93c6179691d74f3edf0d45450f20f9ac163587b7464088666b"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/examples/ui-component.md",
+      "kind": "support",
+      "size_bytes": 1662,
+      "sha256": "5fa8788e1f3fd53e00729065cb574cf46db3bd866d254f108b91b41a08318307"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/milestone-summary-template.md",
+      "kind": "support",
+      "size_bytes": 456,
+      "sha256": "52bebb1e531a69a85b5f9764e27b0129dbed1258e34669ae7b26d8bb6d536efe"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/progress-tracking.md",
+      "kind": "support",
+      "size_bytes": 9020,
+      "sha256": "1aefc791440c61e26169cc955d7e4e08699e3cc8c3f506d4a8a9be684be90447"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/progress-update-template.md",
+      "kind": "support",
+      "size_bytes": 420,
+      "sha256": "649ff810bc8b14b91df74b2506a11f2837a64a9880010466b6ce6d532967bb9a"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/quick-implementation-plan.md",
+      "kind": "support",
+      "size_bytes": 480,
+      "sha256": "7e19f4aafe8b5312825624247f7cced405482718f67ece9d8f88a4bdbf323055"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/spec-parsing.md",
+      "kind": "support",
+      "size_bytes": 6942,
+      "sha256": "e978a605c45b13001bb68850b635d87be694e79b415d766aa6975a0c3068f5ee"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/standard-implementation-plan.md",
+      "kind": "support",
+      "size_bytes": 3286,
+      "sha256": "98405060e286d0d60140648996d757cc102abb588ae2eaaaabf0a99e93530a15"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/task-creation-template.md",
+      "kind": "support",
+      "size_bytes": 597,
+      "sha256": "010a9a3b1d95633220bb93ffcab5f2f49e897c5d4e4231940d691719bec1be34"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/reference/task-creation.md",
+      "kind": "support",
+      "size_bytes": 7965,
+      "sha256": "60a2eb24530097b7c4011582bb3954576655a30c0c95e9a8a12ff6a19aee3a26"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 955,
+      "sha256": "74f4da5b6c60f59f06d5394b8e13a1f7d37e1486c33d42572d6b6ce6d03be481"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/notion-spec-to-implementation/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/notion-spec-to-implementation.zip",
+      "file_name": "notion-spec-to-implementation.zip",
+      "size_bytes": 114850,
+      "sha256": "32f8f01468bb6ae49a9d0d5782784536778a8f28350b95b874698f77f8d4a5d0",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/notion-spec-to-implementation.tar.gz",
+      "file_name": "notion-spec-to-implementation.tar.gz",
+      "size_bytes": 143398,
+      "sha256": "d03e5963053918ca3a912c26e0614cf1825812a927235e72b193524d9f5e29f8",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/notion-spec-to-implementation.checksums.txt",
+    "file_name": "notion-spec-to-implementation.checksums.txt",
+    "sha256": "04373e16fe236a284972451f08f4ab7644e7cbef9aa0fb4044ea05380af53662",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "bc0a215df88f5aa741eb788a0b4a7f9011504359c7958aa94c7cd49f1be4cab8",
+    "package_sha256": "d981ee88f9bde13effd15b26215766b3269dd5a3667b4ff590ced131eec6ba54"
+  }
+}

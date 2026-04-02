@@ -1,0 +1,2 @@
+5266549a7ea7a1483fcd5f4df732c6454e7c2e8c4b2f468639159c16a8af20ec  figma-create-new-file.zip
+16fbf61f2650996ae370b727404ffa27b1115d5b6a71a2fa181d8443931d7fbd  figma-create-new-file.tar.gz

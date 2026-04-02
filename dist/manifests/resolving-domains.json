@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 45,
+      "score": 43,
       "tier": "bronze",
       "breakdown": {
         "body": 16,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -288,7 +288,7 @@
       "path": "skills/resolving-domains/metadata.json",
       "kind": "support",
       "size_bytes": 8973,
-      "sha256": "4555bba52a62ba32dda459468fa5a3ac20996d049a9921722bfa5ec11e533ad3"
+      "sha256": "6b663b20aff30f875465f2187a7fc59b26e9e84fdd377abaf3e3df54643f5561"
     },
     {
       "path": "skills/resolving-domains/rules/extract-mentions.md",
@@ -315,7 +315,7 @@
       "path": "dist/archives/resolving-domains.zip",
       "file_name": "resolving-domains.zip",
       "size_bytes": 20030,
-      "sha256": "bc2e9f66e731b6208d0c76a2e433234e9e660345753f7b80a97a8548659aafde",
+      "sha256": "7773b6fb8f17d3b140b8a21f17eb9b7a69554a15425b320ff149eeab3168cb31",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -329,7 +329,7 @@
       "path": "dist/archives/resolving-domains.tar.gz",
       "file_name": "resolving-domains.tar.gz",
       "size_bytes": 30743,
-      "sha256": "c206d32259dc5cdfadded97a61ea60fa4a4c6276dc18cfb2174bce378cbad9d6",
+      "sha256": "ab4eb2d8d8ad7b70902f959b792be5b5998d5eb17db739403166667562abdd92",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -342,7 +342,7 @@
   "archive_checksums": {
     "path": "dist/archives/resolving-domains.checksums.txt",
     "file_name": "resolving-domains.checksums.txt",
-    "sha256": "29138419e9a077dcf7ab779b008eff59f644da2568d6f3ec1034534f54c28822",
+    "sha256": "9d33c4628902fccd84072d10734c0583096e8f4205b33ab10a4161def5ea9915",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -353,6 +353,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "77e246a11ae50b1ea2897234879c91684c973b5760498268f7341b662e6b8a33",
-    "package_sha256": "156e93c70324a9db909b40f210c6c64e72297d6f51a0922f49e8b9469514f16b"
+    "package_sha256": "9076bff7eac116bb0590d3062ace76d67d1cd1ac0a882d203bd73201eff64725"
   }
 }

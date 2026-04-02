@@ -1,0 +1,506 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "chatgpt-apps",
+  "slug": "chatgpt-apps",
+  "display_name": "ChatGPT Apps",
+  "description": "ChatGPT Apps workflow skill. Use this skill when the user needs Build, scaffold, refactor, and troubleshoot ChatGPT Apps SDK applications that combine an MCP server and widget UI. Use when Codex needs to design tools, register UI resources, wire the MCP Apps bridge or ChatGPT compatibility APIs, apply Apps SDK metadata or CSP or domain settings, or produce a docs-aligned project scaffold. Prefer a docs-first workflow by invoking the openai-docs skill or OpenAI developer docs MCP tools before generating code and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "development",
+  "raw_category": "development",
+  "taxonomy": {
+    "raw_category": "development",
+    "canonical_category": "development",
+    "inferred_category": "development",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "chatgpt-apps",
+    "build",
+    "scaffold",
+    "refactor",
+    "and",
+    "troubleshoot",
+    "chatgpt",
+    "apps"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/chatgpt-apps/SKILL.md",
+  "paths": {
+    "root": "skills/chatgpt-apps",
+    "manifest": "dist/manifests/chatgpt-apps.json",
+    "metadata": "skills/chatgpt-apps/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 24,
+    "references_count": 11,
+    "agents_count": 2,
+    "assets_count": 1
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 128,
+        "workflow_section_length": 15832,
+        "when_to_use_section_length": 868,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1343,
+        "resources_items_count": 46,
+        "resources_section_length": 5306,
+        "examples_section_length": 1183,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 542,
+        "decision_assets_count": 57,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 19,
+        "references_files_count": 11,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 1,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.74
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 90,
+      "tier": "review",
+      "status": "warn",
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "sensitive-path-reference",
+          "kind": "suspicious-path",
+          "severity": "medium",
+          "path": "skills/chatgpt-apps/scripts/scaffold_node_ext_apps.mjs",
+          "message": "Sensitive OS or credential path referenced.",
+          "evidence": "const port = Number(process.env.PORT ?? \"__PORT__\");",
+          "line": 423
+        }
+      ],
+      "signals": {
+        "scanned_files": 23,
+        "script_files": 3,
+        "binary_like_files": 0
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [
+        "security medium: Sensitive OS or credential path referenced. [skills/chatgpt-apps/scripts/scaffold_node_ext_apps.mjs]"
+      ],
+      "status": "warn"
+    }
+  },
+  "content": {
+    "body_length": 27812,
+    "content_length": 28844,
+    "body_lines": 459,
+    "word_count": 4010,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 128,
+      "workflow_section_length": 15832,
+      "when_to_use_section_length": 868,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1343,
+      "resources_items_count": 46,
+      "resources_section_length": 5306,
+      "examples_section_length": 1183,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 542,
+      "decision_assets_count": 57,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 19,
+      "references_files_count": 11,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 1,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.74
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/chatgpt-apps/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1212,
+      "sha256": "04844775340ce80b465aec2c02f617c23b223549f7752adadb461571e207803b"
+    },
+    {
+      "path": "skills/chatgpt-apps/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10774,
+      "sha256": "a7f55b2cb68997f729e6199720d4d3cae47633aba0254a84b2d36ab284be9d45"
+    },
+    {
+      "path": "skills/chatgpt-apps/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 648,
+      "sha256": "27a8b375298f1f35b69e6de22fcceb2f4ba8499b4e314d88da14d27b00b3abad"
+    },
+    {
+      "path": "skills/chatgpt-apps/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 28856,
+      "sha256": "2ebf14b4836ad366bf24a9e35f7f746a9fdbbca771c094b94140a673130f07d1"
+    },
+    {
+      "path": "skills/chatgpt-apps/metadata.json",
+      "kind": "support",
+      "size_bytes": 7504,
+      "sha256": "939246bd3a636be449484de5c8a5545875609f6a582ca6ae506f10ba159b7f6e"
+    },
+    {
+      "path": "skills/chatgpt-apps/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/chatgpt-apps/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 842,
+      "sha256": "ebd723c60efd5242c628da61c0f1a91edd3dc106860573ba8f2f96dcdd224fcb"
+    },
+    {
+      "path": "skills/chatgpt-apps/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 762,
+      "sha256": "9a461877a48adc5e700df9dc1fd573b38f90053ceb42ca312b4bdf85650673ff"
+    },
+    {
+      "path": "skills/chatgpt-apps/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/chatgpt-apps/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 223,
+      "sha256": "9079c6846f999ce6450ba85e663ed8e7714ce910c7254b522de6caf2c2a4c5c4"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/app-archetypes.md",
+      "kind": "reference",
+      "size_bytes": 3514,
+      "sha256": "ae3bb232c201541303264653518eca8bc59832bc73e511835d66ebd0a3c04f87"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/apps-sdk-docs-workflow.md",
+      "kind": "reference",
+      "size_bytes": 8143,
+      "sha256": "41f0ec23b35c6a66de59de80c13b9be59002a371c8a36d23f96f20e19c656b49"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/interactive-state-sync-patterns.md",
+      "kind": "reference",
+      "size_bytes": 4281,
+      "sha256": "5ca632712be3d75f63a405292184a7867cfc0fa3803b53b2063a94318a8c1278"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 695,
+      "sha256": "40b31dd48c9f6f71cab6e4fc495e0fb54b84ff5c564a3ad172fd5207e1013554"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/repo-contract-and-validation.md",
+      "kind": "reference",
+      "size_bytes": 2962,
+      "sha256": "28fb7093b67e29d05322e3fd38cb7ad182e92913aa45051d97dbddca8a627cd6"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/search-fetch-standard.md",
+      "kind": "reference",
+      "size_bytes": 2021,
+      "sha256": "32c706205035007d1b616bf3eeb6c6c9ce69f6c56493bf0ea942a20abe8b39e6"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/upstream-example-workflow.md",
+      "kind": "reference",
+      "size_bytes": 3443,
+      "sha256": "241f2fc58ff6c3b276325bef70254d8e1a18ec9e7633bd3bd03ef45ff478f727"
+    },
+    {
+      "path": "skills/chatgpt-apps/references/window-openai-patterns.md",
+      "kind": "reference",
+      "size_bytes": 4707,
+      "sha256": "1718848c5c903368fb536ee4be405e54a0fe3a91ef13986f5780735b04ca3cb3"
+    },
+    {
+      "path": "skills/chatgpt-apps/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/chatgpt-apps/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/chatgpt-apps/scripts/scaffold_node_ext_apps.mjs",
+      "kind": "support",
+      "size_bytes": 16371,
+      "sha256": "fb12086ca7e37ab7d1fb02418b11623f207b8726aabfcbfb3d5634539479807a"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/chatgpt-apps.zip",
+      "file_name": "chatgpt-apps.zip",
+      "size_bytes": 103922,
+      "sha256": "b39a9c01b00ea3f5437a47752d2d3fc157393da40b887c7e6b5f032e9657a673",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/chatgpt-apps.tar.gz",
+      "file_name": "chatgpt-apps.tar.gz",
+      "size_bytes": 122913,
+      "sha256": "5d84c4609cb2a064925069d47bc347aa1ab0fef6c483e358caa35f280fdaf682",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/chatgpt-apps.checksums.txt",
+    "file_name": "chatgpt-apps.checksums.txt",
+    "sha256": "c85c025d6610717e453375857da4f76b57a2e7f0f9b2c2fd78d4031e79a510fd",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "2ebf14b4836ad366bf24a9e35f7f746a9fdbbca771c094b94140a673130f07d1",
+    "package_sha256": "2dacca458a6dcb87384b88c1c1aec1db5a0a7932fd95918c24d22f85d6bb210e"
+  }
+}

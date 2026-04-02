@@ -1,0 +1,544 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "notion-meeting-intelligence",
+  "slug": "notion-meeting-intelligence",
+  "display_name": "Meeting Intelligence",
+  "description": "Meeting Intelligence workflow skill. Use this skill when the user needs Prepare meeting materials with Notion context and Codex research; use when gathering context, drafting agendas/pre-reads, and tailoring materials to attendees and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "notion-meeting-intelligence",
+    "prepare",
+    "meeting",
+    "materials",
+    "notion",
+    "context",
+    "and",
+    "codex"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/notion-meeting-intelligence/SKILL.md",
+  "paths": {
+    "root": "skills/notion-meeting-intelligence",
+    "manifest": "dist/manifests/notion-meeting-intelligence.json",
+    "metadata": "skills/notion-meeting-intelligence/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "evaluations",
+      "examples",
+      "reference",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 32,
+    "references_count": 4,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 31,
+        "workflow_section_length": 2539,
+        "when_to_use_section_length": 811,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1358,
+        "resources_items_count": 8,
+        "resources_section_length": 1334,
+        "examples_section_length": 2331,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 67,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 17,
+        "references_files_count": 4,
+        "scripts_files_count": 2,
+        "examples_files_count": 6,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.39
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 29,
+        "script_files": 2,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 11483,
+    "content_length": 12258,
+    "body_lines": 194,
+    "word_count": 1627,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 31,
+      "workflow_section_length": 2539,
+      "when_to_use_section_length": 811,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1358,
+      "resources_items_count": 8,
+      "resources_section_length": 1334,
+      "examples_section_length": 2331,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 67,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 17,
+      "references_files_count": 4,
+      "scripts_files_count": 2,
+      "examples_files_count": 6,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.39
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/notion-meeting-intelligence/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1085,
+      "sha256": "fd1e4fb3b485d497802ef0fb1f0a7d71c6db586e97cad9f3fb1d786c3a3e7aa6"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 1057,
+      "sha256": "0f377d9b2a1db642e4b0531ffa126e96d9bc6c085f8d9441f220fb25f723c6f8"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 693,
+      "sha256": "fc1bee9f66590d3da327f043b24faaca7e95ea544cd7e85bc17561bf89b16707"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 12274,
+      "sha256": "9854711bb5476a441923b886e7376de96f8057b000e6869b369087ee7998de6f"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/metadata.json",
+      "kind": "support",
+      "size_bytes": 7054,
+      "sha256": "1862887ced9c6d4b5564027537b843f5473877f89f111ebd1d833bbc4a2314f2"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 512,
+      "sha256": "5c7b40b8e174653303dadaa3152dd44d3c0e426c4857f937dc0d11e4ae982453"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/assets/notion-small.svg",
+      "kind": "asset",
+      "size_bytes": 15777,
+      "sha256": "00f5e4b758cc5c3e36e783dca2fabfafd05169c2f2175063e56d2e1fb6a55f81"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/assets/notion.png",
+      "kind": "asset",
+      "size_bytes": 8526,
+      "sha256": "5eef1e62d96a3d09bc9d18e4140486c22799145b017033bd0924c2c49d741cd4"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1071,
+      "sha256": "df6ecefe308474d1d84dc079a656df1c67d577cde7d29016df2bd539bedb2e74"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/evaluations/README.md",
+      "kind": "support",
+      "size_bytes": 3971,
+      "sha256": "0991780b6c2a29a2ef84b8a37f5e3ea0dc898d31118b8968bbfe26680ac73f24"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/evaluations/decision-meeting-prep.json",
+      "kind": "support",
+      "size_bytes": 3441,
+      "sha256": "3ba23fc1fc3edfa26e51afff0d92f88f41e93e0f8a20852a19d90cd9354f299a"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/evaluations/status-meeting-prep.json",
+      "kind": "support",
+      "size_bytes": 3312,
+      "sha256": "3f7b065f14e68dc1f0d1ffc3720fb0cd32fcf9cdf23365d935338425b2ce4021"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/customer-meeting.md",
+      "kind": "support",
+      "size_bytes": 3133,
+      "sha256": "5371f1d9df68454df163ffc28e69ad8f2434ad47c19ebe19099d1aeaea0cc3f5"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/executive-review.md",
+      "kind": "support",
+      "size_bytes": 2150,
+      "sha256": "e39b93e00564cc7631fcc95ba948f9d6fb94e5a7f23eb6100de6b421bddaa4fc"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 238,
+      "sha256": "6f348c3a25c6651434c74d84f28c9014cb4deeff9ce770962d6fd7cc0932541f"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/project-decision.md",
+      "kind": "support",
+      "size_bytes": 12840,
+      "sha256": "511decfaed53dcf8462874a4f6cafe1656dca635fa4bcaf9196a354a3f1a86b5"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/examples/sprint-planning.md",
+      "kind": "support",
+      "size_bytes": 2100,
+      "sha256": "e6ad6b8b3ec26b8181ad61c2cb9f91897d023749dd6e57a2c86559c0130f2776"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/brainstorming-template.md",
+      "kind": "support",
+      "size_bytes": 1480,
+      "sha256": "4f118f04c8e5eef18f55faf12ecbdb7f8243cd189a4773c98c0d61b822706b14"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/decision-meeting-template.md",
+      "kind": "support",
+      "size_bytes": 1825,
+      "sha256": "f0b46b0f71a2886bd72af7f9b219ece1d68742b5fba6e2a7fe78f9c65f140d98"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/one-on-one-template.md",
+      "kind": "support",
+      "size_bytes": 932,
+      "sha256": "1c7f328738b5d6139b22e977608b5ef47f3fa45d95211991168efc632a73c7ae"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/retrospective-template.md",
+      "kind": "support",
+      "size_bytes": 940,
+      "sha256": "b1e18f96323ce83405f25fa24833b3d3e97fbab86e20c99e6ccfb9a826bd354c"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/sprint-planning-template.md",
+      "kind": "support",
+      "size_bytes": 1301,
+      "sha256": "1eed8455dc48c330eaecd0f79cbd18150973d47b93329826c7ae611a10dece66"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/status-update-template.md",
+      "kind": "support",
+      "size_bytes": 1356,
+      "sha256": "c5f53adde43d8a9333555ce0e4634b85f4f6a44faa560f3a250c6104eebe4f17"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/reference/template-selection-guide.md",
+      "kind": "support",
+      "size_bytes": 1948,
+      "sha256": "a29b16db340c153a3a32579b7031809b398ed319210fbea2d29ec424c68d147e"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 965,
+      "sha256": "e0dd93f5b5d9c6606b5db255618f093e76e431433e2e9ebdf027eb8f4624c052"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/notion-meeting-intelligence/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/notion-meeting-intelligence.zip",
+      "file_name": "notion-meeting-intelligence.zip",
+      "size_bytes": 99121,
+      "sha256": "84e4a00746190bfa438104ce4957f969b886fcef16bfa22df3ab5e192a3a3f22",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/notion-meeting-intelligence.tar.gz",
+      "file_name": "notion-meeting-intelligence.tar.gz",
+      "size_bytes": 122913,
+      "sha256": "7d662275300d8067e6fc4c5e76cc09405533c9d09414edad3a2c68d645ffb4fc",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/notion-meeting-intelligence.checksums.txt",
+    "file_name": "notion-meeting-intelligence.checksums.txt",
+    "sha256": "349510916338ffbfa654234aaed9706c4ef63df2ad8506811181debc0f130ecf",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "9854711bb5476a441923b886e7376de96f8057b000e6869b369087ee7998de6f",
+    "package_sha256": "03225588030af7e0e0a046e4c760eff0b93c8729d6c7eeafd681d6eda58f19ea"
+  }
+}

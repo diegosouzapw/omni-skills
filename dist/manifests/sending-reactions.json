@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 38,
+      "score": 36,
       "tier": "starter",
       "breakdown": {
         "body": 10,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -217,7 +217,7 @@
       "path": "skills/sending-reactions/metadata.json",
       "kind": "support",
       "size_bytes": 5449,
-      "sha256": "0040a60396d4191ec205e718cadf71f270d2ecd67e919c2bc527cba3eedd82f5"
+      "sha256": "790db163b10fdc6ea996f1c059a2a551e9d7fb3866f604c663b6408fad723767"
     },
     {
       "path": "skills/sending-reactions/rules/patterns-thinking.md",
@@ -244,7 +244,7 @@
       "path": "dist/archives/sending-reactions.zip",
       "file_name": "sending-reactions.zip",
       "size_bytes": 14049,
-      "sha256": "1bb54705eca40eec44df4ec3b6c7e33674a452a9857c1540367006ef2bb3f802",
+      "sha256": "d18b090568d4eb934d8172d39ed6c7b8d7ca1db26531a6bfc064ad8c669d1282",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -258,7 +258,7 @@
       "path": "dist/archives/sending-reactions.tar.gz",
       "file_name": "sending-reactions.tar.gz",
       "size_bytes": 20503,
-      "sha256": "34d8dee57213825f62e84c97d254e48afcaf882404823f39e0e40e58a84020a8",
+      "sha256": "ae8e01f9e92801bd57c1323a21c46e0f0bcc35db2d07c42839e601f337e867d4",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -271,7 +271,7 @@
   "archive_checksums": {
     "path": "dist/archives/sending-reactions.checksums.txt",
     "file_name": "sending-reactions.checksums.txt",
-    "sha256": "ebbe96b736abc1ea73bf6fd095474237f72e77eaf1126e6167f1a193a33d1044",
+    "sha256": "9629f311a47364b5a4e0d85fbdbbf8d62d6e3b03461573d504f083fcf189da66",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -282,6 +282,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "71cbf63d8d6eb1b589b6b02eb2c9d018d896a1762af79bbac91237c976b672f8",
-    "package_sha256": "91ec7d5868730439424df46b1793457535cc72fd7d73a90a533d980fa47aad30"
+    "package_sha256": "f2d0fb592af867c90c1b428565987fcd3f15bbfefde32cc0946858529f380cc6"
   }
 }

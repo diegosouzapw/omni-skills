@@ -1,0 +1,238 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "jupyter-notebook",
+  "slug": "jupyter-notebook",
+  "display_name": "Jupyter Notebook Skill",
+  "description": "Jupyter Notebook Skill workflow skill. Use this skill when the user needs the user asks to create, scaffold, or edit Jupyter notebooks (.ipynb) for experiments, explorations, or tutorials; prefer the bundled templates and run the helper script new_notebook.py to generate a clean starting notebook and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "cli-automation",
+  "canonical_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "jupyter-notebook",
+    "the",
+    "user",
+    "asks",
+    "create",
+    "scaffold",
+    "edit",
+    "jupyter"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/jupyter-notebook",
+    "entrypoint": "skills/jupyter-notebook/SKILL.md",
+    "metadata": "skills/jupyter-notebook/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.txt",
+      "ORIGIN.md",
+      "SKILL.md",
+      "omni-import-router.md",
+      "openai.yaml",
+      "experiment-template.ipynb",
+      "jupyter-small.svg",
+      "jupyter.png",
+      "omni-import-source-manifest.json",
+      "tutorial-template.ipynb",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "experiment-patterns.md",
+      "notebook-structure.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "quality-checklist.md",
+      "tutorial-patterns.md",
+      "new_notebook.py",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 24,
+    "references_count": 8,
+    "agents_count": 2,
+    "assets_count": 5
+  },
+  "content": {
+    "body_length": 11922,
+    "content_length": 12739,
+    "body_lines": 228,
+    "word_count": 1656,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 5,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 2386,
+      "when_to_use_section_length": 814,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1347,
+      "resources_items_count": 18,
+      "resources_section_length": 2660,
+      "examples_section_length": 1199,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 57,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 20,
+      "references_files_count": 8,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 5,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.26
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 2386,
+      "when_to_use_section_length": 814,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1347,
+      "resources_items_count": 18,
+      "resources_section_length": 2660,
+      "examples_section_length": 1199,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 57,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 20,
+      "references_files_count": 8,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 5,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.26
+    }
+  },
+  "quality": {
+    "score": 99,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 95,
+    "tier": "review",
+    "status": "passed",
+    "findings_count": 0,
+    "findings": [],
+    "signals": {
+      "scanned_files": 20,
+      "script_files": 3,
+      "binary_like_files": 2
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [],
+    "status": "passed"
+  }
+}

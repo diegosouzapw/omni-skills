@@ -1,0 +1,576 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "slides",
+  "slug": "slides",
+  "display_name": "Slides",
+  "description": "Slides workflow skill. Use this skill when the user needs Create and edit presentation slide decks (.pptx) with PptxGenJS, bundled layout helpers, and render/validation utilities. Use when tasks involve building a new PowerPoint deck, recreating slides from screenshots/PDFs/reference decks, modifying slide content while preserving editable output, adding charts/diagrams/visuals, or diagnosing layout issues such as overflow, overlaps, and font substitution and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "frontend",
+  "raw_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "slides",
+    "create",
+    "and",
+    "edit",
+    "presentation",
+    "slide",
+    "decks",
+    "pptx"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/slides/SKILL.md",
+  "paths": {
+    "root": "skills/slides",
+    "manifest": "dist/manifests/slides.json",
+    "metadata": "skills/slides/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 33,
+    "references_count": 5,
+    "agents_count": 2,
+    "assets_count": 12
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 18,
+        "workflow_section_length": 2836,
+        "when_to_use_section_length": 855,
+        "best_practices_items_count": 16,
+        "best_practices_section_length": 1969,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1337,
+        "resources_items_count": 15,
+        "resources_section_length": 2080,
+        "examples_section_length": 1883,
+        "examples_code_blocks_count": 10,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 46,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 28,
+        "references_files_count": 5,
+        "scripts_files_count": 7,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 12,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 8.98
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 86,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 3,
+      "findings": [
+        {
+          "id": "sudo-required",
+          "kind": "privilege-escalation",
+          "severity": "low",
+          "path": "skills/slides/scripts/ensure_raster_image.py",
+          "message": "Command requires elevated privileges; review necessity carefully.",
+          "evidence": "sudo apt-get update",
+          "line": 16
+        },
+        {
+          "id": "sudo-required",
+          "kind": "privilege-escalation",
+          "severity": "low",
+          "path": "skills/slides/scripts/ensure_raster_image.py",
+          "message": "Command requires elevated privileges; review necessity carefully.",
+          "evidence": "sudo apt-get install -y inkscape imagemagick ghostscript libheif-examples jxr-tools",
+          "line": 17
+        },
+        {
+          "id": "sudo-required",
+          "kind": "privilege-escalation",
+          "severity": "low",
+          "path": "skills/slides/scripts/ensure_raster_image.py",
+          "message": "Command requires elevated privileges; review necessity carefully.",
+          "evidence": "# sudo apt-get install -y libjxr-tools",
+          "line": 19
+        }
+      ],
+      "signals": {
+        "scanned_files": 30,
+        "script_files": 16,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 13232,
+    "content_length": 14185,
+    "body_lines": 211,
+    "word_count": 1895,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 3,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 4,
+    "semantic_signals": {
+      "workflow_steps_count": 18,
+      "workflow_section_length": 2836,
+      "when_to_use_section_length": 855,
+      "best_practices_items_count": 16,
+      "best_practices_section_length": 1969,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1337,
+      "resources_items_count": 15,
+      "resources_section_length": 2080,
+      "examples_section_length": 1883,
+      "examples_code_blocks_count": 10,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 46,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 28,
+      "references_files_count": 5,
+      "scripts_files_count": 7,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 12,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 8.98
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/slides/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1143,
+      "sha256": "4c152aa3a901a6230a938fbfd800b9b2883ea7e68502200537e0e7667c1ff8a4"
+    },
+    {
+      "path": "skills/slides/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 11552,
+      "sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda"
+    },
+    {
+      "path": "skills/slides/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 630,
+      "sha256": "5af4a9a2d3e72168c9fe36f4383cb908852d30378c040557cc7e2ab0ec5c9adf"
+    },
+    {
+      "path": "skills/slides/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 14189,
+      "sha256": "abc3f834187eaa456c28886da4451d5bc90880650176a3844ad2a0e64835490b"
+    },
+    {
+      "path": "skills/slides/metadata.json",
+      "kind": "support",
+      "size_bytes": 8054,
+      "sha256": "d5a57d5745677da295355ec94939df8c093a3979111be443d2437b6dd9d4e322"
+    },
+    {
+      "path": "skills/slides/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/slides/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 283,
+      "sha256": "c99c7732abdfb661435dd3c61067070a1a7b33bbd582a32fd3a0bf10ec3c2dde"
+    },
+    {
+      "path": "skills/slides/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 1018,
+      "sha256": "a911d94e18e55f189e6a74851a0b4bf8e5dbd9a52be49af1f250738fa8d28d68"
+    },
+    {
+      "path": "skills/slides/assets/slides-small.svg",
+      "kind": "asset",
+      "size_bytes": 2489,
+      "sha256": "1e9354b508ece05e8902520826c6b6f48aa289335fa7759baf1c444b6be1cdab"
+    },
+    {
+      "path": "skills/slides/assets/slides.png",
+      "kind": "asset",
+      "size_bytes": 1868,
+      "sha256": "879c4ff68c3930ea609b4d9f018a91756a785fb263c30994b05ac53c6f1ca6a8"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/code.js",
+      "kind": "asset",
+      "size_bytes": 2288,
+      "sha256": "c80e641cbb1d16d1ca15bd9b1a5a595597825cd435cb4024cc95617a82109f0f"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/image.js",
+      "kind": "asset",
+      "size_bytes": 9262,
+      "sha256": "b9034d39cc330b2e4d963b36c521a99b9fee56b6f79b81d342906d7e061e70d6"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/index.js",
+      "kind": "asset",
+      "size_bytes": 697,
+      "sha256": "4416b22333646a1a0e0c4d63e34ca92c853323b410a9489250ffbcf4ccab7184"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/latex.js",
+      "kind": "asset",
+      "size_bytes": 1815,
+      "sha256": "abc4a111bf3fe0248a67d307a57e532c9a72591f71922ec198a1b6b14db47700"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/layout.js",
+      "kind": "asset",
+      "size_bytes": 23013,
+      "sha256": "774076d2671697c56c9df7d968c7f46be337dd7d63508d75e0f6976237a5db96"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/layout_builders.js",
+      "kind": "asset",
+      "size_bytes": 10823,
+      "sha256": "e66d671e7edac49ded358d26f7929718019be72e031a090d957a31b4945ebbc3"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/svg.js",
+      "kind": "asset",
+      "size_bytes": 941,
+      "sha256": "911725defa53b54123d61f457707a163f8e41ffc06e9148c13f12ba8a0834ba7"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/text.js",
+      "kind": "asset",
+      "size_bytes": 27274,
+      "sha256": "ba5f0e38929bd9a826397ca597618a23b89561a2c2f097d3289f5364611c7ccf"
+    },
+    {
+      "path": "skills/slides/assets/pptxgenjs_helpers/util.js",
+      "kind": "asset",
+      "size_bytes": 373,
+      "sha256": "49554b6376f5bad986283fb78a4ecc55b33f17826348689bb7d0f13eb4e24dc2"
+    },
+    {
+      "path": "skills/slides/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/slides/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 217,
+      "sha256": "cb24af015765dc346de065b63022fe1bdf8d8e1237a2992923e039f1a9bb6bd7"
+    },
+    {
+      "path": "skills/slides/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/slides/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/slides/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/slides/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 930,
+      "sha256": "f6438c7ec3d7bcbf0c34f72f452f20321504c159102bee822cbaaf2cec507b94"
+    },
+    {
+      "path": "skills/slides/references/pptxgenjs-helpers.md",
+      "kind": "reference",
+      "size_bytes": 3037,
+      "sha256": "7aabd51f5cd85614d90c24ced9c5d9a152d87ff103eb143ce1fb551581c335ea"
+    },
+    {
+      "path": "skills/slides/scripts/create_montage.py",
+      "kind": "support",
+      "size_bytes": 10323,
+      "sha256": "dd9688825147be710608b1511b2adfd774062027633980799bdf8a675b4a875f"
+    },
+    {
+      "path": "skills/slides/scripts/detect_font.py",
+      "kind": "support",
+      "size_bytes": 34800,
+      "sha256": "07537d7181f79fb65e84810604ddd814165d1ac90481b208bb8b206048aa637d"
+    },
+    {
+      "path": "skills/slides/scripts/ensure_raster_image.py",
+      "kind": "support",
+      "size_bytes": 6364,
+      "sha256": "3708b8ade8c7d6c46bb0915fbdfdbbd9880725db06aeb822ccebecc434ebe835"
+    },
+    {
+      "path": "skills/slides/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/slides/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/slides/scripts/render_slides.py",
+      "kind": "support",
+      "size_bytes": 9484,
+      "sha256": "a5fd2d975233e69f55c87c84a54b6ce5990a52e78293db5412bdc44cd528b4ea"
+    },
+    {
+      "path": "skills/slides/scripts/slides_test.py",
+      "kind": "support",
+      "size_bytes": 6400,
+      "sha256": "916882b8a88b7fe39e76c9009cbef3afa6a29a9e626d160b198c04f7f6a6a69b"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/slides.zip",
+      "file_name": "slides.zip",
+      "size_bytes": 197157,
+      "sha256": "82ca7133dadfb5ac09c899e124269eea96e51589a0e455a48b1c18b362b098ae",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/slides.tar.gz",
+      "file_name": "slides.tar.gz",
+      "size_bytes": 225328,
+      "sha256": "028adecae310b9f06ebdd2e3592b6d2aa8ffe5bedd5bf539f613431ab76a26b5",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/slides.checksums.txt",
+    "file_name": "slides.checksums.txt",
+    "sha256": "0f5ffeebfea4e055f239a40a3ebec9bc055c3c324e4b0b74d62e993583392032",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "abc3f834187eaa456c28886da4451d5bc90880650176a3844ad2a0e64835490b",
+    "package_sha256": "95d1ca85dd88218c8a0bcef95486db1bd0c709f93e9b146138802a6fdfa82c9e"
+  }
+}

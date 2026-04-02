@@ -1,0 +1,524 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "speech",
+  "slug": "speech",
+  "display_name": "Speech Generation Skill",
+  "description": "Speech Generation Skill workflow skill. Use this skill when the user needs the user asks for text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; run the bundled CLI (scripts/texttospeech.py) with built-in voices and require OPENAIAPIKEY for live calls. Custom voice creation is out of scope and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "cli-automation",
+  "raw_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "speech",
+    "the",
+    "user",
+    "asks",
+    "for",
+    "text-to-speech",
+    "narration",
+    "voiceover"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/speech/SKILL.md",
+  "paths": {
+    "root": "skills/speech",
+    "manifest": "dist/manifests/speech.json",
+    "metadata": "skills/speech/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 29,
+    "references_count": 14,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 17,
+        "workflow_section_length": 2004,
+        "when_to_use_section_length": 854,
+        "best_practices_items_count": 18,
+        "best_practices_section_length": 1661,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1337,
+        "resources_items_count": 44,
+        "resources_section_length": 5457,
+        "examples_section_length": 1754,
+        "examples_code_blocks_count": 12,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 50,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 24,
+        "references_files_count": 14,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 7.74
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 26,
+        "script_files": 3,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 15749,
+    "content_length": 16625,
+    "body_lines": 289,
+    "word_count": 2236,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 17,
+      "workflow_section_length": 2004,
+      "when_to_use_section_length": 854,
+      "best_practices_items_count": 18,
+      "best_practices_section_length": 1661,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1337,
+      "resources_items_count": 44,
+      "resources_section_length": 5457,
+      "examples_section_length": 1754,
+      "examples_code_blocks_count": 12,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 50,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 24,
+      "references_files_count": 14,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.74
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/speech/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1048,
+      "sha256": "587d0ee01537fb7e66c784662462d682817e3a364c5fa1597910a73add45bce5"
+    },
+    {
+      "path": "skills/speech/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/speech/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 630,
+      "sha256": "ea81ea0de293d7688cf19811255cc3f49f02d90e093490fea93d34c8b45e2a3d"
+    },
+    {
+      "path": "skills/speech/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 16625,
+      "sha256": "fb6ab1460c81d86c29d3f8344afc6a31da177e12986d51aaa4ebad2711f57109"
+    },
+    {
+      "path": "skills/speech/metadata.json",
+      "kind": "support",
+      "size_bytes": 6866,
+      "sha256": "2de53545507699dc82fb615ec670ce76e67b56bdb00f67883b78610a88c7a033"
+    },
+    {
+      "path": "skills/speech/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/speech/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 299,
+      "sha256": "1a152d9e7e66b86100db33b8e6ff3327955bf107bb9e77044a1ad6dfb10d6e18"
+    },
+    {
+      "path": "skills/speech/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 792,
+      "sha256": "335ad4813e210a7a385a45c6e96a30efa198b2d5bc21d1498a34d4605c96801b"
+    },
+    {
+      "path": "skills/speech/assets/speech-small.svg",
+      "kind": "asset",
+      "size_bytes": 742,
+      "sha256": "b879fe9fc476f183e1c9bfd0e2883b8b2c28c708ca3d90f409bed051fe6a173e"
+    },
+    {
+      "path": "skills/speech/assets/speech.png",
+      "kind": "asset",
+      "size_bytes": 1234,
+      "sha256": "b5abb383bba63a309f73a4da1060b50b6c92b1b5f974f44b8f609b3da10112f9"
+    },
+    {
+      "path": "skills/speech/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/speech/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 217,
+      "sha256": "dcfdd9a8338c6ae14b1474f3d832b9128b15fcc12d511ab578c053ee6074beee"
+    },
+    {
+      "path": "skills/speech/references/accessibility.md",
+      "kind": "reference",
+      "size_bytes": 696,
+      "sha256": "34cd91bc6a3ef65c8da8997e312d163babcdfc3241f9e359418b3f5a76f15b76"
+    },
+    {
+      "path": "skills/speech/references/audio-api.md",
+      "kind": "reference",
+      "size_bytes": 902,
+      "sha256": "dba58cfc0d5e125cf1ac13875193950233aa948639b268ed7799ca17bca66bfe"
+    },
+    {
+      "path": "skills/speech/references/cli.md",
+      "kind": "reference",
+      "size_bytes": 3275,
+      "sha256": "77e6a0c01036ac0092cf37c3d5c88dc6800b223524c5b9c8920d10fc4f68e0cc"
+    },
+    {
+      "path": "skills/speech/references/codex-network.md",
+      "kind": "reference",
+      "size_bytes": 1148,
+      "sha256": "c956a51d3e67246cfb43982aa8c82065350fcce4ef7b94bd89e599c575c94d9c"
+    },
+    {
+      "path": "skills/speech/references/ivr.md",
+      "kind": "reference",
+      "size_bytes": 708,
+      "sha256": "2aaf225b7cea9277fe5413eb0360a845de035c00ea0d6f30348b5ce7138803fc"
+    },
+    {
+      "path": "skills/speech/references/narration.md",
+      "kind": "reference",
+      "size_bytes": 671,
+      "sha256": "3e68829fe4a5a47c3d37cbe9a1ed95ff3cedf1b303ff02a10501e56ad5e7c74a"
+    },
+    {
+      "path": "skills/speech/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/speech/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/speech/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/speech/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 716,
+      "sha256": "e55a92bbed30ca6deeeb3aa3fedb2483dd99886dcbdf5750351067956041c732"
+    },
+    {
+      "path": "skills/speech/references/prompting.md",
+      "kind": "reference",
+      "size_bytes": 1553,
+      "sha256": "2adcb001813be04e56918eb0d34d9a45f9326aa0fb240526ae74a926522b6554"
+    },
+    {
+      "path": "skills/speech/references/sample-prompts.md",
+      "kind": "reference",
+      "size_bytes": 991,
+      "sha256": "c14e1b1c526f2fe555ab2dc86c0e8aead33d38238d2bfcfbf9de0c18d28bde03"
+    },
+    {
+      "path": "skills/speech/references/voice-directions.md",
+      "kind": "reference",
+      "size_bytes": 2155,
+      "sha256": "5da0a4c59bdadb47d1795f51a9708b515fbf2901f0ca808cc5c66d83a336986d"
+    },
+    {
+      "path": "skills/speech/references/voiceover.md",
+      "kind": "reference",
+      "size_bytes": 790,
+      "sha256": "a4bb96c31c8be6a62d35a103f9d7fc700b8004df2efd10595d00b63f0c096486"
+    },
+    {
+      "path": "skills/speech/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/speech/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/speech/scripts/text_to_speech.py",
+      "kind": "support",
+      "size_bytes": 15592,
+      "sha256": "0000014efdf1194512c017ffa0d0574ae65881f6a1340b7ed822053b6e3d3c44"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/speech.zip",
+      "file_name": "speech.zip",
+      "size_bytes": 75568,
+      "sha256": "25cdfaf0e04713b0ae3f0c683b40e43c5ee4dc63b5f1e2747801e4571e76c2c9",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/speech.tar.gz",
+      "file_name": "speech.tar.gz",
+      "size_bytes": 102433,
+      "sha256": "67e2af8aab6f92663e2314ca4d13c7b8369d76c16f0765f7d5014caf755477b2",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/speech.checksums.txt",
+    "file_name": "speech.checksums.txt",
+    "sha256": "c01bf41350624feb592e1c1dc5d0f1d448cc4eef3559f845bebba34f5448404b",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "fb6ab1460c81d86c29d3f8344afc6a31da177e12986d51aaa4ebad2711f57109",
+    "package_sha256": "be42fa5832b1f13a8a3fdb358ff1a17286580b37413fda4aab9faaaebbd53c1d"
+  }
+}

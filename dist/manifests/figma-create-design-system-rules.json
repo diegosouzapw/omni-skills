@@ -1,0 +1,476 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "figma-create-design-system-rules",
+  "slug": "figma-create-design-system-rules",
+  "display_name": "Create Design System Rules",
+  "description": "Create Design System Rules workflow skill. Use this skill when the user needs Generates custom design system rules for the user's codebase. Use when user says \\\"create design system rules\\\", \\\"generate rules for my project\\\", \\\"set up design rules\\\", \\\"customize design system guidelines\\\", or wants to establish project-specific conventions for Figma-to-code workflows. Requires Figma MCP server connection and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "design",
+  "raw_category": "design",
+  "taxonomy": {
+    "raw_category": "design",
+    "canonical_category": "design",
+    "inferred_category": "design",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "figma-create-design-system-rules",
+    "generates",
+    "custom",
+    "design",
+    "system",
+    "rules",
+    "for",
+    "the"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/figma-create-design-system-rules/SKILL.md",
+  "paths": {
+    "root": "skills/figma-create-design-system-rules",
+    "manifest": "dist/manifests/figma-create-design-system-rules.json",
+    "metadata": "skills/figma-create-design-system-rules/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 21,
+    "references_count": 5,
+    "agents_count": 2,
+    "assets_count": 4
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 33,
+        "workflow_section_length": 3977,
+        "when_to_use_section_length": 816,
+        "best_practices_items_count": 60,
+        "best_practices_section_length": 6288,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1363,
+        "resources_items_count": 83,
+        "resources_section_length": 7915,
+        "examples_section_length": 3628,
+        "examples_code_blocks_count": 27,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 46,
+        "table_count": 24,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 5,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 4,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 5.38
+      }
+    },
+    "quality": {
+      "score": 95,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 17,
+        "script_files": 3,
+        "binary_like_files": 3
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 26427,
+    "content_length": 27380,
+    "body_lines": 671,
+    "word_count": 3611,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 7,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 33,
+      "workflow_section_length": 3977,
+      "when_to_use_section_length": 816,
+      "best_practices_items_count": 60,
+      "best_practices_section_length": 6288,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1363,
+      "resources_items_count": 83,
+      "resources_section_length": 7915,
+      "examples_section_length": 3628,
+      "examples_code_blocks_count": 27,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 46,
+      "table_count": 24,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 5,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 4,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 5.38
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/figma-create-design-system-rules/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1173,
+      "sha256": "16979c6d086e23696f6f0b3c6d21feb4e194b36e717e787b935afc5911ea8d35"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/LICENSE.TXT",
+      "kind": "support",
+      "size_bytes": 440,
+      "sha256": "36bdad8e8a43a282ba3a5af4ac022d8b117c5826b8b473fe6a32622e83856ae3"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 708,
+      "sha256": "056183cca8fdeae25438458a33de5b3ceaad5f18b594acfe1bb2c08bf835af89"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 27380,
+      "sha256": "cef22ce2003ee97d08fa7862689e456485acc6769507c81a5dad29a08a2dcfe7"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/metadata.json",
+      "kind": "support",
+      "size_bytes": 6846,
+      "sha256": "d9c750ddd1a0f9929cd94b1b7d2e58c2c709c95e98158558379b90a41f18aaae"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 524,
+      "sha256": "f4afb7716319c2f4c529abb0c41cc007632d9b9d0effd43f5b33626cf57b1f22"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/assets/figma-small.svg",
+      "kind": "asset",
+      "size_bytes": 818,
+      "sha256": "6a38267efbd872bbc215d0227a395eb0b0093bc6441c44a39a43f3210549e5e9"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/assets/figma.png",
+      "kind": "asset",
+      "size_bytes": 1612,
+      "sha256": "4d16e1b19ae7bdac7d601d0b3bf3c0ea4a018a8cb0e38d19e5b00971968ecada"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/assets/icon.svg",
+      "kind": "asset",
+      "size_bytes": 964,
+      "sha256": "8936c5dcd619c41f5a27f7c08e8c50b22e428069c36217e4aa872099d6cc2cf7"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 609,
+      "sha256": "2d5e88f5d59fabd89952e9093e04ad23426660f222cfce4a20a1e8ec0781a9dd"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 243,
+      "sha256": "0df533c44a5482b181f4f225aaa7c845f6eebd85c5fa01620df9abb38c626c96"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 530,
+      "sha256": "6abc28c7e5b5c764462288f57c7b2c9b6493bd098419633f9acb1e0a84c4c730"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/references/rule-template.md",
+      "kind": "reference",
+      "size_bytes": 334,
+      "sha256": "78947775e307e6f8021fce4fabd6fe0112bcbed755fdcb607cf00b9199cd3f33"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/scripts/check_agents_md.sh",
+      "kind": "support",
+      "size_bytes": 191,
+      "sha256": "daf9f09fc8f7f473259856c11e2df829912fc4194c9812a4e7ca4d51d49f1762"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/figma-create-design-system-rules/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/figma-create-design-system-rules.zip",
+      "file_name": "figma-create-design-system-rules.zip",
+      "size_bytes": 49492,
+      "sha256": "6a51dcf1452e644be5afe0a0e9055241317aa95022d5b7c7eed3f8772f0c6ce9",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/figma-create-design-system-rules.tar.gz",
+      "file_name": "figma-create-design-system-rules.tar.gz",
+      "size_bytes": 71713,
+      "sha256": "3a9a88c0857233a8cf191b7e577a211909a2a46cb958fd7767994e97c0fac0c5",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/figma-create-design-system-rules.checksums.txt",
+    "file_name": "figma-create-design-system-rules.checksums.txt",
+    "sha256": "a2df56764e480f4622c6a3369cfd7360b37f08e019a54b5728d76add9afd3c86",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "cef22ce2003ee97d08fa7862689e456485acc6769507c81a5dad29a08a2dcfe7",
+    "package_sha256": "2f561e1441ce6c8e345dfdec5d6fd1cb3e3bfbe62b8e45ecaca72640bd1236d9"
+  }
+}

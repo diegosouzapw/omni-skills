@@ -1,0 +1,492 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "spreadsheet",
+  "slug": "spreadsheet",
+  "display_name": "Spreadsheet Skill",
+  "description": "Spreadsheet Skill workflow skill. Use this skill when the user needs tasks involve creating, editing, analyzing, or formatting spreadsheets (.xlsx, .csv, .tsv) with formula-aware workflows, cached recalculation, and visual review and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "cli-automation",
+  "raw_category": "cli-automation",
+  "taxonomy": {
+    "raw_category": "cli-automation",
+    "canonical_category": "cli-automation",
+    "inferred_category": "cli-automation",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "spreadsheet",
+    "tasks",
+    "involve",
+    "creating",
+    "editing",
+    "analyzing",
+    "formatting",
+    "spreadsheets"
+  ],
+  "complexity": "advanced",
+  "risk": "caution",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/spreadsheet/SKILL.md",
+  "paths": {
+    "root": "skills/spreadsheet",
+    "manifest": "dist/manifests/spreadsheet.json",
+    "metadata": "skills/spreadsheet/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 22,
+    "references_count": 8,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 16,
+        "workflow_section_length": 2334,
+        "when_to_use_section_length": 783,
+        "best_practices_items_count": 6,
+        "best_practices_section_length": 868,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1342,
+        "resources_items_count": 68,
+        "resources_section_length": 6338,
+        "examples_section_length": 1301,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 45,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 21,
+        "references_files_count": 8,
+        "scripts_files_count": 2,
+        "examples_files_count": 6,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 7.36
+      }
+    },
+    "quality": {
+      "score": 99,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 94,
+      "tier": "hardened",
+      "status": "passed",
+      "findings_count": 1,
+      "findings": [
+        {
+          "id": "sudo-required",
+          "kind": "privilege-escalation",
+          "severity": "low",
+          "path": "skills/spreadsheet/SKILL.md",
+          "message": "Command requires elevated privileges; review necessity carefully.",
+          "evidence": "sudo apt-get install -y libreoffice poppler-utils",
+          "line": 100
+        }
+      ],
+      "signals": {
+        "scanned_files": 19,
+        "script_files": 6,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 15376,
+    "content_length": 16137,
+    "body_lines": 291,
+    "word_count": 2141,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 16,
+      "workflow_section_length": 2334,
+      "when_to_use_section_length": 783,
+      "best_practices_items_count": 6,
+      "best_practices_section_length": 868,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1342,
+      "resources_items_count": 68,
+      "resources_section_length": 6338,
+      "examples_section_length": 1301,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 45,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 21,
+      "references_files_count": 8,
+      "scripts_files_count": 2,
+      "examples_files_count": 6,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 7.36
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/spreadsheet/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 935,
+      "sha256": "f5a8b7abf6aa643fe300d801c4b974720ff9b9222f871cc3e5fad776abe966b1"
+    },
+    {
+      "path": "skills/spreadsheet/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/spreadsheet/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 645,
+      "sha256": "2c7373c6437cdb899485d8d8245cd97bf5d40853a0cef4cc721b3c60564f9710"
+    },
+    {
+      "path": "skills/spreadsheet/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 16137,
+      "sha256": "c56e41b0ac80026a13330bf7e033442d5086894bcd0f9901e0fe035d0ab4d861"
+    },
+    {
+      "path": "skills/spreadsheet/metadata.json",
+      "kind": "support",
+      "size_bytes": 7011,
+      "sha256": "ecb55c4092e2862b73b9856b56a12c9a9d8fd56fafa050811ca2642e40cb6a8a"
+    },
+    {
+      "path": "skills/spreadsheet/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/spreadsheet/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 334,
+      "sha256": "47a60ed62c8f9c58583af95c51fc82f713c58f13e0848a060c78c7ebc00db90d"
+    },
+    {
+      "path": "skills/spreadsheet/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 725,
+      "sha256": "29569b95e58cade94df0cee15213cbacdf825e2bac4a5d492986783e352dfdc8"
+    },
+    {
+      "path": "skills/spreadsheet/assets/spreadsheet-small.svg",
+      "kind": "asset",
+      "size_bytes": 1477,
+      "sha256": "403c95e0cea6f994221d3b6281ea4eb2ab15a0dd2c1156f2d412b4744df62f6b"
+    },
+    {
+      "path": "skills/spreadsheet/assets/spreadsheet.png",
+      "kind": "asset",
+      "size_bytes": 3077,
+      "sha256": "a5771930cd28ff46e6ed53aa8a08a25902ed71178d1cac642c178f659638d7aa"
+    },
+    {
+      "path": "skills/spreadsheet/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/spreadsheet/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 222,
+      "sha256": "8081a61483d9b4e66a0f7b8547cefd0ae53c1a2eb5d48343379f1be74ecb6df0"
+    },
+    {
+      "path": "skills/spreadsheet/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/spreadsheet/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/spreadsheet/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/spreadsheet/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 664,
+      "sha256": "abf3a669023d1dbd858c7b4a29dc46870f90a79a014d8ded24ed183bacbe4f03"
+    },
+    {
+      "path": "skills/spreadsheet/references/examples/openpyxl/create_basic_spreadsheet.py",
+      "kind": "reference",
+      "size_bytes": 1456,
+      "sha256": "7c291b6230c9809145c8f7f216fd2b7d099b16b89d3fae0ab4d5a3d990c05418"
+    },
+    {
+      "path": "skills/spreadsheet/references/examples/openpyxl/create_spreadsheet_with_styling.py",
+      "kind": "reference",
+      "size_bytes": 3180,
+      "sha256": "fbfd41b9eca17f0f274f4ce7bd8ead6bc9292d764fe3bc325a1fca57dbe954ea"
+    },
+    {
+      "path": "skills/spreadsheet/references/examples/openpyxl/read_existing_spreadsheet.py",
+      "kind": "reference",
+      "size_bytes": 1622,
+      "sha256": "cf2f24d90174d92bd9044e95035ab4cf2e34a5faa355a2fa1898e49088e9ad02"
+    },
+    {
+      "path": "skills/spreadsheet/references/examples/openpyxl/styling_spreadsheet.py",
+      "kind": "reference",
+      "size_bytes": 1998,
+      "sha256": "5427ca11beb2b408a5dede6af1fa868fa131ad2a435d40bb88e52c4a8de7bc67"
+    },
+    {
+      "path": "skills/spreadsheet/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/spreadsheet/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/spreadsheet.zip",
+      "file_name": "spreadsheet.zip",
+      "size_bytes": 56939,
+      "sha256": "d6d739b39e88f23dbd87039eb762fe16ef78bebc3ef2e78a18ccc78128ed83aa",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/spreadsheet.tar.gz",
+      "file_name": "spreadsheet.tar.gz",
+      "size_bytes": 71713,
+      "sha256": "eede411cdb26471aa6cd8ebc2c859a3205db8e3baa04406d6f39824085f77ea6",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/spreadsheet.checksums.txt",
+    "file_name": "spreadsheet.checksums.txt",
+    "sha256": "d2b9912a305a11f1a46dc3154e3127a8ce2d802efb5c1e0f311946d596d85d09",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "c56e41b0ac80026a13330bf7e033442d5086894bcd0f9901e0fe035d0ab4d861",
+    "package_sha256": "264b88030a75ba88c4937ac662c359854a9a81aaeb9b25ac7e0762e1218c7a9b"
+  }
+}

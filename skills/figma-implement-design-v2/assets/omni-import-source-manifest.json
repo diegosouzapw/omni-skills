@@ -1,0 +1,16 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "figma-implement-design-v2",
+  "public_skill_path": "skills/figma-implement-design-v2",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.curated/figma-implement-design",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "assets/figma-small.svg",
+    "assets/figma.png",
+    "assets/icon.svg"
+  ]
+}

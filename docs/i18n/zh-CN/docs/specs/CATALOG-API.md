@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/CATALOG-API.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/specs/CATALOG-API.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-02T00:00:00+00:00 -->
 
 > **Read-only HTTP API for skill discovery, search, comparison, install planning, and artifact downloads across the same catalog used by the public skill repository and curated derivative surfaces.**
 

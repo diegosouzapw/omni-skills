@@ -1,2 +1,2 @@
-48deabd2c1a95ac162f210479e4459be5a37f46abfccb5ce6aeaca8b356208bb  managing-groups.zip
-f9396bdc644fadfb25ffec3e5bc7ef4ba7440198544d79acbec7c054fd539ae5  managing-groups.tar.gz
+ec15d3bc3f2974907d7539652a1e5b149cbad59dfd2a26c41095db345b7f1080  managing-groups.zip
+68dfadd318d0fee91bb8394737dda2106c00243b85c516f7dcb1041a2d7e6992  managing-groups.tar.gz

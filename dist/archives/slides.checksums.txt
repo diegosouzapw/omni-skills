@@ -1,0 +1,2 @@
+82ca7133dadfb5ac09c899e124269eea96e51589a0e455a48b1c18b362b098ae  slides.zip
+028adecae310b9f06ebdd2e3592b6d2aa8ffe5bedd5bf539f613431ab76a26b5  slides.tar.gz

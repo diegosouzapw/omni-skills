@@ -1,0 +1,17 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "skill-creator",
+  "public_skill_path": "skills/skill-creator",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skill_path": "skills/.system/skill-creator",
+  "upstream_files": [
+    "LICENSE.txt",
+    "agents/openai.yaml",
+    "references/openai_yaml.md",
+    "scripts/generate_openai_yaml.py",
+    "scripts/init_skill.py",
+    "scripts/quick_validate.py"
+  ]
+}

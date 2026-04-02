@@ -1,0 +1,470 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "develop-web-game",
+  "slug": "develop-web-game",
+  "display_name": "Develop Web Game",
+  "description": "Develop Web Game workflow skill. Use this skill when the user needs Codex is building or iterating on a web game (HTML/JS) and needs a reliable development + testing loop: implement small changes, run a Playwright-based test script with short input bursts and intentional pauses, inspect screenshots/text, and review console errors with rendergameto_text and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "testing-security",
+  "raw_category": "testing-security",
+  "taxonomy": {
+    "raw_category": "testing-security",
+    "canonical_category": "testing-security",
+    "inferred_category": "testing-security",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "develop-web-game",
+    "codex",
+    "building",
+    "iterating",
+    "web",
+    "game",
+    "html",
+    "and"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/develop-web-game/SKILL.md",
+  "paths": {
+    "root": "skills/develop-web-game",
+    "manifest": "dist/manifests/develop-web-game.json",
+    "metadata": "skills/develop-web-game/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 20,
+    "references_count": 5,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 21,
+        "workflow_section_length": 4572,
+        "when_to_use_section_length": 867,
+        "best_practices_items_count": 14,
+        "best_practices_section_length": 3009,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1347,
+        "resources_items_count": 23,
+        "resources_section_length": 4649,
+        "examples_section_length": 1199,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 538,
+        "decision_assets_count": 47,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 15,
+        "references_files_count": 5,
+        "scripts_files_count": 3,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 9.12
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 17,
+        "script_files": 3,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 18169,
+    "content_length": 19042,
+    "body_lines": 286,
+    "word_count": 2607,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 4,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 21,
+      "workflow_section_length": 4572,
+      "when_to_use_section_length": 867,
+      "best_practices_items_count": 14,
+      "best_practices_section_length": 3009,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1347,
+      "resources_items_count": 23,
+      "resources_section_length": 4649,
+      "examples_section_length": 1199,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 538,
+      "decision_assets_count": 47,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 15,
+      "references_files_count": 5,
+      "scripts_files_count": 3,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 9.12
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/develop-web-game/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1077,
+      "sha256": "844701727191a05e948e02ecd466e977ffa5a2713576425ba57c84da36e6c659"
+    },
+    {
+      "path": "skills/develop-web-game/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/develop-web-game/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 660,
+      "sha256": "ba0416d6a2682f2a3509c09e1740df7d6526495ee8c0cc21327098e0bfb43f0e"
+    },
+    {
+      "path": "skills/develop-web-game/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 19062,
+      "sha256": "d4912e03fab4ff964014b4859969ab21cb9655226737e09913816c06230e745a"
+    },
+    {
+      "path": "skills/develop-web-game/metadata.json",
+      "kind": "support",
+      "size_bytes": 6710,
+      "sha256": "231d7576fa1f14dd9200598446470edb32631a2837cef4ab118557ee09a60ff7"
+    },
+    {
+      "path": "skills/develop-web-game/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/develop-web-game/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 299,
+      "sha256": "0962a160095830d7c6d7c6983ed023ebce93855f51c3e9a58cbba0c3d9ce07dd"
+    },
+    {
+      "path": "skills/develop-web-game/assets/game-small.svg",
+      "kind": "asset",
+      "size_bytes": 2706,
+      "sha256": "c384984085a0d12baadc39ee05c4b3ecf22c8f04fe0a5d8227b00675742c249e"
+    },
+    {
+      "path": "skills/develop-web-game/assets/game.png",
+      "kind": "asset",
+      "size_bytes": 2234,
+      "sha256": "08382df5010120e47f06e6c32e7e990bb8f3bc473c07f7191b7c11484272635d"
+    },
+    {
+      "path": "skills/develop-web-game/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 551,
+      "sha256": "9f3b3b85ca517574ec5d940825588df7750129fa7cf56530c4959d485110ae65"
+    },
+    {
+      "path": "skills/develop-web-game/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/develop-web-game/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 227,
+      "sha256": "a0ffb5bade32133c63defdeebe82955bf11666355d9aa09ed5052857ce236186"
+    },
+    {
+      "path": "skills/develop-web-game/references/action_payloads.json",
+      "kind": "reference",
+      "size_bytes": 141,
+      "sha256": "7c6915472781be9cc704bb12952577bd66ae4c073d294459d564a8d45f98671c"
+    },
+    {
+      "path": "skills/develop-web-game/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/develop-web-game/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/develop-web-game/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/develop-web-game/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 491,
+      "sha256": "fede1d0c87d0577d5e3cbfb354b6f6ee95c0506cad4a20a88ebdf98a07080674"
+    },
+    {
+      "path": "skills/develop-web-game/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/develop-web-game/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    },
+    {
+      "path": "skills/develop-web-game/scripts/web_game_playwright_client.js",
+      "kind": "support",
+      "size_bytes": 9963,
+      "sha256": "e95c3bcbdc0d15eb08fd3a6021283ec32f715b51f1e5847d3db20df526be5996"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/develop-web-game.zip",
+      "file_name": "develop-web-game.zip",
+      "size_bytes": 61231,
+      "sha256": "7a1d9f2a80454e7dd2d942768ee63b43e1dbe1882b48e17fdcc070d07b40b18d",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/develop-web-game.tar.gz",
+      "file_name": "develop-web-game.tar.gz",
+      "size_bytes": 81948,
+      "sha256": "101196fbcaeb1bdfeb6aec557fa36d8c209f10aa19db4a1b9ccd9704332f7566",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/develop-web-game.checksums.txt",
+    "file_name": "develop-web-game.checksums.txt",
+    "sha256": "8c17314407de6b32c2c3609916d1026200f6cae3165eb9a8e13b968d088bea5c",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "d4912e03fab4ff964014b4859969ab21cb9655226737e09913816c06230e745a",
+    "package_sha256": "f1a058adb831d36989a7755577572df76d4072f8f328e5990790f7daeac8efe4"
+  }
+}

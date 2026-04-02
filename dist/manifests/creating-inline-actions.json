@@ -90,13 +90,13 @@
       }
     },
     "quality": {
-      "score": 44,
+      "score": 42,
       "tier": "bronze",
       "breakdown": {
         "body": 16,
         "description": 10,
         "metadata": 3,
-        "recency": 7,
+        "recency": 5,
         "resources": 5,
         "best_practices": 0,
         "semantic_depth": 1,
@@ -288,7 +288,7 @@
       "path": "skills/creating-inline-actions/metadata.json",
       "kind": "support",
       "size_bytes": 9287,
-      "sha256": "cf8d27a394b0f185f29ebf606220f7b45f91cd678f3554aeba5283c7b08fd5f2"
+      "sha256": "8a31de240e598fdbab1f5d7173cde663f9ff158e9c77cd51a36d8c261dd29ed7"
     },
     {
       "path": "skills/creating-inline-actions/rules/builder-create.md",
@@ -321,7 +321,7 @@
       "path": "dist/archives/creating-inline-actions.zip",
       "file_name": "creating-inline-actions.zip",
       "size_bytes": 21341,
-      "sha256": "c1815e3513f40ee74c42962570357dad967de2b854f13424a964651aac6c02ed",
+      "sha256": "202b72a27335feaab81b34e14df6454a177216adbe4d0d4bad529a77a9ce73ca",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -335,7 +335,7 @@
       "path": "dist/archives/creating-inline-actions.tar.gz",
       "file_name": "creating-inline-actions.tar.gz",
       "size_bytes": 30743,
-      "sha256": "24a239e73c41be2adff7ef7dd11207eb5984fa5da1fdc834096dfa8ae752dc38",
+      "sha256": "d3467b14976c9f9e04a03a15d452bb8b6a6ecf048cc6a27a727b1855248707a0",
       "signature": {
         "status": "unsigned",
         "path": null,
@@ -348,7 +348,7 @@
   "archive_checksums": {
     "path": "dist/archives/creating-inline-actions.checksums.txt",
     "file_name": "creating-inline-actions.checksums.txt",
-    "sha256": "2c6baab6e447e12ddb63344060d6c132d820774f998b38d8658f891628fb6c8f",
+    "sha256": "701f4c2c0bcd229986000a666d3969517fa2df2559aa18aa2505c8a25ec08d02",
     "signature": {
       "status": "unsigned",
       "path": null,
@@ -359,6 +359,6 @@
   },
   "checksums": {
     "entrypoint_sha256": "c71c271ec3f0d4445587eebff6abe56398858cad30769249b1d3076e197c21d9",
-    "package_sha256": "7a8666012b7ed3130db10c639b51153c741263c971227076f39ab136f18cf305"
+    "package_sha256": "8409fdb1c492636152696c43971d00b633cf8ade970e08ad30447860d2054d33"
   }
 }

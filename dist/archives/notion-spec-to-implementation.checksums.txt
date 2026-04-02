@@ -1,0 +1,2 @@
+32f8f01468bb6ae49a9d0d5782784536778a8f28350b95b874698f77f8d4a5d0  notion-spec-to-implementation.zip
+d03e5963053918ca3a912c26e0614cf1825812a927235e72b193524d9f5e29f8  notion-spec-to-implementation.tar.gz

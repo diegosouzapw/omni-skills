@@ -1,0 +1,319 @@
+{
+  "schema_version": "2026-03-26",
+  "generated_at": "2026-04-02T00:00:00+00:00",
+  "id": "winui-app",
+  "slug": "winui-app",
+  "display_name": "WinUI App",
+  "description": "WinUI App workflow skill. Use this skill when the user needs Bootstrap, develop, and design modern WinUI 3 desktop applications with C# and the Windows App SDK using official Microsoft guidance, WinUI Gallery patterns, Windows App SDK samples, and CommunityToolkit components. Use when creating a brand new app, preparing a machine for WinUI, reviewing, refactoring, planning, troubleshooting, environment-checking, or setting up WinUI 3 XAML, controls, navigation, windowing, theming, accessibility, responsiveness, performance, deployment, or related Windows app design and development work and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "raw_category": "frontend",
+  "canonical_category": "frontend",
+  "taxonomy": {
+    "raw_category": "frontend",
+    "canonical_category": "frontend",
+    "inferred_category": "frontend",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "winui-app",
+    "bootstrap",
+    "develop",
+    "and",
+    "design",
+    "modern",
+    "winui",
+    "desktop"
+  ],
+  "tools": [
+    "codex-cli",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "opencode"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02",
+    "file_mtime": "2026-04-02T00:00:00+00:00"
+  },
+  "paths": {
+    "root": "skills/winui-app",
+    "entrypoint": "skills/winui-app/SKILL.md",
+    "metadata": "skills/winui-app/metadata.json"
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "files": [
+      "EXTERNAL_SOURCE.json",
+      "LICENSE.txt",
+      "ORIGIN.md",
+      "SKILL.md",
+      "config.yaml",
+      "omni-import-router.md",
+      "openai.yaml",
+      "omni-import-source-manifest.json",
+      "winui.png",
+      "omni-import-operator-packet.md",
+      "omni-import-prompt-template.md",
+      "_sections.md",
+      "accessibility-input-and-localization.md",
+      "build-run-and-launch-verification.md",
+      "community-toolkit-controls-and-helpers.md",
+      "controls-layout-and-adaptive-ui.md",
+      "foundation-environment-audit-and-remediation.md",
+      "foundation-setup-and-project-selection.md",
+      "foundation-template-first-recovery.md",
+      "foundation-winui-app-structure.md",
+      "motion-animations-and-polish.md",
+      "omni-import-checklist.md",
+      "omni-import-playbook.md",
+      "omni-import-rubric.md",
+      "omni-import-source-summary.md",
+      "performance-diagnostics-and-responsiveness.md",
+      "sample-source-map.md",
+      "shell-navigation-and-windowing.md",
+      "styling-theming-materials-and-icons.md",
+      "testing-debugging-and-review-checklists.md",
+      "windows-app-sdk-lifecycle-notifications-and-deployment.md",
+      "omni_import_list_support_pack.py",
+      "omni_import_print_origin.py"
+    ],
+    "files_count": 33,
+    "references_count": 20,
+    "agents_count": 2,
+    "assets_count": 2
+  },
+  "content": {
+    "body_length": 19945,
+    "content_length": 21041,
+    "body_lines": 232,
+    "word_count": 2903,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 40,
+      "workflow_section_length": 7694,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 22,
+      "best_practices_section_length": 3416,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1340,
+      "resources_items_count": 8,
+      "resources_section_length": 3005,
+      "examples_section_length": 1171,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 57,
+      "table_count": 30,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 28,
+      "references_files_count": 20,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 2,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 12.51
+    }
+  },
+  "maturity": {
+    "skill_level": 3,
+    "skill_level_label": "resources",
+    "has_scripts": true,
+    "has_extra_files": true
+  },
+  "best_practices": {
+    "score": 100,
+    "tier": "excellent",
+    "signals": {
+      "workflow_steps_count": 40,
+      "workflow_section_length": 7694,
+      "when_to_use_section_length": 871,
+      "best_practices_items_count": 22,
+      "best_practices_section_length": 3416,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1340,
+      "resources_items_count": 8,
+      "resources_section_length": 3005,
+      "examples_section_length": 1171,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 57,
+      "table_count": 30,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 28,
+      "references_files_count": 20,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 2,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 12.51
+    }
+  },
+  "quality": {
+    "score": 100,
+    "tier": "platinum",
+    "breakdown": {
+      "body": 16,
+      "description": 10,
+      "metadata": 12,
+      "recency": 8,
+      "resources": 10,
+      "best_practices": 10,
+      "semantic_depth": 16,
+      "operational_depth": 10,
+      "support_pack": 10
+    }
+  },
+  "security": {
+    "score": 28,
+    "tier": "blocked",
+    "status": "warn",
+    "findings_count": 7,
+    "findings": [
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/foundation-environment-audit-and-remediation.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "1. Use the setup-and-scaffold flow in [../SKILL.md](../SKILL.md) for environment readiness, remediation, and initial ...",
+        "line": 18
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/foundation-setup-and-project-selection.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- The setup-and-scaffold flow in [../SKILL.md](../SKILL.md) for prerequisite setup, template verification, and the fi...",
+        "line": 18
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/foundation-setup-and-project-selection.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- Use the setup-and-scaffold flow in [../SKILL.md](../SKILL.md) for prerequisite setup, template verification, and th...",
+        "line": 35
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/foundation-setup-and-project-selection.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "- Treat [../config.yaml](../config.yaml) as the bundled WinGet bootstrap source for setup and remediation.",
+        "line": 36
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/sample-source-map.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "| Check whether a PC can build WinUI apps | `../SKILL.md` | `foundation-environment-audit-and-remediation.md` |",
+        "line": 18
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/sample-source-map.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "| Install missing prerequisites | `../SKILL.md` | `foundation-environment-audit-and-remediation.md` |",
+        "line": 19
+      },
+      {
+        "id": "path-traversal-reference",
+        "kind": "suspicious-path",
+        "severity": "medium",
+        "path": "skills/winui-app/references/sample-source-map.md",
+        "message": "Relative parent traversal found in instructions or scripts.",
+        "evidence": "| Start a new packaged or unpackaged app | `../SKILL.md` | `foundation-setup-and-project-selection.md` |",
+        "line": 20
+      }
+    ],
+    "signals": {
+      "scanned_files": 32,
+      "script_files": 2,
+      "binary_like_files": 1
+    },
+    "scanners": {
+      "static": {
+        "enabled": true,
+        "status": "completed"
+      },
+      "clamav": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "clamav",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+      },
+      "virustotal": {
+        "enabled": false,
+        "status": "disabled",
+        "provider": "virustotal",
+        "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+      }
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/foundation-environment-audit-and-remediation.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/foundation-setup-and-project-selection.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/foundation-setup-and-project-selection.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/foundation-setup-and-project-selection.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/sample-source-map.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/sample-source-map.md]",
+      "security medium: Relative parent traversal found in instructions or scripts. [skills/winui-app/references/sample-source-map.md]"
+    ],
+    "status": "warn"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/openai/skills.git",
+  "source_repository_owner": "openai",
+  "source_repository_name": "skills",
+  "source_branch": "main",
+  "source_commit": "736f600bf6ecbc000c04f1d2710b990899f28903",
+  "source_skills_path": "skills",
+  "source_skill_path": "skills/.curated/frontend-skill",
+  "source_skill_name": "frontend-skill",
+  "source_license_spdx": "UNKNOWN",
+  "license_status": "review-required",
+  "imported_public_skill_id": "frontend-skill",
+  "lineage_id": 114,
+  "sync_run_id": "20260402T020633.372407+0000-openai-skills-dashboard-sync",
+  "imported_at": "2026-04-02T02:07:01.683979+00:00",
+  "original_frontmatter_snapshot": {
+    "name": "frontend-skill",
+    "description": "Use when the task asks for a visually strong landing page, website, app, prototype, demo, or game UI. This skill enforces restrained composition, image-led hierarchy, cohesive content structure, and tasteful motion while avoiding generic cards, weak branding, and UI clutter."
+  }
+}

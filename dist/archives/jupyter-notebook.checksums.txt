@@ -1,0 +1,2 @@
+83899d6f68c7b9d133d7cc2ba24aeef509d87e224b395076196a142541f1fa70  jupyter-notebook.zip
+21ae150c674fb487bccc8ca1c6bd6a7e9507ad3978d7b43f42766adddcccb23d  jupyter-notebook.tar.gz

@@ -1,0 +1,476 @@
+{
+  "schema_version": "2026-03-26",
+  "id": "openai-docs",
+  "slug": "openai-docs",
+  "display_name": "OpenAI Docs",
+  "description": "OpenAI Docs workflow skill. Use this skill when the user needs the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations, help choosing the latest model for a use case, or explicit GPT-5.4 upgrade and prompt-upgrade guidance; prioritize OpenAI docs MCP tools, use bundled references only as helper context, and restrict any fallback browsing to official OpenAI domains and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "version": "0.0.1",
+  "category": "ai-agents",
+  "raw_category": "ai-agents",
+  "taxonomy": {
+    "raw_category": "ai-agents",
+    "canonical_category": "ai-agents",
+    "inferred_category": "ai-agents",
+    "category_source": "frontmatter"
+  },
+  "tags": [
+    "openai-docs",
+    "the",
+    "user",
+    "asks",
+    "how",
+    "build",
+    "openai",
+    "products"
+  ],
+  "complexity": "advanced",
+  "risk": "safe",
+  "source": "community",
+  "author": "openai",
+  "dates": {
+    "added": "2026-04-02",
+    "updated": "2026-04-02"
+  },
+  "entrypoint": "skills/openai-docs/SKILL.md",
+  "paths": {
+    "root": "skills/openai-docs",
+    "manifest": "dist/manifests/openai-docs.json",
+    "metadata": "skills/openai-docs/metadata.json"
+  },
+  "compatibility": {
+    "tools": [
+      "codex-cli",
+      "claude-code",
+      "cursor",
+      "gemini-cli",
+      "opencode"
+    ],
+    "install_targets": [
+      {
+        "tool": "codex-cli",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "installer_flag": "--codex",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "claude-code",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "installer_flag": "--claude",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": ">> /skill-name help me..."
+      },
+      {
+        "tool": "cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "installer_flag": "--cursor",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "@skill-name"
+      },
+      {
+        "tool": "gemini-cli",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "installer_flag": "--gemini",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "Use @skill-name to..."
+      },
+      {
+        "tool": "opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "installer_flag": "--opencode",
+        "current_installer_behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset.",
+        "invocation": "opencode run @skill-name"
+      }
+    ]
+  },
+  "resources": {
+    "sub_resources": [
+      "agents",
+      "assets",
+      "examples",
+      "references",
+      "scripts"
+    ],
+    "artifacts_count": 21,
+    "references_count": 7,
+    "agents_count": 2,
+    "assets_count": 3
+  },
+  "dependencies": {
+    "skills": [],
+    "external": []
+  },
+  "install": {
+    "strategy": "copy-skill-directory",
+    "current_installer": "npx awesome-omni-skills installs the full library by default today, and also supports selective installation with --skill and --bundle.",
+    "recipes": [
+      {
+        "tool": "codex-cli",
+        "command": "npx awesome-omni-skills --codex",
+        "scope": "user-global",
+        "default_path": "~/.codex/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "claude-code",
+        "command": "npx awesome-omni-skills --claude",
+        "scope": "user-global",
+        "default_path": "~/.claude/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "cursor",
+        "command": "npx awesome-omni-skills --cursor",
+        "scope": "user-global",
+        "default_path": "~/.cursor/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "gemini-cli",
+        "command": "npx awesome-omni-skills --gemini",
+        "scope": "user-global",
+        "default_path": "~/.gemini/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      },
+      {
+        "tool": "opencode",
+        "command": "npx awesome-omni-skills --opencode",
+        "scope": "project-local",
+        "default_path": ".opencode/skills",
+        "behavior": "Installs the full Awesome Omni Skills library by default. Use --skill or --bundle to install only a selected subset."
+      }
+    ]
+  },
+  "classification": {
+    "maturity": {
+      "skill_level": 3,
+      "skill_level_label": "resources",
+      "has_scripts": true,
+      "has_extra_files": true
+    },
+    "best_practices": {
+      "score": 100,
+      "tier": "excellent",
+      "signals": {
+        "workflow_steps_count": 22,
+        "workflow_section_length": 2901,
+        "when_to_use_section_length": 865,
+        "best_practices_items_count": 12,
+        "best_practices_section_length": 1416,
+        "troubleshooting_items_count": 0,
+        "troubleshooting_section_length": 1342,
+        "resources_items_count": 19,
+        "resources_section_length": 2914,
+        "examples_section_length": 1666,
+        "examples_code_blocks_count": 8,
+        "related_skills_section_length": 525,
+        "decision_assets_count": 46,
+        "table_count": 14,
+        "linked_resource_families_count": 5,
+        "linked_resource_families": [
+          "agents",
+          "assets",
+          "examples",
+          "references",
+          "scripts"
+        ],
+        "support_links_count": 8,
+        "support_files_count": 16,
+        "references_files_count": 7,
+        "scripts_files_count": 2,
+        "examples_files_count": 2,
+        "agents_files_count": 2,
+        "assets_files_count": 3,
+        "tools_count": 5,
+        "tags_count": 8,
+        "body_density": 10.0
+      }
+    },
+    "quality": {
+      "score": 100,
+      "tier": "platinum",
+      "breakdown": {
+        "body": 16,
+        "description": 10,
+        "metadata": 12,
+        "recency": 8,
+        "resources": 10,
+        "best_practices": 10,
+        "semantic_depth": 16,
+        "operational_depth": 10,
+        "support_pack": 10
+      }
+    },
+    "security": {
+      "score": 95,
+      "tier": "review",
+      "status": "passed",
+      "findings_count": 0,
+      "findings": [],
+      "signals": {
+        "scanned_files": 18,
+        "script_files": 2,
+        "binary_like_files": 2
+      },
+      "scanners": {
+        "static": {
+          "enabled": true,
+          "status": "completed"
+        },
+        "clamav": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "clamav",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and OMNI_SKILLS_ENABLE_CLAMAV=1 to embed local ClamAV results."
+        },
+        "virustotal": {
+          "enabled": false,
+          "status": "disabled",
+          "provider": "virustotal",
+          "details": "Set OMNI_SKILLS_EMBED_OPTIONAL_SECURITY_RESULTS=1 and VT_API_KEY to embed optional VirusTotal hash lookups."
+        }
+      }
+    },
+    "validation": {
+      "errors": [],
+      "warnings": [],
+      "status": "passed"
+    }
+  },
+  "content": {
+    "body_length": 13885,
+    "content_length": 14809,
+    "body_lines": 206,
+    "word_count": 2060,
+    "has_code_blocks": true,
+    "typed_code_blocks_count": 2,
+    "has_examples_section": true,
+    "example_count": 4,
+    "has_workflow_section": true,
+    "has_when_to_use_section": true,
+    "has_best_practices_section": true,
+    "has_troubleshooting_section": true,
+    "problem_count": 3,
+    "troubleshooting_pairs_count": 3,
+    "has_additional_resources_section": true,
+    "has_related_skills_section": true,
+    "related_skills_count": 4,
+    "has_local_support_links": true,
+    "local_support_links_count": 6,
+    "has_local_script_example": true,
+    "local_script_example_count": 0,
+    "semantic_signals": {
+      "workflow_steps_count": 22,
+      "workflow_section_length": 2901,
+      "when_to_use_section_length": 865,
+      "best_practices_items_count": 12,
+      "best_practices_section_length": 1416,
+      "troubleshooting_items_count": 0,
+      "troubleshooting_section_length": 1342,
+      "resources_items_count": 19,
+      "resources_section_length": 2914,
+      "examples_section_length": 1666,
+      "examples_code_blocks_count": 8,
+      "related_skills_section_length": 525,
+      "decision_assets_count": 46,
+      "table_count": 14,
+      "linked_resource_families_count": 5,
+      "linked_resource_families": [
+        "agents",
+        "assets",
+        "examples",
+        "references",
+        "scripts"
+      ],
+      "support_links_count": 8,
+      "support_files_count": 16,
+      "references_files_count": 7,
+      "scripts_files_count": 2,
+      "examples_files_count": 2,
+      "agents_files_count": 2,
+      "assets_files_count": 3,
+      "tools_count": 5,
+      "tags_count": 8,
+      "body_density": 10.0
+    }
+  },
+  "artifacts": [
+    {
+      "path": "skills/openai-docs/EXTERNAL_SOURCE.json",
+      "kind": "support",
+      "size_bytes": 1131,
+      "sha256": "be30ea55053c2b0cafc60d695e4b9519b4baacf939c0352f35d475aa71061fea"
+    },
+    {
+      "path": "skills/openai-docs/LICENSE.txt",
+      "kind": "license",
+      "size_bytes": 10776,
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+    },
+    {
+      "path": "skills/openai-docs/ORIGIN.md",
+      "kind": "support",
+      "size_bytes": 645,
+      "sha256": "3c4b46e21dc0460a41617d6e16fd15b3a9e299937f7c8f0cd5694eb7be043420"
+    },
+    {
+      "path": "skills/openai-docs/SKILL.md",
+      "kind": "entrypoint",
+      "size_bytes": 14813,
+      "sha256": "524b562adcf4fd55220688ffeb023c7e614893cf3e1418c1e4a27b54f1a357cc"
+    },
+    {
+      "path": "skills/openai-docs/metadata.json",
+      "kind": "support",
+      "size_bytes": 6737,
+      "sha256": "d3ef0727c85936e9ae24eaff345c93b9c56efae0c159f564e27cb6caa1b3255e"
+    },
+    {
+      "path": "skills/openai-docs/agents/omni-import-router.md",
+      "kind": "agent",
+      "size_bytes": 459,
+      "sha256": "2b575cff9d3e0e67e83ada819b0016c9c73f298776c3129dfd29d96cfee5470f"
+    },
+    {
+      "path": "skills/openai-docs/agents/openai.yaml",
+      "kind": "agent",
+      "size_bytes": 563,
+      "sha256": "114e8c083f9273d25a18ac9338bb96a6db425fdb2b2bfa9abb49208fc29aaab9"
+    },
+    {
+      "path": "skills/openai-docs/assets/omni-import-source-manifest.json",
+      "kind": "asset",
+      "size_bytes": 577,
+      "sha256": "7f5d687d2e1bfe9baea5a3b6dc792b0c02e531ea7bbb7ad5b68a70770ca04294"
+    },
+    {
+      "path": "skills/openai-docs/assets/openai-small.svg",
+      "kind": "asset",
+      "size_bytes": 1091,
+      "sha256": "45be1f0757eb18889eefb1e7db79668ef46a275dc4e0e78e8df5ebd7f6cdeadc"
+    },
+    {
+      "path": "skills/openai-docs/assets/openai.png",
+      "kind": "asset",
+      "size_bytes": 1429,
+      "sha256": "156cc84d7332bfe95b310350bd470b690d22aa33d65340cc6c2e06022946194c"
+    },
+    {
+      "path": "skills/openai-docs/examples/omni-import-operator-packet.md",
+      "kind": "support",
+      "size_bytes": 401,
+      "sha256": "13606811d32a1c1d2d6ebf938685b941373a711b255b08dcdee96e8874810d5e"
+    },
+    {
+      "path": "skills/openai-docs/examples/omni-import-prompt-template.md",
+      "kind": "support",
+      "size_bytes": 222,
+      "sha256": "d91d63dff8690c7a2c1e00066381709952f513a66094b9eb9793bdabe39894a1"
+    },
+    {
+      "path": "skills/openai-docs/references/gpt-5p4-prompting-guide.md",
+      "kind": "reference",
+      "size_bytes": 18036,
+      "sha256": "cc1e117d0f39385da964ba38a690e5fd06b861e58a0fe073c7d656a8d40e78ac"
+    },
+    {
+      "path": "skills/openai-docs/references/latest-model.md",
+      "kind": "reference",
+      "size_bytes": 1592,
+      "sha256": "ca7a6859b13ccb076cfb067f6c77116d6eeaf4c484b0a3d619ad3e887d2a743c"
+    },
+    {
+      "path": "skills/openai-docs/references/omni-import-checklist.md",
+      "kind": "reference",
+      "size_bytes": 555,
+      "sha256": "41e77fcdf23f9c303ccbb9c434536a9ce5302933fe938138fdc2818a6ef42d3a"
+    },
+    {
+      "path": "skills/openai-docs/references/omni-import-playbook.md",
+      "kind": "reference",
+      "size_bytes": 496,
+      "sha256": "bf3ae56e5430be9ff7c28533fbce924563338a0e5a56f8d8d9fa6b9437493965"
+    },
+    {
+      "path": "skills/openai-docs/references/omni-import-rubric.md",
+      "kind": "reference",
+      "size_bytes": 598,
+      "sha256": "c6b55e08d73852d04feba415b3a4a2b6dfc94400bb82d4e6a5fdb60a862e600c"
+    },
+    {
+      "path": "skills/openai-docs/references/omni-import-source-summary.md",
+      "kind": "reference",
+      "size_bytes": 519,
+      "sha256": "8d9b28aee1d79810b9297c41779a11ae0673d15a702aa146519e3453feae0200"
+    },
+    {
+      "path": "skills/openai-docs/references/upgrading-to-gpt-5p4.md",
+      "kind": "reference",
+      "size_bytes": 8611,
+      "sha256": "f57960bc1c21b5265dca3366eb746f8c99e2a913b0c08661c720cfb4a7351803"
+    },
+    {
+      "path": "skills/openai-docs/scripts/omni_import_list_support_pack.py",
+      "kind": "support",
+      "size_bytes": 237,
+      "sha256": "3203bfbdabd001c2f51d371f5b3cb8b2948bb5c63b28a04f28a2ec11c4b03e34"
+    },
+    {
+      "path": "skills/openai-docs/scripts/omni_import_print_origin.py",
+      "kind": "support",
+      "size_bytes": 278,
+      "sha256": "ef527a3a7375c3e95d3dd7340fa71de44024bac32b4e1773707c77cc69153bdd"
+    }
+  ],
+  "archives": [
+    {
+      "format": "zip",
+      "path": "dist/archives/openai-docs.zip",
+      "file_name": "openai-docs.zip",
+      "size_bytes": 73042,
+      "sha256": "2ed92d884e0249b3cd8d5c5065345a076ef123717a8e1e01553bf4e6fe4d92f9",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    },
+    {
+      "format": "tar.gz",
+      "path": "dist/archives/openai-docs.tar.gz",
+      "file_name": "openai-docs.tar.gz",
+      "size_bytes": 92193,
+      "sha256": "91cf1e8a74442ee0df6df7884f0e340940a867b938cf66a7a999a92884246cec",
+      "signature": {
+        "status": "unsigned",
+        "path": null,
+        "sha256": null,
+        "public_key_path": null,
+        "algorithm": "sha256"
+      }
+    }
+  ],
+  "archive_checksums": {
+    "path": "dist/archives/openai-docs.checksums.txt",
+    "file_name": "openai-docs.checksums.txt",
+    "sha256": "f5d690e5ccfca85ddd5967a7543d8b4ed9abeca4891bdb030cd5a9b19b55365b",
+    "signature": {
+      "status": "unsigned",
+      "path": null,
+      "sha256": null,
+      "public_key_path": null,
+      "algorithm": "sha256"
+    }
+  },
+  "checksums": {
+    "entrypoint_sha256": "524b562adcf4fd55220688ffeb023c7e614893cf3e1418c1e4a27b54f1a357cc",
+    "package_sha256": "b3307b8651d6fc34ceecf0bbedf686d908d5bb075c6c88928360d616e445535b"
+  }
+}

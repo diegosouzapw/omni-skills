@@ -8,7 +8,7 @@
 
 ---
 
-<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-01T00:00:00+00:00 -->
+<!-- generated:i18n-doc: project=awesome-omni-skills; source=docs/architecture/CODEBASE-ANALYSIS.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-02T00:00:00+00:00 -->
 
 > **Comprehensive technical analysis of the current Awesome Omni Skills architecture, its public skill surfaces, and its build/runtime pipeline.**
 > Last analyzed: 2026-03-30
@@ -25,7 +25,7 @@
 | **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.9.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx awesome-omni-skills` |
-| **Published skills** | 129 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
+| **Published skills** | 171 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
 | **Defined bundles** | 7, all fully backed by published skills |
 | **Active catalog categories** | 16 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
@@ -35,11 +35,11 @@
 Current repository-level classification snapshot from `metadata.json`:
 
 <!-- generated:codebase-analysis-classification-snapshot:start -->
-- average quality score: `93.8`
-- average best-practices score: `94.5`
-- average security score: `88.5`
-- maturity mix: `121` `L3` skills and `8` `L2` skills
-- validation mix: `103` passed, `26` warn, `0` failed
+- average quality score: `95.0`
+- average best-practices score: `95.9`
+- average security score: `87.4`
+- maturity mix: `163` `L3` skills and `8` `L2` skills
+- validation mix: `135` passed, `36` warn, `0` failed
 <!-- generated:codebase-analysis-classification-snapshot:end -->
 
 Current release baseline:

@@ -1,0 +1,2 @@
+6a51dcf1452e644be5afe0a0e9055241317aa95022d5b7c7eed3f8772f0c6ce9  figma-create-design-system-rules.zip
+3a9a88c0857233a8cf191b7e577a211909a2a46cb958fd7767994e97c0fac0c5  figma-create-design-system-rules.tar.gz

@@ -1,0 +1,2 @@
+849dfc2019ea829125a4d19e6b0f1d827a3329869cbcec33a1620036be889859  openai-docs-v2.zip
+aad2e2454deb58ec08193b896d18eec0efcef93d502ae6c2d154a6daa59e6963  openai-docs-v2.tar.gz
