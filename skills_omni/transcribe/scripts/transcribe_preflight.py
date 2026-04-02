@@ -26,12 +26,9 @@ def check_openai_package() -> tuple[bool, str]:
     return True, "openai package import ok"
 
 
-def check_api_key() -> tuple[bool, str]:
-    # Only report whether the key is present; never include its value in logs.
-    api_key = os.environ.get("OPENAI_API_KEY")
-    has_api_key = bool(api_key)
-    message = "OPENAI_API_KEY is set" if has_api_key else "OPENAI_API_KEY is missing"
-    return has_api_key, message
+def check_api_key() -> bool:
+    # Do not log raw values or even state-derived details for credential checks.
+    return bool(os.environ.get("OPENAI_API_KEY"))
 
 
 def check_file(path: Path) -> tuple[bool, str]:
@@ -67,10 +64,11 @@ def main() -> int:
     input_path = Path(args.input_file)
     out_dir = Path(args.out_dir)
 
+    api_key_ok = check_api_key()
+
     checks = [
         ("python", check_python()),
         ("openai", check_openai_package()),
-        ("api_key", check_api_key()),
         ("input", check_file(input_path)),
         ("out_dir", check_out_dir(out_dir)),
         ("ffmpeg", check_ffmpeg()),
@@ -80,8 +78,13 @@ def main() -> int:
     for name, (ok, message) in checks:
         status = "OK" if ok else "WARN"
         print(f"[{status}] {name}: {message}")
-        if name in {"openai", "api_key", "input", "out_dir"} and not ok:
+        if name in {"openai", "input", "out_dir"} and not ok:
             failed = True
+
+    api_key_status = "OK" if api_key_ok else "WARN"
+    print(f"[{api_key_status}] api_key: credential preflight completed")
+    if not api_key_ok:
+        failed = True
 
     if failed:
         print("\nPreflight failed. Fix required warnings before making API calls.")

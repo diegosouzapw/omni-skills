@@ -22,7 +22,7 @@
 |:-------|:------|
 | 📦 Package version | `0.9.0` |
 | 🧠 Published skills | `171` |
-| ✨ Curated derivatives | `80` |
+| ✨ Curated derivatives | `38` |
 | 📦 Fully backed bundles | `7` |
 | 🖥️ Install-capable clients | `7` |
 | 🔌 MCP config-capable clients | `16` across `33` targets |

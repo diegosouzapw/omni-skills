@@ -4,7 +4,7 @@
   "id": "aspnet-core",
   "slug": "aspnet-core",
   "display_name": "ASP.NET Core",
-  "description": "ASP.NET Core workflow skill. Use this skill when the user needs Build, review, refactor, or architect ASP.NET Core web applications using current official guidance for .NET web development. Use when working on Blazor Web Apps, Razor Pages, MVC, Minimal APIs, controller-based Web APIs, SignalR, gRPC, middleware, dependency injection, configuration, authentication, authorization, testing, performance, deployment, or ASP.NET Core upgrades and the operator should rely on the packaged workflow, support pack, troubleshooting notes, and provenance links before merging or handing off.",
+  "description": "Build, review, refactor, and operate ASP.NET Core web applications using official .NET guidance across Blazor, Razor Pages, MVC, APIs, security, testing, deployment, and upgrades.",
   "version": "0.0.1",
   "raw_category": "backend",
   "canonical_category": "backend",
@@ -19,10 +19,7 @@
     "build",
     "review",
     "refactor",
-    "architect",
-    "asp",
-    "net",
-    "core"
+    "architect"
   ],
   "tools": [
     "codex-cli",

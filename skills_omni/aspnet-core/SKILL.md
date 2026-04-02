@@ -1,6 +1,6 @@
 ---
 name: "aspnet-core"
-description: "ASP.NET Core workflow skill. Use this skill when the user needs to build, review, refactor, troubleshoot, secure, test, deploy, or upgrade ASP.NET Core web applications using current official guidance for modern .NET web development across Blazor Web Apps, Razor Pages, MVC, Minimal APIs, controller-based Web APIs, SignalR, gRPC, hosted services, middleware, dependency injection, configuration, authentication, authorization, performance, and production operations."
+description: "Build, review, refactor, and operate ASP.NET Core applications using official .NET guidance across Blazor, Razor Pages, MVC, APIs, security, testing, deployment, and upgrades."
 version: "0.0.1"
 category: "backend"
 tags:

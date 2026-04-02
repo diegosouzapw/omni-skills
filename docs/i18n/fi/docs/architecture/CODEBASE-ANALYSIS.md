@@ -25,7 +25,7 @@
 | **Skill versions** | Per-skill and independent from the package version. Many skills still ship `0.0.1` metadata while the package is `0.9.0`. |
 | **License** | MIT (code) + CC BY 4.0 (content) |
 | **NPM** | `npx awesome-omni-skills` |
-| **Published skills** | 171 native skills in `skills/` plus 80 curated derivatives in `skills_omni/` |
+| **Published skills** | 171 native skills in `skills/` plus 38 curated derivatives in `skills_omni/` |
 | **Defined bundles** | 7, all fully backed by published skills |
 | **Active catalog categories** | 16 active buckets out of 18 canonical taxonomy categories |
 | **Primary runtime/build LOC sampled below** | 13,600+ |
