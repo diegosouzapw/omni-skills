@@ -1,0 +1,19 @@
+{
+  // Example only. Adapt tags and constraints to the repository.
+  "projects": {
+    "billing-domain": { "tags": ["scope:billing", "type:domain"] },
+    "billing-feature": { "tags": ["scope:billing", "type:feature"] },
+    "identity-domain": { "tags": ["scope:identity", "type:domain"] },
+    "shared-kernel": { "tags": ["scope:shared", "type:shared"] }
+  },
+  "depConstraints": [
+    {
+      "sourceTag": "type:feature",
+      "onlyDependOnLibsWithTags": ["type:domain", "type:shared", "type:feature"]
+    },
+    {
+      "sourceTag": "type:domain",
+      "onlyDependOnLibsWithTags": ["type:domain", "type:shared"]
+    }
+  ]
+}

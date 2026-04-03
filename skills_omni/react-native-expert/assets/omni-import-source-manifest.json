@@ -1,0 +1,16 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "react-native-expert",
+  "public_skill_path": "skills/react-native-expert",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(development)/react-native-expert",
+  "upstream_files": [
+    "references/expo-router.md",
+    "references/performance-rules.md",
+    "references/platform-handling.md",
+    "references/project-structure.md",
+    "references/storage-patterns.md"
+  ]
+}

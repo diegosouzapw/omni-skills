@@ -1,0 +1,19 @@
+name: coupling-analysis
+description: Analyze coupling between modules, packages, or services using strength, distance, and volatility, then produce a prioritized evidence-based report.
+entrypoint: SKILL.md
+recommended_when:
+  - The user asks whether components are too coupled.
+  - The user wants a dependency-informed architecture health review.
+  - The task is to identify decoupling priorities or integration risks.
+not_for:
+  - Domain boundary redesign.
+  - Component sizing or split/merge planning.
+  - Pure enforcement work after diagnosis.
+input_expectations:
+  - A target scope or subsystem.
+  - Preferred abstraction level if known.
+  - Repository access, architecture artifacts, or dependency evidence when available.
+execution_notes:
+  - Choose one abstraction level per pass.
+  - Use multiple evidence classes when possible.
+  - Include confidence in findings when evidence is incomplete.

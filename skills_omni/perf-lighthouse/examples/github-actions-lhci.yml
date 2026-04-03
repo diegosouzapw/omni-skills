@@ -1,0 +1,42 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Start app
+        run: |
+          npm run start > app.log 2>&1 &
+
+      - name: Wait for app readiness
+        run: npx wait-on http://127.0.0.1:3000
+
+      - name: Run Lighthouse CI
+        run: npx @lhci/cli autorun --config=examples/lighthouserc.js
+
+      - name: Upload Lighthouse artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-artifacts
+          path: |
+            .lighthouseci
+            app.log

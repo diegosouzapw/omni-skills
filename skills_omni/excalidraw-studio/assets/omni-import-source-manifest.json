@@ -1,0 +1,27 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "excalidraw-studio",
+  "public_skill_path": "skills/excalidraw-studio",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(tooling)/excalidraw-studio",
+  "upstream_files": [
+    "assets/business-flow-swimlane-template.json",
+    "assets/class-diagram-template.json",
+    "assets/data-flow-diagram-template.json",
+    "assets/er-diagram-template.json",
+    "assets/flowchart-template.json",
+    "assets/mindmap-template.json",
+    "assets/relationship-template.json",
+    "assets/sequence-diagram-template.json",
+    "references/element-types.md",
+    "references/excalidraw-schema.md",
+    "references/icon-libraries.md",
+    "scripts/.gitignore",
+    "scripts/README.md",
+    "scripts/add-arrow.py",
+    "scripts/add-icon-to-diagram.py",
+    "scripts/split-excalidraw-library.py"
+  ]
+}

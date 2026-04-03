@@ -1,0 +1,74 @@
+{
+  "scope": {
+    "path": ".",
+    "languages": ["TypeScript"],
+    "notes": ["Workspace packages used as first-class components"]
+  },
+  "exclusions": {
+    "defaults_applied": true,
+    "rules": [
+      "node_modules/",
+      "dist/",
+      "coverage/",
+      "**/*.test.ts",
+      "generated/"
+    ]
+  },
+  "summary": {
+    "component_count": 3,
+    "total_statements": 12010,
+    "mean_statements": 4003,
+    "median_statements": 3120,
+    "std_dev_statements": 3168,
+    "notes": [
+      "Distribution is skewed by one dominant package; review median alongside std_dev"
+    ]
+  },
+  "components": [
+    {
+      "component_id": "billing",
+      "display_name": "Billing",
+      "canonical_path": "packages/billing",
+      "boundary_type": "workspace-package",
+      "language": "TypeScript",
+      "included_file_count": 24,
+      "excluded_file_count": 8,
+      "statement_count": 4312,
+      "percent_of_codebase": 35.9,
+      "status": "Too Large",
+      "boundary_confidence": "high",
+      "exclusion_notes": ["Excluded tests", "Excluded generated API client"],
+      "recommendation": "Review whether invoice generation and payment processing are separate subcomponents"
+    },
+    {
+      "component_id": "reporting",
+      "display_name": "Reporting",
+      "canonical_path": "packages/reporting",
+      "boundary_type": "workspace-package",
+      "language": "TypeScript",
+      "included_file_count": 18,
+      "excluded_file_count": 2,
+      "statement_count": 4578,
+      "percent_of_codebase": 38.1,
+      "status": "Too Large",
+      "boundary_confidence": "high",
+      "exclusion_notes": ["Excluded snapshots"],
+      "recommendation": "Validate whether operational, financial, and customer reports should be split"
+    },
+    {
+      "component_id": "auth-ui",
+      "display_name": "Auth UI",
+      "canonical_path": "apps/web/src/features/auth",
+      "boundary_type": "feature-folder",
+      "language": "TypeScript",
+      "included_file_count": 11,
+      "excluded_file_count": 6,
+      "statement_count": 3120,
+      "percent_of_codebase": 26.0,
+      "status": "OK",
+      "boundary_confidence": "medium",
+      "exclusion_notes": ["Excluded tests and storybook stories"],
+      "recommendation": "Keep under observation; alias-based imports reduce boundary certainty"
+    }
+  ]
+}

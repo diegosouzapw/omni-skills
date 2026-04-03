@@ -1,0 +1,33 @@
+---
+---
+
+<button id="menu-toggle">Menu</button>
+
+<script>
+  import { initMenu } from '../scripts/menu.js';
+  initMenu('#menu-toggle');
+</script>
+
+<script is:inline>
+  // Use is:inline only when you truly need exact inline output.
+  // Inline scripts are not processed the same way as bundled Astro scripts.
+  window.__perfAstroExample = true;
+</script>
+
+<script>
+  let loaded = false;
+
+  const loadNonCriticalAnalytics = async () => {
+    if (loaded) return;
+    loaded = true;
+    // Replace with your consent-safe analytics loader.
+    await import('../scripts/non-critical-analytics.js');
+  };
+
+  ['click', 'scroll', 'touchstart'].forEach((eventName) => {
+    document.addEventListener(eventName, loadNonCriticalAnalytics, {
+      once: true,
+      passive: true,
+    });
+  });
+</script>

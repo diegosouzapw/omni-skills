@@ -1,0 +1,23 @@
+name: create-adr
+description: Create or refine an Architecture Decision Record for a decision that has already been made or is being finalized.
+invocation_hint: Use when the user needs a durable record of a technical decision, not an unresolved proposal.
+inputs:
+  - decision_title
+  - status
+  - context
+  - decision
+  - consequences
+optional_inputs:
+  - decision_drivers
+  - alternatives
+  - related_links
+  - supersedes
+behavior:
+  - Confirm ADR vs RFC routing before drafting.
+  - Reuse repository ADR conventions when visible.
+  - Prefer superseding an older ADR over rewriting its historical decision.
+  - Default to MADR format unless the user or repo prefers another style.
+outputs:
+  - adr_markdown
+  - suggested_file_path
+  - missing_information_questions

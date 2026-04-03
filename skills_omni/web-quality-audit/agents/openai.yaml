@@ -1,0 +1,19 @@
+name: web-quality-audit
+description: Run a combined web quality audit across performance, accessibility, SEO, and browser-facing best practices with reproducible evidence and clear handoff boundaries.
+recommended_when:
+  - User asks for a broad site audit across multiple quality domains
+  - User wants Lighthouse-style review plus manual validation and prioritization
+not_recommended_when:
+  - Single-domain deep dive only
+  - Penetration testing or security assessment
+  - Content strategy or keyword planning
+inputs:
+  - target URLs or flows
+  - site type and business goals
+  - auth requirements if any
+  - available field data if any
+outputs:
+  - scoped audit summary
+  - evidence-backed findings
+  - prioritized recommendations
+  - specialized-skill handoff notes
