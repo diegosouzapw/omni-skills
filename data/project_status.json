@@ -3,8 +3,8 @@
   "generated_at": "2026-04-02T00:00:00+00:00",
   "package_version": "0.9.0",
   "latest_release": "v0.9.0",
-  "native_skill_count": 171,
-  "curated_skill_count": 109,
+  "native_skill_count": 155,
+  "curated_skill_count": 80,
   "bundle_count": 7,
   "active_category_count": 16,
   "active_categories": [
@@ -48,28 +48,28 @@
       "label": "A2A"
     }
   ],
-  "validation_passed": 135,
-  "validation_warn": 36,
+  "validation_passed": 127,
+  "validation_warn": 28,
   "validation_error": 0,
-  "average_quality_score": 95.0,
-  "average_best_practices_score": 95.9,
-  "average_security_score": 87.4,
+  "average_quality_score": 97.7,
+  "average_best_practices_score": 99.7,
+  "average_security_score": 88.0,
   "quality_score_range": {
-    "min": 35,
+    "min": 94,
     "max": 100
   },
   "best_practices_score_range": {
-    "min": 7,
+    "min": 97,
     "max": 100
   },
   "skill_level_counts": {
     "l1": 0,
-    "l2": 8,
-    "l3": 163
+    "l2": 0,
+    "l3": 155
   },
   "security_status_counts": {
-    "passed": 138,
-    "warn": 33,
+    "passed": 127,
+    "warn": 28,
     "failed": 0
   },
   "native_intake_modes": [
@@ -78,7 +78,7 @@
   ],
   "paired_private_release_floor": "v1.0.0",
   "production_dependency_count": 8,
-  "catalog_hash": "09afc1e375b5b66097f4d6b3d51aaae065d07e2ed4b76799752a497da0068c48",
+  "catalog_hash": "694cbd5f829bfb87c13b225e84b13bb178d2145c92de47c137b9e2364ec2c4cf",
   "generated_from": {
     "identity_path": "data/project_identity.json",
     "metadata_path": "metadata.json",

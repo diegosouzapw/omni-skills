@@ -1,6 +1,6 @@
 # 📚 Awesome Omni Skills Catalog
 
-> Auto-generated from `skills_index.json` — 171 skills across 16 categories.
+> Auto-generated from `skills_index.json` — 155 skills across 16 categories.
 
 Generated: 2026-04-02T00:00:00+00:00
 
@@ -8,20 +8,20 @@ Generated: 2026-04-02T00:00:00+00:00
 
 ## Table of Contents
 
-- [🧠 Ai Agents (24)](#ai-agents)
+- [🧠 Ai Agents (13)](#ai-agents)
 - [🗄️ Backend (5)](#backend)
 - [💼 Business (1)](#business)
 - [⚙️ Cli Automation (16)](#cli-automation)
 - [💬 Communication (1)](#communication)
 - [🤖 Data Ai (1)](#data-ai)
 - [🎨 Design (13)](#design)
-- [💻 Development (44)](#development)
+- [💻 Development (41)](#development)
 - [☁️ Devops (15)](#devops)
 - [📝 Documentation (8)](#documentation)
 - [🖼️ Frontend (18)](#frontend)
-- [🌐 Fullstack Web (4)](#fullstack-web)
+- [🌐 Fullstack Web (3)](#fullstack-web)
 - [📈 Machine Learning (1)](#machine-learning)
-- [🧭 Product (4)](#product)
+- [🧭 Product (3)](#product)
 - [🛡️ Testing Security (12)](#testing-security)
 - [🧰 Tools (4)](#tools)
 
@@ -31,30 +31,19 @@ Generated: 2026-04-02T00:00:00+00:00
 
 | Skill | Description | Level | Best Practices | Quality | Security |
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
-| [`building-agents`](../skills/building-agents/SKILL.md) | Core XMTP Agent SDK setup and patterns. Use when creating new agents, handling messages, setting up middleware, or confi | L2 instructions | 19/100 | 40/100 | 40/100 warn |
 | [`confluence-assistant`](../skills/confluence-assistant/SKILL.md) | Confluence Assistant workflow skill. Use this skill when the user needs Expert in Confluence operations using Atlassian  | L3 resources | 100/100 | 95/100 | 95/100 passed |
 | [`context-engineering`](../skills/context-engineering/SKILL.md) | Context engineering workflow skill. Use this skill when a user needs to shape prompts, retrieval context, memory, and to | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`cookiy`](../skills/cookiy/SKILL.md) | Cookiy workflow skill. Use this skill when the user needs > and the operator should rely on the packaged workflow, suppo | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`creating-inline-actions`](../skills/creating-inline-actions/SKILL.md) | Interactive button-based UI for XMTP agents following XIP-67. Use when creating menus, confirmation dialogs, selection o | L2 instructions | 20/100 | 42/100 | 30/100 warn |
 | [`cursor-subagent-creator`](../skills/cursor-subagent-creator/SKILL.md) | Cursor Subagent Creator workflow skill. Use this skill when the user needs Creates Cursor-specific AI subagents with iso | L3 resources | 100/100 | 94/100 | 95/100 passed |
 | [`eval-design`](../skills/eval-design/SKILL.md) | Evaluation design workflow skill. Use this skill when a user needs LLM eval plans, regression suites, scoring rubrics, o | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`handling-attachments`](../skills/handling-attachments/SKILL.md) | File attachment handling for XMTP agents. Use when sending or receiving images, files, or any encrypted remote attachmen | L2 instructions | 16/100 | 36/100 | 60/100 warn |
-| [`handling-commands`](../skills/handling-commands/SKILL.md) | Patterns for handling commands, validating input, and filtering messages in XMTP agents. Use when implementing slash com | L2 instructions | 7/100 | 35/100 | 100/100 passed |
-| [`handling-transactions`](../skills/handling-transactions/SKILL.md) | Token transactions and wallet integration for XMTP agents. Use when sending USDC, creating transaction requests, or hand | L2 instructions | 20/100 | 44/100 | 100/100 passed |
 | [`jira-assistant`](../skills/jira-assistant/SKILL.md) | Jira Assistant workflow skill. Use this skill when the user needs Manage Jira issues via Atlassian MCP \u2014 search, cr | L3 resources | 100/100 | 94/100 | 95/100 passed |
 | [`llm-patterns`](../skills/llm-patterns/SKILL.md) | LLM application workflow skill. Use this skill when a user needs robust patterns for tool use, structured outputs, fallb | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`managing-groups`](../skills/managing-groups/SKILL.md) | Group conversation management for XMTP agents. Use when creating groups, managing members, setting permissions, or sendi | L2 instructions | 16/100 | 36/100 | 90/100 warn |
 | [`notion-meeting-intelligence`](../skills/notion-meeting-intelligence/SKILL.md) | Meeting Intelligence workflow skill. Use this skill when the user needs Prepare meeting materials with Notion context an | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`openai-docs`](../skills/openai-docs/SKILL.md) | OpenAI Docs workflow skill. Use this skill when the user needs the user asks how to build with OpenAI products or APIs a | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`openai-docs-v2`](../skills/openai-docs-v2/SKILL.md) | OpenAI Docs workflow skill. Use this skill when the user needs the user asks how to build with OpenAI products or APIs a | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`prompt-engineer`](../skills/prompt-engineer/SKILL.md) | Prompt engineering workflow skill. Use this skill when a user needs clearer task instructions, examples, decomposition,  | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`rag-engineer`](../skills/rag-engineer/SKILL.md) | RAG workflow skill. Use this skill when a user needs retrieval pipelines, chunking, ranking, citations, and evaluation f | L3 resources | 99/100 | 97/100 | 95/100 passed |
-| [`recce-mcp-dev`](../skills/recce-mcp-dev/SKILL.md) | Recce MCP Server Development workflow skill. Use this skill when the user needs modifying recce/mcp_server.py, MCP tool  | L3 resources | 100/100 | 100/100 | 95/100 passed |
-| [`recce-mcp-e2e`](../skills/recce-mcp-e2e/SKILL.md) | MCP E2E Verification workflow skill. Use this skill when the user needs MCP server code is modified and needs full E2E v | L3 resources | 100/100 | 99/100 | 95/100 passed |
-| [`sending-reactions`](../skills/sending-reactions/SKILL.md) | Emoji reactions and thinking indicators for XMTP agents. Use when adding reactions to messages or showing processing sta | L2 instructions | 16/100 | 36/100 | 100/100 passed |
 | [`skill-architect`](../skills/skill-architect/SKILL.md) | Skill Architect workflow skill. Use this skill when the user needs Expert guide for designing and building high-quality  | L3 resources | 100/100 | 97/100 | 95/100 passed |
 | [`subagent-creator`](../skills/subagent-creator/SKILL.md) | Subagent Creator workflow skill. Use this skill when the user needs Guide for creating AI subagents with isolated contex | L3 resources | 100/100 | 94/100 | 95/100 passed |
-| [`synthesize-research-report`](../skills/synthesize-research-report/SKILL.md) | Synthesize Research Report workflow skill. Use this skill when the user needs Synthesize a comprehensive qualitative res | L3 resources | 100/100 | 98/100 | 95/100 passed |
 
 ## 🗄️ Backend
 
@@ -135,7 +124,6 @@ Generated: 2026-04-02T00:00:00+00:00
 | [`architecture`](../skills/architecture/SKILL.md) | Architecture workflow skill. Use this skill when a user needs system boundaries, tradeoffs, or a staged implementation p | L3 resources | 98/100 | 94/100 | 95/100 passed |
 | [`best-practices`](../skills/best-practices/SKILL.md) | Best practices workflow skill. Use this skill when the user needs Apply modern web development best practices for securi | L3 resources | 100/100 | 94/100 | 80/100 warn |
 | [`chatgpt-apps`](../skills/chatgpt-apps/SKILL.md) | ChatGPT Apps workflow skill. Use this skill when the user needs Build, scaffold, refactor, and troubleshoot ChatGPT Apps | L3 resources | 100/100 | 100/100 | 90/100 warn |
-| [`claude-code-review`](../skills/claude-code-review/SKILL.md) | Claude Code Review workflow skill. Use this skill when the user needs asked to review a PR, or when /review is invoked w | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`codenavi`](../skills/codenavi/SKILL.md) | CodeNavi workflow skill. Use this skill when the user needs Your pathfinder for navigating unknown codebases. Investigat | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`coding-guidelines`](../skills/coding-guidelines/SKILL.md) | Coding Guidelines workflow skill. Use this skill when the user needs Behavioral guidelines to reduce common LLM coding m | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`component-common-domain-detection`](../skills/component-common-domain-detection/SKILL.md) | Common Domain Component Detection workflow skill. Use this skill when the user needs Finds duplicate business logic spre | L3 resources | 100/100 | 94/100 | 90/100 warn |
@@ -153,7 +141,6 @@ Generated: 2026-04-02T00:00:00+00:00
 | [`lead-enrichment`](../skills/lead-enrichment/SKILL.md) | Lead Enrichment Skill workflow skill. Use this skill when the user needs When the user wants to build data enrichment wo | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`learning-opportunities`](../skills/learning-opportunities/SKILL.md) | Learning Opportunities workflow skill. Use this skill when the user needs Facilitates deliberate skill development durin | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`legacy-migration-planner`](../skills/legacy-migration-planner/SKILL.md) | Legacy Migration Planner workflow skill. Use this skill when the user needs planning legacy system migrations, codebase  | L3 resources | 100/100 | 100/100 | 95/100 passed |
-| [`linear-deep-dive`](../skills/linear-deep-dive/SKILL.md) | Linear Deep Dive workflow skill. Use this skill when the user needs given a Linear issue ID, URL, identifier, or project | L3 resources | 100/100 | 96/100 | 95/100 passed |
 | [`multi-platform-launch`](../skills/multi-platform-launch/SKILL.md) | Multi-Platform Launch Skill workflow skill. Use this skill when the user needs When the user wants to launch a product a | L3 resources | 100/100 | 98/100 | 95/100 passed |
 | [`notion-spec-to-implementation`](../skills/notion-spec-to-implementation/SKILL.md) | Spec to Implementation workflow skill. Use this skill when the user needs Turn Notion specs into implementation plans, t | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`nx-run-tasks`](../skills/nx-run-tasks/SKILL.md) | nx-run-tasks workflow skill. Use this skill when the user needs Execute build, test, lint, serve, and other tasks in an  | L3 resources | 100/100 | 100/100 | 95/100 passed |
@@ -161,7 +148,6 @@ Generated: 2026-04-02T00:00:00+00:00
 | [`omni-figma`](../skills/omni-figma/SKILL.md) | Figma workflow skill. Use this skill when a user needs design-to-code implementation, Figma inspection, token lookup, Co | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`paid-creative-ai`](../skills/paid-creative-ai/SKILL.md) | Paid Creative AI workflow skill. Use this skill when the user needs When the user wants to create AI-generated ad creati | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`partner-affiliate`](../skills/partner-affiliate/SKILL.md) | Partner & Affiliate Program Design workflow skill. Use this skill when the user needs When the user wants to build a par | L3 resources | 100/100 | 100/100 | 95/100 passed |
-| [`pm-research`](../skills/pm-research/SKILL.md) | PM / UXR Research Toolkit workflow skill. Use this skill when the user needs > and the operator should rely on the packa | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`positioning-icp`](../skills/positioning-icp/SKILL.md) | Positioning, ICP & Messaging Architecture for AI Products workflow skill. Use this skill when the user needs When the us | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`react-best-practices`](../skills/react-best-practices/SKILL.md) | Vercel React Best Practices workflow skill. Use this skill when the user needs React and Next.js performance optimizatio | L3 resources | 100/100 | 99/100 | 95/100 passed |
 | [`react-composition-patterns`](../skills/react-composition-patterns/SKILL.md) | React Composition Patterns workflow skill. Use this skill when the user needs React composition patterns that scale. Use | L3 resources | 100/100 | 99/100 | 95/100 passed |
@@ -234,7 +220,6 @@ Generated: 2026-04-02T00:00:00+00:00
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`auth-flows`](../skills/auth-flows/SKILL.md) | Authentication and authorization workflow skill. Use this skill when a user needs login, session, token, role, or permis | L3 resources | 99/100 | 97/100 | 95/100 passed |
 | [`react-native-expert`](../skills/react-native-expert/SKILL.md) | React Native Expert workflow skill. Use this skill when the user needs Senior React Native and Expo engineer for buildin | L3 resources | 100/100 | 98/100 | 95/100 passed |
-| [`resolving-domains`](../skills/resolving-domains/SKILL.md) | ENS and Web3 identity resolution for XMTP agents. Use when resolving domain names, extracting mentions, or fetching Farc | L2 instructions | 20/100 | 43/100 | 30/100 warn |
 | [`web-quality-audit`](../skills/web-quality-audit/SKILL.md) | Web quality audit workflow skill. Use this skill when the user needs Comprehensive web quality audit covering performanc | L3 resources | 100/100 | 98/100 | 50/100 warn |
 
 ## 📈 Machine Learning
@@ -249,7 +234,6 @@ Generated: 2026-04-02T00:00:00+00:00
 | :---- | :---------- | :---- | :------------- | :------ | :------- |
 | [`brainstorming`](../skills/brainstorming/SKILL.md) | Brainstorming workflow skill. Use this skill when a user is exploring a problem and needs options, tradeoffs, and a reco | L3 resources | 99/100 | 96/100 | 95/100 passed |
 | [`decomposition-planning-roadmap`](../skills/decomposition-planning-roadmap/SKILL.md) | Decomposition Planning and Roadmap workflow skill. Use this skill when the user needs Creates step-by-step decomposition | L3 resources | 100/100 | 94/100 | 95/100 passed |
-| [`qualitative-research-planner`](../skills/qualitative-research-planner/SKILL.md) | Qualitative Research Planner workflow skill. Use this skill when the user needs > and the operator should rely on the pa | L3 resources | 100/100 | 100/100 | 95/100 passed |
 | [`tlc-spec-driven`](../skills/tlc-spec-driven/SKILL.md) | Tech Lead's Club - Spec-Driven Development workflow skill. Use this skill when the user needs Project and feature planni | L3 resources | 100/100 | 99/100 | 95/100 passed |
 
 ## 🛡️ Testing Security

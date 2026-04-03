@@ -10,7 +10,7 @@
 
 <!-- generated:i18n-doc: project=awesome-omni-skills; source=README.md; version=0.9.0; release=v0.9.0; english_snapshot=2026-04-02T00:00:00+00:00 -->
 <!-- generated:project-meta:start -->
-<!-- awesome-omni-skills: version=0.9.0; native_skills=171; curated_skills=109; updated_at=2026-04-02 -->
+<!-- awesome-omni-skills: version=0.9.0; native_skills=155; curated_skills=80; updated_at=2026-04-02 -->
 <!-- generated:project-meta:end -->
 
 <div align="center">
@@ -87,12 +87,12 @@ CLI · API · MCP · A2A — all from a single `npx` command.
 <!-- generated:readme-project-at-a-glance:start -->
 | | Metric | Value |
 |:--|:-------|:------|
-| 📦 | **Published Skills** | `171` native skills across 16 active categories |
+| 📦 | **Published Skills** | `155` native skills across 16 active categories |
 | 🎯 | **Bundles** | `7` fully backed curated bundles |
 | 🖥️ | **Install Clients** | `7` install-capable AI coding assistants |
 | 🔌 | **MCP Clients** | `16` MCP config-capable clients across `33` first-class targets |
-| 🔐 | **Curated Output** | `109` enhanced English derivatives in `skills_omni` |
-| 🧪 | **Validation Mix** | `135` passed · `36` warn · `0` errors |
+| 🔐 | **Curated Output** | `80` enhanced English derivatives in `skills_omni` |
+| 🧪 | **Validation Mix** | `127` passed · `28` warn · `0` errors |
 | 📋 | **Current Release** | `v0.9.0` |
 <!-- generated:readme-project-at-a-glance:end -->
 
@@ -372,11 +372,11 @@ npx awesome-omni-skills config-mcp --target windsurf-user --transport sse --url 
 <!-- generated:readme-published-catalog-snapshot:start -->
 | Metric | Current State |
 |:-------|:--------------|
-| 🧠 Native intake skills | **171** |
+| 🧠 Native intake skills | **155** |
 | 📂 Active categories | **16** |
 | 📦 Fully backed bundles | **7** |
-| ✨ Curated derivatives | **109** in `skills_omni` |
-| 🧪 Validation | **135 passed / 36 warn / 0 errors** |
+| ✨ Curated derivatives | **80** in `skills_omni` |
+| 🧪 Validation | **127 passed / 28 warn / 0 errors** |
 | 📋 Release | **v0.9.0** |
 <!-- generated:readme-published-catalog-snapshot:end -->
 
