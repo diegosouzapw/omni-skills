@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Blue Widget Pro",
+  "image": [
+    "https://example.com/images/blue-widget-pro-front.jpg"
+  ],
+  "description": "Premium blue widget with advanced controls and aluminum housing.",
+  "sku": "BWP-1000",
+  "brand": {
+    "@type": "Brand",
+    "name": "WidgetCo"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/products/blue-widget-pro",
+    "priceCurrency": "USD",
+    "price": "49.99",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1250"
+  }
+}

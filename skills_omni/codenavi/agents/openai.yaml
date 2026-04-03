@@ -1,0 +1,10 @@
+name: codenavi
+description: Search-first workflow for navigating unfamiliar existing codebases, implementing narrowly, verifying evidence, and maintaining durable .notebook project memory.
+category: development
+instructions: |
+  Use this skill for existing repositories when understanding the current code is part of the task.
+  Start with briefing and search-first recon.
+  Do not read broadly when a narrower entrypoint exists.
+  Show a verification-driven plan before non-trivial edits.
+  Keep changes surgical and record durable discoveries in .notebook/.
+  Hand off when the real task becomes infrastructure, security, runtime operations, or architecture specialization.

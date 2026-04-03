@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native dialog example</title>
+  </head>
+  <body>
+    <button id="open-dialog">Open preferences</button>
+
+    <dialog id="prefs-dialog" aria-labelledby="prefs-title">
+      <h2 id="prefs-title">Preferences</h2>
+      <p>Choose how you want the app to behave.</p>
+      <label>
+        <input type="checkbox" /> Email me updates
+      </label>
+      <form method="dialog">
+        <button value="cancel">Cancel</button>
+        <button value="save">Save</button>
+      </form>
+    </dialog>
+
+    <script>
+      const openButton = document.getElementById('open-dialog')
+      const dialog = document.getElementById('prefs-dialog')
+
+      openButton.addEventListener('click', () => {
+        dialog.showModal()
+      })
+
+      dialog.addEventListener('close', () => {
+        openButton.focus()
+      })
+    </script>
+  </body>
+</html>

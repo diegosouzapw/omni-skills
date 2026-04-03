@@ -1,0 +1,21 @@
+{
+  "schema_version": "2026-03-29",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_repository_owner": "tech-leads-club",
+  "source_repository_name": "agent-skills",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skills_path": "packages/skills-catalog/skills",
+  "source_skill_path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
+  "source_skill_name": "technical-design-doc-creator",
+  "source_license_spdx": "MIT",
+  "license_status": "compatible",
+  "imported_public_skill_id": "technical-design-doc-creator",
+  "lineage_id": 41,
+  "sync_run_id": "20260401T184100.280394+0000-tech-leads-club-agent-skills-manual",
+  "imported_at": "2026-04-01T18:41:30.230371+00:00",
+  "original_frontmatter_snapshot": {
+    "description": "Creates comprehensive Technical Design Documents (TDD) with mandatory and optional sections through interactive discovery. Use when user asks to \"write a design doc\", \"create a TDD\", \"technical spec\", \"architecture document\", \"RFC\", \"design proposal\", or needs to document a technical decision before implementation. Do NOT use for README files, API docs, or general documentation (use docs-writer instead).",
+    "name": "technical-design-doc-creator"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "2026-03-28",
+  "skill_id": "accessibility",
+  "curation_surface": "skills_omni",
+  "enhanced_origin": "omni-skills-private",
+  "loop_prevention_rule": "curated-output-only",
+  "source_pr_number": 12,
+  "source_pr_author": "anonymous",
+  "source_pr_repo": "diegosouzapw/awesome-omni-skills",
+  "source_pr_head_sha": "2bccf6e90ded3cbcbbf30a0e9d06016be8ba0bc4"
+}

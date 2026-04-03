@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible form errors example</title>
+  </head>
+  <body>
+    <form id="signup-form" novalidate>
+      <div id="error-summary" tabindex="-1" aria-live="polite"></div>
+
+      <div>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" aria-describedby="email-help email-error" />
+        <p id="email-help">We will send your receipt to this address.</p>
+        <p id="email-error"></p>
+      </div>
+
+      <button type="submit">Create account</button>
+    </form>
+
+    <script>
+      const form = document.getElementById('signup-form')
+      const email = document.getElementById('email')
+      const summary = document.getElementById('error-summary')
+      const error = document.getElementById('email-error')
+
+      form.addEventListener('submit', (event) => {
+        error.textContent = ''
+        email.removeAttribute('aria-invalid')
+        summary.textContent = ''
+
+        if (!email.value || !email.validity.valid) {
+          event.preventDefault()
+          email.setAttribute('aria-invalid', 'true')
+          error.textContent = 'Enter a valid email address.'
+          summary.textContent = 'There is 1 error in the form. Enter a valid email address.'
+          summary.focus()
+        }
+      })
+    </script>
+  </body>
+</html>

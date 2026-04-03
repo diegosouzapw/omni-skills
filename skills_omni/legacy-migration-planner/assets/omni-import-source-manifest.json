@@ -1,0 +1,17 @@
+{
+  "schema_version": "2026-03-30",
+  "public_skill_id": "legacy-migration-planner",
+  "public_skill_path": "skills/legacy-migration-planner",
+  "source_repository_url": "https://github.com/tech-leads-club/agent-skills.git",
+  "source_branch": "main",
+  "source_commit": "906a57d9bbfa69e6438f1baa17b31db95112fad7",
+  "source_skill_path": "packages/skills-catalog/skills/(architecture)/legacy-migration-planner",
+  "upstream_files": [
+    "references/assessment-framework.md",
+    "references/frontend-backend-strategies.md",
+    "references/plan-phase.md",
+    "references/research-phase.md",
+    "references/strangler-fig-patterns.md",
+    "references/testing-safety-nets.md"
+  ]
+}

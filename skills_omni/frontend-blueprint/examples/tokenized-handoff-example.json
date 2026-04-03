@@ -1,0 +1,61 @@
+{
+  "project": "pricing-page-redesign",
+  "direction": {
+    "mood": ["precise", "premium", "confident"],
+    "references": [
+      {
+        "id": "ref-a",
+        "apply": ["pricing hierarchy", "toggle pattern"]
+      },
+      {
+        "id": "ref-b",
+        "apply": ["type contrast", "spacing rhythm"]
+      }
+    ]
+  },
+  "tokens": {
+    "color": {
+      "bg": {
+        "canvas": "#0b1020",
+        "surface": "#121a2b"
+      },
+      "text": {
+        "primary": "#f8fafc",
+        "secondary": "#94a3b8"
+      },
+      "action": {
+        "primary": "#7c3aed",
+        "accent": "#22c55e"
+      }
+    },
+    "font": {
+      "family": {
+        "heading": "Inter",
+        "body": "Inter"
+      },
+      "weight": {
+        "heading": 700,
+        "body": 400
+      }
+    },
+    "space": {
+      "2": "0.5rem",
+      "4": "1rem",
+      "6": "1.5rem",
+      "8": "2rem"
+    },
+    "radius": {
+      "md": "12px",
+      "lg": "16px"
+    },
+    "motion": {
+      "enabled": true,
+      "durationFast": "150ms"
+    }
+  },
+  "review": {
+    "responsive": ["mobile", "tablet", "desktop"],
+    "checkStates": ["hover", "focus", "disabled"],
+    "accessibility": ["contrast", "keyboard", "focus-visible"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Choose the Right Widget",
+  "description": "A practical guide to selecting the right widget for different use cases.",
+  "image": [
+    "https://example.com/images/widget-guide-cover.jpg"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Jane Smith",
+    "url": "https://example.com/authors/jane-smith"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Example Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/images/logo.png"
+    }
+  },
+  "datePublished": "2026-03-01",
+  "dateModified": "2026-03-20",
+  "mainEntityOfPage": "https://example.com/blog/how-to-choose-the-right-widget"
+}
